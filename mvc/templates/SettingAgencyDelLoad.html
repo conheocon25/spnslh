@@ -1,0 +1,30 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>	
+		<span metal:use-macro="macros.xhtml/IncludeAdminCSS"/>
+		<span metal:use-macro="macros.xhtml/IncludeJS"/>
+	</head>	
+	<body>
+		<div id="wrapper">
+			<div metal:use-macro="macros.xhtml/HeaderSetting"/>
+			<div id="main">
+				<div id="left">					
+					<form class="form-editor" tal:attributes="action Agency/getURLDelExe" method="post">
+						<div class="row">
+							Bạn có chắc muốn xóa <B tal:content="Agency/getName" /> không ?
+						</div>					
+						<div class="row">
+							<div class="button" >
+								<button type="submit" name="submit" value="submit-value">Xóa</button>
+							</div>
+						</div>
+					</form>
+				</div>	
+				<div id="right">
+					<div metal:use-macro="macros.xhtml/SettingMenu"/>
+				</div>
+				<div class="clear" />
+			</div>
+		<div metal:use-macro="macros.xhtml/Footer"/>
+	</body>
+</html>

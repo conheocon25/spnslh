@@ -1,0 +1,15 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>	
+		<!-- <span metal:use-macro="macros.xhtml/IncludeCSS"/> -->
+		<span metal:use-macro="macros.xhtml/IncludeJS"/>
+		<style>
+			* { margin: 0; padding: 0; }
+			html { background-color: #0C5A64; text-align: center; }
+			p { line-height: 0; }
+		</style>
+	</head>	
+	<body>		
+		<div tal:content="structure Ads/getContent"/>
+	</body>
+</html>

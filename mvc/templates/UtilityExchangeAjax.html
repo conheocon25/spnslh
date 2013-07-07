@@ -1,0 +1,19 @@
+	<table width="100%" cellspacing="2" cellpadding= "2">
+		<tr><td colspan="5" width="100%" align="center"><H3>KẾT QUẢ QUY ĐỔI NGOẠI TỆ <b tal:content="Value">Ngày</b> VNĐ</H3></td></tr>	
+		<tr style="font-size:13px; font-weight:bold;">									
+			<td align="center">Tiền VNĐ</td>
+			<td align="center">Tên ngoại tệ</td>
+			<td align="right">Tỉ giá tiền mặt</td>
+			<td align="right">Tỉ giá chuyển khoản</td>
+			<td align="right">Tỉ giá Bán</td>
+		</tr>
+		<tr tal:repeat="Exchange arChangeExchange">									
+			<td align="center" tal:content="Value">Tên ngoại tệ</td>
+			<td align="center" tal:content="Exchange/Name">Tên ngoại tệ</td>
+			<td align="right" tal:content="Exchange/Buy">Mua tiền mặt</td>
+			<td align="right" tal:content="Exchange/Transfer">Mua chuyển khoản</td>
+			<td align="right" tal:content="Exchange/Sell">Bán</td>
+		</tr>								
+	</table>
+							
+						

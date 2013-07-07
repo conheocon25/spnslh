@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>	
+		<span metal:use-macro="macros.xhtml/IncludeCSS"/>
+		<span metal:use-macro="macros.xhtml/IncludeJS"/>
+		<script type="text/javascript" language="javascript" src="/mvc/templates/script/user/Exchange.js"/>
+		<script type="text/javascript">
+			/*<![CDATA[*/
+			
+			/*]]>*/
+		</script>
+	</head>	
+	<body>
+		
+		<div metal:use-macro="macros.xhtml/Header"/>
+			<div id="main">				
+				<div id="left">
+					<div class="box">
+						<div class="box-title"><span tal:content="Title" style="color:white; font-size:13px; font-weight:bold; display:block; padding-top:3px; padding-left:10px;" /></div>
+						<div class="market-content">
+							<table width="100%" cellspacing="2" cellpadding= "2">
+								<tr><td colspan="5" width="100%" align="center"><H3>TỈ GIÁ NGOẠI TỆ</H3></td></tr>								
+								<tr><td colspan="5" width="100%" align="center"><H5 tal:content="str_DateTime">Ngày</H5></td></tr>								
+								<tr style="font-size:13px; font-weight:bold;">
+									<td align="left">Mã NT</td>
+									<td align="center">Tên ngoại tệ</td>
+									<td align="right">Mua tiền mặt</td>
+									<td align="right">Mua chuyển khoản</td>
+									<td align="right">Bán</td>
+								</tr>
+								<tr tal:repeat="Exchange arExchange">
+									<td align="left" tal:content="Exchange/Code">Mã NT</td>
+									<td align="center" tal:content="Exchange/Name">Tên ngoại tệ</td>
+									<td align="right" tal:content="Exchange/Buy">Mua tiền mặt</td>
+									<td align="right" tal:content="Exchange/Transfer">Mua chuyển khoản</td>
+									<td align="right" tal:content="Exchange/Sell">Bán</td>
+								</tr>
+								<tr >
+									<td colspan="5" tal:content="str_Source"/>
+								</tr>
+							</table>
+							
+								<div class="row">
+									<div for="Value" class="label">Số tiền Quy Đổi (VNĐ)</div>
+									<div class="textbox"><input id="Value" name="Value" type="text" /></div>
+									<div class="clear" />
+								</div>
+								<div class="row">
+									<div for="Exchange" class="label">Thành Ngoại tệ</div>
+									<div class="selectbox" >
+										<select id="Exchange" name="Exchange">
+											<option value="ALL">TẤT CẢ</option>
+											<option value="AUD">AUST.DOLLAR</option>
+											<option value="CAD">CANADIAN DOLLAR</option>
+											<option value="CHF">SWISS FRANCE</option>
+											<option value="EUR">EURO</option>
+											<option value="GBP">BRITISH POUND</option>
+											<option value="HKD">HONGKONG DOLLAR</option>
+											<option value="INR">INDIAN RUPEE</option>
+											<option value="JPY">JAPANESE YEN</option>
+											<option value="KRW">SOUTH KOREAN WON</option>
+											<option value="KWD">KUWAITI DINAR</option>
+											<option value="MYR">MALAYSIAN RINGGIT</option>
+											<option value="NOK">NORWEGIAN KRONER</option>
+											<option value="RUB">RUSSIAN RUBLE</option>
+											<option value="SEK">SWEDISH KRONA</option>
+											<option value="SGD">SINGAPORE DOLLAR</option>
+											<option value="THB">THAI BAHT</option>
+											<option value="USD">US DOLLAR</option>											
+										</select>
+									</div>
+									<div class="clear" />
+								</div>	
+								<div class="row">
+									<div class="button" >
+										<button type="submit" name="submit" id="ExchangeAjax" value="submit-value">Chuyển Đổi</button>										
+									</div>
+									<div class="clear" />
+								</div>
+														
+						</div>
+					</div>
+				</div>
+				<div id="right">
+					<div metal:use-macro="macros.xhtml/BoxRegister"/>
+					<div metal:use-macro="macros.xhtml/BoxProject"/>
+					<div metal:use-macro="macros.xhtml/BoxAgency"/>
+				</div>
+				<div class="clear" />				
+			</div>
+		<div metal:use-macro="macros.xhtml/Footer"/>
+		
+	</body>
+</html>

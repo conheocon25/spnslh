@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>	
+		<span metal:use-macro="macros.xhtml/IncludeCSS"/>
+		<span metal:use-macro="macros.xhtml/IncludeJS"/>
+	</head>	
+	<body>
+		
+		<div metal:use-macro="macros.xhtml/Header"/>
+			<div id="main">
+				<div id="left">
+					<div class="project-detail">
+						<div class="title" />
+						<div class="add-bar"><a href="/home">Dự án</a> &#187; <span tal:content="Title" /></div>
+						<ul style="list-style:none;">
+							<li tal:repeat="Project Category/getProjects">
+								<table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom:10px;"><tr>
+									<td width="120" align="center">
+										<img class="news-img" tal:attributes="src Project/getImage" />
+									</td>
+									<td valign="top">
+										<div class="news-time">(<span tal:content="Project/getDatePrint"/>)</div>
+										<div class="news-title">
+											<a tal:attributes="href Project/getURLRead" tal:content="Project/getTitle"/>
+											<span tal:content="structure Project/getContentReduce"/>
+										</div>
+									</td>
+								</tr></table>
+							</li>
+						</ul>						
+					</div>
+				</div>
+				<div id="right">
+					<div metal:use-macro="macros.xhtml/BoxRegister"/>
+					<div metal:use-macro="macros.xhtml/BoxProject"/>
+					<div metal:use-macro="macros.xhtml/BoxAgency"/>					
+				</div>
+				<div class="clear" />				
+			</div>
+		<div metal:use-macro="macros.xhtml/Footer"/>
+		
+	</body>
+</html>

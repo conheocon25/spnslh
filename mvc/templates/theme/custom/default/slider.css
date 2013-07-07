@@ -1,0 +1,112 @@
+	
+	/* ==================================================================================== */
+	/* NEWS SLIDER																			*/
+	/* ==================================================================================== */
+	.news-slider {
+		height: 200px;
+		width: 4753px;
+
+		animation: slide 30s;
+		animation-iteration-count: infinite;
+		animation-timing-function: ease-out;
+		
+		-webkit-animation: slide 30s;
+		-webkit-animation-iteration-count: infinite;
+		-webkit-animation-timing-function: ease-out;
+		
+		-moz-animation: slide 30s;
+		-moz-animation-iteration-count: infinite;
+		-moz-animation-timing-function: ease-out;
+	}
+			
+		.news-slider .content {
+			width: 679px;
+			float: left;
+			text-align: justify;
+		}
+		
+		.news-slider .content .news-title {
+			display: block;
+			padding: 5px;
+			color: #E41E26;
+			font-size: 1.4em;
+			font-weight: 700;
+		}
+		
+		.news-slider .content .news-content-reduce {
+			padding: 5px;
+		}
+		
+		.news-slider .content .news-time {
+			padding: 5px;
+			color: #696969;
+		}
+		
+		.news-slider:hover {
+			animation-play-state: paused;
+			-webkit-animation-play-state: paused;
+			-moz-animation-play-state: paused;
+		}
+		
+		@keyframes slide {
+			12% {
+				margin-left: 0%;
+			}
+			13%, 32% {
+				margin-left: -679px;
+			}
+			33%, 52% {
+				margin-left: -1358px;
+			}
+			53%, 72% {
+				margin-left: -2037px;
+			}
+			73%, 92% {
+				margin-left: -2716px;
+			}
+			93%, 98% {
+				margin-left: -3395px;
+			}
+		}
+		
+		@-moz-keyframes slide {
+			12% {
+				margin-left: 0%;
+			}
+			13%, 32% {
+				margin-left: -679px;
+			}
+			33%, 52% {
+				margin-left: -1358px;
+			}
+			53%, 72% {
+				margin-left: -2037px;
+			}
+			73%, 92% {
+				margin-left: -2716px;
+			}
+			93%, 98% {
+				margin-left: -3395px;
+			}
+		}
+		
+		@-webkit-keyframes slide {
+			12% {
+				margin-left: 0%;
+			}
+			13%, 32% {
+				margin-left: -679px;
+			}
+			33%, 52% {
+				margin-left: -1358px;
+			}
+			53%, 72% {
+				margin-left: -2037px;
+			}
+			73%, 92% {
+				margin-left: -2716px;
+			}
+			93%, 98% {
+				margin-left: -3395px;
+			}
+		}

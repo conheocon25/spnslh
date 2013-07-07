@@ -1,0 +1,210 @@
+Options +FollowSymlinks
+RewriteEngine on
+
+#---------------------------------------------------------------------------------------------------------------------------
+# APP
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^home$ 						?cmd=Home [L]
+
+RewriteRule ^agency/register/ins/load$ 	?cmd=AgencyRegisterInsLoad [L]
+RewriteRule ^agency/register/ins/exe$ 	?cmd=AgencyRegisterInsExe [L]
+
+RewriteRule ^agency/register/([0-9]+)/upd/load$ ?cmd=AgencyRegisterUpdLoad&IdAgency=$1 [L]
+RewriteRule ^agency/register/([0-9]+)/upd/exe$ 	?cmd=AgencyRegisterUpdExe&IdAgency=$1 [L]
+
+RewriteRule ^utility/price1$ 			?cmd=UtilityPrice1 [L]
+RewriteRule ^utility/price2$ 			?cmd=UtilityPrice2 [L]
+RewriteRule ^utility/legal$ 			?cmd=UtilityLegal [L]
+RewriteRule ^utility/banking$ 			?cmd=UtilityBanking [L]
+RewriteRule ^utility/fengshui$ 			?cmd=UtilityFengShui [L]
+RewriteRule ^utility/exchange$ 			?cmd=UtilityExchange [L]
+RewriteRule ^utility/exchangeajax$ 		?cmd=UtilityExchangeAjax [L]
+RewriteRule ^utility/map$ 				?cmd=UtilityMap [L]
+
+#---------------------------------------------------------------------------------------------------------------------------
+# SETTING
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^setting$ 					?cmd=Setting [L]
+#---------------------------------------------------------------------------------------------------------------------------
+# SETTING.CONTACT
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^setting/contact$ 						?cmd=SettingContact [L]
+RewriteRule ^setting/contact/exe$ 					?cmd=SettingContactExe [L]
+RewriteRule ^setting/contact/ins/load$ 				?cmd=SettingContactInsLoad [L]
+RewriteRule ^setting/contact/ins/exe$ 				?cmd=SettingContactInsExe [L]
+RewriteRule ^setting/contact/([a-z0-9]+)/upd/load$ 	?cmd=SettingContactUpdLoad&IdContact=$1 [L]
+RewriteRule ^setting/contact/([a-z0-9]+)/upd/exe$ 	?cmd=SettingContactUpdExe&IdContact=$1 [L]
+RewriteRule ^setting/contact/([a-z0-9]+)/del/load$ 	?cmd=SettingContactDelLoad&IdContact=$1 [L]
+RewriteRule ^setting/contact/([a-z0-9]+)/del/exe$ 	?cmd=SettingContactDelExe&IdContact=$1 [L]
+
+#---------------------------------------------------------------------------------------------------------------------------
+# SETTING.ADS
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^ads/([0-9]+)/([0-9]+)$ 					?cmd=Ads&IdCategory=$1&IdAds=$2 [L]
+
+RewriteRule ^setting/category/ads$ 						?cmd=SettingCategoryAds [L]
+RewriteRule ^setting/category/ads/ins/load$ 			?cmd=SettingCategoryAdsInsLoad [L]
+RewriteRule ^setting/category/ads/ins/exe$ 				?cmd=SettingCategoryAdsInsExe [L]
+RewriteRule ^setting/category/ads/([a-z0-9]+)/upd/load$ ?cmd=SettingCategoryAdsUpdLoad&IdCategory=$1 [L]
+RewriteRule ^setting/category/ads/([a-z0-9]+)/upd/exe$ 	?cmd=SettingCategoryAdsUpdExe&IdCategory=$1 [L]
+RewriteRule ^setting/category/ads/([a-z0-9]+)/del/load$ ?cmd=SettingCategoryAdsDelLoad&IdCategory=$1 [L]
+RewriteRule ^setting/category/ads/([a-z0-9]+)/del/exe$ 	?cmd=SettingCategoryAdsDelExe&IdCategory=$1 [L]
+
+RewriteRule ^setting/category/ads/([0-9]+)$ 					?cmd=SettingAds&IdCategory=$1 [L]
+RewriteRule ^setting/category/ads/([0-9]+)/ins/load$ 			?cmd=SettingAdsInsLoad&IdCategory=$1 [L]
+RewriteRule ^setting/category/ads/([0-9]+)/ins/exe$ 			?cmd=SettingAdsInsExe&IdCategory=$1 [L]
+RewriteRule ^setting/category/ads/([0-9]+)/([0-9]+)/upd/load$ 	?cmd=SettingAdsUpdLoad&IdCategory=$1&IdAds=$2 [L]
+RewriteRule ^setting/category/ads/([0-9]+)/([0-9]+)/upd/exe$ 	?cmd=SettingAdsUpdExe&IdCategory=$1&IdAds=$2 [L]
+RewriteRule ^setting/category/ads/([0-9]+)/([0-9]+)/del/load$ 	?cmd=SettingAdsDelLoad&IdCategory=$1&IdAds=$2 [L]
+RewriteRule ^setting/category/ads/([0-9]+)/([0-9]+)/del/exe$ 	?cmd=SettingAdsDelExe&IdCategory=$1&IdAds=$2 [L]
+
+#---------------------------------------------------------------------------------------------------------------------------
+# MARKET
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^market/([a-z0-9]+)$ 							?cmd=Market&IdCategory=$1 [L]
+RewriteRule ^market/([a-z0-9]+)/page/([a-z0-9]+)$ 			?cmd=Market&IdCategory=$1&Page=$2 [L]
+RewriteRule ^market/([a-z0-9]+)/([a-z0-9]+)$ 				?cmd=MarketNews&IdCategory=$1&IdNews=$2 [L]
+
+RewriteRule ^setting/category/market$ 						?cmd=SettingCategoryMarket [L]
+RewriteRule ^setting/category/market/ins/load$ 				?cmd=SettingCategoryMarketInsLoad [L]
+RewriteRule ^setting/category/market/ins/exe$ 				?cmd=SettingCategoryMarketInsExe [L]
+RewriteRule ^setting/category/market/([a-z0-9]+)/upd/load$ 	?cmd=SettingCategoryMarketUpdLoad&IdCategory=$1 [L]
+RewriteRule ^setting/category/market/([a-z0-9]+)/upd/exe$ 	?cmd=SettingCategoryMarketUpdExe&IdCategory=$1 [L]
+RewriteRule ^setting/category/market/([a-z0-9]+)/del/load$ 	?cmd=SettingCategoryMarketDelLoad&IdCategory=$1 [L]
+RewriteRule ^setting/category/market/([a-z0-9]+)/del/exe$ 	?cmd=SettingCategoryMarketDelExe&IdCategory=$1 [L]
+
+RewriteRule ^setting/category/market/([a-z0-9]+)$ 						?cmd=SettingMarket&IdCategory=$1 [L]
+RewriteRule ^setting/category/market/([a-z0-9]+)/page/([a-z0-9]+)$ 		?cmd=SettingMarket&IdCategory=$1&Page=$2 [L]
+RewriteRule ^setting/category/market/([a-z0-9]+)/ins/load$ 				?cmd=SettingMarket&IdCategory=$1 [L]
+RewriteRule ^setting/category/market/([a-z0-9]+)/ins/exe$ 				?cmd=SettingMarket&IdCategory=$1 [L]
+RewriteRule ^setting/category/market/([a-z0-9]+)/([a-z0-9]+)/upd/load$ 	?cmd=SettingMarket&IdCategory=$1&IdNews=$2 [L]
+RewriteRule ^setting/category/market/([a-z0-9]+)/([a-z0-9]+)/upd/exe$ 	?cmd=SettingMarket&IdCategory=$1&IdNews=$2 [L]
+RewriteRule ^setting/category/market/([a-z0-9]+)/([a-z0-9]+)/del/load$ 	?cmd=SettingMarket&IdCategory=$1&IdNews=$2 [L]
+RewriteRule ^setting/category/market/([a-z0-9]+)/([a-z0-9]+)/del/exe$ 	?cmd=SettingMarket&IdCategory=$1&IdNews=$2 [L]
+
+#---------------------------------------------------------------------------------------------------------------------------
+# PROJECT
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^project/([a-z0-9]+)$ 							?cmd=Project&IdCategory=$1 [L]
+RewriteRule ^project/([a-z0-9]+)/([a-z0-9]+)$ 				?cmd=ProjectDetail&IdCategory=$1&IdProject=$2 [L]
+RewriteRule ^project/([a-z0-9]+)/([a-z0-9]+)/([a-z0-9]+)$ 	?cmd=ProjectNews&IdCategory=$1&IdProject=$2&IdNews=$3 [L]
+
+RewriteRule ^setting/category/project$ 						?cmd=SettingCategoryProject [L]
+RewriteRule ^setting/category/project/ins/load$ 			?cmd=SettingCategoryProjectInsLoad [L]
+RewriteRule ^setting/category/project/ins/exe$ 				?cmd=SettingCategoryProjectInsExe [L]
+RewriteRule ^setting/category/project/([a-z0-9]+)/upd/load$ ?cmd=SettingCategoryProjectUpdLoad&IdCategory=$1 [L]
+RewriteRule ^setting/category/project/([a-z0-9]+)/upd/exe$ 	?cmd=SettingCategoryProjectUpdExe&IdCategory=$1 [L]
+RewriteRule ^setting/category/project/([a-z0-9]+)/del/load$ ?cmd=SettingCategoryProjectDelLoad&IdCategory=$1 [L]
+RewriteRule ^setting/category/project/([a-z0-9]+)/del/exe$ 	?cmd=SettingCategoryProjectDelExe&IdCategory=$1 [L]
+
+RewriteRule ^setting/category/project/([a-z0-9]+)$ 							?cmd=SettingProject&IdCategory=$1 [L]
+RewriteRule ^setting/category/project/([a-z0-9]+)/page/([a-z0-9]+)$ 		?cmd=SettingProject&IdCategory=$1&Page=$2 [L]
+RewriteRule ^setting/category/project/([a-z0-9]+)/ins/load$ 				?cmd=SettingProjectInsLoad&IdCategory=$1 [L]
+RewriteRule ^setting/category/project/([a-z0-9]+)/ins/exe$ 					?cmd=SettingProjectInsExe&IdCategory=$1 [L]
+RewriteRule ^setting/category/project/([a-z0-9]+)/([a-z0-9]+)/upd/load$ 	?cmd=SettingProjectUpdLoad&IdCategory=$1&IdProject=$2 [L]
+RewriteRule ^setting/category/project/([a-z0-9]+)/([a-z0-9]+)/upd/exe$ 		?cmd=SettingProjectUpdExe&IdCategory=$1&IdProject=$2 [L]
+RewriteRule ^setting/category/project/([a-z0-9]+)/([a-z0-9]+)/del/load$ 	?cmd=SettingProjectDelLoad&IdCategory=$1&IdProject=$2 [L]
+RewriteRule ^setting/category/project/([a-z0-9]+)/([a-z0-9]+)/del/exe$ 		?cmd=SettingProjectDelExe&IdCategory=$1&IdProject=$2 [L]
+
+#---------------------------------------------------------------------------------------------------------------------------
+# PROJECT.NEWS
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^setting/category/project/([0-9]+)/([0-9]+)/news$ 						?cmd=SettingProjectNews&IdCategory=$1&IdProject=$2 [L]
+RewriteRule ^setting/category/project/([0-9]+)/([0-9]+)/news/ins/load$ 				?cmd=SettingProjectNewsInsLoad&IdCategory=$1&IdProject=$2 [L]
+RewriteRule ^setting/category/project/([0-9]+)/([0-9]+)/news/ins/exe$ 				?cmd=SettingProjectNewsInsExe&IdCategory=$1&IdProject=$2 [L]
+RewriteRule ^setting/category/project/([0-9]+)/([0-9]+)/news/([0-9]+)/upd/load$ 	?cmd=SettingProjectNewsUpdLoad&IdCategory=$1&IdProject=$2&IdNews=$3 [L]
+RewriteRule ^setting/category/project/([0-9]+)/([0-9]+)/news/([0-9]+)/upd/exe$ 		?cmd=SettingProjectNewsUpdExe&IdCategory=$1&IdProject=$2&IdNews=$3 [L]
+RewriteRule ^setting/category/project/([0-9]+)/([0-9]+)/news/([0-9]+)/del/load$ 	?cmd=SettingProjectNewsDelLoad&IdCategory=$1&IdProject=$2&IdNews=$3 [L]
+RewriteRule ^setting/category/project/([0-9]+)/([0-9]+)/news/([0-9]+)/del/exe$ 		?cmd=SettingProjectNewsDelExe&IdCategory=$1&IdProject=$2&IdNews=$3 [L]
+
+#---------------------------------------------------------------------------------------------------------------------------
+# PROJECT.ALBUM
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^setting/category/project/([0-9]+)/([0-9]+)/album$ 						?cmd=SettingProjectAlbum&IdCategory=$1&IdProject=$2 [L]
+RewriteRule ^setting/category/project/([0-9]+)/([0-9]+)/album/ins/load$ 			?cmd=SettingProjectAlbumInsLoad&IdCategory=$1&IdProject=$2 [L]
+RewriteRule ^setting/category/project/([0-9]+)/([0-9]+)/album/ins/exe$ 				?cmd=SettingProjectAlbumInsExe&IdCategory=$1&IdProject=$2 [L]
+RewriteRule ^setting/category/project/([0-9]+)/([0-9]+)/album/([0-9]+)/upd/load$ 	?cmd=SettingProjectAlbumUpdLoad&IdCategory=$1&IdProject=$2&IdAlbum=$3 [L]
+RewriteRule ^setting/category/project/([0-9]+)/([0-9]+)/album/([0-9]+)/upd/exe$ 	?cmd=SettingProjectAlbumUpdExe&IdCategory=$1&IdProject=$2&IdAlbum=$3 [L]
+RewriteRule ^setting/category/project/([0-9]+)/([0-9]+)/album/([0-9]+)/del/load$ 	?cmd=SettingProjectAlbumDelLoad&IdCategory=$1&IdProject=$2&IdAlbum=$3 [L]
+RewriteRule ^setting/category/project/([0-9]+)/([0-9]+)/album/([0-9]+)/del/exe$ 	?cmd=SettingProjectAlbumDelExe&IdCategory=$1&IdProject=$2&IdAlbum=$3 [L]
+
+#---------------------------------------------------------------------------------------------------------------------------
+# GENERAL
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^general/([a-z0-9]+)$ 											?cmd=General&IdCategory=$1 [L]
+RewriteRule ^general/([a-z0-9]+)/page/([a-z0-9]+)$ 							?cmd=General&IdCategory=$1&Page=$2 [L]
+RewriteRule ^general/([a-z0-9]+)/([a-z0-9]+)$ 								?cmd=GeneralNews&IdCategory=$1&IdNews=$2 [L]
+
+RewriteRule ^setting/category/general$ 										?cmd=SettingCategoryGeneral [L]
+RewriteRule ^setting/category/general/ins/load$ 							?cmd=SettingCategoryGeneralInsLoad [L]
+RewriteRule ^setting/category/general/ins/exe$ 								?cmd=SettingCategoryGeneralInsExe [L]
+RewriteRule ^setting/category/general/([a-z0-9]+)/upd/load$ 				?cmd=SettingCategoryGeneralUpdLoad&IdCategory=$1 [L]
+RewriteRule ^setting/category/general/([a-z0-9]+)/upd/exe$ 					?cmd=SettingCategoryGeneralUpdExe&IdCategory=$1 [L]
+RewriteRule ^setting/category/general/([a-z0-9]+)/del/load$ 				?cmd=SettingCategoryGeneralDelLoad&IdCategory=$1 [L]
+RewriteRule ^setting/category/general/([a-z0-9]+)/del/exe$ 					?cmd=SettingCategoryGeneralDelExe&IdCategory=$1 [L]
+
+RewriteRule ^setting/category/general/([a-z0-9]+)$ 							?cmd=SettingGeneralNews&IdCategory=$1 [L]
+RewriteRule ^setting/category/general/([a-z0-9]+)/page/([a-z0-9]+)$ 		?cmd=SettingGeneralNews&IdCategory=$1&Page=$2 [L]
+RewriteRule ^setting/category/general/([a-z0-9]+)/ins/load$ 				?cmd=SettingGeneralNewsInsLoad&IdCategory=$1 [L]
+RewriteRule ^setting/category/general/([a-z0-9]+)/ins/exe$ 					?cmd=SettingGeneralNewsInsExe&IdCategory=$1 [L]
+RewriteRule ^setting/category/general/([a-z0-9]+)/([a-z0-9]+)/upd/load$ 	?cmd=SettingGeneralNewsUpdLoad&IdCategory=$1&IdNews=$2 [L]
+RewriteRule ^setting/category/general/([a-z0-9]+)/([a-z0-9]+)/upd/exe$ 		?cmd=SettingGeneralNewsUpdExe&IdCategory=$1&IdNews=$2 [L]
+RewriteRule ^setting/category/general/([a-z0-9]+)/([a-z0-9]+)/del/load$ 	?cmd=SettingGeneralNewsDelLoad&IdCategory=$1&IdNews=$2 [L]
+RewriteRule ^setting/category/general/([a-z0-9]+)/([a-z0-9]+)/del/exe$ 		?cmd=SettingGeneralNewsDelExe&IdCategory=$1&IdNews=$2 [L]
+
+#---------------------------------------------------------------------------------------------------------------------------
+# KNOWLEDGE
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^knowledge/([a-z0-9]+)$ 											?cmd=Knowledge&IdCategory=$1 [L]
+RewriteRule ^knowledge/([a-z0-9]+)/page/([a-z0-9]+)$ 							?cmd=Knowledge&IdCategory=$1&Page=$2 [L]
+RewriteRule ^knowledge/([a-z0-9]+)/([a-z0-9]+)$ 								?cmd=KnowledgeNews&IdCategory=$1&IdNews=$2 [L]
+
+RewriteRule ^setting/category/knowledge$ 										?cmd=SettingCategoryKnowledge [L]
+RewriteRule ^setting/category/knowledge/ins/load$ 								?cmd=SettingCategoryKnowledgeInsLoad [L]
+RewriteRule ^setting/category/knowledge/ins/exe$ 								?cmd=SettingCategoryKnowledgeInsExe [L]
+RewriteRule ^setting/category/knowledge/([a-z0-9]+)/upd/load$ 					?cmd=SettingCategoryKnowledgeUpdLoad&IdCategory=$1 [L]
+RewriteRule ^setting/category/knowledge/([a-z0-9]+)/upd/exe$ 					?cmd=SettingCategoryKnowledgeUpdExe&IdCategory=$1 [L]
+RewriteRule ^setting/category/knowledge/([a-z0-9]+)/del/load$ 					?cmd=SettingCategoryKnowledgeDelLoad&IdCategory=$1 [L]
+RewriteRule ^setting/category/knowledge/([a-z0-9]+)/del/exe$ 					?cmd=SettingCategoryKnowledgeDelExe&IdCategory=$1 [L]
+
+RewriteRule ^setting/category/knowledge/([a-z0-9]+)$ 							?cmd=SettingKnowledge&IdCategory=$1 [L]
+RewriteRule ^setting/category/knowledge/([a-z0-9]+)/page/([a-z0-9]+)$ 			?cmd=SettingKnowledge&IdCategory=$1&Page=$2 [L]
+RewriteRule ^setting/category/knowledge/([a-z0-9]+)/ins/load$ 					?cmd=SettingKnowledgeInsLoad&IdCategory=$1 [L]
+RewriteRule ^setting/category/knowledge/([a-z0-9]+)/ins/exe$ 					?cmd=SettingKnowledgeInsExe&IdCategory=$1 [L]
+RewriteRule ^setting/category/knowledge/([a-z0-9]+)/([a-z0-9]+)/upd/load$ 		?cmd=SettingKnowledgeUpdLoad&IdCategory=$1&IdNews=$2 [L]
+RewriteRule ^setting/category/knowledge/([a-z0-9]+)/([a-z0-9]+)/upd/exe$ 		?cmd=SettingKnowledgeUpdExe&IdCategory=$1&IdNews=$2 [L]
+RewriteRule ^setting/category/knowledge/([a-z0-9]+)/([a-z0-9]+)/del/load$ 		?cmd=SettingKnowledgeDelLoad&IdCategory=$1&IdNews=$2 [L]
+RewriteRule ^setting/category/knowledge/([a-z0-9]+)/([a-z0-9]+)/del/exe$ 		?cmd=SettingKnowledgeDelExe&IdCategory=$1&IdNews=$2 [L]
+
+RewriteRule ^signin/load$ 				?cmd=SigninLoad [L]
+RewriteRule ^signin/exe$ 				?cmd=SigninExe [L]
+RewriteRule ^signout/exe$ 				?cmd=SignoutExe [L]
+
+#---------------------------------------------------------------------------------------------------------------------------
+# AGENCY
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^agency/([a-z0-9]+)$ 		?cmd=Agency&IdAgency=$1 [L]
+
+#---------------------------------------------------------------------------------------------------------------------------
+# SETTING.AGENCY
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^setting/agency$ 									?cmd=SettingAgency [L]
+RewriteRule ^setting/agency/ins/load$ 							?cmd=SettingAgencyInsLoad [L]
+RewriteRule ^setting/agency/ins/exe$ 							?cmd=SettingAgencyInsExe [L]
+RewriteRule ^setting/agency/([a-z0-9]+)/upd/load$ 				?cmd=SettingAgencyUpdLoad&IdAgency=$1 [L]
+RewriteRule ^setting/agency/([a-z0-9]+)/upd/exe$ 				?cmd=SettingAgencyUpdExe&IdAgency=$1 [L]
+RewriteRule ^setting/agency/([a-z0-9]+)/del/load$ 				?cmd=SettingAgencyDelLoad&IdAgency=$1 [L]
+RewriteRule ^setting/agency/([a-z0-9]+)/del/exe$ 				?cmd=SettingAgencyDelExe&IdAgency=$1 [L]
+
+RewriteRule ^setting/agency/([a-z0-9]+)$ 						?cmd=SettingAgencyDetail&IdAgency=$1 [L]
+RewriteRule ^setting/agency/([a-z0-9]+)/page/([a-z0-9]+)$ 		?cmd=SettingAgencyDetail&IdAgency=$1&Page=$2 [L]
+RewriteRule ^setting/agency/([a-z0-9]+)/ins/load$ 				?cmd=SettingAgencyDetailInsLoad&IdAgency=$1 [L]
+RewriteRule ^setting/agency/([a-z0-9]+)/ins/exe$ 				?cmd=SettingAgencyDetailInsExe&IdAgency=$1 [L]
+RewriteRule ^setting/agency/([a-z0-9]+)/([a-z0-9]+)/upd/load$ 	?cmd=SettingAgencyDetailUpdLoad&IdAgency=$1&IdAM=$2 [L]
+RewriteRule ^setting/agency/([a-z0-9]+)/([a-z0-9]+)/upd/exe$ 	?cmd=SettingAgencyDetailUpdExe&IdAgency=$1&IdAM=$2 [L]
+RewriteRule ^setting/agency/([a-z0-9]+)/([a-z0-9]+)/del/load$ 	?cmd=SettingAgencyDetailDelLoad&IdAgency=$1&IdAM=$2 [L]
+RewriteRule ^setting/agency/([a-z0-9]+)/([a-z0-9]+)/del/exe$ 	?cmd=SettingAgencyDetailDelExe&IdAgency=$1&IdAM=$2 [L]
+
+RewriteRule ^contact$ 											?cmd=Contact [L]
+RewriteRule ^contact/exe$ 										?cmd=ContactExe [L]
+RewriteRule ^RefreshCaptcha$ 									?cmd=RefreshCaptcha [L]

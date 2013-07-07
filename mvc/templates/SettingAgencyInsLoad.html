@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>	
+		<span metal:use-macro="macros.xhtml/IncludeAdminCSS"/>
+		<span metal:use-macro="macros.xhtml/IncludeJS"/>
+	</head>	
+	<body>
+		<div id="wrapper">
+			<div metal:use-macro="macros.xhtml/HeaderSetting"/>
+			<div id="main">
+				<div id="left">					
+					<form class="form-editor" tal:attributes="action '/setting/agency/ins/exe'" method="post">
+						<div class="row">
+							<div for="Name" class="label">Tên</div>
+							<div class="textbox" >
+								<input id="Name" name="Name" type="text" />
+							</div>
+							<div class="clear" />
+						</div>
+						<div class="row">
+							<div for="Phone" class="label">Điện thoại</div>
+							<div class="textbox" >
+								<input id="Phone" name="Phone" type="text" />
+							</div>
+							<div class="clear" />
+						</div>
+						<div class="row">
+							<div for="Email" class="label">Email</div>
+							<div class="textbox" >
+								<input id="Email" name="Email" type="text" />
+							</div>
+							<div class="clear" />
+						</div>
+						<div class="row">
+							<div for="Address" class="label">Địa chỉ</div>
+							<div class="textbox" >
+								<input id="Address" name="Address" type="text" />
+							</div>
+							<div class="clear" />
+						</div>
+						<div class="row">
+							<div class="button" >
+								<button type="submit" name="submit" value="submit-value">Thêm mới</button>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div id="right">
+					<div metal:use-macro="macros.xhtml/SettingMenu"/>
+				</div>
+				<div class="clear" />
+			</div>
+		<div metal:use-macro="macros.xhtml/Footer"/>
+	</body>
+</html>

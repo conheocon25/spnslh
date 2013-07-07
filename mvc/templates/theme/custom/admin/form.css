@@ -1,0 +1,36 @@
+
+	/* ==================================================================================== */
+	/* ADMIN SIGNIN FORM																	*/
+	/* ==================================================================================== */
+	.signin-form {
+		width:			400px;
+		position: relative;
+		left: 50%;
+		top: 20px;
+		margin-left: -200px;
+	}
+	
+	/* ==================================================================================== */
+	/* ADMIN SETTING FORM																	*/
+	/* ==================================================================================== */
+	.s-form {
+
+	}
+	
+	.s-form input[type="text"],
+	.s-form input[type="password"] {
+		width:				97%;
+		padding:			10px 1%;
+		border:				none;
+		box-shadow: 0 1px #DDDDDD, 0 -1px #DDDDDD, 1px 0 #DDDDDD, -1px 0 #DDDDDD;
+		margin-bottom:		10px;
+	}
+	
+	.s-form input[type="submit"],
+	.s-form button[type="submit"] {
+		padding:			10px;
+		border:				1px solid #DDDDDD;
+		cursor:				pointer;
+		background-color:	white;
+		margin-top:			5px;
+	}

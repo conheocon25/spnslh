@@ -1,0 +1,94 @@
+	
+	/* ==================================================================================== */
+	/* ADMIN LAYOUT THEME																	*/
+	/* ==================================================================================== */
+	* { margin: 0; padding: 0; }
+
+	body {
+		font-family: "Open Sans", "Lucida Grande", "Segoe UI", Arial, Verdana, "Lucida Sans Unicode", Tahoma, Sans-Serif;
+		font-size: 0.8em;
+		background-color: #D4D4D4;
+	}
+	
+	.setting-wraper {
+		width:		970px;
+		margin:		auto;
+		overflow:	hidden;
+	}
+	
+	/* ==================================================================================== */
+	/* ADMIN HEADER																			*/
+	/* ==================================================================================== */
+	.setting-header {
+		background-color:	#094AB2;
+		color:				#FFFFFF;
+		height:				64px;
+		box-shadow:			0 1px 1px #DDDDDD;
+	}
+		
+	.setting-header .t-logo {
+		background:			url("/data/images/img/s_logo.png") no-repeat top left scroll transparent;
+		padding:			3px 5px 10px 64px;
+	}
+			
+		.t-logo .t1 {
+			font-weight:	bold;
+			font-size:		1.4em;
+		}
+			
+		.t-logo .t2 {
+			font-size:		1.0em;
+		}
+
+	.setting-header .i-user {
+		background:			url("/data/images/img/i_user.png") no-repeat center right scroll transparent;
+		height:				34px;
+		text-align:			right;
+		padding:			20px 32px 10px 0;
+		margin-right:		15px;
+	}
+	
+		.i-user a {
+			color:			#FFFFFF;
+		}
+	
+	/* ==================================================================================== */
+	/* ADMIN MAIN																			*/
+	/* ==================================================================================== */
+	.setting-main {
+		min-height:			490px;
+		border-left:		1px solid #696969;
+		border-right:		1px solid #696969;
+		background:			url("/data/images/background/left_admin.jpg") repeat-y top left scroll #FFFFFF;
+	}
+	
+	/* ==================================================================================== */
+	/* ADMIN FOOTER																			*/
+	/* ==================================================================================== */
+	.setting-footer {
+		background:			url("/data/images/img/spn.png") no-repeat center right scroll transparent;
+		color:				#094AB2;
+		font-size:			0.9em;
+		text-align:			right;
+		padding:			10px 55px;
+		border-top:			1px solid rgba(0, 0, 0, .3);
+	}
+	
+		.setting-footer a {
+			color:				#094AB2;
+		}
+		
+		.setting-footer a:hover {
+			color:			red;
+		}
+	
+	/* ==================================================================================== */
+	/* DEFAULT SOME TAG																		*/
+	/* ==================================================================================== */
+	a {
+		text-decoration:	none;
+	}
+	
+	ul {
+		list-style:			none outside none;
+	}

@@ -1,0 +1,36 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>	
+		<span metal:use-macro="macros.xhtml/IncludeAdminCSS"/>
+		<span metal:use-macro="macros.xhtml/IncludeJS"/>
+	</head>	
+	<body>
+		<div class="setting-wraper">
+			<div class="setting-header clearfix">
+				<div class="column w60i">
+					<div class="t-logo">
+						<p class="t1">Saigonlandhouse.com</p>
+						<p class="t2">Hệ Thống Quản Trị Website</p>
+					</div>
+				</div>
+			</div>
+			<div class="setting-main">
+				<div class="s-content">
+					<div class="signin-form">
+						<form class="s-form" action="/signin/exe" method="POST" name="SigninForm">
+							<label for="Email">Email</label><br/>
+							<input type="text" name="Email"/><br/>
+							<label for="Pass">Mật khẩu</label><br/>
+							<input type="password" name="Pass"/><br/>
+							<input type="submit" name="submit" value="Đăng Nhập"/>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="setting-footer">
+				<p>Một sản phẩm của SPN Co., Ltd</p>
+				<p><a href="http://w3.123app.net" target="_blank">www.123app.net</a></p>
+			</div>
+		</div>
+	</body>
+</html>
