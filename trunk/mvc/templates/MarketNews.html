@@ -1,0 +1,251 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>	
+		<script src=" http://maps.google.com/maps?file=api&amp;v=2&amp;key=AIzaSyC68TCFkTWKY1s8PXW8nR-D0infpzfrayc" />  
+		<span metal:use-macro="macros.xhtml/IncludeCSS"/>
+		<span metal:use-macro="macros.xhtml/IncludeJS"/>
+		<script type="text/javascript" language="javascript" src="/mvc/templates/script/user/SettingAgency.js" />
+		<script type="text/javascript">
+			/*<![CDATA[*/
+			$(function() {				
+				
+			});
+			/*]]>*/
+		</script>
+	</head>	
+	
+	<body>
+		<div class="wraper">
+			<div metal:use-macro="macros.xhtml/Header"/>
+			<div id="main">
+				<a href="#" class="banner-show">
+					<img src="/data/images/ads.jpg" border="0" width="100%"/>
+				</a>
+				<div class="columb-1-2">
+					<!-- ///////////////////////////////////////// -->
+					<div class="title-bar">
+						<div class="add-bar">Siêu thị địa ốc &#187; Tài sản đang giao dịch</div>
+					</div>
+					<div class="box-list">
+						<a tal:attributes="href News/getURLRead"><h2 tal:content="News/getTitleReduce1"/></a>
+						<div>Vị trí <span tal:content="News/getPosition"/></div>
+						<table border="0" cellpadding="0" cellspacing="0" width="100%">
+							<tr>
+								<td width="50%">
+									<input type="text" hidden="true" size="34" name="latitude" tal:attributes="value News/getX" id="lat" />
+									<input type="text" hidden="true" size="34" name="longitude"  tal:attributes="value News/getY" id="lng" />
+									<div align="center" id="map" style="width: 100%; height: 320px" />
+								</td>
+								<td width="50%" valign="top">
+									<table border="0" cellpadding="0" cellspacing="0" width="98%" style="border:1px solid #DDDDDD; margin-left:10px; background:#FAFAFA;">
+										<tr>
+											<td colspan="2" align="center">
+												<h3>Giá <span class="price" tal:content="News/getPricePrint"/></h3>
+											</td>
+										</tr>
+										<tr>
+											<td width="50%" align="right">Mã số tài sản</td>
+											<td>???</td>
+										</tr>
+										<tr>
+											<td width="50%" align="right">Tổng diện tích sử dụng</td>
+											<td>???</td>
+										</tr>
+										<tr>
+											<td width="50%" align="right">Diện tích khuôn viên</td>
+											<td>???</td>
+										</tr>
+										<tr>
+											<td width="50%" align="right">Diện tích xây dựng</td>
+											<td>???</td>
+										</tr>
+										<tr>
+											<td width="50%" align="right">Tình trạng</td>
+											<td>???</td>
+										</tr>
+										<tr>
+											<td width="50%" align="right">Số phòng ngủ</td>
+											<td>???</td>
+										</tr>
+										<tr>
+											<td width="50%" align="right">Số phòng tắm/WC</td>
+											<td>???</td>
+										</tr>
+									</table>
+									<div style="border:1px solid #DDDDDD; margin-left:10px; padding:5px; margin-top:10px;">
+										<p>Thông tin liên hệ</p>
+										<p>Lê Công Toàn</p>
+										<p>ĐT: 09xx.xxx.xxx</p>
+										<p>Địa chỉ: ????</p>
+									</div>
+								</td>
+							</tr>
+						</table>
+						
+						<div class="title-bar"><div class="add-bar">Mô tã chi tiết</div></div>
+						<div class="market-box">
+							<p>Nằm trong khuôn viên KDC An Phú An Khánh và Metro An Phú đầy đủ tiện ích như: siêu thị Metro An Phú, Citimart, trường cấp 2, 3 quốc tế, công viên, sân tennis… đã hiện hữu, dân cư đông đúc. Dự án tiếp giáp 3 mặt tiền đường 20m thông ra đường Lương Định Của. Cách hầm Thủ Thiêm 3 km.</p><br/>
+							<p>Gồm 1 hầm, 3 tầng thương mại, 15 tầng căn hộ. Giá tốt: 17 triệu/m2. Diện tích: 90m2 (2 phòng ngủ) Hỗ trợ vay ngân hàng 70% trong 15 năm, thanh toán linh hoạt: 20% ký hợp đồng, phần còn lại góp trong vòng 1 năm.</p><br/>
+							<p>Mọi thông tin chi tiết và đăng ký mua căn hộ Metro Apartment quý khách hàng vui lòng liên hệ phòng kinh doanh:0909 899848</p>
+						</div>
+						
+						<div class="title-bar"><div class="add-bar">Cấu trúc & Tiện ích</div></div>
+						<div class="market-box">
+							<table border="0" cellpadding="0" cellspacing="0" width="100%">
+								<tr>
+									<td>
+										<table border="0" cellpadding="0" cellspacing="0">
+											<tr><td>Tổng diện tích sử dụng: ???</td></tr>
+											<tr><td>Diện tích khuôn viên
+												<ul>
+													<li>Chiều ngang trước: ???</li>
+													<li>Chiều ngang sau: ???</li>
+													<li>Chiều dài: ???</li>
+												</ul>
+											</td></tr>
+											<tr><td>Diện tích xây dựng
+												<ul>
+													<li>Chiều ngang trước: ???</li>
+													<li>Chiều ngang sau: ???</li>
+													<li>Chiều dài: ???</li>
+												</ul>
+											</td></tr>
+										</table>
+									</td>
+									<td>
+										<table border="0" cellpadding="0" cellspacing="0">
+											<tr><td>Loại địa ốc: Căn hộ cao cấp</td></tr>
+											<tr><td>Tình trạng pháp lý: Sổ hồng</td></tr>
+											<tr><td>Hướng: Không xác định</td></tr>
+											<tr><td>Đường trước nhà: 20m</td></tr>
+											<tr><td>Vị trí địa ốc: Mặt tiền đường</td></tr>
+											<tr><td>Số lầu: 12</td></tr>
+											<tr><td>Số phòng khách: 1</td></tr>
+											<tr><td>Số phòng ngủ: 3</td></tr>
+											<tr><td>Số phòng tắm/WC: 2</td></tr>
+											<tr><td>Số phòng khác: 1</td></tr>
+										</table>
+									</td>
+									<td>
+										<table border="0" cellpadding="0" cellspacing="0">
+											<tr><td>Đầy đủ tiện nghi: có/không</td></tr>
+											<tr><td>Chỗ đậu xe hơi: có/không</td></tr>
+											<tr><td>Sân vườn: có/không</td></tr>
+											<tr><td>Hồ bơi: có/không</td></tr>
+											<tr><td>Tiện kinh doanh: có/không</td></tr>
+											<tr><td>Tiện để ở: có/không</td></tr>
+											<tr><td>Tiện làm văn phòng: có/không</td></tr>
+											<tr><td>Tiện cho sản xuất: có/không</td></tr>
+											<tr><td>Cho sinh viên thuê: có/không</td></tr>
+										</table>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					
+					<div class="title-bar"><div class="add-bar">Các tài sản cùng người đăng</div></div>
+					<div class="market-box">
+						<div style="border:1px solid #DDDDDD; width:240px; margin-top:10px; float:left; margin-left:5px;">
+							<table border="0" cellpadding="0" cellspacing="0">
+								<tr><td>
+									<img src="/data/images/can_ho.jpg" width="60" border="0" />
+								</td><td>
+									<b>Bán căn hộ cao cấp Metro</b>
+									<p>17 triệu/m2</p>
+								</td></tr>
+							</table>
+						</div>
+						
+						<div style="border:1px solid #DDDDDD; width:240px; margin-top:10px; float:left; margin-left:5px;">
+							<table border="0" cellpadding="0" cellspacing="0">
+								<tr><td>
+									<img src="/data/images/can_ho.jpg" width="60" border="0" />
+								</td><td>
+									<b>Bán căn hộ cao cấp Metro</b>
+									<p>17 triệu/m2</p>
+								</td></tr>
+							</table>
+						</div>
+						
+						<div style="border:1px solid #DDDDDD; width:240px; margin-top:10px; float:left; margin-left:5px;">
+							<table border="0" cellpadding="0" cellspacing="0">
+								<tr><td>
+									<img src="/data/images/can_ho.jpg" width="60" border="0" />
+								</td><td>
+									<b>Bán căn hộ cao cấp Metro</b>
+									<p>17 triệu/m2</p>
+								</td></tr>
+							</table>
+						</div>
+						
+						<div class="clear" />
+					</div>
+					
+					<div class="title-bar"><div class="add-bar">Các tài sản mới nhất</div></div>
+					<div class="market-box">
+						<div style="border:1px solid #DDDDDD; width:240px; margin-top:10px; float:left; margin-left:5px;">
+							<table border="0" cellpadding="0" cellspacing="0">
+								<tr><td>
+									<img src="/data/images/can_ho.jpg" width="60" border="0" />
+								</td><td>
+									<b>Bán căn hộ cao cấp Metro</b>
+									<p>17 triệu/m2</p>
+								</td></tr>
+							</table>
+						</div>
+						
+						<div style="border:1px solid #DDDDDD; width:240px; margin-top:10px; float:left; margin-left:5px;">
+							<table border="0" cellpadding="0" cellspacing="0">
+								<tr><td>
+									<img src="/data/images/can_ho.jpg" width="60" border="0" />
+								</td><td>
+									<b>Bán căn hộ cao cấp Metro</b>
+									<p>17 triệu/m2</p>
+								</td></tr>
+							</table>
+						</div>
+						
+						<div style="border:1px solid #DDDDDD; width:240px; margin-top:10px; float:left; margin-left:5px;">
+							<table border="0" cellpadding="0" cellspacing="0">
+								<tr><td>
+									<img src="/data/images/can_ho.jpg" width="60" border="0" />
+								</td><td>
+									<b>Bán căn hộ cao cấp Metro</b>
+									<p>17 triệu/m2</p>
+								</td></tr>
+							</table>
+						</div>
+						
+						<div class="clear" />
+					</div>
+				</div>
+				<div class="columb-2-2">
+					<div class="box">
+						<img src="/data/images/ads/ads1.gif" border="0" width="100%" />
+					</div>
+					<div class="box">
+						<img src="/data/images/ads/ads2.gif" border="0" width="100%" />
+					</div>
+					<div class="box">
+						Cafe luật
+					</div>
+					<div class="box">
+						Đăng ký nhận bản tin
+					</div>
+					<div class="box">
+						<img src="/data/images/ads/ads3.gif" border="0" width="100%" />
+					</div>
+					<div class="box">
+						<img src="/data/images/ads/ads4.gif" border="0" width="100%" />
+					</div>
+					<div class="box">
+						Bộ sưu tập nhà đẹp
+					</div>
+				</div>
+				<div class="clear"/>
+			</div>
+		</div>
+		<div metal:use-macro="macros.xhtml/Footer"/>
+	</body>
+</html>

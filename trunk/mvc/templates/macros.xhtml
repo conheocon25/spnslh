@@ -1,0 +1,157 @@
+<html lang="en" xml:lang="en">
+<body>
+	<!-- ================================================================================== -->
+	<!-- INCLUDE CSS LIBRARY																-->
+	<!-- ================================================================================== -->
+	<span metal:define-macro="IncludeCSS">
+		<title tal:content="string:Địa ốc trực tuyến Sài Gòn"/>
+		<base href="http://saigonlandhouse.com"/>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+		<meta http-equiv="Pragma" content="no-cache"/>
+		<meta http-equiv="Expires" content="-1"/>
+		<meta http-equiv="Cache-Control" content="no-cache"/>
+		<meta name="keywords" content="Địa ốc trực tuyến Sài Gòn"/>
+		<meta name="description" content="Địa ốc trực tuyến Sài Gòn"/>
+		<meta name="page-topic" content="Địa ốc trực tuyến Sài Gòn"/>
+		<meta name="Abstract" content="Địa ốc trực tuyến Sài Gòn"/>
+		<meta name="classification" content="thiết kế Web, Ứng dụng, Quản lý, Tablet, Mobile"/>
+		<link rel="icon" type="image/png" href="/data/images/home.png"/>
+
+		<link rel="stylesheet" type="text/css" href="/mvc/templates/theme/base/jquery-ui-1.8.11.custom.css"/>
+		<link rel="stylesheet" type="text/css" href="/mvc/templates/theme/custom/main.css"/>
+	</span>
+	
+	<!-- ================================================================================== -->
+	<!-- INCLUDE CSS LIBRARY FOR ADMIN PAGE													-->
+	<!-- ================================================================================== -->
+	<span metal:define-macro="IncludeAdminCSS">
+		<title tal:content="string:Địa ốc trực tuyến Sài Gòn"/>
+		<base href="http://saigonlandhouse.com"/>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+		<meta http-equiv="Pragma" content="no-cache"/>
+		<meta http-equiv="Expires" content="-1"/>
+		<meta http-equiv="Cache-Control" content="no-cache"/>
+		<meta name="keywords" content="Địa ốc trực tuyến Sài Gòn"/>
+		<meta name="description" content="Địa ốc trực tuyến Sài Gòn"/>
+		<meta name="page-topic" content="Địa ốc trực tuyến Sài Gòn"/>
+		<meta name="Abstract" content="Địa ốc trực tuyến Sài Gòn"/>
+		<meta name="classification" content="thiết kế Web, Ứng dụng, Quản lý, Tablet, Mobile"/>
+		<link rel="icon" type="image/png" href="/data/images/home.png"/>
+		
+		<link rel="stylesheet" type="text/css" href="/mvc/templates/theme/base/jquery-ui-1.8.11.custom.css"/>
+		<link rel="stylesheet" type="text/css" href="/mvc/templates/theme/custom/admin_main.css"/>
+	</span>
+	
+	<!-- ================================================================================== -->
+	<!-- INCLUDE JAVASCRIPT LIBRARY															-->
+	<!-- ================================================================================== -->
+	<span metal:define-macro="IncludeJS">
+		<script type="text/javascript" language="javascript" src="/mvc/templates/script/library/jquery-1.7.1.min.js"/>
+		<script type="text/javascript" language="javascript" src="/mvc/templates/script/library/jquery-ui-1.8.11.custom.min.js"/>
+	</span>
+
+	<!-- ================================================================================== -->
+	<!-- DEFAULT LAYOUT																		-->
+	<!-- ================================================================================== -->
+	
+	<!-- ============================ HEADER ============================ -->
+	<div metal:define-macro="Header" class="header">	
+		<div class="default-wraper clearfix">
+			<div class="column w18">
+				<div class="logo">
+					<a href="/home">Saigonlandhouse.com</a>
+				</div>
+			</div>
+			<div class="column w64">
+				<div class="top-menu">
+					<ul>
+						<li><a href="#"><span>THÔNG TIN ĐỊA ỐC</span></a></li>
+						<li><a href="#"><span>SIÊU THỊ ĐỊA ỐC</span></a></li>
+						<li><a href="#"><span>DỰ ÁN</span></a></li>
+						<li><a href="#"><span>KIẾN THỨC</span></a></li>
+						<li><a href="#"><span>DOANH NGHIỆP</span></a></li>
+						<li><a href="/tool"><span>TIỆN ÍCH</span></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="column w18 right">
+				<div class="acc-tool">
+					<ul>
+						<li class="login"><a href="/signin/load">Đăng Nhập</a></li>
+						<li class="register"><a href="#">Đăng Ký</a></li>
+					</ul>
+				</div>
+				<div class="post-tool">
+					<a href="#">Đăng tài sản của bạn</a>
+				</div>
+			</div>
+		</div>			
+	</div>
+	
+	<div metal:define-macro="HeaderAdmin" class="setting-header clearfix">
+		<div class="column w60i">
+			<div class="t-logo">
+				<p class="t1">Saigonlandhouse.com</p>
+				<p class="t2">Hệ Thống Quản Trị Website</p>
+			</div>
+		</div>
+		<div class="column w40i right">
+			<div class="i-user">
+				<a href="/signout/load">Administrator</a>
+			</div>
+		</div>
+	</div>
+	
+	<!-- FOOTER -->
+	<div metal:define-macro="Footer" class="footer">
+		<div class="default-wraper">
+			<p>
+				Copyright © 2007 - 2013 Saigonlandhouse.vn ® Ghi rõ nguồn "Saigonlandhouse.vn" khi phát hành lại thông tin từ website này.<br/>
+				Giấy xác nhận cung cấp dịch vụ mạng xã hội trực tuyến số 131/GXN-TTĐT do Cục QL Phát thanh, Truyền hình và Thông tin điện tử cấp.<br/>
+				Giấy phép ICP số 07/GP-ICP-STTTT do Sở Thông tin và Truyền thông TP. HCM cấp.<br/>
+				Tầng trệt toà nhà TS, Số 17 Đường số 2, Cư xá Đô Thành, Quận 3, TPHCM, Viet Nam. Tel: (08) 38181 589 Fax: (08) 38181 590<br/>
+			</p>
+		</div>
+	</div>
+	
+	<div metal:define-macro="FooterAdmin" class="setting-footer">
+		<p>Một sản phẩm của SPN Co., Ltd</p>
+		<p><a href="http://w3.123app.net" target="_blank">www.123app.net</a></p>
+	</div>
+	
+	<div metal:define-macro="TitleAdmin" class="column w90">
+		<ul class="clearfix">
+			<li><a tal:attributes="href URLBack"><span tal:content="Title"/></a></li>
+		</ul>
+	</div>
+	
+	<!-- MENU ADMIN -->
+	<div metal:define-macro="PanelAdmin" class="column w20 s-menu">
+		<ul>			
+			<li tal:attributes="class php:'Contact'==ActiveSetting?'selected':''"><a href="/setting/contact">
+				<span>Đối tác</span>
+			</a></li>
+			<li tal:attributes="class php:'CategoryAds'==ActiveSetting?'selected':''"><a href="/setting/category/ads">
+				<span>Quảng cáo</span>
+			</a></li>
+			<li tal:attributes="class php:'CategoryKnowledge'==ActiveSetting?'selected':''"><a href="/setting/category/knowledge">
+				<span>Kiến thức</span>
+			</a></li>
+			<li tal:attributes="class php:'CategoryMarket'==ActiveSetting?'selected':''"><a href="/setting/category/market">
+				<span>Tin đăng</span>
+			</a></li>
+			<li tal:attributes="class php:'CategoryProject'==ActiveSetting?'selected':''"><a href="/setting/category/project">
+				<span>Dự án</span>
+			</a></li>
+			<li tal:attributes="class php:'CategoryGeneral'==ActiveSetting?'selected':''"><a href="/setting/category/general">
+				<span>Tin tức</span>
+			</a></li>
+			<li tal:attributes="class php:'Agency'==ActiveSetting?'selected':''"><a href="/setting/agency">
+				<span>Nhà môi giới</span>
+			</a></li>
+		</ul>
+	</div>	
+</body>
+</html>

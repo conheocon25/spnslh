@@ -1,0 +1,10 @@
+
+	/* ------------------------------------------------------------------------- //
+	// INCLUDE ALL CSS FILE					                                     //
+	// ------------------------------------------------------------------------- */
+	@import url("/mvc/templates/theme/custom/default/layout.css");
+	@import url("/mvc/templates/theme/custom/default/column.css");
+	@import url("/mvc/templates/theme/custom/default/menu.css");
+	@import url("/mvc/templates/theme/custom/default/box.css");
+	@import url("/mvc/templates/theme/custom/default/slider.css");
+	@import url("/mvc/templates/theme/custom/default/other.css");

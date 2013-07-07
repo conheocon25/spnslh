@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>	
+		<span metal:use-macro="macros.xhtml/IncludeCSS"/>
+		<span metal:use-macro="macros.xhtml/IncludeJS"/>
+		<script type="text/javascript" language="javascript" src="/mvc/templates/script/library/jquery-ui-1.8.11.custom.min.js" />
+		<script>
+		$(function(){
+			//Xem bảng giá
+			$("#dialogPricePDF").dialog({
+				autoOpen: false,
+				height: 600,
+				width: 1000,
+				modal: true
+			});			
+			$( ".Price" ).click(function(){
+				var URL = $(this).attr('alt');
+				$("#PricePDF").attr('src', URL);				
+				$("#dialogPricePDF").dialog('open');
+			});
+			
+			//Xem tài liệu
+			$("#dialogDocPDF").dialog({
+				autoOpen: false,
+				height: 600,
+				width: 1000,
+				modal: true
+			});			
+			$( ".Doc" ).click(function(){
+				var URL = $(this).attr('alt');
+				$("#DocPDF").attr('src', URL);				
+				$("#dialogDocPDF").dialog('open');
+			});
+			
+			//Xem album
+			$("#dialogAlbum").dialog({
+				autoOpen: false,
+				height: 600,
+				width: 1000,
+				modal: true
+			});			
+			$( ".Album" ).click(function(){
+				var URL = $(this).attr('alt');
+				$("#Album").attr('flashvars', URL);				
+				$("#dialogAlbum").dialog('open');
+			});
+			
+		});
+		</script>
+	</head>	
+	<body>
+		
+		<div metal:use-macro="macros.xhtml/Header"/>
+			<div id="main">
+				<div id="left">
+					<div class="project-detail">
+						<div class="title" /> <!-- Title of box -->						
+						<div class="add-bar">
+							<a tal:attributes="href Category/getURLRead" tal:content="Title" />							 
+						</div>
+						<div tal:content="structure News/getContent" />						
+					</div>
+					<div id="dialogPricePDF"><iframe align="center" id="PricePDF"  width="98%" height="98%"></iframe></div>
+					<div id="dialogDocPDF"><iframe align="center" id="DocPDF"  width="98%" height="98%"></iframe></div>
+					<div id="dialogAlbum">						
+						<embed 
+							id="Album"
+							type="application/x-shockwave-flash" 
+							src="https://picasaweb.google.com/s/c/bin/slideshow.swf" 
+							width="98%"
+							height="98%"
+							flashvars=""
+							pluginspage="http://www.macromedia.com/go/getflashplayer"
+							wmode="Opaque">
+						</embed>
+					</div>
+				</div>
+				<div id="right">
+					<div class="Price" tal:attributes="alt Project/getURLPrice">
+						XEM SẢN PHẨM & BẢNG GIÁ
+					</div>
+					<div class="box-module">
+						<div class="title"><img src="/data/images/news.png" border="0" width="32" />TIN TỨC LIÊN QUAN</div>
+						<div class="module-content" style="border:2px solid #0083D2; padding:5px;">
+							<ul>
+								<li tal:repeat="News Project/getNews">
+									<table border="0" cellpadding="0" cellspacing="0" width="100%"><tr>
+										<td width="60" align="center">
+											<img tal:attributes="src News/getImage" width="100%" border="0" />
+										</td>
+										<td valign="top">
+											<div class="news-time">(<span tal:content="News/getDatePrint"/>)</div>
+											<div class="news-title">
+												<a tal:attributes="href News/getURLRead" tal:content="News/getTitle" />
+											</div>
+										</td>
+									</tr></table>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="box-module">
+						<div class="title"><img src="/data/images/picture.png" border="0" width="32" />HÌNH ẢNH</div>
+						<div class="module-content" style="border:2px solid #0083D2; padding:5px;">
+							<ul>
+								<li tal:repeat="Album Project/getAlbums">
+									<div class="Album" tal:attributes="alt Album/getURL" tal:content="Album/getName" />									
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="box-module">
+						<div class="title"><img src="/data/images/picture.png" border="0" width="32" />TÀI LIỆU</div>
+						<div class="module-content" style="border:2px solid #0083D2; padding:5px;">
+							<ul>
+								<li tal:repeat="Doc Project/getDocs">									
+									<div class="Doc" tal:attributes="alt Doc/getURL" tal:content="Doc/getName" />
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="clear" />
+			</div>
+		<div metal:use-macro="macros.xhtml/Footer"/>
+		
+	</body>
+</html>

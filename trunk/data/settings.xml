@@ -1,0 +1,255 @@
+<options>    
+	<control>
+		<!-- ============================================================================== -->
+		<!-- Các lệnh xử lí SYSTEM 															-->
+		<!-- ============================================================================== -->		
+		<command name="DefaultCommand" type="public"><view>DefaultCommand</view><status value="CMD_OK"><forward>Home</forward></status></command>		
+		
+		<command name="Home" type="public"><view>Home</view></command>		
+		<command name="Setting"><view>Setting</view></command>
+		<command name="SettingGeneral"><view>SettingGeneral</view></command>
+		
+		<command name="RefreshCaptcha" type="public"><view>RefreshCaptcha</view></command>
+		
+		<command name="SigninLoad" type="public"><view>SigninLoad</view></command>
+		<command name="SigninExe" type="public">
+			<view>SigninExe</view>
+			<status value="CMD_OK"><forward>Setting</forward></status>
+			<status value="CMD_NO_AUTHOR"><forward>Home</forward></status>
+		</command>
+		<command name="SignoutLoad"><view>SignoutLoad</view></command>
+		<command name="SignoutExe"><view>SignoutExe</view><status value="CMD_OK"><forward>Home</forward></status></command>
+		
+		<!-- ============================================================================== -->
+		<!-- REGISTER 																		-->
+		<!-- ============================================================================== -->		
+		<command name="AgencyRegisterUpdLoad" type="public"><view>AgencyRegisterUpdLoad</view></command>
+		<command name="AgencyRegisterUpdExe" type="public"><view>AgencyRegisterUpdExe</view><status value="CMD_OK"><forward>Home</forward></status></command>
+		
+		<command name="AgencyRegisterInsLoad" type="public"><view>AgencyRegisterInsLoad</view></command>
+		<command name="AgencyRegisterInsExe" type="public"><view>AgencyRegisterInsExe</view><status value="CMD_OK"><forward>Home</forward></status></command>
+		
+		<!-- ============================================================================== -->
+		<!-- CONTACT 																		-->
+		<!-- ============================================================================== -->		
+		<command name="SettingContact" type="public"><view>SettingContact</view></command>		
+		<command name="SettingContactExe" type="public">
+			<view>SettingContactExe</view>
+			<status value="CMD_ERROR"><forward>SettingContact</forward></status>
+			<status value="CMD_OK"><forward>Home</forward></status>
+		</command>		
+		<command name="SettingContactInsLoad"><view>SettingContactInsLoad</view></command>
+		<command name="SettingContactInsExe"><view>SettingContactInsExe</view><status value="CMD_OK"><forward>SettingContact</forward></status></command>
+		
+		<command name="SettingContactUpdLoad"><view>SettingContactUpdLoad</view></command>
+		<command name="SettingContactUpdExe"><view>SettingContactUpdExe</view><status value="CMD_OK"><forward>SettingContact</forward></status></command>
+		
+		<command name="SettingContactDelLoad"><view>SettingContactDelLoad</view></command>
+		<command name="SettingContactDelExe"><view>SettingContactDelExe</view><status value="CMD_OK"><forward>SettingContact</forward></status></command>
+		
+		<!-- ============================================================================== -->
+		<!-- ADS 																			-->
+		<!-- ============================================================================== -->
+		<command name="Ads" type="public"><view>Ads</view></command>
+		
+		<command name="SettingCategoryAds"><view>SettingCategoryAds</view></command>
+		<command name="SettingCategoryAdsInsLoad"><view>SettingCategoryAdsInsLoad</view></command>
+		<command name="SettingCategoryAdsInsExe"><view>SettingCategoryAdsInsExe</view><status value="CMD_OK"><forward>SettingCategoryAds</forward></status></command>
+		<command name="SettingCategoryAdsUpdLoad"><view>SettingCategoryAdsUpdLoad</view></command>
+		<command name="SettingCategoryAdsUpdExe"><view>SettingCategoryAdsUpdExe</view><status value="CMD_OK"><forward>SettingCategoryAds</forward></status></command>		
+		<command name="SettingCategoryAdsDelLoad"><view>SettingCategoryAdsDelLoad</view></command>
+		<command name="SettingCategoryAdsDelExe"><view>SettingCategoryAdsDelExe</view><status value="CMD_OK"><forward>SettingCategoryAds</forward></status></command>
+		
+		<command name="SettingAds"><view>SettingAds</view></command>		
+		<command name="SettingAdsUpdLoad"><view>SettingAdsUpdLoad</view></command>
+		<command name="SettingAdsUpdExe"><view>SettingAdsUpdExe</view><status value="CMD_OK"><forward>SettingAds</forward></status></command>
+		
+		<command name="SettingAdsInsLoad"><view>SettingAdsInsLoad</view></command>
+		<command name="SettingAdsInsExe"><view>SettingAdsInsExe</view><status value="CMD_OK"><forward>SettingAds</forward></status></command>
+		
+		<command name="SettingAdsDelLoad"><view>SettingAdsDelLoad</view></command>
+		<command name="SettingAdsDelExe"><view>SettingAdsDelExe</view><status value="CMD_OK"><forward>SettingAds</forward></status></command>
+		
+		<!-- ============================================================================== -->
+		<!-- MARKET 																		-->
+		<!-- ============================================================================== -->
+		<command name="Market" type="public"><view>Market</view></command>
+		<command name="MarketNews" type="public"><view>MarketNews</view></command>
+				
+		<command name="SettingCategoryMarket"><view>SettingCategoryMarket</view></command>
+		<command name="SettingCategoryMarketInsLoad"><view>SettingCategoryMarketInsLoad</view></command>
+		<command name="SettingCategoryMarketInsExe"><view>SettingCategoryMarketInsExe</view><status value="CMD_OK"><forward>SettingCategoryMarket</forward></status></command>
+		
+		<command name="SettingCategoryMarketUpdLoad"><view>SettingCategoryMarketUpdLoad</view></command>
+		<command name="SettingCategoryMarketUpdExe"><view>SettingCategoryMarketUpdExe</view><status value="CMD_OK"><forward>SettingCategoryMarket</forward></status></command>
+		
+		<command name="SettingCategoryMarketDelLoad"><view>SettingCategoryMarketDelLoad</view></command>
+		<command name="SettingCategoryMarketDelExe"><view>SettingCategoryMarketDelExe</view><status value="CMD_OK"><forward>SettingCategoryMarket</forward></status></command>
+		
+		<!-- ============================================================================== -->
+		<!-- SETTING.MARKET												-->
+		<!-- ============================================================================== -->		
+		<command name="SettingMarket"><view>SettingMarket</view></command>
+		<command name="SettingMarketInsLoad"><view>SettingMarketInsLoad</view></command>
+		<command name="SettingMarketInsExe"><view>SettingMarketInsExe</view><status value="CMD_OK"><forward>SettingMarket</forward></status></command>
+		<command name="SettingMarketUpdLoad"><view>SettingMarketUpdLoad</view></command>
+		<command name="SettingMarketUpdExe"><view>SettingMarketUpdExe</view><status value="CMD_OK"><forward>SettingMarket</forward></status></command>
+		<command name="SettingMarketDelLoad"><view>SettingMarketDelLoad</view></command>
+		<command name="SettingMarketDelExe"><view>SettingMarketDelExe</view><status value="CMD_OK"><forward>SettingMarket</forward></status></command>
+		
+		<!-- ============================================================================== -->
+		<!-- PROJECT 																		-->
+		<!-- ============================================================================== -->		
+		<command name="Project" type="public"><view>Project</view></command>
+		<command name="ProjectDetail" type="public"><view>ProjectDetail</view></command>
+		<command name="ProjectNews" type="public"><view>ProjectNews</view></command>
+		
+		<!-- ============================================================================== -->
+		<!-- SETTING.CATEGORY.PROJECT 														-->
+		<!-- ============================================================================== -->
+		<command name="SettingCategoryProject"><view>SettingCategoryProject</view></command>
+		<command name="SettingCategoryProjectInsLoad"><view>SettingCategoryProjectInsLoad</view></command>
+		<command name="SettingCategoryProjectInsExe"><view>SettingCategoryProjectInsExe</view><status value="CMD_OK"><forward>SettingCategoryProject</forward></status></command>
+		
+		<command name="SettingCategoryProjectUpdLoad"><view>SettingCategoryProjectUpdLoad</view></command>
+		<command name="SettingCategoryProjectUpdExe"><view>SettingCategoryProjectUpdExe</view><status value="CMD_OK"><forward>SettingCategoryProject</forward></status></command>
+		
+		<command name="SettingCategoryProjectDelLoad"><view>SettingCategoryProjectDelLoad</view></command>
+		<command name="SettingCategoryProjectDelExe"><view>SettingCategoryProjectDelExe</view><status value="CMD_OK"><forward>SettingCategoryProject</forward></status></command>
+		
+		<!-- ============================================================================== -->
+		<!-- SETTING.PROJECT			 									-->
+		<!-- ============================================================================== -->		
+		<command name="SettingProject"><view>SettingProject</view></command>
+		<command name="SettingProjectInsLoad"><view>SettingProjectInsLoad</view></command>
+		<command name="SettingProjectInsExe"><view>SettingProjectInsExe</view><status value="CMD_OK"><forward>SettingProject</forward></status></command>
+		<command name="SettingProjectUpdLoad"><view>SettingProjectUpdLoad</view></command>
+		<command name="SettingProjectUpdExe"><view>SettingProjectUpdExe</view><status value="CMD_OK"><forward>SettingProject</forward></status></command>
+		<command name="SettingProjectDelLoad"><view>SettingProjectDelLoad</view></command>
+		<command name="SettingProjectDelExe"><view>SettingProjectDelExe</view><status value="CMD_OK"><forward>SettingProject</forward></status></command>
+		
+		<!-- ============================================================================== -->
+		<!-- SETTING.PROJECT.NEWS			 												-->
+		<!-- ============================================================================== -->		
+		<command name="SettingProjectNews"><view>SettingProjectNews</view></command>
+		<command name="SettingProjectNewsInsLoad"><view>SettingProjectNewsInsLoad</view></command>
+		<command name="SettingProjectNewsInsExe"><view>SettingProjectNewsInsExe</view><status value="CMD_OK"><forward>SettingProjectNews</forward></status></command>
+		<command name="SettingProjectNewsUpdLoad"><view>SettingProjectNewsUpdLoad</view></command>
+		<command name="SettingProjectNewsUpdExe"><view>SettingProjectNewsUpdExe</view><status value="CMD_OK"><forward>SettingProjectNews</forward></status></command>
+		<command name="SettingProjectNewsDelLoad"><view>SettingProjectNewsDelLoad</view></command>
+		<command name="SettingProjectNewsDelExe"><view>SettingProjectNewsDelExe</view><status value="CMD_OK"><forward>SettingProjectNews</forward></status></command>
+
+		<!-- ============================================================================== -->
+		<!-- SETTING.PROJECT.ALBUM			 												-->
+		<!-- ============================================================================== -->
+		<command name="SettingProjectAlbum"><view>SettingProjectAlbum</view></command>
+		<command name="SettingProjectAlbumInsLoad"><view>SettingProjectAlbumInsLoad</view></command>
+		<command name="SettingProjectAlbumInsExe"><view>SettingProjectAlbumInsExe</view><status value="CMD_OK"><forward>SettingProjectAlbum</forward></status></command>
+		<command name="SettingProjectAlbumUpdLoad"><view>SettingProjectAlbumUpdLoad</view></command>
+		<command name="SettingProjectAlbumUpdExe"><view>SettingProjectAlbumUpdExe</view><status value="CMD_OK"><forward>SettingProjectAlbum</forward></status></command>
+		<command name="SettingProjectAlbumDelLoad"><view>SettingProjectAlbumDelLoad</view></command>
+		<command name="SettingProjectAlbumDelExe"><view>SettingProjectAlbumDelExe</view><status value="CMD_OK"><forward>SettingProjectAlbum</forward></status></command>
+		
+		<!-- ============================================================================== -->
+		<!-- GENERAL 																		-->
+		<!-- ============================================================================== -->		
+		<command name="General" type="public"><view>General</view></command>
+		<command name="GeneralNews" type="public"><view>GeneralNews</view></command>
+		
+		<command name="SettingCategoryGeneral"><view>SettingCategoryGeneral</view></command>
+		<command name="SettingCategoryGeneralInsLoad"><view>SettingCategoryGeneralInsLoad</view></command>
+		<command name="SettingCategoryGeneralInsExe"><view>SettingCategoryGeneralInsExe</view><status value="CMD_OK"><forward>SettingCategoryGeneral</forward></status></command>
+		
+		<command name="SettingCategoryGeneralUpdLoad"><view>SettingCategoryGeneralUpdLoad</view></command>
+		<command name="SettingCategoryGeneralUpdExe"><view>SettingCategoryGeneralUpdExe</view><status value="CMD_OK"><forward>SettingCategoryGeneral</forward></status></command>
+		
+		<command name="SettingCategoryGeneralDelLoad"><view>SettingCategoryGeneralDelLoad</view></command>
+		<command name="SettingCategoryGeneralDelExe"><view>SettingCategoryGeneralDelExe</view><status value="CMD_OK"><forward>SettingCategoryGeneral</forward></status></command>
+		
+		<!-- ============================================================================== -->
+		<!-- SETTING.GENERAL.NEWS															-->
+		<!-- ============================================================================== -->		
+		<command name="SettingGeneralNews"><view>SettingGeneralNews</view></command>
+		<command name="SettingGeneralNewsInsLoad"><view>SettingGeneralNewsInsLoad</view></command>
+		<command name="SettingGeneralNewsInsExe"><view>SettingGeneralNewsInsExe</view><status value="CMD_OK"><forward>SettingGeneralNews</forward></status></command>
+		<command name="SettingGeneralNewsUpdLoad"><view>SettingGeneralNewsUpdLoad</view></command>
+		<command name="SettingGeneralNewsUpdExe"><view>SettingGeneralNewsUpdExe</view><status value="CMD_OK"><forward>SettingGeneralNews</forward></status></command>
+		<command name="SettingGeneralNewsDelLoad"><view>SettingGeneralNewsDelLoad</view></command>
+		<command name="SettingGeneralNewsDelExe"><view>SettingGeneralNewsDelExe</view><status value="CMD_OK"><forward>SettingGeneralNews</forward></status></command>
+		
+		<!-- ============================================================================== -->
+		<!-- KNOWLEDGE 																		-->
+		<!-- ============================================================================== -->		
+		<command name="Knowledge" type="public"><view>Knowledge</view></command>
+		<command name="KnowledgeNews" type="public"><view>KnowledgeNews</view></command>
+		
+		<command name="SettingCategoryKnowledge"><view>SettingCategoryKnowledge</view></command>
+		<command name="SettingCategoryKnowledgeInsLoad"><view>SettingCategoryKnowledgeInsLoad</view></command>
+		<command name="SettingCategoryKnowledgeInsExe"><view>SettingCategoryKnowledgeInsExe</view><status value="CMD_OK"><forward>SettingCategoryKnowledge</forward></status></command>
+		
+		<command name="SettingCategoryKnowledgeUpdLoad"><view>SettingCategoryKnowledgeUpdLoad</view></command>
+		<command name="SettingCategoryKnowledgeUpdExe"><view>SettingCategoryKnowledgeUpdExe</view><status value="CMD_OK"><forward>SettingCategoryKnowledge</forward></status></command>
+		
+		<command name="SettingCategoryKnowledgeDelLoad"><view>SettingCategoryKnowledgeDelLoad</view></command>
+		<command name="SettingCategoryKnowledgeDelExe"><view>SettingCategoryKnowledgeDelExe</view><status value="CMD_OK"><forward>SettingCategoryKnowledge</forward></status></command>
+		
+		<!-- ============================================================================== -->
+		<!-- SETTING.KNOWLEDGE												-->
+		<!-- ============================================================================== -->
+		<command name="SettingKnowledge"><view>SettingKnowledge</view></command>
+		<command name="SettingKnowledgeInsLoad"><view>SettingKnowledgeInsLoad</view></command>
+		<command name="SettingKnowledgeInsExe"><view>SettingKnowledgeInsExe</view><status value="CMD_OK"><forward>SettingKnowledge</forward></status></command>
+		<command name="SettingKnowledgeUpdLoad"><view>SettingKnowledgeUpdLoad</view></command>
+		<command name="SettingKnowledgeUpdExe"><view>SettingKnowledgeUpdExe</view><status value="CMD_OK"><forward>SettingKnowledge</forward></status></command>
+		<command name="SettingKnowledgeDelLoad"><view>SettingKnowledgeDelLoad</view></command>
+		<command name="SettingKnowledgeDelExe"><view>SettingKnowledgeDelExe</view><status value="CMD_OK"><forward>SettingKnowledge</forward></status></command>
+		
+		<!-- ============================================================================== -->
+		<!-- UTILITY 																		-->
+		<!-- ============================================================================== -->		
+		<command name="UtilityPrice1" type="public"><view>UtilityPrice1</view></command>
+		<command name="UtilityPrice2" type="public"><view>UtilityPrice2</view></command>
+		<command name="UtilityLegal" type="public"><view>UtilityLegal</view></command>
+		<command name="UtilityBanking" type="public"><view>UtilityBanking</view></command>
+		<command name="UtilityFengShui" type="public"><view>UtilityFengShui</view></command>
+		<command name="UtilityMap" type="public"><view>UtilityMap</view></command>
+		<command name="UtilityExchange" type="public"><view>UtilityExchange</view></command>
+		<command name="UtilityExchangeAjax" type="public"><view>UtilityExchangeAjax</view></command>
+	
+		
+		<!-- ============================================================================== -->
+		<!-- Các lệnh xử lí CONTACT 														-->
+		<!-- ============================================================================== -->
+		<command name="Contact" type="public"><view>Contact</view></command>
+		<command name="ContactExe" type="public">
+			<view>ContactExe</view>
+			<status value="CMD_OK"><forward>Contact</forward></status>			
+			<status value="CMD_NO_AUTHOR"><forward>Home</forward></status>
+		</command>
+		<command name="RefreshCaptcha" type="public"><view>RefreshCaptcha</view></command>
+		
+		<!-- ============================================================================== -->
+		<!-- AGENCY		 																	-->
+		<!-- ============================================================================== -->
+		<command name="Agency" type="public"><view>Agency</view></command>
+						
+		<command name="SettingAgency" type="public"><view>SettingAgency</view></command>
+		<command name="SettingAgencyUpdLoad" type="public"><view>SettingAgencyUpdLoad</view></command>
+		<command name="SettingAgencyUpdExe" type="public"><view>SettingAgencyUpdExe</view><status value="CMD_OK"><forward>SettingAgency</forward></status></command>
+		<command name="SettingAgencyInsLoad" type="public"><view>SettingAgencyInsLoad</view></command>
+		<command name="SettingAgencyInsExe" type="public"><view>SettingAgencyInsExe</view><status value="CMD_OK"><forward>SettingAgency</forward></status></command>
+		<command name="SettingAgencyDelLoad" type="public"><view>SettingAgencyDelLoad</view></command>
+		<command name="SettingAgencyDelExe" type="public"><view>SettingAgencyDelExe</view><status value="CMD_OK"><forward>SettingAgency</forward></status></command>
+		
+		<!-- ============================================================================== -->
+		<!-- AGENCY.DETAIL 																	-->
+		<!-- ============================================================================== -->
+		<command name="SettingAgencyDetail" type="public"><view>SettingAgencyDetail</view></command>
+		<command name="SettingAgencyDetailUpdLoad" type="public"><view>SettingAgencyDetailUpdLoad</view></command>
+		<command name="SettingAgencyDetailUpdExe" type="public"><view>SettingAgencyDetailUpdExe</view><status value="CMD_OK"><forward>SettingAgencyDetail</forward></status></command>
+		<command name="SettingAgencyDetailDelLoad" type="public"><view>SettingAgencyDetailDelLoad</view></command>
+		<command name="SettingAgencyDetailDelExe" type="public"><view>SettingAgencyDetailDelExe</view><status value="CMD_OK"><forward>SettingAgencyDetail</forward></status></command>
+		<command name="SettingAgencyDetailInsLoad" type="public"><view>SettingAgencyDetailInsLoad</view></command>
+		<command name="SettingAgencyDetailInsExe" type="public"><view>SettingAgencyDetailInsExe</view><status value="CMD_OK"><forward>SettingAgencyDetail</forward></status></command>
+	</control>
+</options>

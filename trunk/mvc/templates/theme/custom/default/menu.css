@@ -1,0 +1,25 @@
+	
+	/* ==================================================================================== */
+	/* TOP MENU																				*/
+	/* ==================================================================================== */
+	.top-menu  {
+		border-right:	1px solid #024A75;
+		float:			left;
+		position:		relative;
+		z-index:		1;
+	}
+	
+	.top-menu ul > li {
+		border-left:	1px solid #024A75;
+		float:			left;
+		height:			77px;
+	}
+	
+	.top-menu ul > li > a {
+		color:			#FFFFFF;
+		float:			left;
+		font-size:		1em;
+		font-weight:	700;
+		padding:		31px 10px;
+		text-transform:	uppercase;
+	}

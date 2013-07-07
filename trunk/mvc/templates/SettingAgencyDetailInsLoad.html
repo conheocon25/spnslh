@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>	
+		<script src=" http://maps.google.com/maps?file=api&amp;v=2&amp;key=AIzaSyC68TCFkTWKY1s8PXW8nR-D0infpzfrayc" />
+		<span metal:use-macro="macros.xhtml/IncludeAdminCSS"/>
+		<span metal:use-macro="macros.xhtml/IncludeJS"/>
+		<script type="text/javascript" language="javascript" src="/mvc/templates/script/library/jquery-ui-1.8.11.custom.min.js" />
+		<script type="text/javascript" language="javascript" src="/mvc/templates/script/library/jquery-ui-timepicker-addon.js" />
+		<script type="text/javascript" language="javascript" src="/mvc/templates/script/library/jquery.ui.datepicker-vi.js" />
+		<script type="text/javascript" language="javascript" src="/mvc/templates/script/library/jquery-ui-timepicker-vi.js" />
+		
+		<script type="text/javascript" language="javascript" src="/mvc/templates/script/user/SettingAgency.js" />		
+		<script type="text/javascript" language="javascript" src="/mvc/templates/script/library/ckeditor/ckeditor.js"/>
+		
+		<script type="text/javascript">
+			/*<![CDATA[*/
+			$(function() {
+				$('#Date').datetimepicker({ dateFormat: 'yy-mm-dd' });
+				SetNewMap();
+			});
+			/*]]>*/
+		</script>
+		
+		<style type="text/css" language="css">
+			label { font-size: 12px; color: #696969; font-weight: bold; }
+			#IdCategoryEstate, #IdCategory, #Price, #IdProvince, #IdDistrict { height: 28px; width: 150px; border: 1px solid #696969; padding: 3px; font-size: 13px; margin-top: 5px; margin-right: 5px; }
+			#Price { height: 20px; width: 128px; border: 1px solid #696969; padding: 3px; font-size: 13px; margin-top: 5px; margin-right: -8px; }
+		</style>
+	</head>	
+	<body onload="load()" onunload="GUnload()">
+		<div class="setting-wraper">
+			<div class="setting-header clearfix">
+				<span metal:use-macro="macros.xhtml/HeaderAdmin"/>
+			</div>
+			<div class="setting-main clearfix">
+				<div class="column w20 s-menu">
+					
+				</div>
+				<div class="column w80 right s-content">
+					<div class="url-bar clearfix">
+						<span metal:use-macro="macros.xhtml/TitleAdmin"/>						
+					</div>
+					<div class="s-form">
+						<form tal:attributes="action Agency/getURLNewsInsExe" method="POST">
+							<label for="Type">Tin VIP</label><br/>
+							<input id="Type" name="Type" type="checkbox" /><br/>
+							
+							<label for="IdCategoryEstate">Loại bất động sản</label><br/>
+							<select id="IdCategoryEstate" name="IdCategoryEstate">
+								<option tal:repeat="Category CategoryEstates" tal:attributes="value Category/getId">
+									<span tal:content="Category/getName" />
+								</option>
+							</select><br/>
+							
+							<label for="IdCategory">Nhu cầu</label><br/>
+							<select id="IdCategory" name="IdCategory">
+								<option tal:repeat="Category Categories" tal:attributes="value Category/getId">
+									<span tal:content="Category/getName" />
+								</option>
+							</select><br/>
+							
+							<label for="Price">Giá</label><br/>
+							<input id="Price" name="Price" type="text" /><br/>
+							
+							<label for="map">Bản đồ</label><br/>
+							<div align="center" id="map" style="width: 480px; height: 320px" /><br/>
+							
+							<label for="Title">Tiêu đề</label><br/>
+							<input id="Title" name="Title" type="text" /><br/>
+							
+							<label for="Date">Thời gian</label><br/>
+							<input id="Date" name="Date" type="text" /><br/>
+						
+							<label for="Content">Nội dung</label><br/>
+							<textarea class="ckeditor" name="Content" /><br/>
+							
+							<label for="Position">Vị trí</label><br/>
+							<select id="Position" name="IdDistrict" style="width:165px" onchange="changeMap()">
+								<optgroup tal:repeat="Province Provinces" tal:attributes="label Province/getName">
+									<option tal:repeat="District Province/getDistricts" tal:attributes="value District/getId;title District/getPositionStr">
+										<span tal:content="District/getName" />
+									</option>
+								</optgroup>
+							</select><br/>
+							
+							<label for="latitude">Kinh độ</label><br/>
+							<input id="lat" name="latitude" type="text" /><br/>
+							
+							<label for="longitude">Vĩ độ</label><br/>
+							<input id="lng" name="longitude" type="text" /><br/>
+								
+							<button type="submit" name="submit" value="submit-value">Thêm</button>
+						</form>
+					</div>
+				</div>
+			</div>
+			<span metal:use-macro="macros.xhtml/FooterAdmin"/>
+		</div>
+	</body>
+</html>

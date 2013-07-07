@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>	
+		<span metal:use-macro="macros.xhtml/IncludeAdminCSS"/>
+		<span metal:use-macro="macros.xhtml/IncludeJS"/>
+		<script type="text/javascript" language="javascript" src="/mvc/templates/script/library/jquery-ui-1.8.11.custom.min.js" />
+		<script type="text/javascript" language="javascript" src="/mvc/templates/script/library/jquery-ui-timepicker-addon.js" />
+		<script type="text/javascript" language="javascript" src="/mvc/templates/script/library/jquery.ui.datepicker-vi.js" />
+		<script type="text/javascript" language="javascript" src="/mvc/templates/script/library/jquery-ui-timepicker-vi.js" />
+		
+		<script type="text/javascript" language="javascript" src="/mvc/templates/script/library/ckeditor/ckeditor.js"/>
+		<script type="text/javascript">
+			/*<![CDATA[*/
+			$(function() {$('#Date').datetimepicker({ dateFormat: 'yy-mm-dd' });});
+			/*]]>*/
+		</script>
+	</head>	
+	<body>						
+		<div class="setting-wraper">
+			<div class="setting-header clearfix">
+				<span metal:use-macro="macros.xhtml/HeaderAdmin"/>				
+			</div>
+			<div class="setting-main clearfix">
+				<div class="column w20 s-menu">
+					
+				</div>
+				<div class="column w80 right s-content">
+					<div class="url-bar clearfix">
+						<span metal:use-macro="macros.xhtml/TitleAdmin"/>						
+					</div>
+					<div class="s-form">
+						<form tal:attributes="action News/getURLUpdExe" method="post">
+							<label for="Title">Tiêu đề</label><br/>
+							<input id="Title" name="Title" type="text" tal:attributes="value News/getTitle" /><br/>
+							<label for="Type">Loại</label><br/>
+							<input id="Type" name="Type" type="checkbox" tal:attributes="checked News/getType" /> Tin VIP<br/>
+							<label for="Date">Thời gian</label><br/>
+							<input id="Date" name="Date" type="text" tal:attributes="value News/getDate"/><br/>
+							<label for="Content">Nội dung</label><br/>
+							<textarea class="ckeditor" id="Content" name="Content" type="text" tal:content="News/getContent"/><br/>
+							<button type="submit" name="submit" value="submit-value">Cập nhật</button>
+						</form>
+					</div>
+				</div>
+			</div>
+			<span metal:use-macro="macros.xhtml/FooterAdmin"/>
+		</div>
+	</body>
+</html>
+

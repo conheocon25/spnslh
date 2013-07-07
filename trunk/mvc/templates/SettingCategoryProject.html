@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>	
+		<span metal:use-macro="macros.xhtml/IncludeAdminCSS"/>
+		<span metal:use-macro="macros.xhtml/IncludeJS"/>
+	</head>	
+	<body>		
+		<div class="setting-wraper">
+			<span metal:use-macro="macros.xhtml/HeaderAdmin"/>
+			<div class="setting-main clearfix">
+				<span metal:use-macro="macros.xhtml/PanelAdmin"/>
+				<div class="column w80 right s-content">
+					<div class="url-bar clearfix">
+						<span metal:use-macro="macros.xhtml/TitleAdmin"/>
+						<div class="column w10 add-tool">
+							<a href="/setting/category/project/ins/load">Thêm</a>
+						</div>
+					</div>
+					<div class="s-table">
+						<table border="0" cellpadding="0" cellspacing="0">
+							<thead>
+								<tr>
+									<th width="32">STT</th>
+									<th>TÊN</th>
+									<th>DỰ ÁN</th>
+									<th width="32"></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr tal:repeat="CP CategoryProjectAll">
+									<td><span tal:content="repeat/CP/number"/></td>
+									<td><a tal:attributes="href CP/getURLUpdLoad"><span tal:content="CP/getName"/></a></td>
+									<td><a tal:attributes="href CP/getURLView">
+										Xem (<span tal:content="CP/getProjects/count"/>)
+									</a></td>
+									<td><a class="s-tools" tal:attributes="href CP/getURLDelLoad"></a></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<span metal:use-macro="macros.xhtml/FooterAdmin"/>
+		</div>
+	</body>
+</html>

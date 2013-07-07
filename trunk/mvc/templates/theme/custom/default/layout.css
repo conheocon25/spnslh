@@ -1,0 +1,107 @@
+	
+	/* ==================================================================================== */
+	/* DEFAULT LAYOUT THEME																	*/
+	/* ==================================================================================== */
+	* { margin: 0; padding: 0; }
+
+	body {
+		font-family: Arial, Verdana, Tahoma, Sans-Serif;
+		font-size: 0.8em;
+	}
+	
+	.default-wraper {
+		width:		970px;
+		margin:		auto;
+		overflow:	hidden;
+	}
+	
+	/* ==================================================================================== */
+	/* DEFAULT HEADER																		*/
+	/* ==================================================================================== */
+	.header {
+		background: url("/data/images/background/header.png") left top repeat-x scroll #FFFFFF;
+	}
+	
+	/* =================== LOGO =================== */
+	.header .logo a {
+		background:		url("/data/images/background/logo.png") left top no-repeat scroll transparent;
+		float:			left;
+		margin-top:		4px;
+		height:			67px;
+		text-indent:	-9999px;
+		width:			100%;
+	}
+	
+	/* =================== ACC-TOOL =================== */
+	.header .acc-tool {
+		background-color:				#00619D;
+		float:							right;
+		position:						relative;
+		width:							auto;
+		border-bottom-left-radius:		5px;
+		border-bottom-right-radius:		5px;
+	}
+	
+		.header .acc-tool ul > li {
+			float:		left;
+			padding:	0 10px 0 3px;
+		}
+		
+		.header .acc-tool ul > li > a {
+			color:			#FFFFFF;
+			float:			left;
+			font-size:		11px;
+			padding-left:	24px;
+			padding-bottom:	5px;
+			padding-top:	7px;
+		}
+		
+		.header .acc-tool ul > li.login > a {
+			background:		url("/data/images/background/login.png") left top no-repeat scroll transparent;
+		}
+		
+		.header .acc-tool ul > li.register > a {
+			background:		url("/data/images/background/register.png") left top no-repeat scroll transparent;
+		}
+	
+	/* =================== POST TOOL =================== */
+	.header .post-tool {
+		float:			right;
+		height:			26px;
+		padding-top:	10px;
+		width:			171px;
+	}
+	
+		.header .post-tool a {
+			background:		url("/data/images/background/post.png") left top no-repeat scroll transparent;
+			color:			#FFFFFF;
+			float:			left;
+			font-size:		0.8em;
+			font-weight:	700;
+			padding:		4px 0 8px 36px;
+			width:			135px;
+			text-transform:	uppercase;
+		}
+	
+	/* ==================================================================================== */
+	/* DEFAULT FOOTER																		*/
+	/* ==================================================================================== */
+	.footer {
+		background-color:	#0172B6;
+		height:				96px;
+	}
+	
+	.footer p {
+		text-align:		center;
+		color:			#FFFFFF;
+		font-size:		0.9em;
+		line-height:	17px;
+		margin-bottom:	0 !important;
+		margin-top:		13px !important;
+	}
+
+	/* ==================================================================================== */
+	/* DEFAULT SOME TAG																		*/
+	/* ==================================================================================== */
+	a { text-decoration: none; }
+	ul { list-style: none outside none; }

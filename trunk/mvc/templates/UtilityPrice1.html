@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>	
+		<span metal:use-macro="macros.xhtml/IncludeCSS"/>
+		<span metal:use-macro="macros.xhtml/IncludeJS"/>
+		<script type="text/javascript" language="javascript" src="/mvc/templates/script/library/jquery-ui-1.8.11.custom.min.js" />
+		<script>
+		$(function(){
+			$("#dialogPDF").dialog({
+				autoOpen: false,
+				height: 600,
+				width: 1000,
+				modal: true
+			});
+			
+			$( ".LocationButton" ).click(function(){				
+				var URL = $(this).attr('alt');				
+				$("#PricePDF").attr('src', URL);
+				$("#dialogPDF").dialog('open');
+			});
+			
+		});
+		</script>		
+	</head>	
+	<body>
+		
+		<div metal:use-macro="macros.xhtml/Header"/>
+			<div id="main">
+				<div id="left">
+					<div id="dialogPDF">						
+						<iframe class="Location" id="PricePDF"  width="98%" height="98%"></iframe>
+					</div>
+					<div style="font-size:12px; text-align:justify; text-indent:20px; line-height:18px; border:1px solid #DDDDDD; padding:10px; color:#2e83ff;">
+						<p>So với năm 2012, BGĐ năm 2013 về cơ bản vẫn giữ nguyên, chỉ bổ sung hoặc điều chỉnh giá một số đường được nâng cấp, mới hoàn thành hoặc mới đặt tên đường trong năm 2012. Đây là năm thứ năm liên tiếp TPHCM giữ nguyên BGĐ không tăng.</p>
+						<p>Đất ở tại mặt tiền đường ở đô thị cao nhất vẫn thuộc các khu đất vàng tại trung tâm quận 1 thuộc 3 tuyến đường Lê Lợi, Đồng Khởi và Nguyễn Huệ (quận 1) ở mức 81 triệu đồng/m²; giá thấp nhất tại khu dân cư Thiềng Liềng, huyện Cần Giờ với giá 110.000 đồng/m². Đất ở nông thôn cao nhất là 2.250.000 đồng/m².</p>
+						<p>Quyết định cũng nêu rõ, giá đất sản xuất, kinh doanh phi nông nghiệp tính bằng 60% giá đất ở liền kề.</p>
+						<p>Quí khách hàng vui lòng bấm vào tên Quận để xem nội dung bảng giá đất cần tham khảo tương ứng với từng con đường.</p>
+					</div>
+					<ul class="ultility-price1">
+						<li><span class="LocationButton" alt="https://docs.google.com/file/d/0Bz9g4Mc1S5efT3dFUllfRTI0UzA/preview">Quận 1</span></li>
+						<li><span class="LocationButton" alt="https://docs.google.com/file/d/0Bz9g4Mc1S5efeFRVZ3lpc2c2eFU/preview">Quận 2</span></li>
+						<li><span class="LocationButton" alt="https://docs.google.com/file/d/0Bz9g4Mc1S5efQ3UwUlY1bkVmZkE/preview">Quận 3</span></li>
+						<li><span class="LocationButton" alt="https://docs.google.com/file/d/0Bz9g4Mc1S5efbkdZTTM4ZFdpSlk/preview">Quận 4</span></li>
+						<li><span class="LocationButton" alt="https://docs.google.com/file/d/0Bz9g4Mc1S5efYlVsbTIyRXpkaDg/preview">Quận 5</span></li>
+						<li><span class="LocationButton" alt="https://docs.google.com/file/d/0Bz9g4Mc1S5efUGQ4SzFERGo4YkU/preview">Quận 6</span></li>
+						<li><span class="LocationButton" alt="https://docs.google.com/file/d/0Bz9g4Mc1S5efcFZhcVNWRnNpMm8/preview">Quận 7</span></li>
+						<li><span class="LocationButton" alt="https://docs.google.com/file/d/0Bz9g4Mc1S5efQTlPRWk2N0RsWms/preview">Quận 8</span></li>
+						<li><span class="LocationButton" alt="https://docs.google.com/file/d/0Bz9g4Mc1S5efRnU1WThyUFpmak0/preview">Quận 9</span></li>
+						<li><span class="LocationButton" alt="https://docs.google.com/file/d/0Bz9g4Mc1S5efVXBORFNIZTB4Szg/preview">Quận 10</span></li>
+						<li><span class="LocationButton" alt="https://docs.google.com/file/d/0Bz9g4Mc1S5efc2p5VnpfcDd6Nms/preview">Quận 11</span></li>
+						<li><span class="LocationButton" alt="https://docs.google.com/file/d/0Bz9g4Mc1S5efaDZhVjU4Wmp1Ulk/preview">Quận 12</span></li>
+						<li><span class="LocationButton" alt="https://docs.google.com/file/d/0Bz9g4Mc1S5efWWM5WWg1OWpGcVU/preview">Quận Bình Tân</span></li>
+						<li><span class="LocationButton" alt="https://docs.google.com/file/d/0Bz9g4Mc1S5efZ0o0R1JSVFY0NEU/preview">Quận Bình Thạnh</span></li>
+						<li><span class="LocationButton" alt="https://docs.google.com/file/d/0Bz9g4Mc1S5efNW9MNUtKZjNFbG8/preview">Quận Gò Vấp</span></li>
+						<li><span class="LocationButton" alt="https://docs.google.com/file/d/0Bz9g4Mc1S5efX0E5Rk5qeHN6a00/preview">Quận Phú Nhuận</span></li>
+						<li><span class="LocationButton" alt="https://docs.google.com/file/d/0Bz9g4Mc1S5efbGoyNVFXUnYyeVE/preview">Quận Tân Bình</span></li>
+						<li><span class="LocationButton" alt="https://docs.google.com/file/d/0Bz9g4Mc1S5efSUFzbDJFN2l4NlU/preview">Quận Tân Phú</span></li>
+						<li><span class="LocationButton" alt="https://docs.google.com/file/d/0Bz9g4Mc1S5efUGtYd2RsdWpoVmc/preview">Quận Thủ Đức</span></li>
+						<li><span class="LocationButton" alt="https://docs.google.com/file/d/0Bz9g4Mc1S5efZHpaSmt0ZjFsX3c/preview">Huyện Hóc Môn</span></li>
+						<li><span class="LocationButton" alt="https://docs.google.com/file/d/0Bz9g4Mc1S5efYjZwZUNpMVlreGs/preview">Huyện Bình Chánh</span></li>
+						<li><span class="LocationButton" alt="https://docs.google.com/file/d/0Bz9g4Mc1S5efcFR2UmN6WWR0UkE/preview">Huyện Nhà Bè</span></li>
+						<li><span class="LocationButton" alt="https://docs.google.com/file/d/0Bz9g4Mc1S5efd1V0WU5lU2FuVXM/preview">Huyện Củ Chi</span></li>
+						<li><span class="LocationButton" alt="https://docs.google.com/file/d/0Bz9g4Mc1S5efUWZDTVM3SmVwZWs/preview">Huyện Cần Giờ</span></li>
+					</ul>
+				</div>
+				<div id="right">
+					<div metal:use-macro="macros.xhtml/BoxRegister"/>
+					<div metal:use-macro="macros.xhtml/BoxProject"/>
+					<div metal:use-macro="macros.xhtml/BoxAgency"/>					
+				</div>
+				<div class="clear" />				
+			</div>
+		<div metal:use-macro="macros.xhtml/Footer"/>
+	</body>
+</html>

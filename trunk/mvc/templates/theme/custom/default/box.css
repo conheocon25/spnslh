@@ -1,0 +1,29 @@
+	
+	/* ==================================================================================== */
+	/* DEFAULT BOX																			*/
+	/* ==================================================================================== */
+	.box {
+		border:		1px solid #DDDDDD;
+		margin:		10px 0;
+		overflow:	hidden;
+	}
+	
+	.in-left {
+		margin-right:	5px;
+	}
+	
+	.no-border {
+		border:		none !important;
+	}
+	
+	.box-title {
+		border-bottom: 1px solid #DDDDDD;
+		padding: 5px;
+		font-weight: 700;
+		color: red;
+	}
+	
+	.box-content {
+		padding: 5px;
+		text-align: justify;
+	}
