@@ -5,12 +5,14 @@
 		<span metal:use-macro="macros.xhtml/IncludeJS"/>
 	</head>	
 	<body>		
-		<div class="setting-wraper">
-			<span metal:use-macro="macros.xhtml/HeaderAdmin"/>
-			<div class="setting-main clearfix">
+		<span metal:use-macro="macros.xhtml/HeaderAdmin"/>
+		<div class="container-fluid">
+			<div class="row-fluid">
 				<span metal:use-macro="macros.xhtml/PanelAdmin"/>
-				<div class="column w80 right s-content">
-					
+				<div class="span9">
+					<ul class="breadcrumb">
+						<li class="active">Thiết lập</li>
+					</ul>
 				</div>
 			</div>
 			<span metal:use-macro="macros.xhtml/FooterAdmin"/>
