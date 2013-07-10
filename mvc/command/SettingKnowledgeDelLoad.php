@@ -49,6 +49,7 @@
 			
 			$request->setProperty("Title", $Title);
 			$request->setProperty("URLBack", $URLBack);
+			$request->setProperty("ActiveSetting", 'CategoryKnowledge');
 						
 			return self::statuses('CMD_DEFAULT');
 		}

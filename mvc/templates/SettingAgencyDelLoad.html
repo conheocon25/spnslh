@@ -5,26 +5,26 @@
 		<span metal:use-macro="macros.xhtml/IncludeJS"/>
 	</head>	
 	<body>
-		<div id="wrapper">
-			<div metal:use-macro="macros.xhtml/HeaderSetting"/>
-			<div id="main">
-				<div id="left">					
-					<form class="form-editor" tal:attributes="action Agency/getURLDelExe" method="post">
-						<div class="row">
+		<span metal:use-macro="macros.xhtml/HeaderAdmin"/>
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<span metal:use-macro="macros.xhtml/PanelAdmin"/>
+				<div class="span9">
+					<span metal:use-macro="macros.xhtml/TitleAdmin"/>
+					
+					<form class="form-horizontal" tal:attributes="action Agency/getURLDelExe" method="POST">
+						<div class="control-group">
 							Bạn có chắc muốn xóa <B tal:content="Agency/getName" /> không ?
-						</div>					
-						<div class="row">
-							<div class="button" >
-								<button type="submit" name="submit" value="submit-value">Xóa</button>
+						</div>
+						<div class="control-group">
+							<div class="controls">
+								<button class="btn" type="submit" name="submit" value="submit-value">Xóa</button>
 							</div>
 						</div>
 					</form>
-				</div>	
-				<div id="right">
-					<div metal:use-macro="macros.xhtml/SettingMenu"/>
 				</div>
-				<div class="clear" />
 			</div>
-		<div metal:use-macro="macros.xhtml/Footer"/>
+			<span metal:use-macro="macros.xhtml/FooterAdmin"/>
+		</div>
 	</body>
 </html>

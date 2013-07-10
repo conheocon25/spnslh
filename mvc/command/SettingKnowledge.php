@@ -44,7 +44,7 @@
 			$request->setProperty("Title", $Title);
 			$request->setProperty("Page", $Page);
 			$request->setProperty("URLBack", $URLBack);
-			$request->setProperty("ActiveItem", 'Home');
+			$request->setProperty("ActiveSetting", 'CategoryKnowledge');
 			
 			return self::statuses('CMD_DEFAULT');
 		}

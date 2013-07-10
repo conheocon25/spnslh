@@ -5,39 +5,33 @@
 		<span metal:use-macro="macros.xhtml/IncludeJS"/>
 	</head>	
 	<body>		
-		<div class="setting-wraper">
-			<span metal:use-macro="macros.xhtml/HeaderAdmin"/>
-			<div class="setting-main clearfix">
+		<span metal:use-macro="macros.xhtml/HeaderAdmin"/>
+		<div class="container-fluid">
+			<div class="row-fluid">
 				<span metal:use-macro="macros.xhtml/PanelAdmin"/>
-				<div class="column w80 right s-content">
-					<div class="url-bar clearfix">
-						<span metal:use-macro="macros.xhtml/TitleAdmin"/>
-						<div class="column w10 add-tool">
-							<a href="/setting/category/ads/ins/load">Thêm</a>
-						</div>
-					</div>
-					<div class="s-table">
-						<table border="0" cellpadding="0" cellspacing="0">
-							<thead>
-								<tr>
-									<th width="32">STT</th>
-									<th>LOẠI</th>
-									<th>QUẢNG CÁO</th>
-									<th width="32"></th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr tal:repeat="CA CategoryAdsAll">
-									<td><span tal:content="repeat/CA/number"/></td>
-									<td><a tal:attributes="href CA/getURLUpdLoad"><span tal:content="CA/getName"/></a></td>
-									<td><a tal:attributes="href CA/getURLView">
-										Xem (<span tal:content="CA/getAdsAll/count"/>)
-									</a></td>
-									<td><a class="s-tools" tal:attributes="href CA/getURLDelLoad"></a></td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
+				<div class="span9">
+					<span metal:use-macro="macros.xhtml/TitleAdmin"/>
+					
+					<table class="table">
+						<thead>
+							<tr>
+								<th width="32">STT</th>
+								<th>LOẠI</th>
+								<th>QUẢNG CÁO</th>
+								<th width="32"></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr tal:repeat="CA CategoryAdsAll">
+								<td><span tal:content="repeat/CA/number"/></td>
+								<td><a tal:attributes="href CA/getURLUpdLoad"><span tal:content="CA/getName"/></a></td>
+								<td><a tal:attributes="href CA/getURLView">
+									Xem (<span tal:content="CA/getAdsAll/count"/>)
+								</a></td>
+								<td><a class="s-tools" tal:attributes="href CA/getURLDelLoad"></a></td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
 			</div>
 			<span metal:use-macro="macros.xhtml/FooterAdmin"/>

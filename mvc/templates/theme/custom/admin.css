@@ -24,3 +24,7 @@
 		color: #FFFFFF		!important;
 		font-size: 1.6em	!important;
 	}
+	
+	.span3 {
+		min-height: 450px	!important;
+	}
