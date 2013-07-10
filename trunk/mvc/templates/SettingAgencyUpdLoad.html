@@ -5,51 +5,47 @@
 		<span metal:use-macro="macros.xhtml/IncludeJS"/>
 	</head>	
 	<body>
-		<div id="wrapper">
-			<div metal:use-macro="macros.xhtml/HeaderSetting"/>
-			<div id="main">
-				<div id="left">					
-					<form class="form-editor" tal:attributes="action Agency/getURLUpdExe" method="post">
-						<div class="row">
-							<div for="Name" class="label">Tên</div>
-							<div class="textbox" >
-								<input id="Name" name="Name" type="text" tal:attributes="value Agency/getName" />
+		<span metal:use-macro="macros.xhtml/HeaderAdmin"/>
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<span metal:use-macro="macros.xhtml/PanelAdmin"/>
+				<div class="span9">
+					<span metal:use-macro="macros.xhtml/TitleAdmin"/>
+					
+					<form class="form-horizontal" tal:attributes="action Agency/getURLUpdExe" method="POST">
+						<div class="control-group">
+							<label for="Name" class="control-label">Tên</label>
+							<div class="controls">
+								<input id="Name" name="Name" type="text" tal:attributes="value Agency/getName"/>
 							</div>
-							<div class="clear" />
 						</div>
-						<div class="row">
-							<div for="Phone" class="label">Điện thoại</div>
-							<div class="textbox" >
-								<input id="Phone" name="Phone" type="text" tal:attributes="value Agency/getPhone" />
+						<div class="control-group">
+							<label for="Phone" class="control-label">Điện thoại</label>
+							<div class="controls">
+								<input id="Phone" name="Phone" type="text" tal:attributes="value Agency/getPhone"/>
 							</div>
-							<div class="clear" />
 						</div>
-						<div class="row">
-							<div for="Email" class="label">Email</div>
-							<div class="textbox" >
-								<input id="Email" name="Email" type="text" tal:attributes="value Agency/getEmail" />
+						<div class="control-group">
+							<label for="Email" class="control-label">Email</label>
+							<div class="controls">
+								<input id="Email" name="Email" type="text" tal:attributes="value Agency/getEmail"/>
 							</div>
-							<div class="clear" />
 						</div>
-						<div class="row">
-							<div for="Address" class="label">Địa chỉ</div>
-							<div class="textbox" >
-								<input id="Address" name="Address" type="text" tal:attributes="value Agency/getAddress" />
+						<div class="control-group">
+							<label for="Address" class="control-label">Địa chỉ</label>
+							<div class="controls">
+								<input id="Address" name="Address" type="text" tal:attributes="value Agency/getAddress"/>
 							</div>
-							<div class="clear" />
 						</div>
-						<div class="row">
-							<div class="button" >
-								<button type="submit" name="submit" value="submit-value">Cập Nhật</button>
+						<div class="control-group">
+							<div class="controls">
+								<button class="btn" type="submit" name="submit" value="submit-value">Cập nhật</button>
 							</div>
 						</div>
 					</form>
 				</div>
-				<div id="right">
-					<div metal:use-macro="macros.xhtml/SettingMenu"/>
-				</div>
-				<div class="clear" />
 			</div>
-		<div metal:use-macro="macros.xhtml/Footer"/>
+			<span metal:use-macro="macros.xhtml/FooterAdmin"/>
+		</div>
 	</body>
 </html>
