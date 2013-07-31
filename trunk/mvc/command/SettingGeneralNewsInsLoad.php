@@ -21,13 +21,13 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
-			$Category = $mCategoryGeneral->find($IdCategory);
-			$Title = mb_strtoupper("THIẾT LẬP / TIN CHUNG / ".$Category->getName()." / THÊM MỚI TIN", 'UTF8');
-			$URLBack = $Category->getURLView();
-			$Title = "NHÀ MÔI GIỚI";
+			$Category = $mCategoryGeneral->find($IdCategory);			
+			$Title = "THẾM MỚI";
 			$Navigation = array(
 				array("TRANG CHỦ", "/trang-chu"),
-				array("QUẢN LÝ", "/setting")
+				array("QUẢN LÝ", "/setting"),
+				array("TIN TỨC", "/setting/category/news"),
+				array(mb_strtoupper($Category->getName(), 'UTF8'), $Category->getURLView())
 			);
 			
 			//-------------------------------------------------------------

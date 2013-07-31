@@ -5,24 +5,22 @@
 		<span metal:use-macro="macros.xhtml/IncludeJS"/>
 	</head>	
 	<body>
-		<div class="setting-wraper">
-			<div class="setting-header clearfix">
-				<span metal:use-macro="mAdmin.xhtml/Header"/>				
-			</div>
-			<div class="setting-main clearfix">
-				<div class="column w20 s-menu">
-					
+		<span metal:use-macro="mAdmin.xhtml/Header"/>
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<div class="span3 well sidebar-nav">
+		
 				</div>
-				<div class="column w80 right s-content">
-					<div class="url-bar clearfix">
-						<span metal:use-macro="mAdmin.xhtml/TitleAdmin"/>						
-					</div>
-					<div class="s-form">
-						<form tal:attributes="action Ad/getURLDelExe" method="POST">
-							Bạn muốn xóa <B tal:content="Ad/getName" /> ?
-							<button type="submit" name="submit" value="submit-value">Xóa</button>
-						</form>
-					</div>
+				<div class="span9">
+					<span metal:use-macro="mAdmin.xhtml/TitleAdmin"/>																					
+					<form class="form-horizontal" tal:attributes="action Ad/getURLDelExe" method="POST">
+						<div class="control-group">
+							<p>Bạn có chắc chắn xóa không ?</p>
+							<div class="controls">
+								<button class="btn" type="submit" name="submit" value="submit-value">Xóa</button>
+							</div>
+						</div>
+					</form>
 				</div>
 			</div>
 			<span metal:use-macro="mAdmin.xhtml/Footer"/>

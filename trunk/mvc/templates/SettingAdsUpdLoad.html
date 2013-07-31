@@ -11,44 +11,50 @@
 		<script type="text/javascript" language="javascript" src="/mvc/templates/script/library/ckeditor/ckeditor.js"/>
 		<script type="text/javascript">
 			/*<![CDATA[*/
-			$(function() {
-				$('#Date').datetimepicker(
-					{ dateFormat: 'yy-mm-dd' }
-				);
-			});
+			$(function() {$('#Date').datetimepicker({ dateFormat: 'yy-mm-dd' });});
 			/*]]>*/
 		</script>
 	</head>	
-	<body>		
-		<div class="setting-wraper">
-			<div class="setting-header clearfix">
-				<span metal:use-macro="mAdmin.xhtml/Header"/>
-			</div>
-			<div class="setting-main clearfix">
-				<div class="column w20 s-menu">
-					
+	<body>
+		<span metal:use-macro="mAdmin.xhtml/Header"/>
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<div class="span3 well sidebar-nav">
+		
 				</div>
-				<div class="column w80 right s-content">
-					<div class="url-bar clearfix">
-						<span metal:use-macro="mAdmin.xhtml/TitleAdmin"/>
-					</div>
-					<div class="s-form">
-						<form tal:attributes="action Ad/getURLUpdExe" method="POST">
-							<label for="Name">Tên</label><br/>
-							<input id="Name" name="Name" type="text" tal:attributes="value Ad/getName" /><br/>
-							
-							<label for="Date">Ngày</label><br/>
-							<input id="Date" name="Date" type="text" tal:attributes="value Ad/getDate" /><br/>
-							
-							<label for="Logo">Logo</label><br/>
-							<input id="Logo" name="Logo" type="text" tal:attributes="value Ad/getLogo" /><br/>
-							
-							<label for="Content">Content</label><br/>
-							<textarea class="ckeditor" name="Content" tal:content="Ad/getContent" /><br/>
-							
-							<button type="submit" name="submit" value="submit-value">Cập nhật</button>
-						</form>
-					</div>
+				<div class="span9">
+					<span metal:use-macro="mAdmin.xhtml/TitleAdmin"/>																					
+					<form class="form-horizontal" tal:attributes="action Ad/getURLUpdExe" method="POST">
+						<div class="control-group">
+							<label for="Name" class="control-label">Tên</label>
+							<div class="controls">
+								<input id="Name" name="Name" type="text" tal:attributes="value Ad/getName" />
+							</div>
+						</div>
+						<div class="control-group">
+							<label for="Date" class="control-label">Ngày</label>
+							<div class="controls">
+								<input id="Date" name="Date" type="text" tal:attributes="value Ad/getDate" />
+							</div>
+						</div>
+						<div class="control-group">
+							<label for="Logo" class="control-label">Logo</label>
+							<div class="controls">
+								<input id="Logo" name="Logo" type="text" tal:attributes="value Ad/getLogo" />
+							</div>
+						</div>
+						<div class="control-group">
+							<label for="Content" class="control-label">Nội dung</label>
+							<div class="controls">
+								<textarea class="ckeditor" name="Content" tal:content="Ad/getContent" />
+							</div>
+						</div>
+						<div class="control-group">
+							<div class="controls">
+								<button class="btn" type="submit" name="submit" value="submit-value">Cập nhật</button>
+							</div>
+						</div>
+					</form>
 				</div>
 			</div>
 			<span metal:use-macro="mAdmin.xhtml/Footer"/>

@@ -18,11 +18,12 @@
 	<body>
 		<span metal:use-macro="mAdmin.xhtml/Header"/>
 		<div class="container-fluid">
-			<div class="row-fluid">
-				<span metal:use-macro="macros.xhtml/PanelAdmin"/>
-				<div class="span9">
-					<span metal:use-macro="mAdmin.xhtml/TitleAdmin"/>
+			<div class="row-fluid">				
+				<div class="span3 well sidebar-nav">
 					
+				</div>
+				<div class="span9">
+					<span metal:use-macro="mAdmin.xhtml/TitleAdmin"/>					
 					<form class="form-horizontal" tal:attributes="action News/getURLUpdExe" method="POST">
 						<div class="control-group">
 							<label for="Title" class="control-label">Tiêu đề</label>

@@ -20,25 +20,21 @@
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------
-			$Title = "THIẾT LẬP / QUẢNG CÁO";
-			$URLBack = "/setting/category/ads";
-			$Title = "NHÀ MÔI GIỚI";
-			$Navigation = array(
-				array("TRANG CHỦ", "/trang-chu"),
-				array("QUẢN LÝ", "/setting")
-			);
-			
+			//-------------------------------------------------------------						
 			$Category = $mCategoryAds->find($IdCategory);
 			$CategoryAll = $mCategoryAds->findAll();
-			$AdsAll = $Category->getAdsAll();
-			
+						
+			$Title = mb_strtoupper($Category->getName(), 'UTF8');
+			$Navigation = array(
+				array("TRANG CHỦ", "/trang-chu"),
+				array("QUẢN LÝ", "/setting"),
+				array("QUẢNG CÁO", "/setting/category/ads")
+			);
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
 			$request->setObject("Category", $Category);
-			$request->setObject("CategoryAll", $CategoryAll);
-			$request->setObject("AdsAll", $AdsAll);
+			$request->setObject("CategoryAll", $CategoryAll);			
 			$request->setObject("Navigation", $Navigation);
 			$request->setProperty("Title", $Title);			
 						
