@@ -16,31 +16,45 @@
 		</script>
 	</head>
 	<body>
-		<div class="setting-wraper">
-			<div class="setting-header clearfix">
-				<span metal:use-macro="mAdmin.xhtml/Header"/>				
-			</div>
-			<div class="setting-main clearfix">
-				<div class="column w20 s-menu">
+		<span metal:use-macro="mAdmin.xhtml/Header"/>
+		<div class="container-fluid">
+			<div class="row-fluid">				
+				<div class="span3 well sidebar-nav">
 					
 				</div>
-				<div class="column w80 right s-content">
-					<div class="url-bar clearfix">
-						<span metal:use-macro="mAdmin.xhtml/TitleAdmin"/>						
-					</div>
-					<div class="s-form">
-						<form tal:attributes="action News/getURLUpdExe" method="post">
-							<label for="Title">Tiêu đề</label><br/>
-							<input id="Title" name="Title" type="text" tal:attributes="value News/getTitle" /><br/>
-							<label for="Type">Loại</label><br/>
-							<input id="Type" name="Type" type="checkbox" tal:attributes="checked News/getType" /> Tin VIP<br/>
-							<label for="Date">Thời gian</label><br/>
-							<input id="Date" name="Date" type="text" tal:attributes="value News/getDate"/><br/>
-							<label for="Content">Nội dung</label><br/>
-							<textarea class="ckeditor" id="Content" name="Content" type="text" tal:content="News/getContent"/><br/>							
-							<button type="submit" name="submit" value="submit-value">Cập nhật</button>
-						</form>
-					</div>
+				<div class="span9">
+					<span metal:use-macro="mAdmin.xhtml/TitleAdmin"/>					
+					<form class="form-horizontal" tal:attributes="action News/getURLUpdExe" method="POST">
+						<div class="control-group">
+							<label for="Title" class="control-label">Tiêu đề</label>
+							<div class="controls">
+								<input id="Title" name="Title" type="text" tal:attributes="value News/getTitle" />
+							</div>
+						</div>
+						<div class="control-group">
+							<label for="Type" class="control-label">Loại</label>
+							<div class="controls">
+								<input id="Type" name="Type" type="checkbox" tal:attributes="checked News/getType" /> Tin VIP	
+							</div>
+						</div>
+						<div class="control-group">
+							<label for="Date" class="control-label">Thời gian</label>
+							<div class="controls">
+								<input id="Date" name="Date" type="text" tal:attributes="value News/getDate"/><br/>
+							</div>
+						</div>
+						<div class="control-group">
+							<label for="Content" class="control-label">Nội dung</label>
+							<div class="controls">
+								<textarea class="ckeditor" id="Content" name="Content" type="text" tal:content="News/getContent"/>
+							</div>
+						</div>
+						<div class="control-group">
+							<div class="controls">
+								<button class="btn" type="submit" name="submit" value="submit-value">Cập nhật</button>
+							</div>
+						</div>
+					</form>
 				</div>
 			</div>
 			<span metal:use-macro="mAdmin.xhtml/Footer"/>

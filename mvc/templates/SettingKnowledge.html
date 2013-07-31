@@ -8,18 +8,18 @@
 		<span metal:use-macro="mAdmin.xhtml/Header"/>
 		<div class="container-fluid">
 			<div class="row-fluid">
-				<span metal:use-macro="macros.xhtml/PanelAdmin"/>
+				<div class="span3 well sidebar-nav">
+					<ul class="nav nav-list">
+						<li class="nav-header">Danh mục</li>
+						<li tal:repeat="Category1 CategoryAll" tal:attributes="class php:Category1->getId()==Category->getId()?'active':''">
+							<a tal:attributes="href Category1/getURLView">
+								<span tal:content="Category1/getName" /> <span class="badge badge-info pull-right" tal:content="Category1/getNews/count"/>
+							</a>
+						</li>						
+					</ul>
+				</div>				
 				<div class="span9">
 					<span metal:use-macro="mAdmin.xhtml/TitleAdmin"/>
-					
-					<div class="pagination pagination-right">
-						<ul>
-							<li tal:repeat="Page PN/getPages">
-								<a tal:attributes="href Page/getURL" tal:content="Page/getName" />
-							</li>
-						</ul>
-					</div>
-					
 					<table class="table">
 						<thead>
 							<tr>
@@ -34,10 +34,20 @@
 								<td><span tal:content="repeat/N/number"/></td>
 								<td><span tal:content="N/getDatePrint"/></td>
 								<td><a tal:attributes="href N/getURLUpdLoad"><span tal:content="N/getTitle"/></a></td>
-								<td><a tal:attributes="href N/getURLDelLoad">Xóa</a></td>
+								<td><a tal:attributes="href N/getURLDelLoad"><span class="icon-remove"/></a></td>
 							</tr>
 						</tbody>
 					</table>
+					<a class="btn" tal:attributes="href Category/getURLDetailInsLoad">
+						<span class="icon-plus" /> Thêm mới
+					</a>
+					<div class="pagination pagination-right">
+						<ul>
+							<li tal:repeat="Page PN/getPages">
+								<a tal:attributes="href Page/getURL" tal:content="Page/getName" />
+							</li>
+						</ul>
+					</div>
 				</div>
 			</div>
 			<span metal:use-macro="mAdmin.xhtml/Footer"/>

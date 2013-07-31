@@ -21,18 +21,15 @@
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------						
-			$CategoryMarketAll = $mCategoryMarket->findAll();
-			$CategoryProjectAll = $mCategoryProject->findAll();
-			$CategoryGeneralAll = $mCategoryGeneral->findAll();						
+			//-------------------------------------------------------------									
+			$CategoryAll = $mCategoryGeneral->findAll();						
 			$Category = $mCategoryGeneral->find($IdCategory);
 			
-			$Title = mb_strtoupper("THIẾT LẬP / TIN CHUNG / ".$Category->getName(), 'UTF8');
-			$URLBack = "/setting/category/general";
-			$Title = "NHÀ MÔI GIỚI";
+			$Title = mb_strtoupper($Category->getName(), 'UTF8');			
 			$Navigation = array(
 				array("TRANG CHỦ", "/trang-chu"),
-				array("QUẢN LÝ", "/setting")
+				array("QUẢN LÝ", "/setting"),
+				array("TIN TỨC", "/setting/category/news")
 			);
 			
 			if (!isset($Page)) $Page=1;
@@ -41,10 +38,8 @@
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------
-			$request->setObject("CategoryMarketAll", $CategoryMarketAll);
-			$request->setObject("CategoryProjectAll", $CategoryProjectAll);
-			$request->setObject("CategoryGeneralAll", $CategoryGeneralAll);						
+			//-------------------------------------------------------------			
+			$request->setObject("CategoryAll", $CategoryAll);						
 			$request->setObject("Category", $Category);
 			$request->setObject("News", $News);
 			$request->setObject("PN", $PN);

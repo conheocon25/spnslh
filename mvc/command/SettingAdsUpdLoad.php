@@ -21,15 +21,14 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------															
-			$Ad = $mAds->find($IdAds);
-			
-			$Title = mb_strtoupper("THIẾT LẬP / QUẢNG CÁO / ".$Ad->getName()." / CẬP NHẬT", 'UTF8');
-			$URLBack = "/setting/category/ads";
-			$Title = "NHÀ MÔI GIỚI";
+			$Ad = $mAds->find($IdAds);			
+			$Title = mb_strtoupper($Ad->getName(), 'UTF8');
 			$Navigation = array(
 				array("TRANG CHỦ", "/trang-chu"),
-				array("QUẢN LÝ", "/setting")
+				array("QUẢN LÝ", "/setting"),
+				array("QUẢNG CÁO", "/setting/category/ads")
 			);
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			

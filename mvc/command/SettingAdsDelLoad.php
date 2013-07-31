@@ -23,17 +23,18 @@
 			//-------------------------------------------------------------															
 			$Ad = $mAds->find($IdAds);
 			
-			$Title = mb_strtoupper("THIẾT LẬP / QUẢNG CÁO / ".$Ad->getName()." / XÓA", 'UTF8');
-			$URLBack = "/setting/ads";
-			$Title = "NHÀ MÔI GIỚI";
+			$Title = mb_strtoupper($Ad->getName(), 'UTF8');
 			$Navigation = array(
 				array("TRANG CHỦ", "/trang-chu"),
-				array("QUẢN LÝ", "/setting")
+				array("QUẢN LÝ", "/setting"),
+				array("QUẢNG CÁO", "/setting/category/ads")
 			);
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
 			$request->setObject("Ad", $Ad);
+			
 			$request->setObject("Navigation", $Navigation);
 			$request->setProperty("Title", $Title);			
 						

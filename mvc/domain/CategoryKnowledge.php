@@ -18,13 +18,8 @@ class CategoryKnowledge extends Object{
         return $this->Id;
     }		
 		
-    function setName( $Name ) {
-        $this->Name = $Name;
-        $this->markDirty();
-    }   
-	function getName( ) {
-        return $this->Name;
-    }
+    function setName( $Name ) {$this->Name = $Name;$this->markDirty();}   
+	function getName( ) {return $this->Name;}
 		
 	//-------------------------------------------------------------------------------
 	//GET LISTs
@@ -37,39 +32,19 @@ class CategoryKnowledge extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLRead(){
-		return "/knowledge/".$this->getId();
-	}
-	function getURLTab(){
-		return "#knowledge".$this->getId();
-	}
-	function getTabId(){
-		return "knowledge".$this->getId();
-	}
-	function getURLView(){		
-		return "/setting/category/knowledge/".$this->getId();
-	}
-	function getURLUpdLoad(){		
-		return "/setting/category/knowledge/".$this->getId()."/upd/load";
-	}
-	function getURLUpdExe(){
-		return "/setting/category/knowledge/".$this->getId()."/upd/exe";
-	}
+	function getURLRead(){return "/knowledge/".$this->getId();}
+	function getURLTab(){return "#knowledge".$this->getId();}
+	function getTabId(){return "knowledge".$this->getId();}
+	function getURLView(){return "/setting/category/knowledge/".$this->getId();}
+	function getURLUpdLoad(){return "/setting/category/knowledge/".$this->getId()."/upd/load";}
+	function getURLUpdExe(){return "/setting/category/knowledge/".$this->getId()."/upd/exe";}
 	
-	function getURLDelLoad(){
-		return "/setting/category/knowledge/".$this->getId()."/del/load";			
-	}
-	function getURLDelExe(){
-		return "/setting/category/knowledge/".$this->getId()."/del/exe";
-	}
+	function getURLDelLoad(){return "/setting/category/knowledge/".$this->getId()."/del/load";			}
+	function getURLDelExe(){return "/setting/category/knowledge/".$this->getId()."/del/exe";}
 	
-	function getURLDetailInsLoad(){		
-		return "/setting/category/knowledge/".$this->getId()."/ins/load";
-	}
-	function getURLDetailInsExe(){
-		return "/setting/category/knowledge/".$this->getId()."/ins/exe";
-	}
-			
+	function getURLDetailInsLoad(){return "/setting/category/knowledge/".$this->getId()."/ins/load";}
+	function getURLDetailInsExe(){return "/setting/category/knowledge/".$this->getId()."/ins/exe";}
+	
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}	
