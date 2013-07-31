@@ -22,12 +22,11 @@
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
 			$Category = $mCategoryAds->find($IdCategory);
-			$Title = mb_strtoupper("THIẾT LẬP / ".$Category->getName()." / CẬP NHẬT", 'UTF8');
-			$URLBack = "/setting/category/ads";
-			$Title = "NHÀ MÔI GIỚI";
+			$Title = mb_strtoupper($Category->getName(), 'UTF8');
 			$Navigation = array(
 				array("TRANG CHỦ", "/trang-chu"),
-				array("QUẢN LÝ", "/setting")
+				array("QUẢN LÝ", "/setting"),
+				array("NHÀ MÔI GIỚI", "/setting/category/ads")
 			);
 			
 			//-------------------------------------------------------------

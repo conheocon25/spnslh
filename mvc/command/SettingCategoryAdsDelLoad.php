@@ -21,14 +21,13 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
-			$Category = $mCategory->find($IdCategory);
+			$Category = $mCategoryAds->find($IdCategory);
 									
-			$Title = mb_strtoupper("THIẾT LẬP / ".$Category->getName()." / XÓA", 'UTF8');
-			$URLBack = "/setting/category/ads";
-			$Title = "NHÀ MÔI GIỚI";
+			$Title = mb_strtoupper($Category->getName(), 'UTF8');
 			$Navigation = array(
 				array("TRANG CHỦ", "/trang-chu"),
-				array("QUẢN LÝ", "/setting")
+				array("QUẢN LÝ", "/setting"),
+				array("QUẢNG CÁO", "/setting/category/ads")
 			);
 			
 			//-------------------------------------------------------------
@@ -37,7 +36,7 @@
 			$request->setObject("Category", $Category);
 			$request->setObject("Navigation", $Navigation);
 			$request->setProperty("Title", $Title);
-			$request->setProperty("ActiveSetting", 'CategoryGeneral');
+			$request->setProperty("ActiveSetting", 'CategoryAds');
 			
 			return self::statuses('CMD_DEFAULT');
 		}

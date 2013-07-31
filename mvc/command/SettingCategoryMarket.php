@@ -26,18 +26,26 @@
 				array("QUẢN LÝ", "/setting")
 			);
 			
-			$CategoryGeneralAll = $mCategoryGeneral->findAll();
+			$CategoryAdsAll = $mCategoryAds->findAll();
 			$CategoryMarketAll = $mCategoryMarket->findAll();
 			$CategoryProjectAll = $mCategoryProject->findAll();
+			$CategoryGeneralAll = $mCategoryGeneral->findAll();
+			$CategoryKnowledgeAll = $mCategoryKnowledge->findAll();
+			$CategoryProjectAll = $mCategoryProject->findAll();
 			$AgencyAll = $mAgency->findAll();
+			$ContactAll = $mContact->findAll();
 						
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-			$request->setObject("CategoryGeneralAll", $CategoryGeneralAll);
+			$request->setObject("CategoryAdsAll", $CategoryAdsAll);
 			$request->setObject("CategoryMarketAll", $CategoryMarketAll);
 			$request->setObject("CategoryProjectAll", $CategoryProjectAll);
+			$request->setObject("CategoryGeneralAll", $CategoryGeneralAll);
+			$request->setObject("CategoryKnowledgeAll", $CategoryKnowledgeAll);
+			$request->setObject("CategoryProjectAll", $CategoryProjectAll);
 			$request->setObject("AgencyAll", $AgencyAll);
+			$request->setObject("ContactAll", $ContactAll);
 			
 			$request->setObject("Navigation", $Navigation);
 			$request->setProperty("Title", $Title);

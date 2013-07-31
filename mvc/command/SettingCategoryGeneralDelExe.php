@@ -16,12 +16,12 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			require_once("mvc/base/mapper/MapperDefault.php");
+			$mCategory = new \MVC\Mapper\CategoryGeneral();
 						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
-			$mCategoryGeneral->delete(array($IdCategory));
+			$mCategory->delete(array($IdCategory));
 						
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI

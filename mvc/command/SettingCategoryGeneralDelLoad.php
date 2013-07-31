@@ -21,38 +21,22 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
-			$Category = $mCategoryGeneral->find($IdCategory);
-			
-			$CategoryMarkets = $mCategoryMarket->findAll();
-			$CategoryProjects = $mCategoryProject->findAll();
-			$CategoryGenerals = $mCategoryGeneral->findAll();
-			$CategoryKnowledges = $mCategoryKnowledge->findAll();
-			$Agencies = $mAgency->findAll();
-			$Contacts = $mContact->findAll();
-			
-			$Title = mb_strtoupper("THIẾT LẬP / TIN CHUNG / ".$Category->getName()." / XÓA", 'UTF8');
-			$URLBack = "/setting/category/general";
-			$Title = "NHÀ MÔI GIỚI";
+			$Category = $mCategoryGeneral->find($IdCategory);												
+			$Title = mb_strtoupper($Category->getName(), 'UTF8');
 			$Navigation = array(
 				array("TRANG CHỦ", "/trang-chu"),
-				array("QUẢN LÝ", "/setting")
+				array("QUẢN LÝ", "/setting"),
+				array("TIN TỨC", "/setting/category/general")
 			);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------
-			$request->setObject("CategoryMarkets", $CategoryMarkets);
-			$request->setObject("CategoryProjects", $CategoryProjects);
-			$request->setObject("CategoryGenerals", $CategoryGenerals);
-			$request->setObject("CategoryKnowledges", $CategoryKnowledges);
-			$request->setObject("Agencies", $Agencies);
-			$request->setObject("Contacts", $Contacts);
+			//-------------------------------------------------------------			
 			$request->setObject("Category", $Category);
 			
 			$request->setObject("Navigation", $Navigation);
 			$request->setProperty("Title", $Title);
-			$request->setProperty("ActiveSetting", 'CategoryGeneral');
-			
+						
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

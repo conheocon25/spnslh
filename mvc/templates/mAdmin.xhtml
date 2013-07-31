@@ -92,13 +92,13 @@
 			<li tal:attributes="class php:'CategoryProject'==ActiveSetting?'active':''">
 				<a href="/setting/category/project">
 					Dự án
-					<span class="badge badge-info pull-right" tal:content="CategoryProject/count"/>
+					<span class="badge badge-info pull-right" tal:content="CategoryProjectAll/count"/>
 				</a>
 			</li>
 			<li tal:attributes="class php:'CategoryGeneral'==ActiveSetting?'active':''">
 				<a href="/setting/category/general">
 					Tin tức
-					<span class="badge badge-info pull-right" tal:content="CategoryGeneral/count"/>
+					<span class="badge badge-info pull-right" tal:content="CategoryGeneralAll/count"/>
 				</a>
 			</li>
 			<li tal:attributes="class php:'Agency'==ActiveSetting?'active':''">
