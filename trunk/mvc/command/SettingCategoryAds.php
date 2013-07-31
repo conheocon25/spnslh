@@ -20,8 +20,11 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------			
-			$Title = "THIẾT LẬP / QUẢNG CÁO";
-			$URLBack = "/setting";
+			$Title = "QUẢNG CÁO";			
+			$Navigation = array(
+				array("TRANG CHỦ", "/trang-chu"),
+				array("QUẢN LÝ", "/setting")
+			);
 			
 			$CategoryAdsAll = $mCategoryAds->findAll();
 																					
@@ -29,9 +32,8 @@
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
 			$request->setObject("CategoryAdsAll", $CategoryAdsAll);
-														
+			$request->setObject("Navigation", $Navigation);
 			$request->setProperty("Title", $Title);
-			$request->setProperty("URLBack", $URLBack);			
 			$request->setProperty("ActiveSetting", 'CategoryAds');
 			
 			return self::statuses('CMD_DEFAULT');
