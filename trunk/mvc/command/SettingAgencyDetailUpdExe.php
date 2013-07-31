@@ -25,9 +25,7 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------											
-			$mAgencyMarket = new \MVC\Mapper\AgencyMarket();
-			$mNewsMarket = new \MVC\Mapper\NewsMarket();
-			$mDistrict = new \MVC\Mapper\District();
+			require_once("mvc/base/mapper/MapperDefault.php");
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH

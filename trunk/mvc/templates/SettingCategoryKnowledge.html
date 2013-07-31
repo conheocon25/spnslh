@@ -5,12 +5,12 @@
 		<span metal:use-macro="macros.xhtml/IncludeJS"/>
 	</head>	
 	<body>		
-		<span metal:use-macro="macros.xhtml/HeaderAdmin"/>
+		<span metal:use-macro="mAdmin.xhtml/Header"/>
 		<div class="container-fluid">
 			<div class="row-fluid">
-				<span metal:use-macro="macros.xhtml/PanelAdmin"/>
+				<span metal:use-macro="mAdmin.xhtml/PanelAdmin"/>
 				<div class="span9">
-					<span metal:use-macro="macros.xhtml/TitleAdmin"/>					
+					<span metal:use-macro="mAdmin.xhtml/TitleAdmin"/>					
 					<table class="table">
 						<thead>
 							<tr>
@@ -36,7 +36,7 @@
 					</a>
 				</div>
 			</div>
-			<span metal:use-macro="macros.xhtml/FooterAdmin"/>
+			<span metal:use-macro="mAdmin.xhtml/Footer"/>
 		</div>
 	</body>
 </html>

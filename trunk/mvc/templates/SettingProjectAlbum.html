@@ -6,7 +6,7 @@
 	</head>	
 	<body>		
 		<div class="setting-wraper">
-			<span metal:use-macro="macros.xhtml/HeaderAdmin"/>
+			<span metal:use-macro="mAdmin.xhtml/Header"/>
 			<div class="setting-main clearfix">				
 				<div class="column w20 s-menu">
 					<ul>
@@ -19,7 +19,7 @@
 				</div>
 				<div class="column w80 right s-content">
 					<div class="url-bar clearfix">
-						<span metal:use-macro="macros.xhtml/TitleAdmin"/>
+						<span metal:use-macro="mAdmin.xhtml/TitleAdmin"/>
 						<div class="column w10 add-tool">
 							<a tal:attributes="href Project/getURLAlbumSettingInsLoad">Thêm</a>
 						</div>
@@ -46,7 +46,7 @@
 					</div>
 				</div>
 			</div>
-			<span metal:use-macro="macros.xhtml/FooterAdmin"/>
+			<span metal:use-macro="mAdmin.xhtml/Footer"/>
 		</div>
 	</body>
 </html>

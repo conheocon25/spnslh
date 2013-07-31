@@ -43,7 +43,7 @@
 			$request->setObject("AgencyAll", $AgencyAll);
 			$request->setObject("ContactAll", $ContactAll);
 			
-			$request->setObject("Navigation", $Navigation);						
+			$request->setObject("Navigation", $Navigation);
 			$request->setProperty("Title", $Title);			
 			$request->setProperty("ActiveSetting", 'Contact');
 			

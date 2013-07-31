@@ -17,10 +17,7 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mCategoryMarket = new \MVC\Mapper\CategoryMarket();
-			$mCategoryProject = new \MVC\Mapper\CategoryProject();
-			$mCategoryGeneral = new \MVC\Mapper\CategoryGeneral();
-			$mNewsGeneral = new \MVC\Mapper\NewsGeneral();
+			require_once("mvc/base/mapper/MapperDefault.php");
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -34,6 +31,11 @@
 			$News = $mNewsGeneral->find($IdNews);
 			$Title = mb_strtoupper("THIẾT LẬP / TIN CHUNG / ".$Category->getName()." / ".$News->getTitle()." / CẬP NHẬT", 'UTF8');
 			$URLBack = $Category->getURLView();
+			$Title = "NHÀ MÔI GIỚI";
+			$Navigation = array(
+				array("TRANG CHỦ", "/trang-chu"),
+				array("QUẢN LÝ", "/setting")
+			);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
@@ -44,9 +46,8 @@
 			$request->setObject("CategoryGenerals1", $CategoryGenerals1);
 			$request->setObject("Category", $Category);
 			$request->setObject("News", $News);
-			
-			$request->setProperty("Title", $Title);
-			$request->setProperty("URLBack", $URLBack);			
+			$request->setObject("Navigation", $Navigation);
+			$request->setProperty("Title", $Title);			
 			$request->setProperty("ActiveItem", 'Home');
 			
 			return self::statuses('CMD_DEFAULT');

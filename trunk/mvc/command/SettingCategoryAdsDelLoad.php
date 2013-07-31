@@ -16,7 +16,7 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mCategory = new \MVC\Mapper\CategoryAds();
+			require_once("mvc/base/mapper/MapperDefault.php");
 						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -25,14 +25,18 @@
 									
 			$Title = mb_strtoupper("THIẾT LẬP / ".$Category->getName()." / XÓA", 'UTF8');
 			$URLBack = "/setting/category/ads";
+			$Title = "NHÀ MÔI GIỚI";
+			$Navigation = array(
+				array("TRANG CHỦ", "/trang-chu"),
+				array("QUẢN LÝ", "/setting")
+			);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
 			$request->setObject("Category", $Category);
-			
+			$request->setObject("Navigation", $Navigation);
 			$request->setProperty("Title", $Title);
-			$request->setProperty("URLBack", $URLBack);
 			$request->setProperty("ActiveSetting", 'CategoryGeneral');
 			
 			return self::statuses('CMD_DEFAULT');

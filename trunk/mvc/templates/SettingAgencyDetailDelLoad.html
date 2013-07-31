@@ -7,7 +7,7 @@
 	<body>
 		<div class="setting-wraper">
 			<div class="setting-header clearfix">
-				<span metal:use-macro="macros.xhtml/HeaderAdmin"/>
+				<span metal:use-macro="mAdmin.xhtml/Header"/>
 			</div>
 			<div class="setting-main clearfix">
 				<div class="column w20 s-menu">
@@ -15,7 +15,7 @@
 				</div>
 				<div class="column w80 right s-content">
 					<div class="url-bar clearfix">
-						<span metal:use-macro="macros.xhtml/TitleAdmin"/>						
+						<span metal:use-macro="mAdmin.xhtml/TitleAdmin"/>						
 					</div>
 					<div class="s-form">
 						<form tal:attributes="action AM/getURLDelExe" method="POST">
@@ -25,7 +25,7 @@
 					</div>
 				</div>
 			</div>
-			<span metal:use-macro="macros.xhtml/FooterAdmin"/>
+			<span metal:use-macro="mAdmin.xhtml/Footer"/>
 		</div>
 	</body>
 </html>

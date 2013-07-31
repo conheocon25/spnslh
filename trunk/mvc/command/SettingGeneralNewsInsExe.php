@@ -20,8 +20,7 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mCategoryGeneral = new \MVC\Mapper\CategoryGeneral();
-			$mNews = new \MVC\Mapper\NewsGeneral();
+			require_once("mvc/base/mapper/MapperDefault.php");
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH

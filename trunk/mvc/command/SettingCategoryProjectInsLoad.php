@@ -15,18 +15,18 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mCategoryGeneral = new \MVC\Mapper\CategoryGeneral();
-			$mCategoryProject = new \MVC\Mapper\CategoryProject();
-			$mCategoryMarket = new \MVC\Mapper\CategoryMarket();
-			$mCategoryKnowledge = new \MVC\Mapper\CategoryKnowledge();
-			$mAgency = new \MVC\Mapper\Agency();
-			$mContact = new \MVC\Mapper\Contact();
+			require_once("mvc/base/mapper/MapperDefault.php");
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------			
 			$Title = "THIẾT LẬP / DỰ ÁN / THÊM MỚI";
 			$URLBack = "/setting/category/project";
+			$Title = "NHÀ MÔI GIỚI";
+			$Navigation = array(
+				array("TRANG CHỦ", "/trang-chu"),
+				array("QUẢN LÝ", "/setting")
+			);
 			
 			$CategoryGenerals = $mCategoryGeneral->findAll();
 			$CategoryProjects = $mCategoryProject->findAll();
@@ -45,9 +45,8 @@
 			$request->setObject("Agencies", $Agencies);
 			$request->setObject("Contacts", $Contacts);
 			
-			$request->setProperty("Title", $Title);
-			$request->setProperty("URLBack", $URLBack);
-			$request->setProperty("ActiveItem", 'Home');
+			$request->setObject("Navigation", $Navigation);
+			$request->setProperty("Title", $Title);						
 			$request->setProperty("ActiveSetting", 'CategoryProject');
 			
 			return self::statuses('CMD_DEFAULT');

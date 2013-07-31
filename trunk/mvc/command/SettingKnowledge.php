@@ -17,8 +17,7 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mCategoryKnowledge = new \MVC\Mapper\CategoryKnowledge();
-			$mNewsKnowledge = new \MVC\Mapper\NewsKnowledge();
+			require_once("mvc/base/mapper/MapperDefault.php");
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -28,7 +27,12 @@
 			$Category = $mCategoryKnowledge->find($IdCategory);
 			$Title = mb_strtoupper("THIẾT LẬP / KIẾN THỨC / ".$Category->getName(), 'UTF8');
 			$URLBack = "/setting/category/knowledge";
-			
+			$Title = "NHÀ MÔI GIỚI";
+			$Navigation = array(
+				array("TRANG CHỦ", "/trang-chu"),
+				array("QUẢN LÝ", "/setting")
+			);
+						
 			if (!isset($Page)) $Page=1;
 			$News = $mNewsKnowledge->findByCategoryPage(array($IdCategory, $Page, 9));
 			$PN = new \MVC\Domain\PageNavigation($Category->getNews()->count(), 8, $Category->getURLView());
@@ -40,10 +44,9 @@
 			$request->setObject("Category", $Category);
 			$request->setObject("News", $News);
 			$request->setObject("PN", $PN);
-			
+			$request->setObject("Navigation", $Navigation);
 			$request->setProperty("Title", $Title);
 			$request->setProperty("Page", $Page);
-			$request->setProperty("URLBack", $URLBack);
 			$request->setProperty("ActiveSetting", 'CategoryKnowledge');
 			
 			return self::statuses('CMD_DEFAULT');

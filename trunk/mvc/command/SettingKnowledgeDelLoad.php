@@ -17,11 +17,7 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mCategoryMarket = new \MVC\Mapper\CategoryMarket();
-			$mCategoryProject = new \MVC\Mapper\CategoryProject();
-			$mCategoryGeneral = new \MVC\Mapper\CategoryGeneral();
-			$mCategoryKnowledge = new \MVC\Mapper\CategoryKnowledge();
-			$mNewsKnowledge = new \MVC\Mapper\NewsKnowledge();
+			require_once("mvc/base/mapper/MapperDefault.php");
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -35,6 +31,11 @@
 			$News = $mNewsKnowledge->find($IdNews);
 			$Title = mb_strtoupper("THIẾT LẬP / KIẾN THỨC / ".$Category->getName()." / ".$News->getTitle()." / XÓA", 'UTF8');
 			$URLBack = $Category->getURLView();
+			$Title = "NHÀ MÔI GIỚI";
+			$Navigation = array(
+				array("TRANG CHỦ", "/trang-chu"),
+				array("QUẢN LÝ", "/setting")
+			);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
@@ -46,9 +47,8 @@
 			
 			$request->setObject("Category", $Category);
 			$request->setObject("News", $News);
-			
-			$request->setProperty("Title", $Title);
-			$request->setProperty("URLBack", $URLBack);
+			$request->setObject("Navigation", $Navigation);
+			$request->setProperty("Title", $Title);			
 			$request->setProperty("ActiveSetting", 'CategoryKnowledge');
 						
 			return self::statuses('CMD_DEFAULT');

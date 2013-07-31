@@ -18,9 +18,7 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mCategory = new \MVC\Mapper\CategoryProject();
-			$mProject = new \MVC\Mapper\Project();
-			$mProjectAlbum = new \MVC\Mapper\ProjectAlbum();
+			require_once("mvc/base/mapper/MapperDefault.php");
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -30,15 +28,19 @@
 			$Album = $mProjectAlbum->find($IdAlbum);
 			$Title = mb_strtoupper("THIẾT LẬP / DỰ ÁN / ".$Category->getName()." / ".$Project->getTitle()."/".$Album->getName()." / CẬP NHẬT", 'UTF8');
 			$URLBack = $Project->getURLAlbumSetting();
+			$Title = "NHÀ MÔI GIỚI";
+			$Navigation = array(
+				array("TRANG CHỦ", "/trang-chu"),
+				array("QUẢN LÝ", "/setting")
+			);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
 			$request->setObject("Album", $Album);
-			
+			$request->setObject("Navigation", $Navigation);
 			$request->setProperty("Title", $Title);
-			$request->setProperty("URLBack", $URLBack);
-						
+									
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

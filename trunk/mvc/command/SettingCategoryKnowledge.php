@@ -20,8 +20,11 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------			
-			$Title = "THIẾT LẬP / DANH MỤC KIẾN THỨC";
-			$URLBack = "/setting";
+			$Title = "KIẾN THỨC";
+			$Navigation = array(
+				array("TRANG CHỦ", "/trang-chu"),
+				array("QUẢN LÝ", "/setting")
+			);
 			
 			$CategoryMarketAll = $mCategoryMarket->findAll();
 			$CategoryProjectAll = $mCategoryProject->findAll();
@@ -42,8 +45,8 @@
 			$request->setObject("AgencyAll", $AgencyAll);
 			$request->setObject("ContactAll", $ContactAll);
 									
-			$request->setProperty("Title", $Title);
-			$request->setProperty("URLBack", $URLBack);
+			$request->setObject("Navigation", $Navigation);
+			$request->setProperty("Title", $Title);			
 			$request->setProperty("ActiveSetting", 'CategoryKnowledge');
 			
 			return self::statuses('CMD_DEFAULT');
