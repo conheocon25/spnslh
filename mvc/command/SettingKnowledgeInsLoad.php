@@ -16,11 +16,7 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mCategoryMarket = new \MVC\Mapper\CategoryMarket();
-			$mCategoryProject = new \MVC\Mapper\CategoryProject();
-			$mCategoryGeneral = new \MVC\Mapper\CategoryGeneral();
-			$mCategoryKnowledge = new \MVC\Mapper\CategoryKnowledge();
-			$mContact = new \MVC\Mapper\Contact();
+			require_once("mvc/base/mapper/MapperDefault.php");
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -35,6 +31,11 @@
 			$Category = $mCategoryKnowledge->find($IdCategory);
 			$Title = mb_strtoupper("THIẾT LẬP / KIẾN THỨC / ".$Category->getName()." / THÊM MỚI TIN", 'UTF8');
 			$URLBack = $Category->getURLView();
+			$Title = "NHÀ MÔI GIỚI";
+			$Navigation = array(
+				array("TRANG CHỦ", "/trang-chu"),
+				array("QUẢN LÝ", "/setting")
+			);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
@@ -45,9 +46,8 @@
 			$request->setObject("CategoryKnowledges", $CategoryKnowledges);
 			$request->setObject("Category", $Category);
 			$request->setObject("Contacts", $Contacts);
-			
+			$request->setObject("Navigation", $Navigation);
 			$request->setProperty("Title", $Title);
-			$request->setProperty("URLBack", $URLBack);
 			$request->setProperty("ActiveSetting", 'CategoryKnowledge');
 						
 			return self::statuses('CMD_DEFAULT');

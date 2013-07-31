@@ -31,7 +31,12 @@
 			
 			$Title = "THIẾT LẬP / DANH MỤC TIN ĐỊA ỐC / ".$Category->getName();
 			$URLBack = "/setting/category/market";
-						
+			$Title = "NHÀ MÔI GIỚI";
+			$Navigation = array(
+				array("TRANG CHỦ", "/trang-chu"),
+				array("QUẢN LÝ", "/setting")
+			);
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
@@ -39,10 +44,9 @@
 			$request->setObject("CategoryMarketAll", $CategoryMarketAll);
 			$request->setObject("NewsAll", $NewsAll);
 			$request->setObject("PN", $PN);
-			
+			$request->setObject("Navigation", $Navigation);	
 			$request->setProperty("Title", $Title);
-			$request->setProperty("URLBack", $URLBack);
-						
+					
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

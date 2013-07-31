@@ -23,6 +23,11 @@
 			//-------------------------------------------------------------
 			$Title = "THIẾT LẬP / QUẢNG CÁO";
 			$URLBack = "/setting/category/ads";
+			$Title = "NHÀ MÔI GIỚI";
+			$Navigation = array(
+				array("TRANG CHỦ", "/trang-chu"),
+				array("QUẢN LÝ", "/setting")
+			);
 			
 			$Category = $mCategoryAds->find($IdCategory);
 			$CategoryAll = $mCategoryAds->findAll();
@@ -34,9 +39,8 @@
 			$request->setObject("Category", $Category);
 			$request->setObject("CategoryAll", $CategoryAll);
 			$request->setObject("AdsAll", $AdsAll);
-			
-			$request->setProperty("Title", $Title);
-			$request->setProperty("URLBack", $URLBack);
+			$request->setObject("Navigation", $Navigation);
+			$request->setProperty("Title", $Title);			
 						
 			return self::statuses('CMD_DEFAULT');
 		}

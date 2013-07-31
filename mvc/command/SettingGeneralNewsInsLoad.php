@@ -24,14 +24,18 @@
 			$Category = $mCategoryGeneral->find($IdCategory);
 			$Title = mb_strtoupper("THIẾT LẬP / TIN CHUNG / ".$Category->getName()." / THÊM MỚI TIN", 'UTF8');
 			$URLBack = $Category->getURLView();
+			$Title = "NHÀ MÔI GIỚI";
+			$Navigation = array(
+				array("TRANG CHỦ", "/trang-chu"),
+				array("QUẢN LÝ", "/setting")
+			);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
 			$request->setObject("Category", $Category);
-						
+			$request->setObject("Navigation", $Navigation);
 			$request->setProperty("Title", $Title);
-			$request->setProperty("URLBack", $URLBack);
 						
 			return self::statuses('CMD_DEFAULT');
 		}

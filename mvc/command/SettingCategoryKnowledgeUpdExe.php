@@ -17,7 +17,7 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mCategoryKnowledge = new \MVC\Mapper\CategoryKnowledge();
+			require_once("mvc/base/mapper/MapperDefault.php");
 						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH

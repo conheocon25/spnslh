@@ -39,7 +39,11 @@
 			<div class="container-fluid">
 				<a class="brand company-name" href="#">Saigonlandhouse.com</a>
 				<div class="nav-collapse collapse">
-					<p class="navbar-text pull-right"><a class="navbar-link" href="#">Administrator</a></p>
+					<p class="navbar-text pull-right">
+						<a class="navbar-link" href="/signout/load">
+							<span tal:content="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->getEmail()"/>
+						</a>
+					</p>
 				</div>
 			</div>
 		</div>
@@ -61,13 +65,48 @@
 	<div metal:define-macro="PanelAdmin" class="span3 well sidebar-nav">
 		<ul class="nav nav-list">
 			<li class="nav-header">Danh mục</li>
-			<li tal:attributes="class php:'Contact'==ActiveSetting?'active':''"><a href="/setting/contact">Đối tác</a></li>
-			<li tal:attributes="class php:'CategoryAds'==ActiveSetting?'active':''"><a href="/setting/category/ads">Quảng cáo</a></li>
-			<li tal:attributes="class php:'CategoryKnowledge'==ActiveSetting?'active':''"><a href="/setting/category/knowledge">Kiến thức</a></li>
-			<li tal:attributes="class php:'CategoryMarket'==ActiveSetting?'active':''"><a href="/setting/category/market">Tin đăng</a></li>
-			<li tal:attributes="class php:'CategoryProject'==ActiveSetting?'active':''"><a href="/setting/category/project">Dự án</a></li>
-			<li tal:attributes="class php:'CategoryGeneral'==ActiveSetting?'active':''"><a href="/setting/category/general">Tin tức</a></li>
-			<li tal:attributes="class php:'Agency'==ActiveSetting?'active':''"><a href="/setting/agency">Nhà môi giới</a></li>
+			<li tal:attributes="class php:'Contact'==ActiveSetting?'active':''">
+				<a href="/setting/contact">
+					Đối tác
+					<span class="badge badge-info pull-right" tal:content="ContactAll/count"/>
+				</a>
+			</li>
+			<li tal:attributes="class php:'CategoryAds'==ActiveSetting?'active':''">
+				<a href="/setting/category/ads">
+					Quảng cáo
+					<span class="badge badge-info pull-right" tal:content="CategoryAdsAll/count"/>
+				</a>
+			</li>
+			<li tal:attributes="class php:'CategoryKnowledge'==ActiveSetting?'active':''">
+				<a href="/setting/category/knowledge">
+					Kiến thức
+					<span class="badge badge-info pull-right" tal:content="CategoryKnowledgeAll/count"/>
+				</a>
+			</li>
+			<li tal:attributes="class php:'CategoryMarket'==ActiveSetting?'active':''">
+				<a href="/setting/category/market">
+					Tin đăng
+					<span class="badge badge-info pull-right" tal:content="CategoryMarketAll/count"/>
+				</a>
+			</li>
+			<li tal:attributes="class php:'CategoryProject'==ActiveSetting?'active':''">
+				<a href="/setting/category/project">
+					Dự án
+					<span class="badge badge-info pull-right" tal:content="CategoryProject/count"/>
+				</a>
+			</li>
+			<li tal:attributes="class php:'CategoryGeneral'==ActiveSetting?'active':''">
+				<a href="/setting/category/general">
+					Tin tức
+					<span class="badge badge-info pull-right" tal:content="CategoryGeneral/count"/>
+				</a>
+			</li>
+			<li tal:attributes="class php:'Agency'==ActiveSetting?'active':''">
+				<a href="/setting/agency">
+					Nhà môi giới
+					<span class="badge badge-info pull-right" tal:content="AgencyAll/count"/>
+				</a>
+			</li>
 		</ul>
 	</div>
 	

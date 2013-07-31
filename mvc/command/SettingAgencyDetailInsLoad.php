@@ -16,15 +16,7 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mCategoryMarket = new \MVC\Mapper\CategoryMarket();
-			$mCategoryProject = new \MVC\Mapper\CategoryProject();
-			$mCategoryGeneral = new \MVC\Mapper\CategoryGeneral();
-			$mCategoryEstate = new \MVC\Mapper\CategoryEstate();
-			$mCategoryKnowledge = new \MVC\Mapper\CategoryKnowledge();
-			$mContact = new \MVC\Mapper\Contact();
-			$mProvince = new \MVC\Mapper\Province();
-			$mDistrict = new \MVC\Mapper\District();
-			$mAgency = new \MVC\Mapper\Agency();
+			require_once("mvc/base/mapper/MapperDefault.php");
 											
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -44,7 +36,11 @@
 						
 			$Title = mb_strtoupper("THIẾT LẬP / NHÀ MÔI GIỚI / ".$Agency->getName()." / THÊM TIN RAO", 'UTF8');
 			$URLBack = "/setting/agency";
-			
+			$Title = "NHÀ MÔI GIỚI";
+			$Navigation = array(
+				array("TRANG CHỦ", "/trang-chu"),
+				array("QUẢN LÝ", "/setting")
+			);
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
@@ -59,12 +55,10 @@
 			$request->setObject("Districts", $Districts);
 			$request->setObject("Agencies1", $Agencies1);
 			$request->setObject("Agency", $Agency);
-						
-			$request->setProperty("Title", $Title);
-			$request->setProperty("URLBack", $URLBack);
-			$request->setProperty("ActiveItem", 'Home');
-			$request->setProperty("ActiveMenu", 'Home');
 			
+			$request->setObject("Navigation", $Navigation);
+			$request->setProperty("Title", $Title);
+					
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

@@ -15,22 +15,25 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mAgency = new \MVC\Mapper\Agency();
+			require_once("mvc/base/mapper/MapperDefault.php");
 		
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------			
-			$Title = "THIẾT LẬP / NHÀ MÔI GIỚI";
-			$URLBack = "/setting";			
+			$Title = "NHÀ MÔI GIỚI";
+			$Navigation = array(
+				array("TRANG CHỦ", "/trang-chu"),
+				array("QUẢN LÝ", "/setting")
+			);
+			
 			$AgencyAll = $mAgency->findAll();
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
 			$request->setObject("AgencyAll", $AgencyAll);
-			
+			$request->setObject("Navigation", $Navigation);
 			$request->setProperty("Title", $Title);
-			$request->setProperty("URLBack", $URLBack);			
 			$request->setProperty("ActiveSetting", 'Agency');
 			
 			return self::statuses('CMD_DEFAULT');

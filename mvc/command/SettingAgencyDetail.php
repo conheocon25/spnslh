@@ -17,11 +17,7 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mCategoryMarket = new \MVC\Mapper\CategoryMarket();
-			$mCategoryProject = new \MVC\Mapper\CategoryProject();
-			$mCategoryGeneral = new \MVC\Mapper\CategoryGeneral();						
-			$mAgency = new \MVC\Mapper\Agency();
-			$mAgencyMarket = new \MVC\Mapper\AgencyMarket();
+			require_once("mvc/base/mapper/MapperDefault.php");
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -34,7 +30,12 @@
 			$PN = new \MVC\Domain\PageNavigation($Agency->getAMs()->count(), 8, $Agency->getURLView());
 			
 			$Title = mb_strtoupper("THIẾT LẬP / NHÀ MÔI GIỚI / ".$Agency->getName()." / CHI TIẾT",'UTF8');
-			$URLBack = "/setting/agency";			
+			$URLBack = "/setting/agency";
+			$Title = "NHÀ MÔI GIỚI";
+			$Navigation = array(
+				array("TRANG CHỦ", "/trang-chu"),
+				array("QUẢN LÝ", "/setting")
+			);			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
@@ -42,10 +43,9 @@
 			$request->setObject("Agency", $Agency);
 			$request->setObject("AMs", $AMs);
 			$request->setObject("PN", $PN);
-			
+			$request->setObject("Navigation", $Navigation);
 			$request->setProperty("Title", $Title);
 			$request->setProperty("Page", $Page);
-			$request->setProperty("URLBack", $URLBack);			
 						
 			return self::statuses('CMD_DEFAULT');
 		}

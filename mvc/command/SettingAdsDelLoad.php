@@ -16,7 +16,7 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mAds = new \MVC\Mapper\Ads();
+			require_once("mvc/base/mapper/MapperDefault.php");
 						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -25,13 +25,17 @@
 			
 			$Title = mb_strtoupper("THIẾT LẬP / QUẢNG CÁO / ".$Ad->getName()." / XÓA", 'UTF8');
 			$URLBack = "/setting/ads";
+			$Title = "NHÀ MÔI GIỚI";
+			$Navigation = array(
+				array("TRANG CHỦ", "/trang-chu"),
+				array("QUẢN LÝ", "/setting")
+			);
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
 			$request->setObject("Ad", $Ad);
-			
-			$request->setProperty("Title", $Title);
-			$request->setProperty("URLBack", $URLBack);
+			$request->setObject("Navigation", $Navigation);
+			$request->setProperty("Title", $Title);			
 						
 			return self::statuses('CMD_DEFAULT');
 		}
