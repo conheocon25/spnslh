@@ -22,30 +22,16 @@
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
 			$Category = $mCategoryKnowledge->find($IdCategory);
-			$Title = mb_strtoupper("THIẾT LẬP / KIẾN THỨC / ".$Category->getName()." / CẬP NHẬT", 'UTF8');
-			$URLBack = "/setting/category/general";
-			$Title = "NHÀ MÔI GIỚI";
+			$Title = mb_strtoupper($Category->getName(), 'UTF8');			
 			$Navigation = array(
 				array("TRANG CHỦ", "/trang-chu"),
-				array("QUẢN LÝ", "/setting")
+				array("QUẢN LÝ", "/setting"),
+				array("KIẾN THỨC", "/setting/category/knowledge")
 			);
-			
-			$CategoryMarkets = $mCategoryMarket->findAll();
-			$CategoryProjects = $mCategoryProject->findAll();
-			$CategoryGenerals = $mCategoryGeneral->findAll();
-			$CategoryKnowledges = $mCategoryKnowledge->findAll();
-			$Agencies = $mAgency->findAll();
-			$Contacts = $mContact->findAll();
-			
+						
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------
-			$request->setObject("CategoryMarkets", $CategoryMarkets);
-			$request->setObject("CategoryProjects", $CategoryProjects);
-			$request->setObject("CategoryGenerals", $CategoryGenerals);
-			$request->setObject("CategoryKnowledges", $CategoryKnowledges);
-			$request->setObject("Agencies", $Agencies);
-			$request->setObject("Contacts", $Contacts);
+			//-------------------------------------------------------------			
 			$request->setObject("Category", $Category);
 			
 			$request->setObject("Navigation", $Navigation);

@@ -16,41 +16,26 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			require_once("mvc/base/mapper/MapperDefault.php");
+			$mAgency = new \MVC\Mapper\Agency();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------						
-			$CategoryMarkets = $mCategoryMarket->findAll();
-			$CategoryProjects = $mCategoryProject->findAll();
-			$CategoryGenerals = $mCategoryGeneral->findAll();
-			$CategoryKnowledges = $mCategoryKnowledge->findAll();
-			$Agencies = $mAgency->findAll();
-			$Contacts = $mContact->findAll();
-						
+			//-------------------------------------------------------------															
 			$Agency = $mAgency->find($IdAgency);
-			$Title = mb_strtoupper("THIẾT LẬP / NHÀ MÔI GIỚI / ".$Agency->getName()." / XÓA", 'UTF8');
-			$URLBack = "/setting/agency";
-			$Title = "NHÀ MÔI GIỚI";
+			$Title = mb_strtoupper($Agency->getName(), 'UTF8');
+			
 			$Navigation = array(
 				array("TRANG CHỦ", "/trang-chu"),
-				array("QUẢN LÝ", "/setting")
+				array("QUẢN LÝ", "/setting"),
+				array("NHÀ MÔI GIỚI", "/setting/agency")
 			);
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------
-			$request->setObject("CategoryMarkets", $CategoryMarkets);
-			$request->setObject("CategoryProjects", $CategoryProjects);
-			$request->setObject("CategoryGenerals", $CategoryGenerals);
-			$request->setObject("CategoryKnowledges", $CategoryKnowledges);
-			$request->setObject("Agencies", $Agencies);
-			$request->setObject("Contacts", $Contacts);
-			$request->setObject("Agency", $Agency);
-			
+			//-------------------------------------------------------------			
+			$request->setObject("Agency", $Agency);			
 			$request->setObject("Navigation", $Navigation);
 			$request->setProperty("Title", $Title);			
-			$request->setProperty("ActiveSetting", 'Agency');
-			
+						
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

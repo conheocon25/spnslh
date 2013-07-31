@@ -16,13 +16,13 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			require_once("mvc/base/mapper/MapperDefault.php");
+			$mCategory = new \MVC\Mapper\CategoryAds();
 						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
 			$Category = new \MVC\Domain\CategoryAds(null, $Name);
-			$mCategoryAds->insert($Category);
+			$mCategory->insert($Category);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI

@@ -20,32 +20,32 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
-			$Title = "TIN ĐỊA ỐC";
+			$Title = "TIN TỨC";
 			$Navigation = array(
 				array("TRANG CHỦ", "/trang-chu"),
 				array("QUẢN LÝ", "/setting")
 			);
 			
-			$CategoryMarkets = $mCategoryMarket->findAll();
-			$CategoryProjects = $mCategoryProject->findAll();
-			$CategoryGenerals = $mCategoryGeneral->findAll();
-			$CategoryKnowledges = $mCategoryKnowledge->findAll();
-			$Agencies = $mAgency->findAll();
-			$Contacts = $mContact->findAll();
-			
-			$CategoryGenerals1 = $mCategoryGeneral->findAll();
+			$CategoryAdsAll = $mCategoryAds->findAll();
+			$CategoryMarketAll = $mCategoryMarket->findAll();
+			$CategoryProjectAll = $mCategoryProject->findAll();
+			$CategoryGeneralAll = $mCategoryGeneral->findAll();
+			$CategoryKnowledgeAll = $mCategoryKnowledge->findAll();
+			$CategoryProjectAll = $mCategoryProject->findAll();
+			$AgencyAll = $mAgency->findAll();
+			$ContactAll = $mContact->findAll();
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-			$request->setObject("CategoryMarkets", $CategoryMarkets);
-			$request->setObject("CategoryProjects", $CategoryProjects);
-			$request->setObject("CategoryGenerals", $CategoryGenerals);
-			$request->setObject("CategoryKnowledges", $CategoryKnowledges);
-			$request->setObject("Agencies", $Agencies);
-			$request->setObject("Contacts", $Contacts);
-			
-			$request->setObject("CategoryGenerals1", $CategoryGenerals1);
+			$request->setObject("CategoryAdsAll", $CategoryAdsAll);
+			$request->setObject("CategoryMarketAll", $CategoryMarketAll);
+			$request->setObject("CategoryProjectAll", $CategoryProjectAll);
+			$request->setObject("CategoryGeneralAll", $CategoryGeneralAll);
+			$request->setObject("CategoryKnowledgeAll", $CategoryKnowledgeAll);
+			$request->setObject("CategoryProjectAll", $CategoryProjectAll);
+			$request->setObject("AgencyAll", $AgencyAll);
+			$request->setObject("ContactAll", $ContactAll);
 			
 			$request->setObject("Navigation", $Navigation);
 			$request->setProperty("Title", $Title);			

@@ -16,18 +16,11 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			require_once("mvc/base/mapper/MapperDefault.php");
+			$mContact = new \MVC\Mapper\Contact();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------						
-			$CategoryMarkets = $mCategoryMarket->findAll();
-			$CategoryProjects = $mCategoryProject->findAll();
-			$CategoryGenerals = $mCategoryGeneral->findAll();
-			$CategoryKnowledges = $mCategoryKnowledge->findAll();
-			$Agencies = $mAgency->findAll();
-			$Contacts = $mContact->findAll();
-						
+			//-------------------------------------------------------------															
 			$Contact = $mContact->find($IdContact);
 			$Title = mb_strtoupper($Contact->getName(), 'UTF8');			
 			$Navigation = array(
@@ -37,14 +30,9 @@
 			);
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------
-			$request->setObject("CategoryMarkets", $CategoryMarkets);
-			$request->setObject("CategoryProjects", $CategoryProjects);
-			$request->setObject("CategoryGenerals", $CategoryGenerals);
-			$request->setObject("CategoryKnowledges", $CategoryKnowledges);
-			$request->setObject("Agencies", $Agencies);
+			//-------------------------------------------------------------			
 			$request->setObject("Contact", $Contact);
-			$request->setObject("Contacts", $Contacts);
+			
 			$request->setObject("Navigation", $Navigation);
 			$request->setProperty("Title", $Title);			
 			$request->setProperty("ActiveSetting", 'Contact');

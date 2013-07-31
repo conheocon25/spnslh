@@ -17,16 +17,15 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			require_once("mvc/base/mapper/MapperDefault.php");
+			$mCategory = new \MVC\Mapper\CategoryGeneral();
 						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------			
-			$Title = "HỆ THỐNG 123APP.NET";
-			$Category = $mCategoryGeneral->find($IdCategory);
+			//-------------------------------------------------------------						
+			$Category = $mCategory->find($IdCategory);
 												
 			$Category->setName($Name);
-			$mCategoryGeneral->update($Category);
+			$mCategory->update($Category);
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------

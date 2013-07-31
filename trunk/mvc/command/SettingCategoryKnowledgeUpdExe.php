@@ -17,15 +17,15 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			require_once("mvc/base/mapper/MapperDefault.php");
+			$mCategory = new \MVC\Mapper\CategoryKnowledge();
 						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
-			$Category = $mCategoryKnowledge->find($IdCategory);
+			$Category = $mCategory->find($IdCategory);
 												
 			$Category->setName($Name);
-			$mCategoryKnowledge->update($Category);
+			$mCategory->update($Category);
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------

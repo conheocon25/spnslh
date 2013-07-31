@@ -20,28 +20,19 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------			
-			$Title = "THIẾT LẬP / TIN RAO / THÊM MỚI";
-			$URLBack = "/setting/category/market";
-			$Title = "NHÀ MÔI GIỚI";
+			$Title = "THÊM MỚI";
 			$Navigation = array(
 				array("TRANG CHỦ", "/trang-chu"),
-				array("QUẢN LÝ", "/setting")
+				array("QUẢN LÝ", "/setting"),
+				array("TIN ĐĂNG", "/setting/category/market")
 			);
-			
-			$CategoryGenerals = $mCategoryGeneral->findAll();
-			$CategoryMarkets = $mCategoryMarket->findAll();
-			$CategoryProjects = $mCategoryProject->findAll();
 									
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------
-			$request->setObject("CategoryGenerals", $CategoryGenerals);
-			$request->setObject("CategoryMarkets", $CategoryMarkets);
-			$request->setObject("CategoryProjects", $CategoryProjects);						
+			//-------------------------------------------------------------			
 			$request->setObject("Navigation", $Navigation);
 			$request->setProperty("Title", $Title);
-			$request->setProperty("ActiveItem", 'Home');
-			
+						
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

@@ -19,32 +19,17 @@
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------						
-			$Title = "THIẾT LẬP / TIN CHUNG / THÊM MỚI";
-			$URLBack = "/setting/category/general";
-			$Title = "NHÀ MÔI GIỚI";
+			//-------------------------------------------------------------									
+			$Title = "THÊM MỚI";
 			$Navigation = array(
 				array("TRANG CHỦ", "/trang-chu"),
-				array("QUẢN LÝ", "/setting")
+				array("QUẢN LÝ", "/setting"),
+				array("QUẢNG CÁO", "/setting/category/ads")
 			);
-			
-			$CategoryGenerals = $mCategoryGeneral->findAll();
-			$CategoryProjects = $mCategoryProject->findAll();
-			$CategoryMarkets = $mCategoryMarket->findAll();
-			$CategoryKnowledges = $mCategoryKnowledge->findAll();
-			$Agencies = $mAgency->findAll();
-			$Contacts = $mContact->findAll();
-									
+												
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------
-			$request->setObject("CategoryGenerals", $CategoryGenerals);
-			$request->setObject("CategoryProjects", $CategoryProjects);
-			$request->setObject("CategoryMarkets", $CategoryMarkets);
-			$request->setObject("CategoryKnowledges", $CategoryKnowledges);
-			$request->setObject("Agencies", $Agencies);
-			$request->setObject("Contacts", $Contacts);
-			
+			//-------------------------------------------------------------						
 			$request->setObject("Navigation", $Navigation);
 			$request->setProperty("Title", $Title);
 			$request->setProperty("ActiveSetting", 'CategoryGeneral');
