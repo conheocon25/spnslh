@@ -5,19 +5,19 @@
 		<span metal:use-macro="macros.xhtml/IncludeJS"/>
 	</head>	
 	<body>		
-		<span metal:use-macro="macros.xhtml/HeaderAdmin"/>
+		<span metal:use-macro="mAdmin.xhtml/Header"/>
 		<div class="container-fluid">
 			<div class="row-fluid">
-				<span metal:use-macro="macros.xhtml/PanelAdmin"/>
+				<span metal:use-macro="mAdmin.xhtml/PanelAdmin"/>
 				<div class="span9">
-					<span metal:use-macro="macros.xhtml/TitleAdmin"/>
+					<span metal:use-macro="mAdmin.xhtml/TitleAdmin"/>
 					
 					<table class="table">
 						<thead>
 							<tr>
 								<th width="32">STT</th>
 								<th>LOẠI</th>
-								<th>QUẢNG CÁO</th>
+								<th width="120">QUẢNG CÁO</th>
 								<th width="32"></th>
 							</tr>
 						</thead>
@@ -28,13 +28,16 @@
 								<td><a tal:attributes="href CA/getURLView">
 									Xem (<span tal:content="CA/getAdsAll/count"/>)
 								</a></td>
-								<td><a class="s-tools" tal:attributes="href CA/getURLDelLoad"></a></td>
+								<td><a tal:attributes="href CA/getURLDelLoad"><span class="icon-remove"/></a></td>
 							</tr>
 						</tbody>
 					</table>
+					<a class="btn" href="/setting/category/ads/ins/load">
+						<span class="icon-plus" /> Thêm mới
+					</a>
 				</div>
 			</div>
-			<span metal:use-macro="macros.xhtml/FooterAdmin"/>
+			<span metal:use-macro="mAdmin.xhtml/Footer"/>
 		</div>
 	</body>
 </html>
