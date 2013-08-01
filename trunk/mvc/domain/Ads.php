@@ -10,6 +10,7 @@ class Ads extends Object{
 	private $Date;
 	private $Content;
 	private $Logo;
+	private $Key;
 		
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
@@ -19,7 +20,8 @@ class Ads extends Object{
 							$Name=Null, 							
 							$Date=Null, 
 							$Content=null, 							
-							$Logo=null)
+							$Logo=null,
+							$Key=null)
 	{
         $this->Id = $Id;				
 		$this->IdCategory = $IdCategory;
@@ -27,7 +29,8 @@ class Ads extends Object{
 		$this->Date = $Date;
 		$this->Content = $Content;
 		$this->Logo = $Logo;
-				
+		$this->Key = $Key;
+		
         parent::__construct( $Id );
     }
 	function setId($Id) {
@@ -50,6 +53,13 @@ class Ads extends Object{
 	
 	function setLogo( $Logo ){$this->Logo = $Logo;$this->markDirty();}   
 	function getLogo( ) {return $this->Logo;}
+	
+	function setKey( $Key ) {$this->Key = $Key;$this->markDirty();}
+	function getKey( ) {return $this->Key;}
+	function reKey( ) {
+		$Str = new \MVC\Library\String($this->Name);
+		$this->Key = $Str->converturl();
+	}
 		
 	//-------------------------------------------------------------------------------
 	//GET LISTs

@@ -10,17 +10,19 @@ class ProjectAlbum extends Object{
 	private $Date;
 	private $URL;
 	private $Description;
+	private $Key;
 	
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-    function __construct( $Id=null, $IdProject=null , $Name=null, $Date=null, $URL=null, $Description=null){
+    function __construct( $Id=null, $IdProject=null , $Name=null, $Date=null, $URL=null, $Description=null, $Key=null){
         $this->Id = $Id;
 		$this->IdProject = $IdProject;
 		$this->Name = $Name;
 		$this->Date = $Date;
 		$this->URL = $URL;
 		$this->Description = $Description;		
+		$this->Key = $Key;
 						
         parent::__construct( $Id );
     }
@@ -45,7 +47,13 @@ class ProjectAlbum extends Object{
 	
 	function setURL( $URL ){$this->URL = $URL;$this->markDirty();}   
 	function getURL( ) {return $this->URL;}
-			
+	
+	function setKey( $Key ) {$this->Key = $Key;$this->markDirty();}
+	function getKey( ) {return $this->Key;}
+	function reKey( ) {
+		$Str = new \MVC\Library\String($this->Name);
+		$this->Key = $Str->converturl();
+	}
 	//-------------------------------------------------------------------------------
 	//GET LISTs
 	//-------------------------------------------------------------------------------

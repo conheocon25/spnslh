@@ -5,27 +5,30 @@ require_once( "mvc/base/domain/DomainObject.php" );
 class CategoryEstate extends Object{
 
     private $Id;
-	private $Name;	
+	private $Name;
+	private $Key;
+	
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-    function __construct( $Id=null, $Name=null) {
+    function __construct( $Id=null, $Name=null, $Key=null) {
         $this->Id = $Id;		
 		$this->Name = $Name;
+		$this->Key = $Key;
         parent::__construct( $Id );
     }
-    function getId() {
-        return $this->Id;
-    }		
+    function getId() {return $this->Id;}
 		
-    function setName( $Name ) {
-        $this->Name = $Name;
-        $this->markDirty();
-    }   
-	function getName( ) {
-        return $this->Name;
-    }
-		
+    function setName( $Name ) {$this->Name = $Name; $this->markDirty();}
+	function getName( ) {return $this->Name;}
+	
+	function setKey( $Key ) {$this->Key = $Key;$this->markDirty();}
+	function getKey( ) {return $this->Key;}
+	function reKey( ) {
+		$Str = new \MVC\Library\String($this->Name);
+		$this->Key = $Str->converturl();
+	}
+	
 	//-------------------------------------------------------------------------------
 	//GET LISTs
 	//-------------------------------------------------------------------------------
@@ -37,36 +40,19 @@ class CategoryEstate extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLRead(){
-		return "/general/".$this->getId();
-	}
-	function getURLView(){		
-		return "/setting/category/estate/".$this->getId();
-	}
-	function getURLUpdLoad(){		
-		return "/setting/category/estate/".$this->getId()."/upd/load";
-	}
-	function getURLUpdExe(){
-		return "/setting/category/estate/".$this->getId()."/upd/exe";
-	}
+	function getURLRead(){return "/general/".$this->getId();}
+	function getURLView(){return "/setting/category/estate/".$this->getId();}
+	function getURLUpdLoad(){return "/setting/category/estate/".$this->getId()."/upd/load";}
+	function getURLUpdExe(){return "/setting/category/estate/".$this->getId()."/upd/exe";}
 	
-	function getURLDelLoad(){
-		return "/setting/category/estate/".$this->getId()."/del/load";			
-	}
-	function getURLDelExe(){
-		return "/setting/category/estate/".$this->getId()."/del/exe";
-	}
+	function getURLDelLoad(){return "/setting/category/estate/".$this->getId()."/del/load";			}
+	function getURLDelExe(){return "/setting/category/estate/".$this->getId()."/del/exe";}
 	
-	function getURLDetailInsLoad(){		
-		return "/setting/category/estate/".$this->getId()."/ins/load";
-	}
-	function getURLDetailInsExe(){
-		return "/setting/category/estate/".$this->getId()."/ins/exe";
-	}
+	function getURLDetailInsLoad(){return "/setting/category/estate/".$this->getId()."/ins/load";}
+	function getURLDetailInsExe(){return "/setting/category/estate/".$this->getId()."/ins/exe";}
 			
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
-    static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}	
-	
+    static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}
 }
 ?>

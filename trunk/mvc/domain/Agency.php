@@ -11,11 +11,12 @@ class Agency extends Object{
 	private $Password;
 	private $Address;
 	private $Active;
+	private $Key;
 	
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-    function __construct( $Id=null, $Name=null , $Phone=Null, $Email=Null, $Password=Null, $Address=Null, $Active=Null) {
+    function __construct( $Id=null, $Name=null , $Phone=Null, $Email=Null, $Password=Null, $Address=Null, $Active=Null, $Key=Null) {
         $this->Id = $Id;
 		$this->Name = $Name;
 		$this->Phone = $Phone;
@@ -23,6 +24,7 @@ class Agency extends Object{
 		$this->Password = $Password;
 		$this->Address = $Address;
 		$this->Active = $Active;
+		$this->Key = $Key;
         parent::__construct( $Id );
     }
     function getId() {return $this->Id;}	
@@ -45,6 +47,14 @@ class Agency extends Object{
 	
 	function setActive( $Active ) {$this->Active = $Active;$this->markDirty();}   
 	function getActive( ){return $this->Active;}
+	
+	function setKey( $Key ) {$this->Key = $Key;$this->markDirty();}   
+	function getKey( ) {return $this->Key;}
+	function reKey( ) {
+		$Str = new \MVC\Library\String($this->Name);
+		$this->Key = $Str->converturl();
+	}
+	
 	//-------------------------------------------------------------------------------
 	//GET LISTs
 	//-------------------------------------------------------------------------------
