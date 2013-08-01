@@ -28,13 +28,12 @@
 			if (!isset($Page)) $Page=1;
 			$NewsAll = $mNewsMarket->findByCategoryPage(array($IdCategory, $Page, 9));
 			$PN = new \MVC\Domain\PageNavigation($Category->getNews()->count(), 8, $Category->getURLView());
-			
-			$Title = "THIẾT LẬP / DANH MỤC TIN ĐỊA ỐC / ".$Category->getName();
-			$URLBack = "/setting/category/market";
-			$Title = "NHÀ MÔI GIỚI";
+						
+			$Title = mb_strtoupper($Category->getName(), 'UTF8');
 			$Navigation = array(
 				array("TRANG CHỦ", "/trang-chu"),
-				array("QUẢN LÝ", "/setting")
+				array("QUẢN LÝ", "/setting"),
+				array("TIN ĐĂNG", "/setting/category/market")
 			);
 			
 			//-------------------------------------------------------------

@@ -29,7 +29,7 @@
 			$Navigation = array(
 				array("TRANG CHỦ", "/trang-chu"),
 				array("QUẢN LÝ", "/setting"),
-				array("TIN TỨC", "/setting/category/news"),
+				array("TIN TỨC", "/setting/category/general"),
 				array(mb_strtoupper($Category->getName(), 'UTF8'), $Category->getURLView())
 			);
 			
