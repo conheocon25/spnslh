@@ -11,11 +11,12 @@ class Project extends Object{
 	private $Title;
 	private $Type;
 	private $URLPrice;
+	private $Key;
 	
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-    function __construct( $Id=null, $IdCategory=null , $Date=Null, $Content=null, $Title=null, $Type=null, $URLPrice=null){
+    function __construct( $Id=null, $IdCategory=null , $Date=Null, $Content=null, $Title=null, $Type=null, $URLPrice=null, $Key=null){
         $this->Id = $Id;
 		$this->IdCategory = $IdCategory;
 		$this->Date = $Date;
@@ -23,6 +24,7 @@ class Project extends Object{
 		$this->Title = $Title;
 		$this->Type = $Type;
 		$this->URLPrice = $URLPrice;
+		$this->Key = $Key;
 		
         parent::__construct( $Id );
     }
@@ -62,6 +64,13 @@ class Project extends Object{
 	
 	function setURLPrice( $URLPrice ){$this->URLPrice = $URLPrice;$this->markDirty();}   
 	function getURLPrice( ) {return $this->URLPrice;}
+	
+	function setKey( $Key ) {$this->Key = $Key;$this->markDirty();}
+	function getKey( ) {return $this->Key;}
+	function reKey( ) {
+		$Str = new \MVC\Library\String($this->Name);
+		$this->Key = $Str->converturl();
+	}
 	
 	//-------------------------------------------------------------------------------
 	//GET LISTs

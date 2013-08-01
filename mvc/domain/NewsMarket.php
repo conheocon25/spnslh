@@ -16,6 +16,7 @@ class NewsMarket extends Object{
 	private $Type;
 	private $X;
 	private $Y;
+	private $Key;
 	
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
@@ -31,7 +32,8 @@ class NewsMarket extends Object{
 							$Title=null,
 							$Type=null,
 							$X=null,
-							$Y=null)
+							$Y=null,
+							$Key=null)
 	{
         $this->Id = $Id;
 		$this->IdCategory = $IdCategory;
@@ -45,49 +47,23 @@ class NewsMarket extends Object{
 		$this->Type = $Type;
 		$this->X = $X;
 		$this->Y = $Y;
+		$this->Key = $Key;
 		
         parent::__construct( $Id );
     }
-	function setId($Id) {
-        $this->Id = $Id;
-    }	
-    function getId() {
-        return $this->Id;
-    }	
+	function setId($Id) {$this->Id = $Id;}
+    function getId() {return $this->Id;}	
 		
-    function setIdCategory( $IdCategory ) {
-        $this->IdCategory = $IdCategory;
-        $this->markDirty();
-    }   
-	function getIdCategory( ) {
-        return $this->IdCategory;
-    }
-	function getCategory(){
-		$mCategory = new \MVC\Mapper\CategoryMarket();
-		$Category = $mCategory->find($this->getIdCategory());
-		return $Category;
-	}
+    function setIdCategory( $IdCategory ) {$this->IdCategory = $IdCategory;$this->markDirty();}   
+	function getIdCategory( ) {return $this->IdCategory;}
+	function getCategory(){$mCategory = new \MVC\Mapper\CategoryMarket();$Category = $mCategory->find($this->getIdCategory());return $Category;}
 	
-	function setIdEstate( $IdEstate ) {
-        $this->IdEstate = $IdEstate;
-        $this->markDirty();
-    }   
-	function getIdEstate( ) {
-        return $this->IdEstate;
-    }
-	function getEstate(){
-		$mCategory = new \MVC\Mapper\CategoryEstate();
-		$Category = $mCategory->find($this->getIdEstate());
-		return $Category;
-	}
+	function setIdEstate( $IdEstate ) {$this->IdEstate = $IdEstate;$this->markDirty();}   
+	function getIdEstate( ) {return $this->IdEstate;}
+	function getEstate(){$mCategory = new \MVC\Mapper\CategoryEstate();$Category = $mCategory->find($this->getIdEstate());return $Category;}
 	
-	function setPrice( $Price ) {
-        $this->Price = $Price;
-        $this->markDirty();
-    }   
-	function getPrice( ) {
-        return $this->Price;
-    }
+	function setPrice( $Price ) {$this->Price = $Price;$this->markDirty();}   
+	function getPrice( ) {return $this->Price;}
 	function getPricePrint( ) {
 		if ($this->Price==0)
 			return "Thỏa thuận";
@@ -96,26 +72,12 @@ class NewsMarket extends Object{
         return $N->readDigit1();
     }
 			
-	function setIdProvince( $IdProvince ) {
-        $this->IdProvince = $IdProvince;
-        $this->markDirty();
-    }   
-	function getIdProvince( ) {
-        return $this->IdProvince;
-    }
-	function getProvince( ) {
-		$mProvince = new \MVC\Mapper\Province();
-		$Province = $mProvince->find($this->IdProvince);
-        return $Province;
-    }
+	function setIdProvince( $IdProvince ) {$this->IdProvince = $IdProvince;$this->markDirty();}
+	function getIdProvince( ) {return $this->IdProvince;}
+	function getProvince( ) {$mProvince = new \MVC\Mapper\Province();$Province = $mProvince->find($this->IdProvince);return $Province;}
 	
-	function setIdDistrict( $IdDistrict ) {
-        $this->IdDistrict = $IdDistrict;
-        $this->markDirty();
-    }   
-	function getIdDistrict( ) {
-        return $this->IdDistrict;
-    }
+	function setIdDistrict( $IdDistrict ) {$this->IdDistrict = $IdDistrict;$this->markDirty();}   
+	function getIdDistrict( ) {return $this->IdDistrict;}
 	function getDistrict( ) {
 		$mDistrict = new \MVC\Mapper\District();
 		$District = $mDistrict->find($this->IdDistrict);
@@ -129,54 +91,21 @@ class NewsMarket extends Object{
 		return $District1." ".$Provice1;
 	}
 	
-	function setDate( $Date ){
-        $this->Date = $Date;
-        $this->markDirty();
-    }   
-	function getDate( ) {
-        return $this->Date;
-    }
-	function getDatePrint( ){
-		$D = new \MVC\Library\Date($this->Date);
-        return $D->getDateFormat();
-    }
+	function setDate( $Date ){$this->Date = $Date;$this->markDirty();}   
+	function getDate( ) {return $this->Date;}
+	function getDatePrint( ){$D = new \MVC\Library\Date($this->Date);return $D->getDateFormat();}
 	
-	function setContent( $Content ){
-        $this->Content = $Content;
-        $this->markDirty();
-    }   
-	function getContent( ) {
-        return $this->Content;
-    }
+	function setContent( $Content ){$this->Content = $Content;$this->markDirty();}   
+	function getContent( ) {return $this->Content;}
 	
-	function setTitle( $Title ){
-        $this->Title = $Title;
-        $this->markDirty();
-    }   
-	function getTitle( ) {
-        return $this->Title;
-    }
-	function getTitleReduce( ){
-		$S = new \MVC\Library\String($this->Title);
-		return $S->reduce(42);
-    }
-	function getTitleReduce1( ){
-		$S = new \MVC\Library\String($this->Title);
-		return $S->reduce(72);
-    }
+	function setTitle( $Title ){$this->Title = $Title;$this->markDirty();}   
+	function getTitle( ) {return $this->Title;}
+	function getTitleReduce( ){$S = new \MVC\Library\String($this->Title);return $S->reduce(42);}
+	function getTitleReduce1( ){$S = new \MVC\Library\String($this->Title);return $S->reduce(72);}
 	
-	function setType( $Type ){
-        $this->Type = $Type;
-        $this->markDirty();
-    }   
-	function getType( ) {
-        return $this->Type;
-    }
-	function isVIP(){
-		if ($this->Type == 1)
-			return true;
-		return false;
-	}
+	function setType( $Type ){$this->Type = $Type;$this->markDirty();}   
+	function getType( ) {return $this->Type;}
+	function isVIP(){if ($this->Type == 1)return true;return false;}
 	
 	function getImage(){		
 		$first_img = '';
@@ -191,21 +120,19 @@ class NewsMarket extends Object{
 		return $first_img;
 	}
 	
-	function setX( $X ){
-        $this->X = $X;
-        $this->markDirty();
-    }   
-	function getX( ) {
-        return $this->X;
-    }
+	function setX( $X ){$this->X = $X;$this->markDirty();}   
+	function getX( ) {return $this->X;}
 	
-	function setY( $Y ){
-        $this->Y = $Y;
-        $this->markDirty();
-    }   
-	function getY( ) {
-        return $this->Y;
-    }
+	function setY( $Y ){$this->Y = $Y;$this->markDirty();}   
+	function getY( ) {return $this->Y;}
+	
+	function setKey( $Key ) {$this->Key = $Key;$this->markDirty();}
+	function getKey( ) {return $this->Key;}
+	function reKey( ) {
+		$Str = new \MVC\Library\String($this->Name);
+		$this->Key = $Str->converturl();
+	}
+	
 	//-------------------------------------------------------------------------------
 	//GET LISTs
 	//-------------------------------------------------------------------------------
@@ -213,24 +140,14 @@ class NewsMarket extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLRead(){
-		return "/market/".$this->getIdCategory()."/".$this->getId();
-	}
+	function getURLRead(){return "/market/".$this->getIdCategory()."/".$this->getId();}
 	
-	function getURLUpdLoad(){
-		return "/setting/category/market/".$this->getIdCategory()."/".$this->getId()."/upd/load";
-	}
-	function getURLUpdExe(){		
-		return "/setting/category/market/".$this->getIdCategory()."/".$this->getId()."/upd/exe";
-	}
+	function getURLUpdLoad(){return "/setting/category/market/".$this->getIdCategory()."/".$this->getId()."/upd/load";}
+	function getURLUpdExe(){return "/setting/category/market/".$this->getIdCategory()."/".$this->getId()."/upd/exe";}
 	
-	function getURLDelLoad(){		
-		return "/setting/category/market/".$this->getIdCategory()."/".$this->getId()."/del/load";
-	}	
-	function getURLDelExe(){
-		return "/setting/category/market/".$this->getIdCategory()."/".$this->getId()."/del/exe";
-	}
-			
+	function getURLDelLoad(){return "/setting/category/market/".$this->getIdCategory()."/".$this->getId()."/del/load";}	
+	function getURLDelExe(){return "/setting/category/market/".$this->getIdCategory()."/".$this->getId()."/del/exe";}
+	
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}

@@ -24,71 +24,31 @@ class NewsKnowledge extends Object{
 		
         parent::__construct( $Id );
     }
-    function getId() {
-        return $this->Id;
-    }	
+    function getId() {return $this->Id;}	
 		
-    function setIdCategory( $IdCategory ) {
-        $this->IdCategory = $IdCategory;
-        $this->markDirty();
-    }   
-	function getIdCategory( ) {
-        return $this->IdCategory;
-    }
+    function setIdCategory( $IdCategory ) {$this->IdCategory = $IdCategory;$this->markDirty();}   
+	function getIdCategory( ) {return $this->IdCategory;}
 	function getCategory(){
 		$mCategory = new \MVC\Mapper\CategoryKnowledge();
 		$Category = $mCategory->find($this->getIdCategory());
 		return $Category;
 	}
 			
-	function setDate( $Date ){
-        $this->Date = $Date;
-        $this->markDirty();
-    }   
-	function getDate( ) {
-        return $this->Date;
-    }
-	function getDatePrint( ){
-		$D = new \MVC\Library\Date($this->Date);
-        return $D->getDateFormat();
-    }
+	function setDate( $Date ){$this->Date = $Date;$this->markDirty();}   
+	function getDate( ) {return $this->Date;}
+	function getDatePrint( ){$D = new \MVC\Library\Date($this->Date);return $D->getDateFormat();}
 	
-	function setContent( $Content ){
-        $this->Content = $Content;
-        $this->markDirty();
-    }   
-	function getContent( ) {
-        return $this->Content;
-    }
-	function getContentReduce( ){
-		$S = new \MVC\Library\String($this->Content);		
-		return $S->reduceHTML(350);
-    }
+	function setContent( $Content ){$this->Content = $Content;$this->markDirty();}   
+	function getContent( ) {return $this->Content;}
+	function getContentReduce( ){$S = new \MVC\Library\String($this->Content);		return $S->reduceHTML(350);}
 	
-	function setTitle( $Title ){
-        $this->Title = $Title;
-        $this->markDirty();
-    }   
-	function getTitle( ) {
-        return $this->Title;
-    }
-	function getTitleReduce( ){
-		$S = new \MVC\Library\String($this->Title);		
-		return $S->reduce(50);
-    }
+	function setTitle( $Title ){$this->Title = $Title;$this->markDirty();}   
+	function getTitle( ) {return $this->Title;}
+	function getTitleReduce( ){$S = new \MVC\Library\String($this->Title);		return $S->reduce(50);}
 	
-	function setType( $Type ){
-        $this->Type = $Type;
-        $this->markDirty();
-    }   
-	function getType( ) {
-        return $this->Type;
-    }
-	function isVIP(){
-		if ($this->Type == 1)
-			return true;
-		return false;
-	}
+	function setType( $Type ){$this->Type = $Type;$this->markDirty();}   
+	function getType( ) {return $this->Type;}
+	function isVIP(){if ($this->Type == 1)return true;return false;}
 	
 	function getImage(){		
 		$first_img = '';
@@ -102,7 +62,14 @@ class NewsKnowledge extends Object{
 		}
 		return $first_img;
 	}
-		
+	
+	function setKey( $Key ) {$this->Key = $Key;$this->markDirty();}
+	function getKey( ) {return $this->Key;}
+	function reKey( ) {
+		$Str = new \MVC\Library\String($this->Name);
+		$this->Key = $Str->converturl();
+	}
+	
 	//-------------------------------------------------------------------------------
 	//GET LISTs
 	//-------------------------------------------------------------------------------
@@ -110,23 +77,13 @@ class NewsKnowledge extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLRead(){
-		return "/knowledge/".$this->getIdCategory()."/".$this->getId();
-	}
+	function getURLRead(){return "/knowledge/".$this->getIdCategory()."/".$this->getId();}
 	
-	function getURLUpdLoad(){
-		return "/setting/category/knowledge/".$this->getIdCategory()."/".$this->getId()."/upd/load";
-	}
-	function getURLUpdExe(){		
-		return "/setting/category/knowledge/".$this->getIdCategory()."/".$this->getId()."/upd/exe";
-	}
+	function getURLUpdLoad(){return "/setting/category/knowledge/".$this->getIdCategory()."/".$this->getId()."/upd/load";}
+	function getURLUpdExe(){return "/setting/category/knowledge/".$this->getIdCategory()."/".$this->getId()."/upd/exe";}
 	
-	function getURLDelLoad(){		
-		return "/setting/category/knowledge/".$this->getIdCategory()."/".$this->getId()."/del/load";
-	}	
-	function getURLDelExe(){		
-		return "/setting/category/knowledge/".$this->getIdCategory()."/".$this->getId()."/del/exe";
-	}
+	function getURLDelLoad(){return "/setting/category/knowledge/".$this->getIdCategory()."/".$this->getId()."/del/load";}	
+	function getURLDelExe(){return "/setting/category/knowledge/".$this->getIdCategory()."/".$this->getId()."/del/exe";}
 			
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
