@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/icheck/flat/blue.css"/>
+		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/select2.css"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+	</head>
+	
+	<body>
+		<div metal:use-macro="mAdmin.xhtml/Header"/>
+		<div metal:use-macro="mAdmin.xhtml/StyleTools"/>
+		<div id="sidebar">
+			<ul style="display: block;">
+				<li tal:repeat="Term1 TermAll" tal:attributes="class php:Term1->getId()==Term->getId()?'active':'disable'">
+					<a tal:attributes="href Term1/getURLCollect">
+						<i class="glyphicons-edit"/> <span tal:content="Term1/getName" />
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
+			<div class="row">
+				<div class="col-12">
+					<div class="widget-box">
+						<div class="widget-title">
+							<span class="icon">
+								<i class="glyphicon glyphicon-edit"></i>
+							</span>
+							<h5 tal:content="Title"/>
+						</div>
+						<div class="widget-content nopadding">
+							<table class="table table-bordered table-striped table-hover data-table">
+								<thead>
+									<tr>
+										<th width="50">STT</th>
+										<th width="120">NGÀY</th>
+										<th class="left">DIỄN GIẢI</th>
+										<th width="120" class="right">GIÁ TRỊ</th>
+										<th width="50"/>
+									</tr>
+								</thead>								
+								<tbody>
+									<tr tal:repeat="Collect CollectAll">
+										<td class="center" tal:content="repeat/Collect/number"/>
+										<td class="center"><a tal:attributes="href Collect/getURLUpdLoad" tal:content="Collect/getDatePrint"/></td>
+										<td tal:content="Collect/getNote"/>
+										<td class="right" tal:content="Collect/getValuePrint"/>
+										<td class="center"><a tal:attributes="href Collect/getURLDelLoad"><i class="glyphicon glyphicon-remove"/></a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<a class="btn btn-success" tal:attributes="href Term/getURLCollectInsLoad"><i class="glyphicon glyphicon-plus"/> Thêm mới</a>
+				</div>
+			</div>
+		</div>
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<script src="/mvc/templates/theme/cms/js/jquery.icheck.min.js"></script>
+		<script src="/mvc/templates/theme/cms/js/select2.min.js"></script>
+		<script src="/mvc/templates/theme/cms/js/jquery.dataTables.min.js"></script>
+		<script src="/mvc/templates/theme/cms/js/unicorn.tables.js"></script>
+	</body>
+</html>

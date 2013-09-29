@@ -1,0 +1,300 @@
+<options>    
+	<control>
+		<!-- ============================================================================== -->
+		<!-- Các lệnh xử lí SYSTEM 															-->
+		<!-- ============================================================================== -->		
+		<command name="DefaultCommand" type="public"><view>DefaultCommand</view><status value="CMD_OK"><forward>Home</forward></status></command>
+		<command name="Home" type="public"><view>Home</view></command>
+		<command name="SigninLoad" type="public"><view>SigninLoad</view></command>
+		
+		<command name="SigninExe" type="public">
+			<view>SigninExe</view>
+			<status value="CMD_OK"><forward>App</forward></status>
+			<status value="CMD_NO_AUTHOR"><forward>SigninLoad</forward></status>
+		</command>		
+		<command name="SignoutLoad"><view>SignoutLoad</view></command>
+		<command name="SignoutExe"><view>SignoutExe</view><status value="CMD_OK"><forward>Home</forward></status></command>				
+		<command name="App"><view>App</view></command>		
+				
+		<!-- ============================================================================== -->
+		<!-- GLOBAL			 																-->
+		<!-- ============================================================================== -->
+		<command name="Selling"><view>Selling</view></command>
+		<command name="SellingDomain"><view>SellingDomain</view></command>
+		
+		<command name="Import"><view>Import</view></command>
+		<command name="ImportSupplier"><view>ImportSupplier</view></command>
+		
+		<command name="Paid"><view>Paid</view></command>
+		<command name="Report"><view>Report</view></command>
+		<command name="Setting"><view>Setting</view></command>
+		
+		<command name="ChangePassLoad"><view>ChangePassLoad</view></command>
+		<command name="ChangePassExe">
+			<view>ChangePassExe</view>
+			<status value="CMD_OK"><forward>SignoutExe</forward></status>
+		</command>
+		
+		<!-- ============================================================================== -->
+		<!-- PAYROLL			 															-->
+		<!-- ============================================================================== -->		
+		<command name="PayRoll"><view>PayRoll</view></command>
+		<command name="PayRollWork"><view>PayRollWork</view></command>
+		<command name="PayRollWorkDetail">
+			<status value="CMD_OK">
+				<forward>PayRollWork</forward>
+			</status>
+			<view>PayRollWorkDetail</view>
+		</command>
+				
+		<!-- ============================================================================== -->
+		<!-- REPORT.DETAIL			 														-->
+		<!-- ============================================================================== -->												
+		<command name="ReportDetail"><view>ReportDetail</view></command>
+		<command name="ReportDetailInsLoad"><view>ReportDetailInsLoad</view></command>
+		<command name="ReportDetailInsExe"><status value="CMD_OK"><forward>Report</forward></status><view>ReportDetailInsExe</view></command>
+		<command name="ReportDetailUpdLoad"><view>ReportDetailUpdLoad</view></command>
+		<command name="ReportDetailUpdExe"><status value="CMD_OK"><forward>Report</forward></status><view>ReportDetailUpdExe</view></command>
+		<command name="ReportDetailDelLoad"><view>ReportDetailDelLoad</view></command>
+		<command name="ReportDetailDelExe"><status value="CMD_OK"><forward>Report</forward></status><view>ReportDetailDelExe</view></command>
+			
+				
+		<command name="ReportPaidDetail"><view>ReportPaidDetail</view></command>
+		<command name="ReportPaidGeneral"><view>ReportPaidGeneral</view></command>
+				
+		<command name="ReportCollectDetail"><view>ReportCollectDetail</view></command>
+		<command name="ReportCollectGeneral"><view>ReportCollectGeneral</view></command>
+		
+		<command name="ReportSellingGeneral"><view>ReportSellingGeneral</view></command>
+		<command name="ReportSellingDetail"><view>ReportSellingDetail</view></command>
+		<command name="ReportSellingRefresh"><view>ReportSellingRefresh</view></command>
+		
+		<command name="ReportCourse"><view>ReportCourse</view></command>		
+		<command name="ReportGeneral"><view>ReportGeneral</view></command>
+		
+		<command name="ReportPayRoll"><view>ReportPayRoll</view></command>
+		<command name="ReportPayRollDetail"><view>ReportPayRollDetail</view></command>
+		
+		<!-- ============================================================================== -->
+		<!-- SELLING.DOMAIN		 															-->
+		<!-- ============================================================================== -->				
+		<command name="SellingDomainTable"><view>SellingDomainTable</view></command>
+		<command name="SellingDomainTableLog"><view>SellingDomainTableLog</view></command>
+		<command name="SellingDomainTableCallLoad"><view>SellingDomainTableCallLoad</view></command>
+		<command name="SellingDomainTableCallExe"><status value="CMD_OK"><forward>SellingDomainTableCallLoad</forward></status><view>SellingDomainTableCallExe</view></command>		
+		<command name="SellingDomainTableSessionDetailUpdLoad"><view>SellingDomainTableSessionDetailUpdLoad</view></command>
+		<command name="SellingDomainTableSessionDetailUpdExe"><status value="CMD_OK"><forward>SellingDomainTableLogDetail</forward></status><view>SellingDomainTableSessionDetailUpdExe</view></command>		
+		<command name="SellingDomainTableSessionDetailDelLoad"><view>SellingDomainTableSessionDetailDelLoad</view></command>
+		<command name="SellingDomainTableSessionDetailDelExe"><status value="CMD_OK"><forward>SellingDomainTableLogDetail</forward></status><view>SellingDomainTableSessionDetailDelExe</view></command>						
+		<command name="SellingDomainTableMoveLoad"><view>SellingDomainTableMoveLoad</view></command>
+		<command name="SellingDomainTableMoveExe"><view>SellingDomainTableMoveExe</view><status value="CMD_OK"><forward>SellingDomain</forward></status></command>
+		<command name="SellingDomainTableMergeLoad"><view>SellingDomainTableMergeLoad</view></command>
+		<command name="SellingDomainTableMergeExe"><status value="CMD_OK"><forward>SellingDomain</forward></status><view>SellingDomainTableMergeExe</view></command>		
+		<command name="SellingDomainTableDelLoad"><view>SellingDomainTableDelLoad</view></command>
+		<command name="SellingDomainTableDelExe"><view>SellingDomainTableDelExe</view><status value="CMD_OK"><forward>SellingDomainTableLog</forward></status></command>		
+		<command name="SellingDomainTableLogDelLoad"><view>SellingDomainTableLogDelLoad</view></command>
+		<command name="SellingDomainTableLogDelExe"><view>SellingDomainTableLogDelExe</view><status value="CMD_OK"><forward>SellingDomain</forward></status></command>
+		<command name="SellingDomainTableLogUpdLoad"><view>SellingDomainTableLogUpdLoad</view></command>
+		<command name="SellingDomainTableLogUpdExe"><view>SellingDomainTableLogUpdExe</view><status value="CMD_OK"><forward>SellingDomain</forward></status></command>
+		<command name="SellingDomainTableLogDetail"><view>SellingDomainTableLogDetail</view></command>
+		
+		<command name="SellingDomainTablePrint"><view>SellingDomainTablePrint</view></command>
+		<command name="SellingDomainTableCheckinExe"><status value="CMD_OK"><forward>SellingDomain</forward></status><view>SellingDomainTableCheckinExe</view></command>
+		<command name="SellingDomainTableCheckoutExe"><status value="CMD_OK"><forward>SellingDomain</forward></status><view>SellingDomainTableCheckoutExe</view></command>
+						
+		<!-- ============================================================================== -->
+		<!-- MONEY		 														-->
+		<!-- ============================================================================== -->
+		<command name="Money"><view>Money</view></command>
+		
+		<command name="MoneyCollectGeneral"><view>MoneyCollectGeneral</view></command>
+		<command name="MoneyCollectGeneralInsLoad"><view>MoneyCollectGeneralInsLoad</view></command>
+		<command name="MoneyCollectGeneralInsExe"><view>MoneyCollectGeneralInsExe</view><status value="CMD_OK"><forward>MoneyCollectGeneral</forward></status></command>
+		<command name="MoneyCollectGeneralUpdLoad"><view>MoneyCollectGeneralUpdLoad</view></command>
+		<command name="MoneyCollectGeneralUpdExe"><view>MoneyCollectGeneralUpdExe</view><status value="CMD_OK"><forward>MoneyCollectGeneral</forward></status></command>
+		<command name="MoneyCollectGeneralDelLoad"><view>MoneyCollectGeneralDelLoad</view></command>
+		<command name="MoneyCollectGeneralDelExe"><view>MoneyCollectGeneralDelExe</view><status value="CMD_OK"><forward>MoneyCollectGeneral</forward></status></command>
+				
+		<command name="MoneyPaidGeneral"><view>MoneyPaidGeneral</view></command>
+		<command name="MoneyPaidGeneralInsLoad"><view>MoneyPaidGeneralInsLoad</view></command>
+		<command name="MoneyPaidGeneralInsExe"><view>MoneyPaidGeneralInsExe</view><status value="CMD_OK"><forward>MoneyPaidGeneral</forward></status></command>
+		<command name="MoneyPaidGeneralUpdLoad"><view>MoneyPaidGeneralUpdLoad</view></command>
+		<command name="MoneyPaidGeneralUpdExe"><view>MoneyPaidGeneralUpdExe</view><status value="CMD_OK"><forward>MoneyPaidGeneral</forward></status></command>
+		<command name="MoneyPaidGeneralDelLoad"><view>MoneyPaidGeneralDelLoad</view></command>
+		<command name="MoneyPaidGeneralDelExe"><view>MoneyPaidGeneralDelExe</view><status value="CMD_OK"><forward>MoneyPaidGeneral</forward></status></command>
+			
+		<!-- ============================================================================== -->
+		<!-- SETTING.CUSTOMER	 															-->
+		<!-- ============================================================================== -->		
+		<command name="SettingCustomer"><view>SettingCustomer</view></command>
+		<command name="SettingCustomerInsLoad"><view>SettingCustomerInsLoad</view></command>
+		<command name="SettingCustomerInsExe"><view>SettingCustomerInsExe</view><status value="CMD_OK"><forward>SettingCustomer</forward></status></command>
+		<command name="SettingCustomerUpdLoad"><view>SettingCustomerUpdLoad</view></command>
+		<command name="SettingCustomerUpdExe"><view>SettingCustomerUpdExe</view><status value="CMD_OK"><forward>SettingCustomer</forward></status></command>
+		<command name="SettingCustomerDelLoad"><view>SettingCustomerDelLoad</view></command>
+		<command name="SettingCustomerDelExe"><view>SettingCustomerDelExe</view><status value="CMD_OK"><forward>SettingCustomer</forward></status></command>
+		<command name="SettingCustomerBarcode"><view>SettingCustomerBarcode</view></command>
+		
+		<!-- ============================================================================== -->
+		<!-- SETTING.EMPLOYEE	 															-->
+		<!-- ============================================================================== -->		
+		<command name="SettingEmployee"><view>SettingEmployee</view></command>
+		<command name="SettingEmployeeInsLoad"><view>SettingEmployeeInsLoad</view></command>
+		<command name="SettingEmployeeInsExe"><view>SettingEmployeeInsExe</view><status value="CMD_OK"><forward>SettingEmployee</forward></status></command>		
+		<command name="SettingEmployeeUpdLoad"><view>SettingEmployeeUpdLoad</view></command>
+		<command name="SettingEmployeeUpdExe"><view>SettingEmployeeUpdExe</view><status value="CMD_OK"><forward>SettingEmployee</forward></status></command>		
+		<command name="SettingEmployeeDelLoad"><view>SettingEmployeeDelLoad</view></command>
+		<command name="SettingEmployeeDelExe"><view>SettingEmployeeDelExe</view><status value="CMD_OK"><forward>SettingEmployee</forward></status></command>
+		
+		<!-- ============================================================================== -->
+		<!-- SETTING.USER	 																-->
+		<!-- ============================================================================== -->		
+		<command name="SettingUser"><view>SettingUser</view></command>
+		<command name="SettingUserInsLoad"><view>SettingUserInsLoad</view></command>
+		<command name="SettingUserInsExe"><view>SettingUserInsExe</view><status value="CMD_OK"><forward>SettingUser</forward></status></command>
+		<command name="SettingUserUpdLoad"><view>SettingUserUpdLoad</view></command>
+		<command name="SettingUserUpdExe"><view>SettingUserUpdExe</view><status value="CMD_OK"><forward>SettingUser</forward></status></command>
+		<command name="SettingUserDelLoad"><view>SettingUserDelLoad</view></command>
+		<command name="SettingUserDelExe"><view>SettingUserDelExe</view><status value="CMD_OK"><forward>SettingUser</forward></status></command>
+
+		<!-- ============================================================================== -->
+		<!-- SETTING.DOMAIN		 															-->
+		<!-- ============================================================================== -->
+		<command name="SettingDomain"><view>SettingDomain</view></command>
+		<command name="SettingDomainInsLoad"><view>SettingDomainInsLoad</view></command>
+		<command name="SettingDomainInsExe"><view>SettingDomainInsExe</view><status value="CMD_OK"><forward>SettingDomain</forward></status></command>
+		<command name="SettingDomainUpdLoad"><view>SettingDomainUpdLoad</view></command>
+		<command name="SettingDomainUpdExe"><view>SettingDomainUpdExe</view><status value="CMD_OK"><forward>SettingDomain</forward></status></command>
+		<command name="SettingDomainDelLoad"><view>SettingDomainDelLoad</view></command>
+		<command name="SettingDomainDelExe"><view>SettingDomainDelExe</view><status value="CMD_OK"><forward>SettingDomain</forward></status></command>
+				
+		<!-- ============================================================================== -->
+		<!-- SETTING.DOMAIN.TABLE	 														-->
+		<!-- ============================================================================== -->
+		<command name="SettingDomainTable"><view>SettingDomainTable</view></command>
+		<command name="SettingDomainTableInsLoad"><view>SettingDomainTableInsLoad</view></command>
+		<command name="SettingDomainTableInsExe"><view>SettingDomainTableInsExe</view><status value="CMD_OK"><forward>SettingDomainTable</forward></status></command>
+		<command name="SettingDomainTableUpdLoad"><view>SettingDomainTableUpdLoad</view></command>
+		<command name="SettingDomainTableUpdExe"><view>SettingDomainTableUpdExe</view><status value="CMD_OK"><forward>SettingDomainTable</forward></status></command>
+		<command name="SettingDomainTableDelLoad"><view>SettingDomainTableDelLoad</view></command>
+		<command name="SettingDomainTableDelExe"><view>SettingDomainTableDelExe</view><status value="CMD_OK"><forward>SettingDomainTable</forward></status></command>
+				
+		<!-- ============================================================================== -->
+		<!-- SETTING.UNIT	 															-->
+		<!-- ============================================================================== -->		
+		<command name="SettingUnit"><view>SettingUnit</view></command>
+		<command name="SettingUnitInsLoad"><view>SettingUnitInsLoad</view></command>
+		<command name="SettingUnitInsExe"><view>SettingUnitInsExe</view><status value="CMD_OK"><forward>SettingUnit</forward></status></command>
+		<command name="SettingUnitUpdLoad"><view>SettingUnitUpdLoad</view></command>
+		<command name="SettingUnitUpdExe"><view>SettingUnitUpdExe</view><status value="CMD_OK"><forward>SettingUnit</forward></status></command>
+		<command name="SettingUnitDelLoad"><view>SettingUnitDelLoad</view></command>
+		<command name="SettingUnitDelExe"><view>SettingUnitDelExe</view><status value="CMD_OK"><forward>SettingUnit</forward></status></command>
+		
+		<!-- ============================================================================== -->
+		<!-- SETTING.CONFIG	 																-->
+		<!-- ============================================================================== -->		
+		<command name="SettingConfig"><view>SettingConfig</view></command>
+		<command name="SettingConfigInsLoad"><view>SettingConfigInsLoad</view></command>
+		<command name="SettingConfigInsExe"><view>SettingConfigInsExe</view><status value="CMD_OK"><forward>SettingConfig</forward></status></command>
+		<command name="SettingConfigUpdLoad"><view>SettingConfigUpdLoad</view></command>
+		<command name="SettingConfigUpdExe"><view>SettingConfigUpdExe</view><status value="CMD_OK"><forward>SettingConfig</forward></status></command>
+		<command name="SettingConfigDelLoad"><view>SettingConfigDelLoad</view></command>
+		<command name="SettingConfigDelExe"><view>SettingConfigDelExe</view><status value="CMD_OK"><forward>SettingConfig</forward></status></command>
+		<command name="SettingConfigPassLoad"><view>SettingConfigPassLoad</view></command>
+		<command name="SettingConfigPassExe"><view>SettingConfigPassExe</view><status value="CMD_OK"><forward>SigninLoad</forward></status></command>
+		
+		<!-- ============================================================================== -->
+		<!-- SETTING.CATEGORY	 															-->
+		<!-- ============================================================================== -->		
+		<command name="SettingCategory"><view>SettingCategory</view></command>
+		<command name="SettingCategoryInsLoad"><view>SettingCategoryInsLoad</view></command>
+		<command name="SettingCategoryInsExe"><view>SettingCategoryInsExe</view><status value="CMD_OK"><forward>SettingCategory</forward></status></command>
+		<command name="SettingCategoryUpdLoad"><view>SettingCategoryUpdLoad</view></command>
+		<command name="SettingCategoryUpdExe"><view>SettingCategoryUpdExe</view><status value="CMD_OK"><forward>SettingCategory</forward></status></command>
+		<command name="SettingCategoryDelLoad"><view>SettingCategoryDelLoad</view></command>
+		<command name="SettingCategoryDelExe"><view>SettingCategoryDelExe</view><status value="CMD_OK"><forward>SettingCategory</forward></status></command>
+				
+		<!-- ============================================================================== -->
+		<!-- SETTING.CATEGORY.COURSE	 													-->
+		<!-- ============================================================================== -->
+		<command name="SettingCategoryCourse"><view>SettingCategoryCourse</view></command>
+		<command name="SettingCategoryCourseInsLoad"><view>SettingCategoryCourseInsLoad</view></command>
+		<command name="SettingCategoryCourseInsExe"><view>SettingCategoryCourseInsExe</view><status value="CMD_OK"><forward>SettingCategoryCourse</forward></status></command>		
+		<command name="SettingCategoryCourseUpdLoad"><view>SettingCategoryCourseUpdLoad</view></command>
+		<command name="SettingCategoryCourseUpdExe"><view>SettingCategoryCourseUpdExe</view><status value="CMD_OK"><forward>SettingCategoryCourse</forward></status></command>		
+		<command name="SettingCategoryCourseDelLoad"><view>SettingCategoryCourseDelLoad</view></command>
+		<command name="SettingCategoryCourseDelExe"><view>SettingCategoryCourseDelExe</view><status value="CMD_OK"><forward>SettingCategoryCourse</forward></status></command>
+				
+		
+		<!-- ============================================================================== -->
+		<!-- SETTING.SUPPLIER	 															-->
+		<!-- ============================================================================== -->		
+		<command name="SettingSupplier"><view>SettingSupplier</view></command>
+		<command name="SettingSupplierInsLoad"><view>SettingSupplierInsLoad</view></command>
+		<command name="SettingSupplierInsExe"><view>SettingSupplierInsExe</view><status value="CMD_OK"><forward>SettingSupplier</forward></status></command>
+		<command name="SettingSupplierUpdLoad"><view>SettingSupplierUpdLoad</view></command>
+		<command name="SettingSupplierUpdExe"><view>SettingSupplierUpdExe</view><status value="CMD_OK"><forward>SettingSupplier</forward></status></command>
+		<command name="SettingSupplierDelLoad"><view>SettingSupplierDelLoad</view></command>
+		<command name="SettingSupplierDelExe"><view>SettingSupplierDelExe</view><status value="CMD_OK"><forward>SettingSupplier</forward></status></command>
+		
+		<!-- ============================================================================== -->
+		<!-- SETTING.TERM	 																-->
+		<!-- ============================================================================== -->
+		<command name="SettingTermPaid"><view>SettingTermPaid</view></command>
+		<command name="SettingTermPaidInsLoad"><view>SettingTermPaidInsLoad</view></command>
+		<command name="SettingTermPaidInsExe"><view>SettingTermPaidInsExe</view><status value="CMD_OK"><forward>SettingTermPaid</forward></status></command>
+		<command name="SettingTermPaidUpdLoad"><view>SettingTermPaidUpdLoad</view></command>
+		<command name="SettingTermPaidUpdExe"><view>SettingTermPaidUpdExe</view><status value="CMD_OK"><forward>SettingTermPaid</forward></status></command>
+		<command name="SettingTermPaidDelLoad"><view>SettingTermPaidDelLoad</view></command>
+		<command name="SettingTermPaidDelExe"><view>SettingTermPaidDelExe</view><status value="CMD_OK"><forward>SettingTermPaid</forward></status></command>
+		
+		<!-- ============================================================================== -->
+		<!-- SETTING.TERM.COLLECT	 														-->
+		<!-- ============================================================================== -->		
+		<command name="SettingTermCollect"><view>SettingTermCollect</view></command>
+		<command name="SettingTermCollectInsLoad"><view>SettingTermCollectInsLoad</view></command>
+		<command name="SettingTermCollectInsExe"><view>SettingTermCollectInsExe</view><status value="CMD_OK"><forward>SettingTermCollect</forward></status></command>
+		<command name="SettingTermCollectUpdLoad"><view>SettingTermCollectUpdLoad</view></command>
+		<command name="SettingTermCollectUpdExe"><view>SettingTermCollectUpdExe</view><status value="CMD_OK"><forward>SettingTermCollect</forward></status></command>
+		<command name="SettingTermCollectDelLoad"><view>SettingTermCollectDelLoad</view></command>
+		<command name="SettingTermCollectDelExe"><view>SettingTermCollectDelExe</view><status value="CMD_OK"><forward>SettingTermCollect</forward></status></command>
+										
+		<!-- ============================================================================== -->
+		<!-- SETTING.SUPPLIER.RESOURCE														-->
+		<!-- ============================================================================== -->
+		<command name="SettingSupplierResource"><view>SettingSupplierResource</view></command>
+		<command name="SettingSupplierResourceInsLoad"><view>SettingSupplierResourceInsLoad</view></command>
+		<command name="SettingSupplierResourceInsExe"><view>SettingSupplierResourceInsExe</view><status value="CMD_OK"><forward>SettingSupplierResource</forward></status></command>
+		<command name="SettingSupplierResourceUpdLoad"><view>SettingSupplierResourceUpdLoad</view></command>
+		<command name="SettingSupplierResourceUpdExe"><view>SettingSupplierResourceUpdExe</view><status value="CMD_OK"><forward>SettingSupplierResource</forward></status></command>
+		<command name="SettingSupplierResourceDelLoad"><view>SettingSupplierResourceDelLoad</view></command>
+		<command name="SettingSupplierResourceDelExe"><view>SettingSupplierResourceDelExe</view><status value="CMD_OK"><forward>SettingSupplierResource</forward></status></command>		
+										
+		<!-- ============================================================================== -->
+		<!-- SETTING.INFO		 															-->
+		<!-- ============================================================================== -->		
+		<command name="SettingInfoPasswdLoad"><view>SettingInfoPasswdLoad</view></command>
+		<command name="SettingInfoPasswdExe"><view>SettingInfoPasswdExe</view><status value="CMD_OK"><forward>SignoutExe</forward></status></command>		
+												
+		<!-- ============================================================================== -->
+		<!-- IMPORT				 															-->
+		<!-- ============================================================================== -->
+		<command name="ImportSupplierInsLoad"><view>ImportSupplierInsLoad</view></command>		
+		<command name="ImportSupplierInsExe"><view>ImportSupplierInsExe</view><status value="CMD_OK"><forward>Import</forward></status></command>
+		<command name="ImportSupplierUpdLoad"><view>ImportSupplierUpdLoad</view></command>
+		<command name="ImportSupplierUpdExe"><view>ImportSupplierUpdExe</view><status value="CMD_OK"><forward>ImportSupplierOrder</forward></status></command>
+		<command name="ImportSupplierDelLoad"><view>ImportSupplierDelLoad</view></command>
+		<command name="ImportSupplierDelExe"><view>ImportSupplierDelExe</view><status value="CMD_OK"><forward>Import</forward></status></command>
+		
+		<command name="ImportSupplierOrder"><view>ImportSupplierOrder</view></command>
+		<command name="ImportSupplierOrderPrint"><view>ImportSupplierOrderPrint</view></command>
+		<command name="ImportSupplierOrderPrint1"><view>ImportSupplierOrderPrint1</view></command>
+		<command name="ImportSupplierOrderInsLoad"><view>ImportSupplierOrderInsLoad</view></command>
+		<command name="ImportSupplierOrderInsExe"><view>ImportSupplierOrderInsExe</view><status value="CMD_OK"><forward>ImportSupplierOrder</forward></status></command>
+		<command name="ImportSupplierOrderUpdLoad"><view>ImportSupplierOrderUpdLoad</view></command>
+		<command name="ImportSupplierOrderUpdExe"><view>ImportSupplierOrderUpdExe</view><status value="CMD_OK"><forward>ImportSupplierOrder</forward></status></command>
+		<command name="ImportSupplierOrderDelLoad"><view>ImportSupplierOrderDelLoad</view></command>
+		<command name="ImportSupplierOrderDelExe"><view>ImportSupplierOrderDelExe</view><status value="CMD_OK"><forward>ImportSupplierOrder</forward></status></command>
+		
+	</control>
+</options>

@@ -1,0 +1,33 @@
+<!DOCTYPE html> 
+<html>
+	<head>
+		<span metal:use-macro="macros.xhtml/IncludeCSS_Mobile"/>
+		<span metal:use-macro="macros.xhtml/IncludeJS_Mobile"/>
+	</head>
+<body>	
+	<div data-role="page" class="category type-interior">		
+		<span metal:use-macro="macros.xhtml/header"/>
+		<div data-role="content">
+			<div class="content-primary">
+				<form tal:attributes="action '/change/pass/exe'" method="post" data-ajax="false">
+					<ul data-role="listview" data-theme="c" data-dividertheme="b">						
+						<li data-role="fieldcontain">
+							<label for="Pass" class="text">Mật khẩu mới:</label>
+							<input class="required" id="Pass" name="Pass" type="text" />
+						</li>
+						<li data-role="fieldcontain">
+							<label for="Pass1" class="text">Gõ lại mật khẩu:</label>
+							<input class="required" id="Pass1" name="Pass1" type="text" />
+						</li>
+						<button data-corners="false" type="submit" data-theme="c"  data-icon="edit" name="submit" value="submit-value">Thay đổi</button>
+					</ul>
+				</form>
+			</div>
+			<div class="content-secondary">
+				
+			</div>
+		</div><!-- /content -->
+		<span metal:use-macro="macros.xhtml/footer"/>
+	</div>
+</body>
+</html>

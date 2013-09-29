@@ -1,0 +1,44 @@
+<?php
+namespace MVC\Domain;
+if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
+	require_once( "mvc/mapper/App.php" );
+	require_once( "mvc/mapper/User.php" );	
+	require_once( "mvc/mapper/Domain.php" );
+	require_once( "mvc/mapper/Table.php" );
+	require_once( "mvc/mapper/Session.php" );
+	require_once( "mvc/mapper/SessionDetail.php" );	
+	require_once( "mvc/mapper/Category.php" );
+	require_once( "mvc/mapper/Course.php" );	
+	require_once( "mvc/mapper/PayRoll.php");	
+	require_once( "mvc/mapper/PaidGeneral.php");	
+	require_once( "mvc/mapper/TermPaid.php");
+	require_once( "mvc/mapper/TermCollect.php");	
+	require_once( "mvc/mapper/CollectGeneral.php");	
+	require_once( "mvc/mapper/Customer.php" );
+	require_once( "mvc/mapper/Employee.php" );
+	require_once( "mvc/mapper/Unit.php");
+	require_once( "mvc/mapper/Config.php");
+	require_once( "mvc/mapper/Tracking.php");	
+	require_once( "mvc/mapper/Guest.php");
+}
+
+class HelperFactory {
+    static function getFinder( $type ) {
+        $type = preg_replace( "/^.*_/", "", $type );
+        $mapper = "\\MVC\\Mapper\\{$type}";
+        if ( class_exists( $mapper ) ) {
+            return new $mapper();
+        }
+        throw new \MVC\Base\AppException( "Không biết: $mapper" );
+    }
+
+    static function getCollection( $type ) {
+        $type = preg_replace( "/^.*_/", "", $type );
+        $collection = "\\MVC\\Mapper\\{$type}Collection";
+        if ( class_exists( $collection ) ) {
+            return new $collection();
+        }
+        throw new \MVC\Base\AppException( "Không biết: $collection" );
+    }
+}
+?>

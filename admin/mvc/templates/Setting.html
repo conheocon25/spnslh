@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html style="overflow-y:hidden;" lang="en">
+	<head>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+	</head>
+	
+	<body data-menu-position="closed">
+		<div metal:use-macro="mAdmin.xhtml/Header"/>
+		<div metal:use-macro="mAdmin.xhtml/MenuApp"/>
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+			<div metal:use-macro="mAdmin.xhtml/LocationBar"/>
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="widget-box">
+							<div class="widget-title">
+								<span class="icon"><i class="icon-table"/></span>
+								<h5 tal:content="Title"/> 
+							</div>
+							<div class="widget-content nopadding">
+								<div role="grid" class="dataTables_wrapper">
+									<table class="table table-bordered table-striped table-hover data-table">
+										<thead>
+											<tr role="row">
+												<th width="35">STT</th>
+												<th><div class="text-left">TÊN</div></th>
+												<th width="32"><i class="icon-trash my-ico"/></th>
+											</tr>
+										</thead>
+										<tbody role="alert" aria-live="polite" aria-relevant="all">
+											<tr class="gradeA odd">
+												<td align="center">1</td>
+												<td><a tal:attributes="href '/setting/category'" >DANH MỤC MÓN</a></td>
+												<td align="center"><a href="/setting/category"><i class="icon-gear"/></a></td>
+											</tr>
+											<tr class="gradeA odd">
+												<td align="center">2</td>
+												<td><a tal:attributes="href '/setting/domain'" >KHU VỰC</a></td>
+												<td align="center"><a href="/setting/domain"><i class="icon-gear"/></a></td>
+											</tr>
+											<tr class="gradeA odd">
+												<td align="center">3</td>
+												<td><a tal:attributes="href '/setting/supplier'" >NHÀ CUNG CẤP</a></td>
+												<td align="center"><a href="/setting/supplier"><i class="icon-gear"/></a></td>
+											</tr>
+											<tr class="gradeA odd">
+												<td align="center">4</td>
+												<td><a tal:attributes="href '/setting/user'" >NGƯỜI DÙNG</a></td>
+												<td align="center"><a href="/setting/user"><i class="icon-gear"/></a></td>
+											</tr>
+											<tr class="gradeA odd">
+												<td align="center">5</td>
+												<td><a tal:attributes="href '/setting/customer'" >KHÁCH HÀNG</a></td>
+												<td align="center"><a href="/setting/customer"><i class="icon-gear"/></a></td>
+											</tr>
+											<tr class="gradeA odd">
+												<td align="center">6</td>
+												<td><a tal:attributes="href '/setting/unit'" >ĐƠN VỊ TÍNH</a></td>
+												<td align="center"><a href="/setting/unit"><i class="icon-gear"/></a></td>
+											</tr>
+											<tr class="gradeA odd">
+												<td align="center">7</td>
+												<td><a tal:attributes="href '/setting/employee'" >NHÂN VIÊN</a></td>
+												<td align="center"><a href="/setting/employee"><i class="icon-gear"/></a></td>
+											</tr>
+											<tr class="gradeA odd">
+												<td align="center">8</td>
+												<td><a tal:attributes="href '/setting/termpaid'" >DANH MỤC THU</a></td>
+												<td align="center"><a href="/setting/termpaid"><i class="icon-gear"/></a></td>
+											</tr>
+											<tr class="gradeA odd">
+												<td align="center">9</td>
+												<td><a tal:attributes="href '/setting/termcollect'" >DANH MỤC CHI</a></td>
+												<td align="center"><a href="/setting/termcollect"><i class="icon-gear"/></a></td>
+											</tr>
+											<tr class="gradeA odd">
+												<td align="center">10</td>
+												<td><a tal:attributes="href '/setting/config'" >CẤU HÌNH</a></td>
+												<td align="center"><a href="/setting/config"><i class="icon-gear"/></a></td>
+											</tr>
+										</tbody>
+									</table>									
+								</div>  
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+	</body>
+</html>
