@@ -1,0 +1,58 @@
+<body>
+	<BR/>
+	<div metal:use-macro="mAdmin.xhtml/ReportHeader"/>
+	<span tal:repeat="Data DataAll">
+	<br/>
+	<table tal:condition="php:Data[1]" width="100%" border="1" cellpadding="2" >
+		<tr>
+			<th align="left" colspan="5" width="100%"><H3><b tal:content="php:Data[0]" /></H3></th>
+		</tr>
+		<tr>
+			<th width="5%"><B>#ID</B></th>
+			<th width="18%" align="left"><B>THỜI GIAN</B></th>
+			<th width="18%" align="left"><B>NHÂN VIÊN</B></th>
+			<th width="37%" align="left" ><B>BÀN</B></th>
+			<th width="22%" align="right"><B>GIÁ TRỊ</B></th>
+		</tr>
+		<tr tal:repeat="D php:Data[1]">
+			<td align="center" 	tal:content="php:D[0]" />
+			<td align="left" 	tal:content="php:D[1]" />
+			<td align="left" 	tal:content="php:D[2]" />
+			<td align="left" 	tal:content="php:D[3] . ' / ' . D[4]" />
+			<td align="right" 	tal:content="php:D[6]" />
+		</tr>
+		<tr>
+			<th align="right" colspan="5" width="78%"><H3>TỔNG</H3></th>			
+			<th align="right" width="22%"><B tal:content="php:Data[2]"/></th>
+		</tr>
+	</table>
+	</span>
+	
+	<table width="100%" border="0" cellpadding="2">
+		<tr>
+			<td width="65%" align="right"><h2>TỔNG CỘNG</h2></td>
+			<td width="35%" align="right"><h2 tal:content="php:NTotal->formatCurrency() . ' đ'"/></td>
+		</tr>
+		<tr>
+			<td width="100%" align="right">(<i tal:content="NTotal/readDigit" />)</td>
+		</tr>
+		<tr>
+			<td width="35%" align="center"></td>
+			<td width="30%" align="center" />
+			<td width="35%" align="center" tal:content="DateCurrent"/>
+		</tr>
+		<tr>
+			<td width="35%" align="center">BÁN HÀNG</td>
+			<td width="30%" align="center" />
+			<td width="35%" align="center">QUẢN LÝ</td>
+		</tr>
+		<tr><td width="35%" /><td width="30%" /><td width="35%" /></tr>
+		<tr><td width="35%" /><td width="30%" /><td width="35%" /></tr>
+		<tr><td width="35%" /><td width="30%" /><td width="35%" /></tr>
+		<tr>
+			<td width="35%" align="center"></td>
+			<td width="30%" align="center" />
+			<td width="35%" align="center" />
+		</tr>
+	</table>
+</body>

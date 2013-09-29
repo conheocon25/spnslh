@@ -1,0 +1,5 @@
+
+	th { font-size: 12px !important; }
+	th.left, td.left { text-align: left !important; }
+	th.center, td.center { text-align: center !important; }
+	th.right, td.right { text-align: right !important }

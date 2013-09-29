@@ -1,0 +1,55 @@
+<body>
+	<BR/>
+	<div metal:use-macro="mAdmin.xhtml/ReportHeader"/>
+	<BR/>
+	<table width="100%" border="1" cellpadding="2" >
+		<tr>			
+			<th width="10%" align="right"><B>NGÀY</B></th>
+			<th width="15%" align="right"><B>DOANH SỐ</B></th>
+			<th width="15%" align="right"><B>VỐN GỐC</B></th>
+			<th width="15%" align="right"><B>LÃI (1)</B></th>
+			<th width="15%" align="right"><B>THU</B></th>
+			<th width="15%" align="right"><B>CHI</B></th>
+			<th width="15%" align="right"><B>LÃI (2)</B></th>
+		</tr>
+		<tr tal:repeat="DC ChartData">
+			<td align="right" tal:content="php:DC[0]" />			
+			<td align="right" tal:content="php:DC[1]" />
+			<td align="right" tal:content="php:DC[2]" />
+			<td align="right" tal:content="php:DC[3]" />
+			<td align="right" tal:content="php:DC[4]" />
+			<td align="right" tal:content="php:DC[5]" />
+			<td align="right" tal:content="php:DC[6]" />
+		</tr>
+		<tr>
+			<th align="right"><H3>T.CỘNG</H3></th>			
+			<th align="right"><H3 tal:content="Sum1" /></th>
+			<th align="right"><H3 tal:content="Sum2" /></th>
+			<th align="right"><H3 tal:content="Sum3" /></th>
+			<th align="right"><H3 tal:content="Sum4" /></th>
+			<th align="right"><H3 tal:content="Sum5" /></th>
+			<th align="right"><H3 tal:content="Sum6" /></th>
+		</tr>
+	</table>
+	<P/>
+	<table width="100%" border="0" cellpadding="2" >
+		<tr>
+			<td width="35%" align="center"></td>
+			<td width="30%" align="center" />
+			<td width="35%" align="center" tal:content="DateCurrent" />
+		</tr>
+		<tr>
+			<td width="35%" align="center">QUẢN LÝ</td>
+			<td width="30%" align="center" />
+			<td width="35%" align="center">CHỦ TIỆM</td>
+		</tr>
+		<tr><td width="35%" /><td width="30%" /><td width="35%" /></tr>
+		<tr><td width="35%" /><td width="30%" /><td width="35%" /></tr>
+		<tr><td width="35%" /><td width="30%" /><td width="35%" /></tr>
+		<tr>
+			<td width="35%" align="center" />
+			<td width="30%" align="center" />
+			<td width="35%" align="center"></td>
+		</tr>
+	</table>
+</body>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html style="overflow-y:hidden;" lang="en">
+	<head>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+	</head>
+	
+	<body data-menu-position="closed">
+		<div metal:use-macro="mAdmin.xhtml/Header"/>
+		
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+			<div metal:use-macro="mAdmin.xhtml/LocationBar"/>
+			<div class="container-fluid">							
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="widget-box">
+							<div class="widget-title">
+								<span class="icon"><i class="icon-align-justify"></i></span>
+								<h5>CẬP NHẬT</h5>
+							</div>
+							<div class="widget-content nopadding">
+								<form class="form-horizontal" tal:attributes="action Course/getURLUpdExe" method="post">									
+									<div class="control-group">
+										<label class="control-label" for="Name">Tên</label>
+										<div class="controls">
+											<input id="Name" name="Name" type="text" tal:attributes="value Course/getName" class="form-control input-sm"/>
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label" for="IdCategory">Danh mục</label>
+										<div class="controls">
+											<select name="IdCategory" id="IdCategory" class="form-control input-sm">
+												<option tal:repeat="Category1 CategoryAll" tal:attributes="value Category1/getId;selected php:Category1->getId()==Category->getId()">
+													<span tal:content="Category1/getName" />
+												</option>
+											</select>
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label" for="ShortName">Tên rút gọn</label>
+										<div class="controls">
+											<input id="ShortName" name="ShortName" type="text" tal:attributes="value Course/getShortName" class="form-control input-sm"/>
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label" for="Unit">Đơn vị</label>
+										<div class="controls">
+											<select name="Unit" id="Unit" class="form-control input-sm">
+												<option tal:repeat="Unit UnitAll" tal:attributes="value Unit/getName;selected php:Course->getUnit()==Unit->getName()">
+													<span tal:content="Unit/getName" />
+												</option>
+											</select>
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label" for="Price1">Giá</label>
+										<div class="controls">
+											<input id="Price1" name="Price1" type="text" tal:attributes="value Course/getPrice1" class="form-control input-sm"/>
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label" for="Price1">Hệ số giá</label>
+										<div class="controls">
+											<input id="Rate" name="Rate" type="text" tal:attributes="value Course/getRate" class="form-control input-sm"/>
+										</div>
+									</div>
+									<div class="form-actions">
+										<button class="btn btn-primary btn-sm" type="submit"><i class="icon-download-alt"/> Lưu</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+	</body>
+</html>

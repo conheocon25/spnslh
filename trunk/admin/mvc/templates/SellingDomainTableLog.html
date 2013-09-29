@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html style="overflow-y:hidden;" lang="en">
+	<head>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+	</head>
+	
+	<body data-menu-position="closed">
+		<div metal:use-macro="mAdmin.xhtml/Header"/>		
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+			<div metal:use-macro="mAdmin.xhtml/LocationBar"/>
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="widget-box">
+							<div class="widget-title">
+								<span class="icon"><i class="icon-table"/></span>
+								<h5 tal:content="Title"/> 
+							</div>
+							<div class="widget-content nopadding">
+								<div role="grid" class="dataTables_wrapper">																		
+									<table class="table table-bordered table-striped table-hover data-table">
+										<thead>
+											<tr>
+												<th width="32">STT</th>
+												<th width="120">THỜI GIAN</th>
+												<th>NHÂN VIÊN</th>
+												<th width="120"><div class="text-right">GIÁ TRỊ</div></th>
+												<th width="30" />
+											</tr>
+										</thead>
+										<tbody role="alert" aria-live="polite" aria-relevant="all">
+											<tr tal:repeat="Session SessionAll">
+												<td><div class="text-center" tal:content="repeat/Session/number"/></td>
+												<td>
+													<a tal:attributes="href Session/getURLDetail">
+														<span tal:content="Session/getDateTimePrint" />
+													</a>
+												</td>
+												<td tal:content="Session/getUser/getName" />
+												<td><div class="text-right" tal:content="Session/getValuePrint" /></td>
+												<td><a tal:attributes="href Session/getURLDelLoad" tal:condition="php:@\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()"><span class="icon-remove"/></a></td>
+											</tr>
+										</tbody>								
+									</table>							
+									<div metal:use-macro="mAdmin.xhtml/PageBar"/>
+									
+								</div>  
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>		
+	</body>
+</html>

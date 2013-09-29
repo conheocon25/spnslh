@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html style="overflow-y:hidden;" lang="en">
+	<head>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+	</head>
+	
+	<body data-menu-position="closed">
+		<div metal:use-macro="mAdmin.xhtml/Header"/>
+		<div metal:use-macro="mAdmin.xhtml/MenuSetting"/>
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+			<div metal:use-macro="mAdmin.xhtml/LocationBar"/>
+			<div class="container-fluid">							
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="widget-box">
+							<div class="widget-title">
+								<span class="icon"><i class="icon-table"/></span>
+								<h5 tal:content="Title"/> 
+							</div>
+							<div class="widget-content nopadding">
+								<div role="grid" class="dataTables_wrapper">
+									<table class="table table-bordered table-striped table-hover data-table">
+										<thead>
+											<tr role="row">
+												<th width="35">STT</th>
+												<th><div class="text-left">TÊN</div></th>
+												<th width="120"><div class="text-left">BÀN</div></th>
+												<th width="32"><i class="icon-pencil my-ico"/></th>
+												<th width="32"><i class="icon-trash my-ico"/></th>
+											</tr>
+										</thead>
+										<tbody role="alert" aria-live="polite" aria-relevant="all">
+											<tr tal:repeat="Domain DomainAll1" class="gradeA odd">
+												<td align="center" tal:content="repeat/Domain/number"/>
+												<td><a tal:attributes="href Domain/getURLUpdLoad" tal:content="Domain/getName"/></td>
+												<td>
+													<a tal:attributes="href Domain/getURLTable"> <div tal:content="Domain/getTableAll/count" /></a>
+												</td>
+												<td align="center"><a tal:attributes="href Domain/getURLUpdLoad"><i class="icon-pencil"/></a></td>
+												<td align="center"><a tal:attributes="href Domain/getURLDelLoad"><i class="icon-remove"/></a></td>
+											</tr>
+										</tbody>
+									</table>
+									<div class="fg-toolbar ui-toolbar ui-widget-header ui-corner-bl ui-corner-br ui-helper-clearfix">
+										<div class="dataTables_filter">
+											<label style="margin-top:5px;">
+												<a href="/setting/domain/ins/load">
+													<span class="icon-plus"/> Thêm mới
+												</a>
+											</label>
+										</div>
+										<div metal:use-macro="mAdmin.xhtml/Pagebar"/>
+									</div>
+								</div>  
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+	</body>
+</html>

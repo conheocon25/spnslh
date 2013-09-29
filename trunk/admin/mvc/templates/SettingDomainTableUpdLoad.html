@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html style="overflow-y:hidden;" lang="en">
+	<head>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+	</head>
+	
+	<body data-menu-position="closed">
+		<div metal:use-macro="mAdmin.xhtml/Header"/>
+		
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+			<div metal:use-macro="mAdmin.xhtml/LocationBar"/>
+			<div class="container-fluid">							
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="widget-box">
+							<div class="widget-title">
+								<span class="icon"><i class="icon-align-justify"></i></span>
+								<h5>CẬP NHẬT</h5>
+							</div>
+							<div class="widget-content nopadding">
+								<form class="form-horizontal" tal:attributes="action Table/getURLUpdExe" method="post">
+									<div class="control-group">
+										<label class="control-label" for="Name">Tên</label>
+										<div class="controls">
+											<input id="Name" name="Name" type="text" tal:attributes="value Table/getName" class="form-control input-sm"/>
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label" for="Type">Loại</label>
+										<div class="controls">
+											<select name="Type" id="Type" class="form-control input-sm">
+												<option value="0" tal:attributes="selected Table/getType">Thường</option>
+												<option value="1" tal:attributes="selected Table/getType">VIP</option>
+											</select>
+										</div>
+									</div>																								
+									<div class="form-actions">
+										<button class="btn btn-primary btn-sm" type="submit"><i class="icon-download-alt"/> Lưu</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+	</body>
+</html>
