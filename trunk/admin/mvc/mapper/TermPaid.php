@@ -7,14 +7,14 @@ class TermPaid extends Mapper implements \MVC\Domain\TermPaidFinder{
     function __construct() {
         parent::__construct();
 				
-		$tblTermPaid = "demo1_term";
+		$tblTermPaid = "tbl_term";
 		
 		$selectAllStmt = sprintf("select * from %s ORDER BY name", $tblTermPaid);
 		$selectStmt = sprintf("select *  from %s where id=?", $tblTermPaid);
-		$updateStmt = sprintf("update %s set name=?, type=? where id=?", $tblTermPaid);
-		$insertStmt = sprintf("insert into %s ( name, type) values(?, ?)", $tblTermPaid);
+		$updateStmt = sprintf("update %s set name=? where id=?", $tblTermPaid);
+		$insertStmt = sprintf("insert into %s ( name) values(?)", $tblTermPaid);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblTermPaid);
-		$findByPageStmt = sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblTermPaid);
+		$findByPageStmt = sprintf("SELECT * FROM  %s ORDER BY name LIMIT :start,:max", $tblTermPaid);
 		
         $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
         $this->selectStmt = self::$PDO->prepare($selectStmt);
@@ -30,8 +30,7 @@ class TermPaid extends Mapper implements \MVC\Domain\TermPaidFinder{
     protected function doCreateObject( array $array ) {
         $obj = new \MVC\Domain\TermPaid( 
 			$array['id'], 
-			$array['name'],
-			$array['type']
+			$array['name']			
 		);
         return $obj;
     }
@@ -42,8 +41,7 @@ class TermPaid extends Mapper implements \MVC\Domain\TermPaidFinder{
 
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array( 
-			$object->getName(),
-			$object->getType()
+			$object->getName()			
 		); 
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
@@ -52,8 +50,7 @@ class TermPaid extends Mapper implements \MVC\Domain\TermPaidFinder{
     
     protected function doUpdate( \MVC\Domain\Object $object ) {
         $values = array( 
-			$object->getName(),
-			$object->getType(),
+			$object->getName(),			
 			$object->getId()
 		);
         $this->updateStmt->execute( $values );

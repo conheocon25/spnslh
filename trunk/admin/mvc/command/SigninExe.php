@@ -26,7 +26,7 @@
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------										
 			if (isset($Email) && isset($Pass)){				
-				$IdUser = $mUser->check($Email, $Pass);				
+				$IdUser = $mUser->check($Email, $Pass);								
 				if ($IdUser > 0){								
 					$User = $mUser->find($IdUser);
 					

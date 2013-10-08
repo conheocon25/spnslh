@@ -6,14 +6,14 @@ class Domain extends Mapper implements \MVC\Domain\DomainFinder {
     function __construct() {
         parent::__construct();
 		
-		$tblDomain = "demo1_domain";
+		$tblDomain = "tbl_domain";
 						
 		$selectAllStmt = sprintf("select * from %s", $tblDomain);
 		$selectStmt = sprintf("select * from %s where id=?", $tblDomain);
 		$updateStmt = sprintf("update %s set name=? where id=?", $tblDomain);
 		$insertStmt = sprintf("insert into %s ( name) values(?)", $tblDomain);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblDomain);
-		$findByPageStmt = sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblDomain);
+		$findByPageStmt = sprintf("SELECT * FROM  %s ORDER BY name LIMIT :start,:max", $tblDomain);
 		
         $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
         $this->selectStmt = self::$PDO->prepare($selectStmt);

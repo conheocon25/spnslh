@@ -1,33 +1,49 @@
-<!DOCTYPE html> 
-<html>
+<!DOCTYPE html>
+<html style="overflow-y:hidden;" lang="en">
 	<head>
-		<span metal:use-macro="macros.xhtml/IncludeCSS_Mobile"/>
-		<span metal:use-macro="macros.xhtml/IncludeJS_Mobile"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
 	</head>
-<body>	
-	<div data-role="page" class="category type-interior">		
-		<span metal:use-macro="macros.xhtml/header"/>
-		<div data-role="content">
-			<div class="content-primary">
-				<form tal:attributes="action '/change/pass/exe'" method="post" data-ajax="false">
-					<ul data-role="listview" data-theme="c" data-dividertheme="b">						
-						<li data-role="fieldcontain">
-							<label for="Pass" class="text">Mật khẩu mới:</label>
-							<input class="required" id="Pass" name="Pass" type="text" />
-						</li>
-						<li data-role="fieldcontain">
-							<label for="Pass1" class="text">Gõ lại mật khẩu:</label>
-							<input class="required" id="Pass1" name="Pass1" type="text" />
-						</li>
-						<button data-corners="false" type="submit" data-theme="c"  data-icon="edit" name="submit" value="submit-value">Thay đổi</button>
-					</ul>
-				</form>
+	
+	<body data-menu-position="closed">
+		<div metal:use-macro="mAdmin.xhtml/Header"/>
+		
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+			<div metal:use-macro="mAdmin.xhtml/LocationBar"/>
+			<div class="container-fluid">							
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="widget-box">
+							<div class="widget-title">
+								<span class="icon"><i class="icon-align-justify"></i></span>
+								<h5>CẬP NHẬT</h5>
+							</div>
+							<div class="widget-content nopadding">
+								<form class="form-horizontal" tal:attributes="action '/change/pass/exe'" method="post">
+									<div class="control-group">
+										<label class="control-label">Mật khẩu</label>
+										<div class="controls">
+											<input id="Pass" name="Pass" type="password" class="form-control input-sm"/>											
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label">Gõ lại mật khẩu</label>
+										<div class="controls">
+											<input id="Pass1" name="Pass1" type="password" class="form-control input-sm"/>
+										</div>
+									</div>
+									<div class="form-actions">
+										<button class="btn btn-primary btn-sm" type="submit"><i class="icon-key"/>Thay đổi</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-			<div class="content-secondary">
-				
-			</div>
-		</div><!-- /content -->
-		<span metal:use-macro="macros.xhtml/footer"/>
-	</div>
-</body>
+		</div>
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+	</body>
 </html>

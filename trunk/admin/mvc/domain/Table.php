@@ -10,7 +10,7 @@ class Table extends Object{
 	private $Name;
 	private $IdUser;
 	private $Type;
-	
+			
 	private $Sessions;
 	private $SessionsTracking;
 	//-------------------------------------------------------------------------------
@@ -25,45 +25,19 @@ class Table extends Object{
         parent::__construct( $Id );
     }
 	
-    function getId( ) {
-        return $this->Id;
-    }
-	function getIdPrint( ) {
-        return "t".$this->Id;
-    }
+    function getId( ) {return $this->Id;}
+	function getIdPrint( ) {return "t".$this->Id;}
 		
-	function getIdDomain( ) {
-        return $this->IdDomain;
-    }
-	
-	function setIdDomain( $IdDomain ) {
-        $this->IdDomain = $IdDomain;
-        $this->markDirty();
-    }
+	function getIdDomain( ) {return $this->IdDomain;}	
+	function setIdDomain( $IdDomain ) {$this->IdDomain = $IdDomain;$this->markDirty();}
 
-	function getName( ) {
-        return $this->Name;
-    }
+	function getName( ) {return $this->Name;}
+	function setName( $Name ) {$this->Name = $Name;$this->markDirty();}
 
-	function setName( $Name ) {
-        $this->Name = $Name;
-        $this->markDirty();
-    }
-
-	function getIdUser( ) {
-        return $this->IdUser;
-    }
+	function getIdUser( ) {return $this->IdUser;}	
+    function setIdUser( $IdUser ) {$this->IdUser = $IdUser;$this->markDirty();}
 	
-    function setIdUser( $IdUser ) {
-        $this->IdUser = $IdUser;
-        $this->markDirty();
-    }
-	
-	function getUser( ){
-		$mUser = new \MVC\Mapper\User();
-		$User = $mUser->find($this->IdUser);
-		return $User;
-    }
+	function getUser( ){$mUser = new \MVC\Mapper\User();$User = $mUser->find($this->IdUser);return $User;}
 
 	//True: có khách, false: không có khách
     function getState() {
@@ -78,21 +52,14 @@ class Table extends Object{
 		return true;
     }
 			
-	function getType( ) {
-        return $this->Type;
-    }
-	
+	function getType( ) {return $this->Type;}	
 	function getTypePrint() {
 		if ($this->Type==1)
 			return "VIP";
         return "Thường";
     }
 	
-	function setType( $Type ) {
-        $this->Type = $Type;
-        $this->markDirty();
-    }
-			
+	function setType( $Type ){$this->Type = $Type; $this->markDirty();}			
 	function getDomain(){
 		$mDomain = new \MVC\Mapper\Domain();
 		$Domain = $mDomain->find($this->IdDomain);
@@ -173,15 +140,25 @@ class Table extends Object{
 		return $mSession->trackingCount(array($this->getId(), $DateStart, $DateEnd));
 	}
 	
-	//-------------------------------------------------------------------------------
-	//DEFINE SETTING URL
-	//-------------------------------------------------------------------------------	
-	function getURLUpdLoad(){return "/setting/domain/".$this->getIdDomain()."/".$this->getId()."/upd/load";}
-	function getURLUpdExe(){return "/setting/domain/".$this->getIdDomain()."/".$this->getId()."/upd/exe";}
+	function toJSON(){
+		$json = array(
+			'Id' 			=> $this->getId(),
+			'IdDomain'		=> $this->getIdDomain(),
+			'Name'			=> $this->getName(),
+			'IdUser'		=> $this->getIdUser(),			
+			'Type'			=> $this->getType()
+		);
+		return json_encode($json);
+	}
 	
-	function getURLDelLoad(){return "/setting/domain/".$this->getIdDomain()."/".$this->getId()."/del/load";}
-	function getURLDelExe(){return "/setting/domain/".$this->getIdDomain()."/".$this->getId()."/del/exe";}
-	
+	function setArray( $Data ){
+        $this->Id = $Data[0];
+		$this->IdDomain = $Data[1];
+		$this->Name = $Data[2];
+		$this->IdUser = $Data[3];
+		$this->Type = $Data[4];
+    }
+		
 	//-------------------------------------------------------------------------------
 	//DEFINE SELLING URL
 	//-------------------------------------------------------------------------------	

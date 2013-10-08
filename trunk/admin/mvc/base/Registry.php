@@ -15,14 +15,13 @@
 		
 		//Sử dụng App và User lưu trữ như là một  Object trong Session
 		private function __construct() { 
-			require_once 'mvc/domain/User.php';
-			//include 'mvc/domain/App.php';
+			require_once 'mvc/domain/User.php';			
 			session_start();
 		}
 		
- 		static function instance() { 
+ 		static function instance(){
 			if ( ! isset(self::$instance) ) { self::$instance = new self(); } 
-				return self::$instance;          
+				return self::$instance;
 		} 
  
 		protected function get( $key ) { 
@@ -34,23 +33,7 @@
 		protected function set( $key, $val ) { 
 			$_SESSION[__CLASS__][$key] = $val; 
 		} 
-				
-		//Quản lí IdDomain
-		function setCurrentIdDomain( $IdDomain ) { 
-			self::instance()->set('cafe_current_domain', $IdDomain); 
-		}
-		function getCurrentIdDomain( ) { 
-			return self::instance()->get('cafe_current_domain');
-		}
-		
-		//Quản lí Table
-		function setCurrentIdTable( $IdTable ) { 
-			self::instance()->set('cafe_current_table', $IdTable); 
-		}
-		function getCurrentIdTable( ) { 
-			return self::instance()->get('cafe_current_table');
-		}
-								
+												
 		//Quản lí User
 		function setCurrentUser( \MVC\Domain\User $user ) {
 			return self::instance()->set('cafe_current_user', $user);
@@ -59,72 +42,36 @@
 			return self::instance()->get('cafe_current_user');
 		}
 		
+		function setCurrentTheme( $theme ) {
+			return self::instance()->set('cafe_current_theme', $theme);
+		}
+		
+		function getCurrentTheme(){
+			$Theme = self::instance()->get('cafe_current_theme');
+			if (!isset($Theme)){
+				$mConfig = new \MVC\Mapper\Config();
+				$Config = $mConfig->findByName("THEME");
+				if (!isset($Config))
+					return "grey";
+				else
+					return $Config->getValue();
+			}
+				
+			return self::instance()->get('cafe_current_theme');
+		}
+		
 		function setCurrentIdUser( $Iduser ) {
 			return self::instance()->set('cafe_current_Iduser', $Iduser);
 		}
 		function getCurrentIdUser() {
 			return self::instance()->get('cafe_current_Iduser');
-		}								
-		//Quản lí ReportSellingDate
-		function setReportSellingDateStart( $DateStart ) { 
-			self::instance()->set('cafe_report_selling_date_start', $DateStart); 
-		}
-		function getReportSellingDateStart( ){
-			return self::instance()->get('cafe_report_selling_date_start');
 		}
 		
-		function setReportSellingDateEnd( $DateEnd ) { 
-			self::instance()->set('cafe_report_selling_date_end', $DateEnd); 
+		function setCurrentAction( $Action ) {return self::instance()->set('cafe_current_action', $Action);}		
+		function getCurrentAction() {
+			$result = self::instance()->get('cafe_current_action');			
+			return $result;
 		}
-		function getReportSellingDateEnd( ){
-			return self::instance()->get('cafe_report_selling_date_end');
-		}
-		
-		//Quản lí ReportSupplierDate
-		function setReportSupplierDateStart( $DateStart ) { 
-			self::instance()->set('cafe_report_supplier_date_start', $DateStart); 
-		}
-		function getReportSupplierDateStart( ){
-			return self::instance()->get('cafe_report_supplier_date_start');
-		}
-		
-		function setReportSupplierDateEnd( $DateEnd ) { 
-			self::instance()->set('cafe_report_supplier_date_end', $DateEnd); 
-		}
-		function getReportSupplierDateEnd( ){
-			return self::instance()->get('cafe_report_supplier_date_end');
-		}
-		
-		//Quản lí ReportEmployeeDate
-		function setReportEmployeeDateStart( $DateStart ) { 
-			self::instance()->set('cafe_report_employee_date_start', $DateStart); 
-		}
-		function getReportEmployeeDateStart( ){
-			return self::instance()->get('cafe_report_employee_date_start');
-		}
-		
-		function setReportEmployeeDateEnd( $DateEnd ) { 
-			self::instance()->set('cafe_report_employee_date_end', $DateEnd); 
-		}
-		function getReportEmployeeDateEnd( ){
-			return self::instance()->get('cafe_report_employee_date_end');
-		}
-		
-		//Quản lí ReportOtherDate
-		function setReportOtherDateStart( $DateStart ) { 
-			self::instance()->set('cafe_report_other_date_start', $DateStart); 
-		}
-		function getReportOtherDateStart( ){
-			return self::instance()->get('cafe_report_other_date_start');
-		}
-		
-		function setReportOtherDateEnd( $DateEnd ) { 
-			self::instance()->set('cafe_report_other_date_end', $DateEnd); 
-		}
-		function getReportOtherDateEnd( ){
-			return self::instance()->get('cafe_report_other_date_end');
-		}
-		
 	}
 	/*--------------------------------------------------------------------------------*/
 	class RequestRegistry extends Registry { 
@@ -197,14 +144,7 @@
 			file_put_contents( $path, serialize( $val ) );
 			$this->mtimes[$key]=time();
 		}
-		
-		static function setInfo( $info ) {
-			return self::instance()->set('info', $info);
-		}
-		static function getInfo() {
-			return self::instance()->get('info');
-		}
-						
+								
 		//---------------------------------------------------------------------
 		// Thông tin App của hệ thống
 		//---------------------------------------------------------------------

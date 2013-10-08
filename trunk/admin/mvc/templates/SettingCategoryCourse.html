@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/icheck/flat/blue.css"/>
+		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/select2.css"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+	</head>
+	
+	<body>
+		<div metal:use-macro="mAdmin.xhtml/Header"/>
+		<div metal:use-macro="mAdmin.xhtml/StyleTools"/>
+		<div id="sidebar">
+			<ul style="display: block;">
+				<li tal:repeat="Category1 CategoryAll" tal:attributes="class php:Category1->getId()==Category->getId()?'active':'disable'">
+					<a tal:attributes="href Category1/getURLCourse">
+						<i class="glyphicons-fast_food"/><span tal:content="Category1/getName"/>							
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
+			<div id="IdCategory" tal:attributes="alt Category/getId" class="row">
+				<div class="col-12">
+					<a href="#DialogIns" data-toggle="modal" class="btn btn-success btn-ins btn-small">
+						<i class="glyphicons-plus"/> Thêm mới
+					</a>
+					<a href="#DialogDelSelected" data-toggle="modal" class="btn btn-success btn-ins btn-small">
+						<i class="glyphicons-remove_2"/> Xóa chọn
+					</a>
+					<div class="widget-box">						
+						<div class="widget-content nopadding">
+							<table class="table table-bordered table-striped table-hover">
+								<thead>
+									<tr>
+										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
+										<th class="left">TÊN</th>
+										<th class="right" width="120"><i class="glyphicons-usd"/></th>
+										<th width="100"><i class="glyphicons-coins"/></th>
+										<th width="40"><i class="glyphicons-edit"/></th>
+										<th width="40"><i class="glyphicons-bin"/></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr tal:repeat="Course CourseAll1">
+										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Course/getId"/></td>
+										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Course/getId" tal:content="Course/getName"/></td>
+										<td class="right" tal:content="Course/getPrice1Print"/>
+										<td class="center" tal:content="Course/getUnit"/>
+										<td class="center">
+											<a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Course/getId">
+												<i class="glyphicon glyphicon-pencil"/>
+											</a>
+										</td>
+										<td class="center"><a class="remove-item" href="#myAlert" data-toggle="modal" tal:attributes="data-id Course/getId"><i class="glyphicon glyphicon-remove"/></a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div metal:use-macro="mAdmin.xhtml/PageBar"/>					
+					<!-- INSERT DIALOG  -->
+					<div id="DialogIns" class="modal fade">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h3><i class="glyphicons-fast_food modal-icon"/>THÊM MÓN MỚI</h3>
+								</div>
+								<div class="form-horizontal">
+									<div class="modal-body">
+										<div class="form-group">
+											<label class="control-label">Tên</label>
+											<div class="controls">
+												<input id="Name1" name="Name1" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">Tên rút gọn</label>
+											<div class="controls">
+												<input id="ShortName1" name="ShortName1" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">Đơn vị</label>
+											<div class="controls">
+												<select name="Unit1" id="Unit1" style="width:80%;">
+													<option tal:repeat="Unit UnitAll" tal:attributes="value Unit/getName">
+														<span tal:content="Unit/getName" />
+													</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">Giá</label>
+											<div class="controls">
+												<input id="Price1_1" name="Price1_1" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">Hệ số giá</label>
+											<div class="controls">
+												<input id="Rate1" name="Rate1" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button id="URLInsButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Lưu</button>
+										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- END INSERT DIALOG  -->
+					
+					<!-- DIALOG EDIT	-->
+					<div id="DialogEdit" class="modal fade">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h3><i class="glyphicons-fast_food modal-icon"/>CHỈNH SỬA</h3>
+								</div>
+								<div class="form-horizontal">
+									<div class="form-group">
+										<label class="control-label">Tên</label>
+										<div class="controls">
+											<input id="Name2" name="Name2" type="text" class="form-control input-small"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Tên rút gọn</label>
+										<div class="controls">
+											<input id="ShortName2" name="ShortName2" type="text" class="form-control input-small"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Đơn vị</label>
+										<div class="controls">
+											<select name="Unit2" id="Unit2" style="width:80%;">
+												<option tal:repeat="Unit UnitAll" tal:attributes="value Unit/getName">
+													<span tal:content="Unit/getName" />
+												</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Giá</label>
+										<div class="controls">
+											<input id="Price1_2" name="Price1_2" type="text" class="form-control input-small"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Hệ số giá</label>
+										<div class="controls">
+											<input id="Rate2" name="Rate2" type="text" class="form-control input-small"/>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button id="URLUpdButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Lưu</button>
+										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- END DIALOG EDIT -->
+					<div metal:use-macro="mDialog.xhtml/DialogDel"/>
+					<div metal:use-macro="mDialog.xhtml/DialogDelSelected"/>
+				</div>
+			</div>
+		</div>
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<script type="text/javascript">
+		/*<![CDATA[*/
+			$('#URLDelSelectedButton').click(function(){
+				var count = 0;
+				var Data = [];
+				var URL = "/object/del/Course/0";
+				
+				$(".CheckedDel").each(function( i, obj){
+					if ( $(this).is(':checked')==true ){
+						count += 1;
+						Data[count] = $(this).attr('data-id');
+					}
+				});
+				
+				$.ajax({
+					type: "POST",
+					data: {ListId:Data},
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
+			});
+			
+			//-----------------------------------------------------------------------------------
+			//Delete 1 COURSE			
+			//-----------------------------------------------------------------------------------
+			$('.remove-item').click(function(){
+				$('#URLDelButton').attr('alt', $(this).attr('data-id'));
+			});
+			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
+			$('#URLDelButton').click(function(){			
+				var URL = "/object/del/Course/" + $(this).attr('alt');
+				$.ajax({
+					type: "POST",					
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
+			});
+		
+			//-----------------------------------------------------------------------------------
+			//Insert 1 COURSE
+			$('#URLInsButton').click(function(){
+				var Data = [];
+				Data[0] = 'null';				
+				Data[1] = $('#IdCategory').attr('alt');
+				Data[2] = $('#Name1').val();
+				Data[3] = $('#ShortName1').val();
+				Data[4] = $('#Unit1').val();
+				Data[5] = $('#Price1_1').val();
+				Data[6] = '0';
+				Data[7] = '0';
+				Data[8] = '0';
+				Data[9] = '';
+				Data[10] = $('#Rate1').val();
+							
+				var URL = "/object/ins/Course";
+				$.ajax({
+					type: "POST",
+					data: {Data:Data},
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
+			});
+			
+			//-----------------------------------------------------------------------------------
+			//Load 1 COURSE
+			//-----------------------------------------------------------------------------------
+			$('.update-item').click(function(){
+				//Load dữ liệu JSON về
+				var url = "/object/load/Course/" + $(this).attr('data-id');
+				
+				//Load dữ liệu JSON lên FORM
+				$.getJSON(url, function(data){
+					$('#URLUpdButton').attr('alt', data.Id);
+					$('#Name2').attr('value', data.Name);
+					$('#ShortName2').attr('value', data.ShortName);
+					$('#Unit2').select2('val', data.Unit);
+					$('#Price1_2').attr('value', data.Price1);
+					$('#Rate2').attr('value', data.Rate);										
+				});
+			});
+			
+			//-----------------------------------------------------------------------------------
+			//Update 1 COURSE
+			//-----------------------------------------------------------------------------------
+			$('#URLUpdButton').click(function(){
+				var Data = [];								
+				Data[0] = $('#URLUpdButton').attr('alt');
+				Data[1] = $('#IdCategory').attr('alt');
+				Data[2] = $('#Name2').val();
+				Data[3] = $('#ShortName2').val();
+				Data[4] = $('#Unit2').val();
+				Data[5] = $('#Price1_2').val();
+				Data[6] = '0';
+				Data[7] = '0';
+				Data[8] = '0';
+				Data[9] = '';
+				Data[10] = $('#Rate2').val();
+								
+				var URL = "/object/upd/Course";
+				$.ajax({
+					type: "POST",
+					data: {Data:Data},
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
+			});			
+		/*]]>*/
+		</script>
+	</body>
+</html>

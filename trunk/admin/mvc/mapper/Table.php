@@ -7,9 +7,9 @@ class Table extends Mapper implements \MVC\Domain\UserFinder {
     function __construct() {
         parent::__construct();
 				
-		$tblTable = "demo1_table";
-		$tblSession = "demo1_session";
-		$tblSessionDetail = "demo1_session_detail";
+		$tblTable = "tbl_table";
+		$tblSession = "tbl_session";
+		$tblSessionDetail = "tbl_session_detail";
 				
 		$selectAllStmt = sprintf("select * from %s", $tblTable);								
 		$selectStmt = sprintf("select * from %s where id=?", $tblTable);
@@ -17,7 +17,7 @@ class Table extends Mapper implements \MVC\Domain\UserFinder {
 		$insertStmt = sprintf("insert into %s (iddomain, name, iduser, type) values(?, ?, ?, ?)", $tblTable);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblTable);
 		$findByDomainStmt = sprintf("select id, iddomain, name, iduser, type from %s where iddomain =?", $tblTable);
-		
+				
 		$findNonGuestStmt = sprintf("
 							SELECT
 								*	 
@@ -38,14 +38,22 @@ class Table extends Mapper implements \MVC\Domain\UserFinder {
 				*	 
 			FROM %s T
 			WHERE 				
-			(
-				SELECT S.status
-				from %s S
-				where T.id = S.idtable
-				order by datetime DESC
-				LIMIT 1
-			) <> 0
-		", $tblTable, $tblSession);
+				(
+					SELECT S.status
+					from %s S
+					where T.id = S.idtable
+					order by datetime DESC
+					LIMIT 1
+				) <> 0 OR 
+				(
+					SELECT S.status
+					from %s S
+					where T.id = S.idtable
+					order by datetime DESC
+					LIMIT 1
+				) is null
+			ORDER BY iddomain
+		", $tblTable, $tblSession, $tblSession);
 		
 		$findGuestStmt = sprintf("
 							SELECT
@@ -75,14 +83,13 @@ class Table extends Mapper implements \MVC\Domain\UserFinder {
 				LIMIT 1
 			) = 0
 		", $tblTable,  $tblSession);
-		
 		$findByPageStmt = sprintf("
 							SELECT *
 							FROM %s
 							WHERE iddomain=:iddomain
 							LIMIT :start,:max
 				", $tblTable);
-				
+		
         $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
         $this->selectStmt = self::$PDO->prepare($selectStmt);
         $this->updateStmt = self::$PDO->prepare($updateStmt);
@@ -159,7 +166,7 @@ class Table extends Mapper implements \MVC\Domain\UserFinder {
         $this->findNonGuestStmt->execute( $values );
         return new TableCollection( $this->findNonGuestStmt->fetchAll(), $this );
     }
-	function findAllNonGuest($values ) {
+	function findAllNonGuest($values ) {	
         $this->findAllNonGuestStmt->execute( $values );
         return new TableCollection( $this->findAllNonGuestStmt->fetchAll(), $this );
     }
@@ -172,7 +179,7 @@ class Table extends Mapper implements \MVC\Domain\UserFinder {
         $this->findAllGuestStmt->execute( $values );
         return new TableCollection( $this->findAllGuestStmt->fetchAll(), $this );
     }
-		
+	
 	function findByPage( $values ) {
 		$this->findByPageStmt->bindValue(':iddomain', $values[0], \PDO::PARAM_INT);
 		$this->findByPageStmt->bindValue(':start', ((int)($values[1])-1)*(int)($values[2]), \PDO::PARAM_INT);

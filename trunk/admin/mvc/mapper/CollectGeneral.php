@@ -7,7 +7,7 @@ class CollectGeneral extends Mapper implements \MVC\Domain\CollectGeneralFinder{
     function __construct() {
         parent::__construct();
 				
-		$tblPaid = "demo1_collect_general";
+		$tblPaid = "tbl_collect_general";
 		
 		$selectAllStmt = sprintf("select * from %s", $tblPaid);
 		$selectStmt = sprintf("select * from %s where id=?", $tblPaid);

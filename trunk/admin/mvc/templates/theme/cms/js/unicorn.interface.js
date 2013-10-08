@@ -65,16 +65,10 @@ $(document).ready(function(){
 	});
 
 	// === jQeury Gritter, a growl-like notifications === //
-	$.gritter.add({
-		title:	'Unread messages',
-		text:	'You have 9 unread messages.',
-		image: 	'img/demo/envelope.png',
-		sticky: false
-	});	
 	$('#gritter-notify .normal').click(function(){
 		$.gritter.add({
 			title:	'Normal notification',
-			text:	'This is a normal notification',
+			text:	'Đã cập nhật dữ liệu',
 			sticky: false
 		});		
 	});

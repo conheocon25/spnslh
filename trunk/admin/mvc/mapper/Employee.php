@@ -6,14 +6,14 @@ class Employee extends Mapper implements \MVC\Domain\EmployeeFinder{
     function __construct() {
         parent::__construct();
 				
-		$tblEmployee = "demo1_employee";
+		$tblEmployee = "tbl_employee";
 						
 		$selectAllStmt = sprintf("select * from %s", $tblEmployee);
 		$selectStmt = sprintf("select * from %s where id=?", $tblEmployee);
 		$updateStmt = sprintf("update %s set name=?, gender=?, job=?, phone=?, address=?, salary_base=? where id=?", $tblEmployee);
 		$insertStmt = sprintf("insert into %s (name, gender, job, phone, address, salary_base) values(?, ?, ?, ?, ?, ?)", $tblEmployee);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblEmployee);
-		$findByPageStmt = sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblEmployee);
+		$findByPageStmt = sprintf("SELECT * FROM  %s ORDER BY name LIMIT :start,:max", $tblEmployee);
 		
         $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
         $this->selectStmt = self::$PDO->prepare($selectStmt);
@@ -39,6 +39,7 @@ class Employee extends Mapper implements \MVC\Domain\EmployeeFinder{
     }
 	
     protected function targetClass() {return "Employee";}
+
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array( 			
 			$object->getName(),

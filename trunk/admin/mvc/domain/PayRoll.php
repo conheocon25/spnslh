@@ -10,7 +10,7 @@ class PayRoll extends Object{
     private $State;
 	private $Extra;
 	private $Late;
-		
+				
 	//-------------------------------------------------------------------------
 	//Hàm khởi tạo và thiết lập các thuộc tính
 	//-------------------------------------------------------------------------
@@ -52,7 +52,19 @@ class PayRoll extends Object{
 	function setDate( $Date ) {$this->Date = $Date; $this->markDirty(); }
 	function getDate( ) { return $this->Date; }
 	function getDatePrint( ) { $date = new \DateTime($this->Date); return $date->format('d/m/Y'); }
-		
+	
+	function toJSON(){
+		$json = array(
+			'Id' 			=> $this->getId(),
+			'IdEmployee'	=> $this->getIdEmployee(),
+			'Date'			=> $this->getDate(),
+			'State'			=> $this->getState(),
+			'Extra'			=> $this->getExtra(),
+			'Late'			=> $this->getLate()
+		);
+		return json_encode($json);
+	}
+	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
