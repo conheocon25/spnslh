@@ -7,14 +7,14 @@ class Category extends Mapper implements \MVC\Domain\CategoryFinder {
     function __construct() {
         parent::__construct();
 				
-		$tblCategory = "demo1_category";
+		$tblCategory = "tbl_category";
 		
 		$selectAllStmt = sprintf("select * from %s ORDER BY name", $tblCategory);
 		$selectStmt = sprintf("select *  from %s where id=?", $tblCategory);
 		$updateStmt = sprintf("update %s set name=?, picture=? where id=?", $tblCategory);
 		$insertStmt = sprintf("insert into %s ( name, picture) values(?, ?)", $tblCategory);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblCategory);
-		$findByPageStmt = sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblCategory);
+		$findByPageStmt = sprintf("SELECT * FROM  %s ORDER BY name LIMIT :start,:max", $tblCategory);
 		
         $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
         $this->selectStmt = self::$PDO->prepare($selectStmt);

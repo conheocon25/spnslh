@@ -10,7 +10,7 @@
   * @copyright  2010-2012 SPN Group
  * @license    Bản quyền nhóm
  * @version    SVN: ?
- * @link       mvc/domain/Paid.php
+ * @link       mvc/domain/PaidGeneral.php
  * @see        Paid
  * @note       Định danh các khoản chi tiêu của hệ thống
  */
@@ -24,7 +24,7 @@ class PaidGeneral extends Object{
 	private $Date;
     private $Value;
 	private $Note;
-					
+							
 	//-------------------------------------------------------------------------
 	//Hàm khởi tạo và thiết lập các thuộc tính
 	//-------------------------------------------------------------------------
@@ -60,16 +60,28 @@ class PaidGeneral extends Object{
 	function setNote( $Note ) {$this->Note = $Note;$this->markDirty();}
 	function getNote( ) {return $this->Note;}	
 	
+	function toJSON(){
+		$json = array(
+			'Id' 			=> $this->getId(),
+			'IdTerm'		=> $this->getIdTerm(),
+			'Date'			=> $this->getDate(),
+			'Value'			=> $this->getValue(),			
+			'Note'			=> $this->getNote()
+		);
+		return json_encode($json);
+	}
+			
+	function setArray( $Data ){
+        $this->Id 		= $Data[0];
+		$this->IdTerm 	= $Data[1];
+		$this->Date 	= $Data[2];
+		$this->Value 	= $Data[3];
+		$this->Note 	= $Data[4];
+    }	
+	
 	/*--------------------------------------------------------------------*/
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}
-	//-------------------------------------------------------------------------------
-	//DEFINE URL
-	//-------------------------------------------------------------------------------
-	function getURLUpdLoad(){return "/money/paid/general/".$this->getIdTerm()."/".$this->getId()."/upd/load";}
-	function getURLUpdExe(){return "/money/paid/general/".$this->getIdTerm()."/".$this->getId()."/upd/exe";}
-	
-	function getURLDelLoad(){return "/money/paid/general/".$this->getIdTerm()."/".$this->getId()."/del/load";}
-	function getURLDelExe(){return "/money/paid/general/".$this->getIdTerm()."/".$this->getId()."/del/exe";}
+		
 }
 ?>

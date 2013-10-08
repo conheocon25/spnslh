@@ -9,6 +9,8 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	require_once( "mvc/mapper/SessionDetail.php" );	
 	require_once( "mvc/mapper/Category.php" );
 	require_once( "mvc/mapper/Course.php" );	
+	require_once( "mvc/mapper/OrderImport.php" );	
+	require_once( "mvc/mapper/OrderImportDetail.php" );	
 	require_once( "mvc/mapper/PayRoll.php");	
 	require_once( "mvc/mapper/PaidGeneral.php");	
 	require_once( "mvc/mapper/TermPaid.php");
@@ -20,6 +22,8 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	require_once( "mvc/mapper/Config.php");
 	require_once( "mvc/mapper/Tracking.php");	
 	require_once( "mvc/mapper/Guest.php");
+	require_once( "mvc/mapper/Supplier.php");
+	require_once( "mvc/mapper/Resource.php");
 }
 
 class HelperFactory {
@@ -39,6 +43,15 @@ class HelperFactory {
             return new $collection();
         }
         throw new \MVC\Base\AppException( "Không biết: $collection" );
+    }
+	
+	static function getModel( $model ) {
+        $model = preg_replace( "/^.*_/", "", $model );
+        $model = "\\MVC\\Domain\\{$model}";
+        if ( class_exists( $model ) ) {
+            return new $model();
+        }
+        throw new \MVC\Base\AppException( "Không biết: $model" );
     }
 }
 ?>

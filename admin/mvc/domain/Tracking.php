@@ -6,12 +6,11 @@ class Tracking extends Object{
     private $Id;
 	private $DateStart;
 	private $DateEnd;
-	private $EstateRate;
-	
+			
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-    function __construct( $Id=null, $DateStart=null, $DateEnd=null, $EstateRate=null) {$this->Id = $Id; $this->DateStart = $DateStart; $this->DateEnd = $DateEnd; $this->EstateRate = $EstateRate;  parent::__construct( $Id );}
+    function __construct( $Id=null, $DateStart=null, $DateEnd=null) {$this->Id = $Id; $this->DateStart = $DateStart; $this->DateEnd = $DateEnd; parent::__construct( $Id );}
     
 	function getId() {return $this->Id;}	
 	function getIdPrint(){return "u" . $this->getId();}	
@@ -25,9 +24,24 @@ class Tracking extends Object{
 	function getDateEnd( ) {return $this->DateEnd;}	
 	function getDateEndPrint( ) {$D = new \MVC\Library\Date($this->DateEnd);return $D->getDateFormat();}
 	
-	function setEstateRate( $EstateRate ) {$this->EstateRate = $EstateRate;$this->markDirty();}   
-	function getEstateRate( ) {return $this->EstateRate;}
-	function getEstateRatePrint( ) {$N = new \MVC\Library\Number($this->EstateRate);return $N->formatCurrency();}
+	function toJSON(){
+	
+		$json = array(
+			'Id' 			=> $this->getId(),			
+			'DateStart'		=> $this->getDateStart(),
+			'DateEnd'		=> $this->getDateEnd()
+		);
+		return json_encode($json);
+	
+	}
+	
+	function setArray( $Data ){
+	
+        $this->Id 			= $Data[0];
+		$this->DateStart 	= $Data[1];
+		$this->DateEnd 		= $Data[2];
+	
+    }
 	
 	//-------------------------------------------------------------------------------
 	//GET LISTs
@@ -248,9 +262,10 @@ class Tracking extends Object{
 			$Data[] = array(
 						\date("d/m", strtotime($Date)),
 						"/report/selling/".$Date."/detail",
-						"/payroll/".$this->getId()."/".$Date,
+						"/report/log/".$Date,
 						"/payroll/".$this->getId()."/absent/".$Date,
-						"/payroll/".$this->getId()."/late/".$Date
+						"/payroll/".$this->getId()."/late/".$Date,
+						$Date
 					);
 			$Date = \date("Y-m-d", strtotime("+1 day", strtotime($Date)));
 		}
@@ -281,7 +296,10 @@ class Tracking extends Object{
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
 	function getURLView(){return "/report/".$this->getId();}
+	
 	function getURLPayRoll(){return "/payroll/".$this->getId();}
+	function getURLPayRollEmployee( $Employee ){return "/payroll/".$this->getId()."/".$Employee->getId();}
+	
 	function getURLCustomer(){return "/report/customer/".$this->getId();}
 	function getURLCustomerDetail($IdCustomer){return "/report/customer/".$this->getId()."/".$IdCustomer;}
 	function getURLPaidPayRoll(){return "/report/paid/payroll/".$this->getId();}	
@@ -293,7 +311,7 @@ class Tracking extends Object{
 	function getURLImportDetail($IdSupplier){return "/report/import/".$this->getId()."/".$IdSupplier;}
 	function getURLSellingGeneral(){return "/report/selling/".$this->getId()."/general";}
 	function getURLSellingDetail(){return "/report/selling/".$this->getId()."/detail";}	
-	function getURLSellingRefesh(){return "/report/selling/".$this->getId()."/refresh";}		
+	
 	function getURLEvalStore(){return "/report/store/".$this->getId()."/eval";}
 	function getURLStore(){return "/report/store/".$this->getId();}
 	function getURLCourse(){return "/report/course/".$this->getId();}		
@@ -302,6 +320,7 @@ class Tracking extends Object{
 	function getURLUpdExe(){return "/report/".$this->getId()."/upd/exe";}	
 	function getURLDelLoad(){return "/report/".$this->getId()."/del/load";}
 	function getURLDelExe(){return "/report/".$this->getId()."/del/exe";}
+	
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}

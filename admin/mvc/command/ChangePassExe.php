@@ -27,9 +27,7 @@
 			$User = $mUser->find($IdUser);
 			if ($Pass!=$Pass1){				
 				return self::statuses('CMD_OK');
-			}
-			$Encrypt = new \MVC\Library\Encrypted();
-			$Pass = $Encrypt->setData($Pass);
+			}			
 			$User->setPass($Pass);
 			$mUser->update($User);
 			

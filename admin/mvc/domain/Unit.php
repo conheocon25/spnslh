@@ -5,7 +5,7 @@ require_once( "mvc/base/domain/DomainObject.php" );
 class Unit extends Object{
     private $Id;
 	private $Name;
-		
+	
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
@@ -15,22 +15,24 @@ class Unit extends Object{
 		
 	    parent::__construct( $Id );
     }
-    function getId() {
-        return $this->Id;
-    }	
-	function getIdPrint(){
-        return "u" . $this->getId();
-    }	
+    function getId() {return $this->Id;}			
+    
+	function setName( $Name ) {$this->Name = $Name;$this->markDirty();}   
+	function getName( ) {return $this->Name;}
 	
-    function setName( $Name ) {
-        $this->Name = $Name;
-        $this->markDirty();
+	function toJSON(){
+		$json = array(
+			'Id' 			=> $this->getId(),			
+			'Name'			=> $this->getName()
+		);
+		return json_encode($json);
+	}
+	
+	function setArray( $Data ){
+        $this->Id = $Data[0];
+		$this->Name = $Data[1];		
     }
-   
-	function getName( ) {
-        return $this->Name;
-    }
-		
+
 	//-------------------------------------------------------------------------------
 	//GET LISTs
 	//-------------------------------------------------------------------------------
@@ -38,30 +40,12 @@ class Unit extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLUpdLoad(){
-		return "/setting/unit/".$this->getId()."/upd/load";
-	}
-	function getURLUpdExe(){		
-		return "/setting/unit/".$this->getId()."/upd/exe";
-	}
-	
-	function getURLDelLoad(){		
-		return "/setting/unit/".$this->getId()."/del/load";
-	}
-	function getURLDelExe(){		
-		return "/setting/unit/".$this->getId()."/del/exe";
-	}
+	function getURLUpdExe(){	return "/setting/unit/".$this->getId()."/upd/exe";}		
+	function getURLDelExe(){	return "/setting/unit/".$this->getId()."/del/exe";}
 			
 	//--------------------------------------------------------------------------
-    static function findAll() {
-        $finder = self::getFinder( __CLASS__ ); 
-        return $finder->findAll();
-    }
-    static function find( $Id ) {
-        $finder = self::getFinder( __CLASS__ ); 
-        return $finder->find( $Id );
-    }
+    static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
+    static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}
 	
 }
-
 ?>

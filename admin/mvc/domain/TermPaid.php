@@ -5,16 +5,14 @@ require_once( "mvc/base/domain/DomainObject.php" );
 class TermPaid extends Object{
 
     private $Id;
-	private $Name;
-	private $Type;
-	
+	private $Name;	
+			
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-    function __construct( $Id=null, $Name=null , $Type=Null) {
+    function __construct( $Id=null, $Name=null) {
         $this->Id = $Id;
-		$this->Name = $Name;
-		$this->Type = $Type;
+		$this->Name = $Name;		
         parent::__construct( $Id );
     }
     function getId() {return $this->Id;}	
@@ -22,13 +20,18 @@ class TermPaid extends Object{
 	
     function setName( $Name ) {$this->Name = $Name;$this->markDirty();}   
 	function getName( ) {return $this->Name;}
+			
+	function toJSON(){
+		$json = array(
+			'Id' 			=> $this->getId(),			
+			'Name'			=> $this->getName()
+		);
+		return json_encode($json);
+	}
 	
-	function setType( $Type ) {$this->Type = $Type;$this->markDirty();}   
-	function getType( ) {return $this->Type;}
-	function getTypePrint( ){
-		if ($this->Type==0)
-			return "Không bán ra";
-        return "Bán ra";
+	function setArray( $Data ){
+        $this->Id = $Data[0];
+		$this->Name = $Data[1];		
     }
 	
 	//-------------------------------------------------------------------------------
@@ -41,11 +44,8 @@ class TermPaid extends Object{
 	}	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
-	//-------------------------------------------------------------------------------
-	function getURLUpdLoad(){return "/setting/termpaid/".$this->getId()."/upd/load";}
-	function getURLUpdExe(){return "/setting/termpaid/".$this->getId()."/upd/exe";}
-	
-	function getURLDelLoad(){return "/setting/termpaid/".$this->getId()."/del/load";}
+	//-------------------------------------------------------------------------------	
+	function getURLUpdExe(){return "/setting/termpaid/".$this->getId()."/upd/exe";}	
 	function getURLDelExe(){return "/setting/termpaid/".$this->getId()."/del/exe";}
 	
 	function getURLDetail(){return "/money/paid/general/".$this->getId();}

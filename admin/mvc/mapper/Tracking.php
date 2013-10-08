@@ -1,12 +1,13 @@
 <?php
 namespace MVC\Mapper;
+
 require_once( "mvc/base/Mapper.php" );
 class Tracking extends Mapper implements \MVC\Domain\TrackingFinder{
 
     function __construct() {
         parent::__construct();
 				
-		$tblTracking = "demo1_tracking";
+		$tblTracking = "tbl_tracking";
 		
 		$selectAllStmt = sprintf("select * from %s ORDER BY date_start", $tblTracking);
 		$selectStmt = sprintf("select *  from %s where id=?", $tblTracking);
@@ -29,12 +30,15 @@ class Tracking extends Mapper implements \MVC\Domain\TrackingFinder{
         $obj = new \MVC\Domain\Tracking( 
 			$array['id'],
 			$array['date_start'],
-			$array['date_end']
+			$array['date_end']			
 		);
         return $obj;
     }
-	
-    protected function targetClass() {return "Tracking";}
+
+    protected function targetClass() {        
+		return "Tracking";
+    }
+
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array( 
 			$object->getDateStart(), 
@@ -53,9 +57,17 @@ class Tracking extends Mapper implements \MVC\Domain\TrackingFinder{
 		);
         $this->updateStmt->execute( $values );
     }
-	protected function doDelete(array $values) {return $this->deleteStmt->execute( $values );}
 
-    function selectStmt() {return $this->selectStmt;}
-    function selectAllStmt() {return $this->selectAllStmt;}
+	protected function doDelete(array $values) {
+        return $this->deleteStmt->execute( $values );
+    }
+
+    function selectStmt() {
+        return $this->selectStmt;
+    }
+    function selectAllStmt() {
+        return $this->selectAllStmt;
+    }
+	
 }
 ?>

@@ -84,17 +84,36 @@ class Course extends Object{
 	function setRate( $Rate ) {$this->Rate = $Rate;$this->markDirty();}	
 	function getRate( ) {return $this->Rate;}
 	
-	//----------------------------------------------------------------------------------
-		
-	//-------------------------------------------------------------------------------
-	//DEFINE URL SETTING.COURSE
-	//-------------------------------------------------------------------------------		
-	function getURLUpdLoad(){	return "/setting/category/".$this->getIdCategory()."/".$this->getId()."/upd/load";}
-	function getURLUpdExe(){	return "/setting/category/".$this->getIdCategory()."/".$this->getId()."/upd/exe";}
-	
-	function getURLDelLoad(){	return "/setting/category/".$this->getIdCategory()."/".$this->getId()."/del/load";}
-	function getURLDelExe(){	return "/setting/category/".$this->getIdCategory()."/".$this->getId()."/del/exe";}
-		
+	public function toJSON(){
+		$json = array(
+			'Id' 			=> $this->getId(),
+			'IdCategory'	=> $this->getIdCategory(),
+		 	'Name'			=> $this->getName(),
+		 	'ShortName'		=> $this->getShortName(),
+		 	'Unit'			=> $this->getUnit(),
+		 	'Price1'		=> $this->getPrice1(),
+		 	'Price2'		=> $this->getPrice2(),
+		 	'Price3'		=> $this->getPrice3(),
+		 	'Price4'		=> $this->getPrice4(),
+		 	'Picture'		=> $this->getPicture(),
+		 	'Rate'			=> $this->getRate()
+		);
+		return json_encode($json);
+	}
+	function setArray( $Data ){
+        $this->Id 			= $Data[0];
+		$this->IdCategory 	= $Data[1];
+		$this->Name 		= $Data[2];
+		$this->ShortName 	= $Data[3];
+		$this->Unit 		= $Data[4];
+		$this->Price1 		= $Data[5];
+		$this->Price2 		= $Data[6];
+		$this->Price3 		= $Data[7];
+		$this->Price4 		= $Data[8];
+		$this->Picture 		= $Data[9];
+		$this->Rate 		= $Data[10];
+    }
+				
 	//----------------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ){$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}

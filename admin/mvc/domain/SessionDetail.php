@@ -11,9 +11,6 @@ class SessionDetail extends Object{
 	private $Count;	
 	private $Price;
 	
-	private $Course;
-	private $Session;
-
     function __construct( $Id=null, $IdSession=null, $IdCourse=null, $Count=null, $Price=null) {
         $this->Id = $Id;
 		$this->IdSession = $IdSession;
@@ -22,26 +19,30 @@ class SessionDetail extends Object{
 		$this->Price = $Price;
         parent::__construct( $Id );
     }
+	
 	function setId( $Id) {$this->Id = $Id;}
     function getId( ) {return $this->Id;}
-	function getIdPrint( ) {
-        return "SessionDetail".$this->Id;
-    }
-				
+	function getIdPrint( ) {return "SessionDetail".$this->Id;}
+	
+	function setId1( $Id1) {$this->Id1 = $Id1;}
+    function getId1( ) {return $this->Id1;}
+		
 	function setIdSession( $IdSession ) {$this->IdSession = $IdSession;$this->markDirty();}
-	function getIdSession( ) {return $this->IdSession;}	
-	function getSession( ) {
-		if (!isset($this->Session)){
-			$mSession = new \MVC\Mapper\Session();
-			$this->Session = $mSession->find($this->IdSession);
-		}
-        return $this->Session;
+	function getIdSession( ) {return $this->IdSession;}
+	
+	function getSession( ) {		
+		$mSession = new \MVC\Mapper\Session();
+		$Session = $mSession->find($this->IdSession);		
+        return $Session;
     }
 	
 	function setIdCourse( $IdCourse ) {$this->IdCourse = $IdCourse;$this->markDirty();}
 	function getIdCourse( ) {return $this->IdCourse;}		
-	function getCourse( ) {	$mCourse = new \MVC\Mapper\Course(); $Course = $mCourse->find($this->IdCourse); return $Course;}
-	
+	function getCourse( ) {		
+		$mCourse = new \MVC\Mapper\Course();
+		$Course = $mCourse->find($this->IdCourse);
+        return $Course;
+    }	
     function setCount( $Count ) {$this->Count = $Count;$this->markDirty();}   
 	function getCount( ) {return $this->Count;}
 	function getCountPrint( ) {$num = new Number($this->Count);return $num->formatCurrency();}
@@ -54,8 +55,27 @@ class SessionDetail extends Object{
 	function getValuePrint( ) {$num = new Number($this->getValue());return $num->formatCurrency()." đ";}
 	
 	function getValueBase( ){
-		return $this->getValue()* ( 1.0 - (float)($this->getCourse()->getRate())/100.0);		
+		return $this->getValue()* ( 1.0 - (float)($this->getCourse()->getRate())/100.0);
 	}
+	
+	function toJSON(){
+		$json = array(
+			'Id' 			=> $this->getId(),
+			'IdSession'		=> $this->getIdSession(),
+			'IdCourse'		=> $this->getIdCourse(),
+			'Name'			=> $this->getCourse()->getName(),
+			'Count'			=> $this->getCount(),			
+			'Price'			=> $this->getPrice()
+		);
+		return json_encode($json);
+	}
+	function setArray( $Data ){
+        $this->Id 				= $Data[0];
+		$this->IdSession		= $Data[1];
+		$this->IdCourse			= $Data[2];
+		$this->Count			= $Data[3];
+		$this->Price			= $Data[4];
+    }
 	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
@@ -64,26 +84,26 @@ class SessionDetail extends Object{
 		$Session = $this->getSession();
 		$Table = $Session->getTable();
 		$Domain = $Table->getDomain();		
-		return "/selling/".$Domain->getId()."/".$Table->getId()."/detail/".$this->getId()."/upd/load";
+		return "/selling/".$Domain->getId()."/".$Table->getId()."/".$Session->getId()."/".$this->getId()."/upd/load";
     }
 	function getURLUpdExe(){		
 		$Session = $this->getSession();
 		$Table = $Session->getTable();
 		$Domain = $Table->getDomain();		
-		return "/selling/".$Domain->getId()."/".$Table->getId()."/detail/".$this->getId()."/upd/exe";
+		return "/selling/".$Domain->getId()."/".$Table->getId()."/".$Session->getId()."/".$this->getId()."/upd/exe";
     }
 	
 	function getURLDelLoad(){			
 		$Session = $this->getSession();
 		$Table = $Session->getTable();
-		$Domain = $Table->getDomain();
-		return "/selling/".$Domain->getId()."/".$Table->getId()."/detail/".$this->getId()."/del/load";
+		$Domain = $Table->getDomain();		
+		return "/selling/".$Domain->getId()."/".$Table->getId()."/".$Session->getId()."/".$this->getId()."/del/load";
     }
 	function getURLDelExe(){		
 		$Session = $this->getSession();
 		$Table = $Session->getTable();
 		$Domain = $Table->getDomain();
-		return "/selling/".$Domain->getId()."/".$Table->getId()."/detail/".$this->getId()."/del/exe";
+		return "/selling/".$Domain->getId()."/".$Table->getId()."/".$Session->getId()."/".$this->getId()."/del/exe";
     }
 		
 	//---------------------------------------------------------------------------------	
