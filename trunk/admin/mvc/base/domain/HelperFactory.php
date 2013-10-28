@@ -1,29 +1,11 @@
 <?php
 namespace MVC\Domain;
 if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
-	require_once( "mvc/mapper/App.php" );
-	require_once( "mvc/mapper/User.php" );	
-	require_once( "mvc/mapper/Domain.php" );
-	require_once( "mvc/mapper/Table.php" );
-	require_once( "mvc/mapper/Session.php" );
-	require_once( "mvc/mapper/SessionDetail.php" );	
-	require_once( "mvc/mapper/Category.php" );
-	require_once( "mvc/mapper/Course.php" );	
-	require_once( "mvc/mapper/OrderImport.php" );	
-	require_once( "mvc/mapper/OrderImportDetail.php" );	
-	require_once( "mvc/mapper/PayRoll.php");	
-	require_once( "mvc/mapper/PaidGeneral.php");	
-	require_once( "mvc/mapper/TermPaid.php");
-	require_once( "mvc/mapper/TermCollect.php");	
-	require_once( "mvc/mapper/CollectGeneral.php");	
-	require_once( "mvc/mapper/Customer.php" );
-	require_once( "mvc/mapper/Employee.php" );
+	require_once( "mvc/mapper/Project.php" );
+	require_once( "mvc/mapper/User.php" );
 	require_once( "mvc/mapper/Unit.php");
-	require_once( "mvc/mapper/Config.php");
-	require_once( "mvc/mapper/Tracking.php");	
-	require_once( "mvc/mapper/Guest.php");
-	require_once( "mvc/mapper/Supplier.php");
-	require_once( "mvc/mapper/Resource.php");
+	require_once( "mvc/mapper/Config.php");	
+	require_once( "mvc/mapper/Guest.php");	
 }
 
 class HelperFactory {
