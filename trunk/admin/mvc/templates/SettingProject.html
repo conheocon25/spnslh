@@ -26,24 +26,22 @@
 								<thead>
 									<tr>
 										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
-										<th class="left">TÊN</th>
-										<th width="100"><i class="glyphicons-drink"/></th>
+										<th class="left">TÊN</th>										
 										<th width="40"><i class="glyphicons-edit"/></th>
 										<th width="40"><i class="glyphicons-bin"/></th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr tal:repeat="Category CategoryAll1">
-										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Category/getId"/></td>
-										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Category/getId" tal:content="Category/getName"/></td>
-										<td class="center"><a tal:attributes="href Category/getURLCourse"> <span tal:content="Category/getCourseAll/count" /> món</a></td>
+									<tr tal:repeat="Project ProjectAll1">
+										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Project/getId"/></td>
+										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Project/getId" tal:content="Project/getName"/></td>										
 										<td class="center">
-											<a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Category/getId">
+											<a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Project/getId">
 												<i class="glyphicon glyphicon-pencil"/>
 											</a>
 										</td>
 										<td class="center">
-											<a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Category/getId">
+											<a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Project/getId">
 												<i class="glyphicon glyphicon-remove"/>
 											</a>
 										</td>
@@ -114,7 +112,7 @@
 			$('#URLDelSelectedButton').click(function(){
 				var count = 0;
 				var Data = [];
-				var URL = "/object/del/Category/0";
+				var URL = "/object/del/Project/0";
 				
 				$(".CheckedDel").each(function( i, obj){
 					if ( $(this).is(':checked')==true ){
@@ -141,7 +139,7 @@
 			});
 			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
 			$('#URLDelButton').click(function(){
-				var URL = "/object/del/Category/" + $(this).attr('alt');
+				var URL = "/object/del/Project/" + $(this).attr('alt');
 				$.ajax({
 					type: "POST",					
 					url: URL,
@@ -158,7 +156,7 @@
 				Data[0] = 'null';
 				Data[1] = $('#Name1').val();
 
-				var URL = "/object/ins/Category";
+				var URL = "/object/ins/Project";
 				$.ajax({
 					type: "POST",
 					data: {Data:Data},
@@ -174,7 +172,7 @@
 			//-----------------------------------------------------------------------------------
 			$('.update-item').click(function(){
 				//Load dữ liệu JSON về
-				var url = "/object/load/Category/" + $(this).attr('data-id');
+				var url = "/object/load/Project/" + $(this).attr('data-id');
 				
 				//Load dữ liệu JSON lên FORM
 				$.getJSON(url, function(data){
@@ -191,7 +189,7 @@
 				Data[0] = $('#URLUpdButton').attr('alt');
 				Data[1] = $('#Name2').val();
 																	
-				var URL = "/object/upd/Category";
+				var URL = "/object/upd/Project";
 				$.ajax({
 					type: "POST",
 					data: {Data:Data},

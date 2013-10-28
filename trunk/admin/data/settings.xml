@@ -42,6 +42,7 @@
 		<!-- SETTING																		-->
 		<!-- ============================================================================== -->
 		<command name="Setting"><view>Setting</view></command>		
+		<command name="SettingProject"><view>SettingProject</view></command>
 		<command name="SettingUser"><view>SettingUser</view></command>		
 		<command name="SettingConfig"><view>SettingConfig</view></command>		
 	</control>

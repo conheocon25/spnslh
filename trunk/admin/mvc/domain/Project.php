@@ -5,45 +5,31 @@ require_once( "mvc/base/domain/DomainObject.php" );
 class Project extends Object{
 
     private $Id;
-	private $IdCategory;
-	private $Date;
-	private $Content;
-	private $Title;
+	private $Name;	
+	private $Description;
 	private $Type;
-	private $URLPrice;
 	private $Key;
 	
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-    function __construct( $Id=null, $IdCategory=null , $Date=Null, $Content=null, $Title=null, $Type=null, $URLPrice=null, $Key=null){
+    function __construct( $Id=null, $Name=null, $Description=null, $Type=null, $Key=null){
         $this->Id = $Id;
-		$this->IdCategory = $IdCategory;
-		$this->Date = $Date;
-		$this->Content = $Content;
-		$this->Title = $Title;
+		$this->Name = $Name;		
+		$this->Description = $Description;	
 		$this->Type = $Type;
-		$this->URLPrice = $URLPrice;
 		$this->Key = $Key;
 		
         parent::__construct( $Id );
     }
     function getId() {return $this->Id;}	
 		
-    function setIdCategory( $IdCategory ) {$this->IdCategory = $IdCategory;$this->markDirty();}   
-	function getIdCategory( ) {return $this->IdCategory;}
-	function getCategory(){$mCategory = new \MVC\Mapper\CategoryProject();$Category = $mCategory->find($this->getIdCategory());return $Category;}
-			
-	function setDate( $Date ){$this->Date = $Date;$this->markDirty();}   
-	function getDate( ) {return $this->Date;}
-	function getDatePrint( ){$D = new \MVC\Library\Date($this->Date);return $D->getDateFormat();}
+	function setDescription( $Description ){$this->Description = $Description;$this->markDirty();}   
+	function getDescription( ) {return $this->Description;}
+	function getDescriptionReduce( ){$S = new \MVC\Library\String($this->Description);return $S->reduceHTML(350);}
 	
-	function setContent( $Content ){$this->Content = $Content;$this->markDirty();}   
-	function getContent( ) {return $this->Content;}
-	function getContentReduce( ){$S = new \MVC\Library\String($this->Content);return $S->reduceHTML(350);}
-	
-	function setTitle( $Title ){$this->Title = $Title;$this->markDirty();}   
-	function getTitle( ) {return $this->Title;}
+	function setName( $Name ){$this->Name = $Name;$this->markDirty();}   
+	function getName( ) {return $this->Name;}
 	
 	function setType( $Type ){$this->Type = $Type;$this->markDirty();}   
 	function getType( ) {return $this->Type;}
@@ -53,7 +39,7 @@ class Project extends Object{
 		$first_img = '';
 		\ob_start();
 		\ob_end_clean();
-		if(preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $this->Content, $matches)){
+		if(preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $this->Description, $matches)){
 			$first_img = $matches[1][0];
 		}
 		else {
@@ -61,10 +47,7 @@ class Project extends Object{
 		}
 		return $first_img;
 	}
-	
-	function setURLPrice( $URLPrice ){$this->URLPrice = $URLPrice;$this->markDirty();}   
-	function getURLPrice( ) {return $this->URLPrice;}
-	
+			
 	function setKey( $Key ) {$this->Key = $Key;$this->markDirty();}
 	function getKey( ) {return $this->Key;}
 	function reKey( ) {
@@ -72,27 +55,44 @@ class Project extends Object{
 		$this->Key = $Str->converturl();
 	}
 	
+	function toJSON(){
+		$json = array(
+			'Id' 			=> $this->getId(),
+			'Name' 			=> $this->getName(),			
+			'Description'	=> $this->getDescription(),
+			'Key'			=> $this->getKey()
+		);		
+		return json_encode($json);
+	}
+	
+	function setArray( $Data ){
+        $this->Id 			= $Data[0];	
+		$this->Name 		= $Data[1];			
+		$this->Description 	= $Data[2];
+		$this->Key 			= $Data[3];
+    }
+	
 	//-------------------------------------------------------------------------------
 	//GET LISTs
 	//-------------------------------------------------------------------------------
-	function getNews(){
+	function getNewsAll(){
 		$mNews = new \MVC\Mapper\NewsProject();
 		$NewsAll = $mNews->findBy(array($this->getId()));
 		return $NewsAll;
 	}
 	
-	function getDocs(){
+	function getDocAll(){
 		$mDoc = new \MVC\Mapper\ProjectDoc();
 		$DocAll = $mDoc->findBy(array($this->getId()));
 		return $DocAll;
 	}
 	
-	function getAlbums(){
+	function getAlbumAll(){
 		$mAlbum = new \MVC\Mapper\ProjectAlbum();
 		$AlbumAll = $mAlbum->findBy(array($this->getId()));
 		return $AlbumAll;
 	}
-	function getVideos(){
+	function getVideoAll(){
 		$mVideo = new \MVC\Mapper\ProjectVideo();
 		$VideoAll = $mVideo->findBy(array($this->getId()));
 		return $VideoAll;
@@ -102,20 +102,9 @@ class Project extends Object{
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
 	function getURLRead(){return "/project/".$this->getIdCategory()."/".$this->getId();}
-	
-	function getURLUpdLoad(){return "/setting/category/project/".$this->getIdCategory()."/".$this->getId()."/upd/load";}
-	function getURLUpdExe(){return "/setting/category/project/".$this->getIdCategory()."/".$this->getId()."/upd/exe";}
-	
-	function getURLDelLoad(){return "/setting/category/project/".$this->getIdCategory()."/".$this->getId()."/del/load";}	
-	function getURLDelExe(){return "/setting/category/project/".$this->getIdCategory()."/".$this->getId()."/del/exe";}
-	
 	function getURLNewsView(){return "/setting/category/project/".$this->getIdCategory()."/".$this->getId()."/news";}
-	function getURLNewsInsLoad(){return "/setting/category/project/".$this->getIdCategory()."/".$this->getId()."/news/ins/load";}
-	function getURLNewsInsExe(){return "/setting/category/project/".$this->getIdCategory()."/".$this->getId()."/news/ins/exe";}
-	
 	function getURLAlbumSetting(){return "/setting/category/project/".$this->getIdCategory()."/".$this->getId()."/album";}
-	function getURLAlbumSettingInsLoad(){return "/setting/category/project/".$this->getIdCategory()."/".$this->getId()."/album/ins/load";}
-	function getURLAlbumSettingInsExe(){return "/setting/category/project/".$this->getIdCategory()."/".$this->getId()."/album/ins/exe";}
+	
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}
