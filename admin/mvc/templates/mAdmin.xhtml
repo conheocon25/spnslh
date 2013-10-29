@@ -60,7 +60,7 @@
 	<!-- ======================================================================== -->
 	<div metal:define-macro="Header">
 		<div id="header">
-			<h1><a>Restaurant Management App</a></h1>
+			<h1><a>HỆ THỐNG QUẢN LÝ THÔNG TIN NHÀ ĐẤT</a></h1>
 			<a id="menu-trigger" href="#"><i class="glyphicon glyphicon-align-justify"/></a>	
 		</div>
 		<div id="user-nav">
@@ -84,7 +84,7 @@
 	<!-- ======================================================================== -->
 	<!-- CONTENT HEADER															  -->
 	<!-- ======================================================================== -->
-	<div metal:define-macro="ContentHeader" id="content-header"><h1>HỆ THỐNG QUẢN LÝ NHÀ ĐẤT</h1></div>
+	<div metal:define-macro="ContentHeader" id="content-header"><h1>HỆ THỐNG QUẢN LÝ THÔNG TIN NHÀ ĐẤT</h1></div>
 	
 	<!-- ======================================================================== -->
 	<!-- PAGE BAR																  -->
@@ -98,21 +98,16 @@
 	<!-- ======================================================================== -->
 	<!-- MENU.SETTING															  -->
 	<!-- ======================================================================== -->
-	<div metal:define-macro="MenuSetting" id="sidebar">				
+	<div metal:define-macro="MenuSetting" id="sidebar">
 		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">
-			<li tal:attributes="class php:ActiveAdmin=='Project'?'active':'disable'">
-				<a tal:attributes="href '/setting/project'" >
-					<i class="glyphicons-shop" />DỰ ÁN
-				</a>
-			</li>
 			<li tal:attributes="class php:ActiveAdmin=='News'?'active':'disable'">
 				<a tal:attributes="href '/setting/category/news'" >
 					<i class="glyphicons-message_new" />TIN TỨC
 				</a>
 			</li>
-			<li tal:attributes="class php:ActiveAdmin=='Ads'?'active':'disable'">
-				<a tal:attributes="href '/setting/category/ads'" >
-					<i class="glyphicons-message_new" />QUẢNG CÁO
+			<li tal:attributes="class php:ActiveAdmin=='Project'?'active':'disable'">
+				<a tal:attributes="href '/setting/project'" >
+					<i class="glyphicons-shop" />DỰ ÁN
 				</a>
 			</li>
 			<li tal:attributes="class php:ActiveAdmin=='User'?'active':'disable'">

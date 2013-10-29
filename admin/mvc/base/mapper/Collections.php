@@ -10,6 +10,9 @@ class PAlbumCollection extends Collection implements \MVC\Domain\PAlbumCollectio
 class PNewsCollection extends Collection implements \MVC\Domain\PNewsCollection {function targetClass( ) {return "\MVC\Domain\PNews";}}
 class PProductCollection extends Collection implements \MVC\Domain\PProductCollection {function targetClass( ) {return "\MVC\Domain\PProduct";}}
 
+class CategoryNewsCollection extends Collection implements \MVC\Domain\CategoryNewsCollection{function targetClass(){return "\MVC\Domain\CategoryNews";}}
+class NewsCollection extends Collection implements \MVC\Domain\NewsCollection{function targetClass(){return "\MVC\Domain\News";}}
+
 class ConfigCollection extends Collection implements \MVC\Domain\ConfigCollection{function targetClass(){return "\MVC\Domain\Config";}}
 class GuestCollection extends Collection implements \MVC\Domain\GuestCollection{function targetClass(){return "\MVC\Domain\Guest";}}
 class PageCollection extends Collection implements \MVC\Domain\PageCollection{function targetClass(){return "\MVC\Domain\Page";}}

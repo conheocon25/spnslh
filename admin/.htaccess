@@ -27,6 +27,11 @@ RewriteRule ^app$ 												?cmd=App [L]
 RewriteRule ^setting$ 											?cmd=Setting [L]
 RewriteRule ^setting/theme/([a-z0-9_-]+)$ 						?cmd=SettingThemeChangeExe&Theme=$1 [L]
 
+RewriteRule ^setting/category/news$ 							?cmd=SettingCategoryNews [L]
+RewriteRule ^setting/category/news/page/([0-9]+)$ 				?cmd=SettingCategoryNews&Page=$1 [L]
+RewriteRule ^setting/category/news/([0-9]+)$ 					?cmd=SettingNews&IdCategory=$1 [L]
+RewriteRule ^setting/category/news/([0-9]+)/page/([0-9]+)$ 		?cmd=SettingNews&IdCategory=$1&Page=$2 [L]
+
 RewriteRule ^setting/project$ 									?cmd=SettingProject [L]
 RewriteRule ^setting/project/page/([0-9]+)$ 					?cmd=SettingProject&Page=$1 [L]
 RewriteRule ^setting/project/([0-9]+)/document$ 				?cmd=SettingProjectDocument&IdProject=$1 [L]
