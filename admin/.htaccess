@@ -29,6 +29,16 @@ RewriteRule ^setting/theme/([a-z0-9_-]+)$ 						?cmd=SettingThemeChangeExe&Theme
 
 RewriteRule ^setting/project$ 									?cmd=SettingProject [L]
 RewriteRule ^setting/project/page/([0-9]+)$ 					?cmd=SettingProject&Page=$1 [L]
+RewriteRule ^setting/project/([0-9]+)/document$ 				?cmd=SettingProjectDocument&IdProject=$1 [L]
+RewriteRule ^setting/project/([0-9]+)/document/page/([0-9]+)$ 	?cmd=SettingProjectDocument&IdProject=$1&Page=$2 [L]
+RewriteRule ^setting/project/([0-9]+)/album$ 					?cmd=SettingProjectAlbum&IdProject=$1 [L]
+RewriteRule ^setting/project/([0-9]+)/album/page/([0-9]+)$ 		?cmd=SettingProjectAlbum&IdProject=$1&Page=$2 [L]
+RewriteRule ^setting/project/([0-9]+)/video$ 					?cmd=SettingProjectVideo&IdProject=$1 [L]
+RewriteRule ^setting/project/([0-9]+)/video/page/([0-9]+)$ 		?cmd=SettingProjectVideo&IdProject=$1&Page=$2 [L]
+RewriteRule ^setting/project/([0-9]+)/news$ 					?cmd=SettingProjectNews&IdProject=$1 [L]
+RewriteRule ^setting/project/([0-9]+)/news/page/([0-9]+)$ 		?cmd=SettingProjectNews&IdProject=$1&Page=$2 [L]
+RewriteRule ^setting/project/([0-9]+)/product$ 					?cmd=SettingProjectProduct&IdProject=$1 [L]
+RewriteRule ^setting/project/([0-9]+)/product/page/([0-9]+)$ 	?cmd=SettingProjectProduct&IdProject=$1&Page=$2 [L]
 
 RewriteRule ^setting/customer$ 									?cmd=SettingCustomer [L]
 RewriteRule ^setting/customer/page/([0-9]+)$ 					?cmd=SettingCustomer&Page=$1 [L]

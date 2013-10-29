@@ -31,18 +31,21 @@
 		<command name="ChangePassExe">
 			<view>ChangePassExe</view>
 			<status value="CMD_OK"><forward>SignoutExe</forward></status>
-		</command>
-		
-		<command name="SettingThemeChangeExe">
-			<view>SettingThemeChangeExe</view>
-			<status value="CMD_OK"><forward>App</forward></status>
-		</command>
+		</command>	
+		<command name="SettingThemeChangeExe"><view>SettingThemeChangeExe</view><status value="CMD_OK"><forward>App</forward></status></command>
 					
 		<!-- ============================================================================== -->
 		<!-- SETTING																		-->
 		<!-- ============================================================================== -->
 		<command name="Setting"><view>Setting</view></command>		
+		
 		<command name="SettingProject"><view>SettingProject</view></command>
+		<command name="SettingProjectDocument"><view>SettingProjectDocument</view></command>
+		<command name="SettingProjectAlbum"><view>SettingProjectAlbum</view></command>
+		<command name="SettingProjectVideo"><view>SettingProjectVideo</view></command>
+		<command name="SettingProjectProduct"><view>SettingProjectProduct</view></command>
+		<command name="SettingProjectNews"><view>SettingProjectNews</view></command>
+		
 		<command name="SettingUser"><view>SettingUser</view></command>		
 		<command name="SettingConfig"><view>SettingConfig</view></command>		
 	</control>

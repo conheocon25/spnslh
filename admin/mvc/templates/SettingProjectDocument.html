@@ -7,8 +7,16 @@
 	
 	<body>
 		<div metal:use-macro="mAdmin.xhtml/Header"/>
-		<div metal:use-macro="mAdmin.xhtml/StyleTools"/>
-		<div metal:use-macro="mAdmin.xhtml/MenuSetting"/>
+		<div metal:use-macro="mAdmin.xhtml/StyleTools"/>		
+		<div id="sidebar">
+			<ul style="display: block;">
+				<li tal:repeat="Project1 ProjectAll" tal:attributes="class php:Project1->getId()==Project->getId()?'active':'disable'">
+					<a tal:attributes="href Project1/getURLSettingDocument">
+						<i class="glyphicons-store"/><span tal:content="Project1/getName"/>
+					</a>
+				</li>
+			</ul>
+		</div>
 		<div id="content">
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
 			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
@@ -26,26 +34,16 @@
 								<thead>
 									<tr>
 										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
-										<th class="left">TÊN</th>										
-										<th width="100">SẢN PHẨM</th>
-										<th width="100">TIN TỨC</th>
-										<th width="100">ALBUM</th>
-										<th width="100">VIDEO</th>
-										<th width="100">TÀI LIỆU</th>
+										<th class="left">TÊN</th>																				
 										<th width="40"><i class="glyphicons-bin"/></th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr tal:repeat="Project ProjectAll1">
-										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Project/getId"/></td>
-										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Project/getId" tal:content="Project/getName"/></td>
-										<td class="center"><a tal:attributes="href Project/getURLSettingProduct">Xem</a></td>
-										<td class="center"><a tal:attributes="href Project/getURLSettingNews">Xem</a></td>
-										<td class="center"><a tal:attributes="href Project/getURLSettingAlbum">Xem</a></td>
-										<td class="center"><a tal:attributes="href Project/getURLSettingVideo">Xem</a></td>
-										<td class="center"><a tal:attributes="href Project/getURLSettingDocument">Xem</a></td>
+									<tr tal:repeat="Document DocumentAll1">
+										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Document/getId"/></td>
+										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Document/getId" tal:content="Document/getName"/></td>										
 										<td class="center">
-											<a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Project/getId">
+											<a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Document/getId">
 												<i class="glyphicon glyphicon-remove"/>
 											</a>
 										</td>
@@ -60,7 +58,7 @@
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h3><i class="glyphicons-shop modal-icon"/>Thêm dự án</h3>
+									<h3><i class="glyphicons-shop modal-icon"/>Thêm tài liệu</h3>
 								</div>
 								<div class="form-horizontal">
 									<div class="modal-body">
@@ -78,9 +76,9 @@
 												</div>
 											</div>
 											<div class="form-group">
-												<label class="control-label">Kiểu</label>
+												<label class="control-label">URL</label>
 												<div class="controls">
-													<input id="Type1" name="Type1" type="text" class="form-control input-small"/>
+													<input id="URL1" name="URL1" type="text" class="form-control input-small"/>
 												</div>
 											</div>											
 										</div>
@@ -100,7 +98,7 @@
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h3><i class="glyphicons-shop modal-icon"/>Chỉnh sửa dự án</h3>
+									<h3><i class="glyphicons-shop modal-icon"/>Chỉnh sửa tài liệu</h3>
 								</div>
 								<div class="form-horizontal">
 									<div class="form-group">
@@ -116,9 +114,9 @@
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="control-label">Kiểu</label>
+										<label class="control-label">URL</label>
 										<div class="controls">
-											<input id="Type2" name="Type2" type="text" class="form-control input-small"/>
+											<input id="URL2" name="URL2" type="text" class="form-control input-small"/>
 										</div>
 									</div>
 									<div class="modal-footer">
@@ -135,6 +133,7 @@
 				</div>
 			</div>
 		</div>
+		<div id="IdProject" tal:attributes="alt Project/getId" />
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>
 		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
 		<script type="text/javascript">
@@ -142,7 +141,7 @@
 			$('#URLDelSelectedButton').click(function(){
 				var count = 0;
 				var Data = [];
-				var URL = "/object/del/Project/0";
+				var URL = "/object/del/PDocument/0";
 				
 				$(".CheckedDel").each(function( i, obj){
 					if ( $(this).is(':checked')==true ){
@@ -169,7 +168,7 @@
 			});
 			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
 			$('#URLDelButton').click(function(){
-				var URL = "/object/del/Project/" + $(this).attr('alt');
+				var URL = "/object/del/PDocument/" + $(this).attr('alt');
 				$.ajax({
 					type: "POST",					
 					url: URL,
@@ -183,12 +182,13 @@
 			//Insert 1 CATEGORY
 			$('#URLInsButton').click(function(){
 				var Data = [];
-				Data[0] = 'null';				
-				Data[1] = $('#Name1').val();
-				Data[2] = $('#Description1').val();
-				Data[3] = $('#Type1').val();
+				Data[0] = 'null';												
+				Data[1] = $('#IdProject').attr('alt');
+				Data[2] = $('#Name1').val();
+				Data[3] = $('#Description1').val();
+				Data[4] = $('#URL1').val();
 
-				var URL = "/object/ins/Project";
+				var URL = "/object/ins/PDocument";
 				$.ajax({
 					type: "POST",
 					data: {Data:Data},
@@ -204,14 +204,14 @@
 			//-----------------------------------------------------------------------------------
 			$('.update-item').click(function(){
 				//Load dữ liệu JSON về
-				var url = "/object/load/Project/" + $(this).attr('data-id');
+				var url = "/object/load/PDocument/" + $(this).attr('data-id');
 				
 				//Load dữ liệu JSON lên FORM
 				$.getJSON(url, function(data){
 					$('#URLUpdButton').attr('alt'	, data.Id);
 					$('#Name2').attr('value'		, data.Name);
-					$('#Description2').attr('value'	, data.Description);
-					$('#Type2').attr('value'		, data.Type);
+					$('#URL2').attr('value'			, data.URL);
+					$('#Description2').attr('value'	, data.Description);					
 				});
 			});
 			
@@ -221,16 +221,17 @@
 			$('#URLUpdButton').click(function(){
 				var Data = [];
 				Data[0] = $('#URLUpdButton').attr('alt');
-				Data[1] = $('#Name2').val();
-				Data[2] = $('#Description2').val();
-				Data[3] = $('#Type2').val();
+				Data[1] = $('#IdProject').attr('alt');
+				Data[2] = $('#Name2').val();
+				Data[3] = $('#Description2').val();
+				Data[4] = $('#URL2').val();
 				
-				var URL = "/object/upd/Project";
+				var URL = "/object/upd/PDocument";
 				$.ajax({
 					type: "POST",
 					data: {Data:Data},
 					url: URL,
-					success: function(msg){
+					success: function(msg){ 
 						location.reload();
 					}
 				});
