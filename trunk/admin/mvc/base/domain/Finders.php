@@ -10,6 +10,8 @@ interface Finder {
     //function delete();
 }
 interface ProjectFinder  extends Finder {}
+interface PDocumentFinder  extends Finder {}
+
 interface UserFinder  extends Finder {}
 interface UnitFinder extends Finder {}
 interface ConfigFinder extends Finder {}

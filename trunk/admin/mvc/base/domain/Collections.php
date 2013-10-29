@@ -2,6 +2,7 @@
 namespace MVC\Domain;
 
 interface ProjectCollection extends \Iterator {function add( Object $Project );}
+interface PDocumentCollection extends \Iterator {function add( Object $PDocument );}
 
 interface UserCollection extends \Iterator {function add( Object $user );}
 interface UnitCollection extends \Iterator {function add( Object $Unit );}

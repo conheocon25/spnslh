@@ -94,33 +94,7 @@
 			<a tal:attributes="href P/getURL" tal:content="P/getName"/>
 		</li>
 	</ul>
-	
-	<!-- ======================================================================== -->
-	<!-- MENU.APP															  	  -->
-	<!-- ======================================================================== -->
-	<div metal:define-macro="MenuApp" id="sidebar">
-		<ul>
-			<li tal:attributes="class php:ActiveAdmin=='Project'?'active':'disable'">
-				<a tal:attributes="href '/setting/news'"><i class="glyphicons-drink" />TIN TỨC</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='Project'?'active':'disable'">
-				<a tal:attributes="href '/setting/news'"><i class="glyphicons-drink" />TIN RAO</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='Project'?'active':'disable'">
-				<a tal:attributes="href '/setting/project'"><i class="glyphicons-drink" />DỰ ÁN</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='User'?'active':'disable'">
-				<a tal:attributes="href '/setting/import'"><i class="glyphicons-truck" />NGƯỜI DÙNG</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='Report'?'active':'disable'">
-				<a tal:attributes="href '/setting/report'"><i class="glyphicons-fax" />BÁO CÁO</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='Config'?'active':'disable'">
-				<a tal:attributes="href '/setting/config'"><i class="glyphicons-cogwheels" />CẤU HÌNH</a>
-			</li>
-		</ul>
-	</div>
-	
+			
 	<!-- ======================================================================== -->
 	<!-- MENU.SETTING															  -->
 	<!-- ======================================================================== -->
@@ -128,17 +102,17 @@
 		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">
 			<li tal:attributes="class php:ActiveAdmin=='Project'?'active':'disable'">
 				<a tal:attributes="href '/setting/project'" >
-					<i class="glyphicons-fast_food" />DỰ ÁN
+					<i class="glyphicons-shop" />DỰ ÁN
 				</a>
 			</li>
-			<li tal:attributes="class php:ActiveAdmin=='Project'?'active':'disable'">
+			<li tal:attributes="class php:ActiveAdmin=='News'?'active':'disable'">
 				<a tal:attributes="href '/setting/category/news'" >
-					<i class="glyphicons-fast_food" />TIN TỨC
+					<i class="glyphicons-message_new" />TIN TỨC
 				</a>
 			</li>
-			<li tal:attributes="class php:ActiveAdmin=='Project'?'active':'disable'">
+			<li tal:attributes="class php:ActiveAdmin=='Ads'?'active':'disable'">
 				<a tal:attributes="href '/setting/category/ads'" >
-					<i class="glyphicons-fast_food" />QUẢNG CÁO
+					<i class="glyphicons-message_new" />QUẢNG CÁO
 				</a>
 			</li>
 			<li tal:attributes="class php:ActiveAdmin=='User'?'active':'disable'">

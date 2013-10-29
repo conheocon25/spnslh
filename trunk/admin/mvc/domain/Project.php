@@ -60,6 +60,7 @@ class Project extends Object{
 			'Id' 			=> $this->getId(),
 			'Name' 			=> $this->getName(),			
 			'Description'	=> $this->getDescription(),
+			'Type'			=> $this->getType(),
 			'Key'			=> $this->getKey()
 		);		
 		return json_encode($json);
@@ -69,7 +70,9 @@ class Project extends Object{
         $this->Id 			= $Data[0];	
 		$this->Name 		= $Data[1];			
 		$this->Description 	= $Data[2];
-		$this->Key 			= $Data[3];
+		$this->Type 		= $Data[3];
+		
+		$this->reKey();
     }
 	
 	//-------------------------------------------------------------------------------
@@ -81,8 +84,8 @@ class Project extends Object{
 		return $NewsAll;
 	}
 	
-	function getDocAll(){
-		$mDoc = new \MVC\Mapper\ProjectDoc();
+	function getDocumentAll(){
+		$mDoc = new \MVC\Mapper\PDocument();
 		$DocAll = $mDoc->findBy(array($this->getId()));
 		return $DocAll;
 	}
@@ -100,10 +103,12 @@ class Project extends Object{
 	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
-	//-------------------------------------------------------------------------------
-	function getURLRead(){return "/project/".$this->getIdCategory()."/".$this->getId();}
-	function getURLNewsView(){return "/setting/category/project/".$this->getIdCategory()."/".$this->getId()."/news";}
-	function getURLAlbumSetting(){return "/setting/category/project/".$this->getIdCategory()."/".$this->getId()."/album";}
+	//-------------------------------------------------------------------------------	
+	function getURLSettingNews(){return "/setting/project/".$this->getId()."/news";}
+	function getURLSettingAlbum(){return "/setting/project/".$this->getId()."/album";}
+	function getURLSettingVideo(){return "/setting/project/".$this->getId()."/video";}
+	function getURLSettingProduct(){return "/setting/project/".$this->getId()."/product";}
+	function getURLSettingDocument(){return "/setting/project/".$this->getId()."/document";}
 	
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
