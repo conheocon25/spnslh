@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class SettingProjectDocument extends Command {
+	class SettingProjectAlbum extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -25,7 +25,7 @@
 			$ProjectAll = $mProject->findAll();
 			$Project	= $mProject->find($IdProject);
 			
-			$Title = "TÀI LIỆU ".mb_strtoupper($Project->getName(), 'UTF8');
+			$Title = "ALBUM ".mb_strtoupper($Project->getName(), 'UTF8');
 			$Navigation = array(				
 				array("THIẾT LẬP"	, "/setting"),
 				array("DỰ ÁN"		, "/setting/project")
@@ -33,8 +33,8 @@
 			
 			if (!isset($Page)) $Page=1;
 			$Config = $mConfig->findByName("ROW_PER_PAGE");
-			$DocumentAll1 = $mPDocument->findByPage(array($IdProject, $Page, $Config->getValue() ));
-			$PN = new \MVC\Domain\PageNavigation($Project->getDocumentAll()->count(), $Config->getValue(), $Project->getURLSettingDocument() );
+			$AlbumAll1 = $mPAlbum->findByPage(array($IdProject, $Page, $Config->getValue() ));
+			$PN = new \MVC\Domain\PageNavigation($Project->getAlbumAll()->count(), $Config->getValue(), $Project->getURLSettingAlbum() );
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
@@ -46,7 +46,7 @@
 			
 			$request->setObject('Project'		, $Project);
 			$request->setObject('ProjectAll'	, $ProjectAll);			
-			$request->setObject('DocumentAll1'	, $DocumentAll1);
+			$request->setObject('AlbumAll1'	, $AlbumAll1);
 									
 			return self::statuses('CMD_DEFAULT');
 		}
