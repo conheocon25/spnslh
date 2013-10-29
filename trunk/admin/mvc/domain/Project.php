@@ -79,9 +79,15 @@ class Project extends Object{
 	//GET LISTs
 	//-------------------------------------------------------------------------------
 	function getNewsAll(){
-		$mNews = new \MVC\Mapper\NewsProject();
+		$mNews = new \MVC\Mapper\PNews();
 		$NewsAll = $mNews->findBy(array($this->getId()));
 		return $NewsAll;
+	}
+	
+	function getProductAll(){
+		$mPProduct = new \MVC\Mapper\PProduct();
+		$ProductAll = $mPProduct->findBy(array($this->getId()));
+		return $ProductAll;
 	}
 	
 	function getDocumentAll(){
@@ -91,12 +97,12 @@ class Project extends Object{
 	}
 	
 	function getAlbumAll(){
-		$mAlbum = new \MVC\Mapper\ProjectAlbum();
+		$mAlbum = new \MVC\Mapper\PAlbum();
 		$AlbumAll = $mAlbum->findBy(array($this->getId()));
 		return $AlbumAll;
 	}
 	function getVideoAll(){
-		$mVideo = new \MVC\Mapper\ProjectVideo();
+		$mVideo = new \MVC\Mapper\PVideo();
 		$VideoAll = $mVideo->findBy(array($this->getId()));
 		return $VideoAll;
 	}
