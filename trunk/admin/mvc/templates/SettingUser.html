@@ -26,7 +26,9 @@
 								<thead>
 									<tr>
 										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
-										<th class="left">TÊN</th>										
+										<th class="left">TÊN</th>
+										<th width="120" class="left">EMAIL</th>
+										<th width="120" class="left">VAI TRÒ</th>
 										<th width="40"><i class="glyphicons-edit"/></th>
 										<th width="40"><i class="glyphicons-bin"/></th>
 									</tr>
@@ -35,6 +37,8 @@
 									<tr tal:repeat="User UserAll1">
 										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id User/getId"/></td>
 										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id User/getId" tal:content="User/getName"/></td>
+										<td><span tal:content="User/getEmail"/></td>
+										<td><span tal:content="User/getTypePrint"/></td>
 										<td class="center">
 											<a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id User/getId">
 												<i class="glyphicon glyphicon-pencil"/>
@@ -56,7 +60,7 @@
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h3><i class="glyphicons-fast_food modal-icon"/>THÊM MỚI NGƯỜI DÙNG</h3>
+									<h3><i class="glyphicons-user modal-icon"/>THÊM MỚI NGƯỜI DÙNG</h3>
 								</div>
 								<div class="form-horizontal">
 									<div class="modal-body">
@@ -120,7 +124,7 @@
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h3><i class="glyphicons-fast_food modal-icon"/>CẬP NHẬT NGƯỜI DÙNG</h3>
+									<h3><i class="glyphicons-user modal-icon"/>CẬP NHẬT NGƯỜI DÙNG</h3>
 								</div>
 								<div class="form-horizontal">
 									<div class="modal-body">

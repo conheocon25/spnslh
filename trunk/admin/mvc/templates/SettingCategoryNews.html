@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+	</head>
+	
+	<body>
+		<div metal:use-macro="mAdmin.xhtml/Header"/>
+		<div metal:use-macro="mAdmin.xhtml/StyleTools"/>
+		<div metal:use-macro="mAdmin.xhtml/MenuSetting"/>
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
+			<div class="row">
+				<div class="col-12">
+					<a href="#DialogIns" data-toggle="modal" class="btn btn-success btn-ins btn-small">
+						<i class="glyphicons-plus"/> Thêm mới
+					</a>
+					<a href="#DialogDelSelected" data-toggle="modal" class="btn btn-success btn-ins btn-small">
+						<i class="glyphicons-remove_2"/> Xóa chọn
+					</a>
+					<div class="widget-box">
+						<div class="widget-content nopadding">
+							<table class="table table-bordered table-striped table-hover with-check">
+								<thead>
+									<tr>
+										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
+										<th class="left">TÊN</th>										
+										<th width="100">TIN TỨC</th>										
+										<th width="40"><i class="glyphicons-bin"/></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr tal:repeat="Category CategoryNewsAll1">
+										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Category/getId"/></td>
+										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Category/getId" tal:content="Category/getName"/></td>
+										<td class="center"><a tal:attributes="href Category/getURLSettingNews">Xem</a></td>										
+										<td class="center">
+											<a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Category/getId">
+												<i class="glyphicon glyphicon-remove"/>
+											</a>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div metal:use-macro="mAdmin.xhtml/PageBar"/>
+					<!-- INSERT DIALOG  -->
+					<div id="DialogIns" class="modal fade">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h3><i class="glyphicons-shop modal-icon"/>Thêm danh mục</h3>
+								</div>
+								<div class="form-horizontal">
+									<div class="modal-body">
+										<div class="form-horizontal">
+											<div class="form-group">
+												<label class="control-label">Tên</label>
+												<div class="controls">
+													<input id="Name1" name="Name1" type="text" class="form-control input-small"/>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label">Thứ tự</label>
+												<div class="controls">
+													<input id="Order1" name="Order1" type="text" class="form-control input-small"/>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button id="URLInsButton" class="btn btn-primary btn-small" type="submit"><i class="glyphicons-download_alt"/> Lưu</button>
+										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- END INSERT DIALOG  -->
+					
+					<!-- UPDATE DIALOG  -->
+					<div id="DialogEdit" class="modal fade">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h3><i class="glyphicons-shop modal-icon"/>Chỉnh sửa danh mục</h3>
+								</div>
+								<div class="form-horizontal">
+									<div class="form-group">
+										<label class="control-label">Tên</label>
+										<div class="controls">
+											<input id="Name2" name="Name2" type="text" class="form-control input-small"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Thứ tự</label>
+										<div class="controls">
+											<input id="Order2" name="Order2" type="text" class="form-control input-small"/>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button id="URLUpdButton" class="btn btn-primary btn-small" type="submit"><i class="glyphicons-download_alt"/> Lưu</button>
+										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- END UPDATE DIALOG  -->
+					<div metal:use-macro="mDialog.xhtml/DialogDel"/>
+					<div metal:use-macro="mDialog.xhtml/DialogDelSelected"/>
+				</div>
+			</div>
+		</div>
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<script type="text/javascript">
+		/*<![CDATA[*/
+			$('#URLDelSelectedButton').click(function(){
+				var count = 0;
+				var Data = [];
+				var URL = "/object/del/CategoryNews/0";
+				
+				$(".CheckedDel").each(function( i, obj){
+					if ( $(this).is(':checked')==true ){
+						count += 1;
+						Data[count] = $(this).attr('data-id');
+					}
+				});
+				
+				$.ajax({
+					type: "POST",
+					data: {ListId:Data},
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
+			});
+			
+			//-----------------------------------------------------------------------------------
+			//Delete 1 CATEGORY			
+			//-----------------------------------------------------------------------------------
+			$('.remove-item').click(function(){
+				$('#URLDelButton').attr('alt', $(this).attr('data-id'));
+			});
+			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
+			$('#URLDelButton').click(function(){
+				var URL = "/object/del/CategoryNews/" + $(this).attr('alt');
+				$.ajax({
+					type: "POST",					
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
+			});
+		
+			//-----------------------------------------------------------------------------------
+			//Insert 1 CATEGORY
+			$('#URLInsButton').click(function(){
+				var Data = [];
+				Data[0] = 'null';				
+				Data[1] = $('#Name1').val();
+				Data[2] = $('#Description1').val();
+				Data[3] = $('#Type1').val();
+
+				var URL = "/object/ins/CategoryNews";
+				$.ajax({
+					type: "POST",
+					data: {Data:Data},
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
+			});
+			
+			//-----------------------------------------------------------------------------------
+			//Load 1 CATEGORY
+			//-----------------------------------------------------------------------------------
+			$('.update-item').click(function(){
+				//Load dữ liệu JSON về
+				var url = "/object/load/CategoryNews/" + $(this).attr('data-id');
+				
+				//Load dữ liệu JSON lên FORM
+				$.getJSON(url, function(data){
+					$('#URLUpdButton').attr('alt'	, data.Id);
+					$('#Name2').attr('value'		, data.Name);
+					$('#Order2').attr('value'		, data.Order);					
+				});
+			});
+			
+			//-----------------------------------------------------------------------------------
+			//Update 1 CATEGORY
+			//-----------------------------------------------------------------------------------
+			$('#URLUpdButton').click(function(){
+				var Data = [];
+				Data[0] = $('#URLUpdButton').attr('alt');
+				Data[1] = $('#Name2').val();				
+				Data[2] = $('#Order2').val();
+				
+				var URL = "/object/upd/CategoryNews";
+				$.ajax({
+					type: "POST",
+					data: {Data:Data},
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
+			});			
+		/*]]>*/
+		</script>
+	</body>
+</html>

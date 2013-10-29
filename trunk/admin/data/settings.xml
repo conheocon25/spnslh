@@ -39,6 +39,9 @@
 		<!-- ============================================================================== -->
 		<command name="Setting"><view>Setting</view></command>		
 		
+		<command name="SettingCategoryNews"><view>SettingCategoryNews</view></command>
+		<command name="SettingNews"><view>SettingNews</view></command>
+		
 		<command name="SettingProject"><view>SettingProject</view></command>
 		<command name="SettingProjectDocument"><view>SettingProjectDocument</view></command>
 		<command name="SettingProjectAlbum"><view>SettingProjectAlbum</view></command>
