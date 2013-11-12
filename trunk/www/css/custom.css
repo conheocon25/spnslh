@@ -3,4 +3,4 @@
 	
 	.shop-items .item, #carousel_container li { height: 333px; }
 	
-	.tab-content { text-align: justify; }
+	.tab-content, .news-content { text-align: justify; }
