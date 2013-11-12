@@ -339,9 +339,9 @@ strong{
 
 .header{
    height:70px;
-   background:#16cbe6;
-   border-top:4px solid #0fa6bc;
-   border-bottom:1px solid #0fa6bc;
+   background:#006CAC;
+   border-top:4px solid #005E94;
+   border-bottom:2px solid #005E94;
 }
 
 .header .logo h1{
@@ -385,20 +385,22 @@ strong{
 	margin: 0px;
 	padding: 10px 12px;
 	border:0px;
-	color:#fff;
+	color:#ddd;
 	font-weight:normal;
 	background:transparent;
 	font-size:14px;
 	font-family: VNFDax, sans-serif !important;
-	font-weight:600;
 }
 
 .mattblackmenu li a:hover{
 	background:transparent;
+	color:#fff;
 }
 
-.mattblackmenu a.selected {
+.mattblackmenu li.selected a {
 	background: transparent;
+	color:#fff;
+	font-weight: bold;
 }
 
 .ddsubmenustyle{	
@@ -451,14 +453,13 @@ strong{
 }
 
 .kart-links a{
-   font-size:13px;
+   font-size:14px;
    color:#fff;
-   font-weight:bold;
    margin:0px 1px;
    display:inline-block;
    padding:2px 7px;
    border-radius:5px;
-   background:#0fa6bc;
+   background:#00619D;
 }
 
 .kart-links a:hover{
@@ -1096,9 +1097,9 @@ strong{
 }
 
 .single-item .item-image img{
-   width:auto !important;
+   width:100% !important;
    height:auto !important;
-   max-height:250px !important;
+   max-height:230px !important;
    margin-top:20px !important;
 }
 
