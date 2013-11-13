@@ -4,3 +4,12 @@
 	.shop-items .item, #carousel_container li { height: 333px; }
 	
 	.tab-content, .news-content { text-align: justify; }
+	
+	.picture-rows { margin-top: 20px; }
+	.picture-rows .staff { box-shadow: 0 0 2px #AAAAAA; border: 5px solid #fff; border-radius: 10px; }
+	.picture-rows .staff img { border-radius: 10px; }
+	.picture-rows .details { background: #fff; padding: 5px 5px 0 5px; }
+	.picture-rows .asocial { font-size: 15px; }
+	.picture-rows .asocial i { margin: 0 2px; }
+	
+	#image-view img { box-shadow: 0 0 2px #AAAAAA; border: 5px solid #fff; border-radius: 10px; }
