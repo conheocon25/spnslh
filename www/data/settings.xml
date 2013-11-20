@@ -1,0 +1,15 @@
+<options>    
+	<control>
+		<!-- ============================================================================== -->
+		<!-- Các lệnh xử lí SYSTEM 															-->
+		<!-- ============================================================================== -->		
+		<command name="DefaultCommand" type="public"><view>DefaultCommand</view><status value="CMD_OK"><forward>Home</forward></status></command>
+		<command name="Home" type="public"><view>Home</view></command>
+		<command name="Project" type="public"><view>Project</view></command>
+		<command name="ProjectNews" type="public"><view>ProjectNews</view></command>
+		<command name="ProjectAlbum" type="public"><view>ProjectAlbum</view></command>
+		<command name="ProjectVideo" type="public"><view>ProjectVideo</view></command>
+		<command name="ProjectProduct" type="public"><view>ProjectProduct</view></command>
+		<command name="ProjectDocument" type="public"><view>ProjectDocument</view></command>
+	</control>
+</options>
