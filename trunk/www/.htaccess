@@ -1,0 +1,13 @@
+Options +FollowSymlinks
+RewriteEngine on
+ 
+#---------------------------------------------------------------------------------------------------------------------------
+# SYSTEM
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^home$ 					?cmd=Home [L]
+RewriteRule ^project$ 				?cmd=Project [L]
+RewriteRule ^project/news$ 			?cmd=ProjectNews [L]
+RewriteRule ^project/album$ 		?cmd=ProjectAlbum [L]
+RewriteRule ^project/video$ 		?cmd=ProjectVideo [L]
+RewriteRule ^project/product$ 		?cmd=ProjectProduct [L]
+RewriteRule ^project/document$ 		?cmd=ProjectDocument [L]
