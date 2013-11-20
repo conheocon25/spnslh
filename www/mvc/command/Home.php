@@ -18,11 +18,16 @@
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------												
+			//-------------------------------------------------------------
+			$Navigation = array();
 
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
+			$request->setProperty('Title', 'Trang chủ');
+			$request->setProperty('ActiveTopMenu', 'Home');
+			$request->setProperty('ActiveLeftMenu', '');
+			$request->setObject('Navigation', $Navigation);
 			
 			return self::statuses('CMD_DEFAULT');
 		}

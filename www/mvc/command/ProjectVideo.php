@@ -18,12 +18,20 @@
 
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------												
+			//-------------------------------------------------------------
+			$Navigation = array(				
+				array("Dự án", "/project")
+			);
 
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-
+			$request->setProperty('Title', 'Video liên quan');
+			$request->setProperty('ActiveTopMenu', 'Project');
+			$request->setProperty('ActiveLeftMenu', 'ProjectVideo');
+			$request->setObject('Navigation', $Navigation);
+			
+			return self::statuses('CMD_DEFAULT');
 		}
 	}
 ?>
