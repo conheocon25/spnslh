@@ -21,9 +21,21 @@
 			//-------------------------------------------------------------												
 
 			//-------------------------------------------------------------
+			//XỬ LÝ CHÍNH
+			//-------------------------------------------------------------
+			$Navigation = array(				
+				array("Dự án", "/project")
+			);
+
+			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-
+			$request->setProperty('Title', 'Tin tức liên quan');
+			$request->setProperty('ActiveTopMenu', 'Project');
+			$request->setProperty('ActiveLeftMenu', 'ProjectNews');
+			$request->setObject('Navigation', $Navigation);
+			
+			return self::statuses('CMD_DEFAULT');
 		}
 	}
 ?>
