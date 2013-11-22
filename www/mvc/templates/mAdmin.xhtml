@@ -1,0 +1,184 @@
+<html lang="en" xml:lang="en">
+<body>
+	<!-- ======================================================================== -->
+	<!-- META TAG INCLUDE														  -->
+	<!-- ======================================================================== -->
+	<span metal:define-macro="IncludeMETA">
+		<title tal:content="string:Quản lý - Nhà Đất Sài Gòn"/>
+		<base href="http://www.saigonlandhouse.com"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+		<meta http-equiv="Pragma" content="no-cache"/>
+		<meta http-equiv="Expires" content="-1"/>
+		<meta http-equiv="Cache-Control" content="no-cache"/>
+		<meta name="keywords" content="Nhà Đất Sài Gòn"/>
+		<meta name="description" content="Nhà Đất Sài Gòn"/>
+		<meta name="page-topic" content="Nhà Đất Sài Gòn"/>
+		<meta name="Abstract" content="Nhà Đất Sài Gòn"/>
+		<meta name="classification" content="Nhà Đất Sài Gòn"/>
+		<link rel="shortcut icon" href="/mvc/templates/theme/base/img/favicon.png"/>
+	</span>
+	
+	<!-- ======================================================================== -->
+	<!-- CASCADING STYLE SHEETS INCLUDE											  -->
+	<!-- ======================================================================== -->
+	<span metal:define-macro="IncludeCSS">	
+		<link rel="stylesheet" href="/mvc/templates/theme/admin/css/bootstrap.min.css"/>
+		<link rel="stylesheet" href="/mvc/templates/theme/admin/css/bootstrap-glyphicons.css"/>
+        <link rel="stylesheet" href="/mvc/templates/theme/admin/css/jquery-ui.css"/>
+		<link rel="stylesheet" href="/mvc/templates/theme/admin/css/datepicker.css"/>
+		<link rel="stylesheet" href="/mvc/templates/theme/admin/css/icheck/flat/blue.css"/>
+		<link rel="stylesheet" href="/mvc/templates/theme/admin/css/select2.css"/>
+		<link rel="stylesheet" href="/mvc/templates/theme/admin/css/unicorn.main.css"/>
+		<link rel="stylesheet" href="/mvc/templates/theme/admin/css/unicorn.grey.css" class="skin-color"/>
+	</span>
+	
+	<!-- ======================================================================== -->
+	<!-- JAVASCRIPT INCLUDE														  -->
+	<!-- ======================================================================== -->
+	<span metal:define-macro="IncludeJS">
+		<script src="/mvc/templates/theme/admin/js/jquery.min.js"></script>
+		<script src="/mvc/templates/theme/admin/js/jquery-ui.custom.js"></script>
+		<script src="/mvc/templates/theme/admin/js/bootstrap.min.js"></script>
+		<script src="/mvc/templates/theme/admin/js/jquery.icheck.min.js"></script>
+		<script src="/mvc/templates/theme/admin/js/select2.min.js"></script>
+		<script src="/mvc/templates/theme/admin/js/bootstrap-datepicker.js"></script>
+		<script src="/mvc/templates/theme/admin/js/jquery.dataTables.min.js"></script>
+		<script src="/mvc/templates/theme/admin/js/jquery.jpanelmenu.min.js"></script>
+		<script src="/mvc/templates/theme/admin/js/unicorn.js"></script>
+		<script src="/mvc/templates/theme/admin/js/unicorn.tables.js"></script>
+		<script src="/mvc/templates/theme/admin/js/excanvas.min.js"></script>
+		<script src="/mvc/templates/theme/admin/js/jquery.flot.min.js"></script>
+		<script src="/mvc/templates/theme/admin/js/jquery.flot.resize.min.js"></script>
+		<script src="/mvc/templates/theme/admin/js/jquery.sparkline.min.js"></script>
+		<script src="/mvc/templates/theme/admin/js/fullcalendar.min.js"></script>
+		<script src="/mvc/templates/theme/admin/js/unicorn.dashboard.js"></script>
+	</span>
+	
+	<!-- ======================================================================== -->
+	<!-- HEADER																	  -->
+	<!-- ======================================================================== -->
+	<div metal:define-macro="Header" id="header">
+		<h1><a href="/setting">Saigonlandhouse.com</a></h1>	
+		<a id="menu-trigger" href="#"><i class="glyphicon glyphicon-align-justify"></i></a>	
+	</div>
+	
+	<div metal:define-macro="UserNavigation" id="user-nav">
+		<ul class="btn-group">
+			<li class="btn open"><a href="/home" title="Trang chủ Website - Nhà đất Sài Gòn" class="tip-bottom">
+				<i class="glyphicon glyphicon-home"/> <span class="text">saigonlandhouse.com</span>
+			</a></li>
+			<li class="btn open"><a title="Địa chỉ IP đang sử dụng" class="tip-bottom">
+				<i class="glyphicon glyphicon-signal"/> <span class="text" tal:content="php:@\MVC\Library\Statistic::getIPPrint()"/>
+			</a></li>
+			<li class="btn open"><a title="Tài khoản đang sử dụng" class="tip-bottom">
+				<i class="glyphicon glyphicon-user"/> <span class="text" tal:content="User/getName"/>
+			</a></li>
+			<li class="btn"><a href="#signoutDialog" data-toggle="modal" title="Thoát trang quản lý" class="tip-bottom">
+				<i class="glyphicon glyphicon-share-alt"/> <span class="text">Thoát</span>
+			</a></li>
+		</ul>
+	</div>
+
+	<!-- ======================================================================== -->
+	<!-- LEFT MENU - SIDEBAR													  -->
+	<!-- ======================================================================== -->
+	<div metal:define-macro="Sidebar" id="sidebar">
+		<ul>
+			<li tal:attributes="class php:ActiveLeftMenu=='Setting'?'active':''"><a href="/setting"><i class="glyphicon glyphicon-cog"></i> <span>Quản lý</span></a></li>
+			<li tal:attributes="class php:ActiveLeftMenu=='SettingProject'?'active':''"><a href="/setting/project"><i class="glyphicon glyphicon-th-list"></i> <span>Dự án</span></a></li>
+			<li tal:attributes="class php:ActiveLeftMenu=='??'?'active':''"><a href="buttons.html"><i class="glyphicon glyphicon-tint"></i> <span>Tin tức</span></a></li>
+			<li tal:attributes="class php:ActiveLeftMenu=='??'?'active':''"><a href="interface.html"><i class="glyphicon glyphicon-pencil"></i> <span>Tài sản giao dịch</span></a></li>
+			<li tal:attributes="class php:ActiveLeftMenu=='??'?'active':''"><a href="tables.html"><i class="glyphicon glyphicon-th"></i> <span>Tài khoản</span></a></li>
+		</ul>
+	</div>
+	
+	<!-- ======================================================================== -->
+	<!-- COLOR CHANGE - STYLE SWITCHER											  -->
+	<!-- ======================================================================== -->
+	<div metal:define-macro="StyleSwitcher" id="style-switcher">
+		<i class="glyphicon glyphicon-arrow-left"></i>
+		<span>Style:</span>
+		<a href="#grey" style="background-color: #555555;border-color: #aaaaaa;"></a>
+		<a href="#light-blue" style="background-color: #8399b0;"></a>
+		<a href="#blue" style="background-color: #2D2F57;"></a>
+		<a href="#red" style="background-color: #673232;"></a>
+		<a href="#red-green" style="background-image: url('/mvc/templates/theme/admin/img/demo/red-green.png');background-repeat: no-repeat;"></a>
+	</div>
+
+	<!-- ======================================================================== -->
+	<!-- BREADCRUMB																  -->
+	<!-- ======================================================================== -->
+	<div metal:define-macro="Breadcrumb" id="breadcrumb">
+		<a href="/home" title="Về trang chủ Website" class="tip-bottom"><i class="glyphicon glyphicon-home"></i> Trang chủ</a>
+		<a tal:repeat="Item Navigation" href="/home" tal:attributes="href php:Item[1]; title php:'Về trang '.Item[0]" tal:content="php:Item[0]" class="tip-bottom"/>
+		<a class="current" tal:content="Title"/>
+	</div>
+	
+	<!-- ======================================================================== -->
+	<!-- FOOTER																	  -->
+	<!-- ======================================================================== -->
+	<div metal:define-macro="Footer" class="row">
+		<div id="footer" class="col-12">
+			2013 &copy; Saigonlandhouse.com - Phát triễn: <a href="https://spn-soft.com">SPN Group</a>
+		</div>
+	</div>
+	
+	<!-- ======================================================================== -->
+	<!-- SINGLE DELETE DIALOG													  -->
+	<!-- ======================================================================== -->
+	<div metal:define-macro="DeleteDialog" id="deleteDialog" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header"><h3>XÓA</h3></div>
+				<div class="modal-body">
+					<p>Bạn có chắc muốn xóa mục này ?</p>
+				</div>
+				<div class="modal-footer">
+					<button id="deleteButton" class="btn btn-primary btn-small">Xóa</button>
+					<button data-dismiss="modal" class="btn btn-default btn-small">Không</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- ======================================================================== -->
+	<!-- MULTI DELETE DIALOG													  -->
+	<!-- ======================================================================== -->
+	<div metal:define-macro="MultiDeleteDialog" id="multiDeleteDialog" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header"><h3>XÓA ĐÃ CHỌN</h3></div>
+				<div class="modal-body">
+					<p>Bạn có chắc muốn xóa không ?</p>
+				</div>
+				<div class="modal-footer">
+					<button id="multiDeleteButton" class="btn btn-primary btn-small">Xóa</button>
+					<button data-dismiss="modal" class="btn btn-default btn-small">Không</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- ======================================================================== -->
+	<!-- SIGNOUT DIALOG															  -->
+	<!-- ======================================================================== -->
+	<div metal:define-macro="SignoutDialog" id="signoutDialog" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header"><h3>Đăng xuất</h3></div>
+				<div class="modal-body">
+					<p>Bạn có chắc muốn thoát khỏi trang quản lý ?</p>
+				</div>
+				<div class="modal-footer">
+					<form action="/signout" method="post">
+						<button type="submit" class="btn btn-primary btn-small">OK</button>
+						<button data-dismiss="modal" class="btn btn-default btn-small">Không</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</body>
+</html>

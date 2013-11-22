@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<span metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<span metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+	</head>
+	<body>
+		<div metal:use-macro="mAdmin.xhtml/Header"/>
+		<div metal:use-macro="mAdmin.xhtml/UserNavigation"/>
+		<div metal:use-macro="mAdmin.xhtml/Sidebar"/>
+		<div metal:use-macro="mAdmin.xhtml/StyleSwitcher"/>
+
+		<div id="content">
+			<div id="content-header">
+				<h1>Dự án</h1>
+				<div class="btn-group">
+					<button href="#multiDeleteDialog" data-toggle="modal" class="btn btn-primary sinleins"><i class="glyphicon glyphicon-trash"> Xóa <span id="numiChk"/> mục</i></button>
+					<button id="insertObject" href="#insertDialog" data-toggle="modal" class="btn btn-success sinleins"><i class="glyphicon glyphicon-plus"> Thêm mới</i></button>
+				</div>
+			</div>
+			<div metal:use-macro="mAdmin.xhtml/Breadcrumb"/>
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-12">
+						<div class="widget-box">
+							<div class="widget-content nopadding">
+								<table class="table table-bordered table-striped table-hover">
+									<thead>
+										<tr>
+											<th width="30">
+												<input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/>
+											</th>
+											<th>Tên</th>
+											<th>Mô tã</th>
+											<th>Tin tức</th>
+											<th>Album</th>
+											<th>Video</th>
+											<th>Hạng mục</th>
+											<th>Tài liệu</th>
+											<th width="30">Xóa</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr tal:repeat="Project AllProject">
+											<td  align="center"><input class="checkedItem" type="checkbox" tal:attributes="data-id Project/getId"/></td>
+											<td><a class="updateObject" href="#updateDialog" data-toggle="modal" tal:attributes="data-id Project/getId" tal:content="Project/getName"/></td>
+											<td tal:content="Project/getDescription"/>
+											<td align="center"><a tal:attributes="href Project/getURLSettingNews"><i class="glyphicon glyphicon-pencil"/></a></td>
+											<td align="center"><a tal:attributes="href Project/getURLSettingAlbum"><i class="glyphicon glyphicon-pencil"/></a></td>
+											<td align="center"><a tal:attributes="href Project/getURLSettingVideo"><i class="glyphicon glyphicon-pencil"/></a></td>
+											<td align="center"><a tal:attributes="href Project/getURLSettingProduct"><i class="glyphicon glyphicon-pencil"/></a></td>
+											<td align="center"><a tal:attributes="href Project/getURLSettingDocument"><i class="glyphicon glyphicon-pencil"/></a></td>
+											<td align="center"><a class="deleteObject" href="#deleteDialog" data-toggle="modal" tal:attributes="data-id Project/getId"><i class="glyphicon glyphicon-trash"></i></a></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- INSERT DIALOG  -->
+		<div id="insertDialog" class="modal fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h3><i class="glyphicon glyphicon-th modal-icon"/> Thêm dự án mới</h3>
+					</div>
+					<div class="form-horizontal">
+						<div class="modal-body">
+							<div class="form-group">
+								<label class="control-label">Tên</label>
+								<div class="controls">
+									<input id="iName" name="Name" type="text" class="form-control input-small"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label">Mô tả</label>
+								<div class="controls">
+									<input id="iDescription" name="Description" type="text" class="form-control input-small"/>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button id="insertButton" class="btn btn-primary btn-small" type="submit"><i class="glyphicons-download_alt"/> Lưu</button>
+							<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- END INSERT DIALOG  -->
+		
+		<!-- UPDATE DIALOG  -->
+		<div id="updateDialog" class="modal fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h3><i class="glyphicons-fast_food modal-icon"/>Chỉnh sửa thông tin dự án</h3>
+					</div>
+					<div class="form-horizontal">
+						<div class="modal-body">
+							<div class="form-group">
+								<label class="control-label">Tên</label>
+								<div class="controls">
+									<input id="uName" name="Name" type="text" class="form-control input-small"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label">Mô tả</label>
+								<div class="controls">
+									<input id="uDescription" name="Description" type="text" class="form-control input-small"/>
+								</div>
+							</div>
+						</div>									
+						<div class="modal-footer">
+							<button id="updateButton" class="btn btn-primary btn-small" type="submit"><i class="glyphicons-download_alt"/> Lưu</button>
+							<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- END UPDATE DIALOG  -->
+		
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/DeleteDialog"/>
+		<div metal:use-macro="mAdmin.xhtml/multiDeleteDialog"/>
+		<div metal:use-macro="mAdmin.xhtml/SignoutDialog"/>
+		<span metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<script type="text/javascript">
+		/*<![CDATA[*/
+			/* ---------------------------------------------------------------------------- */
+			/* INSERT PROJECT																*/
+			/* ---------------------------------------------------------------------------- */
+			$('#insertButton').click(function(){
+				var URL = "/object/ins/Project";
+				var Data = [];
+				Data[0] = 'null';
+				Data[1] = $('#iName').val();
+				Data[2] = $('#iDescription').val();
+				Data[3] = '0';
+				Data[4] = '0';
+				$.ajax({
+					type: "POST",
+					data: {Data:Data},
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
+			});
+			
+			/* ---------------------------------------------------------------------------- */
+			/* UPDATE PROJECT																*/
+			/* ---------------------------------------------------------------------------- */
+			$('.updateObject').click(function(){
+				var url = "/object/load/Project/" + $(this).attr('data-id');
+				$.getJSON(url, function(data){
+					$('#updateButton').attr('alt', data.Id);
+					$('#uName').attr('value', data.Name);
+					$('#uDescription').attr('value', data.Description);
+				});
+			});
+			$('#updateButton').click(function(){
+				var URL = "/object/upd/Project";
+				var Data = [];
+				Data[0] = $('#updateButton').attr('alt');
+				Data[1] = $('#uName').val();
+				Data[2] = $('#uDescription').val();
+				Data[3] = '0';
+				Data[4] = '0';
+				$.ajax({
+					type: "POST",
+					data: {Data:Data},
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
+			});
+			
+			/* ---------------------------------------------------------------------------- */
+			/* DELETE SINGLE PROJECT														*/
+			/* ---------------------------------------------------------------------------- */
+			$('.deleteObject').click(function(){
+				$('#deleteButton').attr('alt', $(this).attr('data-id'));
+			});
+			$('#deleteButton').click(function(){
+				var URL = "/object/del/Project/" + $(this).attr('alt');
+				$.ajax({
+					type: "POST",					
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
+			});
+			
+			/* ---------------------------------------------------------------------------- */
+			/* DELETE MULTI PROJECT															*/
+			/* ---------------------------------------------------------------------------- */
+			$('#multiDeleteButton').click(function(){
+				var count = 0;
+				var Data = [];
+				var URL = "/object/del/Project/0";
+				$(".checkedItem").each(function( i, obj){
+					if ( $(this).is(':checked')==true ){
+						count += 1;
+						Data[count] = $(this).attr('data-id');
+					}
+				});
+				$.ajax({
+					type: "POST",
+					data: {ListId:Data},
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
+			});
+		/*]]>*/
+		</script>
+	</body>
+</html>

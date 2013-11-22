@@ -2,12 +2,32 @@ Options +FollowSymlinks
 RewriteEngine on
  
 #---------------------------------------------------------------------------------------------------------------------------
-# SYSTEM
+# BASE
 #---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^home$ 					?cmd=Home [L]
-RewriteRule ^project$ 				?cmd=Project [L]
-RewriteRule ^project/news$ 			?cmd=ProjectNews [L]
-RewriteRule ^project/album$ 		?cmd=ProjectAlbum [L]
-RewriteRule ^project/video$ 		?cmd=ProjectVideo [L]
-RewriteRule ^project/product$ 		?cmd=ProjectProduct [L]
-RewriteRule ^project/document$ 		?cmd=ProjectDocument [L]
+RewriteRule ^home$ 													?cmd=Home [L]
+RewriteRule ^project$ 												?cmd=Project [L]
+RewriteRule ^project/news$ 											?cmd=ProjectNews [L]
+RewriteRule ^project/album$ 										?cmd=ProjectAlbum [L]
+RewriteRule ^project/video$ 										?cmd=ProjectVideo [L]
+RewriteRule ^project/product$ 										?cmd=ProjectProduct [L]
+RewriteRule ^project/document$ 										?cmd=ProjectDocument [L]
+
+#---------------------------------------------------------------------------------------------------------------------------
+# SETTING
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^signin/load$ 											?cmd=SigninLoad [L]
+RewriteRule ^signin/author$ 										?cmd=SigninExe [L]
+RewriteRule ^signout$ 												?cmd=SignoutExe [L]
+RewriteRule ^setting$ 												?cmd=Setting [L]
+
+RewriteRule ^object/load/([A-Za-z0-9]+)/([0-9]+)$ 					?cmd=ObjectLoad&ObjectName=$1&Id=$2 [L]
+RewriteRule ^object/del/([A-Za-z0-9]+)/([0-9]+)$ 					?cmd=ObjectDel&ObjectName=$1&Id=$2 [L]
+RewriteRule ^object/ins/([A-Za-z0-9]+)$ 							?cmd=ObjectIns&ObjectName=$1 [L]
+RewriteRule ^object/upd/([A-Za-z0-9]+)$ 							?cmd=ObjectUpd&ObjectName=$1 [L]
+
+RewriteRule ^setting/project$										?cmd=SettingProject [L]
+RewriteRule ^setting/project/([0-9]+)/news$							?cmd=SettingProjectNews&Id=$1 [L]
+RewriteRule ^setting/project/([0-9]+)/album$						?cmd=SettingProjectAlbum&Id=$1 [L]
+RewriteRule ^setting/project/([0-9]+)/video$						?cmd=SettingProjectVideo&Id=$1 [L]
+RewriteRule ^setting/project/([0-9]+)/product$						?cmd=SettingProjectProduct&Id=$1 [L]
+RewriteRule ^setting/project/([0-9]+)/document$						?cmd=SettingProjectDocument&Id=$1 [L]

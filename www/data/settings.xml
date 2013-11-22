@@ -1,8 +1,9 @@
 <options>    
 	<control>
+	
 		<!-- ============================================================================== -->
-		<!-- Các lệnh xử lí SYSTEM 															-->
-		<!-- ============================================================================== -->		
+		<!-- BASE COMMAND 															-->
+		<!-- ============================================================================== -->
 		<command name="DefaultCommand" type="public"><view>DefaultCommand</view><status value="CMD_OK"><forward>Home</forward></status></command>
 		<command name="Home" type="public"><view>Home</view></command>
 		<command name="Project" type="public"><view>Project</view></command>
@@ -11,5 +12,33 @@
 		<command name="ProjectVideo" type="public"><view>ProjectVideo</view></command>
 		<command name="ProjectProduct" type="public"><view>ProjectProduct</view></command>
 		<command name="ProjectDocument" type="public"><view>ProjectDocument</view></command>
+		
+		<!-- ============================================================================== -->
+		<!-- SETTING COMMAND																-->
+		<!-- ============================================================================== -->
+		<command name="SigninLoad" type="public"><view>SigninLoad</view></command>
+		<command name="SigninExe" type="public">
+			<view>SigninExe</view>
+			<status value="CMD_OK"><forward>Setting</forward></status>
+			<status value="CMD_NO_AUTHOR"><forward>SigninLoad</forward></status>
+		</command>
+		<command name="SignoutExe" type="public"><view>SignoutExe</view><status value="CMD_OK"><forward>Home</forward></status></command>
+		<command name="Setting"><view>Setting</view></command>
+		
+			<!-- ============================================================================== -->
+			<!-- OBJECT SETTING COMMAND															-->
+			<!-- ============================================================================== -->		
+			<command name="ObjectLoad"><view>ObjectLoad</view></command>
+			<command name="ObjectDel"><view>ObjectDel</view></command>
+			<command name="ObjectIns"><view>ObjectIns</view></command>
+			<command name="ObjectUpd"><view>ObjectUpd</view></command>
+
+		<command name="SettingProject"><view>SettingProject</view></command>
+		<command name="SettingProjectNews"><view>SettingProjectNews</view></command>
+		<command name="SettingProjectAlbum"><view>SettingProjectAlbum</view></command>
+		<command name="SettingProjectVideo"><view>SettingProjectVideo</view></command>
+		<command name="SettingProjectProduct"><view>SettingProjectProduct</view></command>
+		<command name="SettingProjectDocument"><view>SettingProjectDocument</view></command>
+		
 	</control>
 </options>
