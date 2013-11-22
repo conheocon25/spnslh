@@ -59,8 +59,8 @@ class PDocument extends Object{
 			'IdProject' 	=> $this->getIdProject(),
 			'Name' 			=> $this->getName(),
 			'Date'			=> $this->getDate(),
-			'Description'	=> $this->getDescription(),
 			'URL'			=> $this->getURL(),
+			'Description'	=> $this->getDescription(),
 			'Key'			=> $this->getKey()
 		);
 		
@@ -73,8 +73,8 @@ class PDocument extends Object{
 		$this->IdProject 	= $Data[1];
 		$this->Name 		= $Data[2];
 		$this->Date 		= \date('Y-m-d H:i:s');		
-		$this->Description 	= $Data[3];
 		$this->URL 			= $Data[4];
+		$this->Description 	= $Data[5];
 		$this->reKey();
     }
 	

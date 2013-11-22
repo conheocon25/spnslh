@@ -1,0 +1,214 @@
+-- phpMyAdmin SQL Dump
+-- version 3.4.5
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: Nov 22, 2013 at 09:15 AM
+-- Server version: 5.5.16
+-- PHP Version: 5.3.8
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Database: `spngroup_saigonlh`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_project`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_project` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
+  `description` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
+  `type` int(11) NOT NULL,
+  `key` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=10 ;
+
+--
+-- Dumping data for table `tbl_project`
+--
+
+INSERT INTO `tbl_project` (`id`, `name`, `description`, `type`, `key`) VALUES
+(1, 'Khu căn hộ An Phú', 'Khu căn hộ An Phú', 0, 0),
+(2, 'Dragon Hill Residence and Suites', 'Dragon Hill Residence and Suites', 1, 0),
+(5, 'Khu căn hộ An Phú 2', 'Khu căn hộ An Phú 2', 0, 0),
+(6, 'Khu căn hộ Đại Đồng Tiến', 'Khu căn hộ Đại Đồng Tiến', 0, 0),
+(7, 'Khu phức hợp 277 Nguyễn Văn Linh', 'Khu phức hợp 277 Nguyễn Văn Linh', 0, 0),
+(8, 'Tòa nhà Diamon Plaza', 'Tòa nhà Diamon Plaza', 0, 0),
+(9, 'Đại siêu thị Đông Á', 'Đại siêu thị Đông Á', 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_project_album`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_project_album` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_project` int(11) NOT NULL,
+  `name` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `description` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
+  `key` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=10 ;
+
+--
+-- Dumping data for table `tbl_project_album`
+--
+
+INSERT INTO `tbl_project_album` (`id`, `id_project`, `name`, `date`, `description`, `key`) VALUES
+(1, 2, 'Album 4', '2013-11-22 08:06:16', 'Năm 2013', 0),
+(3, 2, 'Album 3', '2013-11-22 08:06:16', 'Album 3', 0),
+(4, 2, 'Album 2', '2013-11-22 08:06:16', 'Album 2', 0),
+(5, 2, 'Album 1', '2013-11-22 08:06:16', 'Album 1', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_project_document`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_project_document` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_project` int(11) NOT NULL,
+  `name` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `url` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
+  `description` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
+  `key` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=8 ;
+
+--
+-- Dumping data for table `tbl_project_document`
+--
+
+INSERT INTO `tbl_project_document` (`id`, `id_project`, `name`, `date`, `url`, `description`, `key`) VALUES
+(1, 2, 'Tài liệu 1', '2013-11-22 07:58:12', 'http://mediafire.com', 'Tài liệu 1', 0),
+(2, 2, 'Tài liệu 2', '2013-11-22 07:58:30', 'http://mediafire.com', 'Tài liệu 2', 0),
+(3, 2, 'Tài liệu 3', '2013-11-22 07:58:44', 'http://mediafire.com', 'Tài liệu 3', 0),
+(4, 2, 'Tài liệu 4', '2013-11-22 07:59:01', 'http://mediafire.com', 'Tài liệu 4', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_project_news`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_project_news` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_project` int(11) NOT NULL,
+  `name` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `description` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
+  `key` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=12 ;
+
+--
+-- Dumping data for table `tbl_project_news`
+--
+
+INSERT INTO `tbl_project_news` (`id`, `id_project`, `name`, `date`, `description`, `key`) VALUES
+(5, 2, 'Tin tức 2', '2013-11-22 08:06:34', 'Tin tức 2', 0),
+(6, 2, 'Tin tức 1', '2013-11-22 08:06:34', 'Tin tức 1', 0),
+(7, 2, 'Tin tức 3', '2013-11-22 08:06:34', 'Tin tức 3', 0),
+(8, 2, 'Tin tức 4', '2013-11-22 08:06:34', 'Tin tức 4', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_project_product`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_project_product` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_project` int(11) NOT NULL,
+  `name` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `description` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
+  `key` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=8 ;
+
+--
+-- Dumping data for table `tbl_project_product`
+--
+
+INSERT INTO `tbl_project_product` (`id`, `id_project`, `name`, `date`, `description`, `key`) VALUES
+(1, 2, 'Nhà ăn', '2013-11-22 07:52:11', 'Nhà ăn', 0),
+(2, 2, 'Bãi đỗ xe', '2013-11-22 07:52:17', 'Bãi đỗ xe', 0),
+(3, 2, 'Khu vui chơi công cộng', '2013-11-22 07:51:32', 'Khu vui chơi công cộng', 0),
+(4, 2, 'Công viên cây xanh', '2013-11-22 07:52:30', 'Công viên cây xanh', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_project_video`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_project_video` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_project` int(11) NOT NULL,
+  `name` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `url` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
+  `description` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
+  `key` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=10 ;
+
+--
+-- Dumping data for table `tbl_project_video`
+--
+
+INSERT INTO `tbl_project_video` (`id`, `id_project`, `name`, `date`, `url`, `description`, `key`) VALUES
+(1, 2, 'Video 4', '2013-11-22 07:38:29', 'http://youtube.com', 'Video 4', 0),
+(2, 2, 'Video 3', '2013-11-22 07:38:40', 'http://youtube.com', 'Video 3', 0),
+(3, 2, 'Video 2', '2013-11-22 07:38:50', 'http://youtube.com', 'Video 2', 0),
+(4, 2, 'Video 1', '2013-11-22 07:36:56', 'http://youtube.com', 'Video 1', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_user`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `pass` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `gender` int(11) NOT NULL,
+  `note` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `datecreate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `dateupdate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `dateactivity` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `type` tinyint(4) NOT NULL,
+  `code` varchar(13) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `tbl_user`
+--
+
+INSERT INTO `tbl_user` (`id`, `name`, `email`, `pass`, `gender`, `note`, `datecreate`, `dateupdate`, `dateactivity`, `type`, `code`) VALUES
+(1, 'Quản lý', 'admin@gmail.com', 'admin123456', 0, ' Người quản lý hệ thống', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 4, ''),
+(2, 'Tuan Bui Thanh', 'tuanbuithanh@gmail.com', 'admin123456', 0, '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, '');
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

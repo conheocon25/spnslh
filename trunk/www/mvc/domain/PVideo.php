@@ -59,8 +59,8 @@ class PVideo extends Object{
 			'IdProject' 	=> $this->getIdProject(),
 			'Name' 			=> $this->getName(),
 			'Date'			=> $this->getDate(),
-			'Description'	=> $this->getDescription(),
 			'URL'			=> $this->getURL(),
+			'Description'	=> $this->getDescription(),
 			'Key'			=> $this->getKey()
 		);
 		
@@ -72,9 +72,10 @@ class PVideo extends Object{
         $this->Id 			= $Data[0];
 		$this->IdProject 	= $Data[1];
 		$this->Name 		= $Data[2];
-		$this->Date 		= \date('Y-m-d H:i:s');		
-		$this->Description 	= $Data[3];
+		$this->Date 		= \date('Y-m-d H:i:s');
 		$this->URL 			= $Data[4];
+		$this->Description 	= $Data[5];
+		
 		$this->reKey();
     }
 	

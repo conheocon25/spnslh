@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<div metal:use-macro="Macros.xhtml/IncludeMETA"/>
-		<div metal:use-macro="Macros.xhtml/IncludeCSS"/>
+		<div metal:use-macro="mBase.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mBase.xhtml/IncludeCSS"/>
 	</head>
 	
 	<body>
-		<div metal:use-macro="Macros.xhtml/Header"/>
-		<div metal:use-macro="Macros.xhtml/PageTitle"/>
+		<div metal:use-macro="mBase.xhtml/Header"/>
+		<div metal:use-macro="mBase.xhtml/PageTitle"/>
 		
 		<div class="shop-items blocky">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-9 col-md-push-3">
-						<div metal:use-macro="Macros.xhtml/Breadcrumb"/>
+						<div metal:use-macro="mBase.xhtml/Breadcrumb"/>
 
 						<div class="single-item">
 							<div class="row">
@@ -90,7 +90,7 @@
 					</div>
 
 					<div class="col-md-3 col-md-pull-9">
-						<div metal:use-macro="Macros.xhtml/ProductLeftMenu"/>
+						<div metal:use-macro="mBase.xhtml/ProductLeftMenu"/>
 
 						<div class="sidebar-items">
 							<h5>Dự án mới nhất</h5>
@@ -349,7 +349,7 @@
 			</div>
 		</div>
 		<span class="totop"><a href="#"><i class="icon-chevron-up"></i></a></span>
-		<div metal:use-macro="Macros.xhtml/Footer"/>
-		<div metal:use-macro="Macros.xhtml/IncludeJS"/>
+		<div metal:use-macro="mBase.xhtml/Footer"/>
+		<div metal:use-macro="mBase.xhtml/IncludeJS"/>
 	</body>	
 </html>

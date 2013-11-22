@@ -71,6 +71,7 @@ class Project extends Object{
 		$this->Name 		= $Data[1];			
 		$this->Description 	= $Data[2];
 		$this->Type 		= $Data[3];
+		$this->Key 			= $Data[4];
 		
 		$this->reKey();
     }
@@ -109,7 +110,7 @@ class Project extends Object{
 	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
-	//-------------------------------------------------------------------------------	
+	//-------------------------------------------------------------------------------
 	function getURLSettingNews(){return "/setting/project/".$this->getId()."/news";}
 	function getURLSettingAlbum(){return "/setting/project/".$this->getId()."/album";}
 	function getURLSettingVideo(){return "/setting/project/".$this->getId()."/video";}

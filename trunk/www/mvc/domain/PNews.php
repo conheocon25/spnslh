@@ -67,7 +67,7 @@ class PNews extends Object{
 		$this->IdProject 	= $Data[1];
 		$this->Name 		= $Data[2];
 		$this->Date 		= \date('Y-m-d H:i:s');		
-		$this->Description 	= $Data[3];
+		$this->Description 	= $Data[4];
 		$this->reKey();
     }
 	
