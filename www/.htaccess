@@ -31,3 +31,12 @@ RewriteRule ^setting/project/([0-9]+)/album$						?cmd=SettingProjectAlbum&Id=$1
 RewriteRule ^setting/project/([0-9]+)/video$						?cmd=SettingProjectVideo&Id=$1 [L]
 RewriteRule ^setting/project/([0-9]+)/product$						?cmd=SettingProjectProduct&Id=$1 [L]
 RewriteRule ^setting/project/([0-9]+)/document$						?cmd=SettingProjectDocument&Id=$1 [L]
+
+RewriteRule ^setting/category-n$									?cmd=SettingCategoryNews [L]
+RewriteRule ^setting/category-n/([0-9]+)/news$						?cmd=SettingNews&IdCategory=$1 [L]
+RewriteRule ^setting/category-n/([0-9]+)/news/ins-load$				?cmd=SettingNewsInsLoad&IdCategory=$1 [L]
+RewriteRule ^setting/category-n/([0-9]+)/news/ins-exe$				?cmd=SettingNewsInsExe&IdCategory=$1 [L]
+RewriteRule ^setting/category-n/([0-9]+)/news/([0-9]+)/upd-load$	?cmd=SettingNewsUpdLoad&IdCategory=$1&Id=$2 [L]
+RewriteRule ^setting/category-n/([0-9]+)/news/([0-9]+)/upd-exe$		?cmd=SettingNewsUpdExe&IdCategory=$1&Id=$2 [L]
+RewriteRule ^setting/category-n/([0-9]+)/news/([0-9]+)/del-load$	?cmd=SettingNewsDelLoad&IdCategory=$1&Id=$2 [L]
+RewriteRule ^setting/category-n/([0-9]+)/news/([0-9]+)/del-exe$		?cmd=SettingNewsDelExe&IdCategory=$1&Id=$2 [L]
