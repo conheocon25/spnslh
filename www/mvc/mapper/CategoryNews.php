@@ -42,7 +42,11 @@ class CategoryNews extends Mapper implements \MVC\Domain\CategoryNewsFinder{
     }
 
     protected function doInsert( \MVC\Domain\Object $object ) {
-        $values = array( $object->getName() );
+        $values = array(
+			$object->getName(),
+			$object->getOrder(),
+			$object->getKey()
+		);
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
         $object->setId( $id );
