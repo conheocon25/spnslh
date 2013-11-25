@@ -40,5 +40,14 @@
 		<command name="SettingProjectProduct"><view>SettingProjectProduct</view></command>
 		<command name="SettingProjectDocument"><view>SettingProjectDocument</view></command>
 		
+		<command name="SettingCategoryNews"><view>SettingCategoryNews</view></command>
+		<command name="SettingNews"><view>SettingNews</view></command>
+		<command name="SettingNewsInsLoad"><view>SettingNewsInsLoad</view></command>
+		<command name="SettingNewsInsExe"><view>SettingNewsInsExe</view><status value="CMD_OK"><forward>SettingNews</forward></status></command>
+		<command name="SettingNewsUpdLoad"><view>SettingNewsUpdLoad</view></command>
+		<command name="SettingNewsUpdExe"><view>SettingNewsUpdExe</view><status value="CMD_OK"><forward>SettingNews</forward></status></command>
+		<command name="SettingNewsDelLoad"><view>SettingNewsDelLoad</view></command>
+		<command name="SettingNewsDelExe"><view>SettingNewsDelExe</view><status value="CMD_OK"><forward>SettingNews</forward></status></command>
+		
 	</control>
 </options>
