@@ -58,7 +58,7 @@ class CategoryNews extends Object{
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
 	
-	function getURLSettingNews(){return "/setting/category/news/".$this->getId();}
+	function getURLSettingNews(){return "/setting/category-n/".$this->getId()."/news";}
 	
 	function getURLNewsAutoLoad(){		return "/app/category/news/".$this->getId()."/auto/load";}
 	function getURLNewsAutoExe(){		return "/app/category/news/".$this->getId()."/auto/exe";}
@@ -73,8 +73,8 @@ class CategoryNews extends Object{
 	function getURLDelLoad(){return "/app/category/news/".$this->getId()."/del/load";}
 	function getURLDelExe(){return "/app/category/news/".$this->getId()."/del/exe";}
 	
-	function getURLNewsInsLoad(){return "/app/news/".$this->getId()."/ins/load";}
-	function getURLNewsInsExe(){return "/app/news/".$this->getId()."/ins/exe";}
+	function getURLNewsInsLoad(){return "/setting/category-n/".$this->getId()."/news/ins-load";}
+	function getURLNewsInsExe(){return "/setting/category-n/".$this->getId()."/news/ins-exe";}
 	
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
