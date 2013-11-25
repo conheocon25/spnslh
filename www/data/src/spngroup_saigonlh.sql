@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 22, 2013 at 09:15 AM
+-- Generation Time: Nov 25, 2013 at 09:22 AM
 -- Server version: 5.5.16
 -- PHP Version: 5.3.8
 
@@ -19,6 +19,58 @@ SET time_zone = "+00:00";
 --
 -- Database: `spngroup_saigonlh`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_category_news`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_category_news` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `order` int(11) NOT NULL,
+  `key` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `tbl_category_news`
+--
+
+INSERT INTO `tbl_category_news` (`id`, `name`, `order`, `key`) VALUES
+(1, 'Danh mục tin 1', 2, 'danh-muc-tin-1'),
+(2, 'Danh mục tin 2', 0, 'danh-muc-tin-2'),
+(3, 'Danh mục tin 3', 0, 'danh-muc-tin-3'),
+(4, 'Danh mục tin 4', 0, 'danh-muc-tin-4'),
+(5, 'Danh mục tin 5', 6, 'danh-muc-tin-5');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_news`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_news` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_category` int(11) DEFAULT NULL,
+  `author` varchar(50) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `content` longtext NOT NULL,
+  `title` text NOT NULL,
+  `type` int(11) NOT NULL DEFAULT '0',
+  `key` varchar(250) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `foreign_field` (`id_category`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+
+--
+-- Dumping data for table `tbl_news`
+--
+
+INSERT INTO `tbl_news` (`id`, `id_category`, `author`, `date`, `content`, `title`, `type`, `key`) VALUES
+(5, 2, 'Toàn', '2013-11-24 17:00:00', '<p>\r\n	default</p>\r\n', 'Tin tức 1', 1, 'tin-tuc-1-5'),
+(7, 2, 'Tác giả', '2013-11-25 08:01:19', '', 'Tin tức 3', 0, 'tin-tuc-3-');
 
 -- --------------------------------------------------------
 
@@ -62,7 +114,7 @@ CREATE TABLE IF NOT EXISTS `tbl_project_album` (
   `description` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
   `key` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `tbl_project_album`
@@ -89,7 +141,7 @@ CREATE TABLE IF NOT EXISTS `tbl_project_document` (
   `description` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
   `key` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `tbl_project_document`
@@ -115,7 +167,7 @@ CREATE TABLE IF NOT EXISTS `tbl_project_news` (
   `description` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
   `key` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `tbl_project_news`
@@ -141,7 +193,7 @@ CREATE TABLE IF NOT EXISTS `tbl_project_product` (
   `description` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
   `key` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `tbl_project_product`
@@ -168,7 +220,7 @@ CREATE TABLE IF NOT EXISTS `tbl_project_video` (
   `description` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
   `key` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `tbl_project_video`
