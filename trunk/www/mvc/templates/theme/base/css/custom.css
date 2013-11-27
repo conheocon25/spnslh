@@ -18,3 +18,5 @@
 	
 	.product-list .sitem { margin: 10px 0; }
 	.product-list .sitem .onethree-right a { font-size: 15px; }
+	
+	.sidebar-items img { max-height: 122px; max-width: 100%; box-shadow: 0 0 2px #AAAAAA; border: 5px solid #fff; border-radius: 10px; }

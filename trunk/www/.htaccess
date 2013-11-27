@@ -12,6 +12,9 @@ RewriteRule ^project/video$ 										?cmd=ProjectVideo [L]
 RewriteRule ^project/product$ 										?cmd=ProjectProduct [L]
 RewriteRule ^project/document$ 										?cmd=ProjectDocument [L]
 
+RewriteRule ^tin-tuc$ 												?cmd=News [L]
+RewriteRule ^tin-tuc/([a-z0-9_-]+)$ 								?cmd=ReadCategory&Key=$1 [L]
+
 #---------------------------------------------------------------------------------------------------------------------------
 # SETTING
 #---------------------------------------------------------------------------------------------------------------------------
