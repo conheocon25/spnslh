@@ -59,6 +59,7 @@ class CategoryNews extends Object{
 	//-------------------------------------------------------------------------------
 	
 	function getURLSettingNews(){return "/setting/category-n/".$this->getId()."/news";}
+	function getURLReadNews(){return "/tin-tuc/".$this->getKey();}
 	
 	function getURLNewsAutoLoad(){		return "/app/category/news/".$this->getId()."/auto/load";}
 	function getURLNewsAutoExe(){		return "/app/category/news/".$this->getId()."/auto/exe";}

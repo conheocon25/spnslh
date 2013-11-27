@@ -69,7 +69,7 @@
 								<ul>
 									<li tal:attributes="class php:ActiveTopMenu=='Home'?'selected':''"><a href="/home">Trang Chủ</a></li>
 									<li tal:attributes="class php:ActiveTopMenu=='Project'?'selected':''"><a href="/project">Dự Án</a></li>
-									<li tal:attributes="class php:ActiveTopMenu=='News'?'selected':''"><a href="/news">Tin tức</a></li>                       
+									<li tal:attributes="class php:ActiveTopMenu=='News'?'selected':''"><a href="/tin-tuc">Tin tức</a></li>                       
 									<li tal:attributes="class php:ActiveTopMenu=='Contact'?'selected':''"><a href="/contact">Liên Hệ</a></li>
 								</ul>
 							</div>
@@ -121,6 +121,18 @@
 			<li tal:attributes="class php:ActiveLeftMenu=='ProjectVideo'?'active':''"><a href="/project/video"><i class="icon-film"></i> &nbsp;Video</a></li>
 			<li tal:attributes="class php:ActiveLeftMenu=='ProjectProduct'?'active':''"><a href="/project/product"><i class="icon-inbox"></i> &nbsp;Sản phẩm</a></li>
 			<li tal:attributes="class php:ActiveLeftMenu=='ProjectDocument'?'active':''"><a href="/project/document"><i class="icon-briefcase"></i> &nbsp;Tài liệu</a></li>
+		</ul>
+	</div>
+	
+	<!-- ======================================================================== -->
+	<!-- NEWS LEFT MENU															  -->
+	<!-- ======================================================================== -->
+	<div metal:define-macro="NewsLeftMenu" class="sidey">
+		<ul class="nav">
+			<li tal:attributes="class php:ActiveLeftMenu=='News'?'active':''"><a href="/tin-tuc"><i class="icon-globe"></i> &nbsp;Tin tổng hợp</a></li>
+			<li tal:repeat="Category AllCategoryNews" tal:attributes="class php:ActiveLeftMenu==Category->getId()?'active':''">
+				<a tal:attributes="href Category/getURLReadNews"><i class="icon-globe"></i> &nbsp;<span tal:content="Category/getName"/></a>
+			</li>
 		</ul>
 	</div>
 

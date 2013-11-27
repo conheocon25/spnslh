@@ -44,6 +44,7 @@ class News extends Object{
 	
 	function setContent( $Content ){$this->Content = $Content;$this->markDirty();}   
 	function getContent( ) {return $this->Content;}
+	function getContentReduce(){$S = new \MVC\Library\String($this->Content);return $S->reduceHTML(320);}
 	
 	function setTitle( $Title ){$this->Title = $Title;$this->markDirty();}   
 	function getTitle( ) {return $this->Title;}	
@@ -61,7 +62,7 @@ class News extends Object{
 			$first_img = $matches[1][0];
 		}
 		else {
-			$first_img = "/data/images/news.jpg";
+			$first_img = "/mvc/templates/theme/base/img/items/1.jpg";
 		}
 		return $first_img;
 	}
@@ -98,8 +99,7 @@ class News extends Object{
 		$this->Type		 	= $Data[6];		
 		$this->reKey();
     }
-	
-	function getContentReduce(){$S = new \MVC\Library\String($this->Content);return $S->reduceHTML(320);}
+
 	//-------------------------------------------------------------------------------
 	//GET LISTs
 	//-------------------------------------------------------------------------------
