@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class ReadCategory extends Command {
+	class ReadNews extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -21,20 +21,23 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
+			$News = $mNews->findByKey($Key);
+			$Category = $News->getCategory();
 			$AllCategoryNews = $mCategoryNews->findAll();
-			$Category = $mCategoryNews->findByKey($Key);
 			$Navigation = array(
-				array("Tin tức", "/tin-tuc")
+				array("Tin tức", "/tin-tuc"),
+				array($Category->getName(), $Category->getURLReadNews())
 			);
 
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-			$request->setProperty('Title', $Category->getName());
+			$request->setProperty('Title', $News->getTitleReduce());
 			$request->setProperty('ActiveTopMenu', 'News');
 			$request->setProperty('ActiveLeftMenu', $Category->getId());
 			$request->setObject('Navigation', $Navigation);
 			$request->setObject('AllCategoryNews', $AllCategoryNews);
+			$request->setObject('News', $News);
 			$request->setObject('Category', $Category);
 			
 			return self::statuses('CMD_DEFAULT');

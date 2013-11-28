@@ -27,7 +27,7 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-			$request->setProperty('Title', 'Tin tức tổng hợp');
+			$request->setProperty('Title', 'Tin tức');
 			$request->setProperty('ActiveTopMenu', 'News');
 			$request->setProperty('ActiveLeftMenu', 'News');
 			$request->setObject('Navigation', $Navigation);
