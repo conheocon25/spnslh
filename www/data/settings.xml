@@ -16,6 +16,7 @@
 		
 		<command name="News" type="public"><view>News</view></command>
 		<command name="ReadCategory" type="public"><view>ReadCategory</view></command>
+		<command name="ReadNews" type="public"><view>ReadNews</view></command>
 		
 		<!-- ============================================================================== -->
 		<!-- SETTING COMMAND																-->

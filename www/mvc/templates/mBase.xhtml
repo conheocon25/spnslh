@@ -60,14 +60,14 @@
 				<div class="row">
 					<div class="col-md-2 col-sm-2">
 						<div class="logo">
-							<h1><a href="/home">Saigonlandhouse.com</a></h1>
+							<h1><a href="/trang-chu">Saigonlandhouse.com</a></h1>
 						</div>
 					</div>
 					<div class="col-md-6 col-sm-5">
 						<div class="navi">
 							<div id="ddtopmenubar" class="mattblackmenu">
 								<ul>
-									<li tal:attributes="class php:ActiveTopMenu=='Home'?'selected':''"><a href="/home">Trang Chủ</a></li>
+									<li tal:attributes="class php:ActiveTopMenu=='Home'?'selected':''"><a href="/trang-chu">Trang Chủ</a></li>
 									<li tal:attributes="class php:ActiveTopMenu=='Project'?'selected':''"><a href="/project">Dự Án</a></li>
 									<li tal:attributes="class php:ActiveTopMenu=='News'?'selected':''"><a href="/tin-tuc">Tin tức</a></li>                       
 									<li tal:attributes="class php:ActiveTopMenu=='Contact'?'selected':''"><a href="/contact">Liên Hệ</a></li>
@@ -103,7 +103,7 @@
 	<!-- ======================================================================== -->
 	<div metal:define-macro="Breadcrumb">
 		<ul class="breadcrumb">
-			<li><a href="/home">Trang chủ</a> <span class="divider"/></li>
+			<li><a href="/trang-chu">Trang chủ</a> <span class="divider"/></li>
 			<li tal:repeat="Item Navigation"><a tal:attributes="href php:Item[1]" tal:content="php:Item[0]"/> <span class="divider"/></li>
 			<li class="active" tal:content="Title"/>
 		</ul>
@@ -114,7 +114,7 @@
 	<!-- ======================================================================== -->
 	<div metal:define-macro="ProductLeftMenu" class="sidey">
 		<ul class="nav">
-			<li><a href="/home"><i class="icon-home"></i> &nbsp;Trang chủ</a></li>
+			<li><a href="/trang-chu"><i class="icon-home"></i> &nbsp;Trang chủ</a></li>
 			<li tal:attributes="class php:ActiveLeftMenu=='Project'?'active':''"><a href="/project"><i class="icon-info"></i> &nbsp;Thông tin dự án</a></li>
 			<li tal:attributes="class php:ActiveLeftMenu=='ProjectNews'?'active':''"><a href="/project/news"><i class="icon-globe"></i> &nbsp;Tin tức</a></li>
 			<li tal:attributes="class php:ActiveLeftMenu=='ProjectAlbum'?'active':''"><a href="/project/album"><i class="icon-picture"></i> &nbsp;Hình ảnh</a></li>
@@ -129,7 +129,7 @@
 	<!-- ======================================================================== -->
 	<div metal:define-macro="NewsLeftMenu" class="sidey">
 		<ul class="nav">
-			<li tal:attributes="class php:ActiveLeftMenu=='News'?'active':''"><a href="/tin-tuc"><i class="icon-globe"></i> &nbsp;Tin tổng hợp</a></li>
+			<li tal:attributes="class php:ActiveLeftMenu=='News'?'active':''"><a href="/tin-tuc"><i class="icon-globe"></i> &nbsp;Tin tức</a></li>
 			<li tal:repeat="Category AllCategoryNews" tal:attributes="class php:ActiveLeftMenu==Category->getId()?'active':''">
 				<a tal:attributes="href Category/getURLReadNews"><i class="icon-globe"></i> &nbsp;<span tal:content="Category/getName"/></a>
 			</li>
