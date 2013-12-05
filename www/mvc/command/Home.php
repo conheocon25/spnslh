@@ -15,10 +15,13 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
+			require_once("mvc/base/mapper/MapperDefault.php");
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
+			$AllCategoryNews = $mCategoryNews->findAll();
+			
 			$Navigation = array();
 
 			//-------------------------------------------------------------
@@ -27,6 +30,7 @@
 			$request->setProperty('Title', 'Trang chủ');
 			$request->setProperty('ActiveTopMenu', 'Home');
 			$request->setProperty('ActiveLeftMenu', '');
+			$request->setObject('AllCategoryNews', $AllCategoryNews);
 			$request->setObject('Navigation', $Navigation);
 			
 			return self::statuses('CMD_DEFAULT');

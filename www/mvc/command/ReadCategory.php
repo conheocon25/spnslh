@@ -12,6 +12,7 @@
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
 			$Key = $request->getProperty('Key');
+			$Page = $request->getProperty('Page');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
@@ -21,8 +22,14 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
+			if (!isset($Page)) $Page = 1;
+			
 			$AllCategoryNews = $mCategoryNews->findAll();
 			$Category = $mCategoryNews->findByKey($Key);
+			
+			$NewsAll = $mNews->findByCategoryPage(array($Category->getId(), $Page, 10));
+			$PN = new \MVC\Domain\PageNavigation($Category->getNewsAll()->count(), 10, $Category->getURLReadNews());
+			
 			$Navigation = array(
 				array("Tin tức", "/tin-tuc")
 			);
@@ -36,6 +43,9 @@
 			$request->setObject('Navigation', $Navigation);
 			$request->setObject('AllCategoryNews', $AllCategoryNews);
 			$request->setObject('Category', $Category);
+			$request->setObject('NewsAll', $NewsAll);
+			$request->setObject("PN", $PN);
+			$request->setProperty("Page", $Page);
 			
 			return self::statuses('CMD_DEFAULT');
 		}

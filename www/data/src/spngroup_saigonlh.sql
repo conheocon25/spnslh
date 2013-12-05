@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 25, 2013 at 09:22 AM
+-- Generation Time: Dec 05, 2013 at 10:04 AM
 -- Server version: 5.5.16
 -- PHP Version: 5.3.8
 
@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `tbl_news` (
   `key` varchar(250) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `foreign_field` (`id_category`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
 
 --
 -- Dumping data for table `tbl_news`
@@ -70,7 +70,19 @@ CREATE TABLE IF NOT EXISTS `tbl_news` (
 
 INSERT INTO `tbl_news` (`id`, `id_category`, `author`, `date`, `content`, `title`, `type`, `key`) VALUES
 (5, 2, 'Toàn', '2013-11-24 17:00:00', '<p>\r\n	default</p>\r\n', 'Tin tức 1', 1, 'tin-tuc-1-5'),
-(7, 2, 'Tác giả', '2013-11-25 08:01:19', '', 'Tin tức 3', 0, 'tin-tuc-3-');
+(7, 2, 'Tác giả', '2013-11-25 08:01:19', '', 'Tin tức 3', 0, 'tin-tuc-3-'),
+(8, 2, 'Toàn', '2013-12-04 17:00:00', '<p>\r\n	default</p>\r\n', 'Tin tức 2', 1, 'tin-tuc-2-8'),
+(9, 2, 'Người Đưa Tin', '2013-12-04 17:00:00', '<p>\r\n	Tr&iacute;ch dẫn tin tức</p>\r\n', 'Tin tức 4', 0, 'tin-tuc-4-9'),
+(10, 2, 'Người Đưa Tin', '2013-12-05 08:38:23', '<p>\r\n	Nội dung tin</p>\r\n', 'Tin tức 6', 1, 'tin-tuc-6-'),
+(11, 2, 'Người Đưa Tin', '2013-12-05 08:38:32', '<p>\r\n	Nội dung tin</p>\r\n', 'Tin tức 7', 0, 'tin-tuc-7-'),
+(12, 2, 'Người Đưa Tin', '2013-12-05 08:38:41', '<p>\r\n	Nội dung tin</p>\r\n', 'Tin tức 8', 0, 'tin-tuc-8-'),
+(13, 2, 'Người Đưa Tin', '2013-12-05 08:38:51', '<p>\r\n	Nội dung tin</p>\r\n', 'Tin tức 9', 0, 'tin-tuc-9-'),
+(14, 2, 'Người Đưa Tin', '2013-12-05 08:39:02', '<p>\r\n	Nội dung tin</p>\r\n', 'Tin tức 10', 0, 'tin-tuc-10-'),
+(15, 2, 'Người Đưa Tin', '2013-12-05 08:39:09', '<p>\r\n	Nội dung tin</p>\r\n', 'Tin tức 11', 0, 'tin-tuc-11-'),
+(16, 2, 'Người Đưa Tin', '2013-12-05 08:39:18', '<p>\r\n	Nội dung tin</p>\r\n', 'Tin tức 12', 0, 'tin-tuc-12-'),
+(17, 2, 'Người Đưa Tin', '2013-12-05 08:39:27', '<p>\r\n	Nội dung tin</p>\r\n', 'Tin tức 13', 0, 'tin-tuc-13-'),
+(18, 2, 'Người Đưa Tin', '2013-12-05 08:39:35', '<p>\r\n	Nội dung tin</p>\r\n', 'Tin tức 14', 0, 'tin-tuc-14-'),
+(19, 2, 'Người Đưa Tin', '2013-12-05 08:39:44', '<p>\r\n	Nội dung tin</p>\r\n', 'Tin tức 15', 0, 'tin-tuc-15-');
 
 -- --------------------------------------------------------
 

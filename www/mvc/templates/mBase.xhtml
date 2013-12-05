@@ -69,7 +69,14 @@
 								<ul>
 									<li tal:attributes="class php:ActiveTopMenu=='Home'?'selected':''"><a href="/trang-chu">Trang Chủ</a></li>
 									<li tal:attributes="class php:ActiveTopMenu=='Project'?'selected':''"><a href="/project">Dự Án</a></li>
-									<li tal:attributes="class php:ActiveTopMenu=='News'?'selected':''"><a href="/tin-tuc">Tin tức</a></li>                       
+									<li tal:attributes="class php:ActiveTopMenu=='News'?'selected':''"><a href="/tin-tuc" rel="ddsubmenu1">Tin Tức</a>
+										<ul id="ddsubmenu1" class="ddsubmenustyle">
+											<li tal:repeat="Category AllCategoryNews" class="selected">
+												<a tal:attributes="href Category/getURLReadNews" tal:content="Category/getName"/>
+											</li>
+										</ul>
+									</li>
+									
 									<li tal:attributes="class php:ActiveTopMenu=='Contact'?'selected':''"><a href="/contact">Liên Hệ</a></li>
 								</ul>
 							</div>
@@ -176,10 +183,10 @@
 							<h4>Thông tin liên hệ</h4>
 							<hr />
 							<div class="address">
-								<p><i class="icon-home color contact-icon"></i>Tầng trệt Toà nhà TS</p>
-								<p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Số 17 Đường số 2 - Cư xá Đô Thành</p>
-								<p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Quận 3 - TP. Hồ Chí Minh</p>
-								<p><i class="icon-phone color contact-icon"></i> (+84) 83 81 81 5 89</p>
+								<p><i class="icon-home color contact-icon"></i>Tầng trệt A3-1-6</p>
+								<p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Căn hộ cao cấp Hoàng Anh Gold House</p>
+								<p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Nhà Bè - TP. Hồ Chí Minh</p>
+								<p><i class="icon-phone color contact-icon"></i> (+84) 903 651 838</p>
 								<p><i class="icon-envelope color contact-icon"></i> <a href="mailto:saigonlandhouse@gmail.com">saigonlandhouse@gmail.com</a></p>
 							</div>
 						</div>
@@ -187,7 +194,8 @@
 				</div>
 				<hr />
 				<div class="copy text-center">
-					Bản quyền 2013 &copy; - <a href="http://saigonlandhouse.com">Saigonlandhouse.com</a>
+					Bản quyền 2013 &copy; - <a href="http://saigonlandhouse.com">Saigonlandhouse.com</a><br/>
+					<i>Trang web hiện đang được nâng cấp, các thông tin chi mang tính chất tham khảo</i>
 				</div>
 			</div>
 		</footer>
