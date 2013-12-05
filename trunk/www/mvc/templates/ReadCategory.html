@@ -16,7 +16,7 @@
 						<div metal:use-macro="mBase.xhtml/Breadcrumb"/>
 						<br/>
 						<div class="sidebar-items">
-							<div tal:repeat="News Category/getNewsAll" class="sitem">
+							<div tal:repeat="News NewsAll" class="sitem">
 								<div class="onethree-left">
 									<a tal:attributes="href News/getURLRead">
 										<img tal:attributes="src News/getImage"/>
@@ -24,10 +24,20 @@
 								</div>
 								<div class="onethree-right">
 									<a tal:attributes="href News/getURLRead"><h4 tal:content="News/getTitle"/></a>
-									<p tal:content="News/getContentReduce"/>
+									<p tal:content="structure News/getContentReduce"/>
 									<i tal:content="News/getDatePrint"/>
 								</div>
 								<div class="clearfix"></div>
+							</div>
+						</div>
+						
+						<div class="row">
+							<div class="col-md-12">
+								<ul class="pagination">
+									<li><a href="#">&laquo;</a></li>
+									<li tal:repeat="P PN/getPages"><a tal:attributes="href P/getURL" tal:content="P/getName"/></li>
+									<li><a href="#">&raquo;</a></li>
+								</ul> 
 							</div>
 						</div>
 					</div>

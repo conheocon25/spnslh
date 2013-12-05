@@ -15,10 +15,13 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
+			require_once("mvc/base/mapper/MapperDefault.php");
 
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
+			$AllCategoryNews = $mCategoryNews->findAll();
+			
 			$Navigation = array(				
 				array("Dự án", "/project")
 			);
@@ -29,6 +32,7 @@
 			$request->setProperty('Title', 'Album ảnh');
 			$request->setProperty('ActiveTopMenu', 'Project');
 			$request->setProperty('ActiveLeftMenu', 'ProjectAlbum');
+			$request->setObject('AllCategoryNews', $AllCategoryNews);
 			$request->setObject('Navigation', $Navigation);
 			
 			return self::statuses('CMD_DEFAULT');

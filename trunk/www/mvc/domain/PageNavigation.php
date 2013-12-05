@@ -74,7 +74,7 @@ class PageNavigation extends Object{
 			$N = ceil($this->Rows/$this->Size);
 			$this->Pages = new \MVC\Mapper\PageCollection();
 			for ($i=1; $i<=$N; $i++){
-				$P = new Page($i, "Trang ".$i, $this->URL."/page/".$i);
+				$P = new Page($i, $i, $this->URL."/trang-".$i);
 				$this->Pages->add($P);
 			}
 		}
