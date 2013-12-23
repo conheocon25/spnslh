@@ -68,7 +68,7 @@
 							<div id="ddtopmenubar" class="mattblackmenu">
 								<ul>
 									<li tal:attributes="class php:ActiveTopMenu=='Home'?'selected':''"><a href="/trang-chu">Trang Chủ</a></li>
-									<li tal:attributes="class php:ActiveTopMenu=='Project'?'selected':''"><a href="/project">Dự Án</a></li>
+									<li tal:attributes="class php:ActiveTopMenu=='Project'?'selected':''"><a href="/du-an">Dự Án</a></li>
 									<li tal:attributes="class php:ActiveTopMenu=='News'?'selected':''"><a href="/tin-tuc" rel="ddsubmenu1">Tin Tức</a>
 										<ul id="ddsubmenu1" class="ddsubmenustyle">
 											<li tal:repeat="Category AllCategoryNews" class="selected">
@@ -121,13 +121,12 @@
 	<!-- ======================================================================== -->
 	<div metal:define-macro="ProductLeftMenu" class="sidey">
 		<ul class="nav">
-			<li><a href="/trang-chu"><i class="icon-home"></i> &nbsp;Trang chủ</a></li>
-			<li tal:attributes="class php:ActiveLeftMenu=='Project'?'active':''"><a href="/project"><i class="icon-info"></i> &nbsp;Thông tin dự án</a></li>
-			<li tal:attributes="class php:ActiveLeftMenu=='ProjectNews'?'active':''"><a href="/project/news"><i class="icon-globe"></i> &nbsp;Tin tức</a></li>
-			<li tal:attributes="class php:ActiveLeftMenu=='ProjectAlbum'?'active':''"><a href="/project/album"><i class="icon-picture"></i> &nbsp;Hình ảnh</a></li>
-			<li tal:attributes="class php:ActiveLeftMenu=='ProjectVideo'?'active':''"><a href="/project/video"><i class="icon-film"></i> &nbsp;Video</a></li>
-			<li tal:attributes="class php:ActiveLeftMenu=='ProjectProduct'?'active':''"><a href="/project/product"><i class="icon-inbox"></i> &nbsp;Sản phẩm</a></li>
-			<li tal:attributes="class php:ActiveLeftMenu=='ProjectDocument'?'active':''"><a href="/project/document"><i class="icon-briefcase"></i> &nbsp;Tài liệu</a></li>
+			<li tal:attributes="class php:ActiveLeftMenu=='Project'?'active':''"><a tal:attributes="href Project/getURLView"><i class="icon-info"></i> &nbsp;Thông tin dự án</a></li>
+			<li tal:attributes="class php:ActiveLeftMenu=='ProjectNews'?'active':''"><a tal:attributes="href Project/getURLNews"><i class="icon-globe"></i> &nbsp;Tin tức</a></li>
+			<li tal:attributes="class php:ActiveLeftMenu=='ProjectAlbum'?'active':''"><a tal:attributes="href Project/getURLAlbum"><i class="icon-picture"></i> &nbsp;Hình ảnh</a></li>
+			<li tal:attributes="class php:ActiveLeftMenu=='ProjectVideo'?'active':''"><a tal:attributes="href Project/getURLVideo"><i class="icon-film"></i> &nbsp;Video</a></li>
+			<li tal:attributes="class php:ActiveLeftMenu=='ProjectProduct'?'active':''"><a tal:attributes="href Project/getURLProduct"><i class="icon-inbox"></i> &nbsp;Hạng mục</a></li>
+			<li tal:attributes="class php:ActiveLeftMenu=='ProjectDocument'?'active':''"><a tal:attributes="href Project/getURLDocumment"><i class="icon-briefcase"></i> &nbsp;Tài liệu</a></li>
 		</ul>
 	</div>
 	

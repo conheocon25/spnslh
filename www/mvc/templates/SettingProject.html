@@ -130,6 +130,7 @@
 		<div metal:use-macro="mAdmin.xhtml/multiDeleteDialog"/>
 		<div metal:use-macro="mAdmin.xhtml/SignoutDialog"/>
 		<span metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<script src="/mvc/templates/theme/base/js/regkey.js"></script>
 		<script type="text/javascript">
 		/*<![CDATA[*/
 			/* ---------------------------------------------------------------------------- */
@@ -142,7 +143,7 @@
 				Data[1] = $('#iName').val();
 				Data[2] = $('#iDescription').val();
 				Data[3] = '0';
-				Data[4] = '0';
+				Data[4] = reKey($('#iName').val());
 				$.ajax({
 					type: "POST",
 					data: {Data:Data},
@@ -171,7 +172,7 @@
 				Data[1] = $('#uName').val();
 				Data[2] = $('#uDescription').val();
 				Data[3] = '0';
-				Data[4] = '0';
+				Data[4] = reKey($('#uName').val());
 				$.ajax({
 					type: "POST",
 					data: {Data:Data},
