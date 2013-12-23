@@ -11,6 +11,7 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
+			$Key = $request->getProperty("Key");
 
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
@@ -21,9 +22,10 @@
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
 			$AllCategoryNews = $mCategoryNews->findAll();
+			$Project = $mProject->findByKey($Key);
 			
 			$Navigation = array(				
-				array("Dự án", "/project")
+				array("Dự án", "/du-an")
 			);
 
 			//-------------------------------------------------------------
@@ -33,6 +35,7 @@
 			$request->setProperty('ActiveTopMenu', 'Project');
 			$request->setProperty('ActiveLeftMenu', 'ProjectVideo');
 			$request->setObject('AllCategoryNews', $AllCategoryNews);
+			$request->setObject('Project', $Project);
 			$request->setObject('Navigation', $Navigation);
 			
 			return self::statuses('CMD_DEFAULT');

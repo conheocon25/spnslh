@@ -13,7 +13,7 @@ class Project extends Mapper implements \MVC\Domain\ProjectFinder{
 		$updateStmt = sprintf("update %s set name=?, description=?, type=?, `key`=? where id=?", $tblProject);
 		$insertStmt = sprintf("insert into %s ( name, description, type, `key`) values(?, ?, ?, ?)", $tblProject);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblProject);
-						
+		$findByKeyStmt = sprintf("select *  from %s where `key`=?", $tblProject);
 		$findByPageStmt = sprintf(
 			"SELECT 
 				*
@@ -27,7 +27,7 @@ class Project extends Mapper implements \MVC\Domain\ProjectFinder{
         $this->updateStmt = self::$PDO->prepare($updateStmt);
         $this->insertStmt = self::$PDO->prepare($insertStmt);
 		$this->deleteStmt = self::$PDO->prepare($deleteStmt);
-				
+		$this->findByKeyStmt = self::$PDO->prepare($findByKeyStmt);
 		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);
 
     } 
@@ -71,7 +71,17 @@ class Project extends Mapper implements \MVC\Domain\ProjectFinder{
 
     function selectStmt() {return $this->selectStmt;}
     function selectAllStmt() {return $this->selectAllStmt;}
-				
+	
+	function findByKey( $values ) {	
+		$this->findByKeyStmt->execute( array($values) );
+        $array = $this->findByKeyStmt->fetch();
+        $this->findByKeyStmt->closeCursor();
+        if ( ! is_array( $array ) ) { return null; }
+        if ( ! isset( $array['id'] ) ) { return null; }
+        $object = $this->doCreateObject( $array );
+        return $object;		
+    }
+	
 	function findByPage( $values ) {		
 		$this->findByPageStmt->bindValue(':start', ((int)($values[0])-1)*(int)($values[1]), \PDO::PARAM_INT);
 		$this->findByPageStmt->bindValue(':max', (int)($values[1]), \PDO::PARAM_INT);

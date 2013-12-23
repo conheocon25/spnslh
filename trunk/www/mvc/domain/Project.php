@@ -16,7 +16,7 @@ class Project extends Object{
     function __construct( $Id=null, $Name=null, $Description=null, $Type=null, $Key=null){
         $this->Id = $Id;
 		$this->Name = $Name;		
-		$this->Description = $Description;	
+		$this->Description = $Description;
 		$this->Type = $Type;
 		$this->Key = $Key;
 		
@@ -43,7 +43,7 @@ class Project extends Object{
 			$first_img = $matches[1][0];
 		}
 		else {
-			$first_img = "/data/images/no_image.png";
+			$first_img = "/mvc/templates/theme/base/img/items/1.jpg";
 		}
 		return $first_img;
 	}
@@ -111,6 +111,13 @@ class Project extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
+	function getURLView(){return "/du-an/".$this->getKey();}
+	function getURLAlbum(){return "/du-an/".$this->getKey()."/hinh-anh";}
+	function getURLNews(){return "/du-an/".$this->getKey()."/tin-tuc";}
+	function getURLVideo(){return "/du-an/".$this->getKey()."/video";}
+	function getURLProduct(){return "/du-an/".$this->getKey()."/hang-muc";}
+	function getURLDocumment(){return "/du-an/".$this->getKey()."/tai-lieu";}
+	
 	function getURLSettingNews(){return "/setting/project/".$this->getId()."/news";}
 	function getURLSettingAlbum(){return "/setting/project/".$this->getId()."/album";}
 	function getURLSettingVideo(){return "/setting/project/".$this->getId()."/video";}

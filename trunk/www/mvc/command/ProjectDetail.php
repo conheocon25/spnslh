@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class Project extends Command {
+	class ProjectDetail extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -11,6 +11,7 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
+			$Key = $request->getProperty("Key");
 
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
@@ -21,18 +22,20 @@
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
 			$AllCategoryNews = $mCategoryNews->findAll();
-			$AllProject = $mProject->findAll();
+			$Project = $mProject->findByKey($Key);
 			
-			$Navigation = array();
+			$Navigation = array(				
+				array("Dự án", "/du-an")
+			);
 
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-			$request->setProperty('Title', 'Dự án');
+			$request->setProperty('Title', 'Thông tin chung');
 			$request->setProperty('ActiveTopMenu', 'Project');
-			$request->setProperty('ActiveLeftMenu', '');
+			$request->setProperty('ActiveLeftMenu', 'Project');
 			$request->setObject('AllCategoryNews', $AllCategoryNews);
-			$request->setObject('AllProject', $AllProject);
+			$request->setObject('Project', $Project);
 			$request->setObject('Navigation', $Navigation);
 			
 			return self::statuses('CMD_DEFAULT');

@@ -8,6 +8,7 @@
 		<command name="Home" type="public"><view>Home</view></command>
 		
 		<command name="Project" type="public"><view>Project</view></command>
+		<command name="ProjectDetail" type="public"><view>ProjectDetail</view></command>
 		<command name="ProjectNews" type="public"><view>ProjectNews</view></command>
 		<command name="ProjectAlbum" type="public"><view>ProjectAlbum</view></command>
 		<command name="ProjectVideo" type="public"><view>ProjectVideo</view></command>

@@ -5,12 +5,13 @@ RewriteEngine on
 # BASE
 #---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^trang-chu$ 											?cmd=Home [L]
-RewriteRule ^project$ 												?cmd=Project [L]
-RewriteRule ^project/news$ 											?cmd=ProjectNews [L]
-RewriteRule ^project/album$ 										?cmd=ProjectAlbum [L]
-RewriteRule ^project/video$ 										?cmd=ProjectVideo [L]
-RewriteRule ^project/product$ 										?cmd=ProjectProduct [L]
-RewriteRule ^project/document$ 										?cmd=ProjectDocument [L]
+RewriteRule ^du-an$ 												?cmd=Project [L]
+RewriteRule ^du-an/([a-z0-9_-]+)$ 									?cmd=ProjectDetail&Key=$1 [L]
+RewriteRule ^du-an/([a-z0-9_-]+)/tin-tuc$ 							?cmd=ProjectNews&Key=$1 [L]
+RewriteRule ^du-an/([a-z0-9_-]+)/hinh-anh$ 							?cmd=ProjectAlbum&Key=$1 [L]
+RewriteRule ^du-an/([a-z0-9_-]+)/video$ 							?cmd=ProjectVideo&Key=$1 [L]
+RewriteRule ^du-an/([a-z0-9_-]+)/hang-muc$ 							?cmd=ProjectProduct&Key=$1 [L]
+RewriteRule ^du-an/([a-z0-9_-]+)/tai-lieu$ 							?cmd=ProjectDocument&Key=$1 [L]
 
 RewriteRule ^tin-tuc$ 												?cmd=News [L]
 RewriteRule ^tin-tuc/([a-z0-9_-]+)$ 								?cmd=ReadCategory&Key=$1 [L]
