@@ -23,18 +23,18 @@
 									</div>
 								</div>
 								<div class="col-md-6 col-xs-8">
-									<h4>Thông tin dự án</h4>
-									<p><strong>Tên dự án</strong>: <span tal:content="Project/getName"/></p>
-									<p><strong>Vị trí</strong>: KDC An Cư 5, Phường Mân Thái, Quận Sơn Trà, Đà Nẵng</p>
-									<p><strong>Loại hình</strong>: Căn hộ</p>
-									<p><strong>Chủ đầu tư</strong>: Công ty Cổ phần Bảo Phước</p>
-									<p><strong>Tổng diện tích</strong>: 1.000m<sup>2</sup></p>
-									<p><strong>Tổng vốn đầu tư</strong>: 200 tỷ VNĐ</p>
-									<p><strong>Ngày khởi công</strong>: Quý III/2012</p>
-									<p><strong>Năm hoàn thành</strong>: Quý III/2014</p>
+									<h4>Tên dự án: <span tal:content="Project/getName"/></h4>
+									<p><strong>Vị trí</strong>: <span tal:content="Project/getAddress"/></p>
+									<p><strong>Loại hình</strong>: <span tal:content="Project/getType1"/></p>
+									<p><strong>Chủ đầu tư</strong>: <span tal:content="Project/getInvestors"/></p>
+									<p><strong>Tổng diện tích</strong>: <span tal:content="Project/getStretch"/></p>
+									<p><strong>Tổng vốn đầu tư</strong>: <span tal:content="Project/getPayment"/></p>
+									<p><strong>Khởi công</strong>: <span tal:content="Project/getDateStartPrint"/></p>
+									<p><strong>Hoàn thành</strong>: <span tal:content="Project/getDateEndPrint"/></p>
 								</div>
 							</div>
 						</div>
+						<br />
 						<br />
 						<ul id="myTab" class="nav nav-tabs">
 							<li class="active"><a href="#tab1" data-toggle="tab">Quy mô dự án</a></li>
@@ -42,28 +42,14 @@
 							<li><a href="#tab3" data-toggle="tab">Vị trí</a></li>
 						</ul>
 						<div id="myTabContent" class="tab-content">
-							<div class="tab-pane fade in active" id="tab1">
-								<br/>
-								<p>Tọa lạc ngay trung tâm Quận 3, dự án khu căn hộ cao cấp Saigon Pavillon được đánh giá là dự án cao cấp nhất trong khu vực với vị trí tiếp giáp ba con đường thông thoáng, kiến trúc sang trọng và đầy đủ những tiện ích tuyệt vời dành cho những cư dân tương lai tại đây.</p>
-								<br/>
-								<h5><strong>Thiết kế kiến trúc</strong></h5>
-								<p>Được thiết kế theo tiêu chuẩn và phong cách kiến trúc kiểu Pháp, khu căn hộ Saigon Pavillon có diện tích mỗi sàn là 1.571,8m², hệ số sử dụng đất là 6,7 và chiều cao công trình là 12 tầng cao và 3 tầng hầm dành cho bãi đậu xe và tầng kỹ thuật. Toàn bộ diện tích tầng trệt và tầng lửng được sử dụng cho những tiện ích công cộng như: siêu thị, nhà hàng, quán café,...</p>
-								<p>Trên tầng thượng sẽ bố trí hồ bơi và phòng tập thể dục nhằm phục vụ cho cộng đồng dân cư sống trong các căn hộ của Saigon Pavillon. Từ tầng 2 trở lên là các căn hộ được trang bị tiện nghi cao cấp với nhiều dạng thiết kế khác nhau phù hợp cho mọi nhu cầu về nhà ở. Căn hộ được bố trí hiệu quả, các phòng đều có lối ra vào để chiếu sáng và thông gió tự nhiên, từ ban công. Phòng ngủ được bố trí xa phòng khách để cách ly hoàn toàn tiếng ồn.</p>
-								<p>Đặc biệt, toàn bộ căn hộ đều được bố trí đại sảnh sang trọng với ngăn để vật dụng hoặc giày dép. Gian bếp thì được chủ đầu tư kỹ lưỡng thiết kế theo khuynh hướng mở ra phòng khách nhưng vẫn tạo cảm giác kín đáo và ấm cúng. Riêng phòng khách và phòng ăn sẽ nối với nhau tạo cảm giác không gian rộng, thoáng đãng hơn.</p>
-								<br/>
-								<h5><strong>Không gian sống sang trọng và an toàn</strong></h5>
-								<p>Nhìn tổng thể, bố cục của tất cả căn hộ ở đây đều có hình dạng vuông vức phù hợp với sở thích và quan niệm phong thủy về nơi cư trú của đa số người dân Việt Nam. Bên cạnh đó, khu căn hộ còn được trang bị tiện ích hiện đại phục vụ cho những nhu cầu thiết thực của cư dân như: hệ thống thang máy cao cấp dành cho khách sạn 5 sao, hệ thống máy phát điện dự phòng, hệ thống báo cháy và chữa cháy tự động, hệ thống gas trung tâm bảo đảm tính thẩm mỹ và độ an toàn cao.</p>
-								<p>Trong mỗi căn hộ đều được trang bị đầy đủ hệ thống đèn thắp sáng; trang thiết bị vệ sinh cao cấp; bếp của Teka, mặt bếp sử dụng đá granite; hệ thống tủ bếp được xử lý chống thấm và mối mọt; sàn nhà lót gạch ceramic cao cấp, ở những khu vực thường xuyên tiếp xúc với nước như nhà tắm, nhà vệ sinh, phòng giặt và ban công đều được sử dụng gạch ceramic chống trượt; tủ gỗ âm tường trong mỗi phòng ngủ; máy nước nóng; điện thoại, internet tốc độ cao, truyền hình cáp, intercom. Đặc biệt, mỗi căn hộ được bố trí một chỗ đậu xe ôtô tại tầng hầm miễn phí. Hồ bơi và phòng tập thể dục, phí quản lý tòa nhà cũng được miễn phí hoàn toàn cho cư dân.</p>
-								<p>Có thể nói Saigon Pavillon ngoài việc đáp ứng các chỉ tiêu về kết cấu kiến trúc, khả năng kháng chấn và kỹ thuật xây dựng thì đây còn là nơi an cư lý tưởng cho mọi gia đình.</p>
-								<p>Dự án này được đầu tư khoảng 800 tỷ đồng. Dự kiến hoàn tất sau thời gian 18 tháng thi công.</p>
-							</div>
+							<div tal:content="structure Project/getDescription" class="tab-pane fade in active" id="tab1"/>
 
 							<div class="tab-pane fade" id="tab2">
 								<table class="table table-striped">
 									<tbody>
 										<tr>
 											<td><strong>Chủ đầu tư</strong></td>
-											<td>Công ty Cổ phần ĐTXD Phú Hưng Gia</td>
+											<td tal:content="Project/getInvestors"/>
 										</tr>
 										<tr>
 											<td><strong>Thiết kế kiến trúc</strong></td>
@@ -82,9 +68,9 @@
 							</div>
 
 							<div class="tab-pane fade" id="tab3">
-								<h5><strong>Địa chỉ</strong>: KDC An Cư 5, Phường Mân Thái, Quận Sơn Trà, Đà Nẵng</h5>
+								<h5><strong>Địa chỉ</strong>: <span tal:content="Project/getAddress"/></h5>
 								<hr />
-								<img src="img/items/map.jpg" alt=""/>
+								<img src="/mvc/templates/theme/base/img/items/map.jpg" width="100%"/>
 							</div>
 						</div>
 					</div>

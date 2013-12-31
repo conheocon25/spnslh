@@ -64,8 +64,9 @@
 							<div class="item-details">
 								<h5><a tal:attributes="href Project/getURLView" tal:content="Project/getName"/></h5>
 								<div class="clearfix"></div>
-								<p tal:content="Project/getDescription"/>
-								<p tal:content="Project/reKey"/>
+								<p tal:content="Project/getAddress"/>
+								<p><strong>Diện tích:</strong> <span tal:content="Project/getStretch"/></p>
+								<p><strong>Vốn đầu tư:</strong> <span tal:content="Project/getPayment"/></p>
 							</div>
 						</div>
 					</div>

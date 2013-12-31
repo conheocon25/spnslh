@@ -25,13 +25,15 @@
 			$Project = $mProject->findByKey($Key);
 			
 			$Navigation = array(				
-				array("Dự án", "/du-an")
+				array("Dự án", "/du-an"),
+				array($Project->getName(), $Project->getURLView())
 			);
 
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-			$request->setProperty('Title', 'Các hạng mục');
+			$request->setProperty('Title', $Project->getName());
+			$request->setProperty('EndBcrumb', 'Hạng mục');
 			$request->setProperty('ActiveTopMenu', 'Project');
 			$request->setProperty('ActiveLeftMenu', 'ProjectProduct');
 			$request->setObject('AllCategoryNews', $AllCategoryNews);

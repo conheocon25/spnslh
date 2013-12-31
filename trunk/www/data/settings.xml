@@ -40,6 +40,12 @@
 			<command name="ObjectUpd"><view>ObjectUpd</view></command>
 
 		<command name="SettingProject"><view>SettingProject</view></command>
+		<command name="SettingProjectInsLoad"><view>SettingProjectInsLoad</view></command>
+		<command name="SettingProjectInsExe"><view>SettingProjectInsExe</view><status value="CMD_OK"><forward>SettingProject</forward></status></command>
+		<command name="SettingProjectUpdLoad"><view>SettingProjectUpdLoad</view></command>
+		<command name="SettingProjectUpdExe"><view>SettingProjectUpdExe</view><status value="CMD_OK"><forward>SettingProject</forward></status></command>
+		<command name="SettingProjectDelLoad"><view>SettingProjectDelLoad</view></command>
+		<command name="SettingProjectDelExe"><view>SettingProjectDelExe</view><status value="CMD_OK"><forward>SettingProject</forward></status></command>
 		<command name="SettingProjectNews"><view>SettingProjectNews</view></command>
 		<command name="SettingProjectAlbum"><view>SettingProjectAlbum</view></command>
 		<command name="SettingProjectVideo"><view>SettingProjectVideo</view></command>

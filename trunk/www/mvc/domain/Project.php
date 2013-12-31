@@ -7,21 +7,48 @@ class Project extends Object{
     private $Id;
 	private $Name;	
 	private $Description;
+	private $Address;
+	private $Type1;
+	private $Investors;
+	private $Stretch;
+	private $Payment;
+	private $DateStart;
+	private $DateEnd;
 	private $Type;
 	private $Key;
 	
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-    function __construct( $Id=null, $Name=null, $Description=null, $Type=null, $Key=null){
-        $this->Id = $Id;
+    function __construct(
+		$Id=null,
+		$Name=null,
+		$Description=null,
+		$Address=null,
+		$Type1=null,
+		$Investors=null,
+		$Stretch=null,
+		$Payment=null,
+		$DateStart=null,
+		$DateEnd=null,
+		$Type=null,
+		$Key=null
+	){
+		$this->Id = $Id;
 		$this->Name = $Name;		
 		$this->Description = $Description;
+		$this->Address = $Address;
+		$this->Type1 = $Type1;
+		$this->Investors = $Investors;
+		$this->Stretch = $Stretch;
+		$this->Payment = $Payment;
+		$this->DateStart = $DateStart;
+		$this->DateEnd = $DateEnd;
 		$this->Type = $Type;
 		$this->Key = $Key;
-		
-        parent::__construct( $Id );
-    }
+	
+		parent::__construct( $Id );
+	}
     function getId() {return $this->Id;}	
 		
 	function setDescription( $Description ){$this->Description = $Description;$this->markDirty();}   
@@ -30,6 +57,29 @@ class Project extends Object{
 	
 	function setName( $Name ){$this->Name = $Name;$this->markDirty();}   
 	function getName( ) {return $this->Name;}
+	
+	function setAddress( $Address ){$this->Address = $Address;$this->markDirty();}   
+	function getAddress( ) {return $this->Address;}
+	
+	function setType1( $Type1 ){$this->Type1 = $Type1;$this->markDirty();}   
+	function getType1( ) {return $this->Type1;}
+	
+	function setInvestors( $Investors ){$this->Investors = $Investors;$this->markDirty();}   
+	function getInvestors( ) {return $this->Investors;}
+	
+	function setStretch( $Stretch ){$this->Stretch = $Stretch;$this->markDirty();}   
+	function getStretch( ) {return $this->Stretch;}
+	
+	function setPayment( $Payment ){$this->Payment = $Payment;$this->markDirty();}   
+	function getPayment( ) {return $this->Payment;}
+	
+	function setDateStart( $DateStart ){$this->DateStart = $DateStart;$this->markDirty();}   
+	function getDateStart( ) {return $this->DateStart;}
+	function getDateStartPrint( ){$D = new \MVC\Library\Date($this->DateStart);return $D->getDateFormat();}
+	
+	function setDateEnd( $DateEnd ){$this->DateEnd = $DateEnd;$this->markDirty();}   
+	function getDateEnd( ) {return $this->DateEnd;}
+	function getDateEndPrint( ){$D = new \MVC\Library\Date($this->DateEnd);return $D->getDateFormat();}
 	
 	function setType( $Type ){$this->Type = $Type;$this->markDirty();}   
 	function getType( ) {return $this->Type;}
@@ -60,6 +110,13 @@ class Project extends Object{
 			'Id' 			=> $this->getId(),
 			'Name' 			=> $this->getName(),			
 			'Description'	=> $this->getDescription(),
+			'Address'		=> $this->getAddress(),
+			'Type1'			=> $this->getType1(),
+			'Investors'		=> $this->getInvestors(),
+			'Stretch'		=> $this->getStretch(),
+			'Payment'		=> $this->getPayment(),
+			'DateStart'		=> $this->getDateStart(),
+			'DateEnd'		=> $this->getDateEnd(),
 			'Type'			=> $this->getType(),
 			'Key'			=> $this->getKey()
 		);		
@@ -70,8 +127,15 @@ class Project extends Object{
         $this->Id 			= $Data[0];	
 		$this->Name 		= $Data[1];			
 		$this->Description 	= $Data[2];
-		$this->Type 		= $Data[3];
-		$this->Key 			= $Data[4];
+		$this->Address 		= $Data[3];
+		$this->Type1		= $Data[4];
+		$this->Investors	= $Data[5];
+		$this->Stretch		= $Data[6];
+		$this->Payment		= $Data[7];
+		$this->DateStart	= $Data[8];
+		$this->DateEnd		= $Data[9];
+		$this->Type 		= $Data[10];
+		$this->Key 			= $Data[11];
 		
 		$this->reKey();
     }
@@ -123,6 +187,11 @@ class Project extends Object{
 	function getURLSettingVideo(){return "/setting/project/".$this->getId()."/video";}
 	function getURLSettingProduct(){return "/setting/project/".$this->getId()."/product";}
 	function getURLSettingDocument(){return "/setting/project/".$this->getId()."/document";}
+
+	function getURLUpdLoad(){return "/setting/project/".$this->getId()."/upd-load";}
+	function getURLUpdExe(){return "/setting/project/".$this->getId()."/upd-exe";}
+	function getURLDelLoad(){return "/setting/project/".$this->getId()."/del-load";}
+	function getURLDelExe(){return "/setting/project/".$this->getId()."/del-exe";}
 	
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
