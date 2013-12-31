@@ -112,7 +112,7 @@
 		<ul class="breadcrumb">
 			<li><a href="/trang-chu">Trang chủ</a> <span class="divider"/></li>
 			<li tal:repeat="Item Navigation"><a tal:attributes="href php:Item[1]" tal:content="php:Item[0]"/> <span class="divider"/></li>
-			<li class="active" tal:content="Title"/>
+			<li class="active" tal:content="EndBcrumb"/>
 		</ul>
 	</div>
 	
@@ -121,7 +121,7 @@
 	<!-- ======================================================================== -->
 	<div metal:define-macro="ProductLeftMenu" class="sidey">
 		<ul class="nav">
-			<li tal:attributes="class php:ActiveLeftMenu=='Project'?'active':''"><a tal:attributes="href Project/getURLView"><i class="icon-info"></i> &nbsp;Thông tin dự án</a></li>
+			<li tal:attributes="class php:ActiveLeftMenu=='Project'?'active':''"><a tal:attributes="href Project/getURLView"><i class="icon-info"></i> &nbsp;Thông tin</a></li>
 			<li tal:attributes="class php:ActiveLeftMenu=='ProjectNews'?'active':''"><a tal:attributes="href Project/getURLNews"><i class="icon-globe"></i> &nbsp;Tin tức</a></li>
 			<li tal:attributes="class php:ActiveLeftMenu=='ProjectAlbum'?'active':''"><a tal:attributes="href Project/getURLAlbum"><i class="icon-picture"></i> &nbsp;Hình ảnh</a></li>
 			<li tal:attributes="class php:ActiveLeftMenu=='ProjectVideo'?'active':''"><a tal:attributes="href Project/getURLVideo"><i class="icon-film"></i> &nbsp;Video</a></li>

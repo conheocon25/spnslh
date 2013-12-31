@@ -10,8 +10,8 @@ class Project extends Mapper implements \MVC\Domain\ProjectFinder{
 		
 		$selectAllStmt = sprintf("select * from %s ORDER BY type DESC", $tblProject);
 		$selectStmt = sprintf("select *  from %s where id=?", $tblProject);
-		$updateStmt = sprintf("update %s set name=?, description=?, type=?, `key`=? where id=?", $tblProject);
-		$insertStmt = sprintf("insert into %s ( name, description, type, `key`) values(?, ?, ?, ?)", $tblProject);
+		$updateStmt = sprintf("update %s set name=?, description=?, address=?, type1=?, investors=?, stretch=?, payment=?, date_start=?, date_end=?, type=?, `key`=? where id=?", $tblProject);
+		$insertStmt = sprintf("insert into %s ( name, description, address, type1, investors, stretch, payment, date_start, date_end, type, `key`) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblProject);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblProject);
 		$findByKeyStmt = sprintf("select *  from %s where `key`=?", $tblProject);
 		$findByPageStmt = sprintf(
@@ -37,6 +37,13 @@ class Project extends Mapper implements \MVC\Domain\ProjectFinder{
 			$array['id'],
 			$array['name'],
 			$array['description'],
+			$array['address'],
+			$array['type1'],
+			$array['investors'],
+			$array['stretch'],
+			$array['payment'],
+			$array['date_start'],
+			$array['date_end'],
 			$array['type'],
 			$array['key']
 		);
@@ -48,6 +55,13 @@ class Project extends Mapper implements \MVC\Domain\ProjectFinder{
         $values = array( 
 			$object->getName(),
 			$object->getDescription(),
+			$object->getAddress(),
+			$object->getType1(),
+			$object->getInvestors(),
+			$object->getStretch(),
+			$object->getPayment(),
+			$object->getDateStart(),
+			$object->getDateEnd(),
 			$object->getType(),
 			$object->getKey()
 		); 
@@ -59,7 +73,14 @@ class Project extends Mapper implements \MVC\Domain\ProjectFinder{
     protected function doUpdate( \MVC\Domain\Object $object ) {
         $values = array( 
 			$object->getName(),
-			$object->getDescription(),			
+			$object->getDescription(),
+			$object->getAddress(),
+			$object->getType1(),
+			$object->getInvestors(),
+			$object->getStretch(),
+			$object->getPayment(),
+			$object->getDateStart(),
+			$object->getDateEnd(),
 			$object->getType(),
 			$object->getKey(),
 			$object->getId()
