@@ -193,6 +193,9 @@ class Project extends Object{
 	function getURLDelLoad(){return "/setting/project/".$this->getId()."/del-load";}
 	function getURLDelExe(){return "/setting/project/".$this->getId()."/del-exe";}
 	
+	function getURLInsNewsLoad(){return "/setting/project/".$this->getId()."/news/ins-load";}
+	function getURLInsNewsExe(){return "/setting/project/".$this->getId()."/news/ins-exe";}
+	
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}

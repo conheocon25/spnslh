@@ -12,7 +12,8 @@
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
 			$Key = $request->getProperty("Key");
-
+			$NKey = $request->getProperty("NKey");
+			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
@@ -23,6 +24,13 @@
 			//-------------------------------------------------------------
 			$AllCategoryNews = $mCategoryNews->findAll();
 			$Project = $mProject->findByKey($Key);
+			$AllNews = $mPNews->findAll();
+			
+			if(isset($NKey)) {
+				$NewsRead = $mPNews->findByKey($NKey);
+			} else {
+				$NewsRead = $mPNews->getFirst();
+			}
 			
 			$Navigation = array(				
 				array("Dự án", "/du-an"),
@@ -37,6 +45,8 @@
 			$request->setProperty('ActiveTopMenu', 'Project');
 			$request->setProperty('ActiveLeftMenu', 'ProjectNews');
 			$request->setObject('AllCategoryNews', $AllCategoryNews);
+			$request->setObject('AllNews', $AllNews);
+			$request->setObject('NewsRead', $NewsRead);
 			$request->setObject('Project', $Project);
 			$request->setObject('Navigation', $Navigation);
 			

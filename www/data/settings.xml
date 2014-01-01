@@ -46,7 +46,15 @@
 		<command name="SettingProjectUpdExe"><view>SettingProjectUpdExe</view><status value="CMD_OK"><forward>SettingProject</forward></status></command>
 		<command name="SettingProjectDelLoad"><view>SettingProjectDelLoad</view></command>
 		<command name="SettingProjectDelExe"><view>SettingProjectDelExe</view><status value="CMD_OK"><forward>SettingProject</forward></status></command>
+		
 		<command name="SettingProjectNews"><view>SettingProjectNews</view></command>
+		<command name="SettingProjectNewsInsLoad"><view>SettingProjectNewsInsLoad</view></command>
+		<command name="SettingProjectNewsInsExe"><view>SettingProjectNewsInsExe</view><status value="CMD_OK"><forward>SettingProjectNews</forward></status></command>
+		<command name="SettingProjectNewsUpdLoad"><view>SettingProjectNewsUpdLoad</view></command>
+		<command name="SettingProjectNewsUpdExe"><view>SettingProjectNewsUpdExe</view><status value="CMD_OK"><forward>SettingProjectNews</forward></status></command>
+		<command name="SettingProjectNewsDelLoad"><view>SettingProjectNewsDelLoad</view></command>
+		<command name="SettingProjectNewsDelExe"><view>SettingProjectNewsDelExe</view><status value="CMD_OK"><forward>SettingProjectNews</forward></status></command>
+		
 		<command name="SettingProjectAlbum"><view>SettingProjectAlbum</view></command>
 		<command name="SettingProjectVideo"><view>SettingProjectVideo</view></command>
 		<command name="SettingProjectProduct"><view>SettingProjectProduct</view></command>

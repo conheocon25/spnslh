@@ -7,7 +7,7 @@ class PNews extends Mapper implements \MVC\Domain\PNewsFinder{
         parent::__construct();
 				
 		$tblPNews = "tbl_project_news";
-		$selectAllStmt = sprintf("select * from %s date DESC", $tblPNews);
+		$selectAllStmt = sprintf("select * from %s ORDER BY date DESC", $tblPNews);
 		$selectStmt = sprintf("select *  from %s where id=?", $tblPNews);
 		$updateStmt = sprintf("update %s set id_project=?, name=?, date=?, description=?, `key`=? where id=?", $tblPNews);
 		$insertStmt = sprintf("insert into %s ( id_project, name, date, description, `key`) values(?, ?, ?, ?, ?)", $tblPNews);
@@ -21,6 +21,8 @@ class PNews extends Mapper implements \MVC\Domain\PNewsFinder{
 			WHERE id_project=:id_project
 			LIMIT :start,:max"
 		, $tblPNews);
+		$findByKeyStmt = sprintf("select *  from %s where `key`=?", $tblPNews);
+		$getFirstStmt = sprintf("select * from %s ORDER BY date DESC LIMIT 1", $tblPNews);
 		
         $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
         $this->selectStmt = self::$PDO->prepare($selectStmt);
@@ -29,6 +31,8 @@ class PNews extends Mapper implements \MVC\Domain\PNewsFinder{
 		$this->deleteStmt = self::$PDO->prepare($deleteStmt);
 		$this->findByStmt = self::$PDO->prepare($findByStmt);
 		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);
+		$this->findByKeyStmt = self::$PDO->prepare($findByKeyStmt);
+		$this->getFirstStmt = self::$PDO->prepare($getFirstStmt);
 		
     } 
     function getCollection( array $raw ) {return new PNewsCollection( $raw, $this );}
@@ -76,6 +80,26 @@ class PNews extends Mapper implements \MVC\Domain\PNewsFinder{
 	function findBy( $values ){
         $this->findByStmt->execute( $values );
         return new PNewsCollection( $this->findByStmt->fetchAll(), $this);
+    }
+	
+	function findByKey( $values ) {	
+		$this->findByKeyStmt->execute( array($values) );
+        $array = $this->findByKeyStmt->fetch();
+        $this->findByKeyStmt->closeCursor();
+        if ( ! is_array( $array ) ) { return null; }
+        if ( ! isset( $array['id'] ) ) { return null; }
+        $object = $this->doCreateObject( $array );
+        return $object;		
+    }
+	
+	function getFirst(){
+        $this->getFirstStmt->execute();
+        $array = $this->getFirstStmt->fetch();
+        $this->getFirstStmt->closeCursor();
+        if ( ! is_array( $array ) ) { return null; }
+        if ( ! isset( $array['id'] ) ) { return null; }
+        $object = $this->doCreateObject( $array );
+        return $object;
     }
 	
 	function findByPage( $values ) {

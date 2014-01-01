@@ -48,6 +48,19 @@ class PNews extends Object{
 		$this->Key = $Str->converturl();
 	}
 	
+	function getImage(){		
+		$first_img = '';
+		\ob_start();
+		\ob_end_clean();
+		if(preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $this->Description, $matches)){
+			$first_img = $matches[1][0];
+		}
+		else {
+			$first_img = "/mvc/templates/theme/base/img/items/1.jpg";
+		}
+		return $first_img;
+	}
+	
 	function toJSON(){
 		$json = array(
 			'Id' 			=> $this->getId(),
@@ -78,7 +91,13 @@ class PNews extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-				
+	function getURLRead(){return "/du-an/".$this->getProject()->getKey()."/tin-tuc/".$this->getKey();}
+	
+	function getURLUpdLoad(){return "/setting/project/".$this->getIdProject()."/news/".$this->getId()."/upd-load";}
+	function getURLUpdExe(){return "/setting/project/".$this->getIdProject()."/news/".$this->getId()."/upd-exe";}
+	function getURLDelLoad(){return "/setting/project/".$this->getIdProject()."/news/".$this->getId()."/del-load";}
+	function getURLDelExe(){return "/setting/project/".$this->getIdProject()."/news/".$this->getId()."/del-exe";}
+	
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}	

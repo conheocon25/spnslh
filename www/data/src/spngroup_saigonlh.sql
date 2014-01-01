@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 31, 2013 at 09:26 AM
+-- Generation Time: Jan 01, 2014 at 12:44 PM
 -- Server version: 5.5.16
 -- PHP Version: 5.3.8
 
@@ -104,7 +104,7 @@ CREATE TABLE IF NOT EXISTS `tbl_project` (
   `type` int(11) NOT NULL,
   `key` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `tbl_project`
@@ -183,20 +183,21 @@ CREATE TABLE IF NOT EXISTS `tbl_project_news` (
   `id_project` int(11) NOT NULL,
   `name` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `description` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
-  `key` int(11) NOT NULL,
+  `description` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `key` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=14 ;
 
 --
 -- Dumping data for table `tbl_project_news`
 --
 
 INSERT INTO `tbl_project_news` (`id`, `id_project`, `name`, `date`, `description`, `key`) VALUES
-(5, 2, 'Tin tức 2', '2013-11-22 08:06:34', 'Tin tức 2', 0),
-(6, 2, 'Tin tức 1', '2013-11-22 08:06:34', 'Tin tức 1', 0),
-(7, 2, 'Tin tức 3', '2013-11-22 08:06:34', 'Tin tức 3', 0),
-(8, 2, 'Tin tức 4', '2013-11-22 08:06:34', 'Tin tức 4', 0);
+(5, 2, 'Tin tức 2', '2013-12-30 17:00:00', '<p>\r\n	Tin tức 2</p>\r\n', 'tin-tuc-2'),
+(6, 2, 'Tin tức 1', '2013-12-30 17:00:00', '<p>\r\n	Tin tức 1</p>\r\n', 'tin-tuc-1'),
+(7, 2, 'Tin tức 3', '2013-12-30 17:00:00', '<p>\r\n	Tin tức 3</p>\r\n', 'tin-tuc-3'),
+(8, 2, 'Tin tức 4', '2013-12-30 17:00:00', '<p>\r\n	Tin tức 4</p>\r\n', 'tin-tuc-4'),
+(13, 2, 'Thử nghiệm 2', '2013-12-30 17:00:00', '<p>\r\n	Thử nghiệm</p>\r\n', 'thu-nghiem-2');
 
 -- --------------------------------------------------------
 
