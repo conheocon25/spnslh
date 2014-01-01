@@ -22,7 +22,7 @@ class PNews extends Mapper implements \MVC\Domain\PNewsFinder{
 			LIMIT :start,:max"
 		, $tblPNews);
 		$findByKeyStmt = sprintf("select *  from %s where `key`=?", $tblPNews);
-		$getFirstStmt = sprintf("select * from %s ORDER BY date DESC LIMIT 1", $tblPNews);
+		$selectFirstStmt = sprintf("select * from %s where id_project=? ORDER BY date DESC LIMIT 1", $tblPNews);
 		
         $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
         $this->selectStmt = self::$PDO->prepare($selectStmt);
@@ -32,7 +32,7 @@ class PNews extends Mapper implements \MVC\Domain\PNewsFinder{
 		$this->findByStmt = self::$PDO->prepare($findByStmt);
 		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);
 		$this->findByKeyStmt = self::$PDO->prepare($findByKeyStmt);
-		$this->getFirstStmt = self::$PDO->prepare($getFirstStmt);
+		$this->selectFirstStmt = self::$PDO->prepare($selectFirstStmt);
 		
     } 
     function getCollection( array $raw ) {return new PNewsCollection( $raw, $this );}
@@ -92,10 +92,10 @@ class PNews extends Mapper implements \MVC\Domain\PNewsFinder{
         return $object;		
     }
 	
-	function getFirst(){
-        $this->getFirstStmt->execute();
-        $array = $this->getFirstStmt->fetch();
-        $this->getFirstStmt->closeCursor();
+	function selectFirst( $values ){
+        $this->selectFirstStmt->execute( $values );
+        $array = $this->selectFirstStmt->fetch();
+        $this->selectFirstStmt->closeCursor();
         if ( ! is_array( $array ) ) { return null; }
         if ( ! isset( $array['id'] ) ) { return null; }
         $object = $this->doCreateObject( $array );

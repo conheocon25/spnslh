@@ -15,7 +15,7 @@
 					<div class="col-md-9 col-md-push-3">
 						<div metal:use-macro="mBase.xhtml/Breadcrumb"/>
 						
-						<div class="news-content">
+						<div class="news-content" tal:condition="exists:NewsRead">
 							<!-- Tiêu đề tin tức -->
 							<h2 tal:content="NewsRead/getName"/>
 							<p class="pull-right">Cập nhật: <span tal:content="NewsRead/getDatePrint"/></p>
@@ -31,6 +31,9 @@
 							<div class="sep-bor"></div>
 							<p class="pull-right">Nguồn: Saigonlandhouse.com</p>
 							<!-- Tác giả tin tức -->
+						</div>
+						<div class="news-content" tal:condition="not:NewsRead">
+							<h2>Dự án đang cập nhật tin tức</h2>
 						</div>
 					</div>
 
@@ -105,7 +108,7 @@
 			</div>
 		</div>
 		
-		<div class="recent-posts blocky">
+		<div class="recent-posts blocky" tal:condition="exists:AllNews/first">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
