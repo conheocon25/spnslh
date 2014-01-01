@@ -149,6 +149,12 @@ class Project extends Object{
 		return $NewsAll;
 	}
 	
+	function getFirstNews(){
+		$mNews = new \MVC\Mapper\PNews();
+		$News = $mNews->selectFirst(array($this->getId()));
+		return $News;
+	}
+	
 	function getProductAll(){
 		$mPProduct = new \MVC\Mapper\PProduct();
 		$ProductAll = $mPProduct->findBy(array($this->getId()));

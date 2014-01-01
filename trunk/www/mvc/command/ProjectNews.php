@@ -24,14 +24,14 @@
 			//-------------------------------------------------------------
 			$AllCategoryNews = $mCategoryNews->findAll();
 			$Project = $mProject->findByKey($Key);
-			$AllNews = $mPNews->findAll();
+			$AllNews = $Project->getNewsAll();
 			
 			if(isset($NKey)) {
 				$NewsRead = $mPNews->findByKey($NKey);
 			} else {
-				$NewsRead = $mPNews->getFirst();
+				$NewsRead = $Project->getFirstNews();
 			}
-			
+
 			$Navigation = array(				
 				array("Dự án", "/du-an"),
 				array($Project->getName(), $Project->getURLView())
