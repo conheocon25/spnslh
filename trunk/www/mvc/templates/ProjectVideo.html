@@ -20,15 +20,15 @@
 								<div class="staff">
 									<div class="pic">
 										<div class="video-play">
-											<iframe width="100%" height="500" src="//www.youtube.com/embed/k_yNHFo0ENg" frameborder="0" allowfullscreen="true"></iframe>
+											<iframe width="100%" height="500" tal:attributes="src VideoPlaying/getURL" frameborder="0" allowfullscreen="true"></iframe>
 										</div>
 									</div>
 									<div class="details">
 										<div class="desig pull-left">
-											<p class="name"><big><i class="icon-film"></i> Clip quảng cáo ấn tượng của Honda</big></p>
+											<p class="name"><big><i class="icon-film"></i> <span tal:content="VideoPlaying/getName"/></big></p>
 										</div>
 										<div class="asocial pull-right">
-											<i class="icon-calendar"></i> 13/11/2013
+											<i class="icon-calendar"></i> <span tal:content="VideoPlaying/getDatePrint"/>
 										</div>
 										<div class="clearfix"></div>
 									</div>
@@ -37,148 +37,16 @@
 						</div>
 						
 						<div class="row picture-rows">
-							<div class="col-md-4 col-sm-4 col-xs-7">
+							<div class="col-md-4 col-sm-4 col-xs-7" tal:repeat="Video AllVideo">
 								<div class="staff">
 									<div class="pic">
 										<a href="#">
-											<img width="100%" src="//i1.ytimg.com/vi/AgBe_c1WOE0/default.jpg" alt="" class="img-responsive"/>
+											<img width="100%" tal:attributes="src Video/getURLImage" alt="" class="img-responsive"/>
 										</a>
 									</div>
 									<div class="details">
 										<div class="desig pull-left">
-											<p class="name"><i class="icon-film"></i> QUY TRÌNH XÂY DỰNG NHÀ...</p>
-										</div>
-										<div class="clearfix"></div>
-									</div>
-								</div>
-							</div>
-							
-							<div class="col-md-4 col-sm-4 col-xs-7">
-								<div class="staff">
-									<div class="pic">
-										<a href="#">
-											<img width="100%" src="//i1.ytimg.com/vi/7KnmlplT_8c/mqdefault.jpg" alt="" class="img-responsive"/>
-										</a>
-									</div>
-									<div class="details">
-										<div class="desig pull-left">
-											<p class="name"><i class="icon-film"></i> CLIP QUẢNG CÁO ẤN TƯỢNG...</p>
-										</div>
-										<div class="clearfix"></div>
-									</div>
-								</div>
-							</div>
-							
-							<div class="col-md-4 col-sm-4 col-xs-7">
-								<div class="staff">
-									<div class="pic">
-										<a href="#">
-											<img width="100%" src="//i1.ytimg.com/vi/ARM42-eorzE/mqdefault.jpg" alt="" class="img-responsive"/>
-										</a>
-									</div>
-									<div class="details">
-										<div class="desig pull-left">
-											<p class="name"><i class="icon-film"></i> INSANE Domino Tricks!...</p>
-										</div>
-										<div class="clearfix"></div>
-									</div>
-								</div>
-							</div>
-						</div>
-						
-						<div class="row picture-rows">
-							<div class="col-md-4 col-sm-4 col-xs-7">
-								<div class="staff">
-									<div class="pic">
-										<a href="#">
-											<img width="100%" src="//i1.ytimg.com/vi/ARM42-eorzE/mqdefault.jpg" alt="" class="img-responsive"/>
-										</a>
-									</div>
-									<div class="details">
-										<div class="desig pull-left">
-											<p class="name"><i class="icon-film"></i> INSANE Domino Tricks!...</p>
-										</div>
-										<div class="clearfix"></div>
-									</div>
-								</div>
-							</div>
-
-							<div class="col-md-4 col-sm-4 col-xs-7">
-								<div class="staff">
-									<div class="pic">
-										<a href="#">
-											<img width="100%" src="//i1.ytimg.com/vi/7KnmlplT_8c/mqdefault.jpg" alt="" class="img-responsive"/>
-										</a>
-									</div>
-									<div class="details">
-										<div class="desig pull-left">
-											<p class="name"><i class="icon-film"></i> CLIP QUẢNG CÁO ẤN TƯỢNG...</p>
-										</div>
-										<div class="clearfix"></div>
-									</div>
-								</div>
-							</div>
-							
-							<div class="col-md-4 col-sm-4 col-xs-7">
-								<div class="staff">
-									<div class="pic">
-										<a href="#">
-											<img width="100%" src="//i1.ytimg.com/vi/AgBe_c1WOE0/default.jpg" alt="" class="img-responsive"/>
-										</a>
-									</div>
-									<div class="details">
-										<div class="desig pull-left">
-											<p class="name"><i class="icon-film"></i> QUY TRÌNH XÂY DỰNG NHÀ...</p>
-										</div>
-										<div class="clearfix"></div>
-									</div>
-								</div>
-							</div>
-						</div>
-						
-						<div class="row picture-rows">
-							<div class="col-md-4 col-sm-4 col-xs-7">
-								<div class="staff">
-									<div class="pic">
-										<a href="#">
-											<img width="100%" src="//i1.ytimg.com/vi/7KnmlplT_8c/mqdefault.jpg" alt="" class="img-responsive"/>
-										</a>
-									</div>
-									<div class="details">
-										<div class="desig pull-left">
-											<p class="name"><i class="icon-film"></i> CLIP QUẢNG CÁO ẤN TƯỢNG...</p>
-										</div>
-										<div class="clearfix"></div>
-									</div>
-								</div>
-							</div>
-							
-							<div class="col-md-4 col-sm-4 col-xs-7">
-								<div class="staff">
-									<div class="pic">
-										<a href="#">
-											<img width="100%" src="//i1.ytimg.com/vi/AgBe_c1WOE0/default.jpg" alt="" class="img-responsive"/>
-										</a>
-									</div>
-									<div class="details">
-										<div class="desig pull-left">
-											<p class="name"><i class="icon-film"></i> QUY TRÌNH XÂY DỰNG NHÀ...</p>
-										</div>
-										<div class="clearfix"></div>
-									</div>
-								</div>
-							</div>
-							
-							<div class="col-md-4 col-sm-4 col-xs-7">
-								<div class="staff">
-									<div class="pic">
-										<a href="#">
-											<img width="100%" src="//i1.ytimg.com/vi/ARM42-eorzE/mqdefault.jpg" alt="" class="img-responsive"/>
-										</a>
-									</div>
-									<div class="details">
-										<div class="desig pull-left">
-											<p class="name"><i class="icon-film"></i> INSANE Domino Tricks!...</p>
+											<p class="name"><i class="icon-film"></i> <span tal:content="Video/getNameReduce"/></p>
 										</div>
 										<div class="clearfix"></div>
 									</div>

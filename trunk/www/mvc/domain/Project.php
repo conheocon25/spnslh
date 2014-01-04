@@ -178,6 +178,12 @@ class Project extends Object{
 		return $VideoAll;
 	}
 	
+	function getFirstVideo(){
+		$mVideo = new \MVC\Mapper\PVideo();
+		$Video = $mVideo->selectFirst(array($this->getId()));
+		return $Video;
+	}
+	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------

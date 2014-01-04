@@ -21,6 +21,8 @@ class PVideo extends Mapper implements \MVC\Domain\PVideoFinder{
 			WHERE id_project=:id_project
 			LIMIT :start,:max"
 		, $tblPVideo);
+		$findByKeyStmt = sprintf("select *  from %s where `key`=?", $tblPVideo);
+		$selectFirstStmt = sprintf("select * from %s where id_project=? ORDER BY date DESC LIMIT 1", $tblPVideo);
 		
         $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
         $this->selectStmt = self::$PDO->prepare($selectStmt);
@@ -29,6 +31,8 @@ class PVideo extends Mapper implements \MVC\Domain\PVideoFinder{
 		$this->deleteStmt = self::$PDO->prepare($deleteStmt);
 		$this->findByStmt = self::$PDO->prepare($findByStmt);
 		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);
+		$this->findByKeyStmt = self::$PDO->prepare($findByKeyStmt);
+		$this->selectFirstStmt = self::$PDO->prepare($selectFirstStmt);
 		
     } 
     function getCollection( array $raw ) {return new PVideoCollection( $raw, $this );}
@@ -79,6 +83,26 @@ class PVideo extends Mapper implements \MVC\Domain\PVideoFinder{
 	function findBy( $values ){
         $this->findByStmt->execute( $values );
         return new PVideoCollection( $this->findByStmt->fetchAll(), $this);
+    }
+	
+	function findByKey( $values ) {	
+		$this->findByKeyStmt->execute( array($values) );
+        $array = $this->findByKeyStmt->fetch();
+        $this->findByKeyStmt->closeCursor();
+        if ( ! is_array( $array ) ) { return null; }
+        if ( ! isset( $array['id'] ) ) { return null; }
+        $object = $this->doCreateObject( $array );
+        return $object;		
+    }
+	
+	function selectFirst( $values ){
+        $this->selectFirstStmt->execute( $values );
+        $array = $this->selectFirstStmt->fetch();
+        $this->selectFirstStmt->closeCursor();
+        if ( ! is_array( $array ) ) { return null; }
+        if ( ! isset( $array['id'] ) ) { return null; }
+        $object = $this->doCreateObject( $array );
+        return $object;
     }
 	
 	function findByPage( $values ) {

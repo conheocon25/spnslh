@@ -6,7 +6,7 @@
 	.tab-content, .news-content { text-align: justify; }
 	
 	.picture-rows { margin-top: 20px; }
-	.picture-rows .staff { box-shadow: 0 0 2px #AAAAAA; border: 5px solid #fff; border-radius: 10px; }
+	.picture-rows .staff { box-shadow: 0 0 2px #AAAAAA; border: 5px solid #fff; border-radius: 10px; margin-bottom: 20px; }
 	.picture-rows .staff img { border-radius: 10px; width: 100%; height: 150px; }
 	.picture-rows .staff .pic-view img { width: 100%; height: auto; }
 	.picture-rows .details { background: #fff; padding: 5px 5px 0 5px; }
