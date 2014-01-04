@@ -168,7 +168,7 @@
 				Data[3] = $('#iDate').val();
 				Data[4] = $('#iURL').val();
 				Data[5] = $('#iDescription').val();
-				Data[6] = '0';
+				Data[6] = reKey($('#iName').val());
 				$.ajax({
 					type: "POST",
 					data: {Data:Data},
@@ -201,7 +201,7 @@
 				Data[3] = $('#uDate').val();
 				Data[4] = $('#uURL').val();
 				Data[5] = $('#uDescription').val();
-				Data[6] = '0';
+				Data[6] = reKey($('#uName').val());
 				$.ajax({
 					type: "POST",
 					data: {Data:Data},

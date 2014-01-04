@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 01, 2014 at 12:44 PM
+-- Generation Time: Jan 04, 2014 at 04:30 AM
 -- Server version: 5.5.16
 -- PHP Version: 5.3.8
 
@@ -186,7 +186,7 @@ CREATE TABLE IF NOT EXISTS `tbl_project_news` (
   `description` longtext COLLATE utf8_unicode_ci NOT NULL,
   `key` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=18 ;
 
 --
 -- Dumping data for table `tbl_project_news`
@@ -197,7 +197,11 @@ INSERT INTO `tbl_project_news` (`id`, `id_project`, `name`, `date`, `description
 (6, 2, 'Tin tức 1', '2013-12-30 17:00:00', '<p>\r\n	Tin tức 1</p>\r\n', 'tin-tuc-1'),
 (7, 2, 'Tin tức 3', '2013-12-30 17:00:00', '<p>\r\n	Tin tức 3</p>\r\n', 'tin-tuc-3'),
 (8, 2, 'Tin tức 4', '2013-12-30 17:00:00', '<p>\r\n	Tin tức 4</p>\r\n', 'tin-tuc-4'),
-(13, 2, 'Thử nghiệm 2', '2013-12-30 17:00:00', '<p>\r\n	Thử nghiệm</p>\r\n', 'thu-nghiem-2');
+(13, 2, 'Thử nghiệm 2', '2013-12-30 17:00:00', '<p>\r\n	Thử nghiệm</p>\r\n', 'thu-nghiem-2'),
+(14, 1, 'Thử nghiệm 1', '2013-12-31 17:00:00', '', 'thu-nghiem-1'),
+(15, 5, 'Thử nghiệm 2', '2013-12-31 17:00:00', '', 'thu-nghiem-2'),
+(16, 6, 'Thử nghiệm 3', '2013-12-31 17:00:00', '', 'thu-nghiem-3'),
+(17, 7, 'Thử nghiệm 4', '2013-12-31 17:00:00', '', 'thu-nghiem-4');
 
 -- --------------------------------------------------------
 
@@ -238,19 +242,24 @@ CREATE TABLE IF NOT EXISTS `tbl_project_video` (
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `url` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
   `description` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
-  `key` int(11) NOT NULL,
+  `key` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `tbl_project_video`
 --
 
 INSERT INTO `tbl_project_video` (`id`, `id_project`, `name`, `date`, `url`, `description`, `key`) VALUES
-(1, 2, 'Video 4', '2013-11-22 07:38:29', 'http://youtube.com', 'Video 4', 0),
-(2, 2, 'Video 3', '2013-11-22 07:38:40', 'http://youtube.com', 'Video 3', 0),
-(3, 2, 'Video 2', '2013-11-22 07:38:50', 'http://youtube.com', 'Video 2', 0),
-(4, 2, 'Video 1', '2013-11-22 07:36:56', 'http://youtube.com', 'Video 1', 0);
+(1, 2, 'Video 4', '2013-11-22 07:38:29', 'http://youtube.com', 'Video 4', '0'),
+(2, 2, 'Video 3', '2013-11-22 07:38:40', 'http://youtube.com', 'Video 3', '0'),
+(3, 2, 'Video 2', '2013-11-22 07:38:50', 'http://youtube.com', 'Video 2', '0'),
+(4, 2, 'Video 1', '2013-11-22 07:36:56', 'http://youtube.com', 'Video 1', '0'),
+(5, 1, 'Quy trình xây dựng nhà', '2014-01-04 03:06:44', '//www.youtube.com/embed/LeC0PvH-1l0', 'Quy trình xây dựng nhà', 'quy-trinh-xay-dung-nha'),
+(6, 1, 'Time lapse of home constructed start to finish', '2014-01-04 03:22:54', '//www.youtube.com/embed/C3iI6S7TuCA', 'Time lapse of home constructed start to finish', 'time-lapse-of-home-constructed-start-to-finish'),
+(7, 1, 'Building Popsicle Mansion Time Lapse', '2014-01-04 03:23:30', '//www.youtube.com/embed/nfNrASSti6g', 'Building Popsicle Mansion Time Lapse', 'building-popsicle-mansion-time-lapse'),
+(8, 1, 'The company citiblocs gave me 6000 planks to make this construction', '2014-01-04 03:24:39', '//www.youtube.com/embed/_eu-eFABGDY', 'The company citiblocs gave me 6000 planks to make this construction', 'the-company-citiblocs-gave-me-6000-planks-to-make-this-construction'),
+(9, 1, 'World Record: Most dominoes toppled in a spiral (30,000) complete', '2014-01-04 03:25:20', '//www.youtube.com/embed/_1x99bOX7Yo', 'World Record: Most dominoes toppled in a spiral (30,000) complet', 'world-record-most-dominoes-toppled-in-a-spiral-30000-complete');
 
 -- --------------------------------------------------------
 

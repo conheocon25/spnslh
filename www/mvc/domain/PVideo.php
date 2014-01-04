@@ -42,6 +42,7 @@ class PVideo extends Object{
 	
 	function setName( $Name ){$this->Name = $Name;$this->markDirty();}
 	function getName( ) {return $this->Name;}
+	function getNameReduce( ){$S = new \MVC\Library\String($this->Name);return $S->reduceHTML(19);}
 	
 	function setURL( $URL ){$this->URL = $URL;$this->markDirty();}   
 	function getURL( ) {return $this->URL;}
@@ -51,6 +52,11 @@ class PVideo extends Object{
 	function reKey( ) {
 		$Str = new \MVC\Library\String($this->Name);
 		$this->Key = $Str->converturl();
+	}
+	
+	function getIdURL( ){list($http, $sym, $addr1, $addr2, $addr3) = explode("/", $this->URL);return $addr3;}
+	function getURLImage(){				
+		return "http://img.youtube.com/vi/".$this->getIdURL()."/2.jpg";
 	}
 	
 	function toJSON(){
