@@ -1,0 +1,29 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>	
+		<span metal:use-macro="macros.xhtml/IncludeCSS"/>
+		<span metal:use-macro="macros.xhtml/IncludeJS"/>
+	</head>
+	
+	<body>
+		<div id="wrapper">
+			<div metal:use-macro="macros.xhtml/Header" />
+			<div id="content"><div class="screen">				
+				<object width="480" height="366" type="application/x-oleobject" classid="CLSID:6BF52A52-394A-11d3-B153-00C04F79FAA6">
+					<param value="true" name="autoStart" />
+					<param value="mms://123.30.130.209/thdt" name="URL" />
+					<param name="allowfullscreen" value="true" />
+					<param name="allowscriptaccess" value="always" />
+					<param name="seamlesstabbing" value="true" />
+					<param name="wmode" value="opaque" />
+					<param name="volume" value="100" />
+					<embed width="480" height="366" autostart="true" src="mms://123.30.130.209/thdt" quality="high" pluginspage="http://www.microsoft.com/Windows/MediaPlayer/" type="application/x-mplayer2" />
+				</object>
+			</div>
+			<div metal:use-macro="macros.xhtml/ListTV" />
+			<div class="clear"></div></div>
+			<div metal:use-macro="macros.xhtml/Footer" />
+			<div metal:use-macro="macros.xhtml/FixedLeft" />
+		</div>
+	</body>
+</html>
