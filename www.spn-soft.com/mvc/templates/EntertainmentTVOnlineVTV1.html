@@ -1,0 +1,26 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>	
+		<span metal:use-macro="macros.xhtml/IncludeCSS"/>
+		<span metal:use-macro="macros.xhtml/IncludeJS"/>
+	</head>
+	
+	<body>
+		<div id="wrapper">
+			<div metal:use-macro="macros.xhtml/Header" />
+			<div id="content"><div class="screen">
+				<object width="480" height="366" type="application/x-shockwave-flash" data="http://player.longtailvideo.com/player.swf" tabindex="0">
+					<param name="allowfullscreen" value="true" />
+					<param name="allowscriptaccess" value="always" />
+					<param name="seamlesstabbing" value="true" />
+					<param name="wmode" value="opaque" />
+					<param name="flashvars" value="netstreambasepath=http%3A%2F%2Ftv24.vn.tivi24h.com%2Fvtv1_1.php&id=media_content&abouttext=Tivi24h&aboutlink=http%3A%2F%2Fwww.tivi24h.com%2F&image=http%3A%2F%2Fwww1.tivi24h.com%2Fstop_tivi24h.gif&autostart=1&bufferlength=1&volume=100&mute=false&repeat=always&provider=http%3A%2F%2Fmegafun.vn%2Fcommon%2Fplayer%2FadaptiveProvider.swf&file=http%3A%2F%2F42.117.9.45%2Flive%2Fvtv1_1000.stream%2Fplaylist.m3u8&controlbar.position=over&logo.file=http%3A%2F%2F3.bp.blogspot.com%2F-9pW0EX1ujQo%2FTr-PCZC0sCI%2FAAAAAAAAAfU%2FFP37M4Y0kEU%2Fs250%2Flogotivi24h.png&logo.link=http%3A%2F%2Fwww.tivi24h.com%2F&logo.position=top-right&logo.hide=false&logo.margin=10&logo.over=1&logo.out=0.7" />
+				</object>
+			</div>
+			<div metal:use-macro="macros.xhtml/ListTV" />
+			<div class="clear"></div></div>
+			<div metal:use-macro="macros.xhtml/Footer" />
+			<div metal:use-macro="macros.xhtml/FixedLeft" />
+		</div>
+	</body>
+</html>

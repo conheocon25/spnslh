@@ -1,0 +1,70 @@
+<info>
+	<!-- ==================================================	-->
+	<!-- DOANH NGHIỆP		 								-->
+	<!-- ==================================================	-->
+	<param>
+		<name>id</name>
+		<value>340995294</value>		
+	</param>
+	<param>
+		<name>name</name>
+		<value>HỆ THỐNG QUẢN LÝ CAFE</value>		
+	</param>
+	<param>
+		<name>address</name>
+		<value>Vĩnh Long</value>
+	</param>
+	<param>
+		<name>phone</name>
+		<value>0919 153 189</value>
+	</param>
+	
+	<!-- ==================================================	-->
+	<!-- AUTHOR		 										-->
+	<!-- ==================================================	-->
+	<param>
+		<name>author_name</name>
+		<value>SPN Co, ltd.</value>
+	</param>
+	<param>
+		<name>author_email</name>
+		<value>tuanbuithanh@gmail.com</value>
+	</param>
+	<param>
+		<name>author_phone</name>
+		<value>(0996).355.368</value>
+	</param>
+	
+	<!-- ==================================================	-->
+	<!-- PAGE		 										-->
+	<!-- ==================================================	-->
+	<param>
+		<name>nRows</name>
+		<value>17</value>
+	</param>
+	
+	<!-- ==================================================	-->
+	<!-- PATH		 										-->
+	<!-- ==================================================	-->
+	<param>
+		<name>path_data</name>
+		<value>data/backup</value>
+	</param>
+	<param>
+		<name>path_images</name>
+		<value>data/images</value>
+	</param>
+	<param>
+		<name>path_templates</name>
+		<value>mvc/templates</value>
+	</param>
+	
+	<!-- ==================================================	-->
+	<!-- LOG		 										-->
+	<!-- ==================================================	-->
+	<param>
+		<name>log_limits</name>
+		<value>10000</value>
+	</param>
+			
+</info>

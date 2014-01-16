@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<span metal:use-macro="macros.xhtml/IncludeCSS"/>		
+		<span metal:use-macro="macros.xhtml/IncludeJS"/>
+	</head>
+	<body>
+		<div id="wraper">
+			<span metal:use-macro="macros.xhtml/Header"/>
+			<div id="main"><span metal:use-macro="macros.xhtml/Left"/>
+				<div id="right"><span metal:use-macro="macros.xhtml/MenuTop"/>
+					<div id="content">
+						<!-- **************************************** -->
+						<br/>
+						<div class="signin-frame">
+							<form id="FormSignin" name="FormSignin" tal:attributes="action '/signin/exe'" method="post" autocomplete="off">
+								<h1 align="center">© 2012 Thành Long Ceramic</h1>
+								<div align="center">
+									<label id="SigninEmailLabel" class="signin-label">Email@example.com</label>
+									<input id="SigninEmail" name="Email" type="text" class="signin-textbox" />
+								</div>
+								<div align="center">
+									<label id="SigninPassLabel" class="signin-label">Mật khẩu</label>
+									<input id="SigninPass" name="Pass" type="Password" class="signin-textbox" />
+								</div>
+								<div align="center">
+									<input id="SigninSubmit" type="submit" name="submit" value="Đăng Nhập" class="signin-button" />
+								</div>
+								<div align="center" id="SigninError">Vui lòng nhập đầy đủ tài khoản và mật khẩu</div>
+							</form>
+						</div>
+						
+						<!-- **************************************** -->
+					</div><span metal:use-macro="macros.xhtml/Footer"/>
+				</div><div class="clear"></div>
+			</div>
+		</div>
+	</body>
+</html>

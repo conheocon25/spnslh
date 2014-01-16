@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<span metal:use-macro="macros.xhtml/IncludeCSS"/>
+		<span metal:use-macro="macros.xhtml/IncludeJS"/>
+	</head>	
+	<body>
+		<div id="wraper">
+			<span metal:use-macro="macros.xhtml/Header"/>
+			<div id="main">
+				<span metal:use-macro="macros.xhtml/SettingMenu"/>
+				<div id="right">
+					<span metal:use-macro="macros.xhtml/MenuTopManager"/>
+					<div id="content">						
+						<!-- *********************** GRID *********************** -->
+						<table border="0" width="100%" cellpadding="0" cellspacing="1" class="manager-table" >
+							<thead>
+								<tr>
+									<th>STT</th>
+									<th align="left">TÊN</th>
+									<th>XÓA</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="content-rows" tal:repeat="Customer Customers" >
+									<td width="32px" align="center" tal:content="repeat/Customer/number" />
+									<td class="text-hightlight">
+										<a tal:attributes="href Customer/getURLUpdLoad">
+											<div tal:content="Customer/getName" />
+										</a>
+									</td>
+									<td class="text-hightlight" width="32" align="center">
+										<a tal:attributes="href Customer/getURLDelLoad">
+											<div>X</div>
+										</a>
+									</td>
+								</tr>
+							</tbody>
+							<tfoot>
+								<tr>
+									<td colspan="4" align="center">
+										<a href="/app/customer/ins/load">
+											<div>THÊM MỚI KHÁCH HÀNG</div>
+										</a>
+									</td>
+								</tr>
+							</tfoot>
+						</table>
+					</div><span metal:use-macro="macros.xhtml/Footer"/>
+				</div><div class="clear"></div>
+			</div>
+		</div>
+	</body>
+</html>

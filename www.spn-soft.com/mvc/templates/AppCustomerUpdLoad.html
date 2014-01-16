@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<span metal:use-macro="macros.xhtml/IncludeCSS"/>
+		<span metal:use-macro="macros.xhtml/IncludeJS"/>
+	</head>	
+	<body>
+		<div id="wraper">
+			<span metal:use-macro="macros.xhtml/Header"/>
+			<div id="main">
+				<div id="left">
+					<ul class="menu-left">
+						<li class="select">THÔNG TIN KHÁCH HÀNG</li>
+					</ul>
+				</div>
+				<div id="right">
+					<span metal:use-macro="macros.xhtml/MenuTopManager"/>
+					<div id="content">						
+						<form class="form-editor" id="FormAppCustomerUpdLoad" tal:attributes="action Customer/getURLUpdExe" method="post">
+							<div class="row">
+								<div for="Name" class="label">Tên</div>
+								<div class="textbox" >
+									<input id="Name" name="Name" type="text" tal:attributes="value Customer/getName"/>
+								</div>
+								<div class="clear" />
+							</div>
+							<div class="row">
+								<div for="Phone" class="label">Điện thoại</div>
+								<div class="textbox" >
+									<input id="Phone" name="Phone" type="text" tal:attributes="value Customer/getPhone"/>
+								</div>
+								<div class="clear" />
+							</div>	
+							<div class="row">
+								<div for="Address" class="label">Địa chỉ</div>
+								<div class="textbox" >
+									<input id="Address" name="Address" type="text" tal:attributes="value Customer/getAddress"/>
+								</div>
+								<div class="clear" />
+							</div>
+							<div class="row">
+								<div for="Note" class="label">Ghi chú</div>
+								<div class="textbox" >
+									<input id="Note" name="Note" type="text" tal:attributes="value Customer/getNote" />
+								</div>
+								<div class="clear" />
+							</div>
+							<div class="row">
+								<div for="Debt" class="label">Nợ đầu kỳ</div>
+								<div class="textbox" >
+									<input id="Debt" name="Debt" type="text" tal:attributes="value Customer/getDebt"/>
+								</div>
+								<div class="clear" />
+							</div>	
+							<div class="row">
+								<div class="button" >
+									<button type="submit" name="submit" value="submit-value">Cập nhật</button>
+								</div>
+							</div>
+						</form>
+						
+						<!-- **************************************** -->
+					</div><span metal:use-macro="macros.xhtml/Footer"/>
+				</div><div class="clear"></div>
+			</div>
+		</div>
+	</body>
+</html>

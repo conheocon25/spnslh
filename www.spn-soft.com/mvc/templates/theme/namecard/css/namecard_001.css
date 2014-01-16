@@ -1,0 +1,51 @@
+	.namecard {
+		width: 350px;
+		height: 200px;
+		position: relative;
+		margin-bottom: 20px;
+		background: url("/mvc/templates/theme/namecard/images/namecard_001.png") left top no-repeat transparent;
+		border-radius: 10px;
+		-moz-border-radius: 10px;
+		-webkit-border-radius: 10px;
+		-o-border-radius: 10px;
+		-ms-border-radius: 10px;
+		box-shadow: 0px 0px 5px #000000;
+	}
+	
+	.namecard-info { position: absolute; top: 20px; left: 150px; right: 10px; }
+	
+	.namecard-company {
+		color: #89D474;
+		text-transform: uppercase;
+		font-weight: bold;
+		font-size: 12px;
+	}
+	
+	.namecard-slogan {
+		color: #FAFAFA;
+		font-style: italic;
+		font-size: 10px;
+	}
+	
+	.namecard-people { position: absolute; top: 80px; left: 20px; right: 215px; }
+	
+	.namecard-fullname {
+		color: #89D474;
+		font-weight: bold;
+		font-size: 11px;
+	}
+	
+	.namecard-position {
+		color: #FAFAFA;
+		font-style: italic;
+		font-size: 10px;
+	}
+	
+	.namecard-contact {
+		position: absolute;
+		top: 80px;
+		left: 150px;
+		right: 10px;
+		color: #FAFAFA;
+		font-size: 10px;
+	}

@@ -1,0 +1,53 @@
+<options>    
+	<control>
+		<!-- ============================================================================== -->
+		<!-- Các lệnh xử lí SYSTEM 															-->
+		<!-- ============================================================================== -->		
+		<command name="DefaultCommand" type="public"><view>DefaultCommand</view><status value="CMD_OK"><forward>Home</forward></status></command>		
+		<command name="Home" type="public"><view>Home</view></command>
+		<command name="Service" type="public"><view>Service</view></command>
+		<command name="Solution" type="public"><view>Solution</view></command>
+		<command name="Story" type="public"><view>Story</view></command>
+		<command name="Technical" type="public"><view>Technical</view></command>
+		<command name="Project" type="public"><view>Project</view></command>
+		<command name="Contact" type="public"><view>Contact</view></command>
+		<command name="ContactExe" type="public">
+			<view>ContactExe</view>
+			<status value="CMD_OK"><forward>Contact</forward></status>			
+			<status value="CMD_NO_AUTHOR"><forward>Home</forward></status>
+		</command>
+		<command name="RefreshCaptcha" type="public"><view>RefreshCaptcha</view></command>				
+		<command name="SigninLoad" type="public"><view>SigninLoad</view></command>
+		<command name="SigninExe" type="public">
+			<view>SigninExe</view>
+			<status value="CMD_OK"><forward>App</forward></status>
+			<status value="CMD_NO_AUTHOR"><forward>Home</forward></status>
+		</command>
+		<command name="SignoutLoad"><view>SignoutLoad</view></command>
+		<command name="SignoutExe"><view>SignoutExe</view><status value="CMD_OK"><forward>Home</forward></status></command>
+		
+		<!-- ============================================================================== -->
+		<!-- UTILITY		 																-->
+		<!-- ============================================================================== -->
+		<command name="UtilityPhoneAnalytic" type="public"><view>UtilityPhoneAnalytic</view></command>		
+		<command name="UtilityQRCode" type="public"><view>UtilityQRCode</view></command>
+		<command name="UtilityQRCodeExe" type="public"><view>UtilityQRCodeExe</view></command>
+		<command name="UtilityBarcode" type="public"><view>UtilityBarcode</view></command>
+		<command name="UtilityMoonCalendar" type="public"><view>UtilityMoonCalendar</view></command>
+		<command name="UtilityDictionary" type="public"><view>UtilityDictionary</view></command>
+		<command name="UtilityDomainLookup" type="public"><view>UtilityDomainLookup</view></command>
+		<command name="UtilityNameCard" type="public"><view>UtilityNameCard</view></command>
+		<command name="UtilityNameCardGenerate" type="public"><view>UtilityNameCardGenerate</view></command>
+		
+		<!-- ============================================================================== -->
+		<!-- ENTERTAINMENT	 																-->
+		<!-- ============================================================================== -->
+		<command name="EntertainmentTVOnline" type="public"><view>EntertainmentTVOnline</view></command>
+
+		<!-- ============================================================================== -->
+		<!-- SYSTEM			 																-->
+		<!-- ============================================================================== -->
+		<command name="App"><view>App</view></command>
+				
+	</control>
+</options>
