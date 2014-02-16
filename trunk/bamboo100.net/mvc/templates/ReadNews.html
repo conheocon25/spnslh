@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<div metal:use-macro="mBase.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mBase.xhtml/IncludeCSS"/>
+	</head>
+	
+	<body>
+		<div metal:use-macro="mBase.xhtml/Header"/>
+		<div metal:use-macro="mBase.xhtml/PageTitle"/>
+
+		<div class="shop-items blocky">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-9 col-md-push-3">
+						<div metal:use-macro="mBase.xhtml/Breadcrumb"/>
+						<div class="news-content">
+							<!-- Tiêu đề tin tức -->
+							<h2 tal:content="News/getTitle"/>
+							<p class="pull-right">Cập nhật: <span tal:content="News/getDatePrint"/></p>
+							<div class="clearfix"></div>
+							<div class="sep-bor"></div>
+							<!-- Tiêu đề tin tức -->
+							
+							<!-- Nội dung tin tức -->
+							<div tal:content="structure News/getContent"/>
+							<!-- Nội dung tin tức -->
+							
+							<!-- Tác giả tin tức -->
+							<div class="sep-bor"></div>
+							<p class="pull-right" tal:content="News/getAuthor"/>
+							<!-- Tác giả tin tức -->
+						</div>
+					</div>
+
+					<div class="col-md-3 col-md-pull-9">
+						<div metal:use-macro="mBase.xhtml/NewsLeftMenu"/>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="recent-posts blocky">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="section-title">
+							<h4><i class="icon-globe color"></i> Tin tức nổi bật</h4>
+						</div>    
+
+						<div class="row">
+							<div class="col-md-12">
+								<div class="my_carousel">
+									<ul id="carousel_container">
+										<li tal:repeat="News Category/getNewsAll">
+											<a tal:attributes="href News/getURLRead">
+												<img tal:attributes="src News/getImage" class="img-responsive"/>
+											</a>
+											<div class="carousel_caption">
+												<h5><a tal:attributes="href News/getURLRead" tal:content="News/getTitle"/></h5>
+												<p tal:content="News/getContentReduce"/>
+												<p><i tal:content="News/getDatePrint"/></p>
+											</div>
+										</li>
+									</ul>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="catchy blocky">
+			<div class="catchy-inner1">
+				<div class="catchy-inner2">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-5">
+								<div class="catchy-subscribe">
+									<h3>Nhận thông tin</h3>
+									<p>Nhập Email của bạn để đăng ký nhận thông tin những dự án mới nhất từ chúng tôi</p>
+									<br />
+									<form class="form-inline" role="form">
+										<div class="form-group">
+											<input type="text" class="form-control " id="exampleInputEmail2" placeholder="Địa chỉ Email"/>
+										</div>
+										<button type="submit" class="btn btn-danger">Đăng ký</button>
+									</form>
+								</div>
+							</div>
+							<div class="col-md-7">
+								<div class="report">
+									<div class="report-bor">
+										<div class="row">
+											<div class="col-md-4 col-sm-4">
+												<div class="report-data">
+													<div class="row">
+														<div class="col-md-4 col-sm-4 col-xs-4">
+															<div class="report-icon">
+																<i class="icon-group color"></i>
+															</div>
+														</div>
+														<div class="col-md-8 col-md-8 col-xs-8">
+															<span class="report-big color">40,000</span> <span>Đăng ký</span>
+														</div>
+													</div>
+												</div>
+											</div>
+
+											<div class="col-md-4 col-sm-4">
+												<div class="report-data">
+													<div class="row">
+														<div class="col-md-4 col-sm-4 col-xs-4">
+															<div class="report-icon">
+																<i class="icon-calendar color"></i>
+															</div>
+														</div>
+														<div class="col-md-8 col-md-8 col-xs-8">
+															<span class="report-big color">1857</span> <span>Dự án</span>
+														</div>
+													</div>
+												</div>
+											</div>
+
+											<div class="col-md-4 col-sm-4">
+												<div class="report-data">
+													<div class="row">
+														<div class="col-md-4 col-sm-4 col-xs-4">
+															<div class="report-icon">
+																<i class="icon-globe color"></i>
+															</div>
+														</div>
+														<div class="col-md-8 col-md-8 col-xs-8">
+															<span class="report-big color">30,000</span> <span>Tin tức</span>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<hr class="hidden-xs"/>
+
+										<div class="row">
+											<div class="col-md-4 col-sm-4">
+												<div class="report-data">
+													<div class="row">
+														<div class="col-md-4 col-sm-4 col-xs-4">
+															<div class="report-icon">
+																<i class="icon-building color"></i>
+															</div>
+														</div>
+														<div class="col-md-8 col-md-8 col-xs-8">
+															<span class="report-big color">150 +</span> <span>Chủ đầu tư</span>
+														</div>
+													</div>
+												</div>
+											</div>
+
+											<div class="col-md-4 col-sm-4">
+												<div class="report-data">
+													<div class="row">
+														<div class="col-md-4 col-sm-4 col-xs-4">
+															<div class="report-icon">
+																<i class="icon-signal color"></i>
+															</div>
+														</div>
+														<div class="col-md-8 col-md-8 col-xs-8">
+															<span class="report-big color">5060</span> <span>Truy cập</span>
+														</div>
+													</div>
+												</div>
+											</div>
+
+											<div class="col-md-4 col-sm-4">
+												<div class="report-data">
+													<div class="row">
+														<div class="col-md-4 col-sm-4 col-xs-4">
+															<div class="report-icon">
+																<i class="icon-user color"></i>
+															</div>
+														</div>
+														<div class="col-md-8 col-md-8 col-xs-8">
+															<span class="report-big color">10,000</span> <span>Thành viên</span>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<span class="totop"><a href="#"><i class="icon-chevron-up"></i></a></span>
+		<div metal:use-macro="mBase.xhtml/Footer"/>
+		<div metal:use-macro="mBase.xhtml/IncludeJS"/>
+	</body>	
+</html>
