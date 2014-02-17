@@ -1,18 +1,8 @@
 <?php
 namespace MVC\Domain;
-if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
-	require_once( "mvc/mapper/Project.php" );
-	require_once( "mvc/mapper/PDocument.php" );
-	require_once( "mvc/mapper/PVideo.php" );
-	require_once( "mvc/mapper/PAlbum.php" );
-	require_once( "mvc/mapper/PNews.php" );
-	require_once( "mvc/mapper/PProduct.php" );
-	
-	require_once( "mvc/mapper/CategoryNews.php" );
-	require_once( "mvc/mapper/News.php" );
-	
+if ( ! isset( $EG_DISABLE_INCLUDES ) ) {	
+	require_once( "mvc/mapper/Post.php" );	
 	require_once( "mvc/mapper/User.php" );
-	require_once( "mvc/mapper/Unit.php");
 	require_once( "mvc/mapper/Config.php");	
 	require_once( "mvc/mapper/Guest.php");	
 }

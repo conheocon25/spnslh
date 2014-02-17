@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class Project extends Command {
+	class SettingPost extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -11,7 +11,7 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-
+						
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
@@ -20,20 +20,18 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
-			$AllCategoryNews = $mCategoryNews->findAll();
-			$AllProject = $mProject->findAll();
+			$PostAll 	= $mPost->findAll();
+			$Title		= "BÀI VIẾT";
+			$Navigation = array(array("QUẢN LÝ", "/quan-ly"));
 			
-			$Navigation = array();
-
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-			$request->setProperty('Title', 'Dự án');
-			$request->setProperty('ActiveTopMenu', 'Project');
-			$request->setProperty('ActiveLeftMenu', '');
-			$request->setObject('AllCategoryNews', $AllCategoryNews);
-			$request->setObject('AllProject', $AllProject);
-			$request->setObject('Navigation', $Navigation);
+			$request->setObject('PostAll', $PostAll);
+			
+			$request->setProperty('Title', 			$Title);
+			$request->setProperty('ActiveLeftMenu', 'SettingCategoryNews');
+			$request->setObject('Navigation', 		$Navigation);
 			
 			return self::statuses('CMD_DEFAULT');
 		}

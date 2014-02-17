@@ -23,39 +23,18 @@ RewriteRule ^tin-tuc/([a-z0-9_-]+)/([a-z0-9_-]+)$ 					?cmd=ReadNews&Key=$2 [L]
 #---------------------------------------------------------------------------------------------------------------------------
 # SETTING
 #---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^signin/load$ 											?cmd=SigninLoad [L]
-RewriteRule ^signin/author$ 										?cmd=SigninExe [L]
+RewriteRule ^dang-nhap$ 											?cmd=SigninLoad [L]
+RewriteRule ^dang-nhap/exe$ 										?cmd=SigninExe [L]
 RewriteRule ^signout$ 												?cmd=SignoutExe [L]
-RewriteRule ^setting$ 												?cmd=Setting [L]
 
 RewriteRule ^object/load/([A-Za-z0-9]+)/([0-9]+)$ 					?cmd=ObjectLoad&ObjectName=$1&Id=$2 [L]
 RewriteRule ^object/del/([A-Za-z0-9]+)/([0-9]+)$ 					?cmd=ObjectDel&ObjectName=$1&Id=$2 [L]
 RewriteRule ^object/ins/([A-Za-z0-9]+)$ 							?cmd=ObjectIns&ObjectName=$1 [L]
 RewriteRule ^object/upd/([A-Za-z0-9]+)$ 							?cmd=ObjectUpd&ObjectName=$1 [L]
 
-RewriteRule ^setting/project$										?cmd=SettingProject [L]
-RewriteRule ^setting/project/ins-load$								?cmd=SettingProjectInsLoad [L]
-RewriteRule ^setting/project/ins-exe$								?cmd=SettingProjectInsExe [L]
-RewriteRule ^setting/project/([0-9]+)/upd-load$						?cmd=SettingProjectUpdLoad&Id=$1 [L]
-RewriteRule ^setting/project/([0-9]+)/upd-exe$						?cmd=SettingProjectUpdExe&Id=$1 [L]
-RewriteRule ^setting/project/([0-9]+)/del-load$						?cmd=SettingProjectDelLoad&Id=$1 [L]
-RewriteRule ^setting/project/([0-9]+)/del-exe$						?cmd=SettingProjectDelExe&Id=$1 [L]
+RewriteRule ^quan-ly$ 												?cmd=Setting [L]
+RewriteRule ^quan-ly/bai-viet$										?cmd=SettingPost [L]
 
-RewriteRule ^setting/project/([0-9]+)/news$							?cmd=SettingProjectNews&IdProject=$1 [L]
-RewriteRule ^setting/project/([0-9]+)/news/ins-load$				?cmd=SettingProjectNewsInsLoad&IdProject=$1 [L]
-RewriteRule ^setting/project/([0-9]+)/news/ins-exe$					?cmd=SettingProjectNewsInsExe&IdProject=$1 [L]
-RewriteRule ^setting/project/([0-9]+)/news/([0-9]+)/upd-load$		?cmd=SettingProjectNewsUpdLoad&IdProject=$1&IdNews=$2 [L]
-RewriteRule ^setting/project/([0-9]+)/news/([0-9]+)/upd-exe$		?cmd=SettingProjectNewsUpdExe&IdProject=$1&IdNews=$2 [L]
-RewriteRule ^setting/project/([0-9]+)/news/([0-9]+)/del-load$		?cmd=SettingProjectNewsDelLoad&IdProject=$1&IdNews=$2 [L]
-RewriteRule ^setting/project/([0-9]+)/news/([0-9]+)/del-exe$		?cmd=SettingProjectNewsDelExe&IdProject=$1&IdNews=$2 [L]
-
-RewriteRule ^setting/project/([0-9]+)/album$						?cmd=SettingProjectAlbum&Id=$1 [L]
-RewriteRule ^setting/project/([0-9]+)/video$						?cmd=SettingProjectVideo&Id=$1 [L]
-RewriteRule ^setting/project/([0-9]+)/product$						?cmd=SettingProjectProduct&Id=$1 [L]
-RewriteRule ^setting/project/([0-9]+)/document$						?cmd=SettingProjectDocument&Id=$1 [L]
-
-RewriteRule ^setting/category-n$									?cmd=SettingCategoryNews [L]
-RewriteRule ^setting/category-n/([0-9]+)/news$						?cmd=SettingNews&IdCategory=$1 [L]
 RewriteRule ^setting/category-n/([0-9]+)/news/ins-load$				?cmd=SettingNewsInsLoad&IdCategory=$1 [L]
 RewriteRule ^setting/category-n/([0-9]+)/news/ins-exe$				?cmd=SettingNewsInsExe&IdCategory=$1 [L]
 RewriteRule ^setting/category-n/([0-9]+)/news/([0-9]+)/upd-load$	?cmd=SettingNewsUpdLoad&IdCategory=$1&Id=$2 [L]
