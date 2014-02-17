@@ -11,31 +11,12 @@
 		<div metal:use-macro="mAdmin.xhtml/StyleSwitcher"/>
 
 		<div id="content">
-			<div id="content-header"><h1>Quản lý</h1></div>
+			<div id="content-header"><h1 tal:content="Title"/></div>
 			<div metal:use-macro="mAdmin.xhtml/Breadcrumb"/>
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-12">
-						<div class="widget-box">
-							<div class="widget-title"><span class="icon"><i class="glyphicon glyphicon-signal"></i></span><h5>Thống kê số liệu</h5><div class="buttons"><a href="#" class="btn"><i class="glyphicon glyphicon-refresh"></i> Cập nhật ngay</a></div></div>
-							<div class="widget-content">
-								<div class="row">
-									<div class="col-12 col-sm-4">
-										<ul class="site-stats">
-											<li><div class="cc"><i class="glyphicon glyphicon-user"></i> <strong>1433</strong> <small>Tài khoản người dùng</small></div></li>
-											<li><div class="cc"><i class="glyphicon glyphicon-arrow-right"></i> <strong>16</strong> <small>Tài khoản mới</small></div></li>
-											<li class="divider"></li>
-											<li><div class="cc"><i class="glyphicon glyphicon-shopping-cart"></i> <strong>259</strong> <small>Tài sản đang giao dịch</small></div></li>
-											<li><div class="cc"><i class="glyphicon glyphicon-tag"></i> <strong>8650</strong> <small>Dự án</small></div></li>
-											<li><div class="cc"><i class="glyphicon glyphicon-repeat"></i> <strong>29</strong> <small>Dự án mới cập nhật</small></div></li>
-										</ul>
-									</div>
-									<div class="col-12 col-sm-8">
-										<div class="chart"></div>
-									</div>	
-								</div>							
-							</div>
-						</div>					
+						
 					</div>
 				</div>
 			</div>

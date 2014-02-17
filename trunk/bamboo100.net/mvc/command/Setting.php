@@ -24,9 +24,9 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-			$request->setProperty('Title', 'Quản lý');
+			$request->setProperty('Title', 			'QUẢN TRỊ');
 			$request->setProperty('ActiveLeftMenu', 'Setting');
-			$request->setObject('Navigation', $Navigation);
+			$request->setObject('Navigation', 		$Navigation);
 			
 			return self::statuses('CMD_DEFAULT');
 		}

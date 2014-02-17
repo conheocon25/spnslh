@@ -2,45 +2,41 @@
 Namespace MVC\Domain;
 require_once( "mvc/base/domain/DomainObject.php" );
 
-class News extends Object{
+class Post extends Object{
 
     private $Id;
-	private $IdCategory;
-	private $Author;
-	private $Date;
-	private $Content;
+	private $IdUser;	
+	private $DateTime;	
 	private $Title;
-	private $Type;
+	private $Content;	
 	private $Key;
 	
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-    function __construct( $Id=null, $IdCategory=null , $Author=Null, $Date=Null, $Content=null, $Title=null, $Type=null, $Key=null){
-        $this->Id = $Id;
-		$this->IdCategory = $IdCategory;
-		$this->Author = $Author;
-		$this->Date = $Date;
-		$this->Content = $Content;
-		$this->Title = $Title;
-		$this->Type = $Type;
-		$this->Key = $Key;
+    function __construct( $Id=null, $IdUser=null , $DateTime=Null, $Title=null, $Content=null, $Key=null){
+        $this->Id 		= $Id;
+		$this->IdUser 	= $IdUser;		
+		$this->DateTime = $DateTime;		
+		$this->Title 	= $Title;
+		$this->Content 	= $Content;	
+		$this->Key 		= $Key;
 		
         parent::__construct( $Id );
     }
     function getId() {return $this->Id;}	
 	function getIdPrint(){return "n" . $this->getId();}	
 	
-    function setIdCategory( $IdCategory ) {$this->IdCategory = $IdCategory;$this->markDirty();}   
-	function getIdCategory( ) {return $this->IdCategory;}
-	function getCategory(){$mCategory = new \MVC\Mapper\CategoryNews();$Category = $mCategory->find($this->getIdCategory());return $Category;}
+    function setIdUser( $IdUser ) {$this->IdUser = $IdUser;$this->markDirty();}   
+	function getIdUser( ) {return $this->IdUser;}
+	function getCategory(){$mCategory = new \MVC\Mapper\CategoryNews();$Category = $mCategory->find($this->getIdUser());return $Category;}
 	
 	function setAuthor( $Author ){$this->Author = $Author;$this->markDirty();}   
 	function getAuthor( ) {return $this->Author;}
 	
-	function setDate( $Date ){$this->Date = $Date;$this->markDirty();}   
-	function getDate( ) {return $this->Date;}
-	function getDatePrint( ){$D = new \MVC\Library\Date($this->Date);return $D->getDateFormat();}
+	function setDateTime( $DateTime ){$this->DateTime = $DateTime;$this->markDirty();}   
+	function getDateTime( ) {return $this->DateTime;}
+	function getDateTimePrint( ){$D = new \MVC\Library\Date($this->DateTime);return $D->getDateTimeFormat();}
 	
 	function setContent( $Content ){$this->Content = $Content;$this->markDirty();}   
 	function getContent( ) {return $this->Content;}
@@ -77,9 +73,9 @@ class News extends Object{
 	function toJSON(){
 		$json = array(
 			'Id' 			=> $this->getId(),
-			'IdCategory' 	=> $this->getIdCategory(),
+			'IdUser' 	=> $this->getIdUser(),
 			'Author' 		=> $this->getAuthor(),
-			'Date'			=> $this->getDate(),
+			'DateTime'			=> $this->getDateTime(),
 			'Content'		=> $this->getContent(),	
 			'Title'			=> $this->getTitle(),	
 			'Type'			=> $this->getType(),	
@@ -91,9 +87,9 @@ class News extends Object{
 	
 	function setArray( $Data ){
         $this->Id 			= $Data[0];
-		$this->IdCategory 	= $Data[1];
+		$this->IdUser 	= $Data[1];
 		$this->Author 		= $Data[2];
-		$this->Date 		= \date('Y-m-d H:i:s');		
+		$this->DateTime 		= \DateTime('Y-m-d H:i:s');		
 		$this->Content	 	= $Data[4];		
 		$this->Title	 	= $Data[5];		
 		$this->Type		 	= $Data[6];		
@@ -109,11 +105,11 @@ class News extends Object{
 	//-------------------------------------------------------------------------------
 	function getURLRead(){return "/tin-tuc/".$this->getCategory()->getKey()."/".$this->getKey();}
 	
-	function getURLUpdLoad(){return "/setting/category-n/".$this->getIdCategory()."/news/".$this->getId()."/upd-load";}
-	function getURLUpdExe(){return "/setting/category-n/".$this->getIdCategory()."/news/".$this->getId()."/upd-exe";}
+	function getURLUpdLoad(){return "/setting/category-n/".$this->getIdUser()."/news/".$this->getId()."/upd-load";}
+	function getURLUpdExe(){return "/setting/category-n/".$this->getIdUser()."/news/".$this->getId()."/upd-exe";}
 	
-	function getURLDelLoad(){return "/setting/category-n/".$this->getIdCategory()."/news/".$this->getId()."/del-load";}
-	function getURLDelExe(){return "/setting/category-n/".$this->getIdCategory()."/news/".$this->getId()."/del-exe";}
+	function getURLDelLoad(){return "/setting/category-n/".$this->getIdUser()."/news/".$this->getId()."/del-load";}
+	function getURLDelExe(){return "/setting/category-n/".$this->getIdUser()."/news/".$this->getId()."/del-exe";}
 
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

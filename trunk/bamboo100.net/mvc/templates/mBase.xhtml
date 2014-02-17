@@ -4,18 +4,18 @@
 	<!-- META TAG INCLUDE														  -->
 	<!-- ======================================================================== -->
 	<span metal:define-macro="IncludeMETA">
-		<title tal:content="string:Nhà Đất Sài Gòn"/>
-		<base href="http://www.saigonlandhouse.com"/>
+		<title tal:content="string:Cây tre trăm đốt"/>
+		<base href="http://caytretramdot.com"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 		<meta http-equiv="Pragma" content="no-cache"/>
 		<meta http-equiv="Expires" content="-1"/>
 		<meta http-equiv="Cache-Control" content="no-cache"/>
-		<meta name="keywords" content="Nhà Đất Sài Gòn"/>
-		<meta name="description" content="Nhà Đất Sài Gòn"/>
-		<meta name="page-topic" content="Nhà Đất Sài Gòn"/>
-		<meta name="Abstract" content="Nhà Đất Sài Gòn"/>
-		<meta name="classification" content="Nhà Đất Sài Gòn"/>
+		<meta name="keywords" content="Cây tre trăm đốt"/>
+		<meta name="description" content="Cây tre trăm đốt"/>
+		<meta name="page-topic" content="Cây tre trăm đốt"/>
+		<meta name="Abstract" content="Cây tre trăm đốt"/>
+		<meta name="classification" content="Cây tre trăm đốt"/>
 		<link rel="shortcut icon" href="/mvc/templates/theme/base/img/favicon.png"/>
 	</span>
 	
@@ -60,24 +60,17 @@
 				<div class="row">
 					<div class="col-md-2 col-sm-2">
 						<div class="logo">
-							<h1><a href="/trang-chu">Saigonlandhouse.com</a></h1>
+							<h1><a href="/trang-chu">CayTreTramDot.com</a></h1>
 						</div>
 					</div>
 					<div class="col-md-6 col-sm-5">
 						<div class="navi">
 							<div id="ddtopmenubar" class="mattblackmenu">
 								<ul>
-									<li tal:attributes="class php:ActiveTopMenu=='Home'?'selected':''"><a href="/trang-chu">Trang Chủ</a></li>
-									<li tal:attributes="class php:ActiveTopMenu=='Project'?'selected':''"><a href="/du-an">Dự Án</a></li>
-									<li tal:attributes="class php:ActiveTopMenu=='News'?'selected':''"><a href="/tin-tuc" rel="ddsubmenu1">Tin Tức</a>
-										<ul id="ddsubmenu1" class="ddsubmenustyle">
-											<li tal:repeat="Category AllCategoryNews" class="selected">
-												<a tal:attributes="href Category/getURLReadNews" tal:content="Category/getName"/>
-											</li>
-										</ul>
-									</li>
-									
-									<li tal:attributes="class php:ActiveTopMenu=='Contact'?'selected':''"><a href="/contact">Liên Hệ</a></li>
+									<li><a href="/trang-chu">Trang Chủ</a></li>
+									<li><a href="/chinh-sach">Tính năng</a></li>
+									<li><a href="/ho-tro">Hỗ trợ</a></li>
+									<li><a href="/lien-he">Liên Hệ</a></li>
 								</ul>
 							</div>
 						</div>
@@ -85,8 +78,8 @@
 					</div>
 					<div class="col-md-4 col-sm-5">
 						<div class="kart-links">
-							<a href="/signin/load">Đăng Nhập</a> 
-							<a href="/signup/load">Đăng Ký</a>
+							<a href="/dang-nhap">Đăng Nhập</a> 
+							<a href="/dang-ki">Đăng Ký</a>
 						</div>
 					</div>
 				</div>
@@ -147,53 +140,9 @@
 	<!-- ======================================================================== -->
 	<div metal:define-macro="Footer">
 		<footer>
-			<div class="container">
-				<div class="row">
-					<div class="col-md-4 col-sm-4">
-						<div class="fwidget">
-							<h4>Kết nối với chúng tôi</h4>
-							<hr />
-							<p>Theo dõi chúng tôi trên các trang mạng xã hội để cập nhật những thông tin mới và chính xác nhất</p>
-							<div class="social">
-								<a href="#" class="facebook"><i class="icon-facebook"></i></a>
-								<a href="#" class="twitter"><i class="icon-twitter"></i></a>
-								<a href="#" class="google-plus"><i class="icon-google-plus"></i></a>
-								<a href="#" class="linkedin"><i class="icon-linkedin"></i></a>
-								<a href="#" class="pinterest"><i class="icon-pinterest"></i></a>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-md-4 col-sm-4">
-						<div class="fwidget">
-							<h4>Danh mục</h4>
-							<hr />
-							<ul>
-								<li><a href="#">Dự án mới nhất</a></li>
-								<li><a href="#">Dự án HOT</a></li>
-								<li><a href="#">Dự án nổi bật</a></li>
-								<li><a href="#">Dự án sắp hoàn thành</a></li>
-							</ul>
-						</div>
-					</div>
-					
-					<div class="col-md-4 col-sm-4">
-						<div class="fwidget">
-							<h4>Thông tin liên hệ</h4>
-							<hr />
-							<div class="address">
-								<p><i class="icon-home color contact-icon"></i>Tầng trệt A3-1-6</p>
-								<p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Căn hộ cao cấp Hoàng Anh Gold House</p>
-								<p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Nhà Bè - TP. Hồ Chí Minh</p>
-								<p><i class="icon-phone color contact-icon"></i> (+84) 903 651 838</p>
-								<p><i class="icon-envelope color contact-icon"></i> <a href="mailto:saigonlandhouse@gmail.com">saigonlandhouse@gmail.com</a></p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<hr />
+			<div class="container">				
 				<div class="copy text-center">
-					Bản quyền 2013 &copy; - <a href="http://saigonlandhouse.com">Saigonlandhouse.com</a><br/>
+					Bản quyền 2013 &copy; - <a href="http://caytretramdot.com">CayTreTramDot.com</a><br/>
 					<i>Trang web hiện đang được nâng cấp, các thông tin chi mang tính chất tham khảo</i>
 				</div>
 			</div>
