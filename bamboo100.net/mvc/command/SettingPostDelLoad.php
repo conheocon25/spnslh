@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class SettingNewsDelLoad extends Command{
+	class SettingPostDelLoad extends Command{
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -11,22 +11,20 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
-			$IdNews = $request->getProperty('Id');
+			$IdPost = $request->getProperty('IdPost');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
-			//-------------------------------------------------------------
-			$mCategoryNews = new \MVC\Mapper\CategoryNews();
-			$mNews = new \MVC\Mapper\News();
+			//-------------------------------------------------------------			
+			$mPost = new \MVC\Mapper\Post();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
-			$News = $mNews->find($IdNews);
-			$Category = $mCategoryNews->find($News->getIdCategory());
-
+			$Post = $mPost->find($IdPost);
+			
 			$Navigation = array(				
-				array("Quản lý", "/setting"),
+				array("QUẢN LÝ", "/quan-ly"),
 				array("Danh mục", "/setting/news/category"),
 				array($Category->getName(), $Category->getURLSettingNews())
 			);

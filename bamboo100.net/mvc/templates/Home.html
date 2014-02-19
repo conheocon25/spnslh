@@ -15,6 +15,9 @@
             </div>
           </div>
         </form>
+		<div tal:repeat="Post PostAll">
+			<span tal:content="Post/getTitle"/>
+		</div>
 		<div metal:use-macro="mBase.xhtml/Footer"/>
 		<div metal:use-macro="mBase.xhtml/IncludeJS"/>
 	</body>

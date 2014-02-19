@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class SettingNewsInsExe extends Command{
+	class SettingPostInsExe extends Command{
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -10,41 +10,31 @@
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
-			//-------------------------------------------------------------			
-			$IdCategory = $request->getProperty('IdCategory');						
-			$Author = $request->getProperty('Author');
-			$Date = $request->getProperty('Date');
-			$Content = \stripslashes($request->getProperty('Content'));
-			$Title = $request->getProperty('Title');
-			$Type = $request->getProperty('Type');
-			
+			//-------------------------------------------------------------									
+			$DateTime 	= $request->getProperty('DateTime');
+			$Content 	= \stripslashes($request->getProperty('Content'));
+			$Title 		= $request->getProperty('Title');
+			$Count		= $request->getProperty('Count');
+						
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mNews = new \MVC\Mapper\News();
+			$mPost = new \MVC\Mapper\Post();
 					
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------	
-			if (!isset($Title))
-				return self::statuses('CMD_OK');
-			if ($Type=="on")
-				$Type=1;
-			else
-				$Type=0;
-				
-			$News = new \MVC\Domain\News(
+			//-------------------------------------------------------------								
+			$Post = new \MVC\Domain\Post(
 				null,
-				$IdCategory,
-				$Author,
-				null,
-				$Content,
+				$Session->getCurrentUser()->getId(),
+				$DateTime,
 				$Title,
-				$Type,
+				$Content,
+				1,
 				""
 			);
-			$News->reKey();
-			$mNews->insert($News);
+			$Post->reKey();
+			$mPost->insert($Post);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
