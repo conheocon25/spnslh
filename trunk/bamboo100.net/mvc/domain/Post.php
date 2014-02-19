@@ -9,27 +9,28 @@ class Post extends Object{
 	private $DateTime;	
 	private $Title;
 	private $Content;	
+	private $Count;
 	private $Key;
-	
+		
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-    function __construct( $Id=null, $IdUser=null , $DateTime=Null, $Title=null, $Content=null, $Key=null){
+    function __construct( $Id=null, $IdUser=null , $DateTime=Null, $Title=null, $Content=null, $Count=null, $Key=null){
         $this->Id 		= $Id;
 		$this->IdUser 	= $IdUser;		
 		$this->DateTime = $DateTime;		
 		$this->Title 	= $Title;
 		$this->Content 	= $Content;	
+		$this->Count 	= $Count;	
 		$this->Key 		= $Key;
 		
         parent::__construct( $Id );
     }
     function getId() {return $this->Id;}	
-	function getIdPrint(){return "n" . $this->getId();}	
-	
+		
     function setIdUser( $IdUser ) {$this->IdUser = $IdUser;$this->markDirty();}   
 	function getIdUser( ) {return $this->IdUser;}
-	function getCategory(){$mCategory = new \MVC\Mapper\CategoryNews();$Category = $mCategory->find($this->getIdUser());return $Category;}
+	function getUser(){$mUser = new \MVC\Mapper\User();$User = $mUser->find($this->getIdUser());return $User;}
 	
 	function setAuthor( $Author ){$this->Author = $Author;$this->markDirty();}   
 	function getAuthor( ) {return $this->Author;}
@@ -46,9 +47,13 @@ class Post extends Object{
 	function getTitle( ) {return $this->Title;}	
 	function getTitleReduce(){$S = new \MVC\Library\String($this->Title);return $S->reduce(45);}
 	
-	function setType( $Type ){$this->Type = $Type;$this->markDirty();}   
-	function getType( ) {return $this->Type;}
-	function isVIP(){if ($this->Type == 1)return true;return false;}
+	function setCount( $Count ){$this->Count = $Count;$this->markDirty();}   
+	function getCount( ) {return $this->Count;}
+	function getCountPrint( ){
+		$N = new \MVC\Library\Number($this->Count);
+		return $N->formatCurrency();
+	}
+	
 	
 	function getImage(){		
 		$first_img = '';
@@ -73,12 +78,12 @@ class Post extends Object{
 	function toJSON(){
 		$json = array(
 			'Id' 			=> $this->getId(),
-			'IdUser' 	=> $this->getIdUser(),
+			'IdUser' 		=> $this->getIdUser(),
 			'Author' 		=> $this->getAuthor(),
-			'DateTime'			=> $this->getDateTime(),
+			'DateTime'		=> $this->getDateTime(),
 			'Content'		=> $this->getContent(),	
-			'Title'			=> $this->getTitle(),	
-			'Type'			=> $this->getType(),	
+			'Title'			=> $this->getTitle(),
+			'Count'			=> $this->getCount(),
 			'Key'			=> $this->getKey()
 		);
 		
@@ -87,12 +92,12 @@ class Post extends Object{
 	
 	function setArray( $Data ){
         $this->Id 			= $Data[0];
-		$this->IdUser 	= $Data[1];
+		$this->IdUser 		= $Data[1];
 		$this->Author 		= $Data[2];
-		$this->DateTime 		= \DateTime('Y-m-d H:i:s');		
+		$this->DateTime 	= \DateTime('Y-m-d H:i:s');		
 		$this->Content	 	= $Data[4];		
-		$this->Title	 	= $Data[5];		
-		$this->Type		 	= $Data[6];		
+		$this->Title	 	= $Data[5];
+		$this->Count	 	= $Data[6];
 		$this->reKey();
     }
 
@@ -105,12 +110,11 @@ class Post extends Object{
 	//-------------------------------------------------------------------------------
 	function getURLRead(){return "/tin-tuc/".$this->getCategory()->getKey()."/".$this->getKey();}
 	
-	function getURLUpdLoad(){return "/setting/category-n/".$this->getIdUser()."/news/".$this->getId()."/upd-load";}
-	function getURLUpdExe(){return "/setting/category-n/".$this->getIdUser()."/news/".$this->getId()."/upd-exe";}
+	function getURLUpdLoad(){return "/quan-ly/bai-viet/".$this->getId()."/upd-load";}
+	function getURLUpdExe(){return "/quan-ly/bai-viet/".$this->getId()."/upd-exe";}
+	function getURLDelLoad(){return "/quan-ly/bai-viet/".$this->getId()."/del-load";}
+	function getURLDelExe(){return "/quan-ly/bai-viet/".$this->getId()."/del-exe";}
 	
-	function getURLDelLoad(){return "/setting/category-n/".$this->getIdUser()."/news/".$this->getId()."/del-load";}
-	function getURLDelExe(){return "/setting/category-n/".$this->getIdUser()."/news/".$this->getId()."/del-exe";}
-
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}

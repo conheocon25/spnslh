@@ -1,32 +1,41 @@
 <?php
 	namespace MVC\Command;	
-	class SettingNewsDelExe extends Command{
-		function doExecute( \MVC\Controller\Request $request ) {
+	class SettingPostUpdLoad extends Command{
+		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
 			//THAM SỐ TOÀN CỤC
-			//-------------------------------------------------------------			
+			//-------------------------------------------------------------
 			$Session = \MVC\Base\SessionRegistry::instance();
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
-			$IdNews = $request->getProperty('Id');
+			$IdPost = $request->getProperty('IdPost');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mNews = new \MVC\Mapper\News();
-					
+			$mPost = new \MVC\Mapper\Post();
+			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
-			$News = $mNews->delete(array($IdNews));
+			$Post 	= $mPost->find($IdPost);
+			
+			$Navigation = array(				
+				array("QUẢN LÝ", 	"/quan-ly"),				
+				array("BÀI VIẾT", 	"/quan-ly/bai-viet")
+			);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-			return self::statuses('CMD_OK');
+			$request->setObject( 'Post', 		$Post );			
+			$request->setObject( 'Navigation', 	$Navigation );			
+			$request->setProperty("Title", 		$Post->getTitle()." > CẬP NHẬT");
+
+			return self::statuses('CMD_DEFAULT');
 		}
 	}
 ?>

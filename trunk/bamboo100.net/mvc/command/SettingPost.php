@@ -20,7 +20,7 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
-			$PostAll 	= $mPost->findAll();
+			$PostAll 	= $mPost->findByUser(array($Session->getCurrentUser()->getId()));
 			$Title		= "BÀI VIẾT";
 			$Navigation = array(array("QUẢN LÝ", "/quan-ly"));
 			
@@ -30,7 +30,7 @@
 			$request->setObject('PostAll', $PostAll);
 			
 			$request->setProperty('Title', 			$Title);
-			$request->setProperty('ActiveLeftMenu', 'SettingCategoryNews');
+			$request->setProperty('ActiveLeftMenu', 'SettingPost');
 			$request->setObject('Navigation', 		$Navigation);
 			
 			return self::statuses('CMD_DEFAULT');

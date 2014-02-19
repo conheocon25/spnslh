@@ -5,14 +5,13 @@ require_once( "mvc/base/Mapper.php" );
 class Post extends Mapper implements \MVC\Domain\PostFinder {
 
     function __construct() {
-        parent::__construct();
-				
+        parent::__construct();			
 		$tblPost = "tbl_Post";
 		
 		$selectAllStmt 	= sprintf("select * from %s ORDER BY date_time DESC", $tblPost);
 		$selectStmt 	= sprintf("select *  from %s where id=?", $tblPost);
-		$updateStmt 	= sprintf("update %s set id_category=?, author=?, date_time=?, content=?, title=?, type=?, `key`=? where id=?", $tblPost);
-		$insertStmt 	= sprintf("insert into %s ( id_category, author, date_time, content, title, type, `key`) values(?, ?, ?, ?, ?, ?, ?)", $tblPost);
+		$updateStmt 	= sprintf("update %s set id_user=?, date_time=?, title=?, content=?, count=?, `key`=? where id=?", $tblPost);
+		$insertStmt 	= sprintf("insert into %s ( id_user, date_time,  title, content, count, `key`) values(?, ?, ?, ?, ?, ?)", $tblPost);
 		$deleteStmt 	= sprintf("delete from %s where id=?", $tblPost);
 		
 		$findByUserStmt = sprintf("select *  from %s where id_user=? ORDER BY date_time DESC", $tblPost);
@@ -58,6 +57,7 @@ class Post extends Mapper implements \MVC\Domain\PostFinder {
 			$array['date_time'],			
 			$array['title'],
 			$array['content'],			
+			$array['count'],			
 			$array['key']
 		);				
         return $obj;
@@ -70,7 +70,8 @@ class Post extends Mapper implements \MVC\Domain\PostFinder {
 			$object->getIdUser(),
 			$object->getDateTime(),			
 			$object->getTitle(),
-			$object->getContent(),			
+			$object->getContent(),
+			$object->getCount(),
 			$object->getKey()
 		); 
         $this->insertStmt->execute( $values );
@@ -84,16 +85,13 @@ class Post extends Mapper implements \MVC\Domain\PostFinder {
 			$object->getDateTime(),			
 			$object->getTitle(),
 			$object->getContent(),			
+			$object->getCount(),
 			$object->getKey(),
 			$object->getId()
 		);
         $this->updateStmt->execute( $values );
     }
-
-	protected function doDelete(array $values) {
-        return $this->deleteStmt->execute( $values );
-    }
-
+	protected function doDelete(array $values) {return $this->deleteStmt->execute( $values );}
     function selectStmt() {return $this->selectStmt;}
     function selectAllStmt() {return $this->selectAllStmt;}
 	
