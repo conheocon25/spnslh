@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mBase.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mBase.xhtml/IncludeCSS"/>
+	</head>
+	
+	<body>
+		<div metal:use-macro="mBase.xhtml/Header"/>
+		<div metal:use-macro="mBase.xhtml/SearchForm"/>
+		<div>
+			<span tal:content="Post/getTitle"/>
+			(<span tal:content="Post/getDateTimePrint"/>)
+			(<span tal:content="Post/getCountPrint"/> xem)
+			<span tal:content="structure Post/getContent"/>
+			<B>Người đăng <span tal:content="Post/getUser/getName"/></B>
+			<BR/>
+			<B>Tin một người đăng</B>
+			<ul tal:repeat="P Post/getUser/getPostAll">
+				<li>
+					<a tal:attributes="href P/getURLRead">
+						<span tal:content="P/getTitle"/>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div metal:use-macro="mBase.xhtml/Footer"/>
+		<div metal:use-macro="mBase.xhtml/IncludeJS"/>
+	</body>
+</html>

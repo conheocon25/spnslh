@@ -6,11 +6,10 @@
 	</head>
 	
 	<body>
-		<div metal:use-macro="mBase.xhtml/Header"/>
-		<div metal:use-macro="mBase.xhtml/SearchForm"/>
-		<div tal:repeat="Post PostAll">
-			<a tal:attributes="href Post/getURLRead">
-				<span tal:content="Post/getTitle"/>
+		<div metal:use-macro="mBase.xhtml/Header"/>		
+		<div tal:repeat="Book CBAll">
+			<a tal:attributes="href Book/getURLRead">
+				<span tal:content="Book/getTitle"/>
 			</a>
 		</div>
 		<div metal:use-macro="mBase.xhtml/Footer"/>
