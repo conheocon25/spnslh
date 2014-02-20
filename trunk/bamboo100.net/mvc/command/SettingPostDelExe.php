@@ -1,11 +1,11 @@
 <?php
 	namespace MVC\Command;	
-	class SettingPostDelLoad extends Command{
-		function doExecute( \MVC\Controller\Request $request ){
+	class SettingPostDelExe extends Command{
+		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
 			//THAM SỐ TOÀN CỤC
-			//-------------------------------------------------------------
+			//-------------------------------------------------------------			
 			$Session = \MVC\Base\SessionRegistry::instance();
 			
 			//-------------------------------------------------------------
@@ -17,25 +17,16 @@
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
 			$mPost = new \MVC\Mapper\Post();
-			
+					
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
-			$Post 	= $mPost->find($IdPost);
-			
-			$Navigation = array(				
-				array("QUẢN LÝ", 	"/quan-ly"),				
-				array("BÀI VIẾT", 	"/quan-ly/bai-viet")
-			);
+			$Post = $mPost->delete(array($IdPost));
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-			$request->setObject( 'Post', 		$Post );			
-			$request->setObject( 'Navigation', 	$Navigation );			
-			$request->setProperty("Title", 		$Post->getTitle()." > CẬP NHẬT");
-
-			return self::statuses('CMD_DEFAULT');
+			return self::statuses('CMD_OK');
 		}
 	}
 ?>

@@ -5,7 +5,8 @@ RewriteEngine on
 # BASE
 #---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^trang-chu$ 											?cmd=Home [L]
-RewriteRule ^du-an$ 												?cmd=Project [L]
+RewriteRule ^ung-dung/co-tuong$ 									?cmd=AppCChess [L]
+
 RewriteRule ^du-an/([a-z0-9_-]+)$ 									?cmd=ProjectDetail&Key=$1 [L]
 RewriteRule ^du-an/([a-z0-9_-]+)/tin-tuc$ 							?cmd=ProjectNews&Key=$1 [L]
 RewriteRule ^du-an/([a-z0-9_-]+)/tin-tuc/([a-z0-9_-]+)$ 			?cmd=ProjectNews&Key=$1&NKey=$2 [L]
@@ -39,11 +40,12 @@ RewriteRule ^quan-ly/bai-viet/([0-9]+)/upd-exe$						?cmd=SettingPostUpdExe&IdPo
 RewriteRule ^quan-ly/bai-viet/([0-9]+)/del-load$					?cmd=SettingPostDelLoad&IdPost=$1 [L]
 RewriteRule ^quan-ly/bai-viet/([0-9]+)/del-exe$						?cmd=SettingPostDelExe&IdPost=$1 [L]
 RewriteRule ^quan-ly/bai-viet/ins-load$								?cmd=SettingPostInsLoad [L]
-RewriteRule ^quan-ly/bai-viet/ins-exe$								?cmd=SettingPostInsExe&IdPost=$1 [L]
+RewriteRule ^quan-ly/bai-viet/ins-exe$								?cmd=SettingPostInsExe [L]
 
-RewriteRule ^setting/category-n/([0-9]+)/news/ins-load$				?cmd=SettingNewsInsLoad&IdCategory=$1 [L]
-RewriteRule ^setting/category-n/([0-9]+)/news/ins-exe$				?cmd=SettingNewsInsExe&IdCategory=$1 [L]
-RewriteRule ^setting/category-n/([0-9]+)/news/([0-9]+)/upd-load$	?cmd=SettingNewsUpdLoad&IdCategory=$1&Id=$2 [L]
-RewriteRule ^setting/category-n/([0-9]+)/news/([0-9]+)/upd-exe$		?cmd=SettingNewsUpdExe&IdCategory=$1&Id=$2 [L]
-RewriteRule ^setting/category-n/([0-9]+)/news/([0-9]+)/del-load$	?cmd=SettingNewsDelLoad&IdCategory=$1&Id=$2 [L]
-RewriteRule ^setting/category-n/([0-9]+)/news/([0-9]+)/del-exe$		?cmd=SettingNewsDelExe&IdCategory=$1&Id=$2 [L]
+RewriteRule ^quan-ly/co-tuong$										?cmd=SettingCChess [L]
+RewriteRule ^quan-ly/co-tuong/([0-9]+)/upd-load$					?cmd=SettingCChessUpdLoad&IdCBook=$1 [L]
+RewriteRule ^quan-ly/co-tuong/([0-9]+)/upd-exe$						?cmd=SettingCChessUpdExe&IdCBook=$1 [L]
+RewriteRule ^quan-ly/co-tuong/([0-9]+)/del-load$					?cmd=SettingCChessDelLoad&IdCBook=$1 [L]
+RewriteRule ^quan-ly/co-tuong/([0-9]+)/del-exe$						?cmd=SettingCChessDelExe&IdCBook=$1 [L]
+RewriteRule ^quan-ly/co-tuong/ins-load$								?cmd=SettingCChessInsLoad [L]
+RewriteRule ^quan-ly/co-tuong/ins-exe$								?cmd=SettingCChessInsExe [L]

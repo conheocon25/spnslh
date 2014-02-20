@@ -9,7 +9,7 @@ interface Finder {
     function insert( Object $obj );
     //function delete();
 }
-
+interface CBookFinder  			extends Finder {}
 interface PostFinder  			extends Finder {}
 interface UserFinder  			extends Finder {}
 interface ConfigFinder 			extends Finder {}

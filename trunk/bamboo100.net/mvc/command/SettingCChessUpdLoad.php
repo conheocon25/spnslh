@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class SettingPostDelLoad extends Command{
+	class SettingCChessUpdLoad extends Command{
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -11,29 +11,29 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
-			$IdPost = $request->getProperty('IdPost');
+			$IdCBook = $request->getProperty('IdCBook');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mPost = new \MVC\Mapper\Post();
+			$mCB = new \MVC\Mapper\CBook();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
-			$Post 	= $mPost->find($IdPost);
+			$CB 	= $mCB->find($IdCBook);
 			
 			$Navigation = array(				
 				array("QUẢN LÝ", 	"/quan-ly"),				
-				array("BÀI VIẾT", 	"/quan-ly/bai-viet")
+				array("CỜ TƯỚNG", 	"/quan-ly/co-tuong")
 			);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-			$request->setObject( 'Post', 		$Post );			
-			$request->setObject( 'Navigation', 	$Navigation );			
-			$request->setProperty("Title", 		$Post->getTitle()." > CẬP NHẬT");
+			$request->setObject( 'CB', 			$CB );
+			$request->setObject( 'Navigation', 	$Navigation );
+			$request->setProperty("Title", 		$CB->getTitle()." > CẬP NHẬT");
 
 			return self::statuses('CMD_DEFAULT');
 		}

@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class SettingPostDelLoad extends Command{
+	class SettingCChessInsLoad extends Command{
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -11,29 +11,24 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
-			$IdPost = $request->getProperty('IdPost');
-			
+						
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
-			//-------------------------------------------------------------			
-			$mPost = new \MVC\Mapper\Post();
+			//-------------------------------------------------------------
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------
-			$Post 	= $mPost->find($IdPost);
-			
+			//-------------------------------------------------------------			
 			$Navigation = array(				
-				array("QUẢN LÝ", 	"/quan-ly"),				
-				array("BÀI VIẾT", 	"/quan-ly/bai-viet")
+				array("QUẢN LÝ", 	"/quan-ly"),
+				array("CÒ TƯỚNG", 	"/quan-ly/co-tuong")
 			);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------
-			$request->setObject( 'Post', 		$Post );			
-			$request->setObject( 'Navigation', 	$Navigation );			
-			$request->setProperty("Title", 		$Post->getTitle()." > CẬP NHẬT");
+			//-------------------------------------------------------------			
+			$request->setObject( 'Navigation', 		$Navigation );
+			$request->setProperty("Title", 			"THÊM MỚI SÁCH");
 
 			return self::statuses('CMD_DEFAULT');
 		}

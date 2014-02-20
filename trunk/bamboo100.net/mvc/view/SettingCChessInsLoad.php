@@ -1,5 +1,5 @@
 <?php
 	require_once("mvc/base/Viewer.php");	
-	$Viewer = new Viewer("mvc/templates/SettingCategoryNews.html");	
+	$Viewer = new Viewer("mvc/templates/SettingCChessInsLoad.html");
 	echo $Viewer->html();
 ?>
