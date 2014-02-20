@@ -88,10 +88,13 @@
 	<!-- LEFT MENU - SIDEBAR													  -->
 	<!-- ======================================================================== -->
 	<div metal:define-macro="Sidebar" id="sidebar">
-		<ul>
+		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">
 			<li tal:attributes="class php:ActiveLeftMenu=='SettingPost'?'active':''"><a 	href="/quan-ly/bai-viet"><i class="glyphicon glyphicon-cog"></i> <span>Bài viết</span></a></li>
 			<li tal:attributes="class php:ActiveLeftMenu=='SettingCChess'?'active':''"><a 	href="/quan-ly/co-tuong"><i class="glyphicon glyphicon-cog"></i> <span>Cờ Tướng</span></a></li>
 			<li tal:attributes="class php:ActiveLeftMenu=='SettingUser'?'active':''"><a 	href="/quan-ly/nguoi-dung"><i class="glyphicon glyphicon-th"></i> <span>Tài khoản</span></a></li>
+		</ul>
+		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isSeller()">
+			<li tal:attributes="class php:ActiveLeftMenu=='SettingPost'?'active':''"><a 	href="/quan-ly/bai-viet"><i class="glyphicon glyphicon-cog"></i> <span>Bài viết</span></a></li>
 		</ul>
 	</div>
 	

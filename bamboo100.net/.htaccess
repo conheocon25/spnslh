@@ -10,21 +10,8 @@ RewriteRule ^object/ins/([A-Za-z0-9]+)$ 							?cmd=ObjectIns&ObjectName=$1 [L]
 RewriteRule ^object/upd/([A-Za-z0-9]+)$ 							?cmd=ObjectUpd&ObjectName=$1 [L]
 
 RewriteRule ^trang-chu$ 											?cmd=Home [L]
+RewriteRule ^tim-kiem$ 												?cmd=Search [L]
 RewriteRule ^ung-dung/co-tuong$ 									?cmd=AppCChess [L]
-
-RewriteRule ^du-an/([a-z0-9_-]+)$ 									?cmd=ProjectDetail&Key=$1 [L]
-RewriteRule ^du-an/([a-z0-9_-]+)/tin-tuc$ 							?cmd=ProjectNews&Key=$1 [L]
-RewriteRule ^du-an/([a-z0-9_-]+)/tin-tuc/([a-z0-9_-]+)$ 			?cmd=ProjectNews&Key=$1&NKey=$2 [L]
-RewriteRule ^du-an/([a-z0-9_-]+)/hinh-anh$ 							?cmd=ProjectAlbum&Key=$1 [L]
-RewriteRule ^du-an/([a-z0-9_-]+)/video$ 							?cmd=ProjectVideo&Key=$1 [L]
-RewriteRule ^du-an/([a-z0-9_-]+)/video/([a-z0-9_-]+)$ 				?cmd=ProjectVideo&Key=$1&VKey=$2 [L]
-RewriteRule ^du-an/([a-z0-9_-]+)/hang-muc$ 							?cmd=ProjectProduct&Key=$1 [L]
-RewriteRule ^du-an/([a-z0-9_-]+)/tai-lieu$ 							?cmd=ProjectDocument&Key=$1 [L]
-
-RewriteRule ^tin-tuc$ 												?cmd=News [L]
-RewriteRule ^tin-tuc/([a-z0-9_-]+)$ 								?cmd=ReadCategory&Key=$1 [L]
-RewriteRule ^tin-tuc/([a-z0-9_-]+)/trang-([a-z0-9_-]+)$ 			?cmd=ReadCategory&Key=$1&Page=$2 [L]
-RewriteRule ^tin-tuc/([a-z0-9_-]+)/([a-z0-9_-]+)$ 					?cmd=ReadNews&Key=$2 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # SETTING

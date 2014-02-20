@@ -2,24 +2,21 @@
 Namespace MVC\Domain;
 require_once( "mvc/base/domain/DomainObject.php" );
 
-class Post extends Object{
-
+class CSet extends Object{
     private $Id;
-	private $IdUser;	
-	private $DateTime;	
-	private $Title;
+	private $IdCBook;
+	private $Name;
 	private $Content;	
 	private $Count;
 	private $Key;
-		
+	
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-    function __construct( $Id=null, $IdUser=null , $DateTime=Null, $Title=null, $Content=null, $Count=null, $Key=null){
+    function __construct( $Id=null, $IdCBook=null , $Name=null, $Content=null, $Count=null, $Key=null){
         $this->Id 		= $Id;
-		$this->IdUser 	= $IdUser;		
-		$this->DateTime = $DateTime;		
-		$this->Title 	= $Title;
+		$this->IdCBook 	= $IdCBook;				
+		$this->Name 	= $Name;
 		$this->Content 	= $Content;	
 		$this->Count 	= $Count;	
 		$this->Key 		= $Key;
@@ -28,24 +25,17 @@ class Post extends Object{
     }
     function getId() {return $this->Id;}	
 		
-    function setIdUser( $IdUser ) {$this->IdUser = $IdUser;$this->markDirty();}   
-	function getIdUser( ) {return $this->IdUser;}
-	function getUser(){$mUser = new \MVC\Mapper\User();$User = $mUser->find($this->getIdUser());return $User;}
-	
-	function setAuthor( $Author ){$this->Author = $Author;$this->markDirty();}   
-	function getAuthor( ) {return $this->Author;}
-	
-	function setDateTime( $DateTime ){$this->DateTime = $DateTime;$this->markDirty();}   
-	function getDateTime( ) {return $this->DateTime;}
-	function getDateTimePrint( ){$D = new \MVC\Library\Date($this->DateTime);return $D->getDateTimeFormat();}
-	
+    function setIdCBook( $IdCBook ) {$this->IdCBook = $IdCBook;$this->markDirty();}   
+	function getIdCBook( ) {return $this->IdCBook;}
+	function getCBook(){$mCB = new \MVC\Mapper\CBook();$CB = $mCB->find($this->getIdCBook());return $CB;}
+			
 	function setContent( $Content ){$this->Content = $Content;$this->markDirty();}   
 	function getContent( ) {return $this->Content;}
 	function getContentReduce(){$S = new \MVC\Library\String($this->Content);return $S->reduceHTML(320);}
 	
-	function setTitle( $Title ){$this->Title = $Title;$this->markDirty();}   
-	function getTitle( ) {return $this->Title;}	
-	function getTitleReduce(){$S = new \MVC\Library\String($this->Title);return $S->reduce(45);}
+	function setName( $Name ){$this->Name = $Name;$this->markDirty();}   
+	function getName( ) {return $this->Name;}	
+	function getNameReduce(){$S = new \MVC\Library\String($this->Name);return $S->reduce(45);}
 	
 	function setCount( $Count ){$this->Count = $Count;$this->markDirty();}   
 	function getCount( ) {return $this->Count;}
@@ -53,8 +43,7 @@ class Post extends Object{
 		$N = new \MVC\Library\Number($this->Count);
 		return $N->formatCurrency();
 	}
-	
-	
+		
 	function getImage(){		
 		$first_img = '';
 		\ob_start();
@@ -71,20 +60,16 @@ class Post extends Object{
 	function setKey( $Key ){$this->Key = $Key;$this->markDirty();}
 	function getKey( ) {return $this->Key;}
 	function reKey( ){
-		$Id = $this->getId();
-		if (!isset($Id)||$Id==0) $Id = time();
-		$Str = new \MVC\Library\String($this->Title." ".$Id);
-		$this->Key = $Str->converturl();						
+		$Str = new \MVC\Library\String($this->Name." ".$this->getId());
+		$this->Key = $Str->converturl();
 	}
 	
 	function toJSON(){
 		$json = array(
 			'Id' 			=> $this->getId(),
-			'IdUser' 		=> $this->getIdUser(),
-			'Author' 		=> $this->getAuthor(),
-			'DateTime'		=> $this->getDateTime(),
+			'IdCBook' 		=> $this->getIdCBook(),			
 			'Content'		=> $this->getContent(),	
-			'Title'			=> $this->getTitle(),
+			'Name'			=> $this->getName(),
 			'Count'			=> $this->getCount(),
 			'Key'			=> $this->getKey()
 		);
@@ -94,12 +79,10 @@ class Post extends Object{
 	
 	function setArray( $Data ){
         $this->Id 			= $Data[0];
-		$this->IdUser 		= $Data[1];
-		$this->Author 		= $Data[2];
-		$this->DateTime 	= \DateTime('Y-m-d H:i:s');		
-		$this->Content	 	= $Data[4];		
-		$this->Title	 	= $Data[5];
-		$this->Count	 	= $Data[6];
+		$this->IdCBook 		= $Data[1];		
+		$this->Content	 	= $Data[2];		
+		$this->Name	 		= $Data[3];
+		$this->Count	 	= $Data[4];
 		$this->reKey();
     }
 
@@ -112,10 +95,10 @@ class Post extends Object{
 	//-------------------------------------------------------------------------------
 	function getURLRead(){return "/tin-tuc/".$this->getCategory()->getKey()."/".$this->getKey();}
 	
-	function getURLUpdLoad(){return "/quan-ly/bai-viet/".$this->getId()."/upd-load";}
-	function getURLUpdExe(){return "/quan-ly/bai-viet/".$this->getId()."/upd-exe";}
-	function getURLDelLoad(){return "/quan-ly/bai-viet/".$this->getId()."/del-load";}
-	function getURLDelExe(){return "/quan-ly/bai-viet/".$this->getId()."/del-exe";}
+	function getURLUpdLoad(){	return "/quan-ly/co-tuong/".$this->getId()."/upd-load";}
+	function getURLUpdExe(){	return "/quan-ly/co-tuong/".$this->getId()."/upd-exe";}
+	function getURLDelLoad(){	return "/quan-ly/co-tuong/".$this->getId()."/del-load";}
+	function getURLDelExe(){	return "/quan-ly/co-tuong/".$this->getId()."/del-exe";}
 	
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
