@@ -1,5 +1,5 @@
 <?php
 	require_once("mvc/base/Viewer.php");	
-	$Viewer = new Viewer("mvc/templates/ProjectProduct.html");	
+	$Viewer = new Viewer("mvc/templates/SettingCChessUpdLoad.html");
 	echo $Viewer->html();
 ?>

@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class ProjectProduct extends Command {
+	class SettingCChess extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -11,34 +11,26 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$Key = $request->getProperty("Key");
-
+						
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			require_once("mvc/base/mapper/MapperDefault.php");
-
+			$mCB = new \MVC\Mapper\CBook();
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------
-			$AllCategoryNews = $mCategoryNews->findAll();
-			$Project = $mProject->findByKey($Key);
+			//-------------------------------------------------------------			
+			$Title		= "CỜ TƯỚNG";
+			$CBAll = $mCB->findAll();
+			$Navigation = array(array("QUẢN LÝ", "/quan-ly"));
 			
-			$Navigation = array(				
-				array("Dự án", "/du-an"),
-				array($Project->getName(), $Project->getURLView())
-			);
-
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-			$request->setProperty('Title', $Project->getName());
-			$request->setProperty('EndBcrumb', 'Hạng mục');
-			$request->setProperty('ActiveTopMenu', 'Project');
-			$request->setProperty('ActiveLeftMenu', 'ProjectProduct');
-			$request->setObject('AllCategoryNews', $AllCategoryNews);
-			$request->setObject('Project', $Project);
-			$request->setObject('Navigation', $Navigation);
+			$request->setObject('CBAll', 			$CBAll);
+			
+			$request->setProperty('Title', 			$Title);
+			$request->setProperty('ActiveLeftMenu', 'SettingCChess');
+			$request->setObject('Navigation', 		$Navigation);
 			
 			return self::statuses('CMD_DEFAULT');
 		}
