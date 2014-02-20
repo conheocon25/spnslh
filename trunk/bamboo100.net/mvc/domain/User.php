@@ -10,22 +10,22 @@ class User extends Object{
 	private $Gender;
 	private $Note;
 	private $DateCreate;
-	private $DateUpdate;
+	private $DateUpdate;	
 	private $DateActivity;
 	private $Type;
 	private $Code;
 				
 	/*Hàm khởi tạo và thiết lập các thuộc tính*/
-    function __construct(
-		$Id=null,
+    function __construct( 
+		$Id=null, 
 		$Name=null,
-		$Email=null,
-		$Pass=null,
-		$Gender=null,
-		$Note=null,
-		$DateCreate = null,
-		$DateUpdate = null,
-		$DateActivity = null,
+		$Email=null, 
+		$Pass=null, 		
+		$Gender=null, 
+		$Note=null, 		
+		$DateCreate = null,	
+		$DateUpdate = null,	
+		$DateActivity = null,	
 		$Type = null,
 		$Code = null
 	) {
@@ -126,7 +126,7 @@ class User extends Object{
 		$this->Type 		= $Data[9];
 		$this->Code 		= $Data[10];
     }
-
+			
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}
 }
