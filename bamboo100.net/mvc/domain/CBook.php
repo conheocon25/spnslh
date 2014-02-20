@@ -109,7 +109,7 @@ class CBook extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLRead(){return "/tin-tuc/".$this->getCategory()->getKey()."/".$this->getKey();}
+	function getURLRead(){return "/ung-dung/co-tuong/".$this->getKey();}
 	
 	function getURLUpdLoad(){	return "/quan-ly/co-tuong/".$this->getId()."/upd-load";}
 	function getURLUpdExe(){	return "/quan-ly/co-tuong/".$this->getId()."/upd-exe";}

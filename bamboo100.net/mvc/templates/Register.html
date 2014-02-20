@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mBase.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mBase.xhtml/IncludeCSS"/>
+	</head>
+	
+	<body>
+		<div metal:use-macro="mBase.xhtml/Header"/>
+		<h1>ĐĂNG KÍ TÀI KHOẢN</h1>
+		<form>
+			<legend>Thông tin tài khoản</legend>
+			<fieldset>
+				<label>Tên</label>
+				<input type="text" placeholder="Tên người dùng ..." />										
+			</fieldset>
+			<fieldset>
+				<label>Email</label>
+				<input type="text" placeholder="Email người dùng ..." />										
+			</fieldset>
+			<fieldset>
+				<label>Mật khẩu</label>
+				<input type="text" placeholder="Gõ vào mật khẩu ..." />										
+			</fieldset>
+			<fieldset>
+				<label>Gõ lại  mật khẩu</label>
+				<input type="text" placeholder="Gõ lại mật khẩu ..." />										
+			</fieldset>
+			<button type="submit" class="btn">Đăng kí</button>
+		</form>
+		<div metal:use-macro="mBase.xhtml/Footer"/>
+		<div metal:use-macro="mBase.xhtml/IncludeJS"/>
+	</body>
+</html>

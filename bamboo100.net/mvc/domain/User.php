@@ -96,6 +96,12 @@ class User extends Object{
 	function setCode( $Code){	$this->Code= $Code;$this->markDirty();}
 	function getCode(){	return $this->Code;}
 	
+	function getPostAll(){
+		$mPost 	= new \MVC\Mapper\Post();
+		$PostAll = 	$mPost->findByUser( array($this->getId()) );
+		return $PostAll;
+	}
+	
 	function toJSON(){
 		$json = array(
 			'Id' 			=> $this->getId(),
