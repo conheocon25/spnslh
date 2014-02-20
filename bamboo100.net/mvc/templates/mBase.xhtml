@@ -87,17 +87,7 @@
 		</div>
 		<div class="clearfix"></div>
 	</div>
-	
-	<!-- ======================================================================== -->
-	<!-- PAGE TITLE																  -->
-	<!-- ======================================================================== -->
-	<div metal:define-macro="PageTitle" class="page-title">
-		<div class="container">
-			<h2><i class="icon-building color"></i> Dự án <small tal:content="Title"/></h2>
-			<hr />
-		</div>
-	</div>
-	
+			
 	<!-- ======================================================================== -->
 	<!-- BREADCRUMB																  -->
 	<!-- ======================================================================== -->
@@ -108,32 +98,7 @@
 			<li class="active" tal:content="EndBcrumb"/>
 		</ul>
 	</div>
-	
-	<!-- ======================================================================== -->
-	<!-- PRODUCT LEFT MENU														  -->
-	<!-- ======================================================================== -->
-	<div metal:define-macro="ProductLeftMenu" class="sidey">
-		<ul class="nav">
-			<li tal:attributes="class php:ActiveLeftMenu=='Project'?'active':''"><a tal:attributes="href Project/getURLView"><i class="icon-info"></i> &nbsp;Thông tin</a></li>
-			<li tal:attributes="class php:ActiveLeftMenu=='ProjectNews'?'active':''"><a tal:attributes="href Project/getURLNews"><i class="icon-globe"></i> &nbsp;Tin tức</a></li>
-			<li tal:attributes="class php:ActiveLeftMenu=='ProjectAlbum'?'active':''"><a tal:attributes="href Project/getURLAlbum"><i class="icon-picture"></i> &nbsp;Hình ảnh</a></li>
-			<li tal:attributes="class php:ActiveLeftMenu=='ProjectVideo'?'active':''"><a tal:attributes="href Project/getURLVideo"><i class="icon-film"></i> &nbsp;Video</a></li>
-			<li tal:attributes="class php:ActiveLeftMenu=='ProjectProduct'?'active':''"><a tal:attributes="href Project/getURLProduct"><i class="icon-inbox"></i> &nbsp;Hạng mục</a></li>
-			<li tal:attributes="class php:ActiveLeftMenu=='ProjectDocument'?'active':''"><a tal:attributes="href Project/getURLDocumment"><i class="icon-briefcase"></i> &nbsp;Tài liệu</a></li>
-		</ul>
-	</div>
-	
-	<!-- ======================================================================== -->
-	<!-- NEWS LEFT MENU															  -->
-	<!-- ======================================================================== -->
-	<div metal:define-macro="NewsLeftMenu" class="sidey">
-		<ul class="nav">
-			<li tal:attributes="class php:ActiveLeftMenu=='News'?'active':''"><a href="/tin-tuc"><i class="icon-globe"></i> &nbsp;Tin tức</a></li>
-			<li tal:repeat="Category AllCategoryNews" tal:attributes="class php:ActiveLeftMenu==Category->getId()?'active':''">
-				<a tal:attributes="href Category/getURLReadNews"><i class="icon-globe"></i> &nbsp;<span tal:content="Category/getName"/></a>
-			</li>
-		</ul>
-	</div>
+		
 
 	<!-- ======================================================================== -->
 	<!-- FOOTER																	  -->

@@ -47,5 +47,7 @@
 		<command name="SettingCChessDelLoad"><view>SettingCChessDelLoad</view></command>
 		<command name="SettingCChessDelExe"><view>SettingCChessDelExe</view><status value="CMD_OK"><forward>SettingCChess</forward></status></command>
 		
+		<command name="SettingUser"><view>SettingUser</view></command>
+		
 	</control>
 </options>

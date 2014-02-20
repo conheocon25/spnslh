@@ -25,7 +25,7 @@ class User extends Mapper implements \MVC\Domain\UserFinder {
 				) 
 				values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblUser);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblUser);
-		$findByPageStmt = sprintf("SELECT * FROM  %s ORDER BY name LIMIT :start,:max", $tblUser);
+		$findByPageStmt = sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblUser);
 		
 		$checkStmt = sprintf("select distinct id from %s where email=? and pass=?", $tblUser);
 		$checkBarcodeStmt = sprintf("select distinct id from %s where code=?", $tblUser);
