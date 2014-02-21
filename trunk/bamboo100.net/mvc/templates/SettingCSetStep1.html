@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<span metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<span metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+		<link href="/mvc/templates/theme/cchess/css/style.css" rel="stylesheet" media="screen"/>
+	</head>
+	<body>
+		<div metal:use-macro="mAdmin.xhtml/Header"/>		
+		<div metal:use-macro="mAdmin.xhtml/UserNavigation"/>
+		<div id="content">			
+			<div class="container-fluid">
+				<div class="row-fluid">
+					<div class="col-6">
+						<canvas width="438px" height="488px" id="ChessBoard"></canvas>
+					</div>
+					<div class="col-6">
+						<select id="MoveList" class="form-control" />
+					</div>
+				</div>
+			</div>				
+		</div>	
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/SignoutDialog"/>
+		<span metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<script src="/mvc/templates/theme/cchess/js/piece.js"></script>	
+		<script src="/mvc/templates/theme/cchess/js/board.js"></script>
+		<script>
+			window.onload = function() {					
+				var canvas 		= document.getElementById("ChessBoard");			
+				var context 	= canvas.getContext("2d");
+				var Rect 		= canvas.getBoundingClientRect();
+				var VC			= new Board("Van1", 20, 20, Rect);
+				
+				VC.init();
+				VC.draw(canvas, context);
+				
+				canvas.addEventListener('click', function(e){
+						VC.click(e);
+						context.clearRect(0, 0, canvas.width, canvas.height);
+						VC.draw(canvas, context);				
+						$("#MoveList").html(VC.getStepAll());
+					}, 
+				false);
+												
+				$( "#MoveList" ).change(function (){
+					$( "#MoveList option:selected" ).each(function() {
+						var State = $(this).val();					
+						VC.setState(State);
+						context.clearRect(0, 0, canvas.width, canvas.height);
+						VC.draw(canvas, context);
+					});					
+				}).change();
+			}
+		</script>
+	</body>
+</html>

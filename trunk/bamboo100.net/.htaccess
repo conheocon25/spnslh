@@ -51,5 +51,7 @@ RewriteRule ^quan-ly/co-tuong/([0-9]+)/van-co/([0-9]+)/upd-load$	?cmd=SettingCSe
 RewriteRule ^quan-ly/co-tuong/([0-9]+)/van-co/([0-9]+)/upd-exe$		?cmd=SettingCSetUpdExe&IdCBook=$1&IdCSet=$2 	[L]
 RewriteRule ^quan-ly/co-tuong/([0-9]+)/van-co/([0-9]+)/del-load$	?cmd=SettingCSetDelLoad&IdCBook=$1&IdCSet=$2 	[L]
 RewriteRule ^quan-ly/co-tuong/([0-9]+)/van-co/([0-9]+)/del-exe$		?cmd=SettingCSetDelExe&IdCBook=$1&IdCSet=$2 	[L]
+RewriteRule ^quan-ly/co-tuong/([0-9]+)/van-co/([0-9]+)/step$		?cmd=SettingCSetStep&IdCBook=$1&IdCSet=$2 		[L]
+RewriteRule ^quan-ly/co-tuong/([0-9]+)/van-co/([0-9]+)/step/upd$	?cmd=SettingCSetStep1&IdCBook=$1&IdCSet=$2 [L]
 
 RewriteRule ^quan-ly/nguoi-dung$									?cmd=SettingUser [L]
