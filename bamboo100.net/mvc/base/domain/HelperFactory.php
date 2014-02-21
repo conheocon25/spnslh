@@ -4,6 +4,7 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 		
 	require_once( "mvc/mapper/CBook.php");
 	require_once( "mvc/mapper/CSet.php");
+	require_once( "mvc/mapper/CStep.php");
 	require_once( "mvc/mapper/Post.php");	
 	require_once( "mvc/mapper/User.php");
 	require_once( "mvc/mapper/Config.php");	

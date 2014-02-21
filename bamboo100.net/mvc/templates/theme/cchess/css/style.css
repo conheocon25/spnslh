@@ -1,0 +1,4 @@
+	
+	#ChessBoard { border: 2px solid #ADD8E6; box-shadow: 0 0 0 15px #ADD8E6 inset; }
+	#MoveList { height: 450px; }
+	.container-fluid { margin-top: 50px; }

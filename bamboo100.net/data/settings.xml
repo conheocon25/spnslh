@@ -55,6 +55,10 @@
 		<command name="SettingCSetDelLoad"><view>SettingCSetDelLoad</view></command>
 		<command name="SettingCSetDelExe"><view>SettingCSetDelExe</view><status value="CMD_OK"><forward>SettingCSet</forward></status></command>
 		
+		<command name="SettingCSetStep"><view>SettingCSetStep</view></command>
+		<command name="SettingCSetStep1"><view>SettingCSetStep1</view></command>
+		<command name="SettingCSetStepUpdload"><view>SettingCSetStepUpdload</view></command>
+		
 		<command name="SettingUser"><view>SettingUser</view></command>
 		
 	</control>

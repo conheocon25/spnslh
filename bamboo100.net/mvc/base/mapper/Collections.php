@@ -5,6 +5,7 @@ require_once( "mvc/base/mapper/Collection.php");
 
 class CBookCollection 	extends Collection implements \MVC\Domain\CBookCollection{	function targetClass(){	return "\MVC\Domain\CBook";}}
 class CSetCollection 	extends Collection implements \MVC\Domain\CSetCollection{	function targetClass(){	return "\MVC\Domain\CSet";}}
+class CStepCollection 	extends Collection implements \MVC\Domain\CStepCollection{	function targetClass(){	return "\MVC\Domain\CStep";}}
 class PostCollection 	extends Collection implements \MVC\Domain\PostCollection{	function targetClass(){	return "\MVC\Domain\Post";}}
 class ConfigCollection 	extends Collection implements \MVC\Domain\ConfigCollection{	function targetClass(){	return "\MVC\Domain\Config";}}
 class GuestCollection 	extends Collection implements \MVC\Domain\GuestCollection{	function targetClass(){	return "\MVC\Domain\Guest";}}
