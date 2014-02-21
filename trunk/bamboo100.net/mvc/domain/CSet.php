@@ -43,20 +43,7 @@ class CSet extends Object{
 		$N = new \MVC\Library\Number($this->Count);
 		return $N->formatCurrency();
 	}
-		
-	function getImage(){		
-		$first_img = '';
-		\ob_start();
-		\ob_end_clean();
-		if(preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $this->Content, $matches)){
-			$first_img = $matches[1][0];
-		}
-		else {
-			$first_img = "/mvc/templates/theme/base/img/items/1.jpg";
-		}
-		return $first_img;
-	}
-	
+			
 	function setKey( $Key ){$this->Key = $Key;$this->markDirty();}
 	function getKey( ) {return $this->Key;}
 	function reKey( ){
@@ -89,15 +76,20 @@ class CSet extends Object{
 	//-------------------------------------------------------------------------------
 	//GET LISTs
 	//-------------------------------------------------------------------------------
-		
+	function getStepAll(){
+		$mCStep 	= new \MVC\Mapper\CStep();
+		$StepAll 	= $mCStep->findBySet(array($this->getId()));
+		return $StepAll;
+	}
+	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
 	function getURLRead(){return "/tin-tuc/".$this->getCategory()->getKey()."/".$this->getKey();}
 	
 	function getURLSettingStep(){			return "/quan-ly/co-tuong/".$this->getIdCBook()."/van-co/".$this->getId()."/step";}
-	function getURLSettingStepUpdLoad(){	return "/quan-ly/co-tuong/".$this->getIdCBook()."/van-co/".$this->getId()."/step/upd-load";}
-	function getURLSettingStepUpdExe(){		return "/quan-ly/co-tuong/".$this->getIdCBook()."/van-co/".$this->getId()."/step/upd-exe";}
+	function getURLSettingStepUpdLoad(){	return "/quan-ly/co-tuong/".$this->getIdCBook()."/van-co/".$this->getId()."/step/upd";}
+	function getURLSettingStepUpdExe(){		return "/quan-ly/co-tuong/".$this->getIdCBook()."/van-co/".$this->getId()."/step/exe";}
 	
 	function getURLUpdLoad(){	return "/quan-ly/co-tuong/".$this->getIdCBook()."/van-co/".$this->getId()."/upd-load";}
 	function getURLUpdExe(){	return "/quan-ly/co-tuong/".$this->getIdCBook()."/van-co/".$this->getId()."/upd-exe";}

@@ -57,8 +57,8 @@
 		
 		<command name="SettingCSetStep"><view>SettingCSetStep</view></command>
 		<command name="SettingCSetStep1"><view>SettingCSetStep1</view></command>
-		<command name="SettingCSetStepUpdload"><view>SettingCSetStepUpdload</view></command>
-		
+		<command name="SettingCSetStep1Exe"><view>SettingCSetStep1Exe</view></command>
+				
 		<command name="SettingUser"><view>SettingUser</view></command>
 		
 	</control>
