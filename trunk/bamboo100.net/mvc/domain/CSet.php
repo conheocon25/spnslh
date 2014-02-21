@@ -67,9 +67,9 @@ class CSet extends Object{
 	function toJSON(){
 		$json = array(
 			'Id' 			=> $this->getId(),
-			'IdCBook' 		=> $this->getIdCBook(),			
-			'Content'		=> $this->getContent(),	
+			'IdCBook' 		=> $this->getIdCBook(),
 			'Name'			=> $this->getName(),
+			'Content'		=> $this->getContent(),				
 			'Count'			=> $this->getCount(),
 			'Key'			=> $this->getKey()
 		);
@@ -79,9 +79,9 @@ class CSet extends Object{
 	
 	function setArray( $Data ){
         $this->Id 			= $Data[0];
-		$this->IdCBook 		= $Data[1];		
-		$this->Content	 	= $Data[2];		
-		$this->Name	 		= $Data[3];
+		$this->IdCBook 		= $Data[1];
+		$this->Name	 		= $Data[2];
+		$this->Content	 	= $Data[3];				
 		$this->Count	 	= $Data[4];
 		$this->reKey();
     }
@@ -95,10 +95,10 @@ class CSet extends Object{
 	//-------------------------------------------------------------------------------
 	function getURLRead(){return "/tin-tuc/".$this->getCategory()->getKey()."/".$this->getKey();}
 	
-	function getURLUpdLoad(){	return "/quan-ly/co-tuong/".$this->getId()."/upd-load";}
-	function getURLUpdExe(){	return "/quan-ly/co-tuong/".$this->getId()."/upd-exe";}
-	function getURLDelLoad(){	return "/quan-ly/co-tuong/".$this->getId()."/del-load";}
-	function getURLDelExe(){	return "/quan-ly/co-tuong/".$this->getId()."/del-exe";}
+	function getURLUpdLoad(){	return "/quan-ly/co-tuong/".$this->getIdCBook()."/van-co/".$this->getId()."/upd-load";}
+	function getURLUpdExe(){	return "/quan-ly/co-tuong/".$this->getIdCBook()."/van-co/".$this->getId()."/upd-exe";}
+	function getURLDelLoad(){	return "/quan-ly/co-tuong/".$this->getIdCBook()."/van-co/".$this->getId()."/del-load";}
+	function getURLDelExe(){	return "/quan-ly/co-tuong/".$this->getIdCBook()."/van-co/".$this->getId()."/del-exe";}
 	
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

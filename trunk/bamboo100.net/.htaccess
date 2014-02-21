@@ -44,4 +44,12 @@ RewriteRule ^quan-ly/co-tuong/([0-9]+)/del-exe$						?cmd=SettingCChessDelExe&Id
 RewriteRule ^quan-ly/co-tuong/ins-load$								?cmd=SettingCChessInsLoad [L]
 RewriteRule ^quan-ly/co-tuong/ins-exe$								?cmd=SettingCChessInsExe [L]
 
+RewriteRule ^quan-ly/co-tuong/([0-9]+)/van-co$						?cmd=SettingCSet&IdCBook=$1 [L]
+RewriteRule ^quan-ly/co-tuong/([0-9]+)/van-co/ins-load$				?cmd=SettingCSetInsLoad&IdCBook=$1 [L]
+RewriteRule ^quan-ly/co-tuong/([0-9]+)/van-co/ins-exe$				?cmd=SettingCSetInsExe&IdCBook=$1 [L]
+RewriteRule ^quan-ly/co-tuong/([0-9]+)/van-co/([0-9]+)/upd-load$	?cmd=SettingCSetUpdLoad&IdCBook=$1&IdCSet=$2 	[L]
+RewriteRule ^quan-ly/co-tuong/([0-9]+)/van-co/([0-9]+)/upd-exe$		?cmd=SettingCSetUpdExe&IdCBook=$1&IdCSet=$2 	[L]
+RewriteRule ^quan-ly/co-tuong/([0-9]+)/van-co/([0-9]+)/del-load$	?cmd=SettingCSetDelLoad&IdCBook=$1&IdCSet=$2 	[L]
+RewriteRule ^quan-ly/co-tuong/([0-9]+)/van-co/([0-9]+)/del-exe$		?cmd=SettingCSetDelExe&IdCBook=$1&IdCSet=$2 	[L]
+
 RewriteRule ^quan-ly/nguoi-dung$									?cmd=SettingUser [L]
