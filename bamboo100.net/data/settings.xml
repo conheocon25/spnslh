@@ -47,6 +47,14 @@
 		<command name="SettingCChessDelLoad"><view>SettingCChessDelLoad</view></command>
 		<command name="SettingCChessDelExe"><view>SettingCChessDelExe</view><status value="CMD_OK"><forward>SettingCChess</forward></status></command>
 		
+		<command name="SettingCSet"><view>SettingCSet</view></command>
+		<command name="SettingCSetInsLoad"><view>SettingCSetInsLoad</view></command>
+		<command name="SettingCSetInsExe"><view>SettingCSetInsExe</view><status value="CMD_OK"><forward>SettingCSet</forward></status></command>
+		<command name="SettingCSetUpdLoad"><view>SettingCSetUpdLoad</view></command>
+		<command name="SettingCSetUpdExe"><view>SettingCSetUpdExe</view><status value="CMD_OK"><forward>SettingCSet</forward></status></command>
+		<command name="SettingCSetDelLoad"><view>SettingCSetDelLoad</view></command>
+		<command name="SettingCSetDelExe"><view>SettingCSetDelExe</view><status value="CMD_OK"><forward>SettingCSet</forward></status></command>
+		
 		<command name="SettingUser"><view>SettingUser</view></command>
 		
 	</control>
