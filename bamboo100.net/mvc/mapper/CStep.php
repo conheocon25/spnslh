@@ -1,7 +1,7 @@
 <?php
 namespace MVC\Mapper;
-
 require_once( "mvc/base/Mapper.php" );
+
 class CStep extends Mapper implements \MVC\Domain\CStepFinder {
     function __construct() {
         parent::__construct();
@@ -9,11 +9,12 @@ class CStep extends Mapper implements \MVC\Domain\CStepFinder {
 		$tblCStep 		= "tbl_cstep";		
 		$selectAllStmt 	= sprintf("select * from %s", $tblCStep);
 		$selectStmt 	= sprintf("select *  from %s where id=?", $tblCStep);
-		$updateStmt 	= sprintf("update %s set id_cbook=?, name=?, content=?, count=?, `key`=? where id=?", $tblCStep);
-		$insertStmt 	= sprintf("insert into %s ( id_cbook, name, content,  count, `key`) values(?, ?, ?, ?, ?)", $tblCStep);
+		$updateStmt 	= sprintf("update %s set id_cset=?, name=?, content=? where id=?", $tblCStep);
+		$insertStmt 	= sprintf("insert into %s ( id_cset, name, content) values(?, ?, ?)", $tblCStep);
 		$deleteStmt 	= sprintf("delete from %s where id=?", $tblCStep);
+		$deleteBySetStmt= sprintf("delete from %s where id_cset=?", $tblCStep);
 				
-		$findBySetStmt = sprintf("select *  from %s where id_cbook=?", $tblCStep);				
+		$findBySetStmt = sprintf("select *  from %s where id_cset=?", $tblCStep);				
 		
         $this->selectAllStmt 	= self::$PDO->prepare($selectAllStmt);
         $this->selectStmt 		= self::$PDO->prepare($selectStmt);
@@ -60,7 +61,12 @@ class CStep extends Mapper implements \MVC\Domain\CStepFinder {
     function selectStmt() {return $this->selectStmt;}
     function selectAllStmt() {return $this->selectAllStmt;}
 	
-	function findByBook( $values ){
+	function deleteBySet( $values ){
+        $this->deleteBySetStmt->execute( $values );
+        return true;
+    }				
+	
+	function findBySet( $values ){
         $this->findBySetStmt->execute( $values );
         return new CStepCollection( $this->findBySetStmt->fetchAll(), $this);
     }				

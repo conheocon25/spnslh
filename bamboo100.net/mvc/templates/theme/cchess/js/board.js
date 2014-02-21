@@ -139,8 +139,18 @@ function Board(Name, XStart, YStart, Rect){
 	this.getStepAll = function(){
 		var S = "";
 		var Temp = "";
+		for (var i=0; i < this.CurrentStep; i++){						
+			Temp = "<div class='btn btn-info iStep' alt='"+ this.AStep[i] +"'>"+ this.AStepN[i] + "</div>";
+			S +=  Temp;
+		}
+		return S;
+	}
+	
+	this.getStepAllSave = function(){
+		var S = "";
+		var Temp = "";
 		for (var i=0; i < this.CurrentStep; i++){					
-			Temp = "<option class='Step' value='" + this.AStep[i] + "'>" + this.AStepN[i] +"</option>";
+			Temp = "#"+this.AStep[i] + "|" + this.AStepN[i];
 			S +=  Temp;
 		}
 		return S;

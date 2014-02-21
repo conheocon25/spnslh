@@ -14,8 +14,13 @@
 					<div class="col-6">
 						<canvas width="438px" height="488px" id="ChessBoard"></canvas>
 					</div>
-					<div class="col-6">
-						<select id="MoveList" class="form-control" />
+					<div class="col-6">						
+						<div id="MoveList">
+							<div class="btn btn-info iStep" tal:repeat="Step CS/getStepAll" tal:attributes="alt Step/getContent">
+								<span tal:content="Step/getName"/>
+							</div>
+						</div>
+						<button id="Step" class="btn btn-success" tal:attributes="alt CS/getURLSettingStepUpdExe">Lưu nước đi</button>
 					</div>
 				</div>
 			</div>				
@@ -32,9 +37,8 @@
 				var Rect 		= canvas.getBoundingClientRect();
 				var VC			= new Board("Van1", 20, 20, Rect);
 				
-				VC.init();
-				VC.draw(canvas, context);
-				
+				//KHỞI TẠO BÀN CỜ
+				VC.init();								
 				canvas.addEventListener('click', function(e){
 						VC.click(e);
 						context.clearRect(0, 0, canvas.width, canvas.height);
@@ -42,15 +46,32 @@
 						$("#MoveList").html(VC.getStepAll());
 					}, 
 				false);
-												
-				$( "#MoveList" ).change(function (){
-					$( "#MoveList option:selected" ).each(function() {
-						var State = $(this).val();					
-						VC.setState(State);
-						context.clearRect(0, 0, canvas.width, canvas.height);
-						VC.draw(canvas, context);
-					});					
-				}).change();
+				VC.draw(canvas, context);
+
+				//XỬ LÍ NƯỚC ĐI				
+				$(".iStep").click(function(){
+					var Content = $(this).attr('alt');					
+					VC.setState(Content);
+					context.clearRect(0, 0, canvas.width, canvas.height);
+					VC.draw(canvas, context);
+				});
+								
+				//LƯU LẠI NƯỚC ĐI
+				$("#Step").click(function(){								
+					var count = 0;
+					var Data = [];
+					var URL = $("#Step").attr('alt');					
+					
+					$.ajax({
+						type: "POST",
+						data: {ArrStep:VC.getStepAllSave()},
+						url: URL,
+						success: function(msg){
+							alert("Xong roi");
+						}
+					});
+										
+				});
 			}
 		</script>
 	</body>
