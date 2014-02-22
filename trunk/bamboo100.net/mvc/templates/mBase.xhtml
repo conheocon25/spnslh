@@ -23,16 +23,9 @@
 	<!-- CASCADING STYLE SHEETS INCLUDE											  -->
 	<!-- ======================================================================== -->
 	<span metal:define-macro="IncludeCSS">	
-		<link href='/mvc/templates/theme/base/css/open-sans.css' rel='stylesheet' type='text/css'/>
-		<link href='/mvc/templates/theme/base/css/open-sans-condensed.css' rel='stylesheet' type='text/css'/>
-		<link href="/mvc/templates/theme/base/css/bootstrap.min.css" rel="stylesheet"/>
-		<link href="/mvc/templates/theme/base/css/animate.min.css" rel="stylesheet"/>
-		<link href="/mvc/templates/theme/base/css/ddlevelsmenu-base.css" rel="stylesheet"/>
-		<link href="/mvc/templates/theme/base/css/ddlevelsmenu-topbar.css" rel="stylesheet"/>
-		<link href="/mvc/templates/theme/base/css/jquery.countdown.css" rel="stylesheet"/>     
-		<link href="/mvc/templates/theme/base/css/font-awesome.min.css" rel="stylesheet"/>		
-		<link href="/mvc/templates/theme/base/css/style.css" rel="stylesheet"/>
-		<link href="/mvc/templates/theme/base/css/custom.css" rel="stylesheet"/>
+		<link href='/mvc/templates/theme/base/css/bootstrap.min.css' rel='stylesheet' type='text/css'/>
+		<link href='/mvc/templates/theme/base/css/bootstrap-responsive.min.css' rel='stylesheet' type='text/css'/>
+		<link href='/mvc/templates/theme/base/css/style.css' rel='stylesheet' type='text/css'/>
 	</span>
 	
 	<!-- ======================================================================== -->
@@ -41,55 +34,27 @@
 	<span metal:define-macro="IncludeJS">						
 		<script src="/mvc/templates/theme/base/js/jquery.js"></script>
 		<script src="/mvc/templates/theme/base/js/bootstrap.min.js"></script>
-		<script src="/mvc/templates/theme/base/js/ddlevelsmenu.js"></script>
-		<script src="/mvc/templates/theme/base/js/jquery.carouFredSel-6.2.1-packed.js"></script>
-		<script src="/mvc/templates/theme/base/js/jquery.countdown.min.js"></script>
-		<script src="/mvc/templates/theme/base/js/jquery.navgoco.min.js"></script>
-		<script src="/mvc/templates/theme/base/js/filter.js"></script>
-		<script src="/mvc/templates/theme/base/js/respond.min.js"></script>
-		<script src="/mvc/templates/theme/base/js/html5shiv.js"></script>
-		<script src="/mvc/templates/theme/base/js/custom.js"></script>
 	</span>
 	
 	<!-- ======================================================================== -->
 	<!-- HEADER																	  -->
 	<!-- ======================================================================== -->
-	<div metal:define-macro="Header">
-		<div class="header">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-2 col-sm-2">
-						<div class="logo">
-							<h1><a href="/trang-chu">CayTreTramDot.com</a></h1>
-						</div>
-					</div>
-					<div class="col-md-6 col-sm-5">
-						
-					</div>
-					<div class="col-md-4 col-sm-5">
-						<div class="kart-links">
-							<a href="/dang-nhap">Đăng Nhập</a> 
-							<a href="/dang-ki">Đăng Ký</a>
-						</div>
-					</div>
+	<div metal:define-macro="Header" class="navbar navbar-static-top">
+		<div class="navbar-inner">
+			<div class="nav-collapse collapse clearfix">
+				<a class="brand" href="/trang-chu">Caytretramdot.com</a>
+				<div class="input-append" style="margin-top:5px;margin-bottom:0;">
+					<form action="/tim-kiem" method="post" style="margin:0;">
+						<input class="span6" id="appendedInputButton" type="text"/>
+						<button class="btn" type="submit"><i class="icon-search"></i></button>
+					</form>
 				</div>
+				<ul class="nav pull-right">
+					<li><a href="/dang-nhap">Đăng nhập</a></li>
+					<li><a href="/dang-ky">Đăng ký</a></li>
+				</ul>
 			</div>
 		</div>
-		<div class="clearfix"></div>
-	</div>
-	
-	<!-- ======================================================================== -->
-	<!-- SEARCH																  -->
-	<!-- ======================================================================== -->
-	<div metal:define-macro="SearchForm">
-		<form action="/tim-kiem" class="navbar-form">
-			<div class="input-group">
-				<input type="text" class="form-control" placeholder="Tìm thông tin" name="term" id="term" />
-				<div class="input-group-btn">
-					<button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
-				</div>
-			</div>
-        </form>
 	</div>
 	
 	<!-- ======================================================================== -->
@@ -108,14 +73,15 @@
 	<!-- FOOTER																	  -->
 	<!-- ======================================================================== -->
 	<div metal:define-macro="Footer">
-		<footer>
-			<div class="container">				
-				<div class="copy text-center">
-					Bản quyền 2013 &copy; - <a href="http://caytretramdot.com">CayTreTramDot.com</a><br/>
-					<i>Trang web hiện đang được nâng cấp, các thông tin chi mang tính chất tham khảo</i>
-				</div>
+		<div id="footer">
+			<div class="container">
+				<center>
+					<p class="muted credit">Bản quyền 2013 &copy; - <a href="http://caytretramdot.com">CayTreTramDot.com</a><br/>
+						<small><i>Trang web hiện đang được nâng cấp, các thông tin chỉ mang tính chất tham khảo</i></small>
+					</p>
+				</center>
 			</div>
-		</footer>
+		</div>
 	</div>
 	
 </body>
