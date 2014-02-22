@@ -16,8 +16,9 @@
 					</div>
 					<div class="col-6">						
 						<div id="MoveList">
-							<div class="btn btn-info iStep" tal:repeat="Step CS/getStepAll" tal:attributes="alt Step/getContent">
-								<span tal:content="Step/getName"/>
+							<div tal:repeat="Step CS/getStepAll">
+								<div class="btn btn-danger iStep" tal:condition="repeat/Step/even" tal:attributes="alt Step/getContent" tal:content="Step/getName"/>
+								<div class="btn btn-info iStep" tal:condition="repeat/Step/odd" tal:attributes="alt Step/getContent" tal:content="Step/getName"/>
 							</div>
 						</div>
 						<button id="Step" class="btn btn-success" tal:attributes="alt CS/getURLSettingStepUpdExe">Lưu nước đi</button>
