@@ -213,8 +213,8 @@ function Board(Name, XStart, YStart, Rect){
 				if(i==4){
 					//Vẽ hà
 					context.fillStyle = "#D7ECF2";
-					if(j!=7) { width = this.nWidthCell+2;
-					} else { width = this.nWidthCell; }
+					if(j!=7) { width = this.nWidthCell+2; }
+					else { width = this.nWidthCell; }
 				} else {
 					context.fillStyle = "lightblue";
 					width = this.nWidthCell;
@@ -230,10 +230,25 @@ function Board(Name, XStart, YStart, Rect){
 		}
 		
 		//===============================================================================
-		//Vẽ các đường chéo, sông hà														
+		// Vẽ các số tọa độ & Chữ giữa hà
+		//===============================================================================
+		context.font="13px Tahoma";
+		context.fillStyle = "white";
+		var k=1;
+		for(var i=30; i<=430; i+=50) {
+			context.fillText(k, i, 15);
+			context.fillText(k, i, 515);
+			k++;
+		}
+		context.font="20px CustomFont";
+		context.fillStyle = "#545353";
+		context.fillText("H ạ       T h ủ      B ấ t      H o à n", (this.nWidthCell*1)+16, (this.nHeightCell*5)+25);
+		
+		//===============================================================================
+		//Vẽ các đường chéo														
 		//===============================================================================
 		context.beginPath();
-		context.strokeStyle = "#fff";
+		context.strokeStyle = "#ECEAEF";
 		context.lineWidth = 2;
 		//Chéo cung bên XANH
 		context.moveTo(this.XStart + 3*(this.nWidthCell+this.Space)				, this.YStart + 0*(this.nHeightCell+this.Space));
