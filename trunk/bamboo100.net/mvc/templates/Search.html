@@ -14,8 +14,8 @@
 						<ul>
 							<li tal:repeat="Post PostAll">
 								<a tal:attributes="href Post/getURLRead"><h4 tal:content="Post/getTitle"/></a>
-								<p>en.wikipedia.org/wiki/Bamboo‎</p>
-								<p>Bamboo grows in two main forms: the woody bamboos (Arundinarieae and Bambuseae) and the understory herbaceous bamboos (Olyreae). Molecular analysis ...</p>
+								<p tal:content="Post/getURLRead" />
+								<p tal:content="structure Post/getContentReduce" />
 							</li>
 						</ul>
 					</div>

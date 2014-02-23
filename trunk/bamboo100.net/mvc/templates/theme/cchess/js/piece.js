@@ -16,13 +16,13 @@ function Piece(Name, Type, X, Y){
 	this.ImageSelected.src 	= "/mvc/templates/theme/cchess/img/Selected.gif";
 	
 	this.Hash				= {};
-	this.Hash['Canon']		= "P";
-	this.Hash['Bishop']		= "S";
-	this.Hash['Elephant'] 	= "B";
-	this.Hash['Rook'] 		= "X";
-	this.Hash['Horse'] 		= "M";
-	this.Hash['Pawn'] 		= "C";
-	this.Hash['King'] 		= "T";
+	this.Hash['Canon']		= "Pháo";
+	this.Hash['Bishop']		= "Sĩ";
+	this.Hash['Elephant'] 	= "Tượng";
+	this.Hash['Rook'] 		= "Xe";
+	this.Hash['Horse'] 		= "Mã";
+	this.Hash['Pawn'] 		= "Chốt";
+	this.Hash['King'] 		= "Tướng";
 	
 	//THIẾT LẬP TỌA ĐỘ
 	this.getX	= function(){return this.X;}
