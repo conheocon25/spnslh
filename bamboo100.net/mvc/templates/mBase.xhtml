@@ -39,20 +39,27 @@
 	<!-- ======================================================================== -->
 	<!-- HEADER																	  -->
 	<!-- ======================================================================== -->
-	<div metal:define-macro="Header" class="navbar navbar-static-top">
+	<div metal:define-macro="Header" class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
-			<div class="nav-collapse collapse clearfix">
-				<a class="brand" href="/trang-chu">Caytretramdot.com</a>
-				<div class="input-append" style="margin-top:5px;margin-bottom:0;">
-					<form action="/tim-kiem" method="post" style="margin:0;">
-						<input class="span6" id="appendedInputButton" type="text"/>
-						<button class="btn" type="submit"><i class="icon-search"></i></button>
-					</form>
+			<div class="container">
+				<button type="button" class="btn btn-navbar collapsed" data-toggle="collapse" data-target=".nav-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="brand" href="/trang-chu">caytretramdot.com</a>
+				<div class="nav-collapse collapse">
+						<form class="navbar-form pull-left form-search" action="/tim-kiem" method="post">
+							<div class="input-append">
+								<input class="span6 search-query" id="appendedInputButton" type="text" placeholder="Nhập từ khóa để tìm"/>
+								<button class="btn" type="submit"><i class="icon-search"/></button>
+							</div>
+						</form>
+					<ul class="nav pull-right">
+						<li><a href="/dang-nhap"><i class="icon-share-alt"/> Đăng nhập</a></li>
+						<li><a href="/dang-ky"><i class="icon-user"/> Đăng ký</a></li>
+					</ul>
 				</div>
-				<ul class="nav pull-right">
-					<li><a href="/dang-nhap">Đăng nhập</a></li>
-					<li><a href="/dang-ky">Đăng ký</a></li>
-				</ul>
 			</div>
 		</div>
 	</div>
