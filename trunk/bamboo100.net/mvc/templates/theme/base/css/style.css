@@ -2,10 +2,8 @@
 	#wrap {
 		min-height: 540px;
 		height: auto !important;
-	}
-	
-	.search-result ul {
-		margin-top: 40px;
+		margin-top: 30px;
+		margin-bottom: 30px;
 	}
 	
 	.search-result ul li {
@@ -22,4 +20,12 @@
 	.search-result ul li a {
 		text-decoration: none;
 		color: #1E5FE9;
+	}
+	
+	.label {
+		padding: 5px;
+	}
+	
+	.well {
+		background-color: white;
 	}
