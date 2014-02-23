@@ -104,6 +104,7 @@ function Board(Name, XStart, YStart, Rect){
 	//SỰ KIỆN CLICK CHUỘT
 	//--------------------------------------------------------------------
 	this.move = function(iPiece, XNew, YNew){
+		var OldX = this.APiece[iPiece].getX() + 1;
 		//Thiết lập vị trí cũ
 		this.Object[this.APiece[iPiece].getY()][this.APiece[iPiece].getX()] = -1;
 		
@@ -112,8 +113,9 @@ function Board(Name, XStart, YStart, Rect){
 		this.APiece[iPiece].setXY(XNew, YNew);
 		
 		//Lưu lại trong CSDL
-		this.AStep[this.CurrentStep] = this.getState();
-		this.AStepN[this.CurrentStep] = Math.floor(this.CurrentStep/2) + "." + this.APiece[iPiece].getNameShort();
+		this.AStep[this.CurrentStep] 	= this.getState();
+		
+		this.AStepN[this.CurrentStep] 	= this.APiece[iPiece].getNameShort() + " " + OldX + " - " + (XNew + 1);
 		
 		this.CurrentStep ++;
 	}
@@ -139,8 +141,8 @@ function Board(Name, XStart, YStart, Rect){
 	this.getStepAll = function(){
 		var S = "";
 		var Temp = "";
-		for (var i=0; i < this.CurrentStep; i++){						
-			Temp = "<div class='btn btn-info iStep' alt='"+ this.AStep[i] +"'>"+ this.AStepN[i] + "</div>";
+		for (var i=0; i < this.CurrentStep; i++){			
+			Temp = "<div class='btn btn-info iStep' 	alt='"+ this.AStep[i] +"'>"+ this.AStepN[i] + "</div>";
 			S +=  Temp;
 		}
 		return S;
