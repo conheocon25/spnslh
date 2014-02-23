@@ -6,22 +6,39 @@
 	</head>
 	
 	<body>
-		<div metal:use-macro="mBase.xhtml/Header"/>		
-		<div>
-			<span tal:content="Post/getTitle"/>
-			(<span tal:content="Post/getDateTimePrint"/>)
-			(<span tal:content="Post/getCountPrint"/> xem)
-			<span tal:content="structure Post/getContent"/>
-			<B>Người đăng <span tal:content="Post/getUser/getName"/></B>
-			<BR/>
-			<B>Tin một người đăng</B>
-			<ul tal:repeat="P Post/getUser/getPostAll">
-				<li>
-					<a tal:attributes="href P/getURLRead">
-						<span tal:content="P/getTitle"/>
-					</a>
-				</li>
-			</ul>
+		<div metal:use-macro="mBase.xhtml/Header"/>
+		<div id="wrap" class="container-fluid">
+			<div class="row-fluid">
+				<div class="span12">
+					<div class="row-fluid">
+						<div class="span3">
+							<div class="thumbnail">
+								<img src="/data/images/product.jpg"/>
+								<center>
+									<h3 tal:content="Post/getUser/getName"/>
+									<p>Người đăng tin</p>
+								</center>
+							</div>
+						</div>
+						<div class="span9">
+							<div class="page-header">
+								<h3 tal:content="Post/getTitle"/>
+								<span class="label label-info">Ngày đăng: <span tal:content="Post/getDateTimePrint"/></span>
+								<span class="label label-success"><span tal:content="Post/getCountPrint"/> lượt xem</span>
+							</div>
+							<div class="well" tal:content="structure Post/getContent"/>
+							<ul class="nav nav-tabs nav-stacked">
+								<li class="active"><a>Các tin do <span tal:content="Post/getUser/getName"/> đăng</a></li>
+								<li tal:repeat="P Post/getUser/getPostAll">
+									<a tal:attributes="href P/getURLRead">
+										<span tal:content="P/getTitle"/>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 		<div metal:use-macro="mBase.xhtml/Footer"/>
 		<div metal:use-macro="mBase.xhtml/IncludeJS"/>
