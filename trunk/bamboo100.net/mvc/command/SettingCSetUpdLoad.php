@@ -24,7 +24,7 @@
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
 			$CB 	= $mCB->find($IdCBook);
-			$CS 	= $mCS->find(2);
+			$CS 	= $mCS->find($IdCSet);
 						
 			$Navigation = array(
 				array("QUẢN LÝ", 	"/quan-ly"),				
