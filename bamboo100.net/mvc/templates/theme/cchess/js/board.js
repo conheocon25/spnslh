@@ -21,6 +21,8 @@ function Board(Name, XStart, YStart, Rect){
 	this.AStep 			= [];
 	this.AStepN			= [];
 	
+	this.First 			= 1; //1 => Đỏ đi trước -1 => Xanh đi trước
+	
 	this.iSelected		= -1;
 			
 	//VỊ TRÍ PHÂN BỔ CỦA CÁC ĐỐI TƯỢNG QUÂN CỜ [0...31] VỊ TRÍ CỦA QUÂN CỜ | -1 LÀ VỊ TRÍ TRỐNG
@@ -105,24 +107,24 @@ function Board(Name, XStart, YStart, Rect){
 	//--------------------------------------------------------------------
 	this.move = function(iPiece, XNew, YNew){
 		var OldX = this.APiece[iPiece].getX() + 1;
+		
+		//Lưu lại trong CSDL
+		this.AStep[this.CurrentStep] 	= this.getState();				
+		this.AStepN[this.CurrentStep] 	= this.APiece[iPiece].getMoveDescription(XNew, YNew);
+		
 		//Thiết lập vị trí cũ
 		this.Object[this.APiece[iPiece].getY()][this.APiece[iPiece].getX()] = -1;
 		
 		//Thiết lập vị trí mới
 		this.Object[YNew][XNew] = iPiece;
 		this.APiece[iPiece].setXY(XNew, YNew);
-		
-		//Lưu lại trong CSDL
-		this.AStep[this.CurrentStep] 	= this.getState();
-		
-		this.AStepN[this.CurrentStep] 	= this.APiece[iPiece].getNameShort() + " " + OldX + " - " + (XNew + 1);
-		
+				
 		this.CurrentStep ++;
 	}
 	
 	this.click = function(e){
-		var CellX 	= Math.floor((e.clientX-this.Rect.left)/this.nWidthCell);
-		var CellY 	= Math.floor((e.clientY-this.Rect.top)/this.nHeightCell);		
+		var CellX 	= Math.floor((e.clientX-this.Rect.left-30)/this.nWidthCell);
+		var CellY 	= Math.floor((e.clientY-this.Rect.top-30)/this.nHeightCell);
 		var Id 		= -1;
 		
 		if (this.iSelected != -1){			
@@ -141,8 +143,14 @@ function Board(Name, XStart, YStart, Rect){
 	this.getStepAll = function(){
 		var S = "";
 		var Temp = "";
-		for (var i=0; i < this.CurrentStep; i++){			
-			Temp = "<div class='btn btn-info iStep' 	alt='"+ this.AStep[i] +"'>"+ this.AStepN[i] + "</div>";
+		var First = this.First;
+		for (var i=0; i < this.CurrentStep; i++){
+			if (First>0){
+				Temp = "<div class='btn btn-danger iStep' 	alt='"+ this.AStep[i] +"'>"+ this.AStepN[i] + "</div>";
+			}else{
+				Temp = "<div class='btn btn-info iStep' 	alt='"+ this.AStep[i] +"'>"+ this.AStepN[i] + "</div>";
+			}
+			First *= -1;
 			S +=  Temp;
 		}
 		return S;
@@ -236,8 +244,8 @@ function Board(Name, XStart, YStart, Rect){
 		context.fillStyle = "white";
 		var k=1;
 		for(var i=30; i<=430; i+=50) {
-			context.fillText(k, i, 15);
-			context.fillText(k, i, 515);
+			context.fillText(10-k, 	i, 15);
+			context.fillText(k, 	i, 515);
 			k++;
 		}
 		context.font="20px CustomFont";
