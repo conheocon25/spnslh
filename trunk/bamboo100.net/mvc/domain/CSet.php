@@ -81,6 +81,17 @@ class CSet extends Object{
 		$StepAll 	= $mCStep->findBySet(array($this->getId()));
 		return $StepAll;
 	}
+	function getStepAllPrint(){
+		$StepAll = $this->getStepAll();
+		$Str = "";
+		while ($StepAll->valid()){
+			$Step = $StepAll->current();
+			$Str = $Str."#".$Step->getName1()."|".$Step->getContent1();
+			$Str = $Str."#".$Step->getName2()."|".$Step->getContent2();
+			$StepAll->next();
+		}
+		return $Str;
+	}
 	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
