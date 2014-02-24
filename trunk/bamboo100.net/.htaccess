@@ -13,11 +13,12 @@ RewriteRule ^trang-chu$ 											?cmd=Home [L]
 RewriteRule ^tim-kiem$ 												?cmd=Search [L]
 RewriteRule ^ung-dung/co-tuong$ 									?cmd=AppCChess [L]
 RewriteRule ^p/([a-z0-9_-]+)$ 										?cmd=PostRead&KIdPost=$1 [L]
-RewriteRule ^dang-ki$ 												?cmd=Register [L]
+RewriteRule ^dang-ky$ 												?cmd=Register [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # SETTING
 #---------------------------------------------------------------------------------------------------------------------------
+
 RewriteRule ^dang-nhap$ 											?cmd=SigninLoad [L]
 RewriteRule ^dang-nhap/exe$ 										?cmd=SigninExe [L]
 RewriteRule ^signout$ 												?cmd=SignoutExe [L]
