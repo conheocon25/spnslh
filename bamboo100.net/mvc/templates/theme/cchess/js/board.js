@@ -21,7 +21,8 @@ function Board(Name, XStart, YStart, Rect){
 	this.AStep 			= [];
 	this.AStepN			= [];
 	
-	this.First 			= 1; //1 => Đỏ đi trước -1 => Xanh đi trước
+	this.First 			= 1; //1 => Đỏ đi trước -1 => Xanh đi trước	
+	this.Current 		= 1; //1 => Đỏ đi trước -1 => Xanh đi trước
 	
 	this.iSelected		= -1;
 			
@@ -38,7 +39,7 @@ function Board(Name, XStart, YStart, Rect){
 		[-1, -1, -1, -1, -1, -1, -1, -1, -1],
 		[23, 21, 19, 17, 16, 18, 20, 22, 24]
 	];
-				
+	
 	this.getX2Canvas 	= function(X) {return this.XStart + X*this.nWidthCell + X*this.Space;}
 	this.getY2Canvas	= function(Y){return this.YStart + Y*this.nHeightCell + Y*this.Space;}
 		
@@ -108,8 +109,7 @@ function Board(Name, XStart, YStart, Rect){
 	this.move = function(iPiece, XNew, YNew){
 		var OldX = this.APiece[iPiece].getX() + 1;
 		
-		//Lưu lại trong CSDL
-		this.AStep[this.CurrentStep] 	= this.getState();				
+		//Lưu lại trong CSDL		
 		this.AStepN[this.CurrentStep] 	= this.APiece[iPiece].getMoveDescription(XNew, YNew);
 		
 		//Thiết lập vị trí cũ
@@ -118,6 +118,8 @@ function Board(Name, XStart, YStart, Rect){
 		//Thiết lập vị trí mới
 		this.Object[YNew][XNew] = iPiece;
 		this.APiece[iPiece].setXY(XNew, YNew);
+		
+		this.AStep[this.CurrentStep] 	= this.getState();
 				
 		this.CurrentStep ++;
 	}
@@ -126,17 +128,36 @@ function Board(Name, XStart, YStart, Rect){
 		var CellX 	= Math.floor((e.clientX-this.Rect.left-30)/this.nWidthCell);
 		var CellY 	= Math.floor((e.clientY-this.Rect.top-30)/this.nHeightCell);
 		var Id 		= -1;
+		var IdTemp  = -1;
 		
-		if (this.iSelected != -1){			
-			if (this.Object[CellY][CellX] == -1){																
-				this.move(this.iSelected, CellX, CellY);				
-				this.iSelected = -1;				
+		if (this.iSelected != -1){
+			//Di chuyển
+			if (this.Object[CellY][CellX] == -1){
+				this.move(this.iSelected, CellX, CellY);
+				this.iSelected = -1;
+				this.Current *= -1;
+			}
+			//Ăn quân
+			else{
+				IdTemp = this.Object[CellY][CellX];
+				this.Object[CellY][CellX] = -1;
+				this.APiece[IdTemp].setXY(-1, -1);
+				
+				this.move(this.iSelected, CellX, CellY);
+				this.iSelected = -1;
+				this.Current  *= -1;
 			}
 		}else{
-			if (this.Object[CellY][CellX] != -1){
-				Id = this.Object[CellY][CellX];
-				this.iSelected = Id;
+			Id = this.Object[CellY][CellX];
+			if (Id != -1){
+				//Đỏ đi
+				if (this.Current > 0 && Id>15){
+					this.iSelected = Id;
+				}else if (this.Current < 0 && Id<16){
+					this.iSelected = Id;
+				}
 			}
+			
 		}
 	}
 	
@@ -148,7 +169,7 @@ function Board(Name, XStart, YStart, Rect){
 			if (First>0){
 				Temp = "<div class='btn btn-danger iStep' 	alt='"+ this.AStep[i] +"'>"+ this.AStepN[i] + "</div>";
 			}else{
-				Temp = "<div class='btn btn-info iStep' 	alt='"+ this.AStep[i] +"'>"+ this.AStepN[i] + "</div>";
+				Temp = "<div class='btn btn-info iStep' 	alt='"+ this.AStep[i] +"'>"+ this.AStepN[i] + "</div><br/>";
 			}
 			First *= -1;
 			S +=  Temp;
@@ -159,11 +180,27 @@ function Board(Name, XStart, YStart, Rect){
 	this.getStepAllSave = function(){
 		var S = "";
 		var Temp = "";
-		for (var i=0; i < this.CurrentStep; i++){					
-			Temp = "#"+this.AStep[i] + "|" + this.AStepN[i];
+		for (var i=0; i < this.CurrentStep; i+=2){
+			Temp = "#"+this.AStepN[i] + "|" + this.AStep[i] + "|" + this.AStepN[i+1] + "|" + this.AStep[i+1];
 			S +=  Temp;
 		}
 		return S;
+	}
+	
+	this.getStepAllLoad = function(DataMove){		
+		var arrMove = DataMove.split('#');
+		var arrStep;
+		this.CurrentStep = 0;
+		
+		for (var i=0; i < arrMove.length; i++){
+			if (arrMove[i]!=""){				
+				arrStep = arrMove[i].split("|");											
+				this.AStepN[this.CurrentStep] = arrStep[0];
+				this.AStep[this.CurrentStep]  = arrStep[1];
+				this.CurrentStep ++;
+				//alert(i + "-" + arrStep[0] + "-" + arrStep[1]);
+			}			
+		}
 	}
 	
 	//--------------------------------------------------------------------

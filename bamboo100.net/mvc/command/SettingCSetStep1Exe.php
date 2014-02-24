@@ -39,8 +39,10 @@
 					$CStep = new \MVC\Domain\CStep(
 						null, 
 						$IdCSet, 
-						$AT[1], 
-						$AT[0]
+						$AT[0], 
+						$AT[1],
+						$AT[2], 
+						$AT[3]
 					);
 					$mCStep->insert($CStep);
 				}

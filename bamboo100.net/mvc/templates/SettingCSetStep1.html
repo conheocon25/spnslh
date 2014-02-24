@@ -20,13 +20,9 @@
 						<canvas width="468px" height="518px" id="ChessBoard"></canvas>
 					</div>
 					<div class="col-6">
-						<div id="MoveList">
-							<div tal:repeat="Step CS/getStepAll">
-								<div class="btn btn-danger iStep" tal:condition="repeat/Step/even" tal:attributes="alt Step/getContent" tal:content="Step/getName"/>
-								<div class="btn btn-info iStep" tal:condition="repeat/Step/odd" tal:attributes="alt Step/getContent" tal:content="Step/getName"/>
-							</div>
-						</div>
+						<div id="MoveList" />
 						<button id="Step" class="btn btn-success" tal:attributes="alt CS/getURLSettingStepUpdExe">Lưu nước đi</button>
+						<div id="DataMove" tal:attributes="alt CS/getStepAllPrint"/>
 					</div>
 				</div>
 			</div>
@@ -45,100 +41,21 @@
 				var VC			= new Board("Van1", 35, 35, Rect);
 				
 				//KHỞI TẠO BÀN CỜ
-				VC.init();								
-				canvas.addEventListener('click', function(e){
-						VC.click(e);
-						context.clearRect(0, 0, canvas.width, canvas.height);
-						VC.draw(canvas, context);				
-						$("#MoveList").html(VC.getStepAll());
-					}, 
-				false);
-				VC.draw(canvas, context);
-
-				//XỬ LÍ NƯỚC ĐI				
-				$(".iStep").click(function(){
-					var Content = $(this).attr('alt');					
-					VC.setState(Content);
-					context.clearRect(0, 0, canvas.width, canvas.height);
-					VC.draw(canvas, context);
-				});
-								
-				//LƯU LẠI NƯỚC ĐI
-				$("#Step").click(function(){								
-					var count = 0;
-					var Data = [];
-					var URL = $("#Step").attr('alt');					
-					
-					$.ajax({
-						type: "POST",
-						data: {ArrStep:VC.getStepAllSave()},
-						url: URL,
-						success: function(msg){
-							alert("Xong roi");
-						}
-					});
-										
-				});
-			}
-		</script>
-	</body>
-</html>
-
-<!--
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<span metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
-		<span metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
-		<link href="/mvc/templates/theme/cchess/css/style.css" rel="stylesheet" media="screen"/>
-	</head>
-	<body>
-		<div metal:use-macro="mAdmin.xhtml/Header"/>		
-		<div metal:use-macro="mAdmin.xhtml/UserNavigation"/>
-		<div id="content">			
-			<div class="container-fluid">
-				<div class="row-fluid">
-					<div class="col-6">
-						<canvas width="438px" height="488px" id="ChessBoard"></canvas>
-					</div>
-					<div class="col-6">						
-						<div id="MoveList">
-							<div tal:repeat="Step CS/getStepAll">
-								<div class="btn btn-danger iStep" tal:condition="repeat/Step/even" tal:attributes="alt Step/getContent" tal:content="Step/getName"/>
-								<div class="btn btn-info iStep" tal:condition="repeat/Step/odd" tal:attributes="alt Step/getContent" tal:content="Step/getName"/>
-							</div>
-						</div>
-						<button id="Step" class="btn btn-success" tal:attributes="alt CS/getURLSettingStepUpdExe">Lưu nước đi</button>
-					</div>
-				</div>
-			</div>				
-		</div>	
-		<div metal:use-macro="mAdmin.xhtml/Footer"/>
-		<div metal:use-macro="mAdmin.xhtml/SignoutDialog"/>
-		<span metal:use-macro="mAdmin.xhtml/IncludeJS"/>
-		<script src="/mvc/templates/theme/cchess/js/piece.js"></script>	
-		<script src="/mvc/templates/theme/cchess/js/board.js"></script>
-		<script>
-			window.onload = function() {					
-				var canvas 		= document.getElementById("ChessBoard");			
-				var context 	= canvas.getContext("2d");
-				var Rect 		= canvas.getBoundingClientRect();
-				var VC			= new Board("Van1", 20, 20, Rect);
+				VC.init();
+				VC.getStepAllLoad($("#DataMove").attr('alt'));
 				
-				//KHỞI TẠO BÀN CỜ
-				VC.init();								
 				canvas.addEventListener('click', function(e){
 						VC.click(e);
 						context.clearRect(0, 0, canvas.width, canvas.height);
 						VC.draw(canvas, context);				
 						$("#MoveList").html(VC.getStepAll());
-					}, 
+					},
 				false);
 				VC.draw(canvas, context);
 
-				//XỬ LÍ NƯỚC ĐI				
-				$(".iStep").click(function(){
-					var Content = $(this).attr('alt');					
+				//XỬ LÍ NƯỚC ĐI												
+				$('#MoveList').on('click', '.iStep', function(e){
+					var Content = $(this).attr('alt');
 					VC.setState(Content);
 					context.clearRect(0, 0, canvas.width, canvas.height);
 					VC.draw(canvas, context);
@@ -154,9 +71,7 @@
 						type: "POST",
 						data: {ArrStep:VC.getStepAllSave()},
 						url: URL,
-						success: function(msg){
-							alert("Xong roi");
-						}
+						success: function(msg){location.reload();}
 					});
 										
 				});
@@ -164,4 +79,3 @@
 		</script>
 	</body>
 </html>
--->
