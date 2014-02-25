@@ -18,6 +18,7 @@ function Board(Name, XStart, YStart, Rect){
 	this.Rect 			= Rect;
 	
 	this.CurrentStep 	= 0;
+	
 	this.AStep 			= [];
 	this.AStepN			= [];
 	
@@ -117,19 +118,29 @@ function Board(Name, XStart, YStart, Rect){
 	this.move = function(iPiece, XNew, YNew){
 		var OldX = Math.floor(this.APiece[iPiece].getX()) + 1;
 		
-		//Lưu lại trong CSDL		
-		this.AStepN[this.CurrentStep] 	= this.APiece[iPiece].getMoveDescription(XNew, YNew);
-		
-		//Thiết lập vị trí cũ
-		this.Object[this.APiece[iPiece].getY()][this.APiece[iPiece].getX()] = -1;
-		
-		//Thiết lập vị trí mới
-		this.Object[YNew][XNew] = iPiece;
-		this.APiece[iPiece].setXY(XNew, YNew);
-		
-		this.AStep[this.CurrentStep] 	= this.getState();
-				
-		this.CurrentStep ++;
+		//CHẾ ĐỘ CỜ THẾ
+		if (this.Mode > 0){
+			//Lưu lại trong CSDL		
+			this.AStepN[this.CurrentStep] 	= this.APiece[iPiece].getMoveDescription(XNew, YNew);
+			
+			//Thiết lập vị trí cũ
+			this.Object[this.APiece[iPiece].getY()][this.APiece[iPiece].getX()] = -1;
+			
+			//Thiết lập vị trí mới
+			this.Object[YNew][XNew] = iPiece;
+			this.APiece[iPiece].setXY(XNew, YNew);
+			
+			this.AStep[this.CurrentStep] 	= this.getState();
+					
+			this.CurrentStep ++;
+		}else{ //CHẾ ĐỘ THIẾT LẬP
+			//Thiết lập vị trí cũ
+			this.Object[this.APiece[iPiece].getY()][this.APiece[iPiece].getX()] = -1;
+			
+			//Thiết lập vị trí mới
+			this.Object[YNew][XNew] = iPiece;
+			this.APiece[iPiece].setXY(XNew, YNew);														
+		}	
 	}
 	
 	this.click = function(e){
@@ -139,7 +150,7 @@ function Board(Name, XStart, YStart, Rect){
 		var IdTemp  = -1;
 		
 		//Ở CHẾ ĐỘ BÌNH THƯỜNG
-		if (this.Mode > 0 ){
+		if (this.getMode() > 0 ){
 			if (this.iSelected != -1){
 				//Di chuyển
 				if (this.Object[CellY][CellX] == -1){
@@ -176,9 +187,27 @@ function Board(Name, XStart, YStart, Rect){
 			}
 		}
 		//Ở CHẾ ĐỘ THIẾT LẬP
-		else{
-			
-		}		
+		else{			
+			if (this.iSelected != -1){
+				//Di chuyển
+				if (this.Object[CellY][CellX] == -1){
+					this.move(this.iSelected, CellX, CellY);
+					this.iSelected = -1;
+					this.Current *= -1;
+				}			
+				else{
+					//Bỏ chọn quân 
+					if (this.Object[CellY][CellX] == this.iSelected){
+						this.iSelected = -1;
+					}
+				}
+			}else{
+				Id = this.Object[CellY][CellX];
+				if (Id != -1){					
+					this.iSelected = Id;
+				}				
+			}
+		}
 	}
 	
 	this.getStepAll = function(){
@@ -369,7 +398,15 @@ function Board(Name, XStart, YStart, Rect){
 	//--------------------------------------------------------------------
 	//ĐỔI CHẾ ĐỘ 1 - DI CHUYỂN  -1 THIẾT LẬP QUÂN
 	//--------------------------------------------------------------------
-	this.setMode = function(mode){this.mode = mode;}
-	this.getMode = function(){return this.mode;}
+	this.setMode = function(mode){
+		if (this.Mode < 0){
+			this.CurrentStep 	= 0;
+			this.First 			= 1;
+			this.Current		= 1;
+			this.iSelected		= -1;			
+		}			
+		this.Mode = mode;
+	}
+	this.getMode = function(){return this.Mode;}
 	
 }
