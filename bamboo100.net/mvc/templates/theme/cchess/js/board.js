@@ -25,6 +25,8 @@ function Board(Name, XStart, YStart, Rect){
 	this.Current 		= 1; //1 => Đỏ đi trước -1 => Xanh đi trước
 	
 	this.iSelected		= -1;
+	
+	this.Mode			= 1;
 			
 	//VỊ TRÍ PHÂN BỔ CỦA CÁC ĐỐI TƯỢNG QUÂN CỜ [0...31] VỊ TRÍ CỦA QUÂN CỜ | -1 LÀ VỊ TRÍ TRỐNG
 	this.Object	= [
@@ -79,7 +81,7 @@ function Board(Name, XStart, YStart, Rect){
 		this.APiece[28] = 	new Piece("Pawn", 		"R", 2, 6); 
 		this.APiece[29] = 	new Piece("Pawn", 		"R", 4, 6); 
 		this.APiece[30] = 	new Piece("Pawn", 		"R", 6, 6); 
-		this.APiece[31] = 	new Piece("Pawn", 		"R", 8, 6);
+		this.APiece[31] = 	new Piece("Pawn", 		"R", 8, 6);		
 	}
 	
 	this.setState 	= function(Str){
@@ -87,18 +89,24 @@ function Board(Name, XStart, YStart, Rect){
 		for (var i=0; i < 32; i++){
 			var S = arrStr[i];
 			if (S=="DD"){
-				this.APiece[i].setXY(-1, -1);
 				this.Object[this.APiece[i].getY()][this.APiece[i].getX()] = -1;
+				this.APiece[i].setXY(-1, -1);				
 			}				
-			else{								
-				this.move(i, S[0], S[1]);
+			else{
+				this.Object[this.APiece[i].getY()][this.APiece[i].getX()] = -1;
+				this.Object[S[1]][S[0]] = i;
+				this.APiece[i].setXY(S[0], S[1]);						
 			}
 		}
 	}
 	this.getState 	= function(){
 		var Str = "";
-		for (var i=0; i < 32; i++){			
-			Str = Str + this.APiece[i].getX()+this.APiece[i].getY()+" ";
+		for (var i=0; i < 32; i++){
+			if (this.APiece[i].getX()==-1){
+				Str = Str + "DD ";
+			}else{
+				Str = Str + this.APiece[i].getX()+this.APiece[i].getY()+" ";
+			}			
 		}
 		return Str;
 	}
@@ -107,7 +115,7 @@ function Board(Name, XStart, YStart, Rect){
 	//SỰ KIỆN CLICK CHUỘT
 	//--------------------------------------------------------------------
 	this.move = function(iPiece, XNew, YNew){
-		var OldX = this.APiece[iPiece].getX() + 1;
+		var OldX = Math.floor(this.APiece[iPiece].getX()) + 1;
 		
 		//Lưu lại trong CSDL		
 		this.AStepN[this.CurrentStep] 	= this.APiece[iPiece].getMoveDescription(XNew, YNew);
@@ -130,35 +138,47 @@ function Board(Name, XStart, YStart, Rect){
 		var Id 		= -1;
 		var IdTemp  = -1;
 		
-		if (this.iSelected != -1){
-			//Di chuyển
-			if (this.Object[CellY][CellX] == -1){
-				this.move(this.iSelected, CellX, CellY);
-				this.iSelected = -1;
-				this.Current *= -1;
-			}
-			//Ăn quân
-			else{
-				IdTemp = this.Object[CellY][CellX];
-				this.Object[CellY][CellX] = -1;
-				this.APiece[IdTemp].setXY(-1, -1);
-				
-				this.move(this.iSelected, CellX, CellY);
-				this.iSelected = -1;
-				this.Current  *= -1;
-			}
-		}else{
-			Id = this.Object[CellY][CellX];
-			if (Id != -1){
-				//Đỏ đi
-				if (this.Current > 0 && Id>15){
-					this.iSelected = Id;
-				}else if (this.Current < 0 && Id<16){
-					this.iSelected = Id;
+		//Ở CHẾ ĐỘ BÌNH THƯỜNG
+		if (this.Mode > 0 ){
+			if (this.iSelected != -1){
+				//Di chuyển
+				if (this.Object[CellY][CellX] == -1){
+					this.move(this.iSelected, CellX, CellY);
+					this.iSelected = -1;
+					this.Current *= -1;
+				}			
+				else{
+					//Bỏ chọn quân 
+					if (this.Object[CellY][CellX] == this.iSelected){
+						this.iSelected = -1;
+					}//Ăn quân
+					else{
+						IdTemp = this.Object[CellY][CellX];
+						this.Object[CellY][CellX] = -1;
+						this.APiece[IdTemp].setXY(-1, -1);
+						
+						this.move(this.iSelected, CellX, CellY);
+						this.iSelected = -1;
+						this.Current  *= -1;
+					}				
 				}
+			}else{
+				Id = this.Object[CellY][CellX];
+				if (Id != -1){
+					//Đỏ đi
+					if (this.Current > 0 && Id>15){
+						this.iSelected = Id;
+					}else if (this.Current < 0 && Id<16){
+						this.iSelected = Id;
+					}
+				}
+				
 			}
-			
 		}
+		//Ở CHẾ ĐỘ THIẾT LẬP
+		else{
+			
+		}		
 	}
 	
 	this.getStepAll = function(){
@@ -197,9 +217,8 @@ function Board(Name, XStart, YStart, Rect){
 				arrStep = arrMove[i].split("|");											
 				this.AStepN[this.CurrentStep] = arrStep[0];
 				this.AStep[this.CurrentStep]  = arrStep[1];
-				this.CurrentStep ++;
-				//alert(i + "-" + arrStep[0] + "-" + arrStep[1]);
-			}			
+				this.CurrentStep ++;				
+			}
 		}
 	}
 	
@@ -346,4 +365,11 @@ function Board(Name, XStart, YStart, Rect){
 		}
 		
 	}
+	
+	//--------------------------------------------------------------------
+	//ĐỔI CHẾ ĐỘ 1 - DI CHUYỂN  -1 THIẾT LẬP QUÂN
+	//--------------------------------------------------------------------
+	this.setMode = function(mode){this.mode = mode;}
+	this.getMode = function(){return this.mode;}
+	
 }

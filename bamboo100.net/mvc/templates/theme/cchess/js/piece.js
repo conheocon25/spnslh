@@ -28,29 +28,34 @@ function Piece(Name, Type, X, Y){
 	this.getX				= function(){return this.X;}
 	this.getY				= function(){return this.Y;}
 	this.setXY				= function(X, Y){this.X = X; this.Y = Y;}
+	
+	//Mô tả ngắn gọn về nước đi của quân cờ
 	this.getMoveDescription = function(XNew, YNew){
 		var S 		= "";
 		var Move 	= "";
 		var Type1	= (this.Type=="R")?1:-1;
 		var Type2	= (this.Type=="R")?0:1;
 		
-		var DX		= Math.floor(XNew - this.getX());
-		var DY		= Type1*Math.floor(YNew - this.getY());
+		var XOld	= Math.floor(this.getX());
+		var YOld	= Math.floor(this.getY());
+		var DX		= Math.floor(XNew - XOld);
+		var DY		= Type1*Math.floor(YNew - YOld);
+						
 		if (DY==0){
-			Move = ( Type1*(this.getX() + 1) + 10*Type2) + " bình " + ( Type1*(XNew + 1) + 10*Type2);
+			Move = ( Type1*(XOld + 1) + 10*Type2) + " bình " + ( Type1*(XNew + 1) + 10*Type2);
 		}else{
 			if (DY < 0){
 				if (this.Name=="Bishop" || this.Name=="Horse" ||this.Name=="Elephant"){
-					Move = (Type1*(this.getX() + 1) + 10*Type2) + " tiến " + ( Type1*(XNew + 1) + 10*Type2);
-				}else{
-					Move = (Type1*(this.getX() + 1) + 10*Type2) + " tiến " + Math.abs(DY);
+					Move = (Type1*(XOld + 1) + 10*Type2) + " tiến " + ( Type1*(XNew + 1) + 10*Type2);
+				}else{					
+					Move = (Type1*(XOld + 1) + 10*Type2) + " tiến " + Math.abs(DY);
 				}
 			}				
 			else{
 				if (this.Name=="Bishop" || this.Name=="Horse" ||this.Name=="Elephant"){
-					Move = (Type1*(this.getX() + 1) + 10*Type2) + " thoái " + ( Type1*(XNew + 1) + 10*Type2);
+					Move = (Type1*(XOld + 1) + 10*Type2) + " thoái " + ( Type1*(XNew + 1) + 10*Type2);
 				}else{
-					Move = (Type1*(this.getX() + 1) + 10*Type2) + " thoái " + Math.abs(DY);
+					Move = (Type1*(XOld + 1) + 10*Type2) + " thoái " + Math.abs(DY);
 				}
 			}
 		}
