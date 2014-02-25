@@ -21,7 +21,10 @@
 					</div>
 					<div class="col-6">
 						<div id="MoveList" />
-						<button id="Step" class="btn btn-success" tal:attributes="alt CS/getURLSettingStepUpdExe">Lưu nước đi</button>
+						<button id="Step" 	class="btn btn-success" tal:attributes="alt CS/getURLSettingStepUpdExe">Lưu nước đi</button>
+						<button id="Reset" 	class="btn btn-danger">Reset</button>
+						<button id="Pick" 	class="btn btn-info">Đặt quân</button>
+						
 						<div id="DataMove" tal:attributes="alt CS/getStepAllPrint"/>
 					</div>
 				</div>
@@ -54,13 +57,25 @@
 				VC.draw(canvas, context);
 
 				//XỬ LÍ NƯỚC ĐI												
-				$('#MoveList').on('click', '.iStep', function(e){
-					var Content = $(this).attr('alt');
-					VC.setState(Content);
+				$('#MoveList').on('click', '.iStep', function(e){					
+					VC.setState($(this).attr('alt'));
 					context.clearRect(0, 0, canvas.width, canvas.height);
 					VC.draw(canvas, context);
 				});
 								
+				//KHỞI TẠO LẠI BÀN CỜ
+				$("#Reset").click(function(){
+					VC.setState("40 30 50 20 60 10 70 00 80 12 72 03 23 43 63 83 49 39 59 29 69 19 79 09 89 17 77 06 26 46 66 86");
+					context.clearRect(0, 0, canvas.width, canvas.height);
+					VC.draw(canvas, context);
+				});
+				
+				//KHỞI TẠO LẠI BÀN CỜ
+				$("#Pick").click(function(){
+					alert("Bật / tắt chế độ đặt quân cờ");
+					VC.setMode(VC.getMode()*(-1));
+				});
+				
 				//LƯU LẠI NƯỚC ĐI
 				$("#Step").click(function(){								
 					var count = 0;

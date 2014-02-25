@@ -26,13 +26,18 @@
 									<thead>
 										<tr>
 											<th width="30">STT</th>
-											<th><div class="text-left">NƯỚC</div></th>
-											<th width="80"><div class="text-right">CHÚ GIẢI</div></th>
-											<th width="30" />
+											<th width="120"><div class="text-left">ĐỎ</div></th>
+											<th width="120"><div class="text-left">XANH</div></th>
+											<th><div class="text-left">BÌNH LUẬN</div></th>
 										</tr>
 									</thead>
 									<tbody>
-										
+										<tr tal:repeat="Step CS/getStepAll">
+											<td  align="center" tal:content="repeat/Step/number"/>											
+											<td align="left" tal:content="Step/getName1"/>
+											<td align="left" tal:content="Step/getName2"/>
+											<td align="left" />
+										</tr>
 									</tbody>
 								</table>
 							</div>
