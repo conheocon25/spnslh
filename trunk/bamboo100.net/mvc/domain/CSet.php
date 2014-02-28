@@ -8,17 +8,19 @@ class CSet extends Object{
 	private $Name;
 	private $Content;	
 	private $Count;
+	private $Order;
 	private $Key;
 	
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-    function __construct( $Id=null, $IdCBook=null , $Name=null, $Content=null, $Count=null, $Key=null){
+    function __construct( $Id=null, $IdCBook=null , $Name=null, $Content=null, $Count=null, $Order=null, $Key=null){
         $this->Id 		= $Id;
 		$this->IdCBook 	= $IdCBook;				
 		$this->Name 	= $Name;
 		$this->Content 	= $Content;	
 		$this->Count 	= $Count;	
+		$this->Order 	= $Order;	
 		$this->Key 		= $Key;
 		
         parent::__construct( $Id );
@@ -43,7 +45,10 @@ class CSet extends Object{
 		$N = new \MVC\Library\Number($this->Count);
 		return $N->formatCurrency();
 	}
-			
+	
+	function setOrder( $Order ){$this->Order = $Order; $this->markDirty();}   
+	function getOrder( ) {return $this->Order;}
+	
 	function setKey( $Key ){$this->Key = $Key;$this->markDirty();}
 	function getKey( ) {return $this->Key;}
 	function reKey( ){
@@ -58,6 +63,7 @@ class CSet extends Object{
 			'Name'			=> $this->getName(),
 			'Content'		=> $this->getContent(),				
 			'Count'			=> $this->getCount(),
+			'Order'			=> $this->getOrder(),
 			'Key'			=> $this->getKey()
 		);
 		
@@ -68,8 +74,9 @@ class CSet extends Object{
         $this->Id 			= $Data[0];
 		$this->IdCBook 		= $Data[1];
 		$this->Name	 		= $Data[2];
-		$this->Content	 	= $Data[3];				
+		$this->Content	 	= $Data[3];						
 		$this->Count	 	= $Data[4];
+		$this->Order	 	= $Data[5];
 		$this->reKey();
     }
 

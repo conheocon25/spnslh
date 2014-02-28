@@ -20,16 +20,22 @@
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------			
-			$Title	= "CỜ TƯỚNG";
+			//-------------------------------------------------------------						
 			$CBAll 	= $mCB->findAll();
 			$CB 	= $mCB->findByKey($KIdBook);
+			$Title	= mb_strtoupper($CB->getTitle(), 'UTF8');
+			$Navigation = array(
+				array("TRANG CHỦ", "/trang-chu"),
+				array("CỜ TƯỚNG", "/ung-dung/co-tuong")
+			);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
 			$request->setObject('CBAll', 	$CBAll);
 			$request->setObject('CB', 		$CB);
+			$request->setObject('Navigation', 	$Navigation);
+			$request->setProperty('Title', 		$Title);
 			
 			return self::statuses('CMD_DEFAULT');
 		}

@@ -26,7 +26,8 @@
 									<thead>
 										<tr>
 											<th width="30">STT</th>
-											<th><div class="text-left">VÁN CỜ</div></th>
+											<th><div class="text-left">TÊN VÁN</div></th>
+											<th width="80"><div class="text-right">THỨ TỰ</div></th>
 											<th width="80"><div class="text-right">LƯỢT XEM</div></th>
 											<th width="80"><div class="text-right">NƯỚC ĐI</div></th>
 											<th width="30" />
@@ -36,6 +37,7 @@
 										<tr tal:repeat="Set CB/getSetAll">
 											<td  align="center" tal:content="repeat/Set/number"/>
 											<td><a tal:attributes="href Set/getURLUpdLoad" tal:content="Set/getName"/></td>											
+											<td align="right" tal:content="Set/getOrder"/>
 											<td align="right" tal:content="Set/getCountPrint"/>
 											<td align="right">
 												<a tal:attributes="href Set/getURLSettingStep">

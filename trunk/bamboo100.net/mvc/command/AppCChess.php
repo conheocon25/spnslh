@@ -22,11 +22,15 @@
 			//-------------------------------------------------------------			
 			$Title	= "CỜ TƯỚNG";
 			$CBAll 	= $mCB->findAll();
-						
+			$Navigation = array(
+				array("TRANG CHỦ", "/trang-chu"),				
+			);
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-			$request->setObject('CBAll', 			$CBAll);
+			$request->setObject('CBAll', 		$CBAll);
+			$request->setObject('Navigation', 	$Navigation);
+			$request->setProperty('Title', 		$Title);
 						
 			return self::statuses('CMD_DEFAULT');
 		}

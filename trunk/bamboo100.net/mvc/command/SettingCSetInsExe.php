@@ -15,7 +15,8 @@
 			$Name 		= $request->getProperty('Name');
 			$Content 	= \stripslashes($request->getProperty('Content'));			
 			$Count		= $request->getProperty('Count');
-						
+			$Order		= $request->getProperty('Order');
+			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
@@ -30,6 +31,7 @@
 				$Name,
 				$Content,
 				1,
+				$Order,
 				""
 			);
 			$CSet->reKey();

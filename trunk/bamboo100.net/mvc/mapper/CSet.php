@@ -3,20 +3,19 @@ namespace MVC\Mapper;
 
 require_once( "mvc/base/Mapper.php" );
 class CSet extends Mapper implements \MVC\Domain\CSetFinder {
-
     function __construct() {
         parent::__construct();
 		
 		$tblCSet 		= "tbl_cset";		
-		$selectAllStmt 	= sprintf("select * from %s", $tblCSet);
+		$selectAllStmt 	= sprintf("select * from %s order by `order`", $tblCSet);
 		$selectStmt 	= sprintf("select *  from %s where id=?", $tblCSet);
-		$updateStmt 	= sprintf("update %s set id_cbook=?, name=?, content=?, count=?, `key`=? where id=?", $tblCSet);
-		$insertStmt 	= sprintf("insert into %s ( id_cbook, name, content,  count, `key`) values(?, ?, ?, ?, ?)", $tblCSet);
+		$updateStmt 	= sprintf("update %s set id_cbook=?, name=?, content=?, count=?, `order`=?, `key`=? where id=?", $tblCSet);
+		$insertStmt 	= sprintf("insert into %s ( id_cbook, name, content,  count, `order`, `key`) values(?, ?, ?, ?, ?, ?)", $tblCSet);
 		$deleteStmt 	= sprintf("delete from %s where id=?", $tblCSet);
 				
-		$findByBookStmt = sprintf("select *  from %s where id_cbook=?", $tblCSet);
+		$findByBookStmt = sprintf("select *  from %s where id_cbook=? order by `order`", $tblCSet);
 		$findByKeyStmt 	= sprintf("select *  from %s where `key`=?", $tblCSet);									
-		$findByPageStmt = sprintf("SELECT * FROM  %s ORDER BY date desc LIMIT :start,:max" , $tblCSet);
+		$findByPageStmt = sprintf("SELECT * FROM  %s order by `order` desc LIMIT :start,:max" , $tblCSet);
 		
         $this->selectAllStmt 	= self::$PDO->prepare($selectAllStmt);
         $this->selectStmt 		= self::$PDO->prepare($selectStmt);
@@ -38,6 +37,7 @@ class CSet extends Mapper implements \MVC\Domain\CSetFinder {
 			$array['name'],
 			$array['content'],
 			$array['count'],
+			$array['order'],
 			$array['key']
 		);		
         return $obj;
@@ -51,6 +51,7 @@ class CSet extends Mapper implements \MVC\Domain\CSetFinder {
 			$object->getName(),
 			$object->getContent(),
 			$object->getCount(),
+			$object->getOrder(),
 			$object->getKey()
 		); 
         $this->insertStmt->execute( $values );
@@ -64,6 +65,7 @@ class CSet extends Mapper implements \MVC\Domain\CSetFinder {
 			$object->getName(),
 			$object->getContent(),			
 			$object->getCount(),
+			$object->getOrder(),
 			$object->getKey(),
 			$object->getId()
 		);
