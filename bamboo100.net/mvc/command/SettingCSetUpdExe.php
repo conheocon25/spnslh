@@ -15,6 +15,7 @@
 			$IdCBook 	= $request->getProperty('IdCBook');
 			$Name 		= $request->getProperty('Name');
 			$Content 	= \stripslashes($request->getProperty('Content'));
+			$Order 		= $request->getProperty('Order');
 			$Count 		= $request->getProperty('Count');
 			
 			//-------------------------------------------------------------
@@ -29,6 +30,7 @@
 			$CS->setContent($Content);			
 			$CS->setName($Name);
 			$CS->setCount($Count);
+			$CS->setOrder($Order);
 			$CS->reKey();
 			$mCS->update($CS);
 			
