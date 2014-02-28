@@ -10,36 +10,33 @@
 		<div metal:use-macro="mBase.xhtml/Header"/>
 		<div id="wrap" class="container-fluid">
 			<div class="row-fluid">
-				<div class="span6">
-					<canvas width="468px" height="518px" id="ChessBoard" style="margin:0 !important;"></canvas>
+				<div class="span4">
+					<ul>
+						<li tal:repeat="CB CBAll">
+							<a tal:attributes="href CB/getURLRead">
+								<span tal:content="CB/getTitle" />
+							</a>
+						</li>
+					</ul>
 				</div>
-				<div class="span6">
-					<select id="MoveList" multiple="true" class="form-control"></select>
-					<br/>
-					<div class="btn-group">
-						<button class="btn"><i class="icon-fast-backward"></i></button>
-						<button class="btn Backward"><i class="icon-backward"></i></button>
-						<button class="btn Forward"><i class="icon-forward"></i></button>
-						<button class="btn"><i class="icon-fast-forward"></i></button>
-					</div>
+				<div class="span8">
+					<p>Sách cờ tướng là 1 nhu cầu không thể thiếu đối với những người mê cờ. 
+					Hầu như trong chúng ta không ai không biết tới những quyển như Quất trung bí, Mai hoa phổ. 
+					Hai quyển sách có tuổi thọ hàng trăm năm này là người thầy của biết bao thế hệ, 
+					nó đã góp phần nâng cao trình độ chơi cờ và quan trọng hơn, tăng thêm lòng say mê của nhiều người 
+					đối với nghệ thuật cờ tướng. Thi đấu ở một trình độ cao, các danh thủ càng cần tới sách vở. 
+					Trước năm 1975, 3 quyển sách của danh thủ Vương gia Lương gồm Tượng kỳ tiền phong, 
+					Tượng kỳ hậu vệ và Tượng kỳ trung phong thuộc vào loại gối đầu giường của các danh thủ Sài gòn. 
+					Người ta vẫn kể lại rằng để đem quyển Tượng kỳ trung phong vào Sài gòn, 
+					danh thủ người Hongkong Lý chí Hải đã phải tháo rời quyển sách ra, 
+					dùng các trang sách như một loại giấy lót đáy va li mới đi trót lọt. 
+					Thực hư chuyện này chưa rõ nhưng có một điều chắc chắn là sách vở cờ tướng thời đó rất hiếm. 
+					Số sách hiếm đó được chuyền tay nhau để chép lại, mà chỉ trong vòng bạn bè, những người được tin tưởng.</p>
+					<p>Ngày nay, vào thời kỳ phát triển Internet , việc sở hữu một quyển sách cờ tướng đã trở nên dễ dàng hơn bao giờ hết, chỉ cần ngồi nhà bấm vài cái là xong. Tuy nhiên, cũng như trước đây, số sách thực sự của người Việt nam sáng tác là rất hiếm, mà nếu có thì cũng lấy phần lớn tài liệu của Trung quốc. Điều này cũng không có gì lạ vì Trung quốc bao đời nay đều đứng đầu thế giới về trò chơi này. Nếu thật sự đam mê cờ tướng thì việc đọc sách cờ bằng bản tiếng Trung là chuyện tất nhiên sẽ xảy ra, chỉ có điều là người xem sẽ gặp khá nhiều khó khăn. Tuy nhiên khó khăn không còn nhiều nữa khi trong gian đoạn gần đây, các ebook của Tàu đều dùng bàn cờ động, các quân cờ có thể di chuyển được. Nếu trước đây người ta xem sách cờ bằng cách 1 tay cầm sách, 1 tay bày cờ thì bây giờ chỉ bấm và xem.</p>
 				</div>
 			</div>
 		</div>
 		<div metal:use-macro="mBase.xhtml/Footer"/>
-		<div metal:use-macro="mBase.xhtml/IncludeJS"/>
-		<script src="/mvc/templates/theme/cchess/js/piece.js"></script>	
-		<script src="/mvc/templates/theme/cchess/js/board.js"></script>
-		<script>
-			window.onload = function() {					
-				var canvas 		= document.getElementById("ChessBoard");			
-				var context 	= canvas.getContext("2d");
-				var Rect 		= canvas.getBoundingClientRect();
-				var VC			= new Board("Van1", 35, 35, Rect);
-				
-				//KHỞI TẠO BÀN CỜ
-				VC.init();
-				VC.draw(canvas, context);
-			}
-		</script>
+		<div metal:use-macro="mBase.xhtml/IncludeJS"/>		
 	</body>
 </html>

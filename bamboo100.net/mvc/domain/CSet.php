@@ -96,7 +96,9 @@ class CSet extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLRead(){return "/tin-tuc/".$this->getCategory()->getKey()."/".$this->getKey();}
+	function getURLRead(){
+		return "/ung-dung/co-tuong/".$this->getCBook()->getKey()."/".$this->getKey();
+	}
 	
 	function getURLSettingStep(){			return "/quan-ly/co-tuong/".$this->getIdCBook()."/van-co/".$this->getId()."/step";}
 	function getURLSettingStepUpdLoad(){	return "/quan-ly/co-tuong/".$this->getIdCBook()."/van-co/".$this->getId()."/step/upd";}
