@@ -35,7 +35,7 @@ class CSet extends Object{
 	
 	function setName( $Name ){$this->Name = $Name;$this->markDirty();}   
 	function getName( ) {return $this->Name;}	
-	function getNameReduce(){$S = new \MVC\Library\String($this->Name);return $S->reduce(45);}
+	function getNameReduce(){$S = new \MVC\Library\String($this->Name);return $S->reduce(35);}
 	
 	function setCount( $Count ){$this->Count = $Count;$this->markDirty();}   
 	function getCount( ) {return $this->Count;}
