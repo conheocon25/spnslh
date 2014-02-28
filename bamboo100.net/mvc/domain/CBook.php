@@ -28,6 +28,7 @@ class CBook extends Object{
         parent::__construct( $Id );
     }
     function getId() {return $this->Id;}	
+    function getIdString() {return "CBook" . $this->Id;}	
 		
     function setIdUser( $IdUser ) {$this->IdUser = $IdUser;$this->markDirty();}   
 	function getIdUser( ) {return $this->IdUser;}
@@ -46,7 +47,7 @@ class CBook extends Object{
 	
 	function setTitle( $Title ){$this->Title = $Title;$this->markDirty();}   
 	function getTitle( ) {return $this->Title;}	
-	function getTitleReduce(){$S = new \MVC\Library\String($this->Title);return $S->reduce(45);}
+	function getTitleReduce(){$S = new \MVC\Library\String($this->Title);return $S->reduce(33);}
 	
 	function setCount( $Count ){$this->Count = $Count;$this->markDirty();}   
 	function getCount( ) {return $this->Count;}
