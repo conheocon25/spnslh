@@ -9,7 +9,10 @@
 		<command name="Search" type="public"><view>Search</view></command>
 		<command name="PostRead" type="public"><view>PostRead</view></command>
 		<command name="Register" type="public"><view>Register</view></command>
-		<command name="AppCChess" type="public"><view>AppCChess</view></command>
+		
+		<command name="AppCChess" 	type="public"><view>AppCChess</view></command>
+		<command name="AppCBook" 	type="public"><view>AppCBook</view></command>
+		<command name="AppCSet" 	type="public"><view>AppCSet</view></command>
 		
 		<!-- ============================================================================== -->
 		<!-- SETTING COMMAND																-->
