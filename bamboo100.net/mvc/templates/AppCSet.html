@@ -4,6 +4,9 @@
 		<div metal:use-macro="mBase.xhtml/IncludeMETA"/>
 		<div metal:use-macro="mBase.xhtml/IncludeCSS"/>
 		<link href="/mvc/templates/theme/cchess/css/style.css" rel="stylesheet" media="screen"/>
+		<style>
+
+		</style>
 	</head>
 	
 	<body>
@@ -22,9 +25,11 @@
 					</ul>
 				</div>
 				<div class="span5">
-					<div class="well"><center>
-						<canvas width="468px" height="518px" id="ChessBoard" style="margin:0 !important;"></canvas>
-					</center></div>
+					<div class="well">
+						<div class="base-board">
+							<canvas id="ChessBoard"></canvas>
+						</div>
+					</div>
 				</div>
 				<div class="span4">
 					<h4 tal:content="CS/getName"/>
@@ -44,7 +49,14 @@
 				var canvas 		= document.getElementById("ChessBoard");			
 				var context 	= canvas.getContext("2d");
 				var Rect 		= canvas.getBoundingClientRect();
-				var VC			= new Board("Van1", 35, 35, Rect);
+				var bsBoard		= $('.base-board').width();
+				
+				canvas.width = bsBoard;
+				canvas.height = bsBoard + (bsBoard/8);
+				
+				$("#ChessBoard").css("box-shadow", "0 0 0 "+((bsBoard/8)/3)+"px #ADD8E6 inset");
+				
+				var VC			= new Board("Van1", ((bsBoard/8)/3)+5, ((bsBoard/8)/3)+5, Rect, ((bsBoard-((((bsBoard/8)/3)+5)*2))/8)-1.7, ((canvas.height-((((bsBoard/8)/3)+5)*2))/9)-1.8);
 				
 				//KHỞI TẠO BÀN CỜ
 				VC.init();
