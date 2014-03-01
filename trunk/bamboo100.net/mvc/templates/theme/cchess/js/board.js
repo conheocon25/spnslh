@@ -4,12 +4,12 @@
 //Name: tên quân cờ {King, Rook, Bishop, Elephant, Canon, Horse, Pawn}
 //Type: màu quân cờ {R, G} tương đương với {Đỏ, Xanh}
 //X, Y: vị trí quân cờ, vị trí ảo chưa tính tọa độ thực tế.
-function Board(Name, XStart, YStart, Rect){
+function Board(Name, XStart, YStart, Rect, wCell, hCell){
 	this.Name 			= Name;
 	this.XStart			= XStart;
 	this.YStart			= YStart;
-	this.nWidthCell  	= 48;
-	this.nHeightCell	= 48;
+	this.nWidthCell  	= wCell;
+	this.nHeightCell	= hCell;
 	this.nWPiece  		= 32;
 	this.nHPiece 		= 32;
 	this.Space			= 2;
@@ -325,17 +325,19 @@ function Board(Name, XStart, YStart, Rect){
 		//===============================================================================
 		// Vẽ các số tọa độ & Chữ giữa hà
 		//===============================================================================
-		context.font="13px Tahoma";
-		context.fillStyle = "white";
-		var k=1;
-		for(var i=30; i<=430; i+=50) {
-			context.fillText(10-k, 	i, 15);
-			context.fillText(k, 	i, 515);
-			k++;
-		}
-		context.font="20px CustomFont";
-		context.fillStyle = "#545353";
-		context.fillText("H ạ       T h ủ      B ấ t      H o à n", (this.nWidthCell*1)+16, (this.nHeightCell*5)+25);
+
+			context.font=(wCell/5)+"px Tahoma";
+			context.fillStyle = "white";
+			var k=1;
+			for(var i=XStart; i<=wCell*9; i+=(wCell+1)) {
+				context.fillText(10-k, 	i, (wCell/10)+8);
+				context.fillText(k, 	i, (hCell*10)+8);
+				k++;
+			}
+			context.font = (wCell/3) + "px CustomFont";
+			context.fillStyle = "#545353";
+			context.fillText("Hạ Thủ Bất Hoàn", (wCell*3)+((wCell*3)/8), (hCell*5)+((hCell*5)/20));
+
 		
 		//===============================================================================
 		//Vẽ các đường chéo														
