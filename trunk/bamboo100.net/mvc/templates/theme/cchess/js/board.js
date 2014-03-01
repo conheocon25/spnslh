@@ -411,4 +411,14 @@ function Board(Name, XStart, YStart, Rect, wCell, hCell){
 	}
 	this.getMode = function(){return this.Mode;}
 	
+	//Phải ở chế độ THIẾT LẬP QUÂN
+	this.delCurrent = function(){
+		if (this.Mode < 0){
+			if (this.iSelected > 0){											
+				this.Object[this.APiece[this.iSelected].getY()][this.APiece[this.iSelected].getX()] = -1;
+				this.APiece[this.iSelected].setXY(-1, -1);
+				this.iSelected = -1;
+			}
+		}
+	}	
 }
