@@ -22,8 +22,9 @@
 					<div class="col-6">
 						<div id="MoveList" />
 						<button id="Step" 	class="btn btn-success" tal:attributes="alt CS/getURLSettingStepUpdExe">Lưu nước đi</button>
-						<button id="Reset" 	class="btn btn-danger">Reset</button>
+						<button id="Reset" 	class="btn btn-danger">Reset</button>						
 						<button id="Pick" 	class="btn btn-info">Đặt quân</button>
+						<button id="Del" 	class="btn btn-info">Xóa quân</button>
 						
 						<div id="DataMove" tal:attributes="alt CS/getStepAllPrint"/>
 					</div>
@@ -41,7 +42,7 @@
 				var canvas 		= document.getElementById("ChessBoard");			
 				var context 	= canvas.getContext("2d");
 				var Rect 		= canvas.getBoundingClientRect();
-				var VC			= new Board("Van1", 35, 35, Rect);
+				var VC			= new Board("Van1", 35, 35, Rect, 45, 45);
 				
 				//KHỞI TẠO BÀN CỜ
 				VC.init();
@@ -56,13 +57,13 @@
 				false);
 				VC.draw(canvas, context);
 
-				//XỬ LÍ NƯỚC ĐI												
+				//XỬ LÍ NƯỚC ĐI	ĐƯỢC PHÁT SINH
 				$('#MoveList').on('click', '.iStep', function(e){					
 					VC.setState($(this).attr('alt'));
 					context.clearRect(0, 0, canvas.width, canvas.height);
 					VC.draw(canvas, context);
 				});
-								
+												
 				//KHỞI TẠO LẠI BÀN CỜ
 				$("#Reset").click(function(){
 					VC.setState("40 30 50 20 60 10 70 00 80 12 72 03 23 43 63 83 49 39 59 29 69 19 79 09 89 17 77 06 26 46 66 86");
@@ -79,6 +80,13 @@
 					}else{
 						alert("MODE: THIẾT LẬP => VỊ TRÍ BAN ĐẦU QUÂN CỜ - CÁC NƯỚC ĐI TRƯỚC ĐÓ SẼ MẤT");
 					}
+					context.clearRect(0, 0, canvas.width, canvas.height);
+					VC.draw(canvas, context);
+				});
+				
+				//XÓA QUÂN CỜ TRONG CHẾ ĐỘ THIẾT LẬP
+				$("#Del").click(function(){					
+					VC.delCurrent();					
 					context.clearRect(0, 0, canvas.width, canvas.height);
 					VC.draw(canvas, context);
 				});
