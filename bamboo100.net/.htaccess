@@ -12,9 +12,17 @@ RewriteRule ^object/upd/([A-Za-z0-9]+)$ 							?cmd=ObjectUpd&ObjectName=$1 [L]
 RewriteRule ^trang-chu$ 											?cmd=Home [L]
 RewriteRule ^tim-kiem$ 												?cmd=Search [L]
 
+RewriteRule ^ung-dung$ 												?cmd=App [L]
 RewriteRule ^ung-dung/co-tuong$ 									?cmd=AppCChess [L]
 RewriteRule ^ung-dung/co-tuong/([a-z0-9_-]+)$ 						?cmd=AppCBook&KIdBook=$1 [L]
 RewriteRule ^ung-dung/co-tuong/([a-z0-9_-]+)/([a-z0-9_-]+)$ 		?cmd=AppCSet&KIdBook=$1&KIdSet=$2 [L]
+
+RewriteRule ^ung-dung/cafe$ 										?cmd=AppCafe [L]
+RewriteRule ^ung-dung/karaoke$ 										?cmd=AppKaraoke [L]
+RewriteRule ^ung-dung/nha-tro$ 										?cmd=AppMHotel [L]
+RewriteRule ^ung-dung/tap-hoa$ 										?cmd=AppMStore [L]
+RewriteRule ^ung-dung/khach-san$ 									?cmd=AppHotel [L]
+RewriteRule ^ung-dung/quan-an$ 										?cmd=AppRestaurant [L]
 
 RewriteRule ^p/([a-z0-9_-]+)$ 										?cmd=PostRead&KIdPost=$1 [L]
 RewriteRule ^dang-ky$ 												?cmd=Register [L]
