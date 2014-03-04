@@ -34,7 +34,10 @@
 				<div class="span4">
 					<h4 tal:content="CS/getName"/>
 					(<span tal:content="CS/getCountPrint"/> xem)
-					<div id="MoveList"/>
+					<div tal:repeat="Step CS/getStepAll">
+						<span class='btn btn-danger iStep' 	tal:attributes="alt Step/getContent1"><span tal:content="Step/getName1"/></span>
+						<span class='btn btn-info 	iStep' 	tal:attributes="alt Step/getContent2"><span tal:content="Step/getName2"/></span>
+					</div>
 					<div id="DataMove" tal:attributes="alt CS/getStepAllPrint"/>
 				</div>
 			</div>
@@ -51,11 +54,10 @@
 				var Rect 		= canvas.getBoundingClientRect();
 				var bsBoard		= $('.base-board').width();
 				
-				canvas.width = bsBoard;
-				canvas.height = bsBoard + (bsBoard/8);
+				canvas.width 	= bsBoard;
+				canvas.height 	= bsBoard + (bsBoard/8);
 				
-				$("#ChessBoard").css("box-shadow", "0 0 0 "+((bsBoard/8)/3)+"px #ADD8E6 inset");
-				
+				$("#ChessBoard").css("box-shadow", "0 0 0 "+((bsBoard/8)/3)+"px #ADD8E6 inset");				
 				var VC			= new Board("Van1", ((bsBoard/8)/3)+5, ((bsBoard/8)/3)+5, Rect, ((bsBoard-((((bsBoard/8)/3)+5)*2))/8)-1.7, ((canvas.height-((((bsBoard/8)/3)+5)*2))/9)-1.8);
 				
 				//KHỞI TẠO BÀN CỜ
@@ -68,28 +70,17 @@
 						VC.draw(canvas, context);				
 						$("#MoveList").html(VC.getStepAll());
 					},
-				false);
+				false);												
 				VC.draw(canvas, context);
-
-				//XỬ LÍ NƯỚC ĐI												
-				$('#MoveList').on('click', '.iStep', function(e){					
-					VC.setState($(this).attr('alt'));
-					context.clearRect(0, 0, canvas.width, canvas.height);
-					VC.draw(canvas, context);
-				});
 								
-				//KHỞI TẠO LẠI BÀN CỜ
-				$("#Pick").click(function(){					
-					VC.setMode(VC.getMode()*(-1));
-					if (VC.getMode()>0){
-						alert("MODE: BÌNH THƯỜNG");												
-					
-					}else{
-						alert("MODE: THIẾT LẬP => VỊ TRÍ BAN ĐẦU QUÂN CỜ - CÁC NƯỚC ĐI TRƯỚC ĐÓ SẼ MẤT");
-					}
+				//XỬ LÍ NƯỚC ĐI
+				$('.iStep').click(function(){
+					var move = $(this).attr('alt');					
+					VC.setState(move);
 					context.clearRect(0, 0, canvas.width, canvas.height);
 					VC.draw(canvas, context);
 				});
+				
 			}
 		</script>
 	</body>

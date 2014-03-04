@@ -7,7 +7,11 @@
 function Piece(Name, Type, X, Y){
 	this.isLived	= true;
 	this.Name 		= Name;
+	
 	this.Type 		= Type;
+	this.getType	= function(){return this.Type;}
+	this.setType	= function(Type){this.Type = Type;}
+	
 	this.X			= X;
 	this.Y			= Y;
 	this.Image		= new Image();

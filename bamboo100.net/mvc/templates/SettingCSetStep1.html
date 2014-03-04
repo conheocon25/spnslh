@@ -22,9 +22,14 @@
 					<div class="col-6">
 						<div id="MoveList" />
 						<button id="Step" 	class="btn btn-success" tal:attributes="alt CS/getURLSettingStepUpdExe">Lưu nước đi</button>
-						<button id="Reset" 	class="btn btn-danger">Reset</button>						
+						<button id="Reset" 	class="btn btn-success">Reset</button>
+											
+						<br />
 						<button id="Pick" 	class="btn btn-info">Đặt quân</button>
 						<button id="Del" 	class="btn btn-info">Xóa quân</button>
+						<br />
+						<button id="Undo" 	class="btn btn-danger">Undo</button>
+						<button id="Redo" 	class="btn btn-danger">Redo</button>
 						
 						<div id="DataMove" tal:attributes="alt CS/getStepAllPrint"/>
 					</div>
@@ -58,8 +63,8 @@
 				VC.draw(canvas, context);
 
 				//XỬ LÍ NƯỚC ĐI	ĐƯỢC PHÁT SINH
-				$('#MoveList').on('click', '.iStep', function(e){					
-					VC.setState($(this).attr('alt'));
+				$('#MoveList').on('click', '.iStep', function(e){
+					VC.setState($(this).attr('alt'));					
 					context.clearRect(0, 0, canvas.width, canvas.height);
 					VC.draw(canvas, context);
 				});
@@ -102,8 +107,20 @@
 						data: {ArrStep:VC.getStepAllSave()},
 						url: URL,
 						success: function(msg){location.reload();}
-					});
-										
+					});									
+				});
+				
+				//UNDO/REDO
+				$("#Undo").click(function(){
+					VC.undo();
+					context.clearRect(0, 0, canvas.width, canvas.height);
+					VC.draw(canvas, context);
+				});
+				
+				$("#Redo").click(function(){
+					VC.redo();
+					context.clearRect(0, 0, canvas.width, canvas.height);
+					VC.draw(canvas, context);
 				});
 			}
 		</script>
