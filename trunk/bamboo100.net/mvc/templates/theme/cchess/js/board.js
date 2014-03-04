@@ -89,12 +89,19 @@ function Board(Name, XStart, YStart, Rect, wCell, hCell){
 		var arrStr = Str.split(' ');
 		for (var i=0; i < 32; i++){
 			var S = arrStr[i];
-			if (S=="DD"){
-				this.Object[this.APiece[i].getY()][this.APiece[i].getX()] = -1;
-				this.APiece[i].setXY(-1, -1);				
-			}				
+			var X = this.APiece[i].getX();
+			var Y = this.APiece[i].getY();
+			
+			if (S=="DD"){				
+				if (X =! -1){
+					this.Object[Y][X] = -1;					
+				}
+				this.APiece[i].setXY(-1, -1);
+			}
 			else{
-				this.Object[this.APiece[i].getY()][this.APiece[i].getX()] = -1;
+				if (X =! -1){
+					this.Object[Y][X] = -1;
+				}
 				this.Object[S[1]][S[0]] = i;
 				this.APiece[i].setXY(S[0], S[1]);						
 			}
@@ -165,12 +172,14 @@ function Board(Name, XStart, YStart, Rect, wCell, hCell){
 					}//Ăn quân
 					else{
 						IdTemp = this.Object[CellY][CellX];
-						this.Object[CellY][CellX] = -1;
-						this.APiece[IdTemp].setXY(-1, -1);
-						
-						this.move(this.iSelected, CellX, CellY);
-						this.iSelected = -1;
-						this.Current  *= -1;
+						if (this.APiece[IdTemp].getType() != this.APiece[this.iSelected].getType()){
+							this.Object[CellY][CellX] = -1;
+							this.APiece[IdTemp].setXY(-1, -1);
+							
+							this.move(this.iSelected, CellX, CellY);
+							this.iSelected = -1;
+							this.Current  *= -1;
+						}
 					}				
 				}
 			}else{
@@ -210,7 +219,7 @@ function Board(Name, XStart, YStart, Rect, wCell, hCell){
 		}
 	}
 	
-	this.getStepAll = function(){
+	this.getStepAll = function(){		
 		var S = "";
 		var Temp = "";
 		var First = this.First;
@@ -222,7 +231,7 @@ function Board(Name, XStart, YStart, Rect, wCell, hCell){
 			}
 			First *= -1;
 			S +=  Temp;
-		}
+		}		
 		return S;
 	}
 	
@@ -299,7 +308,7 @@ function Board(Name, XStart, YStart, Rect, wCell, hCell){
 	//VẼ BÀN CỜ
 	//--------------------------------------------------------------------
 	this.draw = function(canvas, context){
-		var width;
+		var width;		
 		//Vẽ các ô trong bàn cờ		
 		for (var i=0; i<9; i++){
 			for (var j=0; j<8; j++){
@@ -326,17 +335,17 @@ function Board(Name, XStart, YStart, Rect, wCell, hCell){
 		// Vẽ các số tọa độ & Chữ giữa hà
 		//===============================================================================
 
-			context.font=(wCell/5)+"px Tahoma";
-			context.fillStyle = "white";
-			var k=1;
-			for(var i=XStart; i<=wCell*9; i+=(wCell+1)) {
-				context.fillText(10-k, 	i, (wCell/10)+8);
-				context.fillText(k, 	i, (hCell*10)+8);
-				k++;
-			}
-			context.font = (wCell/3) + "px CustomFont";
-			context.fillStyle = "#545353";
-			context.fillText("Hạ Thủ Bất Hoàn", (wCell*3)+((wCell*3)/8), (hCell*5)+((hCell*5)/20));
+		context.font=(wCell/3)+"px Tahoma";
+		context.fillStyle = "green";
+		var k=1;
+		for(var i=XStart; i<=wCell*9; i+=(wCell+1)) {
+			context.fillText(10-k, 	i, (wCell/10)+6);
+			context.fillText(k, 	i, (hCell*10)+12);
+			k++;
+		}
+		context.font = (wCell/2) + "px CustomFont";
+		context.fillStyle = "#545353";
+		context.fillText("Hạ Thủ Bất Hoàn", (wCell*3)+((wCell*3)/8), (hCell*5)+((hCell*5)/10));
 
 		
 		//===============================================================================
@@ -379,14 +388,13 @@ function Board(Name, XStart, YStart, Rect, wCell, hCell){
 		this.drawNode(context, 6, 6);
 		this.drawNodeRight(context, 8, 6);
 
-		context.stroke();
-				
+		context.stroke();		
 		for (var i=0; i<this.APiece.length; i++) {			
 			var X = this.getX2Canvas(this.APiece[i].getX()) - this.nWPiece/2;
 			var Y = this.getY2Canvas(this.APiece[i].getY()) - this.nHPiece/2;
 			context.drawImage(this.APiece[i].getImage(), X, Y, this.nWPiece, this.nHPiece);
 		}
-		
+				
 		//Vẽ con cờ được chọn
 		if (this.iSelected != -1){
 			var i = this.iSelected;
@@ -420,5 +428,20 @@ function Board(Name, XStart, YStart, Rect, wCell, hCell){
 				this.iSelected = -1;
 			}
 		}
-	}	
+	}
+	
+	//--------------------------------------------------------------------
+	//UNDO/REDO nước đi
+	//--------------------------------------------------------------------
+	this.undo = function(){
+		if (this.Mode < 0){
+			this.CurrentStep --;
+		}
+	}
+	
+	this.redo = function(){
+		if (this.Mode < 0){
+			this.CurrentStep ++;
+		}
+	}
 }
