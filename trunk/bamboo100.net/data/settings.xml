@@ -10,10 +10,11 @@
 		<command name="PostRead" type="public"><view>PostRead</view></command>
 		<command name="Register" type="public"><view>Register</view></command>
 		
-		<command name="App" 		type="public"><view>App</view></command>
-		<command name="AppCChess" 	type="public"><view>AppCChess</view></command>
-		<command name="AppCBook" 	type="public"><view>AppCBook</view></command>
-		<command name="AppCSet" 	type="public"><view>AppCSet</view></command>
+		<command name="App" 				type="public"><view>App</view></command>
+		<command name="AppCChess" 			type="public"><view>AppCChess</view></command>
+		<command name="AppCChessSearch" 	type="public"><view>AppCChessSearch</view></command>
+		<command name="AppCBook" 			type="public"><view>AppCBook</view></command>
+		<command name="AppCSet" 			type="public"><view>AppCSet</view></command>
 		
 		<!-- ============================================================================== -->
 		<!-- SETTING COMMAND																-->

@@ -14,6 +14,8 @@ class CBook extends Mapper implements \MVC\Domain\CBookFinder {
 		$insertStmt 	= sprintf("insert into %s ( id_user, author, date_time,  title, content, count, `key`) values(?, ?, ?, ?, ?, ?, ?)", $tblCBook);
 		$deleteStmt 	= sprintf("delete from %s where id=?", $tblCBook);
 		
+		$findLikeKeyStmt= sprintf("select *  from %s where `key` like :term LIMIT 12", $tblCBook);
+		$findByTopStmt 	= sprintf("select *  from %s ORDER BY `count` DESC LIMIT 12", $tblCBook);
 		$findByUserStmt = sprintf("select *  from %s where id_user=? ORDER BY date_time DESC", $tblCBook);
 		$findByKeyStmt 	= sprintf("select *  from %s where `key`=?", $tblCBook);									
 		$findByPageStmt = sprintf("SELECT * FROM  %s ORDER BY date desc LIMIT :start,:max" , $tblCBook);
@@ -23,9 +25,11 @@ class CBook extends Mapper implements \MVC\Domain\CBookFinder {
         $this->updateStmt 		= self::$PDO->prepare($updateStmt);
         $this->insertStmt 		= self::$PDO->prepare($insertStmt);
 		$this->deleteStmt 		= self::$PDO->prepare($deleteStmt);
-		$this->findByUserStmt 	= self::$PDO->prepare($findByUserStmt);
+		$this->findLikeKeyStmt 	= self::$PDO->prepare($findLikeKeyStmt);
 		$this->findByKeyStmt 	= self::$PDO->prepare($findByKeyStmt);
-						
+		$this->findByTopStmt 	= self::$PDO->prepare($findByTopStmt);
+		$this->findByUserStmt 	= self::$PDO->prepare($findByUserStmt);
+							
 		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);		
 
     } 
@@ -83,7 +87,12 @@ class CBook extends Mapper implements \MVC\Domain\CBookFinder {
         $this->findByUserStmt->execute( $values );
         return new CBookCollection( $this->findByUserStmt->fetchAll(), $this);
     }
-			
+	
+	function findByTop( $values ){
+        $this->findByTopStmt->execute( $values );
+        return new CBookCollection( $this->findByTopStmt->fetchAll(), $this);
+    }
+	
 	function findByPage( $values ) {		
 		$this->findByPageStmt->bindValue(':start', ((int)($values[0])-1)*(int)($values[1]), \PDO::PARAM_INT);
 		$this->findByPageStmt->bindValue(':max', (int)($values[1]), \PDO::PARAM_INT);
@@ -99,6 +108,12 @@ class CBook extends Mapper implements \MVC\Domain\CBookFinder {
         if ( ! isset( $array['id'] ) ) { return null; }
         $object = $this->doCreateObject( $array );
         return $object;		
+    }
+	
+	function findLikeKey( $values ) {		
+		$this->findLikeKeyStmt->bindValue(':term', "%".$values[0]."%", \PDO::PARAM_STR);
+		$this->findLikeKeyStmt->execute();
+        return new CBookCollection( $this->findLikeKeyStmt->fetchAll(), $this );
     }
 }
 ?>

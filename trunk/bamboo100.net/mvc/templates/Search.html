@@ -13,8 +13,7 @@
 					<div class="search-result">
 						<ul>
 							<li tal:repeat="Post PostAll">
-								<a tal:attributes="href Post/getURLRead"><h4 tal:content="Post/getTitle"/></a>
-								<p tal:content="Post/getURLRead" />
+								<a tal:attributes="href Post/getURLRead"><h4 tal:content="Post/getTitle"/></a>								
 								<p tal:content="structure Post/getContentReduce" />
 							</li>
 						</ul>

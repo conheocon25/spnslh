@@ -112,10 +112,16 @@ class CBook extends Object{
 		return $SetAll;
 	}
 	
+	function getSetTopAll(){
+		$mCSet 	= new \MVC\Mapper\CSet();
+		$SetAll = $mCSet->findByTop(array($this->getId()));
+		return $SetAll;
+	}
+	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLRead(){		return "/ung-dung/co-tuong/".$this->getKey();}
+	function getURLRead(){		return "/ung-dung/hoc-co-tuong/".$this->getKey();}
 		
 	function getURLUpdLoad(){	return "/quan-ly/co-tuong/".$this->getId()."/upd-load";}
 	function getURLUpdExe(){	return "/quan-ly/co-tuong/".$this->getId()."/upd-exe";}
