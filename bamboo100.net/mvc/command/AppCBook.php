@@ -26,7 +26,7 @@
 			$Title	= mb_strtoupper($CB->getTitle(), 'UTF8');
 			$Navigation = array(
 				array("TRANG CHỦ", "/trang-chu"),
-				array("CỜ TƯỚNG", "/ung-dung/co-tuong")
+				array("CỜ TƯỚNG", "/ung-dung/hoc-co-tuong")
 			);
 			
 			//-------------------------------------------------------------

@@ -16,6 +16,7 @@ class Post extends Mapper implements \MVC\Domain\PostFinder {
 		
 		$findByUserStmt = sprintf("select *  from %s where id_user=? ORDER BY date_time DESC", $tblPost);
 		$findByKeyStmt 	= sprintf("select *  from %s where `key`=?", $tblPost);
+		$findLikeKeyStmt= sprintf("select *  from %s where `key` like :term", $tblPost);
 			
 		$findByCategoryDateStmt = sprintf(
 			"select *  
@@ -42,6 +43,7 @@ class Post extends Mapper implements \MVC\Domain\PostFinder {
 		$this->deleteStmt 		= self::$PDO->prepare($deleteStmt);
 		$this->findByUserStmt 	= self::$PDO->prepare($findByUserStmt);
 		$this->findByKeyStmt 	= self::$PDO->prepare($findByKeyStmt);
+		$this->findLikeKeyStmt 	= self::$PDO->prepare($findLikeKeyStmt);
 				
 		$this->findByCategoryDateStmt = self::$PDO->prepare($findByCategoryDateStmt);
 		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);
@@ -132,5 +134,12 @@ class Post extends Mapper implements \MVC\Domain\PostFinder {
         $object = $this->doCreateObject( $array );
         return $object;		
     }
+	
+	function findLikeKey( $values ) {		
+		$this->findLikeKeyStmt->bindValue(':term', $values[0]."%", \PDO::PARAM_STR);
+		$this->findLikeKeyStmt->execute();
+        return new PostCollection( $this->findLikeKeyStmt->fetchAll(), $this );
+    }
+	
 }
 ?>

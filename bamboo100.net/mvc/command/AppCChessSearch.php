@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class Search extends Command {
+	class AppCChessSearch extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -16,21 +16,27 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mPost = new \MVC\Mapper\Post();
+			$mBook = new \MVC\Mapper\CBook();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------
+			//-------------------------------------------------------------			
 			$StrTerm = new \MVC\Library\String($Term);			
-			$PostAll = 	$mPost->findLikeKey(array($StrTerm->converturl()));
-			$Navigation = array();
+		
+			$CBAll 		= $mBook->findLikeKey(array( $StrTerm->converturl() ));
+			$Title		= "TÌM KIẾM";
+			$Navigation = array(
+				array("TRANG CHỦ", 		"/trang-chu"),
+				array("HỌC CỜ TƯỚNG", 	"/hoc-co-tuong")
+			);
 
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-			$request->setProperty('Title', 'Trang chủ');
-			$request->setProperty('Term', $Term);
-			$request->setObject('PostAll', $PostAll);
+			$request->setProperty('Title', 	'Trang chủ');
+			$request->setProperty('Term', 	$Term);
+			$request->setObject('CBAll', 	$CBAll);
+			$request->setObject('Navigation', 	$Navigation);
 			
 			return self::statuses('CMD_DEFAULT');
 		}

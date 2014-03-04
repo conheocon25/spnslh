@@ -14,6 +14,8 @@ class CSet extends Mapper implements \MVC\Domain\CSetFinder {
 		$deleteStmt 	= sprintf("delete from %s where id=?", $tblCSet);
 				
 		$findByBookStmt = sprintf("select *  from %s where id_cbook=? order by `order`", $tblCSet);
+		$findByTopStmt 	= sprintf("select *  from %s where id_cbook=? order by `count` LIMIT 12", $tblCSet);
+		
 		$findByKeyStmt 	= sprintf("select *  from %s where `key`=?", $tblCSet);									
 		$findByPageStmt = sprintf("SELECT * FROM  %s order by `order` desc LIMIT :start,:max" , $tblCSet);
 		
@@ -24,6 +26,7 @@ class CSet extends Mapper implements \MVC\Domain\CSetFinder {
 		$this->deleteStmt 		= self::$PDO->prepare($deleteStmt);
 		$this->findByBookStmt 	= self::$PDO->prepare($findByBookStmt);
 		$this->findByKeyStmt 	= self::$PDO->prepare($findByKeyStmt);
+		$this->findByTopStmt 	= self::$PDO->prepare($findByTopStmt);
 						
 		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);		
 
@@ -74,6 +77,11 @@ class CSet extends Mapper implements \MVC\Domain\CSetFinder {
 	protected function doDelete(array $values) {return $this->deleteStmt->execute( $values );}
     function selectStmt() {return $this->selectStmt;}
     function selectAllStmt() {return $this->selectAllStmt;}
+	
+	function findByTop( $values ){
+        $this->findByTopStmt->execute( $values );
+        return new CSetCollection( $this->findByTopStmt->fetchAll(), $this);
+    }
 	
 	function findByBook( $values ){
         $this->findByBookStmt->execute( $values );

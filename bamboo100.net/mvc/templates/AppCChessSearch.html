@@ -9,25 +9,22 @@
 	<body>
 		<div metal:use-macro="mBase.xhtml/HeaderChess"/>
 		<div id="wrap" class="container-fluid">
-			<div metal:use-macro="mAdmin.xhtml/Breadcrumb" />
+			<div metal:use-macro="mBase.xhtml/Breadcrumb" />
 			<div class="row-fluid">
 				<div class="span3">
 					<ul class="nav nav-tabs nav-stacked">
-						<li tal:repeat="Set CB/getSetAll">
-							<a tal:attributes="href Set/getURLRead">
-								<span tal:content="Set/getNameReduce"/>
+						<li tal:repeat="CB CBAll">
+							<a tal:attributes="href CB/getURLRead">
+								<span tal:content="CB/getTitleReduce"/>
 								<i class="icon-chevron-right pull-right"/>
 							</a>
 						</li>
 					</ul>
 				</div>
 				<div class="span9">
-					<div class="page-header">
-						<h3 tal:content="CB/getTitle"/>
-						<span class="label label-info">Số ván: <span tal:content="CB/getSetAll/count"/></span>
-						<span class="label label-success">Cập nhật: <span tal:content="CB/getDateTimePrint"/></span>
+					<div class="well">
+						<p> bây giờ chỉ bấm và xem.</p>
 					</div>
-					<div class="well" tal:content="structure CB/getContent"/>
 				</div>
 			</div>
 		</div>
