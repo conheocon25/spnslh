@@ -16,6 +16,8 @@
 		<command name="AppCBook" 			type="public"><view>AppCBook</view></command>
 		<command name="AppCSet" 			type="public"><view>AppCSet</view></command>
 		
+		<command name="AppZenMusic" 		type="public"><view>AppZenMusic</view></command>
+		
 		<!-- ============================================================================== -->
 		<!-- SETTING COMMAND																-->
 		<!-- ============================================================================== -->

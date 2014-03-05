@@ -334,13 +334,12 @@ function Board(Name, XStart, YStart, Rect, wCell, hCell){
 		//===============================================================================
 		// Vẽ các số tọa độ & Chữ giữa hà
 		//===============================================================================
-
 		context.font=(wCell/3)+"px Tahoma";
 		context.fillStyle = "green";
 		var k=1;
 		for(var i=XStart; i<=wCell*9; i+=(wCell+1)) {
-			context.fillText(10-k, 	i, (wCell/10)+6);
-			context.fillText(k, 	i, (hCell*10)+12);
+			context.fillText(k, 	i, (wCell/10)+6);
+			context.fillText(10-k, 	i, (hCell*10)+12);
 			k++;
 		}
 		context.font = (wCell/2) + "px CustomFont";
@@ -410,6 +409,8 @@ function Board(Name, XStart, YStart, Rect, wCell, hCell){
 	//--------------------------------------------------------------------
 	this.setMode = function(mode){
 		if (this.Mode < 0){
+			this.AStep 			= [];
+			this.AStepN			= [];
 			this.CurrentStep 	= 0;
 			this.First 			= 1;
 			this.Current		= 1;
