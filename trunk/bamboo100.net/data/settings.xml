@@ -17,6 +17,7 @@
 		<command name="AppCSet" 			type="public"><view>AppCSet</view></command>
 		
 		<command name="AppZenMusic" 		type="public"><view>AppZenMusic</view></command>
+		<command name="AppCafe" 			type="public"><view>AppCafe</view></command>
 		
 		<!-- ============================================================================== -->
 		<!-- SETTING COMMAND																-->
