@@ -15,9 +15,9 @@ function Piece(Name, Type, X, Y){
 	this.X			= X;
 	this.Y			= Y;
 	this.Image		= new Image();
-	this.Image.src 			= "/mvc/templates/theme/cchess/img/"+this.Type+ this.Name+".gif";
+	this.Image.src 			= "/mvc/templates/theme/cchess/img/"+this.Type+ this.Name+".png";
 	this.ImageSelected		= new Image();
-	this.ImageSelected.src 	= "/mvc/templates/theme/cchess/img/Selected.gif";
+	this.ImageSelected.src 	= "/mvc/templates/theme/cchess/img/Selected.png";
 	
 	this.Hash				= {};
 	this.Hash['Canon']		= "Pháo";
@@ -71,7 +71,7 @@ function Piece(Name, Type, X, Y){
 	//THIẾT LẬP VẼ
 	this.getImage 		= function(){return this.Image;}
 	this.getImageSelected	= function(){return this.ImageSelected;}
-	this.getFileName	= function(){return "img/"+this.Type+this.Name+".gif";}
+	this.getFileName	= function(){return "img/"+this.Type+this.Name+".png";}
 	this.getName		= function(){return this.Name;}
 	this.getNameShort	= function(){		
 		return this.Hash[this.Name];
