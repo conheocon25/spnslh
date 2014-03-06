@@ -61,9 +61,11 @@
 	<!-- ======================================================================== -->
 	<!-- BREADCRUMB																  -->
 	<!-- ======================================================================== -->	
-	<div metal:define-macro="Breadcrumb" id="breadcrumb">
-		<a tal:repeat="Item Navigation" href="/trang-chu" tal:attributes="href php:Item[1]; title php:'Về trang '.Item[0]" tal:content="php:Item[0]" class="tip-bottom"/>
-		<a class="current" tal:content="Title"/>
+	<div metal:define-macro="Breadcrumb">
+		<ul class="breadcrumb">
+			<li tal:repeat="Item Navigation"><a tal:attributes="href php:Item[1]; title php:'Về trang '.Item[0]" tal:content="php:Item[0]"/> <span class="divider">/</span></li>
+			<li class="active" tal:content="Title"/>
+		</ul>
 	</div>
 		
 	<!-- ======================================================================== -->
