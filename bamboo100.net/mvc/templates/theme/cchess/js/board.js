@@ -10,8 +10,8 @@ function Board(Name, XStart, YStart, Rect, wCell, hCell){
 	this.YStart			= YStart;
 	this.nWidthCell  	= wCell;
 	this.nHeightCell	= hCell;
-	this.nWPiece  		= 32;
-	this.nHPiece 		= 32;
+	this.nWPiece  		= 50;
+	this.nHPiece 		= 50;
 	this.Space			= 2;
 	this.Stick			= 4;
 	this.APiece 		= [];
