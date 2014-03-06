@@ -48,6 +48,8 @@
 		<command name="SettingPostDelExe"><view>SettingPostDelExe</view><status value="CMD_OK"><forward>SettingPost</forward></status></command>
 		
 		<command name="SettingCChess"><view>SettingCChess</view></command>
+		<command name="SettingCChessInfoLoad"><view>SettingCChessInfoLoad</view></command>		
+		<command name="SettingCChessInfoExe"><view>SettingCChessInfoExe</view><status value="CMD_OK"><forward>SettingCChess</forward></status></command>
 		<command name="SettingCChessInsLoad"><view>SettingCChessInsLoad</view></command>
 		<command name="SettingCChessInsExe"><view>SettingCChessInsExe</view><status value="CMD_OK"><forward>SettingCChess</forward></status></command>
 		<command name="SettingCChessUpdLoad"><view>SettingCChessUpdLoad</view></command>
@@ -56,6 +58,7 @@
 		<command name="SettingCChessDelExe"><view>SettingCChessDelExe</view><status value="CMD_OK"><forward>SettingCChess</forward></status></command>
 		
 		<command name="SettingCSet"><view>SettingCSet</view></command>
+		
 		<command name="SettingCSetInsLoad"><view>SettingCSetInsLoad</view></command>
 		<command name="SettingCSetInsExe"><view>SettingCSetInsExe</view><status value="CMD_OK"><forward>SettingCSet</forward></status></command>
 		<command name="SettingCSetUpdLoad"><view>SettingCSetUpdLoad</view></command>
