@@ -28,6 +28,7 @@ RewriteRule ^ung-dung/nhac-thien$ 									?cmd=AppZenMusic [L]
 
 RewriteRule ^p/([a-z0-9_-]+)$ 										?cmd=PostRead&KIdPost=$1 [L]
 RewriteRule ^dang-ky$ 												?cmd=Register [L]
+RewriteRule ^dang-ky/exe$ 											?cmd=SendMailRegister [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # SETTING

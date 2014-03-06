@@ -9,6 +9,8 @@
 		<command name="Search" type="public"><view>Search</view></command>
 		<command name="PostRead" type="public"><view>PostRead</view></command>
 		<command name="Register" type="public"><view>Register</view></command>
+		<command name="RegisterMessage" type="public"><view>RegisterMessage</view></command>
+		<command name="SendMailRegister" type="public"><view>SendMailRegister</view><status value="CMD_OK"><forward>RegisterMessage</forward></status></command>
 		
 		<command name="App" 				type="public"><view>App</view></command>
 		<command name="AppCChess" 			type="public"><view>AppCChess</view></command>
