@@ -23,16 +23,17 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH Send Mail
 			//-------------------------------------------------------------
-			$checkMail = "";
+			$checkMail = null;
 			$doMail = new Mail("mail.caytretramdot.com", "admin@caytretramdot.com", "bambo100", "admin068198");
 			
 			if (isset($EmailReg)) {
-				$checkMail = $mUser->checkEmail(array($EmailReg));
+				$checkMail = $mUser->checkEmail($EmailReg);
 			}
 			echo "EmailReg: ".$EmailReg;
 			echo "check: ".$checkMail;
 			
-			if( $checkMail != "" ) {
+			if( $checkMail == null ) {
+				
 				$dUser = new \MVC\Domain\User(
 					null,
 					$NameReg,
@@ -43,7 +44,7 @@
 					null,
 					'',
 					'',
-					1,
+					4,
 					0
 				);			
 				$mUser->insert($dUser);
@@ -61,7 +62,9 @@
 				
 				return self::statuses('CMD_OK');
 				
-			}else {
+			}
+			
+			if( $checkMail != null ) {
 				$request->setProperty('code', 2);
 				return self::statuses('CMD_OK');
 			}
