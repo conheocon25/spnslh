@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class AppCChess extends Command {
+	class SettingCChessInfoLoad extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -16,26 +16,34 @@
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
 			$mCChess = new \MVC\Mapper\CChess();
-			$mCB = new \MVC\Mapper\CBook();
-			
+						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------						
-			$CChess	= $mCChess->find(1);
-			$CBAll 	= $mCB->findByTop(array());
+			//-------------------------------------------------------------			
+			$Title		= "THÔNG TIN";
+			$CChess		= $mCChess->find(1);
+			if (!isset($CChess)){
+				$CChess = new \MVC\Domain\CChess(
+					null,
+					"",
+					1
+				);
+				$mCChess->insert($CChess);
+			}
 			
-			$Title	= "HỌC CỜ TƯỚNG";
 			$Navigation = array(
-				array("TRANG CHỦ", "/trang-chu"),				
+				array("QUẢN LÝ", 	"/quan-ly"),
+				array("CỜ TƯỚNG", 	"/quan-ly/co-tuong")
 			);
+									
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-			$request->setObject('CChess', 		$CChess);
-			$request->setObject('CBAll', 		$CBAll);
-			$request->setObject('Navigation', 	$Navigation);
-			$request->setProperty('Title', 		$Title);
-						
+			$request->setObject('CChess', 			$CChess);						
+			$request->setProperty('Title', 			$Title);
+			$request->setProperty('ActiveLeftMenu', 'SettingCChess');
+			$request->setObject('Navigation', 		$Navigation);
+			
 			return self::statuses('CMD_DEFAULT');
 		}
 	}
