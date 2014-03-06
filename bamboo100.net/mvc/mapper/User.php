@@ -130,11 +130,11 @@ class User extends Mapper implements \MVC\Domain\UserFinder {
 	}
 	
 	function checkEmail( $values ) {	
-        $this->checkEmailStmt->execute( $values );
+        $this->checkEmailStmt->execute( array( $values ) );
 		$result = $this->checkEmailStmt->fetchAll();		
 		if (!isset($result) || $result==null)
 			return null;        
-        return $result[0][0];
+        return @$result[0][0];
     }
 	
 	function findByPage( $values ) {		
