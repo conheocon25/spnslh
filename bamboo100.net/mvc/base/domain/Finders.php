@@ -10,6 +10,8 @@ interface Finder {
     //function delete();
 }
 
+interface CafeFinder  			extends Finder {}
+
 interface CChessFinder  		extends Finder {}
 interface CBookFinder  			extends Finder {}
 interface CSetFinder  			extends Finder {}

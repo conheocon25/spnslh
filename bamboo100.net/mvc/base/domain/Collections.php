@@ -1,6 +1,8 @@
 <?php
 namespace MVC\Domain;
 
+interface CafeCollection 	extends \Iterator {function add( Object $Cafe	);}
+
 interface CChessCollection 	extends \Iterator {function add( Object $CChess	);}
 interface CBookCollection 	extends \Iterator {function add( Object $CBook 	);}
 interface CSetCollection 	extends \Iterator {function add( Object $CSet 	);}

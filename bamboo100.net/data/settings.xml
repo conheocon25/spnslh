@@ -48,6 +48,10 @@
 		<command name="SettingPostUpdExe"><view>SettingPostUpdExe</view><status value="CMD_OK"><forward>SettingPost</forward></status></command>
 		<command name="SettingPostDelLoad"><view>SettingPostDelLoad</view></command>
 		<command name="SettingPostDelExe"><view>SettingPostDelExe</view><status value="CMD_OK"><forward>SettingPost</forward></status></command>
+
+		<command name="SettingCafe"><view>SettingCafe</view></command>
+		<command name="SettingCafeInfoLoad"><view>SettingCafeInfoLoad</view></command>		
+		<command name="SettingCafeInfoExe"><view>SettingCafeInfoExe</view><status value="CMD_OK"><forward>SettingCafe</forward></status></command>
 		
 		<command name="SettingCChess"><view>SettingCChess</view></command>
 		<command name="SettingCChessInfoLoad"><view>SettingCChessInfoLoad</view></command>		

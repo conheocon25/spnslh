@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class AppCafe extends Command {
+	class SettingCafeInfoLoad extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -9,26 +9,41 @@
 			$Session = \MVC\Base\SessionRegistry::instance();
 
 			//-------------------------------------------------------------
+			//THAM SỐ GỬI ĐẾN
+			//-------------------------------------------------------------
+						
+			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mCafe 	= new \MVC\Mapper\Cafe();
+			$mCafe = new \MVC\Mapper\Cafe();
 						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------						
-			$Cafe	= $mCafe->find(1);
-						
-			$Title	= "QUẢN LÝ CAFE";
+			//-------------------------------------------------------------			
+			$Title		= "THÔNG TIN";
+			$Cafe		= $mCafe->find(1);
+			if (!isset($Cafe)){
+				$Cafe = new \MVC\Domain\Cafe(
+					null,
+					"",
+					1
+				);
+				$mCafe->insert($Cafe);
+			}
+			
 			$Navigation = array(
-				array("TRANG CHỦ", "/trang-chu"),				
+				array("QUẢN LÝ", 	"/quan-ly"),
+				array("CAFE", 	"/quan-ly/cafe")
 			);
+									
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-			$request->setObject('Cafe', 		$Cafe);
-			$request->setObject('Navigation', 	$Navigation);
-			$request->setProperty('Title', 		$Title);
-						
+			$request->setObject('Cafe', 			$Cafe);						
+			$request->setProperty('Title', 			$Title);
+			$request->setProperty('ActiveLeftMenu', 'SettingCafe');
+			$request->setObject('Navigation', 		$Navigation);
+			
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

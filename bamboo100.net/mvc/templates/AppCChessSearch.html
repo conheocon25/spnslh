@@ -8,22 +8,27 @@
 	
 	<body>
 		<div metal:use-macro="mBase.xhtml/Header"/>
-		<div id="wrap" class="container-fluid">			
+		<div id="wrap" class="container-fluid">		
 			<div class="row-fluid">
-				<div class="span3">
+				<div class="span12">					
+					<form class="navbar-form pull-left" action="/ung-dung/hoc-co-tuong/tim-kiem/exe" method="post">
+						<div class="input-append">
+							<input class="span6 search-query" id="Term" name="Term" type="text" placeholder="Nhập từ khóa sách cờ"/>
+							<button class="btn" type="submit"><i class="icon-search"/></button>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="row-fluid">
+				<div class="span12">
 					<ul class="nav nav-tabs nav-stacked">
 						<li tal:repeat="CB CBAll">
 							<a tal:attributes="href CB/getURLRead">
-								<span tal:content="CB/getTitleReduce"/>
+								<span tal:content="CB/getTitle"/>
 								<i class="icon-chevron-right pull-right"/>
 							</a>
 						</li>
 					</ul>
-				</div>
-				<div class="span9">
-					<div class="well">
-						<p> bây giờ chỉ bấm và xem.</p>
-					</div>
 				</div>
 			</div>
 		</div>

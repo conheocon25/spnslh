@@ -3,6 +3,8 @@ namespace MVC\Mapper;
 require_once( "mvc/base/domain/Collections.php");
 require_once( "mvc/base/mapper/Collection.php");
 
+class CafeCollection 	extends Collection implements \MVC\Domain\CafeCollection{	function targetClass(){	return "\MVC\Domain\Cafe";}}
+
 class CChessCollection 	extends Collection implements \MVC\Domain\CChessCollection{	function targetClass(){	return "\MVC\Domain\CChess";}}
 class CBookCollection 	extends Collection implements \MVC\Domain\CBookCollection{	function targetClass(){	return "\MVC\Domain\CBook";}}
 class CSetCollection 	extends Collection implements \MVC\Domain\CSetCollection{	function targetClass(){	return "\MVC\Domain\CSet";}}
