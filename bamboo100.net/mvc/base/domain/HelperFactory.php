@@ -3,6 +3,7 @@ namespace MVC\Domain;
 if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	
 	require_once( "mvc/mapper/Cafe.php"		);
+	require_once( "mvc/mapper/Pagoda.php"	);
 	
 	require_once( "mvc/mapper/CChess.php"	);
 	require_once( "mvc/mapper/CBook.php"	);

@@ -2,6 +2,7 @@
 namespace MVC\Domain;
 
 interface CafeCollection 	extends \Iterator {function add( Object $Cafe	);}
+interface PagodaCollection 	extends \Iterator {function add( Object $Pagoda	);}
 
 interface CChessCollection 	extends \Iterator {function add( Object $CChess	);}
 interface CBookCollection 	extends \Iterator {function add( Object $CBook 	);}

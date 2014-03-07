@@ -13,6 +13,8 @@
 		<command name="SendMailRegister" type="public"><view>SendMailRegister</view><status value="CMD_OK"><forward>RegisterMessage</forward></status></command>
 		
 		<command name="App" 				type="public"><view>App</view></command>
+		<command name="AppPagoda" 			type="public"><view>AppPagoda</view></command>
+		
 		<command name="AppCChess" 			type="public"><view>AppCChess</view></command>
 		<command name="AppCChessSearch" 	type="public"><view>AppCChessSearch</view></command>
 		<command name="AppCBook" 			type="public"><view>AppCBook</view></command>
@@ -52,6 +54,10 @@
 		<command name="SettingCafe"><view>SettingCafe</view></command>
 		<command name="SettingCafeInfoLoad"><view>SettingCafeInfoLoad</view></command>		
 		<command name="SettingCafeInfoExe"><view>SettingCafeInfoExe</view><status value="CMD_OK"><forward>SettingCafe</forward></status></command>
+		
+		<command name="SettingPagoda"><view>SettingPagoda</view></command>
+		<command name="SettingPagodaInfoLoad"><view>SettingPagodaInfoLoad</view></command>		
+		<command name="SettingPagodaInfoExe"><view>SettingPagodaInfoExe</view><status value="CMD_OK"><forward>SettingPagoda</forward></status></command>
 		
 		<command name="SettingCChess"><view>SettingCChess</view></command>
 		<command name="SettingCChessInfoLoad"><view>SettingCChessInfoLoad</view></command>		
