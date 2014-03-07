@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class SettingPostUpdLoad extends Command{
+	class SettingAdsUpdLoad extends Command{
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -25,7 +25,7 @@
 			
 			$Navigation = array(				
 				array("QUẢN LÝ", 	"/quan-ly"),				
-				array("BÀI VIẾT", 	"/quan-ly/rao-vat")
+				array("RAO VẶT", 	"/quan-ly/rao-vat")
 			);
 			
 			//-------------------------------------------------------------

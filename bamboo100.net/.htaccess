@@ -18,6 +18,9 @@ RewriteRule ^ung-dung/hoc-co-tuong/([a-z0-9_-]+)$ 					?cmd=AppCBook&KIdBook=$1 
 RewriteRule ^ung-dung/hoc-co-tuong/([a-z0-9_-]+)/([a-z0-9_-]+)$ 	?cmd=AppCSet&KIdBook=$1&KIdSet=$2 [L]
 
 RewriteRule ^ung-dung/chua$ 										?cmd=AppPagoda [L]
+
+RewriteRule ^ung-dung/rao-vat$ 										?cmd=AppAds [L]
+
 RewriteRule ^ung-dung/quan-ly-cafe$ 								?cmd=AppCafe [L]
 RewriteRule ^ung-dung/quan-ly-karaoke$ 								?cmd=AppKaraoke [L]
 RewriteRule ^ung-dung/quan-ly-nha-tro$ 								?cmd=AppMHotel [L]
@@ -46,13 +49,13 @@ RewriteRule ^object/upd/([A-Za-z0-9]+)$ 								?cmd=ObjectUpd&ObjectName=$1 [L]
 
 RewriteRule ^quan-ly$ 													?cmd=Setting [L]
 
-RewriteRule ^quan-ly/rao-vat$											?cmd=SettingPost [L]
-RewriteRule ^quan-ly/rao-vat/([0-9]+)/upd-load$							?cmd=SettingPostUpdLoad&IdPost=$1 [L]
-RewriteRule ^quan-ly/rao-vat/([0-9]+)/upd-exe$							?cmd=SettingPostUpdExe&IdPost=$1 [L]
-RewriteRule ^quan-ly/rao-vat/([0-9]+)/del-load$							?cmd=SettingPostDelLoad&IdPost=$1 [L]
-RewriteRule ^quan-ly/rao-vat/([0-9]+)/del-exe$							?cmd=SettingPostDelExe&IdPost=$1 [L]
-RewriteRule ^quan-ly/rao-vat/ins-load$									?cmd=SettingPostInsLoad [L]
-RewriteRule ^quan-ly/rao-vat/ins-exe$									?cmd=SettingPostInsExe [L]
+RewriteRule ^quan-ly/rao-vat$											?cmd=SettingAds [L]
+RewriteRule ^quan-ly/rao-vat/([0-9]+)/upd-load$							?cmd=SettingAdsUpdLoad&IdPost=$1 [L]
+RewriteRule ^quan-ly/rao-vat/([0-9]+)/upd-exe$							?cmd=SettingAdsUpdExe&IdPost=$1 [L]
+RewriteRule ^quan-ly/rao-vat/([0-9]+)/del-load$							?cmd=SettingAdsDelLoad&IdPost=$1 [L]
+RewriteRule ^quan-ly/rao-vat/([0-9]+)/del-exe$							?cmd=SettingAdsDelExe&IdPost=$1 [L]
+RewriteRule ^quan-ly/rao-vat/ins-load$									?cmd=SettingAdsInsLoad [L]
+RewriteRule ^quan-ly/rao-vat/ins-exe$									?cmd=SettingAdsInsExe [L]
 
 RewriteRule ^quan-ly/chua$												?cmd=SettingPagoda [L]
 RewriteRule ^quan-ly/chua/info-load$									?cmd=SettingPagodaInfoLoad 	[L]

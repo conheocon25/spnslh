@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class Setting extends Command {
+	class AppAds extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -15,18 +15,19 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
+			$mPost = new \MVC\Mapper\Post();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
+			$PostAll = 	$mPost->findByUser(array(1));
 			$Navigation = array();
-			
+
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-			$request->setProperty('Title', 			'QUẢN LÝ');
-			$request->setProperty('ActiveLeftMenu', 'Setting');
-			$request->setObject('Navigation', 		$Navigation);
+			$request->setProperty('Title', 'Trang chủ');
+			$request->setObject('PostAll', $PostAll);
 			
 			return self::statuses('CMD_DEFAULT');
 		}
