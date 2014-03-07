@@ -14,6 +14,7 @@
 		
 		<command name="App" 				type="public"><view>App</view></command>
 		<command name="AppPagoda" 			type="public"><view>AppPagoda</view></command>
+		<command name="AppAds" 				type="public"><view>AppAds</view></command>
 		
 		<command name="AppCChess" 			type="public"><view>AppCChess</view></command>
 		<command name="AppCChessSearch" 	type="public"><view>AppCChessSearch</view></command>
@@ -38,51 +39,50 @@
 		<!-- ============================================================================== -->
 		<!-- OBJECT SETTING COMMAND															-->
 		<!-- ============================================================================== -->		
-		<command name="ObjectLoad"><view>ObjectLoad</view></command>
-		<command name="ObjectDel"><view>ObjectDel</view></command>
-		<command name="ObjectIns"><view>ObjectIns</view></command>
-		<command name="ObjectUpd"><view>ObjectUpd</view></command>
+		<command name="ObjectLoad">				<view>ObjectLoad</view></command>
+		<command name="ObjectDel">				<view>ObjectDel</view></command>
+		<command name="ObjectIns">				<view>ObjectIns</view></command>
+		<command name="ObjectUpd">				<view>ObjectUpd</view></command>
 
-		<command name="SettingPost"><view>SettingPost</view></command>
-		<command name="SettingPostInsLoad"><view>SettingPostInsLoad</view></command>
-		<command name="SettingPostInsExe"><view>SettingPostInsExe</view><status value="CMD_OK"><forward>SettingPost</forward></status></command>
-		<command name="SettingPostUpdLoad"><view>SettingPostUpdLoad</view></command>
-		<command name="SettingPostUpdExe"><view>SettingPostUpdExe</view><status value="CMD_OK"><forward>SettingPost</forward></status></command>
-		<command name="SettingPostDelLoad"><view>SettingPostDelLoad</view></command>
-		<command name="SettingPostDelExe"><view>SettingPostDelExe</view><status value="CMD_OK"><forward>SettingPost</forward></status></command>
+		<command name="SettingAds">				<view>SettingAds</view></command>
+		<command name="SettingAdsInsLoad">		<view>SettingAdsInsLoad</view></command>
+		<command name="SettingAdsInsExe">		<view>SettingAdsInsExe</view><status value="CMD_OK"><forward>SettingAds</forward></status></command>
+		<command name="SettingAdsUpdLoad">		<view>SettingAdsUpdLoad</view></command>
+		<command name="SettingAdsUpdExe">		<view>SettingAdsUpdExe</view><status value="CMD_OK"><forward>SettingAds</forward></status></command>
+		<command name="SettingAdsDelLoad">		<view>SettingAdsDelLoad</view></command>
+		<command name="SettingAdsDelExe">		<view>SettingAdsDelExe</view><status value="CMD_OK"><forward>SettingAds</forward></status></command>
 
-		<command name="SettingCafe"><view>SettingCafe</view></command>
-		<command name="SettingCafeInfoLoad"><view>SettingCafeInfoLoad</view></command>		
-		<command name="SettingCafeInfoExe"><view>SettingCafeInfoExe</view><status value="CMD_OK"><forward>SettingCafe</forward></status></command>
+		<command name="SettingCafe">			<view>SettingCafe</view></command>
+		<command name="SettingCafeInfoLoad">	<view>SettingCafeInfoLoad</view></command>		
+		<command name="SettingCafeInfoExe">		<view>SettingCafeInfoExe</view><status value="CMD_OK"><forward>SettingCafe</forward></status></command>
 		
-		<command name="SettingPagoda"><view>SettingPagoda</view></command>
-		<command name="SettingPagodaInfoLoad"><view>SettingPagodaInfoLoad</view></command>		
-		<command name="SettingPagodaInfoExe"><view>SettingPagodaInfoExe</view><status value="CMD_OK"><forward>SettingPagoda</forward></status></command>
+		<command name="SettingPagoda">			<view>SettingPagoda</view></command>
+		<command name="SettingPagodaInfoLoad">	<view>SettingPagodaInfoLoad</view></command>		
+		<command name="SettingPagodaInfoExe">	<view>SettingPagodaInfoExe</view><status value="CMD_OK"><forward>SettingPagoda</forward></status></command>
 		
-		<command name="SettingCChess"><view>SettingCChess</view></command>
-		<command name="SettingCChessInfoLoad"><view>SettingCChessInfoLoad</view></command>		
-		<command name="SettingCChessInfoExe"><view>SettingCChessInfoExe</view><status value="CMD_OK"><forward>SettingCChess</forward></status></command>
-		<command name="SettingCChessInsLoad"><view>SettingCChessInsLoad</view></command>
-		<command name="SettingCChessInsExe"><view>SettingCChessInsExe</view><status value="CMD_OK"><forward>SettingCChess</forward></status></command>
-		<command name="SettingCChessUpdLoad"><view>SettingCChessUpdLoad</view></command>
-		<command name="SettingCChessUpdExe"><view>SettingCChessUpdExe</view><status value="CMD_OK"><forward>SettingCChess</forward></status></command>
-		<command name="SettingCChessDelLoad"><view>SettingCChessDelLoad</view></command>
-		<command name="SettingCChessDelExe"><view>SettingCChessDelExe</view><status value="CMD_OK"><forward>SettingCChess</forward></status></command>
+		<command name="SettingCChess">			<view>SettingCChess</view></command>
+		<command name="SettingCChessInfoLoad">	<view>SettingCChessInfoLoad</view></command>		
+		<command name="SettingCChessInfoExe">	<view>SettingCChessInfoExe</view><status value="CMD_OK"><forward>SettingCChess</forward></status></command>
+		<command name="SettingCChessInsLoad">	<view>SettingCChessInsLoad</view></command>
+		<command name="SettingCChessInsExe">	<view>SettingCChessInsExe</view><status value="CMD_OK"><forward>SettingCChess</forward></status></command>
+		<command name="SettingCChessUpdLoad">	<view>SettingCChessUpdLoad</view></command>
+		<command name="SettingCChessUpdExe">	<view>SettingCChessUpdExe</view><status value="CMD_OK"><forward>SettingCChess</forward></status></command>
+		<command name="SettingCChessDelLoad">	<view>SettingCChessDelLoad</view></command>
+		<command name="SettingCChessDelExe">	<view>SettingCChessDelExe</view><status value="CMD_OK"><forward>SettingCChess</forward></status></command>
 		
-		<command name="SettingCSet"><view>SettingCSet</view></command>
+		<command name="SettingCSet">			<view>SettingCSet</view></command>		
+		<command name="SettingCSetInsLoad">		<view>SettingCSetInsLoad</view></command>
+		<command name="SettingCSetInsExe">		<view>SettingCSetInsExe</view><status value="CMD_OK"><forward>SettingCSet</forward></status></command>
+		<command name="SettingCSetUpdLoad">		<view>SettingCSetUpdLoad</view></command>
+		<command name="SettingCSetUpdExe">		<view>SettingCSetUpdExe</view><status value="CMD_OK"><forward>SettingCSet</forward></status></command>
+		<command name="SettingCSetDelLoad">		<view>SettingCSetDelLoad</view></command>
+		<command name="SettingCSetDelExe">		<view>SettingCSetDelExe</view><status value="CMD_OK"><forward>SettingCSet</forward></status></command>
 		
-		<command name="SettingCSetInsLoad"><view>SettingCSetInsLoad</view></command>
-		<command name="SettingCSetInsExe"><view>SettingCSetInsExe</view><status value="CMD_OK"><forward>SettingCSet</forward></status></command>
-		<command name="SettingCSetUpdLoad"><view>SettingCSetUpdLoad</view></command>
-		<command name="SettingCSetUpdExe"><view>SettingCSetUpdExe</view><status value="CMD_OK"><forward>SettingCSet</forward></status></command>
-		<command name="SettingCSetDelLoad"><view>SettingCSetDelLoad</view></command>
-		<command name="SettingCSetDelExe"><view>SettingCSetDelExe</view><status value="CMD_OK"><forward>SettingCSet</forward></status></command>
-		
-		<command name="SettingCSetStep"><view>SettingCSetStep</view></command>
-		<command name="SettingCSetStep1"><view>SettingCSetStep1</view></command>
-		<command name="SettingCSetStep1Exe"><view>SettingCSetStep1Exe</view></command>
+		<command name="SettingCSetStep">		<view>SettingCSetStep</view></command>
+		<command name="SettingCSetStep1">		<view>SettingCSetStep1</view></command>
+		<command name="SettingCSetStep1Exe">	<view>SettingCSetStep1Exe</view></command>
 				
-		<command name="SettingUser"><view>SettingUser</view></command>
+		<command name="SettingUser">			<view>SettingUser</view></command>
 		
 	</control>
 </options>

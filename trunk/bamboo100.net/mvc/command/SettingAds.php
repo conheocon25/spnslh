@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class SettingPost extends Command {
+	class SettingAds extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -21,7 +21,7 @@
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
 			$PostAll 	= $mPost->findByUser(array($Session->getCurrentUser()->getId()));
-			$Title		= "BÀI VIẾT";
+			$Title		= "RAO VẶT";
 			$Navigation = array(array("QUẢN LÝ", "/quan-ly"));
 			
 			//-------------------------------------------------------------
