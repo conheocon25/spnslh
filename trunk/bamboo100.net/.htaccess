@@ -17,6 +17,7 @@ RewriteRule ^ung-dung/hoc-co-tuong/tim-kiem/exe$ 					?cmd=AppCChessSearch [L]
 RewriteRule ^ung-dung/hoc-co-tuong/([a-z0-9_-]+)$ 					?cmd=AppCBook&KIdBook=$1 [L]
 RewriteRule ^ung-dung/hoc-co-tuong/([a-z0-9_-]+)/([a-z0-9_-]+)$ 	?cmd=AppCSet&KIdBook=$1&KIdSet=$2 [L]
 
+RewriteRule ^ung-dung/chua$ 										?cmd=AppPagoda [L]
 RewriteRule ^ung-dung/quan-ly-cafe$ 								?cmd=AppCafe [L]
 RewriteRule ^ung-dung/quan-ly-karaoke$ 								?cmd=AppKaraoke [L]
 RewriteRule ^ung-dung/quan-ly-nha-tro$ 								?cmd=AppMHotel [L]
@@ -52,6 +53,10 @@ RewriteRule ^quan-ly/rao-vat/([0-9]+)/del-load$							?cmd=SettingPostDelLoad&Id
 RewriteRule ^quan-ly/rao-vat/([0-9]+)/del-exe$							?cmd=SettingPostDelExe&IdPost=$1 [L]
 RewriteRule ^quan-ly/rao-vat/ins-load$									?cmd=SettingPostInsLoad [L]
 RewriteRule ^quan-ly/rao-vat/ins-exe$									?cmd=SettingPostInsExe [L]
+
+RewriteRule ^quan-ly/chua$												?cmd=SettingPagoda [L]
+RewriteRule ^quan-ly/chua/info-load$									?cmd=SettingPagodaInfoLoad 	[L]
+RewriteRule ^quan-ly/chua/info-exe$										?cmd=SettingPagodaInfoExe 	[L]
 
 RewriteRule ^quan-ly/quan-ly-cafe$										?cmd=SettingCafe [L]
 RewriteRule ^quan-ly/quan-ly-cafe/info-load$							?cmd=SettingCafeInfoLoad 	[L]

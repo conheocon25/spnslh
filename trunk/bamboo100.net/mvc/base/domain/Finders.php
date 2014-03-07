@@ -11,6 +11,7 @@ interface Finder {
 }
 
 interface CafeFinder  			extends Finder {}
+interface PagodaFinder  		extends Finder {}
 
 interface CChessFinder  		extends Finder {}
 interface CBookFinder  			extends Finder {}

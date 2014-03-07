@@ -89,6 +89,7 @@
 	<!-- ======================================================================== -->
 	<div metal:define-macro="Sidebar" id="sidebar">
 		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">
+			<li tal:attributes="class php:ActiveLeftMenu=='SettingPagoda'?'active':''"><a 	href="/quan-ly/chua">			<i class="glyphicon glyphicon-cog"></i> 	<span>Chùa</span></a></li>
 			<li tal:attributes="class php:ActiveLeftMenu=='SettingPost'?'active':''"><a 	href="/quan-ly/rao-vat">		<i class="glyphicon glyphicon-cog"></i> 	<span>Rao Vặt</span></a></li>
 			<li tal:attributes="class php:ActiveLeftMenu=='SettingCafe'?'active':''"><a 	href="/quan-ly/quan-ly-cafe">	<i class="glyphicon glyphicon-cog"></i> 	<span>Quản Lý Cafe</span></a></li>
 			<li tal:attributes="class php:ActiveLeftMenu=='SettingRestaurant'?'active':''"><a 	href="/quan-ly/quan-ly-cafe">	<i class="glyphicon glyphicon-cog"></i> <span>Quản Lý Quán Ăn</span></a></li>
