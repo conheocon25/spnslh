@@ -10,11 +10,10 @@ RewriteRule ^object/ins/([A-Za-z0-9]+)$ 							?cmd=ObjectIns&ObjectName=$1 [L]
 RewriteRule ^object/upd/([A-Za-z0-9]+)$ 							?cmd=ObjectUpd&ObjectName=$1 [L]
 
 RewriteRule ^trang-chu$ 											?cmd=Home [L]
-RewriteRule ^tim-kiem$ 												?cmd=Search [L]
-RewriteRule ^tim-kiem/hoc-co-tuong$ 								?cmd=AppCChessSearch [L]
 
 RewriteRule ^ung-dung$ 												?cmd=App [L]
 RewriteRule ^ung-dung/hoc-co-tuong$ 								?cmd=AppCChess [L]
+RewriteRule ^ung-dung/hoc-co-tuong/tim-kiem/exe$ 					?cmd=AppCChessSearch [L]
 RewriteRule ^ung-dung/hoc-co-tuong/([a-z0-9_-]+)$ 					?cmd=AppCBook&KIdBook=$1 [L]
 RewriteRule ^ung-dung/hoc-co-tuong/([a-z0-9_-]+)/([a-z0-9_-]+)$ 	?cmd=AppCSet&KIdBook=$1&KIdSet=$2 [L]
 
@@ -51,6 +50,10 @@ RewriteRule ^quan-ly/bai-viet/([0-9]+)/del-load$					?cmd=SettingPostDelLoad&IdP
 RewriteRule ^quan-ly/bai-viet/([0-9]+)/del-exe$						?cmd=SettingPostDelExe&IdPost=$1 [L]
 RewriteRule ^quan-ly/bai-viet/ins-load$								?cmd=SettingPostInsLoad [L]
 RewriteRule ^quan-ly/bai-viet/ins-exe$								?cmd=SettingPostInsExe [L]
+
+RewriteRule ^quan-ly/cafe$											?cmd=SettingCafe [L]
+RewriteRule ^quan-ly/cafe/info-load$								?cmd=SettingCafeInfoLoad 	[L]
+RewriteRule ^quan-ly/cafe/info-exe$									?cmd=SettingCafeInfoExe 	[L]
 
 RewriteRule ^quan-ly/co-tuong$										?cmd=SettingCChess [L]
 RewriteRule ^quan-ly/co-tuong/info-load$							?cmd=SettingCChessInfoLoad 	[L]
