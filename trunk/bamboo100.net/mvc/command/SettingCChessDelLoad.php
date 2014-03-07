@@ -24,8 +24,8 @@
 			$CB 	= $mCB->find($IdCBook);
 			
 			$Navigation = array(				
-				array("QUẢN LÝ", 	"/quan-ly"),				
-				array("CỜ TƯỚNG", 	"/quan-ly/co-tuong")
+				array("QUẢN LÝ", 	"/quan-ly"),
+				array("CỜ TƯỚNG", 	"/quan-ly/hoc-co-tuong")
 			);
 			
 			//-------------------------------------------------------------

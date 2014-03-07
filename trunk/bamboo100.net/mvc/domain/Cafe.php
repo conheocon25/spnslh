@@ -77,8 +77,8 @@ class Cafe extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------			
-	function getURLUpdLoad(){	return "/quan-ly/cafe/info-load";}
-	function getURLUpdExe(){	return "/quan-ly/cafe/info-exe";}
+	function getURLUpdLoad(){	return "/quan-ly/quan-ly-cafe/info-load";}
+	function getURLUpdExe(){	return "/quan-ly/quan-ly-cafe/info-exe";}
 			
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

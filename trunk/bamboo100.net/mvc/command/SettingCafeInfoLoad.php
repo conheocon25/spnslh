@@ -33,7 +33,7 @@
 			
 			$Navigation = array(
 				array("QUẢN LÝ", 	"/quan-ly"),
-				array("CAFE", 	"/quan-ly/cafe")
+				array("CAFE", 	"/quan-ly/quan-ly-cafe")
 			);
 									
 			//-------------------------------------------------------------
