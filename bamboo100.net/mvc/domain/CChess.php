@@ -81,12 +81,12 @@ class CChess extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------			
-	function getURLUpdLoad(){	return "/quan-ly/co-tuong/info-load";}
-	function getURLUpdExe(){	return "/quan-ly/co-tuong/info-exe";}
+	function getURLUpdLoad(){	return "/quan-ly/hoc-co-tuong/info-load";}
+	function getURLUpdExe(){	return "/quan-ly/hoc-co-tuong/info-exe";}
 		
-	function getURLSettingSet(){		return "/quan-ly/co-tuong/".$this->getId()."/van-co";}
-	function getURLSettingSetInsLoad(){	return "/quan-ly/co-tuong/".$this->getId()."/van-co/ins-load";}
-	function getURLSettingSetInsExe(){	return "/quan-ly/co-tuong/".$this->getId()."/van-co/ins-exe";}
+	function getURLSettingSet(){		return "/quan-ly/hoc-co-tuong/".$this->getId()."/van-co";}
+	function getURLSettingSetInsLoad(){	return "/quan-ly/hoc-co-tuong/".$this->getId()."/van-co/ins-load";}
+	function getURLSettingSetInsExe(){	return "/quan-ly/hoc-co-tuong/".$this->getId()."/van-co/ins-exe";}
 	
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

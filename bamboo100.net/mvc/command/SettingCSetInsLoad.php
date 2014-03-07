@@ -25,8 +25,8 @@
 			
 			$Navigation = array(				
 				array("QUẢN LÝ", 								"/quan-ly"),
-				array("CỜ TƯỚNG", 								"/quan-ly/co-tuong"),
-				array(mb_strtoupper($CB->getTitle(), 'UTF8'), 	"/quan-ly/co-tuong")
+				array("CỜ TƯỚNG", 								"/quan-ly/hoc-co-tuong"),
+				array(mb_strtoupper($CB->getTitle(), 'UTF8'), 	"/quan-ly/hoc-co-tuong")
 			);
 			
 			//-------------------------------------------------------------

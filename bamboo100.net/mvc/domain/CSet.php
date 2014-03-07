@@ -107,14 +107,14 @@ class CSet extends Object{
 		return "/ung-dung/hoc-co-tuong/".$this->getCBook()->getKey()."/".$this->getKey();
 	}
 	
-	function getURLSettingStep(){			return "/quan-ly/co-tuong/".$this->getIdCBook()."/van-co/".$this->getId()."/step";}
-	function getURLSettingStepUpdLoad(){	return "/quan-ly/co-tuong/".$this->getIdCBook()."/van-co/".$this->getId()."/step/upd";}
-	function getURLSettingStepUpdExe(){		return "/quan-ly/co-tuong/".$this->getIdCBook()."/van-co/".$this->getId()."/step/exe";}
+	function getURLSettingStep(){			return "/quan-ly/hoc-co-tuong/".$this->getIdCBook()."/van-co/".$this->getId()."/step";}
+	function getURLSettingStepUpdLoad(){	return "/quan-ly/hoc-co-tuong/".$this->getIdCBook()."/van-co/".$this->getId()."/step/upd";}
+	function getURLSettingStepUpdExe(){		return "/quan-ly/hoc-co-tuong/".$this->getIdCBook()."/van-co/".$this->getId()."/step/exe";}
 	
-	function getURLUpdLoad(){	return "/quan-ly/co-tuong/".$this->getIdCBook()."/van-co/".$this->getId()."/upd-load";}
-	function getURLUpdExe(){	return "/quan-ly/co-tuong/".$this->getIdCBook()."/van-co/".$this->getId()."/upd-exe";}
-	function getURLDelLoad(){	return "/quan-ly/co-tuong/".$this->getIdCBook()."/van-co/".$this->getId()."/del-load";}
-	function getURLDelExe(){	return "/quan-ly/co-tuong/".$this->getIdCBook()."/van-co/".$this->getId()."/del-exe";}
+	function getURLUpdLoad(){	return "/quan-ly/hoc-co-tuong/".$this->getIdCBook()."/van-co/".$this->getId()."/upd-load";}
+	function getURLUpdExe(){	return "/quan-ly/hoc-co-tuong/".$this->getIdCBook()."/van-co/".$this->getId()."/upd-exe";}
+	function getURLDelLoad(){	return "/quan-ly/hoc-co-tuong/".$this->getIdCBook()."/van-co/".$this->getId()."/del-load";}
+	function getURLDelExe(){	return "/quan-ly/hoc-co-tuong/".$this->getIdCBook()."/van-co/".$this->getId()."/del-exe";}
 	
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

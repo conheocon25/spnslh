@@ -25,7 +25,7 @@
 			
 			$Navigation = array(				
 				array("QUẢN LÝ", 	"/quan-ly"),				
-				array("CỜ TƯỚNG", 	"/quan-ly/co-tuong")
+				array("CỜ TƯỚNG", 	"/quan-ly/hoc-co-tuong")
 			);
 			
 			//-------------------------------------------------------------

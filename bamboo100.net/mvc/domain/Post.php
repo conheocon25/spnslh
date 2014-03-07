@@ -112,10 +112,10 @@ class Post extends Object{
 	//-------------------------------------------------------------------------------
 	function getURLRead(){return "/p/".$this->getKey();}
 	
-	function getURLUpdLoad(){return "/quan-ly/bai-viet/".$this->getId()."/upd-load";}
-	function getURLUpdExe(){return "/quan-ly/bai-viet/".$this->getId()."/upd-exe";}
-	function getURLDelLoad(){return "/quan-ly/bai-viet/".$this->getId()."/del-load";}
-	function getURLDelExe(){return "/quan-ly/bai-viet/".$this->getId()."/del-exe";}
+	function getURLUpdLoad(){	return "/quan-ly/rao-vat/".$this->getId()."/upd-load";	}
+	function getURLUpdExe(){	return "/quan-ly/rao-vat/".$this->getId()."/upd-exe";	}
+	function getURLDelLoad(){	return "/quan-ly/rao-vat/".$this->getId()."/del-load";	}
+	function getURLDelExe(){	return "/quan-ly/rao-vat/".$this->getId()."/del-exe";	}
 	
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

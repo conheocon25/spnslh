@@ -123,14 +123,14 @@ class CBook extends Object{
 	//-------------------------------------------------------------------------------
 	function getURLRead(){		return "/ung-dung/hoc-co-tuong/".$this->getKey();}
 		
-	function getURLUpdLoad(){	return "/quan-ly/co-tuong/".$this->getId()."/upd-load";}
-	function getURLUpdExe(){	return "/quan-ly/co-tuong/".$this->getId()."/upd-exe";}
-	function getURLDelLoad(){	return "/quan-ly/co-tuong/".$this->getId()."/del-load";}
-	function getURLDelExe(){	return "/quan-ly/co-tuong/".$this->getId()."/del-exe";}
+	function getURLUpdLoad(){	return "/quan-ly/hoc-co-tuong/".$this->getId()."/upd-load";}
+	function getURLUpdExe(){	return "/quan-ly/hoc-co-tuong/".$this->getId()."/upd-exe";}
+	function getURLDelLoad(){	return "/quan-ly/hoc-co-tuong/".$this->getId()."/del-load";}
+	function getURLDelExe(){	return "/quan-ly/hoc-co-tuong/".$this->getId()."/del-exe";}
 	
-	function getURLSettingSet(){		return "/quan-ly/co-tuong/".$this->getId()."/van-co";}
-	function getURLSettingSetInsLoad(){	return "/quan-ly/co-tuong/".$this->getId()."/van-co/ins-load";}
-	function getURLSettingSetInsExe(){	return "/quan-ly/co-tuong/".$this->getId()."/van-co/ins-exe";}
+	function getURLSettingSet(){		return "/quan-ly/hoc-co-tuong/".$this->getId()."/van-co";}
+	function getURLSettingSetInsLoad(){	return "/quan-ly/hoc-co-tuong/".$this->getId()."/van-co/ins-load";}
+	function getURLSettingSetInsExe(){	return "/quan-ly/hoc-co-tuong/".$this->getId()."/van-co/ins-exe";}
 	
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
