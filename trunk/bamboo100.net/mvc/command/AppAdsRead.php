@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class Search extends Command {
+	class AppAdsRead extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -11,7 +11,7 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$Term = $request->getProperty("Term");
+			$KIdPost = $request->getProperty('KIdPost');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
@@ -21,16 +21,17 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
-			$StrTerm = new \MVC\Library\String($Term);			
-			$PostAll = 	$mPost->findLikeKey(array($StrTerm->converturl()));
+			$Post 		= $mPost->findByKey($KIdPost);
+			$Post->setCount($Post->getCount()+1);
+			$mPost->update($Post);
+			
 			$Navigation = array();
 
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-			$request->setProperty('Title', 'Trang chủ');
-			$request->setProperty('Term', $Term);
-			$request->setObject('PostAll', $PostAll);
+			$request->setProperty('Title', 	'Trang chủ');
+			$request->setObject('Post', 	$Post);
 			
 			return self::statuses('CMD_DEFAULT');
 		}

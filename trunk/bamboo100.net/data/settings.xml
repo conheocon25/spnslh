@@ -6,23 +6,25 @@
 		<!-- ============================================================================== -->
 		<command name="DefaultCommand" type="public"><view>DefaultCommand</view><status value="CMD_OK"><forward>Home</forward></status></command>
 		<command name="Home" type="public"><view>Home</view></command>						
-		<command name="Search" type="public"><view>Search</view></command>
-		<command name="PostRead" type="public"><view>PostRead</view></command>
+		<command name="Search" type="public"><view>Search</view></command>		
 		<command name="Register" type="public"><view>Register</view></command>
 		<command name="RegisterMessage" type="public"><view>RegisterMessage</view></command>
 		<command name="SendMailRegister" type="public"><view>SendMailRegister</view><status value="CMD_OK"><forward>RegisterMessage</forward></status></command>
 		
-		<command name="App" 				type="public"><view>App</view></command>
-		<command name="AppPagoda" 			type="public"><view>AppPagoda</view></command>
-		<command name="AppAds" 				type="public"><view>AppAds</view></command>
+		<command name="App" 				type="public"><view>App				</view></command>
+		<command name="AppPagoda" 			type="public"><view>AppPagoda		</view></command>
 		
-		<command name="AppCChess" 			type="public"><view>AppCChess</view></command>
-		<command name="AppCChessSearch" 	type="public"><view>AppCChessSearch</view></command>
-		<command name="AppCBook" 			type="public"><view>AppCBook</view></command>
-		<command name="AppCSet" 			type="public"><view>AppCSet</view></command>
+		<command name="AppAds" 				type="public"><view>AppAds			</view></command>
+		<command name="AppAdsSearch" 		type="public"><view>AppAdsSearch	</view></command>
+		<command name="AppAdsRead" 			type="public"><view>AppAdsRead		</view></command>
 		
-		<command name="AppZenMusic" 		type="public"><view>AppZenMusic</view></command>
-		<command name="AppCafe" 			type="public"><view>AppCafe</view></command>
+		<command name="AppCChess" 			type="public"><view>AppCChess		</view></command>
+		<command name="AppCChessSearch" 	type="public"><view>AppCChessSearch	</view></command>
+		<command name="AppCBook" 			type="public"><view>AppCBook		</view></command>
+		<command name="AppCSet" 			type="public"><view>AppCSet			</view></command>
+		
+		<command name="AppZenMusic" 		type="public"><view>AppZenMusic		</view></command>
+		<command name="AppCafe" 			type="public"><view>AppCafe			</view></command>
 		
 		<!-- ============================================================================== -->
 		<!-- SETTING COMMAND																-->

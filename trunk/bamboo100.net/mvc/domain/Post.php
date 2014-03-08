@@ -110,7 +110,7 @@ class Post extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLRead(){return "/p/".$this->getKey();}
+	function getURLRead(){return "/ung-dung/rao-vat/".$this->getKey();}
 	
 	function getURLUpdLoad(){	return "/quan-ly/rao-vat/".$this->getId()."/upd-load";	}
 	function getURLUpdExe(){	return "/quan-ly/rao-vat/".$this->getId()."/upd-exe";	}
