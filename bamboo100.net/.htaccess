@@ -20,6 +20,8 @@ RewriteRule ^ung-dung/hoc-co-tuong/([a-z0-9_-]+)/([a-z0-9_-]+)$ 	?cmd=AppCSet&KI
 RewriteRule ^ung-dung/chua$ 										?cmd=AppPagoda [L]
 
 RewriteRule ^ung-dung/rao-vat$ 										?cmd=AppAds [L]
+RewriteRule ^ung-dung/rao-vat/tim-kiem/exe$ 						?cmd=AppAdsSearch [L]
+RewriteRule ^ung-dung/rao-vat/([a-z0-9_-]+)$ 						?cmd=AppAdsRead&KIdPost=$1 [L]
 
 RewriteRule ^ung-dung/quan-ly-cafe$ 								?cmd=AppCafe [L]
 RewriteRule ^ung-dung/quan-ly-karaoke$ 								?cmd=AppKaraoke [L]
@@ -29,7 +31,6 @@ RewriteRule ^ung-dung/quan-ly-khach-san$ 							?cmd=AppHotel [L]
 RewriteRule ^ung-dung/quan-ly-quan-an$ 								?cmd=AppRestaurant [L]
 RewriteRule ^ung-dung/nhac-thien$ 									?cmd=AppZenMusic [L]
 
-RewriteRule ^p/([a-z0-9_-]+)$ 										?cmd=PostRead&KIdPost=$1 [L]
 RewriteRule ^dang-ky$ 												?cmd=Register [L]
 RewriteRule ^dang-ky/exe$ 											?cmd=SendMailRegister [L]
 

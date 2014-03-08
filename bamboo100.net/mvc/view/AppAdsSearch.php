@@ -1,5 +1,5 @@
 <?php
 	require_once("mvc/base/Viewer.php");	
-	$Viewer = new Viewer("mvc/templates/PostRead.html");	
+	$Viewer = new Viewer("mvc/templates/AppAdsSearch.html");
 	echo $Viewer->html();
 ?>
