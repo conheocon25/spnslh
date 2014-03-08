@@ -389,9 +389,10 @@ function Board(Name, XStart, YStart, Rect, wCell, hCell){
 
 		context.stroke();		
 		for (var i=0; i<this.APiece.length; i++) {			
-			var X = this.getX2Canvas(this.APiece[i].getX()) - this.nWPiece/2;
-			var Y = this.getY2Canvas(this.APiece[i].getY()) - this.nHPiece/2;
+			var X = Math.floor(this.getX2Canvas(this.APiece[i].getX()) - this.nWPiece/2);
+			var Y = Math.floor(this.getY2Canvas(this.APiece[i].getY()) - this.nHPiece/2);
 			context.drawImage(this.APiece[i].getImage(), X, Y, this.nWPiece, this.nHPiece);
+			//alert(this.APiece[i].getImage().src);
 		}
 				
 		//Vẽ con cờ được chọn
