@@ -9,27 +9,31 @@ class Viewer {
 	function html(){
 		//Lấy các tham số toàn cục
 		$Session = \MVC\Base\SessionRegistry::instance();		
-		$User = $Session->getCurrentUser();
-				
+						
 		//Lấy các tham số đã được xử lí
 		$request = \MVC\Base\RequestRegistry::getRequest();
 		$objects = $request->getObjects();
 		$properties = $request->getProperties();
 		
 		//Khởi tạo template và chuyển các thuộc tính và đối tượng sang
-		$tpl = new PHPTAL($this->Path);				
-		while (list($key, $val) = each($objects)){
-			$tpl->$key = $val;
+		$tpl = new PHPTAL($this->Path);
+		while (list($key, $val) = each($objects)){			
+			if (substr($key, 0, 1)!='_')
+				$tpl->$key = $val;			
 		}
-		while (list($key, $val) = each($properties)){
-			$tpl->$key = $val;
-		}		
-		$tpl->User = $User;
-		$HTML = $tpl->execute();
+		while (list($key, $val) = each($properties)){			
+			if (substr($key, 0, 1)!='_')
+				$tpl->$key = $val;
+		}
+		$Html = $tpl->execute();
+		
+		//Giải phóng bộ nhớ bị rò rỉ
 		unset($tpl);
+		unset($objects);
+		unset($properties);
 		
 		//Kết xuất dữ liệu ra HTML
-		return $HTML;
+		return $Html;
 	}
 	
 	//-------------------------------------------------
