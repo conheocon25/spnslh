@@ -37,7 +37,7 @@
 		<script src="/mvc/templates/theme/cchess/js/board.js"></script>
 		<script>
 			window.onload = function() {					
-								
+				
 				var canvas 		= document.getElementById("ChessBoard");			
 				var context 	= canvas.getContext("2d");
 				var Rect 		= canvas.getBoundingClientRect();
@@ -52,16 +52,13 @@
 				//KHỞI TẠO BÀN CỜ
 				VC.init();
 				VC.getStepAllLoad($("#DataMove").attr('alt'));
+												
+				//canvas.addEventListener('click', function(e){VC.click(e);}, false);
 				
-				canvas.addEventListener('click', function(e){
-						VC.click(e);
-						context.clearRect(0, 0, canvas.width, canvas.height);
-						VC.draw(canvas, context);				
-						$("#MoveList").html(VC.getStepAll());
-					},
-				false);												
+				context.clearRect(0, 0, canvas.width, canvas.height);
 				VC.draw(canvas, context);
-								
+				$("#MoveList").html(VC.getStepAll());
+												
 				//XỬ LÍ NƯỚC ĐI
 				$('.iStep').click(function(){
 					var move = $(this).attr('alt');					
