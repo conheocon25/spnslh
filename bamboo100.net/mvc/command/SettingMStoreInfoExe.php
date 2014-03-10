@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class SettingMRestaurantInfoExe extends Command{
+	class SettingMStoreInfoExe extends Command{
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -17,15 +17,15 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mMRestaurant = new \MVC\Mapper\MRestaurant();
+			$mMStore = new \MVC\Mapper\MStore();
 					
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------													
-			$MRestaurant = $mMRestaurant->find(1);
-			$MRestaurant->setIntroduction($Introduction);			
-			$MRestaurant->setCount($Count);
-			$mMRestaurant->update($MRestaurant);
+			$MStore = $mMStore->find(1);
+			$MStore->setIntroduction($Introduction);			
+			$MStore->setCount($Count);
+			$mMStore->update($MStore);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI

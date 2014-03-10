@@ -54,6 +54,8 @@
 		<command name="ObjectUpd">				<view>ObjectUpd</view></command>
 
 		<command name="SettingAds">				<view>SettingAds</view></command>
+		<command name="SettingAdsInfoLoad">		<view>SettingAdsInfoLoad</view></command>		
+		<command name="SettingAdsInfoExe">		<view>SettingAdsInfoExe</view><status value="CMD_OK"><forward>SettingAds</forward></status></command>		
 		<command name="SettingAdsInsLoad">		<view>SettingAdsInsLoad</view></command>
 		<command name="SettingAdsInsExe">		<view>SettingAdsInsExe</view><status value="CMD_OK"><forward>SettingAds</forward></status></command>
 		<command name="SettingAdsUpdLoad">		<view>SettingAdsUpdLoad</view></command>
@@ -87,7 +89,7 @@
 		
 		<command name="SettingKaraoke">			<view>SettingKaraoke</view></command>
 		<command name="SettingKaraokeInfoLoad">	<view>SettingKaraokeInfoLoad</view></command>		
-		<command name="SettingKaraokeInfoExe">	<view>SettingKaraokeInfoExe</view><status value="CMD_OK"><forward>SettingMHotel</forward></status></command>
+		<command name="SettingKaraokeInfoExe">	<view>SettingKaraokeInfoExe</view><status value="CMD_OK"><forward>SettingKaraoke</forward></status></command>
 
 		<command name="SettingStore">			<view>SettingStore</view></command>
 		<command name="SettingStoreInfoLoad">	<view>SettingStoreInfoLoad</view></command>		

@@ -77,8 +77,8 @@ class Restaurant extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------			
-	function getURLUpdLoad(){	return "/quan-ly/quan-ly-quan-an/info-load";}
-	function getURLUpdExe(){	return "/quan-ly/quan-ly-quan-an/info-exe";}
+	function getURLUpdLoad(){	return "/quan-ly/quan-ly-nha-hang/info-load";}
+	function getURLUpdExe(){	return "/quan-ly/quan-ly-nha-hang/info-exe";}
 			
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

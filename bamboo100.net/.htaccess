@@ -51,6 +51,8 @@ RewriteRule ^object/upd/([A-Za-z0-9]+)$ 								?cmd=ObjectUpd&ObjectName=$1 		[
 RewriteRule ^quan-ly$ 													?cmd=Setting [L]
 
 RewriteRule ^quan-ly/rao-vat$											?cmd=SettingAds [L]
+RewriteRule ^quan-ly/rao-vat/info-load$									?cmd=SettingAdsInfoLoad [L]
+RewriteRule ^quan-ly/rao-vat/info-exe$									?cmd=SettingAdsInfoExe 	[L]
 RewriteRule ^quan-ly/rao-vat/([0-9]+)/upd-load$							?cmd=SettingAdsUpdLoad&IdPost=$1 [L]
 RewriteRule ^quan-ly/rao-vat/([0-9]+)/upd-exe$							?cmd=SettingAdsUpdExe&IdPost=$1 [L]
 RewriteRule ^quan-ly/rao-vat/([0-9]+)/del-load$							?cmd=SettingAdsDelLoad&IdPost=$1 [L]
@@ -63,7 +65,7 @@ RewriteRule ^quan-ly/chua/info-load$									?cmd=SettingPagodaInfoLoad 	[L]
 RewriteRule ^quan-ly/chua/info-exe$										?cmd=SettingPagodaInfoExe 	[L]
 
 RewriteRule ^quan-ly/nhac-thien$										?cmd=SettingZenMusic 		[L]
-RewriteRule ^quan-ly/nhac-thien/info-load$								?cmd=SettingZenMusicInfoLoad[L]
+RewriteRule ^quan-ly/nhac-thien/info-load$								?cmd=SettingZenMusicInfoLoad [L]
 RewriteRule ^quan-ly/nhac-thien/info-exe$								?cmd=SettingZenMusicInfoExe [L]
 
 RewriteRule ^quan-ly/quan-ly-cafe$										?cmd=SettingCafe [L]
@@ -97,10 +99,6 @@ RewriteRule ^quan-ly/quan-ly-dai-ly/info-exe$							?cmd=SettingStoreInfoExe 	[L
 RewriteRule ^quan-ly/quan-ly-karaoke$									?cmd=SettingKaraoke 		[L]
 RewriteRule ^quan-ly/quan-ly-karaoke/info-load$							?cmd=SettingKaraokeInfoLoad [L]
 RewriteRule ^quan-ly/quan-ly-karaoke/info-exe$							?cmd=SettingKaraokeInfoExe 	[L]
-
-RewriteRule ^quan-ly/nhac-thien$										?cmd=SettingZenMusic 		[L]
-RewriteRule ^quan-ly/nhac-thien/info-load$								?cmd=SettingZenMusicInfoLoad[L]
-RewriteRule ^quan-ly/nhac-thien/info-exe$								?cmd=SettingZenMusicInfoExe [L]
 
 RewriteRule ^quan-ly/hoc-nau-an$										?cmd=SettingCooking 		[L]
 RewriteRule ^quan-ly/hoc-nau-an/info-load$								?cmd=SettingCookingInfoLoad	[L]
