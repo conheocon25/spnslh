@@ -77,8 +77,8 @@ class MHotel extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------			
-	function getURLUpdLoad(){	return "/quan-ly/quan-ly-khach-san/info-load";}
-	function getURLUpdExe(){	return "/quan-ly/quan-ly-khach-san/info-exe";}
+	function getURLUpdLoad(){	return "/quan-ly/quan-ly-nha-tro/info-load";}
+	function getURLUpdExe(){	return "/quan-ly/quan-ly-nha-tro/info-exe";}
 			
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

@@ -10,8 +10,11 @@ interface Finder {
     //function delete();
 }
 
+interface AdsFinder  			extends Finder {}
 interface CafeFinder  			extends Finder {}
+interface KaraokeFinder  		extends Finder {}
 interface PagodaFinder  		extends Finder {}
+interface ZenMusicFinder  		extends Finder {}
 
 interface StoreFinder  			extends Finder {}
 interface MStoreFinder  		extends Finder {}

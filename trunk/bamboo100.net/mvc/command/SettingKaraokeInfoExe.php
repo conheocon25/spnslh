@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class SettingMRestaurantInfoExe extends Command{
+	class SettingKaraokeInfoExe extends Command{
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -17,15 +17,15 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mMRestaurant = new \MVC\Mapper\MRestaurant();
+			$mKaraoke = new \MVC\Mapper\Karaoke();
 					
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------													
-			$MRestaurant = $mMRestaurant->find(1);
-			$MRestaurant->setIntroduction($Introduction);			
-			$MRestaurant->setCount($Count);
-			$mMRestaurant->update($MRestaurant);
+			$Karaoke = $mKaraoke->find(1);
+			$Karaoke->setIntroduction($Introduction);			
+			$Karaoke->setCount($Count);
+			$mKaraoke->update($Karaoke);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI

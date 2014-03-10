@@ -2,8 +2,11 @@
 namespace MVC\Domain;
 if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	
+	require_once( "mvc/mapper/Ads.php"		);
 	require_once( "mvc/mapper/Cafe.php"		);
+	require_once( "mvc/mapper/Karaoke.php"	);
 	require_once( "mvc/mapper/Pagoda.php"	);
+	require_once( "mvc/mapper/ZenMusic.php"	);
 	
 	require_once( "mvc/mapper/Store.php"	);
 	require_once( "mvc/mapper/MStore.php"	);

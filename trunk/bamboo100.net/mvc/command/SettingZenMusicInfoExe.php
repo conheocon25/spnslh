@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class SettingMRestaurantInfoExe extends Command{
+	class SettingZenMusicInfoExe extends Command{
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -17,15 +17,15 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mMRestaurant = new \MVC\Mapper\MRestaurant();
+			$mZenMusic = new \MVC\Mapper\ZenMusic();
 					
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------													
-			$MRestaurant = $mMRestaurant->find(1);
-			$MRestaurant->setIntroduction($Introduction);			
-			$MRestaurant->setCount($Count);
-			$mMRestaurant->update($MRestaurant);
+			$ZenMusic = $mZenMusic->find(1);
+			$ZenMusic->setIntroduction($Introduction);			
+			$ZenMusic->setCount($Count);
+			$mZenMusic->update($ZenMusic);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI

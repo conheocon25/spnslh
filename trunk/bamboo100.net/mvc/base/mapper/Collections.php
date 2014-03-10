@@ -3,8 +3,11 @@ namespace MVC\Mapper;
 require_once( "mvc/base/domain/Collections.php");
 require_once( "mvc/base/mapper/Collection.php");
 
+class AdsCollection 	extends Collection implements \MVC\Domain\AdsCollection{	function targetClass(){	return "\MVC\Domain\Ads";}}
 class PagodaCollection 	extends Collection implements \MVC\Domain\PagodaCollection{	function targetClass(){	return "\MVC\Domain\Pagoda";}}
 class CafeCollection 	extends Collection implements \MVC\Domain\CafeCollection{	function targetClass(){	return "\MVC\Domain\Cafe";}}
+class KaraokeCollection extends Collection implements \MVC\Domain\KaraokeCollection{	function targetClass(){	return "\MVC\Domain\Karaoke";}}
+class ZenMusicCollection extends Collection implements \MVC\Domain\ZenMusicCollection{	function targetClass(){	return "\MVC\Domain\ZenMusic";}}
 
 class StoreCollection 	extends Collection implements \MVC\Domain\StoreCollection{	function targetClass(){	return "\MVC\Domain\Store";}}
 class MStoreCollection 	extends Collection implements \MVC\Domain\MStoreCollection{	function targetClass(){	return "\MVC\Domain\MStore";}}

@@ -2,7 +2,7 @@
 Namespace MVC\Domain;
 require_once( "mvc/base/domain/DomainObject.php" );
 
-class Store extends Object{
+class Karaoke extends Object{
     private $Id;
 	private $Introduction;
 	private $Count;
@@ -77,8 +77,8 @@ class Store extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------			
-	function getURLUpdLoad(){	return "/quan-ly/quan-ly-dai-ly/info-load";	}
-	function getURLUpdExe(){	return "/quan-ly/quan-ly-dai-ly/info-exe";	}
+	function getURLUpdLoad(){	return "/quan-ly/quan-ly-karaoke/info-load";}
+	function getURLUpdExe(){	return "/quan-ly/quan-ly-karaoke/info-exe";	}
 			
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
