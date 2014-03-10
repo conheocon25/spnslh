@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class SettingPagoda extends Command {
+	class SettingMHotel extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -19,7 +19,7 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------			
-			$Title		= "QUẢN LÝ CHÙA";
+			$Title		= "QUẢN LÝ NHÀ TRỌ";
 			$Navigation = array(array("QUẢN LÝ", "/quan-ly"));
 									
 			//-------------------------------------------------------------
@@ -27,7 +27,7 @@
 			//-------------------------------------------------------------
 									
 			$request->setProperty('Title', 			$Title);
-			$request->setProperty('ActiveLeftMenu', 'SettingPagoda');
+			$request->setProperty('ActiveLeftMenu', 'SettingMHotel');
 			$request->setObject('Navigation', 		$Navigation);
 			
 			return self::statuses('CMD_DEFAULT');

@@ -12,6 +12,14 @@
 		<command name="SendMailRegister" type="public"><view>SendMailRegister</view><status value="CMD_OK"><forward>RegisterMessage</forward></status></command>
 		
 		<command name="App" 				type="public"><view>App				</view></command>
+		<command name="AppCafe" 			type="public"><view>AppCafe			</view></command>		
+		<command name="AppRestaurant" 		type="public"><view>AppRestaurant	</view></command>
+		<command name="AppMRestaurant" 		type="public"><view>AppMRestaurant	</view></command>
+		<command name="AppKaraoke" 			type="public"><view>AppKaraoke		</view></command>
+		<command name="AppHotel" 			type="public"><view>AppHotel		</view></command>
+		<command name="AppMHotel" 			type="public"><view>AppMHotel		</view></command>
+		<command name="AppMStore" 			type="public"><view>AppMStore		</view></command>
+		<command name="AppStore" 			type="public"><view>AppStore		</view></command>
 		<command name="AppPagoda" 			type="public"><view>AppPagoda		</view></command>
 		
 		<command name="AppAds" 				type="public"><view>AppAds			</view></command>
@@ -24,8 +32,7 @@
 		<command name="AppCSet" 			type="public"><view>AppCSet			</view></command>
 		
 		<command name="AppZenMusic" 		type="public"><view>AppZenMusic		</view></command>
-		<command name="AppCafe" 			type="public"><view>AppCafe			</view></command>
-		
+				
 		<!-- ============================================================================== -->
 		<!-- SETTING COMMAND																-->
 		<!-- ============================================================================== -->
@@ -61,6 +68,46 @@
 		<command name="SettingPagoda">			<view>SettingPagoda</view></command>
 		<command name="SettingPagodaInfoLoad">	<view>SettingPagodaInfoLoad</view></command>		
 		<command name="SettingPagodaInfoExe">	<view>SettingPagodaInfoExe</view><status value="CMD_OK"><forward>SettingPagoda</forward></status></command>
+		
+		<command name="SettingMRestaurant">			<view>SettingMRestaurant</view></command>
+		<command name="SettingMRestaurantInfoLoad">	<view>SettingMRestaurantInfoLoad</view></command>		
+		<command name="SettingMRestaurantInfoExe">	<view>SettingMRestaurantInfoExe</view><status value="CMD_OK"><forward>SettingMRestaurant</forward></status></command>
+		
+		<command name="SettingRestaurant">			<view>SettingRestaurant</view></command>
+		<command name="SettingRestaurantInfoLoad">	<view>SettingRestaurantInfoLoad</view></command>		
+		<command name="SettingRestaurantInfoExe">	<view>SettingRestaurantInfoExe</view><status value="CMD_OK"><forward>SettingRestaurant</forward></status></command>
+		
+		<command name="SettingHotel">			<view>SettingHotel</view></command>
+		<command name="SettingHotelInfoLoad">	<view>SettingHotelInfoLoad</view></command>		
+		<command name="SettingHotelInfoExe">	<view>SettingHotelInfoExe</view><status value="CMD_OK"><forward>SettingHotel</forward></status></command>
+		
+		<command name="SettingMHotel">			<view>SettingMHotel</view></command>
+		<command name="SettingMHotelInfoLoad">	<view>SettingMHotelInfoLoad</view></command>		
+		<command name="SettingMHotelInfoExe">	<view>SettingMHotelInfoExe</view><status value="CMD_OK"><forward>SettingMHotel</forward></status></command>
+		
+		<command name="SettingKaraoke">			<view>SettingKaraoke</view></command>
+		<command name="SettingKaraokeInfoLoad">	<view>SettingKaraokeInfoLoad</view></command>		
+		<command name="SettingKaraokeInfoExe">	<view>SettingKaraokeInfoExe</view><status value="CMD_OK"><forward>SettingMHotel</forward></status></command>
+
+		<command name="SettingStore">			<view>SettingStore</view></command>
+		<command name="SettingStoreInfoLoad">	<view>SettingStoreInfoLoad</view></command>		
+		<command name="SettingStoreInfoExe">	<view>SettingStoreInfoExe</view><status value="CMD_OK"><forward>SettingStore</forward></status></command>
+		
+		<command name="SettingMStore">			<view>SettingMStore</view></command>
+		<command name="SettingMStoreInfoLoad">	<view>SettingMStoreInfoLoad</view></command>		
+		<command name="SettingMStoreInfoExe">	<view>SettingMStoreInfoExe</view><status value="CMD_OK"><forward>SettingMStore</forward></status></command>
+		
+		<command name="SettingZenMusic">		<view>SettingZenMusic</view></command>
+		<command name="SettingZenMusicInfoLoad"><view>SettingZenMusicInfoLoad</view></command>		
+		<command name="SettingZenMusicInfoExe">	<view>SettingZenMusicInfoExe</view><status value="CMD_OK"><forward>SettingZenMusic</forward></status></command>
+		
+		<command name="SettingCooking">			<view>SettingCooking</view></command>
+		<command name="SettingCookingInfoLoad">	<view>SettingCookingInfoLoad</view></command>		
+		<command name="SettingCookingInfoExe">	<view>SettingCookingInfoExe</view><status value="CMD_OK"><forward>SettingCooking</forward></status></command>
+		
+		<command name="SettingEIT">			<view>SettingEIT</view></command>
+		<command name="SettingEITInfoLoad">	<view>SettingEITInfoLoad</view></command>
+		<command name="SettingEITInfoExe">	<view>SettingEITInfoExe</view><status value="CMD_OK"><forward>SettingEIT</forward></status></command>
 		
 		<command name="SettingCChess">			<view>SettingCChess</view></command>
 		<command name="SettingCChessInfoLoad">	<view>SettingCChessInfoLoad</view></command>		

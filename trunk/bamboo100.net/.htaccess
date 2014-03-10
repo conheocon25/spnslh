@@ -28,7 +28,7 @@ RewriteRule ^ung-dung/quan-ly-karaoke$ 								?cmd=AppKaraoke [L]
 RewriteRule ^ung-dung/quan-ly-nha-tro$ 								?cmd=AppMHotel [L]
 RewriteRule ^ung-dung/quan-ly-tap-hoa$ 								?cmd=AppMStore [L]
 RewriteRule ^ung-dung/quan-ly-khach-san$ 							?cmd=AppHotel [L]
-RewriteRule ^ung-dung/quan-ly-quan-an$ 								?cmd=AppRestaurant [L]
+RewriteRule ^ung-dung/quan-ly-quan-an$ 								?cmd=AppMRestaurant [L]
 RewriteRule ^ung-dung/nhac-thien$ 									?cmd=AppZenMusic [L]
 
 RewriteRule ^dang-ky$ 												?cmd=Register [L]
@@ -39,13 +39,13 @@ RewriteRule ^dang-ky/exe$ 											?cmd=SendMailRegister [L]
 #---------------------------------------------------------------------------------------------------------------------------
 
 RewriteRule ^dang-nhap$ 												?cmd=SigninLoad [L]
-RewriteRule ^dang-nhap/exe$ 											?cmd=SigninExe [L]
+RewriteRule ^dang-nhap/exe$ 											?cmd=SigninExe 	[L]
 RewriteRule ^signout$ 													?cmd=SignoutExe [L]
 
 RewriteRule ^object/load/([A-Za-z0-9]+)/([0-9]+)$ 						?cmd=ObjectLoad&ObjectName=$1&Id=$2 [L]
-RewriteRule ^object/del/([A-Za-z0-9]+)/([0-9]+)$ 						?cmd=ObjectDel&ObjectName=$1&Id=$2 [L]
-RewriteRule ^object/ins/([A-Za-z0-9]+)$ 								?cmd=ObjectIns&ObjectName=$1 [L]
-RewriteRule ^object/upd/([A-Za-z0-9]+)$ 								?cmd=ObjectUpd&ObjectName=$1 [L]
+RewriteRule ^object/del/([A-Za-z0-9]+)/([0-9]+)$ 						?cmd=ObjectDel&ObjectName=$1&Id=$2 	[L]
+RewriteRule ^object/ins/([A-Za-z0-9]+)$ 								?cmd=ObjectIns&ObjectName=$1 		[L]
+RewriteRule ^object/upd/([A-Za-z0-9]+)$ 								?cmd=ObjectUpd&ObjectName=$1 		[L]
 
 
 RewriteRule ^quan-ly$ 													?cmd=Setting [L]
@@ -62,11 +62,55 @@ RewriteRule ^quan-ly/chua$												?cmd=SettingPagoda [L]
 RewriteRule ^quan-ly/chua/info-load$									?cmd=SettingPagodaInfoLoad 	[L]
 RewriteRule ^quan-ly/chua/info-exe$										?cmd=SettingPagodaInfoExe 	[L]
 
+RewriteRule ^quan-ly/nhac-thien$										?cmd=SettingZenMusic 		[L]
+RewriteRule ^quan-ly/nhac-thien/info-load$								?cmd=SettingZenMusicInfoLoad[L]
+RewriteRule ^quan-ly/nhac-thien/info-exe$								?cmd=SettingZenMusicInfoExe [L]
+
 RewriteRule ^quan-ly/quan-ly-cafe$										?cmd=SettingCafe [L]
 RewriteRule ^quan-ly/quan-ly-cafe/info-load$							?cmd=SettingCafeInfoLoad 	[L]
 RewriteRule ^quan-ly/quan-ly-cafe/info-exe$								?cmd=SettingCafeInfoExe 	[L]
 
-RewriteRule ^quan-ly/hoc-co-tuong$										?cmd=SettingCChess [L]
+RewriteRule ^quan-ly/quan-ly-quan-an$									?cmd=SettingMRestaurant [L]
+RewriteRule ^quan-ly/quan-ly-quan-an/info-load$							?cmd=SettingMRestaurantInfoLoad 	[L]
+RewriteRule ^quan-ly/quan-ly-quan-an/info-exe$							?cmd=SettingMRestaurantInfoExe 	[L]
+
+RewriteRule ^quan-ly/quan-ly-nha-hang$									?cmd=SettingRestaurant [L]
+RewriteRule ^quan-ly/quan-ly-nha-hang/info-load$						?cmd=SettingRestaurantInfoLoad 	[L]
+RewriteRule ^quan-ly/quan-ly-nha-hang/info-exe$							?cmd=SettingRestaurantInfoExe 	[L]
+
+RewriteRule ^quan-ly/quan-ly-khach-san$									?cmd=SettingHotel [L]
+RewriteRule ^quan-ly/quan-ly-khach-san/info-load$						?cmd=SettingHotelInfoLoad 	[L]
+RewriteRule ^quan-ly/quan-ly-khach-san/info-exe$						?cmd=SettingHotelInfoExe 	[L]
+
+RewriteRule ^quan-ly/quan-ly-nha-tro$									?cmd=SettingMHotel [L]
+RewriteRule ^quan-ly/quan-ly-nha-tro/info-load$							?cmd=SettingMHotelInfoLoad 	[L]
+RewriteRule ^quan-ly/quan-ly-nha-tro/info-exe$							?cmd=SettingMHotelInfoExe 	[L]
+
+RewriteRule ^quan-ly/quan-ly-tap-hoa$									?cmd=SettingMStore [L]
+RewriteRule ^quan-ly/quan-ly-tap-hoa/info-load$							?cmd=SettingMStoreInfoLoad 	[L]
+RewriteRule ^quan-ly/quan-ly-tap-hoa/info-exe$							?cmd=SettingMStoreInfoExe 	[L]
+
+RewriteRule ^quan-ly/quan-ly-dai-ly$									?cmd=SettingStore 			[L]
+RewriteRule ^quan-ly/quan-ly-dai-ly/info-load$							?cmd=SettingStoreInfoLoad 	[L]
+RewriteRule ^quan-ly/quan-ly-dai-ly/info-exe$							?cmd=SettingStoreInfoExe 	[L]
+
+RewriteRule ^quan-ly/quan-ly-karaoke$									?cmd=SettingKaraoke 		[L]
+RewriteRule ^quan-ly/quan-ly-karaoke/info-load$							?cmd=SettingKaraokeInfoLoad [L]
+RewriteRule ^quan-ly/quan-ly-karaoke/info-exe$							?cmd=SettingKaraokeInfoExe 	[L]
+
+RewriteRule ^quan-ly/nhac-thien$										?cmd=SettingZenMusic 		[L]
+RewriteRule ^quan-ly/nhac-thien/info-load$								?cmd=SettingZenMusicInfoLoad[L]
+RewriteRule ^quan-ly/nhac-thien/info-exe$								?cmd=SettingZenMusicInfoExe [L]
+
+RewriteRule ^quan-ly/hoc-nau-an$										?cmd=SettingCooking 		[L]
+RewriteRule ^quan-ly/hoc-nau-an/info-load$								?cmd=SettingCookingInfoLoad	[L]
+RewriteRule ^quan-ly/hoc-nau-an/info-exe$								?cmd=SettingCookingInfoExe 	[L]
+
+RewriteRule ^quan-ly/hoc-tin-hoc$										?cmd=SettingEIT 			[L]
+RewriteRule ^quan-ly/hoc-tin-hoc/info-load$								?cmd=SettingEITInfoLoad		[L]
+RewriteRule ^quan-ly/hoc-tin-hoc/info-exe$								?cmd=SettingEITInfoExe 		[L]
+
+RewriteRule ^quan-ly/hoc-co-tuong$										?cmd=SettingCChess 			[L]
 RewriteRule ^quan-ly/hoc-co-tuong/info-load$							?cmd=SettingCChessInfoLoad 	[L]
 RewriteRule ^quan-ly/hoc-co-tuong/info-exe$								?cmd=SettingCChessInfoExe 	[L]
 RewriteRule ^quan-ly/hoc-co-tuong/([0-9]+)/upd-load$					?cmd=SettingCChessUpdLoad&IdCBook=$1 	[L]

@@ -5,6 +5,15 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	require_once( "mvc/mapper/Cafe.php"		);
 	require_once( "mvc/mapper/Pagoda.php"	);
 	
+	require_once( "mvc/mapper/Store.php"	);
+	require_once( "mvc/mapper/MStore.php"	);
+	
+	require_once( "mvc/mapper/Restaurant.php"	);
+	require_once( "mvc/mapper/MRestaurant.php"	);
+	
+	require_once( "mvc/mapper/Hotel.php"	);
+	require_once( "mvc/mapper/MHotel.php"	);
+	
 	require_once( "mvc/mapper/CChess.php"	);
 	require_once( "mvc/mapper/CBook.php"	);
 	require_once( "mvc/mapper/CSet.php"		);
