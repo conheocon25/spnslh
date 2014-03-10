@@ -6,6 +6,15 @@ require_once( "mvc/base/mapper/Collection.php");
 class PagodaCollection 	extends Collection implements \MVC\Domain\PagodaCollection{	function targetClass(){	return "\MVC\Domain\Pagoda";}}
 class CafeCollection 	extends Collection implements \MVC\Domain\CafeCollection{	function targetClass(){	return "\MVC\Domain\Cafe";}}
 
+class StoreCollection 	extends Collection implements \MVC\Domain\StoreCollection{	function targetClass(){	return "\MVC\Domain\Store";}}
+class MStoreCollection 	extends Collection implements \MVC\Domain\MStoreCollection{	function targetClass(){	return "\MVC\Domain\MStore";}}
+
+class RestaurantCollection 	extends Collection implements \MVC\Domain\RestaurantCollection{	function targetClass(){	return "\MVC\Domain\Restaurant";}}
+class MRestaurantCollection extends Collection implements \MVC\Domain\MRestaurantCollection{function targetClass(){	return "\MVC\Domain\MRestaurant";}}
+
+class HotelCollection 	extends Collection implements \MVC\Domain\HotelCollection{	function targetClass(){	return "\MVC\Domain\Hotel";}}
+class MHotelCollection 	extends Collection implements \MVC\Domain\MHotelCollection{	function targetClass(){	return "\MVC\Domain\MHotel";}}
+
 class CChessCollection 	extends Collection implements \MVC\Domain\CChessCollection{	function targetClass(){	return "\MVC\Domain\CChess";}}
 class CBookCollection 	extends Collection implements \MVC\Domain\CBookCollection{	function targetClass(){	return "\MVC\Domain\CBook";}}
 class CSetCollection 	extends Collection implements \MVC\Domain\CSetCollection{	function targetClass(){	return "\MVC\Domain\CSet";}}

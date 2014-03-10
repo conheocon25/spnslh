@@ -13,6 +13,15 @@ interface Finder {
 interface CafeFinder  			extends Finder {}
 interface PagodaFinder  		extends Finder {}
 
+interface StoreFinder  			extends Finder {}
+interface MStoreFinder  		extends Finder {}
+
+interface RestaurantFinder  	extends Finder {}
+interface MRestaurantFinder  	extends Finder {}
+
+interface HotelFinder  			extends Finder {}
+interface MHotelFinder  		extends Finder {}
+
 interface CChessFinder  		extends Finder {}
 interface CBookFinder  			extends Finder {}
 interface CSetFinder  			extends Finder {}
