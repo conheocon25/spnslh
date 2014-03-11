@@ -1,6 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+		<div metal:use-macro="mGebo.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mGebo.xhtml/IncludeCSS"/>
+	</head>
+	
+	<body>
+		<div id="maincontainer" class="clearfix no-bg">
+            <div metal:use-macro="mGebo.xhtml/Header"/>
+            <div id="contentwrapper">
+                <div class="main_content">
+                    
+                </div>
+            </div>
+		</div>
+		
+		<div metal:use-macro="mGebo.xhtml/IncludeJS"/>
+	</body>
+</html>
+
+
+
+<!-- ############################ -->
+<!-- Unicorn Save - DO NOT DELETE -->
+<!-- ############################ -->
+<!--
+<!DOCTYPE html>
+<html lang="en">
+	<head>
 		<div metal:use-macro="mBase.xhtml/IncludeMETA"/>
 		<div metal:use-macro="mBase.xhtml/IncludeCSS"/>
 	</head>
@@ -21,3 +48,4 @@
 		<div metal:use-macro="mBase.xhtml/IncludeJS"/>
 	</body>
 </html>
+-->
