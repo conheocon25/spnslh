@@ -1,6 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+		<div metal:use-macro="mGebo.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mGebo.xhtml/IncludeCSS"/>
+	</head>
+	
+	<body>
+		<div id="maincontainer" class="clearfix no-bg">
+            <div metal:use-macro="mGebo.xhtml/Header"/>
+            <div id="contentwrapper">
+                <div class="main_content">
+				
+                    <div class="row-fluid">
+						<form class="navbar-form" action="/ung-dung/hoc-co-tuong/tim-kiem/exe" method="post">
+							<center>
+								<input class="span12 search-query" id="Term" name="Term" type="text" placeholder="Nhập từ khóa sách cờ"/><br/><br/>
+								<button class="btn btn-info" type="submit"><i class="icon-search icon-white"/> Tìm sách</button>
+							</center>
+						</form>
+					</div>
+					
+					<div class="row-fluid search_page">
+                        <div class="span12">
+                            <h3 class="heading"><small>Kết quả tìm kiếm của từ khóa</small> Sách cờ tướng</h3>
+                            <div class="search_panel clearfix">
+                                <div tal:repeat="CB CBAll" class="search_item clearfix">
+                                    <span tal:content="repeat/CB/number" class="searchNb"/>
+                                    <div class="thumbnail pull-left">
+                                        <img alt="" src="/mvc/templates/theme/gebo/img/bg_item_chess_book.jpg"/>
+                                    </div>
+                                    <div class="search_content">
+                                        <h4><a tal:attributes="href CB/getURLRead" tal:content="CB/getTitle" class="sepV_a"/></h4>
+                                        <p class="sepH_b item_description">Trich dẫn</p>
+                                        <p class="sepH_a"><strong>Lượt xem:</strong> 123</p>
+                                        <small>từ khóa 1</small>, <small>từ khóa 2</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pagination">
+                                <ul>
+                                    <li><a href="#"><i class="splashy-media_controls_rewind_small"></i></a></li>
+                                    <li class="active">
+                                        <a href="#">1</a>
+                                    </li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li class="disabled"><a href="#">...</a></li>
+                                    <li><a href="#">10</a></li>
+                                    <li><a href="#"><i class="splashy-media_controls_forward_small"></i></a></li>
+                                </ul>
+                            </div>      
+                        </div>
+                    </div>
+					
+                </div>
+            </div>
+		</div>
+		
+		<div metal:use-macro="mGebo.xhtml/IncludeJS"/>
+	</body>
+</html>
+
+
+
+<!-- ############################ -->
+<!-- Unicorn Save - DO NOT DELETE -->
+<!-- ############################ -->
+<!--
+<!DOCTYPE html>
+<html lang="en">
+	<head>
 		<div metal:use-macro="mBase.xhtml/IncludeMETA"/>
 		<div metal:use-macro="mBase.xhtml/IncludeCSS"/>
 		<link href="/mvc/templates/theme/cchess/css/style.css" rel="stylesheet" media="screen"/>
@@ -36,3 +105,4 @@
 		<div metal:use-macro="mBase.xhtml/IncludeJS"/>		
 	</body>
 </html>
+-->
