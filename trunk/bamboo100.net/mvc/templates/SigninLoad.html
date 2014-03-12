@@ -1,5 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<div metal:use-macro="mGebo.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mGebo.xhtml/IncludeCSS"/>
+	</head>
+	
+	<body>
+		<div id="maincontainer" class="clearfix no-bg">
+            <div metal:use-macro="mGebo.xhtml/Header"/>
+            <div id="contentwrapper">
+                <div class="main_content">
+                    <div class="row-fluid">
+						<div class="span3"/>
+						<div class="span6">
+							<form class="form-horizontal well" action="/dang-nhap/exe" method="post" autocomplete="off">
+								<fieldset>
+									<p class="f_legend">Đăng nhập</p>
+									<div class="control-group">
+										<label class="control-label">Email</label>
+										<div class="controls">
+											<input type="text" name="Email" class="span10"/>
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label">Mật khẩu</label>
+										<div class="controls">
+											<input type="password" name="Pass" class="span10"/>
+										</div>
+									</div>
+									<center>
+										<button type="submit" class="btn btn-info">Xác nhận</button>
+									</center>
+								</fieldset>
+							</form>
+						</div>
+						<div class="span3"/>
+					</div>
+                </div>
+            </div>
+		</div>
+		
+		<div metal:use-macro="mGebo.xhtml/IncludeJS"/>
+	</body>
+</html>
+
+<!-- ############################ -->
+<!-- Unicorn Save - DO NOT DELETE -->
+<!-- ############################ -->
+<!--
+<!DOCTYPE html>
+<html lang="en">
     <head>
         <div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
 		<link rel="stylesheet" href="/mvc/templates/theme/admin/css/bootstrap.min.css"/>
@@ -51,3 +101,4 @@
         <script src="/mvc/templates/theme/admin/js/unicorn.login.js"></script>
     </body>
 </html>
+-->
