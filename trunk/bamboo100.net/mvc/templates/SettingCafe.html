@@ -1,6 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+		<div metal:use-macro="mGebo.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mGebo.xhtml/IncludeCSS"/>
+	</head>
+	
+	<body>
+		<div id="maincontainer" class="clearfix no-bg">
+            <div metal:use-macro="mAdmin.xhtml/Header"/>
+            <div id="contentwrapper">
+                <div class="main_content">
+				
+					<h1 tal:content="Title"/>
+					<div class="btn-group">
+						<a tal:attributes="href '/quan-ly/quan-ly-cafe/info-load'" 	class="btn btn-success"><i class="glyphicon glyphicon-edit"> Cập nhật</i></a>
+					</div>
+					
+                </div>
+            </div>
+		</div>
+		
+		<div metal:use-macro="mGebo.xhtml/IncludeJS"/>
+	</body>
+</html>
+<!--
+<!DOCTYPE html>
+<html lang="en">
+	<head>
 		<span metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
 		<span metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
 	</head>
@@ -12,10 +38,7 @@
 
 		<div id="content">
 			<div id="content-header">
-				<h1 tal:content="Title"/>
-				<div class="btn-group">
-					<a tal:attributes="href '/quan-ly/quan-ly-cafe/info-load'" 	class="btn btn-success"><i class="glyphicon glyphicon-edit"> Cập nhật</i></a>
-				</div>
+				
 			</div>
 			<div metal:use-macro="mAdmin.xhtml/Breadcrumb"/>
 			<div class="container-fluid">
@@ -32,3 +55,4 @@
 		<span metal:use-macro="mAdmin.xhtml/IncludeJS"/>
 	</body>
 </html>
+-->
