@@ -1,42 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<div metal:use-macro="mBase.xhtml/IncludeMETA"/>
-		<div metal:use-macro="mBase.xhtml/IncludeCSS"/>
-		<link href="/mvc/templates/theme/cchess/css/style.css" rel="stylesheet" media="screen"/>
-		<style>
-
-		</style>
+		<div metal:use-macro="mGebo.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mGebo.xhtml/IncludeCSS"/>
+		<link rel="stylesheet" href="/mvc/templates/theme/cchess/css/style.css"/>
 	</head>
 	
 	<body>
-		<div metal:use-macro="mBase.xhtml/Header"/>
-		<div id="wrap" class="container-fluid">			
-			<div class="row-fluid">
-				<div class="span8">
-					<div class="well">
-						<div class="base-board">
-							<canvas id="ChessBoard"></canvas>
+		<div id="maincontainer" class="clearfix no-bg">
+            <div metal:use-macro="mGebo.xhtml/Header"/>
+            <div id="contentwrapper">
+                <div class="main_content">
+				
+                    <div class="row-fluid">
+						<div class="span8">
+							<div class="well">
+								<div class="base-board">
+									<canvas id="ChessBoard"></canvas>
+								</div>
+							</div>
+						</div>
+						<div class="span4">
+							<div class="well">
+								<h4 tal:content="CS/getName"/>
+								(<span tal:content="CS/getCountPrint"/> xem)
+								<div tal:repeat="Step CS/getStepAll">
+									<span class='btn btn-danger iStep' 	tal:attributes="alt Step/getContent1"><span tal:content="Step/getName1"/></span>
+									<span class='btn btn-info 	iStep' 	tal:attributes="alt Step/getContent2"><span tal:content="Step/getName2"/></span>
+								</div>
+								<div id="DataMove" tal:attributes="alt CS/getStepAllPrint"/>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="span4">
-					<h4 tal:content="CS/getName"/>
-					(<span tal:content="CS/getCountPrint"/> xem)
-					<div tal:repeat="Step CS/getStepAll">
-						<span class='btn btn-danger iStep' 	tal:attributes="alt Step/getContent1"><span tal:content="Step/getName1"/></span>
-						<span class='btn btn-info 	iStep' 	tal:attributes="alt Step/getContent2"><span tal:content="Step/getName2"/></span>
-					</div>
-					<div id="DataMove" tal:attributes="alt CS/getStepAllPrint"/>
-				</div>
-			</div>
+					
+                </div>
+            </div>
 		</div>
-		<div metal:use-macro="mBase.xhtml/Footer"/>
-		<div metal:use-macro="mBase.xhtml/IncludeJS"/>
+		
+		<div metal:use-macro="mGebo.xhtml/IncludeJS"/>
 		<script src="/mvc/templates/theme/cchess/js/piece.js"></script>	
 		<script src="/mvc/templates/theme/cchess/js/board.js"></script>
 		<script>
-			window.onload = function() {					
+			/*<![CDATA[*/
+			window.onload = function() {
 				
 				var canvas 		= document.getElementById("ChessBoard");			
 				var context 	= canvas.getContext("2d");
@@ -52,13 +58,13 @@
 				//KHỞI TẠO BÀN CỜ
 				VC.init();
 				VC.getStepAllLoad($("#DataMove").attr('alt'));
-												
+
 				//canvas.addEventListener('click', function(e){VC.click(e);}, false);
 				
 				context.clearRect(0, 0, canvas.width, canvas.height);
 				VC.draw(canvas, context);
 				$("#MoveList").html(VC.getStepAll());
-												
+
 				//XỬ LÍ NƯỚC ĐI
 				$('.iStep').click(function(){
 					var move = $(this).attr('alt');					
@@ -68,6 +74,7 @@
 				});
 				
 			}
+			/*]]>*/
 		</script>
 	</body>
 </html>
