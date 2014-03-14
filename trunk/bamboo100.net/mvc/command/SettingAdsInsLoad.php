@@ -28,6 +28,7 @@
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
 			$request->setObject( 'Navigation', 		$Navigation );
+			$request->setProperty('ActiveLeftMenu', 'SettingPost');
 			$request->setProperty("Title", 			"THÊM MỚI");
 
 			return self::statuses('CMD_DEFAULT');

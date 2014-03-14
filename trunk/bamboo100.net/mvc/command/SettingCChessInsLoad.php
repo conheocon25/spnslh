@@ -28,6 +28,7 @@
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
 			$request->setObject( 'Navigation', 		$Navigation );
+			$request->setProperty('ActiveLeftMenu', 'SettingCChess');
 			$request->setProperty("Title", 			"THÊM MỚI SÁCH");
 
 			return self::statuses('CMD_DEFAULT');

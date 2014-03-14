@@ -1,32 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
-		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+		<div metal:use-macro="mGebo.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mGebo.xhtml/IncludeCSS"/>
 	</head>
 	
 	<body>
-		<div metal:use-macro="mAdmin.xhtml/Header"/>
-		<div metal:use-macro="mAdmin.xhtml/UserNavigation"/>
-		<div metal:use-macro="mAdmin.xhtml/Sidebar"/>
-		<div metal:use-macro="mAdmin.xhtml/StyleSwitcher"/>
-		<div id="content">
-			<div id="content-header">
-				<h1 tal:content="Title"/>
-				<div class="btn-group">					
-					<a href="#DialogIns" data-toggle="modal" class="btn btn-primary btn-ins">
-						<i class="glyphicons-plus"/> Thêm mới
-					</a>
-					<a href="#DialogDelSelected" data-toggle="modal" class="btn btn-primary btn-ins">
-						<i class="glyphicons-remove_2"/> Xóa chọn
-					</a>
-				</div>
-			</div>			
-			<div metal:use-macro="mAdmin.xhtml/Breadcrumb"/>
-			<div class="row">
-				<div class="col-12">					
-					<div class="widget-box">
-						<div class="widget-content nopadding">
+		<div id="maincontainer" class="clearfix no-bg">
+            <div metal:use-macro="mAdmin.xhtml/Header"/>
+            <div id="contentwrapper">
+                <div class="main_content">
+							
+					 <div class="row-fluid">
+						<div class="span12">
+							<h1 tal:content="Title"/>
+							<div class="btn-group">					
+								<a href="#DialogIns" data-toggle="modal" class="btn btn-primary btn-ins">
+									<i class="icon-plus icon-white"/> Thêm mới
+								</a>
+								<a href="#DialogDelSelected" data-toggle="modal" class="btn btn-primary btn-ins">
+									<i class="icon-remove icon-white"/> Xóa chọn
+								</a>
+							</div>
+						</div>
+					</div>
+                    <div class="row-fluid">
+						<div class="span12">
 							<table class="table table-bordered table-striped table-hover with-check">
 								<thead>
 									<tr>
@@ -44,12 +43,12 @@
 										<td><span tal:content="User/getEmail"/></td>
 										<td class="center">
 											<a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id User/getId">
-												<i class="glyphicon glyphicon-pencil"/>
+												<i class="icon-edit"/>
 											</a>
 										</td>
 										<td class="center">
 											<a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id User/getId">
-												<i class="glyphicon glyphicon-remove"/>
+												<i class="icon-remove"/>
 											</a>
 										</td>
 									</tr>
@@ -57,141 +56,140 @@
 							</table>
 						</div>
 					</div>
-
-					<!-- INSERT DIALOG  -->
-					<div id="DialogIns" class="modal fade">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h3><i class="glyphicons-user modal-icon"/>THÊM MỚI NGƯỜI DÙNG</h3>
-								</div>
-								<form id="FormUserInsert" action="#" class="form-horizontal" novalidate="novalidate">
-									<div class="modal-body">
-										<div class="form-group">
-											<label class="control-label">Tên</label>
-											<div class="controls">
-												<input id="Name1" name="Name1" type="text" class="form-control input-small"/>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label">Email</label>
-											<div class="controls">
-												<input id="Email1" name="Email1" type="text" class="form-control input-small"/>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label">Mật khẩu</label>
-											<div class="controls">
-												<input id="Pass1" name="Pass1" type="password" class="form-control input-small"/>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label">Giới tính</label>
-											<div class="controls">
-												<select name="Gender1" id="Gender1" style="width:80%;">
-													<option value="0" >Nam</option>
-													<option value="1" >Nữ</option>
-												</select>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label">Quyền</label>
-											<div class="controls">
-												<select name="Type1" id="Type1" style="width:80%;">
-													<option value="1" >Đăng tin</option>
-													<option value="2" >Quản lý</option>
-													<option value="3" >Cờ Tướng</option>
-													<option value="4" >Quản trị</option>
-												</select>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label">Mã vạch</label>
-											<div class="controls">
-												<input id="Code1" name="Code1" type="text" class="form-control input-small"/>
-											</div>
-										</div>
-									</div>
-									<div class="modal-footer">
-										<button id="URLInsButton" class="btn btn-primary btn-small" type="submit"><i class="glyphicons-download_alt"/> Lưu</button>
-										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-					<!-- END INSERT DIALOG  -->
 					
-					<!-- UPDATE DIALOG  -->
-					<div id="DialogEdit" class="modal fade">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h3><i class="glyphicons-user modal-icon"/>CẬP NHẬT NGƯỜI DÙNG</h3>
+                </div>
+            </div>
+		</div>
+		
+		<!-- INSERT DIALOG  -->
+		<div id="DialogIns" class="modal fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h3><i class="glyphicons-user modal-icon"/>THÊM MỚI NGƯỜI DÙNG</h3>
+					</div>
+					<form id="FormUserInsert" action="#" class="form-horizontal" novalidate="novalidate">
+						<div class="modal-body">
+							<div class="form-group">
+								<label class="control-label">Tên</label>
+								<div class="controls">
+									<input id="Name1" name="Name1" type="text" class="form-control input-small"/>
 								</div>
-								<form id="FormUserUpdate" action="#" class="form-horizontal" novalidate="novalidate">
-									<div class="modal-body">
-										<div class="form-group">
-											<label class="control-label">Tên</label>
-											<div class="controls">
-												<input id="Name2" name="Name2" type="text" class="form-control input-small"/>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label">Email</label>
-											<div class="controls">
-												<input id="Email2" name="Email2" type="text" class="form-control input-small"/>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label">Mật khẩu</label>
-											<div class="controls">
-												<input id="Pass2" name="Pass2" type="password" class="form-control input-small"/>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label">Giới tính</label>
-											<div class="controls">
-												<select name="Gender2" id="Gender2" style="width:80%;">
-													<option value="0" >Nam</option>
-													<option value="1" >Nữ</option>
-												</select>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label">Quyền</label>
-											<div class="controls">
-												<select name="Type2" id="Type2" style="width:80%;">
-													<option value="1" >Đăng tin</option>
-													<option value="2" >Quản lý</option>
-													<option value="3" >Cờ Tướng</option>
-													<option value="4" >Quản trị</option>
-												</select>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label">Mã vạch</label>
-											<div class="controls">
-												<input id="Code2" name="Code2" type="text" class="form-control input-small"/>
-											</div>
-										</div>
-									</div>	
-									<div class="modal-footer">
-										<button id="URLUpdButton" class="btn btn-primary btn-small" type="submit"><i class="glyphicons-download_alt"/> Lưu</button>
-										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
-									</div>
-								</form>
+							</div>
+							<div class="form-group">
+								<label class="control-label">Email</label>
+								<div class="controls">
+									<input id="Email1" name="Email1" type="text" class="form-control input-small"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label">Mật khẩu</label>
+								<div class="controls">
+									<input id="Pass1" name="Pass1" type="password" class="form-control input-small"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label">Giới tính</label>
+								<div class="controls">
+									<select name="Gender1" id="Gender1" style="width:80%;">
+										<option value="0" >Nam</option>
+										<option value="1" >Nữ</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label">Quyền</label>
+								<div class="controls">
+									<select name="Type1" id="Type1" style="width:80%;">
+										<option value="1" >Đăng tin</option>
+										<option value="2" >Quản lý</option>
+										<option value="3" >Cờ Tướng</option>
+										<option value="4" >Quản trị</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label">Mã vạch</label>
+								<div class="controls">
+									<input id="Code1" name="Code1" type="text" class="form-control input-small"/>
+								</div>
 							</div>
 						</div>
-					</div>
-					<!-- END UPDATE DIALOG  -->
-					<div metal:use-macro="mDialog.xhtml/DialogDel"/>
-					<div metal:use-macro="mDialog.xhtml/DialogDelSelected"/>
+						<div class="modal-footer">
+							<button id="URLInsButton" class="btn btn-primary btn-small" type="submit"><i class="glyphicons-download_alt"/> Lưu</button>
+							<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>
-		<div metal:use-macro="mAdmin.xhtml/Footer"/>
-		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<!-- END INSERT DIALOG  -->
+		
+		<!-- UPDATE DIALOG  -->
+		<div id="DialogEdit" class="modal fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h3><i class="glyphicons-user modal-icon"/>CẬP NHẬT NGƯỜI DÙNG</h3>
+					</div>
+					<form id="FormUserUpdate" action="#" class="form-horizontal" novalidate="novalidate">
+						<div class="modal-body">
+							<div class="form-group">
+								<label class="control-label">Tên</label>
+								<div class="controls">
+									<input id="Name2" name="Name2" type="text" class="form-control input-small"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label">Email</label>
+								<div class="controls">
+									<input id="Email2" name="Email2" type="text" class="form-control input-small"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label">Mật khẩu</label>
+								<div class="controls">
+									<input id="Pass2" name="Pass2" type="password" class="form-control input-small"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label">Giới tính</label>
+								<div class="controls">
+									<select name="Gender2" id="Gender2" style="width:80%;">
+										<option value="0" >Nam</option>
+										<option value="1" >Nữ</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label">Quyền</label>
+								<div class="controls">
+									<select name="Type2" id="Type2" style="width:80%;">
+										<option value="1" >Đăng tin</option>
+										<option value="2" >Quản lý</option>
+										<option value="3" >Cờ Tướng</option>
+										<option value="4" >Quản trị</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label">Mã vạch</label>
+								<div class="controls">
+									<input id="Code2" name="Code2" type="text" class="form-control input-small"/>
+								</div>
+							</div>
+						</div>	
+						<div class="modal-footer">
+							<button id="URLUpdButton" class="btn btn-primary btn-small" type="submit"><i class="glyphicons-download_alt"/> Lưu</button>
+							<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- END UPDATE DIALOG  -->
+		
+		<div metal:use-macro="mGebo.xhtml/IncludeJS"/>
 		<script type="text/javascript">
 		/*<![CDATA[*/
 			

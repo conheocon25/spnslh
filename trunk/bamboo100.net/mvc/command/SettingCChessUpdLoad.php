@@ -33,6 +33,7 @@
 			//-------------------------------------------------------------
 			$request->setObject( 'CB', 			$CB );
 			$request->setObject( 'Navigation', 	$Navigation );
+			$request->setProperty('ActiveLeftMenu', 'SettingCChess');
 			$request->setProperty("Title", 		$CB->getTitle()." > CẬP NHẬT");
 
 			return self::statuses('CMD_DEFAULT');

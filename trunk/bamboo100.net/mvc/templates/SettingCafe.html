@@ -13,7 +13,9 @@
 				
 					<h1 tal:content="Title"/>
 					<div class="btn-group">
-						<a tal:attributes="href '/quan-ly/quan-ly-cafe/info-load'" 	class="btn btn-success"><i class="glyphicon glyphicon-edit"> Cập nhật</i></a>
+						<a tal:attributes="href '/quan-ly/quan-ly-cafe/info-load'" class="btn btn-success">
+							<i class="icon-edit icon-white"/> Cập nhật
+						</a>
 					</div>
 					
                 </div>
@@ -23,36 +25,3 @@
 		<div metal:use-macro="mGebo.xhtml/IncludeJS"/>
 	</body>
 </html>
-<!--
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<span metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
-		<span metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
-	</head>
-	<body>
-		<div metal:use-macro="mAdmin.xhtml/Header"/>
-		<div metal:use-macro="mAdmin.xhtml/UserNavigation"/>
-		<div metal:use-macro="mAdmin.xhtml/Sidebar"/>
-		<div metal:use-macro="mAdmin.xhtml/StyleSwitcher"/>
-
-		<div id="content">
-			<div id="content-header">
-				
-			</div>
-			<div metal:use-macro="mAdmin.xhtml/Breadcrumb"/>
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-12">
-						
-					</div>
-				</div>
-			</div>
-		</div>
-		
-		<div metal:use-macro="mAdmin.xhtml/Footer"/>
-		<div metal:use-macro="mAdmin.xhtml/SignoutDialog"/>
-		<span metal:use-macro="mAdmin.xhtml/IncludeJS"/>
-	</body>
-</html>
--->

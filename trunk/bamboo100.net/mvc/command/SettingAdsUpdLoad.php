@@ -32,7 +32,8 @@
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
 			$request->setObject( 'Post', 		$Post );			
-			$request->setObject( 'Navigation', 	$Navigation );			
+			$request->setObject( 'Navigation', 	$Navigation );
+			$request->setProperty('ActiveLeftMenu', 'SettingPost');			
 			$request->setProperty("Title", 		$Post->getTitle()." > CẬP NHẬT");
 
 			return self::statuses('CMD_DEFAULT');
