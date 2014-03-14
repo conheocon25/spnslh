@@ -38,6 +38,7 @@
 			$request->setObject( 'CB', 			$CB );
 			$request->setObject( 'CS', 			$CS );
 			$request->setObject( 'Navigation', 	$Navigation );
+			$request->setProperty('ActiveLeftMenu', 'SettingCChess');
 			$request->setProperty("Title", 		mb_strtoupper($CS->getName(), 'UTF8')." > CẬP NHẬT");
 
 			return self::statuses('CMD_DEFAULT');

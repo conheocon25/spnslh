@@ -34,6 +34,7 @@
 			//-------------------------------------------------------------			
 			$request->setObject( 'Navigation', 		$Navigation );
 			$request->setObject( 'CB', 				$CB);
+			$request->setProperty('ActiveLeftMenu', 'SettingCChess');
 			$request->setProperty("Title", 			"THÊM MỚI VÁN CỜ");
 
 			return self::statuses('CMD_DEFAULT');

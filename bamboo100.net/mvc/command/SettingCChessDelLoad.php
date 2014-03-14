@@ -32,7 +32,8 @@
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
 			$request->setObject( 'CB', 			$CB );			
-			$request->setObject( 'Navigation', 	$Navigation );			
+			$request->setObject( 'Navigation', 	$Navigation );
+			$request->setProperty('ActiveLeftMenu', 'SettingCChess');
 			$request->setProperty("Title", 		$CB->getTitle()." > XÓA SÁCH");
 
 			return self::statuses('CMD_DEFAULT');

@@ -72,9 +72,7 @@
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user icon-white"></i> <b class="caret"></b></a>
 								<ul class="dropdown-menu">
-									<li><a style="cursor:pointer">Xin chào!
-										<span tal:content="php:@\MVC\Base\SessionRegistry::instance()->getCurrentUser()->getName()"/>
-									</a></li>
+									<li><a style="cursor:pointer" tal:content="php:@\MVC\Base\SessionRegistry::instance()->getCurrentUser()->getName()"/></li>
 									<li class="divider"></li>
 									<li><a href="/change-pass">Đổi mật khẩu</a></li>
 									<li><a href="/signout">Thoát</a></li>
@@ -87,40 +85,71 @@
 						<nav>
 							<div class="nav-collapse">
 								<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()" class="nav">
-									<li><a href="/trang-chu"><i class="icon-home icon-white"></i> Trang chủ</a></li>
 									<li class="dropdown">
 										<a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="icon-list-alt icon-white"></i> Ứng dụng quản lý <b class="caret"></b></a>
 										<ul class="dropdown-menu">
-											<li tal:attributes="class php:ActiveLeftMenu=='SettingCafe'?'active':''"><a 	href="/quan-ly/quan-ly-cafe">	<i class="glyphicon glyphicon-cog"></i> 	<span>Quản Lý Cafe</span></a></li>
-											<li tal:attributes="class php:ActiveLeftMenu=='SettingMRestaurant'?'active':''"><a 	href="/quan-ly/quan-ly-quan-an"><i class="glyphicon glyphicon-cog"></i> <span>Quản Lý Quán Ăn</span></a></li>
-											<li tal:attributes="class php:ActiveLeftMenu=='SettingRestaurant'?'active':''"><a 	href="/quan-ly/quan-ly-nha-hang"><i class="glyphicon glyphicon-cog"></i><span>Quản Lý Nhà Hàng</span></a></li>
-											<li tal:attributes="class php:ActiveLeftMenu=='SettingHotel'?'active':''"><a 	href="/quan-ly/quan-ly-khach-san">	<i class="glyphicon glyphicon-cog"></i> <span>Quản Lý Khách Sạn</span></a></li>
-											<li tal:attributes="class php:ActiveLeftMenu=='SettingMHotel'?'active':''"><a 	href="/quan-ly/quan-ly-nha-tro">	<i class="glyphicon glyphicon-cog"></i> <span>Quản Lý Nhà Trọ</span></a></li>
-											<li tal:attributes="class php:ActiveLeftMenu=='SettingKaraoke'?'active':''"><a 	href="/quan-ly/quan-ly-karaoke">	<i class="glyphicon glyphicon-cog"></i> <span>Quản Lý Karaoke</span></a></li>
-											<li tal:attributes="class php:ActiveLeftMenu=='SettingStore'?'active':''"><a 	href="/quan-ly/quan-ly-dai-ly">		<i class="glyphicon glyphicon-cog"></i> <span>Quản Lý Đại lý</span></a></li>
-											<li tal:attributes="class php:ActiveLeftMenu=='SettingMStore'?'active':''"><a 	href="/quan-ly/quan-ly-tap-hoa">	<i class="glyphicon glyphicon-cog"></i> <span>Quản Lý Tạp Hóa</span></a></li>
+											<li tal:attributes="class php:ActiveLeftMenu=='SettingCafe'?'active':''">
+												<a href="/quan-ly/quan-ly-cafe">Quản Lý Cafe</a>
+											</li>
+											<li tal:attributes="class php:ActiveLeftMenu=='SettingMRestaurant'?'active':''">
+												<a href="/quan-ly/quan-ly-quan-an">Quản Lý Quán Ăn</a>
+											</li>
+											<li tal:attributes="class php:ActiveLeftMenu=='SettingRestaurant'?'active':''">
+												<a href="/quan-ly/quan-ly-nha-hang">Quản Lý Nhà Hàng</a>
+											</li>
+											<li tal:attributes="class php:ActiveLeftMenu=='SettingHotel'?'active':''">
+												<a href="/quan-ly/quan-ly-khach-san">Quản Lý Khách Sạn</a>
+											</li>
+											<li tal:attributes="class php:ActiveLeftMenu=='SettingMHotel'?'active':''">
+												<a href="/quan-ly/quan-ly-nha-tro">Quản Lý Nhà Trọ</a>
+											</li>
+											<li tal:attributes="class php:ActiveLeftMenu=='SettingKaraoke'?'active':''">
+												<a href="/quan-ly/quan-ly-karaoke">Quản Lý Karaoke</a>
+											</li>
+											<li tal:attributes="class php:ActiveLeftMenu=='SettingStore'?'active':''">
+												<a href="/quan-ly/quan-ly-dai-ly">Quản Lý Đại lý</a>
+											</li>
+											<li tal:attributes="class php:ActiveLeftMenu=='SettingMStore'?'active':''">
+												<a href="/quan-ly/quan-ly-tap-hoa">Quản Lý Tạp Hóa</a>
+											</li>
 										</ul>
 									</li>
 									<li class="dropdown">
 										<a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="icon-list-alt icon-white"></i> Ứng dụng khác <b class="caret"></b></a>
 										<ul class="dropdown-menu">
-											<li tal:attributes="class php:ActiveLeftMenu=='SettingPagoda'?'active':''"><a 	href="/quan-ly/chua">			<i class="glyphicon glyphicon-cog"></i> 	<span>Chùa</span></a></li>
-											<li tal:attributes="class php:ActiveLeftMenu=='SettingPost'?'active':''"><a 	href="/quan-ly/rao-vat">		<i class="glyphicon glyphicon-cog"></i> 	<span>Rao Vặt</span></a></li>
-											<li tal:attributes="class php:ActiveLeftMenu=='SettingCChess'?'active':''"><a 	href="/quan-ly/hoc-co-tuong">		<i class="glyphicon glyphicon-cog"></i> <span>Học Cờ Tướng</span></a></li>
-											<li tal:attributes="class php:ActiveLeftMenu=='SettingEIT'?'active':''"><a 		href="/quan-ly/hoc-tin-hoc">		<i class="glyphicon glyphicon-cog"></i> <span>Học Tin Học</span></a></li>
-											<li tal:attributes="class php:ActiveLeftMenu=='SettingCooking'?'active':''"><a 	href="/quan-ly/hoc-nau-an">			<i class="glyphicon glyphicon-cog"></i> <span>Học Nấu Ăn</span></a></li>
-											<li tal:attributes="class php:ActiveLeftMenu=='SettingZenMusic'?'active':''"><a 	href="/quan-ly/nhac-thien">		<i class="glyphicon glyphicon-cog"></i> <span>Nhạc Thiền</span></a></li>
+											<li tal:attributes="class php:ActiveLeftMenu=='SettingPagoda'?'active':''">
+												<a href="/quan-ly/chua">Chùa</a>
+											</li>
+											<li tal:attributes="class php:ActiveLeftMenu=='SettingPost'?'active':''">
+												<a href="/quan-ly/rao-vat">Rao Vặt</a>
+											</li>
+											<li tal:attributes="class php:ActiveLeftMenu=='SettingCChess'?'active':''">
+												<a href="/quan-ly/hoc-co-tuong">Học Cờ Tướng</a>
+											</li>
+											<li tal:attributes="class php:ActiveLeftMenu=='SettingEIT'?'active':''">
+												<a href="/quan-ly/hoc-tin-hoc">Học Tin Học</a>
+											</li>
+											<li tal:attributes="class php:ActiveLeftMenu=='SettingCooking'?'active':''">
+												<a href="/quan-ly/hoc-nau-an">Học Nấu Ăn</a>
+											</li>
+											<li tal:attributes="class php:ActiveLeftMenu=='SettingZenMusic'?'active':''">
+												<a href="/quan-ly/nhac-thien">Nhạc Thiền</a>
+											</li>
 										</ul>
 									</li>
 									<li class="dropdown">
 										<a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="icon-list-alt icon-white"></i> Thiết lập <b class="caret"></b></a>
 										<ul class="dropdown-menu">
-											<li tal:attributes="class php:ActiveLeftMenu=='SettingUser'?'active':''"><a 	href="/quan-ly/nguoi-dung">			<i class="glyphicon glyphicon-th"></i> 	<span>Tài khoản</span></a></li>
+											<li tal:attributes="class php:ActiveLeftMenu=='SettingUser'?'active':''">
+												<a href="/quan-ly/nguoi-dung">Tài khoản</a>
+											</li>
 										</ul>
 									</li>
 								</ul>
 								<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isSeller()" class="nav">
-									<li tal:attributes="class php:ActiveLeftMenu=='SettingPost'?'active':''"><a 	href="/quan-ly/bai-viet"><i class="glyphicon glyphicon-cog"></i> <span>Rao vặt</span></a></li>
+									<li tal:attributes="class php:ActiveLeftMenu=='SettingPost'?'active':''">
+										<a href="/quan-ly/bai-viet">Rao vặt</a>
+									</li>
 								</ul>
 							</div>
 						</nav>
