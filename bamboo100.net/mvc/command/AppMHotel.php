@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class AppAds extends Command {
+	class AppMHotel extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -9,26 +9,26 @@
 			$Session = \MVC\Base\SessionRegistry::instance();
 
 			//-------------------------------------------------------------
-			//THAM SỐ GỬI ĐẾN
-			//-------------------------------------------------------------
-
-			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mAds = new \MVC\Mapper\Ads();
-			
+			$mMHotel 	= new \MVC\Mapper\MHotel();
+						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------
-			$Ads	= $mAds->find(1);
-			$Navigation = array();
-
+			//-------------------------------------------------------------						
+			$MHotel	= $mMHotel->find(1);
+						
+			$Title	= "QUẢN LÝ NHÀ TRỌ";
+			$Navigation = array(
+				array("TRANG CHỦ", "/trang-chu"),				
+			);
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-			$request->setProperty('Title', 'Trang chủ');
-			$request->setObject('Ads', $Ads);
-			
+			$request->setObject('MHotel', 		$MHotel);
+			$request->setObject('Navigation', 	$Navigation);
+			$request->setProperty('Title', 		$Title);
+						
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

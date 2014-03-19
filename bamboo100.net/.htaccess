@@ -17,7 +17,7 @@ RewriteRule ^ung-dung/hoc-co-tuong/tim-kiem/exe$ 					?cmd=AppCChessSearch [L]
 RewriteRule ^ung-dung/hoc-co-tuong/([a-z0-9_-]+)$ 					?cmd=AppCBook&KIdBook=$1 [L]
 RewriteRule ^ung-dung/hoc-co-tuong/([a-z0-9_-]+)/([a-z0-9_-]+)$ 	?cmd=AppCSet&KIdBook=$1&KIdSet=$2 [L]
 
-RewriteRule ^ung-dung/chua$ 										?cmd=AppPagoda [L]
+RewriteRule ^ung-dung/website-chua$ 								?cmd=AppPagoda [L]
 
 RewriteRule ^ung-dung/rao-vat$ 										?cmd=AppAds [L]
 RewriteRule ^ung-dung/rao-vat/tim-kiem/exe$ 						?cmd=AppAdsSearch [L]
@@ -25,10 +25,13 @@ RewriteRule ^ung-dung/rao-vat/([a-z0-9_-]+)$ 						?cmd=AppAdsRead&KIdPost=$1 [L
 
 RewriteRule ^ung-dung/quan-ly-cafe$ 								?cmd=AppCafe [L]
 RewriteRule ^ung-dung/quan-ly-karaoke$ 								?cmd=AppKaraoke [L]
-RewriteRule ^ung-dung/quan-ly-nha-tro$ 								?cmd=AppMHotel [L]
-RewriteRule ^ung-dung/quan-ly-tap-hoa$ 								?cmd=AppMStore [L]
-RewriteRule ^ung-dung/quan-ly-khach-san$ 							?cmd=AppHotel [L]
 RewriteRule ^ung-dung/quan-ly-quan-an$ 								?cmd=AppMRestaurant [L]
+RewriteRule ^ung-dung/quan-ly-tap-hoa$ 								?cmd=AppMStore [L]
+RewriteRule ^ung-dung/quan-ly-dai-ly$ 								?cmd=AppStore [L]
+
+RewriteRule ^ung-dung/quan-ly-nha-tro$ 								?cmd=AppMHotel [L]
+RewriteRule ^ung-dung/quan-ly-khach-san$ 							?cmd=AppHotel [L]
+
 RewriteRule ^ung-dung/nhac-thien$ 									?cmd=AppZenMusic [L]
 
 RewriteRule ^dang-ky$ 												?cmd=Register [L]
