@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class AppAds extends Command {
+	class AppStore extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -9,26 +9,26 @@
 			$Session = \MVC\Base\SessionRegistry::instance();
 
 			//-------------------------------------------------------------
-			//THAM SỐ GỬI ĐẾN
-			//-------------------------------------------------------------
-
-			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mAds = new \MVC\Mapper\Ads();
-			
+			$mStore 	= new \MVC\Mapper\Store();
+						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------
-			$Ads	= $mAds->find(1);
-			$Navigation = array();
-
+			//-------------------------------------------------------------						
+			$Store	= $mStore->find(1);
+						
+			$Title	= "QUẢN LÝ TIỆM ĐẠI LÝ";
+			$Navigation = array(
+				array("TRANG CHỦ", "/trang-chu"),				
+			);
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-			$request->setProperty('Title', 'Trang chủ');
-			$request->setObject('Ads', $Ads);
-			
+			$request->setObject('Store', 		$Store);
+			$request->setObject('Navigation', 	$Navigation);
+			$request->setProperty('Title', 		$Title);
+						
 			return self::statuses('CMD_DEFAULT');
 		}
 	}
