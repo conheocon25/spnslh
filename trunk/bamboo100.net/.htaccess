@@ -65,6 +65,9 @@ RewriteRule ^quan-ly/rao-vat/([0-9]+)/del-exe$							?cmd=SettingAdsDelExe&IdPos
 RewriteRule ^quan-ly/rao-vat/ins-load$									?cmd=SettingAdsInsLoad [L]
 RewriteRule ^quan-ly/rao-vat/ins-exe$									?cmd=SettingAdsInsExe [L]
 
+RewriteRule ^quan-ly/theme$												?cmd=SettingTheme [L]
+RewriteRule ^quan-ly/theme/([0-9]+)$									?cmd=SettingThemeDetail&IdCategory=$1 [L]
+
 RewriteRule ^quan-ly/chua$												?cmd=SettingPagoda [L]
 RewriteRule ^quan-ly/chua/info-load$									?cmd=SettingPagodaInfoLoad 	[L]
 RewriteRule ^quan-ly/chua/info-exe$										?cmd=SettingPagodaInfoExe 	[L]

@@ -16,6 +16,9 @@ interface KaraokeFinder  		extends Finder {}
 interface PagodaFinder  		extends Finder {}
 interface ZenMusicFinder  		extends Finder {}
 
+interface TCategoryFinder  		extends Finder {}
+interface TThemeFinder  		extends Finder {}
+
 interface StoreFinder  			extends Finder {}
 interface MStoreFinder  		extends Finder {}
 

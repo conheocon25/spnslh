@@ -9,6 +9,9 @@ class CafeCollection 	extends Collection implements \MVC\Domain\CafeCollection{	
 class KaraokeCollection extends Collection implements \MVC\Domain\KaraokeCollection{	function targetClass(){	return "\MVC\Domain\Karaoke";}}
 class ZenMusicCollection extends Collection implements \MVC\Domain\ZenMusicCollection{	function targetClass(){	return "\MVC\Domain\ZenMusic";}}
 
+class TCategoryCollection 	extends Collection implements \MVC\Domain\TCategoryCollection	{	function targetClass(){	return "\MVC\Domain\TCategory";}}
+class TThemeCollection 		extends Collection implements \MVC\Domain\TThemeCollection		{	function targetClass(){	return "\MVC\Domain\TTheme";}}
+
 class StoreCollection 	extends Collection implements \MVC\Domain\StoreCollection{	function targetClass(){	return "\MVC\Domain\Store";}}
 class MStoreCollection 	extends Collection implements \MVC\Domain\MStoreCollection{	function targetClass(){	return "\MVC\Domain\MStore";}}
 
