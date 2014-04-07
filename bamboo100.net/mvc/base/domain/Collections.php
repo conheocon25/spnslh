@@ -7,6 +7,9 @@ interface KaraokeCollection 	extends \Iterator {function add( Object $Karaoke);}
 interface PagodaCollection 		extends \Iterator {function add( Object $Pagoda	);}
 interface ZenMusicCollection 	extends \Iterator {function add( Object $ZenMusic	);}
 
+interface TCategoryCollection 	extends \Iterator {function add( Object $TCategory	);}
+interface TThemeCollection 		extends \Iterator {function add( Object $TTheme		);}
+
 interface StoreCollection 		extends \Iterator {function add( Object $Store	);}
 interface MStoreCollection 		extends \Iterator {function add( Object $MStore	);}
 

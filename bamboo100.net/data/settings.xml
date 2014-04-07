@@ -53,6 +53,9 @@
 		<command name="ObjectIns">				<view>ObjectIns</view></command>
 		<command name="ObjectUpd">				<view>ObjectUpd</view></command>
 
+		<command name="SettingTheme">			<view>SettingTheme</view></command>
+		<command name="SettingThemeDetail">		<view>SettingThemeDetail</view></command>
+		
 		<command name="SettingAds">				<view>SettingAds</view></command>
 		<command name="SettingAdsInfoLoad">		<view>SettingAdsInfoLoad</view></command>		
 		<command name="SettingAdsInfoExe">		<view>SettingAdsInfoExe</view><status value="CMD_OK"><forward>SettingAds</forward></status></command>		
