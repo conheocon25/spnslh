@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/icheck/flat/blue.css"/>
+		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/select2.css"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+	</head>
+	
+	<body>
+		<div metal:use-macro="mAdmin.xhtml/Header"/>
+		<div metal:use-macro="mAdmin.xhtml/StyleTools"/>
+		
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
+			<div id="IdCourse" tal:attributes="alt Course/getId" class="row">
+				<div class="col-12">
+					<a href="#DialogIns" data-toggle="modal" class="btn btn-primary btn-ins">
+						<i class="glyphicons-plus"/> Thêm mới
+					</a>
+					<a href="#DialogDelSelected" data-toggle="modal" class="btn btn-primary btn-ins">
+						<i class="glyphicons-remove_2"/> Xóa chọn
+					</a>
+					<div class="widget-box">						
+						<div class="widget-content nopadding">
+							<table class="table table-bordered table-striped table-hover">
+								<thead>
+									<tr role="row">
+										<th width="35">STT</th>
+										<th><div class="text-left">NHÀ CUNG CẤP</div></th>
+										<th><div class="text-left">TÊN HÀNG</div></th>
+										<th width="120"><div class="text-right">TỈ LỆ NHẬP</div></th>
+										<th width="80"><div class="text-left">ĐƠN VỊ</div></th>
+										<th width="120"><div class="text-right">TỈ LỆ BÁN</div></th>
+										<th width="80"><div class="text-left">ĐƠN VỊ</div></th>
+										<th width="32"><i class="glyphicons-bin"/></th>
+									</tr>
+								</thead>
+								<tbody role="alert" aria-live="polite" aria-relevant="all">
+									<tr tal:repeat="Recipe Course/getRecipeAll" class="gradeA odd">
+										<td align="center" tal:content="repeat/Recipe/number"/>
+										<td>
+											<a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Recipe/getId">
+												<span tal:content="Recipe/getResource/getSupplier/getName"/>
+											</a>
+										</td>
+										<td><span tal:content="Recipe/getResource/getName"/></td>
+										<td><div class="text-right" tal:content="Recipe/getValue1"/></td>
+										<td><div class="text-left" tal:content="Recipe/getResource/getUnit"/></td>
+										<td><div class="text-right" tal:content="Recipe/getValue2"/></td>
+										<td><div class="text-left" tal:content="Recipe/getCourse/getUnit"/></td>
+										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Recipe/getId"><i class="glyphicons-remove_2"/></a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					
+					<!-- INSERT DIALOG  -->
+					<div id="DialogIns" class="modal fade">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header"><h3><i class="glyphicons-divide modal-icon"/>THÊM CÔNG THỨC TỈ LỆ</h3></div>
+								<form id="FormFormularInsert" action="#" class="form-horizontal" novalidate="novalidate">
+									<div class="modal-body">													
+										<div class="form-group">
+											<label class="control-label">Đơn vị</label>
+											<div class="controls">
+												<select name="IdResource1" id="IdResource1" style="width:80%;">
+													<option tal:repeat="Resource ResourceAll" tal:attributes="value Resource/getId">
+														<span tal:content="Resource/getSupplier/getName" /> / <span tal:content="Resource/getName" /> (<span tal:content="Resource/getUnit" />)
+													</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">Tỉ lệ nhập</label>
+											<div class="controls">
+												<input id="Value11" name="Value11" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">Tỉ lệ bán</label>
+											<div class="controls">
+												<input id="Value12" name="Value12" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button type="submit" value="Validation" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Lưu</button>
+										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<!-- END INSERT DIALOG  -->
+					
+					<!-- DIALOG EDIT	-->
+					<div id="DialogEdit" class="modal fade">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header"><h3><i class="glyphicons-divide modal-icon"/>CHỈNH SỬA CÔNG THỨC TỈ LỆ</h3></div>								
+								<form id="FormFormularUpdate" action="#" class="form-horizontal" novalidate="novalidate">
+									<div class="form-group">
+										<label class="control-label">Đơn vị</label>
+										<div class="controls">
+											<select name="IdResource2" id="IdResource2" style="width:80%;">
+												<option tal:repeat="Resource ResourceAll" tal:attributes="value Resource/getId">
+													<span tal:content="Resource/getSupplier/getName" /> / <span tal:content="Resource/getName" /> (<span tal:content="Resource/getUnit" />)
+												</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Tỉ lệ nhập</label>
+										<div class="controls">
+											<input id="Value21" name="Value21" type="text" class="form-control input-small"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Tỉ lệ bán</label>
+										<div class="controls">
+											<input id="Value22" name="Value22" type="text" class="form-control input-small"/>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button id="URLUpdButton" type="submit" value="Validation" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Lưu</button>
+										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<!-- END DIALOG EDIT -->
+					<div metal:use-macro="mDialog.xhtml/DialogDel"/>
+					<div metal:use-macro="mDialog.xhtml/DialogDelSelected"/>
+					
+				</div>
+			</div>
+		</div>
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<script type="text/javascript">
+		/*<![CDATA[*/
+			$('#URLDelSelectedButton').click(function(){
+				var count = 0;
+				var Data = [];
+				var URL = "/object/del/R2C/0";
+				
+				$(".CheckedDel").each(function( i, obj){
+					if ( $(this).is(':checked')==true ){
+						count += 1;
+						Data[count] = $(this).attr('data-id');
+					}
+				});
+				
+				$.ajax({
+					type: "POST",
+					data: {ListId:Data},
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
+			});
+			
+			//-----------------------------------------------------------------------------------
+			//Delete 1 R2C			
+			//-----------------------------------------------------------------------------------
+			$('.remove-item').click(function(){
+				$('#URLDelButton').attr('alt', $(this).attr('data-id'));
+			});
+			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
+			$('#URLDelButton').click(function(){			
+				var URL = "/object/del/R2C/" + $(this).attr('alt');
+				$.ajax({
+					type: "POST",
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
+			});
+		
+			//-----------------------------------------------------------------------------------
+			//Insert 1 R2C						
+			$("#FormFormularInsert").validate({
+				rules:{
+					Value11:{
+						number:true,
+						required:true,
+						min:1,
+						max:200
+					},
+					Value12:{
+						number:true,
+						required:true,
+						min:1,
+						max:200
+					}
+				},
+				errorClass: "help-inline",
+				errorElement: "span",
+				highlight:function(element, errorClass, validClass) {
+					$(element).parents('.form-group').addClass('has-error');
+				},
+				unhighlight: function(element, errorClass, validClass) {
+					$(element).parents('.form-group').removeClass('has-error');
+					$(element).parents('.form-group').addClass('has-success');
+				},
+				submitHandler: function (form) {					
+					var Data = [];
+					Data[0] = 'null';
+					Data[1] = $('#IdCourse').attr('alt');				
+					Data[2] = $('#IdResource1').val();				
+					Data[3] = $('#Value11').val();
+					Data[4] = $('#Value12').val();
+					
+					var URL = "/object/ins/R2C";
+					$.ajax({
+						type: "POST",
+						data: {Data:Data},
+						url: URL,
+						success: function(msg){
+							location.reload();
+						}
+					});
+				}
+			});
+			//-----------------------------------------------------------------------------------
+			//Load 1 R2C
+			//-----------------------------------------------------------------------------------
+			$('.update-item').click(function(){
+				//Load dữ liệu JSON về
+				var url = "/object/load/R2C/" + $(this).attr('data-id');
+				
+				//Load dữ liệu JSON lên FORM
+				$.getJSON(url, function(data){
+					$('#URLUpdButton').attr('alt', data.Id);					
+					$('#IdResource2').select2('val', data.IdResource);
+					$('#Value21').attr('value', data.Value1);
+					$('#Value22').attr('value', data.Value2);
+				});
+			});
+			
+			//-----------------------------------------------------------------------------------
+			//Update 1 RESOURCE
+			//-----------------------------------------------------------------------------------
+			$("#FormFormularUpdate").validate({
+				rules:{
+					Value21:{
+						number:true,
+						required:true,
+						min:1,
+						max:200
+					},
+					Value22:{
+						number:true,
+						required:true,
+						min:1,
+						max:200
+					}
+				},
+				errorClass: "help-inline",
+				errorElement: "span",
+				highlight:function(element, errorClass, validClass) {
+					$(element).parents('.form-group').addClass('has-error');
+				},
+				unhighlight: function(element, errorClass, validClass) {
+					$(element).parents('.form-group').removeClass('has-error');
+					$(element).parents('.form-group').addClass('has-success');
+				},
+				submitHandler: function (form) {					
+					var Data = [];								
+					Data[0] = $('#URLUpdButton').attr('alt');
+					Data[1] = $('#IdCourse').attr('alt');
+					Data[2] = $('#IdResource2').val();
+					Data[3] = $('#Value21').val();
+					Data[4] = $('#Value22').val();
+					
+					var URL = "/object/upd/R2C";
+					$.ajax({
+						type: "POST",
+						data: {Data:Data},
+						url: URL,
+						success: function(msg){
+							location.reload();
+						}
+					});
+					return false;
+				}
+			});
+		/*]]>*/
+		</script>		
+	</body>
+</html>

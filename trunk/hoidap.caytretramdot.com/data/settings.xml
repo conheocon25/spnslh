@@ -1,0 +1,135 @@
+<options>    
+	<control>
+		<!-- ============================================================================== -->
+		<!-- Các lệnh xử lí SYSTEM 															-->
+		<!-- ============================================================================== -->		
+		<command name="DefaultCommand" type="public"><view>DefaultCommand</view><status value="CMD_OK"><forward>Home</forward></status></command>
+		<command name="Home" type="public"><view>Home</view></command>
+		<command name="SigninLoad" type="public"><view>SigninLoad</view></command>
+		
+		<command name="SigninExe" type="public">
+			<view>SigninExe</view>
+			<status value="CMD_OK"><forward>App</forward></status>
+			<status value="CMD_NO_AUTHOR"><forward>Home</forward></status>
+		</command>
+		<command name="SignoutLoad"><view>SignoutLoad</view></command>
+		<command name="SignoutExe"><view>SignoutExe</view><status value="CMD_OK"><forward>Home</forward></status></command>				
+		<command name="App"><view>App</view></command>		
+		<command name="SettingThemeChangeExe"><view>SettingThemeChangeExe</view><status value="CMD_OK"><forward>App</forward></status></command>
+		
+		<!-- ============================================================================== -->
+		<!-- JSON LOAD			 															-->
+		<!-- ============================================================================== -->		
+		<command name="ObjectLoad"><view>ObjectLoad</view></command>
+		<command name="ObjectDel"><view>ObjectDel</view></command>
+		<command name="ObjectIns"><view>ObjectIns</view></command>
+		<command name="ObjectUpd"><view>ObjectUpd</view></command>
+		
+		<command name="SearchCustomer"><view>SearchCustomer</view></command>
+		<command name="NotifyCourse"><view>NotifyCourse</view></command>
+		
+		<!-- ============================================================================== -->
+		<!-- GLOBAL			 																-->
+		<!-- ============================================================================== -->											
+		<command name="ChangePassLoad"><view>ChangePassLoad</view></command>
+		<command name="ChangePassExe">
+			<view>ChangePassExe</view>
+			<status value="CMD_OK"><forward>SignoutExe</forward></status>
+		</command>
+		
+		<!-- ============================================================================== -->
+		<!-- REPORT.DETAIL			 														-->
+		<!-- ============================================================================== -->
+		<command name="Report">				<view>Report</view>				</command>
+		<command name="ReportInfo">			<view>ReportInfo</view>			</command>
+		<command name="ReportDetail">		<view>ReportDetail</view>		</command>
+		<command name="ReportCourse">		<view>ReportCourse</view>		</command>
+		
+		<command name="ReportDaily">		<view>ReportDaily</view>		</command>
+		<command name="ReportDailySelling">	<view>ReportDailySelling</view>	</command>
+		<command name="ReportDailySellingByCategory">	<view>ReportDailySellingByCategory</view></command>
+		<command name="ReportDailySellingByDomain">		<view>ReportDailySellingByDomain</view>	</command>
+		<command name="ReportDailyImport">	<view>ReportDailyImport</view>	</command>
+		<command name="ReportDailyStore">	<view>ReportDailyStore</view>	</command>
+		<command name="ReportDailyPaid">	<view>ReportDailyPaid</view>	</command>
+		<command name="ReportDailyLog">		<view>ReportDailyLog</view>		</command>
+		<command name="ReportDailyCollect">	<view>ReportDailyCollect</view>	</command>
+		<command name="ReportDailyCourse">	<view>ReportDailyCourse</view>	</command>
+		<command name="ReportDailyCustomer"><view>ReportDailyCustomer</view></command>
+		<command name="ReportDailyCustomerDetail"><view>ReportDailyCustomerDetail</view></command>
+		
+		<command name="ReportChartCourse">	<view>ReportChartCourse</view>	</command>
+		<command name="ReportChartSelling">	<view>ReportChartSelling</view>	</command>
+		<command name="ReportChartImport">	<view>ReportChartImport</view>	</command>
+		<command name="ReportChartPaid">	<view>ReportChartPaid</view>	</command>
+		<command name="ReportChartCollect">	<view>ReportChartCollect</view>	</command>
+		<command name="ReportChartValue">	<view>ReportChartValue</view>	</command>
+										
+		<!-- ============================================================================== -->
+		<!-- SELLING		 																-->
+		<!-- ============================================================================== -->		
+		<command name="Selling"><view>Selling</view></command>
+		<command name="SellingSearchCourse"><view>SellingSearchCourse</view></command>
+		<command name="SellingLogCourse"><view>SellingLogCourse</view></command>
+		<command name="SellingLogCoursePreparePrint"><view>SellingLogCoursePreparePrint</view></command>
+		<command name="SellingDomainLoad"><view>SellingDomainLoad</view></command>
+		<command name="SellingTableLoad"><view>SellingTableLoad</view></command>
+		<command name="SellingTableCallExe"><view>SellingTableCallExe</view></command>
+		<command name="SellingTableMoveExe"><view>SellingTableMoveExe</view><status value="CMD_OK"><forward>Selling</forward></status></command>
+		<command name="SellingTableMergeExe">
+			<view>SellingTableMergeExe</view>
+			<status value="CMD_OK"><forward>Selling</forward></status>
+		</command>				
+		<command name="SellingTablePrint"><view>SellingTablePrint</view></command>
+		<command name="SellingTablePrint1"><view>SellingTablePrint1</view></command>
+		<command name="SellingTableCheckoutExe"><view>SellingTableCheckoutExe</view></command>
+		<command name="CallLog"><view>CallLog</view></command>
+		<command name="CallLogLoading"><view>CallLogLoading</view></command>
+		
+		<command name="SellingEndCase"><view>SellingEndCase</view></command>
+		
+		<!-- ============================================================================== -->
+		<!-- PAYROLL			 															-->
+		<!-- ============================================================================== -->		
+		<command name="PayRoll"><view>PayRoll</view></command>
+		<command name="PayRollReset"><view>PayRollReset</view></command>
+		<command name="PayRollPrint"><view>PayRollPrint</view></command>		
+		
+		<!-- ============================================================================== -->
+		<!-- MONEY		 																	-->
+		<!-- ============================================================================== -->
+		<command name="Money"><view>Money</view></command>		
+		<command name="MoneyCollectGeneral"><view>MoneyCollectGeneral</view></command>
+		<command name="MoneyCollectCustomer"><view>MoneyCollectCustomer</view></command>
+		<command name="MoneyPaidGeneral"><view>MoneyPaidGeneral</view></command>
+		<command name="MoneyPaidEmployee"><view>MoneyPaidEmployee</view></command>
+							
+		<!-- ============================================================================== -->
+		<!-- SETTING	 															-->
+		<!-- ============================================================================== -->
+		<command name="Setting"><view>Setting</view></command>
+		<command name="SettingCustomer"><view>SettingCustomer</view></command>		
+		<command name="SettingEmployee"><view>SettingEmployee</view></command>		
+		<command name="SettingUser"><view>SettingUser</view></command>		
+		<command name="SettingDomain"><view>SettingDomain</view></command>		
+		<command name="SettingDomainTable"><view>SettingDomainTable</view></command>
+		<command name="SettingUnit"><view>SettingUnit</view></command>		
+		<command name="SettingConfig"><view>SettingConfig</view></command>		
+		<command name="SettingCategory"><view>SettingCategory</view></command>		
+		<command name="SettingCategoryCourse"><view>SettingCategoryCourse</view></command>		
+		<command name="SettingCategoryCourseRecipe"><view>SettingCategoryCourseRecipe</view></command>		
+		<command name="SettingSupplier"><view>SettingSupplier</view></command>
+		<command name="SettingTermPaid"><view>SettingTermPaid</view></command>
+		<command name="SettingTermCollect"><view>SettingTermCollect</view></command>
+		<command name="SettingSupplierResource"><view>SettingSupplierResource</view></command>
+													
+		<!-- ============================================================================== -->
+		<!-- IMPORT				 															-->
+		<!-- ============================================================================== -->
+		<command name="Import"><view>Import</view></command>
+		<command name="ImportSupplier"><view>ImportSupplier</view></command>
+		<command name="ImportSupplierOrder"><view>ImportSupplierOrder</view></command>
+		<command name="ImportSupplierOrderPrint"><view>ImportSupplierOrderPrint</view></command>
+				
+	</control>
+</options>

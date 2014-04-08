@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html style="overflow-y:hidden;" lang="en">
+	<head>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+	</head>
+	
+	<body data-menu-position="closed">
+		<div metal:use-macro="mAdmin.xhtml/Header"/>
+		<div class="menu">
+			
+		</div>
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>			
+			<div metal:use-macro="mAdmin.xhtml/LocationBar"/>			
+			<div class="container-fluid">							
+				<div class="row">
+					<div class="col-12">
+						<div class="widget-box">
+							<div class="widget-content nopadding">
+								<div role="grid" class="dataTables_wrapper">
+									<table class="table table-bordered table-striped table-hover">
+										<thead>
+											<tr role="row">
+												<th><div class="text-left">STT</div></th>
+												<th><div class="text-left">HỌ TÊN</div></th>
+												<th width="120"><div class="text-left">CHI TIẾT</div></th>
+											</tr>
+										</thead>
+										<tbody role="alert" aria-live="polite" aria-relevant="all">
+											<tr tal:repeat="Customer CustomerAll" class="gradeA odd">
+												<td><span tal:content="repeat/Customer/number"/></td>
+												<td><span tal:content="Customer/getName"/></td>
+												<td><a tal:attributes="href php:TD->getURLReportCustomerDetail( Customer->getId() )">Xem</a></td>
+											</tr>											
+										</tbody>
+									</table>									
+								</div>  
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+	</body>
+</html>
