@@ -16,7 +16,8 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			require_once("mvc/base/mapper/MapperDefault.php");
+			$mConfig = new \MVC\Mapper\Config();
+			$mDomain = new \MVC\Mapper\Domain();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
