@@ -12,6 +12,7 @@ interface Finder {
 
 interface UserFinder  			extends Finder {}
 interface DomainFinder  		extends Finder {}
+interface SolveFinder  			extends Finder {}
 interface CategoryFinder  		extends Finder {}
 interface ConfigFinder 			extends Finder {}
 interface GuestFinder 			extends Finder {}

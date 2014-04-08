@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class SettingDomain extends Command {
+	class SettingDomainSolve extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -11,7 +11,7 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$Page = $request->getProperty('Page');
+			$IdDomain = $request->getProperty('IdDomain');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
@@ -22,28 +22,24 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
-			$DomainAll = $mDomain->findAll();			
-						
-			$Title = "LĨNH VỰC";
-			$Navigation = array(				
-				array("THIẾT LẬP", "/setting")
-			);
-			if (!isset($Page)) $Page=1;
-			$Config 	= $mConfig->findByName("ROW_PER_PAGE");
+			$DomainAll 	= $mDomain->findAll();
+			$Domain 	= $mDomain->find($IdDomain);
+			
+			$Title = mb_strtoupper($Domain->getName(), 'UTF8');
+			
+			$Navigation = array(
+					array("THIẾT LẬP", 	"/setting"),
+					array("LĨNH VỰC", 	"/setting/domain")
+			);			
 			$ConfigName = $mConfig->findByName("NAME");
-			
-			$DomainAll1 = $mDomain->findByPage(array($Page, $Config->getValue() ));
-			$PN = new \MVC\Domain\PageNavigation($DomainAll->count(), $Config->getValue(), "/setting/domain" );
-			
+									
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
-			$request->setProperty('Title'		, $Title);
-			$request->setProperty('ActiveAdmin'	, 'Domain');
-			$request->setProperty('Page'		, $Page);
-			$request->setObject('PN'			, $PN);
+			$request->setProperty('Title'		, $Title);						
 			$request->setObject('Navigation'	, $Navigation);
-			$request->setObject('DomainAll1'	, $DomainAll1);
+			$request->setObject('Domain'		, $Domain);
+			$request->setObject('DomainAll'		, $DomainAll);
 			$request->setObject('ConfigName'	, $ConfigName);
 															
 			return self::statuses('CMD_DEFAULT');

@@ -1,47 +1,53 @@
 <?php
 namespace MVC\Mapper;
 require_once( "mvc/base/Mapper.php" );
-class Domain extends Mapper implements \MVC\Domain\DomainFinder {
+class Solve extends Mapper implements \MVC\Domain\SolveFinder {
 
     function __construct() {
         parent::__construct();
 		
-		$tblDomain = "tbl_domain";
+		$tblSolve = "tbl_solve";
 						
-		$selectAllStmt = sprintf("select * from %s", $tblDomain);
-		$selectStmt = sprintf("select * from %s where id=?", $tblDomain);
-		$updateStmt = sprintf("update %s set name=? where id=?", $tblDomain);
-		$insertStmt = sprintf("insert into %s ( name) values(?)", $tblDomain);
-		$deleteStmt = sprintf("delete from %s where id=?", $tblDomain);
-		$findByPageStmt = sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblDomain);
+		$selectAllStmt 	= sprintf("select * from %s", $tblSolve);
+		$selectStmt 	= sprintf("select * from %s where id=?", $tblSolve);
+		$updateStmt 	= sprintf("update %s set id_domain=?, name=?, note=? where id=?", $tblSolve);
+		$insertStmt 	= sprintf("insert into %s ( id_domain, name, note) values(?,?,?)", $tblSolve);
+		$deleteStmt 	= sprintf("delete from %s where id=?", $tblSolve);		
+		$findByStmt 	= sprintf("SELECT * FROM  %s WHERE id_domain=?", $tblSolve);
+		$findByPageStmt = sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblSolve);
 		
         $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
         $this->selectStmt = self::$PDO->prepare($selectStmt);
         $this->updateStmt = self::$PDO->prepare($updateStmt);
         $this->insertStmt = self::$PDO->prepare($insertStmt);
 		$this->deleteStmt = self::$PDO->prepare($deleteStmt);
+		$this->findByStmt = self::$PDO->prepare($findByStmt);
 		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);
 									
     } 
     function getCollection( array $raw ) {
-        return new DomainCollection( $raw, $this );
+        return new SolveCollection( $raw, $this );
     }
 
     protected function doCreateObject( array $array ) {		
-        $obj = new \MVC\Domain\Domain( 
+        $obj = new \MVC\Domain\Solve( 
 			$array['id'],
-			$array['name']
+			$array['id_domain'],
+			$array['name'],
+			$array['note']
 		);
         return $obj;
     }
 	
     protected function targetClass() {        
-		return "Domain";
+		return "Solve";
     }
 
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array( 
-			$object->getName()
+			$object->getIdDomain(),
+			$object->getName(),
+			$object->getNote()
 		); 
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
@@ -50,7 +56,9 @@ class Domain extends Mapper implements \MVC\Domain\DomainFinder {
     
     protected function doUpdate( \MVC\Domain\Object $object ) {
         $values = array( 
+			$object->getIdDomain(),
 			$object->getName(),
+			$object->getNote(),
 			$object->getId()
 		);		
         $this->updateStmt->execute( $values );
@@ -63,11 +71,16 @@ class Domain extends Mapper implements \MVC\Domain\DomainFinder {
     function selectStmt() {return $this->selectStmt;}	
     function selectAllStmt() {return $this->selectAllStmt;}
 	
+	function findBy($values ){
+        $this->findByStmt->execute( $values );
+        return new SolveCollection( $this->findByStmt->fetchAll(), $this );
+    }
+	
 	function findByPage( $values ) {
 		$this->findByPageStmt->bindValue(':start', ((int)($values[0])-1)*(int)($values[1]), \PDO::PARAM_INT);
 		$this->findByPageStmt->bindValue(':max', (int)($values[1]), \PDO::PARAM_INT);
 		$this->findByPageStmt->execute();
-        return new DomainCollection( $this->findByPageStmt->fetchAll(), $this );
+        return new SolveCollection( $this->findByPageStmt->fetchAll(), $this );
     }	
 }
 ?>

@@ -27,8 +27,8 @@
 									<tr>
 										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
 										<th class="left">TÊN</th>
-										<th width="80">SỐ BÀN</th>
-										<th width="40"><i class="glyphicons-edit"/></th>
+										<th width="120">CÂU HỎI</th>
+										<th width="120">GIẢI PHÁP</th>
 										<th width="40"><i class="glyphicons-bin"/></th>
 									</tr>
 								</thead>
@@ -36,8 +36,8 @@
 									<tr tal:repeat="Domain DomainAll1">
 										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Domain/getId"/></td>
 										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="Domain" tal:attributes="data-id Domain/getId" tal:content="Domain/getName"/></td>
-										<td class="center"><a tal:attributes="href Domain/getURLTable"> <span tal:content="Domain/getTableAll/count"/> bàn</a></td>
-										<td class="center"><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Domain/getId"><i class="glyphicon glyphicon-pencil"/></a></td>
+										<td class="center"><a tal:attributes="href Domain/getURLSettingQuestion"> <span tal:content="string:0"/> câu hỏi</a></td>
+										<td class="center"><a tal:attributes="href Domain/getURLSettingSolve"> <span tal:content="string:0"/> giải pháp</a></td>
 										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Domain/getId"><i class="glyphicon glyphicon-remove"/></a></td>
 									</tr>
 								</tbody>																								
@@ -49,7 +49,7 @@
 					<div id="DialogIns" class="modal fade">
 						<div class="modal-dialog">
 							<div class="modal-content">
-								<div class="modal-header"><h3><i class="glyphicons-show_big_thumbnails modal-icon"/>THÊM MỚI KHU VỰC</h3></div>								
+								<div class="modal-header"><h3><i class="glyphicons-show_big_thumbnails modal-icon"/>THÊM MỚI LĨNH VỰC</h3></div>								
 								<form id="FormDomainInsert" action="#" class="form-horizontal" novalidate="novalidate">
 									<div class="modal-body">
 										<div class="form-group">
@@ -73,7 +73,7 @@
 					<div id="DialogEdit" class="modal fade">
 						<div class="modal-dialog">
 							<div class="modal-content">
-								<div class="modal-header"><h3><i class="glyphicons-show_big_thumbnails modal-icon"/>CẬP NHẬT KHU VỰC</h3></div>
+								<div class="modal-header"><h3><i class="glyphicons-show_big_thumbnails modal-icon"/>CẬP NHẬT LĨNH VỰC</h3></div>
 								<form id="FormDomainUpdate" action="#" class="form-horizontal" novalidate="novalidate">
 									<div class="modal-body">
 										<label class="control-label">Tên</label>

@@ -52,8 +52,7 @@
 		<script src="/mvc/templates/theme/cms/js/jquery.jpanelmenu.min.js"></script>
 		<script src="/mvc/templates/theme/cms/js/jquery.icheck.min.js"></script>
 		<script src="/mvc/templates/theme/cms/js/select2.min.js"></script>
-		<script src="/mvc/templates/theme/cms/js/jquery.dataTables.min.js"></script>
-		<script src="/mvc/templates/theme/cms/js/unicorn.tables.js"></script>
+		<script src="/mvc/templates/theme/cms/js/jquery.dataTables.min.js"></script>		
 		<script src="/mvc/templates/theme/cms/js/jquery.gritter.min.js"></script>
 		<script src="/mvc/templates/theme/cms/js/bootstrap-datepicker.js"></script>
 		<script src="/mvc/templates/theme/cms/js/bootstrap-datepicker.vi.js"></script>
@@ -63,11 +62,7 @@
 		<script src="/mvc/templates/theme/cms/js/jquery.jplayer.min.js"/>
 		<script src="/mvc/templates/theme/cms/js/jquery.validate.js"/>
 				
-		<script src="/mvc/templates/theme/cms/js/excanvas.min.js"/>
-		<script src="/mvc/templates/theme/cms/js/jquery.flot.js"/>
-        <script src="/mvc/templates/theme/cms/js/jquery.flot.pie.min.js"/>
-        <script src="/mvc/templates/theme/cms/js/jquery.flot.resize.min.js"/>
-		<script src="/mvc/templates/theme/cms/js/jquery.flot.categories.js"/>
+		<script src="/mvc/templates/theme/cms/js/excanvas.min.js"/>		
 	</span>
 	
 	<!-- ======================================================================== -->
@@ -107,7 +102,7 @@
 	<!-- CONTENT HEADER															  -->
 	<!-- ======================================================================== -->	
 	<div metal:define-macro="ContentHeader" id="content-header">
-		<h1>HỆ THỐNG QUẢN LÝ <span tal:content="ConfigName/getValue|'HỎI ĐÁP'"/></h1>
+		<h1>HỆ THỐNG <span tal:content="ConfigName/getValue|'HỎI ĐÁP'"/></h1>
 	</div>
 	
 	<!-- ======================================================================== -->
@@ -140,12 +135,12 @@
 		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">		
 			<li tal:attributes="class php:ActiveAdmin=='Category'?'active':'disable'">
 				<a tal:attributes="href '/setting/category'" >
-					<i class="glyphicons-fast_food" />DANH MỤC MÓN
+					<i class="glyphicons-fast_food" />DANH MỤC
 				</a>
 			</li>			
 			<li tal:attributes="class php:ActiveAdmin=='Domain'?'active':'disable'">
 				<a tal:attributes="href '/setting/domain'">
-					<i class="glyphicons-show_big_thumbnails" />KHU VỰC
+					<i class="glyphicons-show_big_thumbnails" />LĨNH VỰC
 				</a>
 			</li>							
 			<li tal:attributes="class php:ActiveAdmin=='User'?'active':'disable'">
