@@ -2,66 +2,62 @@
 namespace MVC\Domain;
 require_once( "mvc/base/domain/DomainObject.php" );
 
-class Domain extends Object{
+class Clause extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE PROPERTY
 	//-------------------------------------------------------------------------------
 	private $Id;
-	private $Name;
+	private $IdSolve;
+	private $IdQuestion;
+	private $State;
 	
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-	function __construct($Id=null, $Name=null) {
-		$this->Id = $Id;
-		$this->Name = $Name;
+	function __construct($Id=null, $IdSolve=null, $IdQuestion=null, $State=null) {
+		$this->Id 		= $Id;
+		$this->IdSolve = $IdSolve;
+		$this->IdQuestion 	= $IdQuestion;
+		$this->State 	= $State;
 		parent::__construct( $Id );
 	}
 		
 	function getId() {return $this->Id;}
-		
-	function setName($Name) {$this->Name = $Name;$this->markDirty();}
-	function getName() {return $this->Name;}
+	
+	function setIdSolve($IdSolve) 	{$this->IdSolve = $IdSolve; $this->markDirty();}
+	function getIdSolve() 			{return $this->IdSolve;}
+	
+	function setIdQuestion($IdQuestion) {$this->IdQuestion = $IdQuestion;$this->markDirty();}
+	function getIdQuestion() 		{return $this->IdQuestion;}
+	
+	function setState($State) 		{$this->State = $State;$this->markDirty();}
+	function getState() 			{return $this->State;}
 	
 	function toJSON(){
 		$json = array(
 			'Id' 			=> $this->getId(),
-			'Name'			=> $this->getName()	
+			'IdSolve' 		=> $this->getIdSolve(),
+			'IdQuestion'	=> $this->getIdQuestion(),
+			'State'			=> $this->getState()
 		);
 		return json_encode($json);
 	}
 	
 	function setArray( $Data ){
-        $this->Id = $Data[0];	
-		$this->Name = $Data[1];
-    }
-	
+        $this->Id 			= $Data[0];	
+		$this->IdSolve 		= $Data[1];	
+		$this->IdQuestion 	= $Data[2];
+		$this->State 		= $Data[3];
+    }	
 	//-------------------------------------------------------------------------------
 	//GET LIST
 	//-------------------------------------------------------------------------------		
-	function getSolveAll(){
-		$mSolve = new \MVC\Mapper\Solve();
-		$SolveAll = $mSolve->findBy(array($this->getId()));
-		return $SolveAll;
-	}
 	
-	function getQuestionAll(){
-		$mQuestion 		= new \MVC\Mapper\Question();
-		$QuestionAll 	= $mQuestion->findBy(array($this->getId()));
-		return $QuestionAll;
-	}
-	
+			
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLSettingQuestion(){
-		return "/setting/domain/".$this->getId()."/question";
-	}
-	
-	function getURLSettingSolve(){
-		return "/setting/domain/".$this->getId()."/solve";
-	}
-			
+				
 	//-------------------------------------------------------------------------------
 	static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
 	static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}
