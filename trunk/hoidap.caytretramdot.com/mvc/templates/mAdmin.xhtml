@@ -123,53 +123,14 @@
 	<!-- MENU.APP															  	  -->
 	<!-- ======================================================================== -->
 	<div metal:define-macro="MenuApp" id="sidebar">
-		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">
-			<li tal:attributes="class php:ActiveAdmin=='Selling'?'active':'disable'">
-				<a tal:attributes="href '/selling'"><i class="glyphicons-drink" />BÁN HÀNG</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='Import'?'active':'disable'">
-				<a tal:attributes="href '/import'"><i class="glyphicons-truck" />NHẬP HÀNG</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='PayRoll'?'active':'disable'">
-				<a tal:attributes="href '/payroll'"><i class="glyphicons-table" />CHẤM CÔNG</a>
-			</li>			
-			<li tal:attributes="class php:ActiveAdmin=='Money'?'active':'disable'">
-				<a tal:attributes="href '/money'"><i class="glyphicons-transfer" />THU / CHI</a>
-			</li>
+		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">						
 			<li tal:attributes="class php:ActiveAdmin=='Report'?'active':'disable'">
 				<a tal:attributes="href '/report'"><i class="glyphicons-fax" />BÁO CÁO</a>
 			</li>
 			<li tal:attributes="class php:ActiveAdmin=='Setting'?'active':'disable'">
 				<a tal:attributes="href '/setting'"><i class="glyphicons-cogwheels" />THIẾT LẬP</a>
 			</li>
-		</ul>
-		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isSeller()">
-			<li tal:attributes="class php:ActiveAdmin=='Selling'?'active':'disable'">
-				<a tal:attributes="href '/selling'"><i class="glyphicons-drink" />BÁN HÀNG</a>
-			</li>			
-		</ul>
-		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isManager()">
-			<li tal:attributes="class php:ActiveAdmin=='Selling'?'active':'disable'">
-				<a tal:attributes="href '/selling'"><i class="glyphicons-drink" />BÁN HÀNG</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='Import'?'active':'disable'">
-				<a tal:attributes="href '/import'"><i class="glyphicons-truck" />NHẬP HÀNG</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='Money'?'active':'disable'">
-				<a tal:attributes="href '/money'"><i class="glyphicons-transfer" />THU / CHI</a>
-			</li>			
-			<li tal:attributes="class php:ActiveAdmin=='Setting'?'active':'disable'">
-				<a tal:attributes="href '/setting'"><i class="glyphicons-cogwheels" />THIẾT LẬP</a>
-			</li>
-		</ul>
-		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isViewer()">
-			<li tal:attributes="class php:ActiveAdmin=='Report'?'active':'disable'">
-				<a tal:attributes="href '/report'"><i class="glyphicons-fax" />BÁO CÁO</a>
-			</li>
-			<li>
-				<a tal:attributes="href '/change/pass/load'"><i class="glyphicons-keys" />ĐỔI MẬT KHẨU</a>
-			</li>
-		</ul>
+		</ul>						
 	</div>
 	
 	<!-- ======================================================================== -->
@@ -181,47 +142,17 @@
 				<a tal:attributes="href '/setting/category'" >
 					<i class="glyphicons-fast_food" />DANH MỤC MÓN
 				</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='Supplier'?'active':'disable'">
-				<a tal:attributes="href '/setting/supplier'" >
-					<i class="glyphicons-truck" />NHÀ CUNG CẤP
-				</a>
-			</li>
+			</li>			
 			<li tal:attributes="class php:ActiveAdmin=='Domain'?'active':'disable'">
 				<a tal:attributes="href '/setting/domain'">
 					<i class="glyphicons-show_big_thumbnails" />KHU VỰC
 				</a>
-			</li>				
-			<li tal:attributes="class php:ActiveAdmin=='Customer'?'active':'disable'">
-				<a tal:attributes="href '/setting/customer'">
-					<i class="glyphicons-group" />KHÁCH HÀNG 
-				</a>
-			</li>
+			</li>							
 			<li tal:attributes="class php:ActiveAdmin=='User'?'active':'disable'">
 				<a tal:attributes="href '/setting/user'">
 					<i class="glyphicons-group" />NGƯỜI DÙNG 
 				</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='Unit'?'active':'disable'">
-				<a tal:attributes="href '/setting/unit'">
-					<i class="glyphicons-tags" />ĐƠN VỊ TÍNH 
-				</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='Employee'?'active':'disable'">
-				<a tal:attributes="href '/setting/employee'">
-					<i class="glyphicons-group" />NHÂN VIÊN
-				</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='TermCollect'?'active':'disable'">
-				<a tal:attributes="href '/setting/termcollect'">
-					<i class="glyphicons-disk_save" />DANH MỤC THU
-				</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='TermPaid'?'active':'disable'">
-				<a tal:attributes="href '/setting/termpaid'">
-					<i class="glyphicons-disk_open" />DANH MỤC CHI
-				</a>
-			</li>
+			</li>						
 			<li tal:attributes="class php:ActiveAdmin=='Config'?'active':'disable'">
 				<a tal:attributes="href '/setting/config'">
 					<i class="glyphicons-cogwheel" />CẤU HÌNH
@@ -235,7 +166,7 @@
 	<!-- ======================================================================== -->
 	<div metal:define-macro="Footer" class="row">
 		<div id="footer" class="col-12" style="text-align:right; padding-right:20px;">
-			2009 - 2013 &copy; <a href="https://www.spn-soft.com">SPN Group</a>
+			2009 - 2014 &copy; <a href="https://www.spn-soft.com">SPN Group</a>
 		</div>
 	</div>
 	
