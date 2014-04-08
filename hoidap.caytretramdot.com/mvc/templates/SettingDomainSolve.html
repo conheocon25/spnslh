@@ -7,8 +7,16 @@
 	
 	<body>
 		<div metal:use-macro="mAdmin.xhtml/Header"/>
-		<div metal:use-macro="mAdmin.xhtml/StyleTools"/>
-		<div metal:use-macro="mAdmin.xhtml/MenuSetting"/>
+		<div metal:use-macro="mAdmin.xhtml/StyleTools"/>		
+		<div id="sidebar">
+			<ul style="display: block;">
+				<li tal:repeat="Domain1 DomainAll" tal:attributes="class php:Domain1->getId()==Domain->getId()?'active':'disable'">
+					<a tal:attributes="href Domain1/getURLSettingSolve">
+						<i class="glyphicons-show_big_thumbnails"/><span tal:content="Domain1/getName"/>							
+					</a>
+				</li>
+			</ul>			
+		</div>
 		<div id="content">
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
 			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
@@ -26,65 +34,91 @@
 								<thead>
 									<tr>
 										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
-										<th class="left">TÊN ĐƠN VỊ</th>										
-										<th width="40"><i class="glyphicons-edit"/></th>
+										<th class="left">TÊN</th>																				
 										<th width="40"><i class="glyphicons-bin"/></th>
 									</tr>
 								</thead>
-								<tbody>
-									<tr tal:repeat="Unit UnitAll1">
-										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Unit/getId"/></td>
-										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="Unit" tal:attributes="data-id Unit/getId" tal:content="Unit/getName"/></td>
-										<td class="center"><a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="Unit" tal:attributes="data-id Unit/getId"><i class="glyphicon glyphicon-pencil"/></a></td>
-										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Unit/getId"><i class="glyphicon glyphicon-remove"/></a></td>
-									</tr>
+								<tbody>									
+									<tr tal:repeat="Solve Domain/getSolveAll">
+										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Solve/getId"/></td>
+										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" 
+												tal:content="Solve/getName"
+												tal:attributes="id Solve/getId;
+																id_domain Solve/getIdDomain;
+																name Solve/getName;
+																note Solve/getNote;
+												"
+											/></td>
+										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Solve/getId"><i class="glyphicon glyphicon-remove"/></a></td>
+									</tr>									
 								</tbody>																								
 							</table>
 						</div>
-					</div>
-					<div metal:use-macro="mAdmin.xhtml/PageBar"/>
+					</div>					
 					<!-- INSERT DIALOG  -->
 					<div id="DialogIns" class="modal fade">
 						<div class="modal-dialog">
 							<div class="modal-content">
-								<div class="modal-header">
-									<h3><i class="glyphicons-tag modal-icon"/>THÊM MỚI ĐƠN VỊ</h3>
-								</div>								
-								<form id="FormUnitInsert" action="#" class="form-horizontal" novalidate="novalidate">
+								<div class="modal-header"><h3><i class="glyphicons-show_big_thumbnails modal-icon"/>THÊM MỚI GIẢI PHÁP</h3></div>
+								<form id="FormDomainInsert" action="#" class="form-horizontal" novalidate="novalidate">
 									<div class="modal-body">
+										<div class="form-group">
+											<label class="control-label">Id</label>
+											<div class="controls">
+												<input id="IdDomain1" name="IdDomain1" type="text" class="form-control input-small" tal:attributes="value Domain/getId" readonly="true"/>
+											</div>
+										</div>
 										<div class="form-group">
 											<label class="control-label">Tên</label>
 											<div class="controls">
 												<input id="Name1" name="Name1" type="text" class="form-control input-small"/>
 											</div>
 										</div>
+										<div class="form-group">
+											<label class="control-label">Ghi chú</label>
+											<div class="controls">
+												<input id="Note1" name="Note1" type="text" class="form-control input-small"/>
+											</div>
+										</div>
 									</div>
 									<div class="modal-footer">
-										<button class="btn btn-primary btn-small" id="URLInsButton"><i class="glyphicons-download_alt"/> Lưu</button>
+										<button id="URLInsButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Lưu</button>
 										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
 									</div>
 								</form>
 							</div>
 						</div>
-					</div>									
+					</div>
 					<!-- END INSERT DIALOG  -->
 					
 					<!-- UPDATE DIALOG  -->
 					<div id="DialogEdit" class="modal fade">
 						<div class="modal-dialog">
 							<div class="modal-content">
-								<div class="modal-header">
-									<h3><i class="glyphicons-tag modal-icon"/>CẬP NHẬT ĐƠN VỊ</h3>
-								</div>								
-								<form id="FormUnitUpdate" action="#" class="form-horizontal" novalidate="novalidate">
-									<div class="modal-body">
-										<label class="control-label">Tên</label>
-										<div class="controls">
-											<input id="Name2" name="Name2" type="text" class="form-control input-small"/>
+								<div class="modal-header"><h3><i class="glyphicons-show_big_thumbnails modal-icon"/>CẬP NHẬT GIẢI PHÁP</h3></div>
+								<form id="FormDomainUpdate" action="#" class="form-horizontal" novalidate="novalidate">
+									<div class="modal-body">										
+										<div class="form-group">
+											<label class="control-label">Id</label>
+											<div class="controls">
+												<input id="IdDomain2" name="IdDomain2" type="text" class="form-control input-small" readonly="true"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">Tên</label>
+											<div class="controls">
+												<input id="Name2" name="Name2" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">Ghi chú</label>
+											<div class="controls">
+												<input id="Note2" name="Note2" type="text" class="form-control input-small"/>
+											</div>
 										</div>
 									</div>									
 									<div class="modal-footer">
-										<button class="btn btn-primary btn-small" id="URLUpdButton"><i class="glyphicons-download_alt"/> Lưu</button>
+										<button  id="URLUpdButton" class="btn btn-primary btn-small" type="submit"><i class="glyphicons-download_alt"/> Lưu</button>
 										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
 									</div>
 								</form>
@@ -94,7 +128,6 @@
 					<!-- END UPDATE DIALOG  -->
 					<div metal:use-macro="mDialog.xhtml/DialogDel"/>
 					<div metal:use-macro="mDialog.xhtml/DialogDelSelected"/>
-					
 				</div>
 			</div>
 		</div>
@@ -105,7 +138,7 @@
 			$('#URLDelSelectedButton').click(function(){
 				var count = 0;
 				var Data = [];
-				var URL = "/object/del/Unit/0";
+				var URL = "/object/del/Solve/0";
 				
 				$(".CheckedDel").each(function( i, obj){
 					if ( $(this).is(':checked')==true ){
@@ -125,14 +158,14 @@
 			});
 			
 			//-----------------------------------------------------------------------------------
-			//Delete 1 UNIT			
+			//Delete 1 DOMAIN			
 			//-----------------------------------------------------------------------------------
 			$('.remove-item').click(function(){
 				$('#URLDelButton').attr('alt', $(this).attr('data-id'));
 			});
 			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
 			$('#URLDelButton').click(function(){			
-				var URL = "/object/del/Unit/" + $(this).attr('alt');
+				var URL = "/object/del/Solve/" + $(this).attr('alt');
 				$.ajax({
 					type: "POST",					
 					url: URL,
@@ -143,11 +176,11 @@
 			});
 		
 			//-----------------------------------------------------------------------------------
-			//Insert 1 UNIT			
-			$("#FormUnitInsert").validate({
+			//Insert 1 DOMAIN			
+			$("#FormDomainInsert").validate({
 				rules:{
 					Name1:{
-						minlength: 2,
+						minlength: 3,
 						required:true
 					}
 				},
@@ -163,9 +196,11 @@
 				submitHandler: function (form) {					
 					var Data = [];
 					Data[0] = 'null';
-					Data[1] = $('#Name1').val();
+					Data[1] = $('#IdDomain1').val();
+					Data[2] = $('#Name1').val();
+					Data[3] = $('#Note1').val();
 																			
-					var URL = "/object/ins/Unit";
+					var URL = "/object/ins/Solve";
 					$.ajax({
 						type: "POST",
 						data: {Data:Data},
@@ -185,23 +220,22 @@
 			});
 			
 			//-----------------------------------------------------------------------------------
-			//Load 1 UNIT
+			//Load 1 DOMAIN
 			//-----------------------------------------------------------------------------------
 			$('.update-item').click(function(){
 				//Load dữ liệu JSON về
-				var url = "/object/load/Unit/" + $(this).attr('data-id');
-				
-				//Load dữ liệu JSON lên FORM
-				$.getJSON(url, function(data){
-					$('#URLUpdButton').attr('alt', data.Id);
-					$('#Name2').attr('value', data.Name);
-				});
+				var url = "/object/load/Domain/" + $(this).attr('data-id');
+								
+				$('#URLUpdButton').attr('alt', 	$(this).attr('id'));
+				$('#IdDomain2').attr('value', 	$(this).attr('id_domain'));
+				$('#Name2').attr('value', 		$(this).attr('name'));
+				$('#Note2').attr('value', 		$(this).attr('note'));
 			});
 			
 			//-----------------------------------------------------------------------------------
-			//Update 1 UNIT
-			//-----------------------------------------------------------------------------------			
-			$("#FormUnitUpdate").validate({
+			//Update 1 DOMAIN
+			//-----------------------------------------------------------------------------------
+			$("#FormDomainUpdate").validate({
 				rules:{
 					Name2:{
 						minlength: 2,
@@ -220,9 +254,11 @@
 				submitHandler: function (form) {					
 					var Data = [];
 					Data[0] = $('#URLUpdButton').attr('alt');
-					Data[1] = $('#Name2').val();
+					Data[1] = $('#IdDomain2').val();
+					Data[2] = $('#Name2').val();
+					Data[3] = $('#Note2').val();
 																		
-					var URL = "/object/upd/Unit";
+					var URL = "/object/upd/Solve";
 					$.ajax({
 						type: "POST",
 						data: {Data:Data},
@@ -230,7 +266,7 @@
 						success: function(msg){
 							location.reload();
 						}
-					});
+					});		
 					return false;
 				}
 			});
