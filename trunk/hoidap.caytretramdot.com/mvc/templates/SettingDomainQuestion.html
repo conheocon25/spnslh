@@ -11,8 +11,8 @@
 		<div id="sidebar">
 			<ul style="display: block;">
 				<li tal:repeat="Domain1 DomainAll" tal:attributes="class php:Domain1->getId()==Domain->getId()?'active':'disable'">
-					<a tal:attributes="href Domain1/getURLSettingSolve">
-						<i class="glyphicons-show_big_thumbnails"/><span tal:content="Domain1/getName"/>							
+					<a tal:attributes="href Domain1/getURLSettingQuestion">
+						<i class="glyphicons-show_big_thumbnails"/><span tal:content="Domain1/getName"/>
 					</a>
 				</li>
 			</ul>			
@@ -24,36 +24,34 @@
 				<div class="col-12">
 					<a href="#DialogIns" data-toggle="modal" class="btn btn-primary btn-ins">
 						<i class="glyphicons-plus"/> Thêm mới
-					</a>					
+					</a>
+					<a href="#DialogDelSelected" data-toggle="modal" class="btn btn-primary btn-ins">
+						<i class="glyphicons-remove_2"/> Xóa chọn
+					</a>
 					<div class="widget-box">
 						<div class="widget-content nopadding">
 							<table class="table table-bordered table-striped table-hover with-check">								
 								<thead>
 									<tr>
 										<th width="40">#</th>
-										<th class="left">TÊN</th>
-										<th width="120" class="left">MỆNH ĐỀ</th>
+										<th class="left">TÊN</th>																				
 										<th width="40"><i class="glyphicons-bin"/></th>
 									</tr>
 								</thead>
 								<tbody>									
-									<tr tal:repeat="Solve Domain/getSolveAll">
-										<td class="center"><span tal:content="repeat/Solve/number"/></td>
+									<tr tal:repeat="Question Domain/getQuestionAll">
+										<td class="center">											
+											<span tal:content="repeat/Question/number"/>
+										</td>
 										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" 
-												tal:content="Solve/getName"
-												tal:attributes="id Solve/getId;
-																id_domain Solve/getIdDomain;
-																name Solve/getName;
-																note Solve/getNote;
+												tal:content="Question/getName"
+												tal:attributes="id Question/getId;
+																id_domain Question/getIdDomain;
+																name Question/getName;
+																note Question/getNote;
 												"
-											/>
-										</td>
-										<td>
-											<a href="#DialogEdit">
-												Xem ()
-											</a>	
-										</td>
-										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Solve/getId"><i class="glyphicon glyphicon-remove"/></a></td>
+											/></td>
+										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Question/getId"><i class="glyphicon glyphicon-remove"/></a></td>
 									</tr>									
 								</tbody>																								
 							</table>
@@ -63,7 +61,7 @@
 					<div id="DialogIns" class="modal fade">
 						<div class="modal-dialog">
 							<div class="modal-content">
-								<div class="modal-header"><h3><i class="glyphicons-show_big_thumbnails modal-icon"/>THÊM MỚI GIẢI PHÁP</h3></div>
+								<div class="modal-header"><h3><i class="glyphicons-show_big_thumbnails modal-icon"/>THÊM MỚI CÂU HỎI</h3></div>
 								<form id="FormDomainInsert" action="#" class="form-horizontal" novalidate="novalidate">
 									<div class="modal-body">
 										<div class="form-group">
@@ -99,7 +97,7 @@
 					<div id="DialogEdit" class="modal fade">
 						<div class="modal-dialog">
 							<div class="modal-content">
-								<div class="modal-header"><h3><i class="glyphicons-show_big_thumbnails modal-icon"/>CẬP NHẬT GIẢI PHÁP</h3></div>
+								<div class="modal-header"><h3><i class="glyphicons-show_big_thumbnails modal-icon"/>CẬP NHẬT CÂU HỎI</h3></div>
 								<form id="FormDomainUpdate" action="#" class="form-horizontal" novalidate="novalidate">
 									<div class="modal-body">										
 										<div class="form-group">
@@ -142,7 +140,7 @@
 			$('#URLDelSelectedButton').click(function(){
 				var count = 0;
 				var Data = [];
-				var URL = "/object/del/Solve/0";
+				var URL = "/object/del/Question/0";
 				
 				$(".CheckedDel").each(function( i, obj){
 					if ( $(this).is(':checked')==true ){
@@ -169,7 +167,7 @@
 			});
 			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
 			$('#URLDelButton').click(function(){			
-				var URL = "/object/del/Solve/" + $(this).attr('alt');
+				var URL = "/object/del/Question/" + $(this).attr('alt');
 				$.ajax({
 					type: "POST",					
 					url: URL,
@@ -204,7 +202,7 @@
 					Data[2] = $('#Name1').val();
 					Data[3] = $('#Note1').val();
 																			
-					var URL = "/object/ins/Solve";
+					var URL = "/object/ins/Question";
 					$.ajax({
 						type: "POST",
 						data: {Data:Data},
@@ -262,7 +260,7 @@
 					Data[2] = $('#Name2').val();
 					Data[3] = $('#Note2').val();
 																		
-					var URL = "/object/upd/Solve";
+					var URL = "/object/upd/Question";
 					$.ajax({
 						type: "POST",
 						data: {Data:Data},
