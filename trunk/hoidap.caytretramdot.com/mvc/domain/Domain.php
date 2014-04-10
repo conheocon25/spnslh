@@ -54,6 +54,17 @@ class Domain extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
+	function getURLRecommend()		{return "/tu-van/".$this->getId();}	
+	function getURLRecommendExe()	{return "/tu-van/".$this->getId()."/bat-dau";}	
+	function getURLRecommendResult(){return "/tu-van/".$this->getId()."/ket-qua";}
+	function getURLRecommendNext()	{return "/tu-van/".$this->getId()."/toi";}	
+	function getURLRecommendBack()	{return "/tu-van/".$this->getId()."/lui";}
+	function getURLRecommendStop()	{return "/tu-van/".$this->getId()."/huy";}
+	function getURLRecommendTry()	{return "/tu-van/".$this->getId()."/thu-lai";}
+	function getURLRecommendTrace()	{return "/tu-van/".$this->getId()."/theo-vet";}
+	function getURLRecommendLike()	{return "/tu-van/".$this->getId()."/thich";}
+	function getURLRecommendFeed()	{return "/tu-van/".$this->getId()."/phan-hoi";}
+	
 	function getURLSettingQuestion(){
 		return "/setting/domain/".$this->getId()."/question";
 	}

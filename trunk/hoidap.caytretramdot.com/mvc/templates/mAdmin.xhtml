@@ -67,7 +67,7 @@
 	<!-- ======================================================================== -->
 	<div metal:define-macro="Header">
 		<div id="header">
-			<h1><a>Restaurant Management App</a></h1>
+			<h1><a>Question & Answer Auto App</a></h1>
 			<a id="menu-trigger" href="#"><i class="glyphicon glyphicon-align-justify"/></a>	
 		</div>
 		<div id="user-nav">			
@@ -115,7 +115,10 @@
 	<!-- MENU.APP															  	  -->
 	<!-- ======================================================================== -->
 	<div metal:define-macro="MenuApp" id="sidebar">
-		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">						
+		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">
+			<li tal:attributes="class php:ActiveAdmin=='Recommend'?'active':'disable'">
+				<a tal:attributes="href '/tu-van'"><i class="glyphicons-fax" />TƯ VẤN</a>
+			</li>
 			<li tal:attributes="class php:ActiveAdmin=='Report'?'active':'disable'">
 				<a tal:attributes="href '/report'"><i class="glyphicons-fax" />BÁO CÁO</a>
 			</li>

@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class Home extends Command {
+	class RecommendStop extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -11,6 +11,7 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
+			$IdDomain = $request->getProperty('IdDomain');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
@@ -19,16 +20,14 @@
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------			
-			$Title = "HỆ THỐNG TƯ VẤN HỎI ĐÁP TỰ ĐỘNG";
-			$DomainAll = $mDomain->findAll();
-									
+			//-------------------------------------------------------------									
+			$Domain 	= $mDomain->find($IdDomain);
+						
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------			
-			$request->setProperty("Title", $Title);
-			$request->setProperty("URLHeader", '/signin/load');
-			$request->setObject('DomainAll', $DomainAll);
+			//-------------------------------------------------------------									
+			$request->setProperty('ActiveItem', 'Trace');
+			$request->setObject('Domain', 		$Domain);
 			
 			return self::statuses('CMD_DEFAULT');
 		}

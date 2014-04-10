@@ -27,12 +27,17 @@
 						
 		<!-- ============================================================================== -->
 		<!-- GLOBAL			 																-->
-		<!-- ============================================================================== -->											
-		<command name="ChangePassLoad"><view>ChangePassLoad</view></command>
-		<command name="ChangePassExe">
-			<view>ChangePassExe</view>
-			<status value="CMD_OK"><forward>SignoutExe</forward></status>
-		</command>
+		<!-- ============================================================================== -->														
+		<command name="Recommend">				<view>Recommend</view>				</command>
+		<command name="RecommendExe">			<view>RecommendExe</view>			</command>
+		<command name="RecommendNext">			<view>RecommendNext</view>			</command>
+		<command name="RecommendBack">			<view>RecommendBack</view>			</command>
+		<command name="RecommendTrace">			<view>RecommendTrace</view>			</command>
+		<command name="RecommendResult">		<view>RecommendResult</view>		</command>
+		<command name="RecommendTry">			<view>RecommendTry</view>			</command>
+		<command name="RecommendStop">			<view>RecommendStop</view>			</command>
+		<command name="RecommendLike">			<view>RecommendLike</view>			</command>
+		<command name="RecommendFeed">			<view>RecommendFeed</view>			</command>
 		
 		<!-- ============================================================================== -->
 		<!-- REPORT.DETAIL			 														-->
