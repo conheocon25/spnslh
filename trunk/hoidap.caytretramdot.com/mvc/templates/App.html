@@ -1,14 +1,8 @@
 <!DOCTYPE html>
 <html style="overflow-y:hidden;" lang="en">
 	<head>
-		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>				
-		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/icheck/flat/blue.css"/>		
-		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/bootstrap.min.css"/>
-		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/bootstrap-glyphicons.css"/>
-		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/glyphicons-regular.css"/>
-		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/unicorn.main.css"/>
-		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/custom.css"/>
-		<link rel="stylesheet" tal:attributes="href php:'/mvc/templates/theme/cms/css/unicorn.' . @\MVC\Base\SessionRegistry::instance()->getCurrentTheme() . '.css'" class="skin-color"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
 	</head>
 	
 	<body data-menu-position="closed">
@@ -18,10 +12,61 @@
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
 			<div metal:use-macro="mAdmin.xhtml/LocationBar"/>
 			<div class="container-fluid">
-				
+				<div class="widget-box">
+					<div class="widget-title">
+						<span class="icon">
+							<i class="glyphicon glyphicon-pencil"></i>
+						</span>
+						<h5>Form wizard with validation</h5>
+					</div>
+					<div class="widget-content nopadding">
+						<form id="form-wizard" class="form-horizontal" method="post">
+							<div id="form-wizard-1" class="step">
+								<div class="form-group">
+									<label class="control-label">Username</label>
+									<div class="controls">
+										<input class="form-control input-small" id="username" type="text" name="username" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label">Password</label>
+									<div class="controls">
+										<input class="form-control input-small" id="password" type="password" name="password" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label">Confirm Password</label>
+									<div class="controls">
+										<input class="form-control input-small" id="password2" type="password" name="password2" />
+									</div>
+								</div>
+							</div>
+							<div id="form-wizard-2" class="step">
+								<div class="form-group">
+									<label class="control-label">Email</label>
+									<div class="controls">
+										<input class="form-control input-small" id="email" type="text" name="email" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label">EULA Acceptation</label>
+									<div class="controls">
+										<input id="eula" type="checkbox" name="eula" />
+									</div>
+								</div>
+							</div>
+							<div class="form-actions">
+									<input id="back" class="btn btn-primary" type="reset" value="Back" />
+									<input id="next" class="btn btn-primary" type="submit" value="Next" />
+									<div id="status"></div>
+							</div>
+							<div id="submitted"></div>
+						</form>
+					</div>
+				</div>
 			</div>
 		</div>
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>		
-		
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
 	</body>
 </html>
