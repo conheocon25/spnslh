@@ -8,15 +8,7 @@
 	<body>
 		<div metal:use-macro="mAdmin.xhtml/Header"/>
 		<div metal:use-macro="mAdmin.xhtml/StyleTools"/>		
-		<div id="sidebar">
-			<ul style="display: block;">
-				<li tal:repeat="Domain1 DomainAll" tal:attributes="class php:Domain1->getId()==Domain->getId()?'active':'disable'">
-					<a tal:attributes="href Domain1/getURLSettingSolve">
-						<i class="glyphicons-show_big_thumbnails"/><span tal:content="Domain1/getName"/>							
-					</a>
-				</li>
-			</ul>			
-		</div>
+		
 		<div id="content">
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
 			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
@@ -27,31 +19,28 @@
 					</a>					
 					<div class="widget-box">
 						<div class="widget-content nopadding">
-							<table class="table table-bordered table-striped table-hover with-check">								
+							<table class="table table-bordered table-striped table-hover with-check">
 								<thead>
 									<tr>
 										<th width="40">#</th>
 										<th class="left">TÊN</th>
-										<th width="120" class="left">MỆNH ĐỀ</th>
+										<th width="120" class="left">TRẠNG THÁI</th>
 										<th width="40"><i class="glyphicons-bin"/></th>
 									</tr>
 								</thead>
 								<tbody>									
-									<tr tal:repeat="Solve Domain/getSolveAll">
-										<td class="center"><span tal:content="repeat/Solve/number"/></td>
+									<tr tal:repeat="Clause Solve/getClauseAll">
+										<td class="center"><span tal:content="repeat/Clause/number"/></td>
 										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" 
-												tal:content="Solve/getName"
-												tal:attributes="id Solve/getId;
-																id_domain Solve/getIdDomain;
-																name Solve/getName;
-																note Solve/getNote;
+												tal:content="Clause/getQuestion/getName"
+												tal:attributes="id Clause/getId;
+																id_question Clause/getIdQuestion;
+																state Clause/getState;
 												"
 											/>
 										</td>
 										<td>
-											<a tal:attributes="href Solve/getURLSettingClause">
-												Xem (<span tal:content="Solve/getClauseAll/count"/>)
-											</a>
+											<span tal:content="Clause/getStatePrint" />
 										</td>
 										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Solve/getId"><i class="glyphicon glyphicon-remove"/></a></td>
 									</tr>									
@@ -63,26 +52,33 @@
 					<div id="DialogIns" class="modal fade">
 						<div class="modal-dialog">
 							<div class="modal-content">
-								<div class="modal-header"><h3><i class="glyphicons-show_big_thumbnails modal-icon"/>THÊM MỚI GIẢI PHÁP</h3></div>
+								<div class="modal-header"><h3><i class="glyphicons-show_big_thumbnails modal-icon"/>THÊM MỚI MỆNH ĐỀ</h3></div>
 								<form id="FormDomainInsert" action="#" class="form-horizontal" novalidate="novalidate">
 									<div class="modal-body">
 										<div class="form-group">
 											<label class="control-label">Id</label>
 											<div class="controls">
-												<input id="IdDomain1" name="IdDomain1" type="text" class="form-control input-small" tal:attributes="value Domain/getId" readonly="true"/>
+												<input id="IdSolve1" name="IdSolve1" type="text" class="form-control input-small" tal:attributes="value Solve/getId" readonly="true"/>
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="control-label">Tên</label>
+											<label class="control-label">Câu hỏi</label>
 											<div class="controls">
-												<input id="Name1" name="Name1" type="text" class="form-control input-small"/>
+												<select name="IdQuestion1" id="IdQuestion1" style="width:80%;">
+													<option tal:repeat="Question Domain/getQuestionAll" tal:attributes="value Question/getId">
+														<span tal:content="Question/getName" />
+													</option>
+												</select>
 											</div>
-										</div>
+										</div>										
 										<div class="form-group">
-											<label class="control-label">Ghi chú</label>
+											<label class="control-label">Trạng thái</label>											
 											<div class="controls">
-												<input id="Note1" name="Note1" type="text" class="form-control input-small"/>
-											</div>
+												<select name="State1" id="State1" style="width:80%;">
+													<option value="1">Khẳng định</option>
+													<option value="0">Phủ định</option>
+												</select>
+											</div>											
 										</div>
 									</div>
 									<div class="modal-footer">
@@ -99,28 +95,35 @@
 					<div id="DialogEdit" class="modal fade">
 						<div class="modal-dialog">
 							<div class="modal-content">
-								<div class="modal-header"><h3><i class="glyphicons-show_big_thumbnails modal-icon"/>CẬP NHẬT GIẢI PHÁP</h3></div>
+								<div class="modal-header"><h3><i class="glyphicons-show_big_thumbnails modal-icon"/>CẬP NHẬT MỆNH ĐỀ</h3></div>
 								<form id="FormDomainUpdate" action="#" class="form-horizontal" novalidate="novalidate">
 									<div class="modal-body">										
 										<div class="form-group">
 											<label class="control-label">Id</label>
 											<div class="controls">
-												<input id="IdDomain2" name="IdDomain2" type="text" class="form-control input-small" readonly="true"/>
+												<input id="IdSolve2" name="IdSolve2" type="text" class="form-control input-small" tal:attributes="value Solve/getId" readonly="true"/>
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="control-label">Tên</label>
+											<label class="control-label">Câu hỏi</label>
 											<div class="controls">
-												<input id="Name2" name="Name2" type="text" class="form-control input-small"/>
+												<select id="IdQuestion2" name="IdQuestion2" style="width:80%;">
+													<option tal:repeat="Question Domain/getQuestionAll" tal:attributes="value Question/getId">
+														<span tal:content="Question/getName" />
+													</option>
+												</select>
 											</div>
-										</div>
+										</div>										
 										<div class="form-group">
-											<label class="control-label">Ghi chú</label>
+											<label class="control-label">Trạng thái</label>
 											<div class="controls">
-												<input id="Note2" name="Note2" type="text" class="form-control input-small"/>
+												<select name="State2" id="State2" style="width:80%;">
+													<option value="1">Khẳng định</option>
+													<option value="0">Phủ định</option>
+												</select>
 											</div>
 										</div>
-									</div>									
+									</div>
 									<div class="modal-footer">
 										<button  id="URLUpdButton" class="btn btn-primary btn-small" type="submit"><i class="glyphicons-download_alt"/> Lưu</button>
 										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
@@ -138,29 +141,7 @@
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>
 		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
 		<script type="text/javascript">
-		/*<![CDATA[*/
-			$('#URLDelSelectedButton').click(function(){
-				var count = 0;
-				var Data = [];
-				var URL = "/object/del/Solve/0";
-				
-				$(".CheckedDel").each(function( i, obj){
-					if ( $(this).is(':checked')==true ){
-						count += 1;
-						Data[count] = $(this).attr('data-id');
-					}
-				});
-				
-				$.ajax({
-					type: "POST",
-					data: {ListId:Data},
-					url: URL,
-					success: function(msg){
-						location.reload();
-					}
-				});
-			});
-			
+		/*<![CDATA[*/						
 			//-----------------------------------------------------------------------------------
 			//Delete 1 DOMAIN			
 			//-----------------------------------------------------------------------------------
@@ -169,7 +150,7 @@
 			});
 			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
 			$('#URLDelButton').click(function(){			
-				var URL = "/object/del/Solve/" + $(this).attr('alt');
+				var URL = "/object/del/Clause/" + $(this).attr('alt');
 				$.ajax({
 					type: "POST",					
 					url: URL,
@@ -200,11 +181,11 @@
 				submitHandler: function (form) {					
 					var Data = [];
 					Data[0] = 'null';
-					Data[1] = $('#IdDomain1').val();
-					Data[2] = $('#Name1').val();
-					Data[3] = $('#Note1').val();
+					Data[1] = $('#IdSolve1').val();
+					Data[2] = $('#IdQuestion1').val();
+					Data[3] = $('#State1').val();
 																			
-					var URL = "/object/ins/Solve";
+					var URL = "/object/ins/Clause";
 					$.ajax({
 						type: "POST",
 						data: {Data:Data},
@@ -224,20 +205,18 @@
 			});
 			
 			//-----------------------------------------------------------------------------------
-			//Load 1 DOMAIN
+			//Load 1 CLAUSE
 			//-----------------------------------------------------------------------------------
-			$('.update-item').click(function(){
-				//Load dữ liệu JSON về
-				var url = "/object/load/Domain/" + $(this).attr('data-id');
-								
+			$('.update-item').click(function(){				
+				//$(this).attr('id_question')
 				$('#URLUpdButton').attr('alt', 	$(this).attr('id'));
-				$('#IdDomain2').attr('value', 	$(this).attr('id_domain'));
-				$('#Name2').attr('value', 		$(this).attr('name'));
-				$('#Note2').attr('value', 		$(this).attr('note'));
+				$('#IdQuestion2').select2('val'	, $(this).attr('id_question'));
+				//$("div.IdQuestion2 select").val("2");
+
 			});
 			
 			//-----------------------------------------------------------------------------------
-			//Update 1 DOMAIN
+			//Update 1 CLAUSE
 			//-----------------------------------------------------------------------------------
 			$("#FormDomainUpdate").validate({
 				rules:{

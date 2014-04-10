@@ -35,35 +35,11 @@ RewriteRule ^notify/course$ 										?cmd=NotifyCourse [L]
 #---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^app$ 												?cmd=App [L]
 
-RewriteRule ^selling$ 											?cmd=Selling [L]
-RewriteRule ^selling/load/domain/([0-9]+)$ 						?cmd=SellingDomainLoad&IdDomain=$1 [L]
-RewriteRule ^selling/load/table/([0-9]+)$ 						?cmd=SellingTableLoad&IdTable=$1 [L]
-RewriteRule ^selling/call/table/([0-9]+)/([0-9]+)/plus$ 		?cmd=SellingTableCallExe&IdTable=$1&IdCourse=$2&Delta=1 [L]
-RewriteRule ^selling/call/table/([0-9]+)/([0-9]+)/minus$ 		?cmd=SellingTableCallExe&IdTable=$1&IdCourse=$2&Delta=-1 [L]
-RewriteRule ^selling/search/course$ 							?cmd=SellingSearchCourse [L]
-RewriteRule ^selling/log/course$ 								?cmd=SellingLogCourse [L]
-RewriteRule ^selling/log/course/print/prepare$ 					?cmd=SellingLogCoursePreparePrint [L]
-
-RewriteRule ^selling/([0-9]+)/([0-9]+)/move/exe$				?cmd=SellingTableMoveExe&IdDomain=$1&IdTable=$2 [L]
-RewriteRule ^selling/([0-9]+)/([0-9]+)/merge/exe$ 				?cmd=SellingTableMergeExe&IdDomain=$1&IdTable=$2 [L]
-RewriteRule ^selling/([0-9]+)/([0-9]+)/([0-9]+)/print.pdf$		?cmd=SellingTablePrint&IdDomain=$1&IdTable=$2&IdSession=$3 [L]
-RewriteRule ^selling/([0-9]+)/([0-9]+)/([0-9]+)/print1.pdf$		?cmd=SellingTablePrint1&IdDomain=$1&IdTable=$2&IdSession=$3 [L]
-RewriteRule ^selling/([0-9]+)/([0-9]+)/([0-9]+)/checkout/exe$	?cmd=SellingTableCheckoutExe&IdDomain=$1&IdTable=$2&IdSession=$3 [L]
-
-RewriteRule ^calllog$ 											?cmd=CallLog [L]
-RewriteRule ^calllog/loading$ 									?cmd=CallLogLoading [L]
-RewriteRule ^calllog/loading/([0-9]+)$ 							?cmd=CallLogLoading&IdCL=$1 [L]
-
-RewriteRule ^selling/end/case/one$ 								?cmd=SellingEndCase&IdCase=1 [L]
-RewriteRule ^selling/end/case/two$ 								?cmd=SellingEndCase&IdCase=2 [L]
-
 #---------------------------------------------------------------------------------------------------------------------------
 # REPORT
 #---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^report$ 										?cmd=Report [L]
-RewriteRule ^report/info$ 									?cmd=ReportInfo [L]
 RewriteRule ^report/([0-9]+)$ 								?cmd=ReportDetail&IdTrack=$1 [L]
-RewriteRule ^report/([0-9]+)/course$ 						?cmd=ReportCourse&IdTrack=$1&IdTD=$2 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # SETTING
@@ -82,7 +58,10 @@ RewriteRule ^setting/category/([a-z0-9]+)/([a-z0-9]+)/recipe$ 		?cmd=SettingCate
 
 RewriteRule ^setting/domain$ 										?cmd=SettingDomain [L]
 RewriteRule ^setting/domain/page/([0-9]+)$ 							?cmd=SettingDomain&Page=$1 [L]
+RewriteRule ^setting/domain/([0-9]+)/prepare$ 						?cmd=SettingDomainPrepare&IdDomain=$1 [L]
 RewriteRule ^setting/domain/([0-9]+)/solve$ 						?cmd=SettingDomainSolve&IdDomain=$1 [L]
+RewriteRule ^setting/domain/([0-9]+)/solve/([0-9]+)$ 				?cmd=SettingSolveClause&IdDomain=$1&IdSolve=$2 [L]
+
 RewriteRule ^setting/domain/([0-9]+)/question$ 						?cmd=SettingDomainQuestion&IdDomain=$1 [L]
 RewriteRule ^setting/domain/([0-9]+)/question/([0-9]+)$ 			?cmd=SettingDomainQuestionPath&IdDomain=$1&IdQuestion=$2 [L]
 

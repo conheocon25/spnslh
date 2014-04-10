@@ -61,7 +61,11 @@ class Domain extends Object{
 	function getURLSettingSolve(){
 		return "/setting/domain/".$this->getId()."/solve";
 	}
-			
+	
+	function getURLSettingPrepare(){
+		return "/setting/domain/".$this->getId()."/prepare";
+	}
+	
 	//-------------------------------------------------------------------------------
 	static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
 	static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}
