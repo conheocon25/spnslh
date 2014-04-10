@@ -26,12 +26,27 @@ class Clause extends Object{
 	
 	function setIdSolve($IdSolve) 	{$this->IdSolve = $IdSolve; $this->markDirty();}
 	function getIdSolve() 			{return $this->IdSolve;}
+	function getSolve() 			{
+		$mSolve = new \MVC\Mapper\Solve();
+		$Solve = $mSolve->find($this->getIdSolve());
+		return $Solve;
+	}
 	
 	function setIdQuestion($IdQuestion) {$this->IdQuestion = $IdQuestion;$this->markDirty();}
 	function getIdQuestion() 		{return $this->IdQuestion;}
+	function getQuestion() 			{
+		$mQuestion 	= new \MVC\Mapper\Question();
+		$Question 	= $mQuestion->find($this->getIdQuestion());
+		return $Question;
+	}
 	
 	function setState($State) 		{$this->State = $State;$this->markDirty();}
 	function getState() 			{return $this->State;}
+	function getStatePrint() 		{
+		if ($this->State==1)
+			"Khẳng định";			
+		return "Phủ định";
+	}
 	
 	function toJSON(){
 		$json = array(

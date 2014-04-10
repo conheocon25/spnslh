@@ -52,11 +52,18 @@ class Solve extends Object{
 	//-------------------------------------------------------------------------------
 	//GET LIST
 	//-------------------------------------------------------------------------------		
+	function getClauseAll(){
+		$mClause = new \MVC\Mapper\Clause();
+		$ClauseAll = $mClause->findBy(array($this->getId()));
+		return $ClauseAll;
+	}
 	
-			
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
+	function getURLSettingClause(){
+		return "/setting/domain/".$this->getIdDomain()."/solve/".$this->getId();
+	}
 				
 	//-------------------------------------------------------------------------------
 	static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

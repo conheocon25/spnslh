@@ -39,15 +39,16 @@
 		<!-- ============================================================================== -->
 		<command name="Report">				<view>Report</view>				</command>
 		<command name="ReportDetail">		<view>ReportDetail</view>		</command>
-										
-									
+																		
 		<!-- ============================================================================== -->
 		<!-- SETTING	 																	-->
 		<!-- ============================================================================== -->
 		<command name="Setting">				<view>Setting</view>				</command>
 		<command name="SettingUser">			<view>SettingUser</view>			</command>
 		<command name="SettingDomain">			<view>SettingDomain</view>			</command>		
+		<command name="SettingDomainPrepare">	<view>SettingDomainPrepare</view>	</command>
 		<command name="SettingDomainSolve">		<view>SettingDomainSolve</view>		</command>		
+		<command name="SettingSolveClause">		<view>SettingSolveClause</view>		</command>
 		<command name="SettingDomainQuestion">	<view>SettingDomainQuestion</view>	</command>		
 		
 		<command name="SettingConfig">			<view>SettingConfig</view>			</command>

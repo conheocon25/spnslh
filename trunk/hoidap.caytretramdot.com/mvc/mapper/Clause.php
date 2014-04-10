@@ -10,10 +10,10 @@ class Clause extends Mapper implements \MVC\Domain\ClauseFinder {
 						
 		$selectAllStmt 	= sprintf("select * from %s", $tblClause);
 		$selectStmt 	= sprintf("select * from %s where id=?", $tblClause);
-		$updateStmt 	= sprintf("update %s set id_domain=?, id_question=?, state=? where id=?", $tblClause);
-		$insertStmt 	= sprintf("insert into %s ( id_domain, id_question, state) values(?,?,?)", $tblClause);
+		$updateStmt 	= sprintf("update %s set id_solve=?, id_question=?, state=? where id=?", $tblClause);
+		$insertStmt 	= sprintf("insert into %s ( id_solve, id_question, state) values(?,?,?)", $tblClause);
 		$deleteStmt 	= sprintf("delete from %s where id=?", $tblClause);		
-		$findByStmt 	= sprintf("SELECT * FROM  %s WHERE id_domain=?", $tblClause);
+		$findByStmt 	= sprintf("SELECT * FROM  %s WHERE id_solve=?", $tblClause);
 		$findByPageStmt = sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblClause);
 		
         $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
@@ -45,8 +45,8 @@ class Clause extends Mapper implements \MVC\Domain\ClauseFinder {
 
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array( 
-			$object->getIdDomain(),
-			$object->getid_question(),
+			$object->getIdSolve(),
+			$object->getIdQuestion(),
 			$object->getstate()
 		); 
         $this->insertStmt->execute( $values );
@@ -56,9 +56,9 @@ class Clause extends Mapper implements \MVC\Domain\ClauseFinder {
     
     protected function doUpdate( \MVC\Domain\Object $object ) {
         $values = array( 
-			$object->getIdDomain(),
-			$object->getid_question(),
-			$object->getstate(),
+			$object->getIdSolve(),
+			$object->getIdQuestion(),
+			$object->getState(),
 			$object->getId()
 		);		
         $this->updateStmt->execute( $values );
