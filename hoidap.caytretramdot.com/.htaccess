@@ -41,8 +41,10 @@ RewriteRule ^tu-van/([A-Za-z0-9]+)/theo-vet$ 				?cmd=RecommendTrace&IdDomain=$1
 RewriteRule ^tu-van/([A-Za-z0-9]+)/ket-qua$ 				?cmd=RecommendResult&IdDomain=$1 [L]
 RewriteRule ^tu-van/([A-Za-z0-9]+)/thich$ 					?cmd=RecommendLike&IdDomain=$1 [L]
 RewriteRule ^tu-van/([A-Za-z0-9]+)/phan-hoi$ 				?cmd=RecommendFeed&IdDomain=$1 [L]
+RewriteRule ^tu-van/([A-Za-z0-9]+)/tra-loi/yes$ 			?cmd=RecommendAnswer&IdDomain=$1&Answer=Yes [L]
+RewriteRule ^tu-van/([A-Za-z0-9]+)/tra-loi/no$ 				?cmd=RecommendAnswer&IdDomain=$1&Answer=No 	[L]
 
-RewriteRule ^app$ 													?cmd=App [L]
+RewriteRule ^app$ 											?cmd=App [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # REPORT

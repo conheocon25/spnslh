@@ -13,16 +13,6 @@
 					<a tal:attributes="href Domain/getURLRecommendExe;">
 						<i class="glyphicons-circle_info"/>Bắt đầu
 					</a>
-				</li>	
-				<li tal:attributes="class php:ActiveItem=='Next'?'active':'disable'">
-					<a tal:attributes="href Domain/getURLRecommendNext">
-						<i class="glyphicons-circle_info"/>Tới
-					</a>
-				</li>		
-				<li tal:attributes="class php:ActiveItem=='Back'?'active':'disable'">	
-					<a tal:attributes="href Domain/getURLRecommendBack">
-						<i class="glyphicons-circle_info"/>Lui
-					</a>
 				</li>
 				<li tal:attributes="class php:ActiveItem=='Trace'?'active':'disable'">	
 					<a tal:attributes="href Domain/getURLRecommendTrace">
@@ -34,19 +24,9 @@
 						<i class="glyphicons-circle_info"/>Kết quả
 					</a>
 				</li>		
-				<li tal:attributes="class php:ActiveItem=='Try'?'active':'disable'">	
-					<a tal:attributes="href Domain/getURLRecommendTry">
-						<i class="glyphicons-circle_info"/>Thử lại
-					</a>
-				</li>		
-				<li tal:attributes="class php:ActiveItem=='Like'?'active':'disable'">	
-					<a tal:attributes="href Domain/getURLRecommendLike">
-						<i class="glyphicons-circle_info"/>Thích
-					</a>
-				</li>
-				<li tal:attributes="class php:ActiveItem=='Feed'?'active':'disable'">	
-					<a tal:attributes="href Domain/getURLRecommendFeed">
-						<i class="glyphicons-circle_info"/>Phản hồi
+				<li tal:attributes="class php:ActiveItem=='Try'?'active':'disable'">
+					<a tal:attributes="href Domain/getURLRecommend">
+						<i class="glyphicons-circle_info"/>Up
 					</a>
 				</li>
 			</ul>			

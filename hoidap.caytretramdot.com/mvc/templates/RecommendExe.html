@@ -13,16 +13,6 @@
 					<a tal:attributes="href Domain/getURLRecommendExe;">
 						<i class="glyphicons-circle_info"/>Bắt đầu
 					</a>
-				</li>	
-				<li tal:attributes="class php:ActiveItem=='Next'?'active':'disable'">
-					<a tal:attributes="href Domain/getURLRecommendNext">
-						<i class="glyphicons-circle_info"/>Tới
-					</a>
-				</li>		
-				<li tal:attributes="class php:ActiveItem=='Back'?'active':'disable'">	
-					<a tal:attributes="href Domain/getURLRecommendBack">
-						<i class="glyphicons-circle_info"/>Lui
-					</a>
 				</li>
 				<li tal:attributes="class php:ActiveItem=='Trace'?'active':'disable'">	
 					<a tal:attributes="href Domain/getURLRecommendTrace">
@@ -34,36 +24,44 @@
 						<i class="glyphicons-circle_info"/>Kết quả
 					</a>
 				</li>		
-				<li tal:attributes="class php:ActiveItem=='Try'?'active':'disable'">	
-					<a tal:attributes="href Domain/getURLRecommendTry">
-						<i class="glyphicons-circle_info"/>Thử lại
-					</a>
-				</li>		
-				<li tal:attributes="class php:ActiveItem=='Like'?'active':'disable'">	
-					<a tal:attributes="href Domain/getURLRecommendLike">
-						<i class="glyphicons-circle_info"/>Thích
-					</a>
-				</li>
-				<li tal:attributes="class php:ActiveItem=='Feed'?'active':'disable'">	
-					<a tal:attributes="href Domain/getURLRecommendFeed">
-						<i class="glyphicons-circle_info"/>Phản hồi
+				<li tal:attributes="class php:ActiveItem=='Try'?'active':'disable'">
+					<a tal:attributes="href Domain/getURLRecommend">
+						<i class="glyphicons-circle_info"/>Up
 					</a>
 				</li>
 			</ul>			
 		</div>			
 		<div id="content">
-			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>			
+			<div id="content-header">
+				<h1 tal:content="Title"/>
+			</div>
 			<div class="row">
 				<div class="col-12">
-					<h1 tal:content="php: Question[1]"/>
-					<form class="form-horizontal" method="post">
-						<input class="btn btn-primary" type="submit" value="Có" />
-						<input class="btn btn-primary" type="submit" value="Không" />
-					</form>
+					<div class="widget-box">
+						<div class="widget-content nopadding">
+							<h1 tal:content="php: Question[1]"/>
+							<div class="Answer btn btn-primary" tal:attributes="alt Domain/getURLRecommendAnswerYes">Có</div>
+							<div class="Answer btn btn-primary" tal:attributes="alt Domain/getURLRecommendAnswerNo">Không</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>
-		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>		
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<script type="text/javascript">
+		/*<![CDATA[*/						
+			$(".Answer").click(function(){				
+				var URL = $(this).attr('alt');
+				$.ajax({
+					type: "POST",					
+					url: URL,
+					success: function(msg){
+						location.reload();				
+					}
+				});				
+			});
+		/*]]>*/
+		</script>
 	</body>
 </html>

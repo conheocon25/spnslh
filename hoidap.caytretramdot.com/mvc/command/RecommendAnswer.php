@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class RecommendTrace extends Command {
+	class RecommendAnswer extends Command{
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -21,23 +21,20 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------									
-			$Domain 	= $mDomain->find($IdDomain);
+			$Domain 		= $mDomain->find($IdDomain);
 			$IndexQ			= $Session->getIndexQ();
 			$ArrQ			= $Session->getArrQ();
 			$ArrS			= $Session->getArrS();
 			$ArrD			= $Session->getArrD();
-						
+			
+			$IndexQ++;
+			$Session->setIndexQ($IndexQ);			
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------									
-			$request->setProperty('ActiveItem', 'Trace');
-			$request->setProperty('IndexQ', 	$IndexQ);
-			$request->setObject('Domain', 		$Domain);
-			$request->setObject('ArrQ', 		$ArrQ);
-			$request->setObject('ArrS', 		$ArrS);
-			$request->setObject('ArrD', 		$ArrD);
-			
-			return self::statuses('CMD_DEFAULT');
+			//-------------------------------------------------------------
+			$json = array('result' => "OK");
+			echo json_encode($json);			
 		}
 	}
 ?>

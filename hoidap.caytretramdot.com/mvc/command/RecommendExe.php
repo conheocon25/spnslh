@@ -25,16 +25,14 @@
 			$Domain 		= $mDomain->find($IdDomain);			
 			$IndexQ			= $Session->getIndexQ();
 			$ArrQ			= $Session->getArrQ();
-						
-			//$Question		= $mQuestion->find( $ArrQ[$IndexQ][3] );
-						
-			$IndexQ++;			
-			$Session->setIndexQ($IndexQ);
-						
+												
+			$Title 			= mb_strtoupper($Domain->getName(), 'UTF8');
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
 			$request->setProperty('ActiveItem', 'Start');
+			$request->setProperty('Title', 		$Title);
 			$request->setObject('Domain', 		$Domain);
 			$request->setObject('Question', 	$ArrQ[$IndexQ]);
 			
