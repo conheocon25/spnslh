@@ -3,12 +3,9 @@
 	<head>
 		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
 		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
-	</head>
-	
+	</head>	
 	<body>
 		<div metal:use-macro="mAdmin.xhtml/Header"/>
-		<div metal:use-macro="mAdmin.xhtml/StyleTools"/>		
-		
 		<div id="content">
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
 			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
@@ -23,14 +20,15 @@
 								<thead>
 									<tr>
 										<th width="40">#</th>
+										<th width="40" class="left" />
 										<th class="left">TÊN</th>
-										<th width="120" class="left">TRẠNG THÁI</th>
 										<th width="40"><i class="glyphicons-bin"/></th>
 									</tr>
 								</thead>
 								<tbody>									
 									<tr tal:repeat="Clause Solve/getClauseAll">
 										<td class="center"><span tal:content="repeat/Clause/number"/></td>
+										<td><span tal:content="Clause/getStatePrint" /></td>
 										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" 
 												tal:content="Clause/getQuestion/getName"
 												tal:attributes="id Clause/getId;
@@ -38,10 +36,7 @@
 																state Clause/getState;
 												"
 											/>
-										</td>
-										<td>
-											<span tal:content="Clause/getStatePrint" />
-										</td>
+										</td>										
 										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Solve/getId"><i class="glyphicon glyphicon-remove"/></a></td>
 									</tr>									
 								</tbody>																								
@@ -207,12 +202,10 @@
 			//-----------------------------------------------------------------------------------
 			//Load 1 CLAUSE
 			//-----------------------------------------------------------------------------------
-			$('.update-item').click(function(){				
-				//$(this).attr('id_question')
-				$('#URLUpdButton').attr('alt', 	$(this).attr('id'));
-				$('#IdQuestion2').select2('val'	, $(this).attr('id_question'));
-				//$("div.IdQuestion2 select").val("2");
-
+			$('.update-item').click(function(){												
+				$('#URLUpdButton').attr('alt'		, $(this).attr('id'));
+				$('#IdQuestion2').select2(	'val'	, $(this).attr('id_question'));
+				$('#State2').select2(		'val'	, $(this).attr('state'));				
 			});
 			
 			//-----------------------------------------------------------------------------------
@@ -237,11 +230,11 @@
 				submitHandler: function (form) {					
 					var Data = [];
 					Data[0] = $('#URLUpdButton').attr('alt');
-					Data[1] = $('#IdDomain2').val();
-					Data[2] = $('#Name2').val();
-					Data[3] = $('#Note2').val();
+					Data[1] = $('#IdSolve2').val();
+					Data[2] = $('#IdQuestion2').val();
+					Data[3] = $('#State2').val();
 																		
-					var URL = "/object/upd/Solve";
+					var URL = "/object/upd/Clause";
 					$.ajax({
 						type: "POST",
 						data: {Data:Data},

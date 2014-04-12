@@ -15,6 +15,7 @@ class Clause extends Mapper implements \MVC\Domain\ClauseFinder {
 		$deleteStmt 	= sprintf("delete from %s where id=?", $tblClause);		
 		$findByStmt 	= sprintf("SELECT * FROM  %s WHERE id_solve=?", $tblClause);
 		$findByPageStmt = sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblClause);
+		$existStmt 		= sprintf("select distinct id from %s where id_solve=? and id_question=?", $tblClause);
 		
         $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
         $this->selectStmt = self::$PDO->prepare($selectStmt);
@@ -23,6 +24,7 @@ class Clause extends Mapper implements \MVC\Domain\ClauseFinder {
 		$this->deleteStmt = self::$PDO->prepare($deleteStmt);
 		$this->findByStmt = self::$PDO->prepare($findByStmt);
 		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);
+		$this->existStmt 	= self::$PDO->prepare($existStmt);
 									
     } 
     function getCollection( array $raw ) {
@@ -82,5 +84,14 @@ class Clause extends Mapper implements \MVC\Domain\ClauseFinder {
 		$this->findByPageStmt->execute();
         return new ClauseCollection( $this->findByPageStmt->fetchAll(), $this );
     }	
+	
+	function exist( $values ) {	
+        $this->existStmt->execute( $values );
+		$result = $this->existStmt->fetchAll();		
+		if (!isset($result) || $result==null)
+			return null;        
+        return $result[0][0];
+    }
+	
 }
 ?>

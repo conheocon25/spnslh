@@ -16,21 +16,27 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mDomain = new \MVC\Mapper\Domain();
+			$mDomain 	= new \MVC\Mapper\Domain();
+			$mQuestion 	= new \MVC\Mapper\Question();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------									
-			$Domain 		= $mDomain->find($IdDomain);
-			$QuestionAll 	= $Domain->getQuestionAll();
-			$Question		= $QuestionAll->current();
+			$Domain 		= $mDomain->find($IdDomain);			
+			$IndexQ			= $Session->getIndexQ();
+			$ArrQ			= $Session->getArrQ();
+						
+			//$Question		= $mQuestion->find( $ArrQ[$IndexQ][3] );
+						
+			$IndexQ++;			
+			$Session->setIndexQ($IndexQ);
 						
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
 			$request->setProperty('ActiveItem', 'Start');
 			$request->setObject('Domain', 		$Domain);
-			$request->setObject('Question', 	$Question);
+			$request->setObject('Question', 	$ArrQ[$IndexQ]);
 			
 			return self::statuses('CMD_DEFAULT');
 		}

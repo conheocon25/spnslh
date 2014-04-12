@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+	</head>	
+	<body>
+		<div metal:use-macro="mAdmin.xhtml/Header"/>
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
+			<div class="row">
+				<div class="col-12">					
+					<div class="widget-box">
+						<div class="widget-content nopadding">							
+							<table class="table table-bordered table-striped table-hover ">
+								<thead>
+									<tr>
+										<th tal:repeat="Q php:ArrQ">
+											<div class="text-right">
+												<B tal:content="php:Q[0]"/>
+											</div>
+										</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr tal:repeat="D php:ArrD">
+										<td tal:repeat="C php:D" align="right">
+											<span tal:condition="php:C=='1'" class="glyphicons-ok_2"/>
+											<span tal:condition="php:C!='1'&&C!='0'" tal:content="php:C" />
+										</td>										
+									</tr>									
+								</tbody>
+							</table>
+							<h3 tal:content="php:QuestionAll->count() . ' CÂU HỎI'" />
+							<table class="table table-bordered table-striped table-hover ">
+								<thead>
+									<tr>
+										<th width="120"><div class="text-left">MÃ</div></th>
+										<th><div class="text-left">NỘI DUNG</div></th>	
+										<th><div class="text-left">TẦN SUẤT</div></th>	
+									</tr>
+								</thead>
+								<tbody>
+									<tr tal:repeat="Q php:ArrQ">
+										<td><span tal:content="php:Q[0]" /></td>
+										<td><span tal:content="php:Q[1]" /></td>
+										<td><span tal:content="php:Q[2]" /></td>
+									</tr>
+								</tbody>
+							</table>
+							<h3 tal:content="php:SolveAll->count() . ' GIẢI PHÁP'" />
+							<table class="table table-bordered table-striped table-hover ">
+								<thead>
+									<tr>
+										<th width="120"><div class="text-left">MÃ</div></th>
+										<th><div class="text-left">NỘI DUNG</div></th>	
+									</tr>
+								</thead>
+								<tbody>
+									<tr tal:repeat="S php:ArrS">
+										<td><span tal:content="php:S[0]" /></td>
+										<td><span tal:content="php:S[1]" /></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<script type="text/javascript">
+		/*<![CDATA[*/						
+			
+		/*]]>*/
+		</script>
+	</body>
+</html>

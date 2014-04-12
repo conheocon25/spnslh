@@ -66,7 +66,34 @@
 		function getCurrentIdUser() {
 			return self::instance()->get('restaurant_langbien_current_iduser');
 		}
-				
+		
+		//Quản lí Câu trả lời
+		function setCurrentQuestion( $Question ) {
+			return self::instance()->set('es_current_question', $Question);
+		}
+		function getCurrentQuestion() {
+			return self::instance()->get('es_current_question');
+		}
+		
+		//=============================================================
+		//SESSION DATA TEMP NGƯỜI DÙNG
+		//=============================================================
+		function setArrD( $ArrD ) 	{return self::instance()->set('es_arr_d', $ArrD);}
+		function getArrD() 			{return self::instance()->get('es_arr_d');}
+		
+		function setArrQ( $ArrQ ) 	{return self::instance()->set('es_arr_q', $ArrQ);}
+		function getArrQ() 			{return self::instance()->get('es_arr_q');}
+		
+		function setIndexQ( $IndexQ ){return self::instance()->set('es_index_q', $IndexQ);}
+		function getIndexQ() 		{
+			$Temp = self::instance()->get('es_index_q');
+			if (!isset($Temp))
+				return 0;
+			return self::instance()->get('es_index_q');
+		}
+		
+		function setArrS( $ArrS ) 	{return self::instance()->set('es_arr_s', $ArrS);}
+		function getArrS() 			{return self::instance()->get('es_arr_s');}
 	}
 	/*--------------------------------------------------------------------------------*/
 	class RequestRegistry extends Registry { 

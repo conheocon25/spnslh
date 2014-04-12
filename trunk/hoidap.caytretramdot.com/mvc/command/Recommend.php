@@ -26,8 +26,16 @@
 				$Domain = $DomainAll->current();
 				$IdDomain = $Domain->getId();
 			}
-			$Domain 	= $mDomain->find($IdDomain);
-									
+			$Domain 		= $mDomain->find($IdDomain);
+			$QuestionAll 	= $Domain->getQuestionAll();
+			$AQ = array();
+			while ($QuestionAll->valid()){
+				$Question = $QuestionAll->current();
+				$AQ[] = $Question->getId();				
+				$QuestionAll->next();
+			}
+			$Session->setCurrentQuestion($AQ);
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------						

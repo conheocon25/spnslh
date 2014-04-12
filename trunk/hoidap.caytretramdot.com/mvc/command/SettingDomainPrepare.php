@@ -17,6 +17,8 @@
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
 			$mDomain = new \MVC\Mapper\Domain();
+			$mClause = new \MVC\Mapper\Clause();
+			$mConfig = new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -30,14 +32,20 @@
 			$nS = $SolveAll->count();
 			
 			$ArrQ = array();
+			$ArrQ[] = array("__","__",0);
+			$ArrQ[] = array("__","__",0);
+			
 			while ($QuestionAll->valid()){
-				$ArrQ[] = "Q".$QuestionAll->current()->getId();
+				$ArrQ[] = array("Q".$QuestionAll->current()->getId(), $QuestionAll->current()->getNameStr(), 		0, $QuestionAll->current()->getId());
+				$ArrQ[] = array("!Q".$QuestionAll->current()->getId(), $QuestionAll->current()->getNameNotStr(),	0, $QuestionAll->current()->getId());
 				$QuestionAll->next();
 			}
 			
-			$ArrS = array();
+			$ArrS = array();			
 			while ($SolveAll->valid()){
-				$ArrS[] = "S".$SolveAll->current()->getId();
+				$ArrS[] = array(
+								"S".$SolveAll->current()->getId(),
+								$SolveAll->current()->getName());								
 				$SolveAll->next();
 			}
 			
@@ -48,25 +56,80 @@
 				$QuestionAll->rewind();
 				
 				$DT = array();
+				$DT[] = "S".$Solve->getId();
+				$DT[] = "S".$Solve->getId();
+				
+				$IQ = 1;
 				while($QuestionAll->valid()){
 					$Question = $QuestionAll->current();
-					$DT[] =  $Question->getId();
+					$IdClause = $mClause->exist(array($Solve->getId(), $Question->getId()));
+					if (isset($IdClause)){
+						$Clause = $mClause->find($IdClause);
+						if ($Clause->getState()==1){
+							$ArrQ[$IQ*2][2] = $ArrQ[$IQ*2][2]+1;
+							$DT[] =  1;
+							$DT[] =  0;
+						}else{							
+							$ArrQ[$IQ*2+1][2] = $ArrQ[$IQ*2+1][2]+1;
+							$DT[] =  0;
+							$DT[] =  1;
+						}
+					}	
+					else{
+						$DT[] =  0;
+						$DT[] =  0;
+					}											
+					$IQ++;
 					$QuestionAll->next();
 				}				
 				$ArrD[] = $DT;
 				$SolveAll->next();
-			}			
-			print_r($ArrD);
+			}
 			
-			//print_r($ArrQ);
-			//print_r($ArrS);
-			//echo "So cau hoi".$nQ;
-			//echo "So giai phap ".$nS;
+			//==============================================================================
+			//SẮP XẾP DỮ LIỆU
+			//==============================================================================
+			for ($i=2; $i< (count($ArrQ)-1); $i++){
+				for ($j=$i; $j<count($ArrQ); $j++){
+					if ($ArrQ[$i][2] < $ArrQ[$j][2]){
+						$Temp 		= $ArrQ[$i];
+						$ArrQ[$i] 	= $ArrQ[$j];
+						$ArrQ[$j] 	= $Temp;
 						
+						for ($z=0; $z<count($ArrD); $z++){
+							$TempZ 			= $ArrD[$z][$i];
+							$ArrD[$z][$i] 	= $ArrD[$z][$j];
+							$ArrD[$z][$j] 	= $TempZ;
+						}
+					}
+				}
+			}
+			
+			//==============================================================================
+			//LƯU TRỮ TẠM VÀO SESSION SAU NÀY SẼ LƯU FILE NẠP VÀO CACHE
+			//==============================================================================
+			$Session->setArrD($ArrD);
+			$Session->setArrS($ArrS);
+			$Session->setArrQ($ArrQ);
+			
+			$Title = "CHUẨN BỊ DỮ LIỆU";
+			$Navigation = array(
+					array("THIẾT LẬP", 	"/setting"),
+					array("LĨNH VỰC", 	"/setting/domain")
+			);
+			$ConfigName = $mConfig->findByName("NAME");
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
 			$request->setObject('Domain'		, $Domain);
+			$request->setObject('Navigation'	, $Navigation);
+			$request->setObject('SolveAll'		, $SolveAll);
+			$request->setObject('QuestionAll'	, $QuestionAll);
+			$request->setObject('ArrD'			, $ArrD);
+			$request->setObject('ArrS'			, $ArrS);
+			$request->setObject('ArrQ'			, $ArrQ);
+			$request->setProperty('Title'		, $Title);
 																		
 			return self::statuses('CMD_DEFAULT');
 		}

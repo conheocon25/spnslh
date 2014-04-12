@@ -44,8 +44,8 @@ class Clause extends Object{
 	function getState() 			{return $this->State;}
 	function getStatePrint() 		{
 		if ($this->State==1)
-			"Khẳng định";			
-		return "Phủ định";
+			return "";			
+		return "!";
 	}
 	
 	function toJSON(){
