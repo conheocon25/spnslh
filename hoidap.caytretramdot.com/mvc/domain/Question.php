@@ -29,6 +29,12 @@ class Question extends Object{
 	
 	function setName($Name) {$this->Name = $Name;$this->markDirty();}
 	function getName() 		{return $this->Name;}
+	function getNameStr() 	{		
+		return "Bạn có muốn ".$this->Name." ?";
+	}
+	function getNameNotStr() 	{		
+		return "Bạn không muốn ".$this->Name." ?";
+	}
 	
 	function setNote($Note) {$this->Note = $Note;$this->markDirty();}
 	function getNote() 		{return $this->Note;}

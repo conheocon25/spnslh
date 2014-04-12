@@ -55,7 +55,11 @@
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>			
 			<div class="row">
 				<div class="col-12">
-					<h1 tal:content="Question/getName"/>
+					<h1 tal:content="php: Question[1]"/>
+					<form class="form-horizontal" method="post">
+						<input class="btn btn-primary" type="submit" value="Có" />
+						<input class="btn btn-primary" type="submit" value="Không" />
+					</form>
 				</div>
 			</div>
 		</div>

@@ -132,17 +132,12 @@
 	<!-- MENU.SETTING															  -->
 	<!-- ======================================================================== -->
 	<div metal:define-macro="MenuSetting" id="sidebar">				
-		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">		
-			<li tal:attributes="class php:ActiveAdmin=='Category'?'active':'disable'">
-				<a tal:attributes="href '/setting/category'" >
-					<i class="glyphicons-fast_food" />DANH MỤC
-				</a>
-			</li>			
+		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">
 			<li tal:attributes="class php:ActiveAdmin=='Domain'?'active':'disable'">
 				<a tal:attributes="href '/setting/domain'">
 					<i class="glyphicons-show_big_thumbnails" />LĨNH VỰC
 				</a>
-			</li>							
+			</li>
 			<li tal:attributes="class php:ActiveAdmin=='User'?'active':'disable'">
 				<a tal:attributes="href '/setting/user'">
 					<i class="glyphicons-group" />NGƯỜI DÙNG 
