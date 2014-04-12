@@ -13,16 +13,6 @@
 					<a tal:attributes="href Domain/getURLRecommendExe;">
 						<i class="glyphicons-circle_info"/>Bắt đầu
 					</a>
-				</li>	
-				<li tal:attributes="class php:ActiveItem=='Next'?'active':'disable'">
-					<a tal:attributes="href Domain/getURLRecommendNext">
-						<i class="glyphicons-circle_info"/>Tới
-					</a>
-				</li>		
-				<li tal:attributes="class php:ActiveItem=='Back'?'active':'disable'">	
-					<a tal:attributes="href Domain/getURLRecommendBack">
-						<i class="glyphicons-circle_info"/>Lui
-					</a>
 				</li>
 				<li tal:attributes="class php:ActiveItem=='Trace'?'active':'disable'">	
 					<a tal:attributes="href Domain/getURLRecommendTrace">
@@ -34,19 +24,9 @@
 						<i class="glyphicons-circle_info"/>Kết quả
 					</a>
 				</li>		
-				<li tal:attributes="class php:ActiveItem=='Try'?'active':'disable'">	
-					<a tal:attributes="href Domain/getURLRecommendTry">
-						<i class="glyphicons-circle_info"/>Thử lại
-					</a>
-				</li>		
-				<li tal:attributes="class php:ActiveItem=='Like'?'active':'disable'">	
-					<a tal:attributes="href Domain/getURLRecommendLike">
-						<i class="glyphicons-circle_info"/>Thích
-					</a>
-				</li>
-				<li tal:attributes="class php:ActiveItem=='Feed'?'active':'disable'">	
-					<a tal:attributes="href Domain/getURLRecommendFeed">
-						<i class="glyphicons-circle_info"/>Phản hồi
+				<li tal:attributes="class php:ActiveItem=='Try'?'active':'disable'">
+					<a tal:attributes="href Domain/getURLRecommend">
+						<i class="glyphicons-circle_info"/>Up
 					</a>
 				</li>
 			</ul>			
@@ -55,7 +35,64 @@
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>			
 			<div class="row">
 				<div class="col-12">
-					
+					<div class="widget-box">
+						<div class="widget-content nopadding">
+							<h3 tal:content="php: ' CÂU HỎI ' . IndexQ" />
+							<table class="table table-bordered table-striped table-hover ">
+								<thead>
+									<tr>
+										<th tal:repeat="Q php:ArrQ">
+											<div class="text-right">
+												<B tal:content="php:Q[0]"/>
+											</div>
+										</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr tal:repeat="D php:ArrD">
+										<td tal:repeat="C php:D" align="right">
+											
+											<span tal:condition="php:C=='1'" class="glyphicons-ok_2"/>
+											<span tal:condition="php:C!='1'&&C!='0'" tal:content="php:C" />
+											
+										</td>										
+									</tr>									
+								</tbody>
+							</table>
+							<h3 tal:content="php:count(ArrQ) . ' CÂU HỎI'" />
+							<table class="table table-bordered table-striped table-hover ">
+								<thead>
+									<tr>
+										<th width="120"><div class="text-left">MÃ</div></th>
+										<th><div class="text-left">NỘI DUNG</div></th>	
+										<th><div class="text-left">TẦN SUẤT</div></th>	
+									</tr>
+								</thead>
+								<tbody>
+									<tr tal:repeat="Q php:ArrQ">
+										<td><span tal:content="php:Q[0]" /></td>
+										<td><span tal:content="php:Q[1]" /></td>
+										<td><span tal:content="php:Q[2]" /></td>
+									</tr>
+								</tbody>
+							</table>
+							<h3 tal:content="php:count(ArrS) . ' GIẢI PHÁP'" />
+							<table class="table table-bordered table-striped table-hover ">
+								<thead>
+									<tr>
+										<th width="120"><div class="text-left">MÃ</div></th>
+										<th><div class="text-left">NỘI DUNG</div></th>	
+									</tr>
+								</thead>
+								<tbody>
+									<tr tal:repeat="S php:ArrS">
+										<td><span tal:content="php:S[0]" /></td>
+										<td><span tal:content="php:S[1]" /></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

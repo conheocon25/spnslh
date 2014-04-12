@@ -27,18 +27,15 @@
 				$IdDomain = $Domain->getId();
 			}
 			$Domain 		= $mDomain->find($IdDomain);
-			$QuestionAll 	= $Domain->getQuestionAll();
-			$AQ = array();
-			while ($QuestionAll->valid()){
-				$Question = $QuestionAll->current();
-				$AQ[] = $Question->getId();				
-				$QuestionAll->next();
-			}
-			$Session->setCurrentQuestion($AQ);
+									
+			//Khởi tạo dữ liệu
+			$Session->setIndexQ(2);
 			
+			$Title = mb_strtoupper($Domain->getName(), 'UTF8');
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------						
+			$request->setObject('Title', 		$Title);
 			$request->setObject('DomainAll', 	$DomainAll);
 			$request->setObject('Domain', 		$Domain);
 			
