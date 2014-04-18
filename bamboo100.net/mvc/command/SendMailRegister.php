@@ -29,8 +29,7 @@
 			if (isset($EmailReg)) {
 				$checkMail = $mUser->checkEmail($EmailReg);
 			}
-			echo "EmailReg: ".$EmailReg;
-			echo "check: ".$checkMail;
+			
 			
 			if( $checkMail == null ) {
 				
