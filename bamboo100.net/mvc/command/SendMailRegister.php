@@ -24,7 +24,7 @@
 			//XỬ LÝ CHÍNH Send Mail
 			//-------------------------------------------------------------
 			$checkMail = null;
-			$doMail = new Mail("mail.caytretramdot.com", "admin@caytretramdot.com", "bambo100", "admin068198");
+			$doMail = new Mail("mail.caytretramdot.com", "admin@caytretramdot.com", "spncom", "admin368189");
 			
 			if (isset($EmailReg)) {
 				$checkMail = $mUser->checkEmail($EmailReg);
