@@ -38,6 +38,7 @@
 		<command name="RecommendStop">			<view>RecommendStop</view>			</command>
 		<command name="RecommendLike">			<view>RecommendLike</view>			</command>
 		<command name="RecommendFeed">			<view>RecommendFeed</view>			</command>
+		<command name="RecommendFeedSendMail">	<view>RecommendFeedSendMail</view>	</command>
 		<command name="RecommendAnswer">		<view>RecommendAnswer</view>		</command>
 		
 		<!-- ============================================================================== -->
