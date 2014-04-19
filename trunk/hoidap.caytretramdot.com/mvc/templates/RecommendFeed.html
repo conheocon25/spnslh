@@ -79,6 +79,31 @@
 			</div>
 		</div>
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>
-		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>		
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>	
+		<script type="text/javascript">			
+			$('#BtnSendMail').click(function(e){				
+				var Data = [];				
+				Data[1] 	= $("#Email").val();							
+				Data[3] 	= $("#Content").val();					
+				
+				var URL = "/lien-he/email";
+					$.ajax({
+						type: "POST",
+						data: {Data:Data},
+						url: URL,						
+						success: function(msg){								
+							if (msg.result = "OK") { 
+								$("#name").val('');
+								$("#email").val('');
+								$("#subject").val('');
+								$("#content").val('');	
+								alert ("Gui thanh cong!");
+							} else {
+								alert ("Gui that bai !Ban hay gui lai!");
+							}
+						}
+					});
+			});	
+		</script>
 	</body>
 </html>
