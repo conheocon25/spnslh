@@ -55,12 +55,13 @@
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>			
 			<div class="row">
 				<div class="col-12">					
-						<form style="padding:10px 20px 0; color:white;" class="form-horizontal" method="post" action="/dang-ky/exe">
+						<div style="padding:10px 20px 0; color:white;" class="form-horizontal" >
 							<center><legend>Phản Hồi</legend></center>
 							<div class="control-group">
 									<label class="control-label" for="Name">Email của bạn</label>
 									<div class="controls">
 										<input id="Email" name="Email" type="text" placeholder="your@email.com" />
+										<input id="Domain" type="hidden" tal:attributes="value Domain/getURLRecommendFeedEmail" />
 									</div>
 							</div>
 							<div class="control-group">
@@ -74,7 +75,7 @@
 										<button id="BtnSendMail" type="submit" class="btn btn-primary btn-ins" value="submit-value">Gửi phản Hồi</button>
 									</div>
 							</div>
-						</form>					
+						</div>					
 				</div>
 			</div>
 		</div>
@@ -83,20 +84,18 @@
 		<script type="text/javascript">			
 			$('#BtnSendMail').click(function(e){				
 				var Data = [];				
-				Data[1] 	= $("#Email").val();							
-				Data[3] 	= $("#Content").val();					
-				
-				var URL = "/lien-he/email";
+				Data[0] 	= $("#Email").val();				
+				Data[1] 	= $("#Content").val();		
+				//alert ($("#Domain").val());
+				var URL = $("#Domain").val();
 					$.ajax({
 						type: "POST",
 						data: {Data:Data},
 						url: URL,						
 						success: function(msg){								
 							if (msg.result = "OK") { 
-								$("#name").val('');
-								$("#email").val('');
-								$("#subject").val('');
-								$("#content").val('');	
+								$("#Email").val('');
+								$("#Content").val('');								
 								alert ("Gui thanh cong!");
 							} else {
 								alert ("Gui that bai !Ban hay gui lai!");
