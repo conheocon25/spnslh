@@ -1,5 +1,6 @@
 <?php
-	namespace MVC\Command;	
+	namespace MVC\Command;
+	use MVC\Library\Mail;
 	class RecommendFeedSendEmail extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
@@ -13,6 +14,8 @@
 			//-------------------------------------------------------------
 			$IdDomain = $request->getProperty('IdDomain');
 			$Data = $request->getProperty('Data');
+			//$Email = $request->getProperty('Email');
+			//$Content = $request->getProperty('Content');
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
@@ -21,34 +24,24 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------									
-			$Domain 	= $mDomain->find($IdDomain);
-			$Data = $request->getProperty('Data');
-						
+			$Domain 	= $mDomain->find($IdDomain);			
+			$Name = $Domain->getName();			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$Name = $Data[0];
-			$Email = $Data[1];
-			$Subject = $Data[2];
-			$Content = $Data[3];
+			$Email = $Data[0];			
+			$Content = $Data[1];
 			
 			$doMail = new Mail("mail.caytretramdot.com", "admin@caytretramdot.com", "spncom", "admin368189");
 			
 			if (isset($Email)) {				
-				$MContent = "Website HDN Computer - Gửi phản hồi liên hệ <br /> Người gửi: $Name <br />Email Người gửi: $Email <br />	Nội dung:   $Content<br />";			
-				$doMail->SendMail("Website HDN Computer - Gửi phản hồi liên hệ", "admin@caytretramdot.com", "tuanbuithanh@gmail.com", $Subject, $MContent);
-				//$doMail->SendMail("Website HDN Computer - Gửi phản hồi liên hệ", "admin@caytretramdot.com", "thanhbao2007vl@gmail.com", $Subject, $MContent);
+				$MContent = "Website hoidap.caytretramdot.com - Gửi phản hồi tư vấn <br /> Chủ đề: $Name <br />Email Người gửi: $Email <br />	Nội dung:   $Content<br />";			
+				$doMail->SendMail("Website hoidap.caytretramdot.com - Gửi phản hồi tư vấn", "admin@caytretramdot.com", "tuanbuithanh@gmail.com", "Website hoidap.caytretramdot.com - Gửi phản hồi tư vấn", $MContent);
+				//$doMail->SendMail("Website hoidap.caytretramdot.com - Gửi phản hồi tư vấn", "admin@caytretramdot.com", "thanhbao2007vl@gmail.com", "Website hoidap.caytretramdot.com - Gửi phản hồi tư vấn", $MContent);
 				$json = array('result' => "OK");
 				echo json_encode($json);
 			}else { $json = array('result' => "FALSE"); echo json_encode($json);}
-			
-			//-------------------------------------------------------------
-			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------									
-			$request->setProperty('ActiveItem', 'Feed');
-			$request->setObject('Domain', 		$Domain);
-			
-			return self::statuses('CMD_DEFAULT');
+						
 		}
 	}
 ?>

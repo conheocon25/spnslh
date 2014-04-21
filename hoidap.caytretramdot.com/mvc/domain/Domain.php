@@ -64,6 +64,7 @@ class Domain extends Object{
 	function getURLRecommendTrace()	{return "/tu-van/".$this->getId()."/theo-vet";}
 	function getURLRecommendLike()	{return "/tu-van/".$this->getId()."/thich";}
 	function getURLRecommendFeed()	{return "/tu-van/".$this->getId()."/phan-hoi";}
+	function getURLRecommendFeedEmail()	{return "/tu-van/".$this->getId()."/phan-hoi/email";}
 	function getURLRecommendAnswerYes()	{return "/tu-van/".$this->getId()."/tra-loi/yes";}
 	function getURLRecommendAnswerNo()	{return "/tu-van/".$this->getId()."/tra-loi/no";}
 	
