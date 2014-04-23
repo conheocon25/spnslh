@@ -37,7 +37,7 @@
 				<div class="col-12">
 					<div class="widget-box">
 						<div class="widget-content nopadding">
-							<h3 tal:content="php: ' CÂU HỎI ' . IndexQ" />
+							<h3 tal:content="php: 'XÉT ĐẾN CÂU HỎI ' . IndexQ" />
 							<table class="table table-bordered table-striped table-hover ">
 								<thead>
 									<tr>
@@ -58,8 +58,26 @@
 										</td>										
 									</tr>									
 								</tbody>
+							</table>							
+							<h3 tal:content="php:count(ArrS) . ' GIẢI PHÁP ĐƯỢC XÉT ĐẾN'" />
+							<table class="table table-bordered table-striped table-hover ">
+								<thead>
+									<tr>
+										<th width="120"><div class="text-left">MÃ</div></th>
+										<th><div class="text-left">NỘI DUNG</div></th>	
+										<th><div class="text-left">INDEX</div></th>	
+									</tr>
+								</thead>
+								<tbody>
+									<tr tal:repeat="S php:ArrS">
+										<td><span tal:content="php:S[0]" /></td>
+										<td><span tal:content="php:S[1]" /></td>
+										<td><span tal:content="php:S[2]" /></td>
+									</tr>
+								</tbody>
 							</table>
-							<h3 tal:content="php:count(ArrQ) . ' CÂU HỎI'" />
+							
+							<h3 tal:content="php:count(ArrQ) . ' CÂU HỎI THAM KHẢO'" />
 							<table class="table table-bordered table-striped table-hover ">
 								<thead>
 									<tr>
@@ -73,21 +91,6 @@
 										<td><span tal:content="php:Q[0]" /></td>
 										<td><span tal:content="php:Q[1]" /></td>
 										<td><span tal:content="php:Q[2]" /></td>
-									</tr>
-								</tbody>
-							</table>
-							<h3 tal:content="php:count(ArrS) . ' GIẢI PHÁP'" />
-							<table class="table table-bordered table-striped table-hover ">
-								<thead>
-									<tr>
-										<th width="120"><div class="text-left">MÃ</div></th>
-										<th><div class="text-left">NỘI DUNG</div></th>	
-									</tr>
-								</thead>
-								<tbody>
-									<tr tal:repeat="S php:ArrS">
-										<td><span tal:content="php:S[0]" /></td>
-										<td><span tal:content="php:S[1]" /></td>
 									</tr>
 								</tbody>
 							</table>
