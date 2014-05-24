@@ -14,23 +14,11 @@
 				<div class="col-12">					
 					<div class="widget-box">
 						<div class="widget-content nopadding">
-							<form class="form-horizontal" tal:attributes="action PI/getURLSettingExe" method="post">
+							<form class="form-horizontal" tal:attributes="action '/admin/setting/question/ins/exe'" method="post">
 								<div class="control-group">
-									<label class="control-label" for="Image1">Ảnh 1</label>
+									<label class="control-label" for="Author">Nội dung</label>
 									<div class="controls">
-										<input type="text" id="Image1" name="Image1" tal:attributes="value PI/getImage1" />
-									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label" for="Image2">Ảnh 2</label>
-									<div class="controls">
-										<input type="text" id="Image2" name="Image2" tal:attributes="value PI/getImage2" />
-									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label" for="Info">Thông tin</label>
-									<div class="controls">
-										<textarea id="Info" class="ckeditor" name="Info" tal:content="PI/getInfo"/>
+										<textarea id="Content" class="ckeditor" name="Content" />
 									</div>
 								</div>
 								<div class="form-actions">
