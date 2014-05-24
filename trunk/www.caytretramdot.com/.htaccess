@@ -81,10 +81,6 @@ RewriteRule ^admin/setting/category/page/([0-9]+)$ 						?cmd=ASettingCategory&P
 RewriteRule ^admin/setting/category/([0-9]+)$ 							?cmd=ASettingCategory1&IdCategory=$1 [L]
 RewriteRule ^admin/setting/category/([0-9]+)/page/([0-9]+)$ 			?cmd=ASettingCategory1&IdCategory=$1&Page=$2 [L]
 
-RewriteRule ^admin/setting/gattribute$ 									?cmd=ASettingGAttribute [L]
-RewriteRule ^admin/setting/gattribute/page/([0-9]+)$ 					?cmd=ASettingGAttribute&Page=$1 [L]
-RewriteRule ^admin/setting/gattribute/([0-9]+)$ 						?cmd=ASettingAttribute&IdGAttribute=$1 [L]
-
 RewriteRule ^admin/setting/config$ 										?cmd=ASettingConfig [L]
 RewriteRule ^admin/setting/config/page/([0-9]+)$ 						?cmd=ASettingConfig&Page=$1 [L]
 
@@ -93,3 +89,6 @@ RewriteRule ^admin/setting/user/page/([0-9]+)$ 							?cmd=ASettingUser&Page=$1 
 
 RewriteRule ^admin/setting/question$ 									?cmd=ASettingQuestion [L]
 RewriteRule ^admin/setting/question/page/([0-9]+)$ 						?cmd=ASettingQuestion&Page=$1 [L]
+
+RewriteRule ^admin/setting/question/ins/load$ 							?cmd=ASettingQuestionInsLoad [L]
+RewriteRule ^admin/setting/question/ins/exe$ 							?cmd=ASettingQuestionInsExe [L]

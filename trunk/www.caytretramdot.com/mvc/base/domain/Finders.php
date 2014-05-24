@@ -18,11 +18,12 @@ interface GuestFinder 			extends Finder {}
 interface PostFinder 			extends Finder {}
 interface PostTagFinder 		extends Finder {}
 interface PresentationFinder 	extends Finder {}
+interface QuestionFinder 		extends Finder {}
 interface SlideFinder 			extends Finder {}
 interface TagFinder 			extends Finder {}
 interface TrackingFinder 		extends Finder {}
 interface TrackingDailyFinder 	extends Finder {}
-//interface PageFinder  			extends Finder {}
+interface PageFinder  			extends Finder {}
 interface UserFinder  			extends Finder {}
 
 ?>
