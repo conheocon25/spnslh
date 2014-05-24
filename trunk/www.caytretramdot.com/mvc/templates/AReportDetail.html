@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+	</head>
+	
+	<body data-menu-position="closed">
+		<div metal:use-macro="mAdmin.xhtml/Header"/>
+		<div class="menu">			
+			<div id="sidebar">
+				<ul style="display: block;">																				
+					<li tal:repeat="Tracking1 TrackingAll" tal:attributes="class php:Tracking1->getId()==Tracking->getId()?'active':'disable'">
+						<a tal:attributes="href Tracking1/getURLView">
+							<i class="icon-book" /><span tal:content="Tracking1/getName"/>							
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>			
+			<div metal:use-macro="mAdmin.xhtml/LocationBar"/>
+			<div class="row">
+				<div class="container-fluid">
+					<div class="col-12">
+						<div class="widget-box">
+							<div class="widget-content nopadding">								
+								<table class="table table-bordered table-striped table-hover">
+									<thead>
+										<tr>																					
+											<th><div class="text-left">NGÀY</div></th>
+											<th width="70"><div class="text-right">VÉ NHẬN</div></th>
+											<th width="70"><div class="text-right">VÉ TRẢ</div></th>
+											<th width="70"><div class="text-right">VÉ BÁN</div></th>
+											<th width="100"><div class="text-right">T.BÁN VÉ</div></th>
+											<th width="100"><div class="text-right">THU T.BÁN</div></th>
+											<th width="100"><div class="text-right">NỢ T.VÉ</div></th>
+											<th width="100"><div class="text-right">THU T.GÓP</div></th>
+											<th width="100"><div class="text-right">CHO ỨNG</div></th>
+											<th width="100"><div class="text-right">NỢ T.ỨNG</div></th>											
+											<th width="100"><div class="text-right">TỔNG NỢ</div></th>
+											<th><div class="text-right"></div></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr tal:repeat="TD Tracking/getDailyAll">
+											<td><a 	tal:attributes="href TD/getURLReportSelling"><span tal:content="TD/getDateShortPrint"/></a></td>
+											<td align="right"><span tal:content="TD/getTicket1Print"/></td>
+											<td align="right"><span tal:content="TD/getTicket2Print"/></td>
+											<td align="right"><span tal:content="TD/getTicketDPrint"/></td>
+											<td align="right"><span tal:content="TD/getTicketValuePrint"/></td>
+											<td align="right"><span tal:content="TD/getPaid1Print"/></td>
+											<td align="right"><span tal:content="TD/getPaid1RemainPrint" style="color:blue;"/></td>
+											<td align="right"><span tal:content="TD/getPaid2Print"/></td>
+											<td align="right"><span tal:content="TD/getDebtPrint"/></td>
+											<td align="right"><span tal:content="TD/getPaid2RemainPrint" style="color:blue;"/></td>
+											<td align="right"><span tal:content="TD/getValuePrint" style="color:red;"/></td>
+											<td>
+												<a class="TDExe" tal:attributes="alt TD/getURLReportSellingExe"><i class="glyphicons-circle_ok"/></a>
+											</td>
+										</tr>
+										<tr>
+											<td><B>TK</B></td>
+											<td align="right"><B tal:content="STicket1"/></td>
+											<td align="right"><B tal:content="STicket2"/></td>
+											<td align="right"><B tal:content="STicketD"/></td>
+											<td align="right"><B tal:content="STicketValue"/></td>
+											<td align="right"><B tal:content="SPaid1"/></td>
+											<td align="right"><B tal:content="SPaid1Remain" style="color:blue;"/></td>
+											<td align="right"><B tal:content="SPaid2"/></td>
+											<td align="right"><B tal:content="SDebt"/></td>
+											<td align="right"><B tal:content="SPaid2Remain" style="color:blue;"/></td>
+											<td align="right"><B tal:content="SValue" style="color:red;"/></td>
+											<td />											
+										</tr>										
+									</tbody>
+								</table>								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div id="DialogSellingChart" class="modal fade">
+			<div class="modal-dialog full-screen">
+				<div class="modal-content">
+					<div class="modal-header"><h3><i class="glyphicons-charts modal-icon"/>BIỂU ĐỒ DOANH SỐ</h3></div>
+					<div class="form-horizontal" >
+						<div class="modal-body"><div class="SellingChart" style="width:100%;height:400px;"/></div>
+						<div class="modal-footer"><button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Thu nhỏ lại</button></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="DialogPaidChart" class="modal fade">
+			<div class="modal-dialog full-screen">
+				<div class="modal-content">
+					<div class="modal-header"><h3><i class="glyphicons-charts modal-icon"/>BIỂU ĐỒ KHOẢN CHI</h3></div>
+					<div class="form-horizontal" >
+						<div class="modal-body"><div class="PaidChart" style="width:100%;height:400px;"/></div>
+						<div class="modal-footer"><button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Thu nhỏ lại</button></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="DialogCollectChart" class="modal fade">
+			<div class="modal-dialog full-screen">
+				<div class="modal-content">
+					<div class="modal-header"><h3><i class="glyphicons-charts modal-icon"/>BIỂU ĐỒ KHOẢN THU</h3></div>
+					<div class="form-horizontal" >
+						<div class="modal-body"><div class="CollectChart" style="width:100%;height:400px;"/></div>
+						<div class="modal-footer"><button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Thu nhỏ lại</button></div>
+					</div>
+				</div>
+			</div>
+		</div>
+						
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<script type="text/javascript">
+		/*<![CDATA[*/
+			//-----------------------------------------------------------------------------------
+			//EXE DAILY			
+			//-----------------------------------------------------------------------------------
+			$('.TDExe').click(function(){
+				var URL = $(this).attr('alt');
+				$.ajax({
+					type: "POST",					
+					url: URL,
+					success: function(msg){
+						$.gritter.add({
+							title		:'Thông tin',
+							class_name	:'gritter-green',
+							text		:'Đã cập nhật xong BÁO CÁO TRONG NGÀY',
+							time		:5000,
+							sticky		: false
+						});
+					}
+				});
+				location.reload();
+			});
+			
+			$(".ViewSellingChart").click(function(){
+				var id = $(this).attr("data-id");
+				
+				var URL = "/report/"+id+"/selling/chart";
+				var data = [];
+				
+				$("#DialogSellingChart").modal('hide');
+				$.ajax({
+					type: "POST",					
+					url: URL,
+					async:false,
+					dataType: "json",
+					success: function(D){
+						data = D.data;						
+					}	
+				});								
+				$.plot(".SellingChart", [ data ], {
+					series: {bars: {show: true, barWidth: 0.2, align: "center"}},
+					xaxis: {mode: "categories", tickLength: 0}
+				});				
+			});												
+		/*]]>*/
+		</script>
+	</body>
+</html>

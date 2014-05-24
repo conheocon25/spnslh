@@ -1,0 +1,173 @@
+Options +FollowSymlinks
+RewriteEngine on
+AddDefaultCharset UTF-8
+
+# compress text, html, javascript, css, xml:
+AddOutputFilterByType DEFLATE text/plain
+AddOutputFilterByType DEFLATE text/html
+AddOutputFilterByType DEFLATE text/xml
+AddOutputFilterByType DEFLATE text/css
+AddOutputFilterByType DEFLATE application/xml
+AddOutputFilterByType DEFLATE application/xhtml+xml
+AddOutputFilterByType DEFLATE application/rss+xml
+AddOutputFilterByType DEFLATE application/javascript
+AddOutputFilterByType DEFLATE application/x-javascript
+
+#---------------------------------------------------------------------------------------------------------------------------
+# SYSTEM
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^trang-chu$ 						?cmd=FHome 			[L]
+RewriteRule ^gioi-thieu$ 						?cmd=FIntroduction 	[L]
+RewriteRule ^chinh-sach$ 						?cmd=FPolicy 		[L]
+RewriteRule ^faq$ 								?cmd=FFAQ 			[L]
+RewriteRule ^lien-he$ 							?cmd=FContact 		[L]
+RewriteRule ^lien-he/email$ 					?cmd=FContactSend	[L]
+RewriteRule ^nhan-thong-tin$ 					?cmd=FSubcribe 		[L]
+
+RewriteRule ^khuyen-mai$ 									?cmd=FDealer 		[L]
+RewriteRule ^khuyen-mai/([A-Za-z0-9_-]+)$ 					?cmd=FDealer&KCategory2=$1 	[L]
+RewriteRule ^khuyen-mai/([A-Za-z0-9_-]+)/page/([0-9]+)$ 	?cmd=FDealer&KCategory2=$1&Page=$2 	[L]
+
+RewriteRule ^khuyen-mai/m/([0-9]+)$ 						?cmd=FDealer&IdManufacturer=$1 	[L]
+RewriteRule ^khuyen-mai/m/([0-9]+)/page/([0-9]+)$ 			?cmd=FDealer&IdManufacturer=$1&Page=$2 	[L]
+
+RewriteRule ^gio-hang$ 							?cmd=FCart 			[L]
+RewriteRule ^gio-hang/them$ 					?cmd=FCartAdd		[L]
+RewriteRule ^gio-hang/([0-9]+)/cap-nhat/cong$ 	?cmd=FCartUpd&IdProduct=$1&Delta=1	[L]
+RewriteRule ^gio-hang/([0-9]+)/cap-nhat/tru$ 	?cmd=FCartUpd&IdProduct=$1&Delta=-1	[L]
+RewriteRule ^gio-hang/([0-9]+)/xoa$ 			?cmd=FCartDel&IdProduct=$1	[L]
+
+RewriteRule ^danh-dau$ 							?cmd=FBookmark		[L]
+RewriteRule ^danh-dau/them$ 					?cmd=FBookmarkAdd	[L]
+RewriteRule ^danh-dau/([0-9]+)/xoa$ 			?cmd=FBookmarkDel&IdProduct=$1	[L]
+
+RewriteRule ^tim-kiem$ 							?cmd=FProductSearch [L]
+RewriteRule ^tim-kiem/page/([0-9]+)$ 			?cmd=FProductSearch&Page=$1 [L]
+
+RewriteRule ^san-pham/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$ 	?cmd=FProduct&KCategory1=$1&KCategory2=$2&KProduct=$3 [L]
+RewriteRule ^san-pham/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$ 					?cmd=FCategory&KCategory1=$1&KCategory2=$2 [L]
+RewriteRule ^san-pham/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/page/([0-9]+)$ 		?cmd=FCategory&KCategory1=$1&KCategory2=$2&Page=$3 [L]
+RewriteRule ^san-pham/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/([0-9]+)/m$ 		?cmd=FCategory&KCategory1=$1&KCategory2=$2&IdManufacturer=$3 [L]
+RewriteRule ^san-pham/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/([0-9]+)/m/page/([0-9]+)$ ?cmd=FCategory&KCategory1=$1&KCategory2=$2&IdManufacturer=$3&Page=$4 [L]
+
+RewriteRule ^tin-tuc/([A-Za-z0-9_-]+)$ 							?cmd=FTag&KTag=$1 [L]
+RewriteRule ^tin-tuc/([A-Za-z0-9_-]+)/page/([0-9]+)$ 			?cmd=FTag&KTag=$1&Page=$2 [L]
+RewriteRule ^tin-tuc/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$ 		?cmd=FPost&KTag=$1&KPost=$2 [L]
+
+RewriteRule ^dang-nhap$ 										?cmd=SigninLoad [L]
+RewriteRule ^dang-nhap/exe$ 									?cmd=SigninExe [L]
+RewriteRule ^signout/load$ 										?cmd=SignoutLoad [L]
+RewriteRule ^signout/exe$ 										?cmd=SignoutExe [L]
+
+RewriteRule ^object/load/([A-Za-z0-9]+)/([0-9]+)$ 				?cmd=ObjectLoad&ObjectName=$1&Id=$2 [L]
+RewriteRule ^object/del/([A-Za-z0-9]+)/([0-9]+)$ 				?cmd=ObjectDel&ObjectName=$1&Id=$2 [L]
+RewriteRule ^object/ins/([A-Za-z0-9]+)$ 						?cmd=ObjectIns&ObjectName=$1 [L]
+RewriteRule ^object/upd/([A-Za-z0-9]+)$ 						?cmd=ObjectUpd&ObjectName=$1 [L]
+
+#---------------------------------------------------------------------------------------------------------------------------
+# SELLING
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^admin$ 											?cmd=Admin [L]
+
+#---------------------------------------------------------------------------------------------------------------------------
+# IMPORT
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^admin/import$ 										?cmd=AImport [L]
+RewriteRule ^admin/import/([0-9]+)$ 							?cmd=AImportSupplier&IdSupplier=$1 [L]
+RewriteRule ^admin/import/([0-9]+)$ 							?cmd=AImportSupplier&IdSupplier=$1 [L]
+RewriteRule ^admin/import/([0-9]+)/page/([0-9]+)$ 				?cmd=AImportSupplier&IdSupplier=$1&Page=$2 [L]
+
+RewriteRule ^admin/import/([0-9]+)/([0-9]+)$					?cmd=AImportSupplierOrder&IdSupplier=$1&IdOrder=$2 [L]
+RewriteRule ^admin/import/([0-9]+)/([0-9]+)/print$				?cmd=AImportSupplierOrderPrint&IdSupplier=$1&IdOrder=$2 [L]
+RewriteRule ^admin/import/([0-9]+)/([0-9]+)/([0-9]+)/([0-9_.]+)/([0-9]+)$ 	?cmd=AImportSupplierOrderExe&IdSupplier=$1&IdOrder=$2&IdProduct=$3&Count=$4&Price=$5 [L]
+
+#---------------------------------------------------------------------------------------------------------------------------
+# DEALER
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^admin/saving$ 										?cmd=ASaving [L]
+RewriteRule ^admin/saving/([0-9]+)$ 							?cmd=ASavingDetail&IdSave=$1 [L]
+
+#---------------------------------------------------------------------------------------------------------------------------
+# REPORT
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^admin/report$ 										?cmd=AReport [L]
+RewriteRule ^admin/report/([0-9]+)$ 							?cmd=AReportDetail&IdTrack=$1 [L]
+
+#---------------------------------------------------------------------------------------------------------------------------
+# SETTING
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^admin/setting$ 											?cmd=ASetting [L]
+RewriteRule ^admin/setting/theme/([a-z0-9_-]+)$ 						?cmd=ASettingThemeChangeExe&Theme=$1 [L]
+
+RewriteRule ^admin/setting/tag$ 										?cmd=ASettingTag [L]
+RewriteRule ^admin/setting/tag/page/([0-9]+)$ 							?cmd=ASettingTag&Page=$1 [L]
+
+RewriteRule ^admin/setting/post$ 										?cmd=ASettingPost [L]
+RewriteRule ^admin/setting/post/([0-9]+)$ 								?cmd=ASettingPost&IdTag=$1 	[L]
+RewriteRule ^admin/setting/post/ins/load$ 								?cmd=ASettingPostInsLoad 	[L]
+RewriteRule ^admin/setting/post/ins/exe$ 								?cmd=ASettingPostInsExe 	[L]
+RewriteRule ^admin/setting/post/([0-9]+)/upd/load$ 						?cmd=ASettingPostUpdLoad&IdPost=$1 	[L]
+RewriteRule ^admin/setting/post/([0-9]+)/upd/exe$ 						?cmd=ASettingPostUpdExe&IdPost=$1	[L]
+RewriteRule ^admin/setting/post/([0-9]+)/del/load$ 						?cmd=ASettingPostDelLoad&IdPost=$1 	[L]
+RewriteRule ^admin/setting/post/([0-9]+)/del/exe$ 						?cmd=ASettingPostDelExe&IdPost=$1	[L]
+
+RewriteRule ^admin/setting/post/([0-9]+)/tag$ 							?cmd=ASettingPostTag&IdPost=$1 		[L]
+
+RewriteRule ^admin/setting/presentation$ 								?cmd=ASettingPresentation [L]
+RewriteRule ^admin/setting/presentation/([0-9]+)$ 						?cmd=ASettingSlide&IdPresentation=$1 [L]
+RewriteRule ^admin/setting/presentation/([0-9]+)/ins/load$ 				?cmd=ASettingSlideInsLoad&IdPresentation=$1 [L]
+RewriteRule ^admin/setting/presentation/([0-9]+)/ins/exe$ 				?cmd=ASettingSlideInsExe&IdPresentation=$1 [L]
+RewriteRule ^admin/setting/presentation/([0-9]+)/([0-9]+)/upd/load$ 	?cmd=ASettingSlideUpdLoad&IdPresentation=$1&IdSlide=$2 [L]
+RewriteRule ^admin/setting/presentation/([0-9]+)/([0-9]+)/upd/exe$ 		?cmd=ASettingSlideUpdExe&IdPresentation=$1&IdSlide=$2 [L]
+
+RewriteRule ^admin/setting/category$ 									?cmd=ASettingCategory [L]
+RewriteRule ^admin/setting/category/page/([0-9]+)$ 						?cmd=ASettingCategory&Page=$1 [L]
+RewriteRule ^admin/setting/category/([0-9]+)$ 							?cmd=ASettingCategory1&IdCategory=$1 [L]
+RewriteRule ^admin/setting/category/([0-9]+)/page/([0-9]+)$ 			?cmd=ASettingCategory1&IdCategory=$1&Page=$2 [L]
+
+RewriteRule ^admin/setting/gattribute$ 									?cmd=ASettingGAttribute [L]
+RewriteRule ^admin/setting/gattribute/page/([0-9]+)$ 					?cmd=ASettingGAttribute&Page=$1 [L]
+RewriteRule ^admin/setting/gattribute/([0-9]+)$ 						?cmd=ASettingAttribute&IdGAttribute=$1 [L]
+
+RewriteRule ^admin/setting/manufacturer$ 								?cmd=ASettingManufacturer [L]
+RewriteRule ^admin/setting/manufacturer/page/([0-9]+)$ 					?cmd=ASettingManufacturer&Page=$1 [L]
+
+RewriteRule ^admin/setting/config$ 										?cmd=ASettingConfig [L]
+RewriteRule ^admin/setting/config/page/([0-9]+)$ 						?cmd=ASettingConfig&Page=$1 [L]
+
+RewriteRule ^admin/setting/supplier$ 									?cmd=ASettingSupplier [L]
+RewriteRule ^admin/setting/supplier/page/([0-9]+)$ 						?cmd=ASettingSupplier&Page=$1 [L]
+RewriteRule ^admin/setting/supplier/([0-9]+)$ 							?cmd=ASettingSupplierProduct&IdSupplier=$1 [L]
+RewriteRule ^admin/setting/supplier/([0-9]+)/page/([0-9]+)$ 			?cmd=ASettingSupplierProduct&IdSupplier=$1&Page=$2 [L]
+RewriteRule ^admin/setting/supplier/([0-9]+)/([0-9]+)/image$ 			?cmd=ASettingProductImage&IdSupplier=$1&IdProduct=$2 [L]
+RewriteRule ^admin/setting/supplier/([0-9]+)/([0-9]+)/info$ 			?cmd=ASettingProductInfo&IdSupplier=$1&IdProduct=$2 [L]
+RewriteRule ^admin/setting/supplier/([0-9]+)/([0-9]+)/info/exe$ 		?cmd=ASettingProductInfoExe&IdSupplier=$1&IdProduct=$2 [L]
+RewriteRule ^admin/setting/supplier/([0-9]+)/([0-9]+)/attribute$ 		?cmd=ASettingProductAttribute&IdSupplier=$1&IdProduct=$2 [L]
+RewriteRule ^admin/setting/supplier/([0-9]+)/([0-9]+)/attribute/exe$ 	?cmd=ASettingProductAttributeExe&IdSupplier=$1&IdProduct=$2 [L]
+
+RewriteRule ^admin/setting/supplier/([0-9]+)/([0-9]+)/manufacturer$ 	?cmd=ASettingSupplierProduct&IdSupplier=$1&IdManufacturer=$2 [L]
+RewriteRule ^admin/setting/supplier/([0-9]+)/([0-9]+)/manufacturer/page/([0-9]+)$ 	?cmd=ASettingSupplierProduct&IdSupplier=$1&IdManufacturer=$2&Page=$3 [L]
+
+RewriteRule ^admin/setting/employee$ 									?cmd=ASettingEmployee [L]
+RewriteRule ^admin/setting/employee/page/([0-9]+)$ 						?cmd=ASettingEmployee&Page=$1 [L]
+
+RewriteRule ^admin/setting/user$ 										?cmd=ASettingUser [L]
+RewriteRule ^admin/setting/user/page/([0-9]+)$ 							?cmd=ASettingUser&Page=$1 [L]
+
+RewriteRule ^admin/setting/branch$ 										?cmd=ASettingBranch [L]
+RewriteRule ^admin/setting/branch/page/([0-9]+)$ 						?cmd=ASettingBranch&Page=$1 [L]
+
+RewriteRule ^admin/setting/storyline$ 									?cmd=ASettingStoryLine [L]
+RewriteRule ^admin/setting/storyline/page/([0-9]+)$ 					?cmd=ASettingStoryLine&Page=$1 [L]
+
+#---------------------------------------------------------------------------------------------------------------------------
+# SELLING
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^admin/selling$ 											?cmd=ASelling [L]
+RewriteRule ^admin/selling/categoryp/([0-9]+)/load$ 					?cmd=ASellingCategoryPLoad&IdCategoryP=$1 [L]
+RewriteRule ^admin/selling/categorys/([0-9]+)/load$ 					?cmd=ASellingCategorySLoad&IdCategoryS=$1 [L]
+RewriteRule ^admin/selling/call/([0-9]+)/plus$ 							?cmd=ASellingCall&IdResource=$1&Delta=1 [L]
+RewriteRule ^admin/selling/session$ 									?cmd=ASellingSession [L]
+RewriteRule ^admin/selling/checkout$ 									?cmd=ASellingCheckout [L]
+RewriteRule ^admin/selling/search/resource$ 							?cmd=ASellingSearchResource [L]
+RewriteRule ^admin/selling/session/([0-9]+)/print$ 						?cmd=ASellingSessionPrint&IdOrder=$1 [L]

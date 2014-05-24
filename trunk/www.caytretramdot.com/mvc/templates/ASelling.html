@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>		
+	</head>
+	<body>
+		<div metal:use-macro="mAdmin.xhtml/Header"/>		
+		<div id="sidebar">
+			<ul>
+				<li class="CategoryP" tal:attributes="alt Category/getId" tal:repeat="Category CategoryAll">
+					<a><i class="glyphicons-show_big_thumbnails" /><span tal:content="Category/getName"/></a>
+				</li>
+			</ul>			
+		</div>
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+			<div metal:use-macro="mAdmin.xhtml/LocationBar"/>
+			<div class="row">
+				<div class="col-4">
+					<div id="CategoryS"/>
+					<div class="widget-box">
+						<div class="controls">
+							<input id="SearchName" type="text" placeholder="Nhập tìm món đồ..." style="width:80%;"/>
+							<a class="btn RemoveResourceSearch">
+								<i class="glyphicons-circle_remove" />
+							</a>						
+						</div>
+					</div>
+					<div id="ResourceF"/>
+				</div>
+				<div class="col-5"><div id="Session"/></div>
+				<div class="col-3"><div id="ResourceAll" /></div>
+			</div>			
+		</div>		
+		<div id="CategoryPActive" />
+									
+		<!-- END INSERT DIALOG  -->
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+        <script>			
+			//NẠP DANH SÁCH CÁC BÀN
+			$("#Session").load("/admin/selling/session");
+			
+			$('.CategoryP').click(function(){				
+				var IdCategoryP = $(this).attr('alt');
+				$('.CategoryP').removeClass('active');
+				$(this).addClass('active');
+								
+				$("#CategoryS").load("/admin/selling/categoryp/" + IdCategoryP + "/load");
+				$("#SearchName").focus();
+			});
+			$('.CategoryP:first').click();
+			
+			//---------------------------------------------------------------------------
+			//Xử lí search tên			
+			$('#SearchName').keyup(function(e){
+				var Name 		= $(this).val();										
+				$("#ResourceF").load("/admin/selling/search/resource", { Name: Name });
+			});
+			
+			//-----------------------------------------------------------------------------------
+			//CALL COURSE
+			$(".RemoveResourceSearch").click(function(){
+				$("#ResourceF").html("");
+			});
+									
+			//Mặc định vào ô tìm kiếm
+			$("#SearchName").focus();
+			
+        </script>
+	</body>
+</html>

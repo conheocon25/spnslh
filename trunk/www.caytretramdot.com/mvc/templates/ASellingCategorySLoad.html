@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+	<body>		
+		<div id="ResourceAll" class="widget-box">
+			<div class="widget-content nopadding">
+				<table class="table table-striped table-bordered">
+					<tbody>
+						<tr tal:repeat="Resource Category/getProductAll">
+							<td class="taskDesc"><button class="Course pull-left" tal:attributes="alt Resource/getId;data-delta 'plus' ">+</button></td>
+							<td class="taskStatus"><strong tal:content="Resource/getName"/></td>
+							<td class="taskDesc"><button class="Course pull-right" tal:attributes="alt Resource/getId;data-delta 'minus' ">-</button></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		/*<![CDATA[*/																															
+			//-----------------------------------------------------------------------------------
+			//click gọi món
+			//-----------------------------------------------------------------------------------
+			$('.Course').click(function(e){
+				var IdCourse 	= $(this).attr('alt');
+				var Delta 		= $(this).attr('data-delta');
+				var IdTable 	= $("#CurrentTable").attr('alt');
+				URL = "/admin/selling/call/"+IdCourse+"/"+Delta;
+				e.stopImmediatePropagation();
+				$.ajax({
+					type: "POST", 
+					async: false,
+					url: URL,
+					dataType: 'json',
+					success: function(data){						
+						$("#Session").load("/admin/selling/session");
+					}
+				});
+			});
+																	
+		/*]]>*/
+		</script>
+	
+</html>
