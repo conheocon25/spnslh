@@ -113,16 +113,7 @@
 	<!-- MENU.APP															  	  -->
 	<!-- ======================================================================== -->
 	<div metal:define-macro="MenuApp" id="sidebar">
-		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">
-			<li tal:attributes="class php:ActiveAdmin=='Selling'?'active':'disable'">
-				<a tal:attributes="href '/admin/selling'"><i class="glyphicons-usd" />BÁN HÀNG</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='Saving'?'active':'disable'">
-				<a tal:attributes="href '/admin/saving'"><i class="glyphicons-book" />KHUYẾN MÃI</a>
-			</li>			
-			<li tal:attributes="class php:ActiveAdmin=='Import'?'active':'disable'">
-				<a tal:attributes="href '/admin/import'"><i class="glyphicons-truck" />NHẬP HÀNG</a>
-			</li>
+		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">						
 			<li tal:attributes="class php:ActiveAdmin=='Report'?'active':'disable'">
 				<a tal:attributes="href '/admin/report'"><i class="glyphicons-fax" />BÁO CÁO</a>
 			</li>
@@ -176,22 +167,12 @@
 	</div>
 	
 	<div metal:define-macro="MenuSettingGeneral" id="sidebar">				
-		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">									
-			<li tal:attributes="class php:ActiveAdmin=='Branch'?'active':'disable'">
-				<a tal:attributes="href '/admin/setting/branch'">
-					<i class="glyphicons-group" />CHI NHÁNH
-				</a>
-			</li>
+		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">												
 			<li tal:attributes="class php:ActiveAdmin=='User'?'active':'disable'">
 				<a tal:attributes="href '/admin/setting/user'">
 					<i class="glyphicons-group" />NGƯỜI DÙNG 
 				</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='Employee'?'active':'disable'">
-				<a tal:attributes="href '/admin/setting/employee'">
-					<i class="glyphicons-group" />NHÂN VIÊN
-				</a>
-			</li>
+			</li>			
 			<li tal:attributes="class php:ActiveAdmin=='Config'?'active':'disable'">
 				<a tal:attributes="href '/admin/setting/config'">
 					<i class="glyphicons-cogwheel" />CẤU HÌNH
@@ -216,35 +197,15 @@
 				<a tal:attributes="href '/admin/setting/post'" >
 					<i class="glyphicons-book" />BÀI VIẾT
 				</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='StoryLine'?'active':'disable'">
-				<a tal:attributes="href '/admin/setting/storyline'" >
-					<i class="glyphicons-book" />CÂU CHUYỆN KHÁCH HÀNG
-				</a>
-			</li>
+			</li>			
 		</ul>
 	</div>
 	
 	<div metal:define-macro="MenuSettingProduct" id="sidebar">				
-		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">									
-			<li tal:attributes="class php:ActiveAdmin=='Manufacturer'?'active':'disable'">
-				<a tal:attributes="href '/admin/setting/manufacturer'" >
-					<i class="glyphicons-truck" />NHÀ SẢN XUẤT
-				</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='Supplier'?'active':'disable'">
-				<a tal:attributes="href '/admin/setting/supplier'" >
-					<i class="glyphicons-truck" />NHÀ CUNG CẤP
-				</a>
-			</li>
+		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">												
 			<li tal:attributes="class php:ActiveAdmin=='Category'?'active':'disable'">
 				<a tal:attributes="href '/admin/setting/category'" >
 					<i class="glyphicons-truck" />DANH MỤC SẢN PHẨM
-				</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='GAttribute'?'active':'disable'">
-				<a tal:attributes="href '/admin/setting/gattribute'" >
-					<i class="glyphicons-truck" />DANH MỤC MÔ TẢ
 				</a>
 			</li>			
 		</ul>
