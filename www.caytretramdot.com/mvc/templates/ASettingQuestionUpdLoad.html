@@ -14,41 +14,41 @@
 				<div class="col-12">					
 					<div class="widget-box">
 						<div class="widget-content nopadding">
-							<form class="form-horizontal" tal:attributes="action '/admin/setting/question/ins/exe'" method="post">																								
+							<form class="form-horizontal" tal:attributes="action Question/getURLUpdExe" method="post">																								
 								<div class="control-group">	
-									<label class="control-label" for="Author">Nội dung</label>
+									<label class="control-label" for="Content">Nội dung</label>
 									<div class="controls">
-										<textarea id="Content" class="ckeditor" name="Content" />
+										<textarea id="Content" tal:content="Question/getContent" class="ckeditor" name="Content" />
 									</div>
 								</div>								
 								<div class="control-group">
 									<label class="control-label">Gợi ý</label>
 									<div class="controls">
-										<input id="Hint" name="Hint" type="text" class="form-control input-small"/>
+										<input id="Hint" name="Hint" type="text" class="form-control input-small" tal:attributes="value Question/getHint" />
 									</div>
 								</div>
 								<div class="control-group">	
 									<label class="control-label" for="Detail1">Trả lời 1</label>
 									<div class="controls">
-										<textarea id="Detail1" class="ckeditor" name="Detail1" />
+										<textarea id="Detail1" class="ckeditor" name="Detail1" tal:content="QD1/getContent"/>
 									</div>
 								</div>
 								<div class="control-group">	
 									<label class="control-label" for="Detail2">Trả lời 2</label>
 									<div class="controls">
-										<textarea id="Detail2" class="ckeditor" name="Detail2" />
+										<textarea id="Detail2" class="ckeditor" name="Detail2" tal:content="QD2/getContent"/>
 									</div>
 								</div>
 								<div class="control-group">	
 									<label class="control-label" for="Detail2">Trả lời 3</label>
 									<div class="controls">
-										<textarea id="Detail3" class="ckeditor" name="Detail3" />
+										<textarea id="Detail3" class="ckeditor" name="Detail3" tal:content="QD3/getContent"/>
 									</div>
 								</div>
 								<div class="control-group">	
 									<label class="control-label" for="Detail2">Trả lời 4</label>
 									<div class="controls">
-										<textarea id="Detail4" class="ckeditor" name="Detail4" />
+										<textarea id="Detail4" class="ckeditor" name="Detail4" tal:content="QD4/getContent"/>
 									</div>
 								</div>
 								<div class="form-actions">

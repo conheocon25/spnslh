@@ -10,6 +10,7 @@ interface PostCollection 				extends \Iterator {function add( Object $Post);			}
 interface PostTagCollection 			extends \Iterator {function add( Object $PostTag );		}
 interface PresentationCollection 		extends \Iterator {function add( Object $Presentation);	}
 interface QuestionCollection 			extends \Iterator {function add( Object $Question);		}
+interface QuestionDetailCollection 		extends \Iterator {function add( Object $QuestionDetail);}
 interface SlideCollection 				extends \Iterator {function add( Object $Slide);		}
 interface TagCollection 				extends \Iterator {function add( Object $Tag );			}
 interface TrackingCollection 			extends \Iterator {function add( Object $Tracking);		}

@@ -69,6 +69,8 @@
 		<command name="ASettingQuestion">		<view>ASettingQuestion		</view></command>
 		<command name="ASettingQuestionInsLoad"><view>ASettingQuestionInsLoad	</view></command>
 		<command name="ASettingQuestionInsExe">	<view>ASettingQuestionInsExe	</view><status value="CMD_OK"><forward>ASettingQuestion</forward></status></command>
+		<command name="ASettingQuestionUpdLoad"><view>ASettingQuestionUpdLoad	</view></command>
+		<command name="ASettingQuestionUpdExe">	<view>ASettingQuestionUpdExe	</view><status value="CMD_OK"><forward>ASettingQuestion</forward></status></command>
 		
 		<command name="ASettingUser">			<view>ASettingUser			</view></command>				
 		<command name="ASettingConfig">			<view>ASettingConfig		</view></command>
