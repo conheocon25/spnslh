@@ -36,14 +36,16 @@
 								<thead>
 									<tr>
 										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
-										<th class="left">TIÊU ĐỀ</th>																				
+										<th width="150" class="left">KHỞI TẠO</th>
+										<th class="left">CẬP NHẬT</th>
 										<th width="40"><i class="glyphicons-bin"/></th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr tal:repeat="Question QuestionAll1">
 										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Question/getId"/></td>
-										<td><a tal:attributes="href Question/getURLUpdLoad" tal:content="Question/getId"/></td>										
+										<td><a tal:attributes="href Question/getURLUpdLoad" tal:content="Question/getDateCreatedPrint"/></td>
+										<td><a tal:attributes="href Question/getURLUpdLoad" tal:content="Question/getDateUpdatedPrint"/></td>
 										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Question/getId"><i class="glyphicon glyphicon-remove"/></a></td>
 									</tr>
 								</tbody>								
@@ -63,7 +65,7 @@
 			$('#URLDelSelectedButton').click(function(){
 				var count = 0;
 				var Data = [];
-				var URL = "/object/del/Post/0";
+				var URL = "/object/del/Question/0";
 				
 				$(".CheckedDel").each(function( i, obj){
 					if ( $(this).is(':checked')==true ){
@@ -90,7 +92,7 @@
 			});
 			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
 			$('#URLDelButton').click(function(){			
-				var URL = "/object/del/Post/" + $(this).attr('alt');
+				var URL = "/object/del/Question/" + $(this).attr('alt');
 				$.ajax({
 					type: "POST",					
 					url: URL,

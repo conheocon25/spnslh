@@ -19,6 +19,7 @@ interface PostFinder 			extends Finder {}
 interface PostTagFinder 		extends Finder {}
 interface PresentationFinder 	extends Finder {}
 interface QuestionFinder 		extends Finder {}
+interface QuestionDetailFinder 	extends Finder {}
 interface SlideFinder 			extends Finder {}
 interface TagFinder 			extends Finder {}
 interface TrackingFinder 		extends Finder {}

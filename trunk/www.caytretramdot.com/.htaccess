@@ -92,3 +92,6 @@ RewriteRule ^admin/setting/question/page/([0-9]+)$ 						?cmd=ASettingQuestion&P
 
 RewriteRule ^admin/setting/question/ins/load$ 							?cmd=ASettingQuestionInsLoad [L]
 RewriteRule ^admin/setting/question/ins/exe$ 							?cmd=ASettingQuestionInsExe [L]
+
+RewriteRule ^admin/setting/question/([0-9]+)/upd/load$ 					?cmd=ASettingQuestionUpdLoad&IdQuestion=$1 [L]
+RewriteRule ^admin/setting/question/([0-9]+)/upd/exe$ 					?cmd=ASettingQuestionUpdExe&IdQuestion=$1 [L]

@@ -10,8 +10,24 @@ class Question extends Mapper implements \MVC\Domain\QuestionFinder {
 						
 		$selectAllStmt 	= sprintf("select * from %s", $tblQuestion);
 		$selectStmt 	= sprintf("select * from %s where id=?", $tblQuestion);
-		$updateStmt 	= sprintf("update %s set content=?  where id=?", $tblQuestion);
-		$insertStmt 	= sprintf("insert into %s ( content) values(?)", $tblQuestion);
+		$updateStmt 	= sprintf("
+			update %s set 
+				content=?,
+				type=?,
+				date_created=?,
+				date_updated=?,
+				owner=?,
+				hint=?
+			where id=?", $tblQuestion);
+		$insertStmt 	= sprintf("
+			insert into %s ( 
+				content,
+				type,
+				date_created,
+				date_updated,
+				owner,
+				hint
+			) values(?, ?, ?, ?, ?, ?)", $tblQuestion);
 		$deleteStmt 	= sprintf("delete from %s where id=?", $tblQuestion);
 		$findByPageStmt = sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblQuestion);
 		$findByKeyStmt 	= sprintf("select *  from %s where `key`=?", $tblQuestion);
@@ -28,7 +44,12 @@ class Question extends Mapper implements \MVC\Domain\QuestionFinder {
     protected function doCreateObject( array $array ) {		
         $obj = new \MVC\Domain\Question( 
 			$array['id'],
-			$array['content']			
+			$array['content'],
+			$array['type'],
+			$array['date_created'],
+			$array['date_updated'],
+			$array['owner'],
+			$array['hint']
 		);
         return $obj;
     }
@@ -36,7 +57,12 @@ class Question extends Mapper implements \MVC\Domain\QuestionFinder {
     protected function targetClass() {  return "Question";}
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array( 
-			$object->getContent()			
+			$object->getContent(),
+			$object->getType(),
+			$object->getDateCreated(),
+			$object->getDateUpdated(),
+			$object->getOwner(),
+			$object->getHint()
 		); 
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
@@ -45,7 +71,12 @@ class Question extends Mapper implements \MVC\Domain\QuestionFinder {
     
     protected function doUpdate( \MVC\Domain\Object $object ) {
         $values = array( 
-			$object->getContent(),			
+			$object->getContent(),
+			$object->getType(),
+			$object->getDateCreated(),
+			$object->getDateUpdated(),
+			$object->getOwner(),
+			$object->getHint(),
 			$object->getId()
 		);				
         $this->updateStmt->execute( $values );
