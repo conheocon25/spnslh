@@ -17,7 +17,8 @@ class Question extends Mapper implements \MVC\Domain\QuestionFinder {
 				date_created=?,
 				date_updated=?,
 				owner=?,
-				hint=?
+				hint=?,
+				`key`=?
 			where id=?", $tblQuestion);
 		$insertStmt 	= sprintf("
 			insert into %s ( 
@@ -26,8 +27,9 @@ class Question extends Mapper implements \MVC\Domain\QuestionFinder {
 				date_created,
 				date_updated,
 				owner,
-				hint
-			) values(?, ?, ?, ?, ?, ?)", $tblQuestion);
+				hint,
+				`key`
+			) values(?, ?, ?, ?, ?, ?, ?)", $tblQuestion);
 		$deleteStmt 	= sprintf("delete from %s where id=?", $tblQuestion);
 		$findByPageStmt = sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblQuestion);
 		$findByKeyStmt 	= sprintf("select *  from %s where `key`=?", $tblQuestion);
@@ -49,7 +51,8 @@ class Question extends Mapper implements \MVC\Domain\QuestionFinder {
 			$array['date_created'],
 			$array['date_updated'],
 			$array['owner'],
-			$array['hint']
+			$array['hint'],
+			$array['key']
 		);
         return $obj;
     }
@@ -62,7 +65,8 @@ class Question extends Mapper implements \MVC\Domain\QuestionFinder {
 			$object->getDateCreated(),
 			$object->getDateUpdated(),
 			$object->getOwner(),
-			$object->getHint()
+			$object->getHint(),
+			$object->getKey()
 		); 
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
@@ -77,6 +81,7 @@ class Question extends Mapper implements \MVC\Domain\QuestionFinder {
 			$object->getDateUpdated(),
 			$object->getOwner(),
 			$object->getHint(),
+			$object->getKey(),
 			$object->getId()
 		);				
         $this->updateStmt->execute( $values );

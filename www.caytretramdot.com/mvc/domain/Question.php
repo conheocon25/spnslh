@@ -13,11 +13,12 @@ class Question extends Object{
 	private $DateUpdated;
 	private $Owner;
 	private $Hint;
+	private $Key;
 	
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-	function __construct($Id=null, $Content=null, $Type=null, $DateCreated=null, $DateUpdated=null, $Owner=null, $Hint=null) {
+	function __construct($Id=null, $Content=null, $Type=null, $DateCreated=null, $DateUpdated=null, $Owner=null, $Hint=null, $Key=null) {
 		$this->Id 			= $Id;
 		$this->Content 		= $Content;
 		$this->Type 		= $Type;
@@ -25,6 +26,7 @@ class Question extends Object{
 		$this->DateUpdated 	= $DateUpdated;
 		$this->Owner 		= $Owner;
 		$this->Hint 		= $Hint;
+		$this->Key 			= $Key;
 		
 		parent::__construct( $Id );
 	}
@@ -33,6 +35,7 @@ class Question extends Object{
 		
 	function setContent($Content) {$this->Content = $Content;$this->markDirty();}
 	function getContent() 		{return $this->Content;}
+	function getContentReduce()	{$S = new \MVC\Library\String($this->Content);return $S->reduceHTML(120);}
 	
 	function setType($Type) {$this->Type = $Type;$this->markDirty();}
 	function getType() 		{return $this->Type;}
@@ -57,6 +60,18 @@ class Question extends Object{
 	function setHint($Hint) 	{$this->Hint = $Hint;$this->markDirty();}
 	function getHint() 			{return $this->Hint;}
 	
+	function setKey($Key) 		{$this->Key = $Key;$this->markDirty();}
+	function getKey() 			{return $this->Key;}
+	function getKeyPrint() 		{
+		$A = array(
+				1=>"A",
+				2=>"B",
+				4=>"C",
+				8=>"D",
+			);
+		return $A[$this->Key];
+	}
+	
 	function getDetailAll(){
 		$mQD 	= new \MVC\Mapper\QuestionDetail();
 		$QDAll 	= $mQD->findBy(array($this->getId()));
@@ -71,7 +86,8 @@ class Question extends Object{
 			'DateCreated'	=> $this->getDateCreated(),
 			'DateUpdated'	=> $this->getDateUpdated(),
 			'Owner'			=> $this->getOwner(),
-			'Hint'			=> $this->getHint()
+			'Hint'			=> $this->getHint(),
+			'Key'			=> $this->getKey()
 		);
 		return json_encode($json);
 	}
@@ -84,6 +100,7 @@ class Question extends Object{
 		$this->DateUpdated 	= $Data[4];
 		$this->Owner 		= $Data[5];
 		$this->Hint 		= $Data[6];
+		$this->Key 			= $Data[7];
     }
 	
 	function getURLUpdLoad(){return "/admin/setting/question/".$this->getId()."/upd/load";}

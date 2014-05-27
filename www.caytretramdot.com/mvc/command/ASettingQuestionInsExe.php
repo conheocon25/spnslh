@@ -12,11 +12,12 @@
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------															
 			$Content 	= \stripslashes($request->getProperty('Content'));
-			$Hint 		= \stripslashes($request->getProperty('Hint'));
+			$Hint 		= $request->getProperty('Hint');
 			$DateCreated= date('Y-m-d h:i:s', \time());
 			$DateUpdated= date('Y-m-d h:i:s', \time());
 			$Type 		= 1;
 			$Owner		= $Session->getCurrentIdUser();
+			$Key 		= $request->getProperty('Key');
 			
 			$Detail1 	= \stripslashes($request->getProperty('Detail1'));
 			$Detail2 	= \stripslashes($request->getProperty('Detail2'));
@@ -39,7 +40,8 @@
 				$DateCreated,
 				$DateUpdated,
 				1,
-				$Hint
+				$Hint,
+				$Key
 			);									
 			$mQuestion->insert($Question);
 			
