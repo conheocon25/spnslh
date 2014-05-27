@@ -36,16 +36,22 @@
 								<thead>
 									<tr>
 										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
-										<th width="150" class="left">KHỞI TẠO</th>
-										<th class="left">CẬP NHẬT</th>
+										<th class="left">NỘI DUNG</th>
+										<th width="150" class="left">KHỞI TẠO</th>										
+										<th width="60" class="left">KHÓA</th>
 										<th width="40"><i class="glyphicons-bin"/></th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr tal:repeat="Question QuestionAll1">
 										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Question/getId"/></td>
-										<td><a tal:attributes="href Question/getURLUpdLoad" tal:content="Question/getDateCreatedPrint"/></td>
-										<td><a tal:attributes="href Question/getURLUpdLoad" tal:content="Question/getDateUpdatedPrint"/></td>
+										<td>
+											<a tal:attributes="href Question/getURLUpdLoad">
+												<span tal:content="structure Question/getContentReduce"/>
+											</a>
+										</td>
+										<td><span tal:content="Question/getDateCreatedPrint"/></td>
+										<td><span tal:content="Question/getKeyPrint"/></td>
 										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Question/getId"><i class="glyphicon glyphicon-remove"/></a></td>
 									</tr>
 								</tbody>								
