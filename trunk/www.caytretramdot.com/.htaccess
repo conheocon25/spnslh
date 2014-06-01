@@ -44,6 +44,11 @@ RewriteRule ^object/upd/([A-Za-z0-9]+)$ 						?cmd=ObjectUpd&ObjectName=$1 [L]
 RewriteRule ^admin$ 											?cmd=Admin [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
+# TEST
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^admin/test$ 										?cmd=ATest [L]
+
+#---------------------------------------------------------------------------------------------------------------------------
 # REPORT
 #---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^admin/report$ 										?cmd=AReport [L]
@@ -89,9 +94,12 @@ RewriteRule ^admin/setting/user/page/([0-9]+)$ 							?cmd=ASettingUser&Page=$1 
 
 RewriteRule ^admin/setting/question$ 									?cmd=ASettingQuestion [L]
 RewriteRule ^admin/setting/question/page/([0-9]+)$ 						?cmd=ASettingQuestion&Page=$1 [L]
-
 RewriteRule ^admin/setting/question/ins/load$ 							?cmd=ASettingQuestionInsLoad [L]
 RewriteRule ^admin/setting/question/ins/exe$ 							?cmd=ASettingQuestionInsExe [L]
-
 RewriteRule ^admin/setting/question/([0-9]+)/upd/load$ 					?cmd=ASettingQuestionUpdLoad&IdQuestion=$1 [L]
 RewriteRule ^admin/setting/question/([0-9]+)/upd/exe$ 					?cmd=ASettingQuestionUpdExe&IdQuestion=$1 [L]
+
+RewriteRule ^admin/setting/exam$ 										?cmd=ASettingExam [L]
+RewriteRule ^admin/setting/exam/page/([0-9]+)$ 							?cmd=ASettingExam&Page=$1 [L]
+
+RewriteRule ^admin/setting/exam/([0-9]+)$ 								?cmd=ASettingExamDetail&IdExam=$1 [L]

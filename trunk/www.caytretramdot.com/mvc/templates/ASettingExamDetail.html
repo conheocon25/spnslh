@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+	</head>
+	
+	<body>
+		<div metal:use-macro="mAdmin.xhtml/Header"/>						
+		<!--
+		<div id="sidebar">
+			<ul style="display: block;">				
+				<li tal:repeat="Tag TagAll" tal:attributes="class php: Tag->getId()==IdTag?'active':''">
+					<a tal:attributes="href Tag/getURLSettingPost">
+						<i class="glyphicons-truck"/><span tal:content="Tag/getName"/>
+					</a>
+				</li>
+			</ul>
+		</div>
+		!-->		
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
+			<div class="row">
+				<div class="col-12">
+					<a href="#DialogIns" data-toggle="modal" class="btn btn-primary btn-ins">
+						<i class="glyphicons-plus"/> Thêm mới
+					</a>
+					<a href="#DialogDelSelected" data-toggle="modal" class="btn btn-primary btn-ins">
+						<i class="glyphicons-remove_2"/> Xóa chọn
+					</a>
+					<div class="widget-box">
+						<div class="widget-content nopadding">
+							<table class="table table-bordered table-striped table-hover with-check">								
+								<thead>
+									<tr>
+										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
+										<th width="40" class="right">STT</th>										
+										<th class="left">NỘI DUNG</th>										
+										<th width="40"><i class="glyphicons-bin"/></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr tal:repeat="Q Exam/getQuestionAll">
+										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Q/getId"/></td>
+										<td class="right" tal:content="Q/getOrder"/>
+										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Q/getId" tal:content="structure Q/getQuestion/getContentReduce"/></td>										
+										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Exam/getId"><i class="glyphicon glyphicon-remove"/></a></td>
+									</tr>
+								</tbody>								
+							</table>
+						</div>
+					</div>					
+					<!-- INSERT DIALOG  -->
+					<div id="DialogIns" class="modal fade">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header"><h3><i class="glyphicons-show_big_thumbnails modal-icon"/>THÊM MỚI ĐỀ THI</h3></div>
+								<form id="FormExamInsert" action="#" class="form-horizontal" novalidate="novalidate">
+									<div class="modal-body">
+										<div class="control-group">
+											<label class="control-label">Câu hỏi</label>
+											<div class="controls">
+												<select name="IdQuestion1" id="IdQuestion1" style="width:80%;">
+													<option tal:repeat="Question QuestionAll" tal:attributes="value Question/getId">
+														<span tal:content="Question/getId" />
+													</option>
+												</select>				
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label">Thứ tự</label>
+											<div class="controls">
+												<input id="Order1" name="Order1" type="text" class="form-control input-small"/>
+											</div>
+										</div>										
+									</div>
+									<div class="modal-footer">
+										<button id="URLInsButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Lưu</button>
+										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<!-- END INSERT DIALOG  -->
+					<div id="IdExam" tal:attributes="alt Exam/getId" />
+					<div metal:use-macro="mDialog.xhtml/DialogDel"/>
+					<div metal:use-macro="mDialog.xhtml/DialogDelSelected"/>
+				</div>
+			</div>
+		</div>
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<script type="text/javascript">
+		/*<![CDATA[*/
+			$('#URLDelSelectedButton').click(function(){
+				var count = 0;
+				var Data = [];
+				var URL = "/object/del/ExamDetail/0";
+				
+				$(".CheckedDel").each(function( i, obj){
+					if ( $(this).is(':checked')==true ){
+						count += 1;
+						Data[count] = $(this).attr('data-id');
+					}
+				});
+				
+				$.ajax({
+					type: "POST",
+					data: {ListId:Data},
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
+			});
+			
+			//-----------------------------------------------------------------------------------
+			//Delete 1 Post			
+			//-----------------------------------------------------------------------------------
+			$('.remove-item').click(function(){
+				$('#URLDelButton').attr('alt', $(this).attr('data-id'));
+			});
+			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
+			$('#URLDelButton').click(function(){			
+				var URL = "/object/del/ExamDetail/" + $(this).attr('alt');
+				$.ajax({
+					type: "POST",
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
+			});
+			
+			//-----------------------------------------------------------------------------------
+			//Insert 1 Presentation			
+			$("#FormExamInsert").validate({
+				rules:{
+					Name1:{
+						minlength: 2,
+						required:true
+					}
+				},
+				errorClass: "help-inline",
+				errorElement: "span",
+				highlight:function(element, errorClass, validClass) {
+					$(element).parents('.form-group').addClass('has-error');
+				},
+				unhighlight: function(element, errorClass, validClass) {
+					$(element).parents('.form-group').removeClass('has-error');
+					$(element).parents('.form-group').addClass('has-success');
+				},
+				submitHandler: function (form) {					
+					var Data = [];
+					Data[0] = 'null';					
+					Data[1] = $('#IdExam').attr('alt');
+					Data[2] = $('#IdQuestion1').val();
+					Data[3] = $('#Order1').val();
+					
+					var URL = "/object/ins/ExamDetail";
+					$.ajax({
+						type: "POST",
+						data: {Data:Data},
+						url: URL,
+						success: function(msg){
+							location.reload();
+						}
+					});
+					return false;
+				}
+			});
+			$("#DialogIns").on('show.bs.modal', function(event){
+				window.setTimeout(
+					function(){$(event.currentTarget).find('input#Name1').first().focus()},
+					0500
+				);
+			});
+			
+			//-----------------------------------------------------------------------------------
+			//Load 1 Exam
+			//-----------------------------------------------------------------------------------
+			$('.update-item').click(function(){
+				//Load dữ liệu JSON về
+				var url = "/object/load/Exam/" + $(this).attr('data-id');
+				
+				//Load dữ liệu JSON lên FORM
+				$.getJSON(url, function(data){
+					$('#URLUpdButton').attr('alt', data.Id);
+					$('#Name2').attr('value', data.Name);
+					$('#DateCreated2').attr('value', data.DateCreated);
+					$('#DateUpdated2').attr('value', data.DateUpdated);
+					$('#Owner2').attr('value', data.Owner);
+					$('#Time2').attr('value', data.Time);
+				});
+			});
+						
+		/*]]>*/
+		</script>
+	</body>
+</html>

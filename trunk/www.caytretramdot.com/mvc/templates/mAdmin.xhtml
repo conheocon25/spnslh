@@ -113,7 +113,10 @@
 	<!-- MENU.APP															  	  -->
 	<!-- ======================================================================== -->
 	<div metal:define-macro="MenuApp" id="sidebar">
-		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">						
+		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">
+			<li tal:attributes="class php:ActiveAdmin=='Test'?'active':'disable'">
+				<a tal:attributes="href '/admin/test'"><i class="glyphicons-fax" />THI THỬ</a>
+			</li>
 			<li tal:attributes="class php:ActiveAdmin=='Report'?'active':'disable'">
 				<a tal:attributes="href '/admin/report'"><i class="glyphicons-fax" />BÁO CÁO</a>
 			</li>
