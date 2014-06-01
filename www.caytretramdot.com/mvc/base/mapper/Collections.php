@@ -7,6 +7,10 @@ class CategoryCollection 		extends Collection implements \MVC\Domain\CategoryCol
 class Category1Collection 		extends Collection implements \MVC\Domain\Category1Collection 		{function targetClass(){return "\MVC\Domain\Category1";		}}
 class ConfigCollection 			extends Collection implements \MVC\Domain\ConfigCollection			{function targetClass(){return "\MVC\Domain\Config";		}}
 class CustomerCollection 		extends Collection implements \MVC\Domain\CustomerCollection 		{function targetClass(){return "\MVC\Domain\Customer";		}}
+
+class ExamCollection 			extends Collection implements \MVC\Domain\ExamCollection			{function targetClass(){return "\MVC\Domain\Exam";			}}
+class ExamDetailCollection 		extends Collection implements \MVC\Domain\ExamDetailCollection		{function targetClass(){return "\MVC\Domain\ExamDetail";	}}
+
 class GuestCollection 			extends Collection implements \MVC\Domain\GuestCollection			{function targetClass(){return "\MVC\Domain\Guest";			}}
 class PostCollection 			extends Collection implements \MVC\Domain\PostCollection			{function targetClass(){return "\MVC\Domain\Post";			}}
 class PostTagCollection 		extends Collection implements \MVC\Domain\PostTagCollection 		{function targetClass(){return "\MVC\Domain\PostTag";		}}
@@ -17,6 +21,9 @@ class QuestionDetailCollection 	extends Collection implements \MVC\Domain\Questi
 
 class SlideCollection 			extends Collection implements \MVC\Domain\SlideCollection			{function targetClass(){return "\MVC\Domain\Slide";			}}
 class TagCollection 			extends Collection implements \MVC\Domain\TagCollection 			{function targetClass(){return "\MVC\Domain\Tag";			}}
+
+class TestCollection 			extends Collection implements \MVC\Domain\TestCollection 			{function targetClass(){return "\MVC\Domain\Test";			}}
+
 class TrackingCollection 		extends Collection implements \MVC\Domain\TrackingCollection		{function targetClass(){return "\MVC\Domain\Tracking";		}}
 class TrackingDailyCollection 	extends Collection implements \MVC\Domain\TrackingDailyCollection	{function targetClass(){return "\MVC\Domain\TrackingDaily";	}}
 class PageCollection 			extends Collection implements \MVC\Domain\PageCollection			{function targetClass(){return "\MVC\Domain\Page";			}}

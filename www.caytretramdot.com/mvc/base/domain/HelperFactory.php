@@ -6,6 +6,8 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	require_once( "mvc/mapper/Category1.php" 		);		
 	require_once( "mvc/mapper/Config.php"			);	
 	require_once( "mvc/mapper/Customer.php" 		);		
+	require_once( "mvc/mapper/Exam.php" 			);
+	require_once( "mvc/mapper/ExamDetail.php" 		);
 	require_once( "mvc/mapper/Guest.php"			);
 	require_once( "mvc/mapper/Post.php"				);
 	require_once( "mvc/mapper/PostTag.php" 			);		
@@ -13,7 +15,8 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	require_once( "mvc/mapper/Question.php"			);
 	require_once( "mvc/mapper/QuestionDetail.php"	);
 	require_once( "mvc/mapper/Slide.php"			);
-	require_once( "mvc/mapper/Tag.php" 				);		
+	require_once( "mvc/mapper/Tag.php" 				);
+	require_once( "mvc/mapper/Test.php" 				);
 	require_once( "mvc/mapper/Tracking.php"			);	
 	require_once( "mvc/mapper/TrackingDaily.php"	);	
 	require_once( "mvc/mapper/User.php" 			);

@@ -72,14 +72,17 @@
 		<command name="ASettingQuestionUpdLoad"><view>ASettingQuestionUpdLoad	</view></command>
 		<command name="ASettingQuestionUpdExe">	<view>ASettingQuestionUpdExe	</view><status value="CMD_OK"><forward>ASettingQuestion</forward></status></command>
 		
+		<command name="ASettingExam">			<view>ASettingExam				</view></command>
+		<command name="ASettingExamDetail">		<view>ASettingExamDetail		</view></command>
+		
 		<command name="ASettingUser">			<view>ASettingUser			</view></command>				
 		<command name="ASettingConfig">			<view>ASettingConfig		</view></command>
 						
 		<!-- ============================================================================== -->
-		<!-- SAVING				 															-->		
+		<!-- TESTING				 															-->		
 		<!-- ============================================================================== -->
-		<command name="ASaving"><view>ASaving</view></command>
-		<command name="ASavingDetail"><view>ASavingDetail</view></command>
+		<command name="ATest"><view>ATest</view></command>
+		<command name="ATestDetail"><view>ATestDetail</view></command>
 		
 	</control>
 </options>
