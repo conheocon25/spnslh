@@ -33,6 +33,9 @@ RewriteRule ^dang-nhap/exe$ 									?cmd=SigninExe [L]
 RewriteRule ^signout/load$ 										?cmd=SignoutLoad [L]
 RewriteRule ^signout/exe$ 										?cmd=SignoutExe [L]
 
+RewriteRule ^model/load/([A-Za-z0-9]+)/all$ 					?cmd=ModelLoadAll&ObjectName=$1 [L]
+RewriteRule ^model/findby/([A-Za-z0-9]+)/([0-9]+)$ 				?cmd=ModelFindBy&ObjectName=$1&IdObject=$2 [L]
+
 RewriteRule ^object/load/([A-Za-z0-9]+)/([0-9]+)$ 				?cmd=ObjectLoad&ObjectName=$1&Id=$2 [L]
 RewriteRule ^object/del/([A-Za-z0-9]+)/([0-9]+)$ 				?cmd=ObjectDel&ObjectName=$1&Id=$2 [L]
 RewriteRule ^object/ins/([A-Za-z0-9]+)$ 						?cmd=ObjectIns&ObjectName=$1 [L]
@@ -47,6 +50,7 @@ RewriteRule ^admin$ 											?cmd=Admin [L]
 # TEST
 #---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^admin/test$ 										?cmd=ATest [L]
+RewriteRule ^admin/test/([0-9]+)$ 								?cmd=ATestDetail&IdTest=$1 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # REPORT

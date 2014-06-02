@@ -45,15 +45,11 @@
 									<tr tal:repeat="Test TestAll1">
 										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Test/getId"/></td>
 										<td>
-											<a 	class="update-item" 
-												href="#DialogEdit" 
-												data-toggle="modal" 
-												tal:attributes="data-id Test/getId" 
-												tal:content="Test/getExam/getName" />
+											<span tal:content="Test/getExam/getName" />
 										</td>
 										<td><span tal:content="Test/getDateCreatedPrint"/></td>
 										<td class="center">
-											<a tal:attributes="href Test/getURLSetting">Chi tiết</a>
+											<a tal:attributes="href Test/getURLSetting">Thi thử</a>
 										</td>
 										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Test/getId"><i class="glyphicon glyphicon-remove"/></a></td>
 									</tr>

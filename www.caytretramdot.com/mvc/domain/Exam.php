@@ -61,7 +61,7 @@ class Exam extends Object{
 		$QDAll 	= $mQD->findBy(array($this->getId()));
 		return $QDAll;
 	}
-	
+		
 	function toJSON(){
 		$json = array(
 			'Id' 			=> $this->getId(),
@@ -82,6 +82,20 @@ class Exam extends Object{
 		$this->Owner 		= $Data[4];		
 		$this->Time 		= $Data[5];
     }
+			
+	function toXML(){
+		$S = "
+		<object>
+			<id>".$this->getId()."</id>
+			<name>".$this->getName()."</name>
+			<date_created>".$this->getDateCreated()."</date_created>
+			<date_updated>".$this->getDateUpdated()."</date_updated>
+			<owner>".$this->getOwner()."</owner>
+			<time>".$this->getTime()."</time>
+		</object>
+		";
+		return $S;
+	}
 	
 	function getURLSetting(){return "/admin/setting/exam/".$this->getId();}
 	function getURLUpdLoad(){return "/admin/setting/exam/".$this->getId()."/upd/load";}

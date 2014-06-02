@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+	</head>
+	
+	<body>
+		<div metal:use-macro="mAdmin.xhtml/Header"/>						
+		<!--
+		<div id="sidebar">
+			<ul style="display: block;">				
+				<li tal:repeat="Tag TagAll" tal:attributes="class php: Tag->getId()==IdTag?'active':''">
+					<a tal:attributes="href Tag/getURLSettingPost">
+						<i class="glyphicons-truck"/><span tal:content="Tag/getName"/>
+					</a>
+				</li>
+			</ul>
+		</div>
+		!-->		
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
+			<div class="row">
+				<div class="col-12">					
+					<div class="widget-box">
+						<div class="widget-content nopadding">							
+							<table class="table table-bordered table-striped table-hover with-check">
+								<thead>
+									<tr>
+										<th width="40">STT</th>
+										<th class="left">NỘI DUNG</th>										
+										<th width="90" class="center">CHI TIẾT</th>										
+									</tr>
+								</thead>
+								<tbody>
+									<tr tal:repeat="Q Test/getExam/getQuestionAll">
+										<td class="center">
+											<span tal:content="repeat/Q/number"/>
+										</td>
+										<td>
+											<span tal:content="structure Q/getQuestion/getContentReduce"/>
+										</td>
+										<td class="center">											
+											<a class="Question" href="#DialogQuestion" data-toggle="modal" tal:attributes="
+													Content Q/getQuestion/getContentReduce;
+													Detail1 Q/getQuestion/getDetail1/getContent;
+													Detail2 Q/getQuestion/getDetail2/getContent;
+													Detail3 Q/getQuestion/getDetail3/getContent;
+													Detail4 Q/getQuestion/getDetail4/getContent;
+												">
+												Xem
+											</a>
+										</td>										
+									</tr>
+								</tbody>								
+							</table>							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- QUESTION DIALOG  -->
+		<div id="DialogQuestion" class="modal fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h3><i class="glyphicons-circle_question_mark modal-icon"/>CÂU HỎI</h3>
+					</div>
+					<form id="FormQuestion" action="#" class="form-horizontal" novalidate="novalidate">
+						<div class="modal-body">
+							<div class="form-group">
+								<p id="QuestionContent" />
+							</div>
+							<div class="form-group">
+								<label class="control-label">
+									<input id="SelectA" name="SelectValue" type="radio" class="form-control input-small"/>
+								</label>
+								<div class="controls" id="QuestionDetail1" />
+							</div>
+							<div class="form-group">
+								<label class="control-label">
+									<input id="SelectB" name="SelectValue" type="radio" class="form-control input-small"/>
+								</label>
+								<div class="controls" id="QuestionDetail2" />
+							</div>
+							<div class="form-group">
+								<label class="control-label">
+									<input id="SelectC" name="SelectValue" type="radio" class="form-control input-small"/>
+								</label>
+								<div class="controls" id="QuestionDetail3" />
+							</div>
+							<div class="form-group">
+								<label class="control-label">
+									<input id="SelectD" name="SelectValue" type="radio" class="form-control input-small"/>
+								</label>
+								<div class="controls" id="QuestionDetail4" />
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button id="URLInsButton" class="btn btn-primary btn-small" type="submit"><i class="glyphicons-download_alt"/> Lưu</button>
+							<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<script type="text/javascript">
+		/*<![CDATA[*/
+			$(".Question").click(function(){
+				var Content = $(this).attr("Content");
+				var Detail1 = $(this).attr("Detail1");
+				var Detail2 = $(this).attr("Detail2");
+				var Detail3 = $(this).attr("Detail3");
+				var Detail4 = $(this).attr("Detail4");
+				
+				$("#QuestionContent").html(Content);
+				$("#QuestionDetail1").html(Detail1);
+				$("#QuestionDetail2").html(Detail2);
+				$("#QuestionDetail3").html(Detail3);
+				$("#QuestionDetail4").html(Detail4);
+			});
+		/*]]>*/
+		</script>
+	</body>
+</html>

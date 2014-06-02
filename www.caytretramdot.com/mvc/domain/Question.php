@@ -78,6 +78,36 @@ class Question extends Object{
 		return $QDAll;
 	}
 	
+	function getDetail1(){
+		$DetailAll 	= $this->getDetailAll();
+		$Detail  	= $DetailAll->current();
+		return $Detail;
+	}
+	
+	function getDetail2(){
+		$DetailAll 	= $this->getDetailAll();
+		$DetailAll->next();
+		$Detail  	= $DetailAll->current();
+		return $Detail;
+	}
+	
+	function getDetail3(){
+		$DetailAll 	= $this->getDetailAll();
+		$DetailAll->next();
+		$DetailAll->next();
+		$Detail  	= $DetailAll->current();
+		return $Detail;
+	}
+	
+	function getDetail4(){
+		$DetailAll 	= $this->getDetailAll();
+		$DetailAll->next();
+		$DetailAll->next();
+		$DetailAll->next();
+		$Detail  	= $DetailAll->current();
+		return $Detail;
+	}
+	
 	function toJSON(){
 		$json = array(
 			'Id' 			=> $this->getId(),
