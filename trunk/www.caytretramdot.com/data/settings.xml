@@ -21,6 +21,9 @@
 		<command name="ObjectIns"><view>ObjectIns</view></command>
 		<command name="ObjectUpd"><view>ObjectUpd</view></command>
 		
+		<command name="ModelLoadAll"><view>ModelLoadAll</view></command>
+		<command name="ModelFindBy"><view>ModelFindBy</view></command>
+		
 		<command name="SigninLoad" 		type="public"><view>SigninLoad</view></command>
 		<command name="SigninExe" 		type="public">
 			<view>SigninExe</view>

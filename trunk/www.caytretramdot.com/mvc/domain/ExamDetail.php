@@ -59,7 +59,19 @@ class ExamDetail extends Object{
 		$this->IdQuestion 	= $Data[2];					
 		$this->Order 		= $Data[3];
     }
-			
+	
+	function toXML(){
+		$S = "
+		<object>
+			<id>".$this->getId()."</id>
+			<id_exam>".$this->getIdExam()."</id_exam>
+			<id_question>".$this->getIdQuestion()."</id_question>			
+			<order>".$this->getOrder()."</order>
+		</object>
+		";
+		return $S;
+	}
+	
 	//-------------------------------------------------------------------------------
 	static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
 	static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}
