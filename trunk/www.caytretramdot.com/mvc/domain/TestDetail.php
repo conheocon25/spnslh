@@ -2,76 +2,69 @@
 Namespace MVC\Domain;
 require_once( "mvc/base/domain/DomainObject.php" );
 
-class ExamDetail extends Object{
+class TestDetail extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE PROPERTY
 	//-------------------------------------------------------------------------------
 	private $Id;
-	private $IdExam;
+	private $IdTest;
 	private $IdQuestion;
-	private $Order;
-	
+	private $Answer;
+		
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-	function __construct($Id=null, $IdExam=null, $IdQuestion=null, $Order=null){
+	function __construct($Id=null, $IdTest=null, $IdQuestion=null, $Answer=null){
 		$this->Id 			= $Id;
-		$this->IdExam 		= $IdExam;
+		$this->IdTest 		= $IdTest;		
 		$this->IdQuestion 	= $IdQuestion;
-		$this->Order 		= $Order;
+		$this->Answer 		= $Answer;
+				
 		parent::__construct( $Id );
 	}
 	function setId($Id) {$this->Id = $Id;}
 	function getId() 	{return $this->Id;}
-	
-	function setIdExam($IdExam) 	{$this->IdExam = $IdExam; $this->markDirty();}
-	function getIdExam() 			{return $this->IdExam;}
+		
+	function setIdTest($IdTest) {$this->IdTest = $IdTest;$this->markDirty();}
+	function getIdTest() 		{return $this->IdTest;}
 	function getExam(){
 		$mExam 	= new \MVC\Mapper\Exam();
-		$Exam 	= $mExam->find($this->IdExam);
+		$Exam 	= $mExam->find($this->IdTest);
 		return $Exam;
 	}
-	
-	function setIdQuestion($IdQuestion) {$this->IdQuestion = $IdQuestion;$this->markDirty();}
-	function getIdQuestion() 			{return $this->IdQuestion;}
-	function getQuestion(){
-		$mQuestion 	= new \MVC\Mapper\Question();
-		$Question 	= $mQuestion->find($this->IdQuestion);
-		return $Question;
+		
+	function setIdQuestion($IdQuestion) 	{$this->IdQuestion = $IdQuestion;$this->markDirty();}
+	function getIdQuestion() 				{return $this->IdQuestion;}
+	function getIdQuestionPrint() 			{
+		$IdQuestion= date('d/m/Y h:i', \strtotime($this->IdQuestion));
+		return $IdQuestion;
 	}
 	
-	function setOrder($Order) 		{$this->Order = $Order; $this->markDirty();}
-	function getOrder() 			{return $this->Order;}
-	
+	function setAnswer($Answer) 	{$this->Answer = $Answer;$this->markDirty();}
+	function getAnswer() 				{return $this->Answer;}
+	function getAnswerPrint() 			{
+		$Answer= date('d/m/Y h:i', \strtotime($this->Answer));
+		return $Answer;
+	}
+					
 	function toJSON(){
 		$json = array(
 			'Id' 			=> $this->getId(),
-			'IdExam'		=> $this->getIdExam(),
-			'IdQuestion'	=> $this->getIdQuestion(),						
-			'Order'			=> $this->getOrder()
+			'IdTest'		=> $this->getIdTest(),			
+			'IdQuestion'	=> $this->getIdQuestion(),
+			'Answer'		=> $this->getAnswer()
 		);
 		return json_encode($json);
 	}
 	
 	function setArray( $Data ){
         $this->Id 			= $Data[0];
-		$this->IdExam 		= $Data[1];		
-		$this->IdQuestion 	= $Data[2];					
-		$this->Order 		= $Data[3];
+		$this->IdTest 		= $Data[1];		
+		$this->IdQuestion 	= $Data[2];
+		$this->Answer 		= $Data[3];		
     }
-	
-	function toXML(){
-		$S = "
-		<object>
-			<id>".$this->getId()."</id>
-			<id_exam>".$this->getIdExam()."</id_exam>
-			<id_question>".$this->getIdQuestion()."</id_question>			
-			<order>".$this->getOrder()."</order>
-		</object>
-		";
-		return $S;
-	}
-	
+	function getURLSetting(){return "/test/".$this->getId();}
+		
 	//-------------------------------------------------------------------------------
 	static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
 	static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}

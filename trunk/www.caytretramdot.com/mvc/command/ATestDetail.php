@@ -25,7 +25,11 @@
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------												
 			$Test 			= $mTest->find($IdTest);
-			
+			$TDAll			= $Test->getDetailAll();
+			if ($TDAll->count()==0){
+				
+			}
+									
 			$Title = mb_strtoupper($Test->getExam()->getName(), 'UTF8');
 			$Navigation = array(
 				array("KIỂM TRA", "/admin/test"),

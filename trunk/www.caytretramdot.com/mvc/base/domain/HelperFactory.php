@@ -16,8 +16,9 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	require_once( "mvc/mapper/QuestionDetail.php"	);
 	require_once( "mvc/mapper/Slide.php"			);
 	require_once( "mvc/mapper/Tag.php" 				);
-	require_once( "mvc/mapper/Test.php" 				);
-	require_once( "mvc/mapper/Tracking.php"			);	
+	require_once( "mvc/mapper/Test.php" 			);
+	require_once( "mvc/mapper/TestDetail.php" 		);
+	require_once( "mvc/mapper/Tracking.php"			);
 	require_once( "mvc/mapper/TrackingDaily.php"	);	
 	require_once( "mvc/mapper/User.php" 			);
 }

@@ -25,6 +25,7 @@ interface QuestionDetailFinder 	extends Finder {}
 interface SlideFinder 			extends Finder {}
 interface TagFinder 			extends Finder {}
 interface TestFinder 			extends Finder {}
+interface TestDetailFinder 		extends Finder {}
 interface TrackingFinder 		extends Finder {}
 interface TrackingDailyFinder 	extends Finder {}
 interface PageFinder  			extends Finder {}

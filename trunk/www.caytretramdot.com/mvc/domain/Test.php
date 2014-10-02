@@ -56,6 +56,12 @@ class Test extends Object{
 			
 	function setScore($Score) 	{$this->Score = $Score;$this->markDirty();}
 	function getScore( ) 		{return $this->Score;}
+	
+	function getDetailAll(){
+		$mTD 	= new \MVC\Mapper\TestDetail();
+		$TDAll 	= $mTD->findBy(array($this->getId()));
+		return $TDAll;
+	}
 			
 	function toJSON(){
 		$json = array(

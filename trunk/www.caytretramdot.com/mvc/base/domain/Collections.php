@@ -16,6 +16,7 @@ interface QuestionDetailCollection 		extends \Iterator {function add( Object $Qu
 interface SlideCollection 				extends \Iterator {function add( Object $Slide);		}
 interface TagCollection 				extends \Iterator {function add( Object $Tag );			}
 interface TestCollection 				extends \Iterator {function add( Object $Test );		}
+interface TestDetailCollection 			extends \Iterator {function add( Object $TestDetail );	}
 interface TrackingCollection 			extends \Iterator {function add( Object $Tracking);		}
 interface TrackingDailyCollection 		extends \Iterator {function add( Object $TrackingDaily);}
 interface PageCollection 				extends \Iterator {function add( Object $Page);			}
