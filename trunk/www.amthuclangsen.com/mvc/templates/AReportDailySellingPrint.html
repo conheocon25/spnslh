@@ -1,0 +1,82 @@
+<body>		
+	<table width="100%" border="0" cellpadding="2" >
+		<tr>			
+			<td width="50%" align="left"><B tal:content="ConfigName/getValue"/></td>
+			<td width="50%" align="right"><B>NHẬT KÝ BÁN HÀNG</B></td>
+		</tr>
+		<tr>			
+			<td width="50%" align="left" tal:content="ConfigAddress/getValue" />
+			<td width="50%" align="right"><B tal:content="php: mb_strtoupper(Domain->getName(), 'UTF8')"/></td>
+		</tr>
+		<tr>			
+			<td width="50%" align="left" tal:content="ConfigPhone/getValue"/>
+			<td width="50%" align="right">NGÀY:<span tal:content="TD/getDatePrint"/></td>
+		</tr>
+	</table>
+	<BR/>
+	<table width="100%" border="1" cellpadding="4">
+		<thead>
+		<tr>
+			<th width="3%"		align="center"><B>#</B></th>
+			<th width="15%" 	align="left"><B>KHÁCH HÀNG</B></th>
+			<th width="6%" 		align="right"><B>V.NHẬN</B></th>
+			<th width="6%" 		align="right"><B>V.TRẢ</B></th>
+			<th width="6%" 		align="right"><B>V.BÁN</B></th>
+			<th width="1%"/>
+			<th width="8%" 	align="right"><B>T.BÁN VÉ</B></th>
+			<th width="8%" 	align="right"><B>THU T.BÁN</B></th>
+			<th width="8%" 	align="right"><B>NỢ T.VÉ</B></th>
+			<th width="1%"/>
+			<th width="8%" 	align="right"><B>THU T.GÓP</B></th>
+			<th width="8%" 	align="right"><B>CHO ỨNG</B></th>
+			<th width="8%" 	align="right"><B>NỢ T.ỨNG</B></th>
+			<th width="1%"/>
+			<th width="13%" align="right"><B>TỔNG NỢ</B></th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr tal:repeat="CL CLAll">
+			<td width="3%" 	align="center" 	tal:content="repeat/CL/number" />
+			<td width="15%" align="left" 	tal:content="CL/getCustomer/getName"/>
+			<td width="6%" 	align="right" 	tal:content="CL/getTicket1Print"/>
+			<td width="6%"	align="right"	tal:content="CL/getTicket2Print"/>			
+			<td width="6%" 	align="right"	tal:content="CL/getTicketDPrint"/>
+			<td width="1%"/>
+			<td width="8%"	align="right"	tal:content="CL/getTicketValuePrint"/>
+			<td width="8%" 	align="right"	tal:content="CL/getPaid1Print"/>
+			<td width="8%" 	align="right"><B tal:content="CL/getPaid1RemainPrint"/></td>
+			<td width="1%"/>
+			<td width="8%"	align="right"	tal:content="CL/getPaid2Print"/>
+			<td width="8%"	align="right"	tal:content="CL/getDebtPrint"/>
+			<td width="8%" 	align="right"><B tal:content="CL/getPaid2RemainPrint"/></td>
+			<td width="1%"/>
+			<td width="13%" align="right"><B tal:content="CL/getValuePrint"/></td>
+		</tr>
+		<tr>
+			<td width="3%" 	align="center" 	/>
+			<td width="15%" align="left" ><B>TỔNG KẾT</B></td>
+			<td width="6%" 	align="right" 	tal:content="STicket1"/>
+			<td width="6%"	align="right"	tal:content="STicket2"/>			
+			<td width="6%" 	align="right"	tal:content="STicketD"/>
+			<td width="1%"/>
+			<td width="8%"	align="right"	tal:content="STicketValue"/>
+			<td width="8%" 	align="right"	tal:content="SPaid1"/>
+			<td width="8%" 	align="right"><B tal:content="SPaid1Remain"/></td>
+			<td width="1%"/>
+			<td width="8%"	align="right"	tal:content="SPaid2"/>
+			<td width="8%"	align="right"	tal:content="SDebt"/>
+			<td width="8%" 	align="right"><B tal:content="SPaid2Remain"/></td>
+			<td width="1%"/>
+			<td width="13%" align="right"><B tal:content="SValue"/></td>
+		</tr>
+		</tbody>
+	</table>
+	<BR/>
+	<table width="100%" border="0" cellpadding="2">
+		<tr>
+			<td width="35%" align="center"><B>NGƯỜI QUẢN LÝ</B></td>
+			<td width="30%" align="center" />
+			<td width="35%" align="center"><B>CHỦ ĐẠI LÝ</B></td>
+		</tr>
+	</table>	
+</body>

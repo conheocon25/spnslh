@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>		
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+	</head>
+	
+	<body>
+		<div metal:use-macro="mAdmin.xhtml/Header"/>
+		<div metal:use-macro="mAdmin.xhtml/StyleTools"/>
+		<div id="sidebar">
+			<ul style="display: block;">
+				<li tal:repeat="Employee1 EmployeeAll" tal:attributes="class php:Employee1->getId()==Employee->getId()?'active':'disable'">
+					<a tal:attributes="href Employee1/getURLPaid">
+						<i class="glyphicons-disk_open"/> <span tal:content="Employee1/getName" />
+					</a>
+				</li>								
+			</ul>
+		</div>
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
+			<div Id="IdEmployee" tal:attributes="alt Employee/getId" class="row">
+				<div class="col-12">
+					<a href="#DialogIns" data-toggle="modal" class="btn btn-primary btn-ins">
+						<i class="glyphicons-plus"/> Thêm mới
+					</a>
+					<a href="#DialogDelSelected" data-toggle="modal" class="btn btn-primary btn-ins">
+						<i class="glyphicons-remove_2"/> Xóa chọn
+					</a>
+					<div class="widget-box">						
+						<div class="widget-content nopadding">
+							<table class="table table-bordered table-striped table-hover">
+								<thead>
+									<tr>
+										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
+										<th width="70" class="left">NGÀY</th>
+										<th class="left">DIỄN GIẢI</th>
+										<th width="120" class="right">LƯƠNG</th>
+										<th width="40"><i class="glyphicons-edit"/></th>
+										<th width="40"><i class="glyphicons-bin"/></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr tal:repeat="Paid PaidAll">
+										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Paid/getId"/></td>
+										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="PaidPayRoll" tal:attributes="data-id Paid/getId" tal:content="Paid/getDatePrint"/></td>
+										<td><div class="text-left" tal:content="Paid/getNote"/></td>
+										<td><div class="text-right" tal:content="Paid/getValueRealPrint"/></td>
+										<td class="center">
+											<a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="PaidPayRoll" tal:attributes="data-id Paid/getId">
+												<i class="glyphicon glyphicon-pencil"/>
+											</a>
+										</td>
+										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Paid/getId"><i class="glyphicon glyphicon-remove"/></a></td>
+									</tr>
+								</tbody>
+							</table>							
+						</div>
+					</div>
+					<div metal:use-macro="mAdmin.xhtml/PageBar"/>
+					
+					<!-- INSERT DIALOG  -->
+					<div id="DialogIns" class="modal fade">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header"><h3><i class="glyphicons-disk_open modal-icon"/>THÊM KHOẢN CHI</h3></div>
+								<div class="form-horizontal">
+									<div class="modal-body">
+										<div class="control-group">
+											<label class="control-label">Ngày</label>
+											<div class="controls">
+												<input id="Date1" name="Date1" type="text" data-date-format="yyyy-mm-dd" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label">Lương cơ bản</label>
+											<div class="controls">
+												<input id="ValueBase1" name="ValueBase1" type="text" class="form-control input-small" />
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label">Phụ cấp</label>
+											<div class="controls">
+												<input id="ValueSub1" name="ValueSub1" type="text" class="form-control input-small" />
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label">Tạm ứng</label>
+											<div class="controls">
+												<input id="ValuePre1" name="ValuePre1" type="text" class="form-control input-small" />
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label">Diễn giải</label>
+											<div class="controls">
+												<input id="Note1" name="Note1" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button id="URLInsButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Lưu</button>
+										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- END INSERT DIALOG  -->
+					
+					<!-- DIALOG EDIT	-->
+					<div id="DialogEdit" class="modal fade">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h3><i class="glyphicons-disk_open modal-icon"/>CẬP NHẬT KHOẢN CHI</h3>
+								</div>
+								<div class="form-horizontal">
+									<div class="modal-body">
+										<div class="control-group">
+											<label class="control-label">Ngày</label>
+											<div class="controls">
+												<input id="Date2" name="Date2" type="text" data-date-format="yyyy-mm-dd" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label">Lương cơ bản</label>
+											<div class="controls">
+												<input id="ValueBase2" name="ValueBase2" type="text" class="form-control input-small" />
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label">Phụ cấp</label>
+											<div class="controls">
+												<input id="ValueSub2" name="ValueSub2" type="text" class="form-control input-small" />
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label">Tạm ứng</label>
+											<div class="controls">
+												<input id="ValuePre2" name="ValuePre2" type="text" class="form-control input-small" />
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label">Diễn giải</label>
+											<div class="controls">
+												<input id="Note2" name="Note2" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button id="URLUpdButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Lưu</button>
+										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- END DIALOG EDIT -->					
+					<div metal:use-macro="mDialog.xhtml/DialogDel"/>
+					<div metal:use-macro="mDialog.xhtml/DialogDelSelected"/>
+					
+				</div>
+			</div>
+		</div>
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<script src="/mvc/templates/theme/cms/js/bootstrap-datepicker.js"></script>
+		<script src="/mvc/templates/theme/cms/js/bootstrap-datepicker.vi.js"></script>
+		<script type="text/javascript">
+		/*<![CDATA[*/
+			$('#Date1').datepicker({language:'vi'});
+			$('#Date2').datepicker({language:'vi'});
+			
+			$('#URLDelSelectedButton').click(function(){
+				var count = 0;
+				var Data = [];
+				var URL = "/object/del/PaidPayRoll/0";
+				
+				$(".CheckedDel").each(function( i, obj){
+					if ( $(this).is(':checked')==true ){
+						count += 1;
+						Data[count] = $(this).attr('data-id');
+					}
+				});
+				
+				$.ajax({
+					type: "POST",
+					data: {ListId:Data},
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
+			});
+			
+			//-----------------------------------------------------------------------------------
+			//Delete 1 PAID GENERAL			
+			//-----------------------------------------------------------------------------------
+			$('.remove-item').click(function(){
+				$('#URLDelButton').attr('alt', $(this).attr('data-id'));
+			});
+			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
+			$('#URLDelButton').click(function(){			
+				var URL = "/object/del/PaidPayRoll/" + $(this).attr('alt');
+				$.ajax({
+					type: "POST",					
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
+			});
+		
+			//-----------------------------------------------------------------------------------
+			//Insert 1 PAID GENERAL
+			$('#URLInsButton').click(function(){
+				var Data = [];
+				Data[0] = 'null';
+				Data[1] = $('#IdEmployee').attr('alt');
+				Data[2] = $('#Date1').val();
+				Data[3] = $('#ValueBase1').val();
+				Data[4] = $('#ValueSub1').val();
+				Data[5] = $('#ValuePre1').val();
+				Data[6] = $('#Note1').val();
+																		
+				var URL = "/object/ins/PaidPayRoll";
+				$.ajax({
+					type: "POST",
+					data: {Data:Data},
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
+			});
+			
+			//-----------------------------------------------------------------------------------
+			//Load 1 PAID GENERAL
+			//-----------------------------------------------------------------------------------
+			$('.update-item').click(function(){
+				//Load dữ liệu JSON về
+				var url = "/object/load/PaidPayRoll/" + $(this).attr('data-id');
+				
+				//Load dữ liệu JSON lên FORM
+				$.getJSON(url, function(data){
+					$('#URLUpdButton').attr('alt', data.Id);
+					$('#Date2').attr('value', data.Date);
+					$('#ValueBase2').attr('value', data.ValueBase);
+					$('#ValueSub2').attr('value', data.ValueSub);
+					$('#ValuePre2').attr('value', data.ValuePre);
+					$('#Note2').attr('value', data.Note);
+				});
+			});
+			
+			//-----------------------------------------------------------------------------------
+			//Update 1 COLLECT GENERAL
+			//-----------------------------------------------------------------------------------
+			$('#URLUpdButton').click(function(){
+				var Data = [];
+				Data[0] = $('#URLUpdButton').attr('alt');
+				Data[1] = $('#IdEmployee').attr('alt');
+				Data[2] = $('#Date2').val();
+				Data[3] = $('#ValueBase2').val();
+				Data[4] = $('#ValueSub2').val();
+				Data[5] = $('#ValuePre2').val();
+				Data[6] = $('#Note2').val();
+				
+				var URL = "/object/upd/PaidPayRoll";
+				$.ajax({
+					type: "POST",
+					data: {Data:Data},
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
+			});			
+		/*]]>*/
+		</script>
+	</body>
+</html>
