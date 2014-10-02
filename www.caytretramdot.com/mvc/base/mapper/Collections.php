@@ -23,6 +23,7 @@ class SlideCollection 			extends Collection implements \MVC\Domain\SlideCollecti
 class TagCollection 			extends Collection implements \MVC\Domain\TagCollection 			{function targetClass(){return "\MVC\Domain\Tag";			}}
 
 class TestCollection 			extends Collection implements \MVC\Domain\TestCollection 			{function targetClass(){return "\MVC\Domain\Test";			}}
+class TestDetailCollection 		extends Collection implements \MVC\Domain\TestDetailCollection 		{function targetClass(){return "\MVC\Domain\TestDetail";	}}
 
 class TrackingCollection 		extends Collection implements \MVC\Domain\TrackingCollection		{function targetClass(){return "\MVC\Domain\Tracking";		}}
 class TrackingDailyCollection 	extends Collection implements \MVC\Domain\TrackingDailyCollection	{function targetClass(){return "\MVC\Domain\TrackingDaily";	}}
