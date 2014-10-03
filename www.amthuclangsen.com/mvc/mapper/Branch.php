@@ -6,7 +6,7 @@ class Branch extends Mapper implements \MVC\Domain\BranchFinder {
     function __construct() {
         parent::__construct();
 		
-		$tblBranch = "shopc_branch";
+		$tblBranch = "res_branch";
 						
 		$selectAllStmt 	= sprintf("select * from %s order by `order`", $tblBranch);
 		$selectStmt 	= sprintf("select * from %s where id=?", $tblBranch);

@@ -6,7 +6,7 @@ class Post extends Mapper implements \MVC\Domain\PostFinder {
     function __construct() {
         parent::__construct();
 				
-		$tblPost = "shopc_post";
+		$tblPost = "res_post";
 		
 		$selectAllStmt 	= sprintf("select * from %s", $tblPost);
 		$selectStmt 	= sprintf("select *  from %s where id=?", $tblPost);

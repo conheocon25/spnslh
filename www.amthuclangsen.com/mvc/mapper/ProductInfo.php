@@ -6,7 +6,7 @@ class ProductInfo extends Mapper implements \MVC\Domain\ProductInfoFinder {
 
     function __construct() {
         parent::__construct();
-		$tblProductInfo = "shopc_product_info";
+		$tblProductInfo = "res_product_info";
 						
 		$selectAllStmt = sprintf("select * from %s", $tblProductInfo);
 		$selectStmt = sprintf("select * from %s where id=?", $tblProductInfo);

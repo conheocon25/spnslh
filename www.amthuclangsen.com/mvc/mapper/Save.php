@@ -6,7 +6,7 @@ class Save extends Mapper implements \MVC\Domain\SaveFinder {
     function __construct() {
         parent::__construct();
 		
-		$tblSave = "shopc_save";
+		$tblSave = "res_save";
 						
 		$selectAllStmt 	= sprintf("select * from %s order by `date1`", $tblSave);
 		$selectStmt 	= sprintf("select * from %s where id=?", $tblSave);

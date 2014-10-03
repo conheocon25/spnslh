@@ -7,7 +7,7 @@ class PaidGeneral extends Mapper implements \MVC\Domain\PaidGeneralFinder{
     function __construct() {
         parent::__construct();
 				
-		$tblPaid = "shopc_paid_general";
+		$tblPaid = "res_paid_general";
 		
 		$selectAllStmt = sprintf("select * from %s", $tblPaid);
 		$selectStmt = sprintf("select * from %s where id=?", $tblPaid);

@@ -6,7 +6,7 @@ class ProductAttribute extends Mapper implements \MVC\Domain\ProductAttributeFin
     function __construct() {
         parent::__construct();
 		
-		$tblProductAttribute 	= "shopc_product_attribute";
+		$tblProductAttribute 	= "res_product_attribute";
 						
 		$selectAllStmt 	= sprintf("SELECT * from %s ", $tblProductAttribute);
 		$selectStmt 	= sprintf("SELECT * from %s where id=?", $tblProductAttribute);

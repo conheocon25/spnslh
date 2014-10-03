@@ -7,7 +7,7 @@ class Feed extends Mapper implements \MVC\Domain\FeedFinder{
     function __construct() {
         parent::__construct();
 				
-		$tblFeed = "shopc_feed";
+		$tblFeed = "res_feed";
 		
 		$selectAllStmt = sprintf("select * from %s", $tblFeed);
 		$selectStmt = sprintf("select *  from %s where id=?", $tblFeed);

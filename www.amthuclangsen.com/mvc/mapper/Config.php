@@ -5,7 +5,7 @@ class Config extends Mapper implements \MVC\Domain\ConfigFinder {
 
     function __construct() {
         parent::__construct();
-		$tblConfig = "shopc_config";
+		$tblConfig = "res_config";
 		
 		$selectAllStmt = sprintf("select * from %s", $tblConfig);
 		$selectStmt = sprintf("select *  from %s where id=?", $tblConfig);

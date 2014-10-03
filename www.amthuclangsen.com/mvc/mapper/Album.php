@@ -1,20 +1,20 @@
 <?php
 namespace MVC\Mapper;
 require_once( "mvc/base/Mapper.php" );
-class Slide extends Mapper implements \MVC\Domain\SlideFinder {
+class Album extends Mapper implements \MVC\Domain\AlbumFinder {
 
     function __construct() {
         parent::__construct();
 		
-		$tblSlide = "res_slide";
+		$tblAlbum = "res_album";
 						
-		$selectAllStmt 	= sprintf("select * from %s order by `order`", $tblSlide);
-		$selectStmt 	= sprintf("select * from %s where id=?", $tblSlide);
-		$updateStmt 	= sprintf("update %s set idpresentation=?, name=?, `order`=?, note=?, `url`=? where id=?", $tblSlide);
-		$insertStmt 	= sprintf("insert into %s ( idpresentation, name, `order`, note, `url`) values(?, ?, ?, ?, ?)", $tblSlide);
-		$deleteStmt 	= sprintf("delete from %s where id=?", $tblSlide);
-		$findByPageStmt = sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblSlide);
-		$findByStmt 	= sprintf("select * from %s where idpresentation=?", $tblSlide);
+		$selectAllStmt 	= sprintf("SELECT * from %s order by `order`", $tblAlbum);
+		$selectStmt 	= sprintf("SELECT * from %s where id=?", $tblAlbum);
+		$updateStmt 	= sprintf("update %s set `date`=?, `name`=?, `note`=?, `order`=?, `key`=? where id=?", $tblAlbum);
+		$insertStmt 	= sprintf("insert into %s ( `date`, name, note, `order`, `key`) values(?, ?, ?, ?, ?)", $tblAlbum);
+		$deleteStmt 	= sprintf("delete from %s where id=?", $tblAlbum);
+		$findByPageStmt = sprintf("SELECT * FROM  %s ORDER BY `order` LIMIT :start,:max", $tblAlbum);
+		$findByKeyStmt 	= sprintf("SELECT *  from %s where `key`=?", $tblAlbum);
 		
         $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
         $this->selectStmt = self::$PDO->prepare($selectStmt);
@@ -22,30 +22,29 @@ class Slide extends Mapper implements \MVC\Domain\SlideFinder {
         $this->insertStmt = self::$PDO->prepare($insertStmt);
 		$this->deleteStmt = self::$PDO->prepare($deleteStmt);
 		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);
-		$this->findByStmt = self::$PDO->prepare($findByStmt);
-									
+		$this->findByKeyStmt = self::$PDO->prepare($findByKeyStmt);							
     } 
-    function getCollection( array $raw ) {return new SlideCollection( $raw, $this );}
+    function getCollection( array $raw ) {return new AlbumCollection( $raw, $this );}
     protected function doCreateObject( array $array ) {		
-        $obj = new \MVC\Domain\Slide( 
+        $obj = new \MVC\Domain\Album( 		
 			$array['id'],
-			$array['idpresentation'],
+			$array['date'],
 			$array['name'],
-			$array['order'],
 			$array['note'],
-			$array['url']
+			$array['order'],
+			$array['key']
 		);
-        return $obj;	
+        return $obj;
     }
 	
-    protected function targetClass() {  return "Slide";}
+    protected function targetClass() {  return "Album";}
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array( 
-			$object->getIdPresentation(),
+			$object->getDate(),
 			$object->getName(),
-			$object->getOrder(),
 			$object->getNote(),
-			$object->getURL()
+			$object->getOrder(),
+			$object->getKey()
 		); 
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
@@ -54,11 +53,11 @@ class Slide extends Mapper implements \MVC\Domain\SlideFinder {
     
     protected function doUpdate( \MVC\Domain\Object $object ) {
         $values = array( 
-			$object->getIdPresentation(),
+			$object->getDate(),
 			$object->getName(),
-			$object->getOrder(),
 			$object->getNote(),
-			$object->getURL(),
+			$object->getOrder(),
+			$object->getKey(),
 			$object->getId()
 		);				
         $this->updateStmt->execute( $values );
@@ -71,12 +70,17 @@ class Slide extends Mapper implements \MVC\Domain\SlideFinder {
 		$this->findByPageStmt->bindValue(':start', ((int)($values[0])-1)*(int)($values[1]), \PDO::PARAM_INT);
 		$this->findByPageStmt->bindValue(':max', (int)($values[1]), \PDO::PARAM_INT);
 		$this->findByPageStmt->execute();
-        return new SlideCollection( $this->findByPageStmt->fetchAll(), $this );
+        return new EmployeeCollection( $this->findByPageStmt->fetchAll(), $this );
     }
 	
-	function findBy(array $values) {
-        $this->findByStmt->execute( $values );
-        return new SlideCollection( $this->findByStmt->fetchAll(), $this );
+	function findByKey( $values ) {	
+		$this->findByKeyStmt->execute( array($values) );
+        $array = $this->findByKeyStmt->fetch();
+        $this->findByKeyStmt->closeCursor();
+        if ( ! is_array( $array ) ) { return null; }
+        if ( ! isset( $array['id'] ) ) { return null; }
+        $object = $this->doCreateObject( $array );
+        return $object;		
     }
 }
 ?>

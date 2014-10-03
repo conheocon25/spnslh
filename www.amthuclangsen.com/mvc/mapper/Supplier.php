@@ -6,7 +6,7 @@ class Supplier extends Mapper implements \MVC\Domain\SupplierFinder {
 
     function __construct() {
         parent::__construct();
-		$tblSupplier = "shopc_supplier";
+		$tblSupplier = "res_supplier";
 						
 		$selectAllStmt = sprintf("select * from %s ORDER BY name", $tblSupplier);
 		$selectStmt = sprintf("select * from %s where id=?", $tblSupplier);

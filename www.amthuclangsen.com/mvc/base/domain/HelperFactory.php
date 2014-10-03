@@ -1,6 +1,7 @@
 <?php
 namespace MVC\Domain;
 if ( ! isset( $EG_DISABLE_INCLUDES ) ) {	
+	require_once( "mvc/mapper/Album.php" 			);	
 	require_once( "mvc/mapper/Branch.php" 			);	
 	
 	require_once( "mvc/mapper/User.php" 			);	
@@ -17,12 +18,7 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	require_once( "mvc/mapper/ProductInfo.php" 		);	
 	require_once( "mvc/mapper/ProductImage.php" 	);
 	require_once( "mvc/mapper/ProductAttribute.php" );
-	
-	require_once( "mvc/mapper/OrderImport.php" 		);
-	require_once( "mvc/mapper/OrderImportDetail.php");
-	require_once( "mvc/mapper/OrderExport.php" 		);
-	require_once( "mvc/mapper/OrderExportDetail.php");
-	
+			
 	require_once( "mvc/mapper/Customer.php" 		);
 	require_once( "mvc/mapper/StoryLine.php" 		);
 	
@@ -31,8 +27,6 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	
 	require_once( "mvc/mapper/Employee.php" 		);	
 	require_once( "mvc/mapper/Config.php"			);	
-	require_once( "mvc/mapper/Tracking.php"			);	
-	require_once( "mvc/mapper/TrackingDaily.php"	);
 	require_once( "mvc/mapper/Guest.php"			);
 	require_once( "mvc/mapper/Post.php"				);
 	require_once( "mvc/mapper/Presentation.php"		);

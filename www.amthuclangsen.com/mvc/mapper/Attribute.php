@@ -6,7 +6,7 @@ class Attribute extends Mapper implements \MVC\Domain\AttributeFinder {
     function __construct() {
         parent::__construct();
 		
-		$tblAttribute = "shopc_attribute";
+		$tblAttribute = "res_attribute";
 						
 		$selectAllStmt 	= sprintf("select * from %s order by `order`", $tblAttribute);
 		$selectStmt 	= sprintf("select * from %s where id=?", $tblAttribute);

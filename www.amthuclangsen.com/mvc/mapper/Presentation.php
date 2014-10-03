@@ -6,7 +6,7 @@ class Presentation extends Mapper implements \MVC\Domain\PresentationFinder {
     function __construct() {
         parent::__construct();
 		
-		$tblPresentation = "shopc_presentation";
+		$tblPresentation = "res_presentation";
 						
 		$selectAllStmt 	= sprintf("select * from %s order by `order`", $tblPresentation);
 		$selectStmt 	= sprintf("select * from %s where id=?", $tblPresentation);
