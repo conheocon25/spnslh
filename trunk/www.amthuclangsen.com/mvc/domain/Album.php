@@ -72,19 +72,16 @@ class Album extends Object{
 	//-------------------------------------------------------------------------------
 	//GET LIST
 	//-------------------------------------------------------------------------------		
-	function getAlbumAll(){
-		$mAlbum1 	= new \MVC\Mapper\Album1();
-		$AlbumAll 	= $mAlbum1->findBy(array($this->getId()));
-		return $AlbumAll;
+	function getImageAll(){
+		$mImage 	= new \MVC\Mapper\Image();
+		$ImageAll 	= $mImage->findBy(array($this->getId()));
+		return $ImageAll;
 	}
 	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLView(){
-		return "/hinh-anh/".$this->getKey();
-	}
-	
+	function getURLView(){return "/hinh-anh/".$this->getKey();}	
 	function getURLSetting(){return "/admin/setting/album/".$this->getId();}
 	
 	//-------------------------------------------------------------------------------

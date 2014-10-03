@@ -50,24 +50,7 @@
 		<command name="SignoutExe"><view>SignoutExe</view><status value="CMD_OK"><forward>FHome</forward></status></command>
 		<command name="Admin"><view>Admin</view></command>		
 		<command name="SettingThemeChangeExe"><view>SettingThemeChangeExe</view><status value="CMD_OK"><forward>App</forward></status></command>
-								
-		<!-- ============================================================================== -->
-		<!-- REPORT.DETAIL			 														-->
-		<!-- ============================================================================== -->
-		<command name="AReport">				<view>AReport</view>				</command>
-		<command name="AReportDetail">			<view>AReportDetail</view>			</command>
-								
-		<!-- ============================================================================== -->
-		<!-- SELLING.DOMAIN		 															-->
-		<!-- ============================================================================== -->
-		<command name="ASelling">				<view>ASelling				</view></command>
-		<command name="ASellingSession">		<view>ASellingSession		</view></command>
-		<command name="ASellingCheckout">		<view>ASellingCheckout		</view></command>
-		<command name="ASellingCall">			<view>ASellingCall			</view></command>
-		<command name="ASellingCategoryPLoad">	<view>ASellingCategoryPLoad	</view></command>
-		<command name="ASellingCategorySLoad">	<view>ASellingCategorySLoad	</view></command>
-		<command name="ASellingSessionPrint">	<view>ASellingSessionPrint	</view></command>
-		<command name="ASellingSearchResource">	<view>ASellingSearchResource</view></command>
+							
 											
 		<!-- ============================================================================== -->
 		<!-- SETTING	 																	-->
@@ -99,6 +82,9 @@
 		<command name="ASettingGAttribute">		<view>ASettingGAttribute	</view></command>
 		<command name="ASettingManufacturer">	<view>ASettingManufacturer	</view></command>
 		
+		<command name="ASettingAlbum">			<view>ASettingAlbum			</view></command>
+		<command name="ASettingAlbumImage">		<view>ASettingAlbumImage	</view></command>
+		
 		<command name="ASettingBranch">			<view>ASettingBranch		</view></command>
 		<command name="ASettingStoryLine">		<view>ASettingStoryLine		</view></command>
 		<command name="ASettingCustomer">		<view>ASettingCustomer		</view></command>		
@@ -114,15 +100,6 @@
 		<command name="ASettingProductInfoExe">	<view>ASettingProductInfoExe</view><status value="CMD_OK"><forward>ASettingSupplierProduct</forward></status></command>
 		<command name="ASettingProductAttribute">	<view>ASettingProductAttribute</view></command>
 		<command name="ASettingProductAttributeExe"><view>ASettingProductAttributeExe</view><status value="CMD_OK"><forward>ASettingSupplierProduct</forward></status></command>
-		
-		<!-- ============================================================================== -->
-		<!-- IMPORT				 															-->
-		<!-- ============================================================================== -->
-		<command name="AImport">				<view>AImport				</view></command>
-		<command name="AImportSupplier">		<view>AImportSupplier		</view></command>
-		<command name="AImportSupplierOrder">	<view>AImportSupplierOrder	</view></command>
-		<command name="AImportSupplierOrderExe"><view>AImportSupplierOrderExe</view></command>
-		<command name="AImportSupplierOrderPrint"><view>AImportSupplierOrderPrint</view></command>
 		
 		<!-- ============================================================================== -->
 		<!-- SAVING				 															-->		

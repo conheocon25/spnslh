@@ -6,30 +6,30 @@ class Image extends Mapper implements \MVC\Domain\ImageFinder {
 
     function __construct() {
         parent::__construct();
-		$tblImage = "res_product_image";
+		$tblImage = "res_image";
 						
 		$selectAllStmt = sprintf("select * from %s", $tblImage);
 		$selectStmt = sprintf("select * from %s where id=?", $tblImage);
 		$updateStmt = sprintf("update %s set 
-				idresource=?,
+				id_album=?,
 				name=?, 
 				`date`=?, 				
 				url=? 
 			where id=?", $tblImage);
 			
 		$insertStmt = sprintf("insert into %s ( 
-					idresource, 					
-					name, 
-					`date`, 					
+					id_album, 					
+					name,
+					`date`,
 					url
 				) 
 				values( ?, ?, ?, ?)", $tblImage);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblImage);
-		$findByStmt = sprintf("select * from %s where idresource=?", $tblImage);
+		$findByStmt = sprintf("select * from %s where id_album=?", $tblImage);
 		$findByPageStmt = sprintf("
 							SELECT *
 							FROM %s
-							WHERE idsupplier=:idsupplier
+							WHERE id_album=:id_album
 							LIMIT :start,:max
 				", $tblImage);
 				
@@ -46,7 +46,7 @@ class Image extends Mapper implements \MVC\Domain\ImageFinder {
     protected function doCreateObject( array $array ) {		
         $obj = new \MVC\Domain\Image( 
 			$array['id'],
-			$array['idresource'],			
+			$array['id_album'],			
 			$array['name'],						
 			$array['date'],	
 			$array['url']
@@ -57,7 +57,7 @@ class Image extends Mapper implements \MVC\Domain\ImageFinder {
     protected function targetClass(){return "Image";}
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array(
-			$object->getIdResource(),
+			$object->getIdAlbum(),
 			$object->getName(),	
 			$object->getDate(),
 			$object->getURL()
@@ -69,7 +69,7 @@ class Image extends Mapper implements \MVC\Domain\ImageFinder {
     
     protected function doUpdate( \MVC\Domain\Object $object ){
         $values = array( 
-			$object->getIdResource(),
+			$object->getIdAlbum(),
 			$object->getName(),
 			$object->getDate(),
 			$object->getURL(),
@@ -83,11 +83,11 @@ class Image extends Mapper implements \MVC\Domain\ImageFinder {
 	
 	function findBy(array $values) {
         $this->findByStmt->execute( $values );
-        return new SupplierCollection( $this->findByStmt->fetchAll(), $this );
+        return new ImageCollection( $this->findByStmt->fetchAll(), $this );
     }
 	
 	function findByPage( $values ){
-		$this->findByPageStmt->bindValue(':idsupplier', $values[0], \PDO::PARAM_INT);
+		$this->findByPageStmt->bindValue(':id_album', $values[0], \PDO::PARAM_INT);
 		$this->findByPageStmt->bindValue(':start', ((int)($values[1])-1)*(int)($values[2]), \PDO::PARAM_INT);
 		$this->findByPageStmt->bindValue(':max', (int)($values[2]), \PDO::PARAM_INT);		
 		$this->findByPageStmt->execute();
