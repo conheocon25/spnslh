@@ -6,8 +6,7 @@
 	</head>
 	
 	<body data-menu-position="closed">
-		<div metal:use-macro="mAdmin.xhtml/Header"/>
-		<div metal:use-macro="mAdmin.xhtml/StyleTools"/>
+		<div metal:use-macro="mAdmin.xhtml/Header"/>		
 		<div metal:use-macro="mAdmin.xhtml/MenuApp"/>
 		<div id="content">
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
@@ -21,7 +20,7 @@
 									<thead>
 										<tr>
 											<th width="40"><i class="glyphicons-cogwheels"/></th>
-											<th><div class="text-left">THIẾT LẬP TIN TỨC</div></th>
+											<th><div class="text-left">THIẾT LẬP NỘI DUNG</div></th>
 										</tr>
 									</thead>
 									<tbody>
@@ -47,7 +46,25 @@
 									<thead>
 										<tr>
 											<th width="40"><i class="glyphicons-cogwheels"/></th>
-											<th><div class="text-left">THIẾT LẬP SẢN PHẨM</div></th>
+											<th><div class="text-left">THIẾT LẬP MEDIA</div></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td align="center"><a href="/admin/setting/album"><i class="glyphicons-cogwheel"/></a></td>
+											<td><a tal:attributes="href '/admin/setting/album'" >ALBUM ẢNH</a></td>
+										</tr>
+										<tr>
+											<td align="center"><a href="/admin/setting/video"><i class="glyphicons-cogwheel"/></a></td>
+											<td><a tal:attributes="href '/admin/setting/video'" >VIDEO</a></td>
+										</tr>										
+									</tbody>
+								</table>								
+								<table class="table table-bordered table-striped table-hover">
+									<thead>
+										<tr>
+											<th width="40"><i class="glyphicons-cogwheels"/></th>
+											<th><div class="text-left">THIẾT LẬP MENU</div></th>
 										</tr>
 									</thead>
 									<tbody>										

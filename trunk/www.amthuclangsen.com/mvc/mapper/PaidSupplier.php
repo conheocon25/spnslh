@@ -7,7 +7,7 @@ class PaidSupplier extends Mapper implements \MVC\Domain\PaidSupplierFinder {
     function __construct() {
         parent::__construct();
 				
-		$tblPaidSupplier = "shopc_paid_supplier";
+		$tblPaidSupplier = "res_paid_supplier";
 		
 		$selectAllStmt = sprintf("select * from %s", $tblPaidSupplier);
 		$selectStmt = sprintf("select * from %s where id=?", $tblPaidSupplier);

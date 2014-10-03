@@ -6,7 +6,7 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 
     function __construct() {
         parent::__construct();
-		$tblProduct = "shopc_product";
+		$tblProduct = "res_product";
 						
 		$selectAllStmt = sprintf("select * from %s", $tblProduct);
 		$selectStmt = sprintf("select * from %s where id=?", $tblProduct);
@@ -85,11 +85,11 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 					'abc' as `key`
 				from 
 					(
-						shopc_save S INNER JOIN 
-						shopc_save_product SP 
+						res_save S INNER JOIN 
+						res_save_product SP 
 						ON S.id = SP.idsave
 					) INNER JOIN
-						shopc_product P
+						res_product P
 					ON 
 						P.id = SP.idproduct	
 				where					
@@ -110,11 +110,11 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 					'abc' as `key`
 				from 
 					(
-						shopc_save S INNER JOIN 
-						shopc_save_product SP 
+						res_save S INNER JOIN 
+						res_save_product SP 
 						ON S.id = SP.idsave
 					) INNER JOIN
-						shopc_product P
+						res_product P
 					ON 
 						P.id = SP.idproduct	
 				where					
@@ -135,11 +135,11 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 					P.key as `key`
 				from 
 					(
-						shopc_save S INNER JOIN 
-						shopc_save_product SP 
+						res_save S INNER JOIN 
+						res_save_product SP 
 						ON S.id = SP.idsave
 					) INNER JOIN
-						shopc_product P
+						res_product P
 					ON 
 						P.id = SP.idproduct	
 				where					
@@ -168,11 +168,11 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 				P.key as `key`				
 			FROM
 				(
-					shopc_save S INNER JOIN 
-					shopc_save_product SP 
+					res_save S INNER JOIN 
+					res_save_product SP 
 					ON S.id = SP.idsave
 				) INNER JOIN
-					shopc_product P
+					res_product P
 				ON 
 					P.id = SP.idproduct	
 			WHERE
@@ -192,11 +192,11 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 				P.key as `key`				
 			FROM
 				(
-					shopc_save S INNER JOIN 
-					shopc_save_product SP 
+					res_save S INNER JOIN 
+					res_save_product SP 
 					ON S.id = SP.idsave
 				) INNER JOIN
-					shopc_product P
+					res_product P
 				ON 
 					P.id = SP.idproduct	
 			WHERE
@@ -217,11 +217,11 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 				P.key as `key`				
 			FROM
 				(
-					shopc_save S INNER JOIN 
-					shopc_save_product SP 
+					res_save S INNER JOIN 
+					res_save_product SP 
 					ON S.id = SP.idsave
 				) INNER JOIN
-					shopc_product P
+					res_product P
 				ON 
 					P.id = SP.idproduct	
 			WHERE
@@ -502,7 +502,7 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
     }	
 	
 	function findByCondition( $Cond ){
-		$findByConditionStmt = "select * from shopc_product where $Cond ORDER BY name";		
+		$findByConditionStmt = "select * from res_product where $Cond ORDER BY name";		
 		$this->findByConditionStmt 		= self::$PDO->prepare($findByConditionStmt);
 		$this->findByConditionStmt->execute(array());
         return new ProductCollection( $this->findByConditionStmt->fetchAll(), $this );
@@ -512,7 +512,7 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 		$Cond 	= $values[0];
 		$start 	= ((int)($values[1])-1)*(int)($values[2]);
 		$max	=  $values[2];		
-		$findByConditionPageStmt = "select * from shopc_product where $Cond ORDER BY name limit $start, $max";
+		$findByConditionPageStmt = "select * from res_product where $Cond ORDER BY name limit $start, $max";
 		$this->findByConditionPageStmt 		= self::$PDO->prepare($findByConditionPageStmt);
 		$this->findByConditionPageStmt->execute(array());
         return new ProductCollection( $this->findByConditionPageStmt->fetchAll(), $this );

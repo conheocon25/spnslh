@@ -6,7 +6,7 @@ class SaveProduct extends Mapper implements \MVC\Domain\SaveProductFinder {
     function __construct() {
         parent::__construct();
 		
-		$tblSaveProduct = "shopc_save_product";
+		$tblSaveProduct = "res_save_product";
 						
 		$selectAllStmt 	= sprintf("select * from %s ", $tblSaveProduct);
 		$selectStmt 	= sprintf("select * from %s where id=?", $tblSaveProduct);

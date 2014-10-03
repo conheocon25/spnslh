@@ -113,23 +113,14 @@
 	<!-- MENU.APP															  	  -->
 	<!-- ======================================================================== -->
 	<div metal:define-macro="MenuApp" id="sidebar">
-		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">
-			<li tal:attributes="class php:ActiveAdmin=='Selling'?'active':'disable'">
-				<a tal:attributes="href '/admin/selling'"><i class="glyphicons-usd" />BÁN HÀNG</a>
-			</li>
+		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">			
 			<li tal:attributes="class php:ActiveAdmin=='Saving'?'active':'disable'">
 				<a tal:attributes="href '/admin/saving'"><i class="glyphicons-book" />KHUYẾN MÃI</a>
-			</li>			
-			<li tal:attributes="class php:ActiveAdmin=='Import'?'active':'disable'">
-				<a tal:attributes="href '/admin/import'"><i class="glyphicons-truck" />NHẬP HÀNG</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='Report'?'active':'disable'">
-				<a tal:attributes="href '/admin/report'"><i class="glyphicons-fax" />BÁO CÁO</a>
 			</li>
 			<li tal:attributes="class php:ActiveAdmin=='Setting'?'active':'disable'">
 				<a tal:attributes="href '/admin/setting'"><i class="glyphicons-cogwheels" />THIẾT LẬP</a>
 			</li>
-		</ul>		
+		</ul>
 	</div>
 	
 	<!-- ======================================================================== -->
