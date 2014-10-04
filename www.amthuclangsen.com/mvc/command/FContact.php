@@ -30,7 +30,7 @@
 			$ConfigAddress 			= $mConfig->findByName("ADDRESS");
 			$ConfigPhone1 			= $mConfig->findByName("PHONE1");
 			$ConfigPhone2 			= $mConfig->findByName("PHONE2");
-			$ConfigYahooMessenger 	= $mConfig->findByName("CONTACT_YAHOOMESSENGER");
+			$ConfigGmail 			= $mConfig->findByName("CONTACT_GTALK");
 			$ConfigSkype 			= $mConfig->findByName("CONTACT_SKYPE");
 			
 			$CategoryAll 	= $mCategory->findAll();
@@ -38,9 +38,7 @@
 			$BranchAll 		= $mBranch->findAll();
 			
 			$Title = "LIÊN HỆ";
-			$Navigation = array(
-				
-			);
+			$Navigation = array();
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
@@ -55,7 +53,7 @@
 			$request->setObject("ConfigAddress", 		$ConfigAddress);
 			$request->setObject("ConfigPhone1", 		$ConfigPhone1);
 			$request->setObject("ConfigPhone2", 		$ConfigPhone2);
-			$request->setObject("ConfigYahooMessenger", $ConfigYahooMessenger);
+			$request->setObject("ConfigGmail", 			$ConfigGmail);
 			$request->setObject("ConfigSkype", 			$ConfigSkype);
 			$request->setObject("CategoryAll", 			$CategoryAll);
 			$request->setObject("TagAll", 				$TagAll);

@@ -31,7 +31,7 @@
 			$ConfigPHome 			= $mConfig->findByName("PRESENTATION_HOME");
 			$ConfigPhone1 			= $mConfig->findByName("PHONE1");
 			$ConfigPhone2 			= $mConfig->findByName("PHONE2");
-			$ConfigYahooMessenger 	= $mConfig->findByName("CONTACT_YAHOOMESSENGER");
+			$ConfigGmail 			= $mConfig->findByName("CONTACT_GTALK");
 			$ConfigSkype 			= $mConfig->findByName("CONTACT_SKYPE");
 			
 			$CategoryAll 			= $mCategory->findAll();
@@ -52,7 +52,7 @@
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------						
 			$request->setProperty("Title", 				$Title);
-			$request->setProperty("Active", 			'Post');
+			$request->setProperty("Active", 			'News');
 			$request->setProperty("Page", 				$Page);
 			$request->setObject("Navigation", 			$Navigation);
 			
@@ -60,7 +60,7 @@
 			$request->setObject("ConfigSlogan", 		$ConfigSlogan);
 			$request->setObject("ConfigPhone1", 		$ConfigPhone1);
 			$request->setObject("ConfigPhone2", 		$ConfigPhone2);
-			$request->setObject("ConfigYahooMessenger", $ConfigYahooMessenger);
+			$request->setObject("ConfigGmail", 			$ConfigGmail);
 			$request->setObject("ConfigSkype", 			$ConfigSkype);
 			
 			$request->setObject("BranchAll", 			$BranchAll);
