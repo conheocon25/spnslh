@@ -32,7 +32,7 @@
 			$Title = "";
 			$ConfigName 	= $mConfig->findByName("NAME");
 			$ConfigSlogan 	= $mConfig->findByName("SLOGAN");
-			$ConfigYahooMessenger 	= $mConfig->findByName("CONTACT_YAHOOMESSENGER");
+			$ConfigGmail 	= $mConfig->findByName("CONTACT_GTALK");
 			$ConfigSkype 	= $mConfig->findByName("CONTACT_SKYPE");
 			$ConfigPhone1 	= $mConfig->findByName("PHONE1");
 			$ConfigPhone2 	= $mConfig->findByName("PHONE2");
@@ -63,14 +63,14 @@
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
 			$request->setProperty("Title", 				$Title);			
-			$request->setProperty("Active", 			"Category");
+			$request->setProperty("Active", 			"Menu");
 			$request->setProperty("Page", 				$Page);
 			$request->setObject("PN", 					$PN);
 			$request->setObject("Navigation", 			$Navigation);
 			
 			$request->setObject("ConfigName", 			$ConfigName);
 			$request->setObject("ConfigSlogan", 		$ConfigSlogan);
-			$request->setObject("ConfigYahooMessenger", $ConfigYahooMessenger);
+			$request->setObject("ConfigGmail", 			$ConfigGmail);
 			$request->setObject("ConfigSkype", 			$ConfigSkype);
 			$request->setObject("ConfigPhone1", 		$ConfigPhone1);
 			$request->setObject("ConfigPhone2", 		$ConfigPhone2);
