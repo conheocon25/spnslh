@@ -81,7 +81,7 @@
 										<span class="hide-for-xs">Tài khoản</span><span class="hide-for-lg">TK</span>
 									</button>
 									<ul class="dropdown-menu pull-right" role="menu">
-										<li><a href="/dang-nhap"><span class="hide-for-xs">Đăng nhập</span><span class="hide-for-lg">Đăng nhập</span></a></li>										
+										<li><a href="/dang-nhap"><span class="hide-for-xs">Đăng nhập</span><span class="hide-for-lg">Đăng nhập</span></a></li>
 									</ul>
 								</div><!-- End .btn-group -->
 							</div><!-- End .header-top-dropdowns -->
@@ -107,8 +107,8 @@
 					<div class="col-md-7 col-sm-7 col-xs-12 header-inner-right">
 						<div class="header-box contact-infos pull-right">
 							<ul>
-								<li><span class="header-box-icon header-box-icon-skype"/><h4 tal:content="ConfigSkype/getValue"/></li>
-								<li><span class="header-box-icon header-box-icon-email"/><h4 tal:content="ConfigYahooMessenger/getValue"/></li>
+								<li><span class="header-box-icon header-box-icon-email"/><h4 tal:content="ConfigGmail/getValue"/></li>
+								<li><span class="header-box-icon header-box-icon-skype"/><h4 tal:content="ConfigSkype/getValue"/></li>								
 							</ul>
 						</div><!-- End .contact-infos -->
 						<div class="header-box contact-phones pull-right clearfix">
@@ -132,9 +132,10 @@
 									</div><!-- responsive-nav-button -->
 								</div>
 								<ul class="menu clearfix">
-									<li><a class="active" href="/trang-chu">TRANG CHỦ</a></li>
-									<li><a href="/gioi-thieu">GIỚI THIỆU</a></li>
-									<li><a href="JavaScript:;">TIN TỨC</a>
+									<li><a tal:attributes="class php:Active=='Home'?'active':'?'" href="/trang-chu">TRANG CHỦ</a></li>
+									<li><a tal:attributes="class php:Active=='Introduction'?'active':'?'" href="/gioi-thieu">GIỚI THIỆU</a></li>
+									<li>
+										<a tal:attributes="class php:Active=='News'?'active':'?'" href="JavaScript:;">TIN TỨC</a>
 										<ul>
 											<li tal:repeat="Tag TagAll">
 												<a tal:attributes="href Tag/getURLView">
@@ -143,7 +144,8 @@
 											</li>
 										</ul>
 									</li>
-									<li class="mega-menu-container"><a href="JavaScript:;">THỰC ĐƠN</a>
+									<li class="mega-menu-container">
+										<a tal:attributes="class php:Active=='Menu'?'active':'?'" href="JavaScript:;">THỰC ĐƠN</a>
 										<div class="mega-menu clearfix">
 											<div class="col-5" tal:repeat="Category CategoryAll">
 												<a href="JavaScript:;" class="mega-menu-title" tal:content="Category/getName"/>
@@ -157,9 +159,10 @@
 											</div>
 										</div><!-- End .mega-menu -->
 									</li>
-									<li><a href="/khuyen-mai">KHUYẾN MÃI</a></li>
-									<li><a href="/hinh-anh">HÌNH ẢNH</a></li>
-									<li><a href="/lien-he">LIÊN HỆ</a></li>
+									<li><a tal:attributes="class php:Active=='Dealer'?'active':'?'" href="/khuyen-mai">KHUYẾN MÃI</a></li>
+									<li><a tal:attributes="class php:Active=='Album'?'active':'?'" href="/hinh-anh">HÌNH ẢNH</a></li>
+									<li><a tal:attributes="class php:Active=='Video'?'active':'?'" href="/video">VIDEO</a></li>
+									<li><a tal:attributes="class php:Active=='Contact'?'active':'?'" href="/lien-he">LIÊN HỆ</a></li>
 								</ul>
 							</nav>							
 						</div>

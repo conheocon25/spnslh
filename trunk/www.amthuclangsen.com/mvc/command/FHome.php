@@ -20,9 +20,7 @@
 			$mCategory 		= new \MVC\Mapper\Category();
 			$mProduct 		= new \MVC\Mapper\Product();
 			$mPresentation 	= new \MVC\Mapper\Presentation();
-			$mTag 			= new \MVC\Mapper\Tag();
-			//$mOED 			= new \MVC\Mapper\OrderExportDetail();
-			//$mOID 			= new \MVC\Mapper\OrderImportDetail();
+			$mTag 			= new \MVC\Mapper\Tag();			
 			$mManufacturer	= new \MVC\Mapper\Manufacturer();
 			$mBranch		= new \MVC\Mapper\Branch();
 			$mStoryLine		= new \MVC\Mapper\StoryLine();
@@ -35,7 +33,7 @@
 			$ConfigPHome 			= $mConfig->findByName("PRESENTATION_HOME");
 			$ConfigPhone1 			= $mConfig->findByName("PHONE1");
 			$ConfigPhone2 			= $mConfig->findByName("PHONE2");
-			$ConfigYahooMessenger 	= $mConfig->findByName("CONTACT_YAHOOMESSENGER");
+			$ConfigGmail 			= $mConfig->findByName("CONTACT_GTALK");
 			$ConfigSkype 			= $mConfig->findByName("CONTACT_SKYPE");
 			
 			$BranchAll		= $mBranch->findAll();			
@@ -52,9 +50,6 @@
 			
 			$TagAll 		= $mTag->findByPosition(array(1));
 			
-			//$OEDAll 		= $mOED->findTop(array());
-			//$OIDAll 		= $mOID->findTop(array());
-			
 			$OEDAll 		= null;
 			$OIDAll 		= null;
 									
@@ -66,7 +61,7 @@
 			$request->setObject("ConfigSlogan", 		$ConfigSlogan);
 			$request->setObject("ConfigPhone1", 		$ConfigPhone1);
 			$request->setObject("ConfigPhone2", 		$ConfigPhone2);
-			$request->setObject("ConfigYahooMessenger", $ConfigYahooMessenger);
+			$request->setObject("ConfigGmail", 			$ConfigGmail);
 			$request->setObject("ConfigSkype", 			$ConfigSkype);
 			
 			$request->setObject("TagAll", 				$TagAll);
