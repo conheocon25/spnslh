@@ -22,7 +22,7 @@ body {
 
 #wrapper {
 	width:100%;
-	background-color: #fff;
+	background: url('/mvc/templates/front/images/bg.jpg') center bottom no-repeat #EFE8E0;
 }
 
 #wrapper.boxed {
@@ -4772,9 +4772,10 @@ noUi-target,
 ==============================================*/
 
 #footer {
-	background:#444645;
+	background: rgba(0, 0, 0, .5);
 	font:15px/2em 'Gudea', Arial, sans-serif !important;
 	color:#ccc;
+	box-shadow: 0 -30px 30px rgba(0, 0, 0, .5);
 }
 
 #footer a {
