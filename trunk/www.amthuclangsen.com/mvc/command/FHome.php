@@ -21,8 +21,8 @@
 			$mProduct 		= new \MVC\Mapper\Product();
 			$mPresentation 	= new \MVC\Mapper\Presentation();
 			$mTag 			= new \MVC\Mapper\Tag();
-			$mOED 			= new \MVC\Mapper\OrderExportDetail();
-			$mOID 			= new \MVC\Mapper\OrderImportDetail();
+			//$mOED 			= new \MVC\Mapper\OrderExportDetail();
+			//$mOID 			= new \MVC\Mapper\OrderImportDetail();
 			$mManufacturer	= new \MVC\Mapper\Manufacturer();
 			$mBranch		= new \MVC\Mapper\Branch();
 			$mStoryLine		= new \MVC\Mapper\StoryLine();
@@ -52,8 +52,11 @@
 			
 			$TagAll 		= $mTag->findByPosition(array(1));
 			
-			$OEDAll 		= $mOED->findTop(array());
-			$OIDAll 		= $mOID->findTop(array());
+			//$OEDAll 		= $mOED->findTop(array());
+			//$OIDAll 		= $mOID->findTop(array());
+			
+			$OEDAll 		= null;
+			$OIDAll 		= null;
 									
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
