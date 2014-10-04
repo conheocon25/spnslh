@@ -78,6 +78,14 @@ class Album extends Object{
 		return $ImageAll;
 	}
 	
+	function getImage(){
+		$ImageAll = $this->getImageAll();
+		if ($ImageAll->count()>0){
+			return $ImageAll->current()->getURL();
+		}		
+		return '/data/images/post.jpg';
+	}
+	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
