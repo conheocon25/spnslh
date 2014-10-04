@@ -55,6 +55,9 @@ RewriteRule ^tin-tuc/([A-Za-z0-9_-]+)$ 							?cmd=FTag&KTag=$1 [L]
 RewriteRule ^tin-tuc/([A-Za-z0-9_-]+)/page/([0-9]+)$ 			?cmd=FTag&KTag=$1&Page=$2 [L]
 RewriteRule ^tin-tuc/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$ 		?cmd=FPost&KTag=$1&KPost=$2 [L]
 
+RewriteRule ^hinh-anh$ 											?cmd=FAlbum [L]
+RewriteRule ^hinh-anh/([A-Za-z0-9_-]+)$ 						?cmd=FAlbumImage&KAlbum=$1 [L]
+
 RewriteRule ^dang-nhap$ 										?cmd=SigninLoad [L]
 RewriteRule ^dang-nhap/exe$ 									?cmd=SigninExe [L]
 RewriteRule ^signout/load$ 										?cmd=SignoutLoad [L]

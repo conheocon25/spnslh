@@ -18,6 +18,9 @@
 		<command name="FPost" 			type="public"><view>FPost</view></command>		
 		<command name="FDealer" 		type="public"><view>FDealer</view></command>
 		
+		<command name="FAlbum" 			type="public"><view>FAlbum</view></command>
+		<command name="FAlbumImage" 	type="public"><view>FAlbumImage</view></command>
+				
 		<command name="FBookmark" 		type="public"><view>FBookmark</view></command>
 		<command name="FBookmarkAdd" 	type="public"><view>FBookmarkAdd</view></command>
 		<command name="FBookmarkDel" 	type="public"><view>FBookmarkDel</view></command>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<div metal:use-macro="mFront.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>
+	</head>	
+	<body>
+		<div id="wrapper">
+			<div metal:use-macro="mFront.xhtml/Header"/>
+			<section id="content">								
+				<div metal:use-macro="mFront.xhtml/LocationBar"/>
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="row">
+								<div class="col-md-9 col-sm-8 col-xs-12 main-content">									
+									<div class="md-margin"></div><!-- .space -->
+									<div class="category-item-container category-list-container">
+										<div class="item item-list clearfix" tal:repeat="Image Album/getImageAll">
+											<div class="item-image-container">
+												<figure>
+													<a tal:attributes="href Album/getURLView">
+														<img tal:attributes="src Image/getURL" alt="item1" class="item-image"/>
+														<img tal:attributes="src Image/getURL" alt="item1  Hover" class="item-image-hover"/>
+													</a>
+												</figure>
+											</div>
+											<div class="item-meta-container">
+												<h3 class="item-name">
+													<a tal:attributes="href Album/getURLView">
+														<span tal:content="Image/getName"/>
+													</a>
+												</h3>
+												<div class="ratings-container">
+													<div class="ratings">
+														<div class="ratings-result" data-result="70"></div>
+													</div><!-- End .ratings -->
+													<span class="ratings-amount">
+														1 đánh giá
+													</span>
+												</div>
+												<p tal:content="structure Image/getName"/>
+											</div>
+										</div><!-- End .item -->
+									</div><!-- End .category-item-container -->
+								</div><!-- End .col-md-9 -->
+								<aside class="col-md-3 col-sm-4 col-xs-12 sidebar">
+									<div class="widget">
+										<div class="panel-group custom-accordion sm-accordion" id="category-filter">
+											
+										</div>
+									</div><!-- End .widget -->																		
+								</aside><!-- End .col-md-3 -->
+							</div><!-- End .row -->
+						</div><!-- End .col-md-12 -->
+					</div><!-- End .row -->
+				</div><!-- End .container -->
+			</section><!-- End #content -->			
+			<div metal:use-macro="mFront.xhtml/Footer"/>
+		</div><!-- End #wrapper -->		
+		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
+	</body>
+</html>
