@@ -56,7 +56,13 @@ RewriteRule ^tin-tuc/([A-Za-z0-9_-]+)/page/([0-9]+)$ 			?cmd=FTag&KTag=$1&Page=$
 RewriteRule ^tin-tuc/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$ 		?cmd=FPost&KTag=$1&KPost=$2 [L]
 
 RewriteRule ^hinh-anh$ 											?cmd=FAlbum [L]
+RewriteRule ^hinh-anh/page/([0-9]+)$ 							?cmd=FAlbum&Page=$1 [L]
 RewriteRule ^hinh-anh/([A-Za-z0-9_-]+)$ 						?cmd=FAlbumImage&KAlbum=$1 [L]
+
+
+RewriteRule ^video$ 											?cmd=FVideo [L]
+RewriteRule ^video/page/([0-9]+)$ 								?cmd=FVideo&Page=$1 [L]
+RewriteRule ^video/([A-Za-z0-9_-]+)$ 							?cmd=FVideoDetail&KVideo=$1 [L]
 
 RewriteRule ^dang-nhap$ 										?cmd=SigninLoad [L]
 RewriteRule ^dang-nhap/exe$ 									?cmd=SigninExe [L]
@@ -110,6 +116,9 @@ RewriteRule ^admin/setting/album$ 										?cmd=ASettingAlbum [L]
 RewriteRule ^admin/setting/album/page/([0-9]+)$ 						?cmd=ASettingAlbum&Page=$1 [L]
 RewriteRule ^admin/setting/album/([0-9]+)$ 								?cmd=ASettingAlbumImage&IdAlbum=$1 [L]
 RewriteRule ^admin/setting/album/([0-9]+)/page/([0-9]+)$ 				?cmd=ASettingAlbumImage&IdAlbum=$1&Page=$2 [L]
+
+RewriteRule ^admin/setting/video$ 										?cmd=ASettingVideo [L]
+RewriteRule ^admin/setting/video/page/([0-9]+)$ 						?cmd=ASettingVideo&Page=$1 [L]
 
 RewriteRule ^admin/setting/category$ 									?cmd=ASettingCategory [L]
 RewriteRule ^admin/setting/category/page/([0-9]+)$ 						?cmd=ASettingCategory&Page=$1 [L]

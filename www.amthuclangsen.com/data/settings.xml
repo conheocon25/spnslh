@@ -20,6 +20,9 @@
 		
 		<command name="FAlbum" 			type="public"><view>FAlbum</view></command>
 		<command name="FAlbumImage" 	type="public"><view>FAlbumImage</view></command>
+		
+		<command name="FVideo" 			type="public"><view>FVideo</view></command>
+		<command name="FVideoDetail" 		type="public"><view>FVideoDetail</view></command>
 				
 		<command name="FBookmark" 		type="public"><view>FBookmark</view></command>
 		<command name="FBookmarkAdd" 	type="public"><view>FBookmarkAdd</view></command>
@@ -87,6 +90,8 @@
 		
 		<command name="ASettingAlbum">			<view>ASettingAlbum			</view></command>
 		<command name="ASettingAlbumImage">		<view>ASettingAlbumImage	</view></command>
+		
+		<command name="ASettingVideo">			<view>ASettingVideo			</view></command>
 		
 		<command name="ASettingBranch">			<view>ASettingBranch		</view></command>
 		<command name="ASettingStoryLine">		<view>ASettingStoryLine		</view></command>
