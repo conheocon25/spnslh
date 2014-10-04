@@ -30,7 +30,7 @@
 			$Supplier = $mSupplier->find($IdSupplier);			
 			if (!isset($IdManufacturer)){
 				$P1All = $Supplier->getManufacturerAll();
-				$IdManufacturer = $P1All->current()->getId();
+				$IdManufacturer = $mManufacturer->findAll()->current()->getId();
 			}
 			
 			$SupplierAll 		= $mSupplier->findAll();

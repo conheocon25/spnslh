@@ -177,8 +177,7 @@ class Supplier extends Object{
 	function getURLSettingManufacturer($IdManufacturer){
 		return "/admin/setting/supplier/".$this->getId()."/".$IdManufacturer."/manufacturer";
 	}
-	
-		
+			
 	//-------------------------------------------------------------------------------
 	//DEFINE URL PAID.SUPPLIER
 	//-------------------------------------------------------------------------------	
