@@ -115,9 +115,9 @@
 										<label class="control-label">Trang giới thiệu - Post</label>
 										<div class="controls">											
 											<select name="ConfigIntroduction2" id="ConfigIntroduction2" style="width:80%;" tal:attributes="data-id ConfigIntroduction/getId">
-												<option tal:repeat="Post PostAll" tal:attributes="value Post/getId; selected php:ConfigIntroduction->getValue()==Post->getId()?'selected':''">
-													<span tal:content="Post/getTitle" />
-												</option>												
+												<option tal:repeat="PT Tag/getPostAll" tal:attributes="value PT/getPost/getId; selected php:ConfigIntroduction->getValue()==PT->getPost()->getId()?'selected':''">
+													<span tal:content="PT/getPost/getTitle" />
+												</option>
 											</select>
 										</div>
 									</div>
@@ -125,9 +125,9 @@
 										<label class="control-label">Trang FAQ</label>
 										<div class="controls">											
 											<select name="ConfigFAQ2" id="ConfigFAQ2" style="width:80%;" tal:attributes="data-id ConfigFAQ/getId">
-												<option tal:repeat="Post PostAll" tal:attributes="value Post/getId; selected php:ConfigFAQ->getValue()==Post->getId()?'selected':''">
-													<span tal:content="Post/getTitle" />
-												</option>												
+												<option tal:repeat="PT Tag/getPostAll" tal:attributes="value PT/getPost/getId; selected php:ConfigFAQ->getValue()==PT->getPost()->getId()?'selected':''">
+													<span tal:content="PT/getPost/getTitle" />
+												</option>
 											</select>
 										</div>
 									</div>
@@ -135,9 +135,9 @@
 										<label class="control-label">Trang Điều khoản</label>
 										<div class="controls">											
 											<select name="ConfigPolicy2" id="ConfigPolicy2" style="width:80%;" tal:attributes="data-id ConfigPolicy/getId">
-												<option tal:repeat="Post PostAll" tal:attributes="value Post/getId; selected php:ConfigPolicy->getValue()==Post->getId()?'selected':''">
-													<span tal:content="Post/getTitle" />
-												</option>												
+												<option tal:repeat="PT Tag/getPostAll" tal:attributes="value PT/getPost/getId; selected php:ConfigPolicy->getValue()==PT->getPost()->getId()?'selected':''">
+													<span tal:content="PT/getPost/getTitle" />
+												</option>
 											</select>
 										</div>
 									</div>

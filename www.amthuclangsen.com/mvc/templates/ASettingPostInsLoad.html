@@ -6,9 +6,7 @@
 	</head>
 	
 	<body>
-		<div metal:use-macro="mAdmin.xhtml/Header"/>
-		<div metal:use-macro="mAdmin.xhtml/StyleTools"/>
-		<div metal:use-macro="mAdmin.xhtml/MenuSetting"/>
+		<div metal:use-macro="mAdmin.xhtml/Header"/>		
 		<div id="content">
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
 			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
@@ -16,7 +14,7 @@
 				<div class="col-12">					
 					<div class="widget-box">
 						<div class="widget-content nopadding">
-							<form class="form-horizontal" tal:attributes="action '/admin/setting/post/ins/exe'" method="post">
+							<form class="form-horizontal" tal:attributes="action Tag/getURLSettingPostInsExe" method="post">
 								<div class="control-group">
 									<label class="control-label" for="Title">Tiêu đề</label>
 									<div class="controls">

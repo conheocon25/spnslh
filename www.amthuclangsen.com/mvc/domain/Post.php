@@ -23,7 +23,8 @@ class Post extends Object{
 		$this->Key 			= $Key;
         parent::__construct( $Id );
     }
-    function getId() {return $this->Id;}	
+    function setId($Id) {$this->Id = $Id;}
+	function getId() 	{return $this->Id;}	
 		
 	function setContent( $Content ){$this->Content = $Content;$this->markDirty();}   
 	function getContent( ) {return $this->Content;}
