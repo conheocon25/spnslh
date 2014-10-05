@@ -11,22 +11,28 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-									
+			$IdTag = $request->getProperty('IdTag');
+			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mPost 	= new \MVC\Mapper\Post();
-			$mConfig= new \MVC\Mapper\Config();
+			$mTag 		= new \MVC\Mapper\Tag();
+			$mPost 		= new \MVC\Mapper\Post();
+			$mConfig	= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------																					
-			$Title = "BÀI VIẾT";
+			$Tag 		= $mTag->find($IdTag);
+			
+			$Title = mb_strtoupper($Tag->getName(), 'UTF8')." > THÊM MỚI";
 			$Navigation = array(				
-				array("THIẾT LẬP", 	"/admin/setting")				
-			);									
-			$ConfigName		= $mConfig->findByName("NAME");
-									
+				array("THIẾT LẬP", 	"/admin/setting"),
+				array("BÀI VIẾT", 	$Tag->getURLSettingPost())
+			);
+			
+			$ConfigName	= $mConfig->findByName("NAME");
+												
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
@@ -34,6 +40,7 @@
 			$request->setProperty('ActiveAdmin'	, 'Post');			
 			$request->setObject('Navigation'	, $Navigation);			
 			$request->setObject('ConfigName'	, $ConfigName);
+			$request->setObject('Tag'			, $Tag);
 																		
 			return self::statuses('CMD_DEFAULT');
 		}

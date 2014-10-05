@@ -11,7 +11,8 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
-			$IdPost 	= $request->getProperty('IdPost');						
+			$IdTag 		= $request->getProperty('IdTag');						
+			$IdPost 	= $request->getProperty('IdPost');
 			$Title 		= $request->getProperty('Title');
 			$Author 	= $request->getProperty('Author');
 			$Time 		= $request->getProperty('Time');
