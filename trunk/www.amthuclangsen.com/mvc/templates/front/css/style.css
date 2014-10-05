@@ -22,7 +22,7 @@ body {
 
 #wrapper {
 	width:100%;
-	background: url('/mvc/templates/front/images/bg.jpg') center bottom no-repeat #EFE8E0;
+	background: url('/mvc/templates/front/images/bg.jpg') center bottom fixed no-repeat #EFE8E0;
 }
 
 #wrapper.boxed {
