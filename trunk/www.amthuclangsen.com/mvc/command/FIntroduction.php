@@ -38,11 +38,11 @@
 			$TagAll 				= $mTag->findAll();
 			
 			$Post 					= $mPost->find($ConfigIntro->getValue() );
+			$Post->setCount($Post->getCount()+1);
+			$mPost->update($Post);
 						
 			$Title = "GIỚI THIỆU";
-			$Navigation = array(
-				
-			);
+			$Navigation = array();
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
