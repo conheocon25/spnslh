@@ -12,55 +12,41 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-md-12">							
-							<div class="xs-margin"></div><!-- space -->
+							<div class="xs-margin"></div>
 							<div class="row">
 								<div class="col-md-9 col-sm-8 col-xs-12 articles-container single-post">
 									<article class="article">
 										<div class="article-meta-date" tal:content="Post/getTimePrint"/>
-										<h2 tal:content="Post/getTitle"/>
+										<h2 tal:content="php:mb_strtoupper(Post->getTitle(),'UTF8')"/>
 										<div class="article-meta-container clearfix">
 											<div class="article-meta-more">
 												<a href="#"><span class="separator"><i class="fa fa-user"></i></span> <span tal:content="Post/getAuthor"></span></a>
-												<a href="#"><span class="separator"><i class="fa fa-comments "></i></span>3 Comments</a>
-												<a href="#"><span class="separator"><i class="fa fa-tag"></i></span>Category</a>
-											</div><!-- End. pull-left -->
+											</div>
 											<div class="article-meta-view">
-												<a href="#"><span class="separator"><i class="fa fa-eye "></i></span>151</a>
+												<span class="separator"><i class="fa fa-eye "></i></span><span tal:content="Post/getCount"/>
 												<a href="#"><span class="separator"><i class="fa fa-heart"></i></span>87</a>
-											</div><!-- End. pull-right -->
-										</div><!-- End .article-meta-container -->
+											</div>
+										</div>
 										<div tal:content="structure Post/getContent" class="article-content-container"/>
-									</article><!-- End .article -->
-								</div><!-- End .col-md-9 -->
+									</article>
+								</div>
 								<aside class="col-md-3 col-sm-4 col-xs-12 sidebar">
 									<div class="widget">
 										<div class="panel-group custom-accordion sm-accordion" id="category-filter">
 											<div class="panel">
 												<div class="accordion-header">
-													<div class="accordion-title"><span tal:content="string:GIỚI THIỆU"/></div><!-- End .accordion-title -->
+													<div class="accordion-title"><span tal:content="string:GIỚI THIỆU"/></div>
 													<a class="accordion-btn opened"  data-toggle="collapse" data-target="#category-list-1"></a>
-												</div>
-												<!--
-												<div id="category-list-1" class="collapse in">
-													<div class="panel-body">
-														<ul class="category-filter-list jscrollpane">
-															<li tal:repeat="PT Tag/getPostTop4">
-																<a tal:attributes="href PT/getURLRead"><span tal:content="PT/getPost/getTitle"/></a>
-															</li>
-														</ul>
-													</div>
-												</div>
-												!-->
-											</div><!-- End .panel -->																																	
-										</div><!-- .panel-group -->
-									</div><!-- End .widget -->																		
-								</aside><!-- End .col-md-3 -->
-								
-							</div><!-- End .row -->
-						</div><!-- End .col-md-12 -->
-					</div><!-- End .row -->
-				</div><!-- End .container -->
-			</section><!-- End #content -->
+												</div>												
+											</div>
+										</div>
+									</div>
+								</aside>								
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
 			<div metal:use-macro="mFront.xhtml/Footer"/>
 		</div><!-- End #wrapper -->		
 		<div metal:use-macro="mFront.xhtml/IncludeJS"/>

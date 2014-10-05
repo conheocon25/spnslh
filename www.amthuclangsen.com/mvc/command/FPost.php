@@ -41,6 +41,9 @@
 			$Tag 					= $mTag->findByKey($KTag);
 			$TagAll 				= $mTag->findByPosition(array(1));
 			
+			$Post->setCount($Post->getCount()+1);
+			$mPost->update($Post);
+			
 			$Title = mb_strtoupper($Post->getTitle(), 'UTF8');
 			$Navigation = array(
 				array(mb_strtoupper($Tag->getName(), 'UTF8'), $Tag->getURLView())

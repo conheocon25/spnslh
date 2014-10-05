@@ -20,12 +20,10 @@
 										<h2 tal:content="Post/getTitle"/>
 										<div class="article-meta-container clearfix">
 											<div class="article-meta-more">
-												<a href="#"><span class="separator"><i class="fa fa-user"></i></span> <span tal:content="Post/getAuthor"></span></a>
-												<a href="#"><span class="separator"><i class="fa fa-comments "></i></span>3 Comments</a>
-												<a href="#"><span class="separator"><i class="fa fa-tag"></i></span>Category</a>
-											</div><!-- End. pull-left -->
+												<a href="#"><span class="separator"><i class="fa fa-user"></i></span> <span tal:content="Post/getAuthor"></span></a>												
+											</div>
 											<div class="article-meta-view">
-												<a href="#"><span class="separator"><i class="fa fa-eye "></i></span>151</a>
+												<span class="separator"><i class="fa fa-eye "></i></span><span tal:content="Post/getCount"/>
 												<a href="#"><span class="separator"><i class="fa fa-heart"></i></span>87</a>
 											</div><!-- End. pull-right -->
 										</div><!-- End .article-meta-container -->
