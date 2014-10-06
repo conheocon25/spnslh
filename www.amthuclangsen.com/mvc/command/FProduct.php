@@ -64,6 +64,7 @@
 			$request->setObject("ConfigSkype", 	$ConfigSkype);
 			$request->setObject("CategoryAll", 	$CategoryAll);
 			$request->setObject("Category", 	$Category);
+			$request->setObject("Category1", 	$Category1);
 			$request->setObject("Product", 		$Product);
 			$request->setObject("TagAll", 		$TagAll);
 			$request->setObject("BranchAll", 	$BranchAll);

@@ -36,8 +36,8 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 		$findBySupplierStmt = sprintf("select * from %s where idsupplier=?  order by id DESC", $tblProduct);
 		$findBySupplierManufacturerStmt = sprintf("select * from %s where idsupplier=? AND idmanufacturer=? order by id DESC", $tblProduct);
 				
-		$findByTopStmt 				= sprintf("select * from %s order by idcategory, name LIMIT 8", $tblProduct);
-		$findByManufacturerTopStmt 	= sprintf("select * from %s where idmanufacturer=? order by idcategory, name LIMIT 8", $tblProduct);
+		$findByTopStmt 				= sprintf("select * from %s order by id DESC LIMIT 9", $tblProduct);
+		$findByManufacturerTopStmt 	= sprintf("select * from %s where idmanufacturer=? order by idcategory, name LIMIT 9", $tblProduct);
 		$findManufacturerStmt 		= sprintf("
 				select 
 					1 as id,
