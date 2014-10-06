@@ -20,6 +20,7 @@
 			$mPost 		= new \MVC\Mapper\Post();
 			$mTag 		= new \MVC\Mapper\Tag();
 			$mBranch 	= new \MVC\Mapper\Branch();
+			$mStoryLine	= new \MVC\Mapper\StoryLine();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -35,7 +36,8 @@
 			
 			$CategoryAll 			= $mCategory->findAll();
 			$BranchAll 				= $mBranch->findAll();
-			$TagAll 				= $mTag->findAll();
+			$TagAll 				= $mTag->findByPosition(array(1));
+			$StoryLineAll			= $mStoryLine->findAll();
 			
 			$Post 					= $mPost->find($ConfigIntro->getValue() );
 			$Post->setCount($Post->getCount()+1);
@@ -58,6 +60,7 @@
 			$request->setObject("ConfigSkype", 			$ConfigSkype);
 			
 			$request->setObject("Post", 				$Post);
+			$request->setObject("StoryLineAll", 		$StoryLineAll);
 			$request->setObject("TagAll", 				$TagAll);
 			$request->setObject("CategoryAll", 			$CategoryAll);
 			$request->setObject("BranchAll", 			$BranchAll);

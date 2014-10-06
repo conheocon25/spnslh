@@ -30,15 +30,26 @@
 										<div tal:content="structure Post/getContent" class="article-content-container"/>
 									</article>
 								</div>
-								<aside class="col-md-3 col-sm-4 col-xs-12 sidebar">
-									<div class="widget">
-										<div class="panel-group custom-accordion sm-accordion" id="category-filter">
-											<div class="panel">
-												<div class="accordion-header">
-													<div class="accordion-title"><span tal:content="string:GIỚI THIỆU"/></div>
-													<a class="accordion-btn opened"  data-toggle="collapse" data-target="#category-list-1"></a>
-												</div>												
-											</div>
+								<aside class="col-md-3 col-sm-4 col-xs-12 sidebar">									
+									<div metal:use-macro="mFront.xhtml/Subscribe"/>
+									<div class="widget testimonials">
+										<h3>Đánh giá</h3>
+										<div class="testimonials-slider flexslider sidebarslider">
+											<ul class="testimonials-list clearfix">
+												<li tal:repeat="StoryLine StoryLineAll">
+													<div class="testimonial-details">
+														<header tal:content="StoryLine/getTitle"/>														
+														<span tal:content="StoryLine/getNote"/>														
+													</div>
+													<figure class="clearfix">
+														<img tal:attributes="src StoryLine/getImage"/>
+														<figcaption>
+															<a href="#"><span tal:content="StoryLine/getName"/></a>
+															<span tal:content="StoryLine/getDatePrint"/>
+														</figcaption>
+													</figure>
+												</li>												
+											</ul>
 										</div>
 									</div>
 								</aside>								
@@ -48,7 +59,7 @@
 				</div>
 			</section>
 			<div metal:use-macro="mFront.xhtml/Footer"/>
-		</div><!-- End #wrapper -->		
+		</div>
 		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
 	</body>
 </html>
