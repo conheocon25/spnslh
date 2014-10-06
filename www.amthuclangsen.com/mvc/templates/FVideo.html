@@ -50,33 +50,13 @@
 												</div>
 												<p tal:content="structure Video/getNote"/>
 											</div>
-										</div><!-- End .item -->
-									</div><!-- End .category-item-container -->
-								</div><!-- End .col-md-9 -->
+										</div>
+									</div>
+								</div>
 								<aside class="col-md-3 col-sm-4 col-xs-12 sidebar">
-									<div class="widget">
-										<div class="panel-group custom-accordion sm-accordion" id="category-filter">
-											<!--
-											<div class="panel">
-												<div class="accordion-header">
-													<div class="accordion-title"><span>Danh mục tin</span></div>
-													<a class="accordion-btn opened"  data-toggle="collapse" data-target="#category-list-1"></a>
-												</div>
-												<div id="category-list-1" class="collapse in">
-													<div class="panel-body">
-														<ul class="category-filter-list jscrollpane">
-															<li tal:repeat="Tag TagAll">
-																<a tal:attributes="href Tag/getURLView"><span tal:content="Tag/getName"/> (<span tal:content="Tag/getPostAll/count"/>)</a>
-															</li>
-														</ul>
-													</div>
-												</div>
-											</div>
-											!-->
-										</div><!-- .panel-group -->
-									</div><!-- End .widget -->																		
-								</aside><!-- End .col-md-3 -->
-							</div><!-- End .row -->
+									<div metal:use-macro="mFront.xhtml/Subscribe"/>
+								</aside>
+							</div>
 						</div><!-- End .col-md-12 -->
 					</div><!-- End .row -->
 				</div><!-- End .container -->

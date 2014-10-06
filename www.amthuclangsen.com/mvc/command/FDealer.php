@@ -10,25 +10,17 @@
 									
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
-			//-------------------------------------------------------------
-			$IdManufacturer = $request->getProperty('IdManufacturer');
-			$KCategory2 	= $request->getProperty('KCategory2');
+			//-------------------------------------------------------------			
+			$Page 	= $request->getProperty('Page');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mConfig 		= new \MVC\Mapper\Config();
-			$mSave 			= new \MVC\Mapper\Save();
-			$mCategory 		= new \MVC\Mapper\Category();
-			$mCategory1 	= new \MVC\Mapper\Category1();
-			$mProduct 		= new \MVC\Mapper\Product();
-			$mPresentation 	= new \MVC\Mapper\Presentation();
-			$mTag 			= new \MVC\Mapper\Tag();
-			$mOED 			= new \MVC\Mapper\OrderExportDetail();
-			$mOID 			= new \MVC\Mapper\OrderImportDetail();
-			$mManufacturer	= new \MVC\Mapper\Manufacturer();
-			$mBranch		= new \MVC\Mapper\Branch();
-			$mStoryLine		= new \MVC\Mapper\StoryLine();
+			$mConfig 	= new \MVC\Mapper\Config();
+			$mCategory 	= new \MVC\Mapper\Category();
+			$mPostTag	= new \MVC\Mapper\PostTag();
+			$mTag 		= new \MVC\Mapper\Tag();
+			$mBranch 	= new \MVC\Mapper\Branch();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -38,63 +30,45 @@
 			$ConfigPHome 			= $mConfig->findByName("PRESENTATION_HOME");
 			$ConfigPhone1 			= $mConfig->findByName("PHONE1");
 			$ConfigPhone2 			= $mConfig->findByName("PHONE2");
-			$ConfigYahooMessenger 	= $mConfig->findByName("CONTACT_YAHOOMESSENGER");
+			$ConfigGmail 			= $mConfig->findByName("CONTACT_GTALK");
 			$ConfigSkype 			= $mConfig->findByName("CONTACT_SKYPE");
 			
-			$BranchAll		= $mBranch->findAll();			
-			$ManufacturerAll= $mManufacturer->findAll();
-			$StoryLineAll	= $mStoryLine->findAll();
-									
-			$CategoryAll 	= $mCategory->findAll();
-			$ProductAll 	= $mProduct->findByTop(array());			
-			$Presentation 	= $mPresentation->find($ConfigPHome->getValue());
+			$CategoryAll 			= $mCategory->findAll();
+			$BranchAll 				= $mBranch->findAll();
 			
-			$SaveAll 		= $mSave->findAll();
-			$Save	 		= $SaveAll->current();
+			if (!isset($Page)) $Page = 1;
+			$TagAll 				= $mTag->findByPosition(array(1));
+			$TagAll1 				= $mTag->findByPosition(array(3));
 			
-			$PMAll 			= $mProduct->findManufacturer2(array($Save->getId()));			
-			$TagAll 		= $mTag->findByPosition(array(1));
+			$Tag 					= $TagAll1->current();			
+			$PTAll 					= $mPostTag->findByTagPage(array($Tag->getId(), $Page, 6));
+			$PN 					= new \MVC\Domain\PageNavigation($Tag->getPostAll()->count(), 6, $Tag->getURLView());
 			
-			if (isset($IdManufacturer)){
-				$PSAll = $Save->getSPMAll($IdManufacturer);
-			}else if (isset($KCategory2)){
-				$Category2 = $mCategory1->findByKey($KCategory2);
-				$PSAll = $Save->getSPCAll( $Category2->getId() );
-			}else{
-				$PSAll = $Save->getSPAll();
-			}
-												
 			$Title = "KHUYẾN MÃI";
-			$Navigation = array(
-			
-			);
+			$Navigation = array();
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------			
-			$request->setProperty("Active", 			'Dialer');
+			//-------------------------------------------------------------						
 			$request->setProperty("Title", 				$Title);
+			$request->setProperty("Active", 			'News');
+			$request->setProperty("Page", 				$Page);
+			$request->setObject("Navigation", 			$Navigation);
+			
 			$request->setObject("ConfigName", 			$ConfigName);
 			$request->setObject("ConfigSlogan", 		$ConfigSlogan);
 			$request->setObject("ConfigPhone1", 		$ConfigPhone1);
 			$request->setObject("ConfigPhone2", 		$ConfigPhone2);
-			$request->setObject("ConfigYahooMessenger", $ConfigYahooMessenger);
+			$request->setObject("ConfigGmail", 			$ConfigGmail);
 			$request->setObject("ConfigSkype", 			$ConfigSkype);
-			$request->setObject("Navigation", 			$Navigation);
-			
-			$request->setObject("TagAll", 				$TagAll);
-			$request->setObject("Tag", 					$TagAll->current());
 			
 			$request->setObject("BranchAll", 			$BranchAll);
-			$request->setObject("ManufacturerAll", 		$ManufacturerAll);
-						
-			$request->setObject("Save", 				$Save);
-			$request->setObject("PMAll", 				$PMAll);
-			$request->setObject("PSAll", 				$PSAll);
-			
-			$request->setObject("Presentation", 		$Presentation);
 			$request->setObject("CategoryAll", 			$CategoryAll);
-												
+			$request->setObject("TagAll", 				$TagAll);
+			$request->setObject("Tag", 					$Tag);
+			$request->setObject("PTAll", 				$PTAll);
+			$request->setObject("PN", 					$PN);
+			
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

@@ -91,36 +91,18 @@
 																<a tal:attributes="href Category2/getURLView"><span tal:content="Category2/getName"/> (<span tal:content="Category2/getProductAll/count"/>)</a>
 															</li>
 														</ul>
-													</div><!-- End .panel-body -->
-												</div><!-- #collapse -->
-											</div><!-- End .panel -->
-											<div class="panel">
-												<div class="accordion-header">
-													<div class="accordion-title"><span>Thương hiệu</span></div><!-- End .accordion-title -->
-													<a class="accordion-btn opened"  data-toggle="collapse" data-target="#category-list-2"></a>
-												</div><!-- End .accordion-header -->
-												<div id="category-list-2" class="collapse in">
-													<div class="panel-body">
-														<ul class="category-filter-list jscrollpane">
-															<li tal:repeat="PM PMAll">
-																<a tal:attributes="href php:Category2->getURLViewManufacturer( PM->getIdManufacturer() )">
-																	<span tal:content="PM/getManufacturer/getName"/>
-																	(<span tal:content="php:Category2->getProductManufacturerAll( PM->getIdManufacturer() )->count()"/>)
-																</a>
-															</li>
-														</ul>
-													</div><!-- End .panel-body -->
-												</div><!-- #collapse -->
-											</div><!-- End .panel -->											
-										</div><!-- .panel-group -->
-									</div><!-- End .widget -->									
-									
-								</aside><!-- End .col-md-3 -->
-							</div><!-- End .row -->
-						</div><!-- End .col-md-12 -->
-					</div><!-- End .row -->
-				</div><!-- End .container -->
-			</section><!-- End #content -->
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div metal:use-macro="mFront.xhtml/Subscribe"/>
+								</aside>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
 			<div metal:use-macro="mFront.xhtml/Footer"/>
 		</div><!-- End #wrapper -->		
 		<div metal:use-macro="mFront.xhtml/IncludeJS"/>

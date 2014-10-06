@@ -242,6 +242,19 @@
 	</div>
 	
 	<!-- ======================================================================== -->
+	<!-- SUBCRIBE															  	  -->
+	<!-- ======================================================================== -->
+	<div metal:define-macro="Subscribe" class="widget subscribe">
+		<p>Nhận thông tin và các chương trình khuyến mãi hấp dẫn</p>
+		<form action="/nhan-thong-tin" id="subscribe-form" method="post">
+			<div class="form-group">
+				<input type="email" class="form-control" id="Email"  name="Email" placeholder="Email của bạn là gì?"/>
+			</div>
+			<input type="submit" value="ĐĂNG KÝ" class="btn btn-custom"/>
+		</form>
+	</div>
+									
+	<!-- ======================================================================== -->
 	<!-- FOOTER																	  -->
 	<!-- ======================================================================== -->
 	<footer metal:define-macro="Footer" id="footer">
@@ -249,15 +262,14 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-4 col-sm-4 col-xs-12 widget">
-						<h3>Trụ sở chính</h3>
-						<ul class="contact-list">
-							<li><strong>Khu Ẩm Thực Sinh Thái Làng Sen</strong></li>							
+						<h3>Khu Ẩm Thực Sinh Thái Làng Sen</h3>
+						<ul class="contact-list">							
 							<li>Tiếp đón quí khách tất cả các ngày trong tuần</li>
 							<li>Giờ mở cửa: 8.00AM - 22.00PM</li>
 						</ul>
 					</div>
 					<div class="col-md-5 col-sm-4 col-xs-12 widget">
-						<h3>Hệ thống chuỗi Quán Ăn</h3>
+						<h3>Trong cùng hệ thống</h3>
 						<ul class="links">
 							<li tal:repeat="Branch BranchAll">
 								<span tal:content="Branch/getName"/>: <span tal:content="Branch/getAddress"/>
@@ -269,10 +281,10 @@
 						<div class="facebook-likebox">
 							<iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Famthuclangsen&amp;width&amp;height=258&amp;colorscheme=dark&amp;show_faces=true&amp;header=false&amp;stream=false&amp;show_border=false" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:258px;" allowTransparency="true"></iframe>
 						</div>
-					</div><!-- End .widget -->
-				</div><!-- End .row -->
-			</div><!-- End .container -->
-		</div><!-- End #inner-footer -->
+					</div>
+				</div>
+			</div>
+		</div>
 		<div id="footer-bottom">
 			<div class="container">
 				<div class="row">
