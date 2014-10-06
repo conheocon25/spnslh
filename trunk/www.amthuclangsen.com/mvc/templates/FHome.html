@@ -30,8 +30,7 @@
 							<div class="row">
 								<div class="col-md-9 col-sm-8 col-xs-12 main-content">
 									<header class="content-title">
-										<h2 class="title">KHUYẾN MÃI</h2>
-										<p class="title-desc" tal:content="Save/getName"/>
+										<h2 class="title">MENU MÓN</h2>										
 									</header>
 									<div id="products-tabs-content" class="row tab-content">
 										<div class="tab-pane active" id="all">
@@ -90,203 +89,25 @@
 																>
 																	Email
 																</span>
-															</div><!-- End .item-action-inner -->
-														</div><!-- End .item-action -->
-													</div><!-- End .item-meta-container -->	
-												</div><!-- End .item -->
-											</div>
-										</div><!-- End .tab-pane -->
-									</div><!-- End #products-tabs-content -->
-									
-									<header class="content-title">
-										<div class="title-bg">
-											<h2 class="title">HÀNG MỚI VỀ</h2>
-										</div><!-- End .title-bg -->
-									</header>
-									<div id="products-tabs-content" class="row tab-content">
-										<div class="tab-pane active" id="all">
-											<div tal:repeat="OID OIDAll" class="col-md-4 col-sm-6 col-xs-12">
-												<div class="item">
-													<div class="item-image-container">
-														<figure>
-															<a tal:attributes="href OID/getProduct/getURLView">																																
-																<img tal:attributes="src OID/getProduct/getInfo/getImage1" class="item-image"/>
-																<img tal:attributes="src OID/getProduct/getInfo/getImage2" class="item-image-hover"/>
-															</a>
-														</figure>														
-														<div class="item-price-container">
-															<span class="item-price" tal:content="OID/getProduct/getPrice2Print"/>
+															</div>
 														</div>
-														<span class="new-rect">MỚI</span>														
-													</div><!-- End .item-image -->
-													<div class="item-meta-container">
-														<div class="ratings-container">
-															<div class="ratings">
-																<div class="ratings-result" data-result="90"></div>
-															</div><!-- End .ratings -->
-															<span class="ratings-amount">
-																1 đánh giá
-															</span>
-														</div><!-- End .rating-container -->
-														<h3 class="item-name"><a tal:attributes="href OID/getProduct/getURLView" tal:content="OID/getProduct/getName"/></h3>
-														<div class="item-action">															
-															<div  class="item-add-btn">
-																<span class="icon-cart-text" style="cursor:pointer"
-																	tal:attributes="	id 		OID/getProduct/getId;
-																						name 	OID/getProduct/getName;
-																						price 	OID/getProduct/getPrice2;
-																						image 	OID/getProduct/getInfo/getImage1;
-																	"
-																>
-																	Mua ngay
-																</span>
-															</div>															
-															<div class="item-action-inner">
-																<span class="icon-button icon-like" style="cursor:pointer"
-																	tal:attributes="	id 		OID/getProduct/getId;
-																						name 	OID/getProduct/getName;
-																						price 	OID/getProduct/getPrice2;
-																						image 	OID/getProduct/getInfo/getImage1;
-																	"
-																>
-																	Ưa thích
-																</span>
-																<span class="icon-button icon-compare" style="cursor:pointer"
-																	tal:attributes="	id 		OID/getProduct/getId;
-																						name 	OID/getProduct/getName;
-																						price 	OID/getProduct/getPrice2;
-																						image 	OID/getProduct/getInfo/getImage1;
-																	"
-																>
-																	Email
-																</span>
-															</div>
-														</div><!-- End .item-action -->
-													</div><!-- End .item-meta-container -->	
-												</div><!-- End .item -->
+													</div>
+												</div>
 											</div>
-										</div><!-- End .tab-pane -->
-									</div><!-- End #products-tabs-content -->
-									
+										</div>
+									</div>
 									<header class="content-title">
-										<div class="title-bg">
-											<h2 class="title">BÁN CHẠY NHẤT</h2>
-										</div><!-- End .title-bg -->
+										<h2 class="title">ẢNH MỚI NHẤT</h2>
 									</header>
-									<div id="products-tabs-content" class="row tab-content">
-										<div class="tab-pane active" id="all">
-											<div tal:repeat="OED OEDAll" class="col-md-4 col-sm-6 col-xs-12">
-												<div class="item" tal:condition="OED/getProduct/getInfo">
-													<div class="item-image-container">
-														<figure>
-															<a tal:attributes="href OED/getProduct/getURLView">																																
-																<img tal:attributes="src OED/getProduct/getInfo/getImage1" class="item-image"/>
-																<img tal:attributes="src OED/getProduct/getInfo/getImage2" class="item-image-hover"/>
-															</a>
-														</figure>
-														<div class="item-price-container">
-															<span class="item-price" tal:content="OED/getPricePrint"/>
-														</div>
-														<span class="new-rect">HOT</span>
-													</div><!-- End .item-image -->
-													<div class="item-meta-container">
-														<div class="ratings-container">
-															<div class="ratings">
-																<div class="ratings-result" data-result="90"></div>
-															</div><!-- End .ratings -->
-															<span class="ratings-amount">
-																1 đánh giá
-															</span>
-														</div><!-- End .rating-container -->
-														<h3 class="item-name"><a tal:attributes="href OED/getProduct/getURLView" tal:content="OED/getProduct/getName"/></h3>
-														<div class="item-action">															
-															<div  class="item-add-btn">
-																<span class="icon-cart-text" style="cursor:pointer"
-																	tal:attributes="	id 		OED/getProduct/getId;
-																						name 	OED/getProduct/getName;
-																						price 	OED/getProduct/getPrice2;
-																						image 	OED/getProduct/getInfo/getImage1;
-																	"
-																>
-																	Mua ngay
-																</span>
-															</div>
-															<div class="item-action-inner">
-																<span class="icon-button icon-like" style="cursor:pointer"
-																	tal:attributes="	id 		OED/getProduct/getId;
-																						name 	OED/getProduct/getName;
-																						price 	OED/getProduct/getPrice2;
-																						image 	OED/getProduct/getInfo/getImage1;
-																	"
-																>
-																	Ưa thích
-																</span>
-																<span class="icon-button icon-compare" style="cursor:pointer"
-																	tal:attributes="	id 		OED/getProduct/getId;
-																						name 	OED/getProduct/getName;
-																						price 	OED/getProduct/getPrice2;
-																						image 	OED/getProduct/getInfo/getImage1;
-																	"
-																>
-																	Email
-																</span>
-															</div>
-														</div><!-- End .item-action -->
-													</div><!-- End .item-meta-container -->	
-												</div><!-- End .item -->
-											</div>
-										</div><!-- End .tab-pane -->
-									</div><!-- End #products-tabs-content -->
-								</div><!-- End .col-md-9 -->
+									<header class="content-title">
+										<h2 class="title">VIDEO MỚI NHẤT</h2>
+									</header>
+								</div>
 
 								<div class="col-md-3 col-sm-4 col-xs-12 sidebar">
 									<div metal:use-macro="mFront.xhtml/Subscribe"/>
-									<div class="widget testimonials">
-										<h3>Đánh giá</h3>
-										<div class="testimonials-slider flexslider sidebarslider">
-											<ul class="testimonials-list clearfix">
-												<li tal:repeat="StoryLine StoryLineAll">
-													<div class="testimonial-details">
-														<header tal:content="StoryLine/getTitle"/>														
-														<span tal:content="StoryLine/getNote"/>														
-													</div><!-- End .testimonial-details -->
-													<figure class="clearfix">
-														<img tal:attributes="src StoryLine/getImage"/>
-														<figcaption>
-															<a href="#"><span tal:content="StoryLine/getName"/></a>
-															<span tal:content="StoryLine/getDatePrint"/>
-														</figcaption>
-													</figure>
-												</li>												
-											</ul>
-										</div><!-- End .testimonials-slider -->
-									</div><!-- End .widget -->
-									
-									<div class="widget latest-posts">
-										<h3>Tin tức</h3>
-										<div class="latest-posts-slider flexslider sidebarslider">
-											<ul class="latest-posts-list clearfix">
-												<li tal:repeat="PT Tag/getPostTop4">
-													<a tal:attributes="href PT/getURLRead">
-														<figure class="latest-posts-media-container">
-															<img tal:attributes="src PT/getPost/getImage;alt PT/getPost/getTitle" />
-														</figure>
-													</a>
-													<h4><a tal:attributes="href PT/getURLRead" tal:content="PT/getPost/getTitle"/></h4>
-													<p tal:content="structure PT/getPost/getContentReduce"/>
-													
-													<div class="latest-posts-meta-container clearfix">
-														<div class="pull-left">
-															<a tal:attributes="href PT/getURLRead">Chi tiết...</a>
-														</div><!-- End .pull-left -->
-														<div class="pull-right">
-															<span tal:content="PT/getPost/getTimePrint"/>
-														</div><!-- End .pull-right -->
-													</div><!-- End .latest-posts-meta-container -->
-												</li>
-											</ul>
-										</div>
-									</div>									
+									<div metal:use-macro="mFront.xhtml/Testmonials"/>
+									<div metal:use-macro="mFront.xhtml/LastestPost"/>
 								</div>
 							</div>
 						</div>

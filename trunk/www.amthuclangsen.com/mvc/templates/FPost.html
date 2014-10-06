@@ -29,28 +29,12 @@
 										</div><!-- End .article-meta-container -->
 										<div tal:content="structure Post/getContent" class="article-content-container"/>
 									</article><!-- End .article -->
-								</div><!-- End .col-md-9 -->
+								</div>
 								<aside class="col-md-3 col-sm-4 col-xs-12 sidebar">
-									<div class="widget">
-										<div class="panel-group custom-accordion sm-accordion" id="category-filter">
-											<div class="panel">
-												<div class="accordion-header">
-													<div class="accordion-title"><span tal:content="Tag/getName"/></div><!-- End .accordion-title -->
-													<a class="accordion-btn opened"  data-toggle="collapse" data-target="#category-list-1"></a>
-												</div><!-- End .accordion-header -->
-												<div id="category-list-1" class="collapse in">
-													<div class="panel-body">
-														<ul class="category-filter-list jscrollpane">
-															<li tal:repeat="PT Tag/getPostTop4">
-																<a tal:attributes="href PT/getURLRead"><span tal:content="PT/getPost/getTitle"/></a>
-															</li>
-														</ul>
-													</div><!-- End .panel-body -->
-												</div><!-- #collapse -->
-											</div><!-- End .panel -->																																	
-										</div><!-- .panel-group -->
-									</div><!-- End .widget -->																		
-								</aside><!-- End .col-md-3 -->
+									<div metal:use-macro="mFront.xhtml/Subscribe"/>
+									<div metal:use-macro="mFront.xhtml/Testmonials"/>
+									<div metal:use-macro="mFront.xhtml/LastestPost"/>
+								</aside>
 								
 							</div><!-- End .row -->
 						</div><!-- End .col-md-12 -->

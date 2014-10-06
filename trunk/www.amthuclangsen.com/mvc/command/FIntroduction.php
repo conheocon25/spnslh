@@ -18,10 +18,11 @@
 			$mConfig 	= new \MVC\Mapper\Config();
 			$mCategory 	= new \MVC\Mapper\Category();
 			$mPost 		= new \MVC\Mapper\Post();
+			$mPostTag	= new \MVC\Mapper\PostTag();
 			$mTag 		= new \MVC\Mapper\Tag();
 			$mBranch 	= new \MVC\Mapper\Branch();
 			$mStoryLine	= new \MVC\Mapper\StoryLine();
-			
+						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
@@ -38,6 +39,7 @@
 			$BranchAll 				= $mBranch->findAll();
 			$TagAll 				= $mTag->findByPosition(array(1));
 			$StoryLineAll			= $mStoryLine->findAll();
+			$LastestPostAll 		= $mPostTag->findByLastest4(array(null));
 			
 			$Post 					= $mPost->find($ConfigIntro->getValue() );
 			$Post->setCount($Post->getCount()+1);
@@ -61,6 +63,7 @@
 			
 			$request->setObject("Post", 				$Post);
 			$request->setObject("StoryLineAll", 		$StoryLineAll);
+			$request->setObject("LastestPostAll", 		$LastestPostAll);
 			$request->setObject("TagAll", 				$TagAll);
 			$request->setObject("CategoryAll", 			$CategoryAll);
 			$request->setObject("BranchAll", 			$BranchAll);

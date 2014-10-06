@@ -22,6 +22,7 @@
 			$mPostTag	= new \MVC\Mapper\PostTag();
 			$mTag 		= new \MVC\Mapper\Tag();
 			$mBranch 	= new \MVC\Mapper\Branch();
+			$mStoryLine	= new \MVC\Mapper\StoryLine();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -36,6 +37,7 @@
 			
 			$CategoryAll 			= $mCategory->findAll();
 			$BranchAll 				= $mBranch->findAll();
+			$StoryLineAll			= $mStoryLine->findAll();
 			
 			if (!isset($Page)) $Page = 1;
 			$TagAll 				= $mTag->findByPosition(array(1));
@@ -44,9 +46,7 @@
 			$PN 					= new \MVC\Domain\PageNavigation($Tag->getPostAll()->count(), 6, $Tag->getURLView());
 			
 			$Title = mb_strtoupper($Tag->getName(), 'UTF8');
-			$Navigation = array(
-				
-			);
+			$Navigation = array();
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
@@ -64,6 +64,7 @@
 			$request->setObject("ConfigSkype", 			$ConfigSkype);
 			
 			$request->setObject("BranchAll", 			$BranchAll);
+			$request->setObject("StoryLineAll", 		$StoryLineAll);
 			$request->setObject("CategoryAll", 			$CategoryAll);
 			$request->setObject("TagAll", 				$TagAll);
 			$request->setObject("Tag", 					$Tag);

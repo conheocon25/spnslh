@@ -20,8 +20,11 @@
 			$mConfig 	= new \MVC\Mapper\Config();
 			$mCategory 	= new \MVC\Mapper\Category();
 			$mPost 		= new \MVC\Mapper\Post();
+			$mPostTag 	= new \MVC\Mapper\PostTag();
 			$mTag 		= new \MVC\Mapper\Tag();
 			$mBranch 	= new \MVC\Mapper\Branch();
+			$mStoryLine = new \MVC\Mapper\StoryLine();
+			
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -36,6 +39,7 @@
 			
 			$CategoryAll 			= $mCategory->findAll();
 			$BranchAll 				= $mBranch->findAll();
+			$StoryLineAll	= $mStoryLine->findAll();
 			
 			$Post 					= $mPost->findByKey($KPost);
 			$Tag 					= $mTag->findByKey($KTag);
@@ -43,6 +47,8 @@
 			
 			$Post->setCount($Post->getCount()+1);
 			$mPost->update($Post);
+			
+			$LastestPostAll = $mPostTag->findByLastest4(array(null));
 			
 			$Title = mb_strtoupper($Post->getTitle(), 'UTF8');
 			$Navigation = array(
@@ -65,6 +71,8 @@
 			$request->setObject("Post", 				$Post);
 			$request->setObject("CategoryAll", 			$CategoryAll);
 			$request->setObject("BranchAll", 			$BranchAll);
+			$request->setObject("StoryLineAll", 		$StoryLineAll);
+			$request->setObject("LastestPostAll", 		$LastestPostAll);
 			$request->setObject("TagAll", 				$TagAll);
 			$request->setObject("Tag", 					$Tag);
 			

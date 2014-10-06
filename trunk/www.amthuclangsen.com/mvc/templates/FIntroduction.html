@@ -32,26 +32,8 @@
 								</div>
 								<aside class="col-md-3 col-sm-4 col-xs-12 sidebar">									
 									<div metal:use-macro="mFront.xhtml/Subscribe"/>
-									<div class="widget testimonials">
-										<h3>Đánh giá</h3>
-										<div class="testimonials-slider flexslider sidebarslider">
-											<ul class="testimonials-list clearfix">
-												<li tal:repeat="StoryLine StoryLineAll">
-													<div class="testimonial-details">
-														<header tal:content="StoryLine/getTitle"/>														
-														<span tal:content="StoryLine/getNote"/>														
-													</div>
-													<figure class="clearfix">
-														<img tal:attributes="src StoryLine/getImage"/>
-														<figcaption>
-															<a href="#"><span tal:content="StoryLine/getName"/></a>
-															<span tal:content="StoryLine/getDatePrint"/>
-														</figcaption>
-													</figure>
-												</li>												
-											</ul>
-										</div>
-									</div>
+									<div metal:use-macro="mFront.xhtml/Testmonials"/>
+									<div metal:use-macro="mFront.xhtml/LastestPost"/>
 								</aside>								
 							</div>
 						</div>
