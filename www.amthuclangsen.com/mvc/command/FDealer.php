@@ -21,6 +21,7 @@
 			$mPostTag	= new \MVC\Mapper\PostTag();
 			$mTag 		= new \MVC\Mapper\Tag();
 			$mBranch 	= new \MVC\Mapper\Branch();
+			$mStoryLine = new \MVC\Mapper\StoryLine();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -35,6 +36,7 @@
 			
 			$CategoryAll 			= $mCategory->findAll();
 			$BranchAll 				= $mBranch->findAll();
+			$StoryLineAll 			= $mStoryLine->findAll();
 			
 			if (!isset($Page)) $Page = 1;
 			$TagAll 				= $mTag->findByPosition(array(1));
@@ -43,6 +45,7 @@
 			$Tag 					= $TagAll1->current();			
 			$PTAll 					= $mPostTag->findByTagPage(array($Tag->getId(), $Page, 6));
 			$PN 					= new \MVC\Domain\PageNavigation($Tag->getPostAll()->count(), 6, $Tag->getURLView());
+			$LastestPostAll 		= $mPostTag->findByLastest4(array(null));
 			
 			$Title = "KHUYẾN MÃI";
 			$Navigation = array();
@@ -51,7 +54,7 @@
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------						
 			$request->setProperty("Title", 				$Title);
-			$request->setProperty("Active", 			'News');
+			$request->setProperty("Active", 			'Dealer');
 			$request->setProperty("Page", 				$Page);
 			$request->setObject("Navigation", 			$Navigation);
 			
@@ -62,6 +65,8 @@
 			$request->setObject("ConfigGmail", 			$ConfigGmail);
 			$request->setObject("ConfigSkype", 			$ConfigSkype);
 			
+			$request->setObject("StoryLineAll", 		$StoryLineAll);
+			$request->setObject("LastestPostAll", 		$LastestPostAll);
 			$request->setObject("BranchAll", 			$BranchAll);
 			$request->setObject("CategoryAll", 			$CategoryAll);
 			$request->setObject("TagAll", 				$TagAll);

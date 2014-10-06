@@ -21,9 +21,9 @@
 													<a tal:attributes="href P/getURL" tal:content="P/getName"/>
 												</li>
 											</ul>
-										</div><!-- End .toolbox-pagination -->
-									</div><!-- End .category-toolbar -->
-									<div class="md-margin"></div><!-- .space -->
+										</div>
+									</div>
+									<div class="md-margin"></div>
 									<div class="category-item-container category-list-container">
 										<div class="item item-list clearfix" tal:repeat="Video VideoAll">
 											<div class="item-image-container">
@@ -55,14 +55,16 @@
 								</div>
 								<aside class="col-md-3 col-sm-4 col-xs-12 sidebar">
 									<div metal:use-macro="mFront.xhtml/Subscribe"/>
+									<div metal:use-macro="mFront.xhtml/Testmonials"/>
+									<div metal:use-macro="mFront.xhtml/LastestPost"/>
 								</aside>
 							</div>
-						</div><!-- End .col-md-12 -->
-					</div><!-- End .row -->
-				</div><!-- End .container -->
-			</section><!-- End #content -->			
+						</div>
+					</div>
+				</div>
+			</section>
 			<div metal:use-macro="mFront.xhtml/Footer"/>
-		</div><!-- End #wrapper -->		
+		</div>
 		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
 	</body>
 </html>

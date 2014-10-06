@@ -20,8 +20,8 @@
 			$mCategory 		= new \MVC\Mapper\Category();
 			$mProduct 		= new \MVC\Mapper\Product();
 			$mPresentation 	= new \MVC\Mapper\Presentation();
-			$mTag 			= new \MVC\Mapper\Tag();			
-			$mManufacturer	= new \MVC\Mapper\Manufacturer();
+			$mTag 			= new \MVC\Mapper\Tag();
+			$mPostTag 		= new \MVC\Mapper\PostTag();						
 			$mBranch		= new \MVC\Mapper\Branch();
 			$mStoryLine		= new \MVC\Mapper\StoryLine();
 			
@@ -36,8 +36,7 @@
 			$ConfigGmail 			= $mConfig->findByName("CONTACT_GTALK");
 			$ConfigSkype 			= $mConfig->findByName("CONTACT_SKYPE");
 			
-			$BranchAll		= $mBranch->findAll();			
-			$ManufacturerAll= $mManufacturer->findAll();
+			$BranchAll		= $mBranch->findAll();
 			$StoryLineAll	= $mStoryLine->findAll();
 			
 			$SaveAll 		= $mSave->findAll();
@@ -50,9 +49,8 @@
 			
 			$TagAll 		= $mTag->findByPosition(array(1));
 			
-			$OEDAll 		= null;
-			$OIDAll 		= null;
-									
+			$LastestPostAll = $mPostTag->findByLastest4(array(null));
+												
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
@@ -65,20 +63,15 @@
 			$request->setObject("ConfigSkype", 			$ConfigSkype);
 			
 			$request->setObject("TagAll", 				$TagAll);
-			$request->setObject("Tag", 					$TagAll->current());
-			
 			$request->setObject("BranchAll", 			$BranchAll);
-			$request->setObject("ManufacturerAll", 		$ManufacturerAll);
 			$request->setObject("StoryLineAll", 		$StoryLineAll);
+			$request->setObject("LastestPostAll", 		$LastestPostAll);
 			
 			$request->setObject("Save", 				$Save);
 			$request->setObject("Presentation1", 		$Presentation1);
 			$request->setObject("Presentation2", 		$Presentation2);
 			$request->setObject("CategoryAll", 			$CategoryAll);
 			$request->setObject("ProductAll1", 			$ProductAll1);
-			
-			$request->setObject("OEDAll", 				$OEDAll);
-			$request->setObject("OIDAll", 				$OIDAll);
 			
 			return self::statuses('CMD_DEFAULT');
 		}

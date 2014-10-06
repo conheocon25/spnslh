@@ -16,12 +16,14 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
+			$mBranch	= new \MVC\Mapper\Branch();
 			$mConfig 	= new \MVC\Mapper\Config();
 			$mCategory 	= new \MVC\Mapper\Category();
 			$mVideo		= new \MVC\Mapper\Video();
 			$mTag 		= new \MVC\Mapper\Tag();
-			$mBranch 	= new \MVC\Mapper\Branch();
-			
+			$mPostTag 	= new \MVC\Mapper\PostTag();
+			$mStoryLine	= new \MVC\Mapper\StoryLine();
+						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
@@ -33,19 +35,21 @@
 			$ConfigGmail		 	= $mConfig->findByName("CONTACT_GTALK");
 			$ConfigSkype 			= $mConfig->findByName("CONTACT_SKYPE");
 			
-			$CategoryAll 			= $mCategory->findAll();
 			$BranchAll 				= $mBranch->findAll();
+			$CategoryAll 			= $mCategory->findAll();
 			
 			if (!isset($Page)) $Page = 1;
 			$TagAll 				= $mTag->findByPosition(array(1));			
 			
 			$Video 	= $mVideo->findByKey($KVideo);
-									
+			$StoryLineAll	= $mStoryLine->findAll();
+			$LastestPostAll = $mPostTag->findByLastest4(array(null));
+			
 			$Title = mb_strtoupper($Video->getName(), 'UTF8');
 			$Navigation = array(
 				array("VIDEO", "/video")
 			);
-			
+									
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------						
@@ -60,11 +64,15 @@
 			$request->setObject("ConfigPhone2", 		$ConfigPhone2);
 			$request->setObject("ConfigGmail", 			$ConfigGmail);
 			$request->setObject("ConfigSkype", 			$ConfigSkype);
-			
+
 			$request->setObject("BranchAll", 			$BranchAll);
+			$request->setObject("StoryLineAll", 		$StoryLineAll);
+			$request->setObject("LastestPostAll", 		$LastestPostAll);
+			
 			$request->setObject("CategoryAll", 			$CategoryAll);
 			$request->setObject("TagAll", 				$TagAll);
 			$request->setObject("Video", 				$Video);
+			
 						
 			return self::statuses('CMD_DEFAULT');
 		}

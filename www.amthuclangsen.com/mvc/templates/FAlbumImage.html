@@ -33,23 +33,21 @@
 												</h3>												
 												<p tal:content="structure Image/getName"/>
 											</div>
-										</div><!-- End .item -->
-									</div><!-- End .category-item-container -->
-								</div><!-- End .col-md-9 -->
-								<aside class="col-md-3 col-sm-4 col-xs-12 sidebar">
-									<div class="widget">
-										<div class="panel-group custom-accordion sm-accordion" id="category-filter">
-											
 										</div>
-									</div><!-- End .widget -->																		
-								</aside><!-- End .col-md-3 -->
-							</div><!-- End .row -->
-						</div><!-- End .col-md-12 -->
-					</div><!-- End .row -->
-				</div><!-- End .container -->
-			</section><!-- End #content -->			
+									</div>
+								</div>
+								<aside class="col-md-3 col-sm-4 col-xs-12 sidebar">
+									<div metal:use-macro="mFront.xhtml/Subscribe"/>
+									<div metal:use-macro="mFront.xhtml/Testmonials"/>
+									<div metal:use-macro="mFront.xhtml/LastestPost"/>
+								</aside>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
 			<div metal:use-macro="mFront.xhtml/Footer"/>
-		</div><!-- End #wrapper -->		
+		</div>
 		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
 	</body>
 </html>
