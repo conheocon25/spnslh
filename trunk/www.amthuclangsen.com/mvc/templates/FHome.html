@@ -29,79 +29,95 @@
 						<div class="col-md-12">
 							<div class="row">
 								<div class="col-md-9 col-sm-8 col-xs-12 main-content">
-									<header class="content-title">
-										<h2 class="title">MENU MÓN</h2>										
-									</header>
+									<header class="content-title"><h2 class="title">MENU MÓN</h2></header>
 									<div id="products-tabs-content" class="row tab-content">
 										<div class="tab-pane active" id="all">
-											<div tal:repeat="SP Save/getSPAll" class="col-md-4 col-sm-6 col-xs-12">
-												<div class="item" tal:condition="SP/getInfo">
+											<div tal:repeat="Product ProductAll" class="col-md-4 col-sm-6 col-xs-12">
+												<div class="item" tal:condition="Product/getInfo">
 													<div class="item-image-container">
 														<figure>
-															<a tal:attributes="href SP/getURLView">
-																<img tal:attributes="src SP/getInfo/getImage1" class="item-image"/>
-																<img tal:attributes="src SP/getInfo/getImage2" class="item-image-hover"/>
+															<a tal:attributes="href Product/getURLView">
+																<img tal:attributes="src Product/getInfo/getImage1" class="item-image"/>
+																<img tal:attributes="src Product/getInfo/getImage2" class="item-image-hover"/>
 															</a>
 														</figure>
-														<div class="item-price-container">
-															<span class="item-price" tal:content="SP/getPrice2Print"/>
+														<div class="item-price-container" tal:condition="Product/getPrice2">
+															<span class="item-price" tal:content="Product/getPrice2Print"/>
 														</div>
-														<span class="new-rect">HOT</span>														
-													</div><!-- End .item-image -->
+														<span class="new-rect">HOT</span>
+													</div>
 													<div class="item-meta-container">
 														<div class="ratings-container">
 															<div class="ratings">
-																<div class="ratings-result" data-result="90"></div>
-															</div><!-- End .ratings -->
-															<span class="ratings-amount">
-																1 đánh giá
-															</span>
-														</div><!-- End .rating-container -->
-														<h3 class="item-name"><a tal:attributes="href SP/getURLView" tal:content="SP/getName"/></h3>
+																<div class="ratings-result" data-result="100"></div>
+															</div>
+															<span class="ratings-amount">1 đánh giá</span>
+														</div>
+														<h3 class="item-name"><a tal:attributes="href Product/getURLView" tal:content="Product/getName"/></h3>
 														<div class="item-action">
 															<div  class="item-add-btn">
 																<span class="icon-cart-text" style="cursor:pointer"
-																	tal:attributes="	id SP/getId;
-																						name SP/getName;
-																						price SP/getPrice2;
-																						image SP/getInfo/getImage1;
+																	tal:attributes="	id Product/getId;
+																						name Product/getName;
+																						price Product/getPrice2;
+																						image Product/getInfo/getImage1;
 																	"
 																>
-																	Mua ngay
+																	Chi tiết
 																</span>
-															</div>
-															<div class="item-action-inner">
-																<span class="icon-button icon-like" style="cursor:pointer"
-																	tal:attributes="	id 		SP/getId;
-																						name 	SP/getName;
-																						price 	SP/getPrice2;
-																						image 	SP/getInfo/getImage1;
-																	"
-																>
-																	Ưa thích
-																</span>
-																<span class="icon-button icon-compare" style="cursor:pointer"
-																	tal:attributes="	id 		SP/getId;
-																						name 	SP/getName;
-																						price 	SP/getPrice2;
-																						image 	SP/getInfo/getImage1;
-																	"
-																>
-																	Email
-																</span>
-															</div>
+															</div>															
 														</div>
 													</div>
 												</div>
 											</div>
 										</div>
 									</div>
-									<header class="content-title">
-										<h2 class="title">ẢNH MỚI NHẤT</h2>
-									</header>
-									<header class="content-title">
-										<h2 class="title">VIDEO MỚI NHẤT</h2>
-									</header>
+									
+									<div class="purchased-items-container carousel-wrapper">
+										<header class="content-title"><div class="title-bg"> <h2 class="title">ẢNH MỚI NHẤT</h2></div></header>
+										<div class="carousel-controls">
+											<div id="purchased-items-slider-prev" class="carousel-btn carousel-btn-prev"></div>
+											<div id="purchased-items-slider-next" class="carousel-btn carousel-btn-next carousel-space"></div>
+										</div>
+										<div class="purchased-items-slider owl-carousel">
+											<div class="item" tal:repeat="Album LastestAlbumAll">
+												<div class="item-image-container">
+													<figure>												
+														<a tal:attributes="href Album/getURLView">
+															<img tal:attributes="src Album/getImage" class="item-image"/>
+															<img tal:attributes="src Album/getImage" class="item-image-hover"/>
+														</a>
+													</figure>													
+												</div>
+												<div class="item-meta-container">													
+													<h3 class="item-name"><a tal:attributes="href Album/getURLView" tal:content="Album/getName"/></h3>													
+												</div>
+											</div>
+										</div>
+									</div>
+									
+									<div class="purchased-items-container carousel-wrapper">
+										<header class="content-title"><div class="title-bg"> <h2 class="title">VIDEO MỚI NHẤT</h2></div></header>
+										<div class="carousel-controls">
+											<div id="purchased-items-slider-prev" class="carousel-btn carousel-btn-prev"></div>
+											<div id="purchased-items-slider-next" class="carousel-btn carousel-btn-next carousel-space"></div>
+										</div>
+										<div class="purchased-items-slider owl-carousel">
+											<div class="item" tal:repeat="Video LastestVideoAll">
+												<div class="item-image-container">
+													<figure>												
+														<a tal:attributes="href Video/getURLView">
+															<img tal:attributes="src Video/getImage" class="item-image"/>
+															<img tal:attributes="src Video/getImage" class="item-image-hover"/>
+														</a>
+													</figure>													
+												</div>
+												<div class="item-meta-container">													
+													<h3 class="item-name"><a tal:attributes="href Video/getURLView" tal:content="Video/getName"/></h3>
+												</div>
+											</div>
+										</div>
+									</div>									
 								</div>
 
 								<div class="col-md-3 col-sm-4 col-xs-12 sidebar">

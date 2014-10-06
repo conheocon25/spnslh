@@ -106,14 +106,14 @@
 							<div class="lg-margin2x"></div>
 							<div class="purchased-items-container carousel-wrapper">
 								<header class="content-title">
-									<div class="title-bg"> <h2 class="title">Các món khác</h2></div>
+									<div class="title-bg"> <h2 class="title">Món cùng mục</h2></div>
 								</header>
 								<div class="carousel-controls">
 									<div id="purchased-items-slider-prev" class="carousel-btn carousel-btn-prev"></div>
 									<div id="purchased-items-slider-next" class="carousel-btn carousel-btn-next carousel-space"></div>
 								</div><!-- End .carousel-controllers -->
 								<div class="purchased-items-slider owl-carousel">
-									<div class="item" tal:repeat="P1 Product/getSamePriceAll">
+									<div class="item" tal:repeat="P1 Category1/getProductAll">
 										<div class="item-image-container">
 											<figure>												
 												<a tal:attributes="href P1/getURLView">

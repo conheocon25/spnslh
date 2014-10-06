@@ -27,7 +27,8 @@ class Video extends Mapper implements \MVC\Domain\VideoFinder {
 							FROM %s							
 							LIMIT :start,:max
 				", $tblVideo);
-		$findByKeyStmt 	= sprintf("select *  from %s where `key`=?", $tblVideo);		
+		$findByKeyStmt 	= sprintf("select *  from %s where `key`=?", $tblVideo);
+		$findByLastestStmt 	= sprintf("select *  from %s order by `date` desc limit 8", $tblVideo);
 				
         $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
         $this->selectStmt = self::$PDO->prepare($selectStmt);
@@ -37,8 +38,9 @@ class Video extends Mapper implements \MVC\Domain\VideoFinder {
 		$this->findByStmt = self::$PDO->prepare($findByStmt);
 		$this->findByKeyStmt = self::$PDO->prepare($findByKeyStmt);
 		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);
-		
-    } 
+		$this->findByLastestStmt = self::$PDO->prepare($findByLastestStmt);		
+    }
+	
     function getCollection( array $raw ) {return new VideoCollection( $raw, $this );}
     protected function doCreateObject( array $array ) {		
         $obj = new \MVC\Domain\Video( 
@@ -84,6 +86,11 @@ class Video extends Mapper implements \MVC\Domain\VideoFinder {
 	function findBy(array $values) {
         $this->findByStmt->execute( $values );
         return new VideoCollection( $this->findByStmt->fetchAll(), $this );
+    }
+	
+	function findByLastest(array $values) {
+        $this->findByLastestStmt->execute( $values );
+        return new VideoCollection( $this->findByLastestStmt->fetchAll(), $this );
     }
 	
 	function findByKey( $values ){
