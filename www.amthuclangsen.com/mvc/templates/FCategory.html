@@ -34,8 +34,8 @@
 													<a tal:attributes="href P/getURL" tal:content="P/getName" />
 												</li>
 											</ul>											
-										</div><!-- End .toolbox-pagination -->
-									</div><!-- End .category-toolbar -->
+										</div>
+									</div>
 									<div class="md-margin"></div><!-- .space -->
 									<div class="category-item-container">
 										<div class="row">
@@ -48,19 +48,16 @@
 																<img tal:attributes="src Product/getInfo/getImage2" class="item-image-hover"/>
 															</a>
 														</figure>
-														<div class="item-price-container">															
+														<div class="item-price-container" tal:condition="Product/getPrice2">
 															<span class="item-price" tal:content="Product/getPrice2Print" />
 														</div>														
-													</div><!-- End .item-image -->
+													</div>
 													<div class="item-meta-container">
 														<div class="ratings-container">
 															<div class="ratings">
-																<div class="ratings-result" data-result="90"></div>
-															</div><!-- End .ratings -->
-															<span class="ratings-amount">
-																1 đánh giá
-															</span>
-														</div><!-- End .rating-container -->
+																<div class="ratings-result" data-result="100"></div>
+															</div>
+														</div>
 														<h3 class="item-name"><a tal:attributes="href Product/getURLView" tal:content="Product/getName"/></h3>
 														<div class="item-action">
 															<div class="item-add-btn" style="cursor:pointer">
@@ -70,28 +67,8 @@
 																						price 	Product/getPrice2;
 																						image 	Product/getInfo/getImage1;
 																	"
-																> Mua ngay</span>																
-															</div>
-															<div class="item-action-inner">
-																<span class="icon-button icon-like" style="cursor:pointer"
-																	tal:attributes="	id 		Product/getId;
-																						name 	Product/getName;
-																						price 	Product/getPrice2;
-																						image 	Product/getInfo/getImage1;
-																	"
-																>
-																	Ưa thích
-																</span>
-																<span class="icon-button icon-compare" style="cursor:pointer"
-																	tal:attributes="	id 		Product/getId;
-																						name 	Product/getName;
-																						price 	Product/getPrice2;
-																						image 	Product/getInfo/getImage1;
-																	"
-																>
-																	Email
-																</span>
-															</div>
+																> Xem chi tiết</span>
+															</div>															
 														</div><!-- End .item-action -->
 													</div><!-- End .item-meta-container -->	
 												</div><!-- End .col-md-4 -->
