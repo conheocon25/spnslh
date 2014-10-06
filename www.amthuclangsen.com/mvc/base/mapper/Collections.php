@@ -30,7 +30,6 @@ class StoryLineCollection 		extends Collection implements \MVC\Domain\StoryLineC
 class TagCollection 			extends Collection implements \MVC\Domain\TagCollection 			{function targetClass( ) {return "\MVC\Domain\Tag";			}}
 class PostTagCollection 		extends Collection implements \MVC\Domain\PostTagCollection 		{function targetClass( ) {return "\MVC\Domain\PostTag";		}}
 
-class EmployeeCollection 		extends Collection implements \MVC\Domain\EmployeeCollection		{function targetClass( ) {return "\MVC\Domain\Employee";	}}
 class ConfigCollection 			extends Collection implements \MVC\Domain\ConfigCollection			{function targetClass(){return "\MVC\Domain\Config";		}}
 class PageCollection 			extends Collection implements \MVC\Domain\PageCollection			{function targetClass(){return "\MVC\Domain\Page";			}}
 class GuestCollection 			extends Collection implements \MVC\Domain\GuestCollection			{function targetClass(){return "\MVC\Domain\Guest";			}}
@@ -38,7 +37,5 @@ class PostCollection 			extends Collection implements \MVC\Domain\PostCollection
 class PresentationCollection 	extends Collection implements \MVC\Domain\PresentationCollection	{function targetClass(){return "\MVC\Domain\Presentation";	}}
 class SlideCollection 			extends Collection implements \MVC\Domain\SlideCollection			{function targetClass(){return "\MVC\Domain\Slide";			}}
 
-class SaveCollection 			extends Collection implements \MVC\Domain\SaveCollection			{function targetClass(){return "\MVC\Domain\Save";			}}
-class SaveProductCollection 	extends Collection implements \MVC\Domain\SaveProductCollection		{function targetClass(){return "\MVC\Domain\SaveProduct";	}}
 
 ?>

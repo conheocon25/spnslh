@@ -37,13 +37,9 @@ interface StoryLineFinder 		extends Finder {}
 interface TagFinder 			extends Finder {}
 interface PostTagFinder 		extends Finder {}
 
-interface EmployeeFinder 		extends Finder {}
 interface ConfigFinder 			extends Finder {}
 interface GuestFinder 			extends Finder {}
 interface PostFinder 			extends Finder {}
 interface PresentationFinder 	extends Finder {}
 interface SlideFinder 			extends Finder {}
-
-interface SaveFinder 			extends Finder {}
-interface SaveProductFinder 	extends Finder {}
 ?>

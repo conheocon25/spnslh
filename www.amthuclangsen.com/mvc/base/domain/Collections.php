@@ -28,7 +28,6 @@ interface StoryLineCollection 			extends \Iterator {function add( Object $StoryL
 interface TagCollection 				extends \Iterator {function add( Object $Tag );			}
 interface PostTagCollection 			extends \Iterator {function add( Object $PostTag );		}
 
-interface EmployeeCollection 			extends \Iterator {function add( Object $Employee );	}
 interface ConfigCollection 				extends \Iterator {function add( Object $Config );		}
 interface PageCollection 				extends \Iterator {function add( Object $Page);			}
 interface GuestCollection 				extends \Iterator {function add( Object $Guest);		}
@@ -36,7 +35,5 @@ interface PostCollection 				extends \Iterator {function add( Object $Post);			}
 interface PresentationCollection 		extends \Iterator {function add( Object $Presentation);	}
 interface SlideCollection 				extends \Iterator {function add( Object $Slide);		}
 
-interface SaveCollection 				extends \Iterator {function add( Object $Save);			}
-interface SaveProductCollection 		extends \Iterator {function add( Object $SaveProduct);	}
 
 ?>
