@@ -1221,6 +1221,7 @@ parent's font-size:0
 
 #content {
 	padding-bottom:50px;
+	background-color: rgba(0, 0, 0, .5);
 }
 
 #content img {
@@ -1563,7 +1564,7 @@ parent's font-size:0
 
 
 .item-name a {
-	color:#646464;
+	color:#fff;
 }
 
 .item-name a:hover {
@@ -2490,6 +2491,7 @@ select.input-lg {
 	border: 1px solid #e8e8e8;
 	-webkit-box-shadow: 0 0 1px rgba(232, 232, 232, 0.15);
 	box-shadow: 0 0 1px rgba(232, 232, 232, 0.15);
+	background-color: rgba(255, 255, 255, .2);
 }
 
 .category-item-container.category-list-container .item:hover {
@@ -4772,10 +4774,10 @@ noUi-target,
 ==============================================*/
 
 #footer {
-	background: rgba(0, 0, 0, .5);
+	background-color: rgba(0, 0, 0, .8);
 	font:15px/2em 'Gudea', Arial, sans-serif !important;
 	color:#ccc;
-	box-shadow: 0 -30px 30px rgba(0, 0, 0, .5);
+	box-shadow: 0 -30px 30px rgba(0, 0, 0, .6);
 }
 
 #footer a {
