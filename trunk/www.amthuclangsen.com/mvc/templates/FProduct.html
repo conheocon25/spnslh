@@ -13,7 +13,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="row">
-								<div class="col-md-6 col-sm-12 col-xs-12 product-viewer clearfix">
+								<div class="col-md-6 col-sm-12 col-xs-12 product-viewer clearfix" tal:condition="php: (Product->getImageAll()->count() > 0) ? true:false">
 									<div id="product-image-carousel-container">
 										<ul id="product-carousel" class="celastislide-list">
 											<li class="active-slide">
@@ -21,7 +21,7 @@
 													<img tal:attributes="src Product/getImageAll/current/getURL" alt="Phone photo 1"/>
 												</a>
 											</li>
-											<li tal:condition="php: (Product->getImageAll()->count() > 1) ? true:false" tal:repeat="Image Product/getImageAll">
+											<li tal:repeat="Image Product/getImageAll">
 												<a data-rel='prettyPhoto' tal:attributes="href Image/getURL">
 													<img tal:attributes="src Image/getURL"/>
 												</a>
@@ -31,38 +31,21 @@
 									<div id="product-image-container">
 										<figure>
 											<img tal:attributes="src Product/getImageAll/current/getURL; data-big Product/getImageAll/current/getURL" alt="Product Big image" id="product-image"/>
-											<figcaption class="item-price-container">
+											<figcaption class="item-price-container" tal:condition="Product/getPrice2">
 												<span class="item-price" tal:content="Product/getPrice2Print" style="font-size:80%"/>
 											</figcaption>
 										</figure>
-									</div><!-- product-image-container -->
-								</div><!-- End .col-md-6 -->
+									</div>
+								</div>
 								<div class="col-md-6 col-sm-12 col-xs-12 product">
 									<div class="lg-margin visible-sm visible-xs"></div><!-- Space -->
 									<h1 class="product-name" tal:content="Product/getName"/>
 									<div class="ratings-container">
 										<div class="ratings separator">
-											<div class="ratings-result" data-result="70"></div>
-										</div><!-- End .ratings -->
-										<span class="ratings-amount separator">
-											1 Đánh giá
-										</span>
-										<span class="separator">|</span>
-										<a href="#review" class="rate-this">Thêm đánh giá</a>
-									</div><!-- End .rating-container -->
-									<ul class="product-list">										
-										<li><span>Sổ Seri:</span><span tal:content="Product/getCode"/></li>
-										<li>
-											<span>Nhà SX:</span>
-											<span tal:condition="Product/getManufacturer" tal:content="Product/getManufacturer/getName"/>
-											<span tal:condition="not:Product/getManufacturer" tal:content="string:chưa xác định"/>
-										</li>
-										<li tal:repeat="PA Product/getAttributeAll ">
-											<span tal:content="PA/getAttribute/getName"/>:
-											<span tal:content="PA/getValue"/>
-										</li>
-									</ul>
-									<hr/>																											
+											<div class="ratings-result" data-result="100"></div>
+										</div>
+									</div>									
+									<hr/>
 									<div class="product-add clearfix">
 										<div class="custom-quantity-input">
 											<input type="text" name="quantity" value="1"/>
@@ -83,7 +66,7 @@
 									<div class="product-extra clearfix">
 										<div class="product-extra-box-container clearfix">
 											<div class="item-action-inner">
-												<a href="#" class="icon-button icon-like">Ưu thích</a>
+												<a href="#" class="icon-button icon-like">Ưa thích</a>
 												<a href="#" class="icon-button icon-compare">Thanh toán</a>
 											</div><!-- End .item-action-inner -->
 										</div>
@@ -99,17 +82,13 @@
 								<div class="col-md-12 col-sm-12 col-xs-12">
 									<div class="tab-container left product-detail-tab clearfix">
 										<ul class="nav-tabs">
-											<li class="active"><a href="#overview" data-toggle="tab">Giới thiệu</a></li>
-											<li><a href="#detail" 	data-toggle="tab">Chi tiết</a></li>
+											<li class="active"><a href="#overview" data-toggle="tab">Giới thiệu</a></li>											
 											<li><a href="#facebook" data-toggle="tab">Đánh giá</a></li>
 										</ul>
 										<div class="tab-content clearfix">
 											<div class="tab-pane active" id="overview">
 												<p tal:content="structure Product/getInfo/getInfo"/>
-											</div><!-- End .tab-pane -->
-											<div class="tab-pane" id="detail">
-												<p>Chi tiết thông số sản phẩm </p>
-											</div><!-- End .tab-pane -->
+											</div>
 											<div class="tab-pane" id="facebook">
 												<div class="fb-comments"
 													tal:attributes="data-href Product/getURLViewFull" 
@@ -117,62 +96,17 @@
 													data-numposts="12"
 													data-colorscheme="light">
 												</div>
-											</div><!-- End .tab-pane -->
-										</div><!-- End .tab-content -->
-									</div><!-- End .tab-container -->
-									<div class="lg-margin visible-xs"></div>
-								</div><!-- End .col-md-9 -->
-								<div class="lg-margin2x visible-sm visible-xs"></div>
-							</div>
-							<div class="lg-margin2x"></div>
-							<div class="purchased-items-container carousel-wrapper">
-								<header class="content-title">
-									<div class="title-bg"> <h2 class="title">Sản phẩm cùng hãng</h2></div>
-								</header>
-								<div class="carousel-controls">
-									<div id="purchased-items-slider-prev" class="carousel-btn carousel-btn-prev"></div>
-									<div id="purchased-items-slider-next" class="carousel-btn carousel-btn-next carousel-space"></div>
-								</div><!-- End .carousel-controllers -->
-								<div class="purchased-items-slider owl-carousel">
-									<div class="item" tal:repeat="P1 Product/getTopSameManufacturer">
-										<div class="item-image-container">
-											<figure>												
-												<a tal:attributes="href P1/getURLView">
-													<img tal:attributes="src P1/getInfo/getImage1" class="item-image"/>
-													<img tal:attributes="src P1/getInfo/getImage2" class="item-image-hover"/>
-												</a>
-											</figure>
-											<div class="item-price-container">												
-												<span class="item-price" tal:content="P1/getPrice2Print"/>
-											</div>											
-										</div><!-- End .item-image -->
-										<div class="item-meta-container">
-											<div class="ratings-container">
-												<div class="ratings">
-													<div class="ratings-result" data-result="95"></div>
-												</div><!-- End .ratings -->
-												<span class="ratings-amount">
-													1 đánh giá
-												</span>
-											</div>
-											<h3 class="item-name"><a href="product.html" tal:content="P1/getName"/></h3>
-											<div class="item-action">
-												<a href="#" class="item-add-btn">
-													<span class="icon-cart-text">Thêm vào giỏ</span>
-												</a>
-												<div class="item-action-inner">
-													<a href="#" class="icon-button icon-like">Favourite</a>
-													<a href="#" class="icon-button icon-compare">Checkout</a>
-												</div>
 											</div>
 										</div>
-									</div>																																			
+									</div>
+									<div class="lg-margin visible-xs"></div>
 								</div>
-							</div>
+								<div class="lg-margin2x visible-sm visible-xs"></div>
+							</div>							
 							<div class="lg-margin2x"></div>
 							<div class="purchased-items-container carousel-wrapper">
 								<header class="content-title">
-									<div class="title-bg"> <h2 class="title">Sản phẩm gần giá</h2></div>
+									<div class="title-bg"> <h2 class="title">Các món khác</h2></div>
 								</header>
 								<div class="carousel-controls">
 									<div id="purchased-items-slider-prev" class="carousel-btn carousel-btn-prev"></div>
@@ -187,41 +121,32 @@
 													<img tal:attributes="src P1/getInfo/getImage2" class="item-image-hover"/>
 												</a>
 											</figure>
-											<div class="item-price-container">												
+											<div class="item-price-container" tal:condition="P1/getPrice2">
 												<span class="item-price" tal:content="P1/getPrice2Print"/>
 											</div>											
-										</div><!-- End .item-image -->
+										</div>
 										<div class="item-meta-container">
 											<div class="ratings-container">
 												<div class="ratings">
-													<div class="ratings-result" data-result="95"></div>
-												</div><!-- End .ratings -->
-												<span class="ratings-amount">
-													1 đánh giá
-												</span>
-											</div><!-- End .rating-container -->
+													<div class="ratings-result" data-result="100" />
+												</div>												
+											</div>
 											<h3 class="item-name"><a href="product.html" tal:content="P1/getName"/></h3>
 											<div class="item-action">
-												<a href="#" class="item-add-btn">
-													<span class="icon-cart-text">Thêm vào giỏ</span>
-												</a>
-												<div class="item-action-inner">
-													<a href="#" class="icon-button icon-like">Favourite</a>
-													<a href="#" class="icon-button icon-compare">Checkout</a>
-												</div><!-- End .item-action-inner -->
-											</div><!-- End .item-action -->
-										</div><!-- End .item-meta-container --> 
-									</div><!-- End .item -->
-																		
-																		
-								</div><!--purchased-items-slider -->
-							</div><!-- End .purchased-items-container -->
-						</div><!-- End .col-md-12 -->
-					</div><!-- End .row -->
-				</div><!-- End .container -->
-			</section><!-- End #content -->
+												<a tal:attributes="href P1/getURLView" class="item-add-btn">
+													<span class="icon-cart-text">Xem chi tiết</span>
+												</a>												
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
 			<div metal:use-macro="mFront.xhtml/Footer"/>
-		</div><!-- End #wrapper -->		
+		</div>
 		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
 		<script>
 			$(function() {
