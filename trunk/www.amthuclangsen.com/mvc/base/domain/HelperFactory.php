@@ -27,16 +27,12 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	
 	require_once( "mvc/mapper/Tag.php" 				);
 	require_once( "mvc/mapper/PostTag.php" 			);
-	
-	require_once( "mvc/mapper/Employee.php" 		);	
+		
 	require_once( "mvc/mapper/Config.php"			);	
 	require_once( "mvc/mapper/Guest.php"			);
 	require_once( "mvc/mapper/Post.php"				);
 	require_once( "mvc/mapper/Presentation.php"		);
 	require_once( "mvc/mapper/Slide.php"			);
-	
-	require_once( "mvc/mapper/Save.php"				);	
-	require_once( "mvc/mapper/SaveProduct.php"		);
 }
 
 class HelperFactory {
