@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+	</head>
+	
+	<body>
+		<div metal:use-macro="mAdmin.xhtml/Header"/>
+		<div metal:use-macro="mAdmin.xhtml/StyleTools"/>
+		
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
+			<div class="row">
+				<div id="IdSupplier" tal:attributes="alt Supplier/getId" class="col-12">					
+					<div class="widget-box">
+						<div class="widget-content nopadding">
+							<table class="table table-bordered table-striped table-hover">
+								<thead>
+									<tr>
+										<th width="40">STT</th>
+										<th class="left">TÊN</th>
+										<th class="right" width="80">SỐ LƯỢNG</th>
+										<th class="left" width="80">ĐƠN VỊ</th>
+										<th class="right" width="120">ĐƠN GIÁ</th>
+										<th class="right" width="120">T.TIỀN</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr tal:repeat="Detail Order/getDetailAll">
+										<td class="center"><div tal:content="repeat/Detail/number"/></td>
+										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Detail/getId; data-name Detail/getResource/getName; data-idresource Detail/getResource/getId; data-count Detail/getCount; data-price Detail/getPrice" tal:content="Detail/getResource/getName"/></td>
+										<td><div class="text-right" tal:content="Detail/getCountPrint"/></td>
+										<td><div class="text-left" tal:content="Detail/getResource/getUnit"/></td>
+										<td><div class="text-right" tal:content="Detail/getPricePrint"/></td>
+										<td><div class="text-right" tal:content="Detail/getValuePrint"/></td>
+									</tr>
+									<tr>
+										<td colspan="5"><div class="text-right" tal:content="string:TỔNG CỘNG"/></td>
+										<td><div class="text-right" tal:content="Order/getValuePrint"/></td>
+									</tr>
+								</tbody>																
+							</table>
+						</div>
+					</div>
+										
+					<!-- UPDATE DIALOG  -->
+					<div id="DialogEdit" class="modal fade">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h3><i class="glyphicons-fast_food modal-icon"/>CẬP NHẬT ĐƠN HÀNG</h3>
+								</div>
+								<div class="form-horizontal">
+									<div class="control-group">
+										<label class="control-label">Id</label>
+										<div class="controls">
+											<input readonly="true" id="IdResource2" name="IdResource2" type="text" class="form-control input-small"/>
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label">Tên</label>
+										<div class="controls">
+											<input readonly="true" id="Name2" name="Name2" type="text" class="form-control input-small"/>
+										</div>
+									</div>									
+									<div class="control-group">
+										<label class="control-label">Số lượng</label>
+										<div class="controls">
+											<input id="Count2" name="Count2" type="text" class="form-control input-small"/>
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label">Đơn giá</label>
+										<div class="controls">
+											<input id="Price2" name="Price2" type="text" class="form-control input-small"/>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button id="URLUpdButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Lưu</button>
+										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- END UPDATE DIALOG  -->					
+				</div>
+			</div>
+		</div>
+		<div id="IdOrder" tal:attributes="alt Order/getId" />
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<script type="text/javascript">
+		/*<![CDATA[*/
+						
+			//-----------------------------------------------------------------------------------
+			//Load 1 ORDER
+			//-----------------------------------------------------------------------------------
+			$('.update-item').click(function(){
+				var count = $(this).attr('data-count');
+				$('#IdResource2').attr('value', $(this).attr('data-idresource'));
+				$('#Name2').attr('value', $(this).attr('data-name'));
+				if (count==null){
+					$('#Count2').attr('value', '1');
+				}else{
+					$('#Count2').attr('value', count);
+				}
+					
+				$('#Price2').attr('value', $(this).attr('data-price'));
+			});
+			
+			//-----------------------------------------------------------------------------------
+			//Update 1 TABLE
+			//-----------------------------------------------------------------------------------
+			$('#URLUpdButton').click(function(){
+				var Data = [];
+				Data[0] = $('#IdSupplier').attr('alt');
+				Data[1] = $('#IdOrder').attr('alt');
+				Data[2] = $('#IdResource2').val();									
+				Data[3] = $('#Count2').val();
+				Data[4] = $('#Price2').val();
+				
+				var URL = "/import/"+Data[0]+"/"+Data[1]+"/"+Data[2]+"/"+Data[3]+"/"+Data[4];
+				$.ajax({
+					type: "POST",					
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
+			});
+			$("#DialogEdit").on('show.bs.modal', function(event){
+				window.setTimeout(
+					function(){$(event.currentTarget).find('input#Count2').first().focus()},
+					0500
+				);
+			});
+		/*]]>*/
+		</script>
+	</body>
+</html>

@@ -1,0 +1,28 @@
+<table width="100%" cellpadding="1" cellspacing="0" border="0" bordercolor="#FFF">
+	<tr>			
+		<td width="100%" align="center">
+			<font size="12pt"><b>QUÁN ĂN BA ĐỨC (BẾP) </b></font>
+		</td>
+	</tr>
+</table>
+<br/>
+<font size="9pt">
+	<table style="padding-bottom:0px;" width="100%" cellpadding="2" cellspacing="0" border="1">
+		<thead>
+			<tr>
+				<th width="50%"><b>MÓN</b></th>
+				<th width="20%"><b>BÀN</b></th>
+				<th width="20%"><b>THỜI GIAN</b></th>
+				<th width="10%" align="right"><b>SL</b></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr tal:repeat="CL CLAll">
+				<td width="50%" align='left' tal:content="CL/getCourse/getName" />
+				<td width="20%" align='left' tal:content="CL/getTable/getName" />
+				<td width="20%" align='left' tal:content="CL/getDateTimePrint" />
+				<td width="10%" align='right' tal:content="CL/getCount" />
+			</tr>
+		</tbody>
+	</table>
+</font>

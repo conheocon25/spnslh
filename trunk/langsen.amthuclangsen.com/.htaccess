@@ -1,0 +1,165 @@
+Options +FollowSymlinks
+RewriteEngine on
+
+# compress text, html, javascript, css, xml:
+AddOutputFilterByType DEFLATE text/plain
+AddOutputFilterByType DEFLATE text/html
+AddOutputFilterByType DEFLATE text/xml
+AddOutputFilterByType DEFLATE text/css
+AddOutputFilterByType DEFLATE application/xml
+AddOutputFilterByType DEFLATE application/xhtml+xml
+AddOutputFilterByType DEFLATE application/rss+xml
+AddOutputFilterByType DEFLATE application/javascript
+AddOutputFilterByType DEFLATE application/x-javascript
+
+#---------------------------------------------------------------------------------------------------------------------------
+# SYSTEM
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^signin/load$ 			?cmd=SigninLoad [L]
+RewriteRule ^signin/exe$ 			?cmd=SigninExe [L]
+RewriteRule ^signout/load$ 			?cmd=SignoutLoad [L]
+RewriteRule ^signout/exe$ 			?cmd=SignoutExe [L]
+RewriteRule ^change/pass/load$ 		?cmd=ChangePassLoad [L]
+RewriteRule ^change/pass/exe$ 		?cmd=ChangePassExe [L]
+
+RewriteRule ^object/load/([A-Za-z0-9]+)/([0-9]+)$ 					?cmd=ObjectLoad&ObjectName=$1&Id=$2 [L]
+RewriteRule ^object/del/([A-Za-z0-9]+)/([0-9]+)$ 					?cmd=ObjectDel&ObjectName=$1&Id=$2 [L]
+RewriteRule ^object/ins/([A-Za-z0-9]+)$ 							?cmd=ObjectIns&ObjectName=$1 [L]
+RewriteRule ^object/upd/([A-Za-z0-9]+)$ 							?cmd=ObjectUpd&ObjectName=$1 [L]
+
+RewriteRule ^search/customer/([A-Za-z0-9]+)$ 						?cmd=SearchCustomer&IdCard=$1 [L]
+RewriteRule ^notify/course$ 										?cmd=NotifyCourse [L]
+
+#---------------------------------------------------------------------------------------------------------------------------
+# SELLING
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^app$ 												?cmd=App [L]
+
+RewriteRule ^selling$ 											?cmd=Selling [L]
+RewriteRule ^selling/load/domain/([0-9]+)$ 						?cmd=SellingDomainLoad&IdDomain=$1 [L]
+RewriteRule ^selling/load/table/([0-9]+)$ 						?cmd=SellingTableLoad&IdTable=$1 [L]
+RewriteRule ^selling/call/table/([0-9]+)/([0-9]+)/plus$ 		?cmd=SellingTableCallExe&IdTable=$1&IdCourse=$2&Delta=1 [L]
+RewriteRule ^selling/call/table/([0-9]+)/([0-9]+)/minus$ 		?cmd=SellingTableCallExe&IdTable=$1&IdCourse=$2&Delta=-1 [L]
+RewriteRule ^selling/search/course$ 							?cmd=SellingSearchCourse [L]
+RewriteRule ^selling/log/course$ 								?cmd=SellingLogCourse [L]
+RewriteRule ^selling/log/course/print/prepare$ 					?cmd=SellingLogCoursePreparePrint [L]
+
+RewriteRule ^selling/([0-9]+)/([0-9]+)/move/exe$				?cmd=SellingTableMoveExe&IdDomain=$1&IdTable=$2 [L]
+RewriteRule ^selling/([0-9]+)/([0-9]+)/merge/exe$ 				?cmd=SellingTableMergeExe&IdDomain=$1&IdTable=$2 [L]
+RewriteRule ^selling/([0-9]+)/([0-9]+)/([0-9]+)/print.pdf$		?cmd=SellingTablePrint&IdDomain=$1&IdTable=$2&IdSession=$3 [L]
+RewriteRule ^selling/([0-9]+)/([0-9]+)/([0-9]+)/print1.pdf$		?cmd=SellingTablePrint1&IdDomain=$1&IdTable=$2&IdSession=$3 [L]
+RewriteRule ^selling/([0-9]+)/([0-9]+)/([0-9]+)/checkout/exe$	?cmd=SellingTableCheckoutExe&IdDomain=$1&IdTable=$2&IdSession=$3 [L]
+
+RewriteRule ^calllog$ 											?cmd=CallLog [L]
+RewriteRule ^calllog/loading$ 									?cmd=CallLogLoading [L]
+RewriteRule ^calllog/loading/([0-9]+)$ 							?cmd=CallLogLoading&IdCL=$1 [L]
+
+RewriteRule ^selling/end/case/one$ 								?cmd=SellingEndCase&IdCase=1 [L]
+RewriteRule ^selling/end/case/two$ 								?cmd=SellingEndCase&IdCase=2 [L]
+
+#---------------------------------------------------------------------------------------------------------------------------
+# MONEY
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^money$ 												?cmd=Money [L]
+
+RewriteRule ^money/collect/general$ 								?cmd=MoneyCollectGeneral [L]
+RewriteRule ^money/collect/general/([0-9]+)$ 						?cmd=MoneyCollectGeneral&IdTerm=$1 [L]
+RewriteRule ^money/collect/general/([0-9]+)/page/([0-9]+)$ 			?cmd=MoneyCollectGeneral&IdTerm=$1&Page=$2 [L]
+
+RewriteRule ^money/collect/customer$ 								?cmd=MoneyCollectCustomer [L]
+RewriteRule ^money/collect/customer/([0-9]+)$ 						?cmd=MoneyCollectCustomer&IdCustomer=$1 [L]
+RewriteRule ^money/collect/customer/([0-9]+)/page/([0-9]+)$ 		?cmd=MoneyCollectCustomer&IdCustomer=$1&Page=$2 [L]
+
+RewriteRule ^money/paid/general$ 									?cmd=MoneyPaidGeneral [L]
+RewriteRule ^money/paid/general/([0-9]+)$ 							?cmd=MoneyPaidGeneral&IdTerm=$1 [L]
+RewriteRule ^money/paid/general/([0-9]+)/page/([0-9]+)$ 			?cmd=MoneyPaidGeneral&IdTerm=$1&Page=$2 [L]
+
+RewriteRule ^money/paid/employee$ 									?cmd=MoneyPaidEmployee [L]
+RewriteRule ^money/paid/employee/([0-9]+)$ 							?cmd=MoneyPaidEmployee&IdEmployee=$1 [L]
+RewriteRule ^money/paid/employee/([0-9]+)/page/([0-9]+)$ 			?cmd=MoneyPaidEmployee&IdEmployee=$1&Page=$2 [L]
+
+#---------------------------------------------------------------------------------------------------------------------------
+# PAYROLL
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^payroll$ 												?cmd=PayRoll [L]
+RewriteRule ^payroll/([0-9]+)$ 										?cmd=PayRoll&IdTrack=$1 [L]
+RewriteRule ^payroll/([0-9]+)/reset$ 								?cmd=PayRollReset&IdTrack=$1 [L]
+RewriteRule ^payroll/([0-9]+)/([0-9]+)/print$ 						?cmd=PayRollPrint&IdTrack=$1&IdPayRoll=$2 [L]
+
+
+#---------------------------------------------------------------------------------------------------------------------------
+# IMPORT
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^import$ 								?cmd=Import [L]
+RewriteRule ^import/([0-9]+)$ 						?cmd=ImportSupplier&IdSupplier=$1 [L]
+RewriteRule ^import/([0-9]+)$ 						?cmd=ImportSupplier&IdSupplier=$1 [L]
+RewriteRule ^import/([0-9]+)/page/([0-9]+)$ 		?cmd=ImportSupplier&IdSupplier=$1&Page=$2 [L]
+
+RewriteRule ^import/([0-9]+)/([0-9]+)$				?cmd=ImportSupplierOrder&IdSupplier=$1&IdOrder=$2 [L]
+RewriteRule ^import/([0-9]+)/([0-9]+)/print$		?cmd=ImportSupplierOrderPrint&IdSupplier=$1&IdOrder=$2 [L]
+RewriteRule ^import/([0-9]+)/([0-9]+)/([0-9]+)/([0-9_.]+)/([0-9]+)$ 	?cmd=ImportSupplierOrderExe&IdSupplier=$1&IdOrder=$2&IdResource=$3&Count=$4&Price=$5 [L]
+
+#---------------------------------------------------------------------------------------------------------------------------
+# REPORT
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^report$ 										?cmd=Report [L]
+RewriteRule ^report/info$ 									?cmd=ReportInfo [L]
+RewriteRule ^report/([0-9]+)$ 								?cmd=ReportDetail&IdTrack=$1 [L]
+RewriteRule ^report/([0-9]+)/course$ 						?cmd=ReportCourse&IdTrack=$1&IdTD=$2 [L]
+
+RewriteRule ^report/([0-9]+)/([0-9]+)$ 						?cmd=ReportDaily&IdTrack=$1&IdTD=$2 [L]
+RewriteRule ^report/([0-9]+)/([0-9]+)/log$ 					?cmd=ReportDailyLog&IdTrack=$1&IdTD=$2 [L]
+RewriteRule ^report/([0-9]+)/([0-9]+)/selling$ 				?cmd=ReportDailySelling&IdTrack=$1&IdTD=$2 [L]
+RewriteRule ^report/([0-9]+)/([0-9]+)/selling/bydomain$ 	?cmd=ReportDailySellingByDomain&IdTrack=$1&IdTD=$2 [L]
+RewriteRule ^report/([0-9]+)/([0-9]+)/selling/bycategory$ 	?cmd=ReportDailySellingByCategory&IdTrack=$1&IdTD=$2 [L]
+
+RewriteRule ^report/([0-9]+)/([0-9]+)/import$ 				?cmd=ReportDailyImport&IdTrack=$1&IdTD=$2 [L]
+RewriteRule ^report/([0-9]+)/([0-9]+)/store$ 				?cmd=ReportDailyStore&IdTrack=$1&IdTD=$2 [L]
+RewriteRule ^report/([0-9]+)/([0-9]+)/paid$ 				?cmd=ReportDailyPaid&IdTrack=$1&IdTD=$2 [L]
+RewriteRule ^report/([0-9]+)/([0-9]+)/collect$ 				?cmd=ReportDailyCollect&IdTrack=$1&IdTD=$2 [L]
+RewriteRule ^report/([0-9]+)/([0-9]+)/course$ 				?cmd=ReportDailyCourse&IdTrack=$1&IdTD=$2 [L]
+RewriteRule ^report/([0-9]+)/([0-9]+)/customer$ 			?cmd=ReportDailyCustomer&IdTrack=$1&IdTD=$2 [L]
+RewriteRule ^report/([0-9]+)/([0-9]+)/customer/([0-9]+)$ 	?cmd=ReportDailyCustomerDetail&IdTrack=$1&IdTD=$2&IdCustomer=$3 [L]
+
+RewriteRule ^report/([0-9]+)/chart/course/([0-9]+)$ 		?cmd=ReportChartCourse&IdTrack=$1&IdCourse=$2 [L]
+RewriteRule ^report/([0-9]+)/chart/selling$ 				?cmd=ReportChartSelling&IdTrack=$1 [L]
+RewriteRule ^report/([0-9]+)/chart/import$ 					?cmd=ReportChartImport&IdTrack=$1 [L]
+RewriteRule ^report/([0-9]+)/chart/paid$ 					?cmd=ReportChartPaid&IdTrack=$1 [L]
+RewriteRule ^report/([0-9]+)/chart/collect$ 				?cmd=ReportChartCollect&IdTrack=$1 [L]
+RewriteRule ^report/([0-9]+)/chart/value$ 					?cmd=ReportChartValue&IdTrack=$1 [L]
+
+#---------------------------------------------------------------------------------------------------------------------------
+# SETTING
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^setting$ 												?cmd=Setting [L]
+RewriteRule ^setting/theme/([a-z0-9_-]+)$ 							?cmd=SettingThemeChangeExe&Theme=$1 [L]
+
+RewriteRule ^setting/customer$ 										?cmd=SettingCustomer [L]
+RewriteRule ^setting/customer/page/([0-9]+)$ 						?cmd=SettingCustomer&Page=$1 [L]
+
+RewriteRule ^setting/category$ 										?cmd=SettingCategory [L]
+RewriteRule ^setting/category/page/([0-9]+)$ 						?cmd=SettingCategory&Page=$1 [L]
+RewriteRule ^setting/category/([0-9]+)$ 							?cmd=SettingCategoryCourse&IdCategory=$1 [L]
+RewriteRule ^setting/category/([0-9]+)/page/([0-9]+)$ 				?cmd=SettingCategoryCourse&IdCategory=$1&Page=$2 [L]
+RewriteRule ^setting/category/([a-z0-9]+)/([a-z0-9]+)/recipe$ 		?cmd=SettingCategoryCourseRecipe&IdCategory=$1&IdCourse=$2 [L]
+
+RewriteRule ^setting/domain$ 										?cmd=SettingDomain [L]
+RewriteRule ^setting/domain/page/([0-9]+)$ 							?cmd=SettingDomain&Page=$1 [L]
+RewriteRule ^setting/domain/([0-9]+)$ 								?cmd=SettingDomainTable&IdDomain=$1 [L]
+RewriteRule ^setting/domain/([0-9]+)/page/([0-9]+)$ 				?cmd=SettingDomainTable&IdDomain=$1&Page=$2 [L]
+RewriteRule ^setting/unit$ 											?cmd=SettingUnit [L]
+RewriteRule ^setting/unit/page/([0-9]+)$ 							?cmd=SettingUnit&Page=$1 [L]
+RewriteRule ^setting/config$ 										?cmd=SettingConfig [L]
+RewriteRule ^setting/config/page/([0-9]+)$ 							?cmd=SettingConfig&Page=$1 [L]
+RewriteRule ^setting/supplier$ 										?cmd=SettingSupplier [L]
+RewriteRule ^setting/supplier/page/([0-9]+)$ 						?cmd=SettingSupplier&Page=$1 [L]
+RewriteRule ^setting/supplier/([0-9]+)$ 							?cmd=SettingSupplierResource&IdSupplier=$1 [L]
+RewriteRule ^setting/supplier/([0-9]+)/page/([0-9]+)$ 				?cmd=SettingSupplierResource&IdSupplier=$1&Page=$2 [L]
+RewriteRule ^setting/employee$ 										?cmd=SettingEmployee [L]
+RewriteRule ^setting/employee/page/([0-9]+)$ 						?cmd=SettingEmployee&Page=$1 [L]
+RewriteRule ^setting/termpaid$ 										?cmd=SettingTermPaid [L]
+RewriteRule ^setting/termpaid/page/([0-9]+)$ 						?cmd=SettingTermPaid&Page=$1 [L]
+RewriteRule ^setting/termcollect$ 									?cmd=SettingTermCollect [L]
+RewriteRule ^setting/termcollect/page/([0-9]+)$ 					?cmd=SettingTermCollect&Page=$1 [L]
+RewriteRule ^setting/user$ 											?cmd=SettingUser [L]
+RewriteRule ^setting/user/page/([0-9]+)$ 							?cmd=SettingUser&Page=$1 [L]
