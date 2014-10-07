@@ -29,8 +29,9 @@
 	function showMaker() {					
 		var center = new GLatLng(parseFloat($('#X').val()), parseFloat($('#Y').val()));		
 		var marker = new GMarker(center, {draggable: false}); 
-		map.addOverlay(marker);		
-		marker.openInfoWindowHtml('<img src="/mvc/templates/front/images/logo.png" height="100pxpx"/><h5>'+ $('#NameXY').val() +'</h5>');	
+		map.addOverlay(marker);
+		
+		marker.openInfoWindowHtml('<img src="/mvc/templates/front/images/logo.png" height="75pxpx"/>');	
 	}
 		
 
