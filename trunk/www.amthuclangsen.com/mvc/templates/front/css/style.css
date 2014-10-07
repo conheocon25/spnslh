@@ -425,7 +425,8 @@ blockquote:before{
 }
 
 #inner-header {
-	padding-top:55px;
+	padding-top:20px;
+	background-color: rgba(0, 0, 0, .5);
 }
 
 #inner-header .logo-container,
@@ -457,6 +458,7 @@ blockquote:before{
 	font-size:13px;
 	line-height:18px;
 	margin-left:8px;
+	margin-top: 10px;
 	color:#7f7d74;
 }
 
@@ -1637,10 +1639,10 @@ parent's font-size:0
 
 
 #products-tabs-content .item:hover {
-	border: 1px solid #696969;
+	border: 1px solid #fff;
 	-webkit-box-shadow: 0 0 1px rgba(232, 232, 232, 0.15);
 	box-shadow: 0 0 1px rgba(232, 232, 232, 0.15);
-	background-color: #FAFAFA;
+	background-color: rgba(255, 255, 255, .3);
 }
 
 /* index sidebar */
