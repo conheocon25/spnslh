@@ -1,0 +1,124 @@
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<style>
+	@media print{
+		.header, .hide { visibility: hidden };
+		body { font-size: 9px };
+		margin: 0mm 0mm 0mm 0mm;
+	}	 
+	@media screen {
+		body { font-size: 9px }
+	}
+	@media screen, print {
+		body { line-height: 1.0 }
+	}
+	@page  
+	{ 
+		size: auto;   /* auto is the initial value */ 
+		/* this affects the margin in the printer settings */ 
+		margin: 0mm 0mm 0mm 0mm;
+	}
+	</style>
+</head>
+<body onload="window.print()">
+<table width="100%" cellpadding="1" cellspacing="0" border="0">
+	<tr>
+		<td width="100%" align="center" style="font-size:14pt;font-family:Arial; line-height:14pt;padding-top:0px">
+			<B>QUÁN ĂN LÀNG BIỂN</B>
+		</td>
+	</tr>
+	<tr>
+		<td width="100%" align="center" style="font-size:9pt;font-family:Arial; line-height:11pt;">
+			193-195 Điện Biên Phủ-Mỹ Phú-Cao Lãnh
+		</td>
+	</tr>
+	<tr>
+		<td width="100%" align="center" style="font-size:10pt;font-family:Arial; line-height:11pt">
+			<B>067 394 8888 - 0918 107 132</B>
+		</td>
+	</tr>
+	<tr>
+		<td width="100%" align="center" style="font-size:13pt;font-family:Arial; line-height:14pt">
+			<b>PHIẾU TÍNH TIỀN</b>
+		</td>
+	</tr>
+</table>
+<br/>
+<table width="100%" cellpadding="1" cellspacing="0" border="0" style="font-size:10pt;font-family:Arial; line-height:11pt;padding-top:0px">
+	<tr>
+		<td width="55%" align="left">				
+			<span tal:content="php:mb_strtoupper(Session->getTable()->getName(),'UTF8')"/>				
+		</td>
+		<td width="45%" align="right">
+			<span tal:content="Session/getUser/getName" /> / <span tal:condition="Session/getEmployee" tal:content="Session/getEmployee/getName" /> <span tal:condition="not: Session/getEmployee" tal:content="string:' '" />
+		</td>
+	</tr>
+	<tr>
+		<td width="55%" align="left">				
+			
+		</td>
+		<td width="45%" align="right">
+			<span tal:content="Session/getDateTimePrint" />
+		</td>
+	</tr>
+	<tr tal:condition="Session/getNote">
+		<td width="100%" align="left">
+			<span tal:content="Session/getNote"/>
+		</td>
+	</tr>
+</table>
+<br/>
+<table width="100%" cellpadding="2" cellspacing="0" border="1" style="font-size:10pt;font-family:Arial; line-height:11pt;padding-bottom:0px">
+	<thead>
+		<tr>
+			<th width="42%" align="left"><b>TÊN HÀNG</b></th>
+			<th width="11%" align="right"><b>SL</b></th>
+			<th width="21%" align="right"><b>Đ.GIÁ</b></th>
+			<th width="26%" align="right"><b>T.TIỀN</b></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr tal:repeat="Detail Session/getDetails2">
+			<td width="42%" align='left' tal:content="Detail/getCourse/getName" />
+			<td width="11%" align='right' tal:content="Detail/getCount" 		/>
+			<td width="21%" align='right' tal:content="Detail/getPricePrint" 	/>
+			<td width="26%" align='right' ><span tal:content="Detail/getValuePrint" /></td>
+		</tr>		
+	</tbody>
+</table>	
+<table width="100%" cellpadding="2" cellspacing="0" border="0" style="font-size:12pt;font-family:Arial; line-height:12pt;padding-bottom:2px;">
+	<tbody>
+		<tr tal:condition="Session/getDiscountPercent">
+			<td align='right' colspan="5" width="100%">
+				GIẢM GIÁ: <b tal:content="Session/getDiscountPercentPrint"/>
+			</td>
+		</tr>
+		<tr tal:condition="Session/getDiscountValue">
+			<td align='right' colspan="5" width="100%">
+				GIẢM GIÁ: <b tal:content="Session/getDiscountValuePrint"/>
+			</td>
+		</tr>
+		<tr>
+			<td align='right' colspan="5" width="100%">
+				TỔNG TIỀN: <b tal:content="Session/getValuePrint"/>
+			</td>
+		</tr>
+		<tr>
+			<td align='right' colspan="5" width="100%">
+				<p style="font-size:10pt;font-family:Arial; line-height:10pt;">( <span tal:content="Session/getValueStrPrint" /> )</p>
+			</td>
+		</tr>
+		<tr><td></td></tr>
+		<tr>
+			<td align='center' colspan="5" width="100%">				
+				<B style="font-size:12pt;font-family:Arial; line-height:12pt;">CÁM ƠN QUÍ KHÁCH. HẸN GẶP LẠI !</B>
+			</td>
+		</tr>
+	</tbody>
+</table>
+</body>
+
+
+
+
+

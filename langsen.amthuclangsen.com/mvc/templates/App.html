@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html style="overflow-y:hidden;" lang="en">
+	<head>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>				
+		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/icheck/flat/blue.css"/>		
+		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/bootstrap.min.css"/>
+		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/bootstrap-glyphicons.css"/>
+		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/glyphicons-regular.css"/>
+		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/unicorn.main.css"/>
+		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/custom.css"/>
+		<link rel="stylesheet" tal:attributes="href php:'/mvc/templates/theme/cms/css/unicorn.' . @\MVC\Base\SessionRegistry::instance()->getCurrentTheme() . '.css'" class="skin-color"/>
+	</head>
+	
+	<body data-menu-position="closed">
+		<div metal:use-macro="mAdmin.xhtml/Header"/>		
+		<div metal:use-macro="mAdmin.xhtml/MenuApp"/>
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+			<div metal:use-macro="mAdmin.xhtml/LocationBar"/>
+			<div class="container-fluid">
+				
+			</div>
+		</div>
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>		
+		
+	</body>
+</html>

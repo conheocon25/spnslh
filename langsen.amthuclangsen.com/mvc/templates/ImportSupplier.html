@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+	</head>
+	
+	<body>
+		<div metal:use-macro="mAdmin.xhtml/Header"/>
+		<div metal:use-macro="mAdmin.xhtml/StyleTools"/>
+		<div id="sidebar">
+			<ul style="display: block;">
+				<li tal:repeat="Supplier1 SupplierAll" tal:attributes="class php:Supplier1->getId()==Supplier->getId()?'active':'disable'">
+					<a tal:attributes="href Supplier1/getURLImport">
+						<i class="glyphicons-show_big_thumbnails"/><span tal:content="Supplier1/getName"/>
+					</a>
+				</li>
+			</ul>			
+		</div>
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
+			<div class="row">
+				<div id="IdSupplier" tal:attributes="alt Supplier/getId" class="col-12">
+					<a href="#DialogIns" data-toggle="modal" class="btn btn-primary btn-ins">
+						<i class="glyphicons-plus"/> Thêm mới
+					</a>
+					<a href="#DialogDelSelected" data-toggle="modal" class="btn btn-primary btn-ins">
+						<i class="glyphicons-remove_2"/> Xóa chọn
+					</a>
+					<div class="widget-box">
+						<div class="widget-content nopadding">
+							<table class="table table-bordered table-striped table-hover with-check">
+								<thead>
+									<tr>
+										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
+										<th width="90" class="left">NGÀY</th>										
+										<th class="left">DIỄN GIẢI</th>
+										<th class="right" width="120">GIÁ TRỊ</th>
+										<th width="40"><i class="glyphicons-print"/></th>
+										<th width="40"><i class="glyphicons-bin"/></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr tal:repeat="Order OrderAll">
+										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Order/getId"/></td>
+										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Order/getId" tal:content="Order/getDatePrint"/></td>
+										<td><div class="text-left" tal:content="Order/getDescription"/></td>
+										<td>
+											<div class="text-right">
+												<a tal:attributes="href Order/getURLDetail" tal:content="Order/getValuePrint" />
+											</div>
+										</td>
+										<td class="center"><a target="blank" tal:attributes="href Order/getURLPrint"><i class="glyphicon glyphicon-print"/></a></td>
+										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Order/getId"><i class="glyphicon glyphicon-remove"/></a></td>
+									</tr>
+								</tbody>																
+							</table>
+						</div>
+					</div>
+					<div metal:use-macro="mAdmin.xhtml/PageBar"/>
+					
+					<!-- INSERT DIALOG  -->
+					<div id="DialogIns" class="modal fade">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h3><i class="glyphicons-show_big_thumbnails modal-icon"/>THÊM MỚI ĐƠN HÀNG</h3>
+								</div>
+								<div class="form-horizontal">
+									<div class="control-group">
+										<label class="control-label">Ngày</label>
+										<div class="controls">
+											<input id="Date1" name="Date1" type="text" data-date-format="yyyy-mm-dd" class="form-control input-small"/>
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label">Diễn giải</label>
+										<div class="controls">
+											<input id="Description1" name="Description1" type="text" class="form-control input-small"/>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button id="URLInsButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Lưu</button>
+										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- END INSERT DIALOG  -->
+					
+					<!-- UPDATE DIALOG  -->
+					<div id="DialogEdit" class="modal fade">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h3><i class="glyphicons-show_big_thumbnails modal-icon"/>CẬP NHẬT ĐƠN HÀNG</h3>
+								</div>
+								<div class="form-horizontal">
+									<div class="control-group">
+										<label class="control-label">Ngày</label>
+										<div class="controls">
+											<input id="Date2" name="Date2" type="text" data-date-format="yyyy-mm-dd" class="form-control input-small"/>
+										</div>
+									</div>									
+									<div class="control-group">
+										<label class="control-label">Diễn giải</label>
+										<div class="controls">
+											<input id="Description2" name="Description2" type="text" class="form-control input-small"/>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button id="URLUpdButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Lưu</button>
+										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- END UPDATE DIALOG  -->
+					<div metal:use-macro="mDialog.xhtml/DialogDel"/>
+					<div metal:use-macro="mDialog.xhtml/DialogDelSelected"/>
+				</div>
+			</div>
+		</div>
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<script type="text/javascript">
+		/*<![CDATA[*/
+			$('#Date1').datepicker({language:'vi'});
+			$('#Date2').datepicker({language:'vi'});
+			
+			$('#URLDelSelectedButton').click(function(){
+				var count = 0;
+				var Data = [];
+				var URL = "/object/del/OrderImport/0";
+				
+				$(".CheckedDel").each(function( i, obj){
+					if ( $(this).is(':checked')==true ){
+						count += 1;
+						Data[count] = $(this).attr('data-id');
+					}
+				});
+				
+				$.ajax({
+					type: "POST",
+					data: {ListId:Data},
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
+			});
+			
+			//-----------------------------------------------------------------------------------
+			//Delete 1 ORDER IMPORT			
+			//-----------------------------------------------------------------------------------
+			$('.remove-item').click(function(){
+				$('#URLDelButton').attr('alt', $(this).attr('data-id'));
+			});
+			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
+			$('#URLDelButton').click(function(){			
+				var URL = "/object/del/OrderImport/" + $(this).attr('alt');
+				$.ajax({
+					type: "POST",					
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
+			});
+		
+			//-----------------------------------------------------------------------------------
+			//Insert 1 ORDER
+			$('#URLInsButton').click(function(){
+				var Data = [];
+				Data[0] = 'null';
+				Data[1] = $('#IdSupplier').attr('alt');
+				Data[2] = $('#Date1').val();				
+				Data[3] = $('#Description1').val();
+							
+				var URL = "/object/ins/OrderImport";
+				$.ajax({
+					type: "POST",
+					data: {Data:Data},
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
+			});
+			$("#DialogIns").on('show.bs.modal', function(event){
+				window.setTimeout(
+					function(){$(event.currentTarget).find('input#Date1').first().focus()},
+					0500
+				);
+			});
+			
+			//-----------------------------------------------------------------------------------
+			//Load 1 ORDER
+			//-----------------------------------------------------------------------------------
+			$('.update-item').click(function(){
+				//Load dữ liệu JSON về
+				var url = "/object/load/OrderImport/" + $(this).attr('data-id');
+				
+				//Load dữ liệu JSON lên FORM
+				$.getJSON(url, function(data){
+					$('#URLUpdButton').attr('alt', data.Id);
+					$('#Date2').attr('value', data.Date);
+					$('#Description2').attr('value', data.Description);
+				});
+			});
+			
+			//-----------------------------------------------------------------------------------
+			//Update 1 TABLE
+			//-----------------------------------------------------------------------------------
+			$('#URLUpdButton').click(function(){
+				var Data = [];
+				Data[0] = $('#URLUpdButton').attr('alt');				
+				Data[1] = $('#IdSupplier').attr('alt');
+				Data[2] = $('#Date2').val();				
+				Data[3] = $('#Description2').val();
+				
+				var URL = "/object/upd/OrderImport";
+				$.ajax({
+					type: "POST",
+					data: {Data:Data},
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
+			});	
+			$("#DialogEdit").on('show.bs.modal', function(event){
+				window.setTimeout(
+					function(){$(event.currentTarget).find('input#Date2').first().focus()},
+					0500
+				);
+			});			
+		/*]]>*/
+		</script>
+	</body>
+</html>
