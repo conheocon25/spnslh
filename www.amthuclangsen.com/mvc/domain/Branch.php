@@ -16,11 +16,12 @@ class Branch extends Object{
 	private $Email1;
 	private $Email2;	
 	private $Order;
+	private $Logo;
 		
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-	function __construct($Id=null, $Name=null, $Address=null, $X=null, $Y=null, $Phone1=null, $Phone2=null, $Email1=null, $Email2=null, $Order=null) {
+	function __construct($Id=null, $Name=null, $Address=null, $X=null, $Y=null, $Phone1=null, $Phone2=null, $Email1=null, $Email2=null, $Order=null, $Logo=null) {
 		$this->Id 			= $Id;
 		$this->Name 		= $Name;
 		$this->Address 		= $Address;
@@ -31,6 +32,7 @@ class Branch extends Object{
 		$this->Email1 		= $Email1;
 		$this->Email2 		= $Email2;
 		$this->Order 		= $Order;
+		$this->Logo 		= $Logo;
 		
 		parent::__construct( $Id );
 	}
@@ -63,7 +65,10 @@ class Branch extends Object{
 	
 	function setOrder($Order){$this->Order = $Order;$this->markDirty();}
 	function getOrder() 	{return $this->Order;}
-			
+	
+	function setLogo($Logo){$this->Logo = $Logo;$this->markDirty();}
+	function getLogo() 	{return $this->Logo;}
+	
 	function toJSON(){
 		$json = array(
 			'Id' 			=> $this->getId(),
@@ -75,7 +80,8 @@ class Branch extends Object{
 			'Phone2'		=> $this->getPhone2(),
 			'Email1'		=> $this->getEmail1(),
 			'Email2'		=> $this->getEmail2(),
-			'Order'			=> $this->getOrder()
+			'Order'			=> $this->getOrder(),
+			'Logo'			=> $this->getLogo()
 		);
 		return json_encode($json);
 	}
@@ -90,7 +96,8 @@ class Branch extends Object{
 		$this->Phone2	= $Data[6];
 		$this->Email1	= $Data[7];
 		$this->Email2	= $Data[8];
-		$this->Order	= $Data[9];		
+		$this->Order	= $Data[9];
+		$this->Logo		= $Data[10];
     }
 	
 	//-------------------------------------------------------------------------------

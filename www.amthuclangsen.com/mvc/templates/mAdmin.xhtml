@@ -4,18 +4,18 @@
 	<!-- META TAG INCLUDE														  -->
 	<!-- ======================================================================== -->
 	<span metal:define-macro="IncludeMETA">
-		<title tal:content="string:Hệ thống quản lý cừa hàng"/>
+		<title tal:content="string:Hệ thống quản lý nhà hàng"/>
 		<base href="http://amthuclangsen.com"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 		<meta http-equiv="Pragma" content="no-cache"/>
 		<meta http-equiv="Expires" content="-1"/>
 		<meta http-equiv="Cache-Control" content="no-cache"/>
-		<meta name="keywords" content="Hệ thống quản lý cửa hàng"/>
-		<meta name="description" content="Hệ thống quản lý cửa hàng"/>
-		<meta name="page-topic" content="Hệ thống quản lý cửa hàng"/>
-		<meta name="Abstract" content="Hệ thống quản lý cửa hàng"/>
-		<meta name="classification" content="Hệ thống quản lý cửa hàng"/>
+		<meta name="keywords" content="Hệ thống quản lý nhà hàng"/>
+		<meta name="description" content="Hệ thống quản lý nhà hàng"/>
+		<meta name="page-topic" content="Hệ thống quản lý nhà hàng"/>
+		<meta name="Abstract" content="Hệ thống quản lý nhà hàng"/>
+		<meta name="classification" content="Hệ thống quản lý nhà hàng"/>
 		<link rel="shortcut icon" type="image/png" href="/data/images/icon.ico" />
 	</span>
 	
@@ -65,7 +65,7 @@
 	<!-- ======================================================================== -->
 	<div metal:define-macro="Header">
 		<div id="header">
-			<h1><a>Cửa hàng </a></h1>
+			<h1><a>Nhà hàng </a></h1>
 			<a id="menu-trigger" href="#"><i class="glyphicon glyphicon-align-justify"/></a>	
 		</div>
 		<div id="user-nav">			
@@ -174,12 +174,7 @@
 				<a tal:attributes="href '/admin/setting/user'">
 					<i class="glyphicons-group" />NGƯỜI DÙNG 
 				</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='Employee'?'active':'disable'">
-				<a tal:attributes="href '/admin/setting/employee'">
-					<i class="glyphicons-group" />NHÂN VIÊN
-				</a>
-			</li>
+			</li>			
 			<li tal:attributes="class php:ActiveAdmin=='Config'?'active':'disable'">
 				<a tal:attributes="href '/admin/setting/config'">
 					<i class="glyphicons-cogwheel" />CẤU HÌNH
@@ -243,7 +238,7 @@
 	<!-- ======================================================================== -->
 	<div metal:define-macro="Footer" class="row">
 		<div id="footer" class="col-12" style="text-align:right; padding-right:20px;">
-			2009 - 2014 &copy; <a href="http://quanly-cuahang.com">SPN Soft - Cửa Hàng</a>
+			2009 - 2014 &copy; <a href="http://amthuclangsen.com">SPN Soft - Nhà hàng</a>
 		</div>
 	</div>
 	

@@ -31,12 +31,14 @@
 														data-phone2 Branch/getPhone1;
 														data-email1 Branch/getEmail1;
 														data-email2 Branch/getEmail1;
+														data-logo Branch/getLogo;
 										"	
 									>
 										<input id="X" type="hidden" tal:attributes="value Branch/getX"/>
 										<input id="Y" type="hidden" tal:attributes="value Branch/getY"/>
 										<input id="NameXY" type="hidden" tal:attributes="value Branch/getName"/>
 										<span tal:content="Branch/getName"/>
+										<input id="Logo" type="hidden" tal:attributes="value Branch/getLogo"/>
 									</button>
 								</div>
 								<div class="col-md-10">
@@ -53,26 +55,27 @@
 												<div class="input-group">
 													<span class="input-group-addon"><span class="input-icon input-icon-user"></span><span class="input-text">Tên&#42;</span></span>
 													<input type="text" name="contact-name" id="contact-name" required="" class="form-control input-lg"/>
-												</div><!-- End .input-group -->
+												</div>
 												<div class="input-group">
 													<span class="input-group-addon"><span class="input-icon input-icon-email"></span><span class="input-text">Email&#42;</span></span>
 													<input type="email" name="contact-email" id="contact-email" required="" class="form-control input-lg"/>
-												</div><!-- End .input-group -->
+												</div>
 												<div class="input-group">
 													<span class="input-group-addon"><span class="input-icon input-icon-subject"></span><span class="input-text">Chủ đề&#42;</span></span>
 													<input type="text" name="contact-subject" id="contact-subject" required="" class="form-control input-lg"/>
-												</div><!-- End .input-group -->
-											</div><!-- End .col-md-6 -->
+												</div>
+											</div>
 											<div class="col-md-6 col-sm-12 col-xs-12">
 												<div class="input-group textarea-container">
 													<span class="input-group-addon"><span class="input-icon input-icon-message"></span><span class="input-text">Nội dung</span></span>
 													<textarea name="contact-message" id="contact-message" class="form-control" cols="30" rows="6"></textarea>
-												</div><!-- End .input-group -->
+												</div>
 												<input id="BtnSend" type="submit" value="Gửi" class="btn btn-custom-2 md-margin"/>
-											</div><!-- End .col-md-6 -->
+											</div>
 										</form>
-									</div><!-- End .row -->
-								</div><!-- End .col-md-8 -->
+									</div>
+								</div>
+								
 								<div class="col-md-4 col-sm-4 col-xs-12">
 									<h2 class="sub-title">Thông tin liên hệ</h2>
 									<ul class="contact-details-list">										
@@ -118,6 +121,7 @@
 				$('#X').val($(this).attr('data-x'));
 				$('#Y').val($(this).attr('data-y'));
 				$('#NameXY').val($(this).attr('data-name'));
+				$('#Logo').val($(this).attr('data-logo'));
 				
 				$("#map").googleMap().reload();	
 				
