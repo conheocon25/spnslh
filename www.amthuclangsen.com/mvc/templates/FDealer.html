@@ -33,7 +33,7 @@
 														<img tal:attributes="src PT/getPost/getImage" alt="item1  Hover" class="item-image-hover"/>
 													</a>
 												</figure>
-											</div><!-- End .item-image -->
+											</div>
 											<div class="item-meta-container">
 												<h3 class="item-name">
 													<a tal:attributes="href PT/getURLRead">
@@ -43,11 +43,11 @@
 												<div class="ratings-container">
 													<div class="ratings">
 														<div class="ratings-result" data-result="70"></div>
-													</div><!-- End .ratings -->
+													</div>
 													<span class="ratings-amount">
 														1 đánh giá
 													</span>
-												</div><!-- End .rating-container -->
+												</div>
 												<p tal:content="structure PT/getPost/getContentReduce"/>
 											</div>
 										</div>
@@ -65,6 +65,6 @@
 			</section>
 			<div metal:use-macro="mFront.xhtml/Footer"/>
 		</div>
-		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
+		<div metal:use-macro="mFront.xhtml/IncludeJS"/>		
 	</body>
 </html>

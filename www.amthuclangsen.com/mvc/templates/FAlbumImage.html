@@ -16,8 +16,8 @@
 								<div class="col-md-9 col-sm-8 col-xs-12 main-content">									
 									<div class="md-margin">
 										<span>											
-											<a href="#">
-												<span tal:content="Album/getLiked"/> Like
+											<a class="Liked Album" tal:attributes="data-id Album/getId">
+												<span id="LikedView" tal:content="Album/getLiked"/> Like
 											</a>
 											<span tal:content="Album/getViewed"/> Xem
 										</span>
@@ -56,5 +56,24 @@
 			<div metal:use-macro="mFront.xhtml/Footer"/>
 		</div>
 		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
+		<script type="text/javascript">
+		/*<![CDATA[*/
+			$('.Liked').click(function(){
+				var Data = [];								
+				var Id 	= $(this).attr('data-id');
+								
+				var URL = "/object/liked/Album/"+Id;
+				$.ajax({
+					type: "POST",
+					data: {Data:Data},
+					url: URL,
+					success: function(msg){
+						location.reload();						
+					}
+				});
+				return false;
+			});
+		/*]]>*/
+		</script>
 	</body>
 </html>
