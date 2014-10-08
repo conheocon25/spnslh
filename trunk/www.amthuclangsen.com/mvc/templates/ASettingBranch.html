@@ -100,10 +100,16 @@
 													<input id="Email21" name="Email21" type="text" class="form-control input-small"/>
 												</div>
 											</div>
-											<div class="control-group">											
+											<div class="control-group">
 												<label class="control-label">Thứ tự</label>
 												<div class="controls">
 													<input id="Order1" name="Order1" type="text" class="form-control input-small"/>
+												</div>
+											</div>
+											<div class="control-group">
+												<label class="control-label">Logo</label>
+												<div class="controls">
+													<input id="Logo1" name="Logo1" type="text" class="form-control input-small"/>
 												</div>
 											</div>
 										</div>
@@ -182,6 +188,12 @@
 													<input id="Order2" name="Order2" type="text" class="form-control input-small"/>
 												</div>
 											</div>
+											<div class="control-group">
+												<label class="control-label">Logo</label>
+												<div class="controls">
+													<input id="Logo2" name="Logo2" type="text" class="form-control input-small"/>
+												</div>
+											</div>
 										</div>
 									</div>									
 									<div class="modal-footer">
@@ -200,9 +212,7 @@
 			</div>
 		</div>
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>
-		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
-		<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=AIzaSyAL3E55skCbhZdaN7Jm3Tip7Np1X04f76w" type="text/javascript"></script>				
-		<script type="text/javascript" language="javascript" src="/mvc/templates/theme/cms/js/showmarker.js"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>		
 		<script type="text/javascript">
 		/*<![CDATA[*/
 			$(function() {				
@@ -279,6 +289,7 @@
 					Data[7] = $('#Email11').val();
 					Data[8] = $('#Email21').val();
 					Data[9] = $('#Order1').val();
+					Data[10] = $('#Logo1').val();
 					
 					var URL = "/object/ins/Branch";
 					$.ajax({
@@ -318,6 +329,7 @@
 					$('#Email12').attr('value', 	data.Email1);
 					$('#Email22').attr('value', 	data.Email2);
 					$('#Order2').attr('value', 		data.Order);
+					$('#Logo2').attr('value', 		data.Logo);
 				});
 			});
 			
@@ -352,6 +364,7 @@
 					Data[7] = $('#Email12').val();
 					Data[8] = $('#Email22').val();
 					Data[9] = $('#Order2').val();
+					Data[10] = $('#Logo2').val();
 																		
 					var URL = "/object/upd/Branch";
 					$.ajax({

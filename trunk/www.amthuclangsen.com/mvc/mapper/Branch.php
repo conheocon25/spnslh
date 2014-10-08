@@ -19,7 +19,8 @@ class Branch extends Mapper implements \MVC\Domain\BranchFinder {
 				phone2=?, 
 				email1=?, 
 				email2=?, 
-				`order`=?
+				`order`=?,
+				`logo`=?
 			where id=?", $tblBranch);
 		$insertStmt 	= sprintf("insert into %s ( 
 				name, 
@@ -30,8 +31,9 @@ class Branch extends Mapper implements \MVC\Domain\BranchFinder {
 				phone2, 
 				email1, 
 				email2, 
-				`order`) 
-			values(?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblBranch);
+				`order`,
+				`logo`) 
+			values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblBranch);
 		$deleteStmt 	= sprintf("delete from %s where id=?", $tblBranch);
 		$findByPageStmt = sprintf("SELECT * FROM  %s ORDER BY `order` LIMIT :start,:max", $tblBranch);
 		$findByKeyStmt 	= sprintf("select *  from %s where `key`=?", $tblBranch);
@@ -56,7 +58,8 @@ class Branch extends Mapper implements \MVC\Domain\BranchFinder {
 			$array['phone2'],
 			$array['email1'],
 			$array['email2'],
-			$array['order']
+			$array['order'],
+			$array['logo']
 		);
         return $obj;
     }
@@ -72,7 +75,8 @@ class Branch extends Mapper implements \MVC\Domain\BranchFinder {
 			$object->getPhone2(),
 			$object->getEmail1(),
 			$object->getEmail2(),
-			$object->getOrder()			
+			$object->getOrder(),
+			$object->getLogo()	
 		); 
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
@@ -90,6 +94,7 @@ class Branch extends Mapper implements \MVC\Domain\BranchFinder {
 			$object->getEmail1(),
 			$object->getEmail2(),
 			$object->getOrder(),
+			$object->getLogo(),
 			$object->getId()
 		);				
         $this->updateStmt->execute( $values );
@@ -102,7 +107,7 @@ class Branch extends Mapper implements \MVC\Domain\BranchFinder {
 		$this->findByPageStmt->bindValue(':start', ((int)($values[0])-1)*(int)($values[1]), \PDO::PARAM_INT);
 		$this->findByPageStmt->bindValue(':max', (int)($values[1]), \PDO::PARAM_INT);
 		$this->findByPageStmt->execute();
-        return new EmployeeCollection( $this->findByPageStmt->fetchAll(), $this );
+        return new BranchCollection( $this->findByPageStmt->fetchAll(), $this );
     }	
 }
 ?>
