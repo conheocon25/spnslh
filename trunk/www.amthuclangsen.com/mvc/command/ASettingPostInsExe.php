@@ -17,6 +17,8 @@
 			$Author 	= $request->getProperty('Author');
 			$Count	 	= $request->getProperty('Count');
 			$Time	 	= $request->getProperty('Time');
+			$Viewed	 	= $request->getProperty('Viewed');
+			$Liked	 	= $request->getProperty('Liked');
 									
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
@@ -35,7 +37,9 @@
 				$Author,
 				$Time,
 				$Count,
-				""
+				"",
+				$Viewed,
+				$Liked
 			);
 			$Post->reKey();
 			$mPost->insert($Post);

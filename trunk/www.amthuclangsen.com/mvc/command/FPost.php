@@ -45,7 +45,7 @@
 			$Tag 					= $mTag->findByKey($KTag);
 			$TagAll 				= $mTag->findByPosition(array(1));
 			
-			$Post->setCount($Post->getCount()+1);
+			$Post->setViewed($Post->getViewed()+1);
 			$mPost->update($Post);
 			
 			$LastestPostAll = $mPostTag->findByLastest4(array(null));

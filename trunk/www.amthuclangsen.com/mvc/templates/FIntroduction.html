@@ -23,8 +23,8 @@
 												<a href="#"><span class="separator"><i class="fa fa-user"></i></span> <span tal:content="Post/getAuthor"></span></a>
 											</div>
 											<div class="article-meta-view">
-												<span class="separator"><i class="fa fa-eye "></i></span><span tal:content="Post/getCount"/>
-												<a href="#"><span class="separator"><i class="fa fa-heart"></i></span>87</a>
+												<span class="separator"><i class="fa fa-eye "></i></span><span tal:content="Post/getViewed"/>
+												<a href="#"><span class="separator"><i class="fa fa-heart"></i></span><span tal:content="Post/getLiked"/></a>
 											</div>
 										</div>
 										<div tal:content="structure Post/getContent" class="article-content-container"/>

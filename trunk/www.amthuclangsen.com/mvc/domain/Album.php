@@ -11,17 +11,21 @@ class Album extends Object{
 	private $Name;
 	private $Note;
 	private $Order;
+	private $Viewed;
+	private $Liked;
 	private $Key;
 	
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-	function __construct($Id=null, $Date=null, $Name=null, $Note=null, $Order=null, $Key=null){
+	function __construct($Id=null, $Date=null, $Name=null, $Note=null, $Order=null, $Viewed=null, $Liked=null, $Key=null){
 		$this->Id 		= $Id;
 		$this->Date 	= $Date;
 		$this->Name 	= $Name;
 		$this->Note 	= $Note;
 		$this->Order 	= $Order;
+		$this->Viewed 	= $Viewed;
+		$this->Liked 	= $Liked;
 		$this->Key 		= $Key;
 		parent::__construct( $Id );
 	}
@@ -41,6 +45,12 @@ class Album extends Object{
 	function setOrder($Order){$this->Order = $Order;$this->markDirty();}
 	function getOrder() 	{return $this->Order;}
 	
+	function setViewed($Viewed){$this->Viewed = $Viewed;$this->markDirty();}
+	function getViewed() 	{return $this->Viewed;}
+	
+	function setLiked($Liked){$this->Liked = $Liked;$this->markDirty();}
+	function getLiked() 	{return $this->Liked;}
+	
 	function setKey($Key)	{$this->Key = $Key;$this->markDirty();}
 	function getKey() 		{return $this->Key;}
 	function reKey( ) {
@@ -55,6 +65,8 @@ class Album extends Object{
 			'Name'			=> $this->getName(),
 			'Note'			=> $this->getNote(),
 			'Order'			=> $this->getOrder(),
+			'Viewed'		=> $this->getViewed(),
+			'Liked'			=> $this->getLiked(),
 			'Key'			=> $this->getKey()
 		);
 		return json_encode($json);
@@ -66,6 +78,8 @@ class Album extends Object{
 		$this->Name 	= $Data[2];
 		$this->Note 	= $Data[3];
 		$this->Order	= $Data[4];
+		$this->Viewed	= $Data[5];
+		$this->Liked	= $Data[6];
 		$this->reKey();
     }
 	

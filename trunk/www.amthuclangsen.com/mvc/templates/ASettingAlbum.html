@@ -3,13 +3,9 @@
 	<head>
 		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
 		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
-	</head>
-	
+	</head>	
 	<body>
 		<div metal:use-macro="mAdmin.xhtml/Header"/>		
-		<!--	
-		<div metal:use-macro="mAdmin.xhtml/MenuSettingProduct"/>
-		!-->
 		<div id="content">
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
 			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
@@ -79,6 +75,18 @@
 												<input id="Order1" name="Order1" type="text" class="form-control input-small"/>
 											</div>
 										</div>
+										<div class="control-group">
+											<label class="control-label">Lượt xem</label>
+											<div class="controls">
+												<input id="Viewed1" name="Viewed1" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label">Lượt Like</label>
+											<div class="controls">
+												<input id="Liked1" name="Liked1" type="text" class="form-control input-small"/>
+											</div>
+										</div>
 									</div>
 									<div class="modal-footer">
 										<button id="URLInsButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Lưu</button>
@@ -119,6 +127,18 @@
 											<label class="control-label">Thứ tự</label>
 											<div class="controls">
 												<input id="Order2" name="Order2" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label">Lượt xem</label>
+											<div class="controls">
+												<input id="Viewed2" name="Viewed2" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label">Lượt Like</label>
+											<div class="controls">
+												<input id="Liked2" name="Liked2" type="text" class="form-control input-small"/>
 											</div>
 										</div>
 									</div>
@@ -203,11 +223,13 @@
 				},
 				submitHandler: function (form) {					
 					var Data = [];
-					Data[0] = 'null';					
+					Data[0] = 'null';
 					Data[1] = $('#Date1').val();
 					Data[2] = $('#Name1').val();
 					Data[3] = $('#Note1').val();
 					Data[4] = $('#Order1').val();
+					Data[5] = $('#Viewed1').val();
+					Data[6] = $('#Liked1').val();
 								
 					var URL = "/object/ins/Album";
 					$.ajax({
@@ -242,6 +264,8 @@
 					$('#Name2').attr('value', data.Name);
 					$('#Note2').attr('value', data.Note);
 					$('#Order2').attr('value', data.Order);
+					$('#Viewed2').attr('value', data.Viewed);
+					$('#Liked2').attr('value', data.Liked);
 				});
 			});
 			
@@ -271,6 +295,8 @@
 					Data[2] = $('#Name2').val();
 					Data[3] = $('#Note2').val();
 					Data[4] = $('#Order2').val();
+					Data[5] = $('#Viewed2').val();
+					Data[6] = $('#Liked2').val();
 																		
 					var URL = "/object/upd/Album";
 					$.ajax({

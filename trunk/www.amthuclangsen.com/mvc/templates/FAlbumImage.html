@@ -14,7 +14,14 @@
 						<div class="col-md-12">
 							<div class="row">
 								<div class="col-md-9 col-sm-8 col-xs-12 main-content">									
-									<div class="md-margin"></div><!-- .space -->
+									<div class="md-margin">
+										<span>											
+											<a href="#">
+												<span tal:content="Album/getLiked"/> Like
+											</a>
+											<span tal:content="Album/getViewed"/> Xem
+										</span>
+									</div>
 									<div class="category-item-container category-list-container">
 										<div class="item item-list clearfix" tal:repeat="Image Album/getImageAll">
 											<div class="item-image-container">

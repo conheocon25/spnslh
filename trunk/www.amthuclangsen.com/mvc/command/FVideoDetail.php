@@ -42,13 +42,14 @@
 			$TagAll 				= $mTag->findByPosition(array(1));			
 			
 			$Video 	= $mVideo->findByKey($KVideo);
+			$Video->setViewed( $Video->getViewed() + 1);
+			$mVideo->update($Video);
+			
 			$StoryLineAll	= $mStoryLine->findAll();
 			$LastestPostAll = $mPostTag->findByLastest4(array(null));
 			
 			$Title = mb_strtoupper($Video->getName(), 'UTF8');
-			$Navigation = array(
-				array("VIDEO", "/video")
-			);
+			$Navigation = array(array("VIDEO", "/video"));
 									
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
@@ -71,8 +72,7 @@
 			
 			$request->setObject("CategoryAll", 			$CategoryAll);
 			$request->setObject("TagAll", 				$TagAll);
-			$request->setObject("Video", 				$Video);
-			
+			$request->setObject("Video", 				$Video);			
 						
 			return self::statuses('CMD_DEFAULT');
 		}

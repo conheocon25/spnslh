@@ -10,8 +10,8 @@ class Post extends Mapper implements \MVC\Domain\PostFinder {
 		
 		$selectAllStmt 	= sprintf("select * from %s", $tblPost);
 		$selectStmt 	= sprintf("select *  from %s where id=?", $tblPost);
-		$updateStmt 	= sprintf("update %s set title=?, content=?, author=?, `time`=?, `count`=?, `key`=? where id=?", $tblPost);
-		$insertStmt 	= sprintf("insert into %s ( title, content, author, `time`, `count`, `key`) values(?, ?, ?, ?, ?, ?)", $tblPost);
+		$updateStmt 	= sprintf("update %s set title=?, content=?, author=?, `time`=?, `count`=?, `key`=?, `viewed`=?, `liked`=? where id=?", $tblPost);
+		$insertStmt 	= sprintf("insert into %s ( title, content, author, `time`, `count`, `key`, `viewed`, `liked`) values(?, ?, ?, ?, ?, ?, ?, ?)", $tblPost);
 		$deleteStmt 	= sprintf("delete from %s where id=?", $tblPost);
 		$findByKeyStmt 	= sprintf("select *  from %s where `key`=?", $tblPost);
 				
@@ -32,7 +32,9 @@ class Post extends Mapper implements \MVC\Domain\PostFinder {
 			$array['author'],
 			$array['time'],
 			$array['count'],
-			$array['key']
+			$array['key'],
+			$array['viewed'],
+			$array['liked']
 		);
         return $obj;
     }
@@ -45,7 +47,9 @@ class Post extends Mapper implements \MVC\Domain\PostFinder {
 			$object->getAuthor(),
 			$object->getTime(),
 			$object->getCount(),
-			$object->getKey()
+			$object->getKey(),
+			$object->getViewed(),
+			$object->getLiked()
 		);
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
@@ -60,6 +64,8 @@ class Post extends Mapper implements \MVC\Domain\PostFinder {
 			$object->getTime(),
 			$object->getCount(),
 			$object->getKey(),
+			$object->getViewed(),
+			$object->getLiked(),
 			$object->getId()
 		);
         $this->updateStmt->execute( $values );

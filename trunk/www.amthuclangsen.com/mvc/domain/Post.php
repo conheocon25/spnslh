@@ -9,11 +9,13 @@ class Post extends Object{
 	private $Time;
 	private $Count;
 	private $Key;
+	private $Viewed;
+	private $Liked;
 	
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-    function __construct( $Id=null, $Title=null, $Content=null, $Author=null, $Time=null, $Count=null, $Key=null){
+    function __construct( $Id=null, $Title=null, $Content=null, $Author=null, $Time=null, $Count=null, $Key=null, $Viewed=null, $Liked=null){
         $this->Id 			= $Id;
 		$this->Title 		= $Title;
 		$this->Content 		= $Content;		
@@ -21,6 +23,9 @@ class Post extends Object{
 		$this->Time 		= $Time;		
 		$this->Count 		= $Count;
 		$this->Key 			= $Key;
+		$this->Viewed 		= $Viewed;
+		$this->Liked 		= $Liked;
+		
         parent::__construct( $Id );
     }
     function setId($Id) {$this->Id = $Id;}
@@ -66,6 +71,13 @@ class Post extends Object{
 		$this->Key = $Str->converturl();		
 	}	
 	function getContentReduce(){$S = new \MVC\Library\String($this->Content);return $S->reduceHTML(320);}
+	
+	function setViewed( $Viewed ){$this->Viewed = $Viewed;$this->markDirty();}   
+	function getViewed( ) {return $this->Viewed;}
+	
+	function setLiked( $Liked ){$this->Liked = $Liked; $this->markDirty();}
+	function getLiked( ) {return $this->Liked;}
+	
 	//-------------------------------------------------------------------------------
 	//GET LISTs
 	//-------------------------------------------------------------------------------
@@ -83,7 +95,9 @@ class Post extends Object{
 			'Author'		=> $this->getAuthor(),
 			'Time'			=> $this->getTime(),
 			'Count'			=> $this->getCount(),
-			'Key'			=> $this->getKey()
+			'Key'			=> $this->getKey(),
+			'Viewed'		=> $this->getViewed(),
+			'Liked'			=> $this->getLiked()
 		);				
 		return json_encode($json);
 	}
@@ -95,6 +109,8 @@ class Post extends Object{
 		$this->Author		= $Data[3];
 		$this->Time 		= $Data[4];
 		$this->Count 		= $Data[5];
+		$this->Viewed 		= $Data[6];
+		$this->Liked 		= $Data[7];
 		$this->reKey();
     }
 	
@@ -112,7 +128,6 @@ class Post extends Object{
 			
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
-    static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}
-	
+    static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}	
 }
 ?>

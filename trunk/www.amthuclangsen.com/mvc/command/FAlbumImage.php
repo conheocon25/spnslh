@@ -43,12 +43,13 @@
 			$TagAll 				= $mTag->findByPosition(array(1));			
 			
 			$Album 	= $mAlbum->findByKey($KAlbum);
+			$Album->setViewed( $Album->getViewed()+1 );
+			$mAlbum->update($Album);
+			
 			$LastestPostAll = $mPostTag->findByLastest4(array(null));
 									
 			$Title = mb_strtoupper($Album->getName(), 'UTF8');
-			$Navigation = array(
-				array("HÌNH ẢNH", "/hinh-anh")
-			);
+			$Navigation = array( array("HÌNH ẢNH", "/hinh-anh") );
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI

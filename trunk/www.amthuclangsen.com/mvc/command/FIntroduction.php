@@ -42,7 +42,7 @@
 			$LastestPostAll 		= $mPostTag->findByLastest4(array(null));
 			
 			$Post 					= $mPost->find($ConfigIntro->getValue() );
-			$Post->setCount($Post->getCount()+1);
+			$Post->setViewed($Post->getViewed()+1);
 			$mPost->update($Post);
 						
 			$Title = "GIỚI THIỆU";

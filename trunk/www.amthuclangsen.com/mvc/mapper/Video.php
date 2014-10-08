@@ -15,11 +15,13 @@ class Video extends Mapper implements \MVC\Domain\VideoFinder {
 				`date`=?,
 				`note`=?,
 				`url`=?,
-				`key`=? 
+				`key`=?,
+				`viewed`=?,
+				`liked`=?
 			where id=?", $tblVideo);
 			
-		$insertStmt = sprintf("insert into %s (`name`, `date`, `note`, `url`, `key`) 
-						values( ?, ?, ?, ?, ?)", $tblVideo);
+		$insertStmt = sprintf("insert into %s (`name`, `date`, `note`, `url`, `key`, `viewed`, `liked`) 
+						values( ?, ?, ?, ?, ?, ?, ?)", $tblVideo);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblVideo);
 		$findByStmt = sprintf("select * from %s where id_album=?", $tblVideo);
 		$findByPageStmt = sprintf("
@@ -49,7 +51,9 @@ class Video extends Mapper implements \MVC\Domain\VideoFinder {
 			$array['date'],
 			$array['note'],
 			$array['url'],
-			$array['key']
+			$array['key'],
+			$array['viewed'],
+			$array['liked']
 		);
         return $obj;
     }
@@ -61,7 +65,9 @@ class Video extends Mapper implements \MVC\Domain\VideoFinder {
 			$object->getDate(),
 			$object->getNote(),
 			$object->getURL(),
-			$object->getKey()
+			$object->getKey(),
+			$object->getViewed(),
+			$object->getLiked()
 		); 
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
@@ -75,6 +81,8 @@ class Video extends Mapper implements \MVC\Domain\VideoFinder {
 			$object->getNote(),
 			$object->getURL(),
 			$object->getKey(),
+			$object->getViewed(),
+			$object->getLiked(),
 			$object->getId()
 		);		
         $this->updateStmt->execute( $values );
