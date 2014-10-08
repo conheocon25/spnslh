@@ -47,7 +47,7 @@
 					<div id="DialogIns" class="modal fade">
 						<div class="modal-dialog">
 							<div class="modal-content">
-								<div class="modal-header"><h3><i class="glyphicons-show_big_thumbnails modal-icon"/>THÊM MỚI DANH MỤC</h3></div>
+								<div class="modal-header"><h3><i class="glyphicons-show_big_thumbnails modal-icon"/>THÊM MỚI VIDEO</h3></div>
 								<form id="FormVideoInsert" action="#" class="form-horizontal" novalidate="novalidate">
 									<div class="modal-body">
 										<div class="control-group">
@@ -74,6 +74,18 @@
 												<input id="URL1" name="URL1" type="text" class="form-control input-small"/>
 											</div>
 										</div>
+										<div class="control-group">
+											<label class="control-label">Lượt xem</label>
+											<div class="controls">
+												<input id="Viewed1" name="Viewed1" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label">Lượt Like</label>
+											<div class="controls">
+												<input id="Liked1" name="Liked1" type="text" class="form-control input-small"/>
+											</div>
+										</div>										
 									</div>
 									<div class="modal-footer">
 										<button id="URLInsButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Lưu</button>
@@ -114,6 +126,18 @@
 											<label class="control-label">URL</label>
 											<div class="controls">
 												<input id="URL2" name="URL2" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label">Lượt xem</label>
+											<div class="controls">
+												<input id="Viewed2" name="Viewed2" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label">Lượt Like</label>
+											<div class="controls">
+												<input id="Liked2" name="Liked2" type="text" class="form-control input-small"/>
 											</div>
 										</div>
 									</div>
@@ -203,6 +227,8 @@
 					Data[2] = $('#Date1').val();					
 					Data[3] = $('#Note1').val();
 					Data[4] = $('#URL1').val();
+					Data[5] = $('#Viewed1').val();
+					Data[6] = $('#Liked1').val();
 								
 					var URL = "/object/ins/Video";
 					$.ajax({
@@ -237,6 +263,8 @@
 					$('#Name2').attr('value', data.Name);
 					$('#Note2').attr('value', data.Note);
 					$('#URL2').attr('value', data.URL);
+					$('#Viewed2').attr('value', data.Viewed);
+					$('#Liked2').attr('value', data.Liked);
 				});
 			});
 			
@@ -266,6 +294,8 @@
 					Data[2] = $('#Date2').val();
 					Data[3] = $('#Note2').val();
 					Data[4] = $('#URL2').val();
+					Data[5] = $('#Viewed2').val();
+					Data[6] = $('#Liked2').val();
 																		
 					var URL = "/object/upd/Video";
 					$.ajax({

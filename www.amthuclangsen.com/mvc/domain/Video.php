@@ -9,6 +9,8 @@ class Video extends Object{
 	private $Note;	
 	private $URL;
 	private $Key;
+	private $Viewed;
+	private $Liked;
 	
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
@@ -19,7 +21,10 @@ class Video extends Object{
 		$Date=null,
 		$Note=null,
 		$URL=null,
-		$Key=null)
+		$Key=null,
+		$Viewed=null,
+		$Liked=null
+		)
 	{        	
 		$this->Id			= $Id;				
 		$this->Name			= $Name;
@@ -27,7 +32,8 @@ class Video extends Object{
 		$this->Note			= $Note;
 		$this->URL			= $URL;
 		$this->Key			= $Key;
-	
+		$this->Viewed		= $Viewed;
+		$this->Liked		= $Liked;
         parent::__construct( $Id );
     }
     function getId( ) {return $this->Id;}
@@ -58,6 +64,12 @@ class Video extends Object{
 		return "http://img.youtube.com/vi/".$this->getIdURL()."/2.jpg";
 	}
 	
+	function getViewed( ) {return $this->Viewed;}
+	function setViewed( $Viewed ) {$this->Viewed = $Viewed; $this->markDirty(); }
+	
+	function getLiked( ) {return $this->Liked;}
+	function setLiked( $Liked ) {$this->Liked = $Liked; $this->markDirty(); }
+	
 	function toJSON(){
 		$json = array(
 			'Id' 			=> $this->getId(),
@@ -65,7 +77,9 @@ class Video extends Object{
 			'Date'			=> $this->getDate(),
 			'Note'			=> $this->getNote(),
 			'URL'			=> $this->getURL(),
-			'Key'			=> $this->getKey()
+			'Key'			=> $this->getKey(),
+			'Viewed'		=> $this->getViewed(),
+			'Liked'			=> $this->getLiked()
 		);		
 		return json_encode($json);
 	}
@@ -76,6 +90,9 @@ class Video extends Object{
 		$this->Date			= $Data[2];
 		$this->Note			= $Data[3];
 		$this->URL			= $Data[4];
+		$this->Viewed		= $Data[5];
+		$this->Liked		= $Data[6];
+		
 		$this->reKey();
     }
 	

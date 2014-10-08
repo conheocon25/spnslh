@@ -18,7 +18,9 @@
 			$Time 		= $request->getProperty('Time');
 			$Count 		= $request->getProperty('Count');
 			$Content 	= \stripslashes($request->getProperty('Content'));
-						
+			$Viewed 	= $request->getProperty('Viewed');
+			$Liked 		= $request->getProperty('Liked');
+			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
@@ -35,6 +37,9 @@
 			$Post->setTime($Time);
 			$Post->setAuthor($Author);
 			$Post->setCount($Count);
+			$Post->setViewed($Viewed);
+			$Post->setLiked($Liked);
+			
 			$Post->reKey();
 			$mPost->update($Post);
 			

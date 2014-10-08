@@ -10,8 +10,8 @@ class Album extends Mapper implements \MVC\Domain\AlbumFinder {
 						
 		$selectAllStmt 	= sprintf("SELECT * from %s order by `order`", $tblAlbum);
 		$selectStmt 	= sprintf("SELECT * from %s where id=?", $tblAlbum);
-		$updateStmt 	= sprintf("update %s set `date`=?, `name`=?, `note`=?, `order`=?, `key`=? where id=?", $tblAlbum);
-		$insertStmt 	= sprintf("insert into %s ( `date`, name, note, `order`, `key`) values(?, ?, ?, ?, ?)", $tblAlbum);
+		$updateStmt 	= sprintf("update %s set `date`=?, `name`=?, `note`=?, `order`=?, `key`=?, `viewed`=?, `liked`=? where id=?", $tblAlbum);
+		$insertStmt 	= sprintf("insert into %s ( `date`, name, note, `order`, `viewed`, `liked`, `key`) values(?, ?, ?, ?, ?, ?, ?)", $tblAlbum);
 		$deleteStmt 	= sprintf("delete from %s where id=?", $tblAlbum);
 		$findByPageStmt = sprintf("SELECT * FROM  %s ORDER BY `order` LIMIT :start,:max", $tblAlbum);
 		$findByKeyStmt 	= sprintf("SELECT *  from %s where `key`=?", $tblAlbum);
@@ -34,6 +34,8 @@ class Album extends Mapper implements \MVC\Domain\AlbumFinder {
 			$array['name'],
 			$array['note'],
 			$array['order'],
+			$array['viewed'],
+			$array['liked'],
 			$array['key']
 		);
         return $obj;
@@ -46,6 +48,8 @@ class Album extends Mapper implements \MVC\Domain\AlbumFinder {
 			$object->getName(),
 			$object->getNote(),
 			$object->getOrder(),
+			$object->getViewed(),
+			$object->getLiked(),
 			$object->getKey()
 		); 
         $this->insertStmt->execute( $values );
@@ -60,8 +64,11 @@ class Album extends Mapper implements \MVC\Domain\AlbumFinder {
 			$object->getNote(),
 			$object->getOrder(),
 			$object->getKey(),
+			$object->getViewed(),
+			$object->getLiked(),
 			$object->getId()
 		);				
+		
         $this->updateStmt->execute( $values );
     }
 	protected function doDelete(array $values) {return $this->deleteStmt->execute( $values );}	

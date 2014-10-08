@@ -12,9 +12,14 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-md-12">
-							<div class="row">
+							<div class="row">								
 								<div class="col-md-9 col-sm-8 col-xs-12 main-content">									
-									<div class="md-margin"></div>
+									<div class="md-margin">
+										<span>											
+											<a href="#"><span tal:content="Video/getLiked"/> Like</a>
+											<span tal:content="Video/getViewed"/> Xem
+										</span>
+									</div>
 									<div class="category-item-container category-list-container text-center">
 										<iframe width="640" height="480" 
 											tal:attributes="src Video/getURL" 

@@ -43,10 +43,12 @@
 												<div class="ratings-container">
 													<div class="ratings">
 														<div class="ratings-result" data-result="100"></div>
-													</div><!-- End .ratings -->
+													</div>
 													<span class="ratings-amount">
-														1 đánh giá
+														<span tal:content="Album/getViewed"/> Xem
+														<span tal:content="Album/getLiked"/> Like
 													</span>
+													
 												</div>
 												<p tal:content="structure Album/getNote"/>
 											</div>

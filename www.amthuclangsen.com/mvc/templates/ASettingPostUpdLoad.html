@@ -40,6 +40,18 @@
 									</div>
 								</div>
 								<div class="control-group">
+									<label class="control-label" for="Viewed">Lượt xem _</label>
+									<div class="controls">
+										<input type="text" id="Viewed" name="Viewed" tal:attributes="value Post/getViewed" />
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="Count">Lượt Like</label>
+									<div class="controls">
+										<input type="text" id="Liked" name="Liked" tal:attributes="value Post/getLiked"/>
+									</div>
+								</div>
+								<div class="control-group">
 									<label class="control-label" for="Content">Nội dung</label>
 									<div class="controls">
 										<textarea id="Content" class="ckeditor" name="Content" tal:content="Post/getContent"/>
