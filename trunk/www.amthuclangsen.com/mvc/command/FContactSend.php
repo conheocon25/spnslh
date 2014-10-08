@@ -31,13 +31,13 @@
 					);
 			
 			if (isset($Email)) {				
-				$MContent = "ĐIỆN MÁY MINH HOÀNG - Gửi phản hồi liên hệ <br /> 
+				$MContent = "Website ẨM THỰC LÀNG SEN - Gửi phản hồi liên hệ <br /> 
 							Người gửi: $Name <br />
 							Email Người gửi: $Email <br />	
 							Nội dung:   $Content<br />";
 							
 				$doMail->SendMail(
-							"Website HDN Computer - Gửi phản hồi liên hệ", 
+							"Website ẨM THỰC LÀNG SEN - Gửi phản hồi liên hệ", 
 							"admin@caytretramdot.com", 
 							"tuanbuithanh@gmail.com", 
 							$Subject, 

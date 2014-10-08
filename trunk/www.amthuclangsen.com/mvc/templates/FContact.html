@@ -50,7 +50,7 @@
 										<span>Chúng tôi luôn lắng nghe những phản hồi của quý khách về chúng tôi. Ý kiến của quý vị sẽ làm nên sự thành công của chúng tôi.</span>
 									</div>
 									<div class="row">
-										<form id="contact-form">
+										<div id="contact-form">
 											<div class="col-md-6 col-sm-12 col-xs-12">
 												<div class="input-group">
 													<span class="input-group-addon"><span class="input-icon input-icon-user"></span><span class="input-text">Tên&#42;</span></span>
@@ -72,7 +72,7 @@
 												</div>
 												<input id="BtnSend" type="submit" value="Gửi" class="btn btn-custom-2 md-margin"/>
 											</div>
-										</form>
+										</div>
 									</div>
 								</div>
 								
@@ -139,10 +139,10 @@
 			
 			$('#BtnSend').click(function(e){				
 				var Data = [];
-				Data[0] 	= $("#name").val();
-				Data[1] 	= $("#email").val();
-				Data[2] 	= $("#subject").val();				
-				Data[3] 	= $("#content").val();					
+				Data[0] 	= $("#contact-name").val();
+				Data[1] 	= $("#contact-email").val();
+				Data[2] 	= $("#contact-subject").val();				
+				Data[3] 	= $("#contact-message").val();					
 				
 				var URL = "/lien-he/email";
 					$.ajax({
@@ -151,10 +151,10 @@
 						url: URL,						
 						success: function(msg){								
 							if (msg.result = "OK") { 
-								$("#name").val('');
-								$("#email").val('');
-								$("#subject").val('');
-								$("#content").val('');	
+								$("#contact-name").val('');
+								$("#contact-email").val('');
+								$("#contact-subject").val('');
+								$("#contact-message").val('');	
 								alert ("Gui thanh cong!");
 							} else {
 								alert ("Gui that bai !Ban hay gui lai!");

@@ -8,7 +8,7 @@
         zoomLevel: 15,
 		imagewidth: 50,
 		imageheight: 50,
-		center: '399D/31 Ap Phuoc Yen A, Phu Quoi, Long Ho, Vinh Long',		
+		center: '193-195 Dien Bien Phu, P.My Phu, TP Cao Lanh',		
 		start: '#start',		
         end: '#end',
 		directions: 'directions',
