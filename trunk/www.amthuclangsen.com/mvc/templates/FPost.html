@@ -24,7 +24,9 @@
 											</div>
 											<div class="article-meta-view">
 												<span class="separator"><i class="fa fa-eye "></i></span><span tal:content="Post/getViewed"/>
-												<a href="#"><span class="separator"><i class="fa fa-heart"></i></span><span tal:content="Post/getLiked"/></a>
+												<a class="Liked Post" tal:attributes="data-id Post/getId">
+													<span class="separator"><i class="fa fa-heart"></i></span><span tal:content="Post/getLiked"/>
+												</a>
 											</div>
 										</div>
 										<div tal:content="structure Post/getContent" class="article-content-container"/>
@@ -34,15 +36,33 @@
 									<div metal:use-macro="mFront.xhtml/Subscribe"/>
 									<div metal:use-macro="mFront.xhtml/Testmonials"/>
 									<div metal:use-macro="mFront.xhtml/LastestPost"/>
-								</aside>
-								
-							</div><!-- End .row -->
-						</div><!-- End .col-md-12 -->
-					</div><!-- End .row -->
-				</div><!-- End .container -->
-			</section><!-- End #content -->
+								</aside>								
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
 			<div metal:use-macro="mFront.xhtml/Footer"/>
 		</div><!-- End #wrapper -->		
 		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
+		<script type="text/javascript">
+		/*<![CDATA[*/
+			$('.Liked').click(function(){
+				var Data = [];								
+				var Id 	= $(this).attr('data-id');
+								
+				var URL = "/object/liked/Post/"+Id;
+				$.ajax({
+					type: "POST",
+					data: {Data:Data},
+					url: URL,
+					success: function(msg){
+						location.reload();						
+					}
+				});
+				return false;
+			});
+		/*]]>*/
+		</script>
 	</body>
 </html>

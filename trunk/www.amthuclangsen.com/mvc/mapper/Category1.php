@@ -10,7 +10,7 @@ class Category1 extends Mapper implements \MVC\Domain\Category1Finder {
 						
 		$selectAllStmt 	= sprintf("SELECT * from %s order by id_category, name", $tblCategory1);
 		$selectStmt 	= sprintf("SELECT * from %s where id=?", $tblCategory1);
-		$updateStmt 	= sprintf("update %s set id_category=?, id_gattribute=?, name=?, info=?, `order`=?, `key`=? where id=?", $tblCategory1);
+		$updateStmt 	= sprintf("update %s set id_category=?, id_gattribute=?, info=?, name=?, `order`=?, `key`=? where id=?", $tblCategory1);
 		$insertStmt 	= sprintf("insert into %s ( id_category, id_gattribute, info, name, `order`, `key`) values(?, ?, ?, ?, ?, ?)", $tblCategory1);
 		$deleteStmt 	= sprintf("delete from %s where id=?", $tblCategory1);
 		$findByStmt 	= sprintf("SELECT * FROM  %s WHERE id_category=? ORDER BY `order`", $tblCategory1);
@@ -46,8 +46,8 @@ class Category1 extends Mapper implements \MVC\Domain\Category1Finder {
         $values = array( 
 			$object->getIdCategory(),
 			$object->getIdGAttribute(),
-			$object->getName(),
 			$object->getInfo(),
+			$object->getName(),			
 			$object->getOrder(),
 			$object->getKey()
 		); 
@@ -60,9 +60,9 @@ class Category1 extends Mapper implements \MVC\Domain\Category1Finder {
         $values = array( 
 			$object->getIdCategory(),
 			$object->getIdGAttribute(),
-			$object->getName(),
 			$object->getInfo(),
-			$object->getOrder(),			
+			$object->getName(),			
+			$object->getOrder(),
 			$object->getKey(),
 			$object->getId()
 		);		

@@ -24,7 +24,9 @@
 											</div>
 											<div class="article-meta-view">
 												<span class="separator"><i class="fa fa-eye "></i></span><span tal:content="Post/getViewed"/>
-												<a href="#"><span class="separator"><i class="fa fa-heart"></i></span><span tal:content="Post/getLiked"/></a>
+												<a class="Liked Post" tal:attributes="data-id Post/getId">
+													<span class="separator"><i class="fa fa-heart"></i></span><span tal:content="Post/getLiked"/>
+												</a>
 											</div>
 										</div>
 										<div tal:content="structure Post/getContent" class="article-content-container"/>
@@ -43,5 +45,24 @@
 			<div metal:use-macro="mFront.xhtml/Footer"/>
 		</div>
 		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
+		<script type="text/javascript">
+		/*<![CDATA[*/
+			$('.Liked').click(function(){
+				var Data = [];								
+				var Id 	= $(this).attr('data-id');
+								
+				var URL = "/object/liked/Post/"+Id;
+				$.ajax({
+					type: "POST",
+					data: {Data:Data},
+					url: URL,
+					success: function(msg){
+						location.reload();						
+					}
+				});
+				return false;
+			});
+		/*]]>*/
+		</script>
 	</body>
 </html>
