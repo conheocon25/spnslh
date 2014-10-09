@@ -36,42 +36,46 @@
 											</ul>											
 										</div>
 									</div>
-									<div class="md-margin"></div><!-- .space -->
+									<div class="md-margin"></div>
 									<div class="category-item-container">
-										<div class="row">
+										<div class="row tab-content">
 											<div tal:repeat="Product ProductAll" class="col-md-4 col-sm-6 col-xs-12">
-												<div class="item">
+												<div class="item" tal:condition="Product/getInfo">
 													<div class="item-image-container">
 														<figure>
-															<a tal:attributes="href Product/getURLView" tal:condition="Product/getInfo">
+															<a tal:attributes="href Product/getURLView">
 																<img tal:attributes="src Product/getInfo/getImage1" class="item-image"/>
 																<img tal:attributes="src Product/getInfo/getImage2" class="item-image-hover"/>
 															</a>
 														</figure>
 														<div class="item-price-container" tal:condition="Product/getPrice2">
-															<span class="item-price" tal:content="Product/getPrice2Print" />
-														</div>														
+															<span class="item-price" tal:content="Product/getPrice2Print"/>
+														</div>
+														<span class="new-rect">HOT</span>
 													</div>
 													<div class="item-meta-container">
 														<div class="ratings-container">
 															<div class="ratings">
 																<div class="ratings-result" data-result="100"></div>
 															</div>
+															<span class="ratings-amount">1 đánh giá</span>
 														</div>
 														<h3 class="item-name"><a tal:attributes="href Product/getURLView" tal:content="Product/getName"/></h3>
 														<div class="item-action">
-															<div class="item-add-btn" style="cursor:pointer">
-																<span class="icon-cart-text"
-																	tal:attributes="	id 		Product/getId;
-																						name 	Product/getName;
-																						price 	Product/getPrice2;
-																						image 	Product/getInfo/getImage1;
+															<div  class="item-add-btn">
+																<span class="icon-cart-text" style="cursor:pointer"
+																	tal:attributes="	id Product/getId;
+																						name Product/getName;
+																						price Product/getPrice2;
+																						image Product/getInfo/getImage1;
 																	"
-																> Xem chi tiết</span>
+																>
+																	Chi tiết
+																</span>
 															</div>															
 														</div>
 													</div>
-												</div>
+												</div>	
 											</div>
 										</div>
 									</div>
