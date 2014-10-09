@@ -29,6 +29,12 @@
 						"spncom", 
 						"admin368189"
 					);
+			$doGMail = new Mail(
+						"smtp.gmail.com", 
+						"smtp.gmail.com", 
+						"amthuclangsen@gmail.com", 
+						"truongquangthai"
+					);
 			
 			if (isset($Email)) {				
 				$MContent = "Website ẨM THỰC LÀNG SEN - Gửi phản hồi liên hệ <br /> 
@@ -39,9 +45,19 @@
 				$doMail->SendMail(
 							"Website ẨM THỰC LÀNG SEN - Gửi phản hồi liên hệ", 
 							"admin@caytretramdot.com", 
-							"tuanbuithanh@gmail.com", 
+							"thanhbao2007vl@gmail.com", 
 							$Subject, 
 							$MContent
+						);
+						
+				$doGMail->SendMail(
+							"Website ẨM THỰC LÀNG SEN - Gửi phản hồi liên hệ", 
+							"amthuclangsen@gmail.com", 
+							$Email, 
+							"Chúng tôi đã nhận được phản hồi của bạn", 
+							"Kính chào quí khách, <br /> 
+							Chúng tôi đã nhận được nội dung phản hồi quí khách từ amthuclangsen@gmail.com, chúng tôi sẽ nhanh chóng có hồi đáp sớm nhất có thể. <br />
+							Cảm ơn vì đã phản hồi !"
 						);				
 						
 				$json = array('result' => "OK");
