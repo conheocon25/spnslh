@@ -1635,7 +1635,7 @@ parent's font-size:0
 }
 
 
-#products-tabs-content .item:hover {
+#products-tabs-content .item:hover, .category-item-container .item:hover {
 	border: 1px solid #696969;
 	-webkit-box-shadow: 0 0 1px rgba(232, 232, 232, 0.15);
 	box-shadow: 0 0 1px rgba(232, 232, 232, 0.15);
@@ -2484,12 +2484,6 @@ select.input-lg {
 
 .category-toolbar .pagination {
 	margin:0;
-}
-
-.category-item-container .item:hover {
-	border: 1px solid #e8e8e8;
-	-webkit-box-shadow: 0 0 1px rgba(232, 232, 232, 0.15);
-	box-shadow: 0 0 1px rgba(232, 232, 232, 0.15);
 }
 
 .category-item-container.category-list-container .item:hover {
@@ -6137,29 +6131,6 @@ html[xmlns] .slides {display: block;}
 #option-panel #panel-font .panel {
 	margin-bottom:10px;
 }
-
-.header-text-container {
-	width: 400px;
-	height: 36px;
-	overflow: hidden;
-	position: relative;
-}
-
-p.header-text {  
-    position: absolute;
-	width: 2230px;
-	display: block;
-	animation: run-to-left 40s infinite;
-	-webkit-animation: run-to-left 40s infinite;
-	-moz-animation: run-to-left 40s infinite;
-	-o-animation: run-to-left 40s infinite;
-	left: 400px;
-}
-
-@keyframes run-to-left { 0%  { left: 400px; } 100%{ left: -2230px; } }
-@-webkit-keyframes run-to-left { 0%  { left: 400px; } 100%{ left: -2230px; } }
-@-moz-keyframes run-to-left { 0%  { left: 400px; } 100%{ left: -2230px; } }
-@-o-keyframes run-to-left { 0%  { left: 400px; } 100%{ left: -2230px; } }
 
 /* Testimonials Slider */
 .testimonial-details-contact {
