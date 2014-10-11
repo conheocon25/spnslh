@@ -45,6 +45,7 @@
 			$Tag 					= $mTag->findByKey($KTag);
 			$TagAll 				= $mTag->findByPosition(array(1));
 			
+			$URLShare = "http://amthuclangsen.com/tin-tuc/".$KTag."/".$KPost;
 			$Post->setViewed($Post->getViewed()+1);
 			$mPost->update($Post);
 			
@@ -67,6 +68,8 @@
 			$request->setObject("ConfigPhone2", 		$ConfigPhone2);
 			$request->setObject("ConfigGmail", 			$ConfigGmail);
 			$request->setObject("ConfigSkype", 			$ConfigSkype);
+			
+			$request->setObject("URLShare", 			$URLShare);
 			
 			$request->setObject("Post", 				$Post);
 			$request->setObject("CategoryAll", 			$CategoryAll);

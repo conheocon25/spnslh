@@ -125,6 +125,10 @@ class Post extends Object{
 	function getURLUpdExe(){	return "admin/setting/post/".$this->getId()."/upd/exe";}		
 	function getURLDelLoad(){	return "admin/setting/post/".$this->getId()."/del/load";}	
 	function getURLDelExe(){	return "admin/setting/post/".$this->getId()."/del/exe";}
+	
+	function getURLViewFull(){
+		return "http://amthuclangsen.com/gioi-thieu";
+	}
 			
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

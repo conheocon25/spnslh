@@ -19,8 +19,11 @@
 										<div class="article-meta-date" tal:content="Post/getTimePrint"/>
 										<h2 tal:content="Post/getTitle"/>
 										<div class="article-meta-container clearfix">
-											<div class="article-meta-more">
+											<div class="article-meta-more">												
 												<a href="#"><span class="separator"><i class="fa fa-user"></i></span> <span tal:content="Post/getAuthor"></span></a>
+												<div class="share-button-group">										
+													<div class="fb-share-button" tal:attributes="data-href URLShare" data-type="button_count" />
+												</div>
 											</div>
 											<div class="article-meta-view">
 												<span class="separator"><i class="fa fa-eye "></i></span><span tal:content="Post/getViewed"/>
@@ -63,6 +66,14 @@
 				return false;
 			});
 		/*]]>*/
+		</script>
+		<script>(function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) return;
+			js = d.createElement(s); js.id = id;
+			js.src = "//connect.facebook.net/vi_VN/all.js#xfbml=1&appId=525611617524479";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
 		</script>
 	</body>
 </html>
