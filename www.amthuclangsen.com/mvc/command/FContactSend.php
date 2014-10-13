@@ -1,8 +1,9 @@
 <?php
-	namespace MVC\Command;	
+	namespace MVC\Command;
+	use MVC\Library\Mail;	
 	require_once("mvc/library/class.phpmailer.php");
 	require_once("mvc/library/class.smtp.php");
-	use MVC\Library\Mail;
+	
 	class FContactSend extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
@@ -31,7 +32,7 @@
 						"spncom", 
 						"admin368189"
 					);
-					
+			$gmail = new \PHPMailer();		
 			
 			if (isset($Email)) {
 				//gửi mail từ hệ thống website về amthuclangsen.com
@@ -53,25 +54,26 @@
 				$gMailContent = "Kính chào quí khách, <br />
 								Chúng tôi đã nhận được nội dung phản hồi quí khách, chúng tôi sẽ nhanh chóng có hồi đáp sớm nhất có thể. <br />
 								Cảm ơn vì đã phản hồi !";
-				$mail = new \PHPMailer();
-				$mail->IsSMTP();
-				$mail->SMTPDebug = 1;
-				$mail->SMTPAuth = true;
-				$mail->CharSet="UTF-8";
-				$mail->IsHTML(true);
-				$mail->SMTPSecure = 'tls';
-				$mail->Host = "smtp.gmail.com";	
-				$mail->Port = 587;			
-				$mail->Username = "amthuclangsen@gmail.com";
-				$mail->Password = "truongquangthai";
-				$mail->SetFrom("Website ẨM THỰC LÀNG SEN - Đã nhận được phản hồi liên hệ của bạn!");
-				$mail->Subject = "Website ẨM THỰC LÀNG SEN - Đã nhận được phản hồi liên hệ của bạn!";
-				$mail->Body = $gMailContent;
-				$mail->AddAddress($Email, $Name);				
+								
 				
-				if(!$mail->Send())
+				$gmail->IsSMTP();
+				$gmail->SMTPDebug = 1;
+				$gmail->SMTPAuth = true;
+				$gmail->CharSet="UTF-8";
+				$gmail->IsHTML(true);
+				$gmail->SMTPSecure = 'tls';
+				$gmail->Host = "smtp.gmail.com";	
+				$gmail->Port = 587;			
+				$gmail->Username = "amthuclangsen@gmail.com";
+				$gmail->Password = "truongquangthai";
+				$gmail->SetFrom("Website ẨM THỰC LÀNG SEN - Đã nhận được phản hồi liên hệ của bạn!");
+				$gmail->Subject = "Website ẨM THỰC LÀNG SEN - Đã nhận được phản hồi liên hệ của bạn!";
+				$gmail->Body = $gMailContent;
+				$gmail->AddAddress($Email, $Name);				
+				
+				if(!$gmail->Send())
 					{
-					echo "Mailer Error: " . $mail->ErrorInfo;
+					echo "Mailer Error: " . $gmail->ErrorInfo;
 					}
 					else
 					{

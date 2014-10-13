@@ -23,6 +23,7 @@ RewriteRule ^chinh-sach$ 						?cmd=FPolicy 		[L]
 RewriteRule ^faq$ 								?cmd=FFAQ 			[L]
 RewriteRule ^lien-he$ 							?cmd=FContact 		[L]
 RewriteRule ^lien-he/email$ 					?cmd=FContactSend	[L]
+RewriteRule ^lien-he/recaptcha$ 				?cmd=FReCaptcha	[L]
 RewriteRule ^nhan-thong-tin$ 					?cmd=FSubcribe 		[L]
 
 RewriteRule ^khuyen-mai$ 									?cmd=FDealer 		[L]
