@@ -1,9 +1,8 @@
 <?php
-	namespace MVC\Command;
-	use MVC\Library\Mail;	
+	namespace MVC\Command;		
 	require_once("mvc/library/class.phpmailer.php");
 	require_once("mvc/library/class.smtp.php");
-	
+	use MVC\Library\Mail;
 	class FContactSend extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
@@ -26,7 +25,7 @@
 			$Subject 	= $Data[2];
 			$Content 	= $Data[3];
 						
-			$doMail = new \Mail(
+			$doMail = new Mail(
 						"mail.caytretramdot.com", 
 						"admin@caytretramdot.com", 
 						"spncom", 
@@ -42,13 +41,7 @@
 							Email Người gửi: $Email <br />	
 							Nội dung:   $Content<br />";
 							
-				$doMail->SendMail(
-							"Website ẨM THỰC LÀNG SEN - Gửi phản hồi liên hệ", 
-							"admin@caytretramdot.com", 
-							"thanhbao2007vl@gmail.com", 
-							$Subject, 
-							$MContent
-						);
+				
 						
 				//gửi bằng Gmail amthuclangsen@gmail.com
 				$gMailContent = "Kính chào quí khách, <br />
@@ -71,18 +64,18 @@
 				$gmail->Body = $gMailContent;
 				$gmail->AddAddress($Email, $Name);				
 				
-				if(!$gmail->Send())
-					{
-					echo "Mailer Error: " . $gmail->ErrorInfo;
-					}
-					else
-					{
-					echo "Message has been sent";
-					}
+				$gmail->Send();
 				
-				$json = array('result' => "OK");
+				$doMail->SendMail(
+							"Website ẨM THỰC LÀNG SEN - Gửi phản hồi liên hệ", 
+							"admin@caytretramdot.com", 
+							"thanhbao2007vl@gmail.com", 
+							$Subject, 
+							$MContent
+						);
+				$json = array('result' => 'OK');
 				echo json_encode($json);
-			}else { $json = array('result' => "FALSE"); echo json_encode($json);}
+			}else { $json = array('result' => 'FALSE'); echo json_encode($json);}
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
