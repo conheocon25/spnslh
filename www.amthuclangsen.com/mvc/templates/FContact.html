@@ -64,8 +64,7 @@
 													<span class="input-group-addon"><span class="input-icon input-icon-subject"></span><span class="input-text">Chủ đề&#42;</span></span>
 													<input type="text" name="contact-subject" id="contact-subject" required="" class="form-control input-lg"/>
 												</div>
-											</div>
-											
+											</div>										
 											<div class="col-md-6 col-sm-12 col-xs-12">
 												<div class="input-group textarea-container">
 													<span class="input-group-addon"><span class="input-icon input-icon-message"></span><span class="input-text">Nội dung</span></span>
@@ -74,8 +73,7 @@
 												<div id="myrecaptcha" class="input-group"/>	
 												<input id="BtnSend" type="submit" value="Gửi" class="btn btn-custom-2 md-margin"/>
 											</div>
-											
-											<input type="text" id="resultrecaptcha" />												
+											<input type='text' id="Result_ReCaptcha"  />
 										</div>
 									</div>
 								</div>
@@ -122,7 +120,7 @@
             Recaptcha.create("6LfT6vsSAAAAAPxcyLGA1jiNDTm6xw0hnHWdiEk8", 'myrecaptcha', { 
                 tabindex: 1,
 				lang: 'en',
-                theme: 'red',
+                theme: 'white',
 				callback: Recaptcha.focus_response_field				
             });
           }
@@ -158,49 +156,53 @@
 				var DataReCaptcha = [];
 					DataReCaptcha[0] = Recaptcha.get_challenge();
 					DataReCaptcha[1] =  Recaptcha.get_response();
-					alert(DataReCaptcha);
+					
 				var URL = "/lien-he/recaptcha";
-						$.ajax({
+					$.ajax({
 							type: "POST",
 							data: {Data:DataReCaptcha},
-							url: URL,						
-							success: function(msg){
-								alert(msg.[0]);
-								if (msg.[0] = "OK") { 									
-									alert ("Captcha thanh cong!");
-								}else {
+							url: URL,
+							dataType: "json",
+							success: function(msg){								
+								var txtCaptcha = msg.result.trim();
+								$('#Result_ReCaptcha').val(txtCaptcha);
+								if (txtCaptcha === 'FALSE') {
 									alert ("Captcha that bai !Ban hay gui lai!");
 									Recaptcha.reload();
 								}
 							}
 						});
-				
-				if (Recaptcha.get_response() = true) {
 						
-					var Data = [];
-					Data[0] = $("#contact-name").val();
-					Data[1] = $("#contact-email").val();
-					Data[2] = $("#contact-subject").val();				
-					Data[3] = $("#contact-message").val();					
+					var Result_Captcha = $('#Result_ReCaptcha').val().trim();
+					alert(Result_Captcha);	
 					
-					var URL = "/lien-he/email";
-						$.ajax({
-							type: "POST",
-							data: {Data:Data},
-							url: URL,						
-							success: function(msg){								
-								if (msg.result = "OK") { 
-									$("#contact-name").val('');
-									$("#contact-email").val('');
-									$("#contact-subject").val('');
-									$("#contact-message").val('');	
-									alert ("Gui thanh cong!");
-								} else {
-									alert ("Gui that bai !Ban hay gui lai!");
+					if (Result_Captcha === 'OK') { 	
+						var Data = [];
+							Data[0] = $("#contact-name").val();
+							Data[1] = $("#contact-email").val();
+							Data[2] = $("#contact-subject").val();				
+							Data[3] = $("#contact-message").val();					
+									
+							var URL1 = "/lien-he/email";
+							$.ajax({
+								type: "POST",
+								data: {Data:Data},
+								url: URL1,				
+								success: function(msg1){	
+									var txtResult = msg1.result.trim();
+									alert(txtResult);
+									if (txtResult === 'OK') { 
+										$("#contact-name").val('');
+										$("#contact-email").val('');
+										$("#contact-subject").val('');
+										$("#contact-message").val('');	
+										alert ("Gui thanh cong!");
+									}else {
+										alert ("Gui that bai !Ban hay gui lai!");
+									}
 								}
-							}
-						});
-				}
+							});
+					}
 			});	
 		</script>
 	</body>
