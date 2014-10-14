@@ -72,8 +72,7 @@
 												</div>
 												<div id="myrecaptcha" class="input-group"/>	
 												<input id="BtnSend" type="submit" value="Gửi" class="btn btn-custom-2 md-margin"/>
-											</div>
-											<input type='text' id="Result_ReCaptcha"  />
+											</div>											
 										</div>
 									</div>
 								</div>
@@ -165,44 +164,42 @@
 							dataType: "json",
 							success: function(msg){								
 								var txtCaptcha = msg.result.trim();
-								$('#Result_ReCaptcha').val(txtCaptcha);
+								if (txtCaptcha === 'OK') {
+									var Data = [];
+									Data[0] = $("#contact-name").val();
+									Data[1] = $("#contact-email").val();
+									Data[2] = $("#contact-subject").val();				
+									Data[3] = $("#contact-message").val();					
+											
+									var URL1 = "/lien-he/email";									
+									$.ajax({
+										type: "POST",
+										data: {Data:Data},
+										url: URL1,
+										success: function(msg1){	
+											var txtResult = msg1.result;											
+											if (txtResult = 'OK') { 
+												$("#contact-name").val('');
+												$("#contact-email").val('');
+												$("#contact-subject").val('');
+												$("#contact-message").val('');	
+												alert ("Gui thanh cong!");
+											}else {
+												alert ("Gui that bai !Ban hay gui lai!");
+											}
+										}
+									});
+									$("#contact-name").val('');
+									$("#contact-email").val('');
+									$("#contact-subject").val('');
+									$("#contact-message").val('');	
+								}
 								if (txtCaptcha === 'FALSE') {
 									alert ("Captcha that bai !Ban hay gui lai!");
 									Recaptcha.reload();
 								}
 							}
 						});
-						
-					var Result_Captcha = $('#Result_ReCaptcha').val().trim();
-					alert(Result_Captcha);	
-					
-					if (Result_Captcha === 'OK') { 	
-						var Data = [];
-							Data[0] = $("#contact-name").val();
-							Data[1] = $("#contact-email").val();
-							Data[2] = $("#contact-subject").val();				
-							Data[3] = $("#contact-message").val();					
-									
-							var URL1 = "/lien-he/email";
-							$.ajax({
-								type: "POST",
-								data: {Data:Data},
-								url: URL1,				
-								success: function(msg1){	
-									var txtResult = msg1.result.trim();
-									alert(txtResult);
-									if (txtResult === 'OK') { 
-										$("#contact-name").val('');
-										$("#contact-email").val('');
-										$("#contact-subject").val('');
-										$("#contact-message").val('');	
-										alert ("Gui thanh cong!");
-									}else {
-										alert ("Gui that bai !Ban hay gui lai!");
-									}
-								}
-							});
-					}
 			});	
 		</script>
 	</body>
