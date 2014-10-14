@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+	</head>
+	
+	<body>
+		<div metal:use-macro="mAdmin.xhtml/Header"/>
+		
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
+			<div class="row">
+				<div class="col-12">					
+					<div class="widget-box">
+						<div class="widget-content nopadding">
+							<form class="form-horizontal" tal:attributes="action Presentation/getURLSettingSlideInsExe" method="post">
+								<div class="control-group">
+									<label class="control-label" for="Name">Tên</label>
+									<div class="controls">
+										<input type="text" id="Name" name="Name" />
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="Order">Thứ tự</label>
+									<div class="controls">
+										<input type="text" id="Order" name="Order" />
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="URL">URL</label>
+									<div class="controls">
+										<input type="text" id="URL" name="URL" />
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="Note">Nội dung</label>
+									<div class="controls">
+										<textarea id="Note" class="ckeditor" name="Note" />
+									</div>
+								</div>
+								<div class="form-actions">
+									<button type="submit" class="btn btn-success" value="submit-value">Lưu</button>
+								</div>
+							</form>
+						</div>
+					</div>										
+				</div>
+			</div>
+		</div>
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<script type="text/javascript" language="javascript" src="/mvc/templates/back/ckeditor/ckeditor.js"/>
+	</body>
+</html>
