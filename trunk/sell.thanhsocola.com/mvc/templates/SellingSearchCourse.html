@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">	
+	<body>
+		<div class="widget-box">										
+			<div class="widget-content nopadding size-12">
+				<ul class="activity-list">
+					<li tal:repeat="Course CourseFAll">	
+						<a class="course-item tip-left" tal:attributes="data-original-title php: Course->getName() . ' ' . Course->getPrice1Print()">
+							<strong class="Course" tal:content="php: Course->getName() . ' ' . Course->getPrice1Print()" tal:attributes="alt Course/getId;data-delta 'plus' "/>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<script>
+			//-----------------------------------------------------------------------------------
+			//click gọi món
+			//-----------------------------------------------------------------------------------
+			$('.Course').click(function(e){
+				var IdCourse 	= $(this).attr('alt');
+				var Delta 		= $(this).attr('data-delta');				
+				var IdTable 	= $("#CurrentTable").attr('alt');
+				URL = "/selling/call/table/"+IdTable+"/"+IdCourse+"/"+Delta;				
+				e.stopImmediatePropagation();
+				$.ajax({
+					type: "POST", 
+					async: false,
+					url: URL,
+					dataType: 'json',
+					success: function(data){
+						var TableActive = "#" + $("#TableActive").attr('alt');
+						$("#Session").load("/selling/load/table/"+IdTable);
+						
+						//Đánh dấu Table có khách
+						$(TableActive).addClass('actived');
+					}
+				});
+			});
+		</script>
+	</body>
+</html>

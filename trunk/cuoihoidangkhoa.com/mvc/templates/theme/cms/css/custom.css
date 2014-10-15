@@ -1,0 +1,33 @@
+
+	th { font-size: 12px !important; }
+	th.left, td.left { text-align: left !important; }
+	th.center, td.center { text-align: center !important; }
+	th.right, td.right { text-align: right !important; }
+	
+	.btn-ins { margin-top: 10px; margin-bottom: -10px; box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1); border: 1px solid #249624; }
+	.btn-multi-delete { margin-top: 10px; margin-bottom: -10px; box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1); border: 1px solid #B21613; }
+	.page-bar { margin-top: -5px; margin-bottom: 0; }
+	
+	.blue-item { color: #294B76 !important; }
+	.red-item { color: #C40003; }
+	.green-item { color: #7DBA38; }
+	
+	.modal-icon { margin-top: -10px; font-size: 20px; margin-right: 7px; }
+
+	.icheckbox_flat-blue { top: -4px !important; margin-bottom: -10px !important; }
+	
+	#sidebar a { cursor: pointer; }
+
+	.size-12 { font-size: 12px; }
+
+	.course-item button { width: 26px; margin-top: -5px; }
+
+	.background-cont { background-color: rgba(0, 0, 0, .9); }
+	
+	.full-screen {
+		width: 100%;
+		height: 100%;
+		margin: 0;
+		top: 0;
+		left: 0;
+	}
