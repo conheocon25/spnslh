@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<div metal:use-macro="mFront.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>
+	</head>	
+	<body>
+		<div id="wrapper">
+			<div metal:use-macro="mFront.xhtml/Header"/>
+			<section id="content">								
+				<div metal:use-macro="mFront.xhtml/LocationBar"/>
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="row">								
+								<div class="col-md-9 col-sm-8 col-xs-12 main-content">									
+									<div class="md-margin">
+										<span>																						
+											<a class="Liked Video" tal:attributes="data-id Video/getId">
+												<span id="LikedView" tal:content="Video/getLiked"/> Like
+											</a>
+											<span tal:content="Video/getViewed"/> Xem
+										</span>
+									</div>
+									<div class="category-item-container category-list-container text-center">
+										<iframe width="640" height="480" 
+											tal:attributes="src Video/getURL" 
+											frameborder="0" allowfullscreen="true">
+										</iframe>
+									</div>
+								</div>
+								<aside class="col-md-3 col-sm-4 col-xs-12 sidebar">
+									<div metal:use-macro="mFront.xhtml/Subscribe"/>
+									<div metal:use-macro="mFront.xhtml/Testmonials"/>
+									<div metal:use-macro="mFront.xhtml/LastestPost"/>
+								</aside>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<div metal:use-macro="mFront.xhtml/Footer"/>
+		</div>
+		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
+		<script type="text/javascript">
+		/*<![CDATA[*/
+			$('.Liked').click(function(){
+				var Data = [];								
+				var Id 	= $(this).attr('data-id');
+								
+				var URL = "/object/liked/Video/"+Id;
+				$.ajax({
+					type: "POST",
+					data: {Data:Data},
+					url: URL,
+					success: function(msg){
+						location.reload();						
+					}
+				});
+				return false;
+			});
+		/*]]>*/
+		</script>
+	</body>
+</html>

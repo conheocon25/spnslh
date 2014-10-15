@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>		
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+	</head>
+	<body>
+		<div metal:use-macro="mAdmin.xhtml/Header"/>
+		<div metal:use-macro="mAdmin.xhtml/StyleTools"/>
+		<div id="sidebar">
+			<ul style="display: block;">
+				<li tal:repeat="Supplier1 SupplierAll" tal:attributes="class php:Supplier1->getId()==Supplier->getId()?'active':'disable'">
+					<a tal:attributes="href Supplier1/getURLResource">
+						<i class="glyphicons-truck"/><span tal:content="Supplier1/getName"/>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
+			<div id="IdSupplier" tal:attributes="alt Supplier/getId" class="row">
+				<div class="col-12">
+					<a href="#DialogIns" data-toggle="modal" class="btn btn-primary btn-ins">
+						<i class="glyphicons-plus"/> Thêm mới
+					</a>
+					<a href="#DialogDelSelected" data-toggle="modal" class="btn btn-primary btn-ins">
+						<i class="glyphicons-remove_2"/> Xóa chọn
+					</a>
+					<div class="widget-box">						
+						<div class="widget-content nopadding">
+							<table class="table table-bordered table-striped table-hover">
+								<thead>
+									<tr>
+										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
+										<th width="200" class="left">TÊN</th>
+										<th class="right" width="120">GIÁ</th>
+										<th class="left" width="100">ĐƠN VỊ</th>
+										<th class="left">GHI CHÚ</th>
+										<th width="40"><i class="glyphicons-edit"/></th>
+										<th width="40"><i class="glyphicons-bin"/></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr tal:repeat="Resource ResourceAll1">
+										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Resource/getId"/></td>
+										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Resource/getId" tal:content="Resource/getName"/></td>
+										<td class="right" tal:content="Resource/getPricePrint"/>
+										<td class="left" tal:content="Resource/getUnit"/>
+										<td class="left" tal:content="Resource/getDescription"/>
+										<td class="center">
+											<a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Resource/getId">
+												<i class="glyphicon glyphicon-pencil"/>
+											</a>
+										</td>
+										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Resource/getId"><i class="glyphicon glyphicon-remove"/></a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div metal:use-macro="mAdmin.xhtml/PageBar"/>					
+					<!-- INSERT DIALOG  -->
+					<div id="DialogIns" class="modal fade">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header"><h3><i class="glyphicons-truck modal-icon"/>THÊM NGUYÊN LIỆU</h3></div>								
+								<form id="FormResourceInsert" action="#" class="form-horizontal" novalidate="novalidate">
+									<div class="modal-body">													
+										<div class="form-group">
+											<label class="control-label">Tên</label>
+											<div class="controls">
+												<input id="Name1" name="Name1" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">Giá</label>
+											<div class="controls">
+												<input id="Price1" name="Price1" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">Đơn vị</label>
+											<div class="controls">
+												<select name="Unit1" id="Unit1" style="width:80%;">
+													<option tal:repeat="Unit UnitAll" tal:attributes="value Unit/getName">
+														<span tal:content="Unit/getName" />
+													</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">Mô tả</label>
+											<div class="controls">
+												<input id="Description1" name="Description1" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button id="URLInsButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Lưu</button>
+										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<!-- END INSERT DIALOG  -->
+					
+					<!-- DIALOG EDIT	-->
+					<div id="DialogEdit" class="modal fade">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h3><i class="glyphicons-truck modal-icon"/>CHỈNH SỬA NGUYÊN LIỆU</h3>
+								</div>
+								<form id="FormResourceUpdate" action="#" class="form-horizontal" novalidate="novalidate">
+									<div class="form-group">
+										<label class="control-label">Tên</label>
+										<div class="controls">
+											<input id="Name2" name="Name2" type="text" class="form-control input-small"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Giá</label>
+										<div class="controls">
+											<input id="Price2" name="Price2" type="text" class="form-control input-small"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Đơn vị</label>
+										<div class="controls">
+											<select name="Unit2" id="Unit2" style="width:80%;">
+												<option tal:repeat="Unit UnitAll" tal:attributes="value Unit/getName">
+													<span tal:content="Unit/getName" />
+												</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Mô tả</label>
+										<div class="controls">
+											<input id="Description2" name="Description2" type="text" class="form-control input-small"/>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button id="URLUpdButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Lưu</button>
+										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<!-- END DIALOG EDIT -->
+					<div metal:use-macro="mDialog.xhtml/DialogDel"/>
+					<div metal:use-macro="mDialog.xhtml/DialogDelSelected"/>
+					
+				</div>
+			</div>
+		</div>
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<script type="text/javascript">
+		/*<![CDATA[*/
+			$('#URLDelSelectedButton').click(function(){
+				var count = 0;
+				var Data = [];
+				var URL = "/object/del/Resource/0";
+				
+				$(".CheckedDel").each(function( i, obj){
+					if ( $(this).is(':checked')==true ){
+						count += 1;
+						Data[count] = $(this).attr('data-id');
+					}
+				});
+				
+				$.ajax({
+					type: "POST",
+					data: {ListId:Data},
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
+			});
+			
+			//-----------------------------------------------------------------------------------
+			//Delete 1 COURSE			
+			//-----------------------------------------------------------------------------------
+			$('.remove-item').click(function(){
+				$('#URLDelButton').attr('alt', $(this).attr('data-id'));
+			});
+			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
+			$('#URLDelButton').click(function(){			
+				var URL = "/object/del/Resource/" + $(this).attr('alt');
+				$.ajax({
+					type: "POST",
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
+			});
+		
+			//-----------------------------------------------------------------------------------
+			//Insert 1 RESOURCE			
+			$("#FormResourceInsert").validate({
+				rules:{
+					Name1:{
+						minlength: 2,
+						required:true
+					},
+					Price1:{						
+						required:true,
+						number:true,
+						min:0
+					}
+				},
+				errorClass: "help-inline",
+				errorElement: "span",
+				highlight:function(element, errorClass, validClass) {
+					$(element).parents('.form-group').addClass('has-error');
+				},
+				unhighlight: function(element, errorClass, validClass) {
+					$(element).parents('.form-group').removeClass('has-error');
+					$(element).parents('.form-group').addClass('has-success');
+				},
+				submitHandler: function (form) {					
+					var Data = [];
+					Data[0] = 'null';
+					Data[1] = $('#IdSupplier').attr('alt');
+					Data[2] = $('#Name1').val();
+					Data[3] = $('#Price1').val();
+					Data[4] = $('#Unit1').val();
+					Data[5] = $('#Description1').val();
+					var URL = "/object/ins/Resource";
+					$.ajax({
+						type: "POST",
+						data: {Data:Data},
+						url: URL,
+						success: function(msg){
+							location.reload();
+						}
+					});
+					return false;
+				}
+			});
+			$("#DialogIns").on('show.bs.modal', function(event){
+				window.setTimeout(
+					function(){$(event.currentTarget).find('input#Name1').first().focus()},
+					0500
+				);
+			});
+			
+			//-----------------------------------------------------------------------------------
+			//Load 1 COURSE
+			//-----------------------------------------------------------------------------------
+			$('.update-item').click(function(){
+				//Load dữ liệu JSON về
+				var url = "/object/load/Resource/" + $(this).attr('data-id');
+				
+				//Load dữ liệu JSON lên FORM
+				$.getJSON(url, function(data){
+					$('#URLUpdButton').attr('alt', data.Id);
+					$('#Name2').attr('value', data.Name);
+					$('#Unit2').select2('val', data.Unit);
+					$('#Price2').attr('value', data.Price);					
+					$('#Description2').attr('value', data.Description);
+				});
+			});
+			
+			//-----------------------------------------------------------------------------------
+			//Update 1 RESOURCE
+			//-----------------------------------------------------------------------------------
+			$("#FormResourceUpdate").validate({
+				rules:{
+					Name2:{
+						minlength: 2,
+						required:true
+					},
+					Price2:{						
+						required:true,
+						number:true,
+						min:0
+					}
+				},
+				errorClass: "help-inline",
+				errorElement: "span",
+				highlight:function(element, errorClass, validClass) {
+					$(element).parents('.form-group').addClass('has-error');
+				},
+				unhighlight: function(element, errorClass, validClass) {
+					$(element).parents('.form-group').removeClass('has-error');
+					$(element).parents('.form-group').addClass('has-success');
+				},
+				submitHandler: function (form) {					
+					var Data = [];								
+					Data[0] = $('#URLUpdButton').attr('alt');
+					Data[1] = $('#IdSupplier').attr('alt');				
+					Data[2] = $('#Name2').val();
+					Data[3] = $('#Price2').val();
+					Data[4] = $('#Unit2').val();
+					Data[5] = $('#Description2').val();
+									
+					var URL = "/object/upd/Resource";
+					$.ajax({
+						type: "POST",
+						data: {Data:Data},
+						url: URL,
+						success: function(msg){
+							location.reload();
+						}
+					});
+					return false;
+				}
+			});
+			$("#DialogEdit").on('show.bs.modal', function(event){
+				window.setTimeout(
+					function(){$(event.currentTarget).find('input#Name2').first().focus()},
+					0500
+				);
+			});
+			
+		/*]]>*/
+		</script>
+		<div id="IdSupplier" tal:attributes="alt Supplier/getId" />
+	</body>
+</html>

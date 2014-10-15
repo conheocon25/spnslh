@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<link rel="stylesheet" type="text/css" href="/mvc/templates/theme/cms/css/glyphicons-regular.css"/>
+		<link rel="stylesheet" type="text/css" href="/mvc/templates/theme/cms/css/login.bootstrap.css"/>
+        <link rel="stylesheet" type="text/css" href="/mvc/templates/theme/cms/css/login.unicorn.css"/>
+	</head>
+	<body>
+		<div id="container">
+            <div id="logo">
+                <img src="/mvc/templates/theme/cms/img/login.png" alt="logo"/>
+            </div>
+            <div id="user">
+                <div class="avatar">
+                    <div class="inner"></div>
+                    <img src="/mvc/templates/theme/cms/img/av.jpg"/>
+                </div>
+                <div class="text">
+                    <h4>Đang xác thực . . . <p class="user_name" style="padding:5px 0;"/></h4>
+                </div>
+            </div>
+            <div id="loginbox">
+				<form id="loginform" action="/signin/exe" method="post" autocomplete="off">
+    				<h4 style="padding:10px 0;">
+						ĐĂNG NHẬP
+					</h4>
+                    <div class="input-group input-sm">
+                        <span class="input-group-addon"><i class="glyphicons-user"></i></span>
+						<input class="form-control" name="Email" id="username" placeholder="Email" type="text"/>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicons-unlock"></i></span>
+						<input class="form-control" name="Pass" id="password" placeholder="Mật khẩu" type="password"/>
+                    </div>
+                    <div class="form-actions clearfix">                        
+                        <div class="pull-right">
+                            <a class="flip-link to-recover grey">Quên mật khẩu?</a>
+                        </div>
+                        <button class="btn btn-block btn-primary btn-default" value="Đăng nhập" type="submit">
+							Đăng nhập <i class="glyphicons-log_in"/>
+						</button>
+						<small style="display:block;margin-top:20px;">
+							2012 - 2013 &copy; <a href="https://www.spn-soft.com">SPN Group</a>
+						</small>
+                    </div>					
+                </form>
+                <form id="recoverform" action="#" autocomplete="off">
+    				<p>Nhập email để chúng tôi phục hồi mật khẩu cho bạn</p>
+    				<div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicons-envelope"></i></span>
+						<input class="form-control" placeholder="E-mail address" type="text"/>
+                    </div>
+                    <div class="form-actions clearfix">
+                        <div class="pull-left">
+                            <a class="grey flip-link to-login">Đăng nhập</a>
+                        </div>
+                        <button class="btn btn-block btn-success" value="Phục hồi" type="submit">
+							Phục hồi <i class="glyphicons-history"/>
+						</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+		
+		<script type="text/javascript" language="javascript" src="/mvc/templates/theme/cms/js/login.jquery.js"/> 
+        <script type="text/javascript" language="javascript" src="/mvc/templates/theme/cms/js/login.jquery.ui.js"/>
+		<script type="text/javascript" language="javascript" src="/mvc/templates/theme/cms/js/login.unicorn.js"/>
+	</body>
+</html>
