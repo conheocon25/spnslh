@@ -31,8 +31,22 @@
 	<body>		
 		<div id="wrapper">
 			<div metal:use-macro="mFront.xhtml/Header"/>
-			<section id="content">
-				<div metal:use-macro="mFront.xhtml/LocationBar"/>
+			<div id="slider-sequence" class="homeslider">
+				<div class="sequence-prev"></div>
+				<div class="sequence-next"></div>
+				<ul class="sequence-canvas">						
+					<li tal:repeat="Slide Presentation1/getSlideAll" tal:attributes="class php:'sequence-slide' . repeat.Slide.number">
+						<div class="sequencebg">
+							<img tal:attributes="src Slide/getURL;alt php:'sequence-slide-' . repeat.Slide.number" class="sequencebg-image"/>
+						</div>
+						<div class="sequence-container container" tal:content="structure Slide/getNote" />
+					</li>
+				</ul>
+				<ul class="sequence-pagination">
+					<li tal:repeat="Slide Presentation1/getSlideAll" tal:content="php:'Frame ' . repeat.Slide.number"/>
+				</ul>
+			</div>			
+			<section id="content">				
 				<div class="container">
 					<div class="row">
 						<div class="col-md-12">							
@@ -61,9 +75,8 @@
 								</div>
 								<aside class="col-md-3 col-sm-4 col-xs-12 sidebar">									
 									<div metal:use-macro="mFront.xhtml/Subscribe"/>
-									<div metal:use-macro="mFront.xhtml/Testmonials"/>
-									<div metal:use-macro="mFront.xhtml/LastestPost"/>
-								</aside>								
+									<div metal:use-macro="mFront.xhtml/Testmonials"/>								
+								</aside>
 							</div>
 						</div>
 					</div>
@@ -74,6 +87,21 @@
 		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
 		<script type="text/javascript">
 		/*<![CDATA[*/
+			// Sequence.js Slider Plugin
+			var options = {
+				nextButton: true,
+				prevButton: true,
+				pagination:true,
+				autoPlay: true,
+				autoPlayDelay: 8500,
+				pauseOnHover: true,
+				preloader: true,
+				theme: 'slide',
+				speed: 700,
+				animateStartingFrameIn: true
+			},
+			homeSlider = $('#slider-sequence').sequence(options).data("sequence");
+				
 			$('.Liked').click(function(){
 				var Data = [];								
 				var Id 	= $(this).attr('data-id');
