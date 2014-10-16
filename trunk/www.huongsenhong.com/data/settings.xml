@@ -22,12 +22,8 @@
 		<command name="FAlbumImage" 	type="public"><view>FAlbumImage</view></command>
 		
 		<command name="FVideo" 			type="public"><view>FVideo</view></command>
-		<command name="FVideoDetail" 		type="public"><view>FVideoDetail</view></command>
+		<command name="FVideoDetail" 	type="public"><view>FVideoDetail</view></command>
 				
-		<command name="FBookmark" 		type="public"><view>FBookmark</view></command>
-		<command name="FBookmarkAdd" 	type="public"><view>FBookmarkAdd</view></command>
-		<command name="FBookmarkDel" 	type="public"><view>FBookmarkDel</view></command>
-		
 		<command name="FCart" 			type="public"><view>FCart</view></command>
 		<command name="FCartAdd" 		type="public"><view>FCartAdd</view></command>
 		<command name="FCartDel" 		type="public"><view>FCartDel</view></command>
@@ -106,7 +102,7 @@
 		<command name="ASettingSupplierProduct"><view>ASettingSupplierProduct</view></command>
 		<command name="ASettingProductImage">	<view>ASettingProductImage</view></command>
 		<command name="ASettingProductInfo">	<view>ASettingProductInfo</view></command>
-		<command name="ASettingProductInfoExe">	<view>ASettingProductInfoExe</view><status value="CMD_OK"><forward>ASettingSupplierProduct</forward></status></command>
+		<command name="ASettingProductInfoExe">	<view>ASettingProductInfoExe</view><status value="CMD_OK"><forward>ASettingProductInfo</forward></status></command>
 		<command name="ASettingProductAttribute">	<view>ASettingProductAttribute</view></command>
 		<command name="ASettingProductAttributeExe"><view>ASettingProductAttributeExe</view><status value="CMD_OK"><forward>ASettingSupplierProduct</forward></status></command>
 		

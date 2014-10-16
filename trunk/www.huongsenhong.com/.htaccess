@@ -142,11 +142,9 @@ RewriteRule ^admin/setting/supplier/([0-9]+)/page/([0-9]+)$ 			?cmd=ASettingSupp
 RewriteRule ^admin/setting/supplier/([0-9]+)/([0-9]+)/image$ 			?cmd=ASettingProductImage&IdSupplier=$1&IdProduct=$2 [L]
 RewriteRule ^admin/setting/supplier/([0-9]+)/([0-9]+)/info$ 			?cmd=ASettingProductInfo&IdSupplier=$1&IdProduct=$2 [L]
 RewriteRule ^admin/setting/supplier/([0-9]+)/([0-9]+)/info/exe$ 		?cmd=ASettingProductInfoExe&IdSupplier=$1&IdProduct=$2 [L]
-RewriteRule ^admin/setting/supplier/([0-9]+)/([0-9]+)/attribute$ 		?cmd=ASettingProductAttribute&IdSupplier=$1&IdProduct=$2 [L]
-RewriteRule ^admin/setting/supplier/([0-9]+)/([0-9]+)/attribute/exe$ 	?cmd=ASettingProductAttributeExe&IdSupplier=$1&IdProduct=$2 [L]
 
-RewriteRule ^admin/setting/supplier/([0-9]+)/([0-9]+)/manufacturer$ 	?cmd=ASettingSupplierProduct&IdSupplier=$1&IdManufacturer=$2 [L]
-RewriteRule ^admin/setting/supplier/([0-9]+)/([0-9]+)/manufacturer/page/([0-9]+)$ 	?cmd=ASettingSupplierProduct&IdSupplier=$1&IdManufacturer=$2&Page=$3 [L]
+RewriteRule ^admin/setting/supplier/([0-9]+)/([0-9]+)/category$ 				?cmd=ASettingSupplierProduct&IdSupplier=$1&IdCategory1=$2 [L]
+RewriteRule ^admin/setting/supplier/([0-9]+)/([0-9]+)/category/page/([0-9]+)$ 	?cmd=ASettingSupplierProduct&IdSupplier=$1&IdCategory1=$2&Page=$3 [L]
 
 RewriteRule ^admin/setting/employee$ 									?cmd=ASettingEmployee [L]
 RewriteRule ^admin/setting/employee/page/([0-9]+)$ 						?cmd=ASettingEmployee&Page=$1 [L]
