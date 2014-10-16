@@ -44,14 +44,14 @@
 				$PI = $mProductInfo->find($IdPI);
 			}
 			
-			$Title = mb_strtoupper($Product->getName(), 'UTF8');
+			$Title = "MÔ TẢ ".mb_strtoupper($Product->getName(), 'UTF8');
 			$Navigation = array(				
 				array("THIẾT LẬP", "/admin/setting"),
-				array("NHÀ CUNG CẤP", "/admin/setting/supplier"),
-				array(mb_strtoupper($Supplier->getName(),'UTF8'), $Supplier->getURLProduct())
-			);						
+				array(mb_strtoupper($Supplier->getName(),'UTF8'), "/admin/setting/supplier"),
+				array(mb_strtoupper($Product->getCategory()->getName(),'UTF8'), $Supplier->getURLSettingCategory($Product->getIdCategory()))
+			);
 			$ConfigName = $mConfig->findByName("NAME");
-									
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
