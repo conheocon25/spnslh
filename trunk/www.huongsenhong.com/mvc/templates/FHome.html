@@ -44,27 +44,32 @@
 														<div class="item-price-container" tal:condition="Product/getPrice2">
 															<span class="item-price" tal:content="Product/getPrice2Print"/>
 														</div>
+														<!--
 														<span class="new-rect">HOT</span>
+														!-->
 													</div>
 													<div class="item-meta-container">
 														<div class="ratings-container">
 															<div class="ratings">
 																<div class="ratings-result" data-result="100"></div>
 															</div>
-															<span class="ratings-amount">1 đánh giá</span>
 														</div>
-														<h3 class="item-name"><a tal:attributes="href Product/getURLView" tal:content="Product/getName"/></h3>
+														<h3 class="item-name">
+															<a tal:attributes="href Product/getURLView" tal:content="Product/getName"/>
+														</h3>
 														<div class="item-action">
 															<div  class="item-add-btn">
-																<span class="icon-cart-text" style="cursor:pointer"
-																	tal:attributes="	id Product/getId;
-																						name Product/getName;
-																						price Product/getPrice2;
-																						image Product/getInfo/getImage1;
-																	"
-																>
-																	Chi tiết
-																</span>
+																<a tal:attributes="href Product/getURLView">
+																	<span class="icon-cart-text" style="cursor:pointer"
+																		tal:attributes="	id Product/getId;
+																							name Product/getName;
+																							price Product/getPrice2;
+																							image Product/getInfo/getImage1;
+																		"
+																	>
+																		Chi tiết
+																	</span>
+																</a>
 															</div>															
 														</div>
 													</div>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<div metal:use-macro="mFront.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mFront.xhtml/IncludeMETAPOST"/>
 		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>
 	</head>	
 	<body>		
@@ -12,7 +12,7 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-md-12">							
-							<div class="xs-margin"></div><!-- space -->
+							<div class="xs-margin"></div>
 							<div class="row">
 								<div class="col-md-9 col-sm-8 col-xs-12 articles-container single-post">
 									<article class="article">
@@ -20,20 +20,20 @@
 										<h2 tal:content="Post/getTitle"/>
 										<div class="article-meta-container clearfix">
 											<div class="article-meta-more">												
-												<a href="#"><span class="separator"><i class="fa fa-user"></i></span> <span tal:content="Post/getAuthor"></span></a>
-												<div class="share-button-group">										
-													<div class="fb-share-button" tal:attributes="data-href URLShare" data-type="button_count" />
-												</div>
+												<a href="#"><span class="separator"><i class="fa fa-user"></i></span> <span tal:content="Post/getAuthor"></span></a>												
 											</div>
 											<div class="article-meta-view">
 												<span class="separator"><i class="fa fa-eye "></i></span><span tal:content="Post/getViewed"/>
 												<a class="Liked Post" tal:attributes="data-id Post/getId">
 													<span class="separator"><i class="fa fa-heart"></i></span><span tal:content="Post/getLiked"/>
 												</a>
-											</div>
+											</div>											
 										</div>
 										<div tal:content="structure Post/getContent" class="article-content-container"/>
-									</article><!-- End .article -->
+										<div class="share-button-group">
+											<div class="fb-share-button" tal:attributes="data-href URLShare" data-type="button_count" />
+										</div>										
+									</article>
 								</div>
 								<aside class="col-md-3 col-sm-4 col-xs-12 sidebar">
 									<div metal:use-macro="mFront.xhtml/Subscribe"/>
