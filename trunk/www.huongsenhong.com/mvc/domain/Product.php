@@ -159,7 +159,7 @@ class Product extends Object{
 	}
 	
 	function getURLViewFull(){
-		return "http://amthuclangsen.com/san-pham/".$this->getCategory()->getCategory()->getKey()."/".$this->getCategory()->getKey()."/".$this->getKey();
+		return "http://huongsenhong.com/san-pham/".$this->getCategory()->getCategory()->getKey()."/".$this->getCategory()->getKey()."/".$this->getKey();
 	}
 	
 	function getURLSettingImage(){
