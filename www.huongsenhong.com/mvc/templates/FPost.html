@@ -13,9 +13,10 @@
 		<meta name="page-topic" content="Website Khu Ẩm Thực Sinh Thái Hương Sen Hồng Đồng Tháp"/>
 		<meta name="Abstract" content="Website Khu Ẩm Thực Sinh Thái Hương Sen Hồng Đồng Tháp"/>
 		<meta name="classification" content="Website Khu Ẩm Thực Sinh Thái Hương Sen Hồng Đồng Tháp"/>
-		<meta property="og:title" content="TIÊU ĐỀ GÌ ĐÂY"/>
-		<meta property="og:description" content="MÔ TẢ KHỈ GÌ"/>
-		<meta property="og:image" content="ẢNH GÌ À"/>
+		
+		<meta property="og:title" tal:attributes="content Post/getTitle"/>
+		<meta property="og:description" tal:attributes="content Post/getContentReduce"/>
+		<meta property="og:image" tal:attributes="content Post/getImage"/>
 
 		<link rel="shortcut icon" type="image/png" href="/data/images/icon.ico"/>
 	
@@ -47,21 +48,12 @@
 										<div class="article-meta-container clearfix">
 											<div class="article-meta-more">												
 												<a href="#"><span class="separator"><i class="fa fa-user"></i></span> <span tal:content="Post/getAuthor"></span></a>
-												<!--
 												<div class="share-button-group">
 													<div class="fb-share-button" tal:attributes="data-href URLShare" data-type="button_count" />
-												</div>
-												!-->
-												<div class="fb-share-button" data-href="http://huongsenhong.com/tin-tuc/van-hoa-am-thuc/diem-danh-cac-mon-bun-noi-tieng-3-mien-1412577835"></div>
-											</div>
-											<div class="article-meta-view">
-												<span class="separator"><i class="fa fa-eye "></i></span><span tal:content="Post/getViewed"/>
-												<a class="Liked Post" tal:attributes="data-id Post/getId">
-													<span class="separator"><i class="fa fa-heart"></i></span><span tal:content="Post/getLiked"/>
-												</a>
+												</div>																								
 											</div>											
 										</div>
-										<div tal:content="structure Post/getContent" class="article-content-container"/>										
+										<div tal:content="structure Post/getContent" class="article-content-container"/>
 									</article>
 								</div>
 								<aside class="col-md-3 col-sm-4 col-xs-12 sidebar">
