@@ -195,7 +195,10 @@
 					
 				</div>
 			</div>
-		</div>		
+		</div>
+		<div id="IdSupplier" tal:attributes="alt Supplier/getId" />
+		<div id="CurrentIdCategory" tal:attributes="alt IdCategory1" />
+		
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>
 		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
 		<script type="text/javascript">
@@ -287,8 +290,8 @@
 					return false;
 				}
 			});
-			$("#DialogIns").on('show.bs.modal', function(event){
-				$('#IdManufacturer1').select2('val', $('#IdManufacturer').attr('alt') );
+			$("#DialogIns").on('show.bs.modal', function(event){				
+				$('#IdCategory1').select2('val', $('#CurrentIdCategory').attr('alt') );
 				window.setTimeout(
 					function(){$(event.currentTarget).find('input#Name1').first().focus()},
 					0500
@@ -367,7 +370,6 @@
 			
 		/*]]>*/
 		</script>
-		<div id="IdSupplier" tal:attributes="alt Supplier/getId" />
-		<div id="IdCategory1" tal:attributes="alt IdCategory1" />
+		
 	</body>
 </html>

@@ -44,62 +44,27 @@
 										<div class="ratings separator">
 											<div class="ratings-result" data-result="100"></div>
 										</div>
-									</div>									
-									<hr/>
-									<div class="product-add clearfix">
-										<div class="custom-quantity-input">
-											<input type="text" name="quantity" value="1"/>
-											<a href="#" onclick="return false;" class="quantity-btn quantity-input-up"><i class="fa fa-angle-up"></i></a>
-											<a href="#" onclick="return false;" class="quantity-btn quantity-input-down"><i class="fa fa-angle-down"></i></a>
-										</div>
-										<button class="btn btn-custom-2 icon-cart-text"
-											tal:attributes="	id 		Product/getId;
-																name 	Product/getName;
-																price 	Product/getPrice2;
-																image 	Product/getInfo/getImage1;
-															"
-										>
-											THÊM VÀO GIỎ
-										</button>
-									</div><!-- .product-add -->
-									<div class="md-margin"></div><!-- Space -->
+									</div>
+									<div class="md-margin"></div>
 									<div class="product-extra clearfix">
-										<div class="product-extra-box-container clearfix">
-											<div class="item-action-inner">
-												<a href="#" class="icon-button icon-like">Ưa thích</a>
-												<a href="#" class="icon-button icon-compare">Thanh toán</a>
-											</div><!-- End .item-action-inner -->
-										</div>
-										<div class="md-margin visible-xs" />
 										<div class="share-button-group">																				
 											<div class="fb-share-button" tal:attributes="data-href Product/getURLViewFull" data-type="button_count" />
 										</div>
 									</div>
-								</div><!-- End .col-md-6 -->
-							</div><!-- End .row -->
-							<div class="lg-margin2x"></div><!-- End .space -->
-							<div class="row">
-								<div class="col-md-12 col-sm-12 col-xs-12">
-									<div class="tab-container left product-detail-tab clearfix">
-										<ul class="nav-tabs">
-											<li class="active"><a href="#overview" data-toggle="tab">Giới thiệu</a></li>											
-											<li><a href="#facebook" data-toggle="tab">Đánh giá</a></li>
-										</ul>
-										<div class="tab-content clearfix">
-											<div class="tab-pane active" id="overview">
-												<p tal:content="structure Product/getInfo/getInfo"/>
-											</div>
-											<div class="tab-pane" id="facebook">
-												<div class="fb-comments"
-													tal:attributes="data-href Product/getURLViewFull" 
-													data-width="780px" 
-													data-numposts="12"
-													data-colorscheme="light">
-												</div>
-											</div>
+									<div id="facebook">
+										<div class="fb-comments"
+											tal:attributes="data-href Product/getURLViewFull" 
+											data-width="100%" 
+											data-numposts="12"
+											data-colorscheme="light">
 										</div>
 									</div>
-									<div class="lg-margin visible-xs"></div>
+								</div>
+							</div>
+							<div class="lg-margin2x"></div><!-- End .space -->
+							<div class="row">
+								<div class="col-md-12 col-sm-12 col-xs-12">									
+									<p tal:content="structure Product/getInfo/getInfo"/>																		
 								</div>
 								<div class="lg-margin2x visible-sm visible-xs"></div>
 							</div>							
@@ -131,12 +96,7 @@
 													<div class="ratings-result" data-result="100" />
 												</div>												
 											</div>
-											<h3 class="item-name"><a href="product.html" tal:content="P1/getName"/></h3>
-											<div class="item-action">
-												<a tal:attributes="href P1/getURLView" class="item-add-btn">
-													<span class="icon-cart-text">Xem chi tiết</span>
-												</a>												
-											</div>
+											<h3 class="item-name"><a tal:attributes="href P1/getURLView" tal:content="P1/getName"/></h3>
 										</div>
 									</div>
 								</div>
