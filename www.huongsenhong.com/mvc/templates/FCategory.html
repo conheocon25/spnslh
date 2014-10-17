@@ -12,31 +12,13 @@
 					<div class="row">
 						<div class="container" tal:content="structure Category2/getInfo" />
 					</div>
-				</div>
-				<div id="category-breadcrumb">
-					<div class="container">
-						<ul class="breadcrumb">							
-							<li><a href="/">TRANG CHỦ</a></li>
-							<li>THỰC ĐƠN</li>
-							<li class="active" tal:content="Title"/>
-						</ul>
-					</div>
-				</div>
+				</div>				
+				<div metal:use-macro="mFront.xhtml/LocationBar"/>
 				<div class="container">
 					<div class="row">
 						<div class="col-md-12">
 							<div class="row">
-								<div class="col-md-9 col-sm-8 col-xs-12 main-content">
-									<div class="category-toolbar clearfix">										
-										<div class="toolbox-pagination clearfix">
-											<ul class="pagination">
-												<li tal:repeat="P PN/getPages" tal:attributes="class php: (P->getId()==Page)?'active':''">
-													<a tal:attributes="href P/getURL" tal:content="P/getName" />
-												</li>
-											</ul>											
-										</div>
-									</div>
-									<div class="md-margin"></div>
+								<div class="col-md-9 col-sm-8 col-xs-12 main-content">																		
 									<div class="category-item-container">
 										<div class="row tab-content">
 											<div tal:repeat="Product ProductAll" class="col-md-4 col-sm-6 col-xs-12">
@@ -58,25 +40,20 @@
 																<div class="ratings-result" data-result="100"></div>
 															</div>															
 														</div>
-														<h3 class="item-name"><a tal:attributes="href Product/getURLView" tal:content="Product/getName"/></h3>
-														<div class="item-action">															
-															<div  class="item-add-btn">
-																<a tal:attributes="href Product/getURLView">
-																	<span class="icon-cart-text" style="cursor:pointer"
-																		tal:attributes="	id Product/getId;
-																							name Product/getName;
-																							price Product/getPrice2;
-																							image Product/getInfo/getImage1;
-																		"
-																	>
-																		Chi tiết
-																	</span>
-																</a>	
-															</div>															
-														</div>
+														<h3 class="item-name"><a tal:attributes="href Product/getURLView" tal:content="Product/getName"/></h3>														
 													</div>
 												</div>	
 											</div>
+										</div>
+									</div>
+									<div class="md-margin" />
+									<div class="category-toolbar clearfix">
+										<div class="toolbox-pagination clearfix">
+											<ul class="pagination">
+												<li tal:repeat="P PN/getPages" tal:attributes="class php: (P->getId()==Page)?'active':''">
+													<a tal:attributes="href P/getURL" tal:content="P/getName" />
+												</li>
+											</ul>											
 										</div>
 									</div>
 								</div>
