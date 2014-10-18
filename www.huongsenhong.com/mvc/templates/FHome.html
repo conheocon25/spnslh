@@ -61,7 +61,7 @@
 									</div>
 									
 									<div class="purchased-items-container carousel-wrapper">
-										<header class="content-title"><div class="title-bg"> <h2 class="title">ẢNH MỚI NHẤT</h2></div></header>
+										<header class="content-title"><div class="title-bg"> <h2 class="title">ALBUM ẢNH</h2></div></header>
 										<div class="carousel-controls">
 											<div id="purchased-items-slider-prev1" class="carousel-btn carousel-btn-prev"></div>
 											<div id="purchased-items-slider-next1" class="carousel-btn carousel-btn-next carousel-space"></div>
@@ -84,7 +84,7 @@
 									</div>
 									
 									<div class="purchased-items-container carousel-wrapper">
-										<header class="content-title"><div class="title-bg"> <h2 class="title">VIDEO MỚI NHẤT</h2></div></header>
+										<header class="content-title"><div class="title-bg"> <h2 class="title">VIDEO</h2></div></header>
 										<div class="carousel-controls">
 											<div id="purchased-items-slider-prev2" class="carousel-btn carousel-btn-prev"></div>
 											<div id="purchased-items-slider-next2" class="carousel-btn carousel-btn-next carousel-space"></div>
@@ -136,26 +136,7 @@
 					animateStartingFrameIn: true
 				},
 				homeSlider = $('#slider-sequence').sequence(options).data("sequence");
-				/*
-				$(".icon-cart-text").click(function(){
-					var Data 	= [];
-					Data[0]		= $(this).attr('id');
-					Data[1]		= $(this).attr('name');
-					Data[2]		= $(this).attr('price');
-					Data[3]		= $(this).attr('image');
-					
-					var URL = "/gio-hang/them";
-					$.ajax({
-						type: "POST",
-						data: {Data:Data},
-						url: URL,
-						success: function(msg){
-							location.reload();
-						}
-					});				
-				});
-				*/
-				
+								
 				$(".icon-like").click(function(){
 					var Data 	= [];
 					Data[0]		= $(this).attr('id');
