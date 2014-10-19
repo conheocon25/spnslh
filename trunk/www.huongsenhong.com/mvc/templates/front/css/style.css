@@ -22,7 +22,7 @@ body {
 
 #wrapper {
 	width:100%;
-	background: url('/mvc/templates/front/images/bg.jpg') center bottom no-repeat #EEE7DF;
+	background: #fff;
 }
 
 #wrapper.boxed {
@@ -4780,7 +4780,6 @@ noUi-target,
 
 #footer {
 	background: url('/mvc/templates/front/images/fbg.jpg') left bottom no-repeat #022602;
-	*border-top: 2px solid #022602;
 	-webkit-box-shadow:inset 0 2px 1px #25985D;
 	box-shadow:inset 0 2px 1px #25985D;
 	font:15px/2em 'Gudea', Arial, sans-serif !important;
@@ -4906,8 +4905,8 @@ noUi-target,
 
 #footer h3 {
 	font:19px/38px Tahoma, Arial, sans-serif;
-	margin:50px 0 20px;
-	color:#e3e3e3;
+	margin: 0 0 10px;
+	color: #FFFFE0;
 	text-transform:uppercase;
 }
 
