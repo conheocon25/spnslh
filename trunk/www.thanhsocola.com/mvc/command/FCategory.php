@@ -38,7 +38,7 @@
 			$ConfigPhone2 	= $mConfig->findByName("PHONE2");
 			$CategoryAll 	= $mCategory->findAll();
 			$Category1 		= $mCategory->findByKey($KCategory1);
-			$Category2 		= $mCategory1->findByKey($KCategory2);
+			$Category2 		= $mCategory1->findByKey(array($Category1->getId(), $KCategory2));
 			$TagAll 		= $mTag->findByPosition(array(1));
 			$BranchAll 		= $mBranch->findAll();
 			

@@ -15,7 +15,7 @@ class Category1 extends Mapper implements \MVC\Domain\Category1Finder {
 		$deleteStmt 	= sprintf("delete from %s where id=?", $tblCategory1);
 		$findByStmt 	= sprintf("SELECT * FROM  %s WHERE id_category=? ORDER BY `order`", $tblCategory1);
 		$findByPageStmt = sprintf("SELECT * FROM  %s ORDER BY `order` LIMIT :start,:max", $tblCategory1);
-		$findByKeyStmt 	= sprintf("select *  from %s where `key`=?", $tblCategory1);
+		$findByKeyStmt 	= sprintf("select *  from %s where id_category=? AND `key`=?", $tblCategory1);
 				
         $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
         $this->selectStmt = self::$PDO->prepare($selectStmt);
@@ -86,7 +86,7 @@ class Category1 extends Mapper implements \MVC\Domain\Category1Finder {
     }
 	
 	function findByKey( $values ) {	
-		$this->findByKeyStmt->execute( array($values) );
+		$this->findByKeyStmt->execute( $values );
         $array = $this->findByKeyStmt->fetch();
         $this->findByKeyStmt->closeCursor();
         if ( ! is_array( $array ) ) { return null; }

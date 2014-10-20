@@ -13,17 +13,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="row">
-								<div class="col-md-9 col-sm-8 col-xs-12 main-content">
-									<div class="category-toolbar clearfix">										
-										<div class="toolbox-pagination clearfix">
-											<ul class="pagination">
-												<li tal:repeat="P PN/getPages" tal:attributes="class php:Page==P->getId()?'active':'disable'">
-													<a tal:attributes="href P/getURL" tal:content="P/getName"/>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<div class="md-margin"></div><!-- .space -->
+								<div class="col-md-9 col-sm-8 col-xs-12 main-content">																		
 									<div class="category-item-container category-list-container">
 										<div class="item item-list clearfix" tal:repeat="PT PTAll">
 											<div class="item-image-container">
@@ -42,14 +32,20 @@
 												</h3>
 												<div class="ratings-container">
 													<div class="ratings">
-														<div class="ratings-result" data-result="70"></div>
-													</div>
-													<span class="ratings-amount">
-														1 đánh giá
-													</span>
+														<div class="ratings-result" data-result="100"></div>
+													</div>													
 												</div>
 												<p tal:content="structure PT/getPost/getContentReduce"/>
 											</div>
+										</div>
+									</div>
+									<div class="category-toolbar clearfix">
+										<div class="toolbox-pagination clearfix">
+											<ul class="pagination">
+												<li tal:repeat="P PN/getPages" tal:attributes="class php:Page==P->getId()?'active':'disable'">
+													<a tal:attributes="href P/getURL" tal:content="P/getName"/>
+												</li>
+											</ul>
 										</div>
 									</div>
 								</div>

@@ -5,7 +5,7 @@
 	var namelocation;
 	
     $.GoogleMapObjectDefaults = {        
-        zoomLevel: 15,
+        zoomLevel: 17,
 		imagewidth: 50,
 		imageheight: 50,
 		center: '193-195 Dien Bien Phu, P.My Phu, TP Cao Lanh',		

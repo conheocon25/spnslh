@@ -8,9 +8,9 @@
 		<div metal:use-macro="mAdmin.xhtml/Header"/>		
 		<div id="sidebar">
 			<ul style="display: block;">				
-				<li tal:repeat="P1 Supplier/getManufacturerAll" tal:attributes="class php: P1->getIdManufacturer()==IdManufacturer?'active':''">
-					<a tal:attributes="href php:Supplier->getURLSettingManufacturer(P1->getIdManufacturer())">
-						<i class="glyphicons-truck"/><span tal:content="P1/getManufacturer/getName"/>
+				<li tal:repeat="Category1 CategoryAll1" tal:attributes="class php: Category1->getId()==IdCategory1?'active':''">
+					<a tal:attributes="href php:Supplier->getURLSettingCategory(Category1->getId())">
+						<span tal:content="Category1/getCategory/getName"/> / <span tal:content="Category1/getName"/>
 					</a>
 				</li>
 			</ul>
@@ -31,9 +31,8 @@
 							<table class="table table-bordered table-striped table-hover">
 								<thead>
 									<tr>
-										<th width="30"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
-										<th width="90" class="left">DANH MỤC</th>
-										<th width="200" class="left">TÊN</th>																				
+										<th width="30"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>										
+										<th class="left">TÊN</th>																				
 										<th width="90">THÔNG TIN</th>										
 										<th width="90">ALBUM</th>
 										<th width="30"><i class="glyphicons-bin"/></th>
@@ -42,10 +41,6 @@
 								<tbody>
 									<tr tal:repeat="Product ProductAll1">
 										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Product/getId"/></td>
-										<td class="left">
-											<span tal:content="Product/getCategory/getCategory/getName"/> / 
-											<span tal:content="Product/getCategory/getName"/>
-										</td>
 										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" 
 												tal:attributes="id 				Product/getId;
 																idcategory 		Product/getIdCategory;
@@ -80,13 +75,13 @@
 										<div class="form-group">
 											<label class="control-label">Tên</label>
 											<div class="controls">
-												<input id="Name1" name="Name1" type="text" class="form-control input-small"/>
+												<input id="Name1" name="Name1" type="text" class="form-control input-small" value="abc"/>
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="control-label">Mã</label>
 											<div class="controls">
-												<input id="Code1" name="Code1" type="text" class="form-control input-small"/>
+												<input id="Code1" name="Code1" type="text" class="form-control input-small" value="0"/>
 											</div>
 										</div>
 										<div class="form-group">
@@ -113,13 +108,13 @@
 										<div class="form-group">
 											<label class="control-label">Giá nhập</label>
 											<div class="controls">
-												<input id="Price11" name="Price11" type="text" class="form-control input-small"/>
+												<input id="Price11" name="Price11" type="text" class="form-control input-small" value="0"/>
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="control-label">Giá bán</label>
 											<div class="controls">
-												<input id="Price21" name="Price21" type="text" class="form-control input-small"/>
+												<input id="Price21" name="Price21" type="text" class="form-control input-small" value="0"/>
 											</div>
 										</div>										
 									</div>
@@ -177,13 +172,13 @@
 										<div class="form-group">
 											<label class="control-label">Giá nhập</label>
 											<div class="controls">
-												<input id="Price12" name="Price12" type="text" class="form-control input-small"/>
+												<input id="Price12" name="Price12" type="text" class="form-control input-small" value="0"/>
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="control-label">Giá bán</label>
 											<div class="controls">
-												<input id="Price22" name="Price22" type="text" class="form-control input-small"/>
+												<input id="Price22" name="Price22" type="text" class="form-control input-small" value="0"/>
 											</div>
 										</div>										
 									<div class="modal-footer">
@@ -200,7 +195,10 @@
 					
 				</div>
 			</div>
-		</div>		
+		</div>
+		<div id="IdSupplier" tal:attributes="alt Supplier/getId" />
+		<div id="CurrentIdCategory" tal:attributes="alt IdCategory1" />
+		
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>
 		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
 		<script type="text/javascript">
@@ -292,8 +290,8 @@
 					return false;
 				}
 			});
-			$("#DialogIns").on('show.bs.modal', function(event){
-				$('#IdManufacturer1').select2('val', $('#IdManufacturer').attr('alt') );
+			$("#DialogIns").on('show.bs.modal', function(event){				
+				$('#IdCategory1').select2('val', $('#CurrentIdCategory').attr('alt') );
 				window.setTimeout(
 					function(){$(event.currentTarget).find('input#Name1').first().focus()},
 					0500
@@ -372,7 +370,6 @@
 			
 		/*]]>*/
 		</script>
-		<div id="IdSupplier" tal:attributes="alt Supplier/getId" />
-		<div id="IdManufacturer" tal:attributes="alt IdManufacturer" />
+		
 	</body>
 </html>
