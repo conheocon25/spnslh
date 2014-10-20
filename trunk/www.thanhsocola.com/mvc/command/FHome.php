@@ -40,7 +40,7 @@
 			$BranchAll		= $mBranch->findAll();
 			$StoryLineAll	= $mStoryLine->findAll();
 												
-			$CategoryAll 	= $mCategory->findAll();
+			$Category 		= $mCategory->find(1);
 			$ProductAll 	= $mProduct->findByTop(array());			
 			$Presentation1 	= $mPresentation->find($ConfigPHome->getValue());
 			$Presentation2	= $mPresentation->find(3);
@@ -72,7 +72,7 @@
 						
 			$request->setObject("Presentation1", 		$Presentation1);
 			$request->setObject("Presentation2", 		$Presentation2);
-			$request->setObject("CategoryAll", 			$CategoryAll);
+			$request->setObject("Category", 			$Category);
 			$request->setObject("ProductAll", 			$ProductAll);
 			
 			return self::statuses('CMD_DEFAULT');

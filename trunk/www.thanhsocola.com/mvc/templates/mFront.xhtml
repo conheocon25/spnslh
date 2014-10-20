@@ -96,9 +96,9 @@
 				<div class="row">
 					<div class="col-md-5 col-sm-5 col-xs-12 logo-container">
 						<h1 class="logo clearfix">
-							<span>Khu Ẩm Thực Sinh Thái Hương Sen Hồng</span>
-							<a href="/" title="Khu Ẩm Thực Sinh Thái Hương Sen Hồng">
-								<img src="/mvc/templates/front/images/logo.png" alt="Khu Ẩm Thực Sinh Thái Hương Sen Hồng" height="100"/>
+							<span>Cửa hàng Thanh Socola</span>
+							<a href="/" title="Cửa hàng Thanh Socola">
+								<img src="/mvc/templates/front/images/logo.png" alt="Cửa hàng Thanh Socola" height="100"/>
 							</a>
 						</h1>
 					</div>
@@ -143,23 +143,21 @@
 										</ul>
 									</li>
 									<li class="mega-menu-container">
-										<a tal:attributes="class php:Active=='Menu'?'active':'?'" href="JavaScript:;">THỰC ĐƠN</a>
+										<a tal:attributes="class php:Active=='Menu'?'active':'?'" href="JavaScript:;">SẢN PHẨM</a>
 										<div class="mega-menu clearfix">
-											<div class="col-5" tal:repeat="Category CategoryAll">
-												<a href="JavaScript:;" class="mega-menu-title" tal:content="Category/getName"/>
+											<div class="col-5" tal:repeat="Category1 Category/getCategoryAll">
+												<a href="JavaScript:;" class="mega-menu-title" tal:content="Category1/getName"/>
 												<ul class="mega-menu-list clearfix">
-													<li tal:repeat="Category1 Category/getCategoryAll">
-														<a tal:attributes="href Category1/getURLView">
-															<span tal:content="Category1/getName"/> (<span tal:content="Category1/getProductAll/count"/>)
+													<li tal:repeat="Course Category1/getProductAll">
+														<a tal:attributes="href Course/getURLView">
+															<span tal:content="Course/getName"/>
 														</a>
 													</li>
 												</ul>
 											</div>
 										</div>
 									</li>
-									<li><a tal:attributes="class php:Active=='Dealer'?'active':'?'" href="/khuyen-mai">KHUYẾN MÃI</a></li>
-									<li><a tal:attributes="class php:Active=='Album'?'active':'?'" href="/hinh-anh">HÌNH ẢNH</a></li>
-									<li><a tal:attributes="class php:Active=='Video'?'active':'?'" href="/video">VIDEO</a></li>
+									<li><a tal:attributes="class php:Active=='Dealer'?'active':'?'" href="/khuyen-mai">KHUYẾN MÃI</a></li>									
 									<li><a tal:attributes="class php:Active=='Contact'?'active':'?'" href="/lien-he">LIÊN HỆ</a></li>
 								</ul>
 							</nav>							
@@ -343,7 +341,7 @@
 						<p><i>SPN Group - Website duyệt tốt trên <B>Tablet</B>, <B>SmartPhone</B> dùng trình duyệt <B>Google Chrome</B></i></p>
 					</div>
 					<div class="col-md-5 col-sm-5 col-xs-12 footer-text-container">
-						<p>&copy; 2014 Ẩm thực sinh thái Hương Sen Hồng</p>
+						<p>&copy; 2014 Cửa hàng Thanh Socola</p>
 					</div>
 				</div>				
 			</div>
