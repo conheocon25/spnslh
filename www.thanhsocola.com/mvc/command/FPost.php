@@ -37,9 +37,9 @@
 			$ConfigGmail 			= $mConfig->findByName("CONTACT_GTALK");
 			$ConfigSkype 			= $mConfig->findByName("CONTACT_SKYPE");
 			
-			$CategoryAll 			= $mCategory->findAll();
+			$Category 				= $mCategory->find(1);
 			$BranchAll 				= $mBranch->findAll();
-			$StoryLineAll	= $mStoryLine->findAll();
+			$StoryLineAll			= $mStoryLine->findAll();
 			
 			$Post 					= $mPost->findByKey($KPost);
 			$Tag 					= $mTag->findByKey($KTag);
@@ -72,7 +72,7 @@
 			$request->setObject("URLShare", 			$URLShare);
 			
 			$request->setObject("Post", 				$Post);
-			$request->setObject("CategoryAll", 			$CategoryAll);
+			$request->setObject("Category", 			$Category);
 			$request->setObject("BranchAll", 			$BranchAll);
 			$request->setObject("StoryLineAll", 		$StoryLineAll);
 			$request->setObject("LastestPostAll", 		$LastestPostAll);
