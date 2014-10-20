@@ -26,12 +26,12 @@
 			//-------------------------------------------------------------																		
 			$Supplier = $mSupplier->find($IdSupplier);
 			$Product = $mProduct->find($IdProduct);
-			
-			$Title = mb_strtoupper($Product->getName(), 'UTF8');
+									
+			$Title = "ALBUM ".mb_strtoupper($Product->getName(), 'UTF8');
 			$Navigation = array(				
 				array("THIẾT LẬP", "/admin/setting"),
-				array("NHÀ CUNG CẤP", "/admin/setting/supplier"),
-				array(mb_strtoupper($Supplier->getName(), 'UTF8'), $Supplier->getURLProduct())
+				array(mb_strtoupper($Supplier->getName(),'UTF8'), "/admin/setting/supplier"),
+				array(mb_strtoupper($Product->getCategory()->getName(),'UTF8'), $Supplier->getURLSettingCategory($Product->getIdCategory()))
 			);
 			
 			$Config 	= $mConfig->findByName("ROW_PER_PAGE");

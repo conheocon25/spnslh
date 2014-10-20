@@ -72,77 +72,7 @@ class Supplier extends Object{
 	//-------------------------------------------------------------------------------
 	//GET LISTs
 	//-------------------------------------------------------------------------------
-	
-	//Lấy về danh sách trả tiền	
-	function getPaidAll(){		
-		$mSP = new \MVC\Mapper\PaidSupplier();
-		$PaidAll = $mSP->findBy(array($this->getId()));
 		
-		return $PaidAll;
-	}
-	function getPaidsTracking(){
-		if (!isset($this->PaidsTracking)){
-			$Session = \MVC\Base\SessionRegistry::instance();
-			$DateStart = $Session->getReportSupplierDateStart();
-			$DateEnd = $Session->getReportSupplierDateEnd();
-
-			$mPaid = new \MVC\Mapper\PaidSupplier();
-			$this->PaidsTracking = $mPaid->findByTracking1( array($this->getId(), $DateStart, $DateEnd) );
-		}
-		return $this->PaidsTracking;
-	}
-	function getPaidsTrackingValue(){
-		$Paids = $this->getPaidsTracking();
-		$Sum = 0;
-		$Paids->rewind();
-		while ($Paids->valid()){
-			$Sum += $Paids->current()->getValue();
-			$Paids->next();
-		}
-		return $Sum;
-	}
-	function getPaidsTrackingValuePrint(){
-		$Value = $this->getPaidsTrackingValue();
-		$N = new \MVC\Library\Number($Value);
-		return $N->formatCurrency()." đ";
-	}
-	
-			
-	//Lấy về danh sách các đơn hàng
-	function getOrderAll(){
-		$mOrderImport = new \MVC\Mapper\OrderImport();
-		$OrderAll = $mOrderImport->findBy(array($this->getId()));
-		return $OrderAll;
-	}
-		
-	function getOrdersTracking(){
-		if (!isset($this->OrdersTracking)){
-			$Session = \MVC\Base\SessionRegistry::instance();
-			$DateStart = $Session->getReportSupplierDateStart();
-			$DateEnd = $Session->getReportSupplierDateEnd();
-
-			$mOrder = new \MVC\Mapper\OrderImport();
-			$this->OrdersTracking = $mOrder->findByTracking1( array($this->getId(), $DateStart, $DateEnd) );
-		}
-		return $this->OrdersTracking;
-	}
-	
-	function getOrdersTrackingValue(){
-		$Orders = $this->getOrdersTracking();
-		$Sum = 0;
-		$Orders->rewind();
-		while ($Orders->valid()){
-			$Sum += $Orders->current()->getValue();
-			$Orders->next();
-		}
-		return $Sum;
-	}
-	function getOrdersTrackingValuePrint(){
-		$Value = $this->getOrdersTrackingValue();
-		$N = new \MVC\Library\Number($Value);
-		return $N->formatCurrency()." đ";
-	}
-	
 	//Lấy về danh sách các tài nguyên nhà cung cấp có
 	function getProductAll() {
 		$mProduct 	= new \MVC\Mapper\Product();
@@ -155,11 +85,17 @@ class Supplier extends Object{
 		$ProductAll = $mProduct->findBySupplierManufacturer(array($this->getId(), $IdManufacturer));
 		return $ProductAll;
 	}
-	
+			
 	//Lấy về danh sách các nhà sản xuất
 	function getManufacturerAll() {
 		$mProduct 	= new \MVC\Mapper\Product();
 		$ProductAll = $mProduct->findManufacturer(array($this->getId()));
+		return $ProductAll;
+	}
+	
+	function getProductAllByCategory($IdCategory){
+		$mProduct 	= new \MVC\Mapper\Product();
+		$ProductAll = $mProduct->findBySupplierCategory(array($this->getId(), $IdCategory));
 		return $ProductAll;
 	}
 	
@@ -177,13 +113,11 @@ class Supplier extends Object{
 	function getURLSettingManufacturer($IdManufacturer){
 		return "/admin/setting/supplier/".$this->getId()."/".$IdManufacturer."/manufacturer";
 	}
-			
-	//-------------------------------------------------------------------------------
-	//DEFINE URL PAID.SUPPLIER
-	//-------------------------------------------------------------------------------	
-	function getURLPaid(){return "/admin/paid/supplier/".$this->getId();}
-	function getURLPaidInsLoad(){return "/admin/paid/supplier/".$this->getId()."/ins/load";}
-	function getURLPaidInsExe(){return "/admin/paid/supplier/".$this->getId()."/ins/exe";}
+	
+	function getURLSettingCategory($IdCategory){
+		return "/admin/setting/supplier/".$this->getId()."/".$IdCategory."/category";
+	}
+	
 							
 	//---------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

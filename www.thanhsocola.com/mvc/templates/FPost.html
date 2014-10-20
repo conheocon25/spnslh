@@ -1,8 +1,35 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<div metal:use-macro="mFront.xhtml/IncludeMETA"/>
-		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>
+<html prefix="og: http://ogp.me/ns#">
+	<head>		
+		<title>Website Khu Ẩm Thực Sinh Thái Hương Sen Hồng Đồng Tháp</title>
+		<base href="http://huongsenhong.com"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+		<meta http-equiv="Pragma" content="no-cache"/>
+		<meta http-equiv="Expires" content="-1"/>
+		<meta http-equiv="Cache-Control" content="no-cache"/>
+		<meta name="keywords" content="Website Khu Ẩm Thực Sinh Thái Hương Sen Hồng Đồng Tháp"/>
+		<meta name="description" content="Website Khu Ẩm Thực Sinh Thái Hương Sen Hồng Đồng Tháp"/>
+		<meta name="page-topic" content="Website Khu Ẩm Thực Sinh Thái Hương Sen Hồng Đồng Tháp"/>
+		<meta name="Abstract" content="Website Khu Ẩm Thực Sinh Thái Hương Sen Hồng Đồng Tháp"/>
+		<meta name="classification" content="Website Khu Ẩm Thực Sinh Thái Hương Sen Hồng Đồng Tháp"/>
+		
+		<meta property="og:title" tal:attributes="content Post/getTitle"/>
+		<meta property="og:description" tal:attributes="content Post/getContentReduce"/>
+		<meta property="og:image" tal:attributes="content Post/getImage"/>
+
+		<link rel="shortcut icon" type="image/png" href="/data/images/icon.ico"/>
+	
+		<link rel="stylesheet" href="/mvc/templates/front/css/bootstrap.min.css"/>
+		<link rel="stylesheet" href="/mvc/templates/front/css/font-awesome.min.css"/>
+		<link rel="stylesheet" href="/mvc/templates/front/css/prettyPhoto.css"/>
+		<link rel="stylesheet" href="/mvc/templates/front/css/colpick.css"/>
+		<link rel="stylesheet" href="/mvc/templates/front/css/sequence-slider.css"/>
+		<link rel="stylesheet" href="/mvc/templates/front/css/owl.carousel.css"/>
+		<link rel="stylesheet" href="/mvc/templates/front/css/style.css"/>
+		<link rel="stylesheet" href="/mvc/templates/front/css/responsive.css"/>
+	
+	
 	</head>	
 	<body>		
 		<div id="wrapper">
@@ -12,7 +39,7 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-md-12">							
-							<div class="xs-margin"></div><!-- space -->
+							<div class="xs-margin"></div>
 							<div class="row">
 								<div class="col-md-9 col-sm-8 col-xs-12 articles-container single-post">
 									<article class="article">
@@ -21,19 +48,13 @@
 										<div class="article-meta-container clearfix">
 											<div class="article-meta-more">												
 												<a href="#"><span class="separator"><i class="fa fa-user"></i></span> <span tal:content="Post/getAuthor"></span></a>
-												<div class="share-button-group">										
+												<div class="share-button-group">
 													<div class="fb-share-button" tal:attributes="data-href URLShare" data-type="button_count" />
-												</div>
-											</div>
-											<div class="article-meta-view">
-												<span class="separator"><i class="fa fa-eye "></i></span><span tal:content="Post/getViewed"/>
-												<a class="Liked Post" tal:attributes="data-id Post/getId">
-													<span class="separator"><i class="fa fa-heart"></i></span><span tal:content="Post/getLiked"/>
-												</a>
-											</div>
+												</div>																								
+											</div>											
 										</div>
 										<div tal:content="structure Post/getContent" class="article-content-container"/>
-									</article><!-- End .article -->
+									</article>
 								</div>
 								<aside class="col-md-3 col-sm-4 col-xs-12 sidebar">
 									<div metal:use-macro="mFront.xhtml/Subscribe"/>
@@ -66,13 +87,14 @@
 				return false;
 			});
 		/*]]>*/
-		</script>
+		</script>				
+		<div id="fb-root" />
 		<script>(function(d, s, id) {
-			var js, fjs = d.getElementsByTagName(s)[0];
-			if (d.getElementById(id)) return;
-			js = d.createElement(s); js.id = id;
-			js.src = "//connect.facebook.net/vi_VN/all.js#xfbml=1&appId=525611617524479";
-			fjs.parentNode.insertBefore(js, fjs);
+		  var js, fjs = d.getElementsByTagName(s)[0];
+		  if (d.getElementById(id)) return;
+		  js = d.createElement(s); js.id = id;
+		  js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&appId=525611617524479&version=v2.0";
+		  fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'facebook-jssdk'));
 		</script>
 	</body>

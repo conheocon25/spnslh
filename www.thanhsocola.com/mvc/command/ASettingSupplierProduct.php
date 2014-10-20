@@ -13,7 +13,7 @@
 			//-------------------------------------------------------------
 			$Page 			= $request->getProperty('Page');
 			$IdSupplier 	= $request->getProperty('IdSupplier');
-			$IdManufacturer = $request->getProperty('IdManufacturer');
+			$IdCategory1 	= $request->getProperty('IdCategory1');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
@@ -27,50 +27,51 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------									
-			$Supplier = $mSupplier->find($IdSupplier);			
-			if (!isset($IdManufacturer)){
-				$P1All = $Supplier->getManufacturerAll();
-				$IdManufacturer = $mManufacturer->findAll()->current()->getId();
-			}
+			$Supplier = $mSupplier->find($IdSupplier);
+			$CategoryAll1 = $mCategory1->findAll();			
 			
-			$SupplierAll 		= $mSupplier->findAll();
-			$ManufacturerAll 	= $mManufacturer->findAll();
-						
-			$Title = mb_strtoupper($Supplier->getName(), 'UTF8');
+			if (!isset($IdCategory1)){
+				$Category1 	 = $CategoryAll1->current();
+				$IdCategory1 = $CategoryAll1->current()->getId();
+			}else{
+				$Category1 	 = $mCategory1->find($IdCategory1);
+			}
+			$SupplierAll 	= $mSupplier->findAll();
+									
+			$Title = mb_strtoupper($Category1->getName(), 'UTF8');
 			$Navigation = array(				
 				array("THIẾT LẬP", "/admin/setting"),
-				array("NHÀ CUNG CẤP", "/admin/setting/supplier")
+				array(mb_strtoupper($Supplier->getName(),'UTF8'), "/admin/setting/supplier")
 			);
 			if (!isset($Page)) $Page=1;
 			$Config 	= $mConfig->findByName("ROW_PER_PAGE");
 			$ConfigName = $mConfig->findByName("NAME");
 			
-			$ProductAll1 = $mProduct->findByPage1(array($IdSupplier, $IdManufacturer, $Page, $Config->getValue() ));
+			$ProductAll1 = $mProduct->findByPage1(array($IdSupplier, $IdCategory1, $Page, $Config->getValue() ));
 			
 			$PN = new \MVC\Domain\PageNavigation( 
-					$Supplier->getProductManufacturer($IdManufacturer)->count(), 
-					$Config->getValue(), 
-					$Supplier->getURLSettingManufacturer($IdManufacturer) 
-				);
-			$CategoryAll1 = $mCategory1->findAll();			
+				$Supplier->getProductAllByCategory($IdCategory1)->count(),
+				$Config->getValue(), 
+				$Supplier->getURLSettingCategory($IdCategory1) 
+			);			
+			$ManufacturerAll = $mManufacturer->findAll();			
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
 			$request->setProperty('Title'		, $Title);
-			$request->setProperty('IdManufacturer'	, $IdManufacturer);
+			$request->setProperty('IdCategory1'	, $IdCategory1);
 			$request->setProperty('Page'		, $Page);
 			$request->setObject('Navigation'	, $Navigation);
+			$request->setObject('PN'			, $PN);
 			
+			$request->setObject('ManufacturerAll', $ManufacturerAll);
 			$request->setObject('CategoryAll1'	, $CategoryAll1);
 			$request->setObject('ProductAll1'	, $ProductAll1);
-			$request->setObject('Supplier'		, $Supplier);
-			$request->setObject('PN'			, $PN);
-			$request->setObject('ConfigName'	, $ConfigName);
-			
-			$request->setObject('SupplierAll'		, $SupplierAll);
-			$request->setObject('ManufacturerAll'	, $ManufacturerAll);
-			
+			$request->setObject('Supplier'		, $Supplier);			
+			$request->setObject('ConfigName'	, $ConfigName);			
+			$request->setObject('SupplierAll'	, $SupplierAll);
+						
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

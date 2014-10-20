@@ -38,9 +38,8 @@
 			$Post->setAuthor($Author);
 			$Post->setCount($Count);
 			$Post->setViewed($Viewed);
-			$Post->setLiked($Liked);
-			
-			$Post->reKey();
+			$Post->setLiked($Liked);			
+			//$Post->reKey();
 			$mPost->update($Post);
 			
 			//-------------------------------------------------------------

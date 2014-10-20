@@ -22,6 +22,7 @@
 			$mTag 		= new \MVC\Mapper\Tag();
 			$mBranch 	= new \MVC\Mapper\Branch();
 			$mStoryLine	= new \MVC\Mapper\StoryLine();
+			$mPresentation 	= new \MVC\Mapper\Presentation();
 						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -40,6 +41,8 @@
 			$TagAll 				= $mTag->findByPosition(array(1));
 			$StoryLineAll			= $mStoryLine->findAll();
 			$LastestPostAll 		= $mPostTag->findByLastest4(array(null));
+			
+			$Presentation1 			= $mPresentation->find($ConfigPHome->getValue());
 			
 			$Post 					= $mPost->find($ConfigIntro->getValue() );
 			$Post->setViewed($Post->getViewed()+1);
@@ -61,6 +64,7 @@
 			$request->setObject("ConfigGmail", 			$ConfigGmail);
 			$request->setObject("ConfigSkype", 			$ConfigSkype);
 			
+			$request->setObject("Presentation1", 		$Presentation1);
 			$request->setObject("Post", 				$Post);
 			$request->setObject("StoryLineAll", 		$StoryLineAll);
 			$request->setObject("LastestPostAll", 		$LastestPostAll);

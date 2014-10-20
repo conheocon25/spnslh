@@ -55,7 +55,7 @@
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------						
 			$request->setProperty("Title", 				$Title);
-			$request->setProperty("Active", 			'Post');
+			$request->setProperty("Active", 			'Album');
 			$request->setProperty("Page", 				$Page);
 			$request->setObject("Navigation", 			$Navigation);
 			

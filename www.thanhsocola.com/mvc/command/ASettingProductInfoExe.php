@@ -15,7 +15,7 @@
 			$IdProduct 	= $request->getProperty('IdProduct');
 			$Image1 	= $request->getProperty('Image1');
 			$Image2 	= $request->getProperty('Image2');
-			$Info 		= $request->getProperty('Info');
+			$Info 		= \stripslashes($request->getProperty('Info'));
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU

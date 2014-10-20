@@ -43,30 +43,17 @@
 														</figure>
 														<div class="item-price-container" tal:condition="Product/getPrice2">
 															<span class="item-price" tal:content="Product/getPrice2Print"/>
-														</div>
-														<span class="new-rect">HOT</span>
+														</div>														
 													</div>
 													<div class="item-meta-container">
 														<div class="ratings-container">
 															<div class="ratings">
 																<div class="ratings-result" data-result="100"></div>
 															</div>
-															<span class="ratings-amount">1 đánh giá</span>
 														</div>
-														<h3 class="item-name"><a tal:attributes="href Product/getURLView" tal:content="Product/getName"/></h3>
-														<div class="item-action">
-															<div  class="item-add-btn">
-																<span class="icon-cart-text" style="cursor:pointer"
-																	tal:attributes="	id Product/getId;
-																						name Product/getName;
-																						price Product/getPrice2;
-																						image Product/getInfo/getImage1;
-																	"
-																>
-																	Chi tiết
-																</span>
-															</div>															
-														</div>
+														<h3 class="item-name">
+															<a tal:attributes="href Product/getURLView" tal:content="Product/getName"/>
+														</h3>														
 													</div>
 												</div>
 											</div>
@@ -74,10 +61,10 @@
 									</div>
 									
 									<div class="purchased-items-container carousel-wrapper">
-										<header class="content-title"><div class="title-bg"> <h2 class="title">ẢNH MỚI NHẤT</h2></div></header>
+										<header class="content-title"><div class="title-bg"> <h2 class="title">ALBUM ẢNH</h2></div></header>
 										<div class="carousel-controls">
-											<div id="purchased-items-slider-prev" class="carousel-btn carousel-btn-prev"></div>
-											<div id="purchased-items-slider-next" class="carousel-btn carousel-btn-next carousel-space"></div>
+											<div id="purchased-items-slider-prev1" class="carousel-btn carousel-btn-prev"></div>
+											<div id="purchased-items-slider-next1" class="carousel-btn carousel-btn-next carousel-space"></div>
 										</div>
 										<div class="purchased-items-slider owl-carousel">
 											<div class="item" tal:repeat="Album LastestAlbumAll">
@@ -90,17 +77,17 @@
 													</figure>													
 												</div>
 												<div class="item-meta-container">													
-													<h3 class="item-name"><a tal:attributes="href Album/getURLView" tal:content="Album/getName"/></h3>													
+													<h3 class="item-name"><a tal:attributes="href Album/getURLView" tal:content="Album/getName"/></h3>
 												</div>
 											</div>
 										</div>
 									</div>
 									
 									<div class="purchased-items-container carousel-wrapper">
-										<header class="content-title"><div class="title-bg"> <h2 class="title">VIDEO MỚI NHẤT</h2></div></header>
+										<header class="content-title"><div class="title-bg"> <h2 class="title">VIDEO</h2></div></header>
 										<div class="carousel-controls">
-											<div id="purchased-items-slider-prev" class="carousel-btn carousel-btn-prev"></div>
-											<div id="purchased-items-slider-next" class="carousel-btn carousel-btn-next carousel-space"></div>
+											<div id="purchased-items-slider-prev2" class="carousel-btn carousel-btn-prev"></div>
+											<div id="purchased-items-slider-next2" class="carousel-btn carousel-btn-next carousel-space"></div>
 										</div>
 										<div class="purchased-items-slider owl-carousel">
 											<div class="item" tal:repeat="Video LastestVideoAll">
@@ -149,25 +136,7 @@
 					animateStartingFrameIn: true
 				},
 				homeSlider = $('#slider-sequence').sequence(options).data("sequence");
-				
-				$(".icon-cart-text").click(function(){
-					var Data 	= [];
-					Data[0]		= $(this).attr('id');
-					Data[1]		= $(this).attr('name');
-					Data[2]		= $(this).attr('price');
-					Data[3]		= $(this).attr('image');
-					
-					var URL = "/gio-hang/them";
-					$.ajax({
-						type: "POST",
-						data: {Data:Data},
-						url: URL,
-						success: function(msg){
-							location.reload();
-						}
-					});				
-				});
-				
+								
 				$(".icon-like").click(function(){
 					var Data 	= [];
 					Data[0]		= $(this).attr('id');
