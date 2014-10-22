@@ -22,7 +22,7 @@ body {
 
 #wrapper {
 	width:100%;
-	background: #fff;
+	background: url("/mvc/templates/front/images/bg.jpg") no-repeat center center fixed transparent;
 }
 
 #wrapper.boxed {
@@ -48,7 +48,7 @@ h5,
 h6 {
 	font-family: Tahoma, Arial, sans-serif;
 	line-height:1;
-	color:#444645;
+	color:#009100;
 	margin-top:0;
 }
 
@@ -254,7 +254,7 @@ blockquote:before{
 ---------------------  Header -----------------
 ==============================================*/
 #header {
-	background: url('/mvc/templates/front/images/hbg.jpg') repeat top left transparent;
+	background: #022602;
 }
 
 #header-top {
@@ -458,16 +458,13 @@ blockquote:before{
 }
 
 .header-box {
-	background: rgba(255, 255, 255, .3);
 	padding:5px 15px;
-	border:1px solid rgba(255, 255, 255, .2);
 	font-size:13px;
 	line-height:18px;
 	margin-left:8px;
 }
 .header-box h4 {
-	color:#3A6724;
-	text-shadow: 1px 1px rgba(255, 255, 255, .3), -1px -1px rgba(255, 255, 255, .4);
+	color:#fff;
 }
 
 .contact-phones {
@@ -515,15 +512,18 @@ blockquote:before{
 }
 
 .header-box-icon-skype {
-	background-position: -92px -72px;
+	background-position: -224px -10px;
+	*background-position: -92px -72px;
 }
 
 .header-box-icon-email {
-	background-position: -92px -90px;
+	background-position: -260px -8px;
+	*background-position: -92px -90px;
 }
 
 .header-box-icon-earphones {
-	background-position: -56px -72px;
+	background-position: -288px 0;
+	*background-position: -56px -72px;
 }
 
 #main-nav-container {
@@ -598,7 +598,7 @@ blockquote:before{
 #main-nav-container #main-nav .menu li ul li ul {
 	display:none;
 	position:absolute;
-	min-width:210px;
+	min-width:220px;
 	z-index:999;
 	border-top:3px solid #25985D;
 	background: #4BB030;
@@ -1234,6 +1234,7 @@ parent's font-size:0
 
 #content {
 	padding-bottom:50px;
+	background: rgba(255, 255, 255, .7);
 }
 
 #content img {
@@ -1244,7 +1245,7 @@ parent's font-size:0
 
 .title {
 	padding-left:8px;
-	border-left:4px solid #C90E7E;
+	border-left:4px solid #009100;
 	font-size:40px;
 	margin-bottom:15px;
 }
@@ -1271,7 +1272,6 @@ parent's font-size:0
 	left:0;
 	padding-right:30px;
 	z-index:1;
-	background:#fff;
 }
 .title-bg:after {
 	content:'';
