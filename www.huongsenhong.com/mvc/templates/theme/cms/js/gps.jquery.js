@@ -32,7 +32,7 @@
 		var Image = '<img src="'+ $('#Logo').val() +'" height="100pxpx"/>';
 		map.addOverlay(marker);
 		
-		marker.openInfoWindowHtml(Image);	
+		marker.openInfoWindowHtml(Image);
 	}
 		
 
