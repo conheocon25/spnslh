@@ -151,20 +151,18 @@
 			$('.btnBranch:first').click();
 			
 			$('#BtnSend').click(function(e){
+												
+				var URL = "/lien-he/recaptcha/" +  Recaptcha.get_challenge() + "/" + Recaptcha.get_response();
 				
-				var DataReCaptcha = [];
-					DataReCaptcha[0] = Recaptcha.get_challenge();
-					DataReCaptcha[1] =  Recaptcha.get_response();
-					
-				var URL = "/lien-he/recaptcha";
+				alert (URL);
 					$.ajax({
-							type: "POST",
-							data: {Data:DataReCaptcha},
+							type: "POST",							
 							url: URL,
 							dataType: "json",
 							success: function(msg){								
 								var txtCaptcha = msg.result.trim();
 								if (txtCaptcha === 'OK') {
+								
 									var Data = [];
 									Data[0] = $("#contact-name").val();
 									Data[1] = $("#contact-email").val();

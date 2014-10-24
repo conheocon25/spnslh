@@ -1,5 +1,5 @@
 <?php
-	namespace MVC\Command;	
+	namespace MVC\Command;		
 	require_once("mvc/library/class.phpmailer.php");
 	require_once("mvc/library/class.smtp.php");
 	use MVC\Library\Mail;
@@ -25,13 +25,13 @@
 			$Subject 	= $Data[2];
 			$Content 	= $Data[3];
 						
-			$doMail = new \Mail(
+			$doMail = new Mail(
 						"mail.caytretramdot.com", 
 						"admin@caytretramdot.com", 
 						"spncom", 
 						"admin368189"
 					);
-					
+			$gmail = new \PHPMailer();		
 			
 			if (isset($Email)) {
 				//gửi mail từ hệ thống website về amthuclangsen.com
@@ -41,6 +41,31 @@
 							Email Người gửi: $Email <br />	
 							Nội dung:   $Content<br />";
 							
+				
+						
+				//gửi bằng Gmail amthuclangsen@gmail.com
+				$gMailContent = "Kính chào quí khách, <br />
+								Chúng tôi đã nhận được nội dung phản hồi quí khách, chúng tôi sẽ nhanh chóng có hồi đáp sớm nhất có thể. <br />
+								Cảm ơn vì đã phản hồi !";
+								
+				
+				$gmail->IsSMTP();
+				$gmail->SMTPDebug = 1;
+				$gmail->SMTPAuth = true;
+				$gmail->CharSet="UTF-8";
+				$gmail->IsHTML(true);
+				$gmail->SMTPSecure = 'tls';
+				$gmail->Host = "smtp.gmail.com";	
+				$gmail->Port = 587;			
+				$gmail->Username = "amthuclangsen@gmail.com";
+				$gmail->Password = "truongquangthai";
+				$gmail->SetFrom("Website ẨM THỰC LÀNG SEN - Đã nhận được phản hồi liên hệ của bạn!");
+				$gmail->Subject = "Website ẨM THỰC LÀNG SEN - Đã nhận được phản hồi liên hệ của bạn!";
+				$gmail->Body = $gMailContent;
+				$gmail->AddAddress($Email, $Name);				
+				
+				$gmail->Send();
+				
 				$doMail->SendMail(
 							"Website ẨM THỰC LÀNG SEN - Gửi phản hồi liên hệ", 
 							"admin@caytretramdot.com", 
@@ -48,39 +73,9 @@
 							$Subject, 
 							$MContent
 						);
-						
-				//gửi bằng Gmail amthuclangsen@gmail.com
-				$gMailContent = "Kính chào quí khách, <br />
-								Chúng tôi đã nhận được nội dung phản hồi quí khách, chúng tôi sẽ nhanh chóng có hồi đáp sớm nhất có thể. <br />
-								Cảm ơn vì đã phản hồi !";
-				$mail = new \PHPMailer();
-				$mail->IsSMTP();
-				$mail->SMTPDebug = 1;
-				$mail->SMTPAuth = true;
-				$mail->CharSet="UTF-8";
-				$mail->IsHTML(true);
-				$mail->SMTPSecure = 'tls';
-				$mail->Host = "smtp.gmail.com";	
-				$mail->Port = 587;			
-				$mail->Username = "amthuclangsen@gmail.com";
-				$mail->Password = "truongquangthai";
-				$mail->SetFrom("Website ẨM THỰC LÀNG SEN - Đã nhận được phản hồi liên hệ của bạn!");
-				$mail->Subject = "Website ẨM THỰC LÀNG SEN - Đã nhận được phản hồi liên hệ của bạn!";
-				$mail->Body = $gMailContent;
-				$mail->AddAddress($Email, $Name);				
-				
-				if(!$mail->Send())
-					{
-					echo "Mailer Error: " . $mail->ErrorInfo;
-					}
-					else
-					{
-					echo "Message has been sent";
-					}
-				
-				$json = array('result' => "OK");
+				$json = array('result' => 'OK');
 				echo json_encode($json);
-			}else { $json = array('result' => "FALSE"); echo json_encode($json);}
+			}else { $json = array('result' => 'FALSE'); echo json_encode($json);}
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
