@@ -11,6 +11,7 @@
 		<command name="FFAQ" 			type="public"><view>FFAQ</view></command>
 		<command name="FContact" 		type="public"><view>FContact</view></command>
 		<command name="FContactSend" 	type="public"><view>FContactSend</view></command>
+		<command name="FReCaptcha" 		type="public"><view>FReCaptcha</view></command>
 		<command name="FCategory" 		type="public"><view>FCategory</view></command>
 		<command name="FProduct" 		type="public"><view>FProduct</view></command>
 		<command name="FProductSearch" 	type="public"><view>FProductSearch</view></command>

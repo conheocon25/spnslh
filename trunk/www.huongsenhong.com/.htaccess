@@ -23,6 +23,7 @@ RewriteRule ^chinh-sach$ 						?cmd=FPolicy 		[L]
 RewriteRule ^faq$ 								?cmd=FFAQ 			[L]
 RewriteRule ^lien-he$ 							?cmd=FContact 		[L]
 RewriteRule ^lien-he/email$ 					?cmd=FContactSend	[L]
+RewriteRule ^lien-he/recaptcha/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$ 				?cmd=FReCaptcha&CodeChallenge=$1&CodeResponse=$2	[L]
 RewriteRule ^nhan-thong-tin$ 					?cmd=FSubcribe 		[L]
 
 RewriteRule ^khuyen-mai$ 									?cmd=FDealer 		[L]
