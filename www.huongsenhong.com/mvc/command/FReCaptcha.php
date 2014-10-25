@@ -13,7 +13,7 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------			
-			$Privatekey = '6LfT6vsSAAAAAFJ0oBZZuJyqWDjFALiirteh_whc';
+			$Privatekey = '6Lfnn_wSAAAAABkWtoJjtgTW_iSXF3JnWmHgDKQ8';
 			
 			$CodeChallenge = $request->getProperty('CodeChallenge');
 			$CodeResponse = $request->getProperty('CodeResponse');
