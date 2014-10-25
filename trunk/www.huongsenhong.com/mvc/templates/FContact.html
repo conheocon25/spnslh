@@ -4,7 +4,7 @@
 		<div metal:use-macro="mFront.xhtml/IncludeMETA"/>
 		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>
 	</head>	
-	<body onload="showRecaptcha();" onunload="GUnload()">
+	<body onload="showRecaptcha('myrecaptcha');" onunload="GUnload()">
 		<!--
 		<div metal:use-macro="mFront.xhtml/OptionPanel"/>
 		!-->
@@ -115,15 +115,13 @@
 		<script type="text/javascript" language="javascript" src="/mvc/templates/theme/cms/js/gps.jquery.js"/>
 		
 		<script type="text/javascript" src="http://www.google.com/recaptcha/api/js/recaptcha_ajax.js"/>
-		<script type="text/javascript">			
-		 function showRecaptcha() {
-            Recaptcha.create("6LfT6vsSAAAAAPxcyLGA1jiNDTm6xw0hnHWdiEk8", 'myrecaptcha', { 
-                tabindex: 1,
-				lang: 'en',
-                theme: 'white',
-				callback: Recaptcha.focus_response_field				
-            });
-          }
+		<script type="text/javascript">	
+			function showRecaptcha(element) {
+			   Recaptcha.create("6Lfnn_wSAAAAAFgAQma0WvpR9Jg3IFqYVsKFsDHg", element, {
+				 theme: "white",
+				 tabindex: 1,
+				 callback: Recaptcha.focus_response_field});
+			 }		
 		</script>
 		
 		<script type="text/javascript">
@@ -181,16 +179,13 @@
 												$("#contact-email").val('');
 												$("#contact-subject").val('');
 												$("#contact-message").val('');	
+												Recaptcha.reload();
 												alert ("Gui thanh cong!");
 											}else {
 												alert ("Gui that bai !Ban hay gui lai!");
 											}
 										}
-									});
-									$("#contact-name").val('');
-									$("#contact-email").val('');
-									$("#contact-subject").val('');
-									$("#contact-message").val('');	
+									});									
 								}
 								if (txtCaptcha === 'FALSE') {
 									alert ("Captcha that bai !Ban hay gui lai!");

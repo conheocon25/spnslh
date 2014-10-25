@@ -34,8 +34,8 @@
 			$gmail = new \PHPMailer();		
 			
 			if (isset($Email)) {
-				//gửi mail từ hệ thống website về amthuclangsen.com
-				$MContent = "Website ẨM THỰC LÀNG SEN - Gửi phản hồi liên hệ <br /> 
+				//gửi mail từ hệ thống website về huongsenhongdongthap.com
+				$MContent = "Website ẨM THỰC HƯƠNG SEN HỒNG - Gửi phản hồi liên hệ <br /> 
 							Người gửi: $Name <br />
 							Chủ Đề: $Subject <br />
 							Email Người gửi: $Email <br />	
@@ -43,7 +43,7 @@
 							
 				
 						
-				//gửi bằng Gmail amthuclangsen@gmail.com
+				//gửi bằng Gmail huongsenhongdongthap@gmail.com
 				$gMailContent = "Kính chào quí khách, <br />
 								Chúng tôi đã nhận được nội dung phản hồi quí khách, chúng tôi sẽ nhanh chóng có hồi đáp sớm nhất có thể. <br />
 								Cảm ơn vì đã phản hồi !";
@@ -57,7 +57,7 @@
 				$gmail->SMTPSecure = 'tls';
 				$gmail->Host = "smtp.gmail.com";	
 				$gmail->Port = 587;			
-				$gmail->Username = "amthuclangsen@gmail.com";
+				$gmail->Username = "huongsenhongdongthap@gmail.com";
 				$gmail->Password = "truongquangthai";
 				$gmail->SetFrom("Website ẨM THỰC LÀNG SEN - Đã nhận được phản hồi liên hệ của bạn!");
 				$gmail->Subject = "Website ẨM THỰC LÀNG SEN - Đã nhận được phản hồi liên hệ của bạn!";
