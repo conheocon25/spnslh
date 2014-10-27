@@ -23,6 +23,7 @@
 			$mPostTag 	= new \MVC\Mapper\PostTag();
 			$mBranch 	= new \MVC\Mapper\Branch();
 			$mStoryLine	= new \MVC\Mapper\StoryLine();
+			$mLinked		= new \MVC\Mapper\Linked();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -47,6 +48,7 @@
 			$PN 					= new \MVC\Domain\PageNavigation($VideoAll1->count(), 8, "/hinh-anh");
 			
 			$LastestPostAll 		= $mPostTag->findByLastest4(array(null));
+			$LinkedAll 		= $mLinked->findByTop(array());
 			
 			$Title = "VIDEO";
 			$Navigation = array();
@@ -74,6 +76,7 @@
 			
 			$request->setObject("StoryLineAll", 		$StoryLineAll);
 			$request->setObject("LastestPostAll", 		$LastestPostAll);
+			$request->setObject("LinkedAll", 			$LinkedAll);
 			
 			return self::statuses('CMD_DEFAULT');
 		}

@@ -23,6 +23,7 @@
 			$mBranch 	= new \MVC\Mapper\Branch();
 			$mStoryLine	= new \MVC\Mapper\StoryLine();
 			$mPresentation 	= new \MVC\Mapper\Presentation();
+			$mLinked		= new \MVC\Mapper\Linked();
 						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -47,7 +48,9 @@
 			$Post 					= $mPost->find($ConfigIntro->getValue() );
 			$Post->setViewed($Post->getViewed()+1);
 			$mPost->update($Post);
-						
+			
+			$LinkedAll 				= $mLinked->findByTop(array());
+			
 			$Title = "GIỚI THIỆU";
 			$Navigation = array();
 			
@@ -71,6 +74,7 @@
 			$request->setObject("TagAll", 				$TagAll);
 			$request->setObject("CategoryAll", 			$CategoryAll);
 			$request->setObject("BranchAll", 			$BranchAll);
+			$request->setObject("LinkedAll", 			$LinkedAll);
 									
 			return self::statuses('CMD_DEFAULT');
 		}

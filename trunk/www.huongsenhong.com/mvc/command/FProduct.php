@@ -24,6 +24,7 @@
 			$mProduct 	= new \MVC\Mapper\Product();
 			$mTag 		= new \MVC\Mapper\Tag();
 			$mBranch 	= new \MVC\Mapper\Branch();
+			$mLinked	= new \MVC\Mapper\Linked();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -42,6 +43,8 @@
 			$Category 		= $Category1->getCategory();
 			$TagAll 		= $mTag->findByPosition(array(1));
 			$BranchAll 		= $mBranch->findAll();			
+			
+			$LinkedAll 		= $mLinked->findByTop(array());
 			
 			$Title = mb_strtoupper($Product->getName(),'UTF8');
 			$Navigation = array(
@@ -68,6 +71,7 @@
 			$request->setObject("Product", 		$Product);
 			$request->setObject("TagAll", 		$TagAll);
 			$request->setObject("BranchAll", 	$BranchAll);
+			$request->setObject("LinkedAll", 	$LinkedAll);
 			
 			return self::statuses('CMD_DEFAULT');
 		}

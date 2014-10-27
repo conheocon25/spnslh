@@ -24,7 +24,7 @@
 			$mTag 		= new \MVC\Mapper\Tag();
 			$mBranch 	= new \MVC\Mapper\Branch();
 			$mStoryLine = new \MVC\Mapper\StoryLine();
-			
+			$mLinked	= new \MVC\Mapper\Linked();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -49,7 +49,8 @@
 			$Post->setViewed($Post->getViewed()+1);
 			$mPost->update($Post);
 			
-			$LastestPostAll = $mPostTag->findByLastest4(array(null));
+			$LastestPostAll = $mPostTag->findByLastest4(array(null));			
+			$LinkedAll 		= $mLinked->findByTop(array());
 			
 			$Title = mb_strtoupper($Post->getTitle(), 'UTF8');
 			$Navigation = array(
@@ -78,6 +79,7 @@
 			$request->setObject("LastestPostAll", 		$LastestPostAll);
 			$request->setObject("TagAll", 				$TagAll);
 			$request->setObject("Tag", 					$Tag);
+			$request->setObject("LinkedAll", 			$LinkedAll);
 			
 			return self::statuses('CMD_DEFAULT');
 		}

@@ -23,6 +23,7 @@
 			$mTag 		= new \MVC\Mapper\Tag();
 			$mBranch 	= new \MVC\Mapper\Branch();
 			$mStoryLine	= new \MVC\Mapper\StoryLine();
+			$mLinked		= new \MVC\Mapper\Linked();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -44,6 +45,8 @@
 			$Tag 					= $mTag->findByKey($KTag);
 			$PTAll 					= $mPostTag->findByTagPage(array($Tag->getId(), $Page, 6));
 			$PN 					= new \MVC\Domain\PageNavigation($Tag->getPostAll()->count(), 6, $Tag->getURLView());
+			
+			$LinkedAll 		= $mLinked->findByTop(array());
 			
 			$Title = mb_strtoupper($Tag->getName(), 'UTF8');
 			$Navigation = array();
@@ -70,6 +73,7 @@
 			$request->setObject("Tag", 					$Tag);
 			$request->setObject("PTAll", 				$PTAll);
 			$request->setObject("PN", 					$PN);
+			$request->setObject("LinkedAll", 			$LinkedAll);
 			
 			return self::statuses('CMD_DEFAULT');
 		}

@@ -23,7 +23,8 @@
 			$mTag 		= new \MVC\Mapper\Tag();
 			$mPostTag 	= new \MVC\Mapper\PostTag();
 			$mStoryLine	= new \MVC\Mapper\StoryLine();
-						
+			$mLinked	= new \MVC\Mapper\Linked();
+			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
@@ -47,6 +48,8 @@
 			
 			$StoryLineAll	= $mStoryLine->findAll();
 			$LastestPostAll = $mPostTag->findByLastest4(array(null));
+			
+			$LinkedAll 		= $mLinked->findByTop(array());
 			
 			$Title = mb_strtoupper($Video->getName(), 'UTF8');
 			$Navigation = array(array("VIDEO", "/video"));
@@ -73,6 +76,7 @@
 			$request->setObject("CategoryAll", 			$CategoryAll);
 			$request->setObject("TagAll", 				$TagAll);
 			$request->setObject("Video", 				$Video);			
+			$request->setObject("LinkedAll", 			$LinkedAll);
 						
 			return self::statuses('CMD_DEFAULT');
 		}
