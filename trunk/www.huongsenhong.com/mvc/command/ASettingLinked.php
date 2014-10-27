@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class ASavingDetail extends Command {
+	class ASettingLinked extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -11,38 +11,40 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$IdSave = $request->getProperty('IdSave');
+			$Page = $request->getProperty('Page');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mSave 		= new \MVC\Mapper\Save();
+			$mLinked 	= new \MVC\Mapper\Linked();
 			$mConfig 	= new \MVC\Mapper\Config();
-			$mProduct 	= new \MVC\Mapper\Product();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------						
-			$ProductAll= $mProduct->findAll();
-			$SaveAll 	= $mSave->findAll();
-			$Save 		= $mSave->find($IdSave);
-			
-			$Title = mb_strtoupper($Save->getName(), 'UTF8');
-			$Navigation = array(
-				array("KHUYẾN MÃI", 	"/admin/saving")
-			);						
-			$ConfigName = $mConfig->findByName("NAME");
+			//-------------------------------------------------------------									
+			$LinkedAll = $mLinked->findAll();
 						
+			$Title = "LIÊN KẾT";
+			$Navigation = array(array("THIẾT LẬP", "/admin/setting"));
+			
+			if (!isset($Page)) $Page=1;
+			$Config 	= $mConfig->findByName("ROW_PER_PAGE");
+			$ConfigName	= $mConfig->findByName("NAME");
+			
+			$LinkedAll1 = $mLinked->findByPage(array($Page, $Config->getValue() ));
+			$PN = new \MVC\Domain\PageNavigation($LinkedAll->count(), $Config->getValue(), "/setting/linked" );
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
 			$request->setProperty('Title'		, $Title);
-			$request->setProperty('ActiveAdmin'	, 'Saving');
-			$request->setObject('Navigation'	, $Navigation);			
+			$request->setProperty('ActiveAdmin'	, 'Linked');
+			$request->setProperty('Page'		, $Page);
+			$request->setObject('PN'			, $PN);
+			$request->setObject('Navigation'	, $Navigation);
+			
 			$request->setObject('ConfigName'	, $ConfigName);
-			$request->setObject('ProductAll'	, $ProductAll);
-			$request->setObject('SaveAll'		, $SaveAll);
-			$request->setObject('Save'			, $Save);
+			$request->setObject('LinkedAll1'	, $LinkedAll1);
 															
 			return self::statuses('CMD_DEFAULT');
 		}

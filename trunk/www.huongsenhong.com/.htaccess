@@ -83,12 +83,6 @@ RewriteRule ^object/liked/([A-Za-z0-9]+)/([0-9]+)$ 				?cmd=ObjectLiked&ObjectNa
 RewriteRule ^admin$ 											?cmd=Admin [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
-# DEALER
-#---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^admin/saving$ 										?cmd=ASaving [L]
-RewriteRule ^admin/saving/([0-9]+)$ 							?cmd=ASavingDetail&IdSave=$1 [L]
-
-#---------------------------------------------------------------------------------------------------------------------------
 # SETTING
 #---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^admin/setting$ 											?cmd=ASetting [L]
@@ -155,6 +149,9 @@ RewriteRule ^admin/setting/user/page/([0-9]+)$ 							?cmd=ASettingUser&Page=$1 
 
 RewriteRule ^admin/setting/branch$ 										?cmd=ASettingBranch [L]
 RewriteRule ^admin/setting/branch/page/([0-9]+)$ 						?cmd=ASettingBranch&Page=$1 [L]
+
+RewriteRule ^admin/setting/linked$ 										?cmd=ASettingLinked [L]
+RewriteRule ^admin/setting/linked/page/([0-9]+)$ 						?cmd=ASettingLinked&Page=$1 [L]
 
 RewriteRule ^admin/setting/storyline$ 									?cmd=ASettingStoryLine [L]
 RewriteRule ^admin/setting/storyline/page/([0-9]+)$ 					?cmd=ASettingStoryLine&Page=$1 [L]

@@ -97,8 +97,9 @@
 		<command name="ASettingEmployee">		<view>ASettingEmployee		</view></command>		
 		<command name="ASettingUser">			<view>ASettingUser			</view></command>		
 		<command name="ASettingUnit">			<view>ASettingUnit			</view></command>
-		<command name="ASettingConfig">			<view>ASettingConfig		</view></command>				
+		<command name="ASettingConfig">			<view>ASettingConfig		</view></command>
 		<command name="ASettingSupplier">		<view>ASettingSupplier		</view></command>
+		<command name="ASettingLinked">			<view>ASettingLinked		</view></command>
 		
 		<command name="ASettingSupplierProduct"><view>ASettingSupplierProduct</view></command>
 		<command name="ASettingProductImage">	<view>ASettingProductImage</view></command>
@@ -106,12 +107,5 @@
 		<command name="ASettingProductInfoExe">	<view>ASettingProductInfoExe</view><status value="CMD_OK"><forward>ASettingProductInfo</forward></status></command>
 		<command name="ASettingProductAttribute">	<view>ASettingProductAttribute</view></command>
 		<command name="ASettingProductAttributeExe"><view>ASettingProductAttributeExe</view><status value="CMD_OK"><forward>ASettingSupplierProduct</forward></status></command>
-		
-		<!-- ============================================================================== -->
-		<!-- SAVING				 															-->		
-		<!-- ============================================================================== -->
-		<command name="ASaving"><view>ASaving</view></command>
-		<command name="ASavingDetail"><view>ASavingDetail</view></command>
-		
 	</control>
 </options>
