@@ -217,7 +217,7 @@
 			<input type="submit" value="ĐĂNG KÝ" class="btn btn-custom"/>
 		</form>
 	</div>
-									
+											
 	<!-- ======================================================================== -->
 	<!-- TESTMONIALS														  	  -->
 	<!-- ======================================================================== -->
@@ -290,6 +290,14 @@
 						<ul class="links">
 							<li tal:repeat="Branch BranchAll">
 								<span tal:content="Branch/getName"/>: <span tal:content="Branch/getAddress"/>
+							</li>
+						</ul>
+						<h3><a href="/lien-ket">Liên kết Website</a></h3>
+						<ul class="links">
+							<li tal:repeat="Linked LinkedAll">								
+								<a tal:attributes="href Linked/getWebsite" target="blank">
+									<span tal:content="Linked/getName"/>
+								</a>
 							</li>
 						</ul>
 					</div>					

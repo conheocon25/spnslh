@@ -23,6 +23,7 @@
 			$mPostTag 	= new \MVC\Mapper\PostTag();
 			$mBranch 	= new \MVC\Mapper\Branch();
 			$mStoryLine = new \MVC\Mapper\StoryLine();
+			$mLinked	= new \MVC\Mapper\Linked();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -47,7 +48,8 @@
 			$mAlbum->update($Album);
 			
 			$LastestPostAll = $mPostTag->findByLastest4(array(null));
-									
+			$LinkedAll 		= $mLinked->findByTop(array());
+			
 			$Title = mb_strtoupper($Album->getName(), 'UTF8');
 			$Navigation = array( array("HÌNH ẢNH", "/hinh-anh") );
 			
@@ -72,6 +74,7 @@
 			$request->setObject("CategoryAll", 			$CategoryAll);
 			$request->setObject("TagAll", 				$TagAll);
 			$request->setObject("Album", 				$Album);
+			$request->setObject("LinkedAll", 			$LinkedAll);
 						
 			return self::statuses('CMD_DEFAULT');
 		}

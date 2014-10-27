@@ -15,6 +15,7 @@ class Linked extends Mapper implements \MVC\Domain\LinkedFinder {
 		$deleteStmt 	= sprintf("delete from %s where id=?", $tblLinked);
 		$findByPageStmt = sprintf("SELECT * FROM  %s ORDER BY `order` LIMIT :start,:max", $tblLinked);
 		$findByKeyStmt 	= sprintf("select *  from %s where `key`=?", $tblLinked);
+		$findByTopStmt 	= sprintf("select *  from %s ORDER BY `order` LIMIT 4", $tblLinked);
 		
         $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
         $this->selectStmt = self::$PDO->prepare($selectStmt);
@@ -22,7 +23,8 @@ class Linked extends Mapper implements \MVC\Domain\LinkedFinder {
         $this->insertStmt = self::$PDO->prepare($insertStmt);
 		$this->deleteStmt = self::$PDO->prepare($deleteStmt);
 		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);
-		$this->findByKeyStmt = self::$PDO->prepare($findByKeyStmt);							
+		$this->findByKeyStmt = self::$PDO->prepare($findByKeyStmt);
+		$this->findByTopStmt = self::$PDO->prepare($findByTopStmt);							
     } 
     function getCollection( array $raw ) {return new LinkedCollection( $raw, $this );}
     protected function doCreateObject( array $array ) {		
@@ -68,6 +70,11 @@ class Linked extends Mapper implements \MVC\Domain\LinkedFinder {
 	protected function doDelete(array $values) {return $this->deleteStmt->execute( $values );}	
     function selectStmt() {return $this->selectStmt;}	
     function selectAllStmt() {return $this->selectAllStmt;}
+	
+	function findByTop(array $values) {
+        $this->findByTopStmt->execute( $values );
+        return new LinkedCollection( $this->findByTopStmt->fetchAll(), $this );
+    }
 	
 	function findByPage( $values ) {
 		$this->findByPageStmt->bindValue(':start', ((int)($values[0])-1)*(int)($values[1]), \PDO::PARAM_INT);

@@ -25,7 +25,8 @@
 			$mTag			= new \MVC\Mapper\Tag();
 			$mProduct		= new \MVC\Mapper\Product();
 			$mBranch 		= new \MVC\Mapper\Branch();
-									
+			$mLinked		= new \MVC\Mapper\Linked();
+			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------			
@@ -53,6 +54,8 @@
 				$ProductAll 	= $mProduct->findByCategoryManufacturerPage(array($Category2->getId(), $IdManufacturer, $Page, 9));
 				$PN 			= new \MVC\Domain\PageNavigation($Category2->getProductManufacturerAll($IdManufacturer)->count(), 9, $Category2->getURLViewManufacturer($IdManufacturer));
 			}
+			
+			$LinkedAll 		= $mLinked->findByTop(array());
 			
 			$Title = mb_strtoupper($Category2->getName(), 'UTF8');
 			$Navigation = array(
@@ -82,6 +85,7 @@
 			$request->setObject("ProductAll", 			$ProductAll);
 			$request->setObject("BranchAll", 			$BranchAll);
 			$request->setObject("PMAll", 				$PMAll);
+			$request->setObject("LinkedAll", 			$LinkedAll);
 						
 			return self::statuses('CMD_DEFAULT');
 		}

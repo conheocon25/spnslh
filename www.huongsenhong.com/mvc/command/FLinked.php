@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class FCart extends Command {
+	class FLinked extends Command{
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -11,21 +11,18 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-						
+									
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mConfig 		= new \MVC\Mapper\Config();
-			$mSave 			= new \MVC\Mapper\Save();
-			$mCategory 		= new \MVC\Mapper\Category();
-			$mProduct 		= new \MVC\Mapper\Product();
-			$mPresentation 	= new \MVC\Mapper\Presentation();
-			$mTag 			= new \MVC\Mapper\Tag();
-			$mOED 			= new \MVC\Mapper\OrderExportDetail();
-			$mOID 			= new \MVC\Mapper\OrderImportDetail();
-			$mManufacturer	= new \MVC\Mapper\Manufacturer();
-			$mBranch		= new \MVC\Mapper\Branch();
-			$mStoryLine		= new \MVC\Mapper\StoryLine();
+			$mConfig 	= new \MVC\Mapper\Config();
+			$mCategory 	= new \MVC\Mapper\Category();
+			$mAlbum		= new \MVC\Mapper\Album();
+			$mTag 		= new \MVC\Mapper\Tag();
+			$mPostTag 	= new \MVC\Mapper\PostTag();
+			$mBranch 	= new \MVC\Mapper\Branch();
+			$mStoryLine = new \MVC\Mapper\StoryLine();
+			$mLinked 	= new \MVC\Mapper\Linked();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -35,50 +32,46 @@
 			$ConfigPHome 			= $mConfig->findByName("PRESENTATION_HOME");
 			$ConfigPhone1 			= $mConfig->findByName("PHONE1");
 			$ConfigPhone2 			= $mConfig->findByName("PHONE2");
-			$ConfigYahooMessenger 	= $mConfig->findByName("CONTACT_YAHOOMESSENGER");
+			$ConfigGmail 			= $mConfig->findByName("CONTACT_GTALK");
 			$ConfigSkype 			= $mConfig->findByName("CONTACT_SKYPE");
 			
-			$BranchAll		= $mBranch->findAll();			
-			$ManufacturerAll= $mManufacturer->findAll();
-			$StoryLineAll	= $mStoryLine->findAll();
-									
-			$CategoryAll 	= $mCategory->findAll();
-			$ProductAll1 	= $mProduct->findByTop(array());			
-			$Presentation 	= $mPresentation->find($ConfigPHome->getValue());
+			$CategoryAll 			= $mCategory->findAll();
+			$BranchAll 				= $mBranch->findAll();
+			$StoryLineAll 			= $mStoryLine->findAll();
 			
-			$TagAll 		= $mTag->findByPosition(array(1));
-									
-			$Title = "GIỎ HÀNG";
-			$Navigation = array(
-				
-			);			
-			$Cart = $Session->getCart();
+			if (!isset($Page)) $Page = 1;
+			$TagAll 				= $mTag->findByPosition(array(1));
+						
+			$LinkedAll 				= $mLinked->findAll();
+						
+			$LastestPostAll = $mPostTag->findByLastest4(array(null));
+			
+			$Title = "LIÊN KẾT";
+			$Navigation = array();
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------			
-			$request->setProperty("Active", 			'Cart');
+			//-------------------------------------------------------------						
 			$request->setProperty("Title", 				$Title);
+			$request->setProperty("Active", 			'Linked');
+			$request->setProperty("Page", 				$Page);
+			$request->setObject("Navigation", 			$Navigation);
+			
 			$request->setObject("ConfigName", 			$ConfigName);
 			$request->setObject("ConfigSlogan", 		$ConfigSlogan);
 			$request->setObject("ConfigPhone1", 		$ConfigPhone1);
 			$request->setObject("ConfigPhone2", 		$ConfigPhone2);
-			$request->setObject("ConfigYahooMessenger", $ConfigYahooMessenger);
+			$request->setObject("ConfigGmail", 			$ConfigGmail);
 			$request->setObject("ConfigSkype", 			$ConfigSkype);
-			$request->setObject("Navigation", 			$Navigation);
 			
-			$request->setObject("Cart", 				$Cart);
-			
-			$request->setObject("TagAll", 				$TagAll);
-			$request->setObject("BranchAll", 			$BranchAll);
-			$request->setObject("ManufacturerAll", 		$ManufacturerAll);
 			$request->setObject("StoryLineAll", 		$StoryLineAll);
-						
-			$request->setObject("Presentation", 		$Presentation);
+			$request->setObject("LastestPostAll", 		$LastestPostAll);
+			$request->setObject("BranchAll", 			$BranchAll);
 			$request->setObject("CategoryAll", 			$CategoryAll);
-			$request->setObject("ProductAll1", 			$ProductAll1);
-						
+			$request->setObject("TagAll", 				$TagAll);
 			
+			$request->setObject("LinkedAll", 			$LinkedAll);
+						
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

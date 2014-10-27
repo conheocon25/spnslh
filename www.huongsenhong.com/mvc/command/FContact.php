@@ -19,6 +19,7 @@
 			$mCategory 	= new \MVC\Mapper\Category();
 			$mTag 		= new \MVC\Mapper\Tag();
 			$mBranch 	= new \MVC\Mapper\Branch();
+			$mLinked		= new \MVC\Mapper\Linked();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -36,6 +37,7 @@
 			$CategoryAll 	= $mCategory->findAll();
 			$TagAll 		= $mTag->findByPosition(array(1));
 			$BranchAll 		= $mBranch->findAll();
+			$LinkedAll 		= $mLinked->findByTop(array());
 			
 			$Title = "LIÊN HỆ";
 			$Navigation = array();
@@ -58,6 +60,7 @@
 			$request->setObject("CategoryAll", 			$CategoryAll);
 			$request->setObject("TagAll", 				$TagAll);
 			$request->setObject("BranchAll", 			$BranchAll);
+			$request->setObject("LinkedAll", 			$LinkedAll);
 			
 			return self::statuses('CMD_DEFAULT');
 		}

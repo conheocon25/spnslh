@@ -25,6 +25,7 @@
 			$mBranch		= new \MVC\Mapper\Branch();
 			$mStoryLine		= new \MVC\Mapper\StoryLine();
 			$mVideo			= new \MVC\Mapper\Video();
+			$mLinked		= new \MVC\Mapper\Linked();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -51,6 +52,8 @@
 			$LastestAlbumAll= $mAlbum->findByLastest(array(null));
 			$LastestVideoAll= $mVideo->findByLastest(array(null));
 			
+			$LinkedAll 		= $mLinked->findByTop(array());
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
@@ -73,7 +76,8 @@
 			$request->setObject("Presentation1", 		$Presentation1);
 			$request->setObject("Presentation2", 		$Presentation2);
 			$request->setObject("CategoryAll", 			$CategoryAll);
-			$request->setObject("ProductAll", 			$ProductAll);
+			$request->setObject("ProductAll", 			$ProductAll);			
+			$request->setObject("LinkedAll", 			$LinkedAll);
 			
 			return self::statuses('CMD_DEFAULT');
 		}
