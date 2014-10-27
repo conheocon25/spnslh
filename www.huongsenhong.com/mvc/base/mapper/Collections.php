@@ -8,6 +8,7 @@ class ImageCollection 			extends Collection implements \MVC\Domain\ImageCollecti
 class VideoCollection 			extends Collection implements \MVC\Domain\VideoCollection 			{function targetClass( ) {return "\MVC\Domain\Video";		}}
 
 class BranchCollection 			extends Collection implements \MVC\Domain\BranchCollection 			{function targetClass( ) {return "\MVC\Domain\Branch";		}}
+class LinkedCollection 			extends Collection implements \MVC\Domain\LinkedCollection 			{function targetClass( ) {return "\MVC\Domain\Linked";		}}
 
 class UserCollection 			extends Collection implements \MVC\Domain\UserCollection 			{function targetClass( ) {return "\MVC\Domain\User";		}}
 class FeedCollection 			extends Collection implements \MVC\Domain\FeedCollection 			{function targetClass( ) {return "\MVC\Domain\Feed";		}}

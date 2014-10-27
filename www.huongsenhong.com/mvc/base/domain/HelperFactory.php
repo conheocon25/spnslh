@@ -6,6 +6,7 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	require_once( "mvc/mapper/Video.php" 			);
 	
 	require_once( "mvc/mapper/Branch.php" 			);	
+	require_once( "mvc/mapper/Linked.php" 			);
 	
 	require_once( "mvc/mapper/User.php" 			);	
 	require_once( "mvc/mapper/Feed.php" 			);	

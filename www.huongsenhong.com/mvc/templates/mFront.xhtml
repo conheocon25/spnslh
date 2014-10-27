@@ -15,8 +15,8 @@
 		<meta name="description" content="Website Khu Ẩm Thực Sinh Thái Hương Sen Hồng Đồng Tháp"/>
 		<meta name="page-topic" content="Website Khu Ẩm Thực Sinh Thái Hương Sen Hồng Đồng Tháp"/>
 		<meta name="Abstract" content="Website Khu Ẩm Thực Sinh Thái Hương Sen Hồng Đồng Tháp"/>
-		<meta name="classification" content="Website Khu Ẩm Thực Sinh Thái Hương Sen Hồng Đồng Tháp"/>
-		<link rel="shortcut icon" type="image/png" href="/data/images/icon.ico" />
+		<meta name="classification" content="Website Khu Ẩm Thực Sinh Thái Hương Sen Hồng Đồng Tháp"/>		
+		<link rel="shortcut icon" type="image/png" href="/data/images/icon.png" />
 	</span>
 	
 	<span metal:define-macro="IncludeMETAPOST">
@@ -32,11 +32,12 @@
 		<meta name="page-topic" content="Website Khu Ẩm Thực Sinh Thái Hương Sen Hồng Đồng Tháp"/>
 		<meta name="Abstract" content="Website Khu Ẩm Thực Sinh Thái Hương Sen Hồng Đồng Tháp"/>
 		<meta name="classification" content="Website Khu Ẩm Thực Sinh Thái Hương Sen Hồng Đồng Tháp"/>
-		<meta property="og:title" content="TIÊU ĐỀ GÌ ĐÂY" />
-		<meta property="og:description" content="MÔ TẢ KHỈ GÌ" />
-		<meta property="og:image" content="ẢNH GÌ À" />
+		
+		<meta property="og:title" tal:attributes="content Post/getTitle"/>
+		<meta property="og:description" tal:attributes="content Post/getContentReduce"/>
+		<meta property="og:image" tal:attributes="content Post/getImage"/>
 
-		<link rel="shortcut icon" type="image/png" href="/data/images/icon.ico" />
+		<link rel="shortcut icon" type="image/png" href="/data/images/icon.png" />
 	</span>
 	
 	<!-- ======================================================================== -->
@@ -160,7 +161,7 @@
 									<li><a tal:attributes="class php:Active=='Dealer'?'active':'?'" href="/khuyen-mai">KHUYẾN MÃI</a></li>
 									<li><a tal:attributes="class php:Active=='Album'?'active':'?'" href="/hinh-anh">HÌNH ẢNH</a></li>
 									<li><a tal:attributes="class php:Active=='Video'?'active':'?'" href="/video">VIDEO</a></li>
-									<li><a tal:attributes="class php:Active=='Contact'?'active':'?'" href="/lien-he">LIÊN HỆ</a></li>
+									<li><a tal:attributes="class php:Active=='Contact'?'active':'?'" href="/lien-he">LIÊN HỆ</a></li>									
 								</ul>
 							</nav>							
 						</div>
@@ -188,42 +189,7 @@
 			</div>
 		</div>
 	</div>
-	
-	<!-- ======================================================================== -->
-	<!-- MENU																	  -->
-	<!-- ======================================================================== -->
-	<div metal:define-macro="Menu" class="row-fluid">
-		<div class="span12 nav-menus">
-			<ul class="nav nav-pills">
-				<li tal:attributes="class php:Active=='Home'?'active':''">
-					<a href="/trang-chu">Trang chủ</a>
-				</li>
-				<li tal:attributes="class php:Active=='Introduction'?'active':''">
-					<a href="/gioi-thieu">Giới thiệu</a>
-				</li>
-				<li class="dropdown">
-					<a href="#" data-toggle="dropdown" class="dropdown-toggle"> Tin tức <b class="caret"></b></a>					
-					<ul class="dropdown-menu">							
-						<li tal:repeat="Tag TagAll">
-							<a tal:attributes="href Tag/getURLView" tal:content="Tag/getName"/>
-						</li>
-					</ul>					
-				</li>
-				<li class="dropdown" tal:repeat="Category CategoryAll">
-					<a href="#" data-toggle="dropdown" class="dropdown-toggle"> <span tal:content="Category/getName"/> <b class="caret"></b></a>
-					<ul class="dropdown-menu">							
-						<li tal:repeat="Category1 Category/getCategoryAll">
-							<a tal:attributes="href Category1/getURLView" tal:content="Category1/getName"/>
-						</li>
-					</ul>
-				</li>
-				<li tal:attributes="class php:Active=='Contact'?'active':''">
-					<a href="/lien-he">Liên hệ</a>
-				</li>
-			</ul>
-		</div>
-	</div>
-	
+		
 	<!-- ======================================================================== -->
 	<!-- LOCATION BAR															  -->
 	<!-- ======================================================================== -->
