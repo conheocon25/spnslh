@@ -82,7 +82,7 @@
 
 #slider-sequence > .sequence-canvas > li .sequencebg-image {
 	display:block;
-	max-height:100%;
+	width:100%;
 	opacity:0;
 	-webkit-transition-duration:1.2s;
 	-moz-transition-duration:1.2s;
@@ -480,7 +480,7 @@
 }
 
 .sequence-slide1 .sequence-model {
-	width:50%;
+	width:33%;
 }
 
 .sequence-slide1 .sequence-model,
@@ -495,13 +495,13 @@
 }
 
 .sequence-slide2 .sequence-model {
-	width:65%;
+	width:55%;
 }
 
 .sequence-slide2 .sequence-model,
 .sequence-slide2.animate-out .sequence-model {
 	left:-30%;
-	bottom:18%;
+	bottom:8%;
 }
 
 .sequence-slide2.animate-in .sequence-model {
@@ -510,8 +510,8 @@
 
 .sequence-slide2 .sequence-model2 {
 	height: auto !important;
-	width:30%;
-	bottom:5%;
+	width:25%;
+	bottom:2%;
 }
 
 .sequence-slide2 .sequence-model2,
@@ -535,7 +535,7 @@
 .sequence-slide3.animate-out .sequence-model {
 	left:30%;
 	bottom:0;
-	width:42%;
+	width:40%;
 }
 
 .sequence-slide3.animate-in .sequence-model {
@@ -691,7 +691,7 @@
 @media (min-width: 1200px) {
 
 	.homeslider {
-		height:600px;
+		height:420px;
 	}
 
 	.sequence-title {
