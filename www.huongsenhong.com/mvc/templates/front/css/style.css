@@ -428,12 +428,12 @@ blockquote:before{
 }
 
 #inner-header {
-	padding-top:30px;
+	padding-top:0;
 }
 
 #inner-header .logo-container,
 #inner-header .header-inner-right {
-	margin-bottom:25px;
+	margin-bottom:10px;
 }
 
 #inner-header .header-inner-right {
