@@ -4,7 +4,7 @@
 		<div metal:use-macro="mFront.xhtml/IncludeMETA"/>
 		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>
 	</head>	
-	<body onload="showRecaptcha('myrecaptcha');" onunload="GUnload()">
+	<body onunload="GUnload()">
 		<!--
 		<div metal:use-macro="mFront.xhtml/OptionPanel"/>
 		!-->
@@ -71,9 +71,13 @@
 													<span class="input-group-addon"><span class="input-icon input-icon-message"></span><span class="input-text">Nội dung</span></span>
 													<textarea name="contact-message" id="contact-message" class="form-control" cols="30" rows="6"></textarea>													
 												</div>
-												<div class="input-group textarea-container">
+												<div class="input-group">
+													<span class="input-group-addon"><span class="input-icon input-icon-security"></span><span class="input-text">Mã bảo vệ</span></span>
 													<img id ="PicCaptcha" src="/data/captcha.jpg" height="38px" width="150px" />														
 													<img title="Lấy mã khác" id ="refreshCaptcha" src="/data/images/refresh.png" height="16px" style="margin-bottom:3px; cursor:pointer;" />
+												</div>
+												<div class="input-group">
+													<span class="input-group-addon"><span class="input-icon input-icon-security"></span><span class="input-text">Nhập mã bảo vệ</span></span>
 													<input name="CodeCaptcha" type="text" id="CodeCaptcha"/>
 													<span style="color:red;" id="Mesenge" tal:content="MsgCaptcha" />
 												</div>
@@ -120,23 +124,21 @@
 		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
 		<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=AIzaSyAL3E55skCbhZdaN7Jm3Tip7Np1X04f76w" type="text/javascript"></script>
 		<script type="text/javascript" language="javascript" src="/mvc/templates/theme/cms/js/gps.jquery.js"/>		
-		
-		<script type="text/javascript">	
-			$("#refreshCaptcha").click(function() {
-					$.ajax({
-					  url: 'http://huongsenhong.com/lien-he/RefreshCaptcha',
-					  success: function(data) {
-						$('#PicCaptcha').attr("src","/data/captcha.jpg");						
-					  }
-					});
-			});		
-		</script>
-		
+				
 		<script type="text/javascript">
 			$(function() {											
 				$("#map").googleMap().load();
 			});
 			
+			$("#refreshCaptcha").click(function() {
+					alert('vao ne');
+					$.ajax({
+					  url: 'http://huongsenhong.com/lien-he/RefreshCaptcha',
+					  success: function(data) {						
+						$('#PicCaptcha').attr('src','/data/captcha.jpg');						
+					  }
+					});
+			});	
 			
 			$('.btnBranch').click(function(e){								
 				$('#X').val($(this).attr('data-x'));
@@ -179,8 +181,7 @@
 								$("#contact-name").val('');
 								$("#contact-email").val('');
 								$("#contact-subject").val('');
-								$("#contact-message").val('');	
-								
+								$("#contact-message").val('');								
 								$.ajax({
 								  url: 'http://huongsenhong.com/lien-he/RefreshCaptcha',
 								  success: function(data) {
