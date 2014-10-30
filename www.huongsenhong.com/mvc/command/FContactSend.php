@@ -25,7 +25,8 @@
 			$Email 		= $Data[1];
 			$Subject 	= $Data[2];
 			$Content 	= $Data[3];
-			$CodeCaptcha= $Data[4];		
+			$CodeCaptcha= $Data[4];	
+			
 			$doMail = new Mail(
 						"mail.caytretramdot.com", 
 						"admin@caytretramdot.com", 
