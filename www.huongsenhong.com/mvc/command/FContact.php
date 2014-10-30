@@ -1,5 +1,6 @@
 <?php
 	namespace MVC\Command;	
+	use MVC\Library\Captcha;
 	class FContact extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
@@ -42,6 +43,13 @@
 			$Title = "LIÊN HỆ";
 			$Navigation = array();
 			
+			
+			
+			$mCaptcha = new Captcha();
+			$mCaptcha->createImage();
+			$Session->setCurrentCaptcha($mCaptcha->getSecurityCode());		
+			$MsgCaptcha = $request->getProperty('MsgCaptcha');
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
@@ -61,6 +69,14 @@
 			$request->setObject("TagAll", 				$TagAll);
 			$request->setObject("BranchAll", 			$BranchAll);
 			$request->setObject("LinkedAll", 			$LinkedAll);
+			
+			
+			if ($MsgCaptcha != ""){	
+				$request->setProperty("MsgCaptcha", $MsgCaptcha);
+			}
+			else{
+				$request->setProperty("MsgCaptcha", '');
+			}
 			
 			return self::statuses('CMD_DEFAULT');
 		}

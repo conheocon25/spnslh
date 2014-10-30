@@ -65,16 +65,23 @@
 													<input type="text" name="contact-subject" id="contact-subject" required="" class="form-control input-lg"/>
 												</div>
 											</div>
+											
 											<div class="col-md-6 col-sm-12 col-xs-12">
 												<div class="input-group textarea-container">
 													<span class="input-group-addon"><span class="input-icon input-icon-message"></span><span class="input-text">Nội dung</span></span>
-													<textarea name="contact-message" id="contact-message" class="form-control" cols="30" rows="6"></textarea>
+													<textarea name="contact-message" id="contact-message" class="form-control" cols="30" rows="6"></textarea>													
 												</div>
-												<div id="myrecaptcha" class="input-group"/>	
+												<div class="input-group textarea-container">
+													<img id ="PicCaptcha" src="/data/captcha.jpg" height="38px" width="150px" />														
+													<img title="Lấy mã khác" id ="refreshCaptcha" src="/data/images/refresh.png" height="16px" style="margin-bottom:3px; cursor:pointer;" />
+													<input name="CodeCaptcha" type="text" id="CodeCaptcha"/>
+													<span style="color:red;" id="Mesenge" tal:content="MsgCaptcha" />
+												</div>
 												<input id="BtnSend" type="submit" value="Gửi" class="btn btn-custom-2 md-margin"/>
 											</div>
+												
 										</div>
-									</div>
+									</div>									
 								</div>
 								
 								<div class="col-md-4 col-sm-4 col-xs-12">
@@ -112,22 +119,24 @@
 		</div><!-- End #wrapper -->		
 		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
 		<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=AIzaSyAL3E55skCbhZdaN7Jm3Tip7Np1X04f76w" type="text/javascript"></script>
-		<script type="text/javascript" language="javascript" src="/mvc/templates/theme/cms/js/gps.jquery.js"/>
+		<script type="text/javascript" language="javascript" src="/mvc/templates/theme/cms/js/gps.jquery.js"/>		
 		
-		<script type="text/javascript" src="/mvc/templates/theme/cms/js/recaptcha_ajax.js"/>
 		<script type="text/javascript">	
-			function showRecaptcha(element) {
-			   Recaptcha.create("6Lfnn_wSAAAAAFgAQma0WvpR9Jg3IFqYVsKFsDHg", element, {
-				 theme: "white",
-				 tabindex: 1,
-				 callback: Recaptcha.focus_response_field});
-			 }		
+			$("#refreshCaptcha").click(function() {
+					$.ajax({
+					  url: 'http://huongsenhong.com/lien-he/RefreshCaptcha',
+					  success: function(data) {
+						$('#PicCaptcha').attr("src","/data/captcha.jpg");						
+					  }
+					});
+			});		
 		</script>
 		
 		<script type="text/javascript">
 			$(function() {											
 				$("#map").googleMap().load();
 			});
+			
 			
 			$('.btnBranch').click(function(e){								
 				$('#X').val($(this).attr('data-x'));
@@ -150,49 +159,48 @@
 			$('.btnBranch:first').click();
 			
 			$('#BtnSend').click(function(e){
-			
-				var URL = "/lien-he/recaptcha/" +  Recaptcha.get_challenge() + "/" + Recaptcha.get_response();				
-				alert (URL);
-					$.ajax({
-							type: "POST",							
-							url: URL,
-							dataType: "json",
-							success: function(msg){								
-								var txtCaptcha = msg.result.trim();
-								if (txtCaptcha === 'OK') {
-								
-									var Data = [];
-									Data[0] = $("#contact-name").val();
-									Data[1] = $("#contact-email").val();
-									Data[2] = $("#contact-subject").val();				
-									Data[3] = $("#contact-message").val();					
+				var Data = [];
+					Data[0] = $("#contact-name").val();
+					Data[1] = $("#contact-email").val();
+					Data[2] = $("#contact-subject").val();				
+					Data[3] = $("#contact-message").val();					
+					Data[4] = $("#CodeCaptcha").val();					
 											
-									var URL1 = "/lien-he/email";									
-									$.ajax({
-										type: "POST",
-										data: {Data:Data},
-										url: URL1,
-										success: function(msg1){	
-											var txtResult = msg1.result;											
-											if (txtResult = 'OK') { 
-												$("#contact-name").val('');
-												$("#contact-email").val('');
-												$("#contact-subject").val('');
-												$("#contact-message").val('');	
-												Recaptcha.reload();
-												alert ("Gui thanh cong!");
-											}else {
-												alert ("Gui that bai !Ban hay gui lai!");
-											}
-										}
-									});									
+					var URL1 = "/lien-he/email";									
+					$.ajax({
+						type: "POST",
+						data: {Data:Data},
+						url: URL1,
+						success: function(msg1){	
+							alert("msg1: " + msg1);
+							var txtResult = msg1.result.trim();
+							alert("txtResult: " + txtResult);
+							if (txtResult === "OK") { 
+								$("#contact-name").val('');
+								$("#contact-email").val('');
+								$("#contact-subject").val('');
+								$("#contact-message").val('');	
+								
+								$.ajax({
+								  url: 'http://huongsenhong.com/lien-he/RefreshCaptcha',
+								  success: function(data) {
+									$('#PicCaptcha').attr("src","/data/captcha.jpg");						
+								  }
+								});
+								
+								alert ("Gui thanh cong!");
+							}else {
+								$.ajax({
+								  url: 'http://huongsenhong.com/lien-he/RefreshCaptcha',
+								  success: function(data) {
+									$('#PicCaptcha').attr("src","/data/captcha.jpg");						
+								  }
+								});
+									alert ("Gui that bai !Ban hay gui lai!");
 								}
-								if (txtCaptcha === 'FALSE') {
-									alert ("Captcha that bai !Ban hay gui lai!");
-									Recaptcha.reload();
-								}
-							}
-						});
+						}
+					});	
+				
 			});	
 		</script>
 	</body>
