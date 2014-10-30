@@ -16,7 +16,8 @@
 			//-------------------------------------------------------------			
 			
 			$Data = $request->getProperty('Data');
-						
+			
+			$OldCodeCaptcha = $Session->getCurrentCaptcha();			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
@@ -24,7 +25,7 @@
 			$Email 		= $Data[1];
 			$Subject 	= $Data[2];
 			$Content 	= $Data[3];
-						
+			$CodeCaptcha= $Data[4];		
 			$doMail = new Mail(
 						"mail.caytretramdot.com", 
 						"admin@caytretramdot.com", 
@@ -32,8 +33,8 @@
 						"admin368189"
 					);
 			$gmail = new \PHPMailer();		
-			
-			if (isset($Email)) {
+			$json = array('result' => "FALSE");
+			if (isset($Email) && ($OldCodeCaptcha == $CodeCaptcha)) {
 				//gửi mail từ hệ thống website về huongsenhongdongthap.com
 				$MContent = "Website ẨM THỰC HƯƠNG SEN HỒNG - Gửi phản hồi liên hệ <br /> 
 							Người gửi: $Name <br />
@@ -73,9 +74,10 @@
 							$Subject, 
 							$MContent
 						);
-				$json = array('result' => 'OK');
+						
+				$json = array('result' => "OK");
 				echo json_encode($json);
-			}else { $json = array('result' => 'FALSE'); echo json_encode($json);}
+			}else { $json = array('result' => "FALSE"); echo json_encode($json);}
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
