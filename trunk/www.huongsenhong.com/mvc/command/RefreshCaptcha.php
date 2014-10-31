@@ -16,8 +16,11 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
+			//array_map('unlink', glob("/data/*.jpg"));
+			
 			$mCaptcha = new Captcha();
 			$mCaptcha->createImage();
+			$ImagePath = $mCaptcha->getImagePath();
 			$Session->setCurrentCaptcha($mCaptcha->getSecurityCode());
 								
 			//-------------------------------------------------------------
@@ -27,8 +30,8 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-			
-			return self::statuses('CMD_OK');
+			$Data = array('result' => $ImagePath );		
+			echo json_encode($Data);
 		}
 	}
 ?>

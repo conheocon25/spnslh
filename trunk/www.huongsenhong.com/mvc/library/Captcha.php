@@ -2,6 +2,7 @@
 Namespace MVC\Library;
 Class Captcha {
 	private $SecurityCode;
+	private $ImagePath;
 	private $width;
 	private $height;
 	
@@ -19,9 +20,15 @@ Class Captcha {
 	{		 
 		return $this->SecurityCode;		
 	}
+	function getImagePath() 
+	{		 
+		return $this->ImagePath;		
+	}
 	
 	function createImage() 
-	{ 		
+	{ 	
+		$day = new \DateTime();
+		$Today = $day->format('YmdHis');
 		//$_SESSION["spn_code_captcha"] = $security_code;
 		//$width = 150; 
 		//$height = 30; 	
@@ -53,8 +60,9 @@ Class Captcha {
 		//imageline($image,  $this->width/2, 0,  $this->width/2,  $this->height,  $grey); 
 	  
 		//ImageJpeg($image,"captcha.jpg"); 		
-		//imagepng($image, $path.'/captcha.png'); 		
-		imagepng($image, 'data/captcha.jpg'); 		
+		//imagepng($image, $path.'/captcha.png');
+		$this->ImagePath = 'captcha'. $Today .'.jpg';
+		imagepng($image, 'data/captcha'. $Today .'.jpg'); 		
 		//Free up resources
 		ImageDestroy($image); 		
 	} 
