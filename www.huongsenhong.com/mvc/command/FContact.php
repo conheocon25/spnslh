@@ -48,8 +48,8 @@
 			$mCaptcha = new Captcha();
 			$mCaptcha->createImage();
 			$Session->setCurrentCaptcha($mCaptcha->getSecurityCode());		
-			$MsgCaptcha = $request->getProperty('MsgCaptcha');
 			
+			$ImagePath = "/data/" . $mCaptcha->getImagePath();
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
@@ -71,12 +71,10 @@
 			$request->setObject("LinkedAll", 			$LinkedAll);
 			
 			
-			if ($MsgCaptcha != ""){	
-				$request->setProperty("MsgCaptcha", $MsgCaptcha);
-			}
-			else{
-				$request->setProperty("MsgCaptcha", '');
-			}
+			
+			$request->setProperty("MsgCaptcha", '');
+			$request->setProperty("ImagePath", $ImagePath);
+			
 			
 			return self::statuses('CMD_DEFAULT');
 		}

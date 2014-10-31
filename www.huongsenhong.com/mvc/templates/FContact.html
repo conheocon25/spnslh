@@ -73,13 +73,13 @@
 												</div>
 												<div class="input-group">
 													<span class="input-group-addon"><span class="input-icon input-icon-security"></span><span class="input-text">Mã bảo vệ</span></span>
-													<img id ="PicCaptcha" src="/data/captcha.jpg" height="38px" width="150px" />														
+													<span ><img id ="PicCaptcha" tal:attributes="src ImagePath" height="38px" width="150px" /></span>														
 													<img title="Lấy mã khác" id ="refreshCaptcha" src="/data/images/refresh.png" height="16px" style="margin-bottom:3px; cursor:pointer;" />
 												</div>
 												<div class="input-group">
 													<span class="input-group-addon"><span class="input-icon input-icon-security"></span><span class="input-text">Nhập mã bảo vệ</span></span>
 													<input name="CodeCaptcha" type="text" id="CodeCaptcha"/>
-													<span style="color:red;" id="Mesenge" tal:content="MsgCaptcha" />
+													<span style="color:red;" id="Mesenge" />
 												</div>
 												<input id="BtnSend" type="submit" value="Gửi" class="btn btn-custom-2 md-margin"/>
 											</div>
@@ -130,14 +130,16 @@
 				$("#map").googleMap().load();
 			});
 			
-			$("#refreshCaptcha").click(function() {
-					alert('vao ne');
+			$("#refreshCaptcha").click(function() {					
 					$.ajax({
 					  url: 'http://huongsenhong.com/lien-he/RefreshCaptcha',
-					  success: function(data) {						
-						$('#PicCaptcha').attr('src','/data/captcha.jpg');						
+					  dataType: "json",					  
+					  success: function(djson) {	
+						var pathimg = djson['result'];						
+						$('#PicCaptcha').attr("src","/data/" + pathimg);						
 					  }
 					});
+					
 			});	
 			
 			$('.btnBranch').click(function(e){								
@@ -172,32 +174,52 @@
 					$.ajax({
 						type: "POST",
 						data: {Data:Data},
+						dataType: "json",	
 						url: URL1,
-						success: function(msg1){	
-							alert("msg1: " + msg1);
-							var txtResult = msg1.result.trim();
-							alert("txtResult: " + txtResult);
-							if (txtResult === "OK") { 
+						success: function(djson1){							
+							var txtResult = djson1['result'];							
+							if (txtResult === "OK") { 																
+									$.ajax({
+									  url: 'http://huongsenhong.com/lien-he/RefreshCaptcha',
+									  dataType: "json",					  
+									  success: function(djson) {	
+										var pathimg = djson['result'];						
+										$('#PicCaptcha').attr("src","/data/" + pathimg);						
+									  }
+									});	
+																
+								var Data1 = [];
+								Data1[0] = $("#contact-name").val();
+								Data1[1] = $("#contact-email").val();
+								Data1[2] = $("#contact-subject").val();				
+								Data1[3] = $("#contact-message").val();
+								
 								$("#contact-name").val('');
 								$("#contact-email").val('');
 								$("#contact-subject").val('');
-								$("#contact-message").val('');								
-								$.ajax({
-								  url: 'http://huongsenhong.com/lien-he/RefreshCaptcha',
-								  success: function(data) {
-									$('#PicCaptcha').attr("src","/data/captcha.jpg");						
-								  }
-								});
+								$("#contact-message").val('');
+								$("#CodeCaptcha").val('');
+									
+								$("#Mesenge").html('Đã gửi mail phản hồi thành công!');
 								
-								alert ("Gui thanh cong!");
-							}else {
 								$.ajax({
-								  url: 'http://huongsenhong.com/lien-he/RefreshCaptcha',
-								  success: function(data) {
-									$('#PicCaptcha').attr("src","/data/captcha.jpg");						
-								  }
-								});
-									alert ("Gui that bai !Ban hay gui lai!");
+									  url: '/lien-he/gmail',									  
+									  data: {Data:Data1},									  
+									  success: function(djson) {
+									  }
+									});	
+							}
+							if (txtResult === "FALSE") {
+									$.ajax({
+									  url: 'http://huongsenhong.com/lien-he/RefreshCaptcha',
+									  dataType: "json",					  
+									  success: function(djson) {	
+										var pathimg = djson['result'];						
+										$('#PicCaptcha').attr("src","/data/" + pathimg);						
+									  }
+									});
+									$("#CodeCaptcha").val('');
+									$("#Mesenge").html('Mã bảo mật không đúng nhập lại!');									
 								}
 						}
 					});	
