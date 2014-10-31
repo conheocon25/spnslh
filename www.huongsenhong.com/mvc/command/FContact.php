@@ -72,7 +72,7 @@
 			
 			
 			
-			$request->setProperty("MsgCaptcha", '');
+			
 			$request->setProperty("ImagePath", $ImagePath);
 			
 			
