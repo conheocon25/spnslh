@@ -5,10 +5,10 @@
 	var namelocation;
 	
     $.GoogleMapObjectDefaults = {        
-        zoomLevel: 15,
+        zoomLevel: 17,
 		imagewidth: 50,
 		imageheight: 50,
-		center: '399D/31 Ap Phuoc Yen A, Phu Quoi, Long Ho, Vinh Long',		
+		center: '193-195 Dien Bien Phu, P.My Phu, TP Cao Lanh',		
 		start: '#start',		
         end: '#end',
 		directions: 'directions',
@@ -29,8 +29,10 @@
 	function showMaker() {					
 		var center = new GLatLng(parseFloat($('#X').val()), parseFloat($('#Y').val()));		
 		var marker = new GMarker(center, {draggable: false}); 
-		map.addOverlay(marker);		
-		marker.openInfoWindowHtml('<img src="/mvc/templates/front/images/logo.png" height="100pxpx"/><h5>'+ $('#NameXY').val() +'</h5>');	
+		var Image = '<img src="'+ $('#Logo').val() +'" height="100pxpx"/>';
+		map.addOverlay(marker);
+		
+		marker.openInfoWindowHtml(Image);
 	}
 		
 

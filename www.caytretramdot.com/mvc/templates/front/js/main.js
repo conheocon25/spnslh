@@ -459,7 +459,7 @@ function checkSupport(elemname, pluginname) {
             responsive: true,
             mouseDrag: false,
             autoHeight : true
-        }).data('navigationBtns', ['#purchased-items-slider-prev', '#purchased-items-slider-next']);
+        }).data('navigationBtns', ['#purchased-items-slider-prev', '#purchased-items-slider-next', '#purchased-items-slider-prev1', '#purchased-items-slider-next1','#purchased-items-slider-prev2', '#purchased-items-slider-next2']);
     }
 
 

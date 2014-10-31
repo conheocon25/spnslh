@@ -6,7 +6,7 @@ class Slide extends Mapper implements \MVC\Domain\SlideFinder {
     function __construct() {
         parent::__construct();
 		
-		$tblSlide = "shopc_slide";
+		$tblSlide = "res_slide";
 						
 		$selectAllStmt 	= sprintf("select * from %s order by `order`", $tblSlide);
 		$selectStmt 	= sprintf("select * from %s where id=?", $tblSlide);

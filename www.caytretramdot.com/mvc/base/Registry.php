@@ -15,7 +15,8 @@
 		
 		//Sử dụng App và User lưu trữ như là một  Object trong Session
 		private function __construct() { 
-			require_once 'mvc/domain/User.php';			
+			require_once 'mvc/domain/User.php';
+			require_once 'mvc/domain/Cart.php';			
 			session_start();
 		}
 		
@@ -75,7 +76,14 @@
 			$Cart = self::instance()->get('cafe_current_bookmark');
 			if (!isset($Cart)){$Cart = new \MVC\Domain\Cart();}
 			return $Cart;
-		}		
+		}	
+		
+		function setCurrentCaptcha( $CurrentCaptcha ) { 
+			self::instance()->set('huongsenhong_CurrentCaptcha', $CurrentCaptcha); 
+		}
+		function getCurrentCaptcha( ){
+			return self::instance()->get('huongsenhong_CurrentCaptcha');
+		}
 		
 		function setCurrentTheme( $theme ) {
 			return self::instance()->set('cafe_current_theme', $theme);

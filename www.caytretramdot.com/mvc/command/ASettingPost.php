@@ -24,6 +24,11 @@
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------									
 			$TagAll 	= $mTag->findAll();
+			if (!isset($IdTag)){
+				$IdTag = $TagAll->current()->getId();
+			}
+			
+			$Tag 		= $mTag->find($IdTag);
 			$PTAll 		= $mPT->findByTag(array($IdTag));
 									
 			$Title = "BÀI VIẾT";
@@ -35,13 +40,13 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
-			$request->setProperty('Title'		, $Title);
-			$request->setProperty('IdTag'		, $IdTag);
+			$request->setProperty('Title'		, $Title);						
 			$request->setProperty('ActiveAdmin'	, 'Post');			
 			$request->setObject('Navigation'	, $Navigation);
 			
 			$request->setObject('ConfigName'	, $ConfigName);
-			$request->setObject('TagAll'		, $TagAll);			
+			$request->setObject('TagAll'		, $TagAll);
+			$request->setProperty('Tag'			, $Tag);
 			$request->setObject('PTAll'			, $PTAll);
 															
 			return self::statuses('CMD_DEFAULT');

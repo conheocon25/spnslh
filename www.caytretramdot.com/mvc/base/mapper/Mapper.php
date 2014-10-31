@@ -1,5 +1,6 @@
 <?php
 namespace MVC\Mapper;
+use MVC\Library\Encrypted;
 require_once("mvc/base/Registry.php");
 require_once("mvc/base/Exceptions.php");
 require_once("mvc/base/domain/Finders.php");
@@ -15,12 +16,12 @@ error_reporting ('E_ALL | E_STRICT');
 abstract class Mapper implements \MVC\Domain\Finder {
     protected static $PDO;
     function __construct() { 
-        if ( ! isset(self::$PDO) ) { 
+		if ( ! isset(self::$PDO) ) { 
             
-			$dsn 	= "mysql:host=localhost;";
+			$dsn = "mysql:host=localhost;";
 			$dbname = "dbname=spncom_caytretramdot";
-			$user 	= "spncom_admindb";
-			$pass 	= "admin368189";
+			$user = "spncom_admindb";
+			$pass = "admin368189";
 						
             if ( is_null( $dsn ) ) {
                 throw new \MVC\Base\AppException( "No DSN" );

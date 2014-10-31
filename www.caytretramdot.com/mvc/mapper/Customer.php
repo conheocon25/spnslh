@@ -7,16 +7,16 @@ class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
     function __construct() {
         parent::__construct();
         $this->selectAllStmt = self::$PDO->prepare( 
-                            "select * from shopc_customer");
-        $this->selectStmt = self::$PDO->prepare("select * from shopc_customer where id=?");
-        $this->updateStmt = self::$PDO->prepare("update shopc_customer set name=?, type=?, card=?, phone=?, address=?, note=?, discount=? where id=?");
-        $this->insertStmt = self::$PDO->prepare("insert into shopc_customer (name, type, card, phone, address, note, discount) 
+                            "select * from res_customer");
+        $this->selectStmt = self::$PDO->prepare("select * from res_customer where id=?");
+        $this->updateStmt = self::$PDO->prepare("update res_customer set name=?, type=?, card=?, phone=?, address=?, note=?, discount=? where id=?");
+        $this->insertStmt = self::$PDO->prepare("insert into res_customer (name, type, card, phone, address, note, discount) 
 							values( ?, ?, ?, ?, ?, ?, ?)");
-		$this->deleteStmt = self::$PDO->prepare("delete from shopc_customer where id=?");		
-		$this->findByCardStmt = self::$PDO->prepare("select * from shopc_customer where card=?");
-		$this->findByDomainStmt = self::$PDO->prepare("select * from shopc_customer where id_domain=? ORDER BY name");
+		$this->deleteStmt = self::$PDO->prepare("delete from res_customer where id=?");		
+		$this->findByCardStmt = self::$PDO->prepare("select * from res_customer where card=?");
+		$this->findByDomainStmt = self::$PDO->prepare("select * from res_customer where id_domain=? ORDER BY name");
 				
-		$tblCustomer = "shopc_customer";
+		$tblCustomer = "res_customer";
 		$findByPageStmt = sprintf("SELECT * FROM %s ORDER BY name LIMIT :start,:max", $tblCustomer);
 		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);
 		 
