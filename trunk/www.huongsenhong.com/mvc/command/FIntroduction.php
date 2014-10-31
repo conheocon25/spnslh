@@ -30,7 +30,7 @@
 			//-------------------------------------------------------------						
 			$ConfigName 			= $mConfig->findByName("NAME");
 			$ConfigSlogan 			= $mConfig->findByName("SLOGAN");
-			$ConfigPHome 			= $mConfig->findByName("PRESENTATION_HOME");
+			$ConfigPIntro 			= $mConfig->findByName("PRESENTATION_INTRO");
 			$ConfigPhone1 			= $mConfig->findByName("PHONE1");
 			$ConfigPhone2 			= $mConfig->findByName("PHONE2");
 			$ConfigGmail 			= $mConfig->findByName("CONTACT_GTALK");
@@ -43,7 +43,7 @@
 			$StoryLineAll			= $mStoryLine->findAll();
 			$LastestPostAll 		= $mPostTag->findByLastest4(array(null));
 			
-			$Presentation1 			= $mPresentation->find($ConfigPHome->getValue());
+			$Presentation1 			= $mPresentation->find($ConfigPIntro->getValue());
 			
 			$Post 					= $mPost->find($ConfigIntro->getValue() );
 			$Post->setViewed($Post->getViewed()+1);
