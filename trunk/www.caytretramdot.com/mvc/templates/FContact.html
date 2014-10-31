@@ -17,7 +17,7 @@
 						<div class="col-md-12">
 							<header class="content-title">
 							<h1 class="title">Liên lạc nhanh với chúng tôi</h1>
-							<p class="title-desc">sẽ được mức giá ưu đãi</p>
+							<p class="title-desc">sẽ những ưu đãi và chất lượng phục vụ tốt nhất</p>
 							</header>
 							<div class="xs-margin"></div><!-- space -->
 							<div class="row">
@@ -28,15 +28,17 @@
 														data-x Branch/getX;
 														data-y Branch/getY;
 														data-phone1 Branch/getPhone1;
-														data-phone2 Branch/getPhone1;
+														data-phone2 Branch/getPhone2;
 														data-email1 Branch/getEmail1;
-														data-email2 Branch/getEmail1;
+														data-email2 Branch/getEmail2;
+														data-logo Branch/getLogo;
 										"	
 									>
 										<input id="X" type="hidden" tal:attributes="value Branch/getX"/>
 										<input id="Y" type="hidden" tal:attributes="value Branch/getY"/>
 										<input id="NameXY" type="hidden" tal:attributes="value Branch/getName"/>
 										<span tal:content="Branch/getName"/>
+										<input id="Logo" type="hidden" tal:attributes="value Branch/getLogo"/>
 									</button>
 								</div>
 								<div class="col-md-10">
@@ -44,35 +46,48 @@
 								</div>
 								<div class="col-md-8 col-sm-8 col-xs-12">
 									<div class="testimonial-details-contact">
-										<header>Xin chào quý khách!</header>														
-										<span>Mọi thắc mắc, quý khách có thể liên lạc trực tiếp qua điện thoại hoặc qua tin nhắn</span>														
+										<header>Xin chào quý khách!</header>
+										<span>Chúng tôi luôn lắng nghe những phản hồi của quý khách về chúng tôi. Ý kiến của quý vị sẽ làm nên sự thành công của chúng tôi.</span>
 									</div>
 									<div class="row">
-										<form id="contact-form">
+										<div id="contact-form">
 											<div class="col-md-6 col-sm-12 col-xs-12">
 												<div class="input-group">
 													<span class="input-group-addon"><span class="input-icon input-icon-user"></span><span class="input-text">Tên&#42;</span></span>
 													<input type="text" name="contact-name" id="contact-name" required="" class="form-control input-lg"/>
-												</div><!-- End .input-group -->
+												</div>
 												<div class="input-group">
 													<span class="input-group-addon"><span class="input-icon input-icon-email"></span><span class="input-text">Email&#42;</span></span>
 													<input type="email" name="contact-email" id="contact-email" required="" class="form-control input-lg"/>
-												</div><!-- End .input-group -->
+												</div>
 												<div class="input-group">
 													<span class="input-group-addon"><span class="input-icon input-icon-subject"></span><span class="input-text">Chủ đề&#42;</span></span>
 													<input type="text" name="contact-subject" id="contact-subject" required="" class="form-control input-lg"/>
-												</div><!-- End .input-group -->
-											</div><!-- End .col-md-6 -->
+												</div>
+											</div>
+											
 											<div class="col-md-6 col-sm-12 col-xs-12">
 												<div class="input-group textarea-container">
 													<span class="input-group-addon"><span class="input-icon input-icon-message"></span><span class="input-text">Nội dung</span></span>
-													<textarea name="contact-message" id="contact-message" class="form-control" cols="30" rows="6"></textarea>
-												</div><!-- End .input-group -->
+													<textarea name="contact-message" id="contact-message" class="form-control" cols="30" rows="6"></textarea>													
+												</div>
+												<div class="input-group">
+													<span class="input-group-addon"><span class="input-icon input-icon-security"></span><span class="input-text">Mã bảo vệ</span></span>
+													<span ><img id ="PicCaptcha" tal:attributes="src ImagePath" height="38px" width="150px" /></span>														
+													<img title="Lấy mã khác" id ="refreshCaptcha" src="/data/images/refresh.png" height="16px" style="margin-bottom:3px; cursor:pointer;" />
+												</div>
+												<div class="input-group">
+													<span class="input-group-addon"><span class="input-icon input-icon-security"></span><span class="input-text">Nhập mã bảo vệ</span></span>
+													<input name="CodeCaptcha" type="text" id="CodeCaptcha"/>
+													<span style="color:red;" id="Mesenge" />
+												</div>
 												<input id="BtnSend" type="submit" value="Gửi" class="btn btn-custom-2 md-margin"/>
-											</div><!-- End .col-md-6 -->
-										</form>
-									</div><!-- End .row -->
-								</div><!-- End .col-md-8 -->
+											</div>
+												
+										</div>
+									</div>									
+								</div>
+								
 								<div class="col-md-4 col-sm-4 col-xs-12">
 									<h2 class="sub-title">Thông tin liên hệ</h2>
 									<ul class="contact-details-list">										
@@ -107,17 +122,31 @@
 			<div metal:use-macro="mFront.xhtml/Footer"/>
 		</div><!-- End #wrapper -->		
 		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
-		<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=AIzaSyAL3E55skCbhZdaN7Jm3Tip7Np1X04f76w" type="text/javascript"></script>				
-		<script type="text/javascript" language="javascript" src="/mvc/templates/theme/cms/js/gps.jquery.js"/>
+		<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=AIzaSyAL3E55skCbhZdaN7Jm3Tip7Np1X04f76w" type="text/javascript"></script>
+		<script type="text/javascript" language="javascript" src="/mvc/templates/theme/cms/js/gps.jquery.js"/>		
+				
 		<script type="text/javascript">
 			$(function() {											
 				$("#map").googleMap().load();
 			});
 			
+			$("#refreshCaptcha").click(function() {					
+					$.ajax({
+					  url: 'http://huongsenhong.com/lien-he/RefreshCaptcha',
+					  dataType: "json",					  
+					  success: function(djson) {	
+						var pathimg = djson['result'];						
+						$('#PicCaptcha').attr("src","/data/" + pathimg);						
+					  }
+					});
+					
+			});	
+			
 			$('.btnBranch').click(function(e){								
 				$('#X').val($(this).attr('data-x'));
 				$('#Y').val($(this).attr('data-y'));
 				$('#NameXY').val($(this).attr('data-name'));
+				$('#Logo').val($(this).attr('data-logo'));
 				
 				$("#map").googleMap().reload();	
 				
@@ -133,30 +162,70 @@
 			});
 			$('.btnBranch:first').click();
 			
-			$('#BtnSend').click(function(e){				
+			$('#BtnSend').click(function(e){
 				var Data = [];
-				Data[0] 	= $("#name").val();
-				Data[1] 	= $("#email").val();
-				Data[2] 	= $("#subject").val();				
-				Data[3] 	= $("#content").val();					
-				
-				var URL = "/lien-he/email";
+					Data[0] = $("#contact-name").val();
+					Data[1] = $("#contact-email").val();
+					Data[2] = $("#contact-subject").val();				
+					Data[3] = $("#contact-message").val();					
+					Data[4] = $("#CodeCaptcha").val();					
+											
+					var URL1 = "/lien-he/email";									
 					$.ajax({
 						type: "POST",
 						data: {Data:Data},
-						url: URL,						
-						success: function(msg){								
-							if (msg.result = "OK") { 
-								$("#name").val('');
-								$("#email").val('');
-								$("#subject").val('');
-								$("#content").val('');	
-								alert ("Gui thanh cong!");
-							} else {
-								alert ("Gui that bai !Ban hay gui lai!");
+						dataType: "json",	
+						url: URL1,
+						success: function(djson1){							
+							var txtResult = djson1['result'];							
+							if (txtResult === "OK") { 																
+									$.ajax({
+									  url: 'http://huongsenhong.com/lien-he/RefreshCaptcha',
+									  dataType: "json",					  
+									  success: function(djson) {	
+										var pathimg = djson['result'];						
+										$('#PicCaptcha').attr("src","/data/" + pathimg);						
+									  }
+									});	
+																
+								var Data1 = [];
+									Data1[0] = $("#contact-name").val();
+									Data1[1] = $("#contact-email").val();
+									Data1[2] = $("#contact-subject").val();				
+									Data1[3] = $("#contact-message").val();
+								
+								$("#contact-name").val('');
+								$("#contact-email").val('');
+								$("#contact-subject").val('');
+								$("#contact-message").val('');
+								$("#CodeCaptcha").val('');
+									
+								$("#Mesenge").html('Đã gửi mail phản hồi thành công!');
+								
+								$.ajax({
+									  url: '/lien-he/gmail',									  
+									  data: {Data:Data1},									  
+									  success: function(html) {
+										
+									  }
+									});	
 							}
+							
+							if (txtResult === "FALSE") {
+									$.ajax({
+									  url: 'http://huongsenhong.com/lien-he/RefreshCaptcha',
+									  dataType: "json",					  
+									  success: function(djson) {	
+										var pathimg = djson['result'];						
+										$('#PicCaptcha').attr("src","/data/" + pathimg);						
+									  }
+									});
+									$("#CodeCaptcha").val('');
+									$("#Mesenge").html('Mã bảo mật không đúng nhập lại!');									
+								}
 						}
-					});
+					});	
+				
 			});	
 		</script>
 	</body>

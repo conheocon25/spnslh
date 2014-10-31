@@ -6,8 +6,7 @@
 	</head>
 	
 	<body>
-		<div metal:use-macro="mAdmin.xhtml/Header"/>
-		<div metal:use-macro="mAdmin.xhtml/StyleTools"/>		
+		<div metal:use-macro="mAdmin.xhtml/Header"/>		
 		<div id="sidebar">
 			<ul style="display: block;">
 				<li tal:repeat="Category1 CategoryAll" tal:attributes="class php:Category1->getId()==Category->getId()?'active':'disable'">
@@ -204,9 +203,10 @@
 					var Data = [];
 					Data[0] = 'null';
 					Data[1] = $('#CurrentCategory').attr('alt');
-					Data[2] = $('#Name1').val();
-					Data[3] = $('#Info1').val();
-					Data[4] = $('#Order1').val();
+					Data[2] = $('#CurrentCategory').attr('alt');
+					Data[3] = $('#Name1').val();
+					Data[4] = $('#Info1').val();
+					Data[5] = $('#Order1').val();
 					
 					var URL = "/object/ins/Category1";
 					$.ajax({

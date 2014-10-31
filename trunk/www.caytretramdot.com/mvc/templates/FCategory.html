@@ -11,92 +11,50 @@
 				<div id="category-header">
 					<div class="row">
 						<div class="container" tal:content="structure Category2/getInfo" />
-					</div><!-- End .row -->
-				</div><!-- End #category-header -->
-				<div id="category-breadcrumb">
-					<div class="container">
-						<ul class="breadcrumb">
-							<li><a href="index-2.html">Trang chủ</a></li>
-							<li><a href="#">Electronics</a></li>
-							<li class="active">Mobile</li>
-						</ul>
 					</div>
-				</div>
+				</div>				
+				<div metal:use-macro="mFront.xhtml/LocationBar"/>
 				<div class="container">
 					<div class="row">
 						<div class="col-md-12">
 							<div class="row">
-								<div class="col-md-9 col-sm-8 col-xs-12 main-content">
-									<div class="category-toolbar clearfix">										
+								<div class="col-md-9 col-sm-8 col-xs-12 main-content">																		
+									<div class="category-item-container">
+										<div class="row tab-content">
+											<div tal:repeat="Product ProductAll" class="col-md-4 col-sm-6 col-xs-12">
+												<div class="item" tal:condition="Product/getInfo">
+													<div class="item-image-container">
+														<figure>
+															<a tal:attributes="href Product/getURLView">
+																<img tal:attributes="src Product/getInfo/getImage1" class="item-image"/>
+																<img tal:attributes="src Product/getInfo/getImage2" class="item-image-hover"/>
+															</a>
+														</figure>
+														<div class="item-price-container" tal:condition="Product/getPrice2">
+															<span class="item-price" tal:content="Product/getPrice2Print"/>
+														</div>														
+													</div>
+													<div class="item-meta-container">
+														<div class="ratings-container">
+															<div class="ratings">
+																<div class="ratings-result" data-result="100"></div>
+															</div>															
+														</div>
+														<h3 class="item-name"><a tal:attributes="href Product/getURLView" tal:content="Product/getName"/></h3>														
+													</div>
+												</div>	
+											</div>
+										</div>
+									</div>
+									<div class="md-margin" />
+									<div class="category-toolbar clearfix">
 										<div class="toolbox-pagination clearfix">
 											<ul class="pagination">
 												<li tal:repeat="P PN/getPages" tal:attributes="class php: (P->getId()==Page)?'active':''">
 													<a tal:attributes="href P/getURL" tal:content="P/getName" />
 												</li>
 											</ul>											
-										</div><!-- End .toolbox-pagination -->
-									</div><!-- End .category-toolbar -->
-									<div class="md-margin"></div><!-- .space -->
-									<div class="category-item-container">
-										<div class="row">
-											<div tal:repeat="Product ProductAll" class="col-md-4 col-sm-6 col-xs-12">
-												<div class="item">
-													<div class="item-image-container">
-														<figure>
-															<a tal:attributes="href Product/getURLView" tal:condition="Product/getInfo">
-																<img tal:attributes="src Product/getInfo/getImage1" class="item-image"/>
-																<img tal:attributes="src Product/getInfo/getImage2" class="item-image-hover"/>
-															</a>
-														</figure>
-														<div class="item-price-container">															
-															<span class="item-price" tal:content="Product/getPrice2Print" />
-														</div>														
-													</div><!-- End .item-image -->
-													<div class="item-meta-container">
-														<div class="ratings-container">
-															<div class="ratings">
-																<div class="ratings-result" data-result="90"></div>
-															</div><!-- End .ratings -->
-															<span class="ratings-amount">
-																1 đánh giá
-															</span>
-														</div><!-- End .rating-container -->
-														<h3 class="item-name"><a tal:attributes="href Product/getURLView" tal:content="Product/getName"/></h3>
-														<div class="item-action">
-															<div class="item-add-btn" style="cursor:pointer">
-																<span class="icon-cart-text"
-																	tal:attributes="	id 		Product/getId;
-																						name 	Product/getName;
-																						price 	Product/getPrice2;
-																						image 	Product/getInfo/getImage1;
-																	"
-																> Mua ngay</span>																
-															</div>
-															<div class="item-action-inner">
-																<span class="icon-button icon-like" style="cursor:pointer"
-																	tal:attributes="	id 		Product/getId;
-																						name 	Product/getName;
-																						price 	Product/getPrice2;
-																						image 	Product/getInfo/getImage1;
-																	"
-																>
-																	Ưa thích
-																</span>
-																<span class="icon-button icon-compare" style="cursor:pointer"
-																	tal:attributes="	id 		Product/getId;
-																						name 	Product/getName;
-																						price 	Product/getPrice2;
-																						image 	Product/getInfo/getImage1;
-																	"
-																>
-																	Email
-																</span>
-															</div>
-														</div><!-- End .item-action -->
-													</div><!-- End .item-meta-container -->	
-												</div><!-- End .col-md-4 -->
-											</div><!-- End .row -->
-										</div><!-- End .category-item-container -->
+										</div>
 									</div>
 								</div>
 								<aside class="col-md-3 col-sm-4 col-xs-12 sidebar">
@@ -114,41 +72,24 @@
 																<a tal:attributes="href Category2/getURLView"><span tal:content="Category2/getName"/> (<span tal:content="Category2/getProductAll/count"/>)</a>
 															</li>
 														</ul>
-													</div><!-- End .panel-body -->
-												</div><!-- #collapse -->
-											</div><!-- End .panel -->
-											<div class="panel">
-												<div class="accordion-header">
-													<div class="accordion-title"><span>Thương hiệu</span></div><!-- End .accordion-title -->
-													<a class="accordion-btn opened"  data-toggle="collapse" data-target="#category-list-2"></a>
-												</div><!-- End .accordion-header -->
-												<div id="category-list-2" class="collapse in">
-													<div class="panel-body">
-														<ul class="category-filter-list jscrollpane">
-															<li tal:repeat="PM PMAll">
-																<a tal:attributes="href php:Category2->getURLViewManufacturer( PM->getIdManufacturer() )">
-																	<span tal:content="PM/getManufacturer/getName"/>
-																	(<span tal:content="php:Category2->getProductManufacturerAll( PM->getIdManufacturer() )->count()"/>)
-																</a>
-															</li>
-														</ul>
-													</div><!-- End .panel-body -->
-												</div><!-- #collapse -->
-											</div><!-- End .panel -->											
-										</div><!-- .panel-group -->
-									</div><!-- End .widget -->									
-									
-								</aside><!-- End .col-md-3 -->
-							</div><!-- End .row -->
-						</div><!-- End .col-md-12 -->
-					</div><!-- End .row -->
-				</div><!-- End .container -->
-			</section><!-- End #content -->
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div metal:use-macro="mFront.xhtml/Subscribe"/>
+								</aside>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
 			<div metal:use-macro="mFront.xhtml/Footer"/>
 		</div><!-- End #wrapper -->		
 		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
 		<script>
-			$(function() {								
+			$(function() {
+				/*
 				$(".icon-cart-text").click(function(){
 					var Data 	= [];
 					Data[0]		= $(this).attr('id');
@@ -166,6 +107,7 @@
 						}
 					});				
 				});
+				*/
 				
 				$(".icon-like").click(function(){
 					var Data 	= [];

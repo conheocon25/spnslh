@@ -4,21 +4,21 @@
 	<!-- META TAG INCLUDE														  -->
 	<!-- ======================================================================== -->
 	<span metal:define-macro="IncludeMETA">
-		<title tal:content="string:Hệ thống trắc nghiệm trực tuyến"/>
+		<title tal:content="string:Website Cây Tre Trăm Đốt"/>
 		<base href="http://caytretramdot.com"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 		<meta http-equiv="Pragma" content="no-cache"/>
 		<meta http-equiv="Expires" content="-1"/>
 		<meta http-equiv="Cache-Control" content="no-cache"/>
-		<meta name="keywords" content="Hệ thống trắc nghiệm trực tuyến"/>
-		<meta name="description" content="Hệ thống trắc nghiệm trực tuyến"/>
-		<meta name="page-topic" content="Hệ thống trắc nghiệm trực tuyến"/>
-		<meta name="Abstract" content="Hệ thống trắc nghiệm trực tuyến"/>
-		<meta name="classification" content="Hệ thống trắc nghiệm trực tuyến"/>
-		<link rel="shortcut icon" type="image/png" href="/data/images/icon.ico" />
+		<meta name="keywords" content="Website Cây Tre Trăm Đốt"/>
+		<meta name="description" content="Website Cây Tre Trăm Đốt"/>
+		<meta name="page-topic" content="Website Cây Tre Trăm Đốt"/>
+		<meta name="Abstract" content="Website Cây Tre Trăm Đốt"/>
+		<meta name="classification" content="Website Cây Tre Trăm Đốt"/>		
+		<link rel="shortcut icon" type="image/png" href="/data/images/icon.png" />
 	</span>
-	
+		
 	<!-- ======================================================================== -->
 	<!-- CASCADING STYLE SHEETS INCLUDE											  -->
 	<!-- ======================================================================== -->
@@ -65,60 +65,40 @@
 		<div id="header-top">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-12">
-						<div class="header-top-left">
-							<ul id="top-links" class="clearfix">
-								<li><a href="/danh-dau" title="Đánh dấu"><span class="top-icon top-icon-pencil"></span><span class="hide-for-xs">Đánh dấu</span></a></li>								
-								<li><a href="/gio-hang" title="My Cart"><span class="top-icon top-icon-cart"></span><span class="hide-for-xs">Giỏ hàng</span></a></li>
-							</ul>
-						</div><!-- End .header-top-left -->
-						<div class="header-top-right">
-							<div class="header-top-dropdowns pull-right">
-								<div class="btn-group dropdown-money">
-									<button type="button" class="btn btn-custom dropdown-toggle" data-toggle="dropdown">
-										<span class="hide-for-xs">Tài khoản</span><span class="hide-for-lg">TK</span>
-									</button>
-									<ul class="dropdown-menu pull-right" role="menu">
-										<li><a href="/dang-nhap"><span class="hide-for-xs">Đăng nhập</span><span class="hide-for-lg">Đăng nhập</span></a></li>										
-									</ul>
-								</div><!-- End .btn-group -->
-							</div><!-- End .header-top-dropdowns -->
-							<div class="header-text-container pull-right">
-								<p class="header-text">
-									Trung tâm điện máy Minh Hoàng xin kính chào quý khách! Với các mặt hàng chất lượng chính hãng, phong phú, đa dạng đến từ đầy đủ các ngành hàng như Vi tính, Giải trí số, Điện tử, Điện lạnh, Gia dụng cùng phong cách phục vụ chuyên nghiệp, chu đáo, Điện máy Minh Hoàng hứa hẹn sẽ là điểm đến tham quan, mua sắm lý tưởng cho mọi gia đình
-								</p>
-							</div><!-- End .pull-right -->
-						</div><!-- End .header-top-right -->
-					</div><!-- End .col-md-12 -->
-				</div><!-- End .row -->
-			</div><!-- End .container -->
-		</div><!-- End #header-top -->
+					<div class="col-md-12">						
+						<marquee scrolldelay="2" scrollamount="2" behavior="scroll" direction="left" style="padding:5px; color:#fff">Cây Tre Trăm Đốt xin kính chào quý khách! Với các món ăn đa dạng và phong phú, chất lượng cao và giá phải chăng cùng phong cách phục vụ chuyên nghiệp, chu đáo, chúng tôi hứa hẹn sẽ là điểm đến tham quan, ăn uổng giải trí lý tưởng cho mọi gia đình</marquee>
+					</div>
+				</div>
+			</div>
+		</div>
 		<div id="inner-header">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-5 col-sm-5 col-xs-12 logo-container">
 						<h1 class="logo clearfix">
-							<span>Điện máy Minh Hoàng</span>
-							<a href="/" title="Điện máy Minh Hoàng"><img src="/mvc/templates/front/images/logo.png" alt="Điện máy Minh Hoàng" width="238" height="76"/></a>
+							<span>Khu Ẩm Thực Sinh Thái Hương Sen Hồng</span>
+							<a href="/" title="Khu Ẩm Thực Sinh Thái Hương Sen Hồng">
+								<img src="/mvc/templates/front/images/logo.png" alt="Khu Ẩm Thực Sinh Thái Hương Sen Hồng" width="100%"/>
+							</a>
 						</h1>
-					</div><!-- End .col-md-5 -->
+					</div>
 					<div class="col-md-7 col-sm-7 col-xs-12 header-inner-right">
 						<div class="header-box contact-infos pull-right">
 							<ul>
+								<li><span class="header-box-icon header-box-icon-email"/><h4 tal:content="ConfigGmail/getValue"/></li>
 								<li><span class="header-box-icon header-box-icon-skype"/><h4 tal:content="ConfigSkype/getValue"/></li>
-								<li><span class="header-box-icon header-box-icon-email"/><h4 tal:content="ConfigYahooMessenger/getValue"/></li>
 							</ul>
-						</div><!-- End .contact-infos -->
+						</div>
 						<div class="header-box contact-phones pull-right clearfix">
 							<span class="header-box-icon header-box-icon-earphones"></span>
 							<ul class="pull-left">
-								<li><h4 tal:content="ConfigPhone1/getValue"/></li>
-								<li><h4 tal:content="ConfigPhone2/getValue"/></li>
+								<li><B><h4 tal:content="ConfigPhone1/getValue"/></B></li>
+								<li><B><h4 tal:content="ConfigPhone2/getValue"/></B></li>
 							</ul>
-						</div><!-- End .contact-phones -->
-					</div><!-- End .col-md-7 -->
-				</div><!-- End .row -->
-			</div><!-- End .container -->
+						</div>
+					</div>
+				</div>
+			</div>
 			<div id="main-nav-container">
 				<div class="container">
 					<div class="row">
@@ -126,12 +106,14 @@
 							<nav id="main-nav">
 								<div id="responsive-nav">
 									<div id="responsive-nav-button">
-										Menu <span id="responsive-nav-button-icon"></span>
-									</div><!-- responsive-nav-button -->
+										Menu <span id="responsive-nav-button-icon" />
+									</div>
 								</div>
 								<ul class="menu clearfix">
-									<li><a class="active" href="/trang-chu">TRANG CHỦ</a></li>
-									<li><a href="JavaScript:;">TIN TỨC</a>
+									<li><a tal:attributes="class php:Active=='Home'?'active':'?'" href="/trang-chu">TRANG CHỦ</a></li>
+									<li><a tal:attributes="class php:Active=='Introduction'?'active':'?'" href="/gioi-thieu">GIỚI THIỆU</a></li>
+									<li>
+										<a tal:attributes="class php:Active=='News'?'active':'?'" href="JavaScript:;">TIN TỨC</a>
 										<ul>
 											<li tal:repeat="Tag TagAll">
 												<a tal:attributes="href Tag/getURLView">
@@ -140,7 +122,8 @@
 											</li>
 										</ul>
 									</li>
-									<li class="mega-menu-container"><a href="JavaScript:;">SẢN PHẨM</a>
+									<li class="mega-menu-container">
+										<a tal:attributes="class php:Active=='Menu'?'active':'?'" href="JavaScript:;">THỰC ĐƠN</a>
 										<div class="mega-menu clearfix">
 											<div class="col-5" tal:repeat="Category CategoryAll">
 												<a href="JavaScript:;" class="mega-menu-title" tal:content="Category/getName"/>
@@ -152,35 +135,20 @@
 													</li>
 												</ul>
 											</div>
-										</div><!-- End .mega-menu -->
+										</div>
 									</li>
-									<li><a href="/khuyen-mai">KHUYẾN MÃI</a></li>
-									<li><a href="/lien-he">LIÊN HỆ</a></li>
+									<li><a tal:attributes="class php:Active=='Dealer'?'active':'?'" href="/khuyen-mai">KHUYẾN MÃI</a></li>
+									<li><a tal:attributes="class php:Active=='Album'?'active':'?'" href="/hinh-anh">HÌNH ẢNH</a></li>
+									<li><a tal:attributes="class php:Active=='Video'?'active':'?'" href="/video">VIDEO</a></li>
+									<li><a tal:attributes="class php:Active=='Contact'?'active':'?'" href="/lien-he">LIÊN HỆ</a></li>									
 								</ul>
-							</nav>
-							<div id="quick-access">
-								<div class="dropdown-cart-menu-container pull-right">
-									<div class="btn-group dropdown-cart">
-										<a href="/gio-hang" class="btn btn-custom dropdown-toggle">
-											<span class="cart-menu-icon" />
-											<span tal:content="php:@\MVC\Base\SessionRegistry::instance()->getCart()->countItem()" />
-											sản phẩm <span class="drop-price"> được chọn</span>
-										</a>									
-									</div>
-								</div>
-								<form class="form-inline quick-search-form" role="form" action="/tim-kiem" method="POST">
-									<div class="form-group">
-										<input type="text" class="form-control" id="Term" name="Term" placeholder="Bạn cần mua gì ?"/>
-									</div>
-									<button type="submit" id="quick-search" class="btn btn-custom"></button>
-								</form>
-							</div>
+							</nav>							
 						</div>
 					</div>
-				</div><!-- End .container -->
-			</div><!-- End #nav -->
-		</div><!-- End #inner-header -->
-	</header><!-- End #header -->
+				</div>
+			</div>
+		</div>
+	</header>
 	
 	<!-- ======================================================================== -->
 	<!-- PAGE TITLE																  -->
@@ -200,42 +168,7 @@
 			</div>
 		</div>
 	</div>
-	
-	<!-- ======================================================================== -->
-	<!-- MENU																	  -->
-	<!-- ======================================================================== -->
-	<div metal:define-macro="Menu" class="row-fluid">
-		<div class="span12 nav-menus">
-			<ul class="nav nav-pills">
-				<li tal:attributes="class php:Active=='Home'?'active':''">
-					<a href="/trang-chu">Trang chủ</a>
-				</li>
-				<li tal:attributes="class php:Active=='Introduction'?'active':''">
-					<a href="/gioi-thieu">Giới thiệu</a>
-				</li>
-				<li class="dropdown">
-					<a href="#" data-toggle="dropdown" class="dropdown-toggle"> Tin tức <b class="caret"></b></a>					
-					<ul class="dropdown-menu">							
-						<li tal:repeat="Tag TagAll">
-							<a tal:attributes="href Tag/getURLView" tal:content="Tag/getName"/>
-						</li>
-					</ul>					
-				</li>
-				<li class="dropdown" tal:repeat="Category CategoryAll">
-					<a href="#" data-toggle="dropdown" class="dropdown-toggle"> <span tal:content="Category/getName"/> <b class="caret"></b></a>
-					<ul class="dropdown-menu">							
-						<li tal:repeat="Category1 Category/getCategoryAll">
-							<a tal:attributes="href Category1/getURLView" tal:content="Category1/getName"/>
-						</li>
-					</ul>
-				</li>
-				<li tal:attributes="class php:Active=='Contact'?'active':''">
-					<a href="/lien-he">Liên hệ</a>
-				</li>
-			</ul>
-		</div>
-	</div>
-	
+		
 	<!-- ======================================================================== -->
 	<!-- LOCATION BAR															  -->
 	<!-- ======================================================================== -->
@@ -252,6 +185,72 @@
 	</div>
 	
 	<!-- ======================================================================== -->
+	<!-- SUBCRIBE															  	  -->
+	<!-- ======================================================================== -->
+	<div metal:define-macro="Subscribe" class="widget subscribe">
+		<p>Nhận thông tin và các chương trình khuyến mãi hấp dẫn</p>
+		<form action="/nhan-thong-tin" id="subscribe-form" method="post">
+			<div class="form-group">
+				<input type="email" class="form-control" id="Email"  name="Email" placeholder="Email của bạn là gì?"/>
+			</div>
+			<input type="submit" value="ĐĂNG KÝ" class="btn btn-custom"/>
+		</form>
+	</div>
+											
+	<!-- ======================================================================== -->
+	<!-- TESTMONIALS														  	  -->
+	<!-- ======================================================================== -->
+	<div metal:define-macro="Testmonials" class="widget testimonials">
+		<h3>Đánh giá</h3>
+		<div class="testimonials-slider flexslider sidebarslider">
+			<ul class="testimonials-list clearfix">
+				<li tal:repeat="StoryLine StoryLineAll">
+					<div class="testimonial-details">
+						<header tal:content="StoryLine/getTitle"/>														
+						<span tal:content="StoryLine/getNote"/>														
+					</div><!-- End .testimonial-details -->
+					<figure class="clearfix">
+						<img tal:attributes="src StoryLine/getImage"/>
+						<figcaption>
+							<a href="#"><span tal:content="StoryLine/getName"/></a>
+							<span tal:content="StoryLine/getDatePrint"/>
+						</figcaption>
+					</figure>
+				</li>												
+			</ul>
+		</div>
+	</div>
+	
+	<!-- ======================================================================== -->
+	<!-- LASTEST POST														  	  -->
+	<!-- ======================================================================== -->
+	<div metal:define-macro="LastestPost" class="widget latest-posts">
+		<h3>Tin mới nhất</h3>
+		<div class="latest-posts-slider flexslider sidebarslider">
+			<ul class="latest-posts-list clearfix">
+				<li tal:repeat="PT LastestPostAll">
+					<a tal:attributes="href PT/getURLRead">
+						<figure class="latest-posts-media-container">
+							<img tal:attributes="src PT/getPost/getImage;alt PT/getPost/getTitle" />
+						</figure>
+					</a>
+					<h4><a tal:attributes="href PT/getURLRead" tal:content="PT/getPost/getTitle"/></h4>
+					<p tal:content="structure PT/getPost/getContentReduce"/>
+					
+					<div class="latest-posts-meta-container clearfix">
+						<div class="pull-left">
+							<a tal:attributes="href PT/getURLRead">Chi tiết...</a>
+						</div>
+						<div class="pull-right">
+							<span tal:content="PT/getPost/getTimePrint"/>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+									
+	<!-- ======================================================================== -->
 	<!-- FOOTER																	  -->
 	<!-- ======================================================================== -->
 	<footer metal:define-macro="Footer" id="footer">
@@ -259,280 +258,52 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-4 col-sm-4 col-xs-12 widget">
-						<h3>Trụ sở chính</h3>
-						<ul class="contact-list">
-							<li><strong>Trung tâm điện máy Minh Hoàng</strong></li>
-							<li>33/5 Phạm Thái Bường F4 TP.Vĩnh Long</li>							
-							<li>Làm việc tất cả các ngày trong tuần</li>
-							<li>Giờ mở cửa: 8.00AM - 21.00PM</li>
+						<h3>Ẩm Thực Sinh Thái Hương Sen Hồng</h3>
+						<ul class="contact-list">							
+							<li>Tiếp đón quí khách tất cả các ngày trong tuần</li>
+							<li>Giờ mở cửa: 8.00 Sáng - 22.00 Tối</li>
 						</ul>
 					</div>
 					<div class="col-md-5 col-sm-4 col-xs-12 widget">
-						<h3>Hệ thống siêu thị</h3>
+						<h3>Trong cùng hệ thống</h3>
 						<ul class="links">
 							<li tal:repeat="Branch BranchAll">
 								<span tal:content="Branch/getName"/>: <span tal:content="Branch/getAddress"/>
+							</li>
+						</ul>
+						<h3><a href="/lien-ket">Liên kết Website</a></h3>
+						<ul class="links">
+							<li tal:repeat="Linked LinkedAll">								
+								<a tal:attributes="href Linked/getWebsite" target="blank">
+									<span tal:content="Linked/getName"/>
+								</a>
 							</li>
 						</ul>
 					</div>					
 					<div class="col-md-3 col-sm-12 col-xs-12 widget">
 						<h3>FACEBOOK</h3>
 						<div class="facebook-likebox">
-							<iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fdienmayminhhoang&amp;width&amp;height=258&amp;colorscheme=dark&amp;show_faces=true&amp;header=false&amp;stream=false&amp;show_border=false" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:258px;" allowTransparency="true"></iframe>
+							<iframe src="http://www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Famthuccaytretramdot&amp;width&amp;height=221&amp;colorscheme=dark&amp;show_faces=true&amp;header=false&amp;stream=false&amp;show_border=false" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:220px;" allowTransparency="true"></iframe>
 						</div>
-					</div><!-- End .widget -->
-				</div><!-- End .row -->
-			</div><!-- End .container -->
-		</div><!-- End #inner-footer -->
+					</div>
+				</div>
+			</div>
+		</div>
 		<div id="footer-bottom">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-7 col-sm-7 col-xs-12 footer-social-links-container">
-						<ul class="social-links clearfix">
-							<li><a href="https://facebook.com/dienmayminhhoang" class="social-icon icon-facebook"></a></li>
-							<li><a href="#" class="social-icon icon-rss"></a></li>							
-							<li><a href="#" class="social-icon icon-skype"></a></li>
-							<li><a href="/lien-he" class="social-icon icon-email"></a></li>
-						</ul>
-					</div><!-- End .col-md-7 -->
+					<div class="col-md-7 col-sm-7 col-xs-12 footer-social-links-container">						
+						<p><i>SPN Group - Website duyệt tốt trên <B>Tablet</B>, <B>SmartPhone</B> dùng trình duyệt <B>Google Chrome</B></i></p>
+					</div>
 					<div class="col-md-5 col-sm-5 col-xs-12 footer-text-container">
-						<p>&copy; 2014, SPN Soft&trade;</p>
-					</div><!-- End .col-md-5 -->
-				</div><!-- End .row -->
-			</div><!-- End .container -->
-		</div><!-- End #footer-bottom -->
+						<p>&copy; 2014 Cây Tre Trăm Đốt</p>
+					</div>
+				</div>				
+			</div>
+		</div>
 		<a href="#" id="scroll-top" title="Scroll to Top"><i class="fa fa-angle-up"></i></a>
-	</footer><!-- End #footer -->
-			
-	<!-- ======================================================================== -->
-	<!-- OPTION PANEL															  -->
-	<!-- ======================================================================== -->
-	<div metal:define-macro="OptionPanel" id="option-panel">
-		<div id="option-panel-wrapper">
-			<div id="option-panel-btn"></div><!-- End #option-panel-btn -->
-			<div id="option-panel-container">
-				<ul id="option-panel-tabs-container" class="clearfix">
-					<li class="active"><a href="#panel-layout" data-toggle="tab" data-panel-title="Layout"></a></li>
-					<li><a href="#panel-home" data-toggle="tab" data-panel-title="Background Settings"></a></li>
-					<li><a href="#panel-color" data-toggle="tab" data-panel-title="Color Settings" ></a></li>
-					<li><a href="#panel-font" data-toggle="tab" data-panel-title="Font Settings"></a></li>
-					<li><a id="option-close" href="#"></a></li>
-				</ul>
-				<div id="option-panel-title" class="clearfix">
-					<span>Layout</span>
-					<a href="#" id="option-panel-reset">Reset</a>
-				</div>
-				<div id="option-panel-content" class="tab-content">
-					<div class="tab-pane fade in active" id="panel-layout">
-						<div id="panel-option-layout" class="panel-group custom-accordion sm-accordion">
-							<div class="panel">
-								<div class="accordion-header">
-									<div class="accordion-title"><span>Layout</span></div><!-- End .accordion-title -->
-									<a class="accordion-btn opened"  data-toggle="collapse" data-target="#document-layout" data-parent="#panel-option-layout"></a>
-								</div><!-- End .accordion-header -->
-
-								<div id="document-layout" class="collapse in">
-									<div class="panel-body">
-										<ul class="layout-style-list clearfix">
-											<li data-layout="fullwidth">
-												<img src="/mvc/templates/front/images/panel/fullwidth.png" alt="Fullwidth"/>
-												<p>Fullwidth</p>
-											</li>
-											<li data-layout="boxed">
-												<img src="/mvc/templates/front/images/panel/boxed.png" alt="Boxed"/>
-												<p>Boxed</p>
-											</li>
-										</ul>
-									</div><!-- End .panel-body -->
-								</div><!-- #collapse -->
-							</div><!-- End .panel -->
-						</div><!-- .panel-group -->
-					</div><!-- End .tab-pane -->
-					<div class="tab-pane fade" id="panel-home">
-						<div id="panel-home-accordion" class="panel-group custom-accordion sm-accordion">
-							<div class="panel">
-								<div class="accordion-header">
-									<div class="accordion-title"><span>Basic Color</span></div><!-- End .accordion-title -->
-									<a class="accordion-btn opened"  data-toggle="collapse" data-target="#body-background-color" data-parent="#panel-home-accordion"></a>
-								</div><!-- End .accordion-header -->
-
-								<div id="body-background-color" class="collapse in">
-									<div class="panel-body">
-										<div id="panel-color-picker">
-										</div><!-- End #panel-color-picker -->
-									</div><!-- End .panel-body -->
-								</div><!-- #collapse -->
-							</div><!-- End .panel -->
-							<div class="panel">
-								<div class="accordion-header">
-									<div class="accordion-title"><span>Patterns</span></div><!-- End .accordion-title -->
-									<a class="accordion-btn"  data-toggle="collapse"  data-target="#body-background-pattern" data-parent="#panel-home-accordion"></a>
-								</div><!-- End .accordion-header -->
-								<div id="body-background-pattern" class="collapse">
-									<div class="panel-body">
-										<ul class="clearfix pattern-box-list">
-											<li><img data-src="/mvc/templates/front/images/patterns/pattern1.png" src="/mvc/templates/front/images/patterns/pattern1.png" alt="pattern 1"/></li>
-											<li><img data-src="/mvc/templates/front/images/patterns/pattern2.png" src="/mvc/templates/front/images/patterns/pattern2.png" alt="pattern 2"/></li>
-											<li><img data-src="/mvc/templates/front/images/patterns/pattern3.png" src="/mvc/templates/front/images/patterns/pattern3.png" alt="pattern 3"/></li>
-											<li><img data-src="/mvc/templates/front/images/patterns/pattern4.png" src="/mvc/templates/front/images/patterns/pattern4.png" alt="pattern 4"/></li>
-											<li><img data-src="/mvc/templates/front/images/patterns/pattern5.png" src="/mvc/templates/front/images/patterns/pattern5.png" alt="pattern 5"/></li>
-											<li><img data-src="/mvc/templates/front/images/patterns/pattern6.png" src="/mvc/templates/front/images/patterns/pattern6.png" alt="pattern 6"/></li>
-											<li><img data-src="/mvc/templates/front/images/patterns/pattern7.png" src="/mvc/templates/front/images/patterns/pattern7.png" alt="pattern 7"/></li>
-											<li><img data-src="/mvc/templates/front/images/patterns/pattern8.png" src="/mvc/templates/front/images/patterns/pattern8.png" alt="pattern 8"/></li>
-											<li><img data-src="/mvc/templates/front/images/patterns/pattern9.png" src="/mvc/templates/front/images/patterns/pattern9.png" alt="pattern 9"/></li>
-											<li><img data-src="/mvc/templates/front/images/patterns/pattern10.png" src="/mvc/templates/front/images/patterns/pattern10.png" alt="pattern 10"/></li>
-											<li><img data-src="/mvc/templates/front/images/patterns/pattern11.png" src="/mvc/templates/front/images/patterns/pattern11.png" alt="pattern 11"/></li>
-											<li><img data-src="/mvc/templates/front/images/patterns/pattern12.png" src="/mvc/templates/front/images/patterns/pattern12.png" alt="pattern 12"/></li>
-											<li><img data-src="/mvc/templates/front/images/patterns/pattern13.png" src="/mvc/templates/front/images/patterns/pattern13.png" alt="pattern 13"/></li>
-											<li><img data-src="/mvc/templates/front/images/patterns/pattern14.png" src="/mvc/templates/front/images/patterns/pattern14.png" alt="pattern 14"/></li>
-											<li><img data-src="/mvc/templates/front/images/patterns/pattern15.png" src="/mvc/templates/front/images/patterns/pattern15.png" alt="pattern 15"/></li>
-											<li><img data-src="/mvc/templates/front/images/patterns/pattern16.png" src="/mvc/templates/front/images/patterns/pattern16.png" alt="pattern 16"/></li>
-											<li><img data-src="/mvc/templates/front/images/patterns/pattern17.png" src="/mvc/templates/front/images/patterns/pattern17.png" alt="pattern 17"/></li>
-											<li><img data-src="/mvc/templates/front/images/patterns/pattern18.png" src="/mvc/templates/front/images/patterns/pattern18.png" alt="pattern 18"/></li>
-											<li><img data-src="/mvc/templates/front/images/patterns/pattern19.png" src="/mvc/templates/front/images/patterns/pattern19.png" alt="pattern 19"/></li>
-											<li><img data-src="/mvc/templates/front/images/patterns/pattern20.png" src="/mvc/templates/front/images/patterns/pattern20.png" alt="pattern 20"/></li>
-											<li><img data-src="/mvc/templates/front/images/patterns/pattern21.png" src="/mvc/templates/front/images/patterns/pattern21.png" alt="pattern 21"/></li>
-											<li><img data-src="/mvc/templates/front/images/patterns/pattern22.png" src="/mvc/templates/front/images/patterns/pattern22.png" alt="pattern 22"/></li>
-											<li><img data-src="/mvc/templates/front/images/patterns/pattern23.png" src="/mvc/templates/front/images/patterns/pattern23.png" alt="pattern 23"/></li>
-											<li><img data-src="/mvc/templates/front/images/patterns/pattern24.png" src="/mvc/templates/front/images/patterns/pattern24.png" alt="pattern 24"/></li>
-											<li><img data-src="/mvc/templates/front/images/patterns/pattern25.png" src="/mvc/templates/front/images/patterns/pattern25.png" alt="pattern 25"/></li>
-											<li><img data-src="/mvc/templates/front/images/patterns/pattern26.png" src="/mvc/templates/front/images/patterns/pattern26.png" alt="pattern 26"/></li>
-											<li><img data-src="/mvc/templates/front/images/patterns/pattern27.png" src="/mvc/templates/front/images/patterns/pattern27.png" alt="pattern 27"/></li>
-											<li><img data-src="/mvc/templates/front/images/patterns/pattern28.png" src="/mvc/templates/front/images/patterns/pattern28.png" alt="pattern 28"/></li>
-											<li><img data-src="/mvc/templates/front/images/patterns/pattern29.png" src="/mvc/templates/front/images/patterns/pattern29.png" alt="pattern 29"/></li>
-											<li><img data-src="/mvc/templates/front/images/patterns/pattern30.png" src="/mvc/templates/front/images/patterns/pattern30.png" alt="pattern 30"/></li>
-										</ul>
-									</div><!-- End .panel-body -->
-								</div><!-- #collapse -->
-							</div><!-- End .panel -->
-						</div><!-- .panel-group -->
-					</div><!-- End .tab-pane -->
-					<div class="tab-pane fade" id="panel-color">
-						<div id="panel-color-accordion" class="panel-group custom-accordion sm-accordion">
-							<div class="panel">
-								<div class="accordion-header">
-									<div class="accordion-title"><span>Green Mode</span></div><!-- End .accordion-title -->
-									<a class="accordion-btn opened"  data-toggle="collapse"  data-target="#color-mode" data-parent="#panel-color-accordion"></a>
-								</div><!-- End .accordion-header -->
-								<ul class="colorbox-list clearfix collapse in" id="color-mode">
-									<li>
-										<div class="color-box first-color">
-											<span></span>
-										</div>
-										<p>First Color</p>
-									</li>
-									<li>
-										<div class="color-box second-color">
-											<span></span>
-										</div>
-										<p>Second Color</p>
-									</li>
-									<li>
-										<div class="color-box third-color">
-											<span></span>
-										</div>
-										<p>Third Color</p>
-									</li>
-									<li>
-										<div class="color-box fourth-color">
-											<span></span>
-										</div>
-										<p>Fourth Color</p>
-									</li>
-								</ul>
-							</div><!-- .panel -->
-						</div><!-- #panel-color-accordion -->
-					</div><!-- End .tab-pane -->
-					<div class="tab-pane fade" id="panel-font">
-						<div id="panel-font-accordion" class="panel-group custom-accordion sm-accordion">
-							<div class="panel">
-								<div class="accordion-header">
-									<div class="accordion-title"><span>First Font</span></div><!-- End .accordion-title -->
-									<a class="accordion-btn opened"  data-toggle="collapse"  data-target="#first-font-container" data-parent="#panel-font-accordion"></a>
-								</div><!-- End .accordion-header -->
-								<div class="collapse in" id="first-font-container">
-									<select class="form-control" name="first-font" id="first-font">
-										<option value="Arial">Arial</option>
-										<option value="Open Sans">Open Sans</option>
-										<option value="PT Sans">PT Sans</option>
-										<option value="Lato">Lato</option>
-										<option value="Roboto">Roboto</option>
-										<option value="Droid Sans">Droid Sans</option>
-										<option value="Ubuntu">Ubuntu</option>
-										<option value="Arvo">Arvo</option>
-										<option value="Droid Serif">Ubuntu</option>
-										<option value="Nunito">Nunito</option>
-									</select>
-								</div><!-- End #first-font-container -->
-							</div><!-- .panel -->
-							<div class="panel">
-								<div class="accordion-header">
-									<div class="accordion-title"><span>Second Font</span></div><!-- End .accordion-title -->
-									<a class="accordion-btn"  data-toggle="collapse"  data-target="#second-font-container" data-parent="#panel-font-accordion"></a>
-								</div><!-- End .accordion-header -->
-								<div class="collapse" id="second-font-container">
-									<select class="form-control" name="second-font" id="second-font">
-										<option value="Oswald">Oswald</option>
-										<option value="Gudea">Gudea</option>
-										<option value="Open Sans">Open Sans</option>
-										<option value="PT Sans">PT Sans</option>
-										<option value="Lato">Lato</option>
-										<option value="Roboto">Roboto</option>
-										<option value="Droid Sans">Droid Sans</option>
-										<option value="Ubuntu">Ubuntu</option>
-										<option value="Arvo">Arvo</option>
-										<option value="Droid Serif">Droid Serif</option>
-										<option value="Nunito">Nunito</option>
-									</select>
-								</div><!-- End #second-font-container -->
-							</div><!-- .panel -->
-							<div class="panel">
-								<div class="accordion-header">
-									<div class="accordion-title"><span>Third Font</span></div><!-- End .accordion-title -->
-									<a class="accordion-btn"  data-toggle="collapse"  data-target="#third-font-container" data-parent="#panel-font-accordion"></a>
-								</div><!-- End .accordion-header -->
-								<div class="collapse" id="third-font-container">
-									<select class="form-control" name="third-font" id="third-font">
-										<option value="PT Sans">PT Sans</option>
-										<option value="Gudea">Gudea</option>
-										<option value="Open Sans">Open Sans</option>
-										<option value="Lato">Lato</option>
-										<option value="Roboto">Roboto</option>
-										<option value="Droid Sans">Droid Sans</option>
-										<option value="Ubuntu">Ubuntu</option>
-										<option value="Arvo">Arvo</option>
-										<option value="Droid Serif">Droid Serif</option>
-										<option value="Nunito">Nunito</option>
-									</select>
-								</div><!-- End #third-font-container -->
-							</div><!-- .panel -->
-							<div class="panel">
-								<div class="accordion-header">
-									<div class="accordion-title"><span>Fourth Font</span></div><!-- End .accordion-title -->
-									<a class="accordion-btn"  data-toggle="collapse"  data-target="#fourth-font-container" data-parent="#panel-font-accordion"></a>
-								</div><!-- End .accordion-header -->
-								<div class="collapse" id="fourth-font-container">
-									<select class="form-control" name="fourth-font" id="fourth-font">
-										<option value="Gudea">Gudea</option>
-										<option value="Open Sans">Open Sans</option>
-										<option value="PT Sans">PT Sans</option>
-										<option value="Lato">Lato</option>
-										<option value="Roboto">Roboto</option>
-										<option value="Droid Sans">Droid Sans</option>
-										<option value="Ubuntu">Ubuntu</option>
-										<option value="Arvo">Arvo</option>
-										<option value="Droid Serif">Droid Serif</option>
-										<option value="Nunito">Nunito</option>
-									</select>
-								</div><!-- End #fourth-font-container -->
-							</div><!-- .panel -->
-						</div><!-- End .panel-font-accordion -->
-					</div><!-- End .tab-pane -->
-				</div><!-- End .tab-content -->
-			</div><!-- End #option-panel-container -->
-		</div><!-- End #option-panel-wrapper -->
-	</div><!-- End #option panel -->
-	
+	</footer>
+		
 	<!-- ======================================================================== 	-->
 	<!-- ADS SERVICE															  			-->
 	<!-- ======================================================================== 	-->

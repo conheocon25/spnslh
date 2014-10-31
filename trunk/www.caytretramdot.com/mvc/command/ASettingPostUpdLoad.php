@@ -11,6 +11,7 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
+			$IdTag 	= $request->getProperty('IdTag');
 			$IdPost = $request->getProperty('IdPost');
 			
 			//-------------------------------------------------------------
@@ -26,15 +27,16 @@
 			$Title 	= mb_strtoupper($Post->getTitle(), 'UTF8');
 			$Navigation = array(				
 				array("THIẾT LẬP", 	"/admin/setting"),
-				array("BÀI VIẾT", 	"/admin/setting/post")				
+				array("BÀI VIẾT", 	"/admin/setting/post")
 			);									
 			$ConfigName		= $mConfig->findByName("NAME");
-			
+			$URLExe = "/admin/setting/post/$IdTag/$IdPost/upd/exe";
 									
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
 			$request->setProperty('Title'		, $Title);
+			$request->setProperty('URLExe'		, $URLExe);
 			$request->setProperty('ActiveAdmin'	, 'Post');			
 			$request->setObject('Navigation'	, $Navigation);			
 			$request->setObject('ConfigName'	, $ConfigName);

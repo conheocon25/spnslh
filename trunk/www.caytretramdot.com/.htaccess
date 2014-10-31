@@ -16,47 +16,61 @@ AddOutputFilterByType DEFLATE application/x-javascript
 #---------------------------------------------------------------------------------------------------------------------------
 # SYSTEM
 #---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^cong-chao$ 						?cmd=FGate 			[L]
 RewriteRule ^trang-chu$ 						?cmd=FHome 			[L]
 RewriteRule ^gioi-thieu$ 						?cmd=FIntroduction 	[L]
 RewriteRule ^chinh-sach$ 						?cmd=FPolicy 		[L]
 RewriteRule ^faq$ 								?cmd=FFAQ 			[L]
 RewriteRule ^lien-he$ 							?cmd=FContact 		[L]
 RewriteRule ^lien-he/email$ 					?cmd=FContactSend	[L]
+RewriteRule ^lien-he/gmail$ 					?cmd=FContactSendGmail	[L]
+RewriteRule ^lien-he/RefreshCaptcha      		?cmd=RefreshCaptcha	[L]
 RewriteRule ^nhan-thong-tin$ 					?cmd=FSubcribe 		[L]
+
+RewriteRule ^khuyen-mai$ 									?cmd=FDealer 		[L]
+RewriteRule ^khuyen-mai/([A-Za-z0-9_-]+)$ 					?cmd=FDealer&KCategory2=$1 	[L]
+RewriteRule ^khuyen-mai/([A-Za-z0-9_-]+)/page/([0-9]+)$ 	?cmd=FDealer&KCategory2=$1&Page=$2 	[L]
+
+RewriteRule ^khuyen-mai/m/([0-9]+)$ 						?cmd=FDealer&IdManufacturer=$1 	[L]
+RewriteRule ^khuyen-mai/m/([0-9]+)/page/([0-9]+)$ 			?cmd=FDealer&IdManufacturer=$1&Page=$2 	[L]
+
+RewriteRule ^san-pham/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$ 	?cmd=FProduct&KCategory1=$1&KCategory2=$2&KProduct=$3 [L]
+RewriteRule ^san-pham/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$ 					?cmd=FCategory&KCategory1=$1&KCategory2=$2 [L]
+RewriteRule ^san-pham/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/page/([0-9]+)$ 		?cmd=FCategory&KCategory1=$1&KCategory2=$2&Page=$3 [L]
+RewriteRule ^san-pham/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/([0-9]+)/m$ 		?cmd=FCategory&KCategory1=$1&KCategory2=$2&IdManufacturer=$3 [L]
+RewriteRule ^san-pham/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/([0-9]+)/m/page/([0-9]+)$ ?cmd=FCategory&KCategory1=$1&KCategory2=$2&IdManufacturer=$3&Page=$4 [L]
 
 RewriteRule ^tin-tuc/([A-Za-z0-9_-]+)$ 							?cmd=FTag&KTag=$1 [L]
 RewriteRule ^tin-tuc/([A-Za-z0-9_-]+)/page/([0-9]+)$ 			?cmd=FTag&KTag=$1&Page=$2 [L]
 RewriteRule ^tin-tuc/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$ 		?cmd=FPost&KTag=$1&KPost=$2 [L]
+
+RewriteRule ^lien-ket$ 											?cmd=FLinked [L]
+
+RewriteRule ^hinh-anh$ 											?cmd=FAlbum [L]
+RewriteRule ^hinh-anh/page/([0-9]+)$ 							?cmd=FAlbum&Page=$1 [L]
+RewriteRule ^hinh-anh/([A-Za-z0-9_-]+)$ 						?cmd=FAlbumImage&KAlbum=$1 [L]
+
+
+RewriteRule ^video$ 											?cmd=FVideo [L]
+RewriteRule ^video/page/([0-9]+)$ 								?cmd=FVideo&Page=$1 [L]
+RewriteRule ^video/([A-Za-z0-9_-]+)$ 							?cmd=FVideoDetail&KVideo=$1 [L]
 
 RewriteRule ^dang-nhap$ 										?cmd=SigninLoad [L]
 RewriteRule ^dang-nhap/exe$ 									?cmd=SigninExe [L]
 RewriteRule ^signout/load$ 										?cmd=SignoutLoad [L]
 RewriteRule ^signout/exe$ 										?cmd=SignoutExe [L]
 
-RewriteRule ^model/load/([A-Za-z0-9]+)/all$ 					?cmd=ModelLoadAll&ObjectName=$1 [L]
-RewriteRule ^model/findby/([A-Za-z0-9]+)/([0-9]+)$ 				?cmd=ModelFindBy&ObjectName=$1&IdObject=$2 [L]
-
 RewriteRule ^object/load/([A-Za-z0-9]+)/([0-9]+)$ 				?cmd=ObjectLoad&ObjectName=$1&Id=$2 [L]
 RewriteRule ^object/del/([A-Za-z0-9]+)/([0-9]+)$ 				?cmd=ObjectDel&ObjectName=$1&Id=$2 [L]
 RewriteRule ^object/ins/([A-Za-z0-9]+)$ 						?cmd=ObjectIns&ObjectName=$1 [L]
 RewriteRule ^object/upd/([A-Za-z0-9]+)$ 						?cmd=ObjectUpd&ObjectName=$1 [L]
 
+RewriteRule ^object/liked/([A-Za-z0-9]+)/([0-9]+)$ 				?cmd=ObjectLiked&ObjectName=$1&Id=$2 [L]
+
 #---------------------------------------------------------------------------------------------------------------------------
 # SELLING
 #---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^admin$ 											?cmd=Admin [L]
-
-#---------------------------------------------------------------------------------------------------------------------------
-# TEST
-#---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^admin/test$ 										?cmd=ATest [L]
-RewriteRule ^admin/test/([0-9]+)$ 								?cmd=ATestDetail&IdTest=$1 [L]
-
-#---------------------------------------------------------------------------------------------------------------------------
-# REPORT
-#---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^admin/report$ 										?cmd=AReport [L]
-RewriteRule ^admin/report/([0-9]+)$ 							?cmd=AReportDetail&IdTrack=$1 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # SETTING
@@ -67,14 +81,12 @@ RewriteRule ^admin/setting/theme/([a-z0-9_-]+)$ 						?cmd=ASettingThemeChangeEx
 RewriteRule ^admin/setting/tag$ 										?cmd=ASettingTag [L]
 RewriteRule ^admin/setting/tag/page/([0-9]+)$ 							?cmd=ASettingTag&Page=$1 [L]
 
-RewriteRule ^admin/setting/post$ 										?cmd=ASettingPost [L]
-RewriteRule ^admin/setting/post/([0-9]+)$ 								?cmd=ASettingPost&IdTag=$1 	[L]
-RewriteRule ^admin/setting/post/ins/load$ 								?cmd=ASettingPostInsLoad 	[L]
-RewriteRule ^admin/setting/post/ins/exe$ 								?cmd=ASettingPostInsExe 	[L]
-RewriteRule ^admin/setting/post/([0-9]+)/upd/load$ 						?cmd=ASettingPostUpdLoad&IdPost=$1 	[L]
-RewriteRule ^admin/setting/post/([0-9]+)/upd/exe$ 						?cmd=ASettingPostUpdExe&IdPost=$1	[L]
-RewriteRule ^admin/setting/post/([0-9]+)/del/load$ 						?cmd=ASettingPostDelLoad&IdPost=$1 	[L]
-RewriteRule ^admin/setting/post/([0-9]+)/del/exe$ 						?cmd=ASettingPostDelExe&IdPost=$1	[L]
+RewriteRule ^admin/setting/post$ 										?cmd=ASettingPost 							[L]
+RewriteRule ^admin/setting/post/([0-9]+)$ 								?cmd=ASettingPost&IdTag=$1 					[L]
+RewriteRule ^admin/setting/post/([0-9]+)/ins/load$ 						?cmd=ASettingPostInsLoad&IdTag=$1 			[L]
+RewriteRule ^admin/setting/post/([0-9]+)/ins/exe$ 						?cmd=ASettingPostInsExe&IdTag=$1 			[L]
+RewriteRule ^admin/setting/post/([0-9]+)/([0-9]+)/upd/load$ 			?cmd=ASettingPostUpdLoad&IdTag=$1&IdPost=$2 [L]
+RewriteRule ^admin/setting/post/([0-9]+)/([0-9]+)/upd/exe$ 				?cmd=ASettingPostUpdExe&IdTag=$1&IdPost=$2	[L]
 
 RewriteRule ^admin/setting/post/([0-9]+)/tag$ 							?cmd=ASettingPostTag&IdPost=$1 		[L]
 
@@ -85,25 +97,51 @@ RewriteRule ^admin/setting/presentation/([0-9]+)/ins/exe$ 				?cmd=ASettingSlide
 RewriteRule ^admin/setting/presentation/([0-9]+)/([0-9]+)/upd/load$ 	?cmd=ASettingSlideUpdLoad&IdPresentation=$1&IdSlide=$2 [L]
 RewriteRule ^admin/setting/presentation/([0-9]+)/([0-9]+)/upd/exe$ 		?cmd=ASettingSlideUpdExe&IdPresentation=$1&IdSlide=$2 [L]
 
+RewriteRule ^admin/setting/album$ 										?cmd=ASettingAlbum [L]
+RewriteRule ^admin/setting/album/page/([0-9]+)$ 						?cmd=ASettingAlbum&Page=$1 [L]
+RewriteRule ^admin/setting/album/([0-9]+)$ 								?cmd=ASettingAlbumImage&IdAlbum=$1 [L]
+RewriteRule ^admin/setting/album/([0-9]+)/page/([0-9]+)$ 				?cmd=ASettingAlbumImage&IdAlbum=$1&Page=$2 [L]
+
+RewriteRule ^admin/setting/video$ 										?cmd=ASettingVideo [L]
+RewriteRule ^admin/setting/video/page/([0-9]+)$ 						?cmd=ASettingVideo&Page=$1 [L]
+
 RewriteRule ^admin/setting/category$ 									?cmd=ASettingCategory [L]
 RewriteRule ^admin/setting/category/page/([0-9]+)$ 						?cmd=ASettingCategory&Page=$1 [L]
 RewriteRule ^admin/setting/category/([0-9]+)$ 							?cmd=ASettingCategory1&IdCategory=$1 [L]
 RewriteRule ^admin/setting/category/([0-9]+)/page/([0-9]+)$ 			?cmd=ASettingCategory1&IdCategory=$1&Page=$2 [L]
 
+RewriteRule ^admin/setting/gattribute$ 									?cmd=ASettingGAttribute [L]
+RewriteRule ^admin/setting/gattribute/page/([0-9]+)$ 					?cmd=ASettingGAttribute&Page=$1 [L]
+RewriteRule ^admin/setting/gattribute/([0-9]+)$ 						?cmd=ASettingAttribute&IdGAttribute=$1 [L]
+
+RewriteRule ^admin/setting/manufacturer$ 								?cmd=ASettingManufacturer [L]
+RewriteRule ^admin/setting/manufacturer/page/([0-9]+)$ 					?cmd=ASettingManufacturer&Page=$1 [L]
+
 RewriteRule ^admin/setting/config$ 										?cmd=ASettingConfig [L]
 RewriteRule ^admin/setting/config/page/([0-9]+)$ 						?cmd=ASettingConfig&Page=$1 [L]
+
+RewriteRule ^admin/setting/supplier$ 									?cmd=ASettingSupplier [L]
+RewriteRule ^admin/setting/supplier/page/([0-9]+)$ 						?cmd=ASettingSupplier&Page=$1 [L]
+RewriteRule ^admin/setting/supplier/([0-9]+)$ 							?cmd=ASettingSupplierProduct&IdSupplier=$1 [L]
+RewriteRule ^admin/setting/supplier/([0-9]+)/page/([0-9]+)$ 			?cmd=ASettingSupplierProduct&IdSupplier=$1&Page=$2 [L]
+RewriteRule ^admin/setting/supplier/([0-9]+)/([0-9]+)/image$ 			?cmd=ASettingProductImage&IdSupplier=$1&IdProduct=$2 [L]
+RewriteRule ^admin/setting/supplier/([0-9]+)/([0-9]+)/info$ 			?cmd=ASettingProductInfo&IdSupplier=$1&IdProduct=$2 [L]
+RewriteRule ^admin/setting/supplier/([0-9]+)/([0-9]+)/info/exe$ 		?cmd=ASettingProductInfoExe&IdSupplier=$1&IdProduct=$2 [L]
+
+RewriteRule ^admin/setting/supplier/([0-9]+)/([0-9]+)/category$ 				?cmd=ASettingSupplierProduct&IdSupplier=$1&IdCategory1=$2 [L]
+RewriteRule ^admin/setting/supplier/([0-9]+)/([0-9]+)/category/page/([0-9]+)$ 	?cmd=ASettingSupplierProduct&IdSupplier=$1&IdCategory1=$2&Page=$3 [L]
+
+RewriteRule ^admin/setting/employee$ 									?cmd=ASettingEmployee [L]
+RewriteRule ^admin/setting/employee/page/([0-9]+)$ 						?cmd=ASettingEmployee&Page=$1 [L]
 
 RewriteRule ^admin/setting/user$ 										?cmd=ASettingUser [L]
 RewriteRule ^admin/setting/user/page/([0-9]+)$ 							?cmd=ASettingUser&Page=$1 [L]
 
-RewriteRule ^admin/setting/question$ 									?cmd=ASettingQuestion [L]
-RewriteRule ^admin/setting/question/page/([0-9]+)$ 						?cmd=ASettingQuestion&Page=$1 [L]
-RewriteRule ^admin/setting/question/ins/load$ 							?cmd=ASettingQuestionInsLoad [L]
-RewriteRule ^admin/setting/question/ins/exe$ 							?cmd=ASettingQuestionInsExe [L]
-RewriteRule ^admin/setting/question/([0-9]+)/upd/load$ 					?cmd=ASettingQuestionUpdLoad&IdQuestion=$1 [L]
-RewriteRule ^admin/setting/question/([0-9]+)/upd/exe$ 					?cmd=ASettingQuestionUpdExe&IdQuestion=$1 [L]
+RewriteRule ^admin/setting/branch$ 										?cmd=ASettingBranch [L]
+RewriteRule ^admin/setting/branch/page/([0-9]+)$ 						?cmd=ASettingBranch&Page=$1 [L]
 
-RewriteRule ^admin/setting/exam$ 										?cmd=ASettingExam [L]
-RewriteRule ^admin/setting/exam/page/([0-9]+)$ 							?cmd=ASettingExam&Page=$1 [L]
+RewriteRule ^admin/setting/linked$ 										?cmd=ASettingLinked [L]
+RewriteRule ^admin/setting/linked/page/([0-9]+)$ 						?cmd=ASettingLinked&Page=$1 [L]
 
-RewriteRule ^admin/setting/exam/([0-9]+)$ 								?cmd=ASettingExamDetail&IdExam=$1 [L]
+RewriteRule ^admin/setting/storyline$ 									?cmd=ASettingStoryLine [L]
+RewriteRule ^admin/setting/storyline/page/([0-9]+)$ 					?cmd=ASettingStoryLine&Page=$1 [L]

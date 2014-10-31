@@ -6,7 +6,7 @@ class Category extends Mapper implements \MVC\Domain\CategoryFinder {
     function __construct() {
         parent::__construct();
 		
-		$tblCategory = "shopc_category";
+		$tblCategory = "res_category";
 						
 		$selectAllStmt 	= sprintf("select * from %s order by `order`", $tblCategory);
 		$selectStmt 	= sprintf("select * from %s where id=?", $tblCategory);
@@ -64,7 +64,7 @@ class Category extends Mapper implements \MVC\Domain\CategoryFinder {
 		$this->findByPageStmt->bindValue(':start', ((int)($values[0])-1)*(int)($values[1]), \PDO::PARAM_INT);
 		$this->findByPageStmt->bindValue(':max', (int)($values[1]), \PDO::PARAM_INT);
 		$this->findByPageStmt->execute();
-        return new EmployeeCollection( $this->findByPageStmt->fetchAll(), $this );
+        return new CategoryCollection( $this->findByPageStmt->fetchAll(), $this );
     }
 	
 	function findByKey( $values ) {	

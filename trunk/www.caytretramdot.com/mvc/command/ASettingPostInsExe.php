@@ -11,16 +11,21 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------												
+			$IdTag 		= $request->getProperty('IdTag');
 			$Title 		= $request->getProperty('Title');
 			$Content 	= \stripslashes($request->getProperty('Content'));
 			$Author 	= $request->getProperty('Author');
 			$Count	 	= $request->getProperty('Count');
 			$Time	 	= $request->getProperty('Time');
+			$Viewed	 	= $request->getProperty('Viewed');
+			$Liked	 	= $request->getProperty('Liked');
 									
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mPost = new \MVC\Mapper\Post();
+			$mPost 	= new \MVC\Mapper\Post();
+			$mTag 	= new \MVC\Mapper\Tag();
+			$mPT 	= new \MVC\Mapper\PostTag();
 					
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -32,10 +37,19 @@
 				$Author,
 				$Time,
 				$Count,
-				""
-			);						
+				"",
+				$Viewed,
+				$Liked
+			);
 			$Post->reKey();
 			$mPost->insert($Post);
+			
+			$PT = new \MVC\Domain\PostTag(
+				null,
+				$Post->getId(),
+				$IdTag
+			);
+			$mPT->insert($PT);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI

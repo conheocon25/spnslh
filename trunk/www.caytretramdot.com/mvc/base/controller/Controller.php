@@ -31,9 +31,9 @@
 				$Type = $AppController->getCommandType( $request);
 				$NameCommand = $request->getProperty('cmd');				
 				if ($Type != "public" && isset($NameCommand)){
-					$request->setProperty('cmd','FHome');
+					$request->setProperty('cmd','FGate');
 				}else if (!isset($NameCommand)){
-					$request->setProperty('cmd','FHome');
+					$request->setProperty('cmd','FGate');
 				}
 				
 				while( $cmd = $AppController->getCommand( $request ) ) {

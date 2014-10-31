@@ -11,13 +11,16 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
-			$IdPost 	= $request->getProperty('IdPost');						
+			$IdTag 		= $request->getProperty('IdTag');						
+			$IdPost 	= $request->getProperty('IdPost');
 			$Title 		= $request->getProperty('Title');
 			$Author 	= $request->getProperty('Author');
 			$Time 		= $request->getProperty('Time');
 			$Count 		= $request->getProperty('Count');
 			$Content 	= \stripslashes($request->getProperty('Content'));
-						
+			$Viewed 	= $request->getProperty('Viewed');
+			$Liked 		= $request->getProperty('Liked');
+			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
@@ -34,7 +37,9 @@
 			$Post->setTime($Time);
 			$Post->setAuthor($Author);
 			$Post->setCount($Count);
-			$Post->reKey();
+			$Post->setViewed($Viewed);
+			$Post->setLiked($Liked);			
+			//$Post->reKey();
 			$mPost->update($Post);
 			
 			//-------------------------------------------------------------
