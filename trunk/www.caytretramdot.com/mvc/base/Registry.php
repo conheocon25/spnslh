@@ -15,8 +15,7 @@
 		
 		//Sử dụng App và User lưu trữ như là một  Object trong Session
 		private function __construct() { 
-			require_once 'mvc/domain/User.php';
-			require_once 'mvc/domain/Cart.php';			
+			require_once 'mvc/domain/User.php';			
 			session_start();
 		}
 		
