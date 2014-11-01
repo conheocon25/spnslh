@@ -68,6 +68,8 @@ RewriteRule ^admin$ 											?cmd=Admin [L]
 #---------------------------------------------------------------------------------------------------------------------------
 # SETTING
 #---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^admin/restaurant$ 											?cmd=ASettingRestaurant [L]
+
 RewriteRule ^admin/setting$ 											?cmd=ASetting [L]
 RewriteRule ^admin/setting/theme/([a-z0-9_-]+)$ 						?cmd=ASettingThemeChangeExe&Theme=$1 [L]
 

@@ -6,7 +6,7 @@ class Linked extends Mapper implements \MVC\Domain\LinkedFinder {
     function __construct() {
         parent::__construct();
 		
-		$tblLinked = "res_linked";
+		$tblLinked = "bamboo100_linked";
 						
 		$selectAllStmt 	= sprintf("select * from %s order by `order`", $tblLinked);
 		$selectStmt 	= sprintf("select * from %s where id=?", $tblLinked);
