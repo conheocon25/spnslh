@@ -15,4 +15,7 @@ interface PageCollection 				extends \Iterator {function add( Object $Page);			}
 interface GuestCollection 				extends \Iterator {function add( Object $Guest);		}
 interface PostCollection 				extends \Iterator {function add( Object $Post);			}
 
+interface ProvinceCollection 			extends \Iterator {function add( Object $Province);		}
+interface DistrictCollection 			extends \Iterator {function add( Object $District);		}
+
 ?>

@@ -23,4 +23,7 @@ interface ConfigFinder 			extends Finder {}
 interface GuestFinder 			extends Finder {}
 interface PostFinder 			extends Finder {}
 
+interface ProvinceFinder 		extends Finder {}
+interface DistrictFinder 		extends Finder {}
+
 ?>

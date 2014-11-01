@@ -115,6 +115,9 @@
 	<div metal:define-macro="MenuApp" id="sidebar">
 		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">						
 			<li tal:attributes="class php:ActiveAdmin=='Setting'?'active':'disable'">
+				<a tal:attributes="href '/admin/restaurant'"><i class="glyphicons-cogwheels" />QUÁN ĂN</a>
+				<a tal:attributes="href '/admin/hotel'"><i class="glyphicons-cogwheels" />KHÁCH SẠN</a>
+				<a tal:attributes="href '/admin/karaoke'"><i class="glyphicons-cogwheels" />KARAOKE</a>
 				<a tal:attributes="href '/admin/setting'"><i class="glyphicons-cogwheels" />THIẾT LẬP</a>
 			</li>
 		</ul>
