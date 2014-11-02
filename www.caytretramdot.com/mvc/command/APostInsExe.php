@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class ASettingPostUpdExe extends Command{
+	class APostInsExe extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -10,41 +10,50 @@
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------			
-			$IdTag 		= $request->getProperty('IdTag');						
-			$IdPost 	= $request->getProperty('IdPost');
+			//-------------------------------------------------------------												
+			$IdTag 		= $request->getProperty('IdTag');
 			$Title 		= $request->getProperty('Title');
-			$Author 	= $request->getProperty('Author');
-			$Time 		= $request->getProperty('Time');
-			$Count 		= $request->getProperty('Count');
 			$Content 	= \stripslashes($request->getProperty('Content'));
-			$Viewed 	= $request->getProperty('Viewed');
-			$Liked 		= $request->getProperty('Liked');
-			
+			$Author 	= $request->getProperty('Author');
+			$Count	 	= $request->getProperty('Count');
+			$Time	 	= $request->getProperty('Time');
+			$Viewed	 	= $request->getProperty('Viewed');
+			$Liked	 	= $request->getProperty('Liked');
+									
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mPost = new \MVC\Mapper\Post();
+			$mPost 	= new \MVC\Mapper\Post();
+			$mTag 	= new \MVC\Mapper\Tag();
+			$mPT 	= new \MVC\Mapper\PostTag();
 					
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------							
-			$Str = new \MVC\Library\String($Title." ".$IdPost);
-			$Post = $mPost->find($IdPost);
+			$Post = new \MVC\Domain\Post(
+				null,
+				$Title,
+				$Content,
+				$Author,
+				$Time,
+				$Count,
+				"",
+				$Viewed,
+				$Liked
+			);
+			$Post->reKey();
+			$mPost->insert($Post);
 			
-			$Post->setContent($Content);			
-			$Post->setTitle($Title);
-			$Post->setTime($Time);
-			$Post->setAuthor($Author);
-			$Post->setCount($Count);
-			$Post->setViewed($Viewed);
-			$Post->setLiked($Liked);			
-			//$Post->reKey();
-			$mPost->update($Post);
+			$PT = new \MVC\Domain\PostTag(
+				null,
+				$Post->getId(),
+				$IdTag
+			);
+			$mPT->insert($PT);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------
+			//-------------------------------------------------------------			
 			return self::statuses('CMD_OK');
 		}
 	}

@@ -18,20 +18,12 @@ AddOutputFilterByType DEFLATE application/x-javascript
 #---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^cong-chao$ 						?cmd=FGate 			[L]
 RewriteRule ^trang-chu$ 						?cmd=FHome 			[L]
-RewriteRule ^gioi-thieu$ 						?cmd=FIntroduction 	[L]
 RewriteRule ^chinh-sach$ 						?cmd=FPolicy 		[L]
-RewriteRule ^faq$ 								?cmd=FFAQ 			[L]
 RewriteRule ^lien-he$ 							?cmd=FContact 		[L]
 RewriteRule ^lien-he/email$ 					?cmd=FContactSend	[L]
 RewriteRule ^lien-he/gmail$ 					?cmd=FContactSendGmail	[L]
 RewriteRule ^lien-he/RefreshCaptcha      		?cmd=RefreshCaptcha	[L]
 RewriteRule ^nhan-thong-tin$ 					?cmd=FSubcribe 		[L]
-
-RewriteRule ^san-pham/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$ 	?cmd=FProduct&KCategory1=$1&KCategory2=$2&KProduct=$3 [L]
-RewriteRule ^san-pham/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$ 					?cmd=FCategory&KCategory1=$1&KCategory2=$2 [L]
-RewriteRule ^san-pham/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/page/([0-9]+)$ 		?cmd=FCategory&KCategory1=$1&KCategory2=$2&Page=$3 [L]
-RewriteRule ^san-pham/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/([0-9]+)/m$ 		?cmd=FCategory&KCategory1=$1&KCategory2=$2&IdManufacturer=$3 [L]
-RewriteRule ^san-pham/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/([0-9]+)/m/page/([0-9]+)$ ?cmd=FCategory&KCategory1=$1&KCategory2=$2&IdManufacturer=$3&Page=$4 [L]
 
 RewriteRule ^tin-tuc/([A-Za-z0-9_-]+)$ 							?cmd=FTag&KTag=$1 [L]
 RewriteRule ^tin-tuc/([A-Za-z0-9_-]+)/page/([0-9]+)$ 			?cmd=FTag&KTag=$1&Page=$2 [L]
@@ -68,20 +60,22 @@ RewriteRule ^admin$ 											?cmd=Admin [L]
 #---------------------------------------------------------------------------------------------------------------------------
 # SETTING
 #---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^admin/restaurant$ 											?cmd=ASettingRestaurant [L]
+RewriteRule ^admin/province$ 											?cmd=AProvince [L]
+RewriteRule ^admin/province/([0-9]+)$ 									?cmd=ADistrict&IdProvince=$1 [L]
+RewriteRule ^admin/province/([0-9]+)/([0-9]+)/restaurant$ 				?cmd=ARestaurant&IdProvince=$1&IdDistrict=$2 [L]
+RewriteRule ^admin/province/([0-9]+)/([0-9]+)/hotel$ 					?cmd=AHotel&IdProvince=$1&IdDistrict=$2 [L]
+RewriteRule ^admin/province/([0-9]+)/([0-9]+)/karaoke$ 					?cmd=AKaraoke&IdProvince=$1&IdDistrict=$2 [L]
+
+RewriteRule ^admin/post$ 												?cmd=APost [L]
+RewriteRule ^admin/post/([0-9]+)$ 										?cmd=APost&IdTag=$1 [L]
+RewriteRule ^admin/post/([0-9]+)/ins/load$ 								?cmd=APostInsLoad&IdTag=$1 			[L]
+RewriteRule ^admin/post/([0-9]+)/ins/exe$ 								?cmd=APostInsExe&IdTag=$1 			[L]
+RewriteRule ^admin/post/([0-9]+)/([0-9]+)/upd/load$ 					?cmd=APostUpdLoad&IdTag=$1&IdPost=$2 [L]
+RewriteRule ^admin/post/([0-9]+)/([0-9]+)/upd/exe$ 						?cmd=APostUpdExe&IdTag=$1&IdPost=$2	[L]
 
 RewriteRule ^admin/setting$ 											?cmd=ASetting [L]
-RewriteRule ^admin/setting/theme/([a-z0-9_-]+)$ 						?cmd=ASettingThemeChangeExe&Theme=$1 [L]
-
 RewriteRule ^admin/setting/tag$ 										?cmd=ASettingTag [L]
 RewriteRule ^admin/setting/tag/page/([0-9]+)$ 							?cmd=ASettingTag&Page=$1 [L]
-
-RewriteRule ^admin/setting/post$ 										?cmd=ASettingPost 							[L]
-RewriteRule ^admin/setting/post/([0-9]+)$ 								?cmd=ASettingPost&IdTag=$1 					[L]
-RewriteRule ^admin/setting/post/([0-9]+)/ins/load$ 						?cmd=ASettingPostInsLoad&IdTag=$1 			[L]
-RewriteRule ^admin/setting/post/([0-9]+)/ins/exe$ 						?cmd=ASettingPostInsExe&IdTag=$1 			[L]
-RewriteRule ^admin/setting/post/([0-9]+)/([0-9]+)/upd/load$ 			?cmd=ASettingPostUpdLoad&IdTag=$1&IdPost=$2 [L]
-RewriteRule ^admin/setting/post/([0-9]+)/([0-9]+)/upd/exe$ 				?cmd=ASettingPostUpdExe&IdTag=$1&IdPost=$2	[L]
 
 RewriteRule ^admin/setting/post/([0-9]+)/tag$ 							?cmd=ASettingPostTag&IdPost=$1 		[L]
 

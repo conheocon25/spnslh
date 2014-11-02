@@ -65,7 +65,7 @@
 	<!-- ======================================================================== -->
 	<div metal:define-macro="Header">
 		<div id="header">
-			<h1><a>Nhà hàng </a></h1>
+			<h1><a>Cây Tre Trăm Đốt </a></h1>
 			<a id="menu-trigger" href="#"><i class="glyphicon glyphicon-align-justify"/></a>	
 		</div>
 		<div id="user-nav">			
@@ -113,11 +113,14 @@
 	<!-- MENU.APP															  	  -->
 	<!-- ======================================================================== -->
 	<div metal:define-macro="MenuApp" id="sidebar">
-		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">						
-			<li tal:attributes="class php:ActiveAdmin=='Setting'?'active':'disable'">
-				<a tal:attributes="href '/admin/restaurant'"><i class="glyphicons-cogwheels" />QUÁN ĂN</a>
-				<a tal:attributes="href '/admin/hotel'"><i class="glyphicons-cogwheels" />KHÁCH SẠN</a>
-				<a tal:attributes="href '/admin/karaoke'"><i class="glyphicons-cogwheels" />KARAOKE</a>
+		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">
+			<li tal:attributes="class php:ActiveAdmin=='Province'?'active':'disable'">
+				<a tal:attributes="href '/admin/province'"><i class="glyphicons-cogwheels" />TỈNH / THÀNH</a>
+			</li>
+			<li tal:attributes="class php:ActiveAdmin=='Post'?'active':'disable'">
+				<a tal:attributes="href '/admin/post'"><i class="glyphicons-cogwheels" />BÀI VIẾT</a>
+			</li>
+			<li tal:attributes="class php:ActiveAdmin=='Setting'?'active':'disable'">				
 				<a tal:attributes="href '/admin/setting'"><i class="glyphicons-cogwheels" />THIẾT LẬP</a>
 			</li>
 		</ul>
@@ -127,22 +130,12 @@
 	<!-- MENU.SETTING															  -->
 	<!-- ======================================================================== -->
 	<div metal:define-macro="MenuSetting" id="sidebar">				
-		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">
-			<li tal:attributes="class php:ActiveAdmin=='Presentation'?'active':'disable'">
-				<a tal:attributes="href '/admin/setting/presentation'" >
-					<i class="glyphicons-picture" />TRÌNH BÀY
-				</a>
-			</li>
+		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">			
 			<li tal:attributes="class php:ActiveAdmin=='Tag'?'active':'disable'">
 				<a tal:attributes="href '/admin/setting/tag'" >
 					<i class="glyphicons-book" />THẺ BÀI
 				</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='Post'?'active':'disable'">
-				<a tal:attributes="href '/admin/setting/post'" >
-					<i class="glyphicons-book" />BÀI VIẾT
-				</a>
-			</li>						
+			</li>			
 			<li tal:attributes="class php:ActiveAdmin=='User'?'active':'disable'">
 				<a tal:attributes="href '/admin/setting/user'">
 					<i class="glyphicons-group" />NGƯỜI DÙNG 
@@ -177,14 +170,9 @@
 	</div>
 	
 	<div metal:define-macro="MenuSettingPost" id="sidebar">				
-		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">									
-			<li tal:attributes="class php:ActiveAdmin=='Presentation'?'active':'disable'">
-				<a tal:attributes="href '/admin/setting/presentation'" >
-					<i class="glyphicons-picture" />TRÌNH BÀY
-				</a>
-			</li>
+		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">
 			<li tal:attributes="class php:ActiveAdmin=='Tag'?'active':'disable'">
-				<a tal:attributes="href '/admin/setting/tag'" >
+				<a tal:attributes="href '/admin/setting/tag'">
 					<i class="glyphicons-book" />THẺ BÀI
 				</a>
 			</li>
@@ -200,53 +188,16 @@
 			</li>
 		</ul>
 	</div>
-	
-	<div metal:define-macro="MenuSettingProduct" id="sidebar">				
-		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">									
-			<li tal:attributes="class php:ActiveAdmin=='Manufacturer'?'active':'disable'">
-				<a tal:attributes="href '/admin/setting/manufacturer'" >
-					<i class="glyphicons-truck" />NHÀ SẢN XUẤT
-				</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='Supplier'?'active':'disable'">
-				<a tal:attributes="href '/admin/setting/supplier'" >
-					<i class="glyphicons-truck" />NHÀ CUNG CẤP
-				</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='Category'?'active':'disable'">
-				<a tal:attributes="href '/admin/setting/category'" >
-					<i class="glyphicons-truck" />DANH MỤC SẢN PHẨM
-				</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='GAttribute'?'active':'disable'">
-				<a tal:attributes="href '/admin/setting/gattribute'" >
-					<i class="glyphicons-truck" />DANH MỤC MÔ TẢ
-				</a>
-			</li>			
-		</ul>
-	</div>
-	
+			
 	<!-- ======================================================================== -->
 	<!-- FOOTER																	  -->
 	<!-- ======================================================================== -->
 	<div metal:define-macro="Footer" class="row">
 		<div id="footer" class="col-12" style="text-align:right; padding-right:20px;">
-			2009 - 2014 &copy; <a href="http://caytretramdot.com">SPN Soft - Nhà hàng</a>
+			2009 - 2014 &copy; <a href="http://caytretramdot.com">SPN Soft - Cây Tre Trăm Đốt</a>
 		</div>
 	</div>
 	
-	<!-- ======================================================================== -->
-	<!-- STYLE SWITCHER															  -->
-	<!-- ======================================================================== -->
-	<div metal:define-macro="StyleTools" id="style-switcher">
-		<i class="glyphicon glyphicon-arrow-left"></i>
-		<span>Giao diện:</span>
-		<a href="/setting/theme/grey" alt="#grey" style="background-color:#555555;border-color:#aaaaaa;cursor:pointer;"></a>
-		<a href="/setting/theme/light-blue" alt="#light-blue" style="background-color:#8399b0;cursor:pointer;"></a>
-		<a href="/setting/theme/blue" alt="#blue" style="background-color:#2D2F57;cursor:pointer;"></a>
-		<a href="/setting/theme/red" alt="#red" style="background-color:#673232;cursor:pointer;"></a>
-		<a href="/setting/theme/red-green" alt="#red-green" style="background-image:url('/mvc/templates/theme/cms/img/demo/red-green.png');background-repeat:no-repeat;cursor:pointer;"></a>
-	</div>
 
 </body>
 </html>

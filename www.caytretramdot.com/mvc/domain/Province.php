@@ -61,7 +61,7 @@ class Province extends Object{
 	//DEFINE URL
 	//-------------------------------------------------------------------------------			
 	function getURLSettingDistrict(){
-		return "/app/province/".$this->getId();
+		return "/admin/province/".$this->getId();
 	}
 	
 	//--------------------------------------------------------------------------

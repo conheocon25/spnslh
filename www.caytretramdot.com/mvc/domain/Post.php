@@ -119,17 +119,12 @@ class Post extends Object{
 	//-------------------------------------------------------------------------------
 	function getURLRead(){		return "/tin-tuc/".$this->getCategory()->getKey()."/".$this->getKey();}
 	
-	function getURLSettingTag(){return "admin/setting/post/".$this->getId()."/tag";}
+	function getURLSettingTag(){return "admin/post/".$this->getId()."/tag";}
 	
-	function getURLUpdLoad(){	return "admin/setting/post/".$this->getId()."/upd/load";}
-	function getURLUpdExe(){	return "admin/setting/post/".$this->getId()."/upd/exe";}		
-	function getURLDelLoad(){	return "admin/setting/post/".$this->getId()."/del/load";}	
-	function getURLDelExe(){	return "admin/setting/post/".$this->getId()."/del/exe";}
+	function getURLUpdLoad(){	return "admin/post/".$this->getId()."/upd/load";}
+	function getURLUpdExe(){	return "admin/post/".$this->getId()."/upd/exe";}		
 	
-	function getURLViewFull(){
-		return "http://amthuclangsen.com/gioi-thieu";
-	}
-			
+				
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}	

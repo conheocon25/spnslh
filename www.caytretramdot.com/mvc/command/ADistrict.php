@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class ASettingPostUpdLoad extends Command {
+	class ADistrict extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -11,37 +11,34 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$IdTag 	= $request->getProperty('IdTag');
-			$IdPost = $request->getProperty('IdPost');
-			
+			$IdProvince = $request->getProperty('IdProvince');
+						
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mPost 	= new \MVC\Mapper\Post();
-			$mConfig= new \MVC\Mapper\Config();
+			$mProvince 	= new \MVC\Mapper\Province();
+			$mConfig 	= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------																					
-			$Post 	= $mPost->find($IdPost);
-			$Title 	= mb_strtoupper($Post->getTitle(), 'UTF8');
-			$Navigation = array(				
-				array("THIẾT LẬP", 	"/admin/setting"),
-				array("BÀI VIẾT", 	"/admin/setting/post")
-			);									
-			$ConfigName		= $mConfig->findByName("NAME");
-			$URLExe = "/admin/setting/post/$IdTag/$IdPost/upd/exe";
-									
+			//-------------------------------------------------------------															
+			$Province 	= $mProvince->find($IdProvince);
+			$Title 		= mb_strtoupper($Province->getName(), 'UTF8');
+			$Navigation = array(
+				array("TỈNH THÀNH", "/admin/province")
+			);
+						
+			$ConfigName = $mConfig->findByName("NAME");
+						
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
-			$request->setProperty('Title'		, $Title);
-			$request->setProperty('URLExe'		, $URLExe);
-			$request->setProperty('ActiveAdmin'	, 'Post');			
+			$request->setProperty('Title'		, $Title);						
 			$request->setObject('Navigation'	, $Navigation);			
 			$request->setObject('ConfigName'	, $ConfigName);
-			$request->setObject('Post'			, $Post);
 			
+			$request->setObject('Province'		, $Province);
+																		
 			return self::statuses('CMD_DEFAULT');
 		}
 	}
