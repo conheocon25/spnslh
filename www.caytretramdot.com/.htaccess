@@ -16,18 +16,15 @@ AddOutputFilterByType DEFLATE application/x-javascript
 #---------------------------------------------------------------------------------------------------------------------------
 # SYSTEM
 #---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^cong-chao$ 						?cmd=FGate 			[L]
 RewriteRule ^trang-chu$ 						?cmd=FHome 			[L]
-RewriteRule ^chinh-sach$ 						?cmd=FPolicy 		[L]
 RewriteRule ^lien-he$ 							?cmd=FContact 		[L]
 RewriteRule ^lien-he/email$ 					?cmd=FContactSend	[L]
 RewriteRule ^lien-he/gmail$ 					?cmd=FContactSendGmail	[L]
 RewriteRule ^lien-he/RefreshCaptcha      		?cmd=RefreshCaptcha	[L]
-RewriteRule ^nhan-thong-tin$ 					?cmd=FSubcribe 		[L]
 
-RewriteRule ^tin-tuc/([A-Za-z0-9_-]+)$ 							?cmd=FTag&KTag=$1 [L]
-RewriteRule ^tin-tuc/([A-Za-z0-9_-]+)/page/([0-9]+)$ 			?cmd=FTag&KTag=$1&Page=$2 [L]
-RewriteRule ^tin-tuc/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$ 		?cmd=FPost&KTag=$1&KPost=$2 [L]
+RewriteRule ^bai-viet/([A-Za-z0-9_-]+)$ 						?cmd=FTag&KTag=$1 [L]
+RewriteRule ^bai-viet/([A-Za-z0-9_-]+)/page/([0-9]+)$ 			?cmd=FTag&KTag=$1&Page=$2 [L]
+RewriteRule ^bai-viet/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$ 		?cmd=FPost&KTag=$1&KPost=$2 [L]
 
 RewriteRule ^lien-ket$ 											?cmd=FLinked [L]
 
