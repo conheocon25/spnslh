@@ -22,8 +22,7 @@
 		<command name="FVideoDetail" 	type="public"><view>FVideoDetail</view></command>
 		
 		<command name="FLinked" 		type="public"><view>FLinked</view></command>
-			
-				
+							
 		<command name="FSubcribe" 		type="public">
 			<view>FSubcribe</view>
 			<status value="CMD_OK"><forward>FHome</forward></status>
@@ -53,29 +52,31 @@
 		<!-- ============================================================================== -->
 		<!-- SETTING	 																	-->
 		<!-- ============================================================================== -->
-		<command name="ASetting">				<view>ASetting				</view></command>
-				
+		<command name="AProvince">				<view>AProvince			</view></command>
+		<command name="ADistrict">				<view>ADistrict			</view></command>
+		
+		<command name="ARestaurant">			<view>ARestaurant			</view></command>
+		<command name="AHotel">					<view>AHotel				</view></command>
+		<command name="AKaraoke">				<view>AKaraoke				</view></command>
+		
+		<command name="ASetting">				<view>ASetting				</view></command>				
 		<command name="ASettingTag">			<view>ASettingTag			</view></command>
 		<command name="ASettingPostTag">		<view>ASettingPostTag		</view></command>
 		
-		<command name="ASettingPost">			<view>ASettingPost			</view></command>
-		<command name="ASettingPostInsLoad">	<view>ASettingPostInsLoad	</view></command>
-		<command name="ASettingPostInsExe">		<view>ASettingPostInsExe	</view><status value="CMD_OK"><forward>ASettingPost</forward></status></command>
-		<command name="ASettingPostUpdLoad">	<view>ASettingPostUpdLoad	</view></command>
-		<command name="ASettingPostUpdExe">		<view>ASettingPostUpdExe	</view><status value="CMD_OK"><forward>ASettingPost</forward></status></command>
-		<command name="ASettingPostDelLoad">	<view>ASettingPostDelLoad	</view></command>
-		<command name="ASettingPostDelExe">		<view>ASettingPostDelExe	</view><status value="CMD_OK"><forward>ASettingPost</forward></status></command>
-		
-		<command name="ASettingCategory">		<view>ASettingCategory		</view></command>
-		<command name="ASettingCategory1">		<view>ASettingCategory1		</view></command>		
-						
+		<command name="APost">					<view>APost			</view></command>
+		<command name="APostInsLoad">			<view>APostInsLoad	</view></command>
+		<command name="APostInsExe">			<view>APostInsExe	</view><status value="CMD_OK"><forward>APost</forward></status></command>
+		<command name="APostUpdLoad">			<view>APostUpdLoad	</view></command>
+		<command name="APostUpdExe">			<view>APostUpdExe	</view><status value="CMD_OK"><forward>APost</forward></status></command>
+		<command name="APostDelLoad">			<view>APostDelLoad	</view></command>
+		<command name="APostDelExe">			<view>APostDelExe	</view><status value="CMD_OK"><forward>APost</forward></status></command>
+										
 		<command name="ASettingAlbum">			<view>ASettingAlbum			</view></command>
 		<command name="ASettingAlbumImage">		<view>ASettingAlbumImage	</view></command>
 		
 		<command name="ASettingVideo">			<view>ASettingVideo			</view></command>
 				
-		<command name="ASettingUser">			<view>ASettingUser			</view></command>		
-		<command name="ASettingUnit">			<view>ASettingUnit			</view></command>
+		<command name="ASettingUser">			<view>ASettingUser			</view></command>				
 		<command name="ASettingConfig">			<view>ASettingConfig		</view></command>		
 		<command name="ASettingLinked">			<view>ASettingLinked		</view></command>
 				

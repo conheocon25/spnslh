@@ -72,8 +72,16 @@ class District extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------			
-	function getURLSettingPagoda(){
-		return "/app/province/".$this->getIdProvince()."/".$this->getId();
+	function getURLSettingRestaurant(){
+		return "/admin/province/".$this->getIdProvince()."/".$this->getId()."/restaurant";
+	}
+	
+	function getURLSettingKaraoke(){
+		return "/admin/province/".$this->getIdProvince()."/".$this->getId()."/karaoke";
+	}
+	
+	function getURLSettingHotel(){
+		return "/admin/province/".$this->getIdProvince()."/".$this->getId()."/hotel";
 	}
 	
 	//--------------------------------------------------------------------------

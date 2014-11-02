@@ -57,8 +57,8 @@ class PostTag extends Object{
 	//-------------------------------------------------------------------------------
 	//GET LIST
 	//-------------------------------------------------------------------------------
-	function getURLUpdLoad(){	return "admin/setting/post/".$this->getIdTag()."/".$this->getIdPost()."/upd/load";}
-	function getURLUpdExe() {	return "admin/setting/post/".$this->getIdTag()."/".$this->getIdPost()."/upd/exe";}
+	function getURLUpdLoad(){	return "admin/post/".$this->getIdTag()."/".$this->getIdPost()."/upd/load";}
+	function getURLUpdExe() {	return "admin/post/".$this->getIdTag()."/".$this->getIdPost()."/upd/exe";}
 		
 	//-------------------------------------------------------------------------------
 	//DEFINE URL

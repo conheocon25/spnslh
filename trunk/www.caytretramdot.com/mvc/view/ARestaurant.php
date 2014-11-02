@@ -1,5 +1,5 @@
 <?php
 	require_once("mvc/base/Viewer.php");
-	$Viewer = new Viewer("mvc/templates/ASettingPostTag.html");
+	$Viewer = new Viewer("mvc/templates/ARestaurant.html");
 	echo $Viewer->html();
 ?>
