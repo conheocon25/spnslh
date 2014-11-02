@@ -27,6 +27,7 @@ class Linked extends Mapper implements \MVC\Domain\LinkedFinder {
 		$this->findByTopStmt = self::$PDO->prepare($findByTopStmt);							
     } 
     function getCollection( array $raw ) {return new LinkedCollection( $raw, $this );}
+	
     protected function doCreateObject( array $array ) {		
         $obj = new \MVC\Domain\Linked( 
 			$array['id'],

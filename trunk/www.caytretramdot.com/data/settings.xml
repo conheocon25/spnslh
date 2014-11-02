@@ -3,15 +3,12 @@
 		<!-- ============================================================================== -->
 		<!-- Các lệnh xử lí SYSTEM 															-->
 		<!-- ============================================================================== -->		
-		<command name="DefaultCommand" 	type="public"><view>DefaultCommand</view><status value="CMD_OK"><forward>FGate</forward></status></command>
-		<command name="FGate" 			type="public"><view>FGate</view></command>
+		<command name="DefaultCommand" 	type="public"><view>DefaultCommand</view><status value="CMD_OK"><forward>FHome</forward></status></command>
 		<command name="FHome" 			type="public"><view>FHome</view></command>		
-		<command name="FFAQ" 			type="public"><view>FFAQ</view></command>
 		<command name="FContact" 		type="public"><view>FContact</view></command>
 		<command name="FContactSend" 	type="public"><view>FContactSend</view></command>
 		<command name="FContactSendGmail" 	type="public"><view>FContactSendGmail</view></command>
-		<command name="RefreshCaptcha" 	type="public"><view>RefreshCaptcha</view></command>		
-		<command name="FCategory" 		type="public"><view>FCategory</view></command>		
+		<command name="RefreshCaptcha" 	type="public"><view>RefreshCaptcha</view></command>				
 		<command name="FTag" 			type="public"><view>FTag</view></command>
 		<command name="FPost" 			type="public"><view>FPost</view></command>		
 				
