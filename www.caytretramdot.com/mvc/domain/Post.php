@@ -117,7 +117,7 @@ class Post extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLRead(){		return "/bai-viet/".$this->getCategory()->getKey()."/".$this->getKey();}
+	function getURLRead(){		return "/bai-viet/".$this->getKey();}
 	
 	function getURLSettingTag(){return "admin/post/".$this->getId()."/tag";}
 	

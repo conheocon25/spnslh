@@ -79,7 +79,7 @@ class Tag extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLView(){return "/bai-viet/".$this->getKey();}
+	function getURLView(){return "/the-bai/".$this->getKey();}
 	
 	function getURLSetting(){return "/admin/setting/tag/".$this->getId();}
 	function getURLSettingPost(){return "/admin/post/".$this->getId();}

@@ -13,7 +13,7 @@
 						<div class="item item-list clearfix" tal:repeat="PT PTAll">
 							<div class="item-image-container">
 								<figure>
-									<a tal:attributes="href PT/getURLRead">
+									<a tal:attributes="href PT/getPost/getURLRead">
 										<img tal:attributes="src PT/getPost/getImage" alt="item1" class="item-image"/>
 										<img tal:attributes="src PT/getPost/getImage" alt="item1  Hover" class="item-image-hover"/>
 									</a>
@@ -21,7 +21,7 @@
 							</div>
 							<div class="item-meta-container">
 								<h3 class="item-name">
-									<a tal:attributes="href PT/getURLRead">
+									<a tal:attributes="href PT/getPost/getURLRead">
 										<span tal:content="PT/getPost/getTitle"/>
 									</a>
 								</h3>
