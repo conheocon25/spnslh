@@ -27,9 +27,8 @@
 			$TagAll		= $mTag->findAll();
 						
 			$Title 		= "THẺ BÀI";
-			$Navigation = array(				
-				array("THIẾT LẬP", "/admin/setting"),
-				array("BÀI VIẾT", "/admin/setting/post")
+			$Navigation = array(								
+				array("BÀI VIẾT", "/admin/post")
 			);
 			
 			$Config 	= $mConfig->findByName("ROW_PER_PAGE");
