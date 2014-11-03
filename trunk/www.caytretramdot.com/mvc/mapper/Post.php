@@ -14,7 +14,8 @@ class Post extends Mapper implements \MVC\Domain\PostFinder {
 		$insertStmt 	= sprintf("insert into %s ( title, content, author, `time`, `count`, `key`, `viewed`, `liked`) values(?, ?, ?, ?, ?, ?, ?, ?)", $tblPost);
 		$deleteStmt 	= sprintf("delete from %s where id=?", $tblPost);
 		$findByKeyStmt 	= sprintf("select *  from %s where `key`=?", $tblPost);
-		$searchByTitleStmt 	= sprintf("select *  from %s where `title` like :title", $tblPost);
+		$searchByTitleStmt 		= sprintf("select *  from %s where `title` like :title", $tblPost);
+		$searchByTitlePageStmt 	= sprintf("select *  from %s where `title` like :title LIMIT :start,:max", $tblPost);
 				
         $this->selectAllStmt 	= self::$PDO->prepare($selectAllStmt);
         $this->selectStmt 		= self::$PDO->prepare($selectStmt);
@@ -22,7 +23,8 @@ class Post extends Mapper implements \MVC\Domain\PostFinder {
         $this->insertStmt 		= self::$PDO->prepare($insertStmt);
 		$this->deleteStmt 		= self::$PDO->prepare($deleteStmt);
 		$this->findByKeyStmt 	= self::$PDO->prepare($findByKeyStmt);
-		$this->searchByTitleStmt 	= self::$PDO->prepare($searchByTitleStmt);
+		$this->searchByTitleStmt 		= self::$PDO->prepare($searchByTitleStmt);
+		$this->searchByTitlePageStmt 	= self::$PDO->prepare($searchByTitlePageStmt);
 
     } 
     function getCollection( array $raw ) {return new PostCollection( $raw, $this );}
@@ -95,5 +97,15 @@ class Post extends Mapper implements \MVC\Domain\PostFinder {
 		$this->searchByTitleStmt->execute();
         return new PostCollection( $this->searchByTitleStmt->fetchAll(), $this );
     }
+	
+	function searchByTitlePage( $values ) {
+		
+		$this->searchByTitlePageStmt->bindValue(':title', "%".$values[0]."%", \PDO::PARAM_STR);
+		$this->searchByTitlePageStmt->bindValue(':start', ((int)($values[1])-1)*(int)($values[2]), \PDO::PARAM_INT);
+		$this->searchByTitlePageStmt->bindValue(':max', (int)($values[2]), \PDO::PARAM_INT);
+		$this->searchByTitlePageStmt->execute();
+        return new PostCollection( $this->searchByTitlePageStmt->fetchAll(), $this );
+    }
+	
 }
 ?>
