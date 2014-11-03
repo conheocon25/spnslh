@@ -12,10 +12,10 @@
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------												
 			$IdTag 		= $request->getProperty('IdTag');
+			$IdUser 	= $Session->getCurrentIdUser();
 			$Title 		= $request->getProperty('Title');
 			$Content 	= \stripslashes($request->getProperty('Content'));
-			$Author 	= $request->getProperty('Author');
-			$Count	 	= $request->getProperty('Count');
+			$Author 	= $request->getProperty('Author');			
 			$Time	 	= $request->getProperty('Time');
 			$Viewed	 	= $request->getProperty('Viewed');
 			$Liked	 	= $request->getProperty('Liked');
@@ -32,11 +32,10 @@
 			//-------------------------------------------------------------							
 			$Post = new \MVC\Domain\Post(
 				null,
+				$IdUser,
 				$Title,
-				$Content,
-				$Author,
-				$Time,
-				$Count,
+				$Content,				
+				$Time,				
 				"",
 				$Viewed,
 				$Liked

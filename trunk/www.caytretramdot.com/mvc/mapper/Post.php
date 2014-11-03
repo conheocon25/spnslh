@@ -4,16 +4,19 @@ namespace MVC\Mapper;
 require_once( "mvc/base/Mapper.php" );
 class Post extends Mapper implements \MVC\Domain\PostFinder {
     function __construct() {
-        parent::__construct();
-				
+        parent::__construct();				
 		$tblPost = "bamboo100_post";
 		
 		$selectAllStmt 	= sprintf("select * from %s", $tblPost);
 		$selectStmt 	= sprintf("select *  from %s where id=?", $tblPost);
-		$updateStmt 	= sprintf("update %s set id_user=?, title=?, content=?, `time`=?, `count`=?, `key`=?, `viewed`=?, `liked`=? where id=?", $tblPost);
-		$insertStmt 	= sprintf("insert into %s ( id_user, title, content, `time`, `count`, `key`, `viewed`, `liked`) values(?, ?, ?, ?, ?, ?, ?, ?)", $tblPost);
+		$updateStmt 	= sprintf("update %s set id_user=?, title=?, content=?, `time`=?, `key`=?, `viewed`=?, `liked`=? where id=?", $tblPost);
+		$insertStmt 	= sprintf("insert into %s ( id_user, title, content, `time`, `key`, `viewed`, `liked`) values(?, ?, ?, ?, ?, ?, ?)", $tblPost);
 		$deleteStmt 	= sprintf("delete from %s where id=?", $tblPost);
 		$findByKeyStmt 	= sprintf("select *  from %s where `key`=?", $tblPost);
+
+		$searchByUserStmt 		= sprintf("select *  from %s where id_user=:id_user", $tblPost);
+		$searchByUserPageStmt 	= sprintf("select *  from %s where id_user=:id_user LIMIT :start,:max", $tblPost);
+		
 		$searchByTitleStmt 		= sprintf("select *  from %s where `title` like :title", $tblPost);
 		$searchByTitlePageStmt 	= sprintf("select *  from %s where `title` like :title LIMIT :start,:max", $tblPost);
 				
@@ -23,6 +26,9 @@ class Post extends Mapper implements \MVC\Domain\PostFinder {
         $this->insertStmt 		= self::$PDO->prepare($insertStmt);
 		$this->deleteStmt 		= self::$PDO->prepare($deleteStmt);
 		$this->findByKeyStmt 	= self::$PDO->prepare($findByKeyStmt);
+		
+		$this->searchByUserStmt 		= self::$PDO->prepare($searchByUserStmt);
+		$this->searchByUserPageStmt 	= self::$PDO->prepare($searchByUserPageStmt);
 		$this->searchByTitleStmt 		= self::$PDO->prepare($searchByTitleStmt);
 		$this->searchByTitlePageStmt 	= self::$PDO->prepare($searchByTitlePageStmt);
 
@@ -35,7 +41,6 @@ class Post extends Mapper implements \MVC\Domain\PostFinder {
 			$array['title'],
 			$array['content'],			
 			$array['time'],
-			$array['count'],
 			$array['key'],
 			$array['viewed'],
 			$array['liked']
@@ -49,8 +54,7 @@ class Post extends Mapper implements \MVC\Domain\PostFinder {
 			$object->getIdUser(),
 			$object->getTitle(),
 			$object->getContent(),			
-			$object->getTime(),
-			$object->getCount(),
+			$object->getTime(),			
 			$object->getKey(),
 			$object->getViewed(),
 			$object->getLiked()
@@ -65,8 +69,7 @@ class Post extends Mapper implements \MVC\Domain\PostFinder {
 			$object->getIdUser(),
 			$object->getTitle(),
 			$object->getContent(),			
-			$object->getTime(),
-			$object->getCount(),
+			$object->getTime(),			
 			$object->getKey(),
 			$object->getViewed(),
 			$object->getLiked(),
@@ -107,5 +110,19 @@ class Post extends Mapper implements \MVC\Domain\PostFinder {
         return new PostCollection( $this->searchByTitlePageStmt->fetchAll(), $this );
     }
 	
+	function searchByUser( $values ) {		
+		$this->searchByUserStmt->bindValue(':id_user', 	$values[0], \PDO::PARAM_INT);
+		$this->searchByUserStmt->execute();
+        return new PostCollection( $this->searchByUserStmt->fetchAll(), $this );
+    }
+	
+	function searchByUserPage( $values ) {		
+		$this->searchByUserPageStmt->bindValue(':id_user', $values[0], \PDO::PARAM_INT);
+		$this->searchByUserPageStmt->bindValue(':start', ((int)($values[1])-1)*(int)($values[2]), \PDO::PARAM_INT);
+		$this->searchByUserPageStmt->bindValue(':max', (int)($values[2]), \PDO::PARAM_INT);
+		$this->searchByUserPageStmt->execute();
+        return new PostCollection( $this->searchByUserPageStmt->fetchAll(), $this );
+    }
+
 }
 ?>

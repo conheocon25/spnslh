@@ -7,8 +7,7 @@ class Post extends Object{
 	private $IdUser;
 	private $Title;
 	private $Content;	
-	private $Time;
-	private $Count;
+	private $Time;	
 	private $Key;
 	private $Viewed;
 	private $Liked;
@@ -16,13 +15,12 @@ class Post extends Object{
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-    function __construct( $Id=null, $IdUser, $Title=null, $Content=null, $Time=null, $Count=null, $Key=null, $Viewed=null, $Liked=null){
+    function __construct( $Id=null, $IdUser, $Title=null, $Content=null, $Time=null, $Key=null, $Viewed=null, $Liked=null){
         $this->Id 			= $Id;
 		$this->IdUser 		= $IdUser;
 		$this->Title 		= $Title;
 		$this->Content 		= $Content;				
-		$this->Time 		= $Time;		
-		$this->Count 		= $Count;
+		$this->Time 		= $Time;				
 		$this->Key 			= $Key;
 		$this->Viewed 		= $Viewed;
 		$this->Liked 		= $Liked;
@@ -34,10 +32,7 @@ class Post extends Object{
 		
 	function setContent( $Content ){$this->Content = $Content;$this->markDirty();}   
 	function getContent( ) {return $this->Content;}
-	
-	function setCount( $Count ){$this->Count = $Count;$this->markDirty();}   
-	function getCount( ) {return $this->Count;}
-	
+			
 	function setTime( $Time ){$this->Time = $Time;$this->markDirty();}   
 	function getTime( ) {return $this->Time;}
 	function getTimePrint( ){		
@@ -99,8 +94,7 @@ class Post extends Object{
 			'IdUser'		=> $this->getIdUser(),
 			'Title'			=> $this->getTitle(),
 			'Content'		=> $this->getContent(),			
-			'Time'			=> $this->getTime(),
-			'Count'			=> $this->getCount(),
+			'Time'			=> $this->getTime(),			
 			'Key'			=> $this->getKey(),
 			'Viewed'		=> $this->getViewed(),
 			'Liked'			=> $this->getLiked()
@@ -113,10 +107,9 @@ class Post extends Object{
 		$this->IdUser		= $Data[2];
 		$this->Title		= $Data[3];
 		$this->Content 		= \stripslashes($Data[4]);
-		$this->Time 		= $Data[5];
-		$this->Count 		= $Data[6];
-		$this->Viewed 		= $Data[7];
-		$this->Liked 		= $Data[8];
+		$this->Time 		= $Data[5];		
+		$this->Viewed 		= $Data[6];
+		$this->Liked 		= $Data[7];
 		$this->reKey();
     }
 	

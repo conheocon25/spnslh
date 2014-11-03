@@ -16,17 +16,21 @@ AddOutputFilterByType DEFLATE application/x-javascript
 #---------------------------------------------------------------------------------------------------------------------------
 # SYSTEM
 #---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^trang-chu$ 						?cmd=FHome 			[L]
-RewriteRule ^lien-he$ 							?cmd=FContact 		[L]
-RewriteRule ^lien-he/email$ 					?cmd=FContactSend	[L]
-RewriteRule ^lien-he/gmail$ 					?cmd=FContactSendGmail	[L]
-RewriteRule ^lien-he/RefreshCaptcha      		?cmd=RefreshCaptcha	[L]
+RewriteRule ^trang-chu$ 										?cmd=FHome[L]
 
 RewriteRule ^the-bai/([A-Za-z0-9_-]+)$ 							?cmd=FTag&KTag=$1 [L]
 RewriteRule ^the-bai/([A-Za-z0-9_-]+)/page/([0-9]+)$ 			?cmd=FTag&KTag=$1&Page=$2 [L]
 
 RewriteRule ^bai-viet/tim-kiem$ 								?cmd=FSearch [L]
 RewriteRule ^bai-viet/([A-Za-z0-9_-]+)$ 						?cmd=FPost&KPost=$1 [L]
+
+RewriteRule ^nguoi-dung/([0-9]+)$ 								?cmd=FUser&IdUser=$1 [L]
+RewriteRule ^nguoi-dung/([0-9]+)/page/([0-9]+)$ 				?cmd=FUser&IdUser=$1&Page=$2 [L]
+
+RewriteRule ^lien-he$ 											?cmd=FContact 		[L]
+RewriteRule ^lien-he/email$ 									?cmd=FContactSend	[L]
+RewriteRule ^lien-he/gmail$ 									?cmd=FContactSendGmail	[L]
+RewriteRule ^lien-he/RefreshCaptcha      						?cmd=RefreshCaptcha	[L]
 
 RewriteRule ^dang-nhap$ 										?cmd=SigninLoad [L]
 RewriteRule ^dang-nhap/exe$ 									?cmd=SigninExe [L]

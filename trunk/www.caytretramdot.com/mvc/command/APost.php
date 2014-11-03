@@ -28,11 +28,11 @@
 				$IdTag = $TagAll->current()->getId();
 			}
 			
-			$Tag 		= $mTag->find($IdTag);
-			$PTAll 		= $mPT->findByTag(array($IdTag));
+			$Tag 			= $mTag->find($IdTag);
+			$PTAll 			= $mPT->findByUserTag(array($Session->getCurrentIdUser(), $IdTag));
 									
-			$Title = "BÀI VIẾT";
-			$Navigation = array();
+			$Title 			= "BÀI VIẾT";
+			$Navigation 	= array();
 			$ConfigName		= $mConfig->findByName("NAME");
 									
 			//-------------------------------------------------------------

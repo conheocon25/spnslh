@@ -12,6 +12,7 @@
 		<command name="FTag" 			type="public"><view>FTag</view></command>
 		<command name="FPost" 			type="public"><view>FPost</view></command>		
 		<command name="FSearch" 		type="public"><view>FSearch</view></command>		
+		<command name="FUser" 			type="public"><view>FUser</view></command>
 		
 		
 		<!-- ============================================================================== -->

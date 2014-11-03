@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class FSubcribe extends Command {
+	class FUser extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -11,29 +11,36 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$Email = $request->getProperty('Email');
+			$IdUser = $request->getProperty('IdUser');
+			$Page 	= $request->getProperty('Page');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mFeed 		= new \MVC\Mapper\Feed();
-						
+			$mConfig 	= new \MVC\Mapper\Config();			
+			$mPost		= new \MVC\Mapper\Post();
+			$mUser		= new \MVC\Mapper\User();
+									
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
-			$Feed = $mFeed->findByEmail($Email);
-			if (!isset($Feed) || $Feed==null){
-				$Feed = new \MVC\Domain\Feed(
-					null,
-					$Email
-				);
-				$mFeed->insert($Feed);
-			}
+			$User = $mUser->find($IdUser);
+			
+			if (!isset($Page)) $Page = 1;						
+			$PostAll1 	= $mPost->searchByUser(array($User->getId()));
+			$PostAll 	= $mPost->searchByUserPage(array($User->getId(), $Page, 6));
+			
+			$PN 		= new \MVC\Domain\PageNavigation($PostAll1->count(), 6, $User->getURLView());
 									
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
-			return self::statuses('CMD_OK');
+			$request->setProperty("Page", 				$Page);																		
+			$request->setObject("User1", 				$User);
+			$request->setObject("PostAll", 				$PostAll);
+			$request->setObject("PN", 					$PN);
+						
+			return self::statuses('CMD_DEFAULT');
 		}
 	}
 ?>
