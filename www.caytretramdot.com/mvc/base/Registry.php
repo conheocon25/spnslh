@@ -50,57 +50,20 @@
 		}
 		
 		//Quản lí TỪ KHÓA TÌM KIẾM
-		function setTermSearch( $TermSearch ) {
-			return self::instance()->set('cafe_current_term', $TermSearch);
+		function setSearchContent( $SearchContent ) {
+			return self::instance()->set('bamboo100_search_content', $SearchContent);
 		}
-		function getTermSearch() {
-			return self::instance()->get('cafe_current_term');
+		function getSearchContent() {
+			return self::instance()->get('bamboo100_search_content');
 		}
-		
-		//Quản lí Giỏ hàng
-		function setCart( \MVC\Domain\Cart $Cart ){
-			return self::instance()->set('cafe_current_cart', $Cart);
-		}
-		function getCart(){
-			$Cart = self::instance()->get('cafe_current_cart');
-			if (!isset($Cart)){$Cart = new \MVC\Domain\Cart();}
-			return $Cart;
-		}
-		
-		//Quản lí đánh dấu
-		function setBookmark( \MVC\Domain\Cart $Cart ){
-			return self::instance()->set('cafe_current_bookmark', $Cart);
-		}
-		function getBookmark(){
-			$Cart = self::instance()->get('cafe_current_bookmark');
-			if (!isset($Cart)){$Cart = new \MVC\Domain\Cart();}
-			return $Cart;
-		}	
-		
+				
+				
 		function setCurrentCaptcha( $CurrentCaptcha ) { 
 			self::instance()->set('huongsenhong_CurrentCaptcha', $CurrentCaptcha); 
 		}
 		function getCurrentCaptcha( ){
 			return self::instance()->get('huongsenhong_CurrentCaptcha');
-		}
-		
-		function setCurrentTheme( $theme ) {
-			return self::instance()->set('cafe_current_theme', $theme);
-		}
-		
-		function getCurrentTheme(){
-			$Theme = self::instance()->get('cafe_current_theme');
-			if (!isset($Theme)){
-				$mConfig = new \MVC\Mapper\Config();
-				$Config = $mConfig->findByName("THEME");
-				if (!isset($Config))
-					return "grey";
-				else
-					return $Config->getValue();
-			}
-				
-			return self::instance()->get('cafe_current_theme');
-		}
+		}				
 	}
 	/*--------------------------------------------------------------------------------*/
 	class RequestRegistry extends Registry { 
