@@ -10,8 +10,7 @@
 									
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
-			//-------------------------------------------------------------
-			$KTag 	= $request->getProperty('KTag');
+			//-------------------------------------------------------------			
 			$KPost 	= $request->getProperty('KPost');
 			
 			//-------------------------------------------------------------
@@ -25,11 +24,9 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------												
-			$Post 					= $mPost->findByKey($KPost);
-			$Tag 					= $mTag->findByKey($KTag);
-			$TagAll 				= $mTag->findByPosition(array(1));
-			
-			$URLShare = "http://caytretramdot.com/bai-viet/".$KTag."/".$KPost;
+			$Post 		= $mPost->findByKey($KPost);			
+						
+			$URLShare = "http://caytretramdot.com/bai-viet/".$KPost;
 			$Post->setViewed($Post->getViewed()+1);
 			$mPost->update($Post);
 									
@@ -38,10 +35,8 @@
 			//-------------------------------------------------------------									
 			$request->setObject("URLShare", 			$URLShare);
 			
-			$request->setObject("Post", 				$Post);			
-			$request->setObject("TagAll", 				$TagAll);
-			$request->setObject("Tag", 					$Tag);
-						
+			$request->setObject("Post", 				$Post);
+									
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

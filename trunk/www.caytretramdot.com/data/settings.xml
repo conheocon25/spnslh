@@ -11,19 +11,8 @@
 		<command name="RefreshCaptcha" 	type="public"><view>RefreshCaptcha</view></command>				
 		<command name="FTag" 			type="public"><view>FTag</view></command>
 		<command name="FPost" 			type="public"><view>FPost</view></command>		
-				
-		<command name="FAlbum" 			type="public"><view>FAlbum</view></command>
-		<command name="FAlbumImage" 	type="public"><view>FAlbumImage</view></command>
+		<command name="FSearch" 		type="public"><view>FSearch</view></command>		
 		
-		<command name="FVideo" 			type="public"><view>FVideo</view></command>
-		<command name="FVideoDetail" 	type="public"><view>FVideoDetail</view></command>
-		
-		<command name="FLinked" 		type="public"><view>FLinked</view></command>
-							
-		<command name="FSubcribe" 		type="public">
-			<view>FSubcribe</view>
-			<status value="CMD_OK"><forward>FHome</forward></status>
-		</command>
 		
 		<!-- ============================================================================== -->
 		<!-- JSON LOAD			 															-->
@@ -42,9 +31,7 @@
 		</command>
 		<command name="SignoutLoad"><view>SignoutLoad</view></command>
 		<command name="SignoutExe"><view>SignoutExe</view><status value="CMD_OK"><forward>FHome</forward></status></command>
-		<command name="Admin"><view>Admin</view></command>		
-		<command name="SettingThemeChangeExe"><view>SettingThemeChangeExe</view><status value="CMD_OK"><forward>App</forward></status></command>
-							
+		<command name="Admin"><view>Admin</view></command>											
 											
 		<!-- ============================================================================== -->
 		<!-- SETTING	 																	-->
@@ -65,17 +52,8 @@
 		<command name="APostInsExe">			<view>APostInsExe	</view><status value="CMD_OK"><forward>APost</forward></status></command>
 		<command name="APostUpdLoad">			<view>APostUpdLoad	</view></command>
 		<command name="APostUpdExe">			<view>APostUpdExe	</view><status value="CMD_OK"><forward>APost</forward></status></command>
-		<command name="APostDelLoad">			<view>APostDelLoad	</view></command>
-		<command name="APostDelExe">			<view>APostDelExe	</view><status value="CMD_OK"><forward>APost</forward></status></command>
-										
-		<command name="ASettingAlbum">			<view>ASettingAlbum			</view></command>
-		<command name="ASettingAlbumImage">		<view>ASettingAlbumImage	</view></command>
-		
-		<command name="ASettingVideo">			<view>ASettingVideo			</view></command>
-				
+						
 		<command name="ASettingUser">			<view>ASettingUser			</view></command>				
-		<command name="ASettingConfig">			<view>ASettingConfig		</view></command>		
-		<command name="ASettingLinked">			<view>ASettingLinked		</view></command>
-				
+		<command name="ASettingConfig">			<view>ASettingConfig		</view></command>								
 	</control>
 </options>
