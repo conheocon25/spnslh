@@ -63,7 +63,7 @@ class PostTag extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLRead()	{return "/tin-tuc/".$this->getTag()->getKey()."/".$this->getPost()->getKey();}
+	function getURLRead()	{return "/bai-viet/".$this->getTag()->getKey()."/".$this->getPost()->getKey();}
 	function getURLSetting(){return "/admin/setting/PostTag/".$this->getId();}
 	
 	//-------------------------------------------------------------------------------

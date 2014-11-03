@@ -6,10 +6,7 @@
 	</head>	
 	<body>		
 		<div id="wrapper">
-			<div>								
-				<input name="SearchContent" type="text" id="SearchContent"/>				
-				<input id="SearchButton" type="submit" value="Gửi" class="btn btn-custom-2"/>
-			</div>								
+			<div metal:use-macro="mFront.xhtml/SearchBar"/>
 			<span tal:repeat="Tag TagAll">
 				<a tal:attributes="href Tag/getURLView">
 					<B><span tal:content="Tag/getName"/> (<span tal:content="Tag/getPostAll/count"/>)</B>
