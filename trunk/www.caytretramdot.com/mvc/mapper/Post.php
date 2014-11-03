@@ -10,8 +10,8 @@ class Post extends Mapper implements \MVC\Domain\PostFinder {
 		
 		$selectAllStmt 	= sprintf("select * from %s", $tblPost);
 		$selectStmt 	= sprintf("select *  from %s where id=?", $tblPost);
-		$updateStmt 	= sprintf("update %s set title=?, content=?, author=?, `time`=?, `count`=?, `key`=?, `viewed`=?, `liked`=? where id=?", $tblPost);
-		$insertStmt 	= sprintf("insert into %s ( title, content, author, `time`, `count`, `key`, `viewed`, `liked`) values(?, ?, ?, ?, ?, ?, ?, ?)", $tblPost);
+		$updateStmt 	= sprintf("update %s set id_user=?, title=?, content=?, `time`=?, `count`=?, `key`=?, `viewed`=?, `liked`=? where id=?", $tblPost);
+		$insertStmt 	= sprintf("insert into %s ( id_user, title, content, `time`, `count`, `key`, `viewed`, `liked`) values(?, ?, ?, ?, ?, ?, ?, ?)", $tblPost);
 		$deleteStmt 	= sprintf("delete from %s where id=?", $tblPost);
 		$findByKeyStmt 	= sprintf("select *  from %s where `key`=?", $tblPost);
 		$searchByTitleStmt 		= sprintf("select *  from %s where `title` like :title", $tblPost);
@@ -31,9 +31,9 @@ class Post extends Mapper implements \MVC\Domain\PostFinder {
     protected function doCreateObject( array $array ) {
         $obj = new \MVC\Domain\Post( 
 			$array['id'],
+			$array['id_user'],
 			$array['title'],
-			$array['content'],
-			$array['author'],
+			$array['content'],			
 			$array['time'],
 			$array['count'],
 			$array['key'],
@@ -46,9 +46,9 @@ class Post extends Mapper implements \MVC\Domain\PostFinder {
     protected function targetClass() {return "Post";}
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array( 			
+			$object->getIdUser(),
 			$object->getTitle(),
-			$object->getContent(),
-			$object->getAuthor(),
+			$object->getContent(),			
 			$object->getTime(),
 			$object->getCount(),
 			$object->getKey(),
@@ -61,10 +61,10 @@ class Post extends Mapper implements \MVC\Domain\PostFinder {
     }
     
     protected function doUpdate( \MVC\Domain\Object $object ) {
-        $values = array( 
+        $values = array(
+			$object->getIdUser(),
 			$object->getTitle(),
-			$object->getContent(),
-			$object->getAuthor(),
+			$object->getContent(),			
 			$object->getTime(),
 			$object->getCount(),
 			$object->getKey(),

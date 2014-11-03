@@ -10,13 +10,14 @@ interface Finder {
     //function delete();
 }
 
-interface LinkedFinder  		extends Finder {}
 interface UserFinder  			extends Finder {}
 interface TagFinder 			extends Finder {}
+interface LinkedFinder  		extends Finder {}
+interface PostFinder 			extends Finder {}
 interface PostTagFinder 		extends Finder {}
+interface PostLinkedFinder 		extends Finder {}
 interface ConfigFinder 			extends Finder {}
 interface GuestFinder 			extends Finder {}
-interface PostFinder 			extends Finder {}
 
 interface ProvinceFinder 		extends Finder {}
 interface DistrictFinder 		extends Finder {}
