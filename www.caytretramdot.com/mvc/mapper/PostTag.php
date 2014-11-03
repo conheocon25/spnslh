@@ -12,10 +12,8 @@ class PostTag extends Mapper implements \MVC\Domain\PostTagFinder {
 		$updateStmt 		= sprintf("update %s set id_post=?, id_tag=?  where id=?", $tblPostTag);
 		$insertStmt 		= sprintf("insert into %s ( id_post, id_tag) values(?, ?)", $tblPostTag);
 		$deleteStmt 		= sprintf("delete from %s where id=?", $tblPostTag);		
-		$findByPostStmt		= sprintf("select *  from %s where id_post=?", 			$tblPostTag);
-		$findByLastest4Stmt	= sprintf("SELECT *  FROM %s ORDER BY id DESC LIMIT 4", 	$tblPostTag);
-		
-		$findByTagStmt		= sprintf("select *  from %s where id_tag=?", 			$tblPostTag);				
+		$findByPostStmt		= sprintf("select *  from %s where id_post=?", 			$tblPostTag);				
+		$findByTagStmt		= sprintf("select *  from %s where id_tag=?", 			$tblPostTag);
 		$findByTagPageStmt = sprintf(
 			"SELECT 
 				*
@@ -26,6 +24,14 @@ class PostTag extends Mapper implements \MVC\Domain\PostTagFinder {
 			LIMIT :start,:max"
 		, $tblPostTag);
 		
+		$findByUserTagStmt	= sprintf("
+				select *  
+				from %s PT
+				where 
+					exists(select * from bamboo100_post P where P.id_user=? and PT.id_post=P.id) and
+					id_tag=? 
+		", 	$tblPostTag);
+		
 		
         $this->selectAllStmt 		= self::$PDO->prepare($selectAllStmt);
         $this->selectStmt 			= self::$PDO->prepare($selectStmt);
@@ -33,9 +39,9 @@ class PostTag extends Mapper implements \MVC\Domain\PostTagFinder {
         $this->insertStmt 			= self::$PDO->prepare($insertStmt);
 		$this->deleteStmt 			= self::$PDO->prepare($deleteStmt);		
 		$this->findByPostStmt 		= self::$PDO->prepare($findByPostStmt);
-		$this->findByTagStmt 		= self::$PDO->prepare($findByTagStmt);
-		$this->findByLastest4Stmt 	= self::$PDO->prepare($findByLastest4Stmt);
+		$this->findByTagStmt 		= self::$PDO->prepare($findByTagStmt);		
 		$this->findByTagPageStmt 	= self::$PDO->prepare($findByTagPageStmt);
+		$this->findByUserTagStmt 	= self::$PDO->prepare($findByUserTagStmt);
     } 
     function getCollection( array $raw ) {return new PostTagCollection( $raw, $this );}
     protected function doCreateObject( array $array ) {		
@@ -79,12 +85,7 @@ class PostTag extends Mapper implements \MVC\Domain\PostTagFinder {
         $this->findByTagStmt->execute( $values );
         return new PostTagCollection( $this->findByTagStmt->fetchAll(), $this );
     }
-	
-	function findByLastest4(array $values) {
-        $this->findByLastest4Stmt->execute( $values );
-        return new PostTagCollection( $this->findByLastest4Stmt->fetchAll(), $this );
-    }
-	
+			
 	function findByTagPage( $values ) {
 		$this->findByTagPageStmt->bindValue(':id_tag', $values[0], \PDO::PARAM_INT);
 		$this->findByTagPageStmt->bindValue(':start', ((int)($values[1])-1)*(int)($values[2]), \PDO::PARAM_INT);
@@ -93,5 +94,9 @@ class PostTag extends Mapper implements \MVC\Domain\PostTagFinder {
         return new PostTagCollection( $this->findByTagPageStmt->fetchAll(), $this );
     }
 	
+	function findByUserTag(array $values) {
+        $this->findByUserTagStmt->execute( $values );
+        return new PostTagCollection( $this->findByUserTagStmt->fetchAll(), $this );
+    }	
 }
 ?>

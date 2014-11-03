@@ -21,7 +21,7 @@
 		function handleRequest() {			
 			$request = new Request();
 			$AppController = \MVC\Base\ApplicationRegistry::appController();						
-			@$User = \MVC\Base\SessionRegistry::getCurrentUser();			
+			@$User = \MVC\Base\SessionRegistry::getCurrentUser();
 			
 			if (isset($User)&&$User->getEmail()!=""){
 				while( $cmd = $AppController->getCommand( $request ) ) {			

@@ -13,10 +13,8 @@
 			//-------------------------------------------------------------			
 			$IdTag 		= $request->getProperty('IdTag');						
 			$IdPost 	= $request->getProperty('IdPost');
-			$Title 		= $request->getProperty('Title');
-			$Author 	= $request->getProperty('Author');
-			$Time 		= $request->getProperty('Time');
-			$Count 		= $request->getProperty('Count');
+			$Title 		= $request->getProperty('Title');			
+			$Time 		= $request->getProperty('Time');			
 			$Content 	= \stripslashes($request->getProperty('Content'));
 			$Viewed 	= $request->getProperty('Viewed');
 			$Liked 		= $request->getProperty('Liked');
@@ -34,9 +32,7 @@
 			
 			$Post->setContent($Content);			
 			$Post->setTitle($Title);
-			$Post->setTime($Time);
-			$Post->setAuthor($Author);
-			$Post->setCount($Count);
+			$Post->setTime($Time);			
 			$Post->setViewed($Viewed);
 			$Post->setLiked($Liked);			
 			//$Post->reKey();

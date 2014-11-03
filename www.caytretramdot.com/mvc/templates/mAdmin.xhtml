@@ -35,7 +35,7 @@
 		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/custom.css"/>
 		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/grid-menu.css"/>
 		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/jquery.gritter.css"/>
-		<link rel="stylesheet" tal:attributes="href php:'/mvc/templates/theme/cms/css/unicorn.' . @\MVC\Base\SessionRegistry::instance()->getCurrentTheme() . '.css'" class="skin-color"/>										
+		<link rel="stylesheet" tal:attributes="href php:'/mvc/templates/theme/cms/css/unicorn.light-blue.css'" class="skin-color"/>
 	</span>
 	
 	<!-- ======================================================================== -->
@@ -66,7 +66,7 @@
 	<div metal:define-macro="Header">
 		<div id="header">
 			<h1><a>Cây Tre Trăm Đốt </a></h1>
-			<a id="menu-trigger" href="#"><i class="glyphicon glyphicon-align-justify"/></a>	
+			<a id="menu-trigger" href="#"><i class="glyphicon glyphicon-align-justify"/></a>
 		</div>
 		<div id="user-nav">			
             <ul class="btn-group">
@@ -121,6 +121,15 @@
 				<a tal:attributes="href '/admin/post'"><i class="glyphicons-cogwheels" />BÀI VIẾT</a>
 			</li>
 			<li tal:attributes="class php:ActiveAdmin=='Setting'?'active':'disable'">				
+				<a tal:attributes="href '/admin/setting'"><i class="glyphicons-cogwheels" />THIẾT LẬP</a>
+			</li>
+		</ul>
+		
+		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isSeller()">			
+			<li tal:attributes="class php:ActiveAdmin=='Post'?'active':'disable'">
+				<a tal:attributes="href '/admin/post'"><i class="glyphicons-cogwheels" />BÀI VIẾT</a>
+			</li>
+			<li tal:attributes="class php:ActiveAdmin=='Setting'?'active':'disable'">
 				<a tal:attributes="href '/admin/setting'"><i class="glyphicons-cogwheels" />THIẾT LẬP</a>
 			</li>
 		</ul>
@@ -180,12 +189,7 @@
 				<a tal:attributes="href '/admin/setting/post'" >
 					<i class="glyphicons-book" />BÀI VIẾT
 				</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='StoryLine'?'active':'disable'">
-				<a tal:attributes="href '/admin/setting/storyline'" >
-					<i class="glyphicons-book" />CÂU CHUYỆN KHÁCH HÀNG
-				</a>
-			</li>
+			</li>			
 		</ul>
 	</div>
 			
