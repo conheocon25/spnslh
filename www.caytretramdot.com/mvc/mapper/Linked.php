@@ -10,33 +10,25 @@ class Linked extends Mapper implements \MVC\Domain\LinkedFinder {
 						
 		$selectAllStmt 	= sprintf("select * from %s order by `order`", $tblLinked);
 		$selectStmt 	= sprintf("select * from %s where id=?", $tblLinked);
-		$updateStmt 	= sprintf("update %s set name=?, logo=?, website=?, note=?, `order`=?, `key`=? where id=?", $tblLinked);
-		$insertStmt 	= sprintf("insert into %s ( name, logo, website, note, `order`, `key`) values(?, ?, ?, ?, ?, ?)", $tblLinked);
+		$updateStmt 	= sprintf("update %s set name=? where id=?", $tblLinked);
+		$insertStmt 	= sprintf("insert into %s ( name) values(?)", $tblLinked);
 		$deleteStmt 	= sprintf("delete from %s where id=?", $tblLinked);
 		$findByPageStmt = sprintf("SELECT * FROM  %s ORDER BY `order` LIMIT :start,:max", $tblLinked);
-		$findByKeyStmt 	= sprintf("select *  from %s where `key`=?", $tblLinked);
-		$findByTopStmt 	= sprintf("select *  from %s ORDER BY `order` LIMIT 4", $tblLinked);
-		
+				
         $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
         $this->selectStmt = self::$PDO->prepare($selectStmt);
         $this->updateStmt = self::$PDO->prepare($updateStmt);
         $this->insertStmt = self::$PDO->prepare($insertStmt);
 		$this->deleteStmt = self::$PDO->prepare($deleteStmt);
 		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);
-		$this->findByKeyStmt = self::$PDO->prepare($findByKeyStmt);
-		$this->findByTopStmt = self::$PDO->prepare($findByTopStmt);							
+		
     } 
     function getCollection( array $raw ) {return new LinkedCollection( $raw, $this );}
 	
     protected function doCreateObject( array $array ) {		
         $obj = new \MVC\Domain\Linked( 
 			$array['id'],
-			$array['name'],
-			$array['logo'],
-			$array['website'],
-			$array['note'],
-			$array['order'],
-			$array['key']
+			$array['name']
 		);
         return $obj;
     }
@@ -44,12 +36,7 @@ class Linked extends Mapper implements \MVC\Domain\LinkedFinder {
     protected function targetClass() {  return "Linked";}
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array( 
-			$object->getName(),
-			$object->getLogo(),
-			$object->getWebsite(),
-			$object->getNote(),
-			$object->getOrder(),
-			$object->getKey()
+			$object->getName()			
 		); 
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
@@ -58,25 +45,14 @@ class Linked extends Mapper implements \MVC\Domain\LinkedFinder {
     
     protected function doUpdate( \MVC\Domain\Object $object ) {
         $values = array( 
-			$object->getName(),
-			$object->getLogo(),
-			$object->getWebsite(),
-			$object->getNote(),
-			$object->getOrder(),
-			$object->getKey(),
-			$object->getId()
+			$object->getName()			
 		);				
         $this->updateStmt->execute( $values );
     }
 	protected function doDelete(array $values) {return $this->deleteStmt->execute( $values );}	
     function selectStmt() {return $this->selectStmt;}	
     function selectAllStmt() {return $this->selectAllStmt;}
-	
-	function findByTop(array $values) {
-        $this->findByTopStmt->execute( $values );
-        return new LinkedCollection( $this->findByTopStmt->fetchAll(), $this );
-    }
-	
+			
 	function findByPage( $values ) {
 		$this->findByPageStmt->bindValue(':start', ((int)($values[0])-1)*(int)($values[1]), \PDO::PARAM_INT);
 		$this->findByPageStmt->bindValue(':max', (int)($values[1]), \PDO::PARAM_INT);
@@ -84,14 +60,5 @@ class Linked extends Mapper implements \MVC\Domain\LinkedFinder {
         return new LinkedCollection( $this->findByPageStmt->fetchAll(), $this );
     }
 	
-	function findByKey( $values ) {	
-		$this->findByKeyStmt->execute( array($values) );
-        $array = $this->findByKeyStmt->fetch();
-        $this->findByKeyStmt->closeCursor();
-        if ( ! is_array( $array ) ) { return null; }
-        if ( ! isset( $array['id'] ) ) { return null; }
-        $object = $this->doCreateObject( $array );
-        return $object;		
-    }
 }
 ?>

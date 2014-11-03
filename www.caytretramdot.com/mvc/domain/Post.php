@@ -4,6 +4,7 @@ require_once( "mvc/base/domain/DomainObject.php" );
 
 class Post extends Object{
     private $Id;
+	private $IdUser;
 	private $Title;
 	private $Content;	
 	private $Time;
@@ -15,11 +16,11 @@ class Post extends Object{
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-    function __construct( $Id=null, $Title=null, $Content=null, $Author=null, $Time=null, $Count=null, $Key=null, $Viewed=null, $Liked=null){
+    function __construct( $Id=null, $IdUser, $Title=null, $Content=null, $Time=null, $Count=null, $Key=null, $Viewed=null, $Liked=null){
         $this->Id 			= $Id;
+		$this->IdUser 		= $IdUser;
 		$this->Title 		= $Title;
-		$this->Content 		= $Content;		
-		$this->Author 		= $Author;
+		$this->Content 		= $Content;				
 		$this->Time 		= $Time;		
 		$this->Count 		= $Count;
 		$this->Key 			= $Key;
@@ -43,8 +44,13 @@ class Post extends Object{
 		$D = new \MVC\Library\Date($this->Time);return $D->getFullDateTimeFormat();
 	}
 	
-	function setAuthor( $Author ){$this->Author = $Author;$this->markDirty();}   
-	function getAuthor( ) {return $this->Author;}
+	function setIdUser( $IdUser ){$this->IdUser = $IdUser;$this->markDirty();}   
+	function getIdUser( ) {return $this->IdUser;}
+	function getUser( ) {
+		$mUser = new \MVC\Mapper\User();
+		$User = $mUser->find($this->IdUser);
+		return $User;
+	}
 	
 	function setTitle( $Title ){$this->Title = $Title;$this->markDirty();}   
 	function getTitle( ) {return $this->Title;}	
@@ -90,9 +96,9 @@ class Post extends Object{
 	function toJSON(){
 		$json = array(
 			'Id' 			=> $this->getId(),
+			'IdUser'		=> $this->getIdUser(),
 			'Title'			=> $this->getTitle(),
-			'Content'		=> $this->getContent(),
-			'Author'		=> $this->getAuthor(),
+			'Content'		=> $this->getContent(),			
 			'Time'			=> $this->getTime(),
 			'Count'			=> $this->getCount(),
 			'Key'			=> $this->getKey(),
@@ -104,13 +110,13 @@ class Post extends Object{
 	
 	function setArray( $Data ){
         $this->Id 			= $Data[0];
-		$this->Title		= $Data[1];
-		$this->Content 		= \stripslashes($Data[2]);				
-		$this->Author		= $Data[3];
-		$this->Time 		= $Data[4];
-		$this->Count 		= $Data[5];
-		$this->Viewed 		= $Data[6];
-		$this->Liked 		= $Data[7];
+		$this->IdUser		= $Data[2];
+		$this->Title		= $Data[3];
+		$this->Content 		= \stripslashes($Data[4]);
+		$this->Time 		= $Data[5];
+		$this->Count 		= $Data[6];
+		$this->Viewed 		= $Data[7];
+		$this->Liked 		= $Data[8];
 		$this->reKey();
     }
 	
@@ -122,9 +128,8 @@ class Post extends Object{
 	function getURLSettingTag(){return "admin/post/".$this->getId()."/tag";}
 	
 	function getURLUpdLoad(){	return "admin/post/".$this->getId()."/upd/load";}
-	function getURLUpdExe(){	return "admin/post/".$this->getId()."/upd/exe";}		
-	
-				
+	function getURLUpdExe(){	return "admin/post/".$this->getId()."/upd/exe";}
+					
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}	
