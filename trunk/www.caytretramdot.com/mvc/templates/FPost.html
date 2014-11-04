@@ -1,61 +1,30 @@
 <!DOCTYPE html>
-<html prefix="og: http://ogp.me/ns#">
-	<head>		
-		<title>Website Cây Tre Trăm Đốt</title>
-		<base href="http://caytretramdot.com"/>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-		<meta http-equiv="Pragma" content="no-cache"/>
-		<meta http-equiv="Expires" content="-1"/>
-		<meta http-equiv="Cache-Control" content="no-cache"/>
-		<meta name="keywords" content="Website Cây Tre Trăm Đốt"/>
-		<meta name="description" content="Website Cây Tre Trăm Đốt"/>
-		<meta name="page-topic" content="Website Cây Tre Trăm Đốt"/>
-		<meta name="Abstract" content="Website Cây Tre Trăm Đốt"/>
-		<meta name="classification" content="Website Cây Tre Trăm Đốt"/>
-		
-		<meta property="og:title" tal:attributes="content Post/getTitle"/>
-		<meta property="og:description" tal:attributes="content Post/getContentReduce"/>
-		<meta property="og:image" tal:attributes="content Post/getImage"/>
-
-		<link rel="shortcut icon" type="image/png" href="/data/images/icon.png"/>
-	
-		<link rel="stylesheet" href="/mvc/templates/front/css/bootstrap.min.css"/>
-		<link rel="stylesheet" href="/mvc/templates/front/css/font-awesome.min.css"/>
-		<link rel="stylesheet" href="/mvc/templates/front/css/prettyPhoto.css"/>
-		<link rel="stylesheet" href="/mvc/templates/front/css/colpick.css"/>
-		<link rel="stylesheet" href="/mvc/templates/front/css/sequence-slider.css"/>
-		<link rel="stylesheet" href="/mvc/templates/front/css/owl.carousel.css"/>
-		<link rel="stylesheet" href="/mvc/templates/front/css/style.css"/>
-		<link rel="stylesheet" href="/mvc/templates/front/css/responsive.css"/>
-		
-	</head>	
-	<body>		
-		<div id="wrapper">
-			<div metal:use-macro="mFront.xhtml/SearchBar"/>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mFront.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>
+	</head>
+	<body>
+		<div metal:use-macro="mFront.xhtml/Header"/>
+		<div class="container-fluid"  style="margin-top:70px;">
 			<div class="row">
-				<div class="col-md-9 col-sm-8 col-xs-12 articles-container single-post">
-					<article class="article">
-						<div class="article-meta-date" tal:content="Post/getTimePrint"/>
-						<h2 tal:content="Post/getTitle"/>
-						<div class="article-meta-container clearfix">
+				<div class="col-md-12">
+					<div class="panel panel-default">
+						<div class="panel-heading" tal:content="Post/getTitle"/>
+						<div class="panel-body">
+							<div class="article-meta-date" tal:content="Post/getTimePrint"/>
 							<div class="article-meta-more">												
 								<a tal:attributes="href Post/getUser/getURLView"><span class="separator"><i class="fa fa-user"></i></span> <span tal:content="Post/getUser/getName"></span></a>
 								<div class="share-button-group">
 									<div class="fb-share-button" tal:attributes="data-href URLShare" data-type="button_count" />
-								</div>																								
-							</div>											
+								</div>
+								<div tal:content="structure Post/getContent" class="article-content-container"/>								
+							</div>
 						</div>
-						<div tal:content="structure Post/getContent" class="article-content-container"/>
-					</article>
-				</div>								
-			</div>			
-		</div><!-- End #wrapper -->		
+					</div>
+				</div>
+			</div>
+		</div>
 		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
-		<script type="text/javascript">
-		/*<![CDATA[*/
-			
-		/*]]>*/
-		</script>
 	</body>
 </html>

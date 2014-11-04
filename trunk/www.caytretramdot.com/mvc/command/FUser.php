@@ -20,11 +20,13 @@
 			$mConfig 	= new \MVC\Mapper\Config();			
 			$mPost		= new \MVC\Mapper\Post();
 			$mUser		= new \MVC\Mapper\User();
+			$mTag 		= new \MVC\Mapper\Tag();
 									
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
 			$User = $mUser->find($IdUser);
+			$TagAll 	= $mTag->findAll();
 			
 			if (!isset($Page)) $Page = 1;						
 			$PostAll1 	= $mPost->searchByUser(array($User->getId()));
@@ -39,6 +41,7 @@
 			$request->setObject("User1", 				$User);
 			$request->setObject("PostAll", 				$PostAll);
 			$request->setObject("PN", 					$PN);
+			$request->setObject("TagAll", 				$TagAll);
 						
 			return self::statuses('CMD_DEFAULT');
 		}
