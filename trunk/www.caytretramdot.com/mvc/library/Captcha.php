@@ -28,7 +28,7 @@ Class Captcha {
 	function createImage() 
 	{ 	
 		$day = new \DateTime();
-		$Today = $day->format('YmdHis');
+		$Today = $day->format('is');
 		//$_SESSION["spn_code_captcha"] = $security_code;
 		//$width = 150; 
 		//$height = 30; 	
