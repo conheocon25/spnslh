@@ -8,12 +8,12 @@ class Linked extends Mapper implements \MVC\Domain\LinkedFinder {
 		
 		$tblLinked = "bamboo100_linked";
 						
-		$selectAllStmt 	= sprintf("select * from %s order by `order`", $tblLinked);
+		$selectAllStmt 	= sprintf("select * from %s", $tblLinked);
 		$selectStmt 	= sprintf("select * from %s where id=?", $tblLinked);
 		$updateStmt 	= sprintf("update %s set name=? where id=?", $tblLinked);
 		$insertStmt 	= sprintf("insert into %s ( name) values(?)", $tblLinked);
 		$deleteStmt 	= sprintf("delete from %s where id=?", $tblLinked);
-		$findByPageStmt = sprintf("SELECT * FROM  %s ORDER BY `order` LIMIT :start,:max", $tblLinked);
+		$findByPageStmt = sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblLinked);
 				
         $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
         $this->selectStmt = self::$PDO->prepare($selectStmt);

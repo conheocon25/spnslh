@@ -64,15 +64,9 @@ class Tag extends Object{
 	//-------------------------------------------------------------------------------
 	//GET LIST
 	//-------------------------------------------------------------------------------
-	function getPostAll(){
+	function getPTAll(){
 		$mPT 	= new \MVC\Mapper\PostTag();
 		$PTAll 	= $mPT->findByTag(array($this->getId()));
-		return $PTAll;
-	}
-	
-	function getPostTop4(){
-		$mPT 	= new \MVC\Mapper\PostTag();
-		$PTAll 	= $mPT->findByTagTop4(array($this->getId()));
 		return $PTAll;
 	}
 		
@@ -81,7 +75,7 @@ class Tag extends Object{
 	//-------------------------------------------------------------------------------
 	function getURLView(){return "/the-bai/".$this->getKey();}
 	
-	function getURLSetting(){return "/admin/setting/tag/".$this->getId();}
+	function getURLSetting(){return "/admin/tag/".$this->getId();}
 	function getURLSettingPost(){return "/admin/post/".$this->getId();}
 	function getURLSettingPostInsLoad()	{return "/admin/post/".$this->getId()."/ins/load";}
 	function getURLSettingPostInsExe()	{return "/admin/post/".$this->getId()."/ins/exe";}

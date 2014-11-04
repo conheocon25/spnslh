@@ -4,7 +4,7 @@
 		<div metal:use-macro="mFront.xhtml/IncludeMETA"/>
 		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>
 	</head>
-	<body>
+	<body onunload="GUnload()">
 		<div metal:use-macro="mFront.xhtml/Header"/>
 		<div class="container-fluid"  style="margin-top:70px;">
 			<div class="row">
@@ -12,19 +12,75 @@
 					<div class="panel panel-default">
 						<div class="panel-heading" tal:content="Post/getTitle"/>
 						<div class="panel-body">
-							<div class="article-meta-date" tal:content="Post/getTimePrint"/>
-							<div class="article-meta-more">												
+							<div class="article-meta-date">
 								<a tal:attributes="href Post/getUser/getURLView"><span class="separator"><i class="fa fa-user"></i></span> <span tal:content="Post/getUser/getName"></span></a>
+								<span tal:content="Post/getTimePrint"/>
+							</div>
+							<div class="article-meta-more">																				
 								<div class="share-button-group">
 									<div class="fb-share-button" tal:attributes="data-href URLShare" data-type="button_count" />
 								</div>
-								<div tal:content="structure Post/getContent" class="article-content-container"/>								
+								<div tal:content="structure Post/getContent" class="article-content-container"/>
 							</div>
+							<div tal:condition="Post/getPLIsParent/count">
+								<B>Bài trước</B>
+								<ul>
+									<li tal:repeat="PT Post/getPLIsParent">
+										<a tal:attributes="href PT/getPost2/getURLView">
+											<span tal:content="PT/getPost2/getTitle" />
+										</a>
+									</li>
+								</ul>
+							</div>
+							<div tal:condition="Post/getPLIsChild/count">
+								<B>Nên xem</B>
+								<ul>
+									<li tal:repeat="PT Post/getPLIsChild">
+										<a tal:attributes="href PT/getPost2/getURLView">
+											<span tal:content="PT/getPost2/getTitle" />
+										</a>
+									</li>
+								</ul>
+							</div>
+							<div tal:condition="Post/getPLIsRelated/count">
+								<B>Liên quan</B>
+								<ul>
+									<li tal:repeat="PT Post/getPLIsRelated">
+										<a tal:attributes="href PT/getPost2/getURLView">
+											<span tal:content="PT/getPost2/getTitle" />
+										</a>
+									</li>
+								</ul>
+							</div>
+							<div tal:condition="Post/getPLIsAlso/count">
+								<B>Xem thêm</B>
+								<ul>
+									<li tal:repeat="PT Post/getPLIsAlso">
+										<a tal:attributes="href PT/getPost2/getURLView">
+											<span tal:content="PT/getPost2/getTitle" />
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div tal:condition="Post/getPMAll/count">
+							Có bản đồ
+							<div id="map"/>
+							<input id="X" type="hidden" value='1'/>
+							<input id="Y" type="hidden" value='1'/>
+							<input id="NameXY" type="hidden" value='1'/>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
+		<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=AIzaSyAL3E55skCbhZdaN7Jm3Tip7Np1X04f76w" type="text/javascript"></script>
+		<script type="text/javascript" language="javascript" src="/mvc/templates/theme/cms/js/gps.jquery.js"/>
+		<script type="text/javascript">
+			$(function() {
+				$("#map").googleMap().load();
+			});
+		</script>		
 	</body>
 </html>

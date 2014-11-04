@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class FTag extends Command {
+	class FTagAll extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -10,36 +10,25 @@
 									
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
-			//-------------------------------------------------------------
-			$KTag 	= $request->getProperty('KTag');
+			//-------------------------------------------------------------			
 			$Page 	= $request->getProperty('Page');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mConfig 	= new \MVC\Mapper\Config();			
-			$mPostTag	= new \MVC\Mapper\PostTag();
+			$mConfig 	= new \MVC\Mapper\Config();						
 			$mTag 		= new \MVC\Mapper\Tag();
 						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------																		
-			if (!isset($Page)) $Page = 1;
-			$TagAll 				= $mTag->findAll();
-			$Tag 					= $mTag->findByKey($KTag);
-			$PTAll 					= $mPostTag->findByTagPage(array($Tag->getId(), $Page, 6));
-			$PN 					= new \MVC\Domain\PageNavigation($Tag->getPTAll()->count(), 6, $Tag->getURLView());
-									
+			//-------------------------------------------------------------																					
+			$TagAll 	= $mTag->findAll();
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------									
-			$request->setProperty("Page", 				$Page);
-															
-			$request->setObject("TagAll", 				$TagAll);
-			$request->setObject("Tag", 					$Tag);
-			$request->setObject("PTAll", 				$PTAll);
-			$request->setObject("PN", 					$PN);
-						
+			//-------------------------------------------------------------																											
+			$request->setObject("TagAll", 	$TagAll);
+			
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

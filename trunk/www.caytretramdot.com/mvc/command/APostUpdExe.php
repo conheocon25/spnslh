@@ -35,7 +35,7 @@
 			$Post->setTime($Time);			
 			$Post->setViewed($Viewed);
 			$Post->setLiked($Liked);			
-			//$Post->reKey();
+			$Post->reKey();
 			$mPost->update($Post);
 			
 			//-------------------------------------------------------------

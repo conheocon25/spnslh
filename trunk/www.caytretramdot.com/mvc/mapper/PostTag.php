@@ -12,6 +12,7 @@ class PostTag extends Mapper implements \MVC\Domain\PostTagFinder {
 		$updateStmt 		= sprintf("update %s set id_post=?, id_tag=?  where id=?", $tblPostTag);
 		$insertStmt 		= sprintf("insert into %s ( id_post, id_tag) values(?, ?)", $tblPostTag);
 		$deleteStmt 		= sprintf("delete from %s where id=?", $tblPostTag);		
+		$findByTagPostStmt	= sprintf("select *  from %s where id_tag=? and id_post=?", $tblPostTag);				
 		$findByPostStmt		= sprintf("select *  from %s where id_post=?", 			$tblPostTag);				
 		$findByTagStmt		= sprintf("select *  from %s where id_tag=?", 			$tblPostTag);
 		$findByTagPageStmt = sprintf(
@@ -39,9 +40,10 @@ class PostTag extends Mapper implements \MVC\Domain\PostTagFinder {
         $this->insertStmt 			= self::$PDO->prepare($insertStmt);
 		$this->deleteStmt 			= self::$PDO->prepare($deleteStmt);		
 		$this->findByPostStmt 		= self::$PDO->prepare($findByPostStmt);
-		$this->findByTagStmt 		= self::$PDO->prepare($findByTagStmt);		
+		$this->findByTagStmt 		= self::$PDO->prepare($findByTagStmt);				
 		$this->findByTagPageStmt 	= self::$PDO->prepare($findByTagPageStmt);
 		$this->findByUserTagStmt 	= self::$PDO->prepare($findByUserTagStmt);
+		$this->findByTagPostStmt 	= self::$PDO->prepare($findByTagPostStmt);	
     } 
     function getCollection( array $raw ) {return new PostTagCollection( $raw, $this );}
     protected function doCreateObject( array $array ) {		
@@ -97,6 +99,11 @@ class PostTag extends Mapper implements \MVC\Domain\PostTagFinder {
 	function findByUserTag(array $values) {
         $this->findByUserTagStmt->execute( $values );
         return new PostTagCollection( $this->findByUserTagStmt->fetchAll(), $this );
+    }	
+	
+	function findByTagPost(array $values) {
+        $this->findByTagPostStmt->execute( $values );
+        return new PostTagCollection( $this->findByTagPostStmt->fetchAll(), $this );
     }	
 }
 ?>
