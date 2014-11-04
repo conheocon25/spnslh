@@ -67,7 +67,11 @@ class Post extends Object{
 	function setKey( $Key ){$this->Key = $Key;$this->markDirty();}
 	function getKey( ) {return $this->Key;}
 	function reKey( ){
-		$Id = time();
+		if (!isset($this->Id))
+			$Id = time();
+		else
+			$Id = $this->Id;
+			
 		$Str = new \MVC\Library\String($this->Title." ".$Id);
 		$this->Key = $Str->converturl();		
 	}	
@@ -86,6 +90,42 @@ class Post extends Object{
 		$mPT 	= new \MVC\Mapper\PostTag();	
 		$PTAll 	= $mPT->findByPost(array($this->getId()));
 		return $PTAll;
+	}
+	
+	function getPLAll(){
+		$mPL 	= new \MVC\Mapper\PostLinked();	
+		$PLAll 	= $mPL->findByPost(array($this->getId()));
+		return $PLAll;
+	}
+	
+	function getPLIsRelated(){
+		$mPL 	= new \MVC\Mapper\PostLinked();	
+		$PLAll 	= $mPL->findByPostLinked(array($this->getId(), 1));
+		return $PLAll;
+	}
+	
+	function getPLIsAlso(){
+		$mPL 	= new \MVC\Mapper\PostLinked();	
+		$PLAll 	= $mPL->findByPostLinked(array($this->getId(), 2));
+		return $PLAll;
+	}
+	
+	function getPLIsChild(){
+		$mPL 	= new \MVC\Mapper\PostLinked();	
+		$PLAll 	= $mPL->findByPostLinked(array($this->getId(), 4));
+		return $PLAll;
+	}
+	
+	function getPLIsParent(){
+		$mPL 	= new \MVC\Mapper\PostLinked();
+		$PLAll 	= $mPL->findByPostLinked(array($this->getId(), 3));
+		return $PLAll;
+	}
+	
+	function getPMAll(){
+		$mPM 	= new \MVC\Mapper\PostMap();	
+		$PMAll 	= $mPM->findByPost(array($this->getId()));
+		return $PMAll;
 	}
 	
 	function toJSON(){
@@ -116,9 +156,11 @@ class Post extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLRead(){		return "/bai-viet/".$this->getKey();}
+	function getURLView(){		return "/bai-viet/".$this->getKey();}
 	
 	function getURLSettingTag(){return "admin/post/".$this->getId()."/tag";}
+	function getURLSettingLinked(){return "admin/post/".$this->getId()."/linked";}
+	function getURLSettingMap(){return "admin/post/".$this->getId()."/map";}
 	
 	function getURLUpdLoad(){	return "admin/post/".$this->getId()."/upd/load";}
 	function getURLUpdExe(){	return "admin/post/".$this->getId()."/upd/exe";}

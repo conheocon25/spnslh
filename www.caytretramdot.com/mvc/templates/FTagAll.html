@@ -9,25 +9,25 @@
 		<div class="container-fluid"  style="margin-top:70px;">
 			<div class="row">
 				<div class="col-md-12">
-					<div class="page-header">
-						<h1><span tal:content="User1/getName"/> <small>Đã đăng</small></h1>
-					</div>
-					<div class="panel panel-default" tal:repeat="Post PostAll">
+					<div class="panel panel-default" tal:repeat="Tag TagAll">
 						<div class="panel-body">
 							<div class="media">
-								<a class="media-left" tal:attributes="href Post/getURLView">
-									<img width="86" tal:attributes="src Post/getImage; alt Post/getTitle;"/>
+								<a class="media-left" tal:attributes="href Tag/getURLView">
+									<!--
+									<img width="86" tal:attributes="src Tag/getPost/getImage"/>
+									!-->
 								</a>
 								<div class="media-body">
-									<a tal:attributes="href Post/getURLView">
-										<h4 tal:content="Post/getTitle" class="media-heading"/>
-									</a>
-									<small><i tal:content="Post/getTimePrint"/></small>
-									<p tal:content="structure Post/getContentReduce"/>
+									<a tal:attributes="href Tag/getURLView">
+										<h4 class="media-heading">
+											<span tal:content="Tag/getName"/> (<span tal:content="Tag/getPTAll/count"/>)
+										</h4>
+									</a>									
 								</div>
 							</div>
 						</div>
 					</div>
+					<!--
 					<nav>
 						<ul class="pagination">
 							<li tal:repeat="P PN/getPages" tal:attributes="class php:Page==P->getId()?'active':'disable'">
@@ -35,6 +35,7 @@
 							</li>
 						</ul>
 					</nav>
+					!-->
 				</div>
 			</div>
 		</div>

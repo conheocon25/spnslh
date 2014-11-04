@@ -16,8 +16,9 @@ AddOutputFilterByType DEFLATE application/x-javascript
 #---------------------------------------------------------------------------------------------------------------------------
 # SYSTEM
 #---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^trang-chu$ 										?cmd=FHome[L]
+RewriteRule ^trang-chu$ 										?cmd=FHome [L]
 
+RewriteRule ^the-bai$ 											?cmd=FTagAll [L]
 RewriteRule ^the-bai/([A-Za-z0-9_-]+)$ 							?cmd=FTag&KTag=$1 [L]
 RewriteRule ^the-bai/([A-Za-z0-9_-]+)/page/([0-9]+)$ 			?cmd=FTag&KTag=$1&Page=$2 [L]
 
@@ -60,11 +61,15 @@ RewriteRule ^admin/province/([0-9]+)/([0-9]+)/karaoke$ 					?cmd=AKaraoke&IdProv
 
 RewriteRule ^admin/post$ 												?cmd=APost [L]
 RewriteRule ^admin/post/([0-9]+)$ 										?cmd=APost&IdTag=$1 [L]
+
 RewriteRule ^admin/post/([0-9]+)/ins/load$ 								?cmd=APostInsLoad&IdTag=$1 			[L]
 RewriteRule ^admin/post/([0-9]+)/ins/exe$ 								?cmd=APostInsExe&IdTag=$1 			[L]
+RewriteRule ^admin/post/([0-9]+)/([0-9]+)$ 								?cmd=APostDetail&IdTag=$1&IdPost=$2 [L]
 RewriteRule ^admin/post/([0-9]+)/([0-9]+)/upd/load$ 					?cmd=APostUpdLoad&IdTag=$1&IdPost=$2 [L]
 RewriteRule ^admin/post/([0-9]+)/([0-9]+)/upd/exe$ 						?cmd=APostUpdExe&IdTag=$1&IdPost=$2	[L]
-RewriteRule ^admin/post/([0-9]+)/tag$ 									?cmd=APostTag&IdPost=$1 			[L]
+RewriteRule ^admin/post/([0-9]+)/([0-9]+)/tag$ 							?cmd=APostTag&IdTag=$1&IdPost=$2 	[L]
+RewriteRule ^admin/post/([0-9]+)/([0-9]+)/linked$ 						?cmd=APostLinked&IdTag=$1&IdPost=$2 [L]
+RewriteRule ^admin/post/([0-9]+)/([0-9]+)/map$ 							?cmd=APostMap&IdTag=$1&IdPost=$2	[L]
 
 RewriteRule ^admin/setting$ 											?cmd=ASetting [L]
 RewriteRule ^admin/setting/tag$ 										?cmd=ASettingTag [L]

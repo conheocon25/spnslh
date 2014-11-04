@@ -31,7 +31,7 @@
 			$Tag 			= $mTag->find($IdTag);
 			$PTAll 			= $mPT->findByUserTag(array($Session->getCurrentIdUser(), $IdTag));
 									
-			$Title 			= "BÀI VIẾT";
+			$Title 			= mb_strtoupper($Tag->getName(), 'UTF8')." / BÀI VIẾT";
 			$Navigation 	= array();
 			$ConfigName		= $mConfig->findByName("NAME");
 									

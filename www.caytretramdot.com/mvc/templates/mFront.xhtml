@@ -5,7 +5,7 @@
 	<!-- ======================================================================== -->
 	<span metal:define-macro="IncludeMETA">
 		<title tal:content="string:Website Cây Tre Trăm Đốt"/>
-		<base href="http://caytretramdot.com"/>
+		<base href="http://w3.caytretramdot.com"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 		<meta http-equiv="Pragma" content="no-cache"/>
@@ -23,7 +23,7 @@
 	<!-- CASCADING STYLE SHEETS INCLUDE											  -->
 	<!-- ======================================================================== -->
 	<span metal:define-macro="IncludeCSS">	
-		<link rel="stylesheet" href="/mvc/templates/theme/bootstrap/css/bootstrap.min.css"/>
+		<link rel="stylesheet" href="/mvc/templates/theme/bootstrap/css/bootstrap.min.css"/>		
 	</span>
 	
 	<!-- ======================================================================== -->
@@ -31,7 +31,7 @@
 	<!-- ======================================================================== -->
 	<span metal:define-macro="IncludeJS">						
 		<script src="/mvc/templates/theme/bootstrap/js/jquery-2.1.1.min.js"></script>
-		<script src="/mvc/templates/theme/bootstrap/js/bootstrap.min.js"></script>
+		<script src="/mvc/templates/theme/bootstrap/js/bootstrap.min.js"></script>		
 	</span>
 		
 	<!-- ======================================================================== -->
@@ -51,7 +51,7 @@
 				</a>
 			</div>
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-				<form action="/bai-viet/tim-kiem" class="navbar-form navbar-left" role="search">
+				<form method="post" action="/bai-viet/tim-kiem" class="navbar-form navbar-left" role="search">
 					<div class="input-group">
 						<input name="SearchContent" type="text" id="SearchContent" class="form-control" placeholder="Bạn cần tìm gì ?"/>
 						<span class="input-group-btn">
@@ -63,12 +63,12 @@
 				</form>
 				<ul class="nav navbar-nav navbar-left">
 					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Tags <span class="caret"></span></a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Thẻ <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
 							<li tal:repeat="Tag TagAll">
 								<a tal:attributes="href Tag/getURLView" class="clearfix">
 									<span  class="pull-left" tal:content="Tag/getName"/>
-									<small class="badge pull-right" tal:content="Tag/getPostAll/count"/>
+									<small class="badge pull-right" tal:content="Tag/getPTAll/count"/>
 								</a>
 							</li>
 						</ul>

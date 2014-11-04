@@ -12,11 +12,11 @@
 					<div class="panel panel-default" tal:repeat="Post PostAll">
 						<div class="panel-body">
 							<div class="media">
-								<a class="media-left" tal:attributes="href Post/getURLRead">
+								<a class="media-left" tal:attributes="href Post/getURLView">
 									<img width="86" tal:attributes="src Post/getImage; alt Post/getTitle;"/>
 								</a>
 								<div class="media-body">
-									<a tal:attributes="href Post/getURLRead">
+									<a tal:attributes="href Post/getURLView">
 										<h4 tal:content="Post/getTitle" class="media-heading"/>
 									</a>
 									<small><i tal:content="Post/getTimePrint"/></small>

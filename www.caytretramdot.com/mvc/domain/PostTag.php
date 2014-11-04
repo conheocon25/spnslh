@@ -63,8 +63,11 @@ class PostTag extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLRead()	{return "/bai-viet/".$this->getTag()->getKey()."/".$this->getPost()->getKey();}
-	function getURLSetting(){return "/admin/setting/PostTag/".$this->getId();}
+	function getURLView()	{return "/bai-viet/".$this->getTag()->getKey()."/".$this->getPost()->getKey();}
+	function getURLSetting(){return "/admin/post/".$this->getIdTag()."/".$this->getIdPost();}
+	function getURLSettingTag(){return "/admin/post/".$this->getIdTag()."/".$this->getIdPost()."/tag";}
+	function getURLSettingLinked(){return "/admin/post/".$this->getIdTag()."/".$this->getIdPost()."/linked";}
+	function getURLSettingMap(){return "/admin/post/".$this->getIdTag()."/".$this->getIdPost()."/map";}
 	
 	//-------------------------------------------------------------------------------
 	static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
