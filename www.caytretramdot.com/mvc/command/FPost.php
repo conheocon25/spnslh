@@ -24,7 +24,8 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------												
-			$Post 		= $mPost->findByKey($KPost);			
+			$Post 		= $mPost->findByKey($KPost);
+			$TagAll 	= $mTag->findAll();			
 						
 			$URLShare = "http://caytretramdot.com/bai-viet/".$KPost;
 			$Post->setViewed($Post->getViewed()+1);
@@ -36,6 +37,7 @@
 			$request->setObject("URLShare", 			$URLShare);
 			
 			$request->setObject("Post", 				$Post);
+			$request->setObject("TagAll", 				$TagAll);
 									
 			return self::statuses('CMD_DEFAULT');
 		}

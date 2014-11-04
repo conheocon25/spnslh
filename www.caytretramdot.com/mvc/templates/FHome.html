@@ -1,21 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
 		<div metal:use-macro="mFront.xhtml/IncludeMETA"/>
 		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>
 	</head>
-	<body>		
-		<div id="wrapper">
-			<div metal:use-macro="mFront.xhtml/SearchBar"/>
-			<span tal:repeat="Tag TagAll">
-				<a tal:attributes="href Tag/getURLView">
-					<B><span tal:content="Tag/getName"/> (<span tal:content="Tag/getPostAll/count"/>)</B>
-				</a>
-			</span>
-		</div>
+	<body>
+		<div metal:use-macro="mFront.xhtml/Header"/>
 		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
-		<script>
-			
-		</script>
 	</body>
 </html>

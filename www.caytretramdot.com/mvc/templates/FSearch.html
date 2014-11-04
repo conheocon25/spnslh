@@ -1,50 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
 		<div metal:use-macro="mFront.xhtml/IncludeMETA"/>
 		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>
-	</head>	
+	</head>
 	<body>
-		<div id="wrapper">										
-			<div metal:use-macro="mFront.xhtml/SearchBar"/>
+		<div metal:use-macro="mFront.xhtml/Header"/>
+		<div class="container-fluid"  style="margin-top:70px;">
 			<div class="row">
-				<p>Tìm với từ khóa: <B tal:content="SearchContent"/></p>
-				<div class="col-md-9 col-sm-8 col-xs-12 main-content">									
-					<div class="category-item-container category-list-container">
-						<div class="item item-list clearfix" tal:repeat="Post PostAll">
-							<div class="item-image-container">
-								<figure>
+				<div class="col-md-12">
+					<div class="panel panel-default" tal:repeat="Post PostAll">
+						<div class="panel-body">
+							<div class="media">
+								<a class="media-left" tal:attributes="href Post/getURLRead">
+									<img width="86" tal:attributes="src Post/getImage; alt Post/getTitle;"/>
+								</a>
+								<div class="media-body">
 									<a tal:attributes="href Post/getURLRead">
-										<img tal:attributes="src Post/getImage" alt="item1" class="item-image"/>
-										<img tal:attributes="src Post/getImage" alt="item1  Hover" class="item-image-hover"/>
+										<h4 tal:content="Post/getTitle" class="media-heading"/>
 									</a>
-								</figure>
-							</div>
-							<div class="item-meta-container">
-								<h3 class="item-name">
-									<a tal:attributes="href Post/getURLRead">
-										<span tal:content="Post/getTitle"/>
-									</a>
-								</h3>
-								<div class="ratings-container">
-									<div class="ratings"><div class="ratings-result" data-result="100"></div></div>
-									<span class="ratings-amount"><span tal:content="Post/getTimePrint"/></span>
+									<small><i tal:content="Post/getTimePrint"/></small>
+									<p tal:content="structure Post/getContentReduce"/>
 								</div>
-								<p tal:content="structure Post/getContentReduce"/>
 							</div>
 						</div>
-					</div>					
-					<div class="category-toolbar clearfix">
-						<div class="toolbox-pagination clearfix">
-							<ul class="pagination">
-								<li tal:repeat="P PN/getPages" tal:attributes="class php:Page==P->getId()?'active':'disable'">
-									<a tal:attributes="href P/getURL" tal:content="P/getName"/>
-								</li>
-							</ul>
-						</div>
-					</div>					
+					</div>
+					<nav>
+						<ul class="pagination">
+							<li tal:repeat="P PN/getPages" tal:attributes="class php:Page==P->getId()?'active':'disable'">
+								<a tal:attributes="href P/getURL" tal:content="P/getName"/>
+							</li>
+						</ul>
+					</nav>
 				</div>
-			</div>	
+			</div>
 		</div>
 		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
 	</body>
