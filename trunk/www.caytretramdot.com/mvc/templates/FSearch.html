@@ -6,9 +6,9 @@
 	</head>
 	<body>
 		<div metal:use-macro="mFront.xhtml/Header"/>
-		<div class="container-fluid"  style="margin-top:70px;">
+		<div class="container-fluid" id="wraper">
 			<div class="row">
-				<div class="col-md-12">
+				<div class="col-md-9">
 					<div class="panel panel-default" tal:repeat="Post PostAll">
 						<div class="panel-body">
 							<div class="media">
@@ -32,6 +32,10 @@
 							</li>
 						</ul>
 					</nav>
+				</div>
+				<div class="col-md-3">
+					<div metal:use-macro="mFront.xhtml/Box1"/>
+					<div metal:use-macro="mFront.xhtml/Box2"/>
 				</div>
 			</div>
 		</div>

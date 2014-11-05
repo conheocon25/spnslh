@@ -6,9 +6,9 @@
 	</head>
 	<body onunload="GUnload()">
 		<div metal:use-macro="mFront.xhtml/Header"/>
-		<div class="container-fluid"  style="margin-top:70px;">
+		<div class="container-fluid" id="wraper">
 			<div class="row">
-				<div class="col-md-12">
+				<div class="col-md-9">
 					<div class="panel panel-default">
 						<div class="panel-heading" tal:content="Post/getTitle"/>
 						<div class="panel-body">
@@ -71,6 +71,10 @@
 							<input id="NameXY" type="hidden" value='1'/>
 						</div>
 					</div>
+				</div>
+				<div class="col-md-3">
+					<div metal:use-macro="mFront.xhtml/Box1"/>
+					<div metal:use-macro="mFront.xhtml/Box2"/>
 				</div>
 			</div>
 		</div>
