@@ -22,59 +22,15 @@
 								</div>
 								<div tal:content="structure Post/getContent" class="article-content-container"/>
 							</div>
-							<div tal:condition="Post/getPLIsParent/count">
-								<B>Bài trước</B>
-								<ul>
-									<li tal:repeat="PT Post/getPLIsParent">
-										<a tal:attributes="href PT/getPost2/getURLView">
-											<span tal:content="PT/getPost2/getTitle" />
-										</a>
-									</li>
-								</ul>
-							</div>
-							<div tal:condition="Post/getPLIsChild/count">
-								<B>Nên xem</B>
-								<ul>
-									<li tal:repeat="PT Post/getPLIsChild">
-										<a tal:attributes="href PT/getPost2/getURLView">
-											<span tal:content="PT/getPost2/getTitle" />
-										</a>
-									</li>
-								</ul>
-							</div>
-							<div tal:condition="Post/getPLIsRelated/count">
-								<B>Liên quan</B>
-								<ul>
-									<li tal:repeat="PT Post/getPLIsRelated">
-										<a tal:attributes="href PT/getPost2/getURLView">
-											<span tal:content="PT/getPost2/getTitle" />
-										</a>
-									</li>
-								</ul>
-							</div>
-							<div tal:condition="Post/getPLIsAlso/count">
-								<B>Xem thêm</B>
-								<ul>
-									<li tal:repeat="PT Post/getPLIsAlso">
-										<a tal:attributes="href PT/getPost2/getURLView">
-											<span tal:content="PT/getPost2/getTitle" />
-										</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-						<div tal:condition="Post/getPMAll/count">
-							Có bản đồ
-							<div id="map"/>
-							<input id="X" type="hidden" value='1'/>
-							<input id="Y" type="hidden" value='1'/>
-							<input id="NameXY" type="hidden" value='1'/>
-						</div>
+						</div>						
 					</div>
 				</div>
 				<div class="col-md-3">
-					<div metal:use-macro="mFront.xhtml/Box1"/>
-					<div metal:use-macro="mFront.xhtml/Box2"/>
+					<div metal:use-macro="mFront.xhtml/BoxPostParents"/>
+					<div metal:use-macro="mFront.xhtml/BoxPostChildren"/>
+					<div metal:use-macro="mFront.xhtml/BoxPostRelated"/>
+					<div metal:use-macro="mFront.xhtml/BoxPostAlso"/>
+					<div metal:use-macro="mFront.xhtml/BoxPostMap"/>
 				</div>
 			</div>
 		</div>
