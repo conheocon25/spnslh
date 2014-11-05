@@ -51,7 +51,7 @@
 		<command name="APost">					<view>APost			</view></command>
 		<command name="APostDetail">			<view>APostDetail	</view></command>
 		<command name="APostInsLoad">			<view>APostInsLoad	</view></command>
-		<command name="APostInsExe">			<view>APostInsExe	</view><status value="CMD_OK"><forward>APostDetail</forward></status></command>
+		<command name="APostInsExe">			<view>APostInsExe	</view><status value="CMD_OK"><forward>APost</forward></status></command>
 		<command name="APostUpdLoad">			<view>APostUpdLoad	</view></command>
 		<command name="APostUpdExe">			<view>APostUpdExe	</view><status value="CMD_OK"><forward>APostDetail</forward></status></command>
 		<command name="APostTag">				<view>APostTag		</view></command>

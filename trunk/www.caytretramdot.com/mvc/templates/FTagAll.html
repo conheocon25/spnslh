@@ -8,34 +8,16 @@
 		<div metal:use-macro="mFront.xhtml/Header"/>
 		<div class="container-fluid"  style="margin-top:70px;">
 			<div class="row">
-				<div class="col-md-12">
-					<div class="panel panel-default" tal:repeat="Tag TagAll">
-						<div class="panel-body">
-							<div class="media">
-								<a class="media-left" tal:attributes="href Tag/getURLView">
-									<!--
-									<img width="86" tal:attributes="src Tag/getPost/getImage"/>
-									!-->
-								</a>
-								<div class="media-body">
-									<a tal:attributes="href Tag/getURLView">
-										<h4 class="media-heading">
-											<span tal:content="Tag/getName"/> (<span tal:content="Tag/getPTAll/count"/>)
-										</h4>
-									</a>									
-								</div>
-							</div>
-						</div>
-					</div>
-					<!--
-					<nav>
-						<ul class="pagination">
-							<li tal:repeat="P PN/getPages" tal:attributes="class php:Page==P->getId()?'active':'disable'">
-								<a tal:attributes="href P/getURL" tal:content="P/getName"/>
-							</li>
-						</ul>
-					</nav>
-					!-->
+				<div class="col-md-9">
+					<span tal:repeat="Tag TagAll">												
+						<a tal:attributes="href Tag/getURLView">
+							<B><span tal:content="Tag/getName"/> (<span tal:content="Tag/getPTAll/count"/>) </B>
+						</a>
+					</span>					
+				</div>
+				<div class="col-md-3">
+					<div metal:use-macro="mFront.xhtml/Box1"/>
+					<div metal:use-macro="mFront.xhtml/Box2"/>
 				</div>
 			</div>
 		</div>
