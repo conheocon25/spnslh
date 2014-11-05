@@ -24,6 +24,7 @@
 	<!-- ======================================================================== -->
 	<span metal:define-macro="IncludeCSS">	
 		<link rel="stylesheet" href="/mvc/templates/theme/bootstrap/css/bootstrap.min.css"/>		
+		<link rel="stylesheet" href="/mvc/templates/theme/bootstrap/css/bootstrap.config.css"/>		
 	</span>
 	
 	<!-- ======================================================================== -->
@@ -50,6 +51,7 @@
 					<img alt="Brand" src="/mvc/templates/theme/img/bamboo.png" height="100%"/>
 				</a>
 			</div>
+			
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<form method="post" action="/bai-viet/tim-kiem" class="navbar-form navbar-left" role="search">
 					<div class="input-group">
@@ -77,75 +79,27 @@
 			</div>
 		</div>
 	</nav>
-		
+	
 	<!-- ======================================================================== -->
-	<!-- LOCATION BAR															  -->
+	<!-- BOXES																	  -->
 	<!-- ======================================================================== -->
-	<div metal:define-macro="LocationBar" id="breadcrumb-container">
-		<div class="container">
-			<ul class="breadcrumb">
-				<li><a href="/">TRANG CHỦ</a></li>
-				<li tal:repeat="Item Navigation"> 
-					<a tal:attributes="href php:Item[1]" tal:content="php:Item[0]" />
-				</li>
-				<li class="active" tal:content="Title"/>
-			</ul>
+	<div metal:define-macro="Box1" class="panel panel-default">
+		<div class="panel-heading">
+			Box 1
+		</div>
+		<div class="panel-body">
+			Config in <font color="red"><i>mFront.xhtml</i></font>
 		</div>
 	</div>
-											
-	<!-- ======================================================================== -->
-	<!-- FOOTER																	  -->
-	<!-- ======================================================================== -->
-	<footer metal:define-macro="Footer" id="footer">
-		<div id="inner-footer">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-4 col-sm-4 col-xs-12 widget">
-						<h3>Ẩm Thực Sinh Thái Hương Sen Hồng</h3>
-						<ul class="contact-list">							
-							<li>Tiếp đón quí khách tất cả các ngày trong tuần</li>
-							<li>Giờ mở cửa: 8.00 Sáng - 22.00 Tối</li>
-						</ul>
-					</div>
-					<div class="col-md-5 col-sm-4 col-xs-12 widget">
-						<h3>Trong cùng hệ thống</h3>
-						<ul class="links">
-							<li tal:repeat="Branch BranchAll">
-								<span tal:content="Branch/getName"/>: <span tal:content="Branch/getAddress"/>
-							</li>
-						</ul>
-						<h3><a href="/lien-ket">Liên kết Website</a></h3>
-						<ul class="links">
-							<li tal:repeat="Linked LinkedAll">								
-								<a tal:attributes="href Linked/getWebsite" target="blank">
-									<span tal:content="Linked/getName"/>
-								</a>
-							</li>
-						</ul>
-					</div>					
-					<div class="col-md-3 col-sm-12 col-xs-12 widget">
-						<h3>FACEBOOK</h3>
-						<div class="facebook-likebox">
-							<iframe src="http://www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Famthuccaytretramdot&amp;width&amp;height=221&amp;colorscheme=dark&amp;show_faces=true&amp;header=false&amp;stream=false&amp;show_border=false" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:220px;" allowTransparency="true"></iframe>
-						</div>
-					</div>
-				</div>
-			</div>
+	
+	<div metal:define-macro="Box2" class="panel panel-default">
+		<div class="panel-heading">
+			Box 2
 		</div>
-		<div id="footer-bottom">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-7 col-sm-7 col-xs-12 footer-social-links-container">						
-						<p><i>SPN Group - Website duyệt tốt trên <B>Tablet</B>, <B>SmartPhone</B> dùng trình duyệt <B>Google Chrome</B></i></p>
-					</div>
-					<div class="col-md-5 col-sm-5 col-xs-12 footer-text-container">
-						<p>&copy; 2014 Cây Tre Trăm Đốt</p>
-					</div>
-				</div>				
-			</div>
+		<div class="panel-body">
+			Config in <font color="red"><i>mFront.xhtml</i></font>
 		</div>
-		<a href="#" id="scroll-top" title="Scroll to Top"><i class="fa fa-angle-up"></i></a>
-	</footer>
-			
+	</div>
+	
 </body>
 </html>

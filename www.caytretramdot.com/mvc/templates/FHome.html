@@ -6,6 +6,18 @@
 	</head>
 	<body>
 		<div metal:use-macro="mFront.xhtml/Header"/>
+		<div class="container-fluid" id="wraper">
+			<div class="row">
+				<div class="col-md-9">
+					
+				</div>
+				<div class="col-md-3">
+					<div metal:use-macro="mFront.xhtml/Box1"/>
+					<div metal:use-macro="mFront.xhtml/Box2"/>
+				</div>
+			</div>
+		</div>
+				
 		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
 	</body>
 </html>
