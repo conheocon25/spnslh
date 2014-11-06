@@ -16,6 +16,7 @@
 		<command name="FToolTyping" 			type="public"><view>FToolTyping</view></command>		
 		
 		<command name="FContact" 		type="public"><view>FContact</view></command>
+		<command name="FContact1" 		type="public"><view>FContact1</view></command>
 		<command name="FContactSend" 	type="public"><view>FContactSend</view></command>
 		<command name="FContactSendGmail" 	type="public"><view>FContactSendGmail</view></command>
 		<command name="RefreshCaptcha" 	type="public"><view>RefreshCaptcha</view></command>				
