@@ -62,8 +62,9 @@
 		<command name="APostTag">				<view>APostTag		</view></command>
 		<command name="APostLinked">			<view>APostLinked	</view></command>
 		<command name="APostMap">				<view>APostMap		</view></command>
-		
+				
 		<command name="ASettingUser">			<view>ASettingUser			</view></command>
+		<command name="ASettingUserTag">		<view>ASettingUserTag		</view></command>
 		<command name="ASettingConfig">			<view>ASettingConfig		</view></command>
 	</control>
 </options>

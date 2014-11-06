@@ -9,9 +9,9 @@
 		<div metal:use-macro="mAdmin.xhtml/Header"/>						
 		<div id="sidebar">
 			<ul style="display: block;">				
-				<li tal:repeat="Tag1 TagAll" tal:attributes="class php: Tag1->getId()==Tag->getId()?'active':''">
-					<a tal:attributes="href Tag1/getURLSettingPost">
-						<i class="glyphicons-tag"/><span tal:content="Tag1/getName"/>
+				<li tal:repeat="UT User/getUTAll" tal:attributes="class php: UT->getIdTag()==Tag->getId()?'active':''">
+					<a tal:attributes="href UT/getTag/getURLSettingPost">
+						<i class="glyphicons-tag"/><span tal:content="UT/getTag/getName"/>
 					</a>
 				</li>
 			</ul>

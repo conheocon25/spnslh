@@ -50,11 +50,12 @@
 									</thead>
 									<tbody>
 										<tr>
-											<td align="center"><a href="/admin/setting/user"><i class="glyphicons-cogwheel"/></a></td>
-											<td>
-												<a class="update-item" href="#DialogEditUser" data-toggle="modal" tal:attributes="data-id php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->getId()" tal:content="string:ĐỔI MẬT KHẨU"/>
-											</td>
-											
+											<td align="center"><a href="/admin/setting/user"><i class="glyphicons-lock"/></a></td>
+											<td><a class="update-item" href="#DialogEditUser" data-toggle="modal" tal:attributes="data-id php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->getId()" tal:content="string:ĐỔI MẬT KHẨU"/></td>
+										</tr>
+										<tr>
+											<td align="center"><a href="/admin/setting/usertag"><i class="glyphicons-tags"/></a></td>
+											<td><a href="/admin/setting/usertag" tal:content="string:THẺ BÀI"/></td>
 										</tr>
 									</tbody>
 								</table>

@@ -94,3 +94,4 @@ RewriteRule ^admin/setting/config/page/([0-9]+)$ 						?cmd=ASettingConfig&Page=
 RewriteRule ^admin/setting/user$ 										?cmd=ASettingUser [L]
 RewriteRule ^admin/setting/user/page/([0-9]+)$ 							?cmd=ASettingUser&Page=$1 [L]
 
+RewriteRule ^admin/setting/usertag$ 									?cmd=ASettingUserTag [L]

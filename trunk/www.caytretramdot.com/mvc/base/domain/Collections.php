@@ -2,6 +2,7 @@
 namespace MVC\Domain;
 
 interface UserCollection 				extends \Iterator {function add( Object $User );		}
+interface UserTagCollection 			extends \Iterator {function add( Object $UserTag );		}
 interface TagCollection 				extends \Iterator {function add( Object $Tag );			}
 interface PostCollection 				extends \Iterator {function add( Object $Post);			}
 interface LinkedCollection 				extends \Iterator {function add( Object $Linked );		}
