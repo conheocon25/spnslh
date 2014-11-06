@@ -11,6 +11,7 @@ interface Finder {
 }
 
 interface UserFinder  			extends Finder {}
+interface UserTagFinder  		extends Finder {}
 interface TagFinder 			extends Finder {}
 interface LinkedFinder  		extends Finder {}
 interface PostFinder 			extends Finder {}

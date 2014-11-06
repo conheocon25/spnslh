@@ -65,7 +65,7 @@ class User extends Object{
     function setGender( $Gender ) {$this->Gender = $Gender;$this->markDirty();}	
     function getGender( ) {return $this->Gender;}
 	function getGenderPrint( ){
-        if($this->Gender == 0) {
+        if($this->Gender == 0){
 			return "Nữ";
 		} else {
 		return "Nam";
@@ -95,6 +95,12 @@ class User extends Object{
 	
 	function setCode( $Code){	$this->Code= $Code;$this->markDirty();}
 	function getCode(){	return $this->Code;}
+	
+	function getUTAll(){
+		$mUT = new \MVC\Mapper\UserTag();
+		$UTAll = $mUT->findByUser(array($this->getId()));
+		return $UTAll;
+	}
 	
 	function toJSON(){
 		$json = array(
