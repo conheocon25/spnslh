@@ -184,22 +184,7 @@
 			</li>
 		</ul>
 	</div>
-	
-	<div metal:define-macro="MenuSettingPost" id="sidebar">				
-		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">
-			<li tal:attributes="class php:ActiveAdmin=='Tag'?'active':'disable'">
-				<a tal:attributes="href '/admin/setting/tag'">
-					<i class="glyphicons-book" />THẺ BÀI
-				</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='Post'?'active':'disable'">
-				<a tal:attributes="href '/admin/setting/post'" >
-					<i class="glyphicons-book" />BÀI VIẾT
-				</a>
-			</li>			
-		</ul>
-	</div>
-			
+					
 	<!-- ======================================================================== -->
 	<!-- FOOTER																	  -->
 	<!-- ======================================================================== -->
