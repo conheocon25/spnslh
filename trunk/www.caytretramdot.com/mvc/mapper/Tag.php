@@ -8,14 +8,14 @@ class Tag extends Mapper implements \MVC\Domain\TagFinder {
 		
 		$tblTag = "bamboo100_tag";
 						
-		$selectAllStmt 	= sprintf("select * from %s order by `order`, name", $tblTag);
+		$selectAllStmt 	= sprintf("select * from %s order by `post_count` DESC, name", $tblTag);
 		$selectStmt 	= sprintf("select * from %s where id=?", $tblTag);
-		$updateStmt 	= sprintf("update %s set name=?, `order`=?, position=?, `key`=? where id=?", $tblTag);
-		$insertStmt 	= sprintf("insert into %s ( name, `order`, position, `key`) values(?, ?, ?, ?)", $tblTag);
+		$updateStmt 	= sprintf("update %s set name=?, `order`=?, post_count=?, `key`=? where id=?", $tblTag);
+		$insertStmt 	= sprintf("insert into %s ( name, `order`, post_count, `key`) values(?, ?, ?, ?)", $tblTag);
 		$deleteStmt 	= sprintf("delete from %s where id=?", $tblTag);
 		$findByPageStmt = sprintf("SELECT * FROM  %s ORDER BY `order`, name	LIMIT :start,:max", $tblTag);
 		$findByKeyStmt 	= sprintf("select *  from %s where `key`=?", $tblTag);		
-		$findByPositionStmt 		= sprintf("SELECT * FROM  %s WHERE position=? order by `order`, name", $tblTag);
+		$findBypost_countStmt 		= sprintf("SELECT * FROM  %s WHERE post_count=? order by `order`, name", $tblTag);
 		
         $this->selectAllStmt 		= self::$PDO->prepare($selectAllStmt);
         $this->selectStmt 			= self::$PDO->prepare($selectStmt);
@@ -24,7 +24,7 @@ class Tag extends Mapper implements \MVC\Domain\TagFinder {
 		$this->deleteStmt 			= self::$PDO->prepare($deleteStmt);
 		$this->findByPageStmt 		= self::$PDO->prepare($findByPageStmt);
 		$this->findByKeyStmt 		= self::$PDO->prepare($findByKeyStmt);							
-		$this->findByPositionStmt 	= self::$PDO->prepare($findByPositionStmt);
+		$this->findBypost_countStmt 	= self::$PDO->prepare($findBypost_countStmt);
 		
     } 
     function getCollection( array $raw ) {return new TagCollection( $raw, $this );}
@@ -33,7 +33,7 @@ class Tag extends Mapper implements \MVC\Domain\TagFinder {
 			$array['id'],
 			$array['name'],
 			$array['order'],
-			$array['position'],
+			$array['post_count'],
 			$array['key']
 		);
         return $obj;
@@ -44,7 +44,7 @@ class Tag extends Mapper implements \MVC\Domain\TagFinder {
         $values = array( 
 			$object->getName(),
 			$object->getOrder(),
-			$object->getPosition(),
+			$object->getPostCount(),
 			$object->getKey()
 		); 
         $this->insertStmt->execute( $values );
@@ -56,7 +56,7 @@ class Tag extends Mapper implements \MVC\Domain\TagFinder {
         $values = array( 
 			$object->getName(),
 			$object->getOrder(),
-			$object->getPosition(),
+			$object->getPostCount(),
 			$object->getKey(),
 			$object->getId()
 		);				
@@ -83,9 +83,9 @@ class Tag extends Mapper implements \MVC\Domain\TagFinder {
         return $object;		
     }
 	
-	function findByPosition(array $values) {
-        $this->findByPositionStmt->execute( $values );
-        return new TagCollection( $this->findByPositionStmt->fetchAll(), $this );
+	function findByPostCount(array $values) {
+        $this->findByPostCountStmt->execute( $values );
+        return new TagCollection( $this->findByPostCountStmt->fetchAll(), $this );
     }
 	
 }

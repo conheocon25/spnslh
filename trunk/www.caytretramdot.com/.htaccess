@@ -31,7 +31,20 @@ RewriteRule ^nguoi-dung/([0-9]+)/page/([0-9]+)$ 				?cmd=FUser&IdUser=$1&Page=$2
 RewriteRule ^lien-he$ 											?cmd=FContact 		[L]
 RewriteRule ^lien-he/email$ 									?cmd=FContactSend	[L]
 RewriteRule ^lien-he/gmail$ 									?cmd=FContactSendGmail	[L]
-RewriteRule ^lien-he/RefreshCaptcha      						?cmd=RefreshCaptcha	[L]
+RewriteRule ^lien-he/RefreshCaptcha$     						?cmd=RefreshCaptcha	[L]
+
+RewriteRule ^tien-ich/tinh-lai-gop-von$							?cmd=FTool001 		[L]
+RewriteRule ^tien-ich/tinh-lai-tra-gop$							?cmd=FTool001 		[L]
+RewriteRule ^tien-ich/khau-hao-tai-san$							?cmd=FTool001 		[L]
+RewriteRule ^tien-ich/tu-van-goi-cuoc-di-dong$					?cmd=FTool001 		[L]
+RewriteRule ^tien-ich/tu-van-ngon-ngu-lap-trinh$				?cmd=FTool001 		[L]	
+RewriteRule ^tien-ich/kiem-tra-ten-mien$						?cmd=FTool001 		[L]
+RewriteRule ^tien-ich/dich-thuat$								?cmd=FToolGoogleTranslate [L]
+RewriteRule ^tien-ich/may-tinh-con$								?cmd=FTool001 		 [L]	
+RewriteRule ^tien-ich/doi-don-vi$								?cmd=FToolUnitChange [L]
+RewriteRule ^tien-ich/giai-phuong-trinh-bac2$					?cmd=FTool001 		 [L]
+RewriteRule ^tien-ich/tinh-tam-suat$							?cmd=FTool001 		 [L]	
+RewriteRule ^tien-ich/luyen-go-phim$							?cmd=FToolTyping	 [L]
 
 RewriteRule ^dang-nhap$ 										?cmd=SigninLoad [L]
 RewriteRule ^dang-nhap/exe$ 									?cmd=SigninExe [L]
@@ -42,7 +55,6 @@ RewriteRule ^object/load/([A-Za-z0-9]+)/([0-9]+)$ 				?cmd=ObjectLoad&ObjectName
 RewriteRule ^object/del/([A-Za-z0-9]+)/([0-9]+)$ 				?cmd=ObjectDel&ObjectName=$1&Id=$2 [L]
 RewriteRule ^object/ins/([A-Za-z0-9]+)$ 						?cmd=ObjectIns&ObjectName=$1 [L]
 RewriteRule ^object/upd/([A-Za-z0-9]+)$ 						?cmd=ObjectUpd&ObjectName=$1 [L]
-
 RewriteRule ^object/liked/([A-Za-z0-9]+)/([0-9]+)$ 				?cmd=ObjectLiked&ObjectName=$1&Id=$2 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
