@@ -155,7 +155,14 @@
 					<i class="glyphicons-cogwheel" />CẤU HÌNH
 				</a>
 			</li>
-		</ul>	
+		</ul>
+		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isSeller()">						
+			<li tal:attributes="class php:ActiveAdmin=='User'?'active':'disable'">
+				<a tal:attributes="href '/admin/setting/user'">
+					<i class="glyphicons-group" />NGƯỜI DÙNG 
+				</a>
+			</li>			
+		</ul>
 	</div>
 	
 	<div metal:define-macro="MenuSettingGeneral" id="sidebar">				

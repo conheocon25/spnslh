@@ -9,18 +9,18 @@ class Tag extends Object{
 	private $Id;
 	private $Name;	
 	private $Order;
-	private $Position;
+	private $PostCount;
 	private $Key;
 	
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-	function __construct($Id=null, $Name=null, $Order=null, $Position=null, $Key=null) {
-		$this->Id 		= $Id;
-		$this->Name 	= $Name;
-		$this->Order 	= $Order;
-		$this->Position = $Position;
-		$this->Key 		= $Key;
+	function __construct($Id=null, $Name=null, $Order=null, $PostCount=null, $Key=null) {
+		$this->Id 			= $Id;
+		$this->Name 		= $Name;
+		$this->Order 		= $Order;
+		$this->PostCount 	= $PostCount;
+		$this->Key 			= $Key;
 		parent::__construct( $Id );
 	}
 		
@@ -32,9 +32,14 @@ class Tag extends Object{
 	function setOrder($Order){$this->Order = $Order;$this->markDirty();}
 	function getOrder() 	{return $this->Order;}
 	
-	function setPosition($Position){$this->Position = $Position; $this->markDirty();}
-	function getPosition() 	{return $this->Position;}
-		
+	function setPostCount($PostCount){$this->PostCount = $PostCount; $this->markDirty();}
+	function getPostCount() 	{return $this->PostCount;}
+	
+	function rePostCount(){
+		$PTAll = $this->getPTAll();
+		$this->PostCount = $PTAll->count();
+	}
+			
 	function setKey($Key)	{$this->Key = $Key;$this->markDirty();}
 	function getKey() 		{return $this->Key;}
 	function reKey( ) {
@@ -47,7 +52,7 @@ class Tag extends Object{
 			'Id' 			=> $this->getId(),
 			'Name'			=> $this->getName(),			
 			'Order'			=> $this->getOrder(),
-			'Position'		=> $this->getPosition(),
+			'PostCount'		=> $this->getPostCount(),
 			'Key'			=> $this->getKey()
 		);
 		return json_encode($json);
@@ -57,7 +62,8 @@ class Tag extends Object{
         $this->Id 		= $Data[0];
 		$this->Name 	= $Data[1];
 		$this->Order	= $Data[2];
-		$this->Position	= $Data[3];
+		
+		$this->rePostCount();		
 		$this->reKey();
     }
 	
