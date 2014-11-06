@@ -29,6 +29,7 @@ RewriteRule ^nguoi-dung/([0-9]+)$ 								?cmd=FUser&IdUser=$1 [L]
 RewriteRule ^nguoi-dung/([0-9]+)/page/([0-9]+)$ 				?cmd=FUser&IdUser=$1&Page=$2 [L]
 
 RewriteRule ^lien-he$ 											?cmd=FContact 		[L]
+RewriteRule ^lien-he1$ 											?cmd=FContact1 		[L]
 RewriteRule ^lien-he/email$ 									?cmd=FContactSend	[L]
 RewriteRule ^lien-he/gmail$ 									?cmd=FContactSendGmail	[L]
 RewriteRule ^lien-he/RefreshCaptcha$     						?cmd=RefreshCaptcha	[L]
