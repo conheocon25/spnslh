@@ -47,6 +47,8 @@ RewriteRule ^tien-ich/giai-phuong-trinh-bac2$					?cmd=FTool001 		 [L]
 RewriteRule ^tien-ich/tinh-tam-suat$							?cmd=FTool001 		 [L]	
 RewriteRule ^tien-ich/luyen-go-phim$							?cmd=FToolTyping	 [L]
 
+RewriteRule ^giai-tri/nhac-khong-loi$							?cmd=FMusicType001	 [L]
+
 RewriteRule ^dang-nhap$ 										?cmd=SigninLoad [L]
 RewriteRule ^dang-nhap/exe$ 									?cmd=SigninExe [L]
 RewriteRule ^signout/load$ 										?cmd=SignoutLoad [L]
