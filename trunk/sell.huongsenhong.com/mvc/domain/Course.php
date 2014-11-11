@@ -128,6 +128,19 @@ class Course extends Object{
 		$this->Enable 		= $Data[12];
     }
 	
+	function toXML(){
+		$S = "
+		<object>
+			<id>".$this->getId()."</id>
+			<idcategory>".$this->getIdCategory()."</idcategory>
+			<name>".$this->getName()."</name>
+			<shortname>".$this->getShortName()."</shortname>
+			<unit>".$this->getUnit()."</unit>
+		</object>
+		";
+		return $S;
+	}
+	
 	function getURLRecipe(){return "/setting/category/".$this->getIdCategory()."/".$this->getId()."/recipe";}	
 	function getRecipeAll(){
 		$mR2C = new \MVC\Mapper\R2C();

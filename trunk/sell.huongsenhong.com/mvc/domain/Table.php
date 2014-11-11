@@ -164,7 +164,18 @@ class Table extends Object{
 		$this->IdUser 		= $Data[3];
 		$this->Type 		= $Data[4];
     }
-			
+	
+	function toXML(){
+		$S = "
+		<object>
+			<id>".$this->getId()."</id>
+			<iddomain>".$this->getIdDomain()."</iddomain>
+			<name>".$this->getName()."</name>
+		</object>
+		";
+		return $S;
+	}
+	
 	//-------------------------------------------------------------------------------
 	//DEFINE SELLING URL
 	//-------------------------------------------------------------------------------	

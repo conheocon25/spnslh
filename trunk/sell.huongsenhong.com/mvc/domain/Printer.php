@@ -2,44 +2,34 @@
 Namespace MVC\Domain;
 require_once( "mvc/base/domain/DomainObject.php" );
 
-class Category extends Object{
+class Printer extends Object{
     private $Id;
 	private $Name;
-	private $Picture;
-	private $Enable;
-	
+	private $URL;
+		
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-    function __construct( $Id=null, $Name=null , $Picture=Null, $Enable=Null) {
+    function __construct( $Id=null, $Name=null , $URL=Null) {
         $this->Id 			= $Id;
 		$this->Name 		= $Name;
-		$this->Picture 		= $Picture;
-		$this->Enable 		= $Enable;
+		$this->URL 			= $URL;
+		
         parent::__construct( $Id );
     }
     function getId() {return $this->Id;}	
-    function getIdString() {return 'Category'.$this->Id;}	
 			
     function setName( $Name ) {$this->Name = $Name;$this->markDirty();}   
 	function getName( ) {return $this->Name;}
-	function getNameReduce(){
-		$S = new \MVC\Library\String($this->Name);
-		return $S->reduce(28);
-	}
-	
-	function setPicture( $Picture ) {$this->Picture = $Picture;$this->markDirty();}   
-	function getPicture( ) {return $this->Picture;}
-	
-	function setEnable( $Enable ) {$this->Enable = $Enable; $this->markDirty();}
-	function getEnable( ) {return $this->Enable;}
-	
+		
+	function setURL( $URL ) {$this->URL = $URL;$this->markDirty();}   
+	function getURL( ) {return $this->URL;}
+			
 	public function toJSON(){
 		$json = array(
 			'Id' 		=> $this->getId(),
 			'Name' 		=> $this->getName(),			
-			'Picture' 	=> $this->getPicture(),
-			'Enable' 	=> $this->getEnable()
+			'URL' 		=> $this->getURL(),	
 		);
 		return json_encode($json);
 	}
@@ -47,8 +37,7 @@ class Category extends Object{
 	function setArray( $Data ){
         $this->Id 		= $Data[0];	
 		$this->Name 	= $Data[1];
-		$this->Picture 	= $Data[2];
-		$this->Enable 	= $Data[3];
+		$this->URL 		= $Data[2];		
     }
 	
 	function toXML(){
@@ -56,6 +45,7 @@ class Category extends Object{
 		<object>
 			<id>".$this->getId()."</id>
 			<name>".$this->getName()."</name>
+			<url>".$this->getURL()."</url>
 		</object>
 		";
 		return $S;
@@ -64,23 +54,11 @@ class Category extends Object{
 	//-------------------------------------------------------------------------------
 	//GET LISTs
 	//-------------------------------------------------------------------------------
-	function getCourseSelling(){
-		$mCourse = new \MVC\Mapper\Course();
-		$CourseAll = $mCourse->findSelling(array($this->getId()));
-		return $CourseAll;
-	}
-	
-	function getCourseAll(){
-		$mCourse = new \MVC\Mapper\Course();
-		$CourseAll = $mCourse->findByCategory(array($this->getId()));
-		return $CourseAll;
-	}
-	
+		
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------						
-	function getURLCourse(){return "/setting/category/".$this->getId();}
-	
+		
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}

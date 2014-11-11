@@ -36,6 +36,16 @@ class Domain extends Object{
 		$this->Name = $Data[1];
     }
 	
+	function toXML(){
+		$S = "
+		<object>
+			<id>".$this->getId()."</id>
+			<name>".$this->getName()."</name>
+		</object>
+		";
+		return $S;
+	}
+	
 	//-------------------------------------------------------------------------------
 	//GET LIST
 	//-------------------------------------------------------------------------------		

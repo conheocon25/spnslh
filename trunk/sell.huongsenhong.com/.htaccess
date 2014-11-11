@@ -27,6 +27,11 @@ RewriteRule ^object/del/([A-Za-z0-9]+)/([0-9]+)$ 					?cmd=ObjectDel&ObjectName=
 RewriteRule ^object/ins/([A-Za-z0-9]+)$ 							?cmd=ObjectIns&ObjectName=$1 [L]
 RewriteRule ^object/upd/([A-Za-z0-9]+)$ 							?cmd=ObjectUpd&ObjectName=$1 [L]
 
+RewriteRule ^model/select/all/([A-Za-z0-9]+)$ 						?cmd=ModelLoadAll&ObjectName=$1 [L]
+RewriteRule ^model/select/one/([A-Za-z0-9]+)/([0-9]+)$ 				?cmd=ModelLoadOne&ObjectName=$1&Id=$2 [L]
+RewriteRule ^model/select/byid/([A-Za-z0-9]+)/([0-9]+)$ 			?cmd=ModelFindBy&ObjectName=$1&IdObject=$2 [L]
+RewriteRule ^model/select/byid/([A-Za-z0-9]+)/([0-9]+)/([0-9]+)$ 	?cmd=ModelFindBy&ObjectName=$1&IdObject=$2&Page=$3 [L]
+
 RewriteRule ^search/customer/([A-Za-z0-9]+)$ 						?cmd=SearchCustomer&IdCard=$1 [L]
 RewriteRule ^notify/course$ 										?cmd=NotifyCourse [L]
 

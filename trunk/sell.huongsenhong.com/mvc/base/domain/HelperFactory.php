@@ -42,6 +42,7 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	
 	require_once( "mvc/mapper/R2C.php");
 	require_once( "mvc/mapper/Guest.php");	
+	require_once( "mvc/mapper/Printer.php");	
 }
 
 class HelperFactory {

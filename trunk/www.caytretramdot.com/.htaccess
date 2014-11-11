@@ -27,6 +27,8 @@ RewriteRule ^bai-viet/([A-Za-z0-9_-]+)$ 						?cmd=FPost&KPost=$1 [L]
 
 RewriteRule ^nguoi-dung/([0-9]+)$ 								?cmd=FUser&IdUser=$1 [L]
 RewriteRule ^nguoi-dung/([0-9]+)/page/([0-9]+)$ 				?cmd=FUser&IdUser=$1&Page=$2 [L]
+RewriteRule ^nguoi-dung/([0-9]+)/([0-9]+)$ 						?cmd=FUserTag&IdUser=$1&IdTag=$2 [L]
+RewriteRule ^nguoi-dung/([0-9]+)/([0-9]+)page/([0-9]+)$ 		?cmd=FUserTag&IdUser=$1&IdTag=$2&Page=$3 [L]
 
 RewriteRule ^lien-he$ 											?cmd=FContact 		[L]
 RewriteRule ^lien-he1$ 											?cmd=FContact1 		[L]
