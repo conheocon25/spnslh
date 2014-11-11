@@ -51,4 +51,5 @@ interface TrackingDailyFinder 	extends Finder {}
 
 interface R2CFinder 			extends Finder {}
 interface GuestFinder 			extends Finder {}
+interface PrinterFinder 		extends Finder {}
 ?>

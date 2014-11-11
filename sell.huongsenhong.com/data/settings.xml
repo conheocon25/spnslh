@@ -25,6 +25,10 @@
 		<command name="ObjectIns"><view>ObjectIns</view></command>
 		<command name="ObjectUpd"><view>ObjectUpd</view></command>
 		
+		<command name="ModelLoadAll" type="public"><view>ModelLoadAll</view></command>
+		<command name="ModelLoadOne" type="public"><view>ModelLoadOne</view></command>
+		<command name="ModelFindBy" type="public"><view>ModelFindBy</view></command>
+		
 		<command name="SearchCustomer"><view>SearchCustomer</view></command>
 		<command name="NotifyCourse"><view>NotifyCourse</view></command>
 		

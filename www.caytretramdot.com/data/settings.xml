@@ -10,6 +10,8 @@
 		<command name="FPost" 			type="public"><view>FPost</view></command>		
 		<command name="FSearch" 		type="public"><view>FSearch</view></command>		
 		<command name="FUser" 			type="public"><view>FUser</view></command>
+		<command name="FUserTag" 		type="public"><view>FUserTag</view></command>
+		
 		<command name="FTool001" 				type="public"><view>FTool001</view></command>
 		<command name="FToolGoogleTranslate" 	type="public"><view>FToolGoogleTranslate</view></command>
 		<command name="FToolUnitChange" 		type="public"><view>FToolUnitChange</view></command>
