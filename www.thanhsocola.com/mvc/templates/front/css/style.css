@@ -259,7 +259,7 @@ blockquote:before{
 
 #header-top {
 	background: transparent;
-	border-top:5px solid #25985D;
+	border-top:5px solid #24160D;
 	height:40px;
 	font-size:14px;
 }
@@ -458,16 +458,14 @@ blockquote:before{
 }
 
 .header-box {
-	background: rgba(255, 255, 255, .3);
 	padding:5px 15px;
-	border:1px solid rgba(255, 255, 255, .2);
 	font-size:13px;
 	line-height:18px;
 	margin-left:8px;
 }
 .header-box h4 {
-	color:#3A6724;
-	text-shadow: 1px 1px rgba(255, 255, 255, .3), -1px -1px rgba(255, 255, 255, .4);
+	color:#fff;
+	*text-shadow: 1px 1px rgba(255, 255, 255, .3), -1px -1px rgba(255, 255, 255, .4);
 }
 
 .contact-phones {
@@ -515,15 +513,15 @@ blockquote:before{
 }
 
 .header-box-icon-skype {
-	background-position: -92px -72px;
+	background-position: -292px -10px;
 }
 
 .header-box-icon-email {
-	background-position: -92px -90px;
+	background-position: -260px -8px;
 }
 
 .header-box-icon-earphones {
-	background-position: -56px -72px;
+	background-position: -360px -7px;
 }
 
 #main-nav-container {
@@ -539,7 +537,7 @@ blockquote:before{
 	-webkit-box-shadow: 0 5px 4px rgba(0,0,0, 0.10);
 	box-shadow: 0 5px 4px rgba(0,0,0, 0.10);
 	z-index:999;
-	border-bottom: 2px solid #25985D;
+	border-bottom: 2px solid #24160D;
 }
 
 #main-nav-container.fixed {
@@ -587,7 +585,7 @@ blockquote:before{
 }
 
 #main-nav-container #main-nav .menu li a.active {
-	color: #EAF604;
+	color: #FFFFE0;
 }
 
 #main-nav-container #main-nav .menu li:first-child  a{
@@ -600,7 +598,7 @@ blockquote:before{
 	position:absolute;
 	min-width:210px;
 	z-index:999;
-	border-top:3px solid #25985D;
+	border-top:3px solid #24160D;
 	background: #4BB030;
 	box-shadow:0 1px 4px rgba(0,0,0, 0.25);
 }
@@ -655,7 +653,7 @@ blockquote:before{
 	left:0;
 	z-index:999;
 	width:940px;
-	border-top:3px solid #25985D;
+	border-top:3px solid #24160D;
 	background:#4BB030;
 	box-shadow:0 1px 4px rgba(0,0,0, 0.25);
 	padding:25px 30px;
@@ -4780,8 +4778,8 @@ noUi-target,
 
 #footer {
 	background: url('/mvc/templates/front/images/fbg.jpg') left bottom no-repeat #022602;
-	-webkit-box-shadow:inset 0 2px 1px #25985D;
-	box-shadow:inset 0 2px 1px #25985D;
+	-webkit-box-shadow:inset 0 2px 1px #24160D;
+	box-shadow:inset 0 2px 1px #24160D;
 	font:15px/2em 'Gudea', Arial, sans-serif !important;
 	color:#ccc;
 }
