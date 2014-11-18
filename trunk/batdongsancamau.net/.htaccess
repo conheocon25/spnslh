@@ -16,7 +16,6 @@ AddOutputFilterByType DEFLATE application/x-javascript
 #---------------------------------------------------------------------------------------------------------------------------
 # SYSTEM
 #---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^cong-chao$ 						?cmd=FGate 			[L]
 RewriteRule ^trang-chu$ 						?cmd=FHome 			[L]
 RewriteRule ^gioi-thieu$ 						?cmd=FIntroduction 	[L]
 RewriteRule ^chinh-sach$ 						?cmd=FPolicy 		[L]

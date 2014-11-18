@@ -7,14 +7,14 @@ class StoryLine extends Mapper implements \MVC\Domain\StoryLineFinder {
     function __construct() {
         parent::__construct();
         $this->selectAllStmt = self::$PDO->prepare( 
-                            "select * from res_storyline");
-        $this->selectStmt = self::$PDO->prepare("select * from res_storyline where id=?");
-        $this->updateStmt = self::$PDO->prepare("update res_storyline set `date`=?, name=?, image=?, title=?, note=? where id=?");
-        $this->insertStmt = self::$PDO->prepare("insert into res_storyline (`date`, name, image, title, note) 
+                            "select * from tbl_storyline");
+        $this->selectStmt = self::$PDO->prepare("select * from tbl_storyline where id=?");
+        $this->updateStmt = self::$PDO->prepare("update tbl_storyline set `date`=?, name=?, image=?, title=?, note=? where id=?");
+        $this->insertStmt = self::$PDO->prepare("insert into tbl_storyline (`date`, name, image, title, note) 
 							values( ?, ?, ?, ?, ?)");
-		$this->deleteStmt = self::$PDO->prepare("delete from res_storyline where id=?");		
+		$this->deleteStmt = self::$PDO->prepare("delete from tbl_storyline where id=?");		
 						
-		$tblStoryLine = "res_storyline";
+		$tblStoryLine = "tbl_storyline";
 		$findByPageStmt = sprintf("SELECT * FROM %s ORDER BY name LIMIT :start,:max", $tblStoryLine);
 		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);
 		 

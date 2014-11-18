@@ -3,11 +3,9 @@
 	<head>
 		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
 		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
-	</head>
-	
+	</head>	
 	<body>
-		<div metal:use-macro="mAdmin.xhtml/Header"/>		
-		<div metal:use-macro="mAdmin.xhtml/MenuSettingProduct"/>
+		<div metal:use-macro="mAdmin.xhtml/Header"/>
 		<div id="content">
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
 			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
@@ -28,7 +26,7 @@
 										<th class="left">TÊN</th>
 										<th width="120" class="left">ĐIỆN THOẠI</th>
 										<th class="left">ĐỊA CHỈ</th>
-										<th class="right" width="100">MÓN</th>
+										<th class="right" width="100">TIN</th>
 										<th width="40"><i class="glyphicons-edit"/></th>
 										<th width="40"><i class="glyphicons-bin"/></th>
 									</tr>
@@ -39,7 +37,7 @@
 										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Supplier/getId" tal:content="Supplier/getName"/></td>
 										<td><span tal:content="Supplier/getPhone"/></td>
 										<td><span tal:content="Supplier/getAddress"/></td>
-										<td class="right"><a tal:attributes="href Supplier/getURLProduct"> <span tal:content="Supplier/getProductAll/count" /> món</a></td>
+										<td class="right"><a tal:attributes="href Supplier/getURLProduct"> <span tal:content="Supplier/getProductAll/count" /> tin</a></td>
 										<td class="center">
 											<a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Supplier/getId">
 												<i class="glyphicon glyphicon-pencil"/>
@@ -88,9 +86,9 @@
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="control-label">Nợ đầu kì</label>
+											<label class="control-label">Hình ảnh</label>
 											<div class="controls">
-												<input id="Debt1" name="Debt1" type="text" class="form-control input-small"/>
+												<input id="Picture1" name="Picture1" type="text" class="form-control input-small"/>
 											</div>
 										</div>
 									</div>
@@ -135,9 +133,9 @@
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="control-label">Nợ đầu kì</label>
+										<label class="control-label">Hình ảnh</label>
 										<div class="controls">
-											<input id="Debt2" name="Debt2" type="text" class="form-control input-small"/>
+											<input id="Picture2" name="Picture2" type="text" class="form-control input-small"/>
 										</div>
 									</div>									
 									<div class="modal-footer">
@@ -204,10 +202,6 @@
 					Name1:{
 						minlength: 4,
 						required:true
-					},
-					Debt1:{						
-						required:true,
-						number:true
 					}
 				},
 				errorClass: "help-inline",
@@ -226,7 +220,7 @@
 					Data[2] = $('#Phone1').val();
 					Data[3] = $('#Address1').val();
 					Data[4] = $('#Note1').val();
-					Data[5] = $('#Debt1').val();
+					Data[5] = $('#Picture1').val();
 					
 					var URL = "/object/ins/Supplier";
 					$.ajax({
@@ -261,7 +255,7 @@
 					$('#Phone2').attr('value', data.Phone);
 					$('#Address2').attr('value', data.Address);
 					$('#Note2').attr('value', data.Note);
-					$('#Debt2').attr('value', data.Debt);
+					$('#Picture2').attr('value', data.Picture);
 				});
 			});
 			
@@ -273,10 +267,6 @@
 					Name2:{
 						minlength: 4,
 						required:true
-					},
-					Debt2:{
-						required:true,
-						number:true
 					}
 				},
 				errorClass: "help-inline",
@@ -295,7 +285,7 @@
 					Data[2] = $('#Phone2').val();
 					Data[3] = $('#Address2').val();
 					Data[4] = $('#Note2').val();
-					Data[5] = $('#Debt2').val();
+					Data[5] = $('#Picture2').val();
 					
 					var URL = "/object/upd/Supplier";
 					$.ajax({

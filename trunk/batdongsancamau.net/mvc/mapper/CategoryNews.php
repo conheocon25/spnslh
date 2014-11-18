@@ -6,7 +6,7 @@ class CategoryNews extends Mapper implements \MVC\Domain\CategoryNewsFinder {
     function __construct() {
         parent::__construct();
 		
-		$tblCategoryNews = "res_category_news";
+		$tblCategoryNews = "tbl_category_news";
 						
 		$selectAllStmt 	= sprintf("select * from %s order by `order`", $tblCategoryNews);
 		$selectStmt 	= sprintf("select * from %s where id=?", $tblCategoryNews);

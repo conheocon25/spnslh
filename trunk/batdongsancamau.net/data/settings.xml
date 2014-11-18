@@ -3,7 +3,7 @@
 		<!-- ============================================================================== -->
 		<!-- Các lệnh xử lí SYSTEM 															-->
 		<!-- ============================================================================== -->		
-		<command name="DefaultCommand" 	type="public"><view>DefaultCommand</view><status value="CMD_OK"><forward>FGate</forward></status></command>
+		<command name="DefaultCommand" 	type="public"><view>DefaultCommand</view><status value="CMD_OK"><forward>FHome</forward></status></command>
 		<command name="FGate" 			type="public"><view>FGate</view></command>
 		<command name="FHome" 			type="public"><view>FHome</view></command>
 		<command name="FIntroduction" 	type="public"><view>FIntroduction</view></command>
