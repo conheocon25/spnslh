@@ -17,7 +17,13 @@ AddOutputFilterByType DEFLATE application/x-javascript
 # SYSTEM
 #---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^trang-chu$ 						?cmd=FHome 					[L]
-RewriteRule ^gioi-thieu$ 						?cmd=FIntroduction 			[L]
+
+RewriteRule ^bang-gia/gia-dat$ 					?cmd=FPriceLand 			[L]
+RewriteRule ^bang-gia/gia-nha$ 					?cmd=FPriceHouse 			[L]
+
+RewriteRule ^lien-he/dang-ki-mua$ 				?cmd=FContactRegisterBuy	[L]
+RewriteRule ^lien-he/dang-ki-ban$ 				?cmd=FContactRegisterSell	[L]
+
 RewriteRule ^lien-he/nha-moi-gioi$ 				?cmd=FContactSupplier 		[L]
 RewriteRule ^lien-he/gia-dich-vu$ 				?cmd=FContactPriceService 	[L]
 RewriteRule ^lien-he/email$ 					?cmd=FContactSend			[L]

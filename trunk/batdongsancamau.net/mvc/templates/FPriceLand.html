@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<div metal:use-macro="mFront.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>
+	</head>	
+	<body>		
+		<div id="wrapper">
+			<div metal:use-macro="mFront.xhtml/Header"/>
+			<section id="content">				
+				<div class="md-margin2x"></div>
+				<div class="container">
+					<div class="row">
+						<div class="col-md-3">
+							
+						</div>
+						<div class="col-md-9">
+							<div class="row">
+								<h3 tal:content="Post/getTitle"/>
+								<p tal:content="structure Post/getContent"/>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<div metal:use-macro="mFront.xhtml/Footer"/>
+		</div><!-- End #wrapper -->		
+		<div metal:use-macro="mFront.xhtml/IncludeJS"/>		
+	</body>
+</html>

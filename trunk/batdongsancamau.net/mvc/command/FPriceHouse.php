@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class FContactPriceService extends Command {
+	class FPriceHouse extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -28,21 +28,21 @@
 			$ConfigPhone2 			= $mConfig->findByName("PHONE2");
 			$ConfigGmail 			= $mConfig->findByName("CONTACT_GTALK");
 			$ConfigSkype 			= $mConfig->findByName("CONTACT_SKYPE");
-			$ConfigIntro 			= $mConfig->findByName("POST_PRICE_SERVICE");
+			$ConfigIntro 			= $mConfig->findByName("POST_PRICE_HOUSE");
 			
 			$CategoryAll 			= $mCategory->findAll();			
 			$Post 					= $mPost->find($ConfigIntro->getValue() );
 			$Post->setViewed($Post->getViewed()+1);
 			$mPost->update($Post);
 									
-			$Title = "BẢNG GIÁ DỊCH VỤ";
+			$Title = "BẢNG GIÁ ĐẤT";
 			$Navigation = array();
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
 			$request->setProperty("Title", 				$Title);
-			$request->setProperty("Active", 			'Contact');
+			$request->setProperty("Active", 			'Price');
 			$request->setObject("Navigation", 			$Navigation);
 			$request->setObject("ConfigName", 			$ConfigName);
 			$request->setObject("ConfigSlogan", 		$ConfigSlogan);
