@@ -10,13 +10,6 @@ interface Finder {
     //function delete();
 }
 
-interface AlbumFinder  			extends Finder {}
-interface ImageFinder  			extends Finder {}
-interface VideoFinder  			extends Finder {}
-
-interface BranchFinder  		extends Finder {}
-interface LinkedFinder  		extends Finder {}
-
 interface UserFinder  			extends Finder {}
 interface FeedFinder  			extends Finder {}
 
@@ -25,8 +18,6 @@ interface Category1Finder  		extends Finder {}
 interface ProductImageFinder 	extends Finder {}
 interface ProductAttributeFinder 	extends Finder {}
 
-interface AttributeFinder 		extends Finder {}
-interface GAttributeFinder 		extends Finder {}
 interface ManufacturerFinder 	extends Finder {}
 interface SupplierFinder 		extends Finder {}
 interface ProductFinder 		extends Finder {}
