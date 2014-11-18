@@ -17,9 +17,7 @@
 			//-------------------------------------------------------------						
 			$mConfig 		= new \MVC\Mapper\Config();			
 			$mCategory 		= new \MVC\Mapper\Category();			
-			$mBranch		= new \MVC\Mapper\Branch();						
-			$mProvince		= new \MVC\Mapper\Province();
-			
+						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
@@ -30,9 +28,8 @@
 			$ConfigPhone2 			= $mConfig->findByName("PHONE2");
 			$ConfigGmail 			= $mConfig->findByName("CONTACT_GTALK");
 			$ConfigSkype 			= $mConfig->findByName("CONTACT_SKYPE");
-			
-			
-			$CategoryAll 	= $mCategory->findAll();
+						
+			$CategoryAll 			= $mCategory->findAll();
 									
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI

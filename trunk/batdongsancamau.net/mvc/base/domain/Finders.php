@@ -18,12 +18,10 @@ interface Category1Finder  		extends Finder {}
 interface ProductImageFinder 	extends Finder {}
 interface ProductAttributeFinder 	extends Finder {}
 
-interface ManufacturerFinder 	extends Finder {}
 interface SupplierFinder 		extends Finder {}
 interface ProductFinder 		extends Finder {}
 interface ProductInfoFinder 	extends Finder {}
 
-interface CustomerFinder 		extends Finder {}
 interface StoryLineFinder 		extends Finder {}
 
 interface TagFinder 			extends Finder {}
@@ -32,8 +30,6 @@ interface PostTagFinder 		extends Finder {}
 interface ConfigFinder 			extends Finder {}
 interface GuestFinder 			extends Finder {}
 interface PostFinder 			extends Finder {}
-interface PresentationFinder 	extends Finder {}
-interface SlideFinder 			extends Finder {}
 
 interface ProvinceFinder 		extends Finder {}
 interface DistrictFinder 		extends Finder {}

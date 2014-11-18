@@ -9,12 +9,10 @@ interface Category1Collection 			extends \Iterator {function add( Object $Catego
 interface ProductImageCollection 		extends \Iterator {function add( Object $ProductImage );}
 interface ProductAttributeCollection 	extends \Iterator {function add( Object $ProductAttribute );}
 
-interface ManufacturerCollection 		extends \Iterator {function add( Object $Manufacturer );}
 interface SupplierCollection 			extends \Iterator {function add( Object $supplier );	}
 interface ProductCollection 			extends \Iterator {function add( Object $Product );		}
 interface ProductInfoCollection 		extends \Iterator {function add( Object $ProductInfo );	}
 
-interface CustomerCollection 			extends \Iterator {function add( Object $Customer );	}
 interface StoryLineCollection 			extends \Iterator {function add( Object $StoryLine );	}
 
 interface TagCollection 				extends \Iterator {function add( Object $Tag );			}
@@ -24,8 +22,6 @@ interface ConfigCollection 				extends \Iterator {function add( Object $Config )
 interface PageCollection 				extends \Iterator {function add( Object $Page);			}
 interface GuestCollection 				extends \Iterator {function add( Object $Guest);		}
 interface PostCollection 				extends \Iterator {function add( Object $Post);			}
-interface PresentationCollection 		extends \Iterator {function add( Object $Presentation);	}
-interface SlideCollection 				extends \Iterator {function add( Object $Slide);		}
 
 interface ProvinceCollection 			extends \Iterator {function add( Object $Province);		}
 interface DistrictCollection 			extends \Iterator {function add( Object $District);		}

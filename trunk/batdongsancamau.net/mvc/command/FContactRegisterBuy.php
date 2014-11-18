@@ -16,10 +16,8 @@
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------						
 			$mConfig 		= new \MVC\Mapper\Config();			
-			$mCategory 		= new \MVC\Mapper\Category();			
-			$mBranch		= new \MVC\Mapper\Branch();						
-			$mProvince		= new \MVC\Mapper\Province();
-			
+			$mCategory 		= new \MVC\Mapper\Category();						
+						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						

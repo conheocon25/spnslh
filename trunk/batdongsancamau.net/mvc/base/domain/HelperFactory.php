@@ -6,15 +6,13 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	
 	require_once( "mvc/mapper/Category.php" 		);
 	require_once( "mvc/mapper/Category1.php" 		);
-				
-	require_once( "mvc/mapper/Manufacturer.php" 	);
+	
 	require_once( "mvc/mapper/Supplier.php" 		);
 	require_once( "mvc/mapper/Product.php" 			);
 	require_once( "mvc/mapper/ProductInfo.php" 		);	
 	require_once( "mvc/mapper/ProductImage.php" 	);
 	require_once( "mvc/mapper/ProductAttribute.php" );
-			
-	require_once( "mvc/mapper/Customer.php" 		);
+	
 	require_once( "mvc/mapper/StoryLine.php" 		);
 	
 	require_once( "mvc/mapper/Tag.php" 				);
@@ -23,9 +21,7 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	require_once( "mvc/mapper/Config.php"			);	
 	require_once( "mvc/mapper/Guest.php"			);
 	require_once( "mvc/mapper/Post.php"				);
-	require_once( "mvc/mapper/Presentation.php"		);
-	require_once( "mvc/mapper/Slide.php"			);
-	
+		
 	require_once( "mvc/mapper/Province.php"			);
 	require_once( "mvc/mapper/District.php"			);
 }
