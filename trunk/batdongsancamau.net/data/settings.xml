@@ -9,26 +9,21 @@
 		<command name="FIntroduction" 	type="public"><view>FIntroduction</view></command>
 		<command name="FPolicy" 		type="public"><view>FPolicy</view></command>
 		<command name="FFAQ" 			type="public"><view>FFAQ</view></command>
-		<command name="FContact" 		type="public"><view>FContact</view></command>
-		<command name="FContact1" 		type="public"><view>FContact1</view></command>
-		<command name="FContactSend" 	type="public"><view>FContactSend</view></command>
-		<command name="FContactSendGmail" 	type="public"><view>FContactSendGmail</view></command>
-		<command name="RefreshCaptcha" 	type="public"><view>RefreshCaptcha</view></command>		
+		
+		<command name="FContact" 				type="public"><view>FContact</view></command>
+		<command name="FContactSupplier" 		type="public"><view>FContactSupplier</view></command>
+		<command name="FContactPriceService" 	type="public"><view>FContactPriceService</view></command>
+		
+		<command name="FContactSend" 			type="public"><view>FContactSend</view></command>
+		<command name="FContactSendGmail" 		type="public"><view>FContactSendGmail</view></command>
+		
+		
 		<command name="FCategory" 		type="public"><view>FCategory</view></command>
 		<command name="FProduct" 		type="public"><view>FProduct</view></command>
 		<command name="FProductSearch" 	type="public"><view>FProductSearch</view></command>
 		<command name="FTag" 			type="public"><view>FTag</view></command>
 		<command name="FPost" 			type="public"><view>FPost</view></command>		
 		<command name="FDealer" 		type="public"><view>FDealer</view></command>
-		
-		<command name="FAlbum" 			type="public"><view>FAlbum</view></command>
-		<command name="FAlbumImage" 	type="public"><view>FAlbumImage</view></command>
-		
-		<command name="FVideo" 			type="public"><view>FVideo</view></command>
-		<command name="FVideoDetail" 	type="public"><view>FVideoDetail</view></command>
-		
-		<command name="FLinked" 		type="public"><view>FLinked</view></command>
-			
 				
 		<command name="FSubcribe" 		type="public">
 			<view>FSubcribe</view>

@@ -155,7 +155,7 @@
 											<li><a tal:attributes="href '/lien-he/nha-moi-gioi'">NHÀ MÔI GIỚI</a></li>
 											<li><a tal:attributes="href '/lien-he/dang-ki-mua'">ĐĂNG KÍ MUA</a></li>
 											<li><a tal:attributes="href '/lien-he/dang-ki-ban'">ĐĂNG KÍ BÁN</a></li>
-											<li><a tal:attributes="href '/lien-he/bang-gia-dang'">GIÁ ĐĂNG</a></li>
+											<li><a tal:attributes="href '/lien-he/gia-dich-vu'">GIÁ ĐĂNG</a></li>
 										</ul>
 									</li>
 								</ul>
@@ -218,8 +218,8 @@
 					<div class="col-md-5 col-sm-4 col-xs-12 widget">						
 						<h3><a href="#">Thống kê</a></h3>
 						<ul class="links">
-							<li>Lượt xem </li>
-							<li>Đang online </li>
+							<li>Lượt xem <B tal:content="php:@\MVC\Library\Statistic::getCountPrint()"/></li>
+							<li>Đang online <B tal:content="php:@\MVC\Library\Statistic::getOnlinePrint()"/></li>
 						</ul>
 					</div>
 					<div class="col-md-3 col-sm-12 col-xs-12 widget">
