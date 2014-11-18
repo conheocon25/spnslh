@@ -36,5 +36,7 @@ interface PostCollection 				extends \Iterator {function add( Object $Post);			}
 interface PresentationCollection 		extends \Iterator {function add( Object $Presentation);	}
 interface SlideCollection 				extends \Iterator {function add( Object $Slide);		}
 
+interface ProvinceCollection 			extends \Iterator {function add( Object $Province);		}
+interface DistrictCollection 			extends \Iterator {function add( Object $District);		}
 
 ?>

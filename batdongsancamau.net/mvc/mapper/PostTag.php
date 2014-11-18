@@ -5,7 +5,7 @@ class PostTag extends Mapper implements \MVC\Domain\PostTagFinder {
     function __construct() {
         parent::__construct();
 		
-		$tblPostTag = "res_post_tag";
+		$tblPostTag = "tbl_post_tag";
 						
 		$selectAllStmt 		= sprintf("select * from %s order by `order`", $tblPostTag);
 		$selectStmt 		= sprintf("select * from %s where id=?", $tblPostTag);

@@ -6,12 +6,12 @@ class Supplier extends Mapper implements \MVC\Domain\SupplierFinder {
 
     function __construct() {
         parent::__construct();
-		$tblSupplier = "res_supplier";
+		$tblSupplier = "tbl_supplier";
 						
 		$selectAllStmt = sprintf("select * from %s ORDER BY name", $tblSupplier);
 		$selectStmt = sprintf("select * from %s where id=?", $tblSupplier);
-		$updateStmt = sprintf("update %s set name=?, phone=?, address=?, note=?, debt=? where id=?", $tblSupplier);
-		$insertStmt = sprintf("insert into %s ( name, phone, address, note, debt ) 
+		$updateStmt = sprintf("update %s set name=?, phone=?, address=?, note=?, picture=? where id=?", $tblSupplier);
+		$insertStmt = sprintf("insert into %s ( name, phone, address, note, picture ) 
 							values( ?, ?, ?, ?, ?)", $tblSupplier);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblSupplier);
 		$findByPageStmt = sprintf("SELECT * FROM  %s ORDER BY name LIMIT :start,:max", $tblSupplier);
@@ -35,7 +35,7 @@ class Supplier extends Mapper implements \MVC\Domain\SupplierFinder {
 			$array['phone'],	
 			$array['address'],
 			$array['note'],
-			$array['debt']
+			$array['picture']
 		);
         return $obj;
     }
@@ -50,7 +50,7 @@ class Supplier extends Mapper implements \MVC\Domain\SupplierFinder {
 			$object->getPhone(),	
 			$object->getAddress(),	
 			$object->getNote(),
-			$object->getDebt()
+			$object->getPicture()
 		); 
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
@@ -63,7 +63,7 @@ class Supplier extends Mapper implements \MVC\Domain\SupplierFinder {
 			$object->getPhone(),
 			$object->getAddress(),
 			$object->getNote(),
-			$object->getDebt(),
+			$object->getPicture(),
 			$object->getId()
 		);		
         $this->updateStmt->execute( $values );

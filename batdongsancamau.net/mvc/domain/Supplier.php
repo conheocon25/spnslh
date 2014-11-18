@@ -9,7 +9,7 @@ class Supplier extends Object{
 	private $Phone;
     private $Address;
 	private $Note;
-	private $Debt;
+	private $Picture;
 					
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
@@ -20,14 +20,14 @@ class Supplier extends Object{
 		$Phone=null, 
 		$Address=null, 
 		$Note=null,
-		$Debt=null
+		$Picture=null
 	){
         $this->Id 		= $Id;
 		$this->Name 	= $Name;
 		$this->Phone 	= $Phone;
 		$this->Address 	= $Address;
 		$this->Note 	= $Note;
-		$this->Debt 	= $Debt;
+		$this->Picture 	= $Picture;
 		
         parent::__construct( $Id );
     }
@@ -45,8 +45,8 @@ class Supplier extends Object{
 	function setNote( $Note ) {$this->Note = $Note; $this->markDirty();}
 	function getNote( ) {return $this->Note;}
 	
-	function setDebt( $Debt ) {$this->Debt = $Debt; $this->markDirty();}
-	function getDebt( ){return $this->Debt;}
+	function setPicture( $Picture ) {$this->Picture = $Picture; $this->markDirty();}
+	function getPicture( ){return $this->Picture;}
 	
 	function toJSON(){
 		$json = array(
@@ -55,7 +55,7 @@ class Supplier extends Object{
 			'Phone'			=> $this->getPhone(),
 			'Address'		=> $this->getAddress(),
 			'Note'			=> $this->getNote(),
-			'Debt'			=> $this->getDebt()
+			'Picture'		=> $this->getPicture()
 		);
 		return json_encode($json);
 	}
@@ -66,7 +66,7 @@ class Supplier extends Object{
 		$this->Phone 	= $Data[2];
 		$this->Address 	= $Data[3];
 		$this->Note 	= $Data[4];
-		$this->Debt 	= $Data[5];
+		$this->Picture 	= $Data[5];
     }
 		
 	//-------------------------------------------------------------------------------
