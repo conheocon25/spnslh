@@ -75,6 +75,8 @@
 		
 		<command name="ASettingSupplier">		<view>ASettingSupplier		</view></command>				
 		<command name="ASettingSupplierProduct"><view>ASettingSupplierProduct</view></command>
+		
+		<command name="ASettingProduct">		<view>ASettingProduct</view></command>
 		<command name="ASettingProductImage">	<view>ASettingProductImage</view></command>
 		<command name="ASettingProductInfo">	<view>ASettingProductInfo</view></command>
 		<command name="ASettingProductInfoExe">	<view>ASettingProductInfoExe</view><status value="CMD_OK"><forward>ASettingProductInfo</forward></status></command>		

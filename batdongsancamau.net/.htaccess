@@ -87,6 +87,8 @@ RewriteRule ^admin/setting/supplier$ 									?cmd=ASettingSupplier [L]
 RewriteRule ^admin/setting/supplier/page/([0-9]+)$ 						?cmd=ASettingSupplier&Page=$1 [L]
 RewriteRule ^admin/setting/supplier/([0-9]+)$ 							?cmd=ASettingSupplierProduct&IdSupplier=$1 [L]
 RewriteRule ^admin/setting/supplier/([0-9]+)/page/([0-9]+)$ 			?cmd=ASettingSupplierProduct&IdSupplier=$1&Page=$2 [L]
+
+RewriteRule ^admin/setting/supplier/([0-9]+)/([0-9]+)$ 					?cmd=ASettingProduct&IdSupplier=$1&IdProduct=$2 [L]
 RewriteRule ^admin/setting/supplier/([0-9]+)/([0-9]+)/image$ 			?cmd=ASettingProductImage&IdSupplier=$1&IdProduct=$2 [L]
 RewriteRule ^admin/setting/supplier/([0-9]+)/([0-9]+)/info$ 			?cmd=ASettingProductInfo&IdSupplier=$1&IdProduct=$2 [L]
 RewriteRule ^admin/setting/supplier/([0-9]+)/([0-9]+)/info/exe$ 		?cmd=ASettingProductInfoExe&IdSupplier=$1&IdProduct=$2 [L]

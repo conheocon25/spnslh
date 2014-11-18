@@ -8,11 +8,11 @@ class FeedCollection 			extends Collection implements \MVC\Domain\FeedCollection
 
 class CategoryCollection 		extends Collection implements \MVC\Domain\CategoryCollection 		{function targetClass( ) {return "\MVC\Domain\Category";	}}
 class Category1Collection 		extends Collection implements \MVC\Domain\Category1Collection 		{function targetClass( ) {return "\MVC\Domain\Category1";	}}
-class ProductImageCollection 	extends Collection implements \MVC\Domain\ProductImageCollection 	{function targetClass( ) {return "\MVC\Domain\ProductImage";}}
-class ProductAttributeCollection 		extends Collection implements \MVC\Domain\ProductAttributeCollection 		{function targetClass( ) {return "\MVC\Domain\ProductAttribute";	}}
 
 class SupplierCollection 		extends Collection implements \MVC\Domain\SupplierCollection 		{function targetClass( ) {return "\MVC\Domain\Supplier";	}}
+
 class ProductCollection 		extends Collection implements \MVC\Domain\ProductCollection 		{function targetClass( ) {return "\MVC\Domain\Product";		}}
+class ProductImageCollection 	extends Collection implements \MVC\Domain\ProductImageCollection 	{function targetClass( ) {return "\MVC\Domain\ProductImage";}}
 class ProductInfoCollection 	extends Collection implements \MVC\Domain\ProductInfoCollection 	{function targetClass( ) {return "\MVC\Domain\ProductInfo";	}}
 
 class StoryLineCollection 		extends Collection implements \MVC\Domain\StoryLineCollection 		{function targetClass( ) {return "\MVC\Domain\StoryLine";	}}

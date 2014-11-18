@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class ASettingProductInfo extends Command {
+	class ASettingProduct extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -18,8 +18,7 @@
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
 			$mSupplier 		= new \MVC\Mapper\Supplier();
-			$mProduct 		= new \MVC\Mapper\Product();
-			$mProductInfo	= new \MVC\Mapper\ProductInfo();
+			$mProduct 		= new \MVC\Mapper\Product();			
 			$mCategory1		= new \MVC\Mapper\Category1();			
 			$mConfig 		= new \MVC\Mapper\Config();
 			
@@ -28,27 +27,14 @@
 			//-------------------------------------------------------------									
 			$Product 		= $mProduct->find($IdProduct);									
 			$Supplier 		= $mSupplier->find($IdSupplier);
-			
-			$IdPI  			= $mProductInfo->exist(array($IdProduct));
-			if ($IdPI==-1){
-				$PI = new \MVC\Domain\ProductInfo(
-					null,
-					$IdProduct,
-					"abc",
-					"abc",
-					"Thu nghiem"
-				);
-				$mProductInfo->insert($PI);
-			}else{
-				$PI = $mProductInfo->find($IdPI);
-			}
-			
-			$Title = "GIỚI THIỆU";
+			$CategoryAll1 	= $mCategory1->findAll();
+									
+			$Title 			= mb_strtoupper($Product->getName(), 'UTF8');
 			$Navigation = array(				
 				array("THIẾT LẬP", "/admin/setting"),
-				array(mb_strtoupper($Supplier->getName(),'UTF8'), "/admin/setting/supplier"),				
-				array(mb_strtoupper($Product->getName(),'UTF8'), $Product->getURLSetting())
-			);						
+				array(mb_strtoupper($Supplier->getName(),'UTF8'), "/admin/setting/supplier"),
+				array(mb_strtoupper("TIN ĐĂNG",'UTF8'), $Supplier->getURLSettingProduct())
+			);
 			$ConfigName = $mConfig->findByName("NAME");
 			
 			//-------------------------------------------------------------
@@ -58,8 +44,8 @@
 			$request->setProperty('ActiveAdmin'	, 'Product');			
 			$request->setObject('Navigation'	, $Navigation);
 			$request->setObject('Product'		, $Product);
-			$request->setObject('PI'			, $PI);
-			
+			$request->setObject('CategoryAll1'	, $CategoryAll1);
+						
 			return self::statuses('CMD_DEFAULT');
 		}
 	}
