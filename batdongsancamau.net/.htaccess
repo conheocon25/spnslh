@@ -16,23 +16,14 @@ AddOutputFilterByType DEFLATE application/x-javascript
 #---------------------------------------------------------------------------------------------------------------------------
 # SYSTEM
 #---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^trang-chu$ 						?cmd=FHome 			[L]
-RewriteRule ^gioi-thieu$ 						?cmd=FIntroduction 	[L]
-RewriteRule ^chinh-sach$ 						?cmd=FPolicy 		[L]
-RewriteRule ^faq$ 								?cmd=FFAQ 			[L]
-RewriteRule ^lien-he$ 							?cmd=FContact 		[L]
-RewriteRule ^lien-he1$ 							?cmd=FContact1 		[L]
-RewriteRule ^lien-he/email$ 					?cmd=FContactSend	[L]
-RewriteRule ^lien-he/gmail$ 					?cmd=FContactSendGmail	[L]
-RewriteRule ^lien-he/RefreshCaptcha      		?cmd=RefreshCaptcha	[L]
-RewriteRule ^nhan-thong-tin$ 					?cmd=FSubcribe 		[L]
+RewriteRule ^trang-chu$ 						?cmd=FHome 					[L]
+RewriteRule ^gioi-thieu$ 						?cmd=FIntroduction 			[L]
+RewriteRule ^lien-he/nha-moi-gioi$ 				?cmd=FContactSupplier 		[L]
+RewriteRule ^lien-he/gia-dich-vu$ 				?cmd=FContactPriceService 	[L]
+RewriteRule ^lien-he/email$ 					?cmd=FContactSend			[L]
+RewriteRule ^lien-he/gmail$ 					?cmd=FContactSendGmail		[L]
 
-RewriteRule ^khuyen-mai$ 									?cmd=FDealer 		[L]
-RewriteRule ^khuyen-mai/([A-Za-z0-9_-]+)$ 					?cmd=FDealer&KCategory2=$1 	[L]
-RewriteRule ^khuyen-mai/([A-Za-z0-9_-]+)/page/([0-9]+)$ 	?cmd=FDealer&KCategory2=$1&Page=$2 	[L]
-
-RewriteRule ^khuyen-mai/m/([0-9]+)$ 						?cmd=FDealer&IdManufacturer=$1 	[L]
-RewriteRule ^khuyen-mai/m/([0-9]+)/page/([0-9]+)$ 			?cmd=FDealer&IdManufacturer=$1&Page=$2 	[L]
+RewriteRule ^nhan-thong-tin$ 					?cmd=FSubcribe 				[L]
 
 RewriteRule ^san-pham/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$ 	?cmd=FProduct&KCategory1=$1&KCategory2=$2&KProduct=$3 [L]
 RewriteRule ^san-pham/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$ 					?cmd=FCategory&KCategory1=$1&KCategory2=$2 [L]
@@ -43,17 +34,6 @@ RewriteRule ^san-pham/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/([0-9]+)/m/page/([0-9]+)
 RewriteRule ^tin-tuc/([A-Za-z0-9_-]+)$ 							?cmd=FTag&KTag=$1 [L]
 RewriteRule ^tin-tuc/([A-Za-z0-9_-]+)/page/([0-9]+)$ 			?cmd=FTag&KTag=$1&Page=$2 [L]
 RewriteRule ^tin-tuc/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$ 		?cmd=FPost&KTag=$1&KPost=$2 [L]
-
-RewriteRule ^lien-ket$ 											?cmd=FLinked [L]
-
-RewriteRule ^hinh-anh$ 											?cmd=FAlbum [L]
-RewriteRule ^hinh-anh/page/([0-9]+)$ 							?cmd=FAlbum&Page=$1 [L]
-RewriteRule ^hinh-anh/([A-Za-z0-9_-]+)$ 						?cmd=FAlbumImage&KAlbum=$1 [L]
-
-
-RewriteRule ^video$ 											?cmd=FVideo [L]
-RewriteRule ^video/page/([0-9]+)$ 								?cmd=FVideo&Page=$1 [L]
-RewriteRule ^video/([A-Za-z0-9_-]+)$ 							?cmd=FVideoDetail&KVideo=$1 [L]
 
 RewriteRule ^dang-nhap$ 										?cmd=SigninLoad [L]
 RewriteRule ^dang-nhap/exe$ 									?cmd=SigninExe [L]
