@@ -55,7 +55,8 @@
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
 			$request->setProperty('Title'		, $Title);
-			$request->setProperty('ActiveAdmin'	, 'Product');			
+			$request->setProperty('ActiveAdmin'	, 'Product');
+			$request->setObject('ConfigName'	, $ConfigName);
 			$request->setObject('Navigation'	, $Navigation);
 			$request->setObject('Product'		, $Product);
 			$request->setObject('PI'			, $PI);
