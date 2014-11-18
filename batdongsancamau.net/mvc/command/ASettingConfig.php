@@ -63,13 +63,7 @@
 				$ConfigRowPerPage = new \MVC\Domain\Config(null, 'ROW_PER_PAGE', 12);
 				$mConfig->insert($RowPerPage);
 			}
-			
-			$ConfigEvery5Minutes = $mConfig->findByName("EVERY_5_MINUTES");
-			if ($ConfigEvery5Minutes==null){
-				$ConfigEvery5Minutes = new \MVC\Domain\Config(null, 'EVERY_5_MINUTES', 2000);
-				$mConfig->insert($ConfigEvery5Minutes);
-			}
-			
+									
 			$ConfigGuestVisit 	= $mConfig->findByName("GUEST_VISIT");
 			if ($ConfigGuestVisit==null){
 				$ConfigGuestVisit = new \MVC\Domain\Config(null, 'GUEST_VISIT', 1);
@@ -81,19 +75,8 @@
 				$ConfigSlogan = new \MVC\Domain\Config(null, 'SLOGAN', 'Khẩu hiệu của Shop');
 				$mConfig->insert($ConfigSlogan);
 			}
-															
-			$ConfigReceiptVirtualDouble	= $mConfig->findByName("RECEIPT_VIRTUAL_DOUBLE");
-			if ($ConfigReceiptVirtualDouble==null){
-				$ConfigReceiptVirtualDouble = new \MVC\Domain\Config(null, 'RECEIPT_VIRTUAL_DOUBLE', 1);
-				$mConfig->insert($ConfigReceiptVirtualDouble);
-			}
-			
-			$ConfignMonthLog	= $mConfig->findByName("N_MONTH_LOG");
-			if ($ConfignMonthLog==null){
-				$ConfignMonthLog = new \MVC\Domain\Config(null, 'N_MONTH_LOG', 1);
-				$mConfig->insert($ConfignMonthLog);
-			}
-			
+												
+						
 			$ConfigIntroduction = $mConfig->findByName("POST_INTRODUCTION");
 			if ($ConfigIntroduction==null){
 				$ConfigIntroduction = new \MVC\Domain\Config(null, 'POST_INTRODUCTION', 0);
@@ -112,12 +95,24 @@
 				$mConfig->insert($ConfigPolicy);
 			}
 			
-			$ConfigPHome = $mConfig->findByName("PRESENTATION_HOME");
-			if ($ConfigPHome==null){
-				$ConfigPHome = new \MVC\Domain\Config(null, 'PRESENTATION_HOME', 0);
-				$mConfig->insert($ConfigPHome);
+			$ConfigPriceService = $mConfig->findByName("POST_PRICE_SERVICE");
+			if ($ConfigPriceService==null){
+				$ConfigPriceService = new \MVC\Domain\Config(null, 'POST_PRICE_SERVICE', 0);
+				$mConfig->insert($ConfigPriceService);
 			}
 			
+			$ConfigPriceHouse = $mConfig->findByName("POST_PRICE_HOUSE");
+			if ($ConfigPriceHouse==null){
+				$ConfigPriceHouse = new \MVC\Domain\Config(null, 'POST_PRICE_HOUSE', 0);
+				$mConfig->insert($ConfigPriceHouse);
+			}
+			
+			$ConfigPriceLand = $mConfig->findByName("POST_PRICE_LAND");
+			if ($ConfigPriceLand==null){
+				$ConfigPriceLand = new \MVC\Domain\Config(null, 'POST_PRICE_LAND', 0);
+				$mConfig->insert($ConfigPriceLand);
+			}
+									
 			$ConfigContact = $mConfig->findByName("CONTACT_NAME");
 			if ($ConfigContact==null){
 				$ConfigContact = new \MVC\Domain\Config(null, 'CONTACT_NAME', 'A.Tuấn');
@@ -157,22 +152,19 @@
 			$request->setObject('ConfigRowPerPage', 		$ConfigRowPerPage);			
 			$request->setObject('ConfigGuestVisit', 		$ConfigGuestVisit);
 			$request->setObject('ConfigSlogan', 			$ConfigSlogan);			
-			$request->setObject('ConfigReceiptVirtualDouble', $ConfigReceiptVirtualDouble);
-			$request->setObject('ConfignMonthLog', 			$ConfignMonthLog);
-			
+						
 			$request->setObject('ConfigIntroduction', 		$ConfigIntroduction);
+			$request->setObject('ConfigPriceService', 		$ConfigPriceService);
+			$request->setObject('ConfigPriceHouse', 		$ConfigPriceHouse);
+			$request->setObject('ConfigPriceLand', 			$ConfigPriceLand);
 			$request->setObject('ConfigPolicy', 			$ConfigPolicy);	
 			$request->setObject('ConfigFAQ', 				$ConfigFAQ);
-			$request->setObject('ConfigPHome', 				$ConfigPHome);
-									
-			//$request->setObject('PostAll', 				$PostAll);
-			$request->setObject('Tag', 						$Tag);
-			$request->setObject('PresentationAll', 			$PresentationAll);
-			
+											
 			$request->setObject('ConfigYahooMessenger', 	$ConfigYahooMessenger);
 			$request->setObject('ConfigSkype', 				$ConfigSkype);
 			$request->setObject('ConfigGTalk', 				$ConfigGTalk);
-												
+			
+			$request->setObject('Tag', 						$Tag);			
 			return self::statuses('CMD_DEFAULT');
 		}
 	}
