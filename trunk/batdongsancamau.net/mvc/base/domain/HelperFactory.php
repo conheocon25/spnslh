@@ -1,21 +1,12 @@
 <?php
 namespace MVC\Domain;
-if ( ! isset( $EG_DISABLE_INCLUDES ) ) {	
-	require_once( "mvc/mapper/Album.php" 			);	
-	require_once( "mvc/mapper/Image.php" 			);	
-	require_once( "mvc/mapper/Video.php" 			);
-	
-	require_once( "mvc/mapper/Branch.php" 			);	
-	require_once( "mvc/mapper/Linked.php" 			);
-	
+if ( ! isset( $EG_DISABLE_INCLUDES ) ) {					
 	require_once( "mvc/mapper/User.php" 			);	
 	require_once( "mvc/mapper/Feed.php" 			);	
 	
 	require_once( "mvc/mapper/Category.php" 		);
 	require_once( "mvc/mapper/Category1.php" 		);
-			
-	require_once( "mvc/mapper/Attribute.php" 		);
-	require_once( "mvc/mapper/GAttribute.php" 		);
+				
 	require_once( "mvc/mapper/Manufacturer.php" 	);
 	require_once( "mvc/mapper/Supplier.php" 		);
 	require_once( "mvc/mapper/Product.php" 			);
