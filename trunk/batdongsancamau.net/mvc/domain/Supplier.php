@@ -86,30 +86,17 @@ class Supplier extends Object{
 		return $ProductAll;
 	}
 			
-	//Lấy về danh sách các nhà sản xuất
-	function getManufacturerAll() {
-		$mProduct 	= new \MVC\Mapper\Product();
-		$ProductAll = $mProduct->findManufacturer(array($this->getId()));
-		return $ProductAll;
-	}
-	
+	//Lấy về danh sách các nhà sản xuất		
 	function getProductAllByCategory($IdCategory){
 		$mProduct 	= new \MVC\Mapper\Product();
 		$ProductAll = $mProduct->findBySupplierCategory(array($this->getId(), $IdCategory));
 		return $ProductAll;
 	}
-	
-	//-------------------------------------------------------------------------------
-	//DEFINE IMPORT.SUPPLIER
-	//-------------------------------------------------------------------------------
-	function getURLImport(){return "/admin/import/".$this->getId();}	
-	function getURLImportInsLoad(){return "/admin/import/".$this->getId()."/ins/load";}	
-	function getURLImportInsExe(){return "/admin/import/".$this->getId()."/ins/exe";}
-	
+			
 	//-------------------------------------------------------------------------------
 	//DEFINE URL SETTING.SUPPLIER
 	//-------------------------------------------------------------------------------	
-	function getURLProduct(){return "/admin/setting/supplier/".$this->getId();}
+	function getURLSettingProduct(){return "/admin/setting/supplier/".$this->getId();}
 	function getURLSettingManufacturer($IdManufacturer){
 		return "/admin/setting/supplier/".$this->getId()."/".$IdManufacturer."/manufacturer";
 	}

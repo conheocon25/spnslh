@@ -27,11 +27,11 @@
 			$Supplier = $mSupplier->find($IdSupplier);
 			$Product = $mProduct->find($IdProduct);
 									
-			$Title = "ALBUM ".mb_strtoupper($Product->getName(), 'UTF8');
+			$Title = "ALBUM ";
 			$Navigation = array(				
 				array("THIẾT LẬP", "/admin/setting"),
-				array(mb_strtoupper($Supplier->getName(),'UTF8'), "/admin/setting/supplier"),
-				array(mb_strtoupper($Product->getCategory()->getName(),'UTF8'), $Supplier->getURLSettingCategory($Product->getIdCategory()))
+				array(mb_strtoupper($Supplier->getName(),'UTF8'), "/admin/setting/supplier"),				
+				array(mb_strtoupper($Product->getName(),'UTF8'), $Product->getURLSetting())
 			);
 			
 			$Config 	= $mConfig->findByName("ROW_PER_PAGE");

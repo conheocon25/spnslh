@@ -7,9 +7,9 @@ class Product extends Object{
 
     private $Id;
 	private $IdSupplier;
-	private $IdCategory;
-	private $IdManufacturer;	
+	private $IdCategory;	
 	private $Name;
+	private $DateTime;
 	private $Code;
     private $Price1;
 	private $Price2;
@@ -19,23 +19,22 @@ class Product extends Object{
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
     function __construct( 
-		$Id=null, 
-		$IdSupplier=null, 
-		$IdCategory=null,
-		$IdManufacturer=null,
-		$Name=null, 
-		$Code=null, 
-		$Price1=null, 
-		$Price2=null, 		
-		$Key=null
-	)
+		$Id			= null, 
+		$IdSupplier	= null, 
+		$IdCategory = null,		
+		$Name		= null, 
+		$DateTime	= null, 
+		$Code		= null, 
+		$Price1		= null, 
+		$Price2		= null, 		
+		$Key		= null)
 	{
         		
 		$this->Id				= $Id;
 		$this->IdSupplier		= $IdSupplier;
-		$this->IdCategory		= $IdCategory;	
-		$this->IdManufacturer	= $IdManufacturer;	
+		$this->IdCategory		= $IdCategory;			
 		$this->Name				= $Name;
+		$this->DateTime			= $DateTime;
 		$this->Code				= $Code;
 		$this->Price1			= $Price1;
 		$this->Price2			= $Price2;		
@@ -61,22 +60,12 @@ class Product extends Object{
 		return $Category;
 	}
 	
-	function getIdManufacturer( ) {return $this->IdManufacturer;}
-    function setIdManufacturer( $IdManufacturer ) {$this->IdManufacturer = $IdManufacturer; $this->markDirty();}
-	function getManufacturer(){
-		$mManufacturer = new \MVC\Mapper\Manufacturer();
-		$Manufacturer = $mManufacturer->find( $this->IdManufacturer );
-		return $Manufacturer;
-	}
-	
-	function getTopSameManufacturer(){
-		$mProduct 	= new \MVC\Mapper\Product();
-		$ProductAll = $mProduct->findByManufacturerTop( array($this->IdManufacturer) );
-		return $ProductAll;
-	}
-	
     function setName( $Name ) {$this->Name = $Name;$this->markDirty();}
     function getName( ) {return $this->Name;}
+	
+	function setDateTime( $DateTime ) 	{$this->DateTime = $DateTime; $this->markDirty();}
+    function getDateTime( ) 			{return $this->DateTime;}	
+	function getDateTimePrint( )		{return date('d/m H:i',strtotime($this->DateTime));}
 	
 	function setCode( $Code ) {$this->Code = $Code;$this->markDirty();}
     function getCode( ) {return $this->Code;}
@@ -101,9 +90,9 @@ class Product extends Object{
 		$json = array(
 			'Id' 				=> $this->getId(),	
 			'IdSupplier'		=> $this->getIdSupplier(),
-			'IdCategory'		=> $this->getIdCategory(),
-			'IdManufacturer'	=> $this->getIdManufacturer(),
+			'IdCategory'		=> $this->getIdCategory(),			
 			'Name'				=> $this->getName(),			
+			'DateTime'			=> $this->getDateTime(),			
 			'Code'				=> $this->getCode(),
 			'Price1'			=> $this->getPrice1(),
 			'Price2'			=> $this->getPrice2(),			
@@ -116,21 +105,15 @@ class Product extends Object{
         	
 		$this->Id				= $Data[0];
 		$this->IdSupplier		= $Data[1];
-		$this->IdCategory		= $Data[2];
-		$this->IdManufacturer	= $Data[3];
-		$this->Name				= $Data[4];
+		$this->IdCategory		= $Data[2];		
+		$this->Name				= $Data[3];
+		$this->DateTime			= $Data[4];
 		$this->Code				= $Data[5];
 		$this->Price1			= $Data[6];
 		$this->Price2			= $Data[7];
 		$this->reKey();
     }
-	
-	function getAttributeAll(){
-		$mProductAttribute = new \MVC\Mapper\ProductAttribute();
-		$AttributeAll = $mProductAttribute->findBy(array($this->getId()));
-		return $AttributeAll;
-	}
-	
+			
 	function getImageAll(){
 		$mProductImage = new \MVC\Mapper\ProductImage();
 		$ImageAll = $mProductImage->findBy(array($this->getId()));
@@ -154,30 +137,15 @@ class Product extends Object{
 		return $ProductAll;
 	}
 	
-	function getURLView(){
-		return "/san-pham/".$this->getCategory()->getCategory()->getKey()."/".$this->getCategory()->getKey()."/".$this->getKey();
-	}
+	function getURLView(){return "/san-pham/".$this->getCategory()->getCategory()->getKey()."/".$this->getCategory()->getKey()."/".$this->getKey();}	
+	function getURLViewFull(){return "http://batdongsancamau.net/san-pham/".$this->getCategory()->getCategory()->getKey()."/".$this->getCategory()->getKey()."/".$this->getKey();}
 	
-	function getURLViewFull(){
-		return "http://huongsenhong.com/san-pham/".$this->getCategory()->getCategory()->getKey()."/".$this->getCategory()->getKey()."/".$this->getKey();
-	}
-	
-	function getURLSettingImage(){
-		return "/admin/setting/supplier/".$this->getIdSupplier()."/".$this->getId()."/image";
-	}
-	function getURLSettingInfo(){
-		return "/admin/setting/supplier/".$this->getIdSupplier()."/".$this->getId()."/info";
-	}
-	function getURLSettingInfoExe(){
-		return "/admin/setting/supplier/".$this->getIdSupplier()."/".$this->getId()."/info/exe";
-	}	
-	function getURLSettingAttribute(){
-		return "/admin/setting/supplier/".$this->getIdSupplier()."/".$this->getId()."/attribute";
-	}
-	function getURLSettingAttributeExe(){
-		return "/admin/setting/supplier/".$this->getIdSupplier()."/".$this->getId()."/attribute/exe";
-	}
-	
+	function getURLSetting()		{return "/admin/setting/supplier/".$this->getIdSupplier()."/".$this->getId();}
+	function getURLSettingInfo()	{return "/admin/setting/supplier/".$this->getIdSupplier()."/".$this->getId()."/info";}
+	function getURLSettingInfoExe()	{return "/admin/setting/supplier/".$this->getIdSupplier()."/".$this->getId()."/info/exe";}
+	function getURLSettingImage()	{return "/admin/setting/supplier/".$this->getIdSupplier()."/".$this->getId()."/image";}
+	function getURLSettingMap()		{return "/admin/setting/supplier/".$this->getIdSupplier()."/".$this->getId()."/map";}
+		
 	//-------------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}
