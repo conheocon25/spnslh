@@ -137,8 +137,8 @@ class Product extends Object{
 		return $ProductAll;
 	}
 	
-	function getURLView(){return "/san-pham/".$this->getCategory()->getCategory()->getKey()."/".$this->getCategory()->getKey()."/".$this->getKey();}	
-	function getURLViewFull(){return "http://batdongsancamau.net/san-pham/".$this->getCategory()->getCategory()->getKey()."/".$this->getCategory()->getKey()."/".$this->getKey();}
+	function getURLView()	 {return "/danh-muc/".$this->getCategory()->getCategory()->getKey()."/".$this->getCategory()->getKey()."/".$this->getKey();}	
+	function getURLViewFull(){return "http://batdongsancamau.net/danh-muc/".$this->getCategory()->getCategory()->getKey()."/".$this->getCategory()->getKey()."/".$this->getKey();}
 	
 	function getURLSetting()		{return "/admin/setting/supplier/".$this->getIdSupplier()."/".$this->getId();}
 	function getURLSettingInfo()	{return "/admin/setting/supplier/".$this->getIdSupplier()."/".$this->getId()."/info";}

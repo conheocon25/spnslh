@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<div metal:use-macro="mFront.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mFront.xhtml/IncludeMETA"/>		
 		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>
 	</head>	
 	<body>		
@@ -69,103 +69,21 @@
 								<div class="lg-margin2x visible-sm visible-xs"></div>
 							</div>							
 							<div class="lg-margin2x"></div>
-							<div class="purchased-items-container carousel-wrapper">
-								<header class="content-title">
-									<div class="title-bg"> <h2 class="title">Món cùng mục</h2></div>
-								</header>
-								<div class="carousel-controls">
-									<div id="purchased-items-slider-prev1" class="carousel-btn carousel-btn-prev"></div>
-									<div id="purchased-items-slider-next1" class="carousel-btn carousel-btn-next carousel-space"></div>
-								</div><!-- End .carousel-controllers -->
-								<div class="purchased-items-slider owl-carousel">
-									<div class="item" tal:repeat="P1 Category1/getProductAll">
-										<div class="item-image-container">
-											<figure>												
-												<a tal:attributes="href P1/getURLView">
-													<img tal:attributes="src P1/getInfo/getImage1" class="item-image"/>
-													<img tal:attributes="src P1/getInfo/getImage2" class="item-image-hover"/>
-												</a>
-											</figure>
-											<div class="item-price-container" tal:condition="P1/getPrice2">
-												<span class="item-price" tal:content="P1/getPrice2Print"/>
-											</div>											
-										</div>
-										<div class="item-meta-container">
-											<div class="ratings-container">
-												<div class="ratings">
-													<div class="ratings-result" data-result="100" />
-												</div>												
-											</div>
-											<h3 class="item-name"><a tal:attributes="href P1/getURLView" tal:content="P1/getName"/></h3>
-										</div>
-									</div>
-								</div>
-							</div>
+														
+							<h2 class="title">Tin cùng danh mục</h2>								
+							<ul>
+								<li tal:repeat="P1 Category1/getProductAll">
+									<a tal:attributes="href P1/getURLView">
+										<span tal:content="P1/getName"/>
+									</a>
+								</li>
+							</ul>
 						</div>
 					</div>
 				</div>
 			</section>
 			<div metal:use-macro="mFront.xhtml/Footer"/>
+			<div metal:use-macro="mFront.xhtml/IncludeJS"/>
 		</div>
-		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
-		<script>
-			$(function() {
-				var carouselContainer = $('#product-carousel'),
-					productImg =  $('#product-image');
-				carouselContainer.elastislide({
-					orientation : 'vertical',
-					minItems : 4
-				});
-				productImg.mlens({
-					imgSrc: $("#product-image").attr("data-big"),         
-					lensShape: "square",
-					lensSize: 150,
-					borderSize: 4,
-					borderColor: "#999",
-					borderRadius: 0
-				});
-				var oldImg = productImg.attr('src');
-				carouselContainer.find('li').on('mouseover', function() {
-					var newImg = $(this).find('a').attr('href');
-					productImg.attr({'src': newImg, 'data-big': newImg}).trigger('imagechanged');
-				});
-				productImg.on('imagechanged', function() {
-					productImg.mlens("update", 0 ,{
-						imgSrc: productImg.attr("data-big"),
-						lensShape: "square",
-						lensSize: 150,
-						borderSize: 4,
-						borderColor: "#999"
-					});
-				});
-				
-				$(".icon-cart-text").click(function(){
-					var Data 	= [];
-					Data[0]		= $(this).attr('id');
-					Data[1]		= $(this).attr('name');
-					Data[2]		= $(this).attr('price');
-					Data[3]		= $(this).attr('image');
-					
-					var URL = "/gio-hang/them";
-					$.ajax({
-						type: "POST",
-						data: {Data:Data},
-						url: URL,
-						success: function(msg){
-							location.reload();
-						}
-					});				
-				});
-
-			});
-		</script>
-		<script>(function(d, s, id) {
-			var js, fjs = d.getElementsByTagName(s)[0];
-			if (d.getElementById(id)) return;
-			js = d.createElement(s); js.id = id;
-			js.src = "//connect.facebook.net/vi_VN/all.js#xfbml=1&appId=525611617524479";
-			fjs.parentNode.insertBefore(js, fjs);
-		}(document, 'script', 'facebook-jssdk'));
-		</script>
 	</body>
 </html>

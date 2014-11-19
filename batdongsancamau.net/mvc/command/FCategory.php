@@ -12,8 +12,7 @@
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
 			$KCategory1 	= 	$request->getProperty('KCategory1');
-			$KCategory2 	= 	$request->getProperty('KCategory2');
-			$IdManufacturer = 	$request->getProperty('IdManufacturer');
+			$KCategory2 	= 	$request->getProperty('KCategory2');			
 			$Page 			= 	$request->getProperty('Page');
 						
 			//-------------------------------------------------------------
@@ -22,11 +21,8 @@
 			$mConfig 		= new \MVC\Mapper\Config();
 			$mCategory 		= new \MVC\Mapper\Category();
 			$mCategory1		= new \MVC\Mapper\Category1();
-			$mTag			= new \MVC\Mapper\Tag();
 			$mProduct		= new \MVC\Mapper\Product();
-			$mBranch 		= new \MVC\Mapper\Branch();
-			$mLinked		= new \MVC\Mapper\Linked();
-			
+						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------			
@@ -37,11 +33,11 @@
 			$ConfigSkype 	= $mConfig->findByName("CONTACT_SKYPE");
 			$ConfigPhone1 	= $mConfig->findByName("PHONE1");
 			$ConfigPhone2 	= $mConfig->findByName("PHONE2");
+			
 			$CategoryAll 	= $mCategory->findAll();
 			$Category1 		= $mCategory->findByKey($KCategory1);
 			$Category2 		= $mCategory1->findByKey(array($Category1->getId(), $KCategory2));
-			$TagAll 		= $mTag->findByPosition(array(1));
-			$BranchAll 		= $mBranch->findAll();
+						
 			
 			$PMAll 			= $mProduct->findManufacturer1(array($Category2->getId()));
 						

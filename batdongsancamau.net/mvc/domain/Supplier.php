@@ -96,11 +96,9 @@ class Supplier extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL SETTING.SUPPLIER
 	//-------------------------------------------------------------------------------	
+	function getURLView()		{return "/nha-moi-gioi/".$this->getId();}
 	function getURLSettingProduct(){return "/admin/setting/supplier/".$this->getId();}
-	function getURLSettingManufacturer($IdManufacturer){
-		return "/admin/setting/supplier/".$this->getId()."/".$IdManufacturer."/manufacturer";
-	}
-	
+		
 	function getURLSettingCategory($IdCategory){
 		return "/admin/setting/supplier/".$this->getId()."/".$IdCategory."/category";
 	}

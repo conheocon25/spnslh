@@ -13,6 +13,8 @@
 		<command name="FContactRegisterBuy" 	type="public"><view>FContactRegisterBuy</view></command>
 		<command name="FContactRegisterSell" 	type="public"><view>FContactRegisterSell</view></command>
 		
+		<command name="FSupplier" 				type="public"><view>FSupplier</view></command>
+		
 		<command name="FContact" 				type="public"><view>FContact</view></command>
 		<command name="FContactSupplier" 		type="public"><view>FContactSupplier</view></command>
 		<command name="FContactPriceService" 	type="public"><view>FContactPriceService</view></command>
