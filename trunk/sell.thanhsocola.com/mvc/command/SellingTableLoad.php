@@ -11,33 +11,25 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$IdTable = $request->getProperty("IdTable");
+			$IdSession = $request->getProperty("IdSession");
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
 			$mTable 	= new \MVC\Mapper\Table();
 			$mEmployee 	= new \MVC\Mapper\Employee();
+			$mSession 	= new \MVC\Mapper\Session();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------						
-			$Table 				= $mTable->find($IdTable);			
-			$TableAll 			= $mTable->findAll();
-			$TableAllNonGuest	= $mTable->findAllNonGuest(array());
-			$TableAllGuest		= $mTable->findAllGuest(array($IdTable));
-			
-			$Session 			= $Table->getSessionActive();
+			//-------------------------------------------------------------									
 			$EmployeeAll 		= $mEmployee->findAll();
+			$Session 			= $mSession->find($IdSession);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------			
-			$request->setObject('Table'				, $Table);
-			$request->setObject('Session'			, $Session);
-			$request->setObject('TableAll'			, $TableAll);
-			$request->setObject('TableAllNonGuest'	, $TableAllNonGuest);
-			$request->setObject('TableAllGuest'		, $TableAllGuest);			
+			//-------------------------------------------------------------						
+			$request->setObject('Session'			, $Session);			
 			$request->setObject('EmployeeAll'		, $EmployeeAll);
 			
 			return self::statuses('CMD_DEFAULT');

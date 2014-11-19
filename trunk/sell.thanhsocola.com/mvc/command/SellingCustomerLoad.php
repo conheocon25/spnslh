@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class SellingEndCase extends Command {
+	class SellingCustomerLoad extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -11,26 +11,24 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-									
+			$IdCustomer = $request->getProperty("IdCustomer");
+			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
-			//-------------------------------------------------------------						
-			$mTD 		= new \MVC\Mapper\TrackingDaily();
+			//-------------------------------------------------------------			
+			$mCustomer 	= new \MVC\Mapper\Customer();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------						
-			$TDAll 	= $mTD->findByDate(array(date('Y-m-d')));
-			$TD		= $TDAll->current();
-			
-			$TD->setTime1(date('Y-m-d H:i'));
-			$mTD->update($TD);
-			
+			//-------------------------------------------------------------			
+			$Customer = $mCustomer->find($IdCustomer);
+						
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------																		
-			$json = array('result' => "OK");
-			echo json_encode($json);
+			//-------------------------------------------------------------			
+			$request->setObject('Customer', $Customer);
+						
+			return self::statuses('CMD_DEFAULT');
 		}
 	}
 ?>

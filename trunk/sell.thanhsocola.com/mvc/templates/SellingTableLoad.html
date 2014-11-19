@@ -1,39 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">	
 	<body>				
-		<div id="Session" class="widget-box">
+		<div id="Session" class="widget-box" tal:attributes="alt Session/getId">
 			<div class="widget-title">
-				<span class="icon">
-					<i class="glyphicon glyphicon-th-list"></i>
-				</span>				
-				<div class="buttons" tal:condition="Table/getSessionActive">
-					<a title="Chuyển bàn" data-toggle="modal" class="btn SessionMove" href="#DialogMove" tal:attributes="data-session-id Table/getSessionActive/getId"><i class="glyphicons-move" /></a>
-					<a title="Gom bàn" data-toggle="modal" class="btn SessionMerge" href="#DialogMerge" tal:attributes="data-session-id Table/getSessionActive/getId"><i class="glyphicons-resize_small"/></a>
-					<a title="Chỉnh sửa giao dịch" data-toggle="modal" class="btn SessionUpdate" href="#DialogSession" tal:attributes="data-session-id Table/getSessionActive/getId"><i class="glyphicons-edit" /></a>
-					<a title="Tính phiếu" class="btn Checkout" tal:attributes="alt Table/getSessionActive/getURLCheckoutExe"><i class="glyphicons-ok_2" /></a>					
-					<a title="In phiếu" class="Ticket btn" tal:attributes="alt Table/getSessionActive/getURLPrint"><i class="glyphicons-print"></i></a>
+				<span class="icon"><i class="glyphicon glyphicon-th-list"></i></span>
+				<div class="buttons">
+					<a title="Chỉnh sửa"  	class="btn SessionUpdate" data-toggle="modal" href="#DialogSession" tal:attributes="data-session-id Session/getId"><i class="glyphicons-edit" /></a>
+					<a title="Tính phiếu" 	class="btn Checkout" tal:attributes="alt Session/getURLCheckoutExe"><i class="glyphicons-ok_2" /></a>
+					<a title="In phiếu" 	class="Ticket btn" tal:attributes="alt Session/getURLPrint"><i class="glyphicons-print"></i></a>
 				</div>
 			</div>
-			<div class="widget-content nopadding size-12">
-				<div class="invoice-content" tal:condition="not:Table/getSessionActive">
-					<div class="invoice-head">
-						<div class="invoice-meta">
-							<h5 id="CurrentTable" tal:attributes="alt Table/getId" tal:content="Table/getName"/>
-						</div>
-					</div>
-				</div>
-				<div class="invoice-content" tal:condition="Table/getSessionActive">
-					<div>
-						<div class="invoice-meta">
-							<h5 id="CurrentTable" tal:attributes="alt Table/getId" tal:content="php:Table->getName() . '/' . Table->getSessionActive()->getCustomer()->getName()"/>
-							<div id="IdSession" tal:attributes="alt Table/getSessionActive/getId" />
-						</div>
-						<div class="invoice-to">
-							<ul><li><span tal:content="Table/getSessionActive/getUser/getName"/></li></ul>
-						</div>
-						<div class="invoice-from">
-							<ul><li><span tal:content="Table/getSessionActive/getDateTimePrint"/></li></ul>
-						</div>
+			<div class="widget-content nopadding size-12">				
+				<div class="invoice-content">
+					<div>						
+						<div class="invoice-to"><ul><li><span tal:content="Session/getUser/getName"/></li></ul></div>
+						<div class="invoice-from"><ul><li><span tal:content="Session/getDateTimePrint"/></li></ul></div>
 					</div>
 						<table class="table table-striped table-hover">
 							<thead>
@@ -47,15 +28,14 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr tal:repeat="Detail Table/getSessionActive/getDetails1">
+								<tr tal:repeat="Detail Session/getDetails1">
 									<td><div class="text-center" tal:content="repeat/Detail/number" /></td>
 									<td><a class="update-item" href="#DialogEdit" data-toggle="modal" 
 										tal:attributes="id 			Detail/getId;
 														idcourse 	Detail/getIdCourse;
 														name 		Detail/getCourse/getName;
 														count 		Detail/getCount;
-														price 		Detail/getPrice;
-														idemployee	Detail/getIdEmployee;
+														price 		Detail/getPrice;														
 										" 
 										tal:content="Detail/getCourse/getName"/>
 									</td>
@@ -72,21 +52,21 @@
 						</table>
 						<table width="100%">
 							<tr>								
-								<td tal:content="Table/getSessionActive/getNote" />
+								<td tal:content="Session/getNote" />
 							</tr>
 							<tr>
 								<td style="text-align:right;">GIẢM GIÁ %:</td>
-								<td tal:content="Table/getSessionActive/getDiscountPercent" style="color:#5476A6;text-align:right;"/>
+								<td tal:content="Session/getDiscountPercent" style="color:#5476A6;text-align:right;"/>
 								<th width="36" />
 							</tr>
 							<tr>
 								<td style="text-align:right;">GIẢM GIÁ $:</td>
-								<td tal:content="Table/getSessionActive/getDiscountValuePrint" style="color:#5476A6;text-align:right;"/>
+								<td tal:content="Session/getDiscountValuePrint" style="color:#5476A6;text-align:right;"/>
 								<th width="36" />
 							</tr>
 							<tr>
 								<td style="text-align:right;">TỔNG CỘNG:</td>
-								<td tal:content="Table/getSessionActive/getValuePrint" style="color:#5476A6;text-align:right;"/>
+								<td tal:content="Session/getValuePrint" style="color:#5476A6;text-align:right;"/>
 								<th width="36" />
 							</tr>
 						</table>
@@ -224,108 +204,12 @@
 							</div>
 						</div>
 					</div>
-					<!-- END DIALOG EDIT -->
-					<!-- DIALOG MOVE	-->
-					<div id="DialogMove" class="modal fade">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h3><i class="glyphicons-move modal-icon"/>CHUYỂN BÀN</h3>
-								</div>
-								<form class="form-horizontal" tal:attributes="action Table/getURLMoveExe" method="post">
-									<div class="form-group">
-										<label class="control-label" for="IdTableMove">Chuyển đến bàn</label>
-										<div class="controls">
-											<select name="IdTableMove" id="IdTableMove" class="form-control input-sm">
-												<option tal:repeat="Table TableAllNonGuest" tal:attributes="value Table/getId">
-													<span tal:content="Table/getDomain/getName" /> / <span tal:content="Table/getName" />
-												</option>
-											</select>
-										</div>
-									</div>
-									<div class="modal-footer">
-										<button id="URLSessionMoveButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Lưu</button>
-										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
-									</div>									
-								</form>
-							</div>
-						</div>
-					</div>
-					<!-- END DIALOG EDIT -->
-					
-					<!-- DIALOG MERGE	-->
-					<div id="DialogMerge" class="modal fade">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h3><i class="glyphicons-resize_small modal-icon"/>GOM BÀN</h3>
-								</div>
-								<form class="form-horizontal" tal:attributes="action Table/getURLMergeExe" method="post">
-									<div class="control-group">
-										<label class="control-label" for="IdTableMerge">Gom với bàn</label>
-										<div class="controls">
-											<select name="IdTableMerge" id="IdTableMerge" class="form-control input-sm">
-												<option tal:repeat="Table TableAllGuest" tal:attributes="value Table/getId">
-													<span tal:content="Table/getDomain/getName" /> / <span tal:content="Table/getName" />
-												</option>
-											</select>
-										</div>
-									</div>
-									<div class="modal-footer">
-										<button id="URLSessionMergeButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Lưu</button>
-										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
-									</div>									
-								</form>
-							</div>
-						</div>
-					</div>
-					<!-- END DIALOG EDIT -->
+					<!-- END DIALOG EDIT -->															
 					<div metal:use-macro="mDialog.xhtml/DialogDel"/>	
 				</div>
 			</div>
 		</div>
-		
-		<div id="Session" class="widget-box">
-			<div class="widget-content nopadding">
-				<div>
-					<table class="table table-striped table-hover">
-						<thead>
-							<tr>										
-								<th width="30">STT</th>
-								<th><div class="text-left">NGÀY</div></th>
-								<th><div class="text-right">PHIẾU</div></th>								
-							</tr>
-						</thead>
-						<tbody>
-							<tr tal:repeat="Session Table/getSessionRecent">
-								<td><div class="text-center" tal:content="repeat/Session/number"/></td>
-								<td><div class="text-left" tal:content="Session/getDateTimePrint"/></td>
-								<td>
-									<div tal:attributes="alt Session/getURLPrint" class="Ticket text-right">
-										<span tal:content="Session/getValuePrint"/>
-									</div>
-								</td>								
-							</tr>
-						</tbody>
-					</table>
-				</div>
-				<!-- DELETE DIALOG  -->
-				<div id="DialogSessionDel" class="modal fade">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header"><h3>XÓA</h3></div>
-							<div class="modal-body">
-								<p>Bạn có chắc muốn xóa GIAO DỊCH này ?</p>
-							</div>
-							<div class="modal-footer">
-								<button id="URLSessionDelButton" class="btn btn-primary btn-small">Xóa</button>
-								<button data-dismiss="modal" class="btn btn-default btn-small">Không</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+				
 		<!-- DIALOG PREVIEW	-->
 		<div id="DialogPreview" class="modal fade">
 			<div class="modal-dialog">
@@ -344,18 +228,11 @@
 				</div>
 			</div>
 		</div>
+		
 		<!-- END DIALOG EDIT -->
         <script type="text/javascript">
 		/*<![CDATA[*/			
-			$("#SearchIdCustomer").change(function(){
-				URL = "/search/customer/"+$(this).val();
-				$.getJSON(URL, function(data){
-					$("#IdCustomer1").attr('alt', data.Id);					
-					$("#DiscountPercent1").val(data.Discount);
-					$("#CustomerName").val(data.Name);
-				});				
-			});
-						
+									
 			//-----------------------------------------------------------------------------------
 			//Delete 1 DETAIL			
 			//-----------------------------------------------------------------------------------
@@ -412,6 +289,7 @@
 					$('#Payment1').attr('alt'			, data.Payment);
 				});
 			});
+			
 			$("#URLSessionUpdButton").click(function(){
 				var IdTable = $("#CurrentTable").attr('alt');
 				var Data = [];
@@ -524,11 +402,10 @@
 					$(element).parents('.form-group').removeClass('has-error');
 					$(element).parents('.form-group').addClass('has-success');
 				},
-				submitHandler: function (form) {					
-					var IdTable = $("#CurrentTable").attr('alt');
+				submitHandler: function (form) {										
 					var Data = [];
 					Data[0] = $('#URLUpdButton').attr('alt');
-					Data[1] = $('#IdSession').attr('alt')				
+					Data[1] = $('#Session').attr('alt');
 					Data[2] = $('#IdCourse1').val();
 					Data[3] = $('#Count1').val();
 					Data[4] = $('#Price1').val();
@@ -543,7 +420,7 @@
 						data: {Data:Data},
 						url: URL,
 						success: function(msg){
-							$("#Session").load("/selling/load/table/"+IdTable);
+							$("#Session").load("/selling/load/table/" + $('#Session').attr('alt'));
 						}
 					});
 					return false;

@@ -21,10 +21,12 @@
 			$mConfig	= new \MVC\Mapper\Config();
 			$mUnit 		= new \MVC\Mapper\Unit();
 			$mTD 		= new \MVC\Mapper\TrackingDaily();
+			$mCustomer 	= new \MVC\Mapper\Customer();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
+			$CustomerAll 	= $mCustomer->findAll();
 			$DomainAll 		= $mDomain->findAll();
 			$CategoryAll 	= $mCategory->findAll();
 			$UnitAll		= $mUnit->findAll();
@@ -49,6 +51,8 @@
 			$request->setProperty('Title'		, $Title);
 			$request->setObject('Navigation'	, $Navigation);
 			$request->setObject('TD'			, $TDAll->current());
+			
+			$request->setObject('CustomerAll'	, $CustomerAll);
 			$request->setObject('Domain'		, $Domain);
 			$request->setObject('DomainAll'		, $DomainAll);
 			$request->setObject('UnitAll'		, $UnitAll);

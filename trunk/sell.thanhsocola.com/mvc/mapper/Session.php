@@ -6,17 +6,19 @@ class Session extends Mapper implements \MVC\Domain\SessionFinder {
 
     function __construct() {
         parent::__construct();
-        $tblSession = "tbl_session";		
-		$tblSessionDetail = "tbl_session_detail";
-		$tblTable = "tbl_table";
+        $tblSession 		= "tbl_session";		
+		$tblSessionDetail 	= "tbl_session_detail";
+		$tblTable 			= "tbl_table";
 						
-		$selectAllStmt = sprintf("select * from %s", $tblSession);
-		$selectStmt = sprintf("select * from %s where id=?", $tblSession);
-		$updateStmt = sprintf("update %s set idtable=?, iduser=?, idcustomer=?, idemployee=?, datetime=?, datetimeend=?, note=?, status=?, discount_value=?, discount_percent=?, surtax=?, payment=? where id=?", $tblSession);
-		$insertStmt = sprintf("insert into %s (idtable, iduser, idcustomer, idemployee, datetime, datetimeend, note, status, discount_value, discount_percent, surtax, payment) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblSession);
-		$deleteStmt = sprintf("delete from %s where id=?", $tblSession);
+		$selectAllStmt 		= sprintf("select * from %s", $tblSession);
+		$selectStmt 		= sprintf("select * from %s where id=?", $tblSession);
+		$updateStmt 		= sprintf("update %s set idtable=?, iduser=?, idcustomer=?, idemployee=?, datetime=?, datetimeend=?, note=?, status=?, discount_value=?, discount_percent=?, surtax=?, payment=? where id=?", $tblSession);
+		$insertStmt 		= sprintf("insert into %s (idtable, iduser, idcustomer, idemployee, datetime, datetimeend, note, status, discount_value, discount_percent, surtax, payment) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblSession);
+		$deleteStmt 		= sprintf("delete from %s where id=?", $tblSession);
 		
-		$trackingCountStmt = sprintf(		
+		$findByCustomerStmt = sprintf("select * from %s where idcustomer=?  order by datetime desc", $tblSession);
+		
+		$trackingCountStmt 	= sprintf(
 							"
 							SELECT 
 								sum(TIMESTAMPDIFF(HOUR,datetime,datetimeend))
@@ -24,8 +26,7 @@ class Session extends Mapper implements \MVC\Domain\SessionFinder {
 							where
 								idtable = ? AND S.datetime >= ? AND S.datetime <= ? 							
 							"
-		, $tblSession, $tblSessionDetail);
-		
+		, $tblSession, $tblSessionDetail);		
 		$findByTableStmt = sprintf("select * from %s where idtable=?  order by datetime desc", $tblSession);
 		$findByTablePageStmt = sprintf("
 							SELECT * 
@@ -160,15 +161,17 @@ class Session extends Mapper implements \MVC\Domain\SessionFinder {
 		
 		$findLastStmt = sprintf("select * from %s where idtable=? and status<1 order by datetime desc limit 1", $tblSession);
 				
-		$this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
-        $this->selectStmt = self::$PDO->prepare($selectStmt);
-        $this->updateStmt = self::$PDO->prepare($updateStmt);
-        $this->insertStmt = self::$PDO->prepare($insertStmt);
-		$this->deleteStmt = self::$PDO->prepare($deleteStmt);
+		$this->selectAllStmt 		= self::$PDO->prepare($selectAllStmt);
+        $this->selectStmt 			= self::$PDO->prepare($selectStmt);
+        $this->updateStmt 			= self::$PDO->prepare($updateStmt);
+        $this->insertStmt 			= self::$PDO->prepare($insertStmt);
+		$this->deleteStmt 			= self::$PDO->prepare($deleteStmt);
 		
-		$this->trackingCountStmt = self::$PDO->prepare($trackingCountStmt);
-		$this->findByTableStmt = self::$PDO->prepare($findByTableStmt);
-		$this->findByTablePageStmt = self::$PDO->prepare($findByTablePageStmt);
+		$this->findByCustomerStmt 	= self::$PDO->prepare($findByCustomerStmt);
+		
+		$this->trackingCountStmt 	= self::$PDO->prepare($trackingCountStmt);
+		$this->findByTableStmt 		= self::$PDO->prepare($findByTableStmt);
+		$this->findByTablePageStmt 	= self::$PDO->prepare($findByTablePageStmt);
 		$this->findByTableTrackingStmt = self::$PDO->prepare($findByTableTrackingStmt);
 		
 		$this->findByTrackingStmt = self::$PDO->prepare($findByTrackingStmt);
@@ -184,10 +187,7 @@ class Session extends Mapper implements \MVC\Domain\SessionFinder {
 		$this->findLastStmt = self::$PDO->prepare($findLastStmt);																			
 		
     } 
-    function getCollection( array $raw ) {
-        return new SessionCollection( $raw, $this );
-    }
-
+    function getCollection( array $raw ) {return new SessionCollection( $raw, $this );}
     protected function doCreateObject( array $array ) {		
         $obj = new \MVC\Domain\Session( 
 			$array['id'],
@@ -207,10 +207,7 @@ class Session extends Mapper implements \MVC\Domain\SessionFinder {
         return $obj;
     }
 	
-    protected function targetClass() {        
-		return "Session";
-    }
-
+    protected function targetClass() {return "Session";}
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array(
 			$object->getIdTable(),
@@ -249,18 +246,9 @@ class Session extends Mapper implements \MVC\Domain\SessionFinder {
 		);		
         $this->updateStmt->execute( $values );
     }
-
-	protected function doDelete(array $values) {
-        return $this->deleteStmt->execute( $values );
-    }
-	
-    function selectStmt() {
-        return $this->selectStmt;
-    }
-	
-    function selectAllStmt() {
-        return $this->selectAllStmt;
-    }
+	protected function doDelete(array $values) {return $this->deleteStmt->execute( $values );}	
+    function selectStmt() {return $this->selectStmt;}	
+    function selectAllStmt() {return $this->selectAllStmt;}
 	
 	function findLast( $values ) {	
         $this->findLastStmt->execute( $values );
@@ -278,6 +266,11 @@ class Session extends Mapper implements \MVC\Domain\SessionFinder {
 		if (!isset($result) || $result==null)
 			return null;
         return $result[0][0];
+    }
+	
+	function findByCustomer($values ) {	
+        $this->findByCustomerStmt->execute( $values );
+        return new SessionCollection( $this->findByCustomerStmt->fetchAll(), $this );
     }
 	
 	function findByTable($values ) {	
