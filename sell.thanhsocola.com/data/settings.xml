@@ -14,8 +14,7 @@
 		</command>
 		<command name="SignoutLoad"><view>SignoutLoad</view></command>
 		<command name="SignoutExe"><view>SignoutExe</view><status value="CMD_OK"><forward>Home</forward></status></command>
-		<command name="App"><view>App</view></command>
-		<command name="SettingThemeChangeExe"><view>SettingThemeChangeExe</view><status value="CMD_OK"><forward>App</forward></status></command>
+		<command name="App"><view>App</view></command>		
 		
 		<!-- ============================================================================== -->
 		<!-- JSON LOAD			 															-->
@@ -27,16 +26,7 @@
 		
 		<command name="SearchCustomer"><view>SearchCustomer</view></command>
 		<command name="NotifyCourse"><view>NotifyCourse</view></command>
-		
-		<!-- ============================================================================== -->
-		<!-- GLOBAL			 																-->
-		<!-- ============================================================================== -->											
-		<command name="ChangePassLoad"><view>ChangePassLoad</view></command>
-		<command name="ChangePassExe">
-			<view>ChangePassExe</view>
-			<status value="CMD_OK"><forward>SignoutExe</forward></status>
-		</command>
-		
+						
 		<!-- ============================================================================== -->
 		<!-- REPORT.DETAIL			 														-->
 		<!-- ============================================================================== -->
@@ -68,10 +58,12 @@
 		<command name="SellingSearchCourse"><view>SellingSearchCourse</view></command>
 		<command name="SellingLogCourse"><view>SellingLogCourse</view></command>
 		<command name="SellingLogCoursePreparePrint"><view>SellingLogCoursePreparePrint</view></command>
-		<command name="SellingDomainLoad"><view>SellingDomainLoad</view></command>
-		<command name="SellingTableLoad"><view>SellingTableLoad</view></command>
-		<command name="SellingTableCallExe"><view>SellingTableCallExe</view></command>
-		<command name="SellingTableMoveExe"><view>SellingTableMoveExe</view><status value="CMD_OK"><forward>Selling</forward></status></command>
+		
+		<command name="SellingCustomerLoad">		<view>SellingCustomerLoad</view></command>
+		<command name="SellingDomainLoad">			<view>SellingDomainLoad</view></command>
+		<command name="SellingTableLoad">			<view>SellingTableLoad</view></command>
+		<command name="SellingTableCallExe">		<view>SellingTableCallExe</view></command>
+		<command name="SellingTableMoveExe">		<view>SellingTableMoveExe</view><status value="CMD_OK"><forward>Selling</forward></status></command>
 		<command name="SellingTableMergeExe">
 			<view>SellingTableMergeExe</view>
 			<status value="CMD_OK"><forward>Selling</forward></status>
@@ -81,9 +73,7 @@
 		<command name="SellingTableCheckoutExe"><view>SellingTableCheckoutExe</view></command>
 		<command name="CallLog"><view>CallLog</view></command>
 		<command name="CallLogLoading"><view>CallLogLoading</view></command>
-		
-		<command name="SellingEndCase"><view>SellingEndCase</view></command>
-		
+						
 		<!-- ============================================================================== -->
 		<!-- PAYROLL			 															-->
 		<!-- ============================================================================== -->		

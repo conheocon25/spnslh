@@ -16,110 +16,29 @@
 	<body>
 		<div metal:use-macro="mAdmin.xhtml/Header"/>		
 		<div id="sidebar">
-			<ul>
-				<!--
-				<li>
-					<a href="#DialogTime" data-toggle="modal" tal:condition="TD/isOne">
-						ĐANG Ở CA 1
-					</a>
-					<a tal:condition="not:TD/isOne">
-						ĐANG Ở CA 2
-					</a>
+			<ul>				
+				<li tal:repeat="Customer CustomerAll" class="Customer" tal:attributes="alt Customer/getId">
+					<a><i class="glyphicons-show_big_thumbnails" /><span tal:content="Customer/getName"/></a>
 				</li>
-				!-->
-				<li tal:repeat="Domain DomainAll" class="Domain" tal:attributes="alt Domain/getId">
-					<a><i class="glyphicons-show_big_thumbnails" /><span tal:content="Domain/getName"/></a>
-				</li>				
 			</ul>
 		</div>
 		<div id="content">
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
 			<div metal:use-macro="mAdmin.xhtml/LocationBar"/>
 			<div class="row">
+				<div class="col-3"><div id="SessionAll"/></div>
+				<div class="col-5"><div id="SessionView"/></div>
 				<div class="col-4">
-					<div id="TableAll"/>
 					<div class="widget-box">
 						<div class="controls">
-							<input id="SearchName" type="text" placeholder="Nhập tìm món ăn" style="width:75%;"/>							
-							<a class="btn RemoveCourseSearch">
-								<i class="glyphicons-circle_remove" />
-							</a>							
+							<input id="SearchName" type="text" placeholder="Nhập tìm sản phẩm ..." style="width:75%;"/>
+							<a class="btn RemoveCourseSearch"><i class="glyphicons-circle_remove" /></a>
 						</div>
 					</div>
-					<div id="CourseF"/>
-				</div>
-				
-				<!-- BẬT / TẮT MÀN HÌNH GỌI MÓN !-->
-				<div class="col-8" tal:condition="not:ConfigSwitchBoardCall/getValue"><div id="Session"/></div>
-				<div class="col-5" tal:condition="ConfigSwitchBoardCall/getValue"><div id="Session"/></div>
-				
-				<div class="col-3" tal:condition="ConfigSwitchBoardCall/getValue">
-					<div class="accordion widget-box" id="collapse-group">						
-						<div class="accordion-group widget-box">
-							<div class="accordion-heading">
-								<div class="widget-title">
-									<a data-parent="#collapse-group" tal:attributes="href php:'#Top10'" data-toggle="collapse">
-										<span class="icon"><i class="glyphicons-fast_food"></i></span><h5 tal:content="string:Top10"/>
-									</a>
-								</div>
-							</div>							
-							<div class="collapse in accordion-body" id="Top10">
-								<div class="widget-content nopadding size-12">
-									<ul class="activity-list">
-										<li tal:repeat="T Top10">											
-											<a class="course-item tip-left" tal:attributes="data-original-title php: T->getCourse()->getName() . ' ' . T->getCourse()->getPrice1Print()">
-												<strong class="Course" tal:content="T/getCourse/getShortName" tal:attributes="alt T/getCourse/getId;data-delta 'plus' "/>
-											</a>
-										</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="accordion-group widget-box" tal:repeat="Category CategoryAll">
-							<div class="accordion-heading">
-								<div class="widget-title">
-									<a data-parent="#collapse-group" tal:attributes="href php:'#'.Category->getIdString();" data-toggle="collapse">
-										<span class="icon"><i class="glyphicons-fast_food"></i></span><h5 tal:content="Category/getNameReduce"/>
-									</a>
-								</div>
-							</div>
-							<div class="collapse accordion-body" tal:attributes="id Category/getIdString">
-								<div class="widget-content nopadding size-12">
-									<ul class="activity-list">
-										<li tal:repeat="Course Category/getCourseAll">
-											<a class="course-item tip-left" tal:attributes="data-original-title php: Course->getName() . ' ' . Course->getPrice1Print()">
-												<strong class="Course" tal:content="Course/getShortName" tal:attributes="alt Course/getId;data-delta 'plus' "/>
-											</a>
-										</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
+					<div id="CourseF"/>					
 				</div>
 			</div>			
 		</div>
-		<div id="TableActive" />
-		<div id="DomainActive" tal:attributes="alt Domain/getId"/>
-		
-		<!-- TIME DIALOG  -->
-		<div id="DialogTime" class="modal fade">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header"><h3><i class="glyphicons-bell modal-icon"/>KẾT THÚC CA</h3></div>
-					<div class="form-horizontal">
-						<div class="modal-body">
-							<p>Bạn có muốn kết thúc CA ?</p>
-						</div>
-						<div class="modal-footer">
-							<button id="TimeButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Kết thúc</button>
-							<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-										
 		<!-- END INSERT DIALOG  -->
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>		
 		<script src="/mvc/templates/theme/cms/js/jquery.min.js"></script>
@@ -133,28 +52,15 @@
 		<script src="/mvc/templates/theme/cms/js/jquery.validate.js"/>
 						
         <script>						
-			//NẠP DANH SÁCH CÁC BÀN
-			$('.Domain').click(function(){
-				var IdDomain = $(this).attr('alt');
-				$("#TableAll").load("/selling/load/domain/"+IdDomain);
+			//NẠP DANH SÁCH GIAO DỊCH VỚI KHÁCH HÀNG
+			$('.Customer').click(function(){				
+				var IdCustomer = $(this).attr('alt');				
+				$("#SessionAll").load("/selling/load/customer/"+IdCustomer);
 				$(this).toggleClass('active').siblings().removeClass('active');
 				$("#SearchName").focus();
 			});
-			$('.Domain:first').click();
-									
-			//-----------------------------------------------------------------------------------
-			//KẾT THÚC CA
-			$('#TimeButton').click(function(){				
-				var URL = "/selling/end/case/one";
-				$.ajax({
-					type: "POST",					
-					url: URL,
-					success: function(msg){
-						location.reload();
-					}
-				});				
-			});
-			
+			$('.Customer:first').click();
+												
 			//---------------------------------------------------------------------------
 			//Xử lí search tên			
 			$('#SearchName').keyup(function(e){
@@ -164,9 +70,7 @@
 			
 			//-----------------------------------------------------------------------------------
 			//CALL COURSE
-			$(".RemoveCourseSearch").click(function(){
-				$("#CourseF").html("");
-			});
+			$(".RemoveCourseSearch").click(function(){$("#CourseF").html("");});
 									
 			//Mặc định vào ô tìm kiếm
 			$("#SearchName").focus();

@@ -10,28 +10,21 @@ class SessionDetail extends Object{
 	private $IdCourse;
 	private $Count;	
 	private $Price;
-	private $Enable;
-	private $IdEmployee;
-	
-    function __construct( $Id=null, $IdSession=null, $IdCourse=null, $Count=null, $Price=null, $Enable=null, $IdEmployee=null) {
+		
+    function __construct( $Id=null, $IdSession=null, $IdCourse=null, $Count=null, $Price=null){
         $this->Id 			= $Id;
 		$this->IdSession 	= $IdSession;
 		$this->IdCourse 	= $IdCourse;
 		$this->Count 		= $Count;		
 		$this->Price 		= $Price;
-		$this->Enable 		= $Enable;
-		$this->IdEmployee 	= $IdEmployee;
+		
         parent::__construct( $Id );
     }
 	
-	function setId( $Id) {$this->Id = $Id;}
-    function getId( ) {return $this->Id;}
-	function getIdPrint( ) {return "SessionDetail".$this->Id;}
-	
-	function setId1( $Id1) {$this->Id1 = $Id1;}
-    function getId1( ) {return $this->Id1;}
-		
-	function setIdSession( $IdSession ) {$this->IdSession = $IdSession;$this->markDirty();}
+	function setId( $Id) 	{$this->Id = $Id;}
+    function getId( ) 		{return $this->Id;}
+					
+	function setIdSession( $IdSession ) {$this->IdSession = $IdSession; $this->markDirty();}
 	function getIdSession( ) {return $this->IdSession;}
 	
 	function getSession( ) {		
@@ -46,7 +39,8 @@ class SessionDetail extends Object{
 		$mCourse = new \MVC\Mapper\Course();
 		$Course = $mCourse->find($this->IdCourse);
         return $Course;
-    }	
+    }
+	
     function setCount( $Count ) {$this->Count = $Count;$this->markDirty();}   
 	function getCount( ) {return $this->Count;}
 	function getCountPrint( ) { return round($this->Count,2);}
@@ -57,16 +51,8 @@ class SessionDetail extends Object{
 	
 	function setEnable( $Enable){$this->Enable = $Enable;}
 	function getEnable( ) 		{return $this->Enable;}
-	
-	function setIdEmployee( $IdEmployee){$this->IdEmployee = $IdEmployee;}
-	function getIdEmployee( ){return $this->IdEmployee;}
-	function getEmployee( ){
-		$mEmployee = new \MVC\Mapper\Employee();
-		$Employee = $mEmployee->find($this->IdEmployee);
-		return $Employee;
-	}
-	
-	function getValue( ) {return $this->Price*$this->Count*$this->Enable;}
+			
+	function getValue( ) {return $this->Price*$this->Count;}
 	function getValuePrint( ) {$num = new Number($this->getValue());return $num->formatCurrency();}
 	
 	function getValueBase( ){
@@ -80,9 +66,7 @@ class SessionDetail extends Object{
 			'IdCourse'		=> $this->getIdCourse(),
 			'Name'			=> $this->getCourse()->getName(),
 			'Count'			=> $this->getCount(),			
-			'Price'			=> $this->getPrice(),
-			'Enable'		=> $this->getEnable(),
-			'IdEmployee'	=> $this->getIdEmployee()
+			'Price'			=> $this->getPrice()			
 		);
 		return json_encode($json);
 	}
@@ -91,9 +75,7 @@ class SessionDetail extends Object{
 		$this->IdSession		= $Data[1];
 		$this->IdCourse			= $Data[2];
 		$this->Count			= $Data[3];
-		$this->Price			= $Data[4];
-		$this->Enable			= $Data[5];
-		$this->IdEmployee		= $Data[6];
+		$this->Price			= $Data[4];		
     }
 	
 	//-------------------------------------------------------------------------------
