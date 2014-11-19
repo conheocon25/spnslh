@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<div metal:use-macro="mFront.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>
+	</head>	
+	<body>		
+		<div id="wrapper">
+			<div metal:use-macro="mFront.xhtml/Header"/>
+			<section id="content">				
+				<div class="md-margin2x"></div>
+				<div class="container">
+					<div class="row">
+						<div class="col-md-3">
+							
+						</div>
+						<div class="col-md-9">
+							<div class="row">
+								<table class="table table-bordered table-striped table-hover">
+									<thead>
+										<tr>
+											<th width="30">STT</th>
+											<th class="left">TÊN</th>
+											<th class="left">DANH MỤC</th>
+											<th width="120" class="left">THỜI GIAN</th>											
+										</tr>
+									</thead>
+									<tbody>
+										<tr tal:repeat="Product ProductAll">
+											<td class="center"><span tal:content="repeat/Product/number"/></td>
+											<td><a tal:attributes="href Product/getURLView" tal:content="Product/getName"/></td>
+											<td><a tal:attributes="href Product/getURLView" tal:content="Product/getCategory/getName"/></td>
+											<td class="left"><span tal:content="Product/getDateTimePrint"/></td>
+										</tr>
+									</tbody>
+								</table>
+								<div class="category-toolbar clearfix">
+									<div class="toolbox-pagination clearfix">
+										<ul class="pagination">
+											<li tal:repeat="P PN/getPages" tal:attributes="class php:Page==P->getId()?'active':'disable'">
+												<a tal:attributes="href P/getURL" tal:content="P/getName"/>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<div metal:use-macro="mFront.xhtml/Footer"/>
+		</div><!-- End #wrapper -->		
+		<div metal:use-macro="mFront.xhtml/IncludeJS"/>		
+	</body>
+</html>
