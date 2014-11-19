@@ -11,19 +11,39 @@ class ProductInfo extends Mapper implements \MVC\Domain\ProductInfoFinder {
 		$selectAllStmt = sprintf("select * from %s", $tblProductInfo);
 		$selectStmt = sprintf("select * from %s where id=?", $tblProductInfo);
 		$updateStmt = sprintf("update %s set 
-				idproduct=?,
-				image1=?,
-				image2=?,
-				info=? 
+				idproduct=?,				
+				info=?,
+				info_ex01=?,
+				info_ex02=?,
+				info_ex03=?,
+				info_ex04=?,
+				info_ex05=?,
+				info_ex06=?,
+				info_ex07=?,
+				info_ex08=?,
+				info_ex09=?,
+				info_ex10=?,
+				info_ex11=?,
+				info_ex12=?
 			where id=?", $tblProductInfo);
 			
 		$insertStmt = sprintf("insert into %s ( 
-					idproduct, 
-					image1, 					
-					image2,
-					info					
+					idproduct, 					
+					info,
+					info_ex01,
+					info_ex02,
+					info_ex03,
+					info_ex04,
+					info_ex05,
+					info_ex06,
+					info_ex07,
+					info_ex08,
+					info_ex09,
+					info_ex10,
+					info_ex11,
+					info_ex12
 				) 
-				values( ?, ?, ?, ?)", $tblProductInfo);
+				values( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblProductInfo);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblProductInfo);
 		$existStmt 	= sprintf("select id from %s where idproduct=? ", $tblProductInfo);
 				
@@ -38,10 +58,20 @@ class ProductInfo extends Mapper implements \MVC\Domain\ProductInfoFinder {
     protected function doCreateObject( array $array ) {		
         $obj = new \MVC\Domain\ProductInfo( 
 			$array['id'],
-			$array['idproduct'],
-			$array['image1'],
-			$array['image2'],
-			$array['info']						
+			$array['idproduct'],			
+			$array['info'],
+			$array['info_ex01'],
+			$array['info_ex02'],
+			$array['info_ex03'],
+			$array['info_ex04'],
+			$array['info_ex05'],
+			$array['info_ex06'],
+			$array['info_ex07'],
+			$array['info_ex08'],
+			$array['info_ex09'],
+			$array['info_ex10'],
+			$array['info_ex11'],
+			$array['info_ex12']
 		);
         return $obj;
     }
@@ -49,10 +79,20 @@ class ProductInfo extends Mapper implements \MVC\Domain\ProductInfoFinder {
     protected function targetClass(){return "ProductInfo";}
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array(
-			$object->getIdProduct(),
-			$object->getImage1(),
-			$object->getImage2(),
-			$object->getInfo()					
+			$object->getIdProduct(),			
+			$object->getInfo(),
+			$object->getInfoEx01(),
+			$object->getInfoEx02(),
+			$object->getInfoEx03(),
+			$object->getInfoEx04(),
+			$object->getInfoEx05(),
+			$object->getInfoEx06(),
+			$object->getInfoEx07(),
+			$object->getInfoEx08(),
+			$object->getInfoEx09(),
+			$object->getInfoEx10(),
+			$object->getInfoEx11(),
+			$object->getInfoEx12()
 		); 
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
@@ -61,10 +101,20 @@ class ProductInfo extends Mapper implements \MVC\Domain\ProductInfoFinder {
     
     protected function doUpdate( \MVC\Domain\Object $object ){
         $values = array( 
-			$object->getIdProduct(),
-			$object->getImage1(),
-			$object->getImage2(),
+			$object->getIdProduct(),			
 			$object->getInfo(),
+			$object->getInfoEx01(),
+			$object->getInfoEx02(),
+			$object->getInfoEx03(),
+			$object->getInfoEx04(),
+			$object->getInfoEx05(),
+			$object->getInfoEx06(),
+			$object->getInfoEx07(),
+			$object->getInfoEx08(),
+			$object->getInfoEx09(),
+			$object->getInfoEx10(),
+			$object->getInfoEx11(),
+			$object->getInfoEx12(),
 			$object->getId()
 		);		
         $this->updateStmt->execute( $values );

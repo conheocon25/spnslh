@@ -12,40 +12,11 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-md-12">
-							<div class="row">
-								<div class="col-md-6 col-sm-12 col-xs-12 product-viewer clearfix" tal:condition="php: (Product->getImageAll()->count() > 0) ? true:false">
-									<div id="product-image-carousel-container">
-										<ul id="product-carousel" class="celastislide-list">
-											<li class="active-slide">
-												<a data-rel='prettyPhoto' tal:attributes="href Product/getImageAll/current/getURL">
-													<img tal:attributes="src Product/getImageAll/current/getURL" alt="Phone photo 1"/>
-												</a>
-											</li>
-											<li tal:repeat="Image Product/getImageAll">
-												<a data-rel='prettyPhoto' tal:attributes="href Image/getURL">
-													<img tal:attributes="src Image/getURL"/>
-												</a>
-											</li>
-										</ul>
-									</div>
-									<div id="product-image-container">
-										<figure>
-											<img tal:attributes="src Product/getImageAll/current/getURL; data-big Product/getImageAll/current/getURL" alt="Product Big image" id="product-image"/>
-											<figcaption class="item-price-container" tal:condition="Product/getPrice2">
-												<span class="item-price" tal:content="Product/getPrice2Print" style="font-size:80%"/>
-											</figcaption>
-										</figure>
-									</div>
-								</div>
+							<div class="row">								
 								<div class="col-md-6 col-sm-12 col-xs-12 product">
-									<div class="lg-margin visible-sm visible-xs"></div><!-- Space -->
-									<h1 class="product-name" tal:content="Product/getName"/>
-									<div class="ratings-container">
-										<div class="ratings separator">
-											<div class="ratings-result" data-result="100"></div>
-										</div>
-									</div>
-									<div class="md-margin"></div>
+									<div class="lg-margin visible-sm visible-xs" />
+									<h1 class="product-name"><span tal:content="Product/getName"/> ( Mã số: <B tal:content="Product/getId"/>)</h1>
+									<div class="md-margin" />
 									<div class="product-extra clearfix">
 										<div class="share-button-group">																				
 											<div class="fb-share-button" tal:attributes="data-href Product/getURLViewFull" data-type="button_count" />
@@ -63,14 +34,23 @@
 							</div>
 							<div class="lg-margin2x"></div><!-- End .space -->
 							<div class="row">
-								<div class="col-md-12 col-sm-12 col-xs-12">									
-									<p tal:content="structure Product/getInfo/getInfo"/>																		
+								<div class="col-md-12 col-sm-12 col-xs-12">
+									<h1>GIỚI THIỆU</h1>
+									<p tal:content="structure Product/getInfo/getInfo"/>
 								</div>
-								<div class="lg-margin2x visible-sm visible-xs"></div>
+								<div class="lg-margin2x visible-sm visible-xs" />
 							</div>							
 							<div class="lg-margin2x"></div>
-														
-							<h2 class="title">Tin cùng danh mục</h2>								
+							<div class="row" tal:condition="Product/getMap">
+								<div class="col-md-12 col-sm-12 col-xs-12">
+									<h1>BẢN ĐỒ</h1>
+									<p tal:content="Product/getMap/getLatitude"/>
+									<p tal:content="Product/getMap/getLongitude"/>
+								</div>
+								<div class="lg-margin2x visible-sm visible-xs" />
+							</div>
+							
+							<h2 class="title">TIN CÙNG DANH MỤC</h2>								
 							<ul>
 								<li tal:repeat="P1 Category1/getProductAll">
 									<a tal:attributes="href P1/getURLView">

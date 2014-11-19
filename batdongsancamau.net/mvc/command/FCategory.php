@@ -37,10 +37,7 @@
 			$CategoryAll 	= $mCategory->findAll();
 			$Category1 		= $mCategory->findByKey($KCategory1);
 			$Category2 		= $mCategory1->findByKey(array($Category1->getId(), $KCategory2));
-						
-			
-			$PMAll 			= $mProduct->findManufacturer1(array($Category2->getId()));
-						
+									
 			if (!isset($Page)) $Page = 1;
 			
 			if (!isset($IdManufacturer)){
@@ -50,9 +47,7 @@
 				$ProductAll 	= $mProduct->findByCategoryManufacturerPage(array($Category2->getId(), $IdManufacturer, $Page, 9));
 				$PN 			= new \MVC\Domain\PageNavigation($Category2->getProductManufacturerAll($IdManufacturer)->count(), 9, $Category2->getURLViewManufacturer($IdManufacturer));
 			}
-			
-			$LinkedAll 		= $mLinked->findByTop(array());
-			
+									
 			$Title = mb_strtoupper($Category2->getName(), 'UTF8');
 			$Navigation = array(
 				array(mb_strtoupper($Category1->getName(), 'UTF8'), "/")
@@ -62,7 +57,7 @@
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
 			$request->setProperty("Title", 				$Title);			
-			$request->setProperty("Active", 			"Menu");
+			$request->setProperty("Active", 			"Home");
 			$request->setProperty("Page", 				$Page);
 			$request->setObject("PN", 					$PN);
 			$request->setObject("Navigation", 			$Navigation);
@@ -76,13 +71,9 @@
 			
 			$request->setObject("CategoryAll", 			$CategoryAll);
 			$request->setObject("Category1", 			$Category1);			
-			$request->setObject("Category2", 			$Category2);
-			$request->setObject("TagAll", 				$TagAll);
+			$request->setObject("Category2", 			$Category2);			
 			$request->setObject("ProductAll", 			$ProductAll);
-			$request->setObject("BranchAll", 			$BranchAll);
-			$request->setObject("PMAll", 				$PMAll);
-			$request->setObject("LinkedAll", 			$LinkedAll);
-						
+									
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

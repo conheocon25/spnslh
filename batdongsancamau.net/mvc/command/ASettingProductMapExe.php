@@ -15,6 +15,7 @@
 			$IdProduct 	= $request->getProperty('IdProduct');
 			$Latitude 	= $request->getProperty('Latitude');
 			$Longitude 	= $request->getProperty('Longitude');
+			$Address 	= $request->getProperty('Address');
 						
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
@@ -30,6 +31,7 @@
 			$PM->setIdDistrict($IdDistrict);
 			$PM->setLatitude($Latitude);
 			$PM->setLongitude($Longitude);
+			$PM->setAddress($Address);
 			$mProductMap->update($PM);
 			
 			return self::statuses('CMD_OK');

@@ -131,6 +131,17 @@ class Product extends Object{
 		return $Info;
 	}
 	
+	function getMap(){
+		$mProductMap 	= new \MVC\Mapper\ProductMap();
+		$IdMap 			= $mProductMap->exist(array($this->getId()));
+		if ($IdMap>0){
+			$Map = $mProductMap->find($IdMap);
+		}else{
+			$Map = null;
+		}
+		return $Map;
+	}
+	
 	function getSamePriceAll(){
 		$mProduct = new \MVC\Mapper\Product();
 		$ProductAll = $mProduct->findBySamePrice(array($this->getId(), $this->getPrice2() ));
