@@ -9,16 +9,18 @@ class ProductMap extends Object{
 	private $IdDistrict;
 	private $Latitude;
 	private $Longitude;
+	private $Address;
 		
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
     function __construct( 
-		$Id=null, 
-		$IdProduct=null,
-		$IdDistrict=null,
-		$Latitude=null,
-		$Longitude=null
+		$Id			=null, 
+		$IdProduct	=null,
+		$IdDistrict	=null,
+		$Latitude	=null,
+		$Longitude	=null,
+		$Address	=null
 	)
 	{        		
 		$this->Id				= $Id;
@@ -26,6 +28,7 @@ class ProductMap extends Object{
 		$this->IdDistrict		= $IdDistrict;
 		$this->Latitude			= $Latitude;
 		$this->Longitude		= $Longitude;
+		$this->Address			= $Address;
 				
         parent::__construct( $Id );
     }
@@ -55,14 +58,18 @@ class ProductMap extends Object{
 	
     function setLongitude( $Longitude ) {$this->Longitude = $Longitude;$this->markDirty();}
     function getLongitude( ) {return $this->Longitude;}
-				
+	
+	function setAddress( $Address ) {$this->Address = $Address;$this->markDirty();}
+    function getAddress( ) 			{return $this->Address;}
+	
 	function toJSON(){
 		$json = array(
 			'Id' 				=> $this->getId(),	
 			'IdProduct'			=> $this->getIdProduct(),			
 			'IdDistrict'		=> $this->getIdDistrict(),
 			'Latitude'			=> $this->getLatitude(),
-			'Longitude'			=> $this->getLongitude()			
+			'Longitude'			=> $this->getLongitude(),
+			'Address'			=> $this->getAddress()
 		);		
 		return json_encode($json);
 	}
@@ -74,6 +81,7 @@ class ProductMap extends Object{
 		$this->IdDistrict		= $Data[2];
 		$this->Latitude			= $Data[3];
 		$this->Longitude		= $Data[4];
+		$this->Address			= $Data[5];
     }
 	
 	function getURLSettingExe(){return "/admin/setting/supplier/".$this->getProduct()->getIdSupplier()."/".$this->getIdProduct()."/map/exe";}

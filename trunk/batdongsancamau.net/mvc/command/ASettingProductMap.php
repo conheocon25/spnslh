@@ -32,7 +32,7 @@
 			
 			$IdPM  			= $mProductMap->exist(array($IdProduct));
 			if ($IdPM==-1){
-				$PM = new \MVC\Domain\ProductMap(null, $IdProduct, 1, 0, 0);
+				$PM = new \MVC\Domain\ProductMap(null, $IdProduct, 1, 0, 0, "Địa chỉ");
 				$mProductMap->insert($PM);
 			}else{
 				$PM = $mProductMap->find($IdPM);

@@ -9,8 +9,8 @@ class ProductMap extends Mapper implements \MVC\Domain\ProductMapFinder {
 						
 		$selectAllStmt 			= sprintf("select * from %s", $tblProductMap);
 		$selectStmt 			= sprintf("select * from %s where id=?", $tblProductMap);
-		$updateStmt 			= sprintf("update %s set idproduct=?, iddistrict=?, latitude=?, longitude=? where id=?", $tblProductMap);
-		$insertStmt 			= sprintf("insert into %s ( idproduct, iddistrict, latitude, longitude) values( ?, ?, ?, ?)", $tblProductMap);
+		$updateStmt 			= sprintf("update %s set idproduct=?, iddistrict=?, latitude=?, longitude=?, address=? where id=?", $tblProductMap);
+		$insertStmt 			= sprintf("insert into %s ( idproduct, iddistrict, latitude, longitude, address) values( ?, ?, ?, ?, ?)", $tblProductMap);
 		$deleteStmt 			= sprintf("delete from %s where id=?", 				$tblProductMap);
 		$findByStmt 			= sprintf("select * from %s where idproduct=?", 	$tblProductMap);
 		$existStmt 				= sprintf("select id from %s where idproduct=? ", 	$tblProductMap);
@@ -20,7 +20,7 @@ class ProductMap extends Mapper implements \MVC\Domain\ProductMapFinder {
         $this->updateStmt 		= self::$PDO->prepare($updateStmt);
         $this->insertStmt 		= self::$PDO->prepare($insertStmt);
 		$this->deleteStmt 		= self::$PDO->prepare($deleteStmt);
-		$this->findByStmt 		= self::$PDO->prepare($findByStmt);				
+		$this->findByStmt 		= self::$PDO->prepare($findByStmt);
 		$this->existStmt 		= self::$PDO->prepare($existStmt);
     }
 	
@@ -30,8 +30,9 @@ class ProductMap extends Mapper implements \MVC\Domain\ProductMapFinder {
 			$array['id'],
 			$array['idproduct'],			
 			$array['iddistrict'],						
-			$array['latitude'],	
-			$array['longitude']
+			$array['latitude'],
+			$array['longitude'],
+			$array['address']
 		);
         return $obj;
     }
@@ -42,7 +43,8 @@ class ProductMap extends Mapper implements \MVC\Domain\ProductMapFinder {
 			$object->getIdProduct(),
 			$object->getIdDistrict(),	
 			$object->getLatitude(),
-			$object->getLongitude()
+			$object->getLongitude(),
+			$object->getAddress()
 		); 
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
@@ -55,6 +57,7 @@ class ProductMap extends Mapper implements \MVC\Domain\ProductMapFinder {
 			$object->getIdDistrict(),	
 			$object->getLatitude(),
 			$object->getLongitude(),
+			$object->getAddress(),
 			$object->getId()
 		);		
         $this->updateStmt->execute( $values );
