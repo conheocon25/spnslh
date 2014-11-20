@@ -78,40 +78,66 @@ class ProductInfo extends Object{
 	
 	function setInfoEx01( $InfoEx01){$this->InfoEx01 = $InfoEx01;$this->markDirty();}
     function getInfoEx01( ) 		{return $this->InfoEx01;}
+	function getInfoEx01Print( )	{return $this->InfoEx01." m";}
 	
 	function setInfoEx02( $InfoEx02){$this->InfoEx02 = $InfoEx02; $this->markDirty();}
     function getInfoEx02( ) 		{return $this->InfoEx02;}
+	function getInfoEx02Print( )	{return $this->InfoEx02." m";}
+	
+	function getInfoEx13()			{return $this->InfoEx01*$this->InfoEx02;}
+	function getInfoEx13Print()		{return $this->getInfoEx13()." m2";}
 	
 	function setInfoEx03( $InfoEx03){$this->InfoEx03 = $InfoEx03; $this->markDirty();}
     function getInfoEx03( ) 		{return $this->InfoEx03;}
+	function getInfoEx03Print( ){
+		$Arr = array("...", "Đông", "Tây", "Nam", "Bắc", "Đông Bắc", "Đông Nam", "Tây Bắc", "Tây Nam");
+		return $Arr[$this->InfoEx03];
+	}
 	
 	function setInfoEx04( $InfoEx04){$this->InfoEx04 = $InfoEx04; $this->markDirty();}
     function getInfoEx04( ) 		{return $this->InfoEx04;}
+	function getInfoEx04Print( ){
+		return $this->getInfoEx04( )." m2";
+	}
 	
 	function setInfoEx05( $InfoEx05){$this->InfoEx05 = $InfoEx05; $this->markDirty();}
     function getInfoEx05( ) 		{return $this->InfoEx05;}
+	function getInfoEx05Print( )	{return $this->InfoEx05==1?'có':'...';}
 	
 	function setInfoEx06( $InfoEx06){$this->InfoEx06 = $InfoEx06; $this->markDirty();}
     function getInfoEx06( ) 		{return $this->InfoEx06;}
+	function getInfoEx06Print( ){
+		$Arr = array("...", "1 lầu", "2 lầu", "3 lầu", "4 lầu");
+		return $Arr[$this->InfoEx06];		
+	}
 	
 	function setInfoEx07( $InfoEx07){$this->InfoEx07 = $InfoEx07; $this->markDirty();}
     function getInfoEx07( ) 		{return $this->InfoEx07;}
+	function getInfoEx07Print( ){		
+		$Arr = array("...", "1 phòng", "2 phòng", "3 phòng", "4 phòng");
+		return $Arr[$this->InfoEx07];		
+	}
 	
 	function setInfoEx08( $InfoEx08){$this->InfoEx08 = $InfoEx08; $this->markDirty();}
     function getInfoEx08( ) 		{return $this->InfoEx08;}
+	function getInfoEx08Print( )	{return $this->InfoEx08==1?'có':'...';}
 	
 	function setInfoEx09( $InfoEx09){$this->InfoEx09 = $InfoEx09; $this->markDirty();}
     function getInfoEx09( ) 		{return $this->InfoEx09;}
+	function getInfoEx09Print( )	{return $this->InfoEx09==1?'có':'...';}
 	
 	function setInfoEx10( $InfoEx10){$this->InfoEx10 = $InfoEx10; $this->markDirty();}
     function getInfoEx10( ) 		{return $this->InfoEx10;}
+	function getInfoEx10Print( )	{return $this->InfoEx10==1?'có':'...';}
 	
 	function setInfoEx11( $InfoEx11){$this->InfoEx11 = $InfoEx11; $this->markDirty();}
     function getInfoEx11( ) 		{return $this->InfoEx11;}
+	function getInfoEx11Print( )	{return $this->InfoEx11==1?'có':'...';}
 	
 	function setInfoEx12( $InfoEx12){$this->InfoEx12 = $InfoEx12; $this->markDirty();}
     function getInfoEx12( ) 		{return $this->InfoEx12;}
-	
+	function getInfoEx12Print( )	{return $this->InfoEx12==1?'có':'...';}
+		
 	function toJSON(){
 		$json = array(
 			'Id' 				=> $this->getId(),	
