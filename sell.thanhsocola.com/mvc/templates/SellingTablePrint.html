@@ -84,14 +84,6 @@
 			<td width="21%" align='right' tal:content="Detail/getPricePrint" 	/>
 			<td width="26%" align='right' ><span tal:content="Detail/getValuePrint" /></td>
 		</tr>
-		<tr tal:repeat="Detail Session/getDetails4" tal:condition="Session/getDetails4/count">
-			<td width="42%" align='left' tal:content="Detail/getCourse/getName" />
-			<td width="11%" align='right' tal:content="Detail/getCount" />
-			<td colspan="2" width="47%" align='left'>
-				<span tal:condition="Detail/getEmployee" tal:content="Detail/getEmployee/getName"/>
-				<span tal:condition="not: Detail/getEmployee" tal:content="string: Quán"/> tặng
-			</td>
-		</tr>
 	</tbody>
 </table>	
 <table width="100%" cellpadding="2" cellspacing="0" border="0" style="font-size:12pt;font-family:Arial; line-height:12pt;padding-bottom:2px;">

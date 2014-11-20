@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<body>		
-		<div id="SessionAll" class="widget-box">			
+		<div id="SessionAll" class="widget-box">
 			<div class="widget-content nopadding">				
 				<table class="table table-striped table-hover">
 					<thead>
@@ -16,16 +16,34 @@
 							<td><div style="cursor: pointer" tal:attributes="alt Session/getId" class="SessionView text-right"><span tal:content="Session/getValuePrint"/></div></td>
 						</tr>
 					</tbody>
-				</table>				
-			</div>					
+				</table>
+				<div class="btn SessionInsert" tal:attributes="alt Customer/getId"><i class="glyphicons-circle_plus" /> thêm mới</div>
+			</div>
+			<div id="CustomerCurrent" tal:attributes="alt Customer/getId"/>
 		</div>						
         <script>
 			$(".SessionView").click(function(){
 				var IdSession = $(this).attr('alt');				
-				$("#SessionView").load("/selling/load/table/"+IdSession);
+				//$("#SessionView").load("/selling/load/table/"+IdSession);
+				$("#SessionView").load("/selling/session/load/"+IdSession);
 			});
+			
 			//Mặc định lấy click của BÀN đầu tiên
 			$('.SessionView:first').click();
+			
+			$(".SessionInsert").click(function(){
+				var IdCustomer = $(this).attr('alt');								
+				var Data = [];
+				var URL = "/selling/session/insert/"+IdCustomer;												
+				$.ajax({
+					type: "POST",					
+					url: URL,
+					success: function(msg){						
+						$("#SessionAll").load("/selling/load/customer/"+IdCustomer);
+					}
+				});
+				
+			});
 			
         </script>
 	</body>

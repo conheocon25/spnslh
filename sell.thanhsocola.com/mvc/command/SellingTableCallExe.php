@@ -6,12 +6,11 @@
 			//-------------------------------------------------------------
 			//THAM SỐ TOÀN CỤC
 			//-------------------------------------------------------------						
-			$Session1 = \MVC\Base\SessionRegistry::instance();
-			
+						
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$IdTable 	= $request->getProperty("IdTable");
+			$IdSession 	= $request->getProperty("IdSession");
 			$IdCourse 	= $request->getProperty("IdCourse");						
 			$Delta 		= $request->getProperty("Delta");
 			
@@ -27,8 +26,7 @@
 									
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------			
-			$Table = $mTable->find($IdTable);
+			//-------------------------------------------------------------						
 			$Course = $mCourse->find($IdCourse);
 			
 			$EmployeeAll = $mEmployee->findAll();
@@ -39,53 +37,27 @@
 				$IdEmployee = $Employee->getId();
 			}
 			
-			//Nếu chưa có Session thì tạo
-			$Session = $Table->getSessionActive();			
-			if (!isset($Session)){
-				$Session = new \MVC\Domain\Session(
-					null,					//Id
-					$IdTable,				//IdTable
-					$Session1->getCurrentIdUser(),//IdUser
-					1,						//IdCustomer	
-					$IdEmployee,			//IdEmployee
-					\date("Y-m-d H:i:s"), 	//DateTime
-					null, 					//DateTimeEnd
-					"",						//Note
-					"",						//Status
-					0,						//DiscountValue	
-					0,						//DiscountPercent
-					0,						//Surtax
-					0						//Payment
-				);
-				$IdSession = $mSession->insert($Session);
-								
-			}
-			$IdSession = $Session->getId();
-						
+			$Session = $mSession->find($IdSession);
+			
 			//Kiểm tra xem IdCourse đã có tồn tại trong Session hiện tại chưa
-			$IdSD = $mSD->check(array($IdSession, $IdCourse));
-			$Count = 1;
-			if (!isset($IdSD) || $IdSD==null){
+			$IdSD 	= $mSD->check(array($IdSession, $IdCourse));			
+			$Count 	= 1;
+			if ($IdSD < 1){				
 				$SD = new \MVC\Domain\SessionDetail(
 					null,
 					$IdSession, 
 					$IdCourse, 
 					1,
-					$Course->getPrice1(),
-					1,
-					0
+					$Course->getPrice1()
 				);
-				$mSD->insert($SD);								
-			}else{
+				$mSD->insert($SD);				
+			}else{				
 				$SD = $mSD->find($IdSD);
-				/*
-				$SD = $mSD->find($IdSD);
-				
-				$Count = $SD->getCount() + $Delta;
+				$Count = $SD->getCount() + 1;
 				$SD->setCount($Count);
 				$mSD->update($SD);
-				*/								
-			}			
+			}
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------												
