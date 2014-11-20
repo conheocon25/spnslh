@@ -72,7 +72,7 @@ class Product extends Object{
 	
 	function setPrice1( $Price1 ) {$this->Price1 = $Price1; $this->markDirty();}
     function getPrice1( ) {return $this->Price1;}
-	function getPrice1Print( ) {$num = new Number($this->Price1);return $num->formatCurrency();}
+	function getPrice1Print( ) {$num = new Number($this->Price1/1000000);return $num->formatCurrency()." triệu";}
 		
 	function setPrice2( $Price2 ) {$this->Price2 = $Price2; $this->markDirty();}
     function getPrice2( ) {return $this->Price2;}
