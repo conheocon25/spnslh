@@ -54,26 +54,19 @@
 		<!-- ============================================================================== -->
 		<!-- SELLING		 																-->
 		<!-- ============================================================================== -->		
-		<command name="Selling"><view>Selling</view></command>
-		<command name="SellingSearchCourse"><view>SellingSearchCourse</view></command>
-		<command name="SellingLogCourse"><view>SellingLogCourse</view></command>
-		<command name="SellingLogCoursePreparePrint"><view>SellingLogCoursePreparePrint</view></command>
+		<command name="Selling">					<view>Selling</view></command>
+		<command name="SellingSearchCourse">		<view>SellingSearchCourse</view></command>		
+		<command name="SellingSessionInsert">		<view>SellingSessionInsert</view></command>
+		<command name="SellingSessionLoad">			<view>SellingSessionLoad</view></command>
 		
 		<command name="SellingCustomerLoad">		<view>SellingCustomerLoad</view></command>
 		<command name="SellingDomainLoad">			<view>SellingDomainLoad</view></command>
 		<command name="SellingTableLoad">			<view>SellingTableLoad</view></command>
 		<command name="SellingTableCallExe">		<view>SellingTableCallExe</view></command>
-		<command name="SellingTableMoveExe">		<view>SellingTableMoveExe</view><status value="CMD_OK"><forward>Selling</forward></status></command>
-		<command name="SellingTableMergeExe">
-			<view>SellingTableMergeExe</view>
-			<status value="CMD_OK"><forward>Selling</forward></status>
-		</command>				
-		<command name="SellingTablePrint"><view>SellingTablePrint</view></command>
-		<command name="SellingTablePrint1"><view>SellingTablePrint1</view></command>
-		<command name="SellingTableCheckoutExe"><view>SellingTableCheckoutExe</view></command>
-		<command name="CallLog"><view>CallLog</view></command>
-		<command name="CallLogLoading"><view>CallLogLoading</view></command>
-						
+		
+		<command name="SellingTablePrint">			<view>SellingTablePrint</view></command>		
+		<command name="SellingTableCheckoutExe">	<view>SellingTableCheckoutExe</view></command>
+								
 		<!-- ============================================================================== -->
 		<!-- PAYROLL			 															-->
 		<!-- ============================================================================== -->		

@@ -25,7 +25,7 @@ class SessionDetail extends Mapper implements \MVC\Domain\UserFinder {
 			LIMIT 10
 		", $tblSessionDetail);
 		
-		$findBySession1Stmt = sprintf("select * from %s where idsession=? AND `enable`=1", $tblSessionDetail);
+		$findBySession1Stmt = sprintf("select * from %s where idsession=?", $tblSessionDetail);
 		$findBySession2Stmt = sprintf("select * from %s where idsession=?", $tblSessionDetail);
 		$findBySessionStmt = sprintf("
 				SELECT
@@ -34,9 +34,7 @@ class SessionDetail extends Mapper implements \MVC\Domain\UserFinder {
 					idcourse,
 					count,
 					price,
-					N.order,
-					SD.enable,
-					SD.idemployee
+					N.order					
 				FROM 
 					%s SD inner join (
 						SELECT 
@@ -48,7 +46,7 @@ class SessionDetail extends Mapper implements \MVC\Domain\UserFinder {
 					) as N 
 					on SD.idcourse = N.id
 				WHERE 
-					idsession=? AND SD.enable=1
+					idsession=?
 				ORDER BY N.order
 		", $tblSessionDetail);
 		
@@ -59,9 +57,7 @@ class SessionDetail extends Mapper implements \MVC\Domain\UserFinder {
 					idcourse,
 					count,
 					price,
-					N.order,
-					SD.enable,
-					SD.idemployee
+					N.order					
 				FROM 
 					%s SD inner join (
 						SELECT 
@@ -73,7 +69,7 @@ class SessionDetail extends Mapper implements \MVC\Domain\UserFinder {
 					) as N 
 					on SD.idcourse = N.id
 				WHERE 
-					idsession=? AND SD.enable=1 AND price>0
+					idsession=? 
 				ORDER BY N.order
 		", $tblSessionDetail);
 		
@@ -84,9 +80,7 @@ class SessionDetail extends Mapper implements \MVC\Domain\UserFinder {
 					idcourse,
 					count,
 					price,
-					N.order,
-					SD.enable,
-					SD.idemployee
+					N.order					
 				FROM 
 					%s SD inner join (
 						SELECT 
@@ -98,24 +92,14 @@ class SessionDetail extends Mapper implements \MVC\Domain\UserFinder {
 					) as N 
 					on SD.idcourse = N.id
 				WHERE 
-					idsession=? AND SD.enable=1 AND price=0
+					idsession=? 
 				ORDER BY N.order
 		", $tblSessionDetail);
 		
 		$findItemStmt = sprintf("select * from %s where idsession=? and idcourse=?", $tblSessionDetail);
 		$evaluateStmt = sprintf("select sum(sd.count * price ) from %s sd where idsession=?", $tblSessionDetail);
 		
-		$checkStmt = sprintf("
-			select 
-				distinct id 
-			from 
-				%s 
-			where 
-				idsession=? and 
-				idcourse=? and 
-				(enable=1 and 
-				price>0)
-		", $tblSessionDetail);
+		$checkStmt = sprintf("select distinct id from %s where idsession=? and idcourse=? ", $tblSessionDetail);
 		
 		$trackByCountStmt = sprintf("
 			select 
@@ -296,7 +280,7 @@ class SessionDetail extends Mapper implements \MVC\Domain\UserFinder {
         $this->checkStmt->execute( $values );
 		$result = $this->checkStmt->fetchAll();		
 		if (!isset($result) || $result==null)
-			return null;        
+			return 0;        
         return $result[0][0];
     }
 			

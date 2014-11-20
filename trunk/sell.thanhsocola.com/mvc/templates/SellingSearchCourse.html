@@ -6,6 +6,7 @@
 				<ul class="activity-list">
 					<li tal:repeat="Course CourseFAll">	
 						<a class="course-item tip-left" tal:attributes="data-original-title php: Course->getName() . ' ' . Course->getPrice1Print()">
+							<img width="32" tal:attributes="src Course/getPicture"/>
 							<strong class="Course" tal:content="php: Course->getName() . ' ' . Course->getPrice1Print()" tal:attributes="alt Course/getId;data-delta 'plus' "/>
 						</a>
 					</li>
@@ -19,8 +20,8 @@
 			$('.Course').click(function(e){
 				var IdCourse 	= $(this).attr('alt');
 				var Delta 		= $(this).attr('data-delta');				
-				var IdTable 	= $("#CurrentTable").attr('alt');
-				URL = "/selling/call/table/"+IdTable+"/"+IdCourse+"/"+Delta;				
+				var IdSession 	= $("#Session").attr('alt');
+				URL = "/selling/call/table/"+IdSession+"/"+IdCourse+"/"+Delta;				
 				e.stopImmediatePropagation();
 				$.ajax({
 					type: "POST", 
@@ -28,11 +29,9 @@
 					url: URL,
 					dataType: 'json',
 					success: function(data){
-						var TableActive = "#" + $("#TableActive").attr('alt');
-						$("#Session").load("/selling/load/table/"+IdTable);
-						
-						//Đánh dấu Table có khách
-						$(TableActive).addClass('actived');
+						var IdCustomer = $("#CustomerCurrent").attr('alt');						
+						$("#SessionAll").load("/selling/load/customer/"+IdCustomer);
+						$("#SessionView").load("/selling/session/load/"+IdSession);
 					}
 				});
 			});
