@@ -8,66 +8,22 @@
 		<div id="wrapper">
 			<div metal:use-macro="mFront.xhtml/Header"/>
 			<section id="content">				
-				<div class="md-margin2x"></div>
+				<div metal:use-macro="mFront.xhtml/LocationBar"/>
 				<div class="container">
-					<div class="row">
-						<div class="col-md-3">
-							Lọc tin từ:
-							<ul>
-								<li>Tất cả</li>
-								<li tal:repeat="District Province/getDistrictAll"> 
-									<span tal:content="District/getName"/>
-								</li>								
-							</ul>
-						</div>
+					<div class="row">						
 						<div class="col-md-9">
 							<div class="row">
 								
 							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="row"><div metal:use-macro="mFront.xhtml/SearchBox"/></div>
 						</div>
 					</div>
 				</div>
 			</section>
 			<div metal:use-macro="mFront.xhtml/Footer"/>
 		</div><!-- End #wrapper -->		
-		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
-		<script>
-			$(function() {
-				// Sequence.js Slider Plugin
-				var options = {
-					nextButton: true,
-					prevButton: true,
-					pagination:true,
-					autoPlay: true,
-					autoPlayDelay: 8500,
-					pauseOnHover: true,
-					preloader: true,
-					theme: 'slide',
-					speed: 700,
-					animateStartingFrameIn: true
-				},
-				homeSlider = $('#slider-sequence').sequence(options).data("sequence");
-								
-				$(".icon-like").click(function(){
-					var Data 	= [];
-					Data[0]		= $(this).attr('id');
-					Data[1]		= $(this).attr('name');
-					Data[2]		= $(this).attr('price');
-					Data[3]		= $(this).attr('image');
-					
-					var URL = "/danh-dau/them";
-					$.ajax({
-						type: "POST",
-						data: {Data:Data},
-						url: URL,
-						success: function(msg){
-							location.reload();
-						}
-					});
-				
-				});
-				
-			});
-		</script>
+		<div metal:use-macro="mFront.xhtml/IncludeJS"/>		
 	</body>
 </html>

@@ -8,8 +8,8 @@
 		<div metal:use-macro="mAdmin.xhtml/Header"/>		
 		<div id="sidebar">
 			<ul>				
-				<li><a class="update-item" href="#DialogEdit" data-toggle="modal"><i class="glyphicons-cogwheel" />CẬP NHẬT</a></li>
-				<li><a tal:attributes="href Product/getURLSettingInfo"><i class="glyphicons-cogwheel" />GIỚI THIỆU</a></li>
+				<li><a class="update-item" href="#DialogEdit" data-toggle="modal"><i class="glyphicons-cogwheel" />CƠ BẢN</a></li>
+				<li><a tal:attributes="href Product/getURLSettingInfo"><i class="glyphicons-cogwheel" />THÔNG TIN</a></li>
 				<li><a tal:attributes="href Product/getURLSettingImage"><i class="glyphicons-cogwheel" />HÌNH ẢNH</a></li>
 				<li><a tal:attributes="href Product/getURLSettingMap"><i class="glyphicons-cogwheel" />BẢN ĐỒ</a></li>
 			</ul>
@@ -37,11 +37,7 @@
 							<div class="form-group">
 								<label class="control-label">Thời gian</label>
 								<div class="controls"><input id="DateTime2" name="DateTime2" type="text" class="form-control input-small" tal:attributes="value Product/getDateTime"/></div>
-							</div>
-							<div class="form-group">
-								<label class="control-label">Mã</label>
-								<div class="controls"><input id="Code2" name="Code2" type="text" class="form-control input-small" tal:attributes="value Product/getCode"/></div>
-							</div>
+							</div>							
 							<div class="form-group">
 								<label class="control-label">Danh mục</label>
 								<div class="controls">
@@ -51,14 +47,20 @@
 										</option>
 									</select>
 								</div>
-							</div>										
-							<div class="form-group">
-								<label class="control-label">Giá thấp nhất</label>
-								<div class="controls"><input id="Price12" name="Price12" type="text" class="form-control input-small" tal:attributes="value Product/getPrice1"/></div>
 							</div>
 							<div class="form-group">
-								<label class="control-label">Giá cao nhất</label>
-								<div class="controls"><input id="Price22" name="Price22" type="text" class="form-control input-small" tal:attributes="value Product/getPrice2"/></div>
+								<label class="control-label">Loại</label>
+								<div class="controls">
+									<select name="IdEstate2" id="IdEstate2" style="width:80%;">
+										<option tal:repeat="Estate EstateAll" tal:attributes="value Estate/getId; selected php:Product->getIdEstate()==Estate->getId()?'selected':''">
+											<span tal:content="Estate/getName" />
+										</option>
+									</select>
+								</div>
+							</div>										
+							<div class="form-group">
+								<label class="control-label">Giá</label>
+								<div class="controls"><input id="Price2" name="Price2" type="text" class="form-control input-small" tal:attributes="value Product/getPrice"/></div>
 							</div>							
 							<input id="IdSupplier2" name="IdSupplier2" tal:attributes="value Product/getIdSupplier" type="hidden" />
 						<div class="modal-footer">
@@ -85,7 +87,7 @@
 						minlength: 2,
 						required:true
 					},
-					Price2:{						
+					Price:{
 						required:true,
 						number:true,
 						min:0
@@ -105,12 +107,11 @@
 					Data[0] = $('#URLUpdButton').attr('alt');					
 					Data[1] = $('#IdSupplier2').val();
 					Data[2] = $('#IdCategory2').val();					
-					Data[3] = $('#Name2').val();
-					Data[4] = $('#DateTime2').val();
-					Data[5] = $('#Code2').val();
-					Data[6] = $('#Price12').val();
-					Data[7] = $('#Price22').val();
-					
+					Data[3] = $('#IdEstate2').val();					
+					Data[4] = $('#Name2').val();
+					Data[5] = $('#DateTime2').val();					
+					Data[6] = $('#Price2').val();
+										
 					var URL = "/object/upd/Product";
 					$.ajax({
 						type: "POST",

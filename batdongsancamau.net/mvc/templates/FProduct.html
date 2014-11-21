@@ -2,21 +2,7 @@
 <html>
 	<head>
 		<div metal:use-macro="mFront.xhtml/IncludeMETA"/>		
-		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>
-		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
-		<script src="https://maps.googleapis.com/maps/api/js" />
-		<script>
-			function initialize(){					
-				var mapCanvas = document.getElementById('ProductMap');
-				var mapOptions = {
-				  center: new google.maps.LatLng(44.5403, -78.5463),
-				  zoom: 8,
-				  mapTypeId: google.maps.MapTypeId.ROADMAP
-				}
-				var map = new google.maps.Map(mapCanvas, mapOptions)
-			}
-			google.maps.event.addDomListener(window, 'load', initialize);
-		</script>
+		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>		
 	</head>	
 	<body>		
 		<div id="wrapper">
@@ -24,8 +10,8 @@
 			<section id="content">
 				<div metal:use-macro="mFront.xhtml/LocationBar"/>				
 				<div class="container">
-					<div class="row">
-						<div class="col-md-12">
+					<div class="row">						
+						<div class="col-md-9">
 							<div class="row">								
 								<div class="col-md-12 col-sm-12 col-xs-12 product">									
 									<h1 class="product-name"><span tal:content="Product/getName"/></h1>
@@ -36,7 +22,7 @@
 											<td width="25%">Diện tích</td>
 											<td width="25%"><B tal:content="Product/getInfo/getInfoEx13Print"/></td>
 											<td width="25%">Giá</td>
-											<td width="25%"><B tal:content="Product/getPrice1Print"/></td>
+											<td width="25%"><B tal:content="Product/getPricePrint"/></td>
 										</tr>
 									</table>
 								</div>
@@ -63,7 +49,7 @@
 										</tr>
 										<tr>
 											<td width="20%">Loại BĐS</td>
-											<td width="15%">?</td>
+											<td width="15%"><B tal:content="Product/getEstate/getName" /></td>
 											<td width="20%">Pháp lý</td>
 											<td width="15%"><B tal:content="Product/getInfo/getInfoEx05Print" /></td>
 											<td width="15%">Sân thượng</td>
@@ -90,17 +76,30 @@
 							</div>
 							<div class="row" tal:condition="Product/getMap">
 								<div class="col-md-12 col-sm-12 col-xs-12">
-									<h3 class="product-name">BẢN ĐỒ</h3>
-									<p tal:content="Product/getMap/getLatitude"/>
-									<p tal:content="Product/getMap/getLongitude"/>
+									<h3 class="product-name">BẢN ĐỒ</h3>									
 									<div style="width:640px; height:480px"  id="ProductMap" />
 								</div>								
 							</div>
 							<div class="row" tal:condition="Product/getImageAll">
 								<div class="col-md-12 col-sm-12 col-xs-12">
-									<h3 class="product-name">HÌNH ẢNH</h3>
-									<div tal:repeat="Image Product/getImageAll">
-										<img width="480" tal:attributes="src Image/getURL"/>
+									<h3 class="product-name">HÌNH ẢNH</h3>									
+									<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">										
+										<div class="carousel-inner" role="listbox">
+											<div class="item active">
+												<img width="640px" tal:attributes="src Product/getImageAll/current/getURL"/>
+											</div>
+											<div class="item" tal:repeat="Image Product/getImageAll">
+												<img width="640px" tal:attributes="src Image/getURL"/>
+											</div>
+										</div>										
+										<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+											<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+											<span class="sr-only">Tới</span>
+										</a>
+										<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+											<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+											<span class="sr-only">Lui</span>
+										</a>
 									</div>
 								</div>								
 							</div>
@@ -117,11 +116,29 @@
 								</div>								
 							</div>							
 						</div>
+						<div class="col-md-3">
+							<div class="row">
+								<div metal:use-macro="mFront.xhtml/SearchBox"/>
+							</div>
+						</div>
 					</div>
 				</div>
 			</section>
 			<div metal:use-macro="mFront.xhtml/Footer"/>
-			
+			<div metal:use-macro="mFront.xhtml/IncludeJS"/>
+			<script src="https://maps.googleapis.com/maps/api/js" />
+			<script>
+				function initialize(){					
+					var mapCanvas = document.getElementById('ProductMap');
+					var mapOptions = {
+					  center: new google.maps.LatLng(9.176299, 105.150823),				  
+					  zoom: 18,
+					  mapTypeId: google.maps.MapTypeId.ROADMAP
+					}
+					var map = new google.maps.Map(mapCanvas, mapOptions)
+				}
+				google.maps.event.addDomListener(window, 'load', initialize);
+			</script>
 		</div>
 	</body>
 </html>

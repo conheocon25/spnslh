@@ -22,6 +22,8 @@
 			$mCategory 		= new \MVC\Mapper\Category();
 			$mCategory1		= new \MVC\Mapper\Category1();
 			$mProduct		= new \MVC\Mapper\Product();
+			$mEstate		= new \MVC\Mapper\TypeEstate();
+			$mProvince		= new \MVC\Mapper\Province();
 						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -33,13 +35,14 @@
 			$ConfigSkype 	= $mConfig->findByName("CONTACT_SKYPE");
 			$ConfigPhone1 	= $mConfig->findByName("PHONE1");
 			$ConfigPhone2 	= $mConfig->findByName("PHONE2");
-			
+						
 			$CategoryAll 	= $mCategory->findAll();
 			$Category1 		= $mCategory->findByKey($KCategory1);
 			$Category2 		= $mCategory1->findByKey(array($Category1->getId(), $KCategory2));
-									
-			if (!isset($Page)) $Page = 1;
+			$EstateAll 		= $mEstate->findAll();
+			$Province 		= $mProvince->find(15);
 			
+			if (!isset($Page)) $Page = 1;			
 			if (!isset($IdManufacturer)){
 				$ProductAll 	= $mProduct->findByCategoryPage(array($Category2->getId(), $Page, 9));
 				$PN 			= new \MVC\Domain\PageNavigation($Category2->getProductAll()->count(), 9, $Category2->getURLView());
@@ -69,7 +72,9 @@
 			$request->setObject("ConfigPhone1", 		$ConfigPhone1);
 			$request->setObject("ConfigPhone2", 		$ConfigPhone2);
 			
+			$request->setObject("EstateAll", 			$EstateAll);
 			$request->setObject("CategoryAll", 			$CategoryAll);
+			$request->setObject("Province", 			$Province);
 			$request->setObject("Category1", 			$Category1);			
 			$request->setObject("Category2", 			$Category2);			
 			$request->setObject("ProductAll", 			$ProductAll);

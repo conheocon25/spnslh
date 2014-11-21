@@ -19,6 +19,7 @@ class ProductInfo extends Object{
 	private $InfoEx10;
 	private $InfoEx11;
 	private $InfoEx12;
+	private $InfoEx13;
 			
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
@@ -38,7 +39,8 @@ class ProductInfo extends Object{
 		$InfoEx09	=null,
 		$InfoEx10	=null,
 		$InfoEx11	=null,
-		$InfoEx12	=null)
+		$InfoEx12	=null,
+		$InfoEx13	=null)
 	{        		
 		$this->Id				= $Id;
 		$this->IdProduct		= $IdProduct;		
@@ -55,6 +57,7 @@ class ProductInfo extends Object{
 		$this->InfoEx10			= $InfoEx10;
 		$this->InfoEx11			= $InfoEx11;
 		$this->InfoEx12			= $InfoEx12;
+		$this->InfoEx13			= $InfoEx13;
 				
         parent::__construct( $Id );
     }
@@ -84,7 +87,8 @@ class ProductInfo extends Object{
     function getInfoEx02( ) 		{return $this->InfoEx02;}
 	function getInfoEx02Print( )	{return $this->InfoEx02." m";}
 	
-	function getInfoEx13()			{return $this->InfoEx01*$this->InfoEx02;}
+	function getInfoEx13()			{return $this->InfoEx13;}
+	function setInfoEx13( $InfoEx13){$this->InfoEx13 = $InfoEx13; $this->markDirty();}
 	function getInfoEx13Print()		{return $this->getInfoEx13()." m2";}
 	
 	function setInfoEx03( $InfoEx03){$this->InfoEx03 = $InfoEx03; $this->markDirty();}
@@ -154,7 +158,8 @@ class ProductInfo extends Object{
 			'InfoEx09'			=> $this->getInfoEx09(),
 			'InfoEx10'			=> $this->getInfoEx10(),			
 			'InfoEx11'			=> $this->getInfoEx11(),
-			'InfoEx12'			=> $this->getInfoEx12()
+			'InfoEx12'			=> $this->getInfoEx12(),
+			'InfoEx13'			=> $this->getInfoEx13()
 		);		
 		return json_encode($json);
 	}
@@ -175,6 +180,7 @@ class ProductInfo extends Object{
 		$this->InfoEx10			= $Data[12];
 		$this->InfoEx11			= $Data[13];
 		$this->InfoEx12			= $Data[14];
+		$this->InfoEx13			= $Data[15];
     }
 	
 	function getURLSettingExe(){

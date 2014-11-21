@@ -20,6 +20,7 @@
 			$mSupplier 		= new \MVC\Mapper\Supplier();
 			$mProduct 		= new \MVC\Mapper\Product();			
 			$mCategory1		= new \MVC\Mapper\Category1();			
+			$mEstate		= new \MVC\Mapper\TypeEstate();			
 			$mConfig 		= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
@@ -28,6 +29,7 @@
 			$Product 		= $mProduct->find($IdProduct);									
 			$Supplier 		= $mSupplier->find($IdSupplier);
 			$CategoryAll1 	= $mCategory1->findAll();
+			$EstateAll 		= $mEstate->findAll();
 									
 			$Title 			= mb_strtoupper($Product->getName(), 'UTF8');
 			$Navigation = array(				
@@ -46,6 +48,7 @@
 			$request->setObject('Navigation'	, $Navigation);
 			$request->setObject('Product'		, $Product);
 			$request->setObject('CategoryAll1'	, $CategoryAll1);
+			$request->setObject('EstateAll'		, $EstateAll);
 						
 			return self::statuses('CMD_DEFAULT');
 		}

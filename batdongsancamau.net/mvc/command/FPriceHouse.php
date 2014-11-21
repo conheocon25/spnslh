@@ -18,6 +18,8 @@
 			$mConfig 	= new \MVC\Mapper\Config();
 			$mCategory 	= new \MVC\Mapper\Category();
 			$mPost	 	= new \MVC\Mapper\Post();
+			$mProvince	= new \MVC\Mapper\Province();
+			$mEstate	= new \MVC\Mapper\TypeEstate();
 									
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -30,12 +32,14 @@
 			$ConfigSkype 			= $mConfig->findByName("CONTACT_SKYPE");
 			$ConfigIntro 			= $mConfig->findByName("POST_PRICE_HOUSE");
 			
-			$CategoryAll 			= $mCategory->findAll();			
+			$CategoryAll 			= $mCategory->findAll();
+			$EstateAll 				= $mEstate->findAll();			
+			$Province 				= $mProvince->find(15);
 			$Post 					= $mPost->find($ConfigIntro->getValue() );
 			$Post->setViewed($Post->getViewed()+1);
 			$mPost->update($Post);
 									
-			$Title = "BẢNG GIÁ ĐẤT";
+			$Title = "BẢNG GIÁ NHÀ";
 			$Navigation = array();
 			
 			//-------------------------------------------------------------
@@ -52,6 +56,8 @@
 			$request->setObject("ConfigSkype", 			$ConfigSkype);
 						
 			$request->setObject("Post", 				$Post);			
+			$request->setObject("Province", 			$Province);
+			$request->setObject("EstateAll", 			$EstateAll);
 			$request->setObject("CategoryAll", 			$CategoryAll);
 												
 			return self::statuses('CMD_DEFAULT');

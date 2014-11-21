@@ -17,6 +17,8 @@
 			//-------------------------------------------------------------						
 			$mConfig 		= new \MVC\Mapper\Config();			
 			$mCategory 		= new \MVC\Mapper\Category();						
+			$mProvince		= new \MVC\Mapper\Province();
+			$mEstate		= new \MVC\Mapper\TypeEstate();
 						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -31,19 +33,30 @@
 			
 			
 			$CategoryAll 	= $mCategory->findAll();
-									
+			$EstateAll 		= $mEstate->findAll();
+			$Province 		= $mProvince->find(15);
+			
+			$Title = "ĐĂNG KÝ MUA";
+			$Navigation = array(
+				
+			);
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
 			$request->setProperty("Active", 			'Contact');
+			$request->setProperty("Title", 				$Title);
 			$request->setObject("ConfigName", 			$ConfigName);
 			$request->setObject("ConfigSlogan", 		$ConfigSlogan);
 			$request->setObject("ConfigPhone1", 		$ConfigPhone1);
 			$request->setObject("ConfigPhone2", 		$ConfigPhone2);
 			$request->setObject("ConfigGmail", 			$ConfigGmail);
 			$request->setObject("ConfigSkype", 			$ConfigSkype);
+			$request->setObject("Navigation", 			$Navigation);
 			
 			$request->setObject("CategoryAll", 			$CategoryAll);
+			$request->setObject("EstateAll", 			$EstateAll);
+			$request->setObject("Province", 			$Province);
 			
 			return self::statuses('CMD_DEFAULT');
 		}

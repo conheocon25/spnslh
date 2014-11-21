@@ -16,6 +16,8 @@ class ProductImageCollection 	extends Collection implements \MVC\Domain\ProductI
 class ProductInfoCollection 	extends Collection implements \MVC\Domain\ProductInfoCollection 	{function targetClass( ) {return "\MVC\Domain\ProductInfo";	}}
 class ProductMapCollection 		extends Collection implements \MVC\Domain\ProductMapCollection 		{function targetClass( ) {return "\MVC\Domain\ProductMap";	}}
 
+class TypeEstateCollection 		extends Collection implements \MVC\Domain\TypeEstateCollection 		{function targetClass( ) {return "\MVC\Domain\TypeEstate";	}}
+
 class StoryLineCollection 		extends Collection implements \MVC\Domain\StoryLineCollection 		{function targetClass( ) {return "\MVC\Domain\StoryLine";	}}
 
 class TagCollection 			extends Collection implements \MVC\Domain\TagCollection 			{function targetClass( ) {return "\MVC\Domain\Tag";			}}

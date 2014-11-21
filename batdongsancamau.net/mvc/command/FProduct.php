@@ -21,7 +21,9 @@
 			$mConfig 	= new \MVC\Mapper\Config();
 			$mCategory 	= new \MVC\Mapper\Category();
 			$mCategory1	= new \MVC\Mapper\Category1();
+			$mProvince 	= new \MVC\Mapper\Province();
 			$mProduct 	= new \MVC\Mapper\Product();
+			$mEstate 	= new \MVC\Mapper\TypeEstate();
 									
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -35,9 +37,11 @@
 			$ConfigSkype 	= $mConfig->findByName("CONTACT_SKYPE");
 			
 			$CategoryAll 	= $mCategory->findAll();
+			$EstateAll 		= $mEstate->findAll();
 			$Product 		= $mProduct->findByKey($KProduct);
 			$Category1 		= $Product->getCategory();
 			$Category 		= $Category1->getCategory();
+			$Province 		= $mProvince->find(15);
 						
 			$Title = mb_strtoupper($Product->getName(),'UTF8');
 			$Navigation = array(
@@ -58,10 +62,12 @@
 			$request->setObject("ConfigPhone2", $ConfigPhone2);
 			$request->setObject("ConfigGmail", 	$ConfigGmail);
 			$request->setObject("ConfigSkype", 	$ConfigSkype);
-			
+						
 			$request->setObject("CategoryAll", 	$CategoryAll);
+			$request->setObject("EstateAll", 	$EstateAll);
 			$request->setObject("Category", 	$Category);
 			$request->setObject("Category1", 	$Category1);
+			$request->setObject("Province", 	$Province);
 			$request->setObject("Product", 		$Product);
 						
 			return self::statuses('CMD_DEFAULT');

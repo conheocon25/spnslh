@@ -10,8 +10,8 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 						
 		$selectAllStmt 	= sprintf("select * from %s", $tblProduct);
 		$selectStmt 	= sprintf("select * from %s where id=?", $tblProduct);
-		$updateStmt 	= sprintf("update %s set idsupplier=?, idcategory=?, name=?, `datetime`=?, code=?, price1=?,price2=?,`key`=? where id=?", $tblProduct);			
-		$insertStmt 	= sprintf("insert into %s ( idsupplier, idcategory, name, `datetime`,code, price1,price2,`key`) values( ?, ?, ?, ?, ?, ?, ?, ?)", $tblProduct);
+		$updateStmt 	= sprintf("update %s set idsupplier=?, idcategory=?, idestate=?, name=?, `datetime`=?, price=?,`key`=? where id=?", $tblProduct);
+		$insertStmt 	= sprintf("insert into %s ( idsupplier, idcategory, idestate, name, `datetime`, price, `key`) values( ?, ?, ?, ?, ?, ?, ?, ?)", $tblProduct);
 		$deleteStmt 	= sprintf("delete from %s where id=?", $tblProduct);
 		
 		$findBySupplierStmt 		= sprintf("select * from %s where idsupplier=?  order by `datetime` DESC", $tblProduct);
@@ -60,11 +60,10 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 			$array['id'],
 			$array['idsupplier'],
 			$array['idcategory'],			
+			$array['idestate'],
 			$array['name'],
-			$array['datetime'],				
-			$array['code'],	
-			$array['price1'],	
-			$array['price2'],			
+			$array['datetime'],							
+			$array['price'],				
 			$array['key']
 		);
         return $obj;
@@ -75,11 +74,10 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
         $values = array(
 			$object->getIdSupplier(),
 			$object->getIdCategory(),			
+			$object->getIdEstate(),			
 			$object->getName(),
-			$object->getDateTime(),
-			$object->getCode(),
-			$object->getPrice1(),
-			$object->getPrice2(),
+			$object->getDateTime(),			
+			$object->getPrice(),			
 			$object->getKey()
 		); 
         $this->insertStmt->execute( $values );
@@ -91,11 +89,10 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
         $values = array( 
 			$object->getIdSupplier(),
 			$object->getIdCategory(),			
+			$object->getIdEstate(),			
 			$object->getName(),
-			$object->getDateTime(),
-			$object->getCode(),
-			$object->getPrice1(),
-			$object->getPrice2(),
+			$object->getDateTime(),			
+			$object->getPrice(),
 			$object->getKey(),
 			$object->getId()
 		);		

@@ -8,16 +8,16 @@
 		<div id="wrapper">
 			<div metal:use-macro="mFront.xhtml/Header"/>
 			<section id="content">				
-				<div class="md-margin2x"></div>
+				<div metal:use-macro="mFront.xhtml/LocationBar"/>				
 				<div class="container">
-					<div class="row">
-						<div class="col-md-3">
-							
-						</div>
+					<div class="row">						
 						<div class="col-md-9">
 							<div class="row">
 								<h3>ĐĂNG KÍ BÁN</h3>
 							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="row"><div metal:use-macro="mFront.xhtml/SearchBox"/></div>
 						</div>
 					</div>
 				</div>

@@ -12,6 +12,7 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	require_once( "mvc/mapper/ProductInfo.php" 		);	
 	require_once( "mvc/mapper/ProductImage.php" 	);
 	require_once( "mvc/mapper/ProductMap.php" 		);
+	require_once( "mvc/mapper/TypeEstate.php" 		);
 		
 	require_once( "mvc/mapper/StoryLine.php" 		);
 	

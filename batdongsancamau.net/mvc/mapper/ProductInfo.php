@@ -24,7 +24,8 @@ class ProductInfo extends Mapper implements \MVC\Domain\ProductInfoFinder {
 				info_ex09=?,
 				info_ex10=?,
 				info_ex11=?,
-				info_ex12=?
+				info_ex12=?,
+				info_ex13=?
 			where id=?", $tblProductInfo);
 			
 		$insertStmt = sprintf("insert into %s ( 
@@ -41,9 +42,10 @@ class ProductInfo extends Mapper implements \MVC\Domain\ProductInfoFinder {
 					info_ex09,
 					info_ex10,
 					info_ex11,
-					info_ex12
+					info_ex12,
+					info_ex13
 				) 
-				values( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblProductInfo);
+				values( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblProductInfo);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblProductInfo);
 		$existStmt 	= sprintf("select id from %s where idproduct=? ", $tblProductInfo);
 				
@@ -71,7 +73,8 @@ class ProductInfo extends Mapper implements \MVC\Domain\ProductInfoFinder {
 			$array['info_ex09'],
 			$array['info_ex10'],
 			$array['info_ex11'],
-			$array['info_ex12']
+			$array['info_ex12'],
+			$array['info_ex13']
 		);
         return $obj;
     }
@@ -92,7 +95,8 @@ class ProductInfo extends Mapper implements \MVC\Domain\ProductInfoFinder {
 			$object->getInfoEx09(),
 			$object->getInfoEx10(),
 			$object->getInfoEx11(),
-			$object->getInfoEx12()
+			$object->getInfoEx12(),
+			$object->getInfoEx13()
 		); 
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
@@ -115,6 +119,7 @@ class ProductInfo extends Mapper implements \MVC\Domain\ProductInfoFinder {
 			$object->getInfoEx10(),
 			$object->getInfoEx11(),
 			$object->getInfoEx12(),
+			$object->getInfoEx13(),
 			$object->getId()
 		);		
         $this->updateStmt->execute( $values );

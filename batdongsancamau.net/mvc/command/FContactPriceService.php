@@ -18,6 +18,8 @@
 			$mConfig 	= new \MVC\Mapper\Config();
 			$mCategory 	= new \MVC\Mapper\Category();
 			$mPost	 	= new \MVC\Mapper\Post();
+			$mProvince	= new \MVC\Mapper\Province();
+			$mEstate	= new \MVC\Mapper\TypeEstate();
 									
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -29,6 +31,9 @@
 			$ConfigGmail 			= $mConfig->findByName("CONTACT_GTALK");
 			$ConfigSkype 			= $mConfig->findByName("CONTACT_SKYPE");
 			$ConfigIntro 			= $mConfig->findByName("POST_PRICE_SERVICE");
+			
+			$EstateAll 				= $mEstate->findAll();
+			$Province 				= $mProvince->find(15);
 			
 			$CategoryAll 			= $mCategory->findAll();			
 			$Post 					= $mPost->find($ConfigIntro->getValue() );
@@ -52,7 +57,9 @@
 			$request->setObject("ConfigSkype", 			$ConfigSkype);
 						
 			$request->setObject("Post", 				$Post);			
-			$request->setObject("CategoryAll", 			$CategoryAll);
+			$request->setObject("CategoryAll", 			$CategoryAll);			
+			$request->setObject("EstateAll", 			$EstateAll);
+			$request->setObject("Province", 			$Province);
 												
 			return self::statuses('CMD_DEFAULT');
 		}
