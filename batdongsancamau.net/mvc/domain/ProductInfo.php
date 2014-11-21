@@ -73,7 +73,7 @@ class ProductInfo extends Object{
 	
 	function setImage( $Image ) 	{$this->Image = $Image;$this->markDirty();}
     function getImage( ){		
-		return "/data/images/product1.jpg";		
+		return "/data/images/default1.jpg";		
 	}
 			
     function setInfo( $Info ) 	{$this->Info = $Info;$this->markDirty();}

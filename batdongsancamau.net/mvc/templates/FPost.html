@@ -2,7 +2,7 @@
 <html prefix="og: http://ogp.me/ns#">
 	<head>		
 		<title>Website Khu Ẩm Thực Sinh Thái Hương Sen Hồng Đồng Tháp</title>
-		<base href="http://huongsenhong.com"/>
+		<base href="http://batdongsancamau.net"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 		<meta http-equiv="Pragma" content="no-cache"/>
@@ -56,11 +56,9 @@
 										<div tal:content="structure Post/getContent" class="article-content-container"/>
 									</article>
 								</div>
-								<aside class="col-md-3 col-sm-4 col-xs-12 sidebar">
-									<div metal:use-macro="mFront.xhtml/Subscribe"/>
-									<div metal:use-macro="mFront.xhtml/Testmonials"/>
-									<div metal:use-macro="mFront.xhtml/LastestPost"/>
-								</aside>								
+								<div class="col-md-3 col-sm-4 col-xs-12">
+									<div metal:use-macro="mFront.xhtml/SearchBox"/>
+								</div>								
 							</div>
 						</div>
 					</div>

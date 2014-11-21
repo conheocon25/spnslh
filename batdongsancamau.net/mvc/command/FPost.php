@@ -22,10 +22,9 @@
 			$mPost 		= new \MVC\Mapper\Post();
 			$mPostTag 	= new \MVC\Mapper\PostTag();
 			$mTag 		= new \MVC\Mapper\Tag();
-			$mBranch 	= new \MVC\Mapper\Branch();
-			$mStoryLine = new \MVC\Mapper\StoryLine();
-			$mLinked	= new \MVC\Mapper\Linked();
-			
+			$mProvince 	= new \MVC\Mapper\Province();
+			$mEstate 	= new \MVC\Mapper\TypeEstate();
+						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
@@ -37,21 +36,18 @@
 			$ConfigGmail 			= $mConfig->findByName("CONTACT_GTALK");
 			$ConfigSkype 			= $mConfig->findByName("CONTACT_SKYPE");
 			
-			$CategoryAll 			= $mCategory->findAll();
-			$BranchAll 				= $mBranch->findAll();
-			$StoryLineAll	= $mStoryLine->findAll();
+			$CategoryAll 			= $mCategory->findAll();			
+			$EstateAll				= $mEstate->findAll();
+			$Province				= $mProvince->find(15);
 			
 			$Post 					= $mPost->findByKey($KPost);
 			$Tag 					= $mTag->findByKey($KTag);
 			$TagAll 				= $mTag->findByPosition(array(1));
 			
-			$URLShare = "http://huongsenhong.com/tin-tuc/".$KTag."/".$KPost;
+			$URLShare = "http://batdongsancamau.net/tin-tuc/".$KTag."/".$KPost;
 			$Post->setViewed($Post->getViewed()+1);
 			$mPost->update($Post);
-			
-			$LastestPostAll = $mPostTag->findByLastest4(array(null));			
-			$LinkedAll 		= $mLinked->findByTop(array());
-			
+									
 			$Title = mb_strtoupper($Post->getTitle(), 'UTF8');
 			$Navigation = array(
 				array(mb_strtoupper($Tag->getName(), 'UTF8'), $Tag->getURLView())
@@ -74,13 +70,11 @@
 			
 			$request->setObject("Post", 				$Post);
 			$request->setObject("CategoryAll", 			$CategoryAll);
-			$request->setObject("BranchAll", 			$BranchAll);
-			$request->setObject("StoryLineAll", 		$StoryLineAll);
-			$request->setObject("LastestPostAll", 		$LastestPostAll);
+			$request->setObject("EstateAll", 			$EstateAll);
+			$request->setObject("Province", 			$Province);			
 			$request->setObject("TagAll", 				$TagAll);
 			$request->setObject("Tag", 					$Tag);
-			$request->setObject("LinkedAll", 			$LinkedAll);
-			
+						
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

@@ -20,6 +20,7 @@
 			$mSupplier 		= new \MVC\Mapper\Supplier();						
 			$mProvince 		= new \MVC\Mapper\Province();						
 			$mEstate 		= new \MVC\Mapper\TypeEstate();						
+			$mTag 			= new \MVC\Mapper\Tag();						
 						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -35,11 +36,10 @@
 			$CategoryAll 	= $mCategory->findAll();
 			$SupplierAll 	= $mSupplier->findAll();
 			$Province 		= $mProvince->find(15);
+			$TagAll 		= $mTag->findByPosition(array(1));
 			
-			$Title = "NHÀ MÔI GIỚI";
-			$Navigation = array(
-				
-			);
+			$Title 			= "NHÀ MÔI GIỚI";
+			$Navigation 	= array();
 									
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
@@ -57,6 +57,7 @@
 			$request->setObject("SupplierAll", 			$SupplierAll);
 			$request->setObject("CategoryAll", 			$CategoryAll);
 			$request->setObject("EstateAll", 			$EstateAll);
+			$request->setObject("TagAll", 				$TagAll);
 			$request->setObject("Province", 			$Province);
 			
 			return self::statuses('CMD_DEFAULT');

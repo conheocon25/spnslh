@@ -24,6 +24,7 @@
 			$mProduct		= new \MVC\Mapper\Product();
 			$mEstate		= new \MVC\Mapper\TypeEstate();
 			$mProvince		= new \MVC\Mapper\Province();
+			$mTag			= new \MVC\Mapper\Tag();
 						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -41,6 +42,7 @@
 			$Category2 		= $mCategory1->findByKey(array($Category1->getId(), $KCategory2));
 			$EstateAll 		= $mEstate->findAll();
 			$Province 		= $mProvince->find(15);
+			$TagAll 		= $mTag->findByPosition(array(1));
 			
 			if (!isset($Page)) $Page = 1;			
 			if (!isset($IdManufacturer)){
@@ -74,6 +76,7 @@
 			
 			$request->setObject("EstateAll", 			$EstateAll);
 			$request->setObject("CategoryAll", 			$CategoryAll);
+			$request->setObject("TagAll", 				$TagAll);
 			$request->setObject("Province", 			$Province);
 			$request->setObject("Category1", 			$Category1);			
 			$request->setObject("Category2", 			$Category2);			

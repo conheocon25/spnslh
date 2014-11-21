@@ -12,46 +12,35 @@
 				<div class="container">
 					<div class="row">						
 						<div class="col-md-9">
-							<div class="row">
-								<div class="col-md-12 col-sm-8 col-xs-12 main-content">
-									<div class="category-item-container">
-										<div class="row tab-content">
-											<div tal:repeat="Product ProductAll" class="col-md-4 col-sm-6 col-xs-12">
-												<div class="item" tal:condition="Product/getInfo">
-													<div class="item-image-container">
-														<figure>
-															<a tal:attributes="href Product/getURLView">
-																<img tal:attributes="src Product/getInfo/getImage" class="item-image"/>
-															</a>
-														</figure>
-														<div class="item-price-container">
-															<span class="item-price" tal:content="Product/getPricePrint"/>
-														</div>														
-													</div>
-													<div class="item-meta-container">
-														<div class="ratings-container">
-															<div class="ratings">
-																<div class="ratings-result" data-result="100"></div>
-															</div>															
-														</div>
-														<h3 class="item-name"><a tal:attributes="href Product/getURLView" tal:content="Product/getName"/></h3>														
-													</div>
-												</div>	
-											</div>
-										</div>
+							<div class="category-item-container category-list-container">
+								<div class="item item-list clearfix" tal:repeat="Product ProductAll">
+									<div class="item-image-container">
+										<figure>
+											<a tal:attributes="href Product/getURLView">
+												<img tal:attributes="src Product/getInfo/getImage" alt="item1" class="item-image"/>
+												<img tal:attributes="src Product/getInfo/getImage" alt="item1  Hover" class="item-image-hover"/>
+											</a>
+										</figure>
 									</div>
-									<div class="md-margin" />
-									<div class="category-toolbar clearfix">
-										<div class="toolbox-pagination clearfix">
-											<ul class="pagination">
-												<li tal:repeat="P PN/getPages" tal:attributes="class php: (P->getId()==Page)?'active':''">
-													<a tal:attributes="href P/getURL" tal:content="P/getName" />
-												</li>
-											</ul>											
-										</div>
+									<div class="item-meta-container">
+										<h3 class="item-name">
+											<a tal:attributes="href Product/getURLView">
+												<span tal:content="Product/getName"/>
+											</a>
+										</h3>
+										<p tal:content="structure Product/getInfo/getInfo"/>
 									</div>
-								</div>								
+								</div>
 							</div>
+							<div class="category-toolbar clearfix">
+								<div class="toolbox-pagination clearfix">
+									<ul class="pagination">
+										<li tal:repeat="P PN/getPages" tal:attributes="class php:Page==P->getId()?'active':'disable'">
+											<a tal:attributes="href P/getURL" tal:content="P/getName"/>
+										</li>
+									</ul>
+								</div>
+							</div>							
 						</div>
 						<div class="col-md-3">
 							<div class="row"><div metal:use-macro="mFront.xhtml/SearchBox"/></div>

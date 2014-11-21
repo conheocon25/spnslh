@@ -19,6 +19,7 @@
 			$mCategory 		= new \MVC\Mapper\Category();						
 			$mProvince		= new \MVC\Mapper\Province();
 			$mEstate		= new \MVC\Mapper\TypeEstate();
+			$mTag			= new \MVC\Mapper\Tag();
 						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -30,10 +31,10 @@
 			$ConfigPhone2 			= $mConfig->findByName("PHONE2");
 			$ConfigGmail 			= $mConfig->findByName("CONTACT_GTALK");
 			$ConfigSkype 			= $mConfig->findByName("CONTACT_SKYPE");
-			
-			
+						
 			$CategoryAll 	= $mCategory->findAll();
 			$EstateAll 		= $mEstate->findAll();
+			$TagAll 		= $mTag->findByPosition(array(1));
 			$Province 		= $mProvince->find(15);
 			
 			$Title = "ĐĂNG KÝ MUA";
@@ -56,6 +57,7 @@
 			
 			$request->setObject("CategoryAll", 			$CategoryAll);
 			$request->setObject("EstateAll", 			$EstateAll);
+			$request->setObject("TagAll", 				$TagAll);
 			$request->setObject("Province", 			$Province);
 			
 			return self::statuses('CMD_DEFAULT');

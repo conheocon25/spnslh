@@ -19,6 +19,7 @@
 			$mCategory 		= new \MVC\Mapper\Category();			
 			$mProvince		= new \MVC\Mapper\Province();
 			$mEstate		= new \MVC\Mapper\TypeEstate();
+			$mTag			= new \MVC\Mapper\Tag();
 						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -33,6 +34,7 @@
 						
 			$CategoryAll 			= $mCategory->findAll();
 			$EstateAll 				= $mEstate->findAll();
+			$TagAll 				= $mTag->findByPosition(array(1));
 			$Province 				= $mProvince->find(15);
 			
 			$Title = "ĐĂNG KÝ BÁN";
@@ -54,6 +56,7 @@
 			$request->setObject("Navigation", 			$Navigation);
 			
 			$request->setObject("CategoryAll", 			$CategoryAll);
+			$request->setObject("TagAll", 				$TagAll);
 			$request->setObject("EstateAll", 			$EstateAll);
 			$request->setObject("Province", 			$Province);
 			

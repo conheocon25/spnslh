@@ -24,6 +24,7 @@
 			$mProvince 	= new \MVC\Mapper\Province();
 			$mProduct 	= new \MVC\Mapper\Product();
 			$mEstate 	= new \MVC\Mapper\TypeEstate();
+			$mTag 		= new \MVC\Mapper\Tag();
 									
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -42,6 +43,7 @@
 			$Category1 		= $Product->getCategory();
 			$Category 		= $Category1->getCategory();
 			$Province 		= $mProvince->find(15);
+			$TagAll 		= $mTag->findByPosition(array(1));
 						
 			$Title = mb_strtoupper($Product->getName(),'UTF8');
 			$Navigation = array(
@@ -63,6 +65,7 @@
 			$request->setObject("ConfigGmail", 	$ConfigGmail);
 			$request->setObject("ConfigSkype", 	$ConfigSkype);
 						
+			$request->setObject("TagAll", 		$TagAll);
 			$request->setObject("CategoryAll", 	$CategoryAll);
 			$request->setObject("EstateAll", 	$EstateAll);
 			$request->setObject("Category", 	$Category);

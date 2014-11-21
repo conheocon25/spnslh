@@ -99,7 +99,7 @@
 						<h1 class="logo clearfix">
 							<span>Website Bất Động Sản Cà Mau</span>
 							<a href="/" title="Website Bất Động Sản Cà Mau">
-								<img src="/mvc/templates/front/images/logo.png" alt="Website Bất Động Sản Cà Mau" width="100%"/>
+								<img src="/data/images/default1.jpg" alt="Website Bất Động Sản Cà Mau" width="100%"/>
 							</a>
 						</h1>
 					</div>
@@ -133,11 +133,21 @@
 								<ul class="menu clearfix">
 									<li><a tal:attributes="class php:Active=='Home'?'active':'?'" href="/trang-chu">TRANG CHỦ</a></li>
 									<li tal:repeat="Category CategoryAll">
-										<a tal:attributes="class php:Active=='News'?'active':'?'" href="JavaScript:;"><span tal:content="Category/getName"/></a>
+										<a tal:attributes="class php:Active=='Product'?'active':'?'" href="JavaScript:;"><span tal:content="Category/getName"/></a>
 										<ul>
 											<li tal:repeat="Category1 Category/getCategoryAll">												
 												<a tal:attributes="href Category1/getURLView">
 													<span tal:content="Category1/getName"/>
+												</a>
+											</li>
+										</ul>
+									</li>
+									<li>
+										<a tal:attributes="class php:Active=='News'?'active':'?'" href="JavaScript:;">TIN TỨC</a>
+										<ul>
+											<li tal:repeat="Tag TagAll">
+												<a tal:attributes="href Tag/getURLView">
+													<span tal:content="Tag/getName"/>
 												</a>
 											</li>
 										</ul>
@@ -191,7 +201,7 @@
 	<!-- ======================================================================== -->
 	<div metal:define-macro="SearchBox" >
 		TÌM KIẾM
-		<form id="ProductSearch" action="/tim-kiem">
+		<form id="ProductSearch" action="/tim-kiem" method="POST">
 			<div class="modal-body">										
 				<div class="form-group">											
 					<div class="controls">
@@ -203,6 +213,7 @@
 					</div>
 					<div class="controls">
 						<select name="IdEstate" id="IdEstate" style="width:100%;">
+							<option value="0">tất cả</option>
 							<option tal:repeat="Estate EstateAll" tal:attributes="value Estate/getId;">
 								<span tal:content="Estate/getName" />
 							</option>
@@ -210,6 +221,7 @@
 					</div>
 					<div class="controls">
 						<select name="IdDistrict" id="IdDistrict" style="width:100%;">
+							<option value="0">tất cả</option>
 							<option tal:repeat="District Province/getDistrictAll" tal:attributes="value District/getId;">
 								<span tal:content="District/getName" />
 							</option>
