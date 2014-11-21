@@ -21,10 +21,9 @@
 			$mCategory 	= new \MVC\Mapper\Category();
 			$mPostTag	= new \MVC\Mapper\PostTag();
 			$mTag 		= new \MVC\Mapper\Tag();
-			$mBranch 	= new \MVC\Mapper\Branch();
-			$mStoryLine	= new \MVC\Mapper\StoryLine();
-			$mLinked		= new \MVC\Mapper\Linked();
-			
+			$mProvince 	= new \MVC\Mapper\Province();
+			$mEstate 	= new \MVC\Mapper\TypeEstate();
+						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
@@ -36,18 +35,16 @@
 			$ConfigGmail 			= $mConfig->findByName("CONTACT_GTALK");
 			$ConfigSkype 			= $mConfig->findByName("CONTACT_SKYPE");
 			
-			$CategoryAll 			= $mCategory->findAll();
-			$BranchAll 				= $mBranch->findAll();
-			$StoryLineAll			= $mStoryLine->findAll();
+			$CategoryAll 			= $mCategory->findAll();			
+			$EstateAll				= $mEstate->findAll();
+			$Province				= $mProvince->find(15);
 			
 			if (!isset($Page)) $Page = 1;
 			$TagAll 				= $mTag->findByPosition(array(1));
 			$Tag 					= $mTag->findByKey($KTag);
 			$PTAll 					= $mPostTag->findByTagPage(array($Tag->getId(), $Page, 6));
 			$PN 					= new \MVC\Domain\PageNavigation($Tag->getPostAll()->count(), 6, $Tag->getURLView());
-			
-			$LinkedAll 		= $mLinked->findByTop(array());
-			
+									
 			$Title = mb_strtoupper($Tag->getName(), 'UTF8');
 			$Navigation = array();
 			
@@ -66,14 +63,14 @@
 			$request->setObject("ConfigGmail", 			$ConfigGmail);
 			$request->setObject("ConfigSkype", 			$ConfigSkype);
 			
-			$request->setObject("BranchAll", 			$BranchAll);
-			$request->setObject("StoryLineAll", 		$StoryLineAll);
+
+			$request->setObject("Province", 			$Province);
 			$request->setObject("CategoryAll", 			$CategoryAll);
 			$request->setObject("TagAll", 				$TagAll);
 			$request->setObject("Tag", 					$Tag);
 			$request->setObject("PTAll", 				$PTAll);
 			$request->setObject("PN", 					$PN);
-			$request->setObject("LinkedAll", 			$LinkedAll);
+			$request->setObject("EstateAll", 			$EstateAll);
 			
 			return self::statuses('CMD_DEFAULT');
 		}

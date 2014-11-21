@@ -85,7 +85,7 @@ class Tag extends Mapper implements \MVC\Domain\TagFinder {
 	
 	function findByPosition(array $values) {
         $this->findByPositionStmt->execute( $values );
-        return new SlideCollection( $this->findByPositionStmt->fetchAll(), $this );
+        return new TagCollection( $this->findByPositionStmt->fetchAll(), $this );
     }
 	
 }

@@ -20,6 +20,7 @@
 			$mPost	 	= new \MVC\Mapper\Post();
 			$mProvince	= new \MVC\Mapper\Province();
 			$mEstate	= new \MVC\Mapper\TypeEstate();
+			$mTag		= new \MVC\Mapper\Tag();
 									
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -34,6 +35,7 @@
 			
 			$CategoryAll 			= $mCategory->findAll();
 			$EstateAll 				= $mEstate->findAll();			
+			$TagAll 				= $mTag->findByPosition(array(1));			
 			$Province 				= $mProvince->find(15);
 			$Post 					= $mPost->find($ConfigIntro->getValue() );
 			$Post->setViewed($Post->getViewed()+1);
@@ -58,6 +60,7 @@
 			$request->setObject("Post", 				$Post);			
 			$request->setObject("Province", 			$Province);
 			$request->setObject("EstateAll", 			$EstateAll);
+			$request->setObject("TagAll", 				$TagAll);
 			$request->setObject("CategoryAll", 			$CategoryAll);
 												
 			return self::statuses('CMD_DEFAULT');

@@ -17,8 +17,11 @@ AddOutputFilterByType DEFLATE application/x-javascript
 # SYSTEM
 #---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^trang-chu$ 									?cmd=FHome 					[L]
+
 RewriteRule ^nha-moi-gioi/([A-Za-z0-9_-]+)$ 				?cmd=FSupplier&KSupplier=$1	[L]
 RewriteRule ^nha-moi-gioi/([A-Za-z0-9_-]+)/page/([0-9]+)$ 	?cmd=FSupplier&KSupplier=$1&Page=$2	[L]
+
+RewriteRule ^tim-kiem$ 										?cmd=FSearch 				[L]
 
 RewriteRule ^bang-gia/gia-dat$ 								?cmd=FPriceLand 			[L]
 RewriteRule ^bang-gia/gia-nha$ 								?cmd=FPriceHouse 			[L]
@@ -31,16 +34,14 @@ RewriteRule ^lien-he/gia-dich-vu$ 							?cmd=FContactPriceService 	[L]
 RewriteRule ^lien-he/email$ 								?cmd=FContactSend			[L]
 RewriteRule ^lien-he/gmail$ 								?cmd=FContactSendGmail		[L]
 
-RewriteRule ^nhan-thong-tin$ 								?cmd=FSubcribe 				[L]
-
 RewriteRule ^danh-muc/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$ 	?cmd=FProduct&KCategory1=$1&KCategory2=$2&KProduct=$3 [L]
 RewriteRule ^danh-muc/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$ 					?cmd=FCategory&KCategory1=$1&KCategory2=$2 [L]
 RewriteRule ^danh-muc/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/page/([0-9]+)$ 		?cmd=FCategory&KCategory1=$1&KCategory2=$2&Page=$3 [L]
 RewriteRule ^danh-muc/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/([0-9]+)/m$ 		?cmd=FCategory&KCategory1=$1&KCategory2=$2&IdManufacturer=$3 [L]
 RewriteRule ^danh-muc/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/([0-9]+)/m/page/([0-9]+)$ ?cmd=FCategory&KCategory1=$1&KCategory2=$2&IdManufacturer=$3&Page=$4 [L]
 
-RewriteRule ^tin-tuc/([A-Za-z0-9_-]+)$ 							?cmd=FTag&KTag=$1 [L]
-RewriteRule ^tin-tuc/([A-Za-z0-9_-]+)/page/([0-9]+)$ 			?cmd=FTag&KTag=$1&Page=$2 [L]
+RewriteRule ^tin-tuc/([A-Za-z0-9_-]+)$ 							?cmd=FTag&KTag=$1 			[L]
+RewriteRule ^tin-tuc/([A-Za-z0-9_-]+)/page/([0-9]+)$ 			?cmd=FTag&KTag=$1&Page=$2 	[L]
 RewriteRule ^tin-tuc/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$ 		?cmd=FPost&KTag=$1&KPost=$2 [L]
 
 RewriteRule ^dang-nhap$ 										?cmd=SigninLoad [L]

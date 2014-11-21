@@ -20,7 +20,8 @@
 			$mPost	 	= new \MVC\Mapper\Post();
 			$mProvince	= new \MVC\Mapper\Province();
 			$mEstate	= new \MVC\Mapper\TypeEstate();
-									
+			$mTag		= new \MVC\Mapper\Tag();
+			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
@@ -34,6 +35,7 @@
 			
 			$EstateAll 				= $mEstate->findAll();
 			$Province 				= $mProvince->find(15);
+			$TagAll 				= $mTag->findByPosition(array(1));
 			
 			$CategoryAll 			= $mCategory->findAll();			
 			$Post 					= $mPost->find($ConfigIntro->getValue() );
@@ -57,6 +59,7 @@
 			$request->setObject("ConfigSkype", 			$ConfigSkype);
 						
 			$request->setObject("Post", 				$Post);			
+			$request->setObject("TagAll", 				$TagAll);			
 			$request->setObject("CategoryAll", 			$CategoryAll);			
 			$request->setObject("EstateAll", 			$EstateAll);
 			$request->setObject("Province", 			$Province);

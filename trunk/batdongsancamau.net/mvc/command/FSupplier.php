@@ -21,6 +21,7 @@
 			$mCategory 		= new \MVC\Mapper\Category();						
 			$mSupplier 		= new \MVC\Mapper\Supplier();
 			$mProduct 		= new \MVC\Mapper\Product();
+			$mTag 			= new \MVC\Mapper\Tag();
 						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -35,6 +36,7 @@
 			
 			$Supplier		= $mSupplier->find($KSupplier);
 			$CategoryAll 	= $mCategory->findAll();
+			$TagAll 		= $mTag->findByPosition(array(1));
 			
 			if (!isset($Page)) $Page = 1;			
 			$ProductAll 	= $mProduct->findBySupplierPage(array($Supplier->getId(), $Page, 6));
@@ -54,6 +56,7 @@
 						
 			$request->setObject("Supplier", 			$Supplier);					
 			$request->setObject("ProductAll", 			$ProductAll);
+			$request->setObject("TagAll", 				$TagAll);
 			$request->setObject("PN", 					$PN);
 			$request->setObject("CategoryAll", 			$CategoryAll);
 			
