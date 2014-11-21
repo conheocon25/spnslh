@@ -10,10 +10,10 @@
 			<section id="content">
 				<div metal:use-macro="mFront.xhtml/LocationBar"/>
 				<div class="container">
-					<div class="row">
-						<div class="col-md-12">
+					<div class="row">						
+						<div class="col-md-9">
 							<div class="row">
-								<div class="col-md-9 col-sm-8 col-xs-12 main-content">																		
+								<div class="col-md-12 col-sm-8 col-xs-12 main-content">
 									<div class="category-item-container">
 										<div class="row tab-content">
 											<div tal:repeat="Product ProductAll" class="col-md-4 col-sm-6 col-xs-12">
@@ -24,8 +24,8 @@
 																<img tal:attributes="src Product/getInfo/getImage" class="item-image"/>
 															</a>
 														</figure>
-														<div class="item-price-container" tal:condition="Product/getPrice2">
-															<span class="item-price" tal:content="Product/getPrice2Print"/>
+														<div class="item-price-container">
+															<span class="item-price" tal:content="Product/getPricePrint"/>
 														</div>														
 													</div>
 													<div class="item-meta-container">
@@ -52,6 +52,9 @@
 									</div>
 								</div>								
 							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="row"><div metal:use-macro="mFront.xhtml/SearchBox"/></div>
 						</div>
 					</div>
 				</div>

@@ -8,11 +8,10 @@ class Product extends Object{
     private $Id;
 	private $IdSupplier;
 	private $IdCategory;	
+	private $IdEstate;	
 	private $Name;
-	private $DateTime;
-	private $Code;
-    private $Price1;
-	private $Price2;
+	private $DateTime;	
+    private $Price;
 	private $Key;
 	
 	//-------------------------------------------------------------------------------
@@ -22,22 +21,20 @@ class Product extends Object{
 		$Id			= null, 
 		$IdSupplier	= null, 
 		$IdCategory = null,		
+		$IdEstate   = null,
 		$Name		= null, 
-		$DateTime	= null, 
-		$Code		= null, 
-		$Price1		= null, 
-		$Price2		= null, 		
+		$DateTime	= null, 		
+		$Price		= null, 		
 		$Key		= null)
 	{
         		
 		$this->Id				= $Id;
 		$this->IdSupplier		= $IdSupplier;
-		$this->IdCategory		= $IdCategory;			
+		$this->IdCategory		= $IdCategory;
+		$this->IdEstate			= $IdEstate;
 		$this->Name				= $Name;
-		$this->DateTime			= $DateTime;
-		$this->Code				= $Code;
-		$this->Price1			= $Price1;
-		$this->Price2			= $Price2;		
+		$this->DateTime			= $DateTime;		
+		$this->Price			= $Price;		
 		$this->Key				= $Key;
 		
         parent::__construct( $Id );
@@ -60,23 +57,31 @@ class Product extends Object{
 		return $Category;
 	}
 	
+	function getIdEstate( ) {return $this->IdEstate;}
+    function setIdEstate( $IdEstate ) {$this->IdEstate = $IdEstate;$this->markDirty();}
+	function getEstate(){
+		$mEstate = new \MVC\Mapper\TypeEstate();
+		$Estate = $mEstate->find( $this->IdEstate );
+		return $Estate;
+	}
+	
     function setName( $Name ) {$this->Name = $Name;$this->markDirty();}
     function getName( ) {return $this->Name;}
 	
 	function setDateTime( $DateTime ) 	{$this->DateTime = $DateTime; $this->markDirty();}
     function getDateTime( ) 			{return $this->DateTime;}	
 	function getDateTimePrint( )		{return date('d/m H:i',strtotime($this->DateTime));}
-	
-	function setCode( $Code ) {$this->Code = $Code;$this->markDirty();}
-    function getCode( ) {return $this->Code;}
-	
-	function setPrice1( $Price1 ) {$this->Price1 = $Price1; $this->markDirty();}
-    function getPrice1( ) {return $this->Price1;}
-	function getPrice1Print( ) {$num = new Number($this->Price1/1000000);return $num->formatCurrency()." triệu";}
-		
-	function setPrice2( $Price2 ) {$this->Price2 = $Price2; $this->markDirty();}
-    function getPrice2( ) {return $this->Price2;}
-	function getPrice2Print( ) {$num = new Number($this->Price2);return $num->formatCurrency();}
+			
+	function setPrice( $Price ) {$this->Price = $Price; $this->markDirty();}
+    function getPrice( ) {return $this->Price;}
+	function getPricePrint( ) {		
+		$num = $this->Price/1000000;
+		if ($num == 0)
+			return "thỏa thuận";
+		else if ($num<1000)
+			return $num." triệu";
+		return $num." tỉ";
+	}
 			
 	function getKey( ) 		{return $this->Key;}
 	function setKey( $Key ) {$this->Key = $Key; $this->markDirty(); }
@@ -91,11 +96,10 @@ class Product extends Object{
 			'Id' 				=> $this->getId(),	
 			'IdSupplier'		=> $this->getIdSupplier(),
 			'IdCategory'		=> $this->getIdCategory(),			
+			'IdEstate'			=> $this->getIdEstate(),			
 			'Name'				=> $this->getName(),			
-			'DateTime'			=> $this->getDateTime(),			
-			'Code'				=> $this->getCode(),
-			'Price1'			=> $this->getPrice1(),
-			'Price2'			=> $this->getPrice2(),			
+			'DateTime'			=> $this->getDateTime(),
+			'Price'				=> $this->getPrice(),			
 			'Key'				=> $this->getKey()
 		);		
 		return json_encode($json);
@@ -106,11 +110,10 @@ class Product extends Object{
 		$this->Id				= $Data[0];
 		$this->IdSupplier		= $Data[1];
 		$this->IdCategory		= $Data[2];		
-		$this->Name				= $Data[3];
-		$this->DateTime			= $Data[4];
-		$this->Code				= $Data[5];
-		$this->Price1			= $Data[6];
-		$this->Price2			= $Data[7];
+		$this->IdEstate			= $Data[3];		
+		$this->Name				= $Data[4];
+		$this->DateTime			= $Data[5];		
+		$this->Price			= $Data[6];
 		$this->reKey();
     }
 			

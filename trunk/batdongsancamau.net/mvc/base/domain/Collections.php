@@ -12,6 +12,7 @@ interface ProductCollection 			extends \Iterator {function add( Object $Product 
 interface ProductInfoCollection 		extends \Iterator {function add( Object $ProductInfo );	}
 interface ProductImageCollection 		extends \Iterator {function add( Object $ProductImage );}
 interface ProductMapCollection 			extends \Iterator {function add( Object $ProductMap);	}
+interface TypeEstateCollection 			extends \Iterator {function add( Object $TypeEstate);	}
 
 interface StoryLineCollection 			extends \Iterator {function add( Object $StoryLine );	}
 

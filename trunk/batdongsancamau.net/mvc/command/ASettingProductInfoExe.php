@@ -26,6 +26,7 @@
 			$InfoEx10 	= $request->getProperty('InfoEx10')=="on"?1:0;
 			$InfoEx11 	= $request->getProperty('InfoEx11')=="on"?1:0;
 			$InfoEx12 	= $request->getProperty('InfoEx12')=="on"?1:0;
+			$InfoEx13 	= $request->getProperty('InfoEx13');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
@@ -41,7 +42,7 @@
 					null,
 					$IdProduct,					
 					"Thu nghiem",
-					0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+					0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 				);
 				$mProductInfo->insert($PI);
 			}else{
@@ -60,7 +61,8 @@
 			$PI->setInfoEx10($InfoEx10);
 			$PI->setInfoEx11($InfoEx11);
 			$PI->setInfoEx12($InfoEx12);
-						
+			$PI->setInfoEx13($InfoEx13);
+			
 			$mProductInfo->update($PI);
 			
 			return self::statuses('CMD_OK');
