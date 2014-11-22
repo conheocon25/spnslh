@@ -21,6 +21,7 @@
 			$mProduct 		= new \MVC\Mapper\Product();			
 			$mCategory1		= new \MVC\Mapper\Category1();			
 			$mEstate		= new \MVC\Mapper\TypeEstate();			
+			$mProvince		= new \MVC\Mapper\Province();
 			$mConfig 		= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
@@ -30,6 +31,7 @@
 			$Supplier 		= $mSupplier->find($IdSupplier);
 			$CategoryAll1 	= $mCategory1->findAll();
 			$EstateAll 		= $mEstate->findAll();
+			$Province 		= $mProvince->find(15);
 									
 			$Title 			= mb_strtoupper($Product->getName(), 'UTF8');
 			$Navigation = array(				
@@ -46,6 +48,7 @@
 			$request->setProperty('ActiveAdmin'	, 'Product');
 			$request->setObject('ConfigName'	, $ConfigName);
 			$request->setObject('Navigation'	, $Navigation);
+			$request->setObject('Province'		, $Province);
 			$request->setObject('Product'		, $Product);
 			$request->setObject('CategoryAll1'	, $CategoryAll1);
 			$request->setObject('EstateAll'		, $EstateAll);

@@ -9,9 +9,11 @@ class Product extends Object{
 	private $IdSupplier;
 	private $IdCategory;	
 	private $IdEstate;	
+	private $IdDistrict;	
 	private $Name;
 	private $DateTime;	
     private $Price;
+	private $Address;
 	private $Key;
 	
 	//-------------------------------------------------------------------------------
@@ -22,9 +24,11 @@ class Product extends Object{
 		$IdSupplier	= null, 
 		$IdCategory = null,		
 		$IdEstate   = null,
+		$IdDistrict = null,
 		$Name		= null, 
 		$DateTime	= null, 		
 		$Price		= null, 		
+		$Address	= null,
 		$Key		= null)
 	{
         		
@@ -32,9 +36,11 @@ class Product extends Object{
 		$this->IdSupplier		= $IdSupplier;
 		$this->IdCategory		= $IdCategory;
 		$this->IdEstate			= $IdEstate;
+		$this->IdDistrict		= $IdDistrict;
 		$this->Name				= $Name;
 		$this->DateTime			= $DateTime;		
-		$this->Price			= $Price;		
+		$this->Price			= $Price;
+		$this->Address			= $Address;
 		$this->Key				= $Key;
 		
         parent::__construct( $Id );
@@ -65,6 +71,14 @@ class Product extends Object{
 		return $Estate;
 	}
 	
+	function getIdDistrict( ) {return $this->IdDistrict;}
+    function setIdDistrict( $IdDistrict ) {$this->IdDistrict = $IdDistrict;$this->markDirty();}
+	function getDistrict(){
+		$mDistrict 	= new \MVC\Mapper\District();
+		$District 	= $mDistrict->find( $this->IdDistrict );
+		return $District;
+	}
+	
     function setName( $Name ) {$this->Name = $Name;$this->markDirty();}
     function getName( ) {return $this->Name;}
 	
@@ -80,8 +94,11 @@ class Product extends Object{
 			return "thỏa thuận";
 		else if ($num<1000)
 			return $num." triệu";
-		return $num." tỉ";
+		return ($num/1000)." tỉ";
 	}
+	
+	function setAddress( $Address ) {$this->Address = $Address; $this->markDirty();}
+    function getAddress( ) {return $this->Address;}
 			
 	function getKey( ) 		{return $this->Key;}
 	function setKey( $Key ) {$this->Key = $Key; $this->markDirty(); }
@@ -96,10 +113,12 @@ class Product extends Object{
 			'Id' 				=> $this->getId(),	
 			'IdSupplier'		=> $this->getIdSupplier(),
 			'IdCategory'		=> $this->getIdCategory(),			
-			'IdEstate'			=> $this->getIdEstate(),			
+			'IdEstate'			=> $this->getIdEstate(),
+			'IdDistrict'		=> $this->getIdDistrict(),
 			'Name'				=> $this->getName(),			
 			'DateTime'			=> $this->getDateTime(),
-			'Price'				=> $this->getPrice(),			
+			'Price'				=> $this->getPrice(),
+			'Address'			=> $this->getAddress(),
 			'Key'				=> $this->getKey()
 		);		
 		return json_encode($json);
@@ -111,9 +130,11 @@ class Product extends Object{
 		$this->IdSupplier		= $Data[1];
 		$this->IdCategory		= $Data[2];		
 		$this->IdEstate			= $Data[3];		
-		$this->Name				= $Data[4];
-		$this->DateTime			= $Data[5];		
-		$this->Price			= $Data[6];
+		$this->IdDistrict		= $Data[4];
+		$this->Name				= $Data[5];
+		$this->DateTime			= $Data[6];		
+		$this->Price			= $Data[7];
+		$this->Address			= $Data[8];
 		$this->reKey();
     }
 			

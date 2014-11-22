@@ -9,8 +9,8 @@ class ProductMap extends Mapper implements \MVC\Domain\ProductMapFinder {
 						
 		$selectAllStmt 			= sprintf("select * from %s", $tblProductMap);
 		$selectStmt 			= sprintf("select * from %s where id=?", $tblProductMap);
-		$updateStmt 			= sprintf("update %s set idproduct=?, iddistrict=?, latitude=?, longitude=?, address=? where id=?", $tblProductMap);
-		$insertStmt 			= sprintf("insert into %s ( idproduct, iddistrict, latitude, longitude, address) values( ?, ?, ?, ?, ?)", $tblProductMap);
+		$updateStmt 			= sprintf("update %s set idproduct=?, latitude=?, longitude=? where id=?", $tblProductMap);
+		$insertStmt 			= sprintf("insert into %s ( idproduct, latitude, longitude) values( ?, ?, ?)", $tblProductMap);
 		$deleteStmt 			= sprintf("delete from %s where id=?", 				$tblProductMap);
 		$findByStmt 			= sprintf("select * from %s where idproduct=?", 	$tblProductMap);
 		$existStmt 				= sprintf("select id from %s where idproduct=? ", 	$tblProductMap);
@@ -28,11 +28,9 @@ class ProductMap extends Mapper implements \MVC\Domain\ProductMapFinder {
     protected function doCreateObject( array $array ) {		
         $obj = new \MVC\Domain\ProductMap( 
 			$array['id'],
-			$array['idproduct'],			
-			$array['iddistrict'],						
+			$array['idproduct'],						
 			$array['latitude'],
-			$array['longitude'],
-			$array['address']
+			$array['longitude']			
 		);
         return $obj;
     }
@@ -40,11 +38,9 @@ class ProductMap extends Mapper implements \MVC\Domain\ProductMapFinder {
     protected function targetClass(){return "ProductMap";}
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array(
-			$object->getIdProduct(),
-			$object->getIdDistrict(),	
+			$object->getIdProduct(),			
 			$object->getLatitude(),
-			$object->getLongitude(),
-			$object->getAddress()
+			$object->getLongitude()			
 		); 
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
@@ -53,11 +49,9 @@ class ProductMap extends Mapper implements \MVC\Domain\ProductMapFinder {
     
     protected function doUpdate( \MVC\Domain\Object $object ){
         $values = array( 
-			$object->getIdProduct(),
-			$object->getIdDistrict(),	
+			$object->getIdProduct(),			
 			$object->getLatitude(),
-			$object->getLongitude(),
-			$object->getAddress(),
+			$object->getLongitude(),			
 			$object->getId()
 		);		
         $this->updateStmt->execute( $values );

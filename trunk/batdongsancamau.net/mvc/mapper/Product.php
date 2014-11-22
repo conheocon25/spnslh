@@ -1,6 +1,5 @@
 <?php
 namespace MVC\Mapper;
-
 require_once( "mvc/base/Mapper.php" );
 class Product extends Mapper implements \MVC\Domain\ProductFinder {
 
@@ -8,11 +7,11 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
         parent::__construct();
 		$tblProduct 	= "tbl_product";
 						
-		$selectAllStmt 	= sprintf("select * from %s", $tblProduct);
-		$selectStmt 	= sprintf("select * from %s where id=?", $tblProduct);
-		$updateStmt 	= sprintf("update %s set idsupplier=?, idcategory=?, idestate=?, name=?, `datetime`=?, price=?,`key`=? where id=?", $tblProduct);
-		$insertStmt 	= sprintf("insert into %s ( idsupplier, idcategory, idestate, name, `datetime`, price, `key`) values( ?, ?, ?, ?, ?, ?, ?, ?)", $tblProduct);
-		$deleteStmt 	= sprintf("delete from %s where id=?", $tblProduct);
+		$selectAllStmt 				= sprintf("select * from %s", $tblProduct);
+		$selectStmt 				= sprintf("select * from %s where id=?", $tblProduct);
+		$updateStmt 				= sprintf("update %s set idsupplier=?, idcategory=?, idestate=?, iddistrict=?, name=?, `datetime`=?, price=?, address=?, `key`=? where id=?", $tblProduct);
+		$insertStmt 				= sprintf("insert into %s ( idsupplier, idcategory, idestate, iddistrict, name, `datetime`, price, address, `key`) values( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblProduct);
+		$deleteStmt 				= sprintf("delete from %s where id=?", $tblProduct);
 		
 		$findBySupplierStmt 		= sprintf("select * from %s where idsupplier=?  order by `datetime` DESC", $tblProduct);
 		$findBySupplierPageStmt 	= sprintf("SELECT * FROM %s WHERE idsupplier=:idsupplier ORDER BY `datetime` DESC LIMIT :start,:max", $tblProduct);
@@ -23,12 +22,12 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 		$findByCategoryStmt 		= sprintf("select * from %s where idcategory=? order by idcategory, name", $tblProduct);
 		$findByCategoryPageStmt 	= sprintf("SELECT * FROM %s WHERE idcategory=:idcategory ORDER BY name LIMIT :start,:max", $tblProduct);
 				
-		$findByPageStmt 	= sprintf("SELECT * FROM %s WHERE idsupplier=:idsupplier ORDER BY id DESC LIMIT :start,:max", $tblProduct);		
-		$findByPage1Stmt 	= sprintf("SELECT * FROM %s WHERE 	idsupplier=:idsupplier AND idcategory=:idcategory ORDER BY id DESC LIMIT :start,:max", $tblProduct);				
-		$findByKeyStmt 		= sprintf("select *  from %s where `key`=?", $tblProduct);
+		$findByPageStmt 			= sprintf("SELECT * FROM %s WHERE idsupplier=:idsupplier ORDER BY id DESC LIMIT :start,:max", $tblProduct);		
+		$findByPage1Stmt 			= sprintf("SELECT * FROM %s WHERE 	idsupplier=:idsupplier AND idcategory=:idcategory ORDER BY id DESC LIMIT :start,:max", $tblProduct);				
+		$findByKeyStmt 				= sprintf("select *  from %s where `key`=?", $tblProduct);
 				
-		$findByNameStmt 	= sprintf("select * from %s where name like :name ORDER BY name", $tblProduct);
-		$findByNamePageStmt = sprintf("select * from %s where name like :name ORDER BY name LIMIT :start,:max", $tblProduct);
+		$findByNameStmt 			= sprintf("select * from %s where name like :name ORDER BY name", $tblProduct);
+		$findByNamePageStmt 		= sprintf("select * from %s where name like :name ORDER BY name LIMIT :start,:max", $tblProduct);
 		
 		//----------------------------------------------------------------------------------------		
         $this->selectAllStmt 		= self::$PDO->prepare($selectAllStmt);
@@ -61,9 +60,11 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 			$array['idsupplier'],
 			$array['idcategory'],			
 			$array['idestate'],
+			$array['iddistrict'],
 			$array['name'],
-			$array['datetime'],							
+			$array['datetime'],
 			$array['price'],				
+			$array['address'],
 			$array['key']
 		);
         return $obj;
@@ -75,9 +76,11 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 			$object->getIdSupplier(),
 			$object->getIdCategory(),			
 			$object->getIdEstate(),			
+			$object->getIdDistrict(),
 			$object->getName(),
 			$object->getDateTime(),			
-			$object->getPrice(),			
+			$object->getPrice(),
+			$object->getAddress(),
 			$object->getKey()
 		); 
         $this->insertStmt->execute( $values );
@@ -88,11 +91,13 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
     protected function doUpdate( \MVC\Domain\Object $object ){
         $values = array( 
 			$object->getIdSupplier(),
-			$object->getIdCategory(),			
-			$object->getIdEstate(),			
+			$object->getIdCategory(),
+			$object->getIdEstate(),
+			$object->getIdDistrict(),
 			$object->getName(),
 			$object->getDateTime(),			
 			$object->getPrice(),
+			$object->getAddress(),
 			$object->getKey(),
 			$object->getId()
 		);		
@@ -178,7 +183,6 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 		$this->findByNamePageStmt->bindValue(':max', (int)($values[2]), \PDO::PARAM_INT);
 		$this->findByNamePageStmt->execute();
         return new ProductCollection( $this->findByNamePageStmt->fetchAll(), $this );
-    }
-	
+    }	
 }
 ?>

@@ -36,7 +36,7 @@
 							</div>
 							<div class="form-group">
 								<label class="control-label">Thời gian</label>
-								<div class="controls"><input id="DateTime2" name="DateTime2" type="text" class="form-control input-small" tal:attributes="value Product/getDateTime"/></div>
+								<div class="controls"><input id="DateTime2" name="DateTime2" type="text" class="form-control input-small" tal:attributes="value Product/getDateTime" data-date-format="yyyy-mm-dd"/></div>
 							</div>							
 							<div class="form-group">
 								<label class="control-label">Danh mục</label>
@@ -59,9 +59,23 @@
 								</div>
 							</div>										
 							<div class="form-group">
+								<label class="control-label">Huyện</label>
+								<div class="controls">
+									<select name="IdDistrict2" id="IdDistrict2" style="width:80%;">
+										<option tal:repeat="District Province/getDistrictAll" tal:attributes="value District/getId; selected php:Product->getIdDistrict()==District->getId()?'selected':''">
+											<span tal:content="District/getName" />
+										</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
 								<label class="control-label">Giá</label>
 								<div class="controls"><input id="Price2" name="Price2" type="text" class="form-control input-small" tal:attributes="value Product/getPrice"/></div>
-							</div>							
+							</div>
+							<div class="form-group">
+								<label class="control-label">Địa chỉ</label>
+								<div class="controls"><input id="Address2" name="Address2" type="text" class="form-control input-small" tal:attributes="value Product/getAddress"/></div>
+							</div>					
 							<input id="IdSupplier2" name="IdSupplier2" tal:attributes="value Product/getIdSupplier" type="hidden" />
 						<div class="modal-footer">
 							<button id="URLUpdButton" class="btn btn-primary btn-small" tal:attributes="alt Product/getId"><i class="glyphicons-download_alt"/> Lưu</button>
@@ -76,8 +90,9 @@
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>
 		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
 		<script type="text/javascript">
-		/*<![CDATA[*/															
-									
+		/*<![CDATA[*/
+		
+			$('#DateTime2').datepicker({language:'vi'});
 			//-----------------------------------------------------------------------------------
 			//Update 1 Product
 			//-----------------------------------------------------------------------------------
@@ -107,10 +122,12 @@
 					Data[0] = $('#URLUpdButton').attr('alt');					
 					Data[1] = $('#IdSupplier2').val();
 					Data[2] = $('#IdCategory2').val();					
-					Data[3] = $('#IdEstate2').val();					
-					Data[4] = $('#Name2').val();
-					Data[5] = $('#DateTime2').val();					
-					Data[6] = $('#Price2').val();
+					Data[3] = $('#IdEstate2').val();
+					Data[4] = $('#IdDistrict2').val();
+					Data[5] = $('#Name2').val();
+					Data[6] = $('#DateTime2').val();					
+					Data[7] = $('#Price2').val();
+					Data[8] = $('#Address2').val();
 										
 					var URL = "/object/upd/Product";
 					$.ajax({
