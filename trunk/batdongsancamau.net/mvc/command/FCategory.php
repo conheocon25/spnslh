@@ -38,6 +38,7 @@
 			$ConfigPhone2 	= $mConfig->findByName("PHONE2");
 						
 			$CategoryAll 	= $mCategory->findAll();
+			$CategoryAll1 	= $mCategory1->findAll();
 			$Category1 		= $mCategory->findByKey($KCategory1);
 			$Category2 		= $mCategory1->findByKey(array($Category1->getId(), $KCategory2));
 			$EstateAll 		= $mEstate->findAll();
@@ -76,6 +77,7 @@
 			
 			$request->setObject("EstateAll", 			$EstateAll);
 			$request->setObject("CategoryAll", 			$CategoryAll);
+			$request->setObject("CategoryAll1", 		$CategoryAll1);
 			$request->setObject("TagAll", 				$TagAll);
 			$request->setObject("Province", 			$Province);
 			$request->setObject("Category1", 			$Category1);			
