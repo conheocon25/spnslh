@@ -10,13 +10,11 @@
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
-			//-------------------------------------------------------------			
-			$IdDistrict = $request->getProperty('IdDistrict');
+			//-------------------------------------------------------------						
 			$IdProduct 	= $request->getProperty('IdProduct');
 			$Latitude 	= $request->getProperty('Latitude');
 			$Longitude 	= $request->getProperty('Longitude');
-			$Address 	= $request->getProperty('Address');
-						
+									
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
@@ -27,11 +25,9 @@
 			//-------------------------------------------------------------															
 			$IdPM  	= $mProductMap->exist(array($IdProduct));
 			$PM 	= $mProductMap->find($IdPM);
-			
-			$PM->setIdDistrict($IdDistrict);
+						
 			$PM->setLatitude($Latitude);
-			$PM->setLongitude($Longitude);
-			$PM->setAddress($Address);
+			$PM->setLongitude($Longitude);			
 			$mProductMap->update($PM);
 			
 			return self::statuses('CMD_OK');

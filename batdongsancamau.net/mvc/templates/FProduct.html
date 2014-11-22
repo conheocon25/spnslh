@@ -16,7 +16,7 @@
 								<div class="col-md-12 col-sm-12 col-xs-12 product">									
 									<h1 class="product-name"><span tal:content="Product/getName"/></h1>
 									<p>Ngày đăng: <B tal:content="Product/getDateTimePrint"/></p>
-									<p>Địa chỉ: <B tal:content="Product/getMap/getAddress"/></p>
+									<p>Địa chỉ: <B tal:content="Product/getAddress"/></p>
 									<table width="100%" border="1">
 										<tr>
 											<td width="25%">Diện tích</td>
@@ -27,7 +27,7 @@
 									</table>
 								</div>
 							</div>							
-							<div class="row">
+							<div class="row" tal:condition="Product/getInfo">
 								<div class="col-md-12 col-sm-12 col-xs-12">									
 									<p tal:content="structure Product/getInfo/getInfo"/>
 									<table width="100%" border="1">
@@ -49,7 +49,7 @@
 										</tr>
 										<tr>
 											<td width="20%">Loại BĐS</td>
-											<td width="15%"><B tal:content="Product/getEstate/getName" /></td>
+											<td width="15%"><B tal:content="Product/getEstate/getName" tal:condition="Product/getEstate"/></td>
 											<td width="20%">Pháp lý</td>
 											<td width="15%"><B tal:content="Product/getInfo/getInfoEx05Print" /></td>
 											<td width="15%">Sân thượng</td>
@@ -80,7 +80,7 @@
 									<div style="width:640px; height:480px"  id="ProductMap" />
 								</div>								
 							</div>
-							<div class="row" tal:condition="Product/getImageAll">
+							<div class="row" tal:condition="Product/getImageAll/count">
 								<div class="col-md-12 col-sm-12 col-xs-12">
 									<h3 class="product-name">HÌNH ẢNH</h3>									
 									<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">										

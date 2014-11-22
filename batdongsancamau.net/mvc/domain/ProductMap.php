@@ -6,29 +6,22 @@ class ProductMap extends Object{
 
     private $Id;
 	private $IdProduct;
-	private $IdDistrict;
 	private $Latitude;
 	private $Longitude;
-	private $Address;
-		
+			
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
     function __construct( 
 		$Id			=null, 
-		$IdProduct	=null,
-		$IdDistrict	=null,
+		$IdProduct	=null,	
 		$Latitude	=null,
-		$Longitude	=null,
-		$Address	=null
-	)
+		$Longitude	=null)
 	{        		
 		$this->Id				= $Id;
-		$this->IdProduct		= $IdProduct;
-		$this->IdDistrict		= $IdDistrict;
+		$this->IdProduct		= $IdProduct;		
 		$this->Latitude			= $Latitude;
-		$this->Longitude		= $Longitude;
-		$this->Address			= $Address;
+		$this->Longitude		= $Longitude;		
 				
         parent::__construct( $Id );
     }
@@ -41,14 +34,7 @@ class ProductMap extends Object{
 		$Product 	= $mProduct->find( $this->getIdProduct() );
 		return $Product;
 	}
-	
-	function setIdDistrict( $IdDistrict ) 	{$this->IdDistrict = $IdDistrict;$this->markDirty();}
-    function getIdDistrict( ){
-		if ($this->IdDistrict=="")
-			return "/data/images/product1.jpg";
-		return $this->IdDistrict;
-	}
-	
+			
 	function setLatitude( $Latitude ) 	{$this->Latitude = $Latitude; $this->markDirty();}
     function getLatitude( ){
 		if ($this->Latitude=="")
@@ -58,30 +44,22 @@ class ProductMap extends Object{
 	
     function setLongitude( $Longitude ) {$this->Longitude = $Longitude;$this->markDirty();}
     function getLongitude( ) {return $this->Longitude;}
-	
-	function setAddress( $Address ) {$this->Address = $Address;$this->markDirty();}
-    function getAddress( ) 			{return $this->Address;}
-	
+		
 	function toJSON(){
 		$json = array(
 			'Id' 				=> $this->getId(),	
-			'IdProduct'			=> $this->getIdProduct(),			
-			'IdDistrict'		=> $this->getIdDistrict(),
+			'IdProduct'			=> $this->getIdProduct(),				
 			'Latitude'			=> $this->getLatitude(),
-			'Longitude'			=> $this->getLongitude(),
-			'Address'			=> $this->getAddress()
+			'Longitude'			=> $this->getLongitude()			
 		);		
 		return json_encode($json);
 	}
 	
-	function setArray( $Data ){
-        	
+	function setArray( $Data ){        	
 		$this->Id				= $Data[0];
-		$this->IdProduct		= $Data[1];		
-		$this->IdDistrict		= $Data[2];
-		$this->Latitude			= $Data[3];
-		$this->Longitude		= $Data[4];
-		$this->Address			= $Data[5];
+		$this->IdProduct		= $Data[1];
+		$this->Latitude			= $Data[2];
+		$this->Longitude		= $Data[3];
     }
 	
 	function getURLSettingExe(){return "/admin/setting/supplier/".$this->getProduct()->getIdSupplier()."/".$this->getIdProduct()."/map/exe";}
