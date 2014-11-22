@@ -206,15 +206,16 @@
 				<div class="form-group">											
 					<div class="controls">
 						<select name="IdCategory" id="IdCategory" style="width:100%;">
-							<option tal:repeat="Category CategoryAll1" tal:attributes="value Category/getId;">
+							<!--@\MVC\Base\SessionRegistry::instance()->getIdCategory()!-->
+							<option tal:repeat="Category CategoryAll1" tal:attributes="value Category/getId;selected php:Category->getId()==@\MVC\Base\SessionRegistry::instance()->getIdCategory()?'selected':''" >
 								<span tal:content="Category/getName" />
 							</option>
 						</select>
 					</div>
 					<div class="controls">
 						<select name="IdEstate" id="IdEstate" style="width:100%;">
-							<option value="0">tất cả</option>
-							<option tal:repeat="Estate EstateAll" tal:attributes="value Estate/getId;">
+							<option value="0" tal:attributes="selected php:@\MVC\Base\SessionRegistry::instance()->getIdEstate()==0?'selected':''">tất cả</option>
+							<option tal:repeat="Estate EstateAll" tal:attributes="value Estate/getId;selected php:Estate->getId()==@\MVC\Base\SessionRegistry::instance()->getIdEstate()?'selected':''">
 								<span tal:content="Estate/getName" />
 							</option>
 						</select>

@@ -5,7 +5,7 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 
     function __construct() {
         parent::__construct();
-		$tblProduct 	= "tbl_product";
+		$tblProduct 				= "tbl_product";
 						
 		$selectAllStmt 				= sprintf("select * from %s", $tblProduct);
 		$selectStmt 				= sprintf("select * from %s WHERE id=?", $tblProduct);
@@ -13,8 +13,8 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 		$insertStmt 				= sprintf("insert into %s ( idsupplier, idcategory, idestate, iddistrict, name, `datetime`, price, address, `key`) values( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblProduct);
 		$deleteStmt 				= sprintf("delete from %s WHERE id=?", $tblProduct);
 		
-		$searchStmt 				= sprintf("SELECT * FROM %s WHERE idcategory=? ORDER BY datetime DESC", $tblProduct);
-		$searchPageStmt 			= sprintf("SELECT * FROM %s WHERE idcategory=:idcategory ORDER BY datetime DESC LIMIT :start,:max", $tblProduct);
+		//$searchStmt 				= sprintf("SELECT * FROM %s WHERE idcategory=? ORDER BY datetime DESC", $tblProduct);
+		//$searchPageStmt 			= sprintf("SELECT * FROM %s WHERE idcategory=:idcategory ORDER BY datetime DESC LIMIT :start,:max", $tblProduct);
 		
 		$findBySupplierStmt 		= sprintf("select * from %s WHERE idsupplier=?  order by `datetime` DESC", $tblProduct);
 		$findBySupplierPageStmt 	= sprintf("SELECT * FROM %s WHERE idsupplier=:idsupplier ORDER BY `datetime` DESC LIMIT :start,:max", $tblProduct);
@@ -41,8 +41,8 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 						
 		$this->findByTopStmt 						= self::$PDO->prepare($findByTopStmt);
 		
-		$this->searchStmt 							= self::$PDO->prepare($searchStmt);
-		$this->searchPageStmt 						= self::$PDO->prepare($searchPageStmt);
+		//$this->searchStmt 						= self::$PDO->prepare($searchStmt);
+		//$this->searchPageStmt 					= self::$PDO->prepare($searchPageStmt);
 		
 		$this->findBySupplierStmt 					= self::$PDO->prepare($findBySupplierStmt);
 		$this->findBySupplierPageStmt 				= self::$PDO->prepare($findBySupplierPageStmt);
@@ -113,16 +113,42 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
     function selectStmt() 						{return $this->selectStmt;}
     function selectAllStmt() 					{return $this->selectAllStmt;}
 	
-	function search(array $values) {
-        $this->searchStmt->execute( $values );
-        return new ProductCollection( $this->searchStmt->fetchAll(), $this );
+	function search($IdCategory, $IdEstate, $IdDistrict, $IdDirection, $IdPrice, $IdArea) {        
+		$searchSQL 			= "SELECT * FROM tbl_product WHERE ";
+		$whereCategorySQL 	= " idcategory=".$IdCategory;
+		$whereEstateSQL 	= " idestate=".$IdEstate;		
+		$orderSQL 			= " ORDER BY datetime DESC";
+		
+		$searchSQL 			= $searchSQL.$whereCategorySQL;		
+		if ($IdEstate>0){	$searchSQL 		= $searchSQL." AND ".$whereEstateSQL;}
+		
+		$searchSQL 			= $searchSQL.$orderSQL;
+		
+		$searchStmt 		= self::$PDO->prepare($searchSQL);
+		$searchStmt->execute();
+        return new ProductCollection( $searchStmt->fetchAll(), $this );
     }
-	function searchPage( $values ){
+	function searchPage( $IdCategory, $IdEstate, $IdDistrict, $IdDirection, $IdPrice, $IdArea, $Page, $NRow){
+		/*
 		$this->searchPageStmt->bindValue(':idcategory', $values[0], \PDO::PARAM_INT);
 		$this->searchPageStmt->bindValue(':start', ((int)($values[1])-1)*(int)($values[2]), \PDO::PARAM_INT);
 		$this->searchPageStmt->bindValue(':max', (int)($values[2]), \PDO::PARAM_INT);
 		$this->searchPageStmt->execute();
         return new ProductCollection( $this->searchPageStmt->fetchAll(), $this );
+		*/
+		$searchSQL 			= "SELECT * FROM tbl_product WHERE ";
+		$whereCategorySQL 	= " idcategory=".$IdCategory;
+		$whereEstateSQL 	= " idestate=".$IdEstate;		
+		$orderSQL 			= " ORDER BY datetime DESC";
+		
+		$searchSQL 			= $searchSQL.$whereCategorySQL;		
+		if ($IdEstate>0){	$searchSQL 		= $searchSQL." AND ".$whereEstateSQL;}
+		
+		$searchSQL 			= $searchSQL.$orderSQL;
+		
+		$searchStmt 		= self::$PDO->prepare($searchSQL);
+		$searchStmt->execute();
+        return new ProductCollection( $searchStmt->fetchAll(), $this );
     }
 	
 	function findBySupplier(array $values) {

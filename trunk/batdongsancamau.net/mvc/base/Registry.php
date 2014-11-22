@@ -35,72 +35,30 @@
 		} 
 												
 		//Quản lí User
-		function setCurrentUser( \MVC\Domain\User $user ) {
-			return self::instance()->set('cafe_current_user', $user);
-		}
-		function getCurrentUser() {
-			return self::instance()->get('cafe_current_user');
-		}
+		function setCurrentUser( \MVC\Domain\User $user ) 	{return self::instance()->set('www_current_user', $user);}
+		function getCurrentUser() 							{return self::instance()->get('www_current_user');}
 						
-		function setCurrentIdUser( $Iduser ) {
-			return self::instance()->set('cafe_current_Iduser', $Iduser);
-		}
-		function getCurrentIdUser() {
-			return self::instance()->get('cafe_current_Iduser');
-		}
+		function setCurrentIdUser( $Iduser ) 				{return self::instance()->set('www_current_iduser', $Iduser);}
+		function getCurrentIdUser() 						{return self::instance()->get('www_current_iduser');}
 		
 		//Quản lí TỪ KHÓA TÌM KIẾM
-		function setTermSearch( $TermSearch ) {
-			return self::instance()->set('cafe_current_term', $TermSearch);
-		}
-		function getTermSearch() {
-			return self::instance()->get('cafe_current_term');
-		}
+		function setIdCategory( $IdCategory ) 	{return self::instance()->set('www_term_id_category', $IdCategory);}
+		function getIdCategory() 				{return self::instance()->get('www_term_id_category');}
 		
-		//Quản lí Giỏ hàng
-		function setCart( \MVC\Domain\Cart $Cart ){
-			return self::instance()->set('cafe_current_cart', $Cart);
-		}
-		function getCart(){
-			$Cart = self::instance()->get('cafe_current_cart');
-			if (!isset($Cart)){$Cart = new \MVC\Domain\Cart();}
-			return $Cart;
-		}
+		function setIdEstate( $IdEstate ) 		{return self::instance()->set('www_term_id_estate', $IdEstate);}
+		function getIdEstate() 					{return self::instance()->get('www_term_id_estate');}
 		
-		//Quản lí đánh dấu
-		function setBookmark( \MVC\Domain\Cart $Cart ){
-			return self::instance()->set('cafe_current_bookmark', $Cart);
-		}
-		function getBookmark(){
-			$Cart = self::instance()->get('cafe_current_bookmark');
-			if (!isset($Cart)){$Cart = new \MVC\Domain\Cart();}
-			return $Cart;
-		}	
+		function setIdDistrict( $IdDistrict ) 	{return self::instance()->set('www_term_id_district', $IdDistrict);}
+		function getIdDistrict() 				{return self::instance()->get('www_term_id_district');}
 		
-		function setCurrentCaptcha( $CurrentCaptcha ) { 
-			self::instance()->set('huongsenhong_CurrentCaptcha', $CurrentCaptcha); 
-		}
-		function getCurrentCaptcha( ){
-			return self::instance()->get('huongsenhong_CurrentCaptcha');
-		}
+		function setIdDirection( $IdDirection ) {return self::instance()->set('www_term_id_direction', $IdDirection);}
+		function getIdDirection() 				{return self::instance()->get('www_term_id_direction');}
 		
-		function setCurrentTheme( $theme ) {
-			return self::instance()->set('cafe_current_theme', $theme);
-		}
+		function setIdPrice( $IdPrice ) 		{return self::instance()->set('www_term_id_price', $IdPrice);}
+		function getIdPrice() 					{return self::instance()->get('www_term_id_price');}
 		
-		function getCurrentTheme(){
-			$Theme = self::instance()->get('cafe_current_theme');
-			if (!isset($Theme)){
-				$mConfig = new \MVC\Mapper\Config();
-				$Config = $mConfig->findByName("THEME");
-				if (!isset($Config))
-					return "grey";
-				else
-					return $Config->getValue();
-			}
-				
-			return self::instance()->get('cafe_current_theme');
-		}
+		function setIdArea( $IdArea ) 			{return self::instance()->set('www_term_id_area', $IdArea);}
+		function getIdArea() 					{return self::instance()->get('www_term_id_area');}
 	}
 	/*--------------------------------------------------------------------------------*/
 	class RequestRegistry extends Registry { 

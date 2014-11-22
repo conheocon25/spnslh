@@ -41,10 +41,27 @@
 			$ConfigGmail 	= $mConfig->findByName("CONTACT_GTALK");
 			$ConfigSkype 	= $mConfig->findByName("CONTACT_SKYPE");
 			
+			//LẤY DỮ LIỆU MẶC ĐỊNH
+			if (!isset($IdCategory)){
+				$IdCategory = $Session->getIdCategory( );
+				$IdEstate 	= $Session->getIdEstate( );
+				$IdDistrict	= $Session->getIdDistrict( );
+				$IdDirection= $Session->getIdDirection( );
+				$IdPrice	= $Session->getIdPrice( );
+				$IdArea		= $Session->getIdArea( );
+			}
+			
+			$Session->setIdCategory( $IdCategory );
+			$Session->setIdEstate( $IdEstate );
+			$Session->setIdDistrict( $IdDistrict );
+			$Session->setIdDirection( $IdDirection );
+			$Session->setIdPrice( $IdPrice );
+			$Session->setIdArea( $IdArea );
+			
 			if (!isset($Page)) $Page = 1;
 			
-			$ProductAll1	= $mProduct->search(array($IdCategory));
-			$ProductAll 	= $mProduct->searchPage(array($IdCategory, $Page, 9));			
+			$ProductAll1	= $mProduct->search($IdCategory, $IdEstate, $IdDistrict, $IdDirection, $IdPrice, $IdArea);
+			$ProductAll 	= $mProduct->searchPage($IdCategory, $IdEstate, $IdDistrict, $IdDirection, $IdPrice, $IdArea, $Page, 9);
 			$PN 			= new \MVC\Domain\PageNavigation($ProductAll1->count(), 9, "/tim-kiem");
 			
 			$EstateAll 		= $mEstate->findAll();
@@ -60,7 +77,7 @@
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
 			$request->setProperty("Active", 			'Home');
-			$request->setProperty("Title", 				$Title);			
+			$request->setProperty("Title", 				$Title);
 			$request->setObject("Navigation", 			$Navigation);
 			$request->setObject("ConfigName", 			$ConfigName);
 			$request->setObject("ConfigSlogan", 		$ConfigSlogan);
