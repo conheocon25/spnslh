@@ -19,6 +19,7 @@
 			//-------------------------------------------------------------			
 			$mConfig 	= new \MVC\Mapper\Config();
 			$mCategory 	= new \MVC\Mapper\Category();
+			$mCategory1	= new \MVC\Mapper\Category1();
 			$mPost 		= new \MVC\Mapper\Post();
 			$mPostTag 	= new \MVC\Mapper\PostTag();
 			$mTag 		= new \MVC\Mapper\Tag();
@@ -36,7 +37,8 @@
 			$ConfigGmail 			= $mConfig->findByName("CONTACT_GTALK");
 			$ConfigSkype 			= $mConfig->findByName("CONTACT_SKYPE");
 			
-			$CategoryAll 			= $mCategory->findAll();			
+			$CategoryAll 			= $mCategory->findAll();
+			$CategoryAll1 			= $mCategory1->findAll();
 			$EstateAll				= $mEstate->findAll();
 			$Province				= $mProvince->find(15);
 			
@@ -70,6 +72,7 @@
 			
 			$request->setObject("Post", 				$Post);
 			$request->setObject("CategoryAll", 			$CategoryAll);
+			$request->setObject("CategoryAll1", 		$CategoryAll1);
 			$request->setObject("EstateAll", 			$EstateAll);
 			$request->setObject("Province", 			$Province);			
 			$request->setObject("TagAll", 				$TagAll);

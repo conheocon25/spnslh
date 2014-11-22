@@ -17,6 +17,7 @@
 			//-------------------------------------------------------------						
 			$mConfig 		= new \MVC\Mapper\Config();			
 			$mCategory 		= new \MVC\Mapper\Category();						
+			$mCategory1		= new \MVC\Mapper\Category1();
 			$mProvince		= new \MVC\Mapper\Province();
 			$mEstate		= new \MVC\Mapper\TypeEstate();
 			$mTag			= new \MVC\Mapper\Tag();
@@ -33,14 +34,13 @@
 			$ConfigSkype 			= $mConfig->findByName("CONTACT_SKYPE");
 						
 			$CategoryAll 	= $mCategory->findAll();
+			$CategoryAll1 	= $mCategory1->findAll();
 			$EstateAll 		= $mEstate->findAll();
 			$TagAll 		= $mTag->findByPosition(array(1));
 			$Province 		= $mProvince->find(15);
 			
 			$Title = "ĐĂNG KÝ MUA";
-			$Navigation = array(
-				
-			);
+			$Navigation = array();
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
@@ -56,6 +56,7 @@
 			$request->setObject("Navigation", 			$Navigation);
 			
 			$request->setObject("CategoryAll", 			$CategoryAll);
+			$request->setObject("CategoryAll1", 		$CategoryAll1);
 			$request->setObject("EstateAll", 			$EstateAll);
 			$request->setObject("TagAll", 				$TagAll);
 			$request->setObject("Province", 			$Province);

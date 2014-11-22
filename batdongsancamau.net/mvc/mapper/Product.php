@@ -8,35 +8,41 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 		$tblProduct 	= "tbl_product";
 						
 		$selectAllStmt 				= sprintf("select * from %s", $tblProduct);
-		$selectStmt 				= sprintf("select * from %s where id=?", $tblProduct);
+		$selectStmt 				= sprintf("select * from %s WHERE id=?", $tblProduct);
 		$updateStmt 				= sprintf("update %s set idsupplier=?, idcategory=?, idestate=?, iddistrict=?, name=?, `datetime`=?, price=?, address=?, `key`=? where id=?", $tblProduct);
 		$insertStmt 				= sprintf("insert into %s ( idsupplier, idcategory, idestate, iddistrict, name, `datetime`, price, address, `key`) values( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblProduct);
-		$deleteStmt 				= sprintf("delete from %s where id=?", $tblProduct);
+		$deleteStmt 				= sprintf("delete from %s WHERE id=?", $tblProduct);
 		
-		$findBySupplierStmt 		= sprintf("select * from %s where idsupplier=?  order by `datetime` DESC", $tblProduct);
+		$searchStmt 				= sprintf("SELECT * FROM %s WHERE idcategory=? ORDER BY datetime DESC", $tblProduct);
+		$searchPageStmt 			= sprintf("SELECT * FROM %s WHERE idcategory=:idcategory ORDER BY datetime DESC LIMIT :start,:max", $tblProduct);
+		
+		$findBySupplierStmt 		= sprintf("select * from %s WHERE idsupplier=?  order by `datetime` DESC", $tblProduct);
 		$findBySupplierPageStmt 	= sprintf("SELECT * FROM %s WHERE idsupplier=:idsupplier ORDER BY `datetime` DESC LIMIT :start,:max", $tblProduct);
 		
-		$findBySupplierCategoryStmt = sprintf("select * from %s where idsupplier=? AND idcategory=? order by id DESC", $tblProduct);
+		$findBySupplierCategoryStmt = sprintf("select * from %s WHERE idsupplier=? AND idcategory=? order by id DESC", $tblProduct);
 		$findByTopStmt 				= sprintf("select * from %s order by id DESC LIMIT 9", $tblProduct);									
 		
-		$findByCategoryStmt 		= sprintf("select * from %s where idcategory=? order by idcategory, name", $tblProduct);
+		$findByCategoryStmt 		= sprintf("select * from %s WHERE idcategory=? order by idcategory, name", $tblProduct);
 		$findByCategoryPageStmt 	= sprintf("SELECT * FROM %s WHERE idcategory=:idcategory ORDER BY name LIMIT :start,:max", $tblProduct);
 				
 		$findByPageStmt 			= sprintf("SELECT * FROM %s WHERE idsupplier=:idsupplier ORDER BY id DESC LIMIT :start,:max", $tblProduct);		
 		$findByPage1Stmt 			= sprintf("SELECT * FROM %s WHERE 	idsupplier=:idsupplier AND idcategory=:idcategory ORDER BY id DESC LIMIT :start,:max", $tblProduct);				
-		$findByKeyStmt 				= sprintf("select *  from %s where `key`=?", $tblProduct);
+		$findByKeyStmt 				= sprintf("select *  from %s WHERE `key`=?", $tblProduct);
 				
-		$findByNameStmt 			= sprintf("select * from %s where name like :name ORDER BY name", $tblProduct);
-		$findByNamePageStmt 		= sprintf("select * from %s where name like :name ORDER BY name LIMIT :start,:max", $tblProduct);
+		$findByNameStmt 			= sprintf("select * from %s WHERE name like :name ORDER BY name", $tblProduct);
+		$findByNamePageStmt 		= sprintf("select * from %s WHERE name like :name ORDER BY name LIMIT :start,:max", $tblProduct);
 		
 		//----------------------------------------------------------------------------------------		
-        $this->selectAllStmt 		= self::$PDO->prepare($selectAllStmt);
-        $this->selectStmt 			= self::$PDO->prepare($selectStmt);
-        $this->updateStmt 			= self::$PDO->prepare($updateStmt);
-        $this->insertStmt 			= self::$PDO->prepare($insertStmt);
-		$this->deleteStmt 			= self::$PDO->prepare($deleteStmt);
+        $this->selectAllStmt 						= self::$PDO->prepare($selectAllStmt);
+        $this->selectStmt 							= self::$PDO->prepare($selectStmt);
+        $this->updateStmt 							= self::$PDO->prepare($updateStmt);
+        $this->insertStmt 							= self::$PDO->prepare($insertStmt);
+		$this->deleteStmt 							= self::$PDO->prepare($deleteStmt);
 						
-		$this->findByTopStmt 						= self::$PDO->prepare($findByTopStmt);				
+		$this->findByTopStmt 						= self::$PDO->prepare($findByTopStmt);
+		
+		$this->searchStmt 							= self::$PDO->prepare($searchStmt);
+		$this->searchPageStmt 						= self::$PDO->prepare($searchPageStmt);
 		
 		$this->findBySupplierStmt 					= self::$PDO->prepare($findBySupplierStmt);
 		$this->findBySupplierPageStmt 				= self::$PDO->prepare($findBySupplierPageStmt);
@@ -103,9 +109,21 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 		);		
         $this->updateStmt->execute( $values );
     }
-	protected function doDelete(array $values) {return $this->deleteStmt->execute( $values );}			
-    function selectStmt() {return $this->selectStmt;}	
-    function selectAllStmt() {return $this->selectAllStmt;}
+	protected function doDelete(array $values) 	{return $this->deleteStmt->execute( $values );}			
+    function selectStmt() 						{return $this->selectStmt;}
+    function selectAllStmt() 					{return $this->selectAllStmt;}
+	
+	function search(array $values) {
+        $this->searchStmt->execute( $values );
+        return new ProductCollection( $this->searchStmt->fetchAll(), $this );
+    }
+	function searchPage( $values ){
+		$this->searchPageStmt->bindValue(':idcategory', $values[0], \PDO::PARAM_INT);
+		$this->searchPageStmt->bindValue(':start', ((int)($values[1])-1)*(int)($values[2]), \PDO::PARAM_INT);
+		$this->searchPageStmt->bindValue(':max', (int)($values[2]), \PDO::PARAM_INT);
+		$this->searchPageStmt->execute();
+        return new ProductCollection( $this->searchPageStmt->fetchAll(), $this );
+    }
 	
 	function findBySupplier(array $values) {
         $this->findBySupplierStmt->execute( $values );

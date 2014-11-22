@@ -17,6 +17,7 @@
 			//-------------------------------------------------------------			
 			$mConfig 	= new \MVC\Mapper\Config();
 			$mCategory 	= new \MVC\Mapper\Category();
+			$mCategory1	= new \MVC\Mapper\Category1();
 			$mPost	 	= new \MVC\Mapper\Post();
 			$mProvince	= new \MVC\Mapper\Province();
 			$mEstate	= new \MVC\Mapper\TypeEstate();
@@ -34,6 +35,7 @@
 			$ConfigIntro 			= $mConfig->findByName("POST_PRICE_HOUSE");
 			
 			$CategoryAll 			= $mCategory->findAll();
+			$CategoryAll1 			= $mCategory1->findAll();
 			$EstateAll 				= $mEstate->findAll();			
 			$TagAll 				= $mTag->findByPosition(array(1));			
 			$Province 				= $mProvince->find(15);
@@ -62,6 +64,7 @@
 			$request->setObject("EstateAll", 			$EstateAll);
 			$request->setObject("TagAll", 				$TagAll);
 			$request->setObject("CategoryAll", 			$CategoryAll);
+			$request->setObject("CategoryAll1", 		$CategoryAll1);
 												
 			return self::statuses('CMD_DEFAULT');
 		}

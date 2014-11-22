@@ -21,7 +21,8 @@ RewriteRule ^trang-chu$ 									?cmd=FHome 					[L]
 RewriteRule ^nha-moi-gioi/([A-Za-z0-9_-]+)$ 				?cmd=FSupplier&KSupplier=$1	[L]
 RewriteRule ^nha-moi-gioi/([A-Za-z0-9_-]+)/page/([0-9]+)$ 	?cmd=FSupplier&KSupplier=$1&Page=$2	[L]
 
-RewriteRule ^tim-kiem$ 										?cmd=FSearch 				[L]
+RewriteRule ^tim-kiem$ 										?cmd=FProductSearch 		[L]
+RewriteRule ^tim-kiem/page/([0-9]+)$ 						?cmd=FProductSearch&Page=$1	[L]
 
 RewriteRule ^bang-gia/gia-dat$ 								?cmd=FPriceLand 			[L]
 RewriteRule ^bang-gia/gia-nha$ 								?cmd=FPriceHouse 			[L]

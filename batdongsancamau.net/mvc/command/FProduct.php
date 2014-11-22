@@ -38,6 +38,7 @@
 			$ConfigSkype 	= $mConfig->findByName("CONTACT_SKYPE");
 			
 			$CategoryAll 	= $mCategory->findAll();
+			$CategoryAll1 	= $mCategory1->findAll();
 			$EstateAll 		= $mEstate->findAll();
 			$Product 		= $mProduct->findByKey($KProduct);
 			$Category1 		= $Product->getCategory();
@@ -67,6 +68,7 @@
 						
 			$request->setObject("TagAll", 		$TagAll);
 			$request->setObject("CategoryAll", 	$CategoryAll);
+			$request->setObject("CategoryAll1", $CategoryAll1);
 			$request->setObject("EstateAll", 	$EstateAll);
 			$request->setObject("Category", 	$Category);
 			$request->setObject("Category1", 	$Category1);

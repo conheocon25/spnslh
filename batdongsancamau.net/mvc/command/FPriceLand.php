@@ -17,6 +17,7 @@
 			//-------------------------------------------------------------			
 			$mConfig 	= new \MVC\Mapper\Config();
 			$mCategory 	= new \MVC\Mapper\Category();
+			$mCategory1	= new \MVC\Mapper\Category1();
 			$mPost	 	= new \MVC\Mapper\Post();
 			$mEstate	= new \MVC\Mapper\TypeEstate();
 			$mProvince	= new \MVC\Mapper\Province();
@@ -35,6 +36,7 @@
 			
 			$EstateAll 				= $mEstate->findAll();
 			$CategoryAll 			= $mCategory->findAll();
+			$CategoryAll1 			= $mCategory1->findAll();
 			$TagAll 				= $mTag->findByPosition(array(1));
 			$Province 				= $mProvince->find(15);
 			$Post 					= $mPost->find($ConfigIntro->getValue() );
@@ -60,6 +62,7 @@
 			$request->setObject("Post", 				$Post);			
 			$request->setObject("Province", 			$Province);
 			$request->setObject("CategoryAll", 			$CategoryAll);
+			$request->setObject("CategoryAll1", 		$CategoryAll1);
 			$request->setObject("EstateAll", 			$EstateAll);
 			$request->setObject("TagAll", 				$TagAll);
 												

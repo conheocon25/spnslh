@@ -16,7 +16,8 @@
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------						
 			$mConfig 		= new \MVC\Mapper\Config();			
-			$mCategory 		= new \MVC\Mapper\Category();						
+			$mCategory 		= new \MVC\Mapper\Category();
+			$mCategory1		= new \MVC\Mapper\Category1();
 			$mSupplier 		= new \MVC\Mapper\Supplier();						
 			$mProvince 		= new \MVC\Mapper\Province();						
 			$mEstate 		= new \MVC\Mapper\TypeEstate();						
@@ -34,6 +35,7 @@
 						
 			$EstateAll 		= $mEstate->findAll();			
 			$CategoryAll 	= $mCategory->findAll();
+			$CategoryAll1 	= $mCategory1->findAll();
 			$SupplierAll 	= $mSupplier->findAll();
 			$Province 		= $mProvince->find(15);
 			$TagAll 		= $mTag->findByPosition(array(1));
@@ -56,6 +58,7 @@
 					
 			$request->setObject("SupplierAll", 			$SupplierAll);
 			$request->setObject("CategoryAll", 			$CategoryAll);
+			$request->setObject("CategoryAll1", 		$CategoryAll1);
 			$request->setObject("EstateAll", 			$EstateAll);
 			$request->setObject("TagAll", 				$TagAll);
 			$request->setObject("Province", 			$Province);
