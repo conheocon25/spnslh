@@ -16,7 +16,7 @@
 		<meta name="page-topic" content="Website Bất Động Sản Cà Mau"/>
 		<meta name="Abstract" content="Website Bất Động Sản Cà Mau"/>
 		<meta name="classification" content="Website Bất Động Sản Cà Mau"/>		
-		<link rel="shortcut icon" type="image/png" href="/data/images/icon.png" />
+		<link rel="shortcut icon" type="image/png" href="/mvc/templates/front/img/home.png" />
 	</span>
 	
 	<span metal:define-macro="IncludeMETAPOST">
@@ -37,7 +37,7 @@
 		<meta property="og:description" tal:attributes="content Post/getContentReduce"/>
 		<meta property="og:image" tal:attributes="content Post/getImage"/>
 
-		<link rel="shortcut icon" type="image/png" href="/data/images/icon.png" />
+		<link rel="shortcut icon" type="image/png" href="/mvc/templates/front/img/home.png" />
 	</span>
 	
 	<!-- ======================================================================== -->
@@ -45,13 +45,7 @@
 	<!-- ======================================================================== -->
 	<span metal:define-macro="IncludeCSS">	
 		<link rel="stylesheet" href="/mvc/templates/front/css/bootstrap.min.css"/>
-		<link rel="stylesheet" href="/mvc/templates/front/css/font-awesome.min.css"/>
-		<link rel="stylesheet" href="/mvc/templates/front/css/prettyPhoto.css"/>
-		<link rel="stylesheet" href="/mvc/templates/front/css/colpick.css"/>
-		<link rel="stylesheet" href="/mvc/templates/front/css/sequence-slider.css"/>
-		<link rel="stylesheet" href="/mvc/templates/front/css/owl.carousel.css"/>
-		<link rel="stylesheet" href="/mvc/templates/front/css/style.css"/>
-		<link rel="stylesheet" href="/mvc/templates/front/css/responsive.css"/>
+		<link rel="stylesheet" href="/mvc/templates/front/css/bootstrap.config.css"/>
 	</span>
 	
 	<!-- ======================================================================== -->
@@ -60,236 +54,179 @@
 	<span metal:define-macro="IncludeJS">						
 		<script src="/mvc/templates/front/js/jquery-1.11.0.min.js"></script>
 		<script src="/mvc/templates/front/js/bootstrap.min.js"></script>
-		<script src="/mvc/templates/front/js/smoothscroll.js"></script>
-		<script src="/mvc/templates/front/js/retina-1.1.0.min.js"></script>
-		<script src="/mvc/templates/front/js/jquery.placeholder.js"></script>
-		<script src="/mvc/templates/front/js/jquery.hoverIntent.min.js"></script>
-		<script src="/mvc/templates/front/js/twitter/jquery.tweet.min.js"></script>
-		<script src="/mvc/templates/front/js/jquery.flexslider-min.js"></script>
-		<script src="/mvc/templates/front/js/owl.carousel.min.js"></script>
-		<script src="/mvc/templates/front/js/jflickrfeed.min.js"></script>
-		<script src="/mvc/templates/front/js/jquery.prettyPhoto.js"></script>
-		<script src="/mvc/templates/front/js/jquery.sequence-min.js"></script>
-		<script src="/mvc/templates/front/js/colpick.js"></script>
-		<script src="/mvc/templates/front/js/main.js"></script>
-		<script src="/mvc/templates/front/js/modernizr.custom.js"></script>
-		<script src="/mvc/templates/front/js/jquery.isotope.min.js"></script>
-		<script src="/mvc/templates/front/js/jquery.fitvids.js"></script>
-		<script src="/mvc/templates/front/js/jquery.elastislide.js"></script>
-		<script src="/mvc/templates/front/js/jquery.mlens-1.3.min.js"></script>
 	</span>
 	
 	<!-- ======================================================================== -->
 	<!-- HEADER																	  -->
 	<!-- ======================================================================== -->
-	<header metal:define-macro="Header" id="header">
-		<div id="header-top">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">						
-						<marquee scrolldelay="2" scrollamount="2" behavior="scroll" direction="left" style="padding:5px; color:#fff">Trang Web Bất Động Sản Cà Mau xin kính chào quý khách! Với các thông tin đa dạng và phong phú về nhà đất Cà Mau, chúng tôi hứa hẹn tư vấn giúp quí khách thực hiện giao dịch mua bán an toàn về nhà đất</marquee>
-					</div>
+	<div metal:define-macro="Header" class="container" id="header">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="support">
+					Hotline: <span style="color:yellow">Nguyễn Minh - 0912.345.678</span>
 				</div>
+				<img alt="Brand" src="/mvc/templates/front/img/banner.jpg" width="100%"/>
 			</div>
 		</div>
-		<div id="inner-header">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-5 col-sm-5 col-xs-12 logo-container">
-						<h1 class="logo clearfix">
-							<span>Website Bất Động Sản Cà Mau</span>
-							<a href="/" title="Website Bất Động Sản Cà Mau">
-								<img src="/data/images/default1.jpg" alt="Website Bất Động Sản Cà Mau" width="100%"/>
+		<nav class="navbar navbar-default" role="navigation">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<div class="navbar-header">
+						<a class="navbar-brand" href="/trang-chu">
+							<img alt="Brand" src="/mvc/templates/front/img/home.png"/>
+						</a>
+					</div>
+				</div>
+				
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li tal:repeat="Category CategoryAll" class="dropdown">
+							<a tal:attributes="class php:Active=='Product'?'active':'?'" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+								<span tal:content="Category/getName"/> <span class="caret"></span>
 							</a>
-						</h1>
-					</div>
-					<div class="col-md-7 col-sm-7 col-xs-12 header-inner-right">
-						<div class="header-box contact-infos pull-right">
-							<ul>
-								<li><span class="header-box-icon header-box-icon-email"/><h4 tal:content="ConfigGmail/getValue"/></li>
-								<li><span class="header-box-icon header-box-icon-skype"/><h4 tal:content="ConfigSkype/getValue"/></li>
+							<ul class="dropdown-menu" role="menu">
+								<li tal:repeat="Category1 Category/getCategoryAll">												
+									<a tal:attributes="href Category1/getURLView">
+										<span tal:content="Category1/getName"/>
+									</a>
+								</li>
 							</ul>
-						</div>
-						<div class="header-box contact-phones pull-right clearfix">
-							<span class="header-box-icon header-box-icon-earphones"></span>
-							<ul class="pull-left">
-								<li><B><h4 tal:content="ConfigPhone1/getValue"/></B></li>
-								<li><B><h4 tal:content="ConfigPhone2/getValue"/></B></li>
+						</li>
+						<li class="dropdown">
+							<a tal:attributes="class php:Active=='News'?'active':'?'" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Tin tức <span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li tal:repeat="Tag TagAll">
+									<a tal:attributes="href Tag/getURLView">
+										<span tal:content="Tag/getName"/>
+									</a>
+								</li>
 							</ul>
-						</div>
-					</div>
+						</li>
+						<li class="dropdown">
+							<a tal:attributes="class php:Active=='Price'?'active':'?'" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Bảng giá <span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a tal:attributes="href '/bang-gia/gia-dat'">Bảng giá đất</a></li>
+								<li><a tal:attributes="href '/bang-gia/gia-nha'">Bảng giá nhà</a></li>
+							</ul>
+						</li>
+						<li class="dropdown">
+							<a tal:attributes="class php:Active=='Contact'?'active':'?'" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Liên hệ <span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">											
+								<li><a tal:attributes="href '/lien-he/dang-ki-mua'">Đăng ký mua</a></li>
+								<li><a tal:attributes="href '/lien-he/dang-ki-ban'">Đăng ký bán</a></li>
+								<li><a tal:attributes="href '/lien-he/nha-moi-gioi'">Nhà môi giới</a></li>
+								<li><a tal:attributes="href '/lien-he/gia-dich-vu'">Giá đăng</a></li>
+							</ul>
+						</li>
+					</ul>
 				</div>
 			</div>
-			<div id="main-nav-container">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-12 clearfix">
-							<nav id="main-nav">
-								<div id="responsive-nav">
-									<div id="responsive-nav-button">
-										Menu <span id="responsive-nav-button-icon" />
-									</div>
-								</div>
-								<ul class="menu clearfix">
-									<li><a tal:attributes="class php:Active=='Home'?'active':'?'" href="/trang-chu">TRANG CHỦ</a></li>
-									<li tal:repeat="Category CategoryAll">
-										<a tal:attributes="class php:Active=='Product'?'active':'?'" href="JavaScript:;"><span tal:content="Category/getName"/></a>
-										<ul>
-											<li tal:repeat="Category1 Category/getCategoryAll">												
-												<a tal:attributes="href Category1/getURLView">
-													<span tal:content="Category1/getName"/>
-												</a>
-											</li>
-										</ul>
-									</li>
-									<li>
-										<a tal:attributes="class php:Active=='News'?'active':'?'" href="JavaScript:;">TIN TỨC</a>
-										<ul>
-											<li tal:repeat="Tag TagAll">
-												<a tal:attributes="href Tag/getURLView">
-													<span tal:content="Tag/getName"/>
-												</a>
-											</li>
-										</ul>
-									</li>
-									<li>
-										<a tal:attributes="class php:Active=='Price'?'active':'?'" href="JavaScript:;">BẢNG GIÁ</a>
-										<ul>
-											<li><a tal:attributes="href '/bang-gia/gia-dat'">BẢNG GIÁ ĐẤT</a></li>
-											<li><a tal:attributes="href '/bang-gia/gia-nha'">BẢNG GIÁ NHÀ</a></li>
-										</ul>
-									</li>
-									<li>
-										<a tal:attributes="class php:Active=='Contact'?'active':'?'" href="JavaScript:;">LIÊN HỆ</a>
-										<ul>											
-											<li><a tal:attributes="href '/lien-he/dang-ki-mua'">ĐĂNG KÍ MUA</a></li>
-											<li><a tal:attributes="href '/lien-he/dang-ki-ban'">ĐĂNG KÍ BÁN</a></li>
-											<li><a tal:attributes="href '/lien-he/nha-moi-gioi'">NHÀ MÔI GIỚI</a></li>
-											<li><a tal:attributes="href '/lien-he/gia-dich-vu'">GIÁ ĐĂNG</a></li>
-										</ul>
-									</li>
-								</ul>
-							</nav>							
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</header>
-	
-	<!-- ======================================================================== -->
-	<!-- PAGE TITLE																  -->
-	<!-- ======================================================================== -->
-	<div metal:define-macro="PageTitle" class="row-fluid">
-		<div class="span12 logo">
-			<div class="row-fluid">
-				<div class="span3">
-					<img src="/mvc/templates/front/img/logo_guest.png" width="100%"/>
-				</div>
-				<div class="span9">
-					<div style="margin-left:-10px;">
-						<h1><a href="/trang-chu" tal:content="ConfigName/getValue"/></h1>
-						<p tal:content="ConfigSlogan/getValue"/>
-					</div>
-				</div>
-			</div>
-		</div>
+		</nav>
 	</div>
 	
 	<!-- ======================================================================== -->
 	<!-- SEARCH BOX																  -->
 	<!-- ======================================================================== -->
-	<div metal:define-macro="SearchBox" >
-		TÌM KIẾM
-		<form id="ProductSearch" action="/tim-kiem" method="POST">
-			<div class="modal-body">										
-				<div class="form-group">											
-					<div class="controls">
-						<select name="IdCategory" id="IdCategory" style="width:100%;">							
-							<option tal:repeat="Category CategoryAll1" tal:attributes="value Category/getId;selected php:Category->getId()==@\MVC\Base\SessionRegistry::instance()->getIdCategory()?'selected':''" >
-								<span tal:content="Category/getName" />
-							</option>
-						</select>
-					</div>
-					<div class="controls">
-						<select name="IdEstate" id="IdEstate" style="width:100%;">
-							<option value="0" tal:attributes="selected php:@\MVC\Base\SessionRegistry::instance()->getIdEstate()==0?'selected':''">tất cả</option>
-							<option tal:repeat="Estate EstateAll" tal:attributes="value Estate/getId;selected php:Estate->getId()==@\MVC\Base\SessionRegistry::instance()->getIdEstate()?'selected':''">
-								<span tal:content="Estate/getName" />
-							</option>
-						</select>
-					</div>
-					<div class="controls">
-						<select name="IdDistrict" id="IdDistrict" style="width:100%;">
-							<option value="0" tal:attributes="selected php:@\MVC\Base\SessionRegistry::instance()->getIdDistrict()==0?'selected':''">tất cả</option>
-							<option tal:repeat="District Province/getDistrictAll" tal:attributes="value District/getId;selected php:District->getId()==@\MVC\Base\SessionRegistry::instance()->getIdDistrict()?'selected':''">
-								<span tal:content="District/getName" />
-							</option>
-						</select>
-					</div>
-					<div class="controls">
-						<select name="IdDirection" id="IdDirection" style="width:100%;">							
-							<option value="0" tal:attributes="selected php:@\MVC\Base\SessionRegistry::instance()->getIdDirection()==0?'selected':''">tất cả</option>
-							<option value="1" tal:attributes="selected php:@\MVC\Base\SessionRegistry::instance()->getIdDirection()==1?'selected':''">Đông</option>							
-							<option value="2" tal:attributes="selected php:@\MVC\Base\SessionRegistry::instance()->getIdDirection()==2?'selected':''">Tây</option>
-							<option value="3" tal:attributes="selected php:@\MVC\Base\SessionRegistry::instance()->getIdDirection()==3?'selected':''">Nam</option>
-							<option value="4" tal:attributes="selected php:@\MVC\Base\SessionRegistry::instance()->getIdDirection()==4?'selected':''">Bắc</option>
-							<option value="5" tal:attributes="selected php:@\MVC\Base\SessionRegistry::instance()->getIdDirection()==5?'selected':''">Đông Bắc</option>
-							<option value="6" tal:attributes="selected php:@\MVC\Base\SessionRegistry::instance()->getIdDirection()==6?'selected':''">Đông Nam</option>
-							<option value="7" tal:attributes="selected php:@\MVC\Base\SessionRegistry::instance()->getIdDirection()==7?'selected':''">Tây Bắc</option>
-							<option value="8" tal:attributes="selected php:@\MVC\Base\SessionRegistry::instance()->getIdDirection()==8?'selected':''">Tây Nam</option>
-						</select>
-					</div>
-					<div class="controls">
-						<select name="IdPrice" id="IdPrice" style="width:100%;">							
-							<option value="0" tal:attributes="selected php:@\MVC\Base\SessionRegistry::instance()->getIdPrice()==0?'selected':''">tất cả</option>
-							<option value="1" tal:attributes="selected php:@\MVC\Base\SessionRegistry::instance()->getIdPrice()==1?'selected':''">0 - 1 triệu</option>
-							<option value="2" tal:attributes="selected php:@\MVC\Base\SessionRegistry::instance()->getIdPrice()==2?'selected':''">1 - 3 triệu</option>
-							<option value="3" tal:attributes="selected php:@\MVC\Base\SessionRegistry::instance()->getIdPrice()==3?'selected':''">3 - 5 triệu</option>
-							<option value="4" tal:attributes="selected php:@\MVC\Base\SessionRegistry::instance()->getIdPrice()==4?'selected':''">5 - 10 triệu</option>
-							<option value="5" tal:attributes="selected php:@\MVC\Base\SessionRegistry::instance()->getIdPrice()==5?'selected':''">10 - 15 triệu</option>
-							<option value="6" tal:attributes="selected php:@\MVC\Base\SessionRegistry::instance()->getIdPrice()==6?'selected':''">20 - 30 triệu</option>
-							<option value="7" tal:attributes="selected php:@\MVC\Base\SessionRegistry::instance()->getIdPrice()==7?'selected':''">30 - 40 triệu</option>
-							<option value="8" tal:attributes="selected php:@\MVC\Base\SessionRegistry::instance()->getIdPrice()==8?'selected':''">40 - 60 triệu</option>
-							<option value="9" tal:attributes="selected php:@\MVC\Base\SessionRegistry::instance()->getIdPrice()==9?'selected':''">60 - 80 triệu</option>
-							<option value="10" tal:attributes="selected php:@\MVC\Base\SessionRegistry::instance()->getIdPrice()==10?'selected':''">80 - 100 triệu</option>
-							<option value="11" tal:attributes="selected php:@\MVC\Base\SessionRegistry::instance()->getIdPrice()==11?'selected':''">100 - 300 triệu</option>							
-							<option value="12" tal:attributes="selected php:@\MVC\Base\SessionRegistry::instance()->getIdPrice()==12?'selected':''">300 - 500 triệu</option>
-							<option value="13" tal:attributes="selected php:@\MVC\Base\SessionRegistry::instance()->getIdPrice()==13?'selected':''">500 - 800 triệu</option>							
-							<option value="14" tal:attributes="selected php:@\MVC\Base\SessionRegistry::instance()->getIdPrice()==14?'selected':''">800 - 1 tỷ</option>
-							<option value="15" tal:attributes="selected php:@\MVC\Base\SessionRegistry::instance()->getIdPrice()==15?'selected':''">1 - 2 tỷ</option>
-							<option value="16" tal:attributes="selected php:@\MVC\Base\SessionRegistry::instance()->getIdPrice()==16?'selected':''">2 - 3 tỷ</option>
-							<option value="17" tal:attributes="selected php:@\MVC\Base\SessionRegistry::instance()->getIdPrice()==17?'selected':''">3 - 4 tỷ</option>
-							<option value="18" tal:attributes="selected php:@\MVC\Base\SessionRegistry::instance()->getIdPrice()==18?'selected':''">4 - 5 tỷ</option>
-						</select>
-					</div>
-					<div class="controls">
-						<select name="IdArea" id="IdArea" style="width:100%;">
-							<option value="0" tal:attributes="selected php:@\MVC\Base\SessionRegistry::instance()->getIdArea()==0?'selected':''">tất cả</option>
-							<option value="1" tal:attributes="selected php:@\MVC\Base\SessionRegistry::instance()->getIdArea()==1?'selected':''">0 - 30 m2</option>
-							<option value="2" tal:attributes="selected php:@\MVC\Base\SessionRegistry::instance()->getIdArea()==2?'selected':''">30 - 50 m2</option>
-							<option value="3" tal:attributes="selected php:@\MVC\Base\SessionRegistry::instance()->getIdArea()==3?'selected':''">50 - 70 m2</option>
-							<option value="4" tal:attributes="selected php:@\MVC\Base\SessionRegistry::instance()->getIdArea()==4?'selected':''">70 - 100 m2</option>
-							<option value="5" tal:attributes="selected php:@\MVC\Base\SessionRegistry::instance()->getIdArea()==5?'selected':''">100 - 150 m2</option>
-							<option value="6" tal:attributes="selected php:@\MVC\Base\SessionRegistry::instance()->getIdArea()==6?'selected':''">150 - 200 m2</option>
-							<option value="7" tal:attributes="selected php:@\MVC\Base\SessionRegistry::instance()->getIdArea()==7?'selected':''">200 - 250 m2</option>
-							<option value="8" tal:attributes="selected php:@\MVC\Base\SessionRegistry::instance()->getIdArea()==8?'selected':''">250 - 300 m2</option>
-							<option value="9" tal:attributes="selected php:@\MVC\Base\SessionRegistry::instance()->getIdArea()==9?'selected':''">300 - 350 m2</option>
-							<option value="10" tal:attributes="selected php:@\MVC\Base\SessionRegistry::instance()->getIdArea()==10?'selected':''">350 - 400 m2</option>
-							<option value="11" tal:attributes="selected php:@\MVC\Base\SessionRegistry::instance()->getIdArea()==11?'selected':''">400 - 600 m2</option>
-							<option value="12" tal:attributes="selected php:@\MVC\Base\SessionRegistry::instance()->getIdArea()==12?'selected':''">600 - 800 m2</option>
-							<option value="13" tal:attributes="selected php:@\MVC\Base\SessionRegistry::instance()->getIdArea()==13?'selected':''">800 - 1000 m2</option>
-							<option value="14" tal:attributes="selected php:@\MVC\Base\SessionRegistry::instance()->getIdArea()==14?'selected':''">trên 1000 m2</option>
-						</select>
-					</div>
+	<div metal:define-macro="SearchBox" class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">Tìm kiếm</h3>
+		</div>
+		<div class="panel-body">
+			<form id="ProductSearch" action="/tim-kiem" method="POST" role="form">
+				<div class="form-group">
+					<select name="IdCategory" id="IdCategory" class="form-control">
+						<!--@\MVC\Base\SessionRegistry::instance()->getIdCategory()!-->
+						<option tal:repeat="Category CategoryAll1" tal:attributes="value Category/getId;selected php:Category->getId()==@\MVC\Base\SessionRegistry::instance()->getIdCategory()?'selected':''" >
+							<span tal:content="Category/getName" />
+						</option>
+					</select>
 				</div>
-			</div>
-			<div class="modal-footer">
-				<button id="URLSearchButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Tìm</button>
-			</div>
-		</form>
+				<div class="form-group">
+					<select name="IdEstate" id="IdEstate" class="form-control">
+						<option value="0" tal:attributes="selected php:@\MVC\Base\SessionRegistry::instance()->getIdEstate()==0?'selected':''">tất cả</option>
+						<option tal:repeat="Estate EstateAll" tal:attributes="value Estate/getId;selected php:Estate->getId()==@\MVC\Base\SessionRegistry::instance()->getIdEstate()?'selected':''">
+							<span tal:content="Estate/getName" />
+						</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<select name="IdDistrict" id="IdDistrict" class="form-control">
+						<option value="0">tất cả</option>
+						<option tal:repeat="District Province/getDistrictAll" tal:attributes="value District/getId;">
+							<span tal:content="District/getName" />
+						</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<select name="IdDirection" id="IdDirection" class="form-control">
+						<option value="0">tất cả</option>
+						<option value="1">Đông</option>
+						<option value="2">Tây</option>
+						<option value="3">Nam</option>
+						<option value="4">Bắc</option>											
+						<option value="5">Đông Bắc</option>											
+						<option value="6">Đông Nam</option>											
+						<option value="7">Tây Bắc</option>
+						<option value="8">Tây Nam</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<select name="IdPrice" id="IdPrice" class="form-control">
+						<option value="0">tất cả</option>
+						<option value="1">0 - 1 triệu</option>
+						<option value="2">1 - 3 triệu</option>
+						<option value="3">3 - 5 triệu</option>
+						<option value="4">5 - 10 triệu</option>											
+						<option value="5">10 - 15 triệu</option>											
+						<option value="6">20 - 30 triệu</option>											
+						<option value="7">30 - 40 triệu</option>
+						<option value="8">40 - 60 triệu</option>
+						<option value="9">60 - 80 triệu</option>
+						<option value="10">80 - 100 triệu</option>
+						<option value="11">100 - 300 triệu</option>
+						<option value="12">300 - 500 triệu</option>
+						<option value="13">500 - 800 triệu</option>
+						<option value="14">800 - 1 tỷ</option>
+						<option value="15">1 - 2 tỷ</option>
+						<option value="16">2 - 3 tỷ</option>
+						<option value="17">3 - 4 tỷ</option>
+						<option value="18">4 - 5 tỷ</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<select name="IdArea" id="IdArea" class="form-control">
+						<option value="0">tất cả</option>
+						<option value="1">0 - 30 m2</option>
+						<option value="2">30 - 50 m2</option>
+						<option value="3">50 - 70 m2</option>
+						<option value="4">70 - 100 m2</option>
+						<option value="5">100 - 150 m2</option>
+						<option value="6">150 - 200 m2</option>
+						<option value="7">200 - 250 m2</option>
+						<option value="8">250 - 300 m2</option>
+						<option value="9">300 - 350 m2</option>
+						<option value="10">350 - 400 m2</option>
+						<option value="11">400 - 600 m2</option>
+						<option value="12">600 - 800 m2</option>
+						<option value="13">800 - 1000 m2</option>
+						<option value="14">trên 1000 m2</option>
+					</select>
+				</div>
+				<center>
+					<button id="URLSearchButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/>
+						<span class="glyphicon glyphicon-search" aria-hidden="true"/> Tìm
+					</button>
+				</center>
+			</form>
+		</div>
 	</div>
-	
+
 	<!-- ======================================================================== -->
 	<!-- LOCATION BAR															  -->
 	<!-- ======================================================================== -->
