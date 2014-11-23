@@ -1,5 +1,11 @@
 
-	body { font-family: Tahoma, Geneva, sans-serif !important; }
+	body { font-family: Arial,Verdana,sans-serif !important; }
+	
+	@media (min-width: 1200px) {
+		.container {
+			width: 1050px;
+		}
+	}
 	
 	.dropdown:hover .dropdown-menu { display: block; }
 	
@@ -7,25 +13,30 @@
 		background: #0090B5;
 		border-radius: 0;
 		border: none;
-		height: 35px;
 	}
 	
 	#header .support {
 		background: #10557E;
-		padding: 7px;
+		padding: 5px;
 		color: #fff;
 		text-align: right;
-		font-weight: bold;
+		font-size: 12px;
 	}
 	
 	#header .navbar-default .navbar-nav li a {
 		color: #FFF;
 		text-transform: uppercase;
 		font-weight: bold;
+		font: bold 12px/38px Tahoma,Geneva,sans-serif;
+		padding: 6px 7px;
 	}
 	
 	#header .navbar-default .navbar-nav li ul {
 		background: #005161;
+	}
+	
+	#header .navbar-default .navbar-nav li ul li a {
+		padding: 0 10px;
 	}
 	
 	#header .navbar-default .navbar-nav li ul li:hover a {
@@ -37,4 +48,28 @@
 	}
 	#header .navbar-default .navbar-nav li ul li:first-child {
 		border-top: none;
+	}
+	
+	.panel {
+		border: 1px solid #0090B5;
+	}
+	
+	.panel-default .panel-heading {
+		background: #0090B5;
+		padding: 0 10px;
+	}
+	
+	.panel-default .panel-heading .panel-title {
+		color: #fff;
+		font-weight: bold;
+		text-transform: uppercase;
+		font: bold 12px/38px Tahoma,Geneva,sans-serif;
+	}
+	
+	#footer {
+		padding-top: 20px;
+		background: #4080A6;
+		font-size: 12px;
+		color: #fff;
+		line-height: 10px;
 	}

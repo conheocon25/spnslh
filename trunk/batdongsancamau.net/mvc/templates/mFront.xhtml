@@ -63,7 +63,8 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="support">
-					Hotline: <span style="color:yellow">Nguyễn Minh - 0912.345.678</span>
+					Hotline: <span style="color:yellow">Nguyễn Minh - 0912.345.678</span> |
+					Email: batdongsancamau@gmail.com
 				</div>
 				<img alt="Brand" src="/mvc/templates/front/img/banner.jpg" width="100%"/>
 			</div>
@@ -246,46 +247,21 @@
 	<!-- ======================================================================== -->
 	<!-- FOOTER																	  -->
 	<!-- ======================================================================== -->
-	<footer metal:define-macro="Footer" id="footer">
-		<div id="inner-footer">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-4 col-sm-4 col-xs-12 widget">
-						<h3>Bất Động Sản Cà Mau</h3>
-						<ul class="contact-list">							
-							<li>Online hỗ trợ 24x7 các quí khách hàng tất cả các ngày trong tuần</li>
-						</ul>
-					</div>
-					<div class="col-md-5 col-sm-4 col-xs-12 widget">						
-						<h3><a href="#">Thống kê</a></h3>
-						<ul class="links">
-							<li>Lượt xem <B tal:content="php:@\MVC\Library\Statistic::getCountPrint()"/></li>
-							<li>Đang online <B tal:content="php:@\MVC\Library\Statistic::getOnlinePrint()"/></li>
-						</ul>
-					</div>
-					<div class="col-md-3 col-sm-12 col-xs-12 widget">
-						<h3>FACEBOOK</h3>
-						<div class="facebook-likebox">
-							<iframe src="http://www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Famthuchuongsenhong&amp;width&amp;height=221&amp;colorscheme=dark&amp;show_faces=true&amp;header=false&amp;stream=false&amp;show_border=false" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:220px;" allowTransparency="true"></iframe>
-						</div>
-					</div>
+	<div metal:define-macro="Footer" class="container">
+		<footer id="footer">
+			<div class="row">
+				<div class="col-md-12">
+					<center>
+						<p><b>&copy; 2014 BẤT ĐỘNG SẢN CÀ MAU . NET</b></p>
+						<p>Số 164, Lý Thường Kiệt, Phường 6, Thành phố Cà Mau, Tỉnh Cà Mau</p>
+						<p>Tel: (+84) 780 3 888 888 - FAX: (+84) 780 3 888 888</p>
+						<p>Lượt xem <b tal:content="php:@\MVC\Library\Statistic::getCountPrint()"/> - Đang online <b tal:content="php:@\MVC\Library\Statistic::getOnlinePrint()"/></p>
+						<p style="color:#ddd;"><i>SPN Group - Website duyệt tốt trên trình duyệt <b>Google Chrome</b></i></p>
+					</center>
 				</div>
 			</div>
-		</div>
-		<div id="footer-bottom">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-7 col-sm-7 col-xs-12 footer-social-links-container">						
-						<p><i>SPN Group - Website duyệt tốt trên <B>Tablet</B>, <B>SmartPhone</B> dùng trình duyệt <B>Google Chrome</B></i></p>
-					</div>
-					<div class="col-md-5 col-sm-5 col-xs-12 footer-text-container">
-						<p>&copy; 2014 Bất Động Sản Cà Mau</p>
-					</div>
-				</div>				
-			</div>
-		</div>
-		<a href="#" id="scroll-top" title="Scroll to Top"><i class="fa fa-angle-up"></i></a>
-	</footer>
+		</footer>
+	</div>
 	
 </body>
 </html>
