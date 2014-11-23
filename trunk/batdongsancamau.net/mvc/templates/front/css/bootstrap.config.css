@@ -1,0 +1,40 @@
+
+	body { font-family: Tahoma, Geneva, sans-serif !important; }
+	
+	.dropdown:hover .dropdown-menu { display: block; }
+	
+	#header .navbar-default {
+		background: #0090B5;
+		border-radius: 0;
+		border: none;
+		height: 35px;
+	}
+	
+	#header .support {
+		background: #10557E;
+		padding: 7px;
+		color: #fff;
+		text-align: right;
+		font-weight: bold;
+	}
+	
+	#header .navbar-default .navbar-nav li a {
+		color: #FFF;
+		text-transform: uppercase;
+		font-weight: bold;
+	}
+	
+	#header .navbar-default .navbar-nav li ul {
+		background: #005161;
+	}
+	
+	#header .navbar-default .navbar-nav li ul li:hover a {
+		background: #006782;
+	}
+	
+	#header .navbar-default .navbar-nav li ul li {
+		border-top: 1px solid #006782;
+	}
+	#header .navbar-default .navbar-nav li ul li:first-child {
+		border-top: none;
+	}
