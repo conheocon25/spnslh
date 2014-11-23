@@ -1,129 +1,142 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<div metal:use-macro="mFront.xhtml/IncludeMETA"/>		
-		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>		
+		<div metal:use-macro="mFront.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>
 	</head>	
 	<body>		
-		<div id="wrapper">
+		<div class="container">
 			<div metal:use-macro="mFront.xhtml/Header"/>
-			<section id="content">
-				<div metal:use-macro="mFront.xhtml/LocationBar"/>				
-				<div class="container">
-					<div class="row">						
-						<div class="col-md-9">
-							<div class="row">								
-								<div class="col-md-12 col-sm-12 col-xs-12 product">									
-									<h1 class="product-name"><span tal:content="Product/getName"/></h1>
-									<p>Ngày đăng: <B tal:content="Product/getDateTimePrint"/></p>
-									<p>Địa chỉ: <B tal:content="Product/getAddress"/></p>
-									<table width="100%" border="1">
-										<tr>
-											<td width="25%">Diện tích</td>
-											<td width="25%"><B tal:content="Product/getInfo/getInfoEx13Print"/></td>
-											<td width="25%">Giá</td>
-											<td width="25%"><B tal:content="Product/getPricePrint"/></td>
-										</tr>
-									</table>
-								</div>
-							</div>							
-							<div class="row" tal:condition="Product/getInfo">
-								<div class="col-md-12 col-sm-12 col-xs-12">									
-									<p tal:content="structure Product/getInfo/getInfo"/>
-									<table width="100%" border="1">
-										<tr>
-											<td width="20%">Mã tin</td>
-											<td width="15%"><B tal:content="Product/getId" /></td>
-											<td width="20%">Hướng</td>
-											<td width="15%"><B tal:content="Product/getInfo/getInfoEx03Print" /></td>
-											<td width="15%">Phòng ăn</td>
-											<td width="15%"><B tal:content="Product/getInfo/getInfoEx08Print" /></td>
-										</tr>
-										<tr>
-											<td width="20%">Loại tin</td>
-											<td width="15%"><B tal:content="Product/getCategory/getName" /></td>
-											<td width="20%">Lộ giới</td>
-											<td width="15%"><B tal:content="Product/getInfo/getInfoEx04Print" /></td>
-											<td width="15%">Nhà bếp</td>
-											<td width="15%"><B tal:content="Product/getInfo/getInfoEx09Print" /></td>
-										</tr>
-										<tr>
-											<td width="20%">Loại BĐS</td>
-											<td width="15%"><B tal:content="Product/getEstate/getName" tal:condition="Product/getEstate"/></td>
-											<td width="20%">Pháp lý</td>
-											<td width="15%"><B tal:content="Product/getInfo/getInfoEx05Print" /></td>
-											<td width="15%">Sân thượng</td>
-											<td width="15%"><B tal:content="Product/getInfo/getInfoEx10Print" /></td>
-										</tr>
-										<tr>
-											<td width="20%">Chiều ngang</td>
-											<td width="15%"><B tal:content="Product/getInfo/getInfoEx01Print" /></td>
-											<td width="20%">Số lầu</td>
-											<td width="15%"><B tal:content="Product/getInfo/getInfoEx06Print" /></td>
-											<td width="15%">Chỗ để xe hơi</td>
-											<td width="15%"><B tal:content="Product/getInfo/getInfoEx11Print" /></td>
-										</tr>
-										<tr>
-											<td width="20%">Chiều dài</td>
-											<td width="15%"><B tal:content="Product/getInfo/getInfoEx02Print" /></td>
-											<td width="20%">Số phòng ngủ</td>
-											<td width="15%"><B tal:content="Product/getInfo/getInfoEx07Print" /></td>
-											<td width="15%">Chính chủ</td>
-											<td width="15%"><B tal:content="Product/getInfo/getInfoEx12Print" /></td>
-										</tr>
-									</table>
-								</div>								
-							</div>
-							<div class="row" tal:condition="Product/getMap">
-								<div class="col-md-12 col-sm-12 col-xs-12">
-									<h3 class="product-name">BẢN ĐỒ</h3>									
-									<div style="width:640px; height:480px"  id="ProductMap" />
-								</div>								
-							</div>
-							<div class="row" tal:condition="Product/getImageAll/count">
-								<div class="col-md-12 col-sm-12 col-xs-12">
-									<h3 class="product-name">HÌNH ẢNH</h3>									
-									<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">										
-										<div class="carousel-inner" role="listbox">
-											<div class="item active">
-												<img width="640px" tal:attributes="src Product/getImageAll/current/getURL"/>
-											</div>
-											<div class="item" tal:repeat="Image Product/getImageAll">
-												<img width="640px" tal:attributes="src Image/getURL"/>
-											</div>
-										</div>										
-										<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-											<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-											<span class="sr-only">Tới</span>
-										</a>
-										<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-											<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-											<span class="sr-only">Lui</span>
-										</a>
-									</div>
-								</div>								
-							</div>
-							<div class="row">
-								<div class="col-md-12 col-sm-12 col-xs-12">
-									<h3 class="product-name">CÙNG DANH MỤC</h3>
-									<ul>
-										<li tal:repeat="P1 Category1/getProductAll">
-											<a tal:attributes="href P1/getURLView">
-												<span tal:content="P1/getName"/>
-											</a>
-										</li>
-									</ul>	
-								</div>								
-							</div>							
+			<div metal:use-macro="mFront.xhtml/Breadcrumb"/>
+			<div class="row">						
+				<div class="col-md-8">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title" tal:content="Product/getName"/>
 						</div>
-						<div class="col-md-3">
-							<div class="row">
-								<div metal:use-macro="mFront.xhtml/SearchBox"/>
+						<div class="panel-body">
+							<table class="table table-bordered">
+								<tbody>
+									<tr>
+										<td width="20%">Ngày đăng</td>
+										<td><B tal:content="Product/getDateTimePrint"/></td>
+									</tr>
+									<tr>
+										<td>Địa chỉ</td>
+										<td><B tal:content="Product/getAddress"/></td>
+									</tr>
+									<tr>
+										<td>Diện tích</td>
+										<td><B tal:content="Product/getInfo/getInfoEx13Print"/></td>
+									</tr>
+									<tr>
+										<td>Giá</td>
+										<td><B tal:content="Product/getPricePrint"/></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="panel panel-default" tal:condition="Product/getInfo">
+						<div class="panel-heading">
+							<h3 class="panel-title">THÔNG TIN</h3>
+						</div>
+						<div class="panel-body">
+							<p tal:content="structure Product/getInfo/getInfo"/>
+							<table class="table table-bordered">
+								<tbody>
+									<tr>
+										<td width="20%">Mã tin</td>
+										<td width="15%"><B tal:content="Product/getId" /></td>
+										<td width="20%">Hướng</td>
+										<td width="15%"><B tal:content="Product/getInfo/getInfoEx03Print" /></td>
+										<td width="15%">Phòng ăn</td>
+										<td width="15%"><B tal:content="Product/getInfo/getInfoEx08Print" /></td>
+									</tr>
+									<tr>
+										<td width="20%">Loại tin</td>
+										<td width="15%"><B tal:content="Product/getCategory/getName" /></td>
+										<td width="20%">Lộ giới</td>
+										<td width="15%"><B tal:content="Product/getInfo/getInfoEx04Print" /></td>
+										<td width="15%">Nhà bếp</td>
+										<td width="15%"><B tal:content="Product/getInfo/getInfoEx09Print" /></td>
+									</tr>
+									<tr>
+										<td width="20%">Loại BĐS</td>
+										<td width="15%"><B tal:content="Product/getEstate/getName" tal:condition="Product/getEstate"/></td>
+										<td width="20%">Pháp lý</td>
+										<td width="15%"><B tal:content="Product/getInfo/getInfoEx05Print" /></td>
+										<td width="15%">Sân thượng</td>
+										<td width="15%"><B tal:content="Product/getInfo/getInfoEx10Print" /></td>
+									</tr>
+									<tr>
+										<td width="20%">Chiều ngang</td>
+										<td width="15%"><B tal:content="Product/getInfo/getInfoEx01Print" /></td>
+										<td width="20%">Số lầu</td>
+										<td width="15%"><B tal:content="Product/getInfo/getInfoEx06Print" /></td>
+										<td width="15%">Chỗ để xe hơi</td>
+										<td width="15%"><B tal:content="Product/getInfo/getInfoEx11Print" /></td>
+									</tr>
+									<tr>
+										<td width="20%">Chiều dài</td>
+										<td width="15%"><B tal:content="Product/getInfo/getInfoEx02Print" /></td>
+										<td width="20%">Số phòng ngủ</td>
+										<td width="15%"><B tal:content="Product/getInfo/getInfoEx07Print" /></td>
+										<td width="15%">Chính chủ</td>
+										<td width="15%"><B tal:content="Product/getInfo/getInfoEx12Print" /></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="panel panel-default" tal:condition="Product/getMap">
+						<div class="panel-heading">
+							<h3 class="panel-title">BẢN ĐỒ</h3>
+						</div>
+						<div class="panel-body">
+							<div style="width:640px; height:480px"  id="ProductMap" />								
+						</div>
+					</div>
+					<div class="panel panel-default" tal:condition="Product/getImageAll/count">
+						<div class="panel-heading">
+							<h3 class="panel-title">HÌNH ẢNH</h3>
+						</div>
+						<div class="panel-body">
+							<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">										
+								<div class="carousel-inner" role="listbox">
+									<div class="item active">
+										<img width="640px" tal:attributes="src Product/getImageAll/current/getURL"/>
+									</div>
+									<div class="item" tal:repeat="Image Product/getImageAll">
+										<img width="640px" tal:attributes="src Image/getURL"/>
+									</div>
+								</div>										
+								<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+									<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+									<span class="sr-only">Tới</span>
+								</a>
+								<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+									<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+									<span class="sr-only">Lui</span>
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">CÙNG DANH MỤC</h3>
+						</div>
+						<div class="panel-body">
+							<div class="list-group">
+								<a tal:repeat="P1 Category1/getProductAll" tal:attributes="href P1/getURLView; class php:P1->getKey()==Product->getKey()?'list-group-item active':'list-group-item'" tal:content="P1/getName"/>
 							</div>
 						</div>
 					</div>
 				</div>
-			</section>
+				<div class="col-md-4">
+					<div metal:use-macro="mFront.xhtml/SearchBox"/>
+				</div>
+			</div>
 			<div metal:use-macro="mFront.xhtml/Footer"/>
 			<div metal:use-macro="mFront.xhtml/IncludeJS"/>
 			<script src="https://maps.googleapis.com/maps/api/js" />

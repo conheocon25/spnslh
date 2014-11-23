@@ -59,7 +59,7 @@
 	<!-- ======================================================================== -->
 	<!-- HEADER																	  -->
 	<!-- ======================================================================== -->
-	<div metal:define-macro="Header" class="container" id="header">
+	<div metal:define-macro="Header" id="header">
 		<div class="row">
 			<div class="col-md-12">
 				<div class="support">
@@ -229,39 +229,32 @@
 	</div>
 
 	<!-- ======================================================================== -->
-	<!-- LOCATION BAR															  -->
+	<!-- BREADCRUMB																  -->
 	<!-- ======================================================================== -->
-	<div metal:define-macro="LocationBar" id="breadcrumb-container">
-		<div class="container">
-			<ul class="breadcrumb">
-				<li><a href="/">TRANG CHỦ</a></li>
-				<li tal:repeat="Item Navigation"> 
-					<a tal:attributes="href php:Item[1]" tal:content="php:Item[0]" />
-				</li>
-				<li class="active" tal:content="Title"/>
-			</ul>
-		</div>		
-	</div>
-											
-										
+	<ol metal:define-macro="Breadcrumb" class="breadcrumb">
+		<li><a href="/">TRANG CHỦ</a></li>
+		<li tal:repeat="Item Navigation"> 
+			<a tal:attributes="href php:Item[1]" tal:content="php:Item[0]" />
+		</li>
+		<li class="active" tal:content="Title"/>
+	</ol>
+
 	<!-- ======================================================================== -->
 	<!-- FOOTER																	  -->
 	<!-- ======================================================================== -->
-	<div metal:define-macro="Footer" class="container">
-		<footer id="footer">
-			<div class="row">
-				<div class="col-md-12">
-					<center>
-						<p><b>&copy; 2014 BẤT ĐỘNG SẢN CÀ MAU . NET</b></p>
-						<p>Số 164, Lý Thường Kiệt, Phường 6, Thành phố Cà Mau, Tỉnh Cà Mau</p>
-						<p>Tel: (+84) 780 3 888 888 - FAX: (+84) 780 3 888 888</p>
-						<p>Lượt xem <b tal:content="php:@\MVC\Library\Statistic::getCountPrint()"/> - Đang online <b tal:content="php:@\MVC\Library\Statistic::getOnlinePrint()"/></p>
-						<p style="color:#ddd;"><i>SPN Group - Website duyệt tốt trên trình duyệt <b>Google Chrome</b></i></p>
-					</center>
-				</div>
+	<footer metal:define-macro="Footer">
+		<div class="row">
+			<div class="col-md-12">
+				<center>
+					<p><b>&copy; 2014 BẤT ĐỘNG SẢN CÀ MAU . NET</b></p>
+					<p>Số 164, Lý Thường Kiệt, Phường 6, Thành phố Cà Mau, Tỉnh Cà Mau</p>
+					<p>Tel: (+84) 780 3 888 888 - FAX: (+84) 780 3 888 888</p>
+					<p>Lượt xem <b tal:content="php:@\MVC\Library\Statistic::getCountPrint()"/> - Đang online <b tal:content="php:@\MVC\Library\Statistic::getOnlinePrint()"/></p>
+					<p style="color:#ddd;"><i>SPN Group - Website duyệt tốt trên trình duyệt <b>Google Chrome</b></i></p>
+				</center>
 			</div>
-		</footer>
-	</div>
-	
+		</div>
+	</footer>
+
 </body>
 </html>

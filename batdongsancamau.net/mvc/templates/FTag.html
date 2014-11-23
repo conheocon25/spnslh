@@ -4,60 +4,46 @@
 		<div metal:use-macro="mFront.xhtml/IncludeMETA"/>
 		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>
 	</head>	
-	<body>
-		<div id="wrapper">
+	<body>		
+		<div class="container">
 			<div metal:use-macro="mFront.xhtml/Header"/>
-			<section id="content">								
-				<div metal:use-macro="mFront.xhtml/LocationBar"/>
-				<div class="container">
-					<div class="row">
-						<div class="col-md-12">
-							<div class="row">
-								<div class="col-md-9 col-sm-8 col-xs-12 main-content">
-									<div class="category-item-container category-list-container">
-										<div class="item item-list clearfix" tal:repeat="PT PTAll">
-											<div class="item-image-container">
-												<figure>
-													<a tal:attributes="href PT/getURLRead">
-														<img tal:attributes="src PT/getPost/getImage" alt="item1" class="item-image"/>
-														<img tal:attributes="src PT/getPost/getImage" alt="item1  Hover" class="item-image-hover"/>
-													</a>
-												</figure>
-											</div>
-											<div class="item-meta-container">
-												<h3 class="item-name">
-													<a tal:attributes="href PT/getURLRead">
-														<span tal:content="PT/getPost/getTitle"/>
-													</a>
-												</h3>
-												<div class="ratings-container">
-													<div class="ratings"><div class="ratings-result" data-result="100"></div></div>
-													<span class="ratings-amount"><span tal:content="PT/getPost/getTimePrint"/></span>
-												</div>
-												<p tal:content="structure PT/getPost/getContentReduce"/>
-											</div>
-										</div>
-									</div>
-									<div class="category-toolbar clearfix">
-										<div class="toolbox-pagination clearfix">
-											<ul class="pagination">
-												<li tal:repeat="P PN/getPages" tal:attributes="class php:Page==P->getId()?'active':'disable'">
-													<a tal:attributes="href P/getURL" tal:content="P/getName"/>
-												</li>
-											</ul>
-										</div>
-									</div>									
+			<div metal:use-macro="mFront.xhtml/Breadcrumb"/>
+			<div class="row">						
+				<div class="col-md-8">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title" tal:content="Title"/>
+						</div>
+						<div class="panel-body">
+							<div class="media media-config" tal:repeat="PT PTAll">
+								<a class="media-left" tal:attributes="href PT/getURLRead">
+									<img tal:attributes="src PT/getPost/getImage; alt PT/getPost/getTitle" width="210" class="img-thumbnail"/>
+								</a>
+								<div class="media-body">
+									<a tal:attributes="href PT/getURLRead">
+										<h4 class="media-heading" tal:content="PT/getPost/getTitle"/>
+									</a>
+									<p tal:content="structure PT/getPost/getContentReduce"/>
+									<small><i tal:content="PT/getPost/getTimePrint"/></small>
 								</div>
-								<div class="col-md-3 col-sm-4 col-xs-12">
-									<div metal:use-macro="mFront.xhtml/SearchBox"/>
-								</div >
 							</div>
 						</div>
 					</div>
+					
+					<nav class="pagination-config">
+						<ul class="pagination">
+							<li tal:repeat="P PN/getPages" tal:attributes="class php:Page==P->getId()?'active':'disable'">
+								<a tal:attributes="href P/getURL" tal:content="P/getName"/>
+							</li>
+						</ul>
+					</nav>
 				</div>
-			</section>
+				<div class="col-md-4">
+					<div metal:use-macro="mFront.xhtml/SearchBox"/>
+				</div>
+			</div>
 			<div metal:use-macro="mFront.xhtml/Footer"/>
+			<div metal:use-macro="mFront.xhtml/IncludeJS"/>
 		</div>
-		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
 	</body>
 </html>
