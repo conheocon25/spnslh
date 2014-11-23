@@ -37,7 +37,7 @@
 			$ConfigSkype 			= $mConfig->findByName("CONTACT_SKYPE");
 			
 			$CategoryAll 			= $mCategory->findAll();			
-			$CategoryAll1 			= $mCategory1->findAll();			
+			$CategoryAll1 			= $mCategory1->findAll();
 			$EstateAll				= $mEstate->findAll();
 			$Province				= $mProvince->find(15);
 			
@@ -48,7 +48,9 @@
 			$PN 					= new \MVC\Domain\PageNavigation($Tag->getPostAll()->count(), 6, $Tag->getURLView());
 									
 			$Title = mb_strtoupper($Tag->getName(), 'UTF8');
-			$Navigation = array();
+			$Navigation = array(
+				array(mb_strtoupper('Tin tức', 'UTF8'), '/trang-chu')
+			);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
