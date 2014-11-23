@@ -31,6 +31,7 @@
 			//-------------------------------------------------------------			
 			$Title = "";
 			$ConfigName 	= $mConfig->findByName("NAME");
+			$ConfigContact 	= $mConfig->findByName("CONTACT_NAME");
 			$ConfigSlogan 	= $mConfig->findByName("SLOGAN");
 			$ConfigGmail 	= $mConfig->findByName("CONTACT_GTALK");
 			$ConfigSkype 	= $mConfig->findByName("CONTACT_SKYPE");
@@ -69,6 +70,7 @@
 			$request->setObject("Navigation", 			$Navigation);
 			
 			$request->setObject("ConfigName", 			$ConfigName);
+			$request->setObject("ConfigContact", 		$ConfigContact);
 			$request->setObject("ConfigSlogan", 		$ConfigSlogan);
 			$request->setObject("ConfigGmail", 			$ConfigGmail);
 			$request->setObject("ConfigSkype", 			$ConfigSkype);

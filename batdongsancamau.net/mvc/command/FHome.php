@@ -27,6 +27,7 @@
 			//-------------------------------------------------------------						
 			$ConfigName 	= $mConfig->findByName("NAME");
 			$ConfigSlogan 	= $mConfig->findByName("SLOGAN");
+			$ConfigContact 	= $mConfig->findByName("CONTACT_NAME");
 			$ConfigPHome 	= $mConfig->findByName("PRESENTATION_HOME");
 			$ConfigPhone1 	= $mConfig->findByName("PHONE1");
 			$ConfigPhone2 	= $mConfig->findByName("PHONE2");
@@ -49,12 +50,13 @@
 			$request->setProperty("Title", 				$Title);
 			$request->setObject("Navigation", 			$Navigation);
 			$request->setObject("ConfigName", 			$ConfigName);
+			$request->setObject("ConfigContact", 		$ConfigContact);
 			$request->setObject("ConfigSlogan", 		$ConfigSlogan);
 			$request->setObject("ConfigPhone1", 		$ConfigPhone1);
 			$request->setObject("ConfigPhone2", 		$ConfigPhone2);
 			$request->setObject("ConfigGmail", 			$ConfigGmail);
 			$request->setObject("ConfigSkype", 			$ConfigSkype);
-								
+											
 			$request->setObject("Province", 			$Province);
 			$request->setObject("TagAll", 				$TagAll);
 			$request->setObject("CategoryAll", 			$CategoryAll);

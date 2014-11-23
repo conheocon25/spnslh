@@ -14,12 +14,9 @@
 			<div class="row">						
 				<div class="col-md-8">
 					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h3 class="panel-title">Bài viết</h3>
-						</div>
+						<div class="panel-heading"><h3 class="panel-title" tal:content="Post/getTitle" /></div>
 						<div class="panel-body">
-							<div class="page-header clearfix">
-								<h2><span tal:content="Post/getTitle"/></h2>
+							<div class="page-header clearfix">								
 								<p class="pull-left">Ngày đăng: <i tal:content="Post/getTimePrint"/></p>
 								<div class="share-button-group pull-right">
 									<div class="fb-share-button" tal:attributes="data-href URLShare" data-type="button_count"/>

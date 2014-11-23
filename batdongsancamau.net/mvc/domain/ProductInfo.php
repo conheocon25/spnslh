@@ -78,6 +78,7 @@ class ProductInfo extends Object{
 			
     function setInfo( $Info ) 	{$this->Info = $Info;$this->markDirty();}
     function getInfo( ) 		{return $this->Info;}
+	function getInfoReduce()	{$S = new \MVC\Library\String($this->Info);return $S->reduceHTML(320);}
 	
 	function setInfoEx01( $InfoEx01){$this->InfoEx01 = $InfoEx01;$this->markDirty();}
     function getInfoEx01( ) 		{return $this->InfoEx01;}

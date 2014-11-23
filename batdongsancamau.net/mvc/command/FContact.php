@@ -20,7 +20,7 @@
 			$mCategory 	= new \MVC\Mapper\Category();
 			$mTag 		= new \MVC\Mapper\Tag();
 			$mBranch 	= new \MVC\Mapper\Branch();
-			$mLinked		= new \MVC\Mapper\Linked();
+			$mLinked	= new \MVC\Mapper\Linked();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
