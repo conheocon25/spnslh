@@ -30,6 +30,7 @@
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
 			$ConfigName 			= $mConfig->findByName("NAME");
+			$ConfigContact 			= $mConfig->findByName("CONTACT_NAME");
 			$ConfigSlogan 			= $mConfig->findByName("SLOGAN");
 			$ConfigPHome 			= $mConfig->findByName("PRESENTATION_HOME");
 			$ConfigPhone1 			= $mConfig->findByName("PHONE1");
@@ -45,8 +46,8 @@
 			$Province				= $mProvince->find(15);
 			
 			if (!isset($Page)) $Page = 1;			
-			$ProductAll 	= $mProduct->findBySupplierPage(array($Supplier->getId(), $Page, 6));
-			$PN 			= new \MVC\Domain\PageNavigation($Supplier->getProductAll()->count(), 6, $Supplier->getURLView());
+			$ProductAll 	= $mProduct->findBySupplierPage(array($Supplier->getId(), $Page, 9));
+			$PN 			= new \MVC\Domain\PageNavigation($Supplier->getProductAll()->count(), 9, $Supplier->getURLView());
 			
 			$Title = $Supplier->getName();
 			$Navigation = array(
@@ -60,6 +61,7 @@
 			$request->setProperty("Active", 			'Home');
 			$request->setProperty("Page", 				$Page);
 			$request->setObject("ConfigName", 			$ConfigName);
+			$request->setObject("ConfigContact", 		$ConfigContact);
 			$request->setObject("ConfigSlogan", 		$ConfigSlogan);
 			$request->setObject("ConfigPhone1", 		$ConfigPhone1);
 			$request->setObject("ConfigPhone2", 		$ConfigPhone2);

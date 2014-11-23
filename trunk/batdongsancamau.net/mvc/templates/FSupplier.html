@@ -15,26 +15,19 @@
 							<h3 class="panel-title" tal:content="Title"/>
 						</div>
 						<div class="panel-body">
-							<table class="table table-bordered table-striped table-hover">
-								<thead>
-									<tr>
-										<th width="30">STT</th>
-										<th class="left">TÊN</th>
-										<th class="left">DANH MỤC</th>
-										<th width="120" class="left">THỜI GIAN</th>											
-									</tr>
-								</thead>
-								<tbody>
-									<tr tal:repeat="Product ProductAll">
-										<td class="center"><span tal:content="repeat/Product/number"/></td>
-										<td><a tal:attributes="href Product/getURLView" tal:content="Product/getName"/></td>
-										<td><a tal:attributes="href Product/getURLView" tal:content="Product/getCategory/getName"/></td>
-										<td class="left"><span tal:content="Product/getDateTimePrint"/></td>
-									</tr>
-								</tbody>
-							</table>
+							<div class="media media-config" tal:repeat="Product ProductAll">
+								<a class="media-left" tal:attributes="href Product/getURLView">
+									<img tal:attributes="src Product/getInfo/getImage; alt Product/getName" width="210" class="img-thumbnail"/>
+								</a>
+								<div class="media-body">
+									<a tal:attributes="href Product/getURLView">
+										<h4 class="media-heading" tal:content="Product/getName"/>
+									</a>
+									<p tal:content="structure Product/getInfo/getInfoReduce"/>
+								</div>
+							</div>
 						</div>
-					</div>
+					</div>					
 					<nav class="pagination-config">
 						<ul class="pagination">
 							<li tal:repeat="P PN/getPages" tal:attributes="class php:Page==P->getId()?'active':'disable'">

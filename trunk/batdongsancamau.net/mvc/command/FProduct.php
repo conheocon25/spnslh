@@ -31,6 +31,7 @@
 			//-------------------------------------------------------------			
 			$Title 			= "";
 			$ConfigName 	= $mConfig->findByName("NAME");
+			$ConfigContact 	= $mConfig->findByName("CONTACT_NAME");
 			$ConfigSlogan 	= $mConfig->findByName("SLOGAN");
 			$ConfigPhone1 	= $mConfig->findByName("PHONE1");
 			$ConfigPhone2 	= $mConfig->findByName("PHONE2");
@@ -60,6 +61,7 @@
 			$request->setObject("Navigation", 	$Navigation);
 			
 			$request->setObject("ConfigName", 	$ConfigName);
+			$request->setObject("ConfigContact",$ConfigContact);
 			$request->setObject("ConfigSlogan", $ConfigSlogan);			
 			$request->setObject("ConfigPhone1", $ConfigPhone1);
 			$request->setObject("ConfigPhone2", $ConfigPhone2);

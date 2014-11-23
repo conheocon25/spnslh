@@ -34,6 +34,7 @@
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
 			$ConfigName 	= $mConfig->findByName("NAME");
+			$ConfigContact 	= $mConfig->findByName("CONTACT_NAME");
 			$ConfigSlogan 	= $mConfig->findByName("SLOGAN");
 			$ConfigPHome 	= $mConfig->findByName("PRESENTATION_HOME");
 			$ConfigPhone1 	= $mConfig->findByName("PHONE1");
@@ -80,6 +81,7 @@
 			$request->setProperty("Title", 				$Title);
 			$request->setObject("Navigation", 			$Navigation);
 			$request->setObject("ConfigName", 			$ConfigName);
+			$request->setObject("ConfigContact", 		$ConfigContact);
 			$request->setObject("ConfigSlogan", 		$ConfigSlogan);
 			$request->setObject("ConfigPhone1", 		$ConfigPhone1);
 			$request->setObject("ConfigPhone2", 		$ConfigPhone2);

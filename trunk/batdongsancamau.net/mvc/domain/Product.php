@@ -79,8 +79,9 @@ class Product extends Object{
 		return $District;
 	}
 	
-    function setName( $Name ) {$this->Name = $Name;$this->markDirty();}
-    function getName( ) {return $this->Name;}
+    function setName( $Name ) 	{$this->Name = $Name;$this->markDirty();}
+    function getName( ) 		{return $this->Name;}
+	function getNameReduce()	{$S = new \MVC\Library\String($this->Name);return $S->reduceHTML(50);}
 	
 	function setDateTime( $DateTime ) 	{$this->DateTime = $DateTime; $this->markDirty();}
     function getDateTime( ) 			{return $this->DateTime;}	
