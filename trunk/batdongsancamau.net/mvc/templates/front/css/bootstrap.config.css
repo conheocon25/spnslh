@@ -66,10 +66,34 @@
 		font: bold 12px/38px Tahoma,Geneva,sans-serif;
 	}
 	
-	#footer {
+	.media-config {
+		border-bottom: 1px solid #BDE5EF;
+		padding-bottom: 20px;
+	}
+	
+	.media-config:last-child  { border-bottom: none; }
+	
+	.breadcrumb {
+		margin-top: -20px;
+		border-radius: 0;
+		font-size: 11px;
+	}
+	
+	.pagination { margin: 0; }
+	
+	.pagination-config {
+		padding: 5px 5px 0 5px;
+		background: #F5F5F5;
+		border: none;
+		margin-bottom: 20px;
+	}
+	
+	footer {
 		padding-top: 20px;
 		background: #4080A6;
 		font-size: 12px;
 		color: #fff;
 		line-height: 10px;
 	}
+	
+	.table { margin-bottom: 0; }

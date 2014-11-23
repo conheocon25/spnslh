@@ -5,51 +5,44 @@
 		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>
 	</head>	
 	<body>		
-		<div id="wrapper">
+		<div class="container">
 			<div metal:use-macro="mFront.xhtml/Header"/>
-			<section id="content">
-				<div metal:use-macro="mFront.xhtml/LocationBar"/>
-				<div class="container">
-					<div class="row">						
-						<div class="col-md-9">
-							<div class="category-item-container category-list-container">
-								<div class="item item-list clearfix" tal:repeat="Product ProductAll">
-									<div class="item-image-container">
-										<figure>
-											<a tal:attributes="href Product/getURLView">
-												<img tal:attributes="src Product/getInfo/getImage" alt="item1" class="item-image"/>
-												<img tal:attributes="src Product/getInfo/getImage" alt="item1  Hover" class="item-image-hover"/>
-											</a>
-										</figure>
-									</div>
-									<div class="item-meta-container">
-										<h3 class="item-name">
-											<a tal:attributes="href Product/getURLView">
-												<span tal:content="Product/getName"/>
-											</a>
-										</h3>
-										<p tal:content="structure Product/getInfo/getInfo"/>
-									</div>
+			<div metal:use-macro="mFront.xhtml/Breadcrumb"/>
+			<div class="row">						
+				<div class="col-md-8">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title" tal:content="Title"/>
+						</div>
+						<div class="panel-body">
+							<div class="media media-config" tal:repeat="Product ProductAll">
+								<a class="media-left" tal:attributes="href Product/getURLView">
+									<img tal:attributes="src Product/getInfo/getImage; alt Product/getName" width="210" class="img-thumbnail"/>
+								</a>
+								<div class="media-body">
+									<a tal:attributes="href Product/getURLView">
+										<h4 class="media-heading" tal:content="Product/getName"/>
+									</a>
+									<p tal:content="structure Product/getInfo/getInfo"/>
 								</div>
 							</div>
-							<div class="category-toolbar clearfix">
-								<div class="toolbox-pagination clearfix">
-									<ul class="pagination">
-										<li tal:repeat="P PN/getPages" tal:attributes="class php:Page==P->getId()?'active':'disable'">
-											<a tal:attributes="href P/getURL" tal:content="P/getName"/>
-										</li>
-									</ul>
-								</div>
-							</div>							
-						</div>
-						<div class="col-md-3">
-							<div class="row"><div metal:use-macro="mFront.xhtml/SearchBox"/></div>
 						</div>
 					</div>
+					
+					<nav class="pagination-config">
+						<ul class="pagination">
+							<li tal:repeat="P PN/getPages" tal:attributes="class php:Page==P->getId()?'active':'disable'">
+								<a tal:attributes="href P/getURL" tal:content="P/getName"/>
+							</li>
+						</ul>
+					</nav>
 				</div>
-			</section>
+				<div class="col-md-4">
+					<div metal:use-macro="mFront.xhtml/SearchBox"/>
+				</div>
+			</div>
 			<div metal:use-macro="mFront.xhtml/Footer"/>
+			<div metal:use-macro="mFront.xhtml/IncludeJS"/>
 		</div>
-		<div metal:use-macro="mFront.xhtml/IncludeJS"/>		
 	</body>
 </html>

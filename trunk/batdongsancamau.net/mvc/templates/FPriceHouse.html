@@ -5,26 +5,26 @@
 		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>
 	</head>	
 	<body>		
-		<div id="wrapper">
+		<div class="container">
 			<div metal:use-macro="mFront.xhtml/Header"/>
-			<section id="content">				
-				<div metal:use-macro="mFront.xhtml/LocationBar"/>				
-				<div class="container">
-					<div class="row">						
-						<div class="col-md-9">
-							<div class="row">
-								<h3 tal:content="Post/getTitle"/>
-								<p tal:content="structure Post/getContent"/>
-							</div>
+			<div metal:use-macro="mFront.xhtml/Breadcrumb"/>
+			<div class="row">						
+				<div class="col-md-8">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title" tal:content="Post/getTitle"/>
 						</div>
-						<div class="col-md-3">
-							<div class="row"><div metal:use-macro="mFront.xhtml/SearchBox"/></div>
+						<div class="panel-body">
+							<p tal:content="structure Post/getContent"/>
 						</div>
 					</div>
 				</div>
-			</section>
+				<div class="col-md-4">
+					<div metal:use-macro="mFront.xhtml/SearchBox"/>
+				</div>
+			</div>
 			<div metal:use-macro="mFront.xhtml/Footer"/>
+			<div metal:use-macro="mFront.xhtml/IncludeJS"/>
 		</div>
-		<div metal:use-macro="mFront.xhtml/IncludeJS"/>		
 	</body>
 </html>
