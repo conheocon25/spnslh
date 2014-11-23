@@ -113,14 +113,41 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
     function selectStmt() 						{return $this->selectStmt;}
     function selectAllStmt() 					{return $this->selectAllStmt;}
 	
-	function search($IdCategory, $IdEstate, $IdDistrict, $IdDirection, $IdPrice, $IdArea) {        
+	function search($IdCategory, $IdEstate, $IdDistrict, $IdDirection, $IdPrice, $IdArea) {
+		$rangePrice = array(
+			array(0, 1000000 ),
+			array(1000000, 3000000),
+			array(3000000, 5000000),
+			array(5000000, 10000000),
+			array(10000000, 15000000),
+			array(20000000, 30000000),
+			array(30000000, 40000000),
+			array(40000000, 60000000),
+			array(60000000, 80000000),
+			array(80000000, 100000000),
+			array(100000000, 300000000),
+			array(300000000, 500000000),
+			array(500000000, 800000000),
+			array(800000000, 1000000000),
+			array(1000000000, 2000000000),
+			array(2000000000, 3000000000),
+			array(3000000000, 4000000000),
+			array(4000000000, 5000000000)
+		);
+		
 		$searchSQL 			= "SELECT * FROM tbl_product WHERE ";
 		$whereCategorySQL 	= " idcategory=".$IdCategory;
-		$whereEstateSQL 	= " idestate=".$IdEstate;		
+		$whereEstateSQL 	= " idestate=".$IdEstate;
+		$whereDistrictSQL 	= " iddistrict=".$IdDistrict;
+		$whereDirectionSQL 	= " iddirection=".$IdDirection;
+		$wherePriceSQL 		= " price>=".$rangePrice[$IdPrice][0]." AND price<".$rangePrice[$IdPrice][1];
 		$orderSQL 			= " ORDER BY datetime DESC";
 		
 		$searchSQL 			= $searchSQL.$whereCategorySQL;		
-		if ($IdEstate>0){	$searchSQL 		= $searchSQL." AND ".$whereEstateSQL;}
+		if ($IdEstate>0)	{$searchSQL 		= $searchSQL." AND ".$whereEstateSQL;}
+		if ($IdDistrict>0)	{$searchSQL 		= $searchSQL." AND ".$whereDistrictSQL;}
+		//if ($IdDirection>0)	{$searchSQL 		= $searchSQL." AND ".$whereDirectionSQL;}
+		if ($IdPrice>0)		{$searchSQL 		= $searchSQL." AND ".$wherePriceSQL;}
 		
 		$searchSQL 			= $searchSQL.$orderSQL;
 		
@@ -136,13 +163,41 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 		$this->searchPageStmt->execute();
         return new ProductCollection( $this->searchPageStmt->fetchAll(), $this );
 		*/
+		$rangePrice = array(
+			array(0			, 0 ),
+			array(0			, 1000000 ),
+			array(1000000	, 3000000),
+			array(3000000	, 5000000),
+			array(5000000	, 10000000),
+			array(10000000	, 15000000),
+			array(20000000	, 30000000),
+			array(30000000	, 40000000),
+			array(40000000	, 60000000),
+			array(60000000	, 80000000),
+			array(80000000	, 100000000),
+			array(100000000	, 300000000),
+			array(300000000	, 500000000),
+			array(500000000	, 800000000),
+			array(800000000	, 1000000000),
+			array(1000000000, 2000000000),
+			array(2000000000, 3000000000),
+			array(3000000000, 4000000000),
+			array(4000000000, 5000000000)
+		);
+		
 		$searchSQL 			= "SELECT * FROM tbl_product WHERE ";
 		$whereCategorySQL 	= " idcategory=".$IdCategory;
-		$whereEstateSQL 	= " idestate=".$IdEstate;		
+		$whereEstateSQL 	= " idestate=".$IdEstate;
+		$whereDistrictSQL 	= " iddistrict=".$IdDistrict;
+		$whereDirectionSQL 	= " iddirection=".$IdDirection;
+		$wherePriceSQL 		= " price>=".$rangePrice[$IdPrice][0]." AND price<".$rangePrice[$IdPrice][1];
 		$orderSQL 			= " ORDER BY datetime DESC";
 		
 		$searchSQL 			= $searchSQL.$whereCategorySQL;		
-		if ($IdEstate>0){	$searchSQL 		= $searchSQL." AND ".$whereEstateSQL;}
+		if ($IdEstate>0)	{$searchSQL 		= $searchSQL." AND ".$whereEstateSQL;}
+		if ($IdDistrict>0)	{$searchSQL 		= $searchSQL." AND ".$whereDistrictSQL;}
+		//if ($IdDirection>0)	{$searchSQL 		= $searchSQL." AND ".$whereDirectionSQL;}
+		if ($IdPrice>0)		{$searchSQL 		= $searchSQL." AND ".$wherePriceSQL;}
 		
 		$searchSQL 			= $searchSQL.$orderSQL;
 		
