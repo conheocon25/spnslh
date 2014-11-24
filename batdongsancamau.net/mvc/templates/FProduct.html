@@ -138,20 +138,20 @@
 				</div>
 			</div>
 			<tal:block metal:use-macro="mFront.xhtml/Footer"/>
-			<tal:block metal:use-macro="mFront.xhtml/IncludeJS"/>
-			<script src="https://maps.googleapis.com/maps/api/js" />
-			<script>
-				function initialize(){					
-					var mapCanvas = document.getElementById('ProductMap');
-					var mapOptions = {
-					  center: new google.maps.LatLng(9.176299, 105.150823),				  
-					  zoom: 18,
-					  mapTypeId: google.maps.MapTypeId.ROADMAP
-					}
-					var map = new google.maps.Map(mapCanvas, mapOptions)
-				}
-				google.maps.event.addDomListener(window, 'load', initialize);
-			</script>
 		</div>
+		<tal:block metal:use-macro="mFront.xhtml/IncludeJS"/>
+		<script src="https://maps.googleapis.com/maps/api/js" />
+		<script>
+			function initialize(){					
+				var mapCanvas = document.getElementById('ProductMap');
+				var mapOptions = {
+				  center: new google.maps.LatLng(9.176299, 105.150823),				  
+				  zoom: 18,
+				  mapTypeId: google.maps.MapTypeId.ROADMAP
+				}
+				var map = new google.maps.Map(mapCanvas, mapOptions)
+			}
+			google.maps.event.addDomListener(window, 'load', initialize);
+		</script>
 	</body>
 </html>
