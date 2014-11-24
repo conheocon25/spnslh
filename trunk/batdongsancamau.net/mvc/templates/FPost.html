@@ -33,34 +33,34 @@
 				</div>
 			</div>
 			<tal:block metal:use-macro="mFront.xhtml/Footer"/>
-			<tal:block metal:use-macro="mFront.xhtml/IncludeJS"/>
-			<script type="text/javascript">
-			/*<![CDATA[*/
-				$('.Liked').click(function(){
-					var Data = [];								
-					var Id 	= $(this).attr('data-id');
-									
-					var URL = "/object/liked/Post/"+Id;
-					$.ajax({
-						type: "POST",
-						data: {Data:Data},
-						url: URL,
-						success: function(msg){
-							location.reload();						
-						}
-					});
-					return false;
-				});
-				
-				(function(d, s, id) {
-					var js, fjs = d.getElementsByTagName(s)[0];
-					if (d.getElementById(id)) return;
-					js = d.createElement(s); js.id = id;
-					js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&appId=525611617524479&version=v2.0";
-					fjs.parentNode.insertBefore(js, fjs);
-				}(document, 'script', 'facebook-jssdk'));
-			/*]]>*/
-			</script>
 		</div>
+		<tal:block metal:use-macro="mFront.xhtml/IncludeJS"/>
+		<script type="text/javascript">
+		/*<![CDATA[*/
+			$('.Liked').click(function(){
+				var Data = [];								
+				var Id 	= $(this).attr('data-id');
+								
+				var URL = "/object/liked/Post/"+Id;
+				$.ajax({
+					type: "POST",
+					data: {Data:Data},
+					url: URL,
+					success: function(msg){
+						location.reload();						
+					}
+				});
+				return false;
+			});
+			
+			(function(d, s, id) {
+				var js, fjs = d.getElementsByTagName(s)[0];
+				if (d.getElementById(id)) return;
+				js = d.createElement(s); js.id = id;
+				js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&appId=525611617524479&version=v2.0";
+				fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));
+		/*]]>*/
+		</script>
 	</body>
 </html>
