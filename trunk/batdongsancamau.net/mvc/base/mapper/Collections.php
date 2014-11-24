@@ -3,6 +3,8 @@ namespace MVC\Mapper;
 require_once( "mvc/base/domain/Collections.php");
 require_once( "mvc/base/mapper/Collection.php");
 
+class AdsCollection 			extends Collection implements \MVC\Domain\AdsCollection 			{function targetClass( ) {return "\MVC\Domain\Ads";			}}
+
 class UserCollection 			extends Collection implements \MVC\Domain\UserCollection 			{function targetClass( ) {return "\MVC\Domain\User";		}}
 class FeedCollection 			extends Collection implements \MVC\Domain\FeedCollection 			{function targetClass( ) {return "\MVC\Domain\Feed";		}}
 
