@@ -14,21 +14,44 @@
 							<h3 class="panel-title">ĐIỂM TIN</h3>
 						</div>
 						<div class="panel-body">
-							<ul>
-								<li tal:repeat="Post PostTopAll">
-									<B tal:content="Post/getTitleReduce"/>
-								</li>
-							</ul>
+							<div class="media media-config" tal:repeat="PT PostTopAll">
+								<a href="#">
+									<h4 tal:content="PT/getTitleReduce"/>
+								</a>
+								<a class="media-left" href="#">
+									<img tal:attributes="src PT/getImage; alt PT/getTitle" width="130" class="img-thumbnail"/>
+								</a>
+								<div class="media-body">
+									<p>Cập nhật: <i tal:content="PT/getTimePrint"/></p>
+									<p tal:content="structure PT/getContentReduce" style="text-align:justify"/>
+								</div>
+							</div>
 						</div>
 					</div>
 					<div class="panel panel-default" tal:repeat="Category CategoryAll">
 						<div class="panel-heading"><h3 class="panel-title" tal:content="Category/getName"/></div>
 						<div class="panel-body">
-							<ul>
-								<li tal:repeat="Product Category/getTopProductAll">
-									<B tal:content="Product/getNameReduce"/>
-								</li>
-							</ul>
+							<div class="media media-config" tal:repeat="Product Category/getTopProductAll">
+								<a tal:attributes="href Product/getURLView">
+									<h4 tal:content="Product/getNameReduce"/>
+								</a>
+								<a class="media-left" tal:attributes="href Product/getURLView">
+									<img tal:attributes="src Product/getInfo/getImage; alt Product/getName" width="130" class="img-thumbnail"/>
+								</a>
+								<div class="media-body">
+									<p tal:content="structure Product/getInfo/getInfoReduce" style="text-align:justify"/>
+									<div class="row">
+										<div class="col-md-10">
+											Giá: <span tal:content="Product/getPricePrint" style="color:#055699;font-weight:bold;"/> 
+											Diện tích: <span tal:condition="Product/getInfo" tal:content="Product/getInfo/getInfoEx04Print" style="color:#055699;font-weight:bold;"/>
+											Quận/Huyện: <span style="color:#055699;font-weight:bold;">Trần Văn Thời, Cà Mau</span>
+										</div>
+										<div class="col-md-2" style="text-align:right;">
+											<span tal:content="Product/getDateTimePrint"/>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>					
 				</div>
