@@ -1,6 +1,8 @@
 <?php
 namespace MVC\Domain;
 
+interface AdsCollection 				extends \Iterator {function add( Object $Ads );			}
+
 interface UserCollection 				extends \Iterator {function add( Object $User );		}
 interface FeedCollection 				extends \Iterator {function add( Object $Feed );		}
 

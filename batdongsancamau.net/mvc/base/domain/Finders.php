@@ -9,6 +9,7 @@ interface Finder {
     function insert( Object $obj );
     //function delete();
 }
+interface AdsFinder  			extends Finder {}
 
 interface UserFinder  			extends Finder {}
 interface FeedFinder  			extends Finder {}

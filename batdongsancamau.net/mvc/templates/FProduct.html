@@ -19,19 +19,19 @@
 								<tbody>
 									<tr>
 										<td width="20%">Ngày đăng</td>
-										<td><B tal:content="Product/getDateTimePrint"/></td>
+										<td><B style="color:#055699;font-weight:bold;" tal:content="Product/getDateTimePrint"/></td>
 									</tr>
 									<tr>
 										<td>Địa chỉ</td>
-										<td><B tal:content="Product/getAddress"/></td>
+										<td><B style="color:#055699;font-weight:bold;" tal:content="Product/getAddress"/></td>
 									</tr>
 									<tr>
 										<td>Diện tích</td>
-										<td><B tal:content="Product/getInfo/getInfoEx13Print"/></td>
+										<td><B style="color:#055699;font-weight:bold;" tal:content="Product/getInfo/getInfoEx13Print"/></td>
 									</tr>
 									<tr>
 										<td>Giá</td>
-										<td><B tal:content="Product/getPricePrint"/></td>
+										<td><B style="color:#055699;font-weight:bold;" tal:content="Product/getPricePrint"/></td>
 									</tr>
 								</tbody>
 							</table>
@@ -47,43 +47,43 @@
 								<tbody>
 									<tr>
 										<td width="20%">Mã tin</td>
-										<td width="15%"><B tal:content="Product/getId" /></td>
+										<td width="15%"><B style="color:#055699;font-weight:bold;" tal:content="Product/getId" /></td>
 										<td width="20%">Hướng</td>
-										<td width="15%"><B tal:content="Product/getInfo/getInfoEx03Print" /></td>
+										<td width="15%"><B style="color:#055699;font-weight:bold;" tal:content="Product/getInfo/getInfoEx03Print" /></td>
 										<td width="15%">Phòng ăn</td>
-										<td width="15%"><B tal:content="Product/getInfo/getInfoEx08Print" /></td>
+										<td width="15%"><B style="color:#055699;font-weight:bold;" tal:content="Product/getInfo/getInfoEx08Print" /></td>
 									</tr>
 									<tr>
 										<td width="20%">Loại tin</td>
-										<td width="15%"><B tal:content="Product/getCategory/getName" /></td>
+										<td width="15%"><B style="color:#055699;font-weight:bold;" tal:content="Product/getCategory/getName" /></td>
 										<td width="20%">Lộ giới</td>
-										<td width="15%"><B tal:content="Product/getInfo/getInfoEx04Print" /></td>
+										<td width="15%"><B style="color:#055699;font-weight:bold;" tal:content="Product/getInfo/getInfoEx04Print" /></td>
 										<td width="15%">Nhà bếp</td>
-										<td width="15%"><B tal:content="Product/getInfo/getInfoEx09Print" /></td>
+										<td width="15%"><B style="color:#055699;font-weight:bold;" tal:content="Product/getInfo/getInfoEx09Print" /></td>
 									</tr>
 									<tr>
 										<td width="20%">Loại BĐS</td>
-										<td width="15%"><B tal:content="Product/getEstate/getName" tal:condition="Product/getEstate"/></td>
+										<td width="15%"><B style="color:#055699;font-weight:bold;" tal:content="Product/getEstate/getName" tal:condition="Product/getEstate"/></td>
 										<td width="20%">Pháp lý</td>
-										<td width="15%"><B tal:content="Product/getInfo/getInfoEx05Print" /></td>
+										<td width="15%"><B style="color:#055699;font-weight:bold;" tal:content="Product/getInfo/getInfoEx05Print" /></td>
 										<td width="15%">Sân thượng</td>
-										<td width="15%"><B tal:content="Product/getInfo/getInfoEx10Print" /></td>
+										<td width="15%"><B style="color:#055699;font-weight:bold;" tal:content="Product/getInfo/getInfoEx10Print" /></td>
 									</tr>
 									<tr>
 										<td width="20%">Chiều ngang</td>
-										<td width="15%"><B tal:content="Product/getInfo/getInfoEx01Print" /></td>
+										<td width="15%"><B style="color:#055699;font-weight:bold;" tal:content="Product/getInfo/getInfoEx01Print" /></td>
 										<td width="20%">Số lầu</td>
-										<td width="15%"><B tal:content="Product/getInfo/getInfoEx06Print" /></td>
+										<td width="15%"><B style="color:#055699;font-weight:bold;" tal:content="Product/getInfo/getInfoEx06Print" /></td>
 										<td width="15%">Chỗ để xe hơi</td>
-										<td width="15%"><B tal:content="Product/getInfo/getInfoEx11Print" /></td>
+										<td width="15%"><B style="color:#055699;font-weight:bold;" tal:content="Product/getInfo/getInfoEx11Print" /></td>
 									</tr>
 									<tr>
 										<td width="20%">Chiều dài</td>
-										<td width="15%"><B tal:content="Product/getInfo/getInfoEx02Print" /></td>
+										<td width="15%"><B style="color:#055699;font-weight:bold;" tal:content="Product/getInfo/getInfoEx02Print" /></td>
 										<td width="20%">Số phòng ngủ</td>
-										<td width="15%"><B tal:content="Product/getInfo/getInfoEx07Print" /></td>
+										<td width="15%"><B style="color:#055699;font-weight:bold;" tal:content="Product/getInfo/getInfoEx07Print" /></td>
 										<td width="15%">Chính chủ</td>
-										<td width="15%"><B tal:content="Product/getInfo/getInfoEx12Print" /></td>
+										<td width="15%"><B style="color:#055699;font-weight:bold;" tal:content="Product/getInfo/getInfoEx12Print" /></td>
 									</tr>
 								</tbody>
 							</table>
@@ -94,7 +94,7 @@
 							<h3 class="panel-title">BẢN ĐỒ</h3>
 						</div>
 						<div class="panel-body">
-							<div style="width:100%; height:480px"  id="ProductMap" />								
+							<div style="width:100%; height:480px"  id="ProductMap" tal:attributes="latitude Product/getMap/getLatitude;longitude Product/getMap/getLongitude"/>
 						</div>
 					</div>
 					<div class="panel panel-default" tal:condition="Product/getImageAll/count">
@@ -128,7 +128,7 @@
 						</div>
 						<div class="panel-body">
 							<div class="list-group">
-								<a tal:repeat="P1 Category1/getProductAll" tal:attributes="href P1/getURLView; class php:P1->getKey()==Product->getKey()?'list-group-item active':'list-group-item'" tal:content="P1/getName"/>
+								<a tal:repeat="P1 Category1/getProductTopAll" tal:attributes="href P1/getURLView; class php:P1->getKey()==Product->getKey()?'list-group-item active':'list-group-item'" tal:content="P1/getName"/>
 							</div>
 						</div>
 					</div>
@@ -142,10 +142,13 @@
 		<tal:block metal:use-macro="mFront.xhtml/IncludeJS"/>
 		<script src="https://maps.googleapis.com/maps/api/js" />
 		<script>
-			function initialize(){					
-				var mapCanvas = document.getElementById('ProductMap');
+			function initialize(){
+				var mapCanvas 	= document.getElementById('ProductMap');
+				var Latitude 	= $("#ProductMap").attr('latitude');
+				var Longitude	= $("#ProductMap").attr('longitude');
+								
 				var mapOptions = {
-				  center: new google.maps.LatLng(9.176299, 105.150823),				  
+				  center: new google.maps.LatLng(Latitude, Longitude),				  
 				  zoom: 18,
 				  mapTypeId: google.maps.MapTypeId.ROADMAP
 				}

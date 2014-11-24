@@ -17,7 +17,15 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 		$findBySupplierPageStmt 	= sprintf("SELECT * FROM %s WHERE idsupplier=:idsupplier ORDER BY `datetime` DESC LIMIT :start,:max", $tblProduct);
 		
 		$findBySupplierCategoryStmt = sprintf("select * from %s WHERE idsupplier=? AND idcategory=? order by id DESC", $tblProduct);
-		$findByCategoryTopStmt		= sprintf("select * from %s order by id DESC LIMIT 8", $tblProduct);
+		$findByCategoryTopStmt		= sprintf("
+					SELECT * 
+					FROM %s 
+					WHERE 
+						idcategory IN (select id from tbl_category1 where id_category=?)
+					ORDER BY `datetime` 
+					DESC 
+					LIMIT 6
+		", $tblProduct);
 		
 		$findByCategoryStmt 		= sprintf("select * from %s WHERE idcategory=? order by idcategory, name", $tblProduct);
 		$findByCategoryPageStmt 	= sprintf("SELECT * FROM %s WHERE idcategory=:idcategory ORDER BY name LIMIT :start,:max", $tblProduct);
