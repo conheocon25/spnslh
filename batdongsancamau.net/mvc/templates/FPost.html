@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<div metal:use-macro="mFront.xhtml/IncludeMETA"/>
+		<tal:block metal:use-macro="mFront.xhtml/IncludeMETA"/>
 		<meta property="og:title" tal:attributes="content Post/getTitle"/>
 		<meta property="og:description" tal:attributes="content Post/getContentReduce"/>
 		<meta property="og:image" tal:attributes="content Post/getImage"/>
-		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>
+		<tal:block metal:use-macro="mFront.xhtml/IncludeCSS"/>
 	</head>	
 	<body>		
 		<div class="container">
-			<div metal:use-macro="mFront.xhtml/Header"/>
-			<div metal:use-macro="mFront.xhtml/Breadcrumb"/>
+			<tal:block metal:use-macro="mFront.xhtml/Header"/>
+			<tal:block metal:use-macro="mFront.xhtml/Breadcrumb"/>
 			<div class="row">						
 				<div class="col-md-9">
 					<div class="panel panel-default">
@@ -29,11 +29,11 @@
 					</div>
 				</div>
 				<div class="col-md-3">
-					<div metal:use-macro="mFront.xhtml/SearchBox"/>
+					<tal:block metal:use-macro="mFront.xhtml/SearchBox"/>
 				</div>
 			</div>
-			<div metal:use-macro="mFront.xhtml/Footer"/>
-			<div metal:use-macro="mFront.xhtml/IncludeJS"/>
+			<tal:block metal:use-macro="mFront.xhtml/Footer"/>
+			<tal:block metal:use-macro="mFront.xhtml/IncludeJS"/>
 			<script type="text/javascript">
 			/*<![CDATA[*/
 				$('.Liked').click(function(){
