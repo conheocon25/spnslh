@@ -14,6 +14,7 @@ class Post extends Mapper implements \MVC\Domain\PostFinder {
 		$insertStmt 	= sprintf("insert into %s ( title, content, author, `time`, `count`, `key`, `viewed`, `liked`) values(?, ?, ?, ?, ?, ?, ?, ?)", $tblPost);
 		$deleteStmt 	= sprintf("delete from %s where id=?", $tblPost);
 		$findByKeyStmt 	= sprintf("select *  from %s where `key`=?", $tblPost);
+		$findByTopStmt 	= sprintf("select *  from %s order by `time` DESC limit 6", $tblPost);
 				
         $this->selectAllStmt 	= self::$PDO->prepare($selectAllStmt);
         $this->selectStmt 		= self::$PDO->prepare($selectStmt);
@@ -21,6 +22,7 @@ class Post extends Mapper implements \MVC\Domain\PostFinder {
         $this->insertStmt 		= self::$PDO->prepare($insertStmt);
 		$this->deleteStmt 		= self::$PDO->prepare($deleteStmt);
 		$this->findByKeyStmt 	= self::$PDO->prepare($findByKeyStmt);
+		$this->findByTopStmt 	= self::$PDO->prepare($findByTopStmt);
 
     } 
     function getCollection( array $raw ) {return new PostCollection( $raw, $this );}
@@ -77,6 +79,11 @@ class Post extends Mapper implements \MVC\Domain\PostFinder {
 
     function selectStmt() {return $this->selectStmt;}
     function selectAllStmt() {return $this->selectAllStmt;}
+	
+	function findByTop(array $values) {
+        $this->findByTopStmt->execute( $values );
+        return new PostCollection( $this->findByTopStmt->fetchAll(), $this );
+    }	
 		
 	function findByKey( $values ) {	
 		$this->findByKeyStmt->execute( array($values) );

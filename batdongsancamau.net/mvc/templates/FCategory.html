@@ -24,6 +24,11 @@
 										<h4 class="media-heading" tal:content="Product/getNameReduce"/>
 									</a>
 									<p tal:content="structure Product/getInfo/getInfoReduce" style="text-align:justify"/>
+									<span>
+										Giá <span tal:content="Product/getPricePrint"/> 
+										<span tal:condition="Product/getInfo" tal:content="Product/getInfo/getInfoEx04Print"/> 
+										Ngày đăng <span tal:content="Product/getDateTimePrint"/>
+									</span>
 								</div>
 							</div>
 						</div>

@@ -63,6 +63,12 @@ class Category extends Object{
 		return $CategoryAll;
 	}
 	
+	function getTopProductAll(){
+		$mProduct = new \MVC\Mapper\Product();
+		$ProductAll = $mProduct->findByCategoryTop(array($this->getId()));
+		return $ProductAll;
+	}
+	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
