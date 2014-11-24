@@ -3,7 +3,9 @@
 	<!-- ======================================================================== -->
 	<!-- META TAG INCLUDE														  -->
 	<!-- ======================================================================== -->
-	<span metal:define-macro="IncludeMETA">
+	<tal:block metal:define-macro="IncludeMETA">
+		<link rel="shortcut icon" type="image/x-icon" href="/mvc/templates/front/img/ficon.ico"/>
+		<link rel="shortcut icon" type="image/ico" href="/mvc/templates/front/img/ficon.ico"/>
 		<title tal:content="string:Website Bất Động Sản Cà Mau"/>
 		<base href="http://batdongsancamau.net"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -15,25 +17,24 @@
 		<meta name="description" content="Website Bất Động Sản Cà Mau"/>
 		<meta name="page-topic" content="Website Bất Động Sản Cà Mau"/>
 		<meta name="Abstract" content="Website Bất Động Sản Cà Mau"/>
-		<meta name="classification" content="Website Bất Động Sản Cà Mau"/>		
-		<link rel="shortcut icon" type="image/png" href="/mvc/templates/front/img/home.png" />
-	</span>
+		<meta name="classification" content="Website Bất Động Sản Cà Mau"/>
+	</tal:block>
 	
 	<!-- ======================================================================== -->
 	<!-- CASCADING STYLE SHEETS INCLUDE											  -->
 	<!-- ======================================================================== -->
-	<span metal:define-macro="IncludeCSS">	
+	<tal:block metal:define-macro="IncludeCSS">	
 		<link rel="stylesheet" href="/mvc/templates/front/css/bootstrap.min.css"/>
 		<link rel="stylesheet" href="/mvc/templates/front/css/bootstrap.config.css"/>
-	</span>
+	</tal:block>
 	
 	<!-- ======================================================================== -->
 	<!-- JAVASCRIPT INCLUDE														  -->
 	<!-- ======================================================================== -->
-	<span metal:define-macro="IncludeJS">						
+	<tal:block metal:define-macro="IncludeJS">						
 		<script src="/mvc/templates/front/js/jquery-1.11.0.min.js"></script>
 		<script src="/mvc/templates/front/js/bootstrap.min.js"></script>
-	</span>
+	</tal:block>
 	
 	<!-- ======================================================================== -->
 	<!-- HEADER																	  -->
@@ -41,7 +42,9 @@
 	<div metal:define-macro="Header" id="header">
 		<div class="row" style="margin-top:10px;">
 			<div class="col-md-3">
-				<img alt="Brand" src="/mvc/templates/front/img/logo.jpg" width="100%"/>
+				<a href="/trang-chu">
+					<img alt="Brand" src="/mvc/templates/front/img/logo.jpg" width="100%"/>
+				</a>
 			</div>
 			<div class="col-md-9">
 				<img alt="Brand" src="/mvc/templates/front/img/banner.jpg" width="100%"/>
@@ -71,7 +74,7 @@
 					<ul class="nav navbar-nav">
 						<li tal:repeat="Category CategoryAll" class="dropdown">
 							<a tal:attributes="class php:Active=='Product'?'active':'?'" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-								<span tal:content="Category/getName"/> <span class="caret"></span>
+								<span tal:content="Category/getName"/> <span class="caret"/>
 							</a>
 							<ul class="dropdown-menu" role="menu">
 								<li tal:repeat="Category1 Category/getCategoryAll">												
