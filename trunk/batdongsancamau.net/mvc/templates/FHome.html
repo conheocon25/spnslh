@@ -11,33 +11,32 @@
 				<div class="col-md-8">
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<h3 class="panel-title">DỰ ÁN NỔI BẬT</h3>
+							<h3 class="panel-title">ĐIỂM TIN</h3>
 						</div>
 						<div class="panel-body">
-							...
+							<ul>
+								<li tal:repeat="Post PostTopAll">
+									<B tal:content="Post/getTitleReduce"/>
+								</li>
+							</ul>
 						</div>
 					</div>
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h3 class="panel-title">BẤT ĐỘNG SẢN NỔI BẬT</h3>
-						</div>
+					<div class="panel panel-default" tal:repeat="Category CategoryAll">
+						<div class="panel-heading"><h3 class="panel-title" tal:content="Category/getName"/></div>
 						<div class="panel-body">
-							...
+							<ul>
+								<li tal:repeat="Product Category/getTopProductAll">
+									<B tal:content="Product/getNameReduce"/>
+								</li>
+							</ul>
 						</div>
-					</div>
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h3 class="panel-title">THÔNG TIN MUA BÁN & CHO THUÊ BẤT ĐỘNG SẢN</h3>
-						</div>
-						<div class="panel-body">
-							...
-						</div>
-					</div>
+					</div>					
 				</div>
 				<div class="col-md-4">
 					<div class="panel">
 						<img class="img-thumbnail" width="100%" src="http://alonhadat.com.vn/Media/CK/banners/8x50-mat-tien-toc-tien.gif"/>
 					</div>
+					<!--
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h3 class="panel-title">TIN TỨC MỚI NHẤT</h3>
@@ -46,6 +45,7 @@
 							...
 						</div>
 					</div>
+					!-->
 					<div metal:use-macro="mFront.xhtml/SearchBox"/>
 				</div>
 			</div>
