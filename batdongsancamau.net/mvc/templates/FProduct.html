@@ -9,7 +9,7 @@
 			<div metal:use-macro="mFront.xhtml/Header"/>
 			<div metal:use-macro="mFront.xhtml/Breadcrumb"/>
 			<div class="row">						
-				<div class="col-md-8">
+				<div class="col-md-9">
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h3 class="panel-title" tal:content="Product/getName"/>
@@ -94,7 +94,7 @@
 							<h3 class="panel-title">BẢN ĐỒ</h3>
 						</div>
 						<div class="panel-body">
-							<div style="width:640px; height:480px"  id="ProductMap" />								
+							<div style="width:100%; height:480px"  id="ProductMap" />								
 						</div>
 					</div>
 					<div class="panel panel-default" tal:condition="Product/getImageAll/count">
@@ -133,7 +133,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-md-4">
+				<div class="col-md-3">
 					<div metal:use-macro="mFront.xhtml/SearchBox"/>
 				</div>
 			</div>
