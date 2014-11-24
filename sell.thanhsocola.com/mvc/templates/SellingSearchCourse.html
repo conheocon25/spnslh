@@ -5,9 +5,9 @@
 			<div class="widget-content nopadding size-12">
 				<ul class="activity-list">
 					<li tal:repeat="Course CourseFAll">	
-						<a class="course-item tip-left" tal:attributes="data-original-title php: Course->getName() . ' ' . Course->getPrice1Print()">
+						<a class="course-item tip-left Course" tal:attributes="alt Course/getId;data-delta 'plus' ">
 							<img width="32" tal:attributes="src Course/getPicture"/>
-							<strong class="Course" tal:content="php: Course->getName() . ' ' . Course->getPrice1Print()" tal:attributes="alt Course/getId;data-delta 'plus' "/>
+							<strong tal:content="php: Course->getName() . ' ' . Course->getPrice1Print()"/>
 						</a>
 					</li>
 				</ul>

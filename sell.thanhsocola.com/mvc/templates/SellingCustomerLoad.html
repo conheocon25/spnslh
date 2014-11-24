@@ -23,14 +23,10 @@
 		</div>						
         <script>
 			$(".SessionView").click(function(){
-				var IdSession = $(this).attr('alt');				
-				//$("#SessionView").load("/selling/load/table/"+IdSession);
+				var IdSession = $(this).attr('alt');								
 				$("#SessionView").load("/selling/session/load/"+IdSession);
 			});
-			
-			//Mặc định lấy click của BÀN đầu tiên
-			$('.SessionView:first').click();
-			
+									
 			$(".SessionInsert").click(function(){
 				var IdCustomer = $(this).attr('alt');								
 				var Data = [];
