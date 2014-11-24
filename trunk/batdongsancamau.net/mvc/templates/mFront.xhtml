@@ -39,13 +39,16 @@
 	<!-- HEADER																	  -->
 	<!-- ======================================================================== -->
 	<div metal:define-macro="Header" id="header">
-		<div class="row">
-			<div class="col-md-12">
+		<div class="row" style="margin-top:10px;">
+			<div class="col-md-3">
+				<img alt="Brand" src="/mvc/templates/front/img/logo.jpg" width="100%"/>
+			</div>
+			<div class="col-md-9">
+				<img alt="Brand" src="/mvc/templates/front/img/banner.jpg" width="100%"/>
 				<div class="support">
-					Hotline: <span style="color:yellow"><span tal:content="ConfigContact/getValue"/> - <span tal:content="ConfigPhone1/getValue"/></span> |
+					Hotline: <span style="color:red"><span tal:content="ConfigContact/getValue"/> - <span tal:content="ConfigPhone1/getValue"/></span> |
 					Email: <span tal:content="ConfigGmail/getValue"/>
 				</div>
-				<img alt="Brand" src="/mvc/templates/front/img/banner.jpg" width="100%"/>
 			</div>
 		</div>
 		<nav class="navbar navbar-default" role="navigation">
