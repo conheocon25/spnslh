@@ -170,7 +170,7 @@ class Session extends Object{
 	function setStatus( $Status ) {$this->Status = $Status;$this->markDirty();}
 			
 	function getStatusPrint(){
-		$Arr = array("Chưa tính", "Thanh toán đủ", "Thiếu nợ phiếu", "Tiếp khách");
+		$Arr = array("Đặt hàng", "Thanh toán đủ", "Thiếu nợ phiếu");
 		return $Arr[$this->Status];
 	}
 	
@@ -287,32 +287,13 @@ class Session extends Object{
 	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
-	//-------------------------------------------------------------------------------
-	function getURLCheckoutLoad(){
-		$Domain = $this->getTable()->getDomain();
-		return "/selling/".$Domain->getId()."/".$this->getIdTable()."/".$this->getId()."/checkout/load";
-    }
-	
-	function getURLCheckoutExe(){
-		$Domain = $this->getTable()->getDomain();
-		return "/selling/".$Domain->getId()."/".$this->getIdTable()."/".$this->getId()."/checkout/exe";
-    }
-			
+	//-------------------------------------------------------------------------------				
 	function getURLDetail(){		
 		$Domain = $this->getTable()->getDomain();
 		return "/selling/".$Domain->getId()."/".$this->getIdTable()."/log/".$this->getId()."/detail";
-    }
-	
-	function getURLPrint(){
-		$Domain = $this->getTable()->getDomain();
-		return "/selling/".$Domain->getId()."/".$this->getIdTable()."/".$this->getId()."/print.pdf";
-    }
-	
-	function getURLPrint1(){
-		$Domain = $this->getTable()->getDomain();
-		return "/selling/".$Domain->getId()."/".$this->getIdTable()."/".$this->getId()."/print1.pdf";
-    }
-	
+    }	
+	function getURLPrint(){return "/selling/session/print/".$this->getId();}
+			
 	//---------------------------------------------------------	
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}	
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}
