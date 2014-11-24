@@ -14,7 +14,7 @@
 	
 	#header .navbar-default {
 		background: #0090B5;
-		border-radius: 20px;
+		border-radius: 0;
 		border: none;
 	}
 	
@@ -36,7 +36,10 @@
 		line-height: 40px;
 	}
 	
-	#header .navbar-default .navbar-nav li:hover {
+	#header .navbar-default .navbar-nav li:hover,
+	#header .navbar-default .navbar-nav > .open > a,
+	#header .navbar-default .navbar-nav > .open > a:hover,
+	#header .navbar-default .navbar-nav > .open > a:focus {
 		background: #006782;
 	}
 
@@ -73,14 +76,26 @@
 		font-weight: bold;
 		text-transform: uppercase;
 		font: bold 12px/38px Tahoma,Geneva,sans-serif;
+		padding-left: 40px;
+		background: url('/mvc/templates/front/img/ticon.png') no-repeat 0 1px transparent;
 	}
 	
 	.media-config {
-		border-bottom: 1px solid #BDE5EF;
 		padding-bottom: 20px;
+		font-family: Tahoma;
+		font-size: 12px;
+		line-height: 18px;
+		text-align: justify;
 	}
 	
-	.media-config:last-child  { border-bottom: none; }
+	.media-config h4 {
+		background: #F9F9F9;
+		padding: 5px 10px;
+		font-family: Tahoma;
+		color: #0F3281;
+		font-size: 15px;
+		border-bottom: 1px solid #EAEAEA;
+	}
 	
 	.breadcrumb {
 		margin-top: -20px;
@@ -104,6 +119,7 @@
 		color: #fff;
 		line-height: 10px;
 		margin-bottom: 10px;
+		border-radius: 10px;
 	}
 	
 	.table { margin-bottom: 0; }
