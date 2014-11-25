@@ -1,10 +1,61 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<div metal:use-macro="mFront.xhtml/IncludeMETA"/>
-		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>
+		<tal:block metal:use-macro="mFront.xhtml/IncludeMETA"/>
+		<tal:block metal:use-macro="mFront.xhtml/IncludeCSS"/>
 	</head>	
 	<body>		
+		<tal:block metal:use-macro="mFront.xhtml/Header"/>
+		<div id="carousel-example-generic" class="carousel slide fade" data-ride="carousel">
+			<ol class="carousel-indicators">
+				<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+				<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+				<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+				<li data-target="#carousel-example-generic" data-slide-to="3"></li>
+				<li data-target="#carousel-example-generic" data-slide-to="4"></li>
+			</ol>
+			<div class="carousel-inner" role="listbox">
+				<div class="item active">
+					<img src="/mvc/templates/front/img/slide/01.gif" alt="Slide 1" width="100%"/>
+					<div class="carousel-caption">
+					...
+					</div>
+				</div>
+				<div class="item">
+					<img src="/mvc/templates/front/img/slide/02.gif" alt="Slide 2"/>
+					<div class="carousel-caption">
+					...
+					</div>
+				</div>
+				<div class="item">
+					<img src="/mvc/templates/front/img/slide/03.gif" alt="Slide 3"/>
+					<div class="carousel-caption">
+					...
+					</div>
+				</div>
+				<div class="item">
+					<img src="/mvc/templates/front/img/slide/04.gif" alt="Slide 4"/>
+					<div class="carousel-caption">
+					...
+					</div>
+				</div>
+				<div class="item">
+					<img src="/mvc/templates/front/img/slide/05.gif" alt="Slide 5"/>
+					<div class="carousel-caption">
+					...
+					</div>
+				</div>
+			</div>
+
+		</div>
+		
+		<tal:block metal:use-macro="mFront.xhtml/IncludeJS"/>
+		<script>
+			$('.carousel').carousel({
+				pause: "false"
+			});
+		</script>
+		<!--
 		<div id="wrapper">
 			<div metal:use-macro="mFront.xhtml/Header"/>
 			<section id="content">
@@ -118,8 +169,8 @@
 				</div>
 			</section>
 			<div metal:use-macro="mFront.xhtml/Footer"/>
-		</div><!-- End #wrapper -->		
-		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
+		</div>		
+		<tal:block metal:use-macro="mFront.xhtml/IncludeJS"/>
 		<script>
 			$(function() {
 				// Sequence.js Slider Plugin
@@ -158,5 +209,6 @@
 				
 			});
 		</script>
+		-->
 	</body>
 </html>

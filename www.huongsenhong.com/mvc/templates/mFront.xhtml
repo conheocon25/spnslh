@@ -3,7 +3,7 @@
 	<!-- ======================================================================== -->
 	<!-- META TAG INCLUDE														  -->
 	<!-- ======================================================================== -->
-	<span metal:define-macro="IncludeMETA">
+	<tal:block metal:define-macro="IncludeMETA">
 		<title tal:content="string:Website Khu Ẩm Thực Sinh Thái Đầm Sen Cao Lãnh"/>
 		<base href="http://damsencaolanh.com"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -17,9 +17,9 @@
 		<meta name="Abstract" content="Website Khu Ẩm Thực Sinh Thái Đầm Sen Cao Lãnh"/>
 		<meta name="classification" content="Website Khu Ẩm Thực Sinh Thái Đầm Sen Cao Lãnh"/>		
 		<link rel="shortcut icon" type="image/png" href="/data/images/icon.png" />
-	</span>
+	</tal:block>
 	
-	<span metal:define-macro="IncludeMETAPOST">
+	<tal:block metal:define-macro="IncludeMETAPOST">
 		<title tal:content="string:Website Khu Ẩm Thực Sinh Thái Đầm Sen Cao Lãnh"/>
 		<base href="http://damsencaolanh.com"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -38,104 +38,51 @@
 		<meta property="og:image" tal:attributes="content Post/getImage"/>
 
 		<link rel="shortcut icon" type="image/png" href="/data/images/icon.png" />
-	</span>
+	</tal:block>
 	
 	<!-- ======================================================================== -->
 	<!-- CASCADING STYLE SHEETS INCLUDE											  -->
 	<!-- ======================================================================== -->
-	<span metal:define-macro="IncludeCSS">	
-		<link rel="stylesheet" href="/mvc/templates/front/css/bootstrap.min.css"/>
-		<link rel="stylesheet" href="/mvc/templates/front/css/font-awesome.min.css"/>
-		<link rel="stylesheet" href="/mvc/templates/front/css/prettyPhoto.css"/>
-		<link rel="stylesheet" href="/mvc/templates/front/css/colpick.css"/>
-		<link rel="stylesheet" href="/mvc/templates/front/css/sequence-slider.css"/>
-		<link rel="stylesheet" href="/mvc/templates/front/css/owl.carousel.css"/>
-		<link rel="stylesheet" href="/mvc/templates/front/css/style.css"/>
-		<link rel="stylesheet" href="/mvc/templates/front/css/responsive.css"/>
-	</span>
+	<tal:block metal:define-macro="IncludeCSS">	
+		<link rel="stylesheet" type="text/css" href="/mvc/templates/front/css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="/mvc/templates/front/css/bootstrap.config.css"/>
+	</tal:block>
 	
 	<!-- ======================================================================== -->
 	<!-- JAVASCRIPT INCLUDE														  -->
 	<!-- ======================================================================== -->
-	<span metal:define-macro="IncludeJS">						
-		<script src="/mvc/templates/front/js/jquery-1.11.0.min.js"></script>
-		<script src="/mvc/templates/front/js/bootstrap.min.js"></script>
-		<script src="/mvc/templates/front/js/smoothscroll.js"></script>
-		<script src="/mvc/templates/front/js/retina-1.1.0.min.js"></script>
-		<script src="/mvc/templates/front/js/jquery.placeholder.js"></script>
-		<script src="/mvc/templates/front/js/jquery.hoverIntent.min.js"></script>
-		<script src="/mvc/templates/front/js/twitter/jquery.tweet.min.js"></script>
-		<script src="/mvc/templates/front/js/jquery.flexslider-min.js"></script>
-		<script src="/mvc/templates/front/js/owl.carousel.min.js"></script>
-		<script src="/mvc/templates/front/js/jflickrfeed.min.js"></script>
-		<script src="/mvc/templates/front/js/jquery.prettyPhoto.js"></script>
-		<script src="/mvc/templates/front/js/jquery.sequence-min.js"></script>
-		<script src="/mvc/templates/front/js/colpick.js"></script>
-		<script src="/mvc/templates/front/js/main.js"></script>
-		<script src="/mvc/templates/front/js/modernizr.custom.js"></script>
-		<script src="/mvc/templates/front/js/jquery.isotope.min.js"></script>
-		<script src="/mvc/templates/front/js/jquery.fitvids.js"></script>
-		<script src="/mvc/templates/front/js/jquery.elastislide.js"></script>
-		<script src="/mvc/templates/front/js/jquery.mlens-1.3.min.js"></script>
-	</span>
+	<tal:block metal:define-macro="IncludeJS">						
+		<script type="text/javascript" src="/mvc/templates/front/js/jquery-1.11.1.min.js"></script>
+		<script type="text/javascript" src="/mvc/templates/front/js/bootstrap.min.js"></script>
+	</tal:block>
 	
 	<!-- ======================================================================== -->
 	<!-- HEADER																	  -->
 	<!-- ======================================================================== -->
-	<header metal:define-macro="Header" id="header">
-		<div id="header-top">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">						
-						<marquee scrolldelay="2" scrollamount="2" behavior="scroll" direction="left" style="padding:5px; color:#fff">Khu Ẩm Thực Sinh Thái Đầm Sen Cao Lãnh xin kính chào quý khách! Với các món ăn đa dạng và phong phú, chất lượng cao và giá phải chăng cùng phong cách phục vụ chuyên nghiệp, chu đáo, chúng tôi hứa hẹn sẽ là điểm đến tham quan, ăn uổng giải trí lý tưởng cho mọi gia đình</marquee>
-					</div>
+	<header metal:define-macro="Header">
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<div class="col-md-4">
+					<img src="/mvc/templates/front/img/logo.png" alt="" width="100%"/>
 				</div>
-			</div>
-		</div>
-		<div id="inner-header">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-5 col-sm-5 col-xs-12 logo-container">
-						<h1 class="logo clearfix">
-							<span>Khu Ẩm Thực Sinh Thái Đầm Sen Cao Lãnh</span>
-							<a href="/" title="Khu Ẩm Thực Sinh Thái Đầm Sen Cao Lãnh">
-								<img src="/mvc/templates/front/images/logo.png" alt="Khu Ẩm Thực Sinh Thái Đầm Sen Cao Lãnh" width="100%"/>
-							</a>
-						</h1>
-					</div>
-					<div class="col-md-7 col-sm-7 col-xs-12 header-inner-right">
-						<div class="header-box contact-infos pull-right">
-							<ul>
-								<li><span class="header-box-icon header-box-icon-email"/><h4 tal:content="ConfigGmail/getValue"/></li>
-								<li><span class="header-box-icon header-box-icon-skype"/><h4 tal:content="ConfigSkype/getValue"/></li>
-							</ul>
-						</div>
-						<div class="header-box contact-phones pull-right clearfix">
-							<span class="header-box-icon header-box-icon-earphones"></span>
-							<ul class="pull-left">
-								<li><B><h4 tal:content="ConfigPhone1/getValue"/></B></li>
-								<li><B><h4 tal:content="ConfigPhone2/getValue"/></B></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div id="main-nav-container">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-12 clearfix">
-							<nav id="main-nav">
-								<div id="responsive-nav">
-									<div id="responsive-nav-button">
-										Menu <span id="responsive-nav-button-icon" />
-									</div>
-								</div>
-								<ul class="menu clearfix">
-									<li><a tal:attributes="class php:Active=='Home'?'active':'?'" href="/trang-chu">TRANG CHỦ</a></li>
+				<div class="col-md-8">
+					<nav class="navbar navbar-default" role="navigation">
+						<div class="container-fluid">
+							<div class="navbar-header">
+								<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								</button>
+							</div>
+							<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+								<ul class="nav navbar-nav navbar-right">
+									<li><a class="navbar-brand" href="/trang-chu"><img alt="Brand" src="/mvc/templates/front/img/hicon.png" width="40"/></a></li>
 									<li><a tal:attributes="class php:Active=='Introduction'?'active':'?'" href="/gioi-thieu">GIỚI THIỆU</a></li>
-									<li>
-										<a tal:attributes="class php:Active=='News'?'active':'?'" href="JavaScript:;">TIN TỨC</a>
-										<ul>
+									<li class="dropdown">
+										<a href="#" tal:attributes="class php:Active=='News'?'active':'?'" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">TIN TỨC <span class="caret"></span></a>
+										<ul class="dropdown-menu" role="menu">
 											<li tal:repeat="Tag TagAll">
 												<a tal:attributes="href Tag/getURLView">
 													<span tal:content="Tag/getName"/>
@@ -143,29 +90,24 @@
 											</li>
 										</ul>
 									</li>
-									<li class="mega-menu-container">
-										<a tal:attributes="class php:Active=='Menu'?'active':'?'" href="JavaScript:;">THỰC ĐƠN</a>
-										<div class="mega-menu clearfix">
-											<div class="col-5" tal:repeat="Category CategoryAll">
-												<a href="JavaScript:;" class="mega-menu-title" tal:content="Category/getName"/>
-												<ul class="mega-menu-list clearfix">
-													<li tal:repeat="Category1 Category/getCategoryAll">
-														<a tal:attributes="href Category1/getURLView">
-															<span tal:content="Category1/getName"/> (<span tal:content="Category1/getProductAll/count"/>)
-														</a>
-													</li>
-												</ul>
-											</div>
-										</div>
+									<li class="dropdown">
+										<a href="#" tal:attributes="class php:Active=='News'?'active':'?'" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">THỰC ĐƠN <span class="caret"></span></a>
+										<ul class="dropdown-menu" role="menu">
+											<li tal:repeat="Category CategoryAll">
+												<a tal:attributes="href Category/getURLView">
+													<span tal:content="Category/getName"/>
+												</a>
+											</li>
+										</ul>
 									</li>
 									<li><a tal:attributes="class php:Active=='Dealer'?'active':'?'" href="/khuyen-mai">KHUYẾN MÃI</a></li>
 									<li><a tal:attributes="class php:Active=='Album'?'active':'?'" href="/hinh-anh">HÌNH ẢNH</a></li>
 									<li><a tal:attributes="class php:Active=='Video'?'active':'?'" href="/video">VIDEO</a></li>
-									<li><a tal:attributes="class php:Active=='Contact'?'active':'?'" href="/lien-he">LIÊN HỆ</a></li>									
+									<li><a tal:attributes="class php:Active=='Contact'?'active':'?'" href="/lien-he">LIÊN HỆ</a></li>
 								</ul>
-							</nav>							
+							</div>
 						</div>
-					</div>
+					</nav>
 				</div>
 			</div>
 		</div>
