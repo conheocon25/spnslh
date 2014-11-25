@@ -4,10 +4,7 @@
 		<div metal:use-macro="mFront.xhtml/IncludeMETA"/>
 		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>
 	</head>	
-	<body onunload="GUnload()">
-		<!--
-		<div metal:use-macro="mFront.xhtml/OptionPanel"/>
-		!-->
+	<body onunload="GUnload()">		
 		<div id="wrapper">
 			<div metal:use-macro="mFront.xhtml/Header"/>
 			<section id="content">
@@ -132,7 +129,7 @@
 			
 			$("#refreshCaptcha").click(function() {					
 					$.ajax({
-					  url: 'http://huongsenhong.com/lien-he/RefreshCaptcha',
+					  url: 'http://damsencaolanh.com/lien-he/RefreshCaptcha',
 					  dataType: "json",					  
 					  success: function(djson) {	
 						var pathimg = djson['result'];						
@@ -213,7 +210,7 @@
 							
 							if (txtResult === "FALSE") {
 									$.ajax({
-									  url: 'http://huongsenhong.com/lien-he/RefreshCaptcha',
+									  url: 'http://damsencaolanh.com/lien-he/RefreshCaptcha',
 									  dataType: "json",					  
 									  success: function(djson) {	
 										var pathimg = djson['result'];						
