@@ -1,0 +1,276 @@
+<html lang="en" xml:lang="en">
+<body>
+	<!-- ======================================================================== -->
+	<!-- META TAG INCLUDE														  -->
+	<!-- ======================================================================== -->
+	<span metal:define-macro="IncludeMETA">
+		<title tal:content="string:Hệ thống quản lý Quán Ăn"/>
+		<base href="http://sell.huongsenhong.com"/>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+		<meta http-equiv="Pragma" content="no-cache"/>
+		<meta http-equiv="Expires" content="-1"/>
+		<meta http-equiv="Cache-Control" content="no-cache"/>
+		<meta name="keywords" content="Hệ thống quản lý quán ăn"/>
+		<meta name="description" content="Hệ thống quản lý quán ăn"/>
+		<meta name="page-topic" content="Hệ thống quản lý quán ăn"/>
+		<meta name="Abstract" content="Hệ thống quản lý quán ăn"/>
+		<meta name="classification" content="Hệ thống quản lý quán ăn"/>
+		<link rel="shortcut icon" type="image/png" href="/data/images/app/icon.png" />
+	</span>
+	
+	<!-- ======================================================================== -->
+	<!-- CASCADING STYLE SHEETS INCLUDE											  -->
+	<!-- ======================================================================== -->
+	<span metal:define-macro="IncludeCSS">	
+		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/icheck/flat/blue.css"/>
+		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/select2.css"/>
+		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/bootstrap.min.css"/>
+		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/bootstrap-glyphicons.css"/>
+		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/glyphicons-regular.css"/>
+		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/jquery-ui.css"/>
+		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/unicorn.main.css"/>
+		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/datepicker.css"/>
+		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/datetimepicker.css"/>
+		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/custom.css"/>
+		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/grid-menu.css"/>
+		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/jquery.gritter.css"/>
+		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/gritter.css"/>
+		<link rel="stylesheet" tal:attributes="href php:'/mvc/templates/theme/cms/css/unicorn.' . @\MVC\Base\SessionRegistry::instance()->getCurrentTheme() . '.css'" class="skin-color"/>
+	</span>
+	
+	<!-- ======================================================================== -->
+	<!-- JAVASCRIPT INCLUDE														  -->
+	<!-- ======================================================================== -->
+	<span metal:define-macro="IncludeJS">						
+		<script src="/mvc/templates/theme/cms/js/ga.js"></script>
+		<script src="/mvc/templates/theme/cms/js/jquery.min.js"></script>
+		<script src="/mvc/templates/theme/cms/js/jquery-ui.custom.js"></script>
+		<script src="/mvc/templates/theme/cms/js/bootstrap.min.js"></script>
+		<script src="/mvc/templates/theme/cms/js/unicorn.js"></script>
+		<script src="/mvc/templates/theme/cms/js/jquery.jpanelmenu.min.js"></script>
+		<script src="/mvc/templates/theme/cms/js/jquery.icheck.min.js"></script>
+		<script src="/mvc/templates/theme/cms/js/select2.min.js"></script>
+		<script src="/mvc/templates/theme/cms/js/jquery.dataTables.min.js"></script>
+		<script src="/mvc/templates/theme/cms/js/unicorn.tables.js"></script>
+		<script src="/mvc/templates/theme/cms/js/jquery.gritter.min.js"></script>
+		<script src="/mvc/templates/theme/cms/js/bootstrap-datepicker.js"></script>
+		<script src="/mvc/templates/theme/cms/js/bootstrap-datepicker.vi.js"></script>
+        <script src="/mvc/templates/theme/cms/js/jquery.masonry.min.js"></script>
+		<script src="/mvc/templates/theme/cms/js/bootstrap-datetimepicker.js"></script>
+		<script src="/mvc/templates/theme/cms/js/bootstrap-datetimepicker.vi.js"></script>
+		<script src="/mvc/templates/theme/cms/js/jquery.jplayer.min.js"/>
+		<script src="/mvc/templates/theme/cms/js/jquery.validate.js"/>
+				
+		<script src="/mvc/templates/theme/cms/js/excanvas.min.js"/>
+		<script src="/mvc/templates/theme/cms/js/jquery.flot.js"/>
+        <script src="/mvc/templates/theme/cms/js/jquery.flot.pie.min.js"/>
+        <script src="/mvc/templates/theme/cms/js/jquery.flot.resize.min.js"/>
+		<script src="/mvc/templates/theme/cms/js/jquery.flot.categories.js"/>
+	</span>
+	
+	<!-- ======================================================================== -->
+	<!-- HEADER																	  -->
+	<!-- ======================================================================== -->
+	<div metal:define-macro="Header">
+		<div id="header">
+			<h1><a>Restaurant Management App</a></h1>
+			<a id="menu-trigger" href="#"><i class="glyphicon glyphicon-align-justify"/></a>	
+		</div>
+		<div id="user-nav">			
+            <ul class="btn-group">
+				<li class="btn">
+					<a class="tip-bottom" data-original-title="Click để đăng nhập" href="/signin/load">
+						<i class="glyphicons-imac" style="margin-top:-5px;margin-right:5px;"/> <span tal:content="php:@\MVC\Library\Statistic::getIPPrint()" />
+					</a>
+				</li>
+                <li class="btn">
+					<a class="tip-bottom" data-original-title="Click để đăng xuất" href="/signout/exe">
+						<i class="glyphicon glyphicon-user"></i> <span class="text" tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()" tal:content="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->getEmail()"/>
+					</a>
+				</li>
+            </ul>
+        </div>
+	</div>
+
+	<!-- ======================================================================== -->
+	<!-- LOCATION BAR															  -->
+	<!-- ======================================================================== -->
+	<div metal:define-macro="LocationBar" id="breadcrumb">
+		<a class="tip-bottom" title="" href="/app" data-original-title="Về trang chủ"><i class="glyphicons-shop"></i> HỆ THỐNG</a>
+		<a tal:repeat="Item Navigation" tal:attributes="href php:Item[1]" tal:content="php:Item[0]" data-original-title="Về trang này" class="tip-bottom"/>
+		<a tal:content="Title" class="current"/>
+	</div>
+	
+	<!-- ======================================================================== -->
+	<!-- CONTENT HEADER															  -->
+	<!-- ======================================================================== -->	
+	<div metal:define-macro="ContentHeader" id="content-header">
+		<h1>HỆ THỐNG QUẢN LÝ <span tal:content="ConfigName/getValue|'QUẮN ĂN'"/></h1>
+	</div>
+	
+	<!-- ======================================================================== -->
+	<!-- PAGE BAR																  -->
+	<!-- ======================================================================== -->
+	<ul metal:define-macro="PageBar" class="pagination alternate pull-right page-bar">
+		<li tal:repeat="P PN/getPages" tal:attributes="class php:Page==P->getId()?'active':'disable'">
+			<a tal:attributes="href P/getURL" tal:content="P/getName"/>
+		</li>
+	</ul>
+	
+	<!-- ======================================================================== -->
+	<!-- MENU.APP															  	  -->
+	<!-- ======================================================================== -->
+	<div metal:define-macro="MenuApp" id="sidebar">
+		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">
+			<li tal:attributes="class php:ActiveAdmin=='Selling'?'active':'disable'">
+				<a tal:attributes="href '/selling'"><i class="glyphicons-drink" />BÁN HÀNG</a>
+			</li>
+			<li tal:attributes="class php:ActiveAdmin=='Import'?'active':'disable'">
+				<a tal:attributes="href '/import'"><i class="glyphicons-truck" />NHẬP HÀNG</a>
+			</li>
+			<li tal:attributes="class php:ActiveAdmin=='PayRoll'?'active':'disable'">
+				<a tal:attributes="href '/payroll'"><i class="glyphicons-table" />CHẤM CÔNG</a>
+			</li>			
+			<li tal:attributes="class php:ActiveAdmin=='Money'?'active':'disable'">
+				<a tal:attributes="href '/money'"><i class="glyphicons-transfer" />THU / CHI</a>
+			</li>
+			<li tal:attributes="class php:ActiveAdmin=='Report'?'active':'disable'">
+				<a tal:attributes="href '/report'"><i class="glyphicons-fax" />BÁO CÁO</a>
+			</li>
+			<li tal:attributes="class php:ActiveAdmin=='Setting'?'active':'disable'">
+				<a tal:attributes="href '/setting'"><i class="glyphicons-cogwheels" />THIẾT LẬP</a>
+			</li>
+		</ul>
+		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isSeller()">
+			<li tal:attributes="class php:ActiveAdmin=='Selling'?'active':'disable'">
+				<a tal:attributes="href '/selling'"><i class="glyphicons-drink" />BÁN HÀNG</a>
+			</li>			
+		</ul>
+		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isManager()">
+			<li tal:attributes="class php:ActiveAdmin=='Selling'?'active':'disable'">
+				<a tal:attributes="href '/selling'"><i class="glyphicons-drink" />BÁN HÀNG</a>
+			</li>
+			<li tal:attributes="class php:ActiveAdmin=='Import'?'active':'disable'">
+				<a tal:attributes="href '/import'"><i class="glyphicons-truck" />NHẬP HÀNG</a>
+			</li>
+			<li tal:attributes="class php:ActiveAdmin=='Money'?'active':'disable'">
+				<a tal:attributes="href '/money'"><i class="glyphicons-transfer" />THU / CHI</a>
+			</li>			
+			<li tal:attributes="class php:ActiveAdmin=='Setting'?'active':'disable'">
+				<a tal:attributes="href '/setting'"><i class="glyphicons-cogwheels" />THIẾT LẬP</a>
+			</li>
+		</ul>
+		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isViewer()">
+			<li tal:attributes="class php:ActiveAdmin=='Report'?'active':'disable'">
+				<a tal:attributes="href '/report'"><i class="glyphicons-fax" />BÁO CÁO</a>
+			</li>
+			<li>
+				<a tal:attributes="href '/change/pass/load'"><i class="glyphicons-keys" />ĐỔI MẬT KHẨU</a>
+			</li>
+		</ul>
+	</div>
+	
+	<!-- ======================================================================== -->
+	<!-- MENU.SETTING															  -->
+	<!-- ======================================================================== -->
+	<div metal:define-macro="MenuSetting" id="sidebar">				
+		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">		
+			<li tal:attributes="class php:ActiveAdmin=='Category'?'active':'disable'">
+				<a tal:attributes="href '/setting/category'" >
+					<i class="glyphicons-fast_food" />DANH MỤC MÓN
+				</a>
+			</li>
+			<li tal:attributes="class php:ActiveAdmin=='Supplier'?'active':'disable'">
+				<a tal:attributes="href '/setting/supplier'" >
+					<i class="glyphicons-truck" />NHÀ CUNG CẤP
+				</a>
+			</li>
+			<li tal:attributes="class php:ActiveAdmin=='Domain'?'active':'disable'">
+				<a tal:attributes="href '/setting/domain'">
+					<i class="glyphicons-show_big_thumbnails" />KHU VỰC
+				</a>
+			</li>				
+			<li tal:attributes="class php:ActiveAdmin=='Customer'?'active':'disable'">
+				<a tal:attributes="href '/setting/customer'">
+					<i class="glyphicons-group" />KHÁCH HÀNG 
+				</a>
+			</li>
+			<li tal:attributes="class php:ActiveAdmin=='User'?'active':'disable'">
+				<a tal:attributes="href '/setting/user'">
+					<i class="glyphicons-group" />NGƯỜI DÙNG 
+				</a>
+			</li>
+			<li tal:attributes="class php:ActiveAdmin=='Unit'?'active':'disable'">
+				<a tal:attributes="href '/setting/unit'">
+					<i class="glyphicons-tags" />ĐƠN VỊ TÍNH 
+				</a>
+			</li>
+			<li tal:attributes="class php:ActiveAdmin=='Employee'?'active':'disable'">
+				<a tal:attributes="href '/setting/employee'">
+					<i class="glyphicons-group" />NHÂN VIÊN
+				</a>
+			</li>
+			<li tal:attributes="class php:ActiveAdmin=='TermCollect'?'active':'disable'">
+				<a tal:attributes="href '/setting/termcollect'">
+					<i class="glyphicons-disk_save" />DANH MỤC THU
+				</a>
+			</li>
+			<li tal:attributes="class php:ActiveAdmin=='TermPaid'?'active':'disable'">
+				<a tal:attributes="href '/setting/termpaid'">
+					<i class="glyphicons-disk_open" />DANH MỤC CHI
+				</a>
+			</li>
+			<li tal:attributes="class php:ActiveAdmin=='Config'?'active':'disable'">
+				<a tal:attributes="href '/setting/config'">
+					<i class="glyphicons-cogwheel" />CẤU HÌNH
+				</a>
+			</li>
+		</ul>	
+	</div>
+	
+	<!-- ======================================================================== -->
+	<!-- FOOTER																	  -->
+	<!-- ======================================================================== -->
+	<div metal:define-macro="Footer" class="row">
+		<div id="footer" class="col-12" style="text-align:right; padding-right:20px;">
+			2009 - 2013 &copy; <a href="https://www.spn-soft.com">SPN Group</a>
+		</div>
+	</div>
+	
+	<!-- ======================================================================== -->
+	<!-- STYLE SWITCHER															  -->
+	<!-- ======================================================================== -->
+	<div metal:define-macro="StyleTools" id="style-switcher">
+		<i class="glyphicon glyphicon-arrow-left"></i>
+		<span>Giao diện:</span>
+		<a href="/setting/theme/grey" alt="#grey" style="background-color:#555555;border-color:#aaaaaa;cursor:pointer;"></a>
+		<a href="/setting/theme/light-blue" alt="#light-blue" style="background-color:#8399b0;cursor:pointer;"></a>
+		<a href="/setting/theme/blue" alt="#blue" style="background-color:#2D2F57;cursor:pointer;"></a>
+		<a href="/setting/theme/red" alt="#red" style="background-color:#673232;cursor:pointer;"></a>
+		<a href="/setting/theme/red-green" alt="#red-green" style="background-image:url('/mvc/templates/theme/cms/img/demo/red-green.png');background-repeat:no-repeat;cursor:pointer;"></a>
+	</div>
+	
+	<!-- ======================================================================== -->
+	<!-- REPORT HEADER															  -->
+	<!-- ======================================================================== -->
+	<div metal:define-macro="ReportHeader">
+		<table width="100%" border="0" cellpadding="2" >
+			<tr>			
+				<td width="50%" align="left"><B>KHU ẨM THỰC SINH THÁI HƯƠNG SEN HỒNG</B></td>
+				<td width="50%" align="left"><B align="right" tal:content="Title" /></td>
+			</tr>
+			<tr>
+				<td width="50%" align="left">TP.Cao Lãnh</td>
+				<td width="50%" align="right">Lưu hành nội bộ</td>
+			</tr>
+			<tr>
+				<td width="50%" align="left">0918 107 132</td>
+				<td width="50%" align="left" />
+			</tr>
+		</table>
+	</div>
+		
+</body>
+</html>

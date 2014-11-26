@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+	</head>
+	
+	<body data-menu-position="closed">
+		<div metal:use-macro="mAdmin.xhtml/Header"/>		
+		<div metal:use-macro="mAdmin.xhtml/MenuApp"/>
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+			<div metal:use-macro="mAdmin.xhtml/LocationBar"/>
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-12">
+						<div class="widget-box">
+							<div class="widget-content nopadding">
+								<table class="table table-bordered table-striped table-hover">
+									<thead>
+										<tr>
+											<th width="40"><i class="glyphicons-cogwheels"/></th>
+											<th><div class="text-left">THIẾT LẬP NỘI DUNG</div></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td align="center"><a href="/admin/setting/presentation"><i class="glyphicons-cogwheel"/></a></td>
+											<td><a tal:attributes="href '/admin/setting/presentation'" >TRÌNH BÀY</a></td>
+										</tr>
+										<tr>
+											<td align="center"><a href="/admin/setting/tag"><i class="glyphicons-cogwheel"/></a></td>
+											<td><a tal:attributes="href '/admin/setting/tag'" >THẺ BÀI</a></td>
+										</tr>
+										<tr>
+											<td align="center"><a href="/admin/setting/post"><i class="glyphicons-cogwheel"/></a></td>
+											<td><a tal:attributes="href '/admin/setting/post'" >BÀI VIẾT</a></td>
+										</tr>
+										<tr>
+											<td align="center"><a href="/admin/setting/storyline"><i class="glyphicons-cogwheel"/></a></td>
+											<td><a tal:attributes="href '/admin/setting/storyline'" >CÂU CHUYỆN KHÁCH HÀNG</a></td>
+										</tr>
+									</tbody>
+								</table>
+								<table class="table table-bordered table-striped table-hover">
+									<thead>
+										<tr>
+											<th width="40"><i class="glyphicons-cogwheels"/></th>
+											<th><div class="text-left">THIẾT LẬP MEDIA</div></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td align="center"><a href="/admin/setting/album"><i class="glyphicons-cogwheel"/></a></td>
+											<td><a tal:attributes="href '/admin/setting/album'" >ALBUM ẢNH</a></td>
+										</tr>
+										<tr>
+											<td align="center"><a href="/admin/setting/video"><i class="glyphicons-cogwheel"/></a></td>
+											<td><a tal:attributes="href '/admin/setting/video'" >VIDEO</a></td>
+										</tr>										
+									</tbody>
+								</table>								
+								<table class="table table-bordered table-striped table-hover">
+									<thead>
+										<tr>
+											<th width="40"><i class="glyphicons-cogwheels"/></th>
+											<th><div class="text-left">THIẾT LẬP MENU</div></th>
+										</tr>
+									</thead>
+									<tbody>										
+										<tr>
+											<td align="center"><a href="/admin/setting/manufacturer"><i class="glyphicons-cogwheel"/></a></td>
+											<td><a tal:attributes="href '/admin/setting/manufacturer'" >NHÀ SẢN XUẤT</a></td>
+										</tr>
+										<tr>
+											<td align="center"><a href="/admin/setting/supplier"><i class="glyphicons-cogwheel"/></a></td>
+											<td><a tal:attributes="href '/admin/setting/supplier'" >NHÀ CUNG CẤP</a></td>
+										</tr>
+										<tr>
+											<td align="center"><a href="/admin/setting/gattribute"><i class="glyphicons-cogwheel"/></a></td>
+											<td><a tal:attributes="href '/admin/setting/gattribute'" >MÔ TẢ</a></td>
+										</tr>
+										<tr>
+											<td align="center"><a href="/admin/setting/category"><i class="glyphicons-cogwheel"/></a></td>
+											<td><a tal:attributes="href '/admin/setting/category'" >DANH MỤC</a></td>
+										</tr>
+									</tbody>
+								</table>
+								<table class="table table-bordered table-striped table-hover">
+									<thead>
+										<tr>
+											<th width="40"><i class="glyphicons-cogwheels"/></th>
+											<th><div class="text-left">THIẾT LẬP TỔNG QUÁT</div></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td align="center"><a href="/admin/setting/branch"><i class="glyphicons-cogwheel"/></a></td>
+											<td><a tal:attributes="href '/admin/setting/branch'" >CHI NHÁNH</a></td>
+										</tr>
+										<tr>
+											<td align="center"><a href="/admin/setting/linked"><i class="glyphicons-cogwheel"/></a></td>
+											<td><a tal:attributes="href '/admin/setting/linked'" >LIÊN KẾT WEBSITE</a></td>
+										</tr>
+										<tr>
+											<td align="center"><a href="/admin/setting/user"><i class="glyphicons-cogwheel"/></a></td>
+											<td><a tal:attributes="href '/admin/setting/user'" >NGƯỜI DÙNG</a></td>
+										</tr>																			
+										<tr>
+											<td align="center"><a href="/admin/setting/employee"><i class="glyphicons-cogwheel"/></a></td>
+											<td><a tal:attributes="href '/admin/setting/employee'" >NHÂN VIÊN</a></td>
+										</tr>										
+										<tr>
+											<td align="center"><a href="/admin/setting/config"><i class="glyphicons-cogwheel"/></a></td>
+											<td><a tal:attributes="href '/admin/setting/config'" >CẤU HÌNH</a></td>
+										</tr>
+									</tbody>
+								</table>																
+							</div>
+						</div>
+					</div>					
+				</div>
+			</div>
+		</div>
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+	</body>
+</html>

@@ -1,0 +1,143 @@
+
+	header {
+		background: url('/mvc/templates/front/img/hbg.png') no-repeat top left transparent;
+		padding: 10px;
+		border-bottom: 1px solid #fff;
+	}
+	
+	.dropdown:hover .dropdown-menu { display: block; }
+	
+	header .navbar-default {
+		background: transparent;
+		border: 0;
+		margin-bottom: 0;
+		margin-top: 40px;
+	}
+	
+	header .navbar-default .navbar-nav li a {
+		color: #fff;
+		font: bold 12px/38px Tahoma,Geneva,sans-serif;
+		text-transform: uppercase;
+		padding: 7px 10px;
+		line-height: 25px;
+		white-space: nowrap;
+	}
+	
+	header .navbar-default .navbar-nav > li:first-child > a {
+		padding-left: 0;
+		padding-right: 5px;
+	}
+	
+	header .navbar-default .navbar-nav > li:last-child a {
+		padding-right: 0;
+	}
+	
+	header .navbar-default .navbar-nav .navbar-brand { padding: 0 20px 0 0; height: auto; }
+	
+	header .navbar-default .dropdown-menu {
+		background: #81124F;
+	}
+	
+	header .navbar-default .navbar-nav li:hover,
+	header .navbar-default .navbar-nav > .open > a,
+	header .navbar-default .navbar-nav > .open > a:hover,
+	header .navbar-default .navbar-nav > .open > a:focus {
+		background: none;
+	}
+	
+	header .navbar-default .navbar-nav li ul li:hover a {
+		background: none;
+	}
+	
+	header .navbar-default .navbar-nav li:hover > a,
+	header .navbar-default .navbar-nav li > a.active {
+		color: #FFDDEF;
+	}
+	
+	.carousel.fade {
+		opacity: 1;
+	}
+	
+	.carousel.fade .item {
+		-moz-transition: opacity ease-in-out .7s;
+		-o-transition: opacity ease-in-out .7s;
+		-webkit-transition: opacity ease-in-out .7s;
+		transition: opacity ease-in-out .7s;
+		left: 0 !important;
+		opacity: 0;
+		top:0;
+		position:absolute;
+		width: 100%;
+		display:block !important;
+		z-index:1;
+	}
+	
+	.carousel.fade .item:first-child {
+		top:auto;
+		position:relative;
+	}
+	
+	.carousel.fade .item.active {
+		opacity: 1;
+		-moz-transition: opacity ease-in-out .7s;
+		-o-transition: opacity ease-in-out .7s;
+		-webkit-transition: opacity ease-in-out .7s;
+		transition: opacity ease-in-out .7s;
+		z-index:2;
+	}
+	
+	.page-header-config {
+		text-align: center;
+	}
+	
+	.item-config {
+		margin-bottom: 20px;
+		text-align: center;
+	}
+	
+	.item-config .item-thumb {
+		background: url('/mvc/templates/front/img/decoration.png') no-repeat center bottom transparent;
+		padding-bottom: 35px;
+		-webkit-transition: 1s;
+		transition: 1s;
+	}
+	
+	.item-config .item-info a {
+		text-decoration: none;
+	}
+	
+	.item-config .item-info h3 {
+		margin-top: 10px;
+		color: #821E58;
+		font-family: Segoe UI;
+		font-size: 18px;
+		font-weight: bold;
+		min-height: 40px;
+		max-height: 40px;
+	}
+	
+	.item-config:hover .item-thumb {
+		opacity: 0.7;
+	}
+	
+	.carousel-media .item {
+		width: 100%;
+		height: 470px;
+	}
+	
+	.carousel-media .item img { width: 100%; }
+	.carousel-media .item .carousel-caption {
+		width: 100%;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: rgba(0, 0, 0, .4);
+		text-align: justify;
+		padding: 10px;
+	}
+	
+	footer {
+		background: url('/mvc/templates/front/img/hbg.png') no-repeat top left transparent;
+		padding: 10px;
+		color: white;
+	}
