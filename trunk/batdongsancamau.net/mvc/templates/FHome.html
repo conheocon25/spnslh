@@ -12,10 +12,10 @@
 					<div id="carousel-top-news" class="carousel slide" data-ride="carousel">
 						<div class="carousel-inner" role="listbox">
 							<div class="item" tal:repeat="PT PostTopAll">
-								<img tal:attributes="src PT/getImage; alt PT/getTitle"/>
+								<img tal:attributes="src PT/getPost/getImage; alt PT/getPost/getTitle"/>
 								<div class="carousel-caption">
-									<p><b tal:content="PT/getTitle"/></p>
-									<small tal:content="structure PT/getContentReduce"/>
+									<p><b tal:content="PT/getPost/getTitle"/></p>
+									<small tal:content="structure PT/getPost/getContentReduce"/>
 								</div>
 							</div>
 						</div>
@@ -29,14 +29,11 @@
 						</a>
 						<div class="news-title"/>
 					</div>
-
 					<div class="panel panel-default" tal:repeat="Category CategoryAll">
-						<div class="panel-heading"><h3 class="panel-title" tal:content="Category/getName"/></div>
+						<div class="panel-heading"><h3 class="panel-title" tal:content="Category/getName"/></div>						
 						<div class="panel-body">
 							<div class="media media-config" tal:repeat="Product Category/getTopProductAll">
-								<a tal:attributes="href Product/getURLView">
-									<h4 tal:content="Product/getNameReduce"/>
-								</a>
+								<a tal:attributes="href Product/getURLView"><h4 tal:content="Product/getNameReduce"/></a>
 								<a class="media-left" tal:attributes="href Product/getURLView">
 									<img tal:attributes="src Product/getInfo/getImage; alt Product/getName" width="130" class="img-thumbnail"/>
 								</a>
@@ -45,8 +42,8 @@
 									<div class="row">
 										<div class="col-md-10">
 											Giá: <span tal:content="Product/getPricePrint" style="color:#055699;font-weight:bold;"/> 
-											Diện tích: <span tal:condition="Product/getInfo" tal:content="Product/getInfo/getInfoEx04Print" style="color:#055699;font-weight:bold;"/>
-											Quận/Huyện: <span style="color:#055699;font-weight:bold;">Trần Văn Thời, Cà Mau</span>
+											Diện tích: <span tal:condition="Product/getInfo" tal:content="structure Product/getInfo/getInfoEx13Print" style="color:#055699;font-weight:bold;" />
+											Quận/Huyện: <span style="color:#055699;font-weight:bold;" tal:content="Product/getDistrict/getName" />, <span style="color:#055699;font-weight:bold;" tal:content="Product/getDistrict/getProvince/getName" />
 										</div>
 										<div class="col-md-2" style="text-align:right;">
 											<span tal:content="Product/getDateTimePrint"/>
@@ -58,10 +55,12 @@
 					</div>					
 				</div>
 				<div class="col-md-3">
-					<div class="panel">
-						<img class="img-thumbnail" width="100%" src="http://alonhadat.com.vn/Media/CK/banners/8x50-mat-tien-toc-tien.gif"/>
-					</div>
 					<tal:block metal:use-macro="mFront.xhtml/SearchBox"/>
+					<div class="panel">
+						<a tal:repeat="Ads AdsAll" tal:attributes="href Ads/getURL" target="blank">
+							<img class="img-thumbnail" width="100%" tal:attributes="src Ads/getPicture"/>
+						</a>
+					</div>
 				</div>
 			</div>
 			<tal:block metal:use-macro="mFront.xhtml/Footer"/>

@@ -98,7 +98,7 @@ class ProductInfo extends Object{
 	function setInfoEx13( $InfoEx13){$this->InfoEx13 = $InfoEx13; $this->markDirty();}
 	function getInfoEx13Print()		{
 		if ($this->InfoEx13==0) return "--";
-		return $this->getInfoEx13()." m2";
+		return $this->getInfoEx13()." m<sup>2</sup>";
 	}
 	
 	function setInfoEx03( $InfoEx03){$this->InfoEx03 = $InfoEx03; $this->markDirty();}
@@ -113,7 +113,7 @@ class ProductInfo extends Object{
 	function getInfoEx04Print( ){
 		if ($this->InfoEx04==0)
 			return "--";			
-		return $this->getInfoEx04( )." m2";
+		return $this->getInfoEx04( )." m";
 	}
 	
 	function setInfoEx05( $InfoEx05){$this->InfoEx05 = $InfoEx05; $this->markDirty();}

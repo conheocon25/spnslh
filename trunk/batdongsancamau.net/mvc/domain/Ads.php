@@ -11,18 +11,18 @@ class Ads extends Object{
 	private $Position;
 	private $Picture;
 	private $URL;
-	private $Key;
+	private $Order;
 	
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-	function __construct($Id=null, $Name=null, $Position=null, $Picture=null, $URL=null, $Key=null) {
+	function __construct($Id=null, $Name=null, $Position=null, $Picture=null, $URL=null, $Order=null) {
 		$this->Id 		= $Id;
 		$this->Name 	= $Name;
 		$this->Position = $Position;
 		$this->Picture 	= $Picture;
 		$this->URL 		= $URL;
-		$this->Key 		= $Key;
+		$this->Order 	= $Order;
 		parent::__construct( $Id );
 	}
 		
@@ -40,13 +40,9 @@ class Ads extends Object{
 	function setURL($URL)			{$this->URL = $URL;$this->markDirty();}
 	function getURL() 				{return $this->URL;}
 	
-	function setKey($Key)	{$this->Key = $Key;$this->markDirty();}
-	function getKey() 		{return $this->Key;}
-	function reKey( ) {
-		$Str = new \MVC\Library\String($this->Name);
-		$this->Key = $Str->converturl();
-	}
-	
+	function setOrder($Order)	{$this->Order = $Order; $this->markDirty();}
+	function getOrder() 		{return $this->Order;}
+		
 	function toJSON(){
 		$json = array(
 			'Id' 			=> $this->getId(),
@@ -54,7 +50,7 @@ class Ads extends Object{
 			'Position'		=> $this->getPosition(),			
 			'Picture'		=> $this->getPicture(),
 			'URL'			=> $this->getURL(),
-			'Key'			=> $this->getKey()
+			'Order'			=> $this->getOrder()
 		);
 		return json_encode($json);
 	}
@@ -65,7 +61,7 @@ class Ads extends Object{
 		$this->Position = $Data[2];
 		$this->Picture	= $Data[3];
 		$this->URL 		= $Data[4];
-		$this->reKey();
+		$this->Order	= $Data[5];
     }
 	
 	//-------------------------------------------------------------------------------

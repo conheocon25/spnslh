@@ -70,6 +70,9 @@ RewriteRule ^admin/setting$ 											?cmd=ASetting [L]
 RewriteRule ^admin/setting/tag$ 										?cmd=ASettingTag [L]
 RewriteRule ^admin/setting/tag/page/([0-9]+)$ 							?cmd=ASettingTag&Page=$1 [L]
 
+RewriteRule ^admin/setting/ads$ 										?cmd=ASettingAds [L]
+RewriteRule ^admin/setting/ads/page/([0-9]+)$ 							?cmd=ASettingAds&Page=$1 [L]
+
 RewriteRule ^admin/setting/post$ 										?cmd=ASettingPost 							[L]
 RewriteRule ^admin/setting/post/([0-9]+)$ 								?cmd=ASettingPost&IdTag=$1 					[L]
 RewriteRule ^admin/setting/post/([0-9]+)/ins/load$ 						?cmd=ASettingPostInsLoad&IdTag=$1 			[L]

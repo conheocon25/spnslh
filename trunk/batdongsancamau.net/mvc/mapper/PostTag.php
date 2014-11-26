@@ -12,8 +12,8 @@ class PostTag extends Mapper implements \MVC\Domain\PostTagFinder {
 		$updateStmt 		= sprintf("update %s set id_post=?, id_tag=?  where id=?", $tblPostTag);
 		$insertStmt 		= sprintf("insert into %s ( id_post, id_tag) values(?, ?)", $tblPostTag);
 		$deleteStmt 		= sprintf("delete from %s where id=?", $tblPostTag);		
-		$findByPostStmt		= sprintf("select *  from %s where id_post=?", 			$tblPostTag);
-		$findByLastest4Stmt	= sprintf("SELECT *  FROM %s ORDER BY id DESC LIMIT 4", 	$tblPostTag);
+		$findByPostStmt		= sprintf("select *  from %s where id_post=?", 				$tblPostTag);
+		$findByLastestStmt	= sprintf("SELECT *  FROM %s ORDER BY id DESC LIMIT 6", 	$tblPostTag);
 		
 		$findByTagStmt		= sprintf("select *  from %s where id_tag=?", 			$tblPostTag);				
 		$findByTagPageStmt = sprintf(
@@ -34,7 +34,7 @@ class PostTag extends Mapper implements \MVC\Domain\PostTagFinder {
 		$this->deleteStmt 			= self::$PDO->prepare($deleteStmt);		
 		$this->findByPostStmt 		= self::$PDO->prepare($findByPostStmt);
 		$this->findByTagStmt 		= self::$PDO->prepare($findByTagStmt);
-		$this->findByLastest4Stmt 	= self::$PDO->prepare($findByLastest4Stmt);
+		$this->findByLastestStmt 	= self::$PDO->prepare($findByLastestStmt);
 		$this->findByTagPageStmt 	= self::$PDO->prepare($findByTagPageStmt);
     } 
     function getCollection( array $raw ) {return new PostTagCollection( $raw, $this );}
@@ -80,9 +80,9 @@ class PostTag extends Mapper implements \MVC\Domain\PostTagFinder {
         return new PostTagCollection( $this->findByTagStmt->fetchAll(), $this );
     }
 	
-	function findByLastest4(array $values) {
-        $this->findByLastest4Stmt->execute( $values );
-        return new PostTagCollection( $this->findByLastest4Stmt->fetchAll(), $this );
+	function findByLastest(array $values){
+        $this->findByLastestStmt->execute( $values );
+        return new PostTagCollection( $this->findByLastestStmt->fetchAll(), $this );
     }
 	
 	function findByTagPage( $values ) {
