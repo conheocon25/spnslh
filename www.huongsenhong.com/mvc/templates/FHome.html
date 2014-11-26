@@ -46,169 +46,111 @@
 					</div>
 				</div>
 			</div>
-
 		</div>
-		
-		<tal:block metal:use-macro="mFront.xhtml/IncludeJS"/>
-		<script>
-			$('.carousel').carousel({
-				pause: "false"
-			});
-		</script>
-		<!--
-		<div id="wrapper">
-			<div metal:use-macro="mFront.xhtml/Header"/>
-			<section id="content">
-				<div id="slider-sequence" class="homeslider">
-					<div class="sequence-prev"></div>
-					<div class="sequence-next"></div>
-					<ul class="sequence-canvas">						
-						<li tal:repeat="Slide Presentation1/getSlideAll" tal:attributes="class php:'sequence-slide' . repeat.Slide.number">
-							<div class="sequencebg">
-								<img tal:attributes="src Slide/getURL;alt php:'sequence-slide-' . repeat.Slide.number" class="sequencebg-image"/>
-							</div>
-							<div class="sequence-container container" tal:content="structure Slide/getNote" />
-						</li>
-					</ul>
-					<ul class="sequence-pagination">
-						<li tal:repeat="Slide Presentation1/getSlideAll" tal:content="php:'Frame ' . repeat.Slide.number"/>
-					</ul>
-				</div>
-				<div class="md-margin2x"></div>
-				<div class="container">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-9">
+					<div class="page-header page-header-config">
+						<h1>Menu</h1>
+					</div>
 					<div class="row">
-						<div class="col-md-12">
-							<div class="row">
-								<div class="col-md-9 col-sm-8 col-xs-12 main-content">
-									<header class="content-title"><h2 class="title">MENU MÓN</h2></header>
-									<div id="products-tabs-content" class="row tab-content">
-										<div class="tab-pane active" id="all">
-											<div tal:repeat="Product ProductAll" class="col-md-4 col-sm-6 col-xs-12">
-												<div class="item" tal:condition="Product/getInfo">
-													<div class="item-image-container">
-														<figure>
-															<a tal:attributes="href Product/getURLView">
-																<img tal:attributes="src Product/getInfo/getImage1" class="item-image"/>
-																<img tal:attributes="src Product/getInfo/getImage2" class="item-image-hover"/>
-															</a>
-														</figure>
-														<div class="item-price-container" tal:condition="Product/getPrice2">
-															<span class="item-price" tal:content="Product/getPrice2Print"/>
-														</div>														
-													</div>
-													<div class="item-meta-container">
-														<div class="ratings-container">
-															<div class="ratings">
-																<div class="ratings-result" data-result="100"></div>
-															</div>
-														</div>
-														<h3 class="item-name">
-															<a tal:attributes="href Product/getURLView" tal:content="Product/getName"/>
-														</h3>														
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-									
-									<div class="purchased-items-container carousel-wrapper">
-										<header class="content-title"><div class="title-bg"> <h2 class="title">ALBUM ẢNH</h2></div></header>
-										<div class="carousel-controls">
-											<div id="purchased-items-slider-prev1" class="carousel-btn carousel-btn-prev"></div>
-											<div id="purchased-items-slider-next1" class="carousel-btn carousel-btn-next carousel-space"></div>
-										</div>
-										<div class="purchased-items-slider owl-carousel">
-											<div class="item" tal:repeat="Album LastestAlbumAll">
-												<div class="item-image-container">
-													<figure>												
-														<a tal:attributes="href Album/getURLView">
-															<img tal:attributes="src Album/getImage" class="item-image"/>
-															<img tal:attributes="src Album/getImage" class="item-image-hover"/>
-														</a>
-													</figure>													
-												</div>
-												<div class="item-meta-container">													
-													<h3 class="item-name"><a tal:attributes="href Album/getURLView" tal:content="Album/getName"/></h3>
-												</div>
-											</div>
-										</div>
-									</div>
-									
-									<div class="purchased-items-container carousel-wrapper">
-										<header class="content-title"><div class="title-bg"> <h2 class="title">VIDEO</h2></div></header>
-										<div class="carousel-controls">
-											<div id="purchased-items-slider-prev2" class="carousel-btn carousel-btn-prev"></div>
-											<div id="purchased-items-slider-next2" class="carousel-btn carousel-btn-next carousel-space"></div>
-										</div>
-										<div class="purchased-items-slider owl-carousel">
-											<div class="item" tal:repeat="Video LastestVideoAll">
-												<div class="item-image-container">
-													<figure>												
-														<a tal:attributes="href Video/getURLView">
-															<img tal:attributes="src Video/getImage" class="item-image"/>
-															<img tal:attributes="src Video/getImage" class="item-image-hover"/>
-														</a>
-													</figure>													
-												</div>
-												<div class="item-meta-container">													
-													<h3 class="item-name"><a tal:attributes="href Video/getURLView" tal:content="Video/getName"/></h3>
-												</div>
-											</div>
-										</div>
-									</div>									
-								</div>
-
-								<div class="col-md-3 col-sm-4 col-xs-12 sidebar">
-									<div metal:use-macro="mFront.xhtml/Subscribe"/>
-									<div metal:use-macro="mFront.xhtml/Testmonials"/>
-									<div metal:use-macro="mFront.xhtml/LastestPost"/>
-								</div>
+						<div tal:repeat="Product ProductAll" class="col-md-3 item-config">
+							<div class="item-thumb">
+								<a tal:attributes="href Product/getURLView">
+									<!-- <img tal:attributes="src Product/getInfo/getImage1" class="img-thumbnail img-circle"/> -->
+									<img src="/mvc/templates/front/img/item.png" class="img-thumbnail img-circle"/>
+								</a>
+							</div>
+							<div class="item-info">
+								<a tal:attributes="href Product/getURLView">
+									<h3 tal:content="Product/getName"/>
+								</a>
+							</div>
+						</div>
+					</div>
+					
+					<div class="page-header page-header-config">
+						<h1>Photo Album</h1>
+					</div>
+					<div class="row">
+						<div tal:repeat="Album LastestAlbumAll" class="col-md-4 item-config">
+							<div class="item-thumb">
+								<a tal:attributes="href Album/getURLView">
+									<img tal:attributes="src Album/getImage" class="img-thumbnail" width="100%"/>
+								</a>
+							</div>
+							<div class="item-info">
+								<a tal:attributes="href Album/getURLView">
+									<h3 tal:content="Album/getName"/>
+								</a>
+							</div>
+						</div>
+					</div>
+					
+					<div class="page-header page-header-config">
+						<h1>Video</h1>
+					</div>
+					<div class="row">
+						<div tal:repeat="Video LastestVideoAll" class="col-md-4 item-config">
+							<div class="item-thumb">
+								<a tal:attributes="href Video/getURLView">
+									<img tal:attributes="src Video/getImage" class="img-thumbnail" width="100%"/>
+								</a>
+							</div>
+							<div class="item-info">
+								<a tal:attributes="href Video/getURLView">
+									<h3 tal:content="Video/getName"/>
+								</a>
 							</div>
 						</div>
 					</div>
 				</div>
-			</section>
-			<div metal:use-macro="mFront.xhtml/Footer"/>
-		</div>		
+				<div class="col-md-3">
+					
+				</div>
+			</div>
+		</div>
+		
+		<footer>
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-3">
+						<h3>FACEBOOK</h3>
+						<div class="facebook-likebox">
+							<iframe src="http://www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Famthuchuongsenhong&amp;width&amp;height=221&amp;colorscheme=dark&amp;show_faces=true&amp;header=false&amp;stream=false&amp;show_border=false" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:220px;" allowTransparency="true"></iframe>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<h4>Ẩm Thực Sinh Thái Đầm Sen Cao Lãnh</h4>
+						<ul class="contact-list">							
+							<li>Tiếp đón quí khách tất cả các ngày trong tuần</li>
+							<li>Giờ mở cửa: 8.00 Sáng - 22.00 Tối</li>
+						</ul>
+					</div>
+					<div class="col-md-5">
+						<h3>Địa chỉ</h3>
+						<ul class="links">
+							<li tal:repeat="Branch BranchAll">
+								<span tal:content="Branch/getName"/>: <span tal:content="Branch/getAddress"/>
+							</li>
+						</ul>
+						<h3><a href="/lien-ket">Liên kết Website</a></h3>
+						<ul class="links">
+							<li tal:repeat="Linked LinkedAll">								
+								<a tal:attributes="href Linked/getWebsite" target="blank">
+									<span tal:content="Linked/getName"/>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</footer>
+		
 		<tal:block metal:use-macro="mFront.xhtml/IncludeJS"/>
 		<script>
-			$(function() {
-				// Sequence.js Slider Plugin
-				var options = {
-					nextButton: true,
-					prevButton: true,
-					pagination:true,
-					autoPlay: true,
-					autoPlayDelay: 8500,
-					pauseOnHover: true,
-					preloader: true,
-					theme: 'slide',
-					speed: 700,
-					animateStartingFrameIn: true
-				},
-				homeSlider = $('#slider-sequence').sequence(options).data("sequence");
-								
-				$(".icon-like").click(function(){
-					var Data 	= [];
-					Data[0]		= $(this).attr('id');
-					Data[1]		= $(this).attr('name');
-					Data[2]		= $(this).attr('price');
-					Data[3]		= $(this).attr('image');
-					
-					var URL = "/danh-dau/them";
-					$.ajax({
-						type: "POST",
-						data: {Data:Data},
-						url: URL,
-						success: function(msg){
-							location.reload();
-						}
-					});
-				
-				});
-				
-			});
+			$('#carousel-example-generic').carousel({pause: "false"});
+			$('.carousel-media .item:first-child').addClass('active');
 		</script>
-		-->
 	</body>
 </html>
