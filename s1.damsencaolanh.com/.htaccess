@@ -52,7 +52,6 @@ RewriteRule ^selling/log/course/print/prepare$ 					?cmd=SellingLogCoursePrepare
 RewriteRule ^selling/([0-9]+)/([0-9]+)/move/exe$				?cmd=SellingTableMoveExe&IdDomain=$1&IdTable=$2 [L]
 RewriteRule ^selling/([0-9]+)/([0-9]+)/merge/exe$ 				?cmd=SellingTableMergeExe&IdDomain=$1&IdTable=$2 [L]
 RewriteRule ^selling/([0-9]+)/([0-9]+)/([0-9]+)/print.pdf$		?cmd=SellingTablePrint&IdDomain=$1&IdTable=$2&IdSession=$3 [L]
-RewriteRule ^selling/([0-9]+)/([0-9]+)/([0-9]+)/print1.pdf$		?cmd=SellingTablePrint1&IdDomain=$1&IdTable=$2&IdSession=$3 [L]
 RewriteRule ^selling/([0-9]+)/([0-9]+)/([0-9]+)/checkout/exe$	?cmd=SellingTableCheckoutExe&IdDomain=$1&IdTable=$2&IdSession=$3 [L]
 
 RewriteRule ^calllog$ 											?cmd=CallLog [L]
