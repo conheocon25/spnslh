@@ -54,8 +54,8 @@ class PayRoll extends Object{
 	function setAbsent( $Absent ) 		{ $this->Absent = $Absent; $this->markDirty(); }
 	function getAbsent( ) 				{ return $this->Absent;}	
 	function getAbsentPrint( ) 			{ $N = new \MVC\Library\Number( $this->getAbsent() ); return $N->formatCurrency();}
-	function getAbsentValue( ) 			{ 
-		//return $this->getAbsent()*($this->getBaseValue()/$this->getTracking()->getPayRollAll()->count());		
+	function getAbsentValue( ) 			{ 		
+		if ($this->getTracking()->getDailyAll()->count()==0) return 0;
 		return $this->getAbsent()*($this->getBaseValue()/$this->getTracking()->getDailyAll()->count());		
 	}
 	function getAbsentValuePrint( ) 	{ $N = new \MVC\Library\Number( $this->getAbsentValue() ); return $N->formatCurrency();}
