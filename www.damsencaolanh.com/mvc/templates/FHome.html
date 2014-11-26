@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<tal:block metal:use-macro="mFront.xhtml/IncludeMETA"/>
+		<tal:block metal:use-macro="mFront.xhtml/IncludeCSS"/>
+	</head>	
+	<body>		
+		<tal:block metal:use-macro="mFront.xhtml/Header"/>
+		<div id="carousel-example-generic" class="carousel slide fade" data-ride="carousel">
+			<ol class="carousel-indicators">
+				<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+				<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+				<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+				<li data-target="#carousel-example-generic" data-slide-to="3"></li>
+				<li data-target="#carousel-example-generic" data-slide-to="4"></li>
+			</ol>
+			<div class="carousel-inner" role="listbox">
+				<div class="item active">
+					<img src="/mvc/templates/front/img/slide/01.gif" alt="Slide 1" width="100%"/>
+					<div class="carousel-caption">
+					...
+					</div>
+				</div>
+				<div class="item">
+					<img src="/mvc/templates/front/img/slide/02.gif" alt="Slide 2"/>
+					<div class="carousel-caption">
+					...
+					</div>
+				</div>
+				<div class="item">
+					<img src="/mvc/templates/front/img/slide/03.gif" alt="Slide 3"/>
+					<div class="carousel-caption">
+					...
+					</div>
+				</div>
+				<div class="item">
+					<img src="/mvc/templates/front/img/slide/04.gif" alt="Slide 4"/>
+					<div class="carousel-caption">
+					...
+					</div>
+				</div>
+				<div class="item">
+					<img src="/mvc/templates/front/img/slide/05.gif" alt="Slide 5"/>
+					<div class="carousel-caption">
+					...
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-9">
+					<div class="page-header page-header-config">
+						<h1>Menu</h1>
+					</div>
+					<div class="row">
+						<div tal:repeat="Product ProductAll" class="col-md-3 item-config">
+							<div class="item-thumb">
+								<a tal:attributes="href Product/getURLView">
+									<!-- <img tal:attributes="src Product/getInfo/getImage1" class="img-thumbnail img-circle"/> -->
+									<img src="/mvc/templates/front/img/item.png" class="img-thumbnail img-circle"/>
+								</a>
+							</div>
+							<div class="item-info">
+								<a tal:attributes="href Product/getURLView">
+									<h3 tal:content="Product/getName"/>
+								</a>
+							</div>
+						</div>
+					</div>
+					
+					<div class="page-header page-header-config">
+						<h1>Photo Album</h1>
+					</div>
+					<div class="row">
+						<div tal:repeat="Album LastestAlbumAll" class="col-md-4 item-config">
+							<div class="item-thumb">
+								<a tal:attributes="href Album/getURLView">
+									<img tal:attributes="src Album/getImage" class="img-thumbnail" width="100%"/>
+								</a>
+							</div>
+							<div class="item-info">
+								<a tal:attributes="href Album/getURLView">
+									<h3 tal:content="Album/getName"/>
+								</a>
+							</div>
+						</div>
+					</div>
+					
+					<div class="page-header page-header-config">
+						<h1>Video</h1>
+					</div>
+					<div class="row">
+						<div tal:repeat="Video LastestVideoAll" class="col-md-3 item-config">
+							<div class="item-thumb">
+								<a tal:attributes="href Video/getURLView">
+									<img tal:attributes="src Video/getImage" class="img-thumbnail" width="100%"/>
+								</a>
+							</div>
+							<div class="item-info">
+								<a tal:attributes="href Video/getURLView">
+									<h3 tal:content="Video/getName"/>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3">
+					
+				</div>
+			</div>
+		</div>
+		
+		<footer>
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-3">
+						<h3>FACEBOOK</h3>
+						<div class="facebook-likebox">
+							<iframe src="http://www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Famthuchuongsenhong&amp;width&amp;height=221&amp;colorscheme=dark&amp;show_faces=true&amp;header=false&amp;stream=false&amp;show_border=false" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:220px;" allowTransparency="true"></iframe>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<h4>Ẩm Thực Sinh Thái Đầm Sen Cao Lãnh</h4>
+						<ul class="contact-list">							
+							<li>Tiếp đón quí khách tất cả các ngày trong tuần</li>
+							<li>Giờ mở cửa: 8.00 Sáng - 22.00 Tối</li>
+						</ul>
+					</div>
+					<div class="col-md-5">
+						<h3>Địa chỉ</h3>
+						<ul class="links">
+							<li tal:repeat="Branch BranchAll">
+								<span tal:content="Branch/getName"/>: <span tal:content="Branch/getAddress"/>
+							</li>
+						</ul>
+						<h3><a href="/lien-ket">Liên kết Website</a></h3>
+						<ul class="links">
+							<li tal:repeat="Linked LinkedAll">								
+								<a tal:attributes="href Linked/getWebsite" target="blank">
+									<span tal:content="Linked/getName"/>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</footer>
+		
+		<tal:block metal:use-macro="mFront.xhtml/IncludeJS"/>
+		<script>
+			$('#carousel-example-generic').carousel({pause: "false"});
+			$('.carousel-media .item:first-child').addClass('active');
+		</script>
+	</body>
+</html>

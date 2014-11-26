@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>		
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+	</head>
+	<body>
+		<div metal:use-macro="mAdmin.xhtml/Header"/>		
+		<div id="sidebar">
+			<ul style="display: block;">				
+				<li tal:repeat="Category1 CategoryAll1" tal:attributes="class php: Category1->getId()==IdCategory1?'active':''">
+					<a tal:attributes="href php:Supplier->getURLSettingCategory(Category1->getId())">
+						<span tal:content="Category1/getCategory/getName"/> / <span tal:content="Category1/getName"/>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
+			<div id="IdSupplier" tal:attributes="alt Supplier/getId" class="row">
+				<div class="col-12">
+					<a href="#DialogIns" data-toggle="modal" class="btn btn-primary btn-ins">
+						<i class="glyphicons-plus"/> Thêm mới
+					</a>
+					<a href="#DialogDelSelected" data-toggle="modal" class="btn btn-primary btn-ins">
+						<i class="glyphicons-remove_2"/> Xóa chọn
+					</a>
+					<div class="widget-box">						
+						<div class="widget-content nopadding">
+							<table class="table table-bordered table-striped table-hover">
+								<thead>
+									<tr>
+										<th width="30"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>										
+										<th class="left">TÊN</th>																				
+										<th width="90">THÔNG TIN</th>										
+										<th width="90">ALBUM</th>
+										<th width="30"><i class="glyphicons-bin"/></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr tal:repeat="Product ProductAll1">
+										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Product/getId"/></td>
+										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" 
+												tal:attributes="id 				Product/getId;
+																idcategory 		Product/getIdCategory;
+																idmanufacturer 	Product/getIdManufacturer;
+																name 			Product/getName;
+																code 			Product/getCode;
+																price1 			Product/getPrice1;
+																price2 			Product/getPrice2;
+												" 
+												tal:content="Product/getName"/>
+										</td>										
+										<td class="center">
+											<a tal:attributes="href Product/getURLSettingInfo">Cập nhật</a>
+										</td>										
+										<td class="center">										
+											<a tal:attributes="href Product/getURLSettingImage">Ảnh (<span tal:content="Product/getImageAll/count"/>)</a>
+										</td>
+										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Product/getId"><i class="glyphicon glyphicon-remove"/></a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div metal:use-macro="mAdmin.xhtml/PageBar"/>					
+					<!-- INSERT DIALOG  -->
+					<div id="DialogIns" class="modal fade">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header"><h3><i class="glyphicons-truck modal-icon"/>THÊM SẢN PHẨM</h3></div>
+								<form id="FormProductInsert" action="#" class="form-horizontal" novalidate="novalidate">
+									<div class="modal-body">													
+										<div class="form-group">
+											<label class="control-label">Tên</label>
+											<div class="controls">
+												<input id="Name1" name="Name1" type="text" class="form-control input-small" value="abc"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">Mã</label>
+											<div class="controls">
+												<input id="Code1" name="Code1" type="text" class="form-control input-small" value="0"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">Danh mục</label>
+											<div class="controls">
+												<select name="IdCategory1" id="IdCategory1" style="width:80%;">
+													<option tal:repeat="Category1 CategoryAll1" tal:attributes="value Category1/getId">
+														<span tal:content="Category1/getCategory/getName" /> / 
+														<span tal:content="Category1/getName" />
+													</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">Nhà sản xuất</label>
+											<div class="controls">
+												<select name="IdManufacturer1" id="IdManufacturer1" style="width:80%;">
+													<option tal:repeat="Manufacturer ManufacturerAll" tal:attributes="value Manufacturer/getId">
+														<span tal:content="Manufacturer/getName" />
+													</option>
+												</select>
+											</div>
+										</div>										
+										<div class="form-group">
+											<label class="control-label">Giá nhập</label>
+											<div class="controls">
+												<input id="Price11" name="Price11" type="text" class="form-control input-small" value="0"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">Giá bán</label>
+											<div class="controls">
+												<input id="Price21" name="Price21" type="text" class="form-control input-small" value="0"/>
+											</div>
+										</div>										
+									</div>
+									<div class="modal-footer">
+										<button id="URLInsButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Lưu</button>
+										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<!-- END INSERT DIALOG  -->
+					
+					<!-- DIALOG EDIT	-->
+					<div id="DialogEdit" class="modal fade">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h3><i class="glyphicons-truck modal-icon"/>CHỈNH SỬA SẢN PHẨM</h3>
+								</div>
+								<form id="FormProductUpdate" action="#" class="form-horizontal" novalidate="novalidate">
+										<div class="form-group">
+											<label class="control-label">Tên</label>
+											<div class="controls">
+												<input id="Name2" name="Name2" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">Mã</label>
+											<div class="controls">
+												<input id="Code2" name="Code2" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">Danh mục</label>
+											<div class="controls">
+												<select name="IdCategory2" id="IdCategory2" style="width:80%;">
+													<option tal:repeat="Category1 CategoryAll1" tal:attributes="value Category1/getId">
+														<span tal:content="Category1/getCategory/getName" /> / 
+														<span tal:content="Category1/getName" />
+													</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">Nhà sản xuất</label>
+											<div class="controls">
+												<select name="IdManufacturer2" id="IdManufacturer2" style="width:80%;">
+													<option tal:repeat="Manufacturer ManufacturerAll" tal:attributes="value Manufacturer/getId">
+														<span tal:content="Manufacturer/getName" />
+													</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">Giá nhập</label>
+											<div class="controls">
+												<input id="Price12" name="Price12" type="text" class="form-control input-small" value="0"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">Giá bán</label>
+											<div class="controls">
+												<input id="Price22" name="Price22" type="text" class="form-control input-small" value="0"/>
+											</div>
+										</div>										
+									<div class="modal-footer">
+										<button id="URLUpdButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Lưu</button>
+										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<!-- END DIALOG EDIT -->
+					<div metal:use-macro="mDialog.xhtml/DialogDel"/>
+					<div metal:use-macro="mDialog.xhtml/DialogDelSelected"/>
+					
+				</div>
+			</div>
+		</div>
+		<div id="IdSupplier" tal:attributes="alt Supplier/getId" />
+		<div id="CurrentIdCategory" tal:attributes="alt IdCategory1" />
+		
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<script type="text/javascript">
+		/*<![CDATA[*/
+															
+			$('#URLDelSelectedButton').click(function(){
+				var count = 0;
+				var Data = [];
+				var URL = "/object/del/Product/0";
+				
+				$(".CheckedDel").each(function( i, obj){
+					if ( $(this).is(':checked')==true ){
+						count += 1;
+						Data[count] = $(this).attr('data-id');
+					}
+				});
+				
+				$.ajax({
+					type: "POST",
+					data: {ListId:Data},
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
+			});
+			
+			//-----------------------------------------------------------------------------------
+			//Delete 1 COURSE			
+			//-----------------------------------------------------------------------------------
+			$('.remove-item').click(function(){
+				$('#URLDelButton').attr('alt', $(this).attr('data-id'));
+			});
+			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
+			$('#URLDelButton').click(function(){			
+				var URL = "/object/del/Product/" + $(this).attr('alt');
+				$.ajax({
+					type: "POST",
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
+			});
+		
+						
+			//-----------------------------------------------------------------------------------
+			//Insert 1 Product			
+			$("#FormProductInsert").validate({
+				rules:{
+					Name1:{
+						minlength: 2,
+						required:true
+					},
+					Price1:{						
+						required:true,
+						number:true,
+						min:0
+					}
+				},
+				errorClass: "help-inline",
+				errorElement: "span",
+				highlight:function(element, errorClass, validClass) {
+					$(element).parents('.form-group').addClass('has-error');
+				},
+				unhighlight: function(element, errorClass, validClass) {
+					$(element).parents('.form-group').removeClass('has-error');
+					$(element).parents('.form-group').addClass('has-success');
+				},
+				submitHandler: function (form) {					
+					var Data = [];
+					Data[0] = 'null';
+					Data[1] = $('#IdSupplier').attr('alt');
+					Data[2] = $('#IdCategory1').val();
+					Data[3] = $('#IdManufacturer1').val();
+					Data[4] = $('#Name1').val();
+					Data[5] = $('#Code1').val();
+					Data[6] = $('#Price11').val();
+					Data[7] = $('#Price21').val();
+					var URL = "/object/ins/Product";
+					$.ajax({
+						type: "POST",
+						data: {Data:Data},
+						url: URL,
+						success: function(msg){
+							location.reload();
+						}
+					});
+					return false;
+				}
+			});
+			$("#DialogIns").on('show.bs.modal', function(event){				
+				$('#IdCategory1').select2('val', $('#CurrentIdCategory').attr('alt') );
+				window.setTimeout(
+					function(){$(event.currentTarget).find('input#Name1').first().focus()},
+					0500
+				);
+			});
+			
+			//-----------------------------------------------------------------------------------
+			//Load 1 COURSE
+			//-----------------------------------------------------------------------------------
+			$('.update-item').click(function(){
+				//Load dữ liệu JSON về
+				var url = "/object/load/Product/" + $(this).attr('data-id');
+				
+				$('#URLUpdButton').attr('alt', 	$(this).attr('id')	);
+				$('#Name2').attr('value', 		$(this).attr('name'));
+				$('#IdCategory2').select2('val', $(this).attr('idcategory'));
+				$('#IdManufacturer2').select2('val', $(this).attr('idmanufacturer'));				
+				$('#Code2').attr('value', 		$(this).attr('code'));
+				$('#Price12').attr('value', 	$(this).attr('price1'));
+				$('#Price22').attr('value', 	$(this).attr('price2'));
+			});
+			
+			//-----------------------------------------------------------------------------------
+			//Update 1 Product
+			//-----------------------------------------------------------------------------------
+			$("#FormProductUpdate").validate({
+				rules:{
+					Name2:{
+						minlength: 2,
+						required:true
+					},
+					Price2:{						
+						required:true,
+						number:true,
+						min:0
+					}
+				},
+				errorClass: "help-inline",
+				errorElement: "span",
+				highlight:function(element, errorClass, validClass) {
+					$(element).parents('.form-group').addClass('has-error');
+				},
+				unhighlight: function(element, errorClass, validClass) {
+					$(element).parents('.form-group').removeClass('has-error');
+					$(element).parents('.form-group').addClass('has-success');
+				},
+				submitHandler: function (form) {					
+					var Data = [];								
+					Data[0] = $('#URLUpdButton').attr('alt');					
+					Data[1] = $('#IdSupplier').attr('alt');
+					Data[2] = $('#IdCategory2').val();
+					Data[3] = $('#IdManufacturer2').val();
+					Data[4] = $('#Name2').val();
+					Data[5] = $('#Code2').val();
+					Data[6] = $('#Price12').val();
+					Data[7] = $('#Price22').val();
+					
+					var URL = "/object/upd/Product";
+					$.ajax({
+						type: "POST",
+						data: {Data:Data},
+						url: URL,
+						success: function(msg){
+							location.reload();
+						}
+					});
+					return false;
+				}
+			});
+			$("#DialogEdit").on('show.bs.modal', function(event){
+				window.setTimeout(
+					function(){$(event.currentTarget).find('input#Name2').first().focus()},
+					0500
+				);
+			});
+			
+		/*]]>*/
+		</script>
+		
+	</body>
+</html>
