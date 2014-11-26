@@ -5,23 +5,24 @@ class Ads extends Mapper implements \MVC\Domain\AdsFinder {
 
     function __construct() {
         parent::__construct();		
-		$tblAds = "tbl_ads";
+		$tblAds 		= "tbl_ads";
 						
-		$selectAllStmt 	= sprintf("select * from %s order by `order`", $tblAds);
+		$selectAllStmt 	= sprintf("select * from %s", $tblAds);
 		$selectStmt 	= sprintf("select * from %s where id=?", $tblAds);
-		$updateStmt 	= sprintf("update %s set name=?, position=?, picture=?, url=?, `key`=? where id=?", $tblAds);
-		$insertStmt 	= sprintf("insert into %s ( name, position, picture, url, `key`) values(?, ?, ?)", $tblAds);
+		$updateStmt 	= sprintf("update %s set name=?, position=?, picture=?, url=?, `order`=? where id=?"		, $tblAds);
+		$insertStmt 	= sprintf("insert into %s ( name, position, picture, url, `order`) values(?, ?, ?, ?, ?)"	, $tblAds);
 		$deleteStmt 	= sprintf("delete from %s where id=?", $tblAds);
 		$findByPageStmt = sprintf("SELECT * FROM  %s ORDER BY `order` LIMIT :start,:max", $tblAds);
 		$findByKeyStmt 	= sprintf("select *  from %s where `key`=?", $tblAds);
 		
-        $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
-        $this->selectStmt = self::$PDO->prepare($selectStmt);
-        $this->updateStmt = self::$PDO->prepare($updateStmt);
-        $this->insertStmt = self::$PDO->prepare($insertStmt);
-		$this->deleteStmt = self::$PDO->prepare($deleteStmt);
-		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);
-		$this->findByKeyStmt = self::$PDO->prepare($findByKeyStmt);							
+        $this->selectAllStmt 	= self::$PDO->prepare($selectAllStmt);
+        $this->selectStmt 		= self::$PDO->prepare($selectStmt);
+        $this->updateStmt 		= self::$PDO->prepare($updateStmt);
+        $this->insertStmt 		= self::$PDO->prepare($insertStmt);
+		$this->deleteStmt 		= self::$PDO->prepare($deleteStmt);
+		$this->findByPageStmt 	= self::$PDO->prepare($findByPageStmt);
+		$this->findByKeyStmt 	= self::$PDO->prepare($findByKeyStmt);
+		
     } 
     function getCollection( array $raw ) {return new AdsCollection( $raw, $this );}
     protected function doCreateObject( array $array ) {		
@@ -31,7 +32,7 @@ class Ads extends Mapper implements \MVC\Domain\AdsFinder {
 			$array['position'],
 			$array['picture'],
 			$array['url'],
-			$array['key']
+			$array['order']
 		);
         return $obj;
     }
@@ -43,7 +44,7 @@ class Ads extends Mapper implements \MVC\Domain\AdsFinder {
 			$object->getPosition(),
 			$object->getPicture(),
 			$object->getURL(),
-			$object->getKey()
+			$object->getOrder()			
 		); 
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
@@ -56,7 +57,7 @@ class Ads extends Mapper implements \MVC\Domain\AdsFinder {
 			$object->getPosition(),
 			$object->getPicture(),
 			$object->getURL(),
-			$object->getKey(),
+			$object->getOrder(),
 			$object->getId()
 		);				
         $this->updateStmt->execute( $values );

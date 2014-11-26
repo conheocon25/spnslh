@@ -16,12 +16,14 @@
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------						
 			$mConfig 		= new \MVC\Mapper\Config();			
+			$mAds 			= new \MVC\Mapper\Ads();
 			$mCategory 		= new \MVC\Mapper\Category();
 			$mCategory1 	= new \MVC\Mapper\Category1();						
 			$mProvince		= new \MVC\Mapper\Province();
 			$mEstate		= new \MVC\Mapper\TypeEstate();
 			$mTag 			= new \MVC\Mapper\Tag();
 			$mPost 			= new \MVC\Mapper\Post();
+			$mPostTag		= new \MVC\Mapper\PostTag();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -40,7 +42,8 @@
 			$CategoryAll1 	= $mCategory1->findAll();
 			$Province		= $mProvince->find(15);
 			$TagAll 		= $mTag->findByPosition(array(1));
-			$PostTopAll 	= $mPost->findByTop(array());
+			$PostTopAll 	= $mPostTag->findByLastest(array());
+			$AdsAll 		= $mAds->findAll();
 			
 			$Title 			= "";
 			$Navigation = array();
@@ -65,6 +68,7 @@
 			$request->setObject("CategoryAll", 			$CategoryAll);
 			$request->setObject("CategoryAll1", 		$CategoryAll1);
 			$request->setObject("EstateAll", 			$EstateAll);
+			$request->setObject("AdsAll", 				$AdsAll);
 			
 			return self::statuses('CMD_DEFAULT');
 		}

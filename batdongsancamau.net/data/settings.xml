@@ -51,7 +51,9 @@
 		<!-- SETTING	 																	-->
 		<!-- ============================================================================== -->
 		<command name="ASetting">				<view>ASetting				</view></command>
-					
+
+		<command name="ASettingAds">			<view>ASettingAds			</view></command>
+		
 		<command name="ASettingTag">			<view>ASettingTag			</view></command>
 		<command name="ASettingPostTag">		<view>ASettingPostTag		</view></command>
 		
