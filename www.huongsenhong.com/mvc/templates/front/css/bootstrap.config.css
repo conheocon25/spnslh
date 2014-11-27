@@ -49,9 +49,7 @@
 		white-space: nowrap;
 	}
 	
-	.dropdown:hover .dropdown-menu {
-   display: block;
-}
+	.dropdown:hover .dropdown-menu { display: block; }
 	#header .navbar-default .navbar-nav .active a { background: rgba(0, 0, 0, .3); }
 	#header .navbar-default .navbar-nav li a:hover,
 	#header .navbar-default .navbar-nav > .open > a,
