@@ -70,8 +70,8 @@
 				
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
-						<li tal:attributes="class php:Active=='Introduction'?'active':'?'"><a href="/gioi-thieu">GIỚI THIỆU</a></li>
-						<li tal:attributes="class php:Active=='News'?'active':'?'" class="dropdown">
+						<li tal:attributes="class php:Active=='Introduction'?'active':''"><a href="/gioi-thieu">GIỚI THIỆU</a></li>
+						<li tal:attributes="class php:Active=='News'?'active dropdown':'dropdown'">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">TIN TỨC <span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
 								<li tal:repeat="Tag TagAll">
@@ -81,7 +81,7 @@
 								</li>
 							</ul>
 						</li>
-						<li tal:attributes="class php:Active=='News'?'active':'?'" class="dropdown">
+						<li tal:attributes="class php:Active=='News'?'active dropdown':'dropdown'">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">THỰC ĐƠN <span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
 								<li tal:repeat="Category CategoryAll">
@@ -91,10 +91,10 @@
 								</li>
 							</ul>
 						</li>
-						<li tal:attributes="class php:Active=='Dealer'?'active':'?'"><a href="/khuyen-mai">KHUYẾN MÃI</a></li>
-						<li tal:attributes="class php:Active=='Album'?'active':'?'"><a href="/hinh-anh">HÌNH ẢNH</a></li>
-						<li tal:attributes="class php:Active=='Video'?'active':'?'"><a href="/video">VIDEO</a></li>
-						<li tal:attributes="class php:Active=='Contact'?'active':'?'"><a href="/lien-he">LIÊN HỆ</a></li>
+						<li tal:attributes="class php:Active=='Dealer'?'active':''"><a href="/khuyen-mai">KHUYẾN MÃI</a></li>
+						<li tal:attributes="class php:Active=='Album'?'active':''"><a href="/hinh-anh">HÌNH ẢNH</a></li>
+						<li tal:attributes="class php:Active=='Video'?'active':''"><a href="/video">VIDEO</a></li>
+						<li tal:attributes="class php:Active=='Contact'?'active':''"><a href="/lien-he">LIÊN HỆ</a></li>
 					</ul>
 				</div>
 			</div>

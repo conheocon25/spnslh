@@ -12,8 +12,6 @@
 		box-shadow: 10px 0 rgba(255, 255, 255, .3), -10px 0 rgba(255, 255, 255, .3);
 	}
 
-	.dropdown:hover .dropdown-menu { display: block; }
-	
 	#header {
 		background: url('/mvc/templates/front/img/hbg.png') no-repeat top left transparent;
 		margin-top: 3px;
@@ -51,9 +49,10 @@
 		white-space: nowrap;
 	}
 	
-	#header .navbar-default .navbar-nav .active a {
-		background: rgba(0, 0, 0, .3);
-	}
+	.dropdown:hover .dropdown-menu {
+   display: block;
+}
+	#header .navbar-default .navbar-nav .active a { background: rgba(0, 0, 0, .3); }
 	#header .navbar-default .navbar-nav li a:hover,
 	#header .navbar-default .navbar-nav > .open > a,
 	#header .navbar-default .navbar-nav > .open > a:hover,
