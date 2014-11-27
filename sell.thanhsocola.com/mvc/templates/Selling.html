@@ -15,13 +15,10 @@
 	</head>
 	<body>
 		<div metal:use-macro="mAdmin.xhtml/Header"/>		
-		<div id="sidebar">
-			<ul>				
-				<li tal:repeat="Customer CustomerAll" class="Customer" tal:attributes="alt Customer/getId">
-					<a><i class="glyphicons-show_big_thumbnails" /><span tal:content="Customer/getName"/></a>
-				</li>
-			</ul>
+		<div class="widget-box">				
+				<input id="SearchCustomer" type="text" placeholder="Nhập tìm khách hàng" style="width:95%;"/>
 		</div>
+		<div id="sidebar" />
 		<div id="content">
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
 			<div metal:use-macro="mAdmin.xhtml/LocationBar"/>
@@ -66,6 +63,13 @@
 			$('#SearchName').keyup(function(e){
 				var Name 		= $(this).val();										
 				$("#CourseF").load("/selling/search/course", { Name: Name });
+			});
+			
+			//---------------------------------------------------------------------------
+			//Xử lí search khách hàng
+			$('#SearchCustomer').keyup(function(e){
+				var Name 		= $(this).val();										
+				$("#sidebar").load("/selling/search/customer", { Name: Name });
 			});
 			
 			//-----------------------------------------------------------------------------------

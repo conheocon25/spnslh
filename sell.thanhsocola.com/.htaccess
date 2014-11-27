@@ -42,6 +42,7 @@ RewriteRule ^selling/call/table/([0-9]+)/([0-9]+)/plus$ 		?cmd=SellingTableCallE
 RewriteRule ^selling/call/table/([0-9]+)/([0-9]+)/minus$ 		?cmd=SellingTableCallExe&IdSession=$1&IdCourse=$2&Delta=-1 [L]
 
 RewriteRule ^selling/search/course$ 							?cmd=SellingSearchCourse [L]
+RewriteRule ^selling/search/customer$ 							?cmd=SellingSearchCustomer [L]
 
 RewriteRule ^selling/([0-9]+)/([0-9]+)/([0-9]+)/checkout/exe$	?cmd=SellingTableCheckoutExe&IdDomain=$1&IdTable=$2&IdSession=$3 [L]
 
