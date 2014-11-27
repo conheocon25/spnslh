@@ -57,6 +57,8 @@
 		<command name="Selling">					<view>Selling</view></command>
 		
 		<command name="SellingSearchCourse">		<view>SellingSearchCourse</view></command>		
+		<command name="SellingSearchCustomer">		<view>SellingSearchCustomer</view></command>
+		
 		<command name="SellingSessionInsert">		<view>SellingSessionInsert</view></command>
 		<command name="SellingSessionLoad">			<view>SellingSessionLoad</view></command>
 		<command name="SellingSessionPrint">		<view>SellingSessionPrint</view></command>
