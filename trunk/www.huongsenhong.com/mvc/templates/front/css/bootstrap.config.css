@@ -123,8 +123,7 @@
 	
 	.panel { border: 1px solid #740E4A; }
 	
-	.panel .panel-heading,
-	.page-header-config {
+	.panel .panel-heading {
 		background: url('/mvc/templates/front/img/hbg.png') no-repeat top left transparent;
 		margin-top: 0;
 		padding-top: 0;
@@ -133,17 +132,14 @@
 		box-shadow: 0 3px rgba(0, 0, 0, .1);
 	}
 	
-	.panel .panel-heading .panel-title,
-	.page-header-config h1 {
+	.panel .panel-heading .panel-title {
 		margin-bottom: 0;
 		margin-top: 0;
-		font-size: 16px;
+		font-size: 15px;
 		color: white;
 		font-weight: bold;
 		padding: 10px;
 		text-transform: uppercase;
-		text-align: center;
-		text-shadow: 0 2px 5px #fff;
 	}
 	
 	footer {
@@ -153,7 +149,6 @@
 		font-size: 12px;
 		color: #fff;
 		line-height: 10px;
-		margin-top: 20px;
 		margin-bottom: 3px;
 		border-bottom-left-radius: 20px;
 		border-bottom-right-radius: 20px;
