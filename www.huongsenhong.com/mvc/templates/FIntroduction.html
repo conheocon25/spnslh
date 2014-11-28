@@ -50,14 +50,6 @@
 			$('#carousel-example-generic').carousel({pause: "false"});
 			$('#carousel-example-generic .item:first-child').addClass('active');
 			
-			(function(d, s, id) {
-				var js, fjs = d.getElementsByTagName(s)[0];
-				if (d.getElementById(id)) return;
-				js = d.createElement(s); js.id = id;
-				js.src = "//connect.facebook.net/vi_VN/all.js#xfbml=1&appId=525611617524479";
-				fjs.parentNode.insertBefore(js, fjs);
-			}(document, 'script', 'facebook-jssdk'));
-			
 			$('.Liked').click(function(){
 				var Data = [];								
 				var Id 	= $(this).attr('data-id');
