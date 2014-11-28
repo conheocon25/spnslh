@@ -1,107 +1,55 @@
 <!DOCTYPE html>
-<html prefix="og: http://ogp.me/ns#">
-	<head>		
-		<title>Website Khu Ẩm Thực Sinh Thái Đầm Sen Cao Lãnh</title>
-		<base href="http://damsencaolanh.com"/>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-		<meta http-equiv="Pragma" content="no-cache"/>
-		<meta http-equiv="Expires" content="-1"/>
-		<meta http-equiv="Cache-Control" content="no-cache"/>
-		<meta name="keywords" content="Website Khu Ẩm Thực Sinh Thái Đầm Sen Cao Lãnh"/>
-		<meta name="description" content="Website Khu Ẩm Thực Sinh Thái Đầm Sen Cao Lãnh mô tả nè"/>
-		<meta name="page-topic" content="Website Khu Ẩm Thực Sinh Thái Đầm Sen Cao Lãnh"/>
-		<meta name="Abstract" content="Website Khu Ẩm Thực Sinh Thái Đầm Sen Cao Lãnh Abstract nè"/>
-		<meta name="classification" content="Website Khu Ẩm Thực Sinh Thái Đầm Sen Cao Lãnh"/>
-		<meta property="og:title" content="Hương Sen Hồng"/>
-		<meta property="og:description" content="Giới thiệu Khu Ẩm Thực Sinh Thái Hương Sen Hồng"/>
-		<meta property="og:image" content="ảnh mẫu"/>
-
-		<link rel="shortcut icon" type="image/png" href="/data/images/icon.png"/>
-	
-		<link rel="stylesheet" href="/mvc/templates/front/css/bootstrap.min.css"/>
-		<link rel="stylesheet" href="/mvc/templates/front/css/font-awesome.min.css"/>
-		<link rel="stylesheet" href="/mvc/templates/front/css/prettyPhoto.css"/>
-		<link rel="stylesheet" href="/mvc/templates/front/css/colpick.css"/>
-		<link rel="stylesheet" href="/mvc/templates/front/css/sequence-slider.css"/>
-		<link rel="stylesheet" href="/mvc/templates/front/css/owl.carousel.css"/>
-		<link rel="stylesheet" href="/mvc/templates/front/css/style.css"/>
-		<link rel="stylesheet" href="/mvc/templates/front/css/responsive.css"/>		
-	</head>
+<html>
+	<head>
+		<tal:block metal:use-macro="mFront.xhtml/IncludeMETA"/>
+		<meta property="og:title"			content="Hương Sen Hồng"/>
+		<meta property="og:description"		content="Giới thiệu Khu Ẩm Thực Sinh Thái Hương Sen Hồng"/>
+		<meta property="og:image"			content="ảnh mẫu"/>
+		<tal:block metal:use-macro="mFront.xhtml/IncludeCSS"/>
+	</head>	
 	<body>		
-		<div id="wrapper">
-			<div metal:use-macro="mFront.xhtml/Header"/>
-			<div id="slider-sequence" class="homeslider">
-				<div class="sequence-prev"></div>
-				<div class="sequence-next"></div>
-				<ul class="sequence-canvas">						
-					<li tal:repeat="Slide Presentation1/getSlideAll" tal:attributes="class php:'sequence-slide' . repeat.Slide.number">
-						<div class="sequencebg">
-							<img tal:attributes="src Slide/getURL;alt php:'sequence-slide-' . repeat.Slide.number" class="sequencebg-image"/>
-						</div>
-						<div class="sequence-container container" tal:content="structure Slide/getNote" />
-					</li>
-				</ul>
-				<ul class="sequence-pagination">
-					<li tal:repeat="Slide Presentation1/getSlideAll" tal:content="php:'Frame ' . repeat.Slide.number"/>
-				</ul>
-			</div>			
-			<section id="content">				
-				<div class="container">
-					<div class="row">
-						<div class="col-md-12">							
-							<div class="xs-margin"></div>
-							<div class="row">
-								<div class="col-md-9 col-sm-8 col-xs-12 articles-container single-post">
-									<article class="article">
-										<div class="article-meta-date" tal:content="Post/getTimePrint"/>
-										<h2 tal:content="php:mb_strtoupper(Post->getTitle(),'UTF8')"/>
-										<div class="article-meta-container clearfix">
-											<div class="article-meta-more">
-												<a href="#"><span class="separator"><i class="fa fa-user"></i></span> <span tal:content="Post/getAuthor"></span></a>
-												<div class="share-button-group">										
-													<div class="fb-share-button" tal:attributes="data-href 'http://huongsenhong.com/gioi-thieu'" data-type="button_count" />
-												</div>
-											</div>
-											<div class="article-meta-view">
-												<span class="separator"><i class="fa fa-eye "></i></span><span tal:content="Post/getViewed"/>
-												<a class="Liked Post" tal:attributes="data-id Post/getId">
-													<span class="separator"><i class="fa fa-heart"></i></span><span tal:content="Post/getLiked"/>
-												</a>
-											</div>
-										</div>
-										<div tal:content="structure Post/getContent" class="article-content-container"/>
-									</article>									
+		<div class="container">
+			<tal:block metal:use-macro="mFront.xhtml/Header"/>
+			<div id="carousel-example-generic" class="carousel slide fade" data-ride="carousel">
+				<div class="carousel-inner" role="listbox">
+					<div class="item" tal:repeat="Slide Presentation1/getSlideAll">
+						<img tal:attributes="src Slide/getURL;alt php:'sequence-slide-' . repeat.Slide.number" width="100%"/>
+						<div class="carousel-caption" tal:content="structure Slide/getNote"/>
+					</div>
+				</div>
+			</div>
+			<div class="row">						
+				<div class="col-md-12">
+					<marquee class="intro-line" scrolldelay="2" scrollamount="2" behavior="scroll" direction="left">Khu Ẩm Thực Sinh Thái Đầm Sen Cao Lãnh xin kính chào quý khách! Với các món ăn đa dạng và phong phú, chất lượng cao và giá phải chăng cùng phong cách phục vụ chuyên nghiệp, chu đáo, chúng tôi hứa hẹn sẽ là điểm đến tham quan, ăn uổng giải trí lý tưởng cho mọi gia đình</marquee>
+				</div>
+			</div>
+			<div class="row">						
+				<div class="col-md-8">
+					<div class="panel panel-default">
+						<div class="panel-heading"><h3 class="panel-title" tal:content="Post/getTitle"/></div>						
+						<div class="panel-body">
+							<div class="page-header clearfix">								
+								<p class="pull-left">Ngày đăng: <i tal:content="Post/getTimePrint"/></p>
+								<div class="share-button-group pull-right">
+									<div class="fb-share-button" tal:attributes="data-href 'http://huongsenhong.com/gioi-thieu'" data-type="button_count" />
 								</div>
-								<aside class="col-md-3 col-sm-4 col-xs-12 sidebar">									
-									<div metal:use-macro="mFront.xhtml/Subscribe"/>
-									<div metal:use-macro="mFront.xhtml/Testmonials"/>								
-								</aside>
 							</div>
+							<p tal:content="structure Post/getContent"/>
+							<b class="pull-right" tal:content="Post/getAuthor"/>
 						</div>
 					</div>
 				</div>
-			</section>
-			<div metal:use-macro="mFront.xhtml/Footer"/>
+				<div class="col-md-4">
+					<img alt="Khai trương" src="/mvc/templates/front/img/ads.jpg" width="100%" class="img-thumbnail"/>
+				</div>
+			</div>
+			<tal:block metal:use-macro="mFront.xhtml/Footer"/>
 		</div>
-		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
-		<script type="text/javascript">
-		/*<![CDATA[*/
-			// Sequence.js Slider Plugin
-			var options = {
-				nextButton: true,
-				prevButton: true,
-				pagination:true,
-				autoPlay: true,
-				autoPlayDelay: 8500,
-				pauseOnHover: true,
-				preloader: true,
-				theme: 'slide',
-				speed: 700,
-				animateStartingFrameIn: true
-			},
-			homeSlider = $('#slider-sequence').sequence(options).data("sequence");
-				
+		<tal:block metal:use-macro="mFront.xhtml/IncludeJS"/>
+		<script>
+			$('#carousel-example-generic').carousel({pause: "false"});
+			$('#carousel-example-generic .item:first-child').addClass('active');
+			
 			$('.Liked').click(function(){
 				var Data = [];								
 				var Id 	= $(this).attr('data-id');
@@ -117,15 +65,6 @@
 				});
 				return false;
 			});
-		/*]]>*/
-		</script>
-		<script>(function(d, s, id) {
-			var js, fjs = d.getElementsByTagName(s)[0];
-			if (d.getElementById(id)) return;
-			js = d.createElement(s); js.id = id;
-			js.src = "//connect.facebook.net/vi_VN/all.js#xfbml=1&appId=525611617524479";
-			fjs.parentNode.insertBefore(js, fjs);
-		}(document, 'script', 'facebook-jssdk'));
 		</script>
 	</body>
 </html>

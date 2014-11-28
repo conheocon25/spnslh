@@ -4,40 +4,20 @@
 	<!-- META TAG INCLUDE														  -->
 	<!-- ======================================================================== -->
 	<tal:block metal:define-macro="IncludeMETA">
-		<title tal:content="string:Website Khu Ẩm Thực Sinh Thái Đầm Sen Cao Lãnh"/>
+		<title>Website Khu Ẩm Thực Sinh Thái Đầm Sen Cao Lãnh</title>
 		<base href="http://damsencaolanh.com"/>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-		<meta http-equiv="Pragma" content="no-cache"/>
-		<meta http-equiv="Expires" content="-1"/>
-		<meta http-equiv="Cache-Control" content="no-cache"/>
-		<meta name="keywords" content="Website Khu Ẩm Thực Sinh Thái Đầm Sen Cao Lãnh"/>
-		<meta name="description" content="Website Khu Ẩm Thực Sinh Thái Đầm Sen Cao Lãnh"/>
-		<meta name="page-topic" content="Website Khu Ẩm Thực Sinh Thái Đầm Sen Cao Lãnh"/>
-		<meta name="Abstract" content="Website Khu Ẩm Thực Sinh Thái Đầm Sen Cao Lãnh"/>
-		<meta name="classification" content="Website Khu Ẩm Thực Sinh Thái Đầm Sen Cao Lãnh"/>		
-		<link rel="shortcut icon" type="image/png" href="/data/images/icon.png" />
-	</tal:block>
-	
-	<tal:block metal:define-macro="IncludeMETAPOST">
-		<title tal:content="string:Website Khu Ẩm Thực Sinh Thái Đầm Sen Cao Lãnh"/>
-		<base href="http://damsencaolanh.com"/>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-		<meta http-equiv="Pragma" content="no-cache"/>
-		<meta http-equiv="Expires" content="-1"/>
-		<meta http-equiv="Cache-Control" content="no-cache"/>
-		<meta name="keywords" content="Website Khu Ẩm Thực Sinh Thái Đầm Sen Cao Lãnh"/>
-		<meta name="description" content="Website Khu Ẩm Thực Sinh Thái Đầm Sen Cao Lãnh"/>
-		<meta name="page-topic" content="Website Khu Ẩm Thực Sinh Thái Đầm Sen Cao Lãnh"/>
-		<meta name="Abstract" content="Website Khu Ẩm Thực Sinh Thái Đầm Sen Cao Lãnh"/>
-		<meta name="classification" content="Website Khu Ẩm Thực Sinh Thái Đầm Sen Cao Lãnh"/>
-		
-		<meta property="og:title" tal:attributes="content Post/getTitle"/>
-		<meta property="og:description" tal:attributes="content Post/getContentReduce"/>
-		<meta property="og:image" tal:attributes="content Post/getImage"/>
-
-		<link rel="shortcut icon" type="image/png" href="/data/images/icon.png" />
+		<link href="/mvc/templates/front/img/ficon.ico" rel="shortcut icon" type="image/x-icon" />
+		<link href="/mvc/templates/front/img/ficon.ico" rel="shortcut icon" type="image/ico" />
+		<meta name="viewport"				content="width=device-width, initial-scale=1.0"/>
+		<meta http-equiv="Content-Type"		content="text/html; charset=UTF-8"/>
+		<meta http-equiv="Pragma"			content="no-cache"/>
+		<meta http-equiv="Expires"			content="-1"/>
+		<meta http-equiv="Cache-Control"	content="no-cache"/>
+		<meta name="keywords"				content="Website Khu Ẩm Thực Sinh Thái Đầm Sen Cao Lãnh"/>
+		<meta name="description"			content="Website Khu Ẩm Thực Sinh Thái Đầm Sen Cao Lãnh"/>
+		<meta name="page-topic"				content="Website Khu Ẩm Thực Sinh Thái Đầm Sen Cao Lãnh"/>
+		<meta name="Abstract"				content="Website Khu Ẩm Thực Sinh Thái Đầm Sen Cao Lãnh"/>
+		<meta name="classification"			content="Website Khu Ẩm Thực Sinh Thái Đầm Sen Cao Lãnh"/>
 	</tal:block>
 	
 	<!-- ======================================================================== -->
@@ -59,93 +39,78 @@
 	<!-- ======================================================================== -->
 	<!-- HEADER																	  -->
 	<!-- ======================================================================== -->
-	<header metal:define-macro="Header">
-		<div class="container-fluid">
-			<div class="row-fluid">
-				<div class="col-md-3">
-					<img src="/mvc/templates/front/img/logo.png" alt="" width="100%"/>
-				</div>
-				<div class="col-md-9">
-					<nav class="navbar navbar-default" role="navigation">
-						<div class="container-fluid">
-							<div class="navbar-header">
-								<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-								<span class="sr-only">Toggle navigation</span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-								</button>
-							</div>
-							<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-								<ul class="nav navbar-nav navbar-right">
-									<li><a class="navbar-brand" href="/trang-chu"><img alt="Brand" src="/mvc/templates/front/img/hicon.png" width="37"/></a></li>
-									<li><a tal:attributes="class php:Active=='Introduction'?'active':'?'" href="/gioi-thieu">GIỚI THIỆU</a></li>
-									<li class="dropdown">
-										<a href="#" tal:attributes="class php:Active=='News'?'active':'?'" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">TIN TỨC <span class="caret"></span></a>
-										<ul class="dropdown-menu" role="menu">
-											<li tal:repeat="Tag TagAll">
-												<a tal:attributes="href Tag/getURLView">
-													<span tal:content="Tag/getName"/>
-												</a>
-											</li>
-										</ul>
-									</li>
-									<li class="dropdown">
-										<a href="#" tal:attributes="class php:Active=='News'?'active':'?'" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">THỰC ĐƠN <span class="caret"></span></a>
-										<ul class="dropdown-menu" role="menu">
-											<li tal:repeat="Category CategoryAll">
-												<a tal:attributes="href Category/getURLView">
-													<span tal:content="Category/getName"/>
-												</a>
-											</li>
-										</ul>
-									</li>
-									<li><a tal:attributes="class php:Active=='Dealer'?'active':'?'" href="/khuyen-mai">KHUYẾN MÃI</a></li>
-									<li><a tal:attributes="class php:Active=='Album'?'active':'?'" href="/hinh-anh">HÌNH ẢNH</a></li>
-									<li><a tal:attributes="class php:Active=='Video'?'active':'?'" href="/video">VIDEO</a></li>
-									<li><a tal:attributes="class php:Active=='Contact'?'active':'?'" href="/lien-he">LIÊN HỆ</a></li>
-								</ul>
-							</div>
-						</div>
-					</nav>
+	<div metal:define-macro="Header" id="header">
+		<div class="row">
+			<div class="col-md-4">
+				<a href="/trang-chu">
+					<img alt="Brand" src="/mvc/templates/front/img/logo.png" width="100%"/>
+				</a>
+			</div>
+			<div class="col-md-8">
+				<div class="banner">
+					<img alt="Brand" src="/mvc/templates/front/img/banner.gif" width="100%"/>
 				</div>
 			</div>
 		</div>
-	</header>
-	
-	<!-- ======================================================================== -->
-	<!-- PAGE TITLE																  -->
-	<!-- ======================================================================== -->
-	<div metal:define-macro="PageTitle" class="row-fluid">
-		<div class="span12 logo">
-			<div class="row-fluid">
-				<div class="span3">
-					<img src="/mvc/templates/front/img/logo_guest.png" width="100%"/>
-				</div>
-				<div class="span9">
-					<div style="margin-left:-10px;">
-						<h1><a href="/trang-chu" tal:content="ConfigName/getValue"/></h1>
-						<p tal:content="ConfigSlogan/getValue"/>
+		<nav class="navbar navbar-default" role="navigation">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<div class="navbar-header">
+						<a class="navbar-brand" href="/trang-chu">
+							<img alt="Brand" src="/mvc/templates/front/img/home.png"/>
+						</a>
 					</div>
 				</div>
+				
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li tal:attributes="class php:Active=='Introduction'?'active':''"><a href="/gioi-thieu">GIỚI THIỆU</a></li>
+						<li tal:attributes="class php:Active=='News'?'active dropdown':'dropdown'">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">TIN TỨC <span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li tal:repeat="Tag TagAll">
+									<a tal:attributes="href Tag/getURLView">
+										<span tal:content="Tag/getName"/>
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li tal:attributes="class php:Active=='Menu'?'active dropdown':'dropdown'">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">THỰC ĐƠN <span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li tal:repeat="Category CategoryAll">
+									<a tal:attributes="href Category/getURLView">
+										<span tal:content="Category/getName"/>
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li tal:attributes="class php:Active=='Dealer'?'active':''"><a href="/khuyen-mai">KHUYẾN MÃI</a></li>
+						<li tal:attributes="class php:Active=='Album'?'active':''"><a href="/hinh-anh">HÌNH ẢNH</a></li>
+						<li tal:attributes="class php:Active=='Video'?'active':''"><a href="/video">VIDEO</a></li>
+						<li tal:attributes="class php:Active=='Contact'?'active':''"><a href="/lien-he">LIÊN HỆ</a></li>
+					</ul>
+				</div>
 			</div>
-		</div>
+		</nav>
 	</div>
-		
+	
 	<!-- ======================================================================== -->
-	<!-- LOCATION BAR															  -->
+	<!-- BREADCRUMB																  -->
 	<!-- ======================================================================== -->
-	<div metal:define-macro="LocationBar" id="breadcrumb-container">
-		<div class="container">
-			<ul class="breadcrumb">
-				<li><a href="/">TRANG CHỦ</a></li>
-				<li tal:repeat="Item Navigation"> 
-					<a tal:attributes="href php:Item[1]" tal:content="php:Item[0]" />
-				</li>
-				<li class="active" tal:content="Title"/>
-			</ul>
-		</div>		
-	</div>
+	<ol metal:define-macro="Breadcrumb" class="breadcrumb">
+		<li><a href="/">TRANG CHỦ</a></li>
+		<li tal:repeat="Item Navigation"> 
+			<a tal:attributes="href php:Item[1]" tal:content="php:Item[0]"/>
+		</li>
+		<li class="active" tal:content="Title"/>
+	</ol>
 	
 	<!-- ======================================================================== -->
 	<!-- SUBCRIBE															  	  -->
@@ -216,55 +181,19 @@
 	<!-- ======================================================================== -->
 	<!-- FOOTER																	  -->
 	<!-- ======================================================================== -->
-	<footer metal:define-macro="Footer" id="footer">
-		<div id="inner-footer">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-4 col-sm-4 col-xs-12 widget">
-						<h3>Ẩm Thực Sinh Thái Đầm Sen Cao Lãnh</h3>
-						<ul class="contact-list">							
-							<li>Tiếp đón quí khách tất cả các ngày trong tuần</li>
-							<li>Giờ mở cửa: 8.00 Sáng - 22.00 Tối</li>
-						</ul>
-					</div>
-					<div class="col-md-5 col-sm-4 col-xs-12 widget">
-						<h3>Trong cùng hệ thống</h3>
-						<ul class="links">
-							<li tal:repeat="Branch BranchAll">
-								<span tal:content="Branch/getName"/>: <span tal:content="Branch/getAddress"/>
-							</li>
-						</ul>
-						<h3><a href="/lien-ket">Liên kết Website</a></h3>
-						<ul class="links">
-							<li tal:repeat="Linked LinkedAll">								
-								<a tal:attributes="href Linked/getWebsite" target="blank">
-									<span tal:content="Linked/getName"/>
-								</a>
-							</li>
-						</ul>
-					</div>					
-					<div class="col-md-3 col-sm-12 col-xs-12 widget">
-						<h3>FACEBOOK</h3>
-						<div class="facebook-likebox">
-							<iframe src="http://www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Famthuchuongsenhong&amp;width&amp;height=221&amp;colorscheme=dark&amp;show_faces=true&amp;header=false&amp;stream=false&amp;show_border=false" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:220px;" allowTransparency="true"></iframe>
-						</div>
-					</div>
-				</div>
+	<footer metal:define-macro="Footer">
+		<div class="row">
+			<div class="col-md-12">
+				<center>
+					<p><b>&copy; 2014 ẨM THỰC SINH THÁI ĐẦM SEN</b></p>
+					<p tal:repeat="Branch BranchAll"><b tal:content="Branch/getName"/>: <span tal:content="Branch/getAddress"/></p>
+					<p>Mobile: (+84) 918 107 132 - Tel: (+84) 673 948 888</p>
+					<p><b tal:content="php:@\MVC\Library\Statistic::getCountPrint()"/> lượt truy cập - <b tal:content="php:@\MVC\Library\Statistic::getOnlinePrint()"/> đang online</p>
+					<p style="color:#ddd;"><i>SPN Group - Website duyệt tốt trên trình duyệt <b>Google Chrome</b></i></p>
+				</center>
+
 			</div>
 		</div>
-		<div id="footer-bottom">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-7 col-sm-7 col-xs-12 footer-social-links-container">						
-						<p><i>SPN Group - Website duyệt tốt trên <B>Tablet</B>, <B>SmartPhone</B> dùng trình duyệt <B>Google Chrome</B></i></p>
-					</div>
-					<div class="col-md-5 col-sm-5 col-xs-12 footer-text-container">
-						<p>&copy; 2014 Ẩm thực sinh thái Đầm Sen Cao Lãnh</p>
-					</div>
-				</div>				
-			</div>
-		</div>
-		<a href="#" id="scroll-top" title="Scroll to Top"><i class="fa fa-angle-up"></i></a>
 	</footer>
 		
 	<!-- ======================================================================== 	-->
