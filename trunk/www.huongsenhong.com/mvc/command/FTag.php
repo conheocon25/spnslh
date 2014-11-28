@@ -48,7 +48,7 @@
 			
 			$LinkedAll 		= $mLinked->findByTop(array());
 			
-			$Title = mb_strtoupper($Tag->getName(), 'UTF8');
+			$Title = mb_strtoupper('Tin Tức', 'UTF8');
 			$Navigation = array();
 			
 			//-------------------------------------------------------------
