@@ -81,7 +81,7 @@
 								</li>
 							</ul>
 						</li>
-						<li tal:attributes="class php:Active=='News'?'active dropdown':'dropdown'">
+						<li tal:attributes="class php:Active=='Menu'?'active dropdown':'dropdown'">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">THỰC ĐƠN <span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
 								<li tal:repeat="Category CategoryAll">
@@ -102,38 +102,15 @@
 	</div>
 	
 	<!-- ======================================================================== -->
-	<!-- PAGE TITLE																  -->
+	<!-- BREADCRUMB																  -->
 	<!-- ======================================================================== -->
-	<div metal:define-macro="PageTitle" class="row-fluid">
-		<div class="span12 logo">
-			<div class="row-fluid">
-				<div class="span3">
-					<img src="/mvc/templates/front/img/logo_guest.png" width="100%"/>
-				</div>
-				<div class="span9">
-					<div style="margin-left:-10px;">
-						<h1><a href="/trang-chu" tal:content="ConfigName/getValue"/></h1>
-						<p tal:content="ConfigSlogan/getValue"/>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-		
-	<!-- ======================================================================== -->
-	<!-- LOCATION BAR															  -->
-	<!-- ======================================================================== -->
-	<div metal:define-macro="LocationBar" id="breadcrumb-container">
-		<div class="container">
-			<ul class="breadcrumb">
-				<li><a href="/">TRANG CHỦ</a></li>
-				<li tal:repeat="Item Navigation"> 
-					<a tal:attributes="href php:Item[1]" tal:content="php:Item[0]" />
-				</li>
-				<li class="active" tal:content="Title"/>
-			</ul>
-		</div>		
-	</div>
+	<ol metal:define-macro="Breadcrumb" class="breadcrumb">
+		<li><a href="/">TRANG CHỦ</a></li>
+		<li tal:repeat="Item Navigation"> 
+			<a tal:attributes="href php:Item[1]" tal:content="php:Item[0]"/>
+		</li>
+		<li class="active" tal:content="Title"/>
+	</ol>
 	
 	<!-- ======================================================================== -->
 	<!-- SUBCRIBE															  	  -->

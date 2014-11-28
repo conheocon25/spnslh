@@ -60,16 +60,18 @@
 							<h3 class="panel-title">Menu</h3>
 						</div>						
 						<div class="panel-body">
-							<div tal:repeat="Product ProductAll" class="col-md-3 item-config">
-								<div class="item-thumb">
-									<a tal:attributes="href Product/getURLView">
-										<img src="/mvc/templates/front/img/item.png" class="img-thumbnail img-circle"/>
-									</a>
-								</div>
-								<div class="item-info">
-									<a tal:attributes="href Product/getURLView">
-										<h3 tal:content="Product/getName"/>
-									</a>
+							<div class="row">
+								<div tal:repeat="Product ProductAll" class="col-md-3 item-config">
+									<div class="item-thumb">
+										<a tal:attributes="href Product/getURLView">
+											<img src="/mvc/templates/front/img/item.png" class="img-thumbnail img-circle"/>
+										</a>
+									</div>
+									<div class="item-info">
+										<a tal:attributes="href Product/getURLView">
+											<h3 tal:content="Product/getName"/>
+										</a>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -80,16 +82,18 @@
 							<h3 class="panel-title">Photo Album</h3>
 						</div>						
 						<div class="panel-body">
-							<div tal:repeat="Album LastestAlbumAll" class="col-md-4 item-config">
-								<div class="item-thumb">
-									<a tal:attributes="href Album/getURLView">
-										<img tal:attributes="src Album/getImage" class="img-thumbnail" width="100%"/>
-									</a>
-								</div>
-								<div class="item-info">
-									<a tal:attributes="href Album/getURLView">
-										<h3 tal:content="Album/getName"/>
-									</a>
+							<div class="row">
+								<div tal:repeat="Album LastestAlbumAll" class="col-md-4 item-config">
+									<div class="item-thumb">
+										<a tal:attributes="href Album/getURLView">
+											<img tal:attributes="src Album/getImage" class="img-thumbnail" width="100%"/>
+										</a>
+									</div>
+									<div class="item-info">
+										<a tal:attributes="href Album/getURLView">
+											<h3 tal:content="Album/getName"/>
+										</a>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -100,16 +104,18 @@
 							<h3 class="panel-title">Videos</h3>
 						</div>						
 						<div class="panel-body">
-							<div tal:repeat="Video LastestVideoAll" class="col-md-3 item-config">
-								<div class="item-thumb">
-									<a tal:attributes="href Video/getURLView">
-										<img tal:attributes="src Video/getImage" class="img-thumbnail" width="100%"/>
-									</a>
-								</div>
-								<div class="item-info">
-									<a tal:attributes="href Video/getURLView">
-										<h3 tal:content="Video/getName"/>
-									</a>
+							<div class="row">
+								<div tal:repeat="Video LastestVideoAll" class="col-md-3 item-config">
+									<div class="item-thumb">
+										<a tal:attributes="href Video/getURLView">
+											<img tal:attributes="src Video/getImage" class="img-thumbnail" width="100%"/>
+										</a>
+									</div>
+									<div class="item-info">
+										<a tal:attributes="href Video/getURLView">
+											<h3 tal:content="Video/getName"/>
+										</a>
+									</div>
 								</div>
 							</div>
 						</div>
