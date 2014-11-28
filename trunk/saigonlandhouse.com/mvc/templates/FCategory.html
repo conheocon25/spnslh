@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<tal:block metal:use-macro="mFront.xhtml/IncludeMETA"/>
+		<tal:block metal:use-macro="mFront.xhtml/IncludeCSS"/>
+	</head>	
+	<body>		
+		<div class="container">
+			<tal:block metal:use-macro="mFront.xhtml/Header"/>
+			<tal:block metal:use-macro="mFront.xhtml/Breadcrumb"/>
+			<div class="row">						
+				<div class="col-md-9">
+					<div class="panel panel-default">
+						<div class="panel-heading"><h3 class="panel-title" tal:content="Title"/></div>
+						<div class="panel-body">
+							<div class="media media-config" tal:repeat="Product ProductAll">
+								<a tal:attributes="href Product/getURLView"><h4 tal:content="Product/getNameReduce"/></a>
+								<a class="media-left" tal:attributes="href Product/getURLView">
+									<img tal:attributes="src Product/getInfo/getImage; alt Product/getName" width="130" class="img-thumbnail"/>
+								</a>
+								<div class="media-body">
+									<p tal:content="structure Product/getInfo/getInfoReduce" style="text-align:justify"/>
+									<div class="row">
+										<div class="col-md-10">
+											Giá: <span tal:content="Product/getPricePrint" style="color:#055699;font-weight:bold;"/> 
+											Diện tích: <span tal:condition="Product/getInfo" tal:content="structure Product/getInfo/getInfoEx13Print" style="color:#055699;font-weight:bold;" />
+											Quận/Huyện: <span style="color:#055699;font-weight:bold;" tal:content="Product/getDistrict/getName" />, <span style="color:#055699;font-weight:bold;" tal:content="Product/getDistrict/getProvince/getName" />
+										</div>
+										<div class="col-md-2" style="text-align:right;">
+											<span tal:content="Product/getDateTimePrint"/>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<nav class="pagination-config">
+						<ul class="pagination">
+							<li tal:repeat="P PN/getPages" tal:attributes="class php:Page==P->getId()?'active':'disable'">
+								<a tal:attributes="href P/getURL" tal:content="P/getName"/>
+							</li>
+						</ul>
+					</nav>
+				</div>
+				<div class="col-md-3">
+					<tal:block metal:use-macro="mFront.xhtml/SearchBox"/>
+				</div>
+			</div>
+			<tal:block metal:use-macro="mFront.xhtml/Footer"/>
+		</div>
+		<tal:block metal:use-macro="mFront.xhtml/IncludeJS"/>
+	</body>
+</html>
