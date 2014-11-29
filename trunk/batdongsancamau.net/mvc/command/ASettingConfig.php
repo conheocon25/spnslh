@@ -19,15 +19,13 @@
 			$mConfig 		= new \MVC\Mapper\Config();
 			$mPost 			= new \MVC\Mapper\Post();
 			$mTag 			= new \MVC\Mapper\Tag();
-			$mPresentation 	= new \MVC\Mapper\Presentation();
-									
+												
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
 			$ConfigAll 		= $mConfig->findAll();
 			$Tag 			= $mTag->findByPosition(array(2))->current();
-			$PresentationAll= $mPresentation->findAll();
-						
+									
 			$Title = "CẤU HÌNH";
 			$Navigation = array(				
 				array("THIẾT LẬP", "/admin/setting")
