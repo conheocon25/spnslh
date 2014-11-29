@@ -18,15 +18,13 @@
 			//-------------------------------------------------------------
 			$mCategory 	= new \MVC\Mapper\Category();
 			$mConfig 	= new \MVC\Mapper\Config();
-			$mGAttribute= new \MVC\Mapper\GAttribute();
-			
+						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
 			$CategoryAll 	= $mCategory->findAll();			
 			$Category 		= $mCategory->find($IdCategory);
-			$GAttributeAll 	= $mGAttribute->findAll();
-			
+						
 			$Title = mb_strtoupper($Category->getName(), 'UTF8');
 			$Navigation = array(				
 				array("THIẾT LẬP", 	"/admin/setting"),
@@ -43,8 +41,7 @@
 			$request->setObject('Navigation'	, $Navigation);
 			
 			$request->setObject('Category'		, $Category);
-			$request->setObject('CategoryAll'	, $CategoryAll);
-			$request->setObject('GAttributeAll'	, $GAttributeAll);
+			$request->setObject('CategoryAll'	, $CategoryAll);			
 			$request->setObject('ConfigName'	, $ConfigName);
 															
 			return self::statuses('CMD_DEFAULT');
