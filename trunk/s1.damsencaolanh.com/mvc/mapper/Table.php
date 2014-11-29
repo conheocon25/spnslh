@@ -16,7 +16,7 @@ class Table extends Mapper implements \MVC\Domain\UserFinder {
 		$updateStmt = sprintf("update %s set iddomain=?, name=?, iduser=?, type=? where id=?", $tblTable);
 		$insertStmt = sprintf("insert into %s (iddomain, name, iduser, type) values(?, ?, ?, ?)", $tblTable);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblTable);
-		$findByDomainStmt = sprintf("select * from %s where iddomain =?", $tblTable);
+		$findByDomainStmt = sprintf("select * from %s where iddomain =? order by name", $tblTable);
 		$findByTypeStmt = sprintf("select * from %s where type =?", $tblTable);
 		
 		$findNonGuestStmt = sprintf("
