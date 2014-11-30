@@ -14,11 +14,13 @@
 		<link rel="stylesheet" tal:attributes="href php:'/mvc/templates/theme/cms/css/unicorn.' . @\MVC\Base\SessionRegistry::instance()->getCurrentTheme() . '.css'" class="skin-color"/>
 	</head>
 	<body>
-		<div metal:use-macro="mAdmin.xhtml/Header"/>		
-		<div class="widget-box">				
-				<input id="SearchCustomer" type="text" placeholder="Nhập tìm khách hàng" style="width:95%;"/>
+		<div metal:use-macro="mAdmin.xhtml/Header"/>
+		<div id="sidebar">
+			<div style="padding:5px;">				
+				<input id="SearchCustomer" type="text" placeholder="Nhập tìm khách hàng" style="width:100%; padding:5px;"/>
+			</div>
+			<div id="LoadCustomer"/>
 		</div>
-		<div id="sidebar" />
 		<div id="content">
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
 			<div metal:use-macro="mAdmin.xhtml/LocationBar"/>
@@ -69,7 +71,7 @@
 			//Xử lí search khách hàng
 			$('#SearchCustomer').keyup(function(e){
 				var Name 		= $(this).val();										
-				$("#sidebar").load("/selling/search/customer", { Name: Name });
+				$("#LoadCustomer").load("/selling/search/customer", { Name: Name });
 			});
 			
 			//-----------------------------------------------------------------------------------
