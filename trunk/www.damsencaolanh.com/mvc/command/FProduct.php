@@ -11,8 +11,7 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$KCategory1 	= 	$request->getProperty('KCategory1');
-			$KCategory2 	= 	$request->getProperty('KCategory2');
+			$KCategory 		= 	$request->getProperty('KCategory');
 			$KProduct 		= 	$request->getProperty('KProduct');
 			
 			//-------------------------------------------------------------
@@ -20,7 +19,6 @@
 			//-------------------------------------------------------------			
 			$mConfig 	= new \MVC\Mapper\Config();
 			$mCategory 	= new \MVC\Mapper\Category();
-			$mCategory1	= new \MVC\Mapper\Category1();
 			$mProduct 	= new \MVC\Mapper\Product();
 			$mTag 		= new \MVC\Mapper\Tag();
 			$mBranch 	= new \MVC\Mapper\Branch();
@@ -39,17 +37,14 @@
 			
 			$CategoryAll 	= $mCategory->findAll();			
 			$Product 		= $mProduct->findByKey($KProduct);
-			$Category1 		= $Product->getCategory();
-			$Category 		= $Category1->getCategory();
 			$TagAll 		= $mTag->findByPosition(array(1));
 			$BranchAll 		= $mBranch->findAll();			
 			
 			$LinkedAll 		= $mLinked->findByTop(array());
 			
-			$Title = mb_strtoupper($Product->getName(),'UTF8');
+			$Title = mb_strtoupper("Món Ăn",'UTF8');
 			$Navigation = array(
-				array(mb_strtoupper($Category->getName(), 'UTF8'), 	$Category->getURLView()),
-				array(mb_strtoupper($Category1->getName(), 'UTF8'), $Category1->getURLView())
+				array(mb_strtoupper("Danh mục", 'UTF8'), "/")
 			);
 			
 			//-------------------------------------------------------------
@@ -66,9 +61,6 @@
 			$request->setObject("ConfigGmail", 	$ConfigGmail);
 			$request->setObject("ConfigSkype", 	$ConfigSkype);
 			$request->setObject("CategoryAll", 	$CategoryAll);
-			$request->setObject("Category", 	$Category);
-			$request->setObject("Category1", 	$Category1);
-			$request->setObject("Product", 		$Product);
 			$request->setObject("TagAll", 		$TagAll);
 			$request->setObject("BranchAll", 	$BranchAll);
 			$request->setObject("LinkedAll", 	$LinkedAll);

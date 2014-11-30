@@ -1,134 +1,81 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<div metal:use-macro="mFront.xhtml/IncludeMETA"/>
-		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>
+		<tal:block metal:use-macro="mFront.xhtml/IncludeMETA"/>
+		<tal:block metal:use-macro="mFront.xhtml/IncludeCSS"/>
 	</head>	
 	<body>		
-		<div id="wrapper">
-			<div metal:use-macro="mFront.xhtml/Header"/>
-			<section id="content">				
-				<div id="category-header">
-					<div class="row">
-						<div class="container" tal:content="structure Category2/getInfo" />
-					</div>
-				</div>				
-				<div metal:use-macro="mFront.xhtml/LocationBar"/>
-				<div class="container">
-					<div class="row">
-						<div class="col-md-12">
+		<div class="container">
+			<tal:block metal:use-macro="mFront.xhtml/Header"/>
+			<tal:block metal:use-macro="mFront.xhtml/Breadcrumb"/>
+			<div class="row">						
+				<div class="col-md-8">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title" tal:content="Title"/>
+						</div>						
+						<div class="panel-body">
 							<div class="row">
-								<div class="col-md-9 col-sm-8 col-xs-12 main-content">																		
-									<div class="category-item-container">
-										<div class="row tab-content">
-											<div tal:repeat="Product ProductAll" class="col-md-4 col-sm-6 col-xs-12">
-												<div class="item" tal:condition="Product/getInfo">
-													<div class="item-image-container">
-														<figure>
-															<a tal:attributes="href Product/getURLView">
-																<img tal:attributes="src Product/getInfo/getImage1" class="item-image"/>
-																<img tal:attributes="src Product/getInfo/getImage2" class="item-image-hover"/>
-															</a>
-														</figure>
-														<div class="item-price-container" tal:condition="Product/getPrice2">
-															<span class="item-price" tal:content="Product/getPrice2Print"/>
-														</div>														
-													</div>
-													<div class="item-meta-container">
-														<div class="ratings-container">
-															<div class="ratings">
-																<div class="ratings-result" data-result="100"></div>
-															</div>															
-														</div>
-														<h3 class="item-name"><a tal:attributes="href Product/getURLView" tal:content="Product/getName"/></h3>														
-													</div>
-												</div>	
-											</div>
-										</div>
+								<div class="col-md-3 item-config">
+									<div class="item-thumb">
+										<a href="/thuc-don/do-dong/mon-an">
+											<img src="/mvc/templates/front/img/item.png" class="img-thumbnail img-circle"/>
+										</a>
 									</div>
-									<div class="md-margin" />
-									<div class="category-toolbar clearfix">
-										<div class="toolbox-pagination clearfix">
-											<ul class="pagination">
-												<li tal:repeat="P PN/getPages" tal:attributes="class php: (P->getId()==Page)?'active':''">
-													<a tal:attributes="href P/getURL" tal:content="P/getName" />
-												</li>
-											</ul>											
-										</div>
+									<div class="item-info">
+										<a href="/thuc-don/do-dong/mon-an">
+											<h3>Tên món</h3>
+										</a>
 									</div>
 								</div>
-								<aside class="col-md-3 col-sm-4 col-xs-12 sidebar">
-									<div class="widget">
-										<div class="panel-group custom-accordion sm-accordion" id="category-filter">
-											<div class="panel">
-												<div class="accordion-header">
-													<div class="accordion-title"><span>Danh mục</span></div><!-- End .accordion-title -->
-													<a class="accordion-btn opened"  data-toggle="collapse" data-target="#category-list-1"></a>
-												</div><!-- End .accordion-header -->
-												<div id="category-list-1" class="collapse in">
-													<div class="panel-body">
-														<ul class="category-filter-list jscrollpane">
-															<li tal:repeat="Category2 Category1/getCategoryAll">
-																<a tal:attributes="href Category2/getURLView"><span tal:content="Category2/getName"/> (<span tal:content="Category2/getProductAll/count"/>)</a>
-															</li>
-														</ul>
-													</div>
-												</div>
-											</div>
-										</div>
+								<div class="col-md-3 item-config">
+									<div class="item-thumb">
+										<a href="/thuc-don/do-dong/mon-an">
+											<img src="/mvc/templates/front/img/item.png" class="img-thumbnail img-circle"/>
+										</a>
 									</div>
-									<div metal:use-macro="mFront.xhtml/Subscribe"/>
-								</aside>
+									<div class="item-info">
+										<a href="/thuc-don/do-dong/mon-an">
+											<h3>Tên món</h3>
+										</a>
+									</div>
+								</div>
+								<div class="col-md-3 item-config">
+									<div class="item-thumb">
+										<a href="/thuc-don/do-dong/mon-an">
+											<img src="/mvc/templates/front/img/item.png" class="img-thumbnail img-circle"/>
+										</a>
+									</div>
+									<div class="item-info">
+										<a href="/thuc-don/do-dong/mon-an">
+											<h3>Tên món</h3>
+										</a>
+									</div>
+								</div>
+								<div class="col-md-3 item-config">
+									<div class="item-thumb">
+										<a href="/thuc-don/do-dong/mon-an">
+											<img src="/mvc/templates/front/img/item.png" class="img-thumbnail img-circle"/>
+										</a>
+									</div>
+									<div class="item-info">
+										<a href="/thuc-don/do-dong/mon-an">
+											<h3>Tên món</h3>
+										</a>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</section>
-			<div metal:use-macro="mFront.xhtml/Footer"/>
-		</div><!-- End #wrapper -->		
-		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
-		<script>
-			$(function() {
-				/*
-				$(".icon-cart-text").click(function(){
-					var Data 	= [];
-					Data[0]		= $(this).attr('id');
-					Data[1]		= $(this).attr('name');
-					Data[2]		= $(this).attr('price');
-					Data[3]		= $(this).attr('image');
-					
-					var URL = "/gio-hang/them";
-					$.ajax({
-						type: "POST",
-						data: {Data:Data},
-						url: URL,
-						success: function(msg){
-							location.reload();
-						}
-					});				
-				});
-				*/
-				
-				$(".icon-like").click(function(){
-					var Data 	= [];
-					Data[0]		= $(this).attr('id');
-					Data[1]		= $(this).attr('name');
-					Data[2]		= $(this).attr('price');
-					Data[3]		= $(this).attr('image');
-					
-					var URL = "/danh-dau/them";
-					$.ajax({
-						type: "POST",
-						data: {Data:Data},
-						url: URL,
-						success: function(msg){
-							location.reload();
-						}
-					});
-				
-				});
-				
-			});
-		</script>
+				<div class="col-md-4">
+					<tal:block metal:use-macro="mFront.xhtml/Subscribe"/>
+					<tal:block metal:use-macro="mFront.xhtml/ADS-1"/>
+					<tal:block metal:use-macro="mFront.xhtml/LikeBox"/>
+				</div>
+			</div>
+			<tal:block metal:use-macro="mFront.xhtml/Footer"/>
+		</div>
+		<tal:block metal:use-macro="mFront.xhtml/IncludeJS"/>
 	</body>
 </html>

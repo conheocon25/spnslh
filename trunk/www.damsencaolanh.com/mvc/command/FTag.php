@@ -39,6 +39,7 @@
 			$CategoryAll 			= $mCategory->findAll();
 			$BranchAll 				= $mBranch->findAll();
 			$StoryLineAll			= $mStoryLine->findAll();
+			$LastestPostAll 		= $mPostTag->findByLastest4(array(null));
 			
 			if (!isset($Page)) $Page = 1;
 			$TagAll 				= $mTag->findByPosition(array(1));
@@ -74,6 +75,7 @@
 			$request->setObject("PTAll", 				$PTAll);
 			$request->setObject("PN", 					$PN);
 			$request->setObject("LinkedAll", 			$LinkedAll);
+			$request->setObject("LastestPostAll", 		$LastestPostAll);
 			
 			return self::statuses('CMD_DEFAULT');
 		}

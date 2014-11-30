@@ -35,12 +35,11 @@
 							</nav>
 						</div>
 					</div>
-					
-					<div metal:use-macro="mFront.xhtml/LastestPost"/>
 				</div>
 				<div class="col-md-4">
-					<img alt="Khai trương" src="/mvc/templates/front/img/ads.jpg" width="100%" class="img-thumbnail"/>
-					<div metal:use-macro="mFront.xhtml/Subscribe"/>
+					<tal:block metal:use-macro="mFront.xhtml/Subscribe"/>
+					<tal:block metal:use-macro="mFront.xhtml/ADS-1"/>
+					<tal:block metal:use-macro="mFront.xhtml/LikeBox"/>
 				</div>
 			</div>
 			<tal:block metal:use-macro="mFront.xhtml/Footer"/>

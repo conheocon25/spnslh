@@ -15,7 +15,7 @@
 						<div class="panel-body">
 							<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 								<ol class="carousel-indicators">
-									<li tal:repeat="Image Album/getImageAll" data-target="#carousel-example-generic" tal:attributes="data-slide-to php:repeat.Image.number"/>
+									<li tal:repeat="Image Album/getImageAll" data-target="#carousel-example-generic" tal:attributes="data-slide-to repeat/Image/number"/>
 								</ol>
 								<div class="carousel-inner" role="listbox">
 									<div class="item" tal:repeat="Image Album/getImageAll">
@@ -35,7 +35,9 @@
 					</div>
 				</div>
 				<div class="col-md-4">
-					<img alt="Khai trương" src="/mvc/templates/front/img/ads.jpg" width="100%" class="img-thumbnail"/>
+					<tal:block metal:use-macro="mFront.xhtml/Subscribe"/>
+					<tal:block metal:use-macro="mFront.xhtml/ADS-1"/>
+					<tal:block metal:use-macro="mFront.xhtml/LikeBox"/>
 				</div>
 			</div>
 			<tal:block metal:use-macro="mFront.xhtml/Footer"/>
