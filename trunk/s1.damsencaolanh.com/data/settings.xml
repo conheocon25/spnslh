@@ -95,44 +95,45 @@
 		<!-- ============================================================================== -->
 		<!-- PAYROLL			 															-->
 		<!-- ============================================================================== -->		
-		<command name="PayRoll"><view>PayRoll</view></command>
-		<command name="PayRollReset"><view>PayRollReset</view></command>
-		<command name="PayRollPrint"><view>PayRollPrint</view></command>		
+		<command name="PayRoll">				<view>PayRoll</view></command>
+		<command name="PayRollReset">			<view>PayRollReset</view></command>
+		<command name="PayRollPrint">			<view>PayRollPrint</view></command>
 		
 		<!-- ============================================================================== -->
 		<!-- MONEY		 																	-->
 		<!-- ============================================================================== -->
-		<command name="Money"><view>Money</view></command>		
-		<command name="MoneyCollectGeneral"><view>MoneyCollectGeneral</view></command>
-		<command name="MoneyCollectCustomer"><view>MoneyCollectCustomer</view></command>
-		<command name="MoneyPaidGeneral"><view>MoneyPaidGeneral</view></command>
-		<command name="MoneyPaidEmployee"><view>MoneyPaidEmployee</view></command>
+		<command name="Money">					<view>Money</view></command>
+		<command name="MoneyCollectGeneral">	<view>MoneyCollectGeneral</view></command>
+		<command name="MoneyCollectCustomer">	<view>MoneyCollectCustomer</view></command>
+		<command name="MoneyPaidGeneral">		<view>MoneyPaidGeneral</view></command>
+		<command name="MoneyPaidEmployee">		<view>MoneyPaidEmployee</view></command>
+		<command name="MoneyPaidSupplier">		<view>MoneyPaidSupplier</view></command>
 							
 		<!-- ============================================================================== -->
-		<!-- SETTING	 															-->
+		<!-- SETTING	 																	-->
 		<!-- ============================================================================== -->
-		<command name="Setting"><view>Setting</view></command>
-		<command name="SettingCustomer"><view>SettingCustomer</view></command>		
-		<command name="SettingEmployee"><view>SettingEmployee</view></command>		
-		<command name="SettingUser"><view>SettingUser</view></command>		
-		<command name="SettingDomain"><view>SettingDomain</view></command>		
-		<command name="SettingDomainTable"><view>SettingDomainTable</view></command>
-		<command name="SettingUnit"><view>SettingUnit</view></command>		
-		<command name="SettingConfig"><view>SettingConfig</view></command>		
-		<command name="SettingCategory"><view>SettingCategory</view></command>		
-		<command name="SettingCategoryCourse"><view>SettingCategoryCourse</view></command>		
+		<command name="Setting">				<view>Setting</view></command>
+		<command name="SettingCustomer">		<view>SettingCustomer</view></command>		
+		<command name="SettingEmployee">		<view>SettingEmployee</view></command>		
+		<command name="SettingUser">			<view>SettingUser</view></command>		
+		<command name="SettingDomain">			<view>SettingDomain</view></command>		
+		<command name="SettingDomainTable">		<view>SettingDomainTable</view></command>
+		<command name="SettingUnit">			<view>SettingUnit</view></command>		
+		<command name="SettingConfig">			<view>SettingConfig</view></command>		
+		<command name="SettingCategory">		<view>SettingCategory</view></command>		
+		<command name="SettingCategoryCourse">	<view>SettingCategoryCourse</view></command>		
 		<command name="SettingCategoryCourseRecipe"><view>SettingCategoryCourseRecipe</view></command>		
-		<command name="SettingSupplier"><view>SettingSupplier</view></command>
-		<command name="SettingTermPaid"><view>SettingTermPaid</view></command>
-		<command name="SettingTermCollect"><view>SettingTermCollect</view></command>
+		<command name="SettingSupplier">		<view>SettingSupplier</view></command>
+		<command name="SettingTermPaid">		<view>SettingTermPaid</view></command>
+		<command name="SettingTermCollect">		<view>SettingTermCollect</view></command>
 		<command name="SettingSupplierResource"><view>SettingSupplierResource</view></command>
 													
 		<!-- ============================================================================== -->
 		<!-- IMPORT				 															-->
 		<!-- ============================================================================== -->
-		<command name="Import"><view>Import</view></command>
-		<command name="ImportSupplier"><view>ImportSupplier</view></command>
-		<command name="ImportSupplierOrder"><view>ImportSupplierOrder</view></command>
+		<command name="Import">					<view>Import</view></command>
+		<command name="ImportSupplier">			<view>ImportSupplier</view></command>
+		<command name="ImportSupplierOrder">	<view>ImportSupplierOrder</view></command>
 		<command name="ImportSupplierOrderPrint"><view>ImportSupplierOrderPrint</view></command>
 				
 	</control>

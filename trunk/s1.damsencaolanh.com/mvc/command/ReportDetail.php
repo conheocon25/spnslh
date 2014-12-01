@@ -56,9 +56,7 @@
 			$NValueNew 		= new \MVC\Library\Number($ValueNew);
 			
 			$Title = $Tracking->getName();
-			$Navigation = array(				
-				array("BÁO CÁO", "/report")
-			);
+			$Navigation = array(array("BÁO CÁO", "/report"));
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI

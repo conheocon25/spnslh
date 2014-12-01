@@ -82,6 +82,10 @@ RewriteRule ^money/paid/employee$ 									?cmd=MoneyPaidEmployee [L]
 RewriteRule ^money/paid/employee/([0-9]+)$ 							?cmd=MoneyPaidEmployee&IdEmployee=$1 [L]
 RewriteRule ^money/paid/employee/([0-9]+)/page/([0-9]+)$ 			?cmd=MoneyPaidEmployee&IdEmployee=$1&Page=$2 [L]
 
+RewriteRule ^money/paid/supplier$ 									?cmd=MoneyPaidSupplier [L]
+RewriteRule ^money/paid/supplier/([0-9]+)$ 							?cmd=MoneyPaidSupplier&IdSupplier=$1 [L]
+RewriteRule ^money/paid/supplier/([0-9]+)/page/([0-9]+)$ 			?cmd=MoneyPaidSupplier&IdSupplier=$1&Page=$2 [L]
+
 #---------------------------------------------------------------------------------------------------------------------------
 # PAYROLL
 #---------------------------------------------------------------------------------------------------------------------------

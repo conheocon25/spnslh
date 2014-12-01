@@ -146,17 +146,14 @@
 		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isSeller()">
 			<li tal:attributes="class php:ActiveAdmin=='Selling'?'active':'disable'">
 				<a tal:attributes="href '/selling'"><i class="glyphicons-drink" />BÁN HÀNG</a>
-			</li>			
+			</li>
+			<li tal:attributes="class php:ActiveAdmin=='Setting'?'active':'disable'">
+				<a tal:attributes="href '/setting'"><i class="glyphicons-cogwheels" />THIẾT LẬP</a>
+			</li>
 		</ul>
 		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isManager()">
 			<li tal:attributes="class php:ActiveAdmin=='Selling'?'active':'disable'">
 				<a tal:attributes="href '/selling'"><i class="glyphicons-drink" />BÁN HÀNG</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='Import'?'active':'disable'">
-				<a tal:attributes="href '/import'"><i class="glyphicons-truck" />NHẬP HÀNG</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='Money'?'active':'disable'">
-				<a tal:attributes="href '/money'"><i class="glyphicons-transfer" />THU / CHI</a>
 			</li>			
 			<li tal:attributes="class php:ActiveAdmin=='Setting'?'active':'disable'">
 				<a tal:attributes="href '/setting'"><i class="glyphicons-cogwheels" />THIẾT LẬP</a>
