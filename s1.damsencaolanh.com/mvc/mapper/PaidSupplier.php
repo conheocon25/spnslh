@@ -9,12 +9,12 @@ class PaidSupplier extends Mapper implements \MVC\Domain\PaidSupplierFinder {
 				
 		$tblPaidSupplier = "tbl_paid_supplier";
 		
-		$selectAllStmt = sprintf("select * from %s", $tblPaidSupplier);
-		$selectStmt = sprintf("select * from %s where id=?", $tblPaidSupplier);
-		$updateStmt = sprintf("update %s set idsupplier=?, date=?, value=?, note=? where id=?", $tblPaidSupplier);
-		$insertStmt = sprintf("insert into %s (idsupplier, date, value, note) values(?,?,?,?)", $tblPaidSupplier);
-		$deleteStmt = sprintf("delete from %s where id=?", $tblPaidSupplier);
-		$findByStmt = sprintf("select * from %s where idsupplier = ? order by date DESC", $tblPaidSupplier);
+		$selectAllStmt 	= sprintf("select * from %s", $tblPaidSupplier);
+		$selectStmt 	= sprintf("select * from %s where id=?", $tblPaidSupplier);
+		$updateStmt 	= sprintf("update %s set idsupplier=?, date=?, value=?, note=? where id=?", $tblPaidSupplier);
+		$insertStmt 	= sprintf("insert into %s (idsupplier, date, value, note) values(?,?,?,?)", $tblPaidSupplier);
+		$deleteStmt 	= sprintf("delete from %s where id=?", $tblPaidSupplier);
+		$findByStmt 	= sprintf("select * from %s where idsupplier = ? order by date DESC", $tblPaidSupplier);
 		$findByTop10Stmt = sprintf("select * from %s where idsupplier = ? order by date DESC LIMIT 10", $tblPaidSupplier);
 		
 		$findByTrackingStmt = sprintf(
@@ -58,9 +58,7 @@ class PaidSupplier extends Mapper implements \MVC\Domain\PaidSupplierFinder {
 		$this->findByTracking1Stmt = self::$PDO->prepare($findByTracking1Stmt);		
 		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);
     } 
-    function getCollection( array $raw ) {
-        return new PaidSupplierCollection( $raw, $this );
-    }
+    function getCollection( array $raw ) {return new PaidSupplierCollection( $raw, $this );}
 
     protected function doCreateObject( array $array ) {
         $obj = new \MVC\Domain\PaidSupplier( 
@@ -73,10 +71,7 @@ class PaidSupplier extends Mapper implements \MVC\Domain\PaidSupplierFinder {
         return $obj;
     }
 
-    protected function targetClass() {        
-		return "PaidSupplier";
-    }
-
+    protected function targetClass() {return "PaidSupplier";}
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array(
 			$object->getIdSupplier(),
@@ -104,12 +99,8 @@ class PaidSupplier extends Mapper implements \MVC\Domain\PaidSupplierFinder {
         return $this->deleteStmt->execute( $values );
     }
 
-    function selectStmt() {
-        return $this->selectStmt;
-    }
-    function selectAllStmt() {
-        return $this->selectAllStmt;
-    }
+    function selectStmt() 		{return $this->selectStmt;}
+    function selectAllStmt() 	{return $this->selectAllStmt;}
 	
 	function findBy($values ){
         $this->findByStmt->execute( $values );

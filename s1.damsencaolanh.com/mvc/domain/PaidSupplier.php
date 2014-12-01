@@ -29,30 +29,15 @@ class PaidSupplier extends Object{
 		$this->Note = $Note;
         parent::__construct( $Id );
     }
-    function setId( $Id ) {
-        $this->Id = $Id;
-        $this->markDirty();
-    }
-    function getId( ) {
-        return $this->Id;
-    }
-	function getIdPrint( ) {
-        return "SupplierPaid".$this->Id;
-    }
-			
-    function setIdSupplier( $IdSupplier ) {
-        $this->IdSupplier = $IdSupplier;
-        $this->markDirty();
-    }
-    function getIdSupplier( ) {
-        return $this->IdSupplier;
-    }
-	function getSupplier( ) {
-		if ( !isset($this->Supplier) ){
-			$mSupplier = new \MVC\Mapper\Supplier();
-			$this->Supplier = $mSupplier->find($this->IdSupplier);
-		}
-        return $this->Supplier;
+    function setId( $Id ) 	{$this->Id = $Id; $this->markDirty(); }
+    function getId( ) 		{return $this->Id;}
+				
+    function setIdSupplier( $IdSupplier ) 	{$this->IdSupplier = $IdSupplier; $this->markDirty(); }
+    function getIdSupplier( ) 				{return $this->IdSupplier;}
+	function getSupplier( ) {		
+		$mSupplier = new \MVC\Mapper\Supplier();
+		$Supplier = $mSupplier->find($this->IdSupplier);		
+        return $Supplier;
     }
     
 	function setValue( $Value ) {
@@ -69,51 +54,36 @@ class PaidSupplier extends Object{
 		return $num." đ";
     }
 	
-	function setDate( $Date ) {
-        $this->Date = $Date;
-        $this->markDirty();
-    }
-	function getDate( ) {
-        return $this->Date;
-    }
-	function getDatePrint( ) {        
-		$date = new \DateTime($this->Date);
-		return $date->format('d/m/Y');
-    }
+	function setDate( $Date ) 	{$this->Date = $Date; $this->markDirty(); }
+	function getDate( ) 		{return $this->Date;}
+	function getDatePrint( ) 	{$date = new \DateTime($this->Date); return $date->format('d/m/Y'); }
+			   
+	function setNote( $Note ) 	{$this->Note = $Note;$this->markDirty();}
+	function getNote( ) 		{return $this->Note;}	
 	
-	function getEmployee(){
-		$mEmployee = new \MVC\Mapper\Employee();
-		$Employee = $mEmployee->find($this->IdSupplier);
-		return $Employee;
+	function toJSON(){
+		$json = array(
+			'Id' 			=> $this->getId(),
+			'IdSupplier'	=> $this->getIdSupplier(),
+			'Date'			=> $this->getDate(),
+			'Value'			=> $this->getValue(),			
+			'Note'			=> $this->getNote()
+		);
+		return json_encode($json);				
+	}
+			
+	function setArray( $Data ){
+        $this->Id 			= $Data[0];
+		$this->IdSupplier 	= $Data[1];
+		$this->Date 		= $Data[2];
+		$this->Value 		= $Data[3];
+		$this->Note 		= $Data[4];
     }
-	   
-	function setNote( $Note ) {
-        $this->Note = $Note;
-        $this->markDirty();
-    }
-	function getNote( ) {
-		if (!isset($this->Note))
-			return "Click để thêm ghi chú";
-        return $this->Note;
-    }	
 	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLUpdLoad(){
-		return "/paid/supplier/".$this->getIdSupplier()."/".$this->getId()."/upd/load";
-	}
-	function getURLUpdExe(){
-		return "/paid/supplier/".$this->getIdSupplier()."/".$this->getId()."/upd/exe";
-	}
-	
-	function getURLDelLoad(){
-		return "/paid/supplier/".$this->getIdSupplier()."/".$this->getId()."/del/load";
-	}
-	function getURLDelExe(){
-		return "/paid/supplier/".$this->getIdSupplier()."/".$this->getId()."/del/exe";
-	}
-	
+		
 	/*--------------------------------------------------------------------*/	
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}
