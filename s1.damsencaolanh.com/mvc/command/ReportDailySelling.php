@@ -35,8 +35,7 @@
 			$Tracking	= $mTracking->find($IdTrack);
 			$DomainAll	= $mDomain->findAll();
 			
-			$Time1 = $TD->getTime1();
-			
+			$Time1 = $TD->getTime1();			
 			//NẾU KẾT THÚC 2 CA
 			if ($TD->isOne()==false){
 				//TỔNG KẾT CA1 00:00 ĐẾN TRƯỚC TIME1
@@ -103,7 +102,11 @@
 				$NTotal1 	= new \MVC\Library\Number($Value1); 
 				$NTotal2 	= new \MVC\Library\Number($Value2);
 			}
-																					
+			
+			//Update vào Daily
+			$TD->setSelling($Value1 + $Value2);
+			$mTD->update($TD);
+						
 			$Title 		= "BÁN HÀNG ".$TD->getDatePrint();
 			$Navigation = array(
 				array("BÁO CÁO"				, "/report"),

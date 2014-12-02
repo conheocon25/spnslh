@@ -54,24 +54,14 @@
 										</tr>
 										<tr>
 											<td align="right"><B>TỔNG KẾT</B></td>
-											<td align="right">
-												<a class="ViewSellingChart" href="#DialogSellingChart" data-toggle="modal" tal:attributes="data-id Tracking/getId"><span tal:content="ValueSelling/formatCurrency"/></a>
-											</td>
-											<td align="right">												
-												<a class="ViewImportChart" href="#DialogImportChart" data-toggle="modal" tal:attributes="data-id Tracking/getId"><span tal:content="ValueImport/formatCurrency"/></a>
-											</td>
+											<td align="right"><B tal:content="ValueSelling/formatCurrency"/></td>
+											<td align="right"><B tal:content="ValueImport/formatCurrency"/></td>
 											<td align="right"><B tal:content="ValueStore/formatCurrency"/></td>
-											<td align="right">												
-												<a class="ViewPaidChart" href="#DialogPaidChart" data-toggle="modal" tal:attributes="data-id Tracking/getId"><span tal:content="ValuePaid/formatCurrency"/></a>
-											</td>
-											<td align="right">												
-												<a class="ViewCollectChart" href="#DialogCollectChart" data-toggle="modal" tal:attributes="data-id Tracking/getId"><span tal:content="ValueCollect/formatCurrency"/></a>
-											</td>
-											<td align="right">												
-												<a class="ViewValueChart" href="#DialogValueChart" data-toggle="modal" tal:attributes="data-id Tracking/getId"><span tal:content="ValueNew/formatCurrency"/></a>
-											</td>
+											<td align="right"><B tal:content="ValuePaid/formatCurrency"/></td>
+											<td align="right"><B tal:content="ValueCollect/formatCurrency"/></td>
+											<td align="right"><B tal:content="ValueNew/formatCurrency"/></td>
 											<td align="center"><a tal:attributes="href Tracking/getURLReportCourse">Xem</a></td>
-											<td align="center"></td>											
+											<td align="center" />
 										</tr>
 									</tbody>
 								</table>								
@@ -87,7 +77,8 @@
 		/*<![CDATA[*/
 			//-----------------------------------------------------------------------------------
 			//EXE DAILY			
-			//-----------------------------------------------------------------------------------						
+			//-----------------------------------------------------------------------------------
+			/*	
 			$('.TDExe').click(function(){
 				var URL = $(this).attr('alt');				
 				$.ajax({
@@ -105,7 +96,7 @@
 				});
 				location.reload();
 			});
-						
+			*/			
 		/*]]>*/
 		</script>
 	</body>

@@ -6,8 +6,7 @@ class TrackingCustomer extends Object{
     private $Id;
 	private $IdTracking;	
 	private $IdCustomer;
-	private $ValueSession1;	
-	private $ValueSession2;
+	private $ValuePaid;		
 	private $ValueCollect;
 	
 	//-------------------------------------------------------------------------------
@@ -17,15 +16,13 @@ class TrackingCustomer extends Object{
 		$Id=null, 
 		$IdTracking=null, 		
 		$IdCustomer=null, 
-		$ValueSession1=null,
-		$ValueSession2=null, 		
+		$ValuePaid=null,		
 		$ValueCollect=null
 	) {
         $this->Id 				= $Id;
 		$this->IdTracking 		= $IdTracking;
 		$this->IdCustomer 		= $IdCustomer;
-		$this->ValueSession1 	= $ValueSession1;
-		$this->ValueSession2 	= $ValueSession2;
+		$this->ValuePaid 		= $ValuePaid;		
 		$this->ValueCollect 	= $ValueCollect;
 		
         parent::__construct( $Id );
@@ -40,19 +37,15 @@ class TrackingCustomer extends Object{
 	function getIdCustomer( ) {return $this->IdCustomer;}
 	function getCustomer(){ $mCustomer = new \MVC\Mapper\Customer(); $Customer = $mCustomer->find( $this->getIdCustomer() ); return $Customer;}
 	
-	function setValueSession1( $ValueSession1 ) {$this->ValueSession1 = $ValueSession1;$this->markDirty();}
-	function getValueSession1( ) {return $this->ValueSession1;}
-	function getValueSession1Print( ) {$N = new \MVC\Library\Number($this->ValueSession1);return $N->formatCurrency();}
-	
-	function setValueSession2( $ValueSession2 ) {$this->ValueSession2 = $ValueSession2;$this->markDirty();}   
-	function getValueSession2( ) {return $this->ValueSession2;}
-	function getValueSession2Print( ) {$N = new \MVC\Library\Number($this->ValueSession2);return $N->formatCurrency();}
+	function setValuePaid( $ValuePaid ) {$this->ValuePaid = $ValuePaid;$this->markDirty();}   
+	function getValuePaid( ) {return $this->ValuePaid;}
+	function getValuePaidPrint( ) {$N = new \MVC\Library\Number($this->ValuePaid);return $N->formatCurrency();}
 	
 	function setValueCollect( $ValueCollect ) {$this->ValueCollect = $ValueCollect;$this->markDirty();}   
 	function getValueCollect( ) {return $this->ValueCollect;}
 	function getValueCollectPrint( ) {$N = new \MVC\Library\Number($this->ValueCollect); return $N->formatCurrency();}
 	
-	function getValue(){return ($this->getValueSession2() - $this->getValueCollect());}
+	function getValue(){return ($this->getValuePaid() - $this->getValueCollect());}
 	function getValuePrint( ) {$N = new \MVC\Library\Number($this->getValue()); return $N->formatCurrency();}
 	
 	//-------------------------------------------------------------------------------

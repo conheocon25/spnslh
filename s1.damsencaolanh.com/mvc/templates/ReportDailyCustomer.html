@@ -22,16 +22,22 @@
 									<table class="table table-bordered table-striped table-hover">
 										<thead>
 											<tr role="row">
-												<th><div class="text-left">STT</div></th>
+												<th width="48"><div class="text-center">STT</div></th>
 												<th><div class="text-left">HỌ TÊN</div></th>
-												<th width="120"><div class="text-left">CHI TIẾT</div></th>
+												<th width="120"><div class="text-left">ĐIỆN THOẠI</div></th>
+												<th width="120"><div class="text-right">CHI TIẾT</div></th>
 											</tr>
 										</thead>
 										<tbody role="alert" aria-live="polite" aria-relevant="all">
 											<tr tal:repeat="Customer CustomerAll" class="gradeA odd">
-												<td><span tal:content="repeat/Customer/number"/></td>
+												<td><div class="text-center" tal:content="repeat/Customer/number"/></td>
 												<td><span tal:content="Customer/getName"/></td>
-												<td><a tal:attributes="href php:TD->getURLReportCustomerDetail( Customer->getId() )">Xem</a></td>
+												<td><div  tal:content="Customer/getPhone"/></td>
+												<td>
+													<a tal:attributes="href php:TD->getURLReportCustomerDetail( Customer->getId() )">
+														<div class="text-right" tal:content="php: Customer->getValuePrint( IdTrack, IdTD )"/>
+													</a>	
+												</td>
 											</tr>											
 										</tbody>
 									</table>									

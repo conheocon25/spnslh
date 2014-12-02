@@ -147,9 +147,7 @@
 					type: "POST",
 					data: {ListId:Data},
 					url: URL,
-					success: function(msg){
-						location.reload();
-					}
+					success: function(msg){location.reload();}
 				});
 			});
 			
@@ -165,9 +163,7 @@
 				$.ajax({
 					type: "POST",					
 					url: URL,
-					success: function(msg){
-						location.reload();
-					}
+					success: function(msg){location.reload();}
 				});
 			});
 		
@@ -185,17 +181,13 @@
 					type: "POST",
 					data: {Data:Data},
 					url: URL,
-					success: function(msg){
-						location.reload();
-					}
+					success: function(msg){location.reload();}
 				});
 			});
+			/*
 			$("#DialogIns").on('show.bs.modal', function(event){
-				window.setTimeout(
-					function(){$(event.currentTarget).find('input#Date1').first().focus()},
-					0500
-				);
-			});
+				window.setTimeout(function(){$(event.currentTarget).find('input#Date1').first().focus()},0500);
+			});*/
 			
 			//-----------------------------------------------------------------------------------
 			//Load 1 ORDER
@@ -227,17 +219,16 @@
 					type: "POST",
 					data: {Data:Data},
 					url: URL,
-					success: function(msg){
-						location.reload();
-					}
+					success: function(msg){location.reload();}
 				});
-			});	
+			});
+			/*
 			$("#DialogEdit").on('show.bs.modal', function(event){
 				window.setTimeout(
 					function(){$(event.currentTarget).find('input#Date2').first().focus()},
 					0500
 				);
-			});			
+			});*/
 		/*]]>*/
 		</script>
 	</body>

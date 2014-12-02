@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class MoneyCollectCustomer extends Command {
+	class MoneyPaidCustomer extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -17,9 +17,9 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mCustomer = new \MVC\Mapper\Customer();
-			$mCollect = new \MVC\Mapper\CollectCustomer();
-			$mConfig = new \MVC\Mapper\Config();
+			$mCustomer 	= new \MVC\Mapper\Customer();
+			$mPaid 		= new \MVC\Mapper\PaidCustomer();
+			$mConfig 	= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -33,10 +33,11 @@
 			}
 			$Config = $mConfig->findByName('ROW_PER_PAGE');
 			if (!isset($Page)) $Page = 1;
-			$CollectAll = $mCollect->findByPage(array($IdCustomer, $Page, $Config->getValue() ));
-			$PN = new \MVC\Domain\PageNavigation( $Customer->getCollectAll()->count(), $Config->getValue(), $Customer->getURLCollect());
+			
+			$PaidAll 	= $mPaid->findByPage(array($IdCustomer, $Page, $Config->getValue() ));
+			$PN 		= new \MVC\Domain\PageNavigation( $Customer->getPaidAll()->count(), $Config->getValue(), $Customer->getURLPaid());
 									
-			$Title = "THU [".mb_strtoupper($Customer->getName()."]", 'UTF8');
+			$Title = "CHI [".mb_strtoupper($Customer->getName()."]", 'UTF8');
 			$Navigation = array(array("THU / CHI", "/money"));
 			
 			//-------------------------------------------------------------
@@ -44,7 +45,7 @@
 			//-------------------------------------------------------------						
 			$request->setObject('Customer', 	$Customer);
 			$request->setObject('CustomerAll', 	$CustomerAll);
-			$request->setObject('CollectAll', 	$CollectAll);
+			$request->setObject('PaidAll', 		$PaidAll);
 			$request->setObject('PN', 			$PN);
 			$request->setProperty('Page', 		$Page);
 			$request->setProperty('Title', 		$Title);			
