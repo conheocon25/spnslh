@@ -30,18 +30,22 @@
 			$CustomerAll	= $mCustomer->findAll();
 			$ConfigName		= $mConfig->findByName("NAME");
 									
-			$Title 		= "CÔNG NỢ KHÁCH HÀNG TÍNH ĐẾN ".$TD->getDatePrint();
+			$Title 		= "KHÁCH HÀNG ".$TD->getDatePrint();
 			$Navigation = array(
 				array("BÁO CÁO"				, "/report"),
-				array($Tracking->getName()	, $Tracking->getURLView())
+				array($Tracking->getName()	, $Tracking->getURLView())				
 			);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
 			$request->setProperty('Title'		, $Title);
+			$request->setProperty('IdTrack'		, $IdTrack);
+			$request->setProperty('IdTD'		, $IdTD);
+			
 			$request->setObject('Navigation'	, $Navigation);
 			$request->setObject('CustomerAll'	, $CustomerAll);
+								
 			$request->setObject('TD'			, $TD);
 			$request->setObject('ConfigName'	, $ConfigName);
 		}

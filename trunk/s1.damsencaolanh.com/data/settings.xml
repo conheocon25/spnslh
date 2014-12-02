@@ -102,12 +102,13 @@
 		<!-- ============================================================================== -->
 		<!-- MONEY		 																	-->
 		<!-- ============================================================================== -->
-		<command name="Money">					<view>Money</view></command>
-		<command name="MoneyCollectGeneral">	<view>MoneyCollectGeneral</view></command>
-		<command name="MoneyCollectCustomer">	<view>MoneyCollectCustomer</view></command>
-		<command name="MoneyPaidGeneral">		<view>MoneyPaidGeneral</view></command>
-		<command name="MoneyPaidEmployee">		<view>MoneyPaidEmployee</view></command>
-		<command name="MoneyPaidSupplier">		<view>MoneyPaidSupplier</view></command>
+		<command name="Money">					<view>Money</view>					</command>
+		<command name="MoneyCollectGeneral">	<view>MoneyCollectGeneral</view>	</command>
+		<command name="MoneyCollectCustomer">	<view>MoneyCollectCustomer</view>	</command>
+		<command name="MoneyPaidGeneral">		<view>MoneyPaidGeneral</view>		</command>
+		<command name="MoneyPaidCustomer">		<view>MoneyPaidCustomer</view>		</command>
+		<command name="MoneyPaidEmployee">		<view>MoneyPaidEmployee</view>		</command>
+		<command name="MoneyPaidSupplier">		<view>MoneyPaidSupplier</view>		</command>
 							
 		<!-- ============================================================================== -->
 		<!-- SETTING	 																	-->

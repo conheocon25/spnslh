@@ -58,7 +58,7 @@
 				$Order 			= $OrderAll->current();
 				$ValueImport 	+= $Order->getValue();
 				$OrderAll->next();
-			}			
+			}
 			
 			//(3) TÍNH BÁO CÁO CHI TIỀN
 			$PaidAll = $mPaid->findByTracking( array(

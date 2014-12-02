@@ -12,8 +12,7 @@ class Customer extends Object{
     private $Note;
     private $Address;
 	private $Discount;
-	
-	/*Hàm kh?i t?o và thi?t l?p các thu?c tính*/
+		
     function __construct( $Id=null, $Name=null, $Type=null, $Card=null, $Phone=null, $Address=null, $Note=null, $Discount=null ) {
         $this->Id = $Id;
 		$this->Name 	= $Name;
@@ -74,43 +73,7 @@ class Customer extends Object{
 		$this->Note		= $Data[6];
 		$this->Discount	= $Data[7];
     }
-	
-	function toXML($Doc){
-		$Obj = $Doc->createElement( "customer" );
-		$Obj->setAttributeNode(new \DOMAttr('id', $this->getId()));
-						
-		$Name = $Doc->createElement( "name" );
-		$Name->appendChild($Doc->createTextNode( $this->getName() ));
-		
-		$Type = $Doc->createElement( "type" );
-		$Type->appendChild($Doc->createTextNode( $this->getType() ));
-		
-		$Card = $Doc->createElement( "card" );
-		$Card->appendChild($Doc->createTextNode( $this->getCard() ));
-		
-		$Phone = $Doc->createElement( "phone" );
-		$Phone->appendChild($Doc->createTextNode( $this->getPhone() ));
-		
-		$Address = $Doc->createElement( "address" );
-		$Address->appendChild($Doc->createTextNode( $this->getAddress() ));
-		
-		$Note = $Doc->createElement( "note" );
-		$Note->appendChild($Doc->createTextNode( $this->getNote() ));
-		
-		$Discount = $Doc->createElement( "discount" );
-		$Discount->appendChild($Doc->createTextNode( $this->getDiscount() ));
-		
-		$Obj->appendChild( $Name 		);
-		$Obj->appendChild( $Type 		);
-		$Obj->appendChild( $Card 		);
-		$Obj->appendChild( $Phone 		);
-		$Obj->appendChild( $Address 	);
-		$Obj->appendChild( $Note 		);
-		$Obj->appendChild( $Discount 	);
-		
-		return $Obj;
-	}
-	
+			
 	function getSessionAll(){
 		$mSession = new	\MVC\Mapper\Session();
 		$Sessions = $mSession->findByCustomer(array($this->Id));
@@ -123,8 +86,89 @@ class Customer extends Object{
 		return $CollectAll;
 	}
 	
+	function getPaidAll(){
+		$mPC 		= new \MVC\Mapper\PaidCustomer();
+		$PaidAll 	= $mPC->findBy(array($this->getId()));
+		return $PaidAll;
+	}
+	
+	//Tính công nợ	
+	function getValue($IdTrack, $IdTD){
+		$mTracking 	= new \MVC\Mapper\Tracking();
+		$mTC 		= new \MVC\Mapper\TrackingCustomer();
+		$mTD 		= new \MVC\Mapper\TrackingDaily();
+		$mCC 		= new \MVC\Mapper\CollectCustomer();
+		$mPC 		= new \MVC\Mapper\PaidCustomer();			
+		
+		$Tracking 	= $mTracking->find($IdTrack);
+		$TD 		= $mTD->find($IdTD);
+			
+		//TÍNH NỢ CŨ CỦA KHÁCH HÀNG
+		$TCAll = $mTC->findByPre(array($IdTrack, $this->getId()));
+		if ($TCAll->count()==0){
+			$TC = new \MVC\Domain\TrackingCustomer(
+				null,
+				$IdTrack,
+				$this->getId(),
+				0,
+				0
+			);
+		}else{
+			$TC = $TCAll->current();
+		}
+					
+		//CÁC GIAO DỊCH TRONG KÌ HIỆN TẠI
+		$CollectAll = $mCC->findByTracking(array($this->getId(), $Tracking->getDateStart(), $TD->getDate()));
+		$VC = 0;
+		while ($CollectAll->valid()){
+			$Collect = $CollectAll->current();
+			$VC += $Collect->getValue();
+			$CollectAll->next();
+		}
+				
+		//CÁC TRẢ TIỀN TRONG KÌ HIỆN TẠI
+		$PaidAll = $mPC->findByTracking(array($this->getId(), $Tracking->getDateStart(), $TD->getDate()));
+		$VP = 0;
+		while ($PaidAll->valid()){
+			$Paid 	= $PaidAll->current();
+			$VP 	+= $Paid->getValue();
+			$PaidAll->next();
+		}
+				
+		//TÍNH NỢ MỚI			
+		$VO		= $TC->getValue();
+		$VN		= $VO + $VP - $VC;
+				
+		//NẾU LÀ NGÀY CUỐI THÁNG THÌ TỔNG KẾT SỔ THÁNG
+		if ($TD->getDate() == $Tracking->getDateEnd()){
+			$TCAll = $mTC->findBy1(array($IdTrack, $this->getId()));
+			if ($TCAll->count()==0){
+				$TC = new \MVC\Domain\TrackingCustomer(
+					null,
+					$IdTrack,
+					$IdCustomer,
+					$VP,						
+					$VC
+				);
+				$mTC->insert($TC);
+			}else{
+				$TC = $TCAll->current();
+				$TC->setValuePaid($VP);					
+				$TC->setValueCollect($VC);
+				$mTC->update($TC);
+			}
+		}
+		return $VN;
+	}
+	
+	function getValuePrint($IdTrack, $IdTD){
+		$NValue = new \MVC\Library\Number($this->getValue($IdTrack, $IdTD));
+		return $NValue->formatCurrency();
+	}
+		
 	//=================================================================================
-	function getURLCollect(){return "/money/collect/customer/".$this->getId();}
+	function getURLCollect()	{return "/money/collect/customer/".$this->getId();}
+	function getURLPaid()		{return "/money/paid/customer/".$this->getId();}
 	
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}	

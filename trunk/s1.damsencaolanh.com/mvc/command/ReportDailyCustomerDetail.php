@@ -18,12 +18,13 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mCustomer 	= new \MVC\Mapper\Customer();			
+			$mCustomer 	= new \MVC\Mapper\Customer();
 			$mTracking 	= new \MVC\Mapper\Tracking();
 			$mTC 		= new \MVC\Mapper\TrackingCustomer();
 			$mTD 		= new \MVC\Mapper\TrackingDaily();
 			$mSession 	= new \MVC\Mapper\Session();
 			$mCC 		= new \MVC\Mapper\CollectCustomer();
+			$mPC 		= new \MVC\Mapper\PaidCustomer();
 			$mConfig 	= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
@@ -37,10 +38,10 @@
 			$Navigation = array(
 				array("BÁO CÁO"				, "/report"),
 				array($Tracking->getName()	, $Tracking->getURLView()),
-				array($TD->getDatePrint()	, $Tracking->getURLView())
+				array($TD->getDatePrint()	, $TD->getURLReportCustomer())
 			);
 			$Title 	= mb_strtoupper($Customer->getName(), 'UTF8');
-						
+			
 			//TÍNH NỢ CŨ CỦA KHÁCH HÀNG
 			$TCAll = $mTC->findByPre(array($IdTrack, $IdCustomer));
 			if ($TCAll->count()==0){
@@ -57,23 +58,6 @@
 			}
 						
 			//CÁC GIAO DỊCH TRONG KÌ HIỆN TẠI
-			$D1 		= $Tracking->getDateStart()." 1:0:0";
-			$D2 		= $TD->getDate()." 23:59:59";
-			$SessionAll = $mSession->findByTrackingCustomer(array($IdCustomer, $D1, $D2));			
-			$VS1	=	0;
-			$VS2	=	0;
-			while ($SessionAll->valid()){
-				$Session = $SessionAll->current();
-				if ($Session->getStatus()==1)
-					$VS1 += $Session->getValue();
-				else if ($Session->getStatus()==2)
-					$VS2 += $Session->getValue();
-				$SessionAll->next();
-			}
-			$NVS1 = new \MVC\Library\Number($VS1);
-			$NVS2 = new \MVC\Library\Number($VS2);
-			
-			//CÁC TRẢ TIỀN TRONG KÌ HIỆN TẠI
 			$CollectAll = $mCC->findByTracking(array($IdCustomer, $Tracking->getDateStart(), $TD->getDate()));
 			$VC = 0;
 			while ($CollectAll->valid()){
@@ -83,12 +67,22 @@
 			}
 			$NVC = new \MVC\Library\Number($VC);
 			
-			//TÍNH NỢ MỚI			
-			$VO	= $TC->getValue();
-			$NVO = new \MVC\Library\Number($VO);
+			//CÁC TRẢ TIỀN TRONG KÌ HIỆN TẠI
+			$PaidAll = $mPC->findByTracking(array($IdCustomer, $Tracking->getDateStart(), $TD->getDate()));
+			$VP = 0;
+			while ($PaidAll->valid()){
+				$Paid 	= $PaidAll->current();
+				$VP 	+= $Paid->getValue();
+				$PaidAll->next();
+			}
+			$NVP = new \MVC\Library\Number($VP);
 			
-			$VN	= $VO + $VS2 - $VC;
-			$NVN = new \MVC\Library\Number($VN);
+			//TÍNH NỢ MỚI			
+			$VO		= $TC->getValue();
+			$NVO 	= new \MVC\Library\Number($VO);
+			
+			$VN		= $VO + $VP - $VC;
+			$NVN 	= new \MVC\Library\Number($VN);
 			
 			//NẾU LÀ NGÀY CUỐI THÁNG THÌ TỔNG KẾT SỔ THÁNG
 			if ($TD->getDate() == $Tracking->getDateEnd()){
@@ -98,15 +92,13 @@
 						null,
 						$IdTrack,
 						$IdCustomer,
-						$VS1,
-						$VS2,
+						$VP,						
 						$VC
 					);
 					$mTC->insert($TC);
 				}else{
 					$TC = $TCAll->current();
-					$TC->setValueSession1($VS1);
-					$TC->setValueSession2($VS2);
+					$TC->setValuePaid($VP);					
 					$TC->setValueCollect($VC);
 					$mTC->update($TC);
 				}
@@ -122,12 +114,11 @@
 			$request->setObject('Customer'	, $Customer);
 			$request->setObject('ConfigName', $ConfigName);
 			
-			$request->setObject('SessionAll', $SessionAll);
+			$request->setObject('PaidAll'	, $PaidAll);
 			$request->setObject('CollectAll', $CollectAll);
-			$request->setObject('NVS1'		, $NVS1);
-			$request->setObject('NVS2'		, $NVS2);
-			$request->setObject('NVC'		, $NVC);						
+			$request->setObject('NVC'		, $NVC);
 			$request->setObject('NVO'		, $NVO);
+			$request->setObject('NVP'		, $NVP);
 			$request->setObject('NVN'		, $NVN);
 		}
 	}
