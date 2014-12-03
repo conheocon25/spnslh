@@ -24,29 +24,8 @@ class OrderImport extends Mapper implements \MVC\Domain\OrderImportFinder {
 			order by date DESC
 		", $tblOrderImport);
 				
-		$findByTrackingStmt = sprintf("
-			select
-				*
-			from 
-				%s
-			where
-				date >= ? AND date <= ?
-			order by 
-				date DESC
-			"
-		, $tblOrderImport);
-		
-		$findByTracking1Stmt = sprintf("
-			select
-				*
-			from 
-				%s
-			where
-				idsupplier=? AND date >= ? AND date <= ?
-			order by 
-				date DESC
-			"
-		, $tblOrderImport);
+		$findByTrackingStmt = sprintf("select * from %s where date >= ? AND date <= ? order by date DESC", $tblOrderImport);
+		$findByTracking1Stmt = sprintf("select * from %s where idsupplier=? AND date >= ? AND date <= ? order by date DESC", $tblOrderImport);
 		
 		$findByPageStmt = sprintf("
 							SELECT * 

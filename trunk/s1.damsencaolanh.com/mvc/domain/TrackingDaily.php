@@ -167,21 +167,22 @@ class TrackingDaily extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLReport()			{return "/report/".$this->getIdTracking()."/".$this->getId();}
-	function getURLReportSelling()	{return "/report/".$this->getIdTracking()."/".$this->getId()."/selling";}
+	function getURLReport()			{return "/report/".$this->getIdTracking()."/".$this->getId();				}
+	function getURLReportSelling()	{return "/report/".$this->getIdTracking()."/".$this->getId()."/selling";	}
 	function getURLReportSellingByCategory()	{return "/report/".$this->getIdTracking()."/".$this->getId()."/selling/bycategory";}
 	function getURLReportSellingByDomain()		{return "/report/".$this->getIdTracking()."/".$this->getId()."/selling/bydomain";}
-	function getURLReportImport()	{return "/report/".$this->getIdTracking()."/".$this->getId()."/import";}
-	function getURLReportStore()	{return "/report/".$this->getIdTracking()."/".$this->getId()."/store";}
-	function getURLReportPaid()		{return "/report/".$this->getIdTracking()."/".$this->getId()."/paid";}
-	function getURLReportCollect()	{return "/report/".$this->getIdTracking()."/".$this->getId()."/collect";}
-	function getURLReportCourse()	{return "/report/".$this->getIdTracking()."/".$this->getId()."/course";}
-	function getURLReportCustomer()	{return "/report/".$this->getIdTracking()."/".$this->getId()."/customer";}
-	function getURLReportLog()		{return "/report/".$this->getIdTracking()."/".$this->getId()."/log";}
+	function getURLReportImport()	{return "/report/".$this->getIdTracking()."/".$this->getId()."/import";		}
+	function getURLReportStore()	{return "/report/".$this->getIdTracking()."/".$this->getId()."/store";		}
+	function getURLReportPaid()		{return "/report/".$this->getIdTracking()."/".$this->getId()."/paid";		}
+	function getURLReportCollect()	{return "/report/".$this->getIdTracking()."/".$this->getId()."/collect";	}
+	function getURLReportCourse()	{return "/report/".$this->getIdTracking()."/".$this->getId()."/course";		}
+	function getURLReportCustomer()	{return "/report/".$this->getIdTracking()."/".$this->getId()."/customer";	}
+	function getURLReportSupplier()	{return "/report/".$this->getIdTracking()."/".$this->getId()."/supplier";	}
+	function getURLReportLog()		{return "/report/".$this->getIdTracking()."/".$this->getId()."/log";		}
 	
-	function getURLReportCustomerDetail($IdCustomer){
-		return "/report/".$this->getIdTracking()."/".$this->getId()."/customer/".$IdCustomer;
-	}	
+	function getURLReportCustomerDetail($IdCustomer){return "/report/".$this->getIdTracking()."/".$this->getId()."/customer/".$IdCustomer;}	
+	function getURLReportSupplierDetail($IdSupplier){return "/report/".$this->getIdTracking()."/".$this->getId()."/supplier/".$IdSupplier;}
+	
 	//-------------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}	

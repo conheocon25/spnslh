@@ -133,12 +133,8 @@ RewriteRule ^report/([0-9]+)/([0-9]+)/course$ 				?cmd=ReportDailyCourse&IdTrack
 RewriteRule ^report/([0-9]+)/([0-9]+)/customer$ 			?cmd=ReportDailyCustomer&IdTrack=$1&IdTD=$2 [L]
 RewriteRule ^report/([0-9]+)/([0-9]+)/customer/([0-9]+)$ 	?cmd=ReportDailyCustomerDetail&IdTrack=$1&IdTD=$2&IdCustomer=$3 [L]
 
-RewriteRule ^report/([0-9]+)/chart/course/([0-9]+)$ 		?cmd=ReportChartCourse&IdTrack=$1&IdCourse=$2 [L]
-RewriteRule ^report/([0-9]+)/chart/selling$ 				?cmd=ReportChartSelling&IdTrack=$1 [L]
-RewriteRule ^report/([0-9]+)/chart/import$ 					?cmd=ReportChartImport&IdTrack=$1 [L]
-RewriteRule ^report/([0-9]+)/chart/paid$ 					?cmd=ReportChartPaid&IdTrack=$1 [L]
-RewriteRule ^report/([0-9]+)/chart/collect$ 				?cmd=ReportChartCollect&IdTrack=$1 [L]
-RewriteRule ^report/([0-9]+)/chart/value$ 					?cmd=ReportChartValue&IdTrack=$1 [L]
+RewriteRule ^report/([0-9]+)/([0-9]+)/supplier$ 			?cmd=ReportDailySupplier&IdTrack=$1&IdTD=$2 [L]
+RewriteRule ^report/([0-9]+)/([0-9]+)/supplier/([0-9]+)$ 	?cmd=ReportDailySupplierDetail&IdTrack=$1&IdTD=$2&IdSupplier=$3 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # SETTING
