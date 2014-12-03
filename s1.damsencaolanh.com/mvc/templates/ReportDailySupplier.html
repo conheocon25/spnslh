@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html style="overflow-y:hidden;" lang="en">
+	<head>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+	</head>
+	
+	<body data-menu-position="closed">
+		<div metal:use-macro="mAdmin.xhtml/Header"/>		
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>			
+			<div metal:use-macro="mAdmin.xhtml/LocationBar"/>			
+			<div class="container-fluid">							
+				<div class="row">
+					<div class="col-12">
+						<div class="widget-box">
+							<div class="widget-content nopadding">
+								<div role="grid" class="dataTables_wrapper">
+									<table class="table table-bordered table-striped table-hover">
+										<thead>
+											<tr role="row">
+												<th width="48"><div class="text-center">STT</div></th>
+												<th><div class="text-left">HỌ TÊN</div></th>
+												<th width="120"><div class="text-left">ĐIỆN THOẠI</div></th>
+												<th width="120"><div class="text-right">CHI TIẾT</div></th>
+											</tr>
+										</thead>
+										<tbody role="alert" aria-live="polite" aria-relevant="all">
+											<tr tal:repeat="Supplier SupplierAll" class="gradeA odd">
+												<td><div class="text-center" tal:content="repeat/Supplier/number"/></td>
+												<td><span tal:content="Supplier/getName"/></td>
+												<td><div  tal:content="Supplier/getPhone"/></td>
+												<td>
+													<a tal:attributes="href php:TD->getURLReportSupplierDetail( Supplier->getId() )">
+														<!--
+														<div class="text-right" tal:content="php: Customer->getValuePrint( IdTrack, IdTD )"/>
+														!-->Xem
+													</a>	
+												</td>
+											</tr>											
+										</tbody>
+									</table>									
+								</div>  
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+	</body>
+</html>

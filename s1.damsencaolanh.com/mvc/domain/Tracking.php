@@ -204,8 +204,11 @@ class Tracking extends Object{
 	function getURLPayRoll(){return "/payroll/".$this->getId();}	
 	function getURLPayRollEmployee( $Employee ){return "/payroll/".$this->getId()."/".$Employee->getId();}
 			
-	function getURLCustomer(){return "/report/customer/".$this->getId();}
-	function getURLCustomerDetail($IdCustomer){return "/report/customer/".$this->getId()."/".$IdCustomer;}
+	function getURLCustomer()					{return "/report/customer/".$this->getId();}
+	function getURLCustomerDetail($IdCustomer)	{return "/report/customer/".$this->getId()."/".$IdCustomer;}
+
+	function getURLSupplier()					{return "/report/supplier/".$this->getId();}
+	function getURLSupplierDetail($IdSupplier)	{return "/report/supplier/".$this->getId()."/".$IdSupplier;}
 	
 	function getURLResource()		{return "/report/resource/".$this->getId();}
 	function getURLHours()			{return "/report/hours/".$this->getId();}

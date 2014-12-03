@@ -44,31 +44,26 @@
 		<!-- ============================================================================== -->
 		<!-- REPORT.DETAIL			 														-->
 		<!-- ============================================================================== -->
-		<command name="Report">				<view>Report</view>				</command>
-		<command name="ReportInfo">			<view>ReportInfo</view>			</command>
-		<command name="ReportDetail">		<view>ReportDetail</view>		</command>
-		<command name="ReportCourse">		<view>ReportCourse</view>		</command>
+		<command name="Report">						<view>Report</view>				</command>
+		<command name="ReportInfo">					<view>ReportInfo</view>			</command>
+		<command name="ReportDetail">				<view>ReportDetail</view>		</command>
+		<command name="ReportCourse">				<view>ReportCourse</view>		</command>
 		
-		<command name="ReportDaily">		<view>ReportDaily</view>		</command>
-		<command name="ReportDailySelling">	<view>ReportDailySelling</view>	</command>
+		<command name="ReportDaily">				<view>ReportDaily</view>		</command>
+		<command name="ReportDailySelling">			<view>ReportDailySelling</view>	</command>
 		<command name="ReportDailySellingByCategory">	<view>ReportDailySellingByCategory</view></command>
 		<command name="ReportDailySellingByDomain">		<view>ReportDailySellingByDomain</view>	</command>
-		<command name="ReportDailyImport">	<view>ReportDailyImport</view>	</command>
-		<command name="ReportDailyStore">	<view>ReportDailyStore</view>	</command>
-		<command name="ReportDailyPaid">	<view>ReportDailyPaid</view>	</command>
-		<command name="ReportDailyLog">		<view>ReportDailyLog</view>		</command>
-		<command name="ReportDailyCollect">	<view>ReportDailyCollect</view>	</command>
-		<command name="ReportDailyCourse">	<view>ReportDailyCourse</view>	</command>
-		<command name="ReportDailyCustomer"><view>ReportDailyCustomer</view></command>
-		<command name="ReportDailyCustomerDetail"><view>ReportDailyCustomerDetail</view></command>
-		
-		<command name="ReportChartCourse">	<view>ReportChartCourse</view>	</command>
-		<command name="ReportChartSelling">	<view>ReportChartSelling</view>	</command>
-		<command name="ReportChartImport">	<view>ReportChartImport</view>	</command>
-		<command name="ReportChartPaid">	<view>ReportChartPaid</view>	</command>
-		<command name="ReportChartCollect">	<view>ReportChartCollect</view>	</command>
-		<command name="ReportChartValue">	<view>ReportChartValue</view>	</command>
-										
+		<command name="ReportDailyImport">			<view>ReportDailyImport</view>			</command>
+		<command name="ReportDailyStore">			<view>ReportDailyStore</view>			</command>
+		<command name="ReportDailyPaid">			<view>ReportDailyPaid</view>			</command>
+		<command name="ReportDailyLog">				<view>ReportDailyLog</view>				</command>
+		<command name="ReportDailyCollect">			<view>ReportDailyCollect</view>			</command>
+		<command name="ReportDailyCourse">			<view>ReportDailyCourse</view>			</command>
+		<command name="ReportDailyCustomer">		<view>ReportDailyCustomer</view>		</command>
+		<command name="ReportDailyCustomerDetail">	<view>ReportDailyCustomerDetail</view>	</command>
+		<command name="ReportDailySupplier">		<view>ReportDailySupplier</view>		</command>
+		<command name="ReportDailySupplierDetail">	<view>ReportDailySupplierDetail</view>	</command>
+														
 		<!-- ============================================================================== -->
 		<!-- SELLING		 																-->
 		<!-- ============================================================================== -->		

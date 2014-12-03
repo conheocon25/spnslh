@@ -37,6 +37,7 @@ interface ConfigCollection 			extends \Iterator {function add( Object $Config 		
 
 interface TrackingCollection 		extends \Iterator {function add( Object $Tracking		);}
 interface TrackingCustomerCollection 	extends \Iterator {function add( Object $TrackingCustomer);}
+interface TrackingSupplierCollection 	extends \Iterator {function add( Object $TrackingSupplier);}
 interface TrackingStoreCollection 	extends \Iterator {function add( Object $TrackingStore	);}
 interface TrackingCourseCollection 	extends \Iterator {function add( Object $TrackingCourse	);}
 interface TrackingDailyCollection 	extends \Iterator {function add( Object $TrackingDaily	);}
