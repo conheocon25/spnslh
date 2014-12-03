@@ -3,365 +3,202 @@
 	<!-- ======================================================================== -->
 	<!-- META TAG INCLUDE														  -->
 	<!-- ======================================================================== -->
-	<span metal:define-macro="IncludeMETA">
-		<title tal:content="string:Website Cửa hàng Thanh Socola"/>
+	<tal:block metal:define-macro="IncludeMETA">
+		<title>Website Cửa hàng Thanh Socola</title>
 		<base href="http://thanhsocola.com"/>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-		<meta http-equiv="Pragma" content="no-cache"/>
-		<meta http-equiv="Expires" content="-1"/>
-		<meta http-equiv="Cache-Control" content="no-cache"/>
-		<meta name="keywords" content="Website Cửa hàng Thanh Socola"/>
-		<meta name="description" content="Website Cửa hàng Thanh Socola"/>
-		<meta name="page-topic" content="Website Cửa hàng Thanh Socola"/>
-		<meta name="Abstract" content="Website Cửa hàng Thanh Socola"/>
-		<meta name="classification" content="Website Cửa hàng Thanh Socola"/>
-		<link rel="shortcut icon" type="image/png" href="/data/images/icon.ico" />
-	</span>
-	
-	<span metal:define-macro="IncludeMETAPOST">
-		<title tal:content="string:Website Cửa hàng Thanh Socola"/>
-		<base href="http://thanhsocola.com"/>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-		<meta http-equiv="Pragma" content="no-cache"/>
-		<meta http-equiv="Expires" content="-1"/>
-		<meta http-equiv="Cache-Control" content="no-cache"/>
-		<meta name="keywords" content="Website Cửa hàng Thanh Socola"/>
-		<meta name="description" content="Website Cửa hàng Thanh Socola"/>
-		<meta name="page-topic" content="Website Cửa hàng Thanh Socola"/>
-		<meta name="Abstract" content="Website Cửa hàng Thanh Socola"/>
-		<meta name="classification" content="Website Cửa hàng Thanh Socola"/>
-		<meta property="og:title" content="TIÊU ĐỀ GÌ ĐÂY" />
-		<meta property="og:description" content="MÔ TẢ KHỈ GÌ" />
-		<meta property="og:image" content="ẢNH GÌ À" />
-
-		<link rel="shortcut icon" type="image/png" href="/data/images/icon.ico" />
-	</span>
+		<link href="/mvc/templates/front/img/ficon.ico" rel="shortcut icon" type="image/x-icon"/>
+		<link href="/mvc/templates/front/img/ficon.ico" rel="shortcut icon" type="image/ico"/>
+		<meta http-equiv="Content-Type"		content="text/html; charset=UTF-8"/>
+		<meta http-equiv="Pragma"			content="no-cache"/>
+		<meta http-equiv="Expires"			content="-1"/>
+		<meta http-equiv="Cache-Control"	content="no-cache"/>
+		<meta name="viewport"				content="width=device-width, initial-scale=1.0"/>
+		<meta name="keywords"				content="Website Cửa hàng Thanh Socola"/>
+		<meta name="description"			content="Website Cửa hàng Thanh Socola"/>
+		<meta name="page-topic"				content="Website Cửa hàng Thanh Socola"/>
+		<meta name="Abstract"				content="Website Cửa hàng Thanh Socola"/>
+		<meta name="classification"			content="Website Cửa hàng Thanh Socola"/>
+	</tal:block>
 	
 	<!-- ======================================================================== -->
 	<!-- CASCADING STYLE SHEETS INCLUDE											  -->
 	<!-- ======================================================================== -->
-	<span metal:define-macro="IncludeCSS">	
-		<link rel="stylesheet" href="/mvc/templates/front/css/bootstrap.min.css"/>
-		<link rel="stylesheet" href="/mvc/templates/front/css/font-awesome.min.css"/>
-		<link rel="stylesheet" href="/mvc/templates/front/css/prettyPhoto.css"/>
-		<link rel="stylesheet" href="/mvc/templates/front/css/colpick.css"/>
-		<link rel="stylesheet" href="/mvc/templates/front/css/sequence-slider.css"/>
-		<link rel="stylesheet" href="/mvc/templates/front/css/owl.carousel.css"/>
-		<link rel="stylesheet" href="/mvc/templates/front/css/style.css"/>
-		<link rel="stylesheet" href="/mvc/templates/front/css/responsive.css"/>
-	</span>
+	<tal:block metal:define-macro="IncludeCSS">	
+		<link rel="stylesheet" type="text/css" href="/mvc/templates/front/css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="/mvc/templates/front/css/bootstrap.config.css"/>
+	</tal:block>
 	
 	<!-- ======================================================================== -->
 	<!-- JAVASCRIPT INCLUDE														  -->
 	<!-- ======================================================================== -->
-	<span metal:define-macro="IncludeJS">						
-		<script src="/mvc/templates/front/js/jquery-1.11.0.min.js"></script>
-		<script src="/mvc/templates/front/js/bootstrap.min.js"></script>
-		<script src="/mvc/templates/front/js/smoothscroll.js"></script>
-		<script src="/mvc/templates/front/js/retina-1.1.0.min.js"></script>
-		<script src="/mvc/templates/front/js/jquery.placeholder.js"></script>
-		<script src="/mvc/templates/front/js/jquery.hoverIntent.min.js"></script>
-		<script src="/mvc/templates/front/js/twitter/jquery.tweet.min.js"></script>
-		<script src="/mvc/templates/front/js/jquery.flexslider-min.js"></script>
-		<script src="/mvc/templates/front/js/owl.carousel.min.js"></script>
-		<script src="/mvc/templates/front/js/jflickrfeed.min.js"></script>
-		<script src="/mvc/templates/front/js/jquery.prettyPhoto.js"></script>
-		<script src="/mvc/templates/front/js/jquery.sequence-min.js"></script>
-		<script src="/mvc/templates/front/js/colpick.js"></script>
-		<script src="/mvc/templates/front/js/main.js"></script>
-		<script src="/mvc/templates/front/js/modernizr.custom.js"></script>
-		<script src="/mvc/templates/front/js/jquery.isotope.min.js"></script>
-		<script src="/mvc/templates/front/js/jquery.fitvids.js"></script>
-		<script src="/mvc/templates/front/js/jquery.elastislide.js"></script>
-		<script src="/mvc/templates/front/js/jquery.mlens-1.3.min.js"></script>
-	</span>
+	<tal:block metal:define-macro="IncludeJS">						
+		<script type="text/javascript" src="/mvc/templates/front/js/jquery-1.11.1.min.js"></script>
+		<script type="text/javascript" src="/mvc/templates/front/js/bootstrap.min.js"></script>
+	</tal:block>
 	
 	<!-- ======================================================================== -->
 	<!-- HEADER																	  -->
 	<!-- ======================================================================== -->
-	<header metal:define-macro="Header" id="header">
-		<div id="header-top">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">						
-						<marquee scrolldelay="2" scrollamount="2" behavior="scroll" direction="left" style="padding:5px; color:#FFFFE0">Cửa hàng Thanh Socola xin kính chào quý khách! Với các món ăn đa dạng và phong phú, chất lượng cao và giá phải chăng cùng phong cách phục vụ chuyên nghiệp, chu đáo, chúng tôi hứa hẹn sẽ là điểm đến tham quan, ăn uổng giải trí lý tưởng cho mọi gia đình</marquee>
-					</div>
+	<div metal:define-macro="Header" id="header">
+		<div class="row">
+			<div class="col-md-4">
+				<a href="/trang-chu">
+					<img alt="Brand" src="/mvc/templates/front/img/logo.png" width="100%"/>
+				</a>
+			</div>
+			<div class="col-md-8">
+				<div class="banner">
+					<img alt="Brand" src="/mvc/templates/front/img/banner.gif" width="100%"/>
 				</div>
 			</div>
 		</div>
-		<div id="inner-header">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-5 col-sm-5 col-xs-12 logo-container">
-						<h1 class="logo clearfix">
-							<span>Cửa hàng Thanh Socola</span>
-							<a href="/" title="Cửa hàng Thanh Socola">
-								<img src="/mvc/templates/front/images/logo.png" alt="Cửa hàng Thanh Socola" height="100"/>
-							</a>
-						</h1>
+		<nav class="navbar navbar-default" role="navigation">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<div class="navbar-header">
+						<a class="navbar-brand" href="/trang-chu">
+							<img alt="Brand" src="/mvc/templates/front/img/home.png"/>
+						</a>
 					</div>
-					<div class="col-md-7 col-sm-7 col-xs-12 header-inner-right">
-						<div class="header-box contact-infos pull-right">
-							<ul>
-								<li><span class="header-box-icon header-box-icon-email"/><h4 tal:content="ConfigGmail/getValue"/></li>
-								<li><span class="header-box-icon header-box-icon-skype"/><h4 tal:content="ConfigSkype/getValue"/></li>
+				</div>
+				
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li tal:attributes="class php:Active=='Introduction'?'active':''"><a href="/gioi-thieu">GIỚI THIỆU</a></li>
+						<li tal:attributes="class php:Active=='News'?'active dropdown':'dropdown'">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">TIN TỨC <span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li tal:repeat="Tag TagAll">
+									<a tal:attributes="href Tag/getURLView">
+										<span tal:content="Tag/getName"/>
+									</a>
+								</li>
 							</ul>
-						</div>
-						<div class="header-box contact-phones pull-right clearfix">
-							<span class="header-box-icon header-box-icon-earphones"></span>
-							<ul class="pull-left">
-								<li><B><h4 tal:content="ConfigPhone1/getValue"/></B></li>
-								<li><B><h4 tal:content="ConfigPhone2/getValue"/></B></li>
+						</li>
+						<li tal:attributes="class php:Active=='Menu'?'active dropdown':'dropdown'">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">THỰC ĐƠN <span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li tal:repeat="Category Category/getCategoryAll">
+									<a tal:attributes="href Category/getURLView">
+										<span tal:content="Category/getName"/>
+									</a>
+								</li>
 							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div id="main-nav-container">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-12 clearfix">
-							<nav id="main-nav">
-								<div id="responsive-nav">
-									<div id="responsive-nav-button">
-										Menu <span id="responsive-nav-button-icon" />
-									</div>
-								</div>
-								<ul class="menu clearfix">
-									<li><a tal:attributes="class php:Active=='Home'?'active':'?'" href="/trang-chu">TRANG CHỦ</a></li>
-									<li><a tal:attributes="class php:Active=='Introduction'?'active':'?'" href="/gioi-thieu">GIỚI THIỆU</a></li>
-									<li>
-										<a tal:attributes="class php:Active=='News'?'active':'?'" href="JavaScript:;">TIN TỨC</a>
-										<ul>
-											<li tal:repeat="Tag TagAll">
-												<a tal:attributes="href Tag/getURLView">
-													<span tal:content="Tag/getName"/>
-												</a>
-											</li>
-										</ul>
-									</li>
-									<li class="mega-menu-container">
-										<a tal:attributes="class php:Active=='Menu'?'active':'?'" href="JavaScript:;">SẢN PHẨM</a>
-										<div class="mega-menu clearfix">
-											<div class="col-5" tal:repeat="Category1 Category/getCategoryAll">
-												<a href="JavaScript:;" class="mega-menu-title" tal:content="Category1/getName"/>
-												<ul class="mega-menu-list clearfix">
-													<li tal:repeat="Course Category1/getProductAll">
-														<a tal:attributes="href Course/getURLView">
-															<span tal:content="Course/getName"/>
-														</a>
-													</li>
-												</ul>
-											</div>
-										</div>
-									</li>
-									<li><a tal:attributes="class php:Active=='Dealer'?'active':'?'" href="/khuyen-mai">KHUYẾN MÃI</a></li>									
-									<li><a tal:attributes="class php:Active=='Contact'?'active':'?'" href="/lien-he">LIÊN HỆ</a></li>
-								</ul>
-							</nav>							
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</header>
-	
-	<!-- ======================================================================== -->
-	<!-- PAGE TITLE																  -->
-	<!-- ======================================================================== -->
-	<div metal:define-macro="PageTitle" class="row-fluid">
-		<div class="span12 logo">
-			<div class="row-fluid">
-				<div class="span3">
-					<img src="/mvc/templates/front/img/logo_guest.png" width="100%"/>
-				</div>
-				<div class="span9">
-					<div style="margin-left:-10px;">
-						<h1><a href="/trang-chu" tal:content="ConfigName/getValue"/></h1>
-						<p tal:content="ConfigSlogan/getValue"/>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	<!-- ======================================================================== -->
-	<!-- MENU																	  -->
-	<!-- ======================================================================== -->
-	<div metal:define-macro="Menu" class="row-fluid">
-		<div class="span12 nav-menus">
-			<ul class="nav nav-pills">
-				<li tal:attributes="class php:Active=='Home'?'active':''">
-					<a href="/trang-chu">Trang chủ</a>
-				</li>
-				<li tal:attributes="class php:Active=='Introduction'?'active':''">
-					<a href="/gioi-thieu">Giới thiệu</a>
-				</li>
-				<li class="dropdown">
-					<a href="#" data-toggle="dropdown" class="dropdown-toggle"> Tin tức <b class="caret"></b></a>					
-					<ul class="dropdown-menu">							
-						<li tal:repeat="Tag TagAll">
-							<a tal:attributes="href Tag/getURLView" tal:content="Tag/getName"/>
 						</li>
-					</ul>					
-				</li>
-				<li class="dropdown" tal:repeat="Category CategoryAll">
-					<a href="#" data-toggle="dropdown" class="dropdown-toggle"> <span tal:content="Category/getName"/> <b class="caret"></b></a>
-					<ul class="dropdown-menu">							
-						<li tal:repeat="Category1 Category/getCategoryAll">
-							<a tal:attributes="href Category1/getURLView" tal:content="Category1/getName"/>
-						</li>
+						<li tal:attributes="class php:Active=='Dealer'?'active':''"><a href="/khuyen-mai">KHUYẾN MÃI</a></li>
+						<li tal:attributes="class php:Active=='Contact'?'active':''"><a href="/lien-he">LIÊN HỆ</a></li>
 					</ul>
-				</li>
-				<li tal:attributes="class php:Active=='Contact'?'active':''">
-					<a href="/lien-he">Liên hệ</a>
-				</li>
-			</ul>
+				</div>
+			</div>
+		</nav>
+		<div class="row">						
+			<div class="col-md-12">
+				<div id="carousel-example-generic" class="carousel slide fade" data-ride="carousel">
+					<ol class="carousel-indicators">
+						<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+						<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+					</ol>
+					<div class="carousel-inner" role="listbox">
+						<div class="item active">
+							<img src="/mvc/templates/front/img/slide/01.jpg" alt="Slide 1" width="100%"/>
+							<div class="carousel-caption">
+							...
+							</div>
+						</div>
+						<div class="item">
+							<img src="/mvc/templates/front/img/slide/02.jpg" alt="Slide 2"/>
+							<div class="carousel-caption">
+							...
+							</div>
+						</div>
+					</div>
+				</div>
+				<marquee class="intro-line" scrolldelay="2" scrollamount="2" behavior="scroll" direction="left">Có một sản phẩm thơm ngon, quyến rũ, làm say lòng người… Hãy cảm nhận từ từ sự tan chảy của nó khi cho vào miệng, vị thơm của cacao, vị đăng đắng thú vị hòa quyện với vị ngọt ngào quyến rũ, nó đã chinh phục hàng triệu triệu trái tim của con người ở khắp hành tinh của chúng ta… Điều bí ẩn… nằm trong viên sô cô la</marquee>
+			</div>
 		</div>
 	</div>
 	
 	<!-- ======================================================================== -->
-	<!-- LOCATION BAR															  -->
+	<!-- BREADCRUMB																  -->
 	<!-- ======================================================================== -->
-	<div metal:define-macro="LocationBar" id="breadcrumb-container">
-		<div class="container">
-			<ul class="breadcrumb">
-				<li><a href="/">TRANG CHỦ</a></li>
-				<li tal:repeat="Item Navigation"> 
-					<a tal:attributes="href php:Item[1]" tal:content="php:Item[0]" />
-				</li>
-				<li class="active" tal:content="Title"/>
-			</ul>
-		</div>		
-	</div>
+	<ol metal:define-macro="Breadcrumb" class="breadcrumb">
+		<li><a href="/">TRANG CHỦ</a></li>
+		<li tal:repeat="Item Navigation"> 
+			<a tal:attributes="href php:Item[1]" tal:content="php:Item[0]"/>
+		</li>
+		<li class="active" tal:content="Title"/>
+	</ol>
 	
 	<!-- ======================================================================== -->
 	<!-- SUBCRIBE															  	  -->
 	<!-- ======================================================================== -->
-	<div metal:define-macro="Subscribe" class="widget subscribe">
-		<p>Nhận thông tin và các chương trình khuyến mãi hấp dẫn</p>
-		<form action="/nhan-thong-tin" id="subscribe-form" method="post">
-			<div class="form-group">
-				<input type="email" class="form-control" id="Email"  name="Email" placeholder="Email của bạn là gì?"/>
-			</div>
-			<input type="submit" value="ĐĂNG KÝ" class="btn btn-custom"/>
-		</form>
+	<div metal:define-macro="Subscribe" class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">Nhận tin khuyến mãi</h3>
+		</div>						
+		<div class="panel-body">
+			<form action="/nhan-thong-tin" id="subscribe-form" method="post">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="Nhập Email của bạn"/>
+							<span class="input-group-btn">
+								<button class="btn btn-default" type="button">Đăng ký</button>
+							</span>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
 	</div>
-									
+
 	<!-- ======================================================================== -->
-	<!-- TESTMONIALS														  	  -->
+	<!-- LIKE BOX															  	  -->
 	<!-- ======================================================================== -->
-	<div metal:define-macro="Testmonials" class="widget testimonials">
-		<h3>Đánh giá</h3>
-		<div class="testimonials-slider flexslider sidebarslider">
-			<ul class="testimonials-list clearfix">
-				<li tal:repeat="StoryLine StoryLineAll">
-					<div class="testimonial-details">
-						<header tal:content="StoryLine/getTitle"/>														
-						<span tal:content="StoryLine/getNote"/>														
-					</div><!-- End .testimonial-details -->
-					<figure class="clearfix">
-						<img tal:attributes="src StoryLine/getImage"/>
-						<figcaption>
-							<a href="#"><span tal:content="StoryLine/getName"/></a>
-							<span tal:content="StoryLine/getDatePrint"/>
-						</figcaption>
-					</figure>
-				</li>												
-			</ul>
+	<div metal:define-macro="ADS-1" class="panel panel-default">
+		<img alt="Khai trương" src="/mvc/templates/front/img/ads.jpg" width="100%" class="img-thumbnail"/>
+	</div>
+	
+	<!-- ======================================================================== -->
+	<!-- ADS																  	  -->
+	<!-- ======================================================================== -->
+	<div metal:define-macro="LikeBox" class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">Facebook</h3>
+		</div>						
+		<div class="panel-body">
+			<iframe
+				src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Famthuchuongsenhong&amp;colorscheme=light&amp;show_faces=true&amp;header=false&amp;stream=true&amp;show_border=false&amp;appId=525611617524479"
+				scrolling="yes"
+				frameborder="0"
+				style="border:none; overflow:hidden; width:100%; height:500px;"
+				allowTransparency="true">
+			</iframe>
 		</div>
 	</div>
 	
 	<!-- ======================================================================== -->
-	<!-- LASTEST POST														  	  -->
-	<!-- ======================================================================== -->
-	<div metal:define-macro="LastestPost" class="widget latest-posts">
-		<h3>Tin mới nhất</h3>
-		<div class="latest-posts-slider flexslider sidebarslider">
-			<ul class="latest-posts-list clearfix">
-				<li tal:repeat="PT LastestPostAll">
-					<a tal:attributes="href PT/getURLRead">
-						<figure class="latest-posts-media-container">
-							<img tal:attributes="src PT/getPost/getImage;alt PT/getPost/getTitle" />
-						</figure>
-					</a>
-					<h4><a tal:attributes="href PT/getURLRead" tal:content="PT/getPost/getTitle"/></h4>
-					<p tal:content="structure PT/getPost/getContentReduce"/>
-					
-					<div class="latest-posts-meta-container clearfix">
-						<div class="pull-left">
-							<a tal:attributes="href PT/getURLRead">Chi tiết...</a>
-						</div>
-						<div class="pull-right">
-							<span tal:content="PT/getPost/getTimePrint"/>
-						</div>
-					</div>
-				</li>
-			</ul>
-		</div>
-	</div>
-									
-	<!-- ======================================================================== -->
 	<!-- FOOTER																	  -->
 	<!-- ======================================================================== -->
-	<footer metal:define-macro="Footer" id="footer">
-		<div id="inner-footer">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-4 col-sm-4 col-xs-12 widget">
-						<h3>Ẩm Thực Sinh Thái Hương Sen Hồng</h3>
-						<ul class="contact-list">							
-							<li>Tiếp đón quí khách tất cả các ngày trong tuần</li>
-							<li>Giờ mở cửa: 8.00 Sáng - 22.00 Tối</li>
-						</ul>
-					</div>
-					<div class="col-md-5 col-sm-4 col-xs-12 widget">
-						<h3>Trong cùng hệ thống</h3>
-						<ul class="links">
-							<li tal:repeat="Branch BranchAll">
-								<span tal:content="Branch/getName"/>: <span tal:content="Branch/getAddress"/>
-							</li>
-						</ul>
-					</div>					
-					<div class="col-md-3 col-sm-12 col-xs-12 widget">
-						<h3>FACEBOOK</h3>
-						<div class="facebook-likebox">
-							<iframe src="http://www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Famthuchuongsenhong&amp;width&amp;height=221&amp;colorscheme=dark&amp;show_faces=true&amp;header=false&amp;stream=false&amp;show_border=false" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:220px;" allowTransparency="true"></iframe>
-						</div>
-					</div>
-				</div>
+	<footer metal:define-macro="Footer">
+		<div class="row">
+			<div class="col-md-12">
+				<center>
+					<p><b>&copy; 2014 THANH SOCOLA .COM</b></p>
+					<p tal:repeat="Branch BranchAll"><b tal:content="Branch/getName"/>: <span tal:content="Branch/getAddress"/></p>
+					<p>Mobile: (+84) 918 107 132 - Tel: (+84) 673 948 888</p>
+					<p><b tal:content="php:@\MVC\Library\Statistic::getCountPrint()"/> lượt truy cập - <b tal:content="php:@\MVC\Library\Statistic::getOnlinePrint()"/> đang online</p>
+					<p style="color:#ddd;"><i>SPN Group - Website duyệt tốt trên trình duyệt <b>Google Chrome</b></i></p>
+				</center>
+
 			</div>
 		</div>
-		<div id="footer-bottom">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-7 col-sm-7 col-xs-12 footer-social-links-container">						
-						<p><i>SPN Group - Website duyệt tốt trên <B>Tablet</B>, <B>SmartPhone</B> dùng trình duyệt <B>Google Chrome</B></i></p>
-					</div>
-					<div class="col-md-5 col-sm-5 col-xs-12 footer-text-container">
-						<p>&copy; 2014 Cửa hàng Thanh Socola</p>
-					</div>
-				</div>				
-			</div>
-		</div>
-		<a href="#" id="scroll-top" title="Scroll to Top"><i class="fa fa-angle-up"></i></a>
 	</footer>
-		
-	<!-- ======================================================================== 	-->
-	<!-- ADS SERVICE															  			-->
-	<!-- ======================================================================== 	-->
-	<div metal:define-macro="AdsService" class="widget banner-slider-container">
-		<div class="banner-slider flexslider">
-			<ul class="banner-slider-list clearfix">
-				<li tal:repeat="Slide Presentation2/getSlideAll">
-					<a tal:attributes="href Slide/getURL">
-						<span tal:content="structure Slide/getNote" />
-					</a>
-				</li>
-			</ul>
-		</div>
-	</div>
 </body>
 </html>
