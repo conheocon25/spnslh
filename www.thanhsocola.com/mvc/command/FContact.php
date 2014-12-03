@@ -1,5 +1,6 @@
 <?php
 	namespace MVC\Command;	
+	use MVC\Library\Captcha;
 	class FContact extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
@@ -33,13 +34,20 @@
 			$ConfigGmail 			= $mConfig->findByName("CONTACT_GTALK");
 			$ConfigSkype 			= $mConfig->findByName("CONTACT_SKYPE");
 			
-			$Category	 	= $mCategory->find(1);
+			$Category 		= $mCategory->find(1);
 			$TagAll 		= $mTag->findByPosition(array(1));
 			$BranchAll 		= $mBranch->findAll();
 			
 			$Title = "LIÊN HỆ";
 			$Navigation = array();
 			
+			
+			/*
+			$mCaptcha = new Captcha();
+			$mCaptcha->createImage();
+			$Session->setCurrentCaptcha($mCaptcha->getSecurityCode());		
+			*/
+			//$ImagePath = "/data/" . $mCaptcha->getImagePath();
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
@@ -58,6 +66,8 @@
 			$request->setObject("Category", 			$Category);
 			$request->setObject("TagAll", 				$TagAll);
 			$request->setObject("BranchAll", 			$BranchAll);
+			//$request->setProperty("ImagePath", $ImagePath);
+			
 			
 			return self::statuses('CMD_DEFAULT');
 		}
