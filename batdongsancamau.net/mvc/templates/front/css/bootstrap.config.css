@@ -92,6 +92,7 @@
 		font-size: 12px;
 		line-height: 18px;
 		text-align: justify;
+		position: relative;
 	}
 	
 	.media-config h4 {
@@ -102,6 +103,23 @@
 		font-size: 15px;
 		border-bottom: 1px solid #EAEAEA;
 	}
+
+	.media-config .media-flag {
+		position: absolute;
+		right: 2px;
+		top: -3px;
+	}
+	
+	.media-config .media-flag .flag {
+		width: 30px;
+		height: 36px;
+		float: right;
+		margin-left: 4px;
+	}
+	
+	.media-config .media-flag .flag.new-flag {background: url('/mvc/templates/front/img/new-flag.png') no-repeat top left transparent;}
+	.media-config .media-flag .flag.vip-flag {background: url('/mvc/templates/front/img/vip-flag.png') no-repeat top left transparent;}
+	.media-config .media-flag .flag.hot-flag {background: url('/mvc/templates/front/img/hot-flag.png') no-repeat top left transparent;}
 	
 	.media-config .media-left img {
 		max-width: 130px;

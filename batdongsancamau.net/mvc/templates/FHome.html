@@ -33,6 +33,11 @@
 						<div class="panel-heading"><h3 class="panel-title" tal:content="Category/getName"/></div>						
 						<div class="panel-body">
 							<div class="media media-config" tal:repeat="Product Category/getTopProductAll">
+								<div class="media-flag">
+									<div class="flag hot-flag"/>
+									<div class="flag new-flag"/>
+									<div class="flag vip-flag"/>
+								</div>
 								<a tal:attributes="href Product/getURLView"><h4 tal:content="Product/getNameReduce"/></a>
 								<a class="media-left" tal:attributes="href Product/getURLView">
 									<img tal:attributes="src Product/getInfo/getImage; alt Product/getName" width="130" class="img-thumbnail"/>
@@ -55,6 +60,10 @@
 					</div>					
 				</div>
 				<div class="col-md-3">
+					<div class="list-group">
+						<a class="list-group-item active">Tin mới cập nhật</a>
+						<a tal:repeat="PT PostTopAll" href="#" tal:content="PT/getPost/getTitleReduce" class="list-group-item"/>
+					</div>
 					<tal:block metal:use-macro="mFront.xhtml/SearchBox"/>
 					<div class="panel">
 						<a tal:repeat="Ads AdsAll" tal:attributes="href Ads/getURL" target="blank">
