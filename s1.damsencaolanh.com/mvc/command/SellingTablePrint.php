@@ -34,6 +34,10 @@
 			$ConfigName							= $mConfig->findByName("NAME");
 			$ConfigAddress						= $mConfig->findByName("ADDRESS");
 			$ConfigPhone						= $mConfig->findByName("PHONE");
+
+			//Thanh toán đủ
+			$Session->setStatus(1);
+			$mSession->update($Session);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
