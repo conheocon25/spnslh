@@ -14,6 +14,13 @@
 						<div class="panel-heading"><h3 class="panel-title" tal:content="Title"/></div>
 						<div class="panel-body">
 							<div class="media media-config" tal:repeat="Product ProductAll">
+								<div class="media-flag">									
+									<div class="flag new-flag" tal:condition="php: Product->isTimeCategory()==0?true:false"/>
+									<!--
+									<div class="flag hot-flag"/>
+									<div class="flag vip-flag"/>
+									!-->
+								</div>
 								<a tal:attributes="href Product/getURLView"><h4 tal:content="Product/getNameReduce"/></a>
 								<a class="media-left" tal:attributes="href Product/getURLView">
 									<img tal:attributes="src Product/getInfo/getImage; alt Product/getName" width="130" class="img-thumbnail"/>
