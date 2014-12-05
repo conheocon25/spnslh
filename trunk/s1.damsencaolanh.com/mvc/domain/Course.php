@@ -136,6 +136,7 @@ class Course extends Object{
 			<name>".$this->getName()."</name>
 			<shortname>".$this->getShortName()."</shortname>
 			<unit>".$this->getUnit()."</unit>
+			<price>".$this->getPrice1()."</price>
 		</object>
 		";
 		return $S;

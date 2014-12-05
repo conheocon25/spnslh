@@ -10,7 +10,9 @@
 					<a title="Chuyển bàn" data-toggle="modal" class="btn SessionMove" href="#DialogMove" tal:attributes="data-session-id Table/getSessionActive/getId"><i class="glyphicons-move" /></a>
 					<a title="Gom bàn" data-toggle="modal" class="btn SessionMerge" href="#DialogMerge" tal:attributes="data-session-id Table/getSessionActive/getId"><i class="glyphicons-resize_small"/></a>
 					<a title="Chỉnh sửa giao dịch" data-toggle="modal" class="btn SessionUpdate" href="#DialogSession" tal:attributes="data-session-id Table/getSessionActive/getId"><i class="glyphicons-edit" /></a>
-					<a title="Tính phiếu" class="btn Checkout" tal:attributes="alt Table/getSessionActive/getURLCheckoutExe"><i class="glyphicons-ok_2" /></a>					
+					<!--
+					<a title="Tính phiếu" class="btn Checkout" tal:attributes="alt Table/getSessionActive/getURLCheckoutExe"><i class="glyphicons-ok_2" /></a>
+					!-->
 					<a title="In phiếu" class="Ticket btn" tal:attributes="alt Table/getSessionActive/getURLPrint"><i class="glyphicons-print"></i></a>
 				</div>
 			</div>
@@ -555,10 +557,11 @@
 				}, 0500);
 			});
 			
-			$(".Ticket").click(function(){
+			$(".Ticket").click(function(){								
 				var url = $(this).attr('alt');
 				var thePopup = window.open( url, "In Phiếu", "menubar=0,location=0,height=700,width=700" );
 				thePopup.print();
+				location.reload();
 			});
 			
 		/*]]>*/
