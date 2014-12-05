@@ -11,7 +11,7 @@ class Product extends Object{
 	private $IdEstate;	
 	private $IdDistrict;	
 	private $Name;
-	private $DateTime;	
+	private $DateTime;
     private $Price;
 	private $Address;
 	private $Key;
@@ -86,6 +86,40 @@ class Product extends Object{
 	function setDateTime( $DateTime ) 	{$this->DateTime = $DateTime; $this->markDirty();}
     function getDateTime( ) 			{return $this->DateTime;}	
 	function getDateTimePrint( )		{return date('d/m H:i',strtotime($this->DateTime));}
+	
+	function isTimeCategory(){
+		$current = strtotime(date("Y-m-d"));
+		$date    = strtotime($this->DateTime);
+
+		$datediff = $date - $current;
+		$differance = floor($datediff/(60*60*24));
+		
+		//Hiện tại
+		if($differance==0)
+		{
+			return 0;
+		}
+		//Tương lai
+		else if($differance > 1)
+		{
+			return 1;
+		}
+		//Ngày mai
+		else if($differance > 0)
+		{
+			return 2;
+		}
+		//Quá lâu
+		else if($differance < -1)
+		{
+			return 3;
+		}
+		//Hôm qua
+		else
+		{
+			return 4;
+		}		
+	}
 			
 	function setPrice( $Price ) {$this->Price = $Price; $this->markDirty();}
     function getPrice( ) {return $this->Price;}
