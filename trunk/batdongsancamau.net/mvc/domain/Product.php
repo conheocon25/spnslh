@@ -88,6 +88,8 @@ class Product extends Object{
 	function getDateTimePrint( )		{return date('d/m H:i',strtotime($this->DateTime));}
 	
 	function isTimeCategory(){
+		date_default_timezone_set('Asia/Ho_Chi_Minh');		
+
 		$current = strtotime(date("Y-m-d"));
 		$date    = strtotime($this->DateTime);
 

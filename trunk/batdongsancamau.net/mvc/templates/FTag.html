@@ -6,6 +6,12 @@
 	</head>	
 	<body>		
 		<div class="container">
+			<div style="padding:0;width:140px;height:450px;position:fixed;left:10px;top:20px;">
+				<a href="/"><img src="/mvc/templates/front/img/ads.gif" width="100%"/></a>
+			</div>
+			<div style="padding:0;width:140px;height:450px;position:fixed;right:10px;top:20px;">
+				<a href="/"><img src="/mvc/templates/front/img/ads.gif" width="100%"/></a>
+			</div>
 			<tal:block metal:use-macro="mFront.xhtml/Header"/>
 			<tal:block metal:use-macro="mFront.xhtml/Breadcrumb"/>
 			<div class="row">						
@@ -17,7 +23,7 @@
 						<div class="panel-body">
 							<div class="media media-config" tal:repeat="PT PTAll">
 								<a tal:attributes="href PT/getURLRead">
-									<h4 tal:content="PT/getPost/getTitleReduce"/>
+									<h4 tal:content="PT/getPost/getTitle"/>
 								</a>
 								<a class="media-left" tal:attributes="href PT/getURLRead">
 									<img tal:attributes="src PT/getPost/getImage; alt PT/getPost/getTitle" width="210" class="img-thumbnail"/>
