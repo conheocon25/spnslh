@@ -7,14 +7,10 @@
 	<body>		
 		<div class="container">
 			<div style="padding:0;width:140px;height:450px;position:fixed;left:10px;top:20px;">
-				<a href="/">
-					<img src="/mvc/templates/front/img/ads.gif" width="100%"/>
-				</a>
+				<a href="/"><img src="/mvc/templates/front/img/ads.gif" width="100%"/></a>
 			</div>
 			<div style="padding:0;width:140px;height:450px;position:fixed;right:10px;top:20px;">
-				<a href="/">
-					<img src="/mvc/templates/front/img/ads.gif" width="100%"/>
-				</a>
+				<a href="/"><img src="/mvc/templates/front/img/ads.gif" width="100%"/></a>
 			</div>
 			<tal:block metal:use-macro="mFront.xhtml/Header"/>
 			<div class="row">						
@@ -44,7 +40,7 @@
 						<div class="col-md-6">
 							<div class="list-group">
 								<a class="list-group-item active"><center>Tin mới cập nhật</center></a>
-								<a tal:repeat="PT PostTopAll" href="#" tal:content="PT/getPost/getTitleReduce" class="list-group-item"/>
+								<a tal:repeat="PT PostTopAll" tal:attributes="href PT/getURLRead" tal:content="PT/getPost/getTitleReduce" class="list-group-item"/>
 							</div>
 						</div>
 					</div>
