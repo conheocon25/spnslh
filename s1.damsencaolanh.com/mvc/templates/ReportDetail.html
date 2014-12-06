@@ -35,24 +35,25 @@
 											<th width="90"><div class="text-center">TK.MÓN</div></th>
 											<th width="90"><div class="text-center">TK.KHÁCH</div></th>
 											<th width="90"><div class="text-center">TK.NCC</div></th>
+											<th width="90"><div class="text-center">TK KHO</div></th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr tal:repeat="TD Tracking/getDailyAll">
 											<td><div tal:content="TD/getDatePrint"></div></td>
 											<td align="right"><a tal:attributes="href TD/getURLReportSelling"><span tal:content="TD/getSellingPrint"/></a></td>
-																						
 											<td align="right"><b tal:content="TD/getValuePrint"/></td>
 											<td align="center"><a tal:attributes="href TD/getURLReportCourse">Xem</a></td>
 											<td align="center"><a tal:attributes="href TD/getURLReportCustomer">Xem</a></td>
 											<td align="center"><a tal:attributes="href TD/getURLReportSupplier">Xem</a></td>
+											<td align="center"><a tal:attributes="href TD/getURLReportStore">Xem</a></td>
 										</tr>
 										<tr>
 											<td align="right"><B>TỔNG KẾT</B></td>
-											<td align="right"><B tal:content="ValueSelling/formatCurrency"/></td>
-																						
+											<td align="right"><B tal:content="ValueSelling/formatCurrency"/></td>																					
 											<td align="right"><B tal:content="ValueNew/formatCurrency"/></td>
 											<td align="center"><a tal:attributes="href Tracking/getURLReportCourse">Xem</a></td>
+											<td align="center" />
 											<td align="center" />
 											<td align="center" />
 										</tr>

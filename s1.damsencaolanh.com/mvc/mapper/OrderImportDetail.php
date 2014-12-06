@@ -7,11 +7,11 @@ class OrderImportDetail extends Mapper implements \MVC\Domain\OrderImportDetailF
     function __construct() {
         parent::__construct();
 		
-		$tblResource = "tbl_resource";
-		$tblOrderImport = "tbl_order_import";
-		$tblOrderImportDetail = "tbl_order_import_detail";
-		$tblSessionDetail = "tbl_session_detail";
-		$tblR2C = "tbl_r2c";
+		$tblResource 			= "tbl_resource";
+		$tblOrderImport 		= "tbl_order_import";
+		$tblOrderImportDetail 	= "tbl_order_import_detail";
+		$tblSessionDetail 		= "tbl_session_detail";
+		$tblR2C 				= "tbl_r2c";
 								
 		$selectAllStmt = sprintf("select * from %s", $tblOrderImportDetail);
 		$selectStmt = sprintf("select * from %s where id=?", $tblOrderImportDetail);
@@ -27,13 +27,8 @@ class OrderImportDetail extends Mapper implements \MVC\Domain\OrderImportDetailF
 			WHERE 	idresource=?
 		", $tblOrderImportDetail);
 		
-		$trackByCountStmt = sprintf("
-			select 
-				sum(count)
-			from 
-				%s S inner join %s SD on S.id = SD.idorder
-			where idresource=? and date >= ? and date <= ?
-		", $tblOrderImport, $tblOrderImportDetail);		
+		$trackByCountStmt = sprintf("select sum(count) from %s S inner join %s SD on S.id = SD.idorder where idresource=? and date >= ? and date <= ?", $tblOrderImport, $tblOrderImportDetail);
+		
 		$trackByStmt = sprintf("
 							SELECT
 								IFNULL(0, ODI.id) as id,
@@ -52,18 +47,15 @@ class OrderImportDetail extends Mapper implements \MVC\Domain\OrderImportDetailF
 								FROM %s
 								WHERE idorder = ?
 							) ODI
-							ON P.id = ODI.idresource
-		
+							ON P.id = ODI.idresource		
 		", $tblResource, $tblOrderImportDetail);
 		
 		$trackByExportStmt = sprintf("
-			select
-				sum(SD.count) as count
-			from
+			select sum(SD.count) as count from
 				tbl_session S inner join tbl_session_detail SD on S.id = SD.idsession
 			where
 				SD.idcourse IN(select id_course from tbl_r2c where id_resource=?) AND
-				S.datetime >= ? AND S.datetime <= ? 
+				date(S.datetime) >= ? AND date(S.datetime) <= ? 
 		", $tblSessionDetail, $tblR2C);
 		
 		
@@ -143,14 +135,11 @@ class OrderImportDetail extends Mapper implements \MVC\Domain\OrderImportDetailF
 	
 	function trackByExport( $values ) {
         $this->trackByExportStmt->execute( $values );
-		$result1 = $this->trackByExportStmt->fetchAll();
-		
-		$this->trackByExportStmt->execute( $values );
-		$result2 = $this->trackByExportStmt->fetchAll();
-		
+		$result = $this->trackByExportStmt->fetchAll();
+						
 		if (!isset($result) || $result==null)
 			return 0;
-        return $result1[0][0]/$result2[0][0];
+        return $result[0][0];
     }
 	
 	function exist($values) {

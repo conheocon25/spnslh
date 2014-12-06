@@ -3,11 +3,9 @@ Namespace MVC\Domain;
 require_once( "mvc/base/domain/DomainObject.php" );
 class TrackingStore extends Object{
 
-    private $Id;
-	private $IdTracking;
+    private $Id;	
 	private $IdTD;
-	private $IdResource;
-	private $CountOld;
+	private $IdResource;	
 	private $CountImport;
 	private $CountExport;
 	private $Price;
@@ -17,19 +15,15 @@ class TrackingStore extends Object{
 	//-------------------------------------------------------------------------------
     function __construct( 
 		$Id=null, 
-		$IdTracking=null, 
 		$IdTD=null, 
-		$IdResource=null, 
-		$CountOld=null, 
+		$IdResource=null, 		
 		$CountImport=null, 
 		$CountExport=null, 		
 		$Price=Null
 	) {
-        $this->Id 			= $Id;
-		$this->IdTracking 	= $IdTracking;
+        $this->Id 			= $Id;		
 		$this->IdTD 		= $IdTD;
-		$this->IdResource 	= $IdResource;
-		$this->CountOld 	= $CountOld;
+		$this->IdResource 	= $IdResource;		
 		$this->CountImport 	= $CountImport;
 		$this->CountExport 	= $CountExport;
 		$this->Price 		= $Price;
@@ -38,10 +32,7 @@ class TrackingStore extends Object{
     }
 
     function getId() {return $this->Id;}	
-		
-    function setIdTracking( $IdTracking ) {$this->IdTracking = $IdTracking;$this->markDirty();}   
-	function getIdTracking( ) {return $this->IdTracking;}
-	
+	    	
 	function setIdTD( $IdTD ) {$this->IdTD = $IdTD;$this->markDirty();}   
 	function getIdTD( ) {return $this->IdTD;}
 	
@@ -49,9 +40,17 @@ class TrackingStore extends Object{
 	function getIdResource( ) {return $this->IdResource;}
 	function getResource(){ $mResource = new \MVC\Mapper\Resource(); $Resource = $mResource->find( $this->getIdResource() ); return $Resource;}
 	
-	function setCountOld( $CountOld ) {$this->CountOld = $CountOld;$this->markDirty();}   
-	function getCountOld( ) {return $this->CountOld;}
-	function getCountOldPrint( ) {return \round($this->CountOld,1);}
+	function getCountOld( ) {
+		$mTS = new \MVC\Mapper\TrackingStore();
+		$TSAllPre = $mTS->findByPre(array($this->IdTD, $this->getIdResource()));
+		if ($TSAllPre->count()==0){
+			$CountOld = 0;
+		}else{
+			$CountOld = $TSAllPre->current()->getCountRemain();
+		}				
+		return $CountOld;
+	}
+	function getCountOldPrint( ) {return \round($this->getCountOld(),1);}
 	
 	function setCountImport( $CountImport ) {$this->CountImport = $CountImport;$this->markDirty();}   
 	function getCountImport( ) {return $this->CountImport;}
