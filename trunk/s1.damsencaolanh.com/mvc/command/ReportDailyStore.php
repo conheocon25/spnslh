@@ -19,8 +19,9 @@
 			//-------------------------------------------------------------			
 			$mTracking 	= new \MVC\Mapper\Tracking();
 			$mTS 		= new \MVC\Mapper\TrackingStore();
-			$mTD 		= new \MVC\Mapper\TrackingDaily();			
+			$mTD 		= new \MVC\Mapper\TrackingDaily();
 			$mSD 		= new \MVC\Mapper\SessionDetail();
+			$mOD 		= new \MVC\Mapper\OrderImportDetail();
 			$mR2C  		= new \MVC\Mapper\R2C();
 			$mResource 	= new \MVC\Mapper\Resource();
 			$mConfig 	= new \MVC\Mapper\Config();
@@ -31,69 +32,32 @@
 			$ConfigName		= $mConfig->findByName("NAME");
 			$Tracking 		= $mTracking->find($IdTrack);
 			$TD				= $mTD->find($IdTD);
+			$R2CAll			= $mR2C->findAll();
+			$ResourceAll 	= $mResource->findAll();
 			
-			$ResourceAll 	= $mResource->findAll();			
 			//Xóa những dữ liệu tồn kho cũ
-			$mTS->deleteByTracking(array($IdTrack, $IdTD));
+			$mTS->deleteByTracking(array($IdTD));
 			
-			while ($ResourceAll->valid()){
-				$Resource = $ResourceAll->current();				
-				
-				//Tính phần nhập hàng
-				$R2CAll = $mR2C->findByResource(array($Resource->getId()));
-												
-				//Nếu có trong bảng ánh xạ mới tính toán
-				if ($R2CAll->count()>0){
-					
-					//Tính số lượng hàng nhập trong kì
-					$CountImport = $TD->getImportCount( $Resource->getId() );
-					
-					//Tính số lượng hàng nhập xuất kho bán trong kì
-					$R2CAll->rewind();
-					$CountExport = 0;
-					while ($R2CAll->valid()){
-						$R2C = $R2CAll->current();
-						$IdCourse = $R2C->getIdCourse();
-						$CountExport += round(($TD->getExportCount( $IdCourse ))*$R2C->getValue1()/$R2C->getValue2(),1);
-						$R2CAll->next();
-					}
-					
-					//Tính toán tồn cũ còn trước đó
-					$TSAllPre = $mTS->findByPre(array($IdTD, $Resource->getId()));
-					if ($TSAllPre->count()==0){
-						$CountOld = 0;
-					}else{
-						$CountOld = $TSAllPre->current()->getCountRemain();
-					}
-					
-					$TS = new \MVC\Domain\TrackingStore(
-						null,
-						$IdTrack,
-						$IdTD,
-						$Resource->getId(), 
-						$CountOld,
-						$CountImport, 
-						$CountExport,
-						$Resource->getPrice()
-					);
-					$mTS->insert($TS);																				
-										
-				}
-				$ResourceAll->next();
+			while ($R2CAll->valid()){
+				$R2C = $R2CAll->current();
+																													
+				//Tính số lượng hàng nhập trong kì				
+				$CountImport 	= $mOD->trackByCount(array($R2C->getIdResource(), $TD->getDate(), $TD->getDate()));
+				$CountExport 	= $mOD->trackByExport(array($R2C->getIdResource(), $TD->getDate(), $TD->getDate()));
+									
+				$TS = new \MVC\Domain\TrackingStore(
+					null,					
+					$IdTD,
+					$R2C->getIdResource(), 					
+					$CountImport, 
+					$CountExport,
+					$R2C->getResource()->getPrice()
+				);
+				$mTS->insert($TS);
+				$R2CAll->next();
 			}						
-			$TSAll = $mTS->findByDaily(array($IdTrack, $IdTD));
-			
-			$Value = 0;
-			while ($TSAll->valid()){
-				$TS = $TSAll->current();
-				$Value += $TS->getCountRemainValue();
-				$TSAll->next();
-			}
-			
-			//Cập nhật DB 
-			$TD->setStore($Value);
-			$mTD->update($TD);
-			
+			$TSAll = $mTS->findByDaily(array($IdTD));
+									
 			$Title = "TỒN KHO ".$TD->getDatePrint();
 			$Navigation = array(				
 				array("BÁO CÁO", "/report"),
