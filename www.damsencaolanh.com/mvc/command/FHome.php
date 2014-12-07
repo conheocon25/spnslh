@@ -37,11 +37,12 @@
 			$ConfigPhone2 			= $mConfig->findByName("PHONE2");
 			$ConfigGmail 			= $mConfig->findByName("CONTACT_GTALK");
 			$ConfigSkype 			= $mConfig->findByName("CONTACT_SKYPE");
+			$ConfigMenu 			= $mConfig->findByName("MENU_MAIN");
 			
 			$BranchAll		= $mBranch->findAll();
 			$StoryLineAll	= $mStoryLine->findAll();
 												
-			$CategoryAll 	= $mCategory->findAll();
+			$Category 		= $mCategory->find($ConfigMenu->getValue());
 			$ProductAll 	= $mProduct->findByTop(array());			
 			$Presentation1 	= $mPresentation->find($ConfigPHome->getValue());
 			$Presentation2	= $mPresentation->find(3);
@@ -64,6 +65,7 @@
 			$request->setObject("ConfigPhone2", 		$ConfigPhone2);
 			$request->setObject("ConfigGmail", 			$ConfigGmail);
 			$request->setObject("ConfigSkype", 			$ConfigSkype);
+			$request->setObject("ConfigMenu", 			$ConfigMenu);
 			
 			$request->setObject("TagAll", 				$TagAll);
 			$request->setObject("BranchAll", 			$BranchAll);
@@ -75,7 +77,7 @@
 						
 			$request->setObject("Presentation1", 		$Presentation1);
 			$request->setObject("Presentation2", 		$Presentation2);
-			$request->setObject("CategoryAll", 			$CategoryAll);
+			$request->setObject("Category", 			$Category);
 			$request->setObject("ProductAll", 			$ProductAll);			
 			$request->setObject("LinkedAll", 			$LinkedAll);
 			

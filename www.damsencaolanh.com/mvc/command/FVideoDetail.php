@@ -35,9 +35,10 @@
 			$ConfigPhone2 			= $mConfig->findByName("PHONE2");
 			$ConfigGmail		 	= $mConfig->findByName("CONTACT_GTALK");
 			$ConfigSkype 			= $mConfig->findByName("CONTACT_SKYPE");
+			$ConfigMenu 			= $mConfig->findByName("MENU_MAIN");
 			
 			$BranchAll 				= $mBranch->findAll();
-			$CategoryAll 			= $mCategory->findAll();
+			$Category 				= $mCategory->find($ConfigMenu->getValue());
 			
 			if (!isset($Page)) $Page = 1;
 			$TagAll 				= $mTag->findByPosition(array(1));			
@@ -73,7 +74,7 @@
 			$request->setObject("StoryLineAll", 		$StoryLineAll);
 			$request->setObject("LastestPostAll", 		$LastestPostAll);
 			
-			$request->setObject("CategoryAll", 			$CategoryAll);
+			$request->setObject("Category", 			$Category);
 			$request->setObject("TagAll", 				$TagAll);
 			$request->setObject("Video", 				$Video);			
 			$request->setObject("LinkedAll", 			$LinkedAll);

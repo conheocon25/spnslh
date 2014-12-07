@@ -84,9 +84,9 @@
 						<li tal:attributes="class php:Active=='Menu'?'active dropdown':'dropdown'">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">THỰC ĐƠN <span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
-								<li tal:repeat="Category CategoryAll">
-									<a tal:attributes="href Category/getURLView">
-										<span tal:content="Category/getName"/>
+								<li tal:repeat="Category1 Category/getCategoryAll">
+									<a tal:attributes="href Category1/getURLView">
+										<span tal:content="Category1/getName"/>
 									</a>
 								</li>
 							</ul>
