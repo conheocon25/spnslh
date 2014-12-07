@@ -34,16 +34,15 @@
 			$ConfigPhone2 			= $mConfig->findByName("PHONE2");
 			$ConfigGmail 			= $mConfig->findByName("CONTACT_GTALK");
 			$ConfigSkype 			= $mConfig->findByName("CONTACT_SKYPE");
+			$ConfigMenu 			= $mConfig->findByName("MENU_MAIN");
 			
-			$CategoryAll 	= $mCategory->findAll();
+			$Category 		= $mCategory->find($ConfigMenu->getValue());
 			$TagAll 		= $mTag->findByPosition(array(1));
 			$BranchAll 		= $mBranch->findAll();
 			$LinkedAll 		= $mLinked->findByTop(array());
 			
 			$Title = "LIÊN HỆ";
 			$Navigation = array();
-			
-			
 			
 			$mCaptcha = new Captcha();
 			$mCaptcha->createImage();
@@ -65,17 +64,12 @@
 			$request->setObject("ConfigPhone2", 		$ConfigPhone2);
 			$request->setObject("ConfigGmail", 			$ConfigGmail);
 			$request->setObject("ConfigSkype", 			$ConfigSkype);
-			$request->setObject("CategoryAll", 			$CategoryAll);
+			$request->setObject("Category", 			$Category);
 			$request->setObject("TagAll", 				$TagAll);
 			$request->setObject("BranchAll", 			$BranchAll);
 			$request->setObject("LinkedAll", 			$LinkedAll);
-			
-			
-			
-			
-			$request->setProperty("ImagePath", $ImagePath);
-			
-			
+						
+			$request->setProperty("ImagePath", $ImagePath);			
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

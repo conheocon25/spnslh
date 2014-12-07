@@ -23,7 +23,7 @@
 			$mTag 		= new \MVC\Mapper\Tag();
 			$mBranch 	= new \MVC\Mapper\Branch();
 			$mStoryLine	= new \MVC\Mapper\StoryLine();
-			$mLinked		= new \MVC\Mapper\Linked();
+			$mLinked	= new \MVC\Mapper\Linked();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -35,8 +35,9 @@
 			$ConfigPhone2 			= $mConfig->findByName("PHONE2");
 			$ConfigGmail 			= $mConfig->findByName("CONTACT_GTALK");
 			$ConfigSkype 			= $mConfig->findByName("CONTACT_SKYPE");
-			
-			$CategoryAll 			= $mCategory->findAll();
+			$ConfigMenu 			= $mConfig->findByName("MENU_MAIN");
+						
+			$Category 				= $mCategory->find($ConfigMenu->getValue());
 			$BranchAll 				= $mBranch->findAll();
 			$StoryLineAll			= $mStoryLine->findAll();
 			$LastestPostAll 		= $mPostTag->findByLastest4(array(null));
@@ -69,7 +70,7 @@
 			
 			$request->setObject("BranchAll", 			$BranchAll);
 			$request->setObject("StoryLineAll", 		$StoryLineAll);
-			$request->setObject("CategoryAll", 			$CategoryAll);
+			$request->setObject("Category", 			$Category);
 			$request->setObject("TagAll", 				$TagAll);
 			$request->setObject("Tag", 					$Tag);
 			$request->setObject("PTAll", 				$PTAll);
