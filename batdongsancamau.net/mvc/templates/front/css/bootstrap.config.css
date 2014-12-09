@@ -7,6 +7,8 @@
 		}
 	}
 	
+	.rspdl { padding-left: 0; }
+	
 	.dropdown:hover .dropdown-menu { display: block; }
 	
 	#header .navbar { min-height: 40px; height: 40px; }
@@ -87,23 +89,14 @@
 	}
 	
 	.media-config {
-		padding-bottom: 20px;
 		font-family: Tahoma;
 		font-size: 12px;
 		line-height: 18px;
 		text-align: justify;
 		position: relative;
+		border: 1px solid #EAEAEA;
 	}
 	
-	.media-config h4 {
-		background: #F9F9F9;
-		padding: 5px 10px;
-		font-family: Tahoma;
-		color: #0F3281;
-		font-size: 15px;
-		border-bottom: 1px solid #EAEAEA;
-	}
-
 	.media-config .media-flag {
 		position: absolute;
 		right: 2px;
@@ -120,7 +113,23 @@
 	.media-config .media-flag .flag.new-flag {background: url('/mvc/templates/front/img/new-flag.png') no-repeat top left transparent;}
 	.media-config .media-flag .flag.vip-flag {background: url('/mvc/templates/front/img/vip-flag.png') no-repeat top left transparent;}
 	.media-config .media-flag .flag.hot-flag {background: url('/mvc/templates/front/img/hot-flag.png') no-repeat top left transparent;}
+
+	.media-config .media-tit {
+		background: #F9F9F9;
+		padding: 7px 5px;
+		border-bottom: 1px solid #EAEAEA;
+	}
 	
+	.media-config .media-tit h4 {
+		font-weight: bold;
+		font-family: Tahoma;
+		color: #0F3281;
+		font-size: 13px;
+		margin: 0;
+	}
+	
+	.media-config .media-ctn { padding: 5px; }
+
 	.media-config .media-left img {
 		max-width: 130px;
 		width: 130px;

@@ -17,15 +17,19 @@
 						</div>
 						<div class="panel-body">
 							<div class="media media-config" tal:repeat="PT PTAll">
-								<a tal:attributes="href PT/getURLRead">
-									<h4 tal:content="PT/getPost/getTitle"/>
-								</a>
-								<a class="media-left" tal:attributes="href PT/getURLRead">
-									<img tal:attributes="src PT/getPost/getImage; alt PT/getPost/getTitle" width="210" class="img-thumbnail"/>
-								</a>
-								<div class="media-body">
-									<p>Cập nhật: <i tal:content="PT/getPost/getTimePrint"/></p>
-									<p tal:content="structure PT/getPost/getContentReduce" style="text-align:justify"/>
+								<div class="media-tit">
+									<a tal:attributes="href PT/getURLRead">
+										<h4 tal:content="PT/getPost/getTitle"/>
+									</a>
+								</div>
+								<div class="media-ctn">
+									<a class="media-left" tal:attributes="href PT/getURLRead">
+										<img tal:attributes="src PT/getPost/getImage; alt PT/getPost/getTitle" width="130"/>
+									</a>
+									<div class="media-body">
+										<p>Cập nhật: <i tal:content="PT/getPost/getTimePrint"/></p>
+										<p tal:content="structure PT/getPost/getContentReduce" style="text-align:justify"/>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -39,7 +43,7 @@
 						</ul>
 					</nav>
 				</div>
-				<div class="col-md-3">
+				<div class="col-md-3 rspdl">
 					<tal:block metal:use-macro="mFront.xhtml/SearchBox"/>
 				</div>
 			</div>
