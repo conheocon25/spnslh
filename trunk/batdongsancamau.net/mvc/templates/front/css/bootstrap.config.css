@@ -84,8 +84,8 @@
 		font-weight: bold;
 		text-transform: uppercase;
 		font: bold 12px/38px Tahoma,Geneva,sans-serif;
-		padding-left: 40px;
-		background: url('/mvc/templates/front/img/ticon.png') no-repeat 0 1px transparent;
+		padding-left: 34px;
+		background: url('/mvc/templates/front/img/ticon.png') no-repeat 0 7px transparent;
 	}
 	
 	.media-config {
