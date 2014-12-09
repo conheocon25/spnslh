@@ -1,5 +1,5 @@
 
-	body { font: normal 12px/normal Tahoma,Geneva,sans-serif; }
+	body { font: normal 12px/normal Helvetica,'Lucida Grande',Tahoma,Verdana,Arial,Sans-serif; }
 	
 	@media (min-width: 1200px) {
 		.container {
@@ -34,7 +34,7 @@
 		text-transform: uppercase;
 		line-height: 25px;
 		font-weight: bold;
-		padding: 7px;
+		padding: 8px;
 		white-space: nowrap;
 		font-size: 13px;
 	}
