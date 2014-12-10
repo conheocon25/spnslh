@@ -61,19 +61,23 @@
 											<div class="controls">
 												<input id="Name1" name="Name1" type="text" class="form-control input-small"/>
 											</div>
-										</div>										
+										</div>
+										<div class="control-group">
+											<label class="control-label">Trình bày</label>
+											<div class="controls">												
+												<select name="IdPresentation1" id="IdPresentation1" style="width:80%;">
+													<option tal:repeat="Presentation PresentationAll" tal:attributes="value Presentation/getId">
+														<span tal:content="Presentation/getName" />
+													</option>
+												</select>
+											</div>
+										</div>
 										<div class="control-group">
 											<label class="control-label">Thứ tự</label>
 											<div class="controls">
 												<input id="Order1" name="Order1" type="text" class="form-control input-small"/>
 											</div>
-										</div>
-										<div class="control-group">
-											<label class="control-label">Thông tin</label>
-											<div class="controls">												
-												<textarea id="Info1" name="Info1" class="form-control input-small" rows="6"/>
-											</div>
-										</div>
+										</div>										
 									</div>
 									<div class="modal-footer">
 										<button id="URLInsButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Lưu</button>
@@ -99,11 +103,11 @@
 											</div>
 										</div>
 										<div class="control-group">
-											<label class="control-label">Nhóm thông tin</label>
+											<label class="control-label">Trình bày</label>
 											<div class="controls">												
-												<select name="IdGAttribute2" id="IdGAttribute2" style="width:80%;">
-													<option tal:repeat="GAttribute GAttributeAll" tal:attributes="value GAttribute/getId">
-														<span tal:content="GAttribute/getName" />
+												<select name="IdPresentation2" id="IdPresentation2" style="width:80%;">
+													<option tal:repeat="Presentation PresentationAll" tal:attributes="value Presentation/getId">
+														<span tal:content="Presentation/getName" />
 													</option>
 												</select>
 											</div>
@@ -113,13 +117,7 @@
 											<div class="controls">
 												<input id="Order2" name="Order2" type="text" class="form-control input-small"/>
 											</div>
-										</div>
-										<div class="control-group">
-											<label class="control-label">Thông tin</label>
-											<div class="controls">												
-												<textarea id="Info2" name="Info2" class="form-control input-small" rows="6"/>
-											</div>
-										</div>
+										</div>										
 									</div>
 									<div class="modal-footer">
 										<button  id="URLUpdButton" class="btn btn-primary btn-small" type="submit"><i class="glyphicons-download_alt"/> Lưu</button>
@@ -202,11 +200,10 @@
 				submitHandler: function (form) {					
 					var Data = [];
 					Data[0] = 'null';
-					Data[1] = $('#CurrentCategory').attr('alt');
-					Data[2] = $('#CurrentCategory').attr('alt');
-					Data[3] = $('#Name1').val();
-					Data[4] = $('#Info1').val();
-					Data[5] = $('#Order1').val();
+					Data[1] = $('#CurrentCategory').attr('alt');					
+					Data[2] = $('#IdPresentation1').val();					
+					Data[3] = $('#Name1').val();					
+					Data[4] = $('#Order1').val();
 					
 					var URL = "/object/ins/Category1";
 					$.ajax({
@@ -236,11 +233,10 @@
 				
 				//Load dữ liệu JSON lên FORM
 				$.getJSON(url, function(data){
-					$('#URLUpdButton').attr('alt', 		data.Id);
-					$('#IdGAttribute2').select2('val', 	data.IdGAttribute);
-					$('#Name2').attr('value', 			data.Name);
-					$('#Info2').val( 					data.Info);
-					$('#Order2').attr('value', 			data.Order);
+					$('#URLUpdButton').attr('alt', 			data.Id);
+					$('#Name2').attr('value', 				data.Name);					
+					$('#Order2').attr('value', 				data.Order);
+					$('#IdPresentation2').select2('val', 	data.IdPresentation);
 				});
 			});
 			
@@ -266,11 +262,10 @@
 				submitHandler: function (form) {					
 					var Data = [];
 					Data[0] = $('#URLUpdButton').attr('alt');
-					Data[1] = $('#CurrentCategory').attr('alt');
-					Data[2] = $('#IdGAttribute2').val();
-					Data[3] = $('#Name2').val();
-					Data[4] = $('#Info2').val();
-					Data[5] = $('#Order2').val();
+					Data[1] = $('#CurrentCategory').attr('alt');					
+					Data[2] = $('#IdPresentation2').val();
+					Data[3] = $('#Name2').val();					
+					Data[4] = $('#Order2').val();
 																		
 					var URL = "/object/upd/Category1";
 					$.ajax({

@@ -7,22 +7,22 @@ class Category1 extends Object{
 	//DEFINE PROPERTY
 	//-------------------------------------------------------------------------------
 	private $Id;
-	private $IdCategory;	
-	private $Name;
-	private $Info;
+	private $IdCategory;
+	private $IdPresentation;
+	private $Name;	
 	private $Order;
 	private $Key;
 	
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-	function __construct($Id=null, $IdCategory=null, $Name=null, $Info=null, $Order=null, $Key=null){
-		$this->Id 			= $Id;
-		$this->IdCategory 	= $IdCategory;		
-		$this->Name 		= $Name;
-		$this->Info 		= $Info;
-		$this->Order 		= $Order;
-		$this->Key 			= $Key;
+	function __construct($Id=null, $IdCategory=null, $IdPresentation=null, $Name=null, $Order=null, $Key=null){
+		$this->Id 				= $Id;
+		$this->IdCategory 		= $IdCategory;		
+		$this->IdPresentation 	= $IdPresentation;
+		$this->Name 			= $Name;		
+		$this->Order 			= $Order;
+		$this->Key 				= $Key;
 		parent::__construct( $Id );
 	}
 		
@@ -35,13 +35,18 @@ class Category1 extends Object{
 		$Category = $mCategory->find($this->IdCategory);
 		return $Category;
 	}
-			
+	
+	function setIdPresentation($IdPresentation) {$this->IdPresentation = $IdPresentation;$this->markDirty();}
+	function getIdPresentation() 			{return $this->IdPresentation;}
+	function getPresentation(){
+		$mPresentation = new \MVC\Mapper\Presentation();
+		$Presentation = $mPresentation->find($this->IdPresentation);
+		return $Presentation;
+	}
+	
 	function setName($Name) {$this->Name = $Name;$this->markDirty();}
 	function getName() 		{return $this->Name;}
-	
-	function setInfo($Info) {$this->Info = $Info;$this->markDirty();}
-	function getInfo() 		{return $this->Info;}
-	
+			
 	function setOrder($Order){$this->Order = $Order;$this->markDirty();}
 	function getOrder() 	{return $this->Order;}
 	
@@ -55,9 +60,9 @@ class Category1 extends Object{
 	function toJSON(){
 		$json = array(
 			'Id' 			=> $this->getId(),
-			'IdCategory' 	=> $this->getIdCategory(),			
-			'Name'			=> $this->getName(),
-			'Info'			=> $this->getInfo(),
+			'IdCategory' 	=> $this->getIdCategory(),
+			'IdPresentation'=> $this->getIdPresentation(),
+			'Name'			=> $this->getName(),			
 			'Order'			=> $this->getOrder(),
 			'Key'			=> $this->getKey()
 		);
@@ -65,11 +70,11 @@ class Category1 extends Object{
 	}
 	
 	function setArray( $Data ){
-        $this->Id 			= $Data[0];
-		$this->IdCategory 	= $Data[1];
-		$this->Name 		= $Data[2];
-		$this->Info 		= $Data[3];
-		$this->Order		= $Data[4];
+        $this->Id 				= $Data[0];
+		$this->IdCategory 		= $Data[1];
+		$this->IdPresentation 	= $Data[2];
+		$this->Name 			= $Data[3];		
+		$this->Order			= $Data[4];
 		$this->reKey();
     }
 	
@@ -81,13 +86,7 @@ class Category1 extends Object{
 		$ProductAll = $mProduct->findByCategory(array($this->getId()));	
 		return $ProductAll;
 	}
-	
-	function getProductManufacturerAll($IdManufacturer){
-		$mProduct = new \MVC\Mapper\Product();
-		$ProductAll = $mProduct->findByCategoryManufacturer(array($this->getId(), $IdManufacturer));	
-		return $ProductAll;
-	}
-	
+			
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
@@ -96,11 +95,7 @@ class Category1 extends Object{
 	function getURLView(){
 		return "/thuc-don/".$this->getCategory()->getKey()."/".$this->getKey();
 	}
-	
-	function getURLViewSave(){
-		return "/khuyen-mai/".$this->getKey();
-	}
-			
+					
 	//-------------------------------------------------------------------------------
 	static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
 	static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}
