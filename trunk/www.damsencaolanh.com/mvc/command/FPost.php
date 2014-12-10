@@ -17,14 +17,15 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mConfig 	= new \MVC\Mapper\Config();
-			$mCategory 	= new \MVC\Mapper\Category();
-			$mPost 		= new \MVC\Mapper\Post();
-			$mPostTag 	= new \MVC\Mapper\PostTag();
-			$mTag 		= new \MVC\Mapper\Tag();
-			$mBranch 	= new \MVC\Mapper\Branch();
-			$mStoryLine = new \MVC\Mapper\StoryLine();
-			$mLinked	= new \MVC\Mapper\Linked();
+			$mConfig 		= new \MVC\Mapper\Config();
+			$mCategory 		= new \MVC\Mapper\Category();
+			$mPost 			= new \MVC\Mapper\Post();
+			$mPostTag 		= new \MVC\Mapper\PostTag();
+			$mTag 			= new \MVC\Mapper\Tag();
+			$mBranch 		= new \MVC\Mapper\Branch();
+			$mStoryLine 	= new \MVC\Mapper\StoryLine();
+			$mLinked		= new \MVC\Mapper\Linked();
+			$mPresentation 	= new \MVC\Mapper\Presentation();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -39,6 +40,7 @@
 			$ConfigMenu 			= $mConfig->findByName("MENU_MAIN");
 			$ConfigMarqueeWelcome	= $mConfig->findByName("MARQUEE_WELCOME");
 			
+			$Presentation1 			= $mPresentation->find($ConfigPHome->getValue());
 			$Category 				= $mCategory->find($ConfigMenu->getValue());
 			$BranchAll 				= $mBranch->findAll();
 			$StoryLineAll			= $mStoryLine->findAll();
@@ -75,6 +77,7 @@
 			
 			$request->setObject("URLShare", 			$URLShare);
 			
+			$request->setObject("Presentation1", 		$Presentation1);
 			$request->setObject("Post", 				$Post);
 			$request->setObject("Category", 			$Category);
 			$request->setObject("BranchAll", 			$BranchAll);

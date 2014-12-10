@@ -17,13 +17,14 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mConfig 	= new \MVC\Mapper\Config();
-			$mCategory 	= new \MVC\Mapper\Category();
-			$mPostTag	= new \MVC\Mapper\PostTag();
-			$mTag 		= new \MVC\Mapper\Tag();
-			$mBranch 	= new \MVC\Mapper\Branch();
-			$mStoryLine	= new \MVC\Mapper\StoryLine();
-			$mLinked	= new \MVC\Mapper\Linked();
+			$mConfig 		= new \MVC\Mapper\Config();
+			$mCategory 		= new \MVC\Mapper\Category();
+			$mPostTag		= new \MVC\Mapper\PostTag();
+			$mTag 			= new \MVC\Mapper\Tag();
+			$mBranch 		= new \MVC\Mapper\Branch();
+			$mStoryLine		= new \MVC\Mapper\StoryLine();
+			$mLinked		= new \MVC\Mapper\Linked();
+			$mPresentation 	= new \MVC\Mapper\Presentation();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -39,6 +40,7 @@
 			$ConfigRowPerPage 		= $mConfig->findByName("ROW_PER_PAGE");
 			$ConfigMarqueeWelcome	= $mConfig->findByName("MARQUEE_WELCOME");
 						
+			$Presentation1 			= $mPresentation->find($ConfigPHome->getValue());
 			$Category 				= $mCategory->find($ConfigMenu->getValue());
 			$BranchAll 				= $mBranch->findAll();
 			$StoryLineAll			= $mStoryLine->findAll();
@@ -71,6 +73,7 @@
 			$request->setObject("ConfigSkype", 			$ConfigSkype);
 			$request->setObject("ConfigMarqueeWelcome", $ConfigMarqueeWelcome);
 			
+			$request->setObject("Presentation1", 		$Presentation1);
 			$request->setObject("BranchAll", 			$BranchAll);
 			$request->setObject("StoryLineAll", 		$StoryLineAll);
 			$request->setObject("Category", 			$Category);
