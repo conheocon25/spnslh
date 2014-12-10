@@ -7,30 +7,7 @@
 	<body>		
 		<div class="container">
 			<tal:block metal:use-macro="mFront.xhtml/Header"/>
-			<div id="carousel-top-news" class="carousel slide" data-ride="carousel">
-				<div class="carousel-inner" role="listbox">
-					<div tal:repeat="PT LastestPostAll" class="item">
-						<a tal:attributes="href PT/getURLRead">
-							<img tal:attributes="src PT/getPost/getImage;alt PT/getPost/getTitle" width="100%"/>
-						</a>
-						<div class="carousel-caption">
-							<a tal:attributes="href PT/getURLRead">
-								<p><b tal:content="PT/getPost/getTitle"/></p>
-								<small tal:content="structure PT/getPost/getContentReduce"/>
-							</a>
-						</div>
-						<a class="left carousel-control" href="#carousel-top-news" role="button" data-slide="prev">
-							<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-							<span class="sr-only">Previous</span>
-						</a>
-						<a class="right carousel-control" href="#carousel-top-news" role="button" data-slide="next">
-							<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-							<span class="sr-only">Next</span>
-						</a>
-					</div>
-				</div>
-				<div class="news-title"/>
-			</div>
+			<tal:block metal:use-macro="mFront.xhtml/Presentation"/>
 			<tal:block metal:use-macro="mFront.xhtml/Marquee"/>
 			<div class="row">
 				<div class="col-md-8">
@@ -61,8 +38,8 @@
 					</div>										
 				</div>
 				<div class="col-md-4">
-					<tal:block metal:use-macro="mFront.xhtml/Subscribe"/>
 					<tal:block metal:use-macro="mFront.xhtml/ADS-1"/>
+					<tal:block metal:use-macro="mFront.xhtml/Subscribe"/>
 					<tal:block metal:use-macro="mFront.xhtml/LikeBox"/>
 				</div>
 			</div>
@@ -70,7 +47,8 @@
 		</div>
 		<tal:block metal:use-macro="mFront.xhtml/IncludeJS"/>
 		<script>
-			$('#carousel-top-news .item:first-child').addClass('active');
+			$('#carousel-presentation-generic').carousel({pause: "false"});
+			$('#carousel-presentation-generic .item:first-child').addClass('active');			
 		</script>
 	</body>
 </html>

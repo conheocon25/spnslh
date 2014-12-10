@@ -15,13 +15,13 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mConfig 	= new \MVC\Mapper\Config();
-			$mCategory 	= new \MVC\Mapper\Category();
-			$mPost 		= new \MVC\Mapper\Post();
-			$mPostTag	= new \MVC\Mapper\PostTag();
-			$mTag 		= new \MVC\Mapper\Tag();
-			$mBranch 	= new \MVC\Mapper\Branch();
-			$mStoryLine	= new \MVC\Mapper\StoryLine();
+			$mConfig 		= new \MVC\Mapper\Config();
+			$mCategory 		= new \MVC\Mapper\Category();
+			$mPost 			= new \MVC\Mapper\Post();
+			$mPostTag		= new \MVC\Mapper\PostTag();
+			$mTag 			= new \MVC\Mapper\Tag();
+			$mBranch 		= new \MVC\Mapper\Branch();
+			$mStoryLine		= new \MVC\Mapper\StoryLine();
 			$mPresentation 	= new \MVC\Mapper\Presentation();
 			$mLinked		= new \MVC\Mapper\Linked();
 						
