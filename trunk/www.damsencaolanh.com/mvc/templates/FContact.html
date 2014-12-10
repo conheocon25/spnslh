@@ -10,10 +10,10 @@
 			<div class="row">						
 				<div class="col-md-12">
 					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7846.911405609003!2d105.64594746215876!3d10.4646964700102!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310a6451d079d5b9%3A0x8a6f7f0066233c34!2zTeG7uSBQaMO6LCB0cC4gQ2FvIEzDo25oLCDEkOG7k25nIFRow6FwLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1417329338266" width="100%" height="370" frameborder="0" style="border:0; margin-bottom:-4px;"></iframe>
-					<marquee class="intro-line" scrolldelay="2" scrollamount="2" behavior="scroll" direction="left">Khu Ẩm Thực Sinh Thái Đầm Sen Cao Lãnh xin kính chào quý khách! Với các món ăn đa dạng và phong phú, chất lượng cao và giá phải chăng cùng phong cách phục vụ chuyên nghiệp, chu đáo, chúng tôi hứa hẹn sẽ là điểm đến tham quan, ăn uổng giải trí lý tưởng cho mọi gia đình</marquee>
+					<tal:block metal:use-macro="mFront.xhtml/Marquee"/>
 				</div>
 			</div>
-			<tal:block metal:use-macro="mFront.xhtml/Breadcrumb"/>
+			
 			<div class="row">						
 				<div class="col-md-8">
 					<div class="panel panel-default">
@@ -22,28 +22,7 @@
 						</div>						
 						<div class="panel-body">
 							<h1>Liên lạc nhanh với chúng tôi</h1>
-							<p>Quý khách sẽ được những ưu đãi và chất lượng phục vụ tốt nhất</p>
-							<button class="btn btn-custom btnBranch" style="width:100%;" tal:repeat="Branch BranchAll"
-								tal:attributes="data-name Branch/getName;
-												data-address Branch/getAddress;
-												data-x Branch/getX;
-												data-y Branch/getY;
-												data-phone1 Branch/getPhone1;
-												data-phone2 Branch/getPhone2;
-												data-email1 Branch/getEmail1;
-												data-email2 Branch/getEmail2;
-												data-logo Branch/getLogo;
-								"	
-							>
-								<input id="X" type="hidden" tal:attributes="value Branch/getX"/>
-								<input id="Y" type="hidden" tal:attributes="value Branch/getY"/>
-								<input id="NameXY" type="hidden" tal:attributes="value Branch/getName"/>
-								<span tal:content="Branch/getName"/>
-								<input id="Logo" type="hidden" tal:attributes="value Branch/getLogo"/>
-							</button>
-							
-							<div id="map"></div>
-							
+							<p>Quý khách sẽ được những ưu đãi và chất lượng phục vụ tốt nhất</p>													
 							<h3>Xin chào quý khách!</h3>
 							<span>Chúng tôi luôn lắng nghe những phản hồi của quý khách về chúng tôi. Ý kiến của quý vị sẽ làm nên sự thành công của chúng tôi.</span>
 							
@@ -63,41 +42,9 @@
 								<div class="form-group">
 									<label for="contact-message">Nội dung&#42;</label>
 									<textarea name="contact-message" class="form-control" id="contact-message" cols="30" rows="6"></textarea>
-								</div>
-								<div class="form-group">
-									<label for="contact-message">Nhập mã bảo vệ&#42;</label>
-									<input name="CodeCaptcha" type="text" id="CodeCaptcha"/>
-									<span style="color:red;" id="Mesenge" />
-									<span ><img id ="PicCaptcha" tal:attributes="src ImagePath" height="38px" width="150px" /></span>														
-									<img title="Lấy mã khác" id ="refreshCaptcha" src="/data/images/refresh.png" height="16px" style="margin-bottom:3px; cursor:pointer;" />
-								</div>
+								</div>								
 								<button id="BtnSend" type="submit" class="btn btn-default">Gữi</button>
-							</form>
-							
-							<h2>Thông tin liên hệ</h2>
-							<ul>										
-								<li>
-									<span></span>
-									<ul>
-										<li id="IdName" />
-										<li id="IdAddress" />
-									</ul>
-								</li>
-								<li>
-									<span></span>
-									<ul>
-										<li id="IdPhone1" />
-										<li id="IdPhone2" />
-									</ul>
-								</li>
-								<li>
-									<span></span>
-									<ul>
-										<li id="IdEmail1" />
-										<li id="IdEmail2" />
-									</ul>
-								</li>										
-							</ul>
+							</form>														
 						</div>
 					</div>
 				</div>
@@ -109,46 +56,8 @@
 			</div>
 			<tal:block metal:use-macro="mFront.xhtml/Footer"/>
 		</div>
-		<tal:block metal:use-macro="mFront.xhtml/IncludeJS"/>
-		<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=AIzaSyDEH8NhzcAH1soJWNwzh4VY3CGcAg3BhfM" type="text/javascript"></script>
-		<script type="text/javascript" language="javascript" src="/mvc/templates/theme/cms/js/gps.jquery.js"/>		
-				
-		<script type="text/javascript">
-			$(function() {											
-				$("#map").googleMap().load();
-			});
-			
-			$("#refreshCaptcha").click(function() {					
-					$.ajax({
-					  url: 'http://damsencaolanh.com/lien-he/RefreshCaptcha',
-					  dataType: "json",					  
-					  success: function(djson) {	
-						var pathimg = djson['result'];						
-						$('#PicCaptcha').attr("src","/data/" + pathimg);						
-					  }
-					});
-					
-			});	
-			
-			$('.btnBranch').click(function(e){								
-				$('#X').val($(this).attr('data-x'));
-				$('#Y').val($(this).attr('data-y'));
-				$('#NameXY').val($(this).attr('data-name'));
-				$('#Logo').val($(this).attr('data-logo'));
-				
-				$("#map").googleMap().reload();	
-				
-				$("#IdPhone1").html($(this).attr('data-phone1'));
-				$("#IdPhone2").html($(this).attr('data-phone2'));
-				
-				$("#IdEmail1").html($(this).attr('data-email1'));
-				$("#IdEmail2").html($(this).attr('data-email2'));
-				
-				$("#IdName").html($(this).attr('data-name'));
-				$("#IdAddress").html($(this).attr('data-address'));
-				
-			});
-			$('.btnBranch:first').click();
+		<tal:block metal:use-macro="mFront.xhtml/IncludeJS"/>		
+		<script type="text/javascript">																	
 			
 			$('#BtnSend').click(function(e){
 				var Data = [];
@@ -197,20 +106,7 @@
 										
 									  }
 									});	
-							}
-							
-							if (txtResult === "FALSE") {
-									$.ajax({
-									  url: 'http://damsencaolanh.com/lien-he/RefreshCaptcha',
-									  dataType: "json",					  
-									  success: function(djson) {	
-										var pathimg = djson['result'];						
-										$('#PicCaptcha').attr("src","/data/" + pathimg);						
-									  }
-									});
-									$("#CodeCaptcha").val('');
-									$("#Mesenge").html('Mã bảo mật không đúng nhập lại!');									
-								}
+							}														
 						}
 					});	
 				

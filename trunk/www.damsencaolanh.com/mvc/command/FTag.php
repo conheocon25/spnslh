@@ -36,6 +36,8 @@
 			$ConfigGmail 			= $mConfig->findByName("CONTACT_GTALK");
 			$ConfigSkype 			= $mConfig->findByName("CONTACT_SKYPE");
 			$ConfigMenu 			= $mConfig->findByName("MENU_MAIN");
+			$ConfigRowPerPage 		= $mConfig->findByName("ROW_PER_PAGE");
+			$ConfigMarqueeWelcome	= $mConfig->findByName("MARQUEE_WELCOME");
 						
 			$Category 				= $mCategory->find($ConfigMenu->getValue());
 			$BranchAll 				= $mBranch->findAll();
@@ -45,10 +47,10 @@
 			if (!isset($Page)) $Page = 1;
 			$TagAll 				= $mTag->findByPosition(array(1));
 			$Tag 					= $mTag->findByKey($KTag);
-			$PTAll 					= $mPostTag->findByTagPage(array($Tag->getId(), $Page, 6));
-			$PN 					= new \MVC\Domain\PageNavigation($Tag->getPostAll()->count(), 6, $Tag->getURLView());
+			$PTAll 					= $mPostTag->findByTagPage(array($Tag->getId(), $Page, $ConfigRowPerPage->getValue() ));
+			$PN 					= new \MVC\Domain\PageNavigation($Tag->getPostAll()->count(), $ConfigRowPerPage->getValue(), $Tag->getURLView());
 			
-			$LinkedAll 		= $mLinked->findByTop(array());
+			$LinkedAll 				= $mLinked->findByTop(array());
 			
 			$Title = mb_strtoupper('Tin Tức', 'UTF8');
 			$Navigation = array();
@@ -67,6 +69,7 @@
 			$request->setObject("ConfigPhone2", 		$ConfigPhone2);
 			$request->setObject("ConfigGmail", 			$ConfigGmail);
 			$request->setObject("ConfigSkype", 			$ConfigSkype);
+			$request->setObject("ConfigMarqueeWelcome", $ConfigMarqueeWelcome);
 			
 			$request->setObject("BranchAll", 			$BranchAll);
 			$request->setObject("StoryLineAll", 		$StoryLineAll);

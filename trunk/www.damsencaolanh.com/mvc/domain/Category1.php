@@ -94,17 +94,13 @@ class Category1 extends Object{
 	function getURLSettting(){return "admin/setting/category1/".$this->getId();}
 		
 	function getURLView(){
-		return "/".$this->getCategory()->getKey()."/".$this->getKey();
+		return "/thuc-don/".$this->getCategory()->getKey()."/".$this->getKey();
 	}
 	
 	function getURLViewSave(){
 		return "/khuyen-mai/".$this->getKey();
 	}
-	
-	function getURLViewManufacturer($IdManufacturer){
-		return "/san-pham/".$this->getCategory()->getKey()."/".$this->getKey()."/".$IdManufacturer."/m";
-	}
-	
+			
 	//-------------------------------------------------------------------------------
 	static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
 	static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}

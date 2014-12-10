@@ -34,6 +34,7 @@
 			$ConfigPhone2 	= $mConfig->findByName("PHONE2");
 			$ConfigGmail 	= $mConfig->findByName("CONTACT_GTALK");
 			$ConfigSkype 	= $mConfig->findByName("CONTACT_SKYPE");
+			$ConfigMarqueeWelcome	= $mConfig->findByName("MARQUEE_WELCOME");
 			
 			$CategoryAll 	= $mCategory->findAll();			
 			$Product 		= $mProduct->findByKey($KProduct);
@@ -60,6 +61,8 @@
 			$request->setObject("ConfigPhone2", $ConfigPhone2);
 			$request->setObject("ConfigGmail", 	$ConfigGmail);
 			$request->setObject("ConfigSkype", 	$ConfigSkype);
+			$request->setObject("ConfigMarqueeWelcome", $ConfigMarqueeWelcome);
+			
 			$request->setObject("CategoryAll", 	$CategoryAll);
 			$request->setObject("TagAll", 		$TagAll);
 			$request->setObject("BranchAll", 	$BranchAll);

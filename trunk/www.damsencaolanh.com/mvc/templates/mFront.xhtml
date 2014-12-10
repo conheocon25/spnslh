@@ -27,7 +27,7 @@
 		<link rel="stylesheet" type="text/css" href="/mvc/templates/front/css/bootstrap.min.css"/>
 		<link rel="stylesheet" type="text/css" href="/mvc/templates/front/css/bootstrap.config.css"/>
 	</tal:block>
-	
+		
 	<!-- ======================================================================== -->
 	<!-- JAVASCRIPT INCLUDE														  -->
 	<!-- ======================================================================== -->
@@ -188,7 +188,16 @@
 			</ul>
 		</div>
 	</div>
-
+	
+	<!-- ======================================================================== -->
+	<!-- MARQUEE																  -->
+	<!-- ======================================================================== -->
+	<div metal:define-macro="Marquee" class="row">
+		<div class="col-md-12">
+			<marquee tal:content="ConfigMarqueeWelcome/getValue" class="intro-line" scrolldelay="2" scrollamount="2" behavior="scroll" direction="left" />				
+		</div>
+	</div>
+	
 	<!-- ======================================================================== -->
 	<!-- FOOTER																	  -->
 	<!-- ======================================================================== -->

@@ -38,10 +38,10 @@
 			$ConfigGmail 			= $mConfig->findByName("CONTACT_GTALK");
 			$ConfigSkype 			= $mConfig->findByName("CONTACT_SKYPE");
 			$ConfigMenu 			= $mConfig->findByName("MENU_MAIN");
+			$ConfigMarqueeWelcome	= $mConfig->findByName("MARQUEE_WELCOME");
 			
 			$BranchAll		= $mBranch->findAll();
-			$StoryLineAll	= $mStoryLine->findAll();
-												
+			$StoryLineAll	= $mStoryLine->findAll();												
 			$Category 		= $mCategory->find($ConfigMenu->getValue());
 			$ProductAll 	= $mProduct->findByTop(array());			
 			$Presentation1 	= $mPresentation->find($ConfigPHome->getValue());
@@ -66,6 +66,7 @@
 			$request->setObject("ConfigGmail", 			$ConfigGmail);
 			$request->setObject("ConfigSkype", 			$ConfigSkype);
 			$request->setObject("ConfigMenu", 			$ConfigMenu);
+			$request->setObject("ConfigMarqueeWelcome", $ConfigMarqueeWelcome);
 			
 			$request->setObject("TagAll", 				$TagAll);
 			$request->setObject("BranchAll", 			$BranchAll);

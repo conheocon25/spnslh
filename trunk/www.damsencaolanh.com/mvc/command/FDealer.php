@@ -16,25 +16,27 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mConfig 	= new \MVC\Mapper\Config();
-			$mCategory 	= new \MVC\Mapper\Category();
-			$mPostTag	= new \MVC\Mapper\PostTag();
-			$mTag 		= new \MVC\Mapper\Tag();
-			$mBranch 	= new \MVC\Mapper\Branch();
-			$mStoryLine = new \MVC\Mapper\StoryLine();
-			$mLinked	= new \MVC\Mapper\Linked();
+			$mConfig 		= new \MVC\Mapper\Config();
+			$mCategory 		= new \MVC\Mapper\Category();
+			$mPostTag		= new \MVC\Mapper\PostTag();
+			$mTag 			= new \MVC\Mapper\Tag();
+			$mBranch 		= new \MVC\Mapper\Branch();
+			$mStoryLine 	= new \MVC\Mapper\StoryLine();
+			$mLinked		= new \MVC\Mapper\Linked();
+			$mPresentation 	= new \MVC\Mapper\Presentation();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
 			$ConfigName 			= $mConfig->findByName("NAME");
 			$ConfigSlogan 			= $mConfig->findByName("SLOGAN");
-			$ConfigPHome 			= $mConfig->findByName("PRESENTATION_HOME");
+			$ConfigPIntro 			= $mConfig->findByName("PRESENTATION_INTRO");
 			$ConfigPhone1 			= $mConfig->findByName("PHONE1");
 			$ConfigPhone2 			= $mConfig->findByName("PHONE2");
 			$ConfigGmail 			= $mConfig->findByName("CONTACT_GTALK");
 			$ConfigSkype 			= $mConfig->findByName("CONTACT_SKYPE");
 			$ConfigMenu 			= $mConfig->findByName("MENU_MAIN");
+			$ConfigMarqueeWelcome	= $mConfig->findByName("MARQUEE_WELCOME");
 			
 			$Category 				= $mCategory->find( $ConfigMenu->getValue() );
 			$BranchAll 				= $mBranch->findAll();
@@ -50,8 +52,10 @@
 			$LastestPostAll 		= $mPostTag->findByLastest4(array(null));
 			$LinkedAll 				= $mLinked->findByTop(array());
 			
-			$Title = "KHUYẾN MÃI";
-			$Navigation = array();
+			$Presentation1 			= $mPresentation->find($ConfigPIntro->getValue());
+			
+			$Title 					= "KHUYẾN MÃI";
+			$Navigation 			= array();
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
@@ -67,7 +71,9 @@
 			$request->setObject("ConfigPhone2", 		$ConfigPhone2);
 			$request->setObject("ConfigGmail", 			$ConfigGmail);
 			$request->setObject("ConfigSkype", 			$ConfigSkype);
+			$request->setObject("ConfigMarqueeWelcome", $ConfigMarqueeWelcome);
 			
+			$request->setObject("Presentation1", 		$Presentation1);
 			$request->setObject("StoryLineAll", 		$StoryLineAll);
 			$request->setObject("LastestPostAll", 		$LastestPostAll);
 			$request->setObject("BranchAll", 			$BranchAll);

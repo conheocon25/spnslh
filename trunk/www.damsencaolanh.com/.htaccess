@@ -35,8 +35,9 @@ RewriteRule ^khuyen-mai/([A-Za-z0-9_-]+)/page/([0-9]+)$ 	?cmd=FDealer&KCategory2
 RewriteRule ^khuyen-mai/m/([0-9]+)$ 						?cmd=FDealer&IdManufacturer=$1 	[L]
 RewriteRule ^khuyen-mai/m/([0-9]+)/page/([0-9]+)$ 			?cmd=FDealer&IdManufacturer=$1&Page=$2 	[L]
 
-RewriteRule ^thuc-don/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$ 					?cmd=FProduct&KCategory=$1&KProduct=$2 [L]
-RewriteRule ^thuc-don/([A-Za-z0-9_-]+)$ 									?cmd=FCategory&KCategory=$1 [L]
+RewriteRule ^thuc-don/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$ 	?cmd=FProduct&KCategory=$2&KProduct=$3 [L]
+RewriteRule ^thuc-don/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$ 					?cmd=FCategory&KCategory=$1&KCategory1=$2 [L]
+
 RewriteRule ^san-pham/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/page/([0-9]+)$ 		?cmd=FCategory&KCategory1=$1&KCategory2=$2&Page=$3 [L]
 RewriteRule ^san-pham/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/([0-9]+)/m$ 		?cmd=FCategory&KCategory1=$1&KCategory2=$2&IdManufacturer=$3 [L]
 RewriteRule ^san-pham/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/([0-9]+)/m/page/([0-9]+)$ ?cmd=FCategory&KCategory1=$1&KCategory2=$2&IdManufacturer=$3&Page=$4 [L]

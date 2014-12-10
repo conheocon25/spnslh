@@ -36,10 +36,12 @@
 			$ConfigPhone2 			= $mConfig->findByName("PHONE2");
 			$ConfigGmail 			= $mConfig->findByName("CONTACT_GTALK");
 			$ConfigSkype 			= $mConfig->findByName("CONTACT_SKYPE");
+			$ConfigMenu 			= $mConfig->findByName("MENU_MAIN");
+			$ConfigMarqueeWelcome	= $mConfig->findByName("MARQUEE_WELCOME");
 			
-			$CategoryAll 			= $mCategory->findAll();
+			$Category 				= $mCategory->find($ConfigMenu->getValue());
 			$BranchAll 				= $mBranch->findAll();
-			$StoryLineAll	= $mStoryLine->findAll();
+			$StoryLineAll			= $mStoryLine->findAll();
 			
 			$Post 					= $mPost->findByKey($KPost);
 			$Tag 					= $mTag->findByKey($KTag);
@@ -69,11 +71,12 @@
 			$request->setObject("ConfigPhone2", 		$ConfigPhone2);
 			$request->setObject("ConfigGmail", 			$ConfigGmail);
 			$request->setObject("ConfigSkype", 			$ConfigSkype);
+			$request->setObject("ConfigMarqueeWelcome", $ConfigMarqueeWelcome);
 			
 			$request->setObject("URLShare", 			$URLShare);
 			
 			$request->setObject("Post", 				$Post);
-			$request->setObject("CategoryAll", 			$CategoryAll);
+			$request->setObject("Category", 			$Category);
 			$request->setObject("BranchAll", 			$BranchAll);
 			$request->setObject("StoryLineAll", 		$StoryLineAll);
 			$request->setObject("LastestPostAll", 		$LastestPostAll);

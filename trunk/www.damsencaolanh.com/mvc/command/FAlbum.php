@@ -17,14 +17,15 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mConfig 	= new \MVC\Mapper\Config();
-			$mCategory 	= new \MVC\Mapper\Category();
-			$mAlbum		= new \MVC\Mapper\Album();
-			$mTag 		= new \MVC\Mapper\Tag();
-			$mPostTag 	= new \MVC\Mapper\PostTag();
-			$mBranch 	= new \MVC\Mapper\Branch();
-			$mStoryLine = new \MVC\Mapper\StoryLine();
-			$mLinked	= new \MVC\Mapper\Linked();
+			$mConfig 		= new \MVC\Mapper\Config();
+			$mCategory 		= new \MVC\Mapper\Category();
+			$mAlbum			= new \MVC\Mapper\Album();
+			$mTag 			= new \MVC\Mapper\Tag();
+			$mPostTag 		= new \MVC\Mapper\PostTag();
+			$mBranch 		= new \MVC\Mapper\Branch();
+			$mStoryLine 	= new \MVC\Mapper\StoryLine();
+			$mLinked		= new \MVC\Mapper\Linked();
+			$mPresentation	= new \MVC\Mapper\Presentation();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -37,10 +38,13 @@
 			$ConfigGmail 			= $mConfig->findByName("CONTACT_GTALK");
 			$ConfigSkype 			= $mConfig->findByName("CONTACT_SKYPE");
 			$ConfigMenu 			= $mConfig->findByName("MENU_MAIN");
+			$ConfigPIntro 			= $mConfig->findByName("PRESENTATION_INTRO");
+			$ConfigMarqueeWelcome	= $mConfig->findByName("MARQUEE_WELCOME");
 			
 			$Category 				= $mCategory->find( $ConfigMenu->getValue() );
 			$BranchAll 				= $mBranch->findAll();
 			$StoryLineAll 			= $mStoryLine->findAll();
+			$Presentation1 			= $mPresentation->find($ConfigPIntro->getValue());
 			
 			if (!isset($Page)) $Page = 1;
 			$TagAll 				= $mTag->findByPosition(array(1));			
@@ -69,7 +73,9 @@
 			$request->setObject("ConfigPhone2", 		$ConfigPhone2);
 			$request->setObject("ConfigGmail", 			$ConfigGmail);
 			$request->setObject("ConfigSkype", 			$ConfigSkype);
+			$request->setObject("ConfigMarqueeWelcome", $ConfigMarqueeWelcome);
 			
+			$request->setObject("Presentation1", 		$Presentation1);
 			$request->setObject("StoryLineAll", 		$StoryLineAll);
 			$request->setObject("LastestPostAll", 		$LastestPostAll);
 			$request->setObject("BranchAll", 			$BranchAll);
