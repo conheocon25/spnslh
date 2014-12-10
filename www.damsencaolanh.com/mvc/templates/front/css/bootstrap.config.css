@@ -227,26 +227,25 @@
 	}
 	
 	#carousel-top-news {
-		margin-bottom: 1px;
+		margin-bottom: 20px;
 	}
 	
 	#carousel-top-news .item {
 		width: 100%;
-		height: 340px;
+		height: 240px;
 	}
 	
-	#carousel-top-news .item img { width: 100%; }
+	#carousel-top-news .item img { width: 100%; height: 100%; }
 	#carousel-top-news .item .carousel-caption {
 		width: 100%;
 		left: 0;
 		right: 0;
 		bottom: 0;
 		background: rgba(0, 0, 0, .4);
-		text-align: justify;
-		padding: 10px;
+		text-align: center;
+		padding: 5px;
+		line-height: 18px;
 	}
-	
-	#carousel-top-news .item a { color: #fff; text-decoration: none; }
 	
 	#carousel-top-news .news-title {
 		position: absolute;
@@ -256,4 +255,21 @@
 		width: 100px;
 		height: 100px;
 		background: url('/mvc/templates/front/img/nicon.gif') no-repeat top left transparent;
+	}
+
+	.list-group-config .list-group-item.active, .list-group-config .list-group-item.active:hover, .list-group-config .list-group-item.active:focus {
+		background: url('/mvc/templates/front/img/hbg.png') no-repeat top left transparent;
+		text-transform: uppercase;
+		padding: 9px;
+		font-weight: bold;
+		border: 1px solid #740E4A;
+	}
+	
+	.list-group-config a {
+		font-size: 13px;
+		padding: 7px;
+	}
+	
+	.rspdl {
+		padding-left: 0;
 	}
