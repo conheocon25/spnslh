@@ -7,7 +7,15 @@
 	<body>		
 		<div class="container">
 			<tal:block metal:use-macro="mFront.xhtml/Header"/>
-			<tal:block metal:use-macro="mFront.xhtml/Breadcrumb"/>
+			<div id="carousel-example-generic" class="carousel slide fade" data-ride="carousel">
+				<div class="carousel-inner" role="listbox">
+					<div class="item" tal:repeat="Slide Presentation1/getSlideAll">
+						<img tal:attributes="src Slide/getURL;alt php:'sequence-slide-' . repeat.Slide.number" width="100%"/>
+						<div class="carousel-caption" tal:content="structure Slide/getNote"/>
+					</div>
+				</div>
+			</div>
+			<tal:block metal:use-macro="mFront.xhtml/Marquee"/>
 			<div class="row">						
 				<div class="col-md-8">
 					<div class="panel panel-default">
@@ -48,5 +56,9 @@
 			<tal:block metal:use-macro="mFront.xhtml/Footer"/>
 		</div>
 		<tal:block metal:use-macro="mFront.xhtml/IncludeJS"/>
+		<script>
+			$('#carousel-example-generic').carousel({pause: "false"});
+			$('#carousel-example-generic .item:first-child').addClass('active');			
+		</script>
 	</body>
 </html>

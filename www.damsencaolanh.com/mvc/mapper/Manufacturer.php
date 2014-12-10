@@ -6,7 +6,7 @@ class Manufacturer extends Mapper implements \MVC\Domain\ManufacturerFinder {
     function __construct() {
         parent::__construct();
 		
-		$tblManufacturer = "res_manufacturer";
+		$tblManufacturer = "tbl_manufacturer";
 						
 		$selectAllStmt 	= sprintf("select * from %s order by `order`", $tblManufacturer);
 		$selectStmt 	= sprintf("select * from %s where id=?", $tblManufacturer);

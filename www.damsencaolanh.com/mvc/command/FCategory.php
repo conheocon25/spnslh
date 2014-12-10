@@ -11,8 +11,8 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$KCategory 	= 	$request->getProperty('KCategory');
-			$IdManufacturer = 	$request->getProperty('IdManufacturer');
+			$KCategory1 	= 	$request->getProperty('KCategory1');			
+			$KCategory 		= 	$request->getProperty('KCategory');			
 			$Page 			= 	$request->getProperty('Page');
 						
 			//-------------------------------------------------------------
@@ -20,10 +20,12 @@
 			//-------------------------------------------------------------			
 			$mConfig 		= new \MVC\Mapper\Config();
 			$mCategory 		= new \MVC\Mapper\Category();
+			$mCategory1 	= new \MVC\Mapper\Category1();
 			$mTag			= new \MVC\Mapper\Tag();
 			$mProduct		= new \MVC\Mapper\Product();
 			$mBranch 		= new \MVC\Mapper\Branch();
 			$mLinked		= new \MVC\Mapper\Linked();
+			$mPresentation 	= new \MVC\Mapper\Presentation();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -35,10 +37,14 @@
 			$ConfigSkype 	= $mConfig->findByName("CONTACT_SKYPE");
 			$ConfigPhone1 	= $mConfig->findByName("PHONE1");
 			$ConfigPhone2 	= $mConfig->findByName("PHONE2");
-			$CategoryAll 	= $mCategory->findAll();
+			$ConfigPHome 	= $mConfig->findByName("PRESENTATION_INTRO");
+			$ConfigMarqueeWelcome	= $mConfig->findByName("MARQUEE_WELCOME");
+			
 			$Category 		= $mCategory->findByKey($KCategory);
+			$Category1 		= $mCategory1->findByKey(array($Category->getId(), $KCategory1));
 			$TagAll 		= $mTag->findByPosition(array(1));
 			$BranchAll 		= $mBranch->findAll();
+			$Presentation1 	= $mPresentation->find($ConfigPHome->getValue());
 
 			if (!isset($Page)) $Page = 1;
 			
@@ -57,15 +63,17 @@
 			$request->setProperty("Page", 				$Page);
 			$request->setObject("Navigation", 			$Navigation);
 			
-			$request->setObject("ConfigName", 			$ConfigName);
+			$request->setObject("ConfigName", 			$ConfigName);			
 			$request->setObject("ConfigSlogan", 		$ConfigSlogan);
 			$request->setObject("ConfigGmail", 			$ConfigGmail);
 			$request->setObject("ConfigSkype", 			$ConfigSkype);
 			$request->setObject("ConfigPhone1", 		$ConfigPhone1);
 			$request->setObject("ConfigPhone2", 		$ConfigPhone2);
+			$request->setObject("ConfigMarqueeWelcome", $ConfigMarqueeWelcome);
 			
-			$request->setObject("CategoryAll", 			$CategoryAll);
+			$request->setObject("Presentation1", 		$Presentation1);	
 			$request->setObject("Category", 			$Category);
+			$request->setObject("Category1", 			$Category1);
 			$request->setObject("TagAll", 				$TagAll);
 			$request->setObject("BranchAll", 			$BranchAll);
 						

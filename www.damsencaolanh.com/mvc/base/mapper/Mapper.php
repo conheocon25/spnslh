@@ -15,25 +15,11 @@ error_reporting ('E_ALL | E_STRICT');
 
 abstract class Mapper implements \MVC\Domain\Finder {
     protected static $PDO;
-    function __construct() { 
-		/*
-        if ( ! isset(self::$PDO) ) { 
-            $Encrypted = new Encrypted("amthuclangsen");
-			$StrResult = $Encrypted->readStrConnection();
-			$res = explode(" ", $StrResult);			
-					
-            if ( is_null( $res[0] ) ) {
-                throw new \MVC\Base\AppException( "No DSN" );
-            }
-            self::$PDO = new \PDO( $res[0] . $res[1], $res[2], $res[3], array(\PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8", \PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true) );
-            self::$PDO->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-			
-        }
-		*/
+    function __construct() { 		
 		if ( ! isset(self::$PDO) ) { 
             
 			$dsn = "mysql:host=localhost;";
-			$dbname = "dbname=spncom_huongsenhong";
+			$dbname = "dbname=spncom_damsencaolanh";
 			$user = "spncom_admindb";
 			$pass = "admin368189";
 						

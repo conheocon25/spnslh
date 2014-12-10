@@ -2,8 +2,8 @@
 <html>
 	<head>
 		<tal:block metal:use-macro="mFront.xhtml/IncludeMETA"/>
-		<meta property="og:title"			content="Hương Sen Hồng"/>
-		<meta property="og:description"		content="Giới thiệu Khu Ẩm Thực Sinh Thái Hương Sen Hồng"/>
+		<meta property="og:title"			content="Đầm Sen Cao Lãnh"/>
+		<meta property="og:description"		content="Giới thiệu Khu Ẩm Thực Sinh Thái Đầm Sen"/>
 		<meta property="og:image"			content="ảnh mẫu"/>
 		<tal:block metal:use-macro="mFront.xhtml/IncludeCSS"/>
 	</head>	
@@ -18,13 +18,8 @@
 					</div>
 				</div>
 			</div>
-			<div class="row">						
-				<div class="col-md-12">
-					<marquee class="intro-line" scrolldelay="2" scrollamount="2" behavior="scroll" direction="left">Khu Ẩm Thực Sinh Thái Đầm Sen Cao Lãnh xin kính chào quý khách! Với các món ăn đa dạng và phong phú, chất lượng cao và giá phải chăng cùng phong cách phục vụ chuyên nghiệp, chu đáo, chúng tôi hứa hẹn sẽ là điểm đến tham quan, ăn uổng giải trí lý tưởng cho mọi gia đình</marquee>
-				</div>
-			</div>
-			<tal:block metal:use-macro="mFront.xhtml/Breadcrumb"/>
-			<div class="row">						
+			<tal:block metal:use-macro="mFront.xhtml/Marquee"/>
+			<div class="row">
 				<div class="col-md-8">
 					<div class="panel panel-default">
 						<div class="panel-heading"><h3 class="panel-title" tal:content="Post/getTitle"/></div>						

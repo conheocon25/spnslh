@@ -6,7 +6,7 @@ class Category1 extends Mapper implements \MVC\Domain\Category1Finder {
     function __construct() {
         parent::__construct();
 		
-		$tblCategory1 	= "res_category1";
+		$tblCategory1 	= "tbl_category1";
 						
 		$selectAllStmt 	= sprintf("SELECT * from %s order by id_category, name", $tblCategory1);
 		$selectStmt 	= sprintf("SELECT * from %s where id=?", $tblCategory1);
