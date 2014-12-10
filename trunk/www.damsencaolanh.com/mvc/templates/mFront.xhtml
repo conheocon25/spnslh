@@ -199,6 +199,18 @@
 	</div>
 	
 	<!-- ======================================================================== -->
+	<!-- PRESENTATION															  -->
+	<!-- ======================================================================== -->
+	<div metal:define-macro="Presentation" id="carousel-presentation-generic" class="carousel slide fade" data-ride="carousel">
+		<div class="carousel-inner" role="listbox">
+			<div class="item" tal:repeat="Slide Presentation1/getSlideAll">
+				<img tal:attributes="src Slide/getURL;alt php:'sequence-slide-' . repeat.Slide.number" width="100%"/>
+				<div class="carousel-caption" tal:content="structure Slide/getNote"/>
+			</div>
+		</div>
+	</div>
+			
+	<!-- ======================================================================== -->
 	<!-- FOOTER																	  -->
 	<!-- ======================================================================== -->
 	<footer metal:define-macro="Footer">

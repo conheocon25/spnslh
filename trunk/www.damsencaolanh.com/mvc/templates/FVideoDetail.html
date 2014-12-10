@@ -6,7 +6,9 @@
 	</head>	
 	<body>		
 		<div class="container">
-			<tal:block metal:use-macro="mFront.xhtml/Header"/>			
+			<tal:block metal:use-macro="mFront.xhtml/Header"/>
+			<tal:block metal:use-macro="mFront.xhtml/Presentation"/>
+			<tal:block metal:use-macro="mFront.xhtml/Marquee"/>
 			<div class="row">
 				<div class="col-md-8">
 					<div class="panel panel-default">
@@ -35,6 +37,9 @@
 		<tal:block metal:use-macro="mFront.xhtml/IncludeJS"/>
 		<script>
 			/*<![CDATA[*/
+				$('#carousel-presentation-generic .item:first-child').addClass('active');
+				$('#carousel-presentation-generic .carousel-indicators li:first-child').addClass('active');
+				
 				$('.Liked').click(function(){
 					var Data = [];								
 					var Id 	= $(this).attr('data-id');
