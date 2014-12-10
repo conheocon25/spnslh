@@ -7,26 +7,27 @@
 	<body>		
 		<div class="container">
 			<tal:block metal:use-macro="mFront.xhtml/Header"/>
-			<tal:block metal:use-macro="mFront.xhtml/Breadcrumb"/>
+			<tal:block metal:use-macro="mFront.xhtml/Presentation"/>
+			<tal:block metal:use-macro="mFront.xhtml/Marquee"/>			
 			<div class="row">						
 				<div class="col-md-8">
 					<div class="panel panel-default">
-						<div class="panel-heading"><h3 class="panel-title">Photo Album</h3></div>						
+						<div class="panel-heading"><h3 class="panel-title" tal:content="Album/getName"/></div>
 						<div class="panel-body">
-							<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+							<div id="carousel-album-generic" class="carousel slide" data-ride="carousel">
 								<ol class="carousel-indicators">
-									<li tal:repeat="Image Album/getImageAll" data-target="#carousel-example-generic" tal:attributes="data-slide-to repeat/Image/number"/>
+									<li tal:repeat="Image Album/getImageAll" data-target="#carousel-album-generic" tal:attributes="data-slide-to repeat/Image/number"/>
 								</ol>
 								<div class="carousel-inner" role="listbox">
 									<div class="item" tal:repeat="Image Album/getImageAll">
 										<img tal:attributes="src Image/getURL;alt php:'sequence-slide-' . repeat.Image.number"/>
 									</div>
 								</div>
-								<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+								<a class="left carousel-control" href="#carousel-album-generic" role="button" data-slide="prev">
 									<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
 									<span class="sr-only">Previous</span>
 								</a>
-								<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+								<a class="right carousel-control" href="#carousel-album-generic" role="button" data-slide="next">
 									<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 									<span class="sr-only">Next</span>
 								</a>
@@ -44,8 +45,11 @@
 		</div>
 		<tal:block metal:use-macro="mFront.xhtml/IncludeJS"/>
 		<script>
-			$('#carousel-example-generic .item:first-child').addClass('active');
-			$('#carousel-example-generic .carousel-indicators li:first-child').addClass('active');
+			$('#carousel-presentation-generic .item:first-child').addClass('active');
+			$('#carousel-presentation-generic .carousel-indicators li:first-child').addClass('active');
+			
+			$('#carousel-album-generic .item:first-child').addClass('active');
+			$('#carousel-album-generic .carousel-indicators li:first-child').addClass('active');
 		</script>
 	</body>
 </html>

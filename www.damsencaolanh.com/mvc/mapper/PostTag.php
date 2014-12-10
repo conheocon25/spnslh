@@ -13,7 +13,7 @@ class PostTag extends Mapper implements \MVC\Domain\PostTagFinder {
 		$insertStmt 		= sprintf("insert into %s ( id_post, id_tag) values(?, ?)", $tblPostTag);
 		$deleteStmt 		= sprintf("delete from %s where id=?", $tblPostTag);		
 		$findByPostStmt		= sprintf("select *  from %s where id_post=?", 			$tblPostTag);
-		$findByLastest4Stmt	= sprintf("SELECT *  FROM %s ORDER BY id DESC LIMIT 4", 	$tblPostTag);
+		$findByLastest4Stmt	= sprintf("SELECT *  FROM %s ORDER BY id DESC LIMIT 6", 	$tblPostTag);
 		
 		$findByTagStmt		= sprintf("select *  from %s where id_tag=?", 			$tblPostTag);				
 		$findByTagPageStmt = sprintf(
