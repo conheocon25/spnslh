@@ -31,29 +31,27 @@
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------			
 			$Title = "";
-			$ConfigName 	= $mConfig->findByName("NAME");
-			$ConfigSlogan 	= $mConfig->findByName("SLOGAN");
-			$ConfigGmail 	= $mConfig->findByName("CONTACT_GTALK");
-			$ConfigSkype 	= $mConfig->findByName("CONTACT_SKYPE");
-			$ConfigPhone1 	= $mConfig->findByName("PHONE1");
-			$ConfigPhone2 	= $mConfig->findByName("PHONE2");
-			$ConfigPHome 	= $mConfig->findByName("PRESENTATION_INTRO");
+			$ConfigName 			= $mConfig->findByName("NAME");
+			$ConfigSlogan 			= $mConfig->findByName("SLOGAN");
+			$ConfigGmail 			= $mConfig->findByName("CONTACT_GTALK");
+			$ConfigSkype 			= $mConfig->findByName("CONTACT_SKYPE");
+			$ConfigPhone1 			= $mConfig->findByName("PHONE1");
+			$ConfigPhone2 			= $mConfig->findByName("PHONE2");
+			$ConfigPHome 			= $mConfig->findByName("PRESENTATION_INTRO");
 			$ConfigMarqueeWelcome	= $mConfig->findByName("MARQUEE_WELCOME");
 			
-			$Category 		= $mCategory->findByKey($KCategory);
-			$Category1 		= $mCategory1->findByKey(array($Category->getId(), $KCategory1));
-			$TagAll 		= $mTag->findByPosition(array(1));
-			$BranchAll 		= $mBranch->findAll();
-			$Presentation1 	= $mPresentation->find($ConfigPHome->getValue());
+			$Category 				= $mCategory->findByKey($KCategory);
+			$Category1 				= $mCategory1->findByKey(array($Category->getId(), $KCategory1));
+			$TagAll 				= $mTag->findByPosition(array(1));
+			$BranchAll 				= $mBranch->findAll();
+			$Presentation1 			= $Category1->getPresentation();
 
 			if (!isset($Page)) $Page = 1;
 			
-			$LinkedAll 		= $mLinked->findByTop(array());
+			$LinkedAll 				= $mLinked->findByTop(array());
 			
-			$Title = mb_strtoupper($Category->getName(), 'UTF8');
-			$Navigation = array(
-				array(mb_strtoupper("Menu", 'UTF8'), "/")
-			);
+			$Title 					= mb_strtoupper($Category->getName(), 'UTF8');
+			$Navigation = array(array(mb_strtoupper("Menu", 'UTF8'), "/"));
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
