@@ -40,7 +40,8 @@ a {
 }
 
 #header h1 {
-    background: url("../img/logo.png") no-repeat scroll 0 0 transparent;
+    background: url("/mvc/templates/front/img/logo.png") no-repeat scroll -20px -17px transparent;
+	background-size: 180px 70px;
     height: 31px;
     left: 15px;
     line-height: 600px;
