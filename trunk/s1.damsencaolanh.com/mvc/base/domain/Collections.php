@@ -9,10 +9,11 @@ interface TableCollection 			extends \Iterator {function add( Object $table 			)
 interface TableLogCollection 		extends \Iterator {function add( Object $TableLog 		);}
 interface SessionCollection 		extends \Iterator {function add( Object $session 		);}
 interface SessionDetailCollection 	extends \Iterator {function add( Object $SessionDetail 	);}
-interface CategoryCollection 		extends \Iterator {function add( Object $category 		);}
-interface CourseCollection 			extends \Iterator {function add( Object $course 		);}
-interface CourseLogCollection 		extends \Iterator {function add( Object $course_log 	);}
-interface SupplierCollection 		extends \Iterator {function add( Object $supplier 		);}
+interface SessionDisableCollection 	extends \Iterator {function add( Object $SessionDisable	);}
+interface CategoryCollection 		extends \Iterator {function add( Object $Category 		);}
+interface CourseCollection 			extends \Iterator {function add( Object $Course 		);}
+interface CourseLogCollection 		extends \Iterator {function add( Object $Course_log 	);}
+interface SupplierCollection 		extends \Iterator {function add( Object $Supplier 		);}
 
 interface PaidSupplierCollection 	extends \Iterator {function add( Object $PaidSupplier 	);}
 interface PaidCustomerCollection 	extends \Iterator {function add( Object $PaidCustomer 	);}

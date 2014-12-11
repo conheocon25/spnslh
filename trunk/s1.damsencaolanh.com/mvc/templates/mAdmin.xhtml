@@ -130,6 +130,9 @@
 			<li tal:attributes="class php:ActiveAdmin=='Import'?'active':'disable'">
 				<a tal:attributes="href '/import'"><i class="glyphicons-truck" />NHẬP HÀNG</a>
 			</li>
+			<li tal:attributes="class php:ActiveAdmin=='FixedSession'?'active':'disable'">
+				<a tal:attributes="href '/fixed/session'"><i class="glyphicons-table" />PHIẾU HƯ</a>
+			</li>
 			<li tal:attributes="class php:ActiveAdmin=='PayRoll'?'active':'disable'">
 				<a tal:attributes="href '/payroll'"><i class="glyphicons-table" />CHẤM CÔNG</a>
 			</li>			
@@ -154,7 +157,10 @@
 		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isManager()">
 			<li tal:attributes="class php:ActiveAdmin=='Selling'?'active':'disable'">
 				<a tal:attributes="href '/selling'"><i class="glyphicons-drink" />BÁN HÀNG</a>
-			</li>			
+			</li>
+			<li tal:attributes="class php:ActiveAdmin=='FixedSession'?'active':'disable'">
+				<a tal:attributes="href '/fixed/session'"><i class="glyphicons-table" />PHIẾU HƯ</a>
+			</li>
 			<li tal:attributes="class php:ActiveAdmin=='Setting'?'active':'disable'">
 				<a tal:attributes="href '/setting'"><i class="glyphicons-cogwheels" />THIẾT LẬP</a>
 			</li>

@@ -18,6 +18,7 @@ interface TableFinder  			extends Finder {}
 interface TableLogFinder  		extends Finder {}
 interface SessionFinder  		extends Finder {}
 interface SessionDetailFinder  	extends Finder {}
+interface SessionDisableFinder  extends Finder {}
 interface CategoryFinder  		extends Finder {}
 interface CourseFinder  		extends Finder {}
 interface CourseLogFinder  		extends Finder {}

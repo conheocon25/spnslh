@@ -10,6 +10,7 @@ class TableCollection 			extends Collection implements \MVC\Domain\TableCollecti
 class TableLogCollection 		extends Collection implements \MVC\Domain\TableLogCollection 		{function targetClass( ) {return "\MVC\Domain\TableLog";}}
 class SessionCollection 		extends Collection implements \MVC\Domain\SessionCollection 		{function targetClass( ) {return "\MVC\Domain\Session";}}			
 class SessionDetailCollection 	extends Collection implements \MVC\Domain\SessionDetailCollection 	{function targetClass( ) {return "\MVC\Domain\SessionDetail";}}
+class SessionDisableCollection 	extends Collection implements \MVC\Domain\SessionDisableCollection 	{function targetClass( ) {return "\MVC\Domain\SessionDisable";}}
 class CategoryCollection 		extends Collection implements \MVC\Domain\CategoryCollection 		{function targetClass( ) {return "\MVC\Domain\Category";}}	
 class CourseCollection 			extends Collection implements \MVC\Domain\CourseCollection 			{function targetClass( ) {return "\MVC\Domain\Course";}}
 class CourseLogCollection 		extends Collection implements \MVC\Domain\CourseLogCollection 		{function targetClass( ) {return "\MVC\Domain\CourseLog";}}

@@ -6,9 +6,9 @@ class Session extends Mapper implements \MVC\Domain\SessionFinder {
 
     function __construct() {
         parent::__construct();
-        $tblSession = "tbl_session";		
-		$tblSessionDetail = "tbl_session_detail";
-		$tblTable = "tbl_table";
+        $tblSession 		= "tbl_session";		
+		$tblSessionDetail 	= "tbl_session_detail";
+		$tblTable 			= "tbl_table";
 						
 		$selectAllStmt = sprintf("select * from %s", $tblSession);
 		$selectStmt = sprintf("select * from %s where id=?", $tblSession);
@@ -60,6 +60,8 @@ class Session extends Mapper implements \MVC\Domain\SessionFinder {
 								S.datetime DESC
 							"
 		, $tblSession);
+		
+		$findLimit200Stmt = sprintf("select * from %s S order by S.datetime DESC LIMIT 200", $tblSession);
 
 		$findByTrackingDomainStmt = sprintf(
 							"select
@@ -143,7 +145,8 @@ class Session extends Mapper implements \MVC\Domain\SessionFinder {
 		$this->findByTablePageStmt = self::$PDO->prepare($findByTablePageStmt);
 		$this->findByTableTrackingStmt = self::$PDO->prepare($findByTableTrackingStmt);
 		
-		$this->findByTrackingStmt = self::$PDO->prepare($findByTrackingStmt);
+		$this->findLimit200Stmt 		= self::$PDO->prepare($findLimit200Stmt);
+		$this->findByTrackingStmt 		= self::$PDO->prepare($findByTrackingStmt);
 		$this->findByTrackingDomainStmt = self::$PDO->prepare($findByTrackingDomainStmt);
 		$this->findByTrackingCustomerStmt = self::$PDO->prepare($findByTrackingCustomerStmt);
 		$this->findByTrackingDebtCustomerStmt = self::$PDO->prepare($findByTrackingDebtCustomerStmt);
@@ -293,6 +296,11 @@ class Session extends Mapper implements \MVC\Domain\SessionFinder {
 		$this->findByTablePageStmt->bindValue(':max', (int)($values[2]), \PDO::PARAM_INT);		
 		$this->findByTablePageStmt->execute();
         return new SessionCollection( $this->findByTablePageStmt->fetchAll(), $this );
+    }
+	
+	function findLimit200($values ){
+        $this->findLimit200Stmt->execute( $values );
+        return new SessionCollection( $this->findLimit200Stmt->fetchAll(), $this );
     }
 }
 ?>
