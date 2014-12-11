@@ -10,7 +10,7 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 		$selectAllStmt 				= sprintf("select * from %s", $tblProduct);
 		$selectStmt 				= sprintf("select * from %s WHERE id=?", $tblProduct);
 		$updateStmt 				= sprintf("update %s set idsupplier=?, idcategory=?, idestate=?, iddistrict=?, name=?, `datetime`=?, price=?, address=?, `key`=? where id=?", $tblProduct);
-		$insertStmt 				= sprintf("insert into %s ( idsupplier, idcategory, idestate, iddistrict, name, `datetime`, price, address, `key`) values( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblProduct);
+		$insertStmt 				= sprintf("insert into %s ( idsupplier, idcategory, idestate, iddistrict, name, `datetime`, price, address, `key`) values( ?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblProduct);
 		$deleteStmt 				= sprintf("delete from %s WHERE id=?", $tblProduct);
 						
 		$findBySupplierStmt 		= sprintf("select * from %s WHERE idsupplier=?  order by `datetime` DESC", $tblProduct);
@@ -71,7 +71,7 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 			$array['iddistrict'],
 			$array['name'],
 			$array['datetime'],
-			$array['price'],				
+			$array['price'],
 			$array['address'],
 			$array['key']
 		);

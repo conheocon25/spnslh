@@ -31,7 +31,7 @@
 								<tbody>
 									<tr tal:repeat="Product ProductAll1">
 										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Product/getId"/></td>
-										<td><a class="update-item" tal:attributes="href Product/getURLSetting" tal:content="Product/getName"/></td>
+										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Product/getId" tal:content="Product/getName"/></td>
 										<td class="left"><span tal:content="Product/getDateTimePrint"/></td>
 										<td class="center"><a tal:attributes="href Product/getURLSettingInfo">Cập nhật</a></td>
 										<td class="center"><a tal:attributes="href Product/getURLSettingImage">Ảnh (<span tal:content="Product/getImageAll/count"/>)</a></td>
@@ -56,30 +56,52 @@
 										</div>
 										<div class="form-group">
 											<label class="control-label">Thời gian</label>
-											<div class="controls"><input id="DateTime1" name="DateTime1" type="text" class="form-control input-small" value="0"/></div>
+											<div class="controls">												
+												<input id="DateTime1" name="DateTime1" type="text" class="form-control input-small" data-date-format="yyyy-mm-dd hh:ii"/>
+											</div>
 										</div>
 										<div class="form-group">
 											<label class="control-label">Mã</label>
 											<div class="controls"><input id="Code1" name="Code1" type="text" class="form-control input-small" value="0"/></div>
 										</div>
 										<div class="form-group">
+											<label class="control-label">Loại tài sản</label>
+											<div class="controls">
+												<select name="IdEstate1" id="IdEstate1" style="width:80%;">
+													<option tal:repeat="Estate EstateAll" tal:attributes="value Estate/getId">
+														<span tal:content="Estate/getName" />
+													</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group">
 											<label class="control-label">Danh mục</label>
 											<div class="controls">
 												<select name="IdCategory1" id="IdCategory1" style="width:80%;">
-													<option tal:repeat="Category1 CategoryAll1" tal:attributes="value Category1/getId">														
+													<option tal:repeat="Category1 CategoryAll1" tal:attributes="value Category1/getId">
 														<span tal:content="Category1/getName" />
 													</option>
 												</select>
 											</div>
-										</div>										
-										<div class="form-group">
-											<label class="control-label">Giá thấp nhất</label>
-											<div class="controls"><input id="Price11" name="Price11" type="text" class="form-control input-small" value="0"/></div>
 										</div>
 										<div class="form-group">
-											<label class="control-label">Giá cao nhất</label>
-											<div class="controls"><input id="Price21" name="Price21" type="text" class="form-control input-small" value="0"/></div>
-										</div>										
+											<label class="control-label">Huyện thị</label>
+											<div class="controls">
+												<select name="IdDistrict1" id="IdDistrict1" style="width:80%;">
+													<option tal:repeat="District Province/getDistrictAll" tal:attributes="value District/getId">
+														<span tal:content="District/getName" />
+													</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">Địa chỉ</label>
+											<div class="controls"><input id="Address1" name="Address1" type="text" class="form-control input-small" /></div>
+										</div>					
+										<div class="form-group">
+											<label class="control-label">Giá</label>
+											<div class="controls"><input id="Price1" name="Price1" type="text" class="form-control input-small" value="0"/></div>
+										</div>
 									</div>
 									<div class="modal-footer">
 										<button id="URLInsButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Lưu</button>
@@ -97,36 +119,54 @@
 							<div class="modal-content">
 								<div class="modal-header"><h3><i class="glyphicons-truck modal-icon"/>CHỈNH SỬA SẢN PHẨM  NHÀ ĐẤT</h3></div>
 								<form id="FormProductUpdate" action="#" class="form-horizontal" novalidate="novalidate">
-										<div class="form-group">
-											<label class="control-label">Tên</label>
-											<div class="controls"><input id="Name2" name="Name2" type="text" class="form-control input-small"/></div>
+									<div class="form-group">
+										<label class="control-label">Tên</label>
+										<div class="controls"><input id="Name2" name="Name2" type="text" class="form-control input-small" value="abc"/></div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Thời gian</label>
+										<div class="controls">											
+											<input id="DateTime2" name="DateTime2" type="text" class="form-control input-small" data-date-format="yyyy-mm-dd hh:ii"/>
 										</div>
-										<div class="form-group">
-											<label class="control-label">Thời gian</label>
-											<div class="controls"><input id="DateTime2" name="DateTime2" type="text" class="form-control input-small" value="0"/></div>
+									</div>									
+									<div class="form-group">
+										<label class="control-label">Loại tài sản</label>
+										<div class="controls">
+											<select name="IdEstate2" id="IdEstate2" style="width:80%;">
+												<option tal:repeat="Estate EstateAll" tal:attributes="value Estate/getId">
+													<span tal:content="Estate/getName" />
+												</option>
+											</select>
 										</div>
-										<div class="form-group">
-											<label class="control-label">Mã</label>
-											<div class="controls"><input id="Code2" name="Code2" type="text" class="form-control input-small"/></div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Danh mục</label>
+										<div class="controls">
+											<select name="IdCategory2" id="IdCategory2" style="width:80%;">
+												<option tal:repeat="Category1 CategoryAll1" tal:attributes="value Category1/getId">
+													<span tal:content="Category1/getName" />
+												</option>
+											</select>
 										</div>
-										<div class="form-group">
-											<label class="control-label">Danh mục</label>
-											<div class="controls">
-												<select name="IdCategory2" id="IdCategory2" style="width:80%;">
-													<option tal:repeat="Category1 CategoryAll1" tal:attributes="value Category1/getId">														
-														<span tal:content="Category1/getName" />
-													</option>
-												</select>
-											</div>
-										</div>										
-										<div class="form-group">
-											<label class="control-label">Giá thấp nhất</label>
-											<div class="controls"><input id="Price12" name="Price12" type="text" class="form-control input-small" value="0"/></div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Huyện thị</label>
+										<div class="controls">
+											<select name="IdDistrict2" id="IdDistrict2" style="width:80%;">
+												<option tal:repeat="District Province/getDistrictAll" tal:attributes="value District/getId">
+													<span tal:content="District/getName" />
+												</option>
+											</select>
 										</div>
-										<div class="form-group">
-											<label class="control-label">Giá cao nhất</label>
-											<div class="controls"><input id="Price22" name="Price22" type="text" class="form-control input-small" value="0"/></div>
-										</div>										
+									</div>
+									<div class="form-group">
+										<label class="control-label">Địa chỉ</label>
+										<div class="controls"><input id="Address2" name="Address2" type="text" class="form-control input-small" /></div>
+									</div>					
+									<div class="form-group">
+										<label class="control-label">Giá</label>
+										<div class="controls"><input id="Price2" name="Price2" type="text" class="form-control input-small" value="0"/></div>
+									</div>
 									<div class="modal-footer">
 										<button id="URLUpdButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Lưu</button>
 										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
@@ -146,7 +186,28 @@
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>
 		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
 		<script type="text/javascript">
-		/*<![CDATA[*/															
+		/*<![CDATA[*/
+			$('#DateTime1').datetimepicker({
+				language:  'vi',
+				weekStart: 1,
+				todayBtn:  1,
+				autoclose: 1,
+				todayHighlight: 1,
+				startView: 2,
+				forceParse: 0,
+				showMeridian: 1
+			});
+			$('#DateTimeEnd1').datetimepicker({
+				language:  'vi',
+				weekStart: 1,
+				todayBtn:  1,
+				autoclose: 1,
+				todayHighlight: 1,
+				startView: 2,
+				forceParse: 0,
+				showMeridian: 1
+			});
+			
 			$('#URLDelSelectedButton').click(function(){
 				var count = 0;
 				var Data = [];
@@ -212,12 +273,13 @@
 					var Data = [];
 					Data[0] = 'null';
 					Data[1] = $('#IdSupplier').attr('alt');
-					Data[2] = $('#IdCategory1').val();					
-					Data[3] = $('#Name1').val();
-					Data[4] = $('#DateTime1').val();
-					Data[5] = $('#Code1').val();
-					Data[6] = $('#Price11').val();
-					Data[7] = $('#Price21').val();
+					Data[2] = $('#IdCategory1').val();
+					Data[3] = $('#IdEstate1').val();
+					Data[4] = $('#IdDistrict1').val();
+					Data[5] = $('#Name1').val();
+					Data[6] = $('#DateTime1').val();					
+					Data[7] = $('#Price1').val();
+					Data[8] = $('#Address1').val();
 					
 					var URL = "/object/ins/Product";
 					$.ajax({
@@ -246,13 +308,17 @@
 				//Load dữ liệu JSON về
 				var url = "/object/load/Product/" + $(this).attr('data-id');
 				
-				$('#URLUpdButton').attr('alt', 	$(this).attr('id')	);
-				$('#Name2').attr('value', 		$(this).attr('name'));
-				$('#DateTime2').attr('value', 	$(this).attr('datetime'));
-				$('#IdCategory2').select2('val',$(this).attr('idcategory'));				
-				$('#Code2').attr('value', 		$(this).attr('code'));
-				$('#Price12').attr('value', 	$(this).attr('price1'));
-				$('#Price22').attr('value', 	$(this).attr('price2'));
+				//Load dữ liệu JSON lên FORM
+				$.getJSON(url, function(data){										
+					$('#URLUpdButton').attr('alt', 	data.Id);
+					$('#IdCategory2').select2('val',data.IdCategory);
+					$('#IdEstate2').select2('val',	data.IdEstate);
+					$('#IdDistrict2').select2('val',data.IdDistrict);
+					$('#Name2').attr('value', 		data.Name);
+					$('#DateTime2').attr('value', 	data.DateTime);
+					$('#Price2').attr('value', 		data.Price);	
+					$('#Address2').attr('value', 	data.Address);
+				});
 			});
 			
 			//-----------------------------------------------------------------------------------
@@ -281,14 +347,15 @@
 				},
 				submitHandler: function (form) {					
 					var Data = [];								
-					Data[0] = $('#URLUpdButton').attr('alt');					
+					Data[0] = $('#URLUpdButton').attr('alt');										
 					Data[1] = $('#IdSupplier').attr('alt');
-					Data[2] = $('#IdCategory2').val();					
-					Data[3] = $('#Name2').val();
-					Data[4] = $('#DateTime2').val();
-					Data[5] = $('#Code2').val();
-					Data[6] = $('#Price12').val();
-					Data[7] = $('#Price22').val();
+					Data[2] = $('#IdCategory2').val();
+					Data[3] = $('#IdEstate2').val();
+					Data[4] = $('#IdDistrict2').val();
+					Data[5] = $('#Name2').val();
+					Data[6] = $('#DateTime2').val();					
+					Data[7] = $('#Price2').val();
+					Data[8] = $('#Address2').val();
 					
 					var URL = "/object/upd/Product";
 					$.ajax({

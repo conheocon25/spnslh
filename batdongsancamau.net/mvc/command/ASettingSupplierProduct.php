@@ -19,6 +19,8 @@
 			//-------------------------------------------------------------
 			$mSupplier 		= new \MVC\Mapper\Supplier();
 			$mProduct 		= new \MVC\Mapper\Product();
+			$mProvince 		= new \MVC\Mapper\Province();
+			$mEstate 		= new \MVC\Mapper\TypeEstate();
 			$mCategory1		= new \MVC\Mapper\Category1();			
 			$mConfig 		= new \MVC\Mapper\Config();
 			
@@ -29,6 +31,8 @@
 			$CategoryAll1 = $mCategory1->findAll();			
 						
 			$SupplierAll 	= $mSupplier->findAll();
+			$EstateAll 		= $mEstate->findAll();
+			$Province 		= $mProvince->find(15);
 									
 			$Title = "TIN ĐĂNG";
 			$Navigation = array(				
@@ -58,9 +62,11 @@
 			$request->setObject('CategoryAll1'	, $CategoryAll1);
 			$request->setObject('ProductAll1'	, $ProductAll1);
 			$request->setObject('Supplier'		, $Supplier);			
+			$request->setObject('Province'		, $Province);			
 			
 			$request->setObject('ConfigName'	, $ConfigName);			
 			$request->setObject('SupplierAll'	, $SupplierAll);
+			$request->setObject('EstateAll'		, $EstateAll);
 						
 			return self::statuses('CMD_DEFAULT');
 		}
