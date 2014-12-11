@@ -61,8 +61,10 @@ class Session extends Mapper implements \MVC\Domain\SessionFinder {
 							"
 		, $tblSession);
 		
-		$findLimit200Stmt = sprintf("select * from %s S order by S.datetime DESC LIMIT 200", $tblSession);
-
+		$findLimit200Stmt 	= sprintf("select * from %s S order by S.datetime DESC LIMIT 200", $tblSession);
+		
+		$findByDateStmt 	= sprintf("select * from %s where date(`datetime`)=date(?) order by id LIMIT 3", $tblSession);
+	
 		$findByTrackingDomainStmt = sprintf(
 							"select
 								*
@@ -145,12 +147,13 @@ class Session extends Mapper implements \MVC\Domain\SessionFinder {
 		$this->findByTablePageStmt = self::$PDO->prepare($findByTablePageStmt);
 		$this->findByTableTrackingStmt = self::$PDO->prepare($findByTableTrackingStmt);
 		
-		$this->findLimit200Stmt 		= self::$PDO->prepare($findLimit200Stmt);
-		$this->findByTrackingStmt 		= self::$PDO->prepare($findByTrackingStmt);
-		$this->findByTrackingDomainStmt = self::$PDO->prepare($findByTrackingDomainStmt);
-		$this->findByTrackingCustomerStmt = self::$PDO->prepare($findByTrackingCustomerStmt);
-		$this->findByTrackingDebtCustomerStmt = self::$PDO->prepare($findByTrackingDebtCustomerStmt);
-		$this->findByTrackingFullCustomerStmt = self::$PDO->prepare($findByTrackingFullCustomerStmt);
+		$this->findLimit200Stmt 				= self::$PDO->prepare($findLimit200Stmt);
+		$this->findByDateStmt 					= self::$PDO->prepare($findByDateStmt);
+		$this->findByTrackingStmt 				= self::$PDO->prepare($findByTrackingStmt);
+		$this->findByTrackingDomainStmt 		= self::$PDO->prepare($findByTrackingDomainStmt);
+		$this->findByTrackingCustomerStmt 		= self::$PDO->prepare($findByTrackingCustomerStmt);
+		$this->findByTrackingDebtCustomerStmt 	= self::$PDO->prepare($findByTrackingDebtCustomerStmt);
+		$this->findByTrackingFullCustomerStmt 	= self::$PDO->prepare($findByTrackingFullCustomerStmt);
 		
 		$this->evalTrackingStmt = self::$PDO->prepare($evalTrackingStmt);
 		$this->findLastStmt = self::$PDO->prepare($findLastStmt);																			
@@ -282,6 +285,11 @@ class Session extends Mapper implements \MVC\Domain\SessionFinder {
 	function findByTrackingFullCustomer($values ){
         $this->findByTrackingFullCustomerStmt->execute( $values );
         return new SessionCollection( $this->findByTrackingFullCustomerStmt->fetchAll(), $this );
+    }
+	
+	function findByDate($values ){
+        $this->findByDateStmt->execute( $values );
+        return new SessionCollection( $this->findByDateStmt->fetchAll(), $this );
     }
 		
 	function evalTracking($values ){

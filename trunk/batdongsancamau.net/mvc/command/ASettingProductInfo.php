@@ -34,10 +34,9 @@
 				$PI = new \MVC\Domain\ProductInfo(
 					null,
 					$IdProduct,
-					"abc",
-					"abc",
-					"Thu nghiem"
-				);
+					"abc", 
+					"", "", "", "", "", "", "", "", "", "", "", "", "", ""
+				);											
 				$mProductInfo->insert($PI);
 			}else{
 				$PI = $mProductInfo->find($IdPI);

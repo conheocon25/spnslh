@@ -78,7 +78,20 @@ class Session extends Object{
 		
 	function setId( $Id) {return $this->Id = $Id;}
     function getId( ){return $this->Id;}
-				
+	
+	function getCode(){
+		$mSession = new \MVC\Mapper\Session();
+		$SessionAll = $mSession->findByDate(array($this->getDateTime()));
+		if ($SessionAll->count() <= 1){
+			$Id = 1;
+		}else{
+			$Session = $SessionAll->current();
+			$Id = ($this->getId() - $Session->getId()) + 1;			
+			//$Id = $this->getId()."-".$Session->getId();
+		}		
+		return date('dmy_',strtotime($this->DateTime)).$Id;
+	}
+	
 	function getIdTable( ) {return $this->IdTable;}	
 	function setIdTable( $IdTable ) {$this->IdTable = $IdTable; $this->markDirty();}
 	function getTable(){		

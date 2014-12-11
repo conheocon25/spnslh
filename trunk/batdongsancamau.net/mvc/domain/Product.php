@@ -169,7 +169,9 @@ class Product extends Object{
 		$this->IdEstate			= $Data[3];		
 		$this->IdDistrict		= $Data[4];
 		$this->Name				= $Data[5];
-		$this->DateTime			= $Data[6];		
+		
+		$this->DateTime			= \date('Y-m-d h:i:s a', time());
+		
 		$this->Price			= $Data[7];
 		$this->Address			= $Data[8];
 		$this->reKey();
