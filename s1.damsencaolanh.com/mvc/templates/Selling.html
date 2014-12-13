@@ -16,15 +16,7 @@
 	<body>
 		<div metal:use-macro="mAdmin.xhtml/Header"/>		
 		<div id="sidebar">
-			<ul>
-				<li>
-					<a href="#DialogTime" data-toggle="modal" tal:condition="TD/isOne">
-						ĐANG Ở CA 1
-					</a>
-					<a tal:condition="not:TD/isOne">
-						ĐANG Ở CA 2
-					</a>
-				</li>
+			<ul>				
 				<li tal:repeat="Domain DomainAll" class="Domain" tal:attributes="alt Domain/getId">
 					<a><i class="glyphicons-show_big_thumbnails" /><span tal:content="Domain/getName"/></a>
 				</li>

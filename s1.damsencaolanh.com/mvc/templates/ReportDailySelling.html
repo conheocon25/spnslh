@@ -21,139 +21,37 @@
 										<tr>										
 											<th width="5%"><B>#ID</B></th>
 											<th width="11%"><div class="text-left">THỜI GIAN</div></th>
-											<th width="8%"><div class="text-left">NHÂN VIÊN</div></th>
 											<th width="13%"><div class="text-left">BÀN</div></th>
 											<th width="15%"><div class="text-left">KHÁCH</div></th>
-											<th width="15%"><div class="text-right">TT.ĐỦ</div></th>
-											<th width="3%"><div class="text-right"/></th>
-											<th width="30%"><div class="text-right">NỢ PHIẾU</div></th>											
+											<th width="15%"><div class="text-right">TIỀN PHIẾU</div></th>
+											<th width="11%"><div class="text-right">PHIẾU HỦY</div></th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr tal:repeat="Session SessionAll">
-											<td align="center"><span tal:content="Session/getId"/></td>
-											<td align="left"><span tal:content="Session/getDateTimePrint"/></td>
-											<td align="left"><span tal:content="Session/getUser/getName"/></td>
+											<td align="center"><span tal:content="Session/getCode"/></td>
+											<td align="left"><span tal:content="Session/getDateTimePrint"/></td>											
 											<td align="left"><span tal:content="Session/getTable/getName"/></td>
-											<td align="left"><span tal:content="Session/getCustomer/getName"/></td>											
+											<td align="left"><span tal:content="Session/getCustomer/getName"/></td>
 											<td align="right">
-												<a tal:condition="php:Session->getStatus()==1"  class="Ticket" tal:attributes="alt Session/getURLPrint">
+												<a tal:condition="not: Session/checkDisable" class="Ticket" tal:attributes="alt Session/getURLPrint">
 													<span tal:content="Session/getValuePrint"/>
 												</a>	
 											</td>
 											<td align="right">
-												<a tal:condition="Session/checkDel" class="Ticket" tal:attributes="alt Session/getURLPrint1">
-													Xem
-												</a>
-											</td>
-											<td align="right">
-												<a tal:condition="php:Session->getStatus()==2" class="Ticket" tal:attributes="alt Session/getURLPrint">
+												<a tal:condition="Session/checkDisable" class="Ticket" tal:attributes="alt Session/getURLPrint">
 													<span tal:content="Session/getValuePrint"/>
 												</a>
-											</td>											
+											</td>
 										</tr>
 										<tr>
-											<td align="left" colspan="5">TỔNG CỘNG CÓ <B tal:content="SessionAll/count"/> PHIẾU </td>
+											<td align="left" colspan="4">TỔNG CỘNG CÓ <B tal:content="SessionAll/count"/> PHIẾU: <B tal:content="NTotal/formatCurrency"/> </td>
 											<td align="right"><B tal:content="NTotal1/formatCurrency"/></td>
-											<td/>
 											<td align="right"><B tal:content="NTotal2/formatCurrency"/></td>
 										</tr>
 									</tbody>
-								</table>								
-							</div>
-							
-							<div class="widget-content nopadding" tal:condition="not:TD/isOne">
-								<h3>CA1</h3>
-								<table class="table table-striped table-hover">
-									<thead>
-										<tr>										
-											<th width="5%"><B>#ID</B></th>
-											<th width="11%"><div class="text-left">THỜI GIAN</div></th>
-											<th width="8%"><div class="text-left">NHÂN VIÊN</div></th>
-											<th width="13%"><div class="text-left">BÀN</div></th>
-											<th width="15%"><div class="text-left">KHÁCH</div></th>
-											<th width="15%"><div class="text-right">TT.ĐỦ</div></th>
-											<th width="3%"><div class="text-right"/></th>
-											<th width="30%"><div class="text-right">NỢ PHIẾU</div></th>											
-										</tr>
-									</thead>
-									<tbody>
-										<tr tal:repeat="Session SessionAll1">
-											<td align="center"><span tal:content="Session/getId"/></td>
-											<td align="left"><span tal:content="Session/getDateTimePrint"/></td>
-											<td align="left"><span tal:content="Session/getUser/getName"/></td>
-											<td align="left"><span tal:content="Session/getTable/getName"/></td>
-											<td align="left"><span tal:content="Session/getCustomer/getName"/></td>											
-											<td align="right">
-												<a tal:condition="php:Session->getStatus()==1"  class="Ticket" tal:attributes="alt Session/getURLPrint">
-													<span tal:content="Session/getValuePrint"/>
-												</a>	
-											</td>
-											<td align="right">
-												<a tal:condition="Session/checkDel"  class="Ticket" tal:attributes="alt Session/getURLPrint1">
-													Xem
-												</a>
-											</td>
-											<td align="right">
-												<a tal:condition="php:Session->getStatus()==2"  class="Ticket" tal:attributes="alt Session/getURLPrint">
-													<span tal:content="Session/getValuePrint"/>
-												</a>
-											</td>											
-										</tr>
-										<tr>
-											<td align="left" colspan="5">TỔNG CỘNG CÓ <B tal:content="SessionAll1/count"/> PHIẾU </td>
-											<td align="right"><B tal:content="NTotal11/formatCurrency"/></td>
-											<td/>
-											<td align="right"><B tal:content="NTotal12/formatCurrency"/></td>
-										</tr>
-									</tbody>
 								</table>
-								<h3>CA2</h3>
-								<table class="table table-striped table-hover">
-									<thead>
-										<tr>										
-											<th width="5%"><B>#ID</B></th>
-											<th width="11%"><div class="text-left">THỜI GIAN</div></th>
-											<th width="8%"><div class="text-left">NHÂN VIÊN</div></th>
-											<th width="13%"><div class="text-left">BÀN</div></th>
-											<th width="15%"><div class="text-left">KHÁCH</div></th>
-											<th width="15%"><div class="text-right">TT.ĐỦ</div></th>
-											<th width="3%"><div class="text-right"/></th>
-											<th width="30%"><div class="text-right">NỢ PHIẾU</div></th>											
-										</tr>
-									</thead>
-									<tbody>
-										<tr tal:repeat="Session SessionAll2">
-											<td align="center"><span tal:content="Session/getId"/></td>
-											<td align="left"><span tal:content="Session/getDateTimePrint"/></td>
-											<td align="left"><span tal:content="Session/getUser/getName"/></td>
-											<td align="left"><span tal:content="Session/getTable/getName"/></td>
-											<td align="left"><span tal:content="Session/getCustomer/getName"/></td>											
-											<td align="right">
-												<a tal:condition="php:Session->getStatus()==1"  class="Ticket" href="#" tal:attributes="alt Session/getURLPrint">
-													<span tal:content="Session/getValuePrint"/>
-												</a>	
-											</td>
-											<td align="right">
-												<a tal:condition="Session/checkDel" class="Ticket" tal:attributes="alt Session/getURLPrint1">
-													Xem
-												</a>
-											</td>
-											<td align="right">
-												<a tal:condition="php:Session->getStatus()==2"  class="Ticket" tal:attributes="alt Session/getURLPrint">
-													<span tal:content="Session/getValuePrint"/>
-												</a>
-											</td>											
-										</tr>
-										<tr>
-											<td align="left" colspan="5">TỔNG CỘNG CÓ <B tal:content="SessionAll2/count"/> PHIẾU </td>
-											<td align="right"><B tal:content="NTotal21/formatCurrency"/></td>
-											<td/>
-											<td align="right"><B tal:content="NTotal22/formatCurrency"/></td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
+							</div>														
 						</div>
 						<div class="widget-box">
 							<a class="Ticket" tal:attributes="alt TD/getURLReportSellingByCategory">

@@ -259,6 +259,14 @@ class Session extends Object{
 		return false;
 	}
 	
+	function checkDisable(){
+		$mSessionDisable = new \MVC\Mapper\SessionDisable();
+		$Id = $mSessionDisable->check(array($this->getId()));
+		
+		if ($Id>0) return true;
+		return false;
+	}
+	
 	function getValue(){		
 		$SDAll = $this->getDetails();
 		$Sum1 = 0;
