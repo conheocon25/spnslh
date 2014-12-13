@@ -13,6 +13,7 @@ interface SessionDisableCollection 	extends \Iterator {function add( Object $Ses
 interface CategoryCollection 		extends \Iterator {function add( Object $Category 		);}
 interface CourseCollection 			extends \Iterator {function add( Object $Course 		);}
 interface CourseLogCollection 		extends \Iterator {function add( Object $Course_log 	);}
+interface CourseDefaultCollection 	extends \Iterator {function add( Object $CourseDefault 	);}
 interface SupplierCollection 		extends \Iterator {function add( Object $Supplier 		);}
 
 interface PaidSupplierCollection 	extends \Iterator {function add( Object $PaidSupplier 	);}

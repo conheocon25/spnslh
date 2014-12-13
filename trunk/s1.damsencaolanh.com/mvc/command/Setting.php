@@ -16,12 +16,20 @@
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
 			$mConfig = new \MVC\Mapper\Config();
+			$mCourseDefault = new \MVC\Mapper\CourseDefault();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------			
 			$ConfigName = $mConfig->findByName("NAME");
-						
+			/*
+			$CD = $mCourseDefault->findAll();
+			while($CD->valid()){
+				$C = $CD->current();
+				echo $C->getCourse()->getName(). "-".$C->getCount();
+				$CD->next();
+			}
+			*/
 			$Title = "THIẾT LẬP";
 			$Navigation = array();
 			

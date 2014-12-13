@@ -182,9 +182,7 @@ class Session extends Mapper implements \MVC\Domain\SessionFinder {
         return $obj;
     }
 	
-    protected function targetClass() {        
-		return "Session";
-    }
+    protected function targetClass() {return "Session";}
 
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array(
@@ -199,7 +197,7 @@ class Session extends Mapper implements \MVC\Domain\SessionFinder {
 			$object->getDiscountValue(),
 			$object->getDiscountPercent(),
 			$object->getSurtax(),
-			$object->getPayment()			
+			$object->getPayment()
 		);
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();

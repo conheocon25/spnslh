@@ -18,12 +18,13 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mTable 	= new \MVC\Mapper\Table();			
-			$mCategory 	= new \MVC\Mapper\Category();
-			$mCourse 	= new \MVC\Mapper\Course();
-			$mSession 	= new \MVC\Mapper\Session();
-			$mEmployee 	= new \MVC\Mapper\Employee();
-			$mSD 		= new \MVC\Mapper\SessionDetail();
+			$mTable 			= new \MVC\Mapper\Table();			
+			$mCategory 			= new \MVC\Mapper\Category();
+			$mCourse 			= new \MVC\Mapper\Course();
+			$mCourseDefault 	= new \MVC\Mapper\CourseDefault();
+			$mSession 			= new \MVC\Mapper\Session();
+			$mEmployee 			= new \MVC\Mapper\Employee();
+			$mSD 				= new \MVC\Mapper\SessionDetail();
 									
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -57,8 +58,25 @@
 					0,						//Surtax
 					0						//Payment
 				);
-				$IdSession = $mSession->insert($Session);
-								
+				$mSession->insert($Session);				
+				$IdSession = $Session->getId();
+				
+				//Thêm những món mặc định
+				$CourseDefaultAll = $mCourseDefault->findAll();
+				while($CourseDefaultAll->valid()){
+					$CourseDefault = $CourseDefaultAll->current();
+					$SD = new \MVC\Domain\SessionDetail(
+						null,
+						$IdSession, 
+						$CourseDefault->getIdCourse(), 
+						$CourseDefault->getCount(),
+						$CourseDefault->getCourse()->getPrice1(),
+						1,
+						0
+					);
+					$mSD->insert($SD);				
+					$CourseDefaultAll->next();
+				}
 			}
 			$IdSession = $Session->getId();
 						
@@ -77,15 +95,8 @@
 				);
 				$mSD->insert($SD);								
 			}else{
-				$SD = $mSD->find($IdSD);
-				/*
-				$SD = $mSD->find($IdSD);
-				
-				$Count = $SD->getCount() + $Delta;
-				$SD->setCount($Count);
-				$mSD->update($SD);
-				*/								
-			}			
+				$SD = $mSD->find($IdSD);											
+			}
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------												

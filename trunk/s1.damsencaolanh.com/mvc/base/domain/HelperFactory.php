@@ -13,6 +13,7 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	require_once( "mvc/mapper/Category.php" 		);
 	require_once( "mvc/mapper/Course.php" 			);
 	require_once( "mvc/mapper/CourseLog.php" 		);
+	require_once( "mvc/mapper/CourseDefault.php" 	);
 	require_once( "mvc/mapper/Supplier.php" 		);
 	
 	require_once( "mvc/mapper/PaidSupplier.php"		);
