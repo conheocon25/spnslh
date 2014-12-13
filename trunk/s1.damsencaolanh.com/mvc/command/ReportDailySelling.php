@@ -34,80 +34,32 @@
 			$TD 		= $mTD->find($IdTD);
 			$Tracking	= $mTracking->find($IdTrack);
 			$DomainAll	= $mDomain->findAll();
-			
-			$Time1 = $TD->getTime1();			
-			//NẾU KẾT THÚC 2 CA
-			if ($TD->isOne()==false){
-				//TỔNG KẾT CA1 00:00 ĐẾN TRƯỚC TIME1
-				$SessionAll1 = $mSession->findByTracking( array(
-					$TD->getDate()." 0:0:0",
-					$Time1
-				));			
-				$Value11 		= 0;
-				$Value12 		= 0;
-				while ($SessionAll1->valid()){
-					$Session = $SessionAll1->current();
-					if ($Session->getStatus()==2)
-						$Value12 += $Session->getValue();
-					else	
-						$Value11 += $Session->getValue();						
-					$SessionAll1->next();
-				}
-				
-				//TỔNG KẾT CA2 TIME1 ĐẾN TRƯỚC 23:59:59
-				$SessionAll2 = $mSession->findByTracking( array(
-					$Time1,
-					$TD->getDate()." 23:59:59",
-				));			
-				$Value21 		= 0;
-				$Value22 		= 0;
-				while ($SessionAll2->valid()){
-					$Session = $SessionAll2->current();
-					if ($Session->getStatus()==2)
-						$Value22 += $Session->getValue();
-					else	
-						$Value21 += $Session->getValue();						
-					$SessionAll2->next();
-				}
-				$Value1 	= $Value11 + $Value12;
-				$Value2 	= $Value21 + $Value22;
-				
-				$NTotal 	= new \MVC\Library\Number($Value1 + $Value2);
-				$NTotal1 	= new \MVC\Library\Number($Value1); 
-				$NTotal11 	= new \MVC\Library\Number($Value11); 
-				$NTotal12 	= new \MVC\Library\Number($Value12); 				
-				$NTotal2 	= new \MVC\Library\Number($Value2);
-				$NTotal21 	= new \MVC\Library\Number($Value21); 
-				$NTotal22 	= new \MVC\Library\Number($Value22);
-				
-			}else{
-				//TỔNG KẾT CA1 00:00 ĐẾN TRƯỚC 23:59
-				$SessionAll = $mSession->findByTracking( array(
-					$TD->getDate()." 0:0:0",
-					$TD->getDate()." 23:59:59"
-				));			
-				$Value1 		= 0;
-				$Value2 		= 0;
-				while ($SessionAll->valid()){
-					$Session = $SessionAll->current();
-					if ($Session->getStatus()==2)
-						$Value2 += $Session->getValue();
-					else	
-						$Value1 += $Session->getValue();
-						
-					$SessionAll->next();
-				}
-				//TỔNG CỘNG
-				$NTotal 	= new \MVC\Library\Number($Value1 + $Value2);
-				$NTotal1 	= new \MVC\Library\Number($Value1); 
-				$NTotal2 	= new \MVC\Library\Number($Value2);
+												
+			$SessionAll = $mSession->findByTracking( array(
+				$TD->getDate()." 0:0:0",
+				$TD->getDate()." 23:59:59"
+			));			
+			$Value1 		= 0;
+			$Value2 		= 0;
+			while ($SessionAll->valid()){
+				$Session = $SessionAll->current();
+				if ($Session->checkDisable()==false)
+					$Value1 += $Session->getValue();
+				else	
+					$Value2 += $Session->getValue();
+					
+				$SessionAll->next();
 			}
-			
+			//TỔNG CỘNG
+			$NTotal 	= new \MVC\Library\Number($Value1 - $Value2);
+			$NTotal1 	= new \MVC\Library\Number($Value1); 
+			$NTotal2 	= new \MVC\Library\Number($Value2);
+						
 			//Update vào Daily
-			$TD->setSelling($Value1 + $Value2);
+			$TD->setSelling($Value1 - $Value2);
 			$mTD->update($TD);
 						
-			$Title 		= "BÁN HÀNG ".$TD->getDatePrint();
+			$Title 	= "BÁN HÀNG ".$TD->getDatePrint();
 			$Navigation = array(
 				array("BÁO CÁO"				, "/report"),
 				array($Tracking->getName()	, $Tracking->getURLView())
