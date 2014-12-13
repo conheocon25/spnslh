@@ -51,12 +51,12 @@
 				$SessionAll->next();
 			}
 			//TỔNG CỘNG
-			$NTotal 	= new \MVC\Library\Number($Value1 - $Value2);
+			$NTotal 	= new \MVC\Library\Number($Value1);
 			$NTotal1 	= new \MVC\Library\Number($Value1); 
 			$NTotal2 	= new \MVC\Library\Number($Value2);
 						
 			//Update vào Daily
-			$TD->setSelling($Value1 - $Value2);
+			$TD->setSelling($Value1);
 			$mTD->update($TD);
 						
 			$Title 	= "BÁN HÀNG ".$TD->getDatePrint();

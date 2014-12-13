@@ -21,6 +21,7 @@
 			$mDomain 	= new \MVC\Mapper\Domain();
 			$mTable 	= new \MVC\Mapper\Table();
 			$mSession 	= new \MVC\Mapper\Session();
+			$mSD 		= new \MVC\Mapper\SessionDetail();
 			$mConfig 	= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
@@ -34,7 +35,17 @@
 			$ConfigName							= $mConfig->findByName("NAME");
 			$ConfigAddress						= $mConfig->findByName("ADDRESS");
 			$ConfigPhone						= $mConfig->findByName("PHONE");
-
+			
+			//Lọc những SD dư
+			$SDAll = $Session->getDetails();
+			while($SDAll->valid()){
+				$SD = $SDAll->current();
+				if ($SD->getCount()==0){
+					$mSD->delete(array($SD->getId()));
+				}
+				$SDAll->next();
+			}
+			
 			//Thanh toán đủ
 			$Session->setStatus(1);
 			$mSession->update($Session);

@@ -14,6 +14,7 @@ class SessionDisableCollection 	extends Collection implements \MVC\Domain\Sessio
 class CategoryCollection 		extends Collection implements \MVC\Domain\CategoryCollection 		{function targetClass( ) {return "\MVC\Domain\Category";}}	
 class CourseCollection 			extends Collection implements \MVC\Domain\CourseCollection 			{function targetClass( ) {return "\MVC\Domain\Course";}}
 class CourseLogCollection 		extends Collection implements \MVC\Domain\CourseLogCollection 		{function targetClass( ) {return "\MVC\Domain\CourseLog";}}
+class CourseDefaultCollection 	extends Collection implements \MVC\Domain\CourseDefaultCollection 	{function targetClass( ) {return "\MVC\Domain\CourseDefault";}}
 class SupplierCollection 		extends Collection implements \MVC\Domain\SupplierCollection 		{function targetClass( ) {return "\MVC\Domain\Supplier";}}
 
 class PaidSupplierCollection 	extends Collection implements \MVC\Domain\PaidSupplierCollection 	{function targetClass( ) {return "\MVC\Domain\PaidSupplier";}}
