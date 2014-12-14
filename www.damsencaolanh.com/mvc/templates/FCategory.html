@@ -17,12 +17,12 @@
 							<div class="row">
 								<div class="col-md-3 item-config" tal:repeat="Product Category1/getProductAll">
 									<div class="item-thumb">
-										<a href="/thuc-don/do-dong/mon-an">
+										<a tal:attributes="href Product/getURLView">
 											<img src="/mvc/templates/front/img/item.png" class="img-thumbnail img-circle"/>
 										</a>
 									</div>
 									<div class="item-info">
-										<a href="/thuc-don/do-dong/mon-an">
+										<a tal:attributes="href Product/getURLView">
 											<h3 tal:content="Product/getName" />
 										</a>
 									</div>

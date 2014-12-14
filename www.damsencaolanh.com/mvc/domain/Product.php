@@ -155,7 +155,7 @@ class Product extends Object{
 	}
 	
 	function getURLView(){
-		return "/san-pham/".$this->getCategory()->getCategory()->getKey()."/".$this->getCategory()->getKey()."/".$this->getKey();
+		return "/thuc-don/".$this->getCategory()->getCategory()->getKey()."/".$this->getCategory()->getKey()."/".$this->getKey();
 	}
 	
 	function getURLViewFull(){
