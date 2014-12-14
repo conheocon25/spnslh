@@ -3,53 +3,27 @@
 	<head>
 		<tal:block metal:use-macro="mFront.xhtml/IncludeMETA"/>
 		<tal:block metal:use-macro="mFront.xhtml/IncludeCSS"/>
-	</head>	
-	<body>		
+	</head>
+	<body>
 		<div class="container">
 			<tal:block metal:use-macro="mFront.xhtml/Header"/>
-			<tal:block metal:use-macro="mFront.xhtml/Breadcrumb"/>
-			<div class="row">						
+			<tal:block metal:use-macro="mFront.xhtml/Presentation"/>
+			<tal:block metal:use-macro="mFront.xhtml/Marquee"/>
+			<div class="row">
 				<div class="col-md-8">
 					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h3 class="panel-title">Bắp non xào mực cay</h3>
-						</div>						
+						<div class="panel-heading"><h3 class="panel-title" tal:content="Product/getName"/></div>
 						<div class="panel-body">
-							<p style="text-align:justify;">
-								<img alt="mon-ngon-ngay-mua-1" src="http://monngonmoingay.net.vn/sites/default/files/ba_bau/2013/08/16/mon-ngon-ngay-mua-11_0.jpg" style="width: 435px; height: 319px;" title="Món ngon ngày mưa - bắp non xào mực cay"/>
-								<p><b>Nguyên liệu</b><br/>
-									- Mực ống: 350g<br/>
-									- Bắp non: 300g<br/>
-									- Cà rốt: ½ củ<br/>
-									- Hành lá, ớt, gừng<br/>
-									- Sa tế, tương ớt<br/>
-									- Muối, nước mắm, dầu ăn, hành tỏi băm<br/>
-									<b>Cách làm</b><br/>
-									- Mực bỏ ruột, khía caro trên thịt mực, cắt miếng 4cm. Ướp nước mắm, hành tỏi băm, sa tế.<br/>
-									- Bắp non cắt xéo. Cà rốt cắt que dài 4cm. Hành lá cắt khúc. Ớt đập dập.<br/>
-									- Chần sơ bắp non và cà rốt với 1 chút muối. Vớt ra cho vào nước lạnh, vớt ra để ráo. Pha hỗn hợp xào gồm: 1 thìa cà phê đường, 1 muỗm tương ớt, 1 muỗm nước mắm.<br/>
-									- Phi thơm gừng, ớt và hành tỏi băm với dầu ăn. Cho mực vào xào vừa săn, trút phần bắp non và cà rốt vào xào chung, cuối cùng cho hỗn hợp xào. Xào đều tay. Cuối cùng cho hành lá vào.<br/>
-									Mách nhỏ: Chần sơ bắp non và cà rốt giúp rút ngắn thời gian xào và nguyên liệu giữ màu tươi hơn. Xào mực lửa lớn để mực không bị dai và không ra nước.<br/>
-								</p>
-							</p>
-						</div>
-					</div>
-					
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h3 class="panel-title">Video</h3>
-						</div>						
-						<div class="panel-body">
-							<div class="embed-responsive embed-responsive-16by9">
-								<iframe class="embed-responsive-item" src="//www.youtube.com/embed/dysFvmij6qQ?autoplay=1&showinfo=0&controls=1" frameborder="0" allowfullscreen="true"></iframe>
+							<div class="page-header clearfix">
+								<div class="share-button-group pull-right">
+									<div class="fb-share-button" tal:attributes="data-href URLShare" data-type="button_count" />
+								</div>
 							</div>
+							<p tal:content="structure Product/getInfo/getInfo"/>
 						</div>
-					</div>
-					
+					</div>					
 					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h3 class="panel-title">Bình luận</h3>
-						</div>						
+						<div class="panel-heading"><h3 class="panel-title">Bình luận</h3></div>
 						<div class="panel-body">
 							<div class="fb-comments" data-href="https://www.facebook.com/amthuchuongsenhong" data-numposts="5" data-colorscheme="light" data-width="100%"/>
 						</div>
@@ -64,8 +38,11 @@
 			<tal:block metal:use-macro="mFront.xhtml/Footer"/>
 		</div>
 		<tal:block metal:use-macro="mFront.xhtml/IncludeJS"/>
-		<div id="fb-root"></div>
+		<div id="fb-root" />
 		<script>
+			$('#carousel-presentation-generic').carousel({pause: "false"});
+			$('#carousel-presentation-generic .item:first-child').addClass('active');
+			
 			(function(d, s, id) {
 				var js, fjs = d.getElementsByTagName(s)[0];
 				if (d.getElementById(id)) return;
@@ -73,6 +50,6 @@
 				js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&appId=525611617524479&version=v2.0";
 				fjs.parentNode.insertBefore(js, fjs);
 			}(document, 'script', 'facebook-jssdk'));
-		</script>
+		</script>		
 	</body>
 </html>
