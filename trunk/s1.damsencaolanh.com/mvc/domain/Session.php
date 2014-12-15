@@ -88,8 +88,8 @@ class Session extends Object{
 			$Session = $SessionAll->current();
 			$Id = ($this->getId() - $Session->getId()) + 1;			
 			//$Id = $this->getId()."-".$Session->getId();
+		return date('dmy_',strtotime($this->DateTime)).$Id." (".$this->getId().")";
 		}		
-		return date('dmy_',strtotime($this->DateTime)).$Id;
 	}
 	
 	function getIdTable( ) {return $this->IdTable;}	

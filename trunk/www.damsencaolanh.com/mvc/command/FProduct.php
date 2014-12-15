@@ -45,7 +45,7 @@
 			$TagAll 				= $mTag->findByPosition(array(1));
 			$BranchAll 				= $mBranch->findAll();						
 			$LinkedAll 				= $mLinked->findByTop(array());
-			$URLShare 				= "http://huongsenhong.com".$Product->getURLView();
+			$URLShare 				= "http://damsencaolanh.com".$Product->getURLView();
 			
 			$Title = mb_strtoupper("Món Ăn",'UTF8');
 			$Navigation = array(

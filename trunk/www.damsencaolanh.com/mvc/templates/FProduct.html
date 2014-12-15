@@ -2,6 +2,9 @@
 <html>
 	<head>
 		<tal:block metal:use-macro="mFront.xhtml/IncludeMETA"/>
+		<meta property="og:title"			tal:attributes="content Product/getName"/>
+		<meta tal:condition="Product/getInfo" property="og:description"		tal:attributes="content Product/getInfo/getInfoReduce"/>
+		<meta tal:condition="Product/getInfo" property="og:image"			tal:attributes="content Product/getInfo/getImage"/>
 		<tal:block metal:use-macro="mFront.xhtml/IncludeCSS"/>
 	</head>
 	<body>
@@ -13,7 +16,7 @@
 				<div class="col-md-8">
 					<div class="panel panel-default">
 						<div class="panel-heading"><h3 class="panel-title" tal:content="Product/getName"/></div>
-						<div class="panel-body">
+						<div class="panel-body" tal:condition="Product/getInfo">
 							<div class="page-header clearfix">
 								<div class="share-button-group pull-right">
 									<div class="fb-share-button" tal:attributes="data-href URLShare" data-type="button_count" />
