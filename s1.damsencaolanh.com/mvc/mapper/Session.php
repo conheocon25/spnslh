@@ -57,7 +57,7 @@ class Session extends Mapper implements \MVC\Domain\SessionFinder {
 								S.datetime >= ? AND 
 								S.datetime <= ?
 							order by 
-								S.datetime DESC
+								S.id DESC
 							"
 		, $tblSession);
 		
