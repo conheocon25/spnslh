@@ -3,94 +3,72 @@
 	<head>
 		<tal:block metal:use-macro="mFront.xhtml/IncludeMETA"/>
 		<tal:block metal:use-macro="mFront.xhtml/IncludeCSS"/>
-	</head>	
-	<body>		
-		<div class="container">
-			<tal:block metal:use-macro="mFront.xhtml/DoubleAds"/>
+		<tal:block metal:use-macro="mFront.xhtml/IncludeJS"/>
+	</head>
+	
+	<body>
+		<div data-role="page" class="jqm-demos jqm-home">
 			<tal:block metal:use-macro="mFront.xhtml/Header"/>
-			<div class="row">						
-				<div class="col-md-9">
-					<div class="row">						
-						<div class="col-md-7">
-							<div id="carousel-top-news" class="carousel slide" data-ride="carousel">
-								<div class="carousel-inner" role="listbox">
-									<div class="item" tal:repeat="PT PostTopAll">
-										<a tal:attributes="href PT/getURLRead">
-											<img tal:attributes="src PT/getPost/getImage; alt PT/getPost/getTitle"/>
-											<div class="carousel-caption" tal:content="PT/getPost/getTitle"/>
-										</a>
-									</div>
-								</div>
-								<a class="left carousel-control" href="#carousel-top-news" role="button" data-slide="prev">
-									<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-									<span class="sr-only">Previous</span>
-								</a>
-								<a class="right carousel-control" href="#carousel-top-news" role="button" data-slide="next">
-									<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-									<span class="sr-only">Next</span>
-								</a>
-								<div class="news-title"/>
-							</div>
-						</div>
-						<div class="col-md-5 rspdl">
-							<div class="list-group list-group-config">
-								<a class="list-group-item active"><center>Tin mới cập nhật</center></a>
-								<a tal:repeat="PT PostTopAll" tal:attributes="href PT/getURLRead" tal:content="PT/getPost/getTitleReduce" class="list-group-item"/>
-							</div>
+	
+
+			<div role="main" class="ui-content jqm-content">
+				<h1>Demos</h1>
+				<p><strong>jQuery Mobile is a touch-optimized HTML5 UI framework designed to make responsive web sites and apps that are accessible on all smartphone, tablet and desktop devices.</strong></p>
+				<img src="/mvc/templates/mobile/img/devices.png"/>
+				<p>New to jQuery Mobile? Get started by reading this <a href="intro/" data-ajax="false">introduction</a>. For technical info, visit the <a href="http://api.jquerymobile.com" title="jQuery Mobile API documentation" target="_blank">API documentation</a>. Downloads and info about the project can be found on <a href="http://jquerymobile.com" title="jQuery Mobile web site" target="_blank">jquerymobile.com</a>.</p>
+				<div class="ui-grid-a ui-responsive">
+					<div class="ui-block-a">
+						<div class="jqm-block-content">
+							<h3>Pages &amp; Navigation</h3>
+							<p><a href="pages/" data-ajax="false">Pages</a></p>
+							<p><a href="navigation/" data-ajax="false">Navigation</a></p>
+							<p><a href="loader/" data-ajax="false">Loader</a></p>
+							<p><a href="transitions/" data-ajax="false">Transitions</a></p>
 						</div>
 					</div>
-					<div class="panel panel-default" tal:repeat="Category CategoryAll">
-						<div class="panel-heading"><h3 class="panel-title" tal:content="Category/getName"/></div>						
-						<div class="panel-body">
-							<div class="media media-config" tal:repeat="Product Category/getTopProductAll">
-								<div class="media-flag">									
-									<div class="flag new-flag" tal:condition="php: Product->isTimeCategory()==0?true:false"/>
-									<!--
-									<div class="flag hot-flag"/>
-									<div class="flag vip-flag"/>
-									!-->
-								</div>
-								<div class="media-tit">
-									<a tal:attributes="href Product/getURLView">
-										<h4 tal:content="Product/getNameReduce"/>
-									</a>
-								</div>
-								<div class="media-ctn">
-									<a class="media-left" tal:attributes="href Product/getURLView">
-										<img tal:attributes="src Product/getInfo/getImage; alt Product/getName" width="130" class="img-thumbnail"/>
-									</a>
-									<div class="media-body">
-										<p tal:content="structure Product/getInfo/getInfoReduce" style="text-align:justify"/>
-										<div class="row media-inf">
-											<div class="col-md-10" style="padding-left:0;padding-right:0;">
-												Giá: <span tal:content="Product/getPricePrint" style="color:#055699;font-weight:bold;"/> 
-												Diện tích: <span tal:condition="Product/getInfo" tal:content="structure Product/getInfo/getInfoEx13Print" style="color:#055699;font-weight:bold;" />
-												Quận/Huyện: <span style="color:#055699;font-weight:bold;" tal:content="Product/getDistrict/getName" />, <span style="color:#055699;font-weight:bold;" tal:content="Product/getDistrict/getProvince/getName" />
-											</div>
-											<div class="col-md-2" style="text-align:right;padding-left:0;padding-right:0;">
-												<span tal:content="Product/getDateTimePrint"/>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
+					<div class="ui-block-b">
+						<div class="jqm-block-content">
+							<h3>CSS Framework</h3>
+
+							<p><a href="theme-default/" data-ajax="false">Theming</a></p>
+							<p><a href="button-markup/" data-ajax="false">Buttons</a></p>
+							<p><a href="icons/" data-ajax="false">Icons</a></p>
+							<p><a href="grids/" data-ajax="false">Grids</a></p>
+							<p><a href="../body-bar-classes/" data-ajax="false">Body and bar classes</a></p>
 						</div>
-					</div>					
-				</div>
-				<div class="col-md-3 rspdl">
-					<tal:block metal:use-macro="mFront.xhtml/SearchBox"/>
-					<div class="panel" tal:repeat="Ads AdsAll">
-						<a tal:attributes="href Ads/getURL" target="blank">
-							<img class="img-thumbnail" width="100%" tal:attributes="src Ads/getPicture"/>
-						</a>
+					</div>        	
+					<div class="ui-block-a">
+						<div class="jqm-block-content">
+							<h3>Widgets</h3>
+
+							<p><a href="toolbar/" data-ajax="false">Toolbar</a>, <a href="navbar/" data-ajax="false">Navbar</a></p>
+							<p><a href="tabs/" data-ajax="false">Tabs</a>, <a href="panel/" data-ajax="false">Panel</a>, <a href="popup/" data-ajax="false">Popup</a></p>
+							<p><a href="listview/" data-ajax="false">Listview</a></p>
+							<p><a href="collapsible/" data-ajax="false">Collapsible</a>, <a href="collapsibleset/" data-ajax="false">Collapsible set</a></p>
+							<p><a href="table-reflow/" data-ajax="false">Table Reflow</a>, <a href="table-column-toggle/" data-ajax="false">Table Column Toggle</a></p>
+							<p><a href="filterable/" data-ajax="false">Filterable</a></p>
+						</div>
+					</div>
+					<div class="ui-block-b">
+						<div class="jqm-block-content">
+							<h3>Form widgets</h3>
+
+							<p><a href="checkboxradio-checkbox/" data-ajax="false">Checkboxes</a>, <a href="checkboxradio-radio/" data-ajax="false">Radio buttons</a></p>
+							<p><a href="selectmenu/" data-ajax="false">Selectmenu</a>, <a href="selectmenu-custom/" data-ajax="false">Custom menu</a></p>
+							<p><a href="flipswitch/" data-ajax="false">Flipswitch</a></p>
+							<p><a href="slider/" data-ajax="false">Slider</a>, <a href="rangeslider/" data-ajax="false">Rangeslider</a></p>
+							<p><a href="button/" data-ajax="false">Input button</a></p>
+							<p><a href="controlgroup/" data-ajax="false">Controlgroup</a></p>
+						</div>
 					</div>
 				</div>
 			</div>
+			
+			<tal:block metal:use-macro="mFront.xhtml/Menu"/>
+			<tal:block metal:use-macro="mFront.xhtml/Search"/>
 			<tal:block metal:use-macro="mFront.xhtml/Footer"/>
-		</div>
-		<tal:block metal:use-macro="mFront.xhtml/IncludeJS"/>
-		<script>
-			$('.carousel .item:first-child').addClass('active');
-		</script>
-	</body>
+			
+</div>
+
+</body>
 </html>

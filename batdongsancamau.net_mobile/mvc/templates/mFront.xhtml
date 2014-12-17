@@ -4,8 +4,8 @@
 	<!-- META TAG INCLUDE														  -->
 	<!-- ======================================================================== -->
 	<tal:block metal:define-macro="IncludeMETA">
-		<link rel="shortcut icon" type="image/x-icon" href="/mvc/templates/front/img/ficon.ico"/>
-		<link rel="shortcut icon" type="image/ico" href="/mvc/templates/front/img/ficon.ico"/>
+		<link rel="shortcut icon" type="image/x-icon" href="/mvc/templates/mobile/img/ficon.ico"/>
+		<link rel="shortcut icon" type="image/ico" href="/mvc/templates/mobile/img/ficon.ico"/>
 		<title tal:content="string:Website Bất Động Sản Cà Mau - Mobile Version"/>
 		<base href="http://m.batdongsancamau.net"/>
 		<meta name="viewport" 				content="width=device-width, initial-scale=1.0"/>
@@ -24,96 +24,157 @@
 	<!-- CASCADING STYLE SHEETS INCLUDE											  -->
 	<!-- ======================================================================== -->
 	<tal:block metal:define-macro="IncludeCSS">	
-		<link rel="stylesheet" type="text/css" href="/mvc/templates/front/css/bootstrap.min.css"/>
-		<link rel="stylesheet" type="text/css" href="/mvc/templates/front/css/bootstrap.config.css"/>
+		<link rel="stylesheet" type="text/css" href="/mvc/templates/mobile/css/jquery.mobile-1.4.5.min.css"/>
+		<link rel="stylesheet" type="text/css" href="/mvc/templates/mobile/css/jqm-theme.css"/>
 	</tal:block>
 	
 	<!-- ======================================================================== -->
 	<!-- JAVASCRIPT INCLUDE														  -->
 	<!-- ======================================================================== -->
 	<tal:block metal:define-macro="IncludeJS">						
-		<script type="text/javascript" src="/mvc/templates/front/js/jquery-1.11.0.min.js"></script>
-		<script type="text/javascript" src="/mvc/templates/front/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="/mvc/templates/mobile/js/jquery-1.11.1.min.js"></script>
+		<script type="text/javascript" src="/mvc/templates/mobile/js/jqm-theme.js"></script>
+		<script type="text/javascript" src="/mvc/templates/mobile/js/jquery.mobile-1.4.5.min.js"></script>
+		
 	</tal:block>
 	
 	<!-- ======================================================================== -->
 	<!-- HEADER																	  -->
 	<!-- ======================================================================== -->
-	<div metal:define-macro="Header" id="header">
-		<div class="row" style="margin-top:10px;">
-			<div class="col-md-3">
-				<a href="/trang-chu">
-					<img alt="Brand" src="/mvc/templates/front/img/logo.png" width="100%"/>
-				</a>
-			</div>
-			<div class="col-md-9 rspdl">
-				<img alt="Brand" src="/mvc/templates/front/img/banner.gif" width="100%"/>
-				<div class="support">
-					Hotline: <span style="color:red"><span tal:content="ConfigContact/getValue"/> - <span tal:content="ConfigPhone1/getValue"/></span> |
-					Email: <span tal:content="ConfigGmail/getValue"/>
-				</div>
-			</div>
-		</div>
-		<nav class="navbar navbar-default" role="navigation">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<div class="navbar-header">
-						<a class="navbar-brand" href="/trang-chu">
-							<img alt="Brand" src="/mvc/templates/front/img/home.png"/>
-						</a>
-					</div>
-				</div>
-				
-				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav">
-						<li tal:repeat="Category CategoryAll" class="dropdown">
-							<a tal:attributes="class php:Active=='Product'?'active':'?'" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-								<span tal:content="Category/getName"/> <span class="caret"/>
-							</a>
-							<ul class="dropdown-menu" role="menu">
-								<li tal:repeat="Category1 Category/getCategoryAll">												
-									<a tal:attributes="href Category1/getURLView">
-										<span tal:content="Category1/getName"/>
-									</a>
-								</li>
-							</ul>
-						</li>
-						<li class="dropdown">
-							<a tal:attributes="class php:Active=='News'?'active':'?'" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Tin tức <span class="caret"></span></a>
-							<ul class="dropdown-menu" role="menu">
-								<li tal:repeat="Tag TagAll">
-									<a tal:attributes="href Tag/getURLView">
-										<span tal:content="Tag/getName"/>
-									</a>
-								</li>
-							</ul>
-						</li>
-						<li class="dropdown">
-							<a tal:attributes="class php:Active=='Price'?'active':'?'" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Bảng giá <span class="caret"></span></a>
-							<ul class="dropdown-menu" role="menu">
-								<li><a tal:attributes="href '/bang-gia/gia-dat'">Bảng giá đất</a></li>
-								<li><a tal:attributes="href '/bang-gia/gia-nha'">Bảng giá nhà</a></li>
-							</ul>
-						</li>
-						<li class="dropdown">
-							<a tal:attributes="class php:Active=='Contact'?'active':'?'" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Liên hệ <span class="caret"></span></a>
-							<ul class="dropdown-menu" role="menu">											
-								<li><a tal:attributes="href '/lien-he/dang-ki-mua'">Đăng ký mua</a></li>
-								<li><a tal:attributes="href '/lien-he/dang-ki-ban'">Đăng ký bán</a></li>
-								<li><a tal:attributes="href '/lien-he/nha-moi-gioi'">Nhà môi giới</a></li>
-								<li><a tal:attributes="href '/lien-he/gia-dich-vu'">Giá đăng</a></li>
-							</ul>
+	<div metal:define-macro="Header" data-role="header" class="jqm-header">
+		<h2><img src="/mvc/templates/mobile/img/logo.png" alt="jQuery Mobile"/></h2>
+		<a href="#" class="jqm-navmenu-link ui-btn ui-btn-icon-notext ui-corner-all ui-icon-bars ui-nodisc-icon ui-alt-icon ui-btn-left">Menu</a>
+		<a href="#" class="jqm-search-link ui-btn ui-btn-icon-notext ui-corner-all ui-icon-search ui-nodisc-icon ui-alt-icon ui-btn-right">Search</a>
+	</div>
+	
+	<!-- ======================================================================== -->
+	<!-- MENU																	  -->
+	<!-- ======================================================================== -->
+	<div metal:define-macro="Menu" data-role="panel" class="jqm-navmenu-panel" data-position="left" data-display="overlay" data-theme="a">
+		<ul class="jqm-list ui-alt-icon ui-nodisc-icon">
+			<li tal:repeat="Category CategoryAll" data-role="collapsible" data-enhanced="true" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" data-iconpos="right" data-inset="false" class="ui-collapsible ui-collapsible-themed-content ui-collapsible-collapsed">
+				<h3 class="ui-collapsible-heading ui-collapsible-heading-collapsed">
+					<a href="#" class="ui-collapsible-heading-toggle ui-btn ui-btn-icon-right ui-btn-inherit ui-icon-carat-d">
+						<span tal:content="Category/getName"/><span class="ui-collapsible-heading-status"> click to expand contents</span>
+					</a>
+				</h3>
+				<div class="ui-collapsible-content ui-body-inherit ui-collapsible-content-collapsed" aria-hidden="true">
+					<ul>
+						<li tal:repeat="Category1 Category/getCategoryAll">												
+							<a tal:attributes="href Category1/getURLView" tal:content="Category1/getName" data-ajax="false"/>
 						</li>
 					</ul>
 				</div>
-			</div>
-		</nav>
+			</li>
+			<li data-role="collapsible" data-enhanced="true" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" data-iconpos="right" data-inset="false" class="ui-collapsible ui-collapsible-themed-content ui-collapsible-collapsed">
+				<h3 class="ui-collapsible-heading ui-collapsible-heading-collapsed">
+					<a href="#" class="ui-collapsible-heading-toggle ui-btn ui-btn-icon-right ui-btn-inherit ui-icon-carat-d">
+						Tin tức<span class="ui-collapsible-heading-status"> click to expand contents</span>
+					</a>
+				</h3>
+				<div class="ui-collapsible-content ui-body-inherit ui-collapsible-content-collapsed" aria-hidden="true">
+					<ul>
+						<li tal:repeat="Tag TagAll">												
+							<a tal:attributes="href Tag/getURLView" tal:content="Tag/getName" data-ajax="false"/>
+						</li>
+					</ul>
+				</div>
+			</li>
+			<li data-role="collapsible" data-enhanced="true" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" data-iconpos="right" data-inset="false" class="ui-collapsible ui-collapsible-themed-content ui-collapsible-collapsed">
+				<h3 class="ui-collapsible-heading ui-collapsible-heading-collapsed">
+					<a href="#" class="ui-collapsible-heading-toggle ui-btn ui-btn-icon-right ui-btn-inherit ui-icon-carat-d">
+						Bảng giá<span class="ui-collapsible-heading-status"> click to expand contents</span>
+					</a>
+				</h3>
+				<div class="ui-collapsible-content ui-body-inherit ui-collapsible-content-collapsed" aria-hidden="true">
+					<ul>
+						<li><a tal:attributes="href '/bang-gia/gia-dat'" data-ajax="false">Bảng giá đất</a></li>
+						<li><a tal:attributes="href '/bang-gia/gia-nha'" data-ajax="false">Bảng giá nhà</a></li>
+					</ul>
+				</div>
+			</li>
+			<li data-role="collapsible" data-enhanced="true" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" data-iconpos="right" data-inset="false" class="ui-collapsible ui-collapsible-themed-content ui-collapsible-collapsed">
+				<h3 class="ui-collapsible-heading ui-collapsible-heading-collapsed">
+					<a href="#" class="ui-collapsible-heading-toggle ui-btn ui-btn-icon-right ui-btn-inherit ui-icon-carat-d">
+						Liên hệ<span class="ui-collapsible-heading-status"> click to expand contents</span>
+					</a>
+				</h3>
+				<div class="ui-collapsible-content ui-body-inherit ui-collapsible-content-collapsed" aria-hidden="true">
+					<ul>
+						<li><a tal:attributes="href '/lien-he/dang-ki-mua'" data-ajax="false">Đăng ký mua</a></li>
+						<li><a tal:attributes="href '/lien-he/dang-ki-ban'" data-ajax="false">Đăng ký bán</a></li>
+						<li><a tal:attributes="href '/lien-he/nha-moi-gioi'" data-ajax="false">Nhà môi giới</a></li>
+						<li><a tal:attributes="href '/lien-he/gia-dich-vu'" data-ajax="false">Giá đăng</a></li>
+					</ul>
+				</div>
+			</li>
+		 </ul>
+	</div>
+	
+	<!-- ======================================================================== -->
+	<!-- SEARCH																	  -->
+	<!-- ======================================================================== -->
+	<div metal:define-macro="Search" data-role="panel" class="jqm-search-panel" data-position="right" data-display="overlay" data-theme="a">
+		<div class="jqm-search">
+			<ul class="jqm-list" data-filter-placeholder="Nhập từ khóa tìm kiếm..." data-filter-reveal="true">
+				<li tal:repeat="Category CategoryAll" data-role="collapsible" data-enhanced="true" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" data-iconpos="right" data-inset="false" class="ui-collapsible ui-collapsible-themed-content ui-collapsible-collapsed">
+					<h3 class="ui-collapsible-heading ui-collapsible-heading-collapsed">
+						<a href="#" class="ui-collapsible-heading-toggle ui-btn ui-btn-icon-right ui-btn-inherit ui-icon-carat-d">
+							<span tal:content="Category/getName"/><span class="ui-collapsible-heading-status"> click to expand contents</span>
+						</a>
+					</h3>
+					<div class="ui-collapsible-content ui-body-inherit ui-collapsible-content-collapsed" aria-hidden="true">
+						<ul>
+							<li tal:repeat="Category1 Category/getCategoryAll" tal:attributes="data-filtertext Category1/getName">												
+								<a tal:attributes="href Category1/getURLView" tal:content="Category1/getName" data-ajax="false"/>
+							</li>
+						</ul>
+					</div>
+				</li>
+				<li data-role="collapsible" data-enhanced="true" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" data-iconpos="right" data-inset="false" class="ui-collapsible ui-collapsible-themed-content ui-collapsible-collapsed">
+					<h3 class="ui-collapsible-heading ui-collapsible-heading-collapsed">
+						<a href="#" class="ui-collapsible-heading-toggle ui-btn ui-btn-icon-right ui-btn-inherit ui-icon-carat-d">
+							Tin tức<span class="ui-collapsible-heading-status"> click to expand contents</span>
+						</a>
+					</h3>
+					<div class="ui-collapsible-content ui-body-inherit ui-collapsible-content-collapsed" aria-hidden="true">
+						<ul>
+							<li tal:repeat="Tag TagAll" tal:attributes="data-filtertext Tag/getName">												
+								<a tal:attributes="href Tag/getURLView" tal:content="Tag/getName" data-ajax="false"/>
+							</li>
+						</ul>
+					</div>
+				</li>
+				<li data-role="collapsible" data-enhanced="true" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" data-iconpos="right" data-inset="false" class="ui-collapsible ui-collapsible-themed-content ui-collapsible-collapsed">
+					<h3 class="ui-collapsible-heading ui-collapsible-heading-collapsed">
+						<a href="#" class="ui-collapsible-heading-toggle ui-btn ui-btn-icon-right ui-btn-inherit ui-icon-carat-d">
+							Bảng giá<span class="ui-collapsible-heading-status"> click to expand contents</span>
+						</a>
+					</h3>
+					<div class="ui-collapsible-content ui-body-inherit ui-collapsible-content-collapsed" aria-hidden="true">
+						<ul>
+							<li data-filtertext="giá"><a tal:attributes="href '/bang-gia/gia-dat'" data-ajax="false">Giá đất</a></li>
+							<li data-filtertext="giá"><a tal:attributes="href '/bang-gia/gia-nha'" data-ajax="false">Giá nhà</a></li>
+						</ul>
+					</div>
+				</li>
+				<li data-role="collapsible" data-enhanced="true" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" data-iconpos="right" data-inset="false" class="ui-collapsible ui-collapsible-themed-content ui-collapsible-collapsed">
+					<h3 class="ui-collapsible-heading ui-collapsible-heading-collapsed">
+						<a href="#" class="ui-collapsible-heading-toggle ui-btn ui-btn-icon-right ui-btn-inherit ui-icon-carat-d">
+							Liên hệ<span class="ui-collapsible-heading-status"> click to expand contents</span>
+						</a>
+					</h3>
+					<div class="ui-collapsible-content ui-body-inherit ui-collapsible-content-collapsed" aria-hidden="true">
+						<ul>
+							<li data-filtertext="liên hệ đăng ký mua"><a tal:attributes="href '/lien-he/dang-ki-mua'" data-ajax="false">Đăng ký mua</a></li>
+							<li data-filtertext="liên hệ đăng ký bán"><a tal:attributes="href '/lien-he/dang-ki-ban'" data-ajax="false">Đăng ký bán</a></li>
+							<li data-filtertext="liên hệ nhà môi giới"><a tal:attributes="href '/lien-he/nha-moi-gioi'" data-ajax="false">Nhà môi giới</a></li>
+							<li data-filtertext="liên hệ giá đăng"><a tal:attributes="href '/lien-he/gia-dich-vu'" data-ajax="false">Giá đăng</a></li>
+						</ul>
+					</div>
+				</li>
+			</ul>
+		</div>
 	</div>
 	
 	<!-- ======================================================================== -->
@@ -226,30 +287,19 @@
 	<!-- ======================================================================== -->
 	<tal:block metal:define-macro="DoubleAds">
 		<div style="padding:0;width:102px;height:452px;position:fixed;left:10px;top:20px;border:1px solid #0090b5;">
-			<a href="/"><img src="/mvc/templates/front/img/ads.gif" width="100%" height="100%"/></a>
+			<a href="/"><img src="/mvc/templates/mobile/img/ads.gif" width="100%" height="100%"/></a>
 		</div>
 		<div style="padding:0;width:102px;height:452px;position:fixed;right:10px;top:20px;border:1px solid #0090b5;">
-			<a href="/"><img src="/mvc/templates/front/img/ads.gif" width="100%" height="100%"/></a>
+			<a href="/"><img src="/mvc/templates/mobile/img/ads.gif" width="100%" height="100%"/></a>
 		</div>
 	</tal:block>
 
 	<!-- ======================================================================== -->
 	<!-- FOOTER																	  -->
 	<!-- ======================================================================== -->	
-	<footer metal:define-macro="Footer">
-		<div class="row">
-			<div class="col-md-12">
-				<center>
-					<p><b>&copy; 2014 BẤT ĐỘNG SẢN CÀ MAU . NET</b></p>
-					<p>Số 164, Lý Thường Kiệt, Phường 6, Thành phố Cà Mau, Tỉnh Cà Mau</p>
-					<p>Tel: (+84) 780 3 888 888 - FAX: (+84) 780 3 888 888</p>
-					<p><b tal:content="php:@\MVC\Library\Statistic::getCountPrint()"/> lượt truy cập - <b tal:content="php:@\MVC\Library\Statistic::getOnlinePrint()"/> đang online</p>
-					<p style="color:#ddd;"><i>SPN Group - Website duyệt tốt trên trình duyệt <b>Google Chrome</b></i></p>
-				</center>
-
-			</div>
-		</div>
-	</footer>
-
+	<div metal:define-macro="Footer" data-role="footer" data-position="fixed" data-tap-toggle="false" class="jqm-footer">
+		<p>&copy; 2014 BẤT ĐỘNG SẢN CÀ MAU . NET</p>
+		<p><b tal:content="php:@\MVC\Library\Statistic::getCountPrint()"/> lượt truy cập - <b tal:content="php:@\MVC\Library\Statistic::getOnlinePrint()"/> đang online</p>
+	</div>
 </body>
 </html>
