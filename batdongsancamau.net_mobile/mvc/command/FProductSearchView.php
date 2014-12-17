@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class FProductSearch extends Command {
+	class FProductSearchView extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -54,7 +54,7 @@
 				$IdEstate 	= $Session->getIdEstate( );
 				$IdDistrict	= $Session->getIdDistrict( );
 				$IdDirection= $Session->getIdDirection( );
-				$IdPrice	= $Session->getIdPrice( );
+				$IdPrice	= 0;
 				$IdArea		= $Session->getIdArea( );
 			}
 			

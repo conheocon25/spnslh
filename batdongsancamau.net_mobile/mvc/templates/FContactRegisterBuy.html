@@ -3,29 +3,24 @@
 	<head>
 		<tal:block metal:use-macro="mFront.xhtml/IncludeMETA"/>
 		<tal:block metal:use-macro="mFront.xhtml/IncludeCSS"/>
-	</head>	
-	<body>		
-		<div class="container">
-			<tal:block metal:use-macro="mFront.xhtml/DoubleAds"/>
+		<tal:block metal:use-macro="mFront.xhtml/IncludeJS"/>
+	</head>
+	
+	<body>
+		<div data-role="page" class="jqm-demos jqm-home">
 			<tal:block metal:use-macro="mFront.xhtml/Header"/>
-			<tal:block metal:use-macro="mFront.xhtml/Breadcrumb"/>
-			<div class="row">						
-				<div class="col-md-9">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h3 class="panel-title">Đăng ký mua</h3>
-						</div>
-						<div class="panel-body">
-							...
-						</div>
-					</div>
+			<div role="main" class="ui-content jqm-content">									
+				<div class="panel-heading">
+					<h3 class="panel-title" tal:content="string:ĐĂNG KÍ MUA"/>
 				</div>
-				<div class="col-md-3 rspdl">
-					<tal:block metal:use-macro="mFront.xhtml/SearchBox"/>
+				<div class="panel-body">
+					
 				</div>
 			</div>
-			<tal:block metal:use-macro="mFront.xhtml/Footer"/>
+			
+			<tal:block metal:use-macro="mFront.xhtml/Menu"/>
+			<tal:block metal:use-macro="mFront.xhtml/Search"/>
+			<tal:block metal:use-macro="mFront.xhtml/Footer"/>			
 		</div>
-		<tal:block metal:use-macro="mFront.xhtml/IncludeJS"/>
 	</body>
 </html>
