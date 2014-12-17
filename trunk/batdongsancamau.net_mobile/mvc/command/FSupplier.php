@@ -38,6 +38,7 @@
 			$ConfigGmail 			= $mConfig->findByName("CONTACT_GTALK");
 			$ConfigSkype 			= $mConfig->findByName("CONTACT_SKYPE");
 
+			$SupplierAll			= $mSupplier->findAll();
 			$Supplier				= $mSupplier->find($KSupplier);
 			$CategoryAll 			= $mCategory->findAll();
 			$CategoryAll1 			= $mCategory1->findAll();
@@ -69,7 +70,8 @@
 			$request->setObject("ConfigSkype", 			$ConfigSkype);
 			$request->setObject("Navigation", 			$Navigation);
 						
-			$request->setObject("Supplier", 			$Supplier);					
+			$request->setObject("SupplierAll", 			$SupplierAll);					
+			$request->setObject("SupplierCurrent", 		$Supplier);
 			$request->setObject("ProductAll", 			$ProductAll);
 			$request->setObject("TagAll", 				$TagAll);
 			$request->setObject("PN", 					$PN);

@@ -38,10 +38,10 @@
 			$ConfigPhone1 	= $mConfig->findByName("PHONE1");
 			$ConfigPhone2 	= $mConfig->findByName("PHONE2");
 						
-			$CategoryAll 	= $mCategory->findAll();
-			$CategoryAll1 	= $mCategory1->findAll();
+			$CategoryAll 	= $mCategory->findAll();			
 			$Category1 		= $mCategory->findByKey($KCategory1);
 			$Category2 		= $mCategory1->findByKey(array($Category1->getId(), $KCategory2));
+			$CategoryAll1 	= $Category1->getCategoryAll();
 			$EstateAll 		= $mEstate->findAll();
 			$Province 		= $mProvince->find(15);
 			$TagAll 		= $mTag->findByPosition(array(1));
@@ -83,7 +83,8 @@
 			$request->setObject("TagAll", 				$TagAll);
 			$request->setObject("Province", 			$Province);
 			$request->setObject("Category1", 			$Category1);			
-			$request->setObject("Category2", 			$Category2);			
+			$request->setObject("Category2", 			$Category2);
+			$request->setObject("CategoryCurrent", 		$Category2);
 			$request->setObject("ProductAll", 			$ProductAll);
 									
 			return self::statuses('CMD_DEFAULT');

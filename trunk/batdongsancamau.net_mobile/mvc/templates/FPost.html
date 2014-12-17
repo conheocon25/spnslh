@@ -17,14 +17,12 @@
 						<div class="share-button-group pull-right">
 							<div class="fb-share-button" tal:attributes="data-href URLShare" data-type="button_count"/>
 						</div>
-					</div>
-					
+					</div>					
 					<div tal:content="structure Post/getContent" class="article-content-container"/>
 					<b class="pull-right" tal:content="Post/getAuthor"/>
 				</div>
-			</div>
-			
-			<tal:block metal:use-macro="mFront.xhtml/Menu"/>
+			</div>			
+			<tal:block metal:use-macro="mFront.xhtml/MenuTag"/>
 			<tal:block metal:use-macro="mFront.xhtml/Search"/>
 			<tal:block metal:use-macro="mFront.xhtml/Footer"/>			
 		</div>

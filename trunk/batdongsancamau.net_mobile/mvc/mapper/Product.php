@@ -115,9 +115,7 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
     function selectStmt() 						{return $this->selectStmt;}
     function selectAllStmt() 					{return $this->selectAllStmt;}
 	
-	function search($IdCategory, $IdEstate, $IdDistrict, $IdDirection, $IdPrice, $IdArea) {
-		echo "danh muc".$IdCategory;
-		
+	function search($IdCategory, $IdEstate, $IdDistrict, $IdDirection, $IdPrice, $IdArea) {				
 		$rangePrice = array(
 			array(0, 1000000 ),
 			array(1000000, 3000000),

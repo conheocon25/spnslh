@@ -78,7 +78,7 @@
 			$request->setObject("EstateAll", 			$EstateAll);
 			$request->setObject("Province", 			$Province);			
 			$request->setObject("TagAll", 				$TagAll);
-			$request->setObject("Tag", 					$Tag);
+			$request->setObject("TagCurrent", 			$Tag);
 						
 			return self::statuses('CMD_DEFAULT');
 		}

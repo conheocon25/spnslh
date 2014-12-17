@@ -73,7 +73,7 @@
 			$request->setObject("CategoryAll", 			$CategoryAll);
 			$request->setObject("CategoryAll1", 		$CategoryAll1);
 			$request->setObject("TagAll", 				$TagAll);
-			$request->setObject("Tag", 					$Tag);
+			$request->setObject("TagCurrent", 			$Tag);
 			$request->setObject("PTAll", 				$PTAll);
 			$request->setObject("PN", 					$PN);
 			$request->setObject("EstateAll", 			$EstateAll);

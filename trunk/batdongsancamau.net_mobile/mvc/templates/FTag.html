@@ -8,8 +8,8 @@
 	
 	<body>
 		<div data-role="page" class="jqm-demos jqm-home">
-			<tal:block metal:use-macro="mFront.xhtml/Header"/>
-			<div role="main" class="ui-content jqm-content">									
+			<tal:block metal:use-macro="mFront.xhtml/Header"/>			
+			<div role="main" class="ui-content jqm-content">
 				<ul data-role="listview" data-inset="false">
 				    <li tal:repeat="PT PTAll">
 						<a tal:attributes="href PT/getURLRead" rel="external">
@@ -19,9 +19,13 @@
 						</a>
 				    </li>
 				</ul>
-			</div>
-			
-			<tal:block metal:use-macro="mFront.xhtml/Menu"/>
+				<div data-role="controlgroup" data-type="horizontal">
+					<a tal:repeat="P PN/getPages" tal:attributes="href P/getURL" class="ui-btn">
+						<span tal:content="P/getName"/>
+					</a>
+				</div>
+			</div>			
+			<tal:block metal:use-macro="mFront.xhtml/MenuTag"/>
 			<tal:block metal:use-macro="mFront.xhtml/Search"/>
 			<tal:block metal:use-macro="mFront.xhtml/Footer"/>			
 		</div>
