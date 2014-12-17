@@ -22,7 +22,7 @@ RewriteRule ^nha-moi-gioi/([A-Za-z0-9_-]+)$ 				?cmd=FSupplier&KSupplier=$1	[L]
 RewriteRule ^nha-moi-gioi/([A-Za-z0-9_-]+)/page/([0-9]+)$ 	?cmd=FSupplier&KSupplier=$1&Page=$2	[L]
 
 RewriteRule ^tim-kiem$ 										?cmd=FProductSearch 		[L]
-RewriteRule ^tim-kiem/page/([0-9]+)$ 						?cmd=FProductSearch&Page=$1	[L]
+RewriteRule ^tim-kiem/page/([0-9]+)$ 						?cmd=FProductSearchView&Page=$1	[L]
 
 RewriteRule ^bang-gia/gia-dat$ 								?cmd=FPriceLand 			[L]
 RewriteRule ^bang-gia/gia-nha$ 								?cmd=FPriceHouse 			[L]
@@ -56,57 +56,3 @@ RewriteRule ^object/ins/([A-Za-z0-9]+)$ 						?cmd=ObjectIns&ObjectName=$1 [L]
 RewriteRule ^object/upd/([A-Za-z0-9]+)$ 						?cmd=ObjectUpd&ObjectName=$1 [L]
 
 RewriteRule ^object/liked/([A-Za-z0-9]+)/([0-9]+)$ 				?cmd=ObjectLiked&ObjectName=$1&Id=$2 [L]
-
-#---------------------------------------------------------------------------------------------------------------------------
-# SELLING
-#---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^admin$ 											?cmd=Admin [L]
-
-#---------------------------------------------------------------------------------------------------------------------------
-# SETTING
-#---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^admin/setting$ 											?cmd=ASetting [L]
-
-RewriteRule ^admin/setting/tag$ 										?cmd=ASettingTag [L]
-RewriteRule ^admin/setting/tag/page/([0-9]+)$ 							?cmd=ASettingTag&Page=$1 [L]
-
-RewriteRule ^admin/setting/ads$ 										?cmd=ASettingAds [L]
-RewriteRule ^admin/setting/ads/page/([0-9]+)$ 							?cmd=ASettingAds&Page=$1 [L]
-
-RewriteRule ^admin/setting/post$ 										?cmd=ASettingPost 							[L]
-RewriteRule ^admin/setting/post/([0-9]+)$ 								?cmd=ASettingPost&IdTag=$1 					[L]
-RewriteRule ^admin/setting/post/([0-9]+)/ins/load$ 						?cmd=ASettingPostInsLoad&IdTag=$1 			[L]
-RewriteRule ^admin/setting/post/([0-9]+)/ins/exe$ 						?cmd=ASettingPostInsExe&IdTag=$1 			[L]
-RewriteRule ^admin/setting/post/([0-9]+)/([0-9]+)/upd/load$ 			?cmd=ASettingPostUpdLoad&IdTag=$1&IdPost=$2 [L]
-RewriteRule ^admin/setting/post/([0-9]+)/([0-9]+)/upd/exe$ 				?cmd=ASettingPostUpdExe&IdTag=$1&IdPost=$2	[L]
-
-RewriteRule ^admin/setting/post/([0-9]+)/tag$ 							?cmd=ASettingPostTag&IdPost=$1 		[L]
-
-RewriteRule ^admin/setting/category$ 									?cmd=ASettingCategory [L]
-RewriteRule ^admin/setting/category/page/([0-9]+)$ 						?cmd=ASettingCategory&Page=$1 [L]
-RewriteRule ^admin/setting/category/([0-9]+)$ 							?cmd=ASettingCategory1&IdCategory=$1 [L]
-RewriteRule ^admin/setting/category/([0-9]+)/page/([0-9]+)$ 			?cmd=ASettingCategory1&IdCategory=$1&Page=$2 [L]
-
-RewriteRule ^admin/setting/config$ 										?cmd=ASettingConfig [L]
-RewriteRule ^admin/setting/config/page/([0-9]+)$ 						?cmd=ASettingConfig&Page=$1 [L]
-
-RewriteRule ^admin/setting/supplier$ 									?cmd=ASettingSupplier [L]
-RewriteRule ^admin/setting/supplier/page/([0-9]+)$ 						?cmd=ASettingSupplier&Page=$1 [L]
-RewriteRule ^admin/setting/supplier/([0-9]+)$ 							?cmd=ASettingSupplierProduct&IdSupplier=$1 [L]
-RewriteRule ^admin/setting/supplier/([0-9]+)/page/([0-9]+)$ 			?cmd=ASettingSupplierProduct&IdSupplier=$1&Page=$2 [L]
-
-RewriteRule ^admin/setting/supplier/([0-9]+)/([0-9]+)$ 					?cmd=ASettingProduct&IdSupplier=$1&IdProduct=$2 [L]
-RewriteRule ^admin/setting/supplier/([0-9]+)/([0-9]+)/image$ 			?cmd=ASettingProductImage&IdSupplier=$1&IdProduct=$2 [L]
-RewriteRule ^admin/setting/supplier/([0-9]+)/([0-9]+)/info$ 			?cmd=ASettingProductInfo&IdSupplier=$1&IdProduct=$2 [L]
-RewriteRule ^admin/setting/supplier/([0-9]+)/([0-9]+)/info/exe$ 		?cmd=ASettingProductInfoExe&IdSupplier=$1&IdProduct=$2 [L]
-RewriteRule ^admin/setting/supplier/([0-9]+)/([0-9]+)/map$ 				?cmd=ASettingProductMap&IdSupplier=$1&IdProduct=$2 [L]
-RewriteRule ^admin/setting/supplier/([0-9]+)/([0-9]+)/map/exe$ 			?cmd=ASettingProductMapExe&IdSupplier=$1&IdProduct=$2 [L]
-
-RewriteRule ^admin/setting/supplier/([0-9]+)/([0-9]+)/category$ 				?cmd=ASettingSupplierProduct&IdSupplier=$1&IdCategory1=$2 [L]
-RewriteRule ^admin/setting/supplier/([0-9]+)/([0-9]+)/category/page/([0-9]+)$ 	?cmd=ASettingSupplierProduct&IdSupplier=$1&IdCategory1=$2&Page=$3 [L]
-
-RewriteRule ^admin/setting/user$ 										?cmd=ASettingUser [L]
-RewriteRule ^admin/setting/user/page/([0-9]+)$ 							?cmd=ASettingUser&Page=$1 [L]
-
-RewriteRule ^admin/setting/storyline$ 									?cmd=ASettingStoryLine [L]
-RewriteRule ^admin/setting/storyline/page/([0-9]+)$ 					?cmd=ASettingStoryLine&Page=$1 [L]

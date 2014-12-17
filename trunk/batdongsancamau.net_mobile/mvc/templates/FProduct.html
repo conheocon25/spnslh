@@ -3,6 +3,26 @@
 	<head>
 		<tal:block metal:use-macro="mFront.xhtml/IncludeMETA"/>
 		<tal:block metal:use-macro="mFront.xhtml/IncludeCSS"/>
+		<tal:block metal:use-macro="mFront.xhtml/IncludeJS"/>
+	</head>	
+	<body>
+		<div data-role="page" class="jqm-demos jqm-home">
+			<tal:block metal:use-macro="mFront.xhtml/Header"/>
+			<div role="main" class="ui-content jqm-content">									
+				<h3 class="panel-title" tal:content="Product/getName"/>
+			</div>
+			<tal:block metal:use-macro="mFront.xhtml/Menu"/>
+			<tal:block metal:use-macro="mFront.xhtml/Search"/>
+			<tal:block metal:use-macro="mFront.xhtml/Footer"/>			
+		</div>
+	</body>
+</html>
+<!--
+<!DOCTYPE html>
+<html>
+	<head>
+		<tal:block metal:use-macro="mFront.xhtml/IncludeMETA"/>
+		<tal:block metal:use-macro="mFront.xhtml/IncludeCSS"/>
 	</head>	
 	<body>		
 		<div class="container">
@@ -159,3 +179,4 @@
 		</script>
 	</body>
 </html>
+!-->
