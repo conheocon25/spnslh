@@ -116,6 +116,8 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
     function selectAllStmt() 					{return $this->selectAllStmt;}
 	
 	function search($IdCategory, $IdEstate, $IdDistrict, $IdDirection, $IdPrice, $IdArea) {
+		echo "danh muc".$IdCategory;
+		
 		$rangePrice = array(
 			array(0, 1000000 ),
 			array(1000000, 3000000),
@@ -142,7 +144,7 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 		$whereEstateSQL 	= " idestate=".$IdEstate;
 		$whereDistrictSQL 	= " iddistrict=".$IdDistrict;
 		$whereDirectionSQL 	= " iddirection=".$IdDirection;
-		$wherePriceSQL 		= " price>=".$rangePrice[$IdPrice][0]." AND price<".$rangePrice[$IdPrice][1];
+		$wherePriceSQL 		= " price>=".$rangePrice[isset($IdPrice)?$IdPrice:0][0]." AND price<".$rangePrice[isset($IdPrice)?$IdPrice:0][1];
 		$orderSQL 			= " ORDER BY datetime DESC";
 		
 		$searchSQL 			= $searchSQL.$whereCategorySQL;		

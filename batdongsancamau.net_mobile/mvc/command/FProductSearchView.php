@@ -11,7 +11,14 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-						
+			$IdCategory 	= $request->getProperty('IdCategory');
+			$IdEstate 		= $request->getProperty('IdEstate');
+			$IdDistrict 	= $request->getProperty('IdDistrict');
+			$IdDirection 	= $request->getProperty('IdDirection');
+			$IdPrice 		= $request->getProperty('IdPrice');
+			$IdArea 		= $request->getProperty('IdArea');
+			$Page 			= $request->getProperty('Page');
+			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------						
@@ -40,7 +47,30 @@
 			$ConfigPhone2 	= $mConfig->findByName("PHONE2");
 			$ConfigGmail 	= $mConfig->findByName("CONTACT_GTALK");
 			$ConfigSkype 	= $mConfig->findByName("CONTACT_SKYPE");
-												
+			
+			//LẤY DỮ LIỆU MẶC ĐỊNH
+			if (!isset($IdCategory)){				
+				$IdCategory = 1;
+				$IdEstate 	= $Session->getIdEstate( );
+				$IdDistrict	= $Session->getIdDistrict( );
+				$IdDirection= $Session->getIdDirection( );
+				$IdPrice	= $Session->getIdPrice( );
+				$IdArea		= $Session->getIdArea( );
+			}
+			
+			$Session->setIdCategory( $IdCategory);
+			$Session->setIdEstate( $IdEstate);
+			$Session->setIdDistrict( $IdDistrict );
+			$Session->setIdDirection( $IdDirection );
+			$Session->setIdPrice( $IdPrice );
+			$Session->setIdArea( $IdArea );
+			
+			if (!isset($Page)) $Page = 1;
+			
+			$ProductAll1	= $mProduct->search($IdCategory, $IdEstate, $IdDistrict, $IdDirection, $IdPrice, $IdArea);
+			$ProductAll 	= $mProduct->searchPage($IdCategory, $IdEstate, $IdDistrict, $IdDirection, $IdPrice, $IdArea, $Page, 9);
+			$PN 			= new \MVC\Domain\PageNavigation($ProductAll1->count(), 9, "/tim-kiem");
+									
 			$Title 			= "TÌM KIẾM";
 			$Navigation 	= array();
 			
@@ -57,7 +87,11 @@
 			$request->setObject("ConfigPhone2", 		$ConfigPhone2);
 			$request->setObject("ConfigGmail", 			$ConfigGmail);
 			$request->setObject("ConfigSkype", 			$ConfigSkype);
-						
+								
+			$request->setProperty("Page", 				$Page);
+			$request->setObject("ProductAll", 			$ProductAll);
+			$request->setObject("PN", 					$PN);
+			
 			$request->setObject("Province", 			$Province);			
 			$request->setObject("TagAll", 				$TagAll);
 			$request->setObject("CategoryAll", 			$CategoryAll);

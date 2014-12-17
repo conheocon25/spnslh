@@ -3,46 +3,27 @@
 	<head>
 		<tal:block metal:use-macro="mFront.xhtml/IncludeMETA"/>
 		<tal:block metal:use-macro="mFront.xhtml/IncludeCSS"/>
-	</head>	
-	<body>		
-		<div class="container">
-			<tal:block metal:use-macro="mFront.xhtml/DoubleAds"/>
-			<tal:block metal:use-macro="mFront.xhtml/Header"/>
-			<tal:block metal:use-macro="mFront.xhtml/Breadcrumb"/>
-			<div class="row">						
-				<div class="col-md-9">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h3 class="panel-title">Nhà môi giới</h3>
-						</div>
-						<div class="panel-body">
-							<table class="table table-bordered">
-								<tr>
-									<th></th>
-									<th>HỌ TÊN</th>										
-									<th>ĐIỆN THOẠI</th>
-									<th>TIN ĐÃ ĐĂNG</th>
-								</tr>
-								<tr tal:repeat="Supplier SupplierAll">
-									<td><img width="64px" tal:attributes="src Supplier/getPicture" /></td>
-									<td><span tal:content="Supplier/getName" /></td>										
-									<td><span tal:content="Supplier/getPhone" /></td>
-									<td>
-										<a tal:attributes="href Supplier/getURLView">
-											Xem (<span tal:content="Supplier/getProductAll/count"/>)
-										</a>
-									</td>
-								</tr>
-							</table>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3 rspdl">
-					<tal:block metal:use-macro="mFront.xhtml/SearchBox"/>
-				</div>
-			</div>
-			<tal:block metal:use-macro="mFront.xhtml/Footer"/>
-		</div>
 		<tal:block metal:use-macro="mFront.xhtml/IncludeJS"/>
+	</head>
+	
+	<body>
+		<div data-role="page" class="jqm-demos jqm-home">
+			<tal:block metal:use-macro="mFront.xhtml/Header"/>
+			<div role="main" class="ui-content jqm-content">									
+				<ul data-role="listview" data-inset="false">
+				    <li tal:repeat="Supplier SupplierAll">
+						<a tal:attributes="href Supplier/getURLView" rel="external">
+					        <img tal:attributes="src Supplier/getPicture" />
+					    	<h2 tal:content="Supplier/getName" />
+						    <p tal:content="Supplier/getPhone"/>
+						</a>
+				    </li>
+				</ul>
+			</div>
+			
+			<tal:block metal:use-macro="mFront.xhtml/Menu"/>
+			<tal:block metal:use-macro="mFront.xhtml/Search"/>
+			<tal:block metal:use-macro="mFront.xhtml/Footer"/>			
+		</div>
 	</body>
 </html>
