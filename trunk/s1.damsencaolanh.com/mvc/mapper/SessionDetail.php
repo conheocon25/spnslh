@@ -123,7 +123,18 @@ class SessionDetail extends Mapper implements \MVC\Domain\UserFinder {
 			from 
 				%s S inner join %s SD on S.id = SD.idsession			
 			where idcourse=? and date(datetime) >= ? and date(datetime) <= ?
-		", $tblSession, $tblSessionDetail);		
+		", $tblSession, $tblSessionDetail);
+		
+		$trackByCountWrongStmt = sprintf("
+			select 
+				sum(count*SD.enable)
+			from 
+				%s S inner join %s SD on S.id = SD.idsession			
+			where 
+				idcourse=? and date(datetime) >= ? and date(datetime) <= ?
+				and (S.id in (select idsession from tbl_session_disable))
+		", $tblSession, $tblSessionDetail);
+		
 		$trackByCount1Stmt = sprintf("
 			select 
 				sum(count*SD.enable)
@@ -217,6 +228,7 @@ class SessionDetail extends Mapper implements \MVC\Domain\UserFinder {
 		$this->evaluateStmt 		= self::$PDO->prepare( $evaluateStmt );		
 		$this->checkStmt 			= self::$PDO->prepare( $checkStmt);
 		$this->trackByCountStmt 	= self::$PDO->prepare( $trackByCountStmt);
+		$this->trackByCountWrongStmt= self::$PDO->prepare( $trackByCountWrongStmt);
 		$this->trackByCount1Stmt 	= self::$PDO->prepare( $trackByCount1Stmt);
 		$this->trackByCount2Stmt 	= self::$PDO->prepare( $trackByCount2Stmt);
 		$this->trackByCategoryStmt 	= self::$PDO->prepare( $trackByCategoryStmt);
@@ -315,6 +327,14 @@ class SessionDetail extends Mapper implements \MVC\Domain\UserFinder {
 	function trackByCount( $values ){
         $this->trackByCountStmt->execute( $values );
 		$result = $this->trackByCountStmt->fetchAll();		
+		if (!isset($result) || $result==null)
+			return null;
+        return $result[0][0];
+    }
+	
+	function trackByCountWrong( $values ){
+        $this->trackByCountWrongStmt->execute( $values );
+		$result = $this->trackByCountWrongStmt->fetchAll();		
 		if (!isset($result) || $result==null)
 			return null;
         return $result[0][0];

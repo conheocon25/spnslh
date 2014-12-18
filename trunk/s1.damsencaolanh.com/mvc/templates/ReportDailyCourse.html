@@ -22,6 +22,8 @@
 												<th width="35">STT</th>
 												<th><div class="text-left">TÊN MÓN</div></th>												
 												<th width="120"><div class="text-right">SỐ LƯỢNG</div></th>
+												<th width="120"><div class="text-right">NHẬP SAI</div></th>
+												<th width="120"><div class="text-right">SỐ LƯỢNG CUỐI</div></th>
 												<th width="120"><div class="text-left">ĐƠN VỊ</div></th>
 											</tr>
 										</thead>
@@ -29,7 +31,17 @@
 											<tr tal:repeat="TC TCAll" class="gradeA odd">
 												<td align="center" tal:content="repeat/TC/number"/>
 												<td><span tal:content="TC/getCourse/getName"/></td>												
-												<td align="right"><span tal:content="TC/getCountPrint"/></td>
+												<td align="right"><B tal:content="TC/getCountPrint"/></td>
+												<td align="right">
+													<font color="red">
+														<B tal:content="TC/getCount1Print"/>
+													</font>
+												</td>													
+												<td align="right">
+													<font color="blue">
+														<B tal:content="TC/getCountRemainPrint"/>
+													</font>
+												</td>
 												<td><span tal:content="TC/getCourse/getUnit"/></td>
 											</tr>
 										</tbody>
