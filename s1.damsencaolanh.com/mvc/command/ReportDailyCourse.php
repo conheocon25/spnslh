@@ -42,6 +42,13 @@
 					$TD->getDate()." 0:0:0",
 					$TD->getDate()." 23:59:59"
 				));
+				
+				$CountWrong	= $mSD->trackByCountWrong(array(
+					$Course->getId(),
+					$TD->getDate()." 0:0:0",
+					$TD->getDate()." 23:59:59"
+				));
+				
 				if (isset($Count)){
 					$TC = new \MVC\Domain\TrackingCourse(
 						null,
@@ -49,6 +56,7 @@
 						$IdTD,
 						$Course->getId(),
 						$Count,
+						isset($CountWrong)?$CountWrong:0,
 						0,
 						0
 					);

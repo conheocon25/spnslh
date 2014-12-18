@@ -8,6 +8,7 @@ class TrackingCourse extends Object{
 	private $IdTD;
 	private $IdCourse;
 	private $Count;	
+	private $Count1;	
 	private $Price;
 	private $Value;
 	
@@ -20,6 +21,7 @@ class TrackingCourse extends Object{
 		$IdTD=null, 
 		$IdCourse=null, 
 		$Count=null, 		
+		$Count1=null, 		
 		$Price=null, 		
 		$Value=Null
 	) {
@@ -28,6 +30,7 @@ class TrackingCourse extends Object{
 		$this->IdTD 		= $IdTD;
 		$this->IdCourse 	= $IdCourse;
 		$this->Count 		= $Count;		
+		$this->Count1 		= $Count1;		
 		$this->Price 		= $Price;
 		$this->Value 		= $Value;
 		
@@ -49,6 +52,13 @@ class TrackingCourse extends Object{
 	function setCount( $Count ) {$this->Count = $Count;$this->markDirty();}   
 	function getCount( ) {return $this->Count;}
 	function getCountPrint( ) { return \round($this->Count,1);}
+	
+	function setCount1( $Count1 ) {$this->Count1 = $Count1; $this->markDirty();}   
+	function getCount1( ) {return $this->Count1;}
+	function getCount1Print( ) { return \round($this->Count1, 1);}
+		
+	function getCountRemain( ) {return $this->Count - $this->Count1;}
+	function getCountRemainPrint( ) { return \round($this->getCountRemain(), 1);}
 	
 	function setPrice( $Price ) {$this->Price = $Price;$this->markDirty();}   
 	function getPrice( ) {return $this->Price;}
