@@ -16,6 +16,7 @@
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
 			$mDomain 	= new \MVC\Mapper\Domain();
+			$mSession 	= new \MVC\Mapper\Session();
 			$mCategory 	= new \MVC\Mapper\Category();
 			$mSD 		= new \MVC\Mapper\SessionDetail();
 			$mConfig	= new \MVC\Mapper\Config();
@@ -34,13 +35,16 @@
 			$ConfigName		= $mConfig->findByName("NAME");
 			$ConfigSwitchBoardCall	= $mConfig->findByName("SWITCH_BOARD_CALL");
 			
+			$SessionTop12		= $mSession->findLimit12(array());
+			$SessionCurrentAll 	= $mSession->findByTracking(array(date('Y-m-d')." 0:0:0", date('Y-m-d')." 23:59:59"));
+			
 			//Kiểm tra theo dõi ngày hiện tại
 			$TDAll = $mTD->findByDate(array(date('Y-m-d')));
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
-			$Title = "BÁN HÀNG";
+			$Title = "BÁN HÀNG (".$SessionCurrentAll->count().")";
 			$Navigation = array();
 			
 			//-------------------------------------------------------------
@@ -54,6 +58,8 @@
 			$request->setObject('UnitAll'		, $UnitAll);
 			$request->setObject('CategoryAll'	, $CategoryAll);
 			$request->setObject('Top10'			, $Top10);
+			$request->setObject('SessionTop12'	, $SessionTop12);
+			
 			$request->setObject('Config'		, $Config);
 			$request->setObject('ConfigName'	, $ConfigName);
 			$request->setObject('ConfigSwitchBoardCall'		, $ConfigSwitchBoardCall);

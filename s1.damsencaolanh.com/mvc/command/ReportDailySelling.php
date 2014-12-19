@@ -21,6 +21,8 @@
 			$mSession 	= new \MVC\Mapper\Session();
 			$mTracking 	= new \MVC\Mapper\Tracking();
 			$mTD 		= new \MVC\Mapper\TrackingDaily();
+			$mPC 		= new \MVC\Mapper\PaidCustomer();
+			$mCC 		= new \MVC\Mapper\CollectCustomer();
 			$mConfig 	= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
@@ -34,7 +36,27 @@
 			$TD 		= $mTD->find($IdTD);
 			$Tracking	= $mTracking->find($IdTrack);
 			$DomainAll	= $mDomain->findAll();
-												
+			
+			//NỢ PHIẾU
+			$PCAll = $mPC->findByTracking1(array($TD->getDate(), $TD->getDate()));
+			$PCValue = 0;
+			while($PCAll->valid()){
+				$PC = $PCAll->current();
+				$PCValue += $PC->getValue();
+				$PCAll->next();
+			}
+			$NPCValue = new \MVC\Library\Number($PCValue);
+			
+			//TRẢ TIỀN
+			$CCAll = $mCC->findByTracking1(array($TD->getDate(), $TD->getDate()));
+			$CCValue = 0;
+			while($CCAll->valid()){
+				$CC = $CCAll->current();
+				$CCValue += $CC->getValue();
+				$CCAll->next();
+			}
+			$NCCValue = new \MVC\Library\Number($CCValue);
+			
 			$SessionAll = $mSession->findByTracking( array(
 				$TD->getDate()." 0:0:0",
 				$TD->getDate()." 23:59:59"
@@ -58,6 +80,9 @@
 			//Update vào Daily
 			$TD->setSelling($Value1);
 			$mTD->update($TD);
+			
+			$Summary 	= ($Value1 - $Value2) - $PCValue + $CCValue;
+			$NSummary 	= new \MVC\Library\Number($Summary);
 						
 			$Title 	= "BÁN HÀNG ".$TD->getDatePrint();
 			$Navigation = array(
@@ -72,9 +97,16 @@
 			$request->setObject('Navigation'	, $Navigation);
 			
 			$request->setObject('SessionAll1'	, $SessionAll1);
-			$request->setObject('SessionAll2'	, $SessionAll2);
-			
+			$request->setObject('SessionAll2'	, $SessionAll2);			
 			$request->setObject('SessionAll'	, $SessionAll);
+			
+			$request->setObject('PCAll'			, $PCAll);
+			$request->setObject('NPCValue'		, $NPCValue);
+			
+			$request->setObject('CCAll'			, $CCAll);
+			$request->setObject('NCCValue'		, $NCCValue);
+			
+			$request->setObject('NSummary'		, $NSummary);
 			
 			$request->setObject('NTotal'		, $NTotal);
 			$request->setObject('NTotal1'		, $NTotal1);

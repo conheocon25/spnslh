@@ -14,8 +14,8 @@
 				<div class="container-fluid">
 					<div class="col-12">
 						<div class="widget-box">
-							<div class="widget-content nopadding" tal:condition="TD/isOne">
-								<h3>CHI TIẾT GIAO DỊCH BÁN HÀNG TRONG NGÀY</h3>
+							<div class="widget-content nopadding">
+								<h3>(1) BÁN HÀNG</h3>
 								<table class="table table-striped table-hover">
 									<thead>
 										<tr>										
@@ -23,8 +23,8 @@
 											<th width="11%"><div class="text-left">THỜI GIAN</div></th>
 											<th width="13%"><div class="text-left">BÀN</div></th>
 											<th width="10%"><div class="text-left">KHÁCH</div></th>
-											<th width="15%"><div class="text-right">TIỀN PHIẾU</div></th>
 											<th width="11%"><div class="text-right">PHIẾU HỦY</div></th>
+											<th width="15%"><div class="text-right">TIỀN PHIẾU</div></th>
 										</tr>
 									</thead>
 									<tbody>
@@ -34,24 +34,72 @@
 											<td align="left"><span tal:content="Session/getTable/getName"/></td>
 											<td align="left"><span tal:content="Session/getCustomer/getName"/></td>
 											<td align="right">
-												<a tal:condition="not: Session/checkDisable" class="Ticket" tal:attributes="alt Session/getURLPrint">
-													<span tal:content="Session/getValuePrint"/>
-												</a>	
-											</td>
-											<td align="right">
 												<a tal:condition="Session/checkDisable" class="Ticket" tal:attributes="alt Session/getURLPrint">
 													<span tal:content="Session/getValuePrint"/>
 												</a>
 											</td>
+											<td align="right">
+												<a tal:condition="not: Session/checkDisable" class="Ticket" tal:attributes="alt Session/getURLPrint">
+													<span tal:content="Session/getValuePrint"/>
+												</a>	
+											</td>											
 										</tr>
 										<tr>
-											<td align="left" colspan="4">TỔNG CỘNG CÓ <B tal:content="SessionAll/count"/> PHIẾU: <B tal:content="NTotal/formatCurrency"/> </td>
-											<td align="right"><B tal:content="NTotal1/formatCurrency"/></td>
+											<td align="left" colspan="4">TỔNG CỘNG CÓ <B tal:content="SessionAll/count"/> PHIẾU</td>
 											<td align="right"><B tal:content="NTotal2/formatCurrency"/></td>
+											<td align="right"><B tal:content="NTotal1/formatCurrency"/></td>
 										</tr>
 									</tbody>
 								</table>
-							</div>														
+								<h3>(2) KHÁCH NỢ PHIẾU</h3>
+								<table class="table table-striped table-hover">
+									<thead>
+										<tr>										
+											<th width="5%"><B>#ID</B></th>
+											<th width="30%"><div class="text-left">KHÁCH</div></th>
+											<th><div class="text-left">GHI CHÚ</div></th>
+											<th width="15%"><div class="text-right">TIỀN PHIẾU</div></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr tal:repeat="PC PCAll">
+											<td align="center"><span tal:content="repeat/PC/number"/></td>
+											<td align="left"><span tal:content="PC/getCustomer/getName"/></td>											
+											<td align="left"><span tal:content="PC/getNote"/></td>											
+											<td align="right"><span tal:content="PC/getValuePrint"/></td>
+										</tr>										
+										<tr>
+											<td align="left" colspan="3"><B>TỔNG CỘNG</B></td>
+											<td align="right"><B tal:content="NPCValue/formatCurrency"/></td>
+										</tr>										
+									</tbody>
+								</table>								
+								<h3>(3) KHÁCH TRẢ</h3>
+								<table class="table table-striped table-hover">
+									<thead>
+										<tr>
+											<th width="5%"><B>#ID</B></th>
+											<th width="30%"><div class="text-left">KHÁCH</div></th>
+											<th><div class="text-left">GHI CHÚ</div></th>
+											<th width="15%"><div class="text-right">TIỀN THU</div></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr tal:repeat="CC CCAll">
+											<td align="center"><span tal:content="repeat/CC/number"/></td>
+											<td align="left"><span tal:content="CC/getCustomer/getName"/></td>											
+											<td align="left"><span tal:content="CC/getNote"/></td>											
+											<td align="right"><span tal:content="CC/getValuePrint"/></td>
+										</tr>										
+										<tr>
+											<td align="left" colspan="3"><B>TỔNG CỘNG</B></td>
+											<td align="right"><B tal:content="NCCValue/formatCurrency"/></td>
+										</tr>										
+									</tbody>
+								</table>
+								<h3>(4) TIỀN MẶT = (1) - (2) + (3) = (<span tal:content="NTotal1/formatCurrency"/> - <span tal:content="NTotal2/formatCurrency"/>) - <span tal:content="NPCValue/formatCurrency"/> + <span tal:content="NCCValue/formatCurrency"/></h3>
+								<h3> = <span tal:content="NSummary/formatCurrency"/></h3>
+							</div>
 						</div>
 						<div class="widget-box">
 							<a class="Ticket" tal:attributes="alt TD/getURLReportSellingByCategory">

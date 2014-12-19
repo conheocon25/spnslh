@@ -1,34 +1,22 @@
 <?php
 namespace MVC\Mapper;
-
 require_once( "mvc/base/Mapper.php" );
 class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
 
     function __construct() {
         parent::__construct();
-        $this->selectAllStmt = self::$PDO->prepare( 
-                            "select * from tbl_customer");
-        $this->selectStmt = self::$PDO->prepare( 
-                            "select * from tbl_customer where id=?");
-        $this->updateStmt = self::$PDO->prepare( 
-                            "update tbl_customer set name=?, type=?, card=?, phone=?, address=?, note=?, discount=? where id=?");
-        $this->insertStmt = self::$PDO->prepare( 
-                            "insert into tbl_customer (name, type, card, phone, address, note, discount) 
-							values( ?, ?, ?, ?, ?, ?, ?)");
-		$this->deleteStmt = self::$PDO->prepare( 
-                            "delete from tbl_customer where id=?");
-		$this->findByPositionStmt = self::$PDO->prepare("
-						SELECT id 
-						FROM tbl_customer
-						WHERE idlocation=?
-						LIMIT ?,1
-						ORDER By id asc
-		");
-		$this->findByCardStmt = self::$PDO->prepare("select * from tbl_customer where card=?");
+		$tblCustomer 			= "tbl_customer";
 		
-		$tblCustomer = "tbl_customer";
-		$findByPageStmt = sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblCustomer);
-		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);
+        $this->selectAllStmt 	= self::$PDO->prepare("select * from tbl_customer");
+        $this->selectStmt 		= self::$PDO->prepare("select * from tbl_customer where id=?");
+        $this->updateStmt 		= self::$PDO->prepare("update tbl_customer set name=?, type=?, card=?, phone=?, address=?, note=?, discount=? where id=?");
+        $this->insertStmt 		= self::$PDO->prepare("insert into tbl_customer (name, type, card, phone, address, note, discount) values( ?, ?, ?, ?, ?, ?, ?)");
+		$this->deleteStmt 		= self::$PDO->prepare("delete from tbl_customer where id=?");
+		$this->findByNormalStmt = self::$PDO->prepare("SELECT * FROM tbl_customer WHERE type>0 ORDER By type, name");
+		$this->findByCardStmt 	= self::$PDO->prepare("select * from tbl_customer where card=?");
+				
+		$findByPageStmt 		= sprintf("SELECT * FROM  %s ORDER BY type, name LIMIT :start,:max", $tblCustomer);
+		$this->findByPageStmt 	= self::$PDO->prepare($findByPageStmt);
 		 
     } 
     function getCollection( array $raw ) {return new CustomerCollection( $raw, $this );}
@@ -79,13 +67,14 @@ class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
 		);		
         $this->updateStmt->execute( $values );
     }
+			
+	protected function doDelete(array $values) {return $this->deleteStmt->execute( $values );}	
+    function selectStmt() {return $this->selectStmt;}	
+    function selectAllStmt() {return $this->selectAllStmt;}
 	
-	function findByPostion($values) {		
-        $str = "SELECT id FROM tbl_customer ORDER BY id LIMIT ". $values[0] .",1";		
-		$this->findByPositionStmt = self::$PDO->prepare($str);
-        $this->findByPositionStmt->execute($values);
-		$result = $this->findByPositionStmt->fetchAll();
-        return $result[0][0];
+	function findByNormal($values) {		
+        $this->findByNormalStmt->execute( $values );
+        return new CustomerCollection( $this->findByNormalStmt->fetchAll(), $this );
     }
 	
 	function findByCard( $values ) {	
@@ -97,13 +86,6 @@ class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
         $object = $this->doCreateObject( $array );
         return $object;		
     }
-	
-	protected function doDelete(array $values) {
-        return $this->deleteStmt->execute( $values );
-    }
-	
-    function selectStmt() {return $this->selectStmt;}	
-    function selectAllStmt() {return $this->selectAllStmt;}
 	
 	function findByPage( $values ) {
 		$this->findByPageStmt->bindValue(':start', ((int)($values[0])-1)*(int)($values[1]), \PDO::PARAM_INT);

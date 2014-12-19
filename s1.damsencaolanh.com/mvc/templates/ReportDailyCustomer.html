@@ -24,7 +24,7 @@
 											<tr role="row">
 												<th width="48"><div class="text-center">STT</div></th>
 												<th><div class="text-left">HỌ TÊN</div></th>
-												<th width="120"><div class="text-left">ĐIỆN THOẠI</div></th>
+												<th width="120"><div class="text-left">LOẠI</div></th>
 												<th width="120"><div class="text-right">CHI TIẾT</div></th>
 											</tr>
 										</thead>
@@ -32,13 +32,17 @@
 											<tr tal:repeat="Customer CustomerAll" class="gradeA odd">
 												<td><div class="text-center" tal:content="repeat/Customer/number"/></td>
 												<td><span tal:content="Customer/getName"/></td>
-												<td><div  tal:content="Customer/getPhone"/></td>
+												<td><div  tal:content="Customer/getTypePrint"/></td>
 												<td>
 													<a tal:attributes="href php:TD->getURLReportCustomerDetail( Customer->getId() )">
 														<div class="text-right" tal:content="php: Customer->getValuePrint( IdTrack, IdTD )"/>
 													</a>	
 												</td>
-											</tr>											
+											</tr>
+											<tr>												
+												<td colspan="3"><div class="text-right"><B>TỔNG NỢ</B></div></td>
+												<td><B><div class="text-right" tal:content="NValue/formatCurrency"/></B></td>
+											</tr>
 										</tbody>
 									</table>									
 								</div>  
