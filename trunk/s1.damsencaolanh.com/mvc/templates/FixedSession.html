@@ -20,7 +20,7 @@
 							<table class="table table-bordered table-striped table-hover">
 								<thead>
 									<tr>
-										<th width="40">ID</th>
+										<th width="200">ID</th>
 										<th width="120" class="left">NGÀY</th>
 										<th width="120" class="left">BÀN</th>
 										<th class="left">DIỄN GIẢI</th>
@@ -30,7 +30,7 @@
 								</thead>
 								<tbody>
 									<tr tal:repeat="Fixed FixedSessionAll">
-										<td class="center"><B tal:content="Fixed/getSession/getId"/></td>
+										<td class="center"><B tal:content="Fixed/getSession/getCode"/></td>
 										<td><span tal:content="Fixed/getSession/getDateTimePrint"/></td>
 										<td><div class="text-left" tal:content="Fixed/getSession/getTable/getName"/></td>
 										<td><div class="text-left" tal:content="Fixed/getNote"/></td>
@@ -54,7 +54,7 @@
 											<div class="controls">
 												<select name="IdSession1" id="IdSession1" style="width:100%;">
 													<option tal:repeat="Session SessionAll" tal:attributes="value Session/getId">
-														<span tal:content="Session/getId" /> - <span tal:content="Session/getTable/getName" /> [<span tal:content="Session/getDateTimePrint" />] [<B tal:content="Session/getValuePrint" />]
+														<span tal:content="Session/getCode" /> - <span tal:content="Session/getTable/getName" /> [<span tal:content="Session/getDateTimePrint" />] [<B tal:content="Session/getValuePrint" />]
 													</option>
 												</select>
 											</div>

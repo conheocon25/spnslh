@@ -61,7 +61,8 @@ class Session extends Mapper implements \MVC\Domain\SessionFinder {
 							"
 		, $tblSession);
 		
-		$findLimit200Stmt 	= sprintf("select * from %s S order by S.datetime DESC LIMIT 200", $tblSession);
+		$findLimit12Stmt 	= sprintf("select * from %s S order by S.datetime DESC LIMIT 12", $tblSession);
+		$findLimit200Stmt 	= sprintf("select * from %s S order by S.datetime DESC LIMIT 300", $tblSession);
 		
 		$findByDateStmt 	= sprintf("select * from %s where date(`datetime`)=date(?) order by id LIMIT 3", $tblSession);
 	
@@ -147,6 +148,7 @@ class Session extends Mapper implements \MVC\Domain\SessionFinder {
 		$this->findByTablePageStmt = self::$PDO->prepare($findByTablePageStmt);
 		$this->findByTableTrackingStmt = self::$PDO->prepare($findByTableTrackingStmt);
 		
+		$this->findLimit12Stmt 					= self::$PDO->prepare($findLimit12Stmt);
 		$this->findLimit200Stmt 				= self::$PDO->prepare($findLimit200Stmt);
 		$this->findByDateStmt 					= self::$PDO->prepare($findByDateStmt);
 		$this->findByTrackingStmt 				= self::$PDO->prepare($findByTrackingStmt);
@@ -302,6 +304,11 @@ class Session extends Mapper implements \MVC\Domain\SessionFinder {
 		$this->findByTablePageStmt->bindValue(':max', (int)($values[2]), \PDO::PARAM_INT);		
 		$this->findByTablePageStmt->execute();
         return new SessionCollection( $this->findByTablePageStmt->fetchAll(), $this );
+    }
+	
+	function findLimit12($values ){
+        $this->findLimit12Stmt->execute( $values );
+        return new SessionCollection( $this->findLimit12Stmt->fetchAll(), $this );
     }
 	
 	function findLimit200($values ){

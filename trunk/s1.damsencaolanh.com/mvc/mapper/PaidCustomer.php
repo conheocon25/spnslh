@@ -16,29 +16,8 @@ class PaidCustomer extends Mapper implements \MVC\Domain\PaidCustomerFinder {
 		$deleteStmt 	= sprintf("delete from %s where id=?", $tblPaidCustomer);
 		$findByStmt 	= sprintf("select * from %s where idcustomer = ? order by date DESC", $tblPaidCustomer);
 				
-		$findByTrackingStmt = sprintf(
-			"select
-				*
-			from 
-				%s
-			where
-				idcustomer=? AND date >= ? AND date <= ?
-			order by 
-				date DESC
-			"
-		, $tblPaidCustomer);
-		
-		$findByTracking1Stmt = sprintf(
-			"select
-				*
-			from 
-				%s
-			where
-				date >= ? AND date <= ?
-			order by 
-				date DESC
-			"
-		, $tblPaidCustomer);
+		$findByTrackingStmt = sprintf("select * from %s where idcustomer=? AND date >= ? AND date <= ? order by date DESC", $tblPaidCustomer);		
+		$findByTracking1Stmt = sprintf("select * from %s where date >= ? AND date <= ? order by date DESC", $tblPaidCustomer);
 		
 		$findByPageStmt = sprintf("
 							SELECT * 

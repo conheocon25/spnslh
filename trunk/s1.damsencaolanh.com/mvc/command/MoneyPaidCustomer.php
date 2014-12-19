@@ -24,7 +24,7 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
-			$CustomerAll = $mCustomer->findAll();
+			$CustomerAll = $mCustomer->findByNormal(array());
 			if (!isset($IdCustomer)){
 				$Customer = $CustomerAll->current();
 				$IdCustomer = $Customer->getId();
@@ -37,7 +37,7 @@
 			$PaidAll 	= $mPaid->findByPage(array($IdCustomer, $Page, $Config->getValue() ));
 			$PN 		= new \MVC\Domain\PageNavigation( $Customer->getPaidAll()->count(), $Config->getValue(), $Customer->getURLPaid());
 									
-			$Title = "CHI [".mb_strtoupper($Customer->getName()."]", 'UTF8');
+			$Title = mb_strtoupper($Customer->getName()." NỢ PHIẾU", 'UTF8');
 			$Navigation = array(array("THU / CHI", "/money"));
 			
 			//-------------------------------------------------------------

@@ -16,17 +16,16 @@
 	<body>
 		<div metal:use-macro="mAdmin.xhtml/Header"/>		
 		<div id="sidebar">
-			<ul>				
+			<ul>
 				<li tal:repeat="Domain DomainAll" class="Domain" tal:attributes="alt Domain/getId">
 					<a><i class="glyphicons-show_big_thumbnails" /><span tal:content="Domain/getName"/></a>
-				</li>
-				<li class="Domain" tal:attributes="alt '101'">
-					<a><i class="glyphicons-show_big_thumbnails" />CHƯA CÓ KHÁCH</a>
-				</li>
-				<li class="Domain" tal:attributes="alt '102'">
-					<a><i class="glyphicons-show_big_thumbnails" />ĐANG CÓ KHÁCH</a>
-				</li>
-			</ul>
+				</li>				
+				<li tal:repeat="ST SessionTop12">
+					<a class="Ticket" tal:attributes="alt ST/getURLPrint">
+						<i class="glyphicons-ok" /><span tal:content="ST/getCode"/>(<span tal:content="ST/getValuePrint"/>)
+					</a>
+				</li>				
+			</ul>			
 		</div>
 		<div id="content">
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>

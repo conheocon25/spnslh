@@ -27,15 +27,24 @@
 			//-------------------------------------------------------------									
 			$TD 			= $mTD->find($IdTD);
 			$Tracking		= $mTracking->find($IdTrack);
-			$CustomerAll	= $mCustomer->findAll();
+			$CustomerAll	= $mCustomer->findByNormal(array());
 			$ConfigName		= $mConfig->findByName("NAME");
-									
-			$Title 		= "KHÁCH HÀNG ".$TD->getDatePrint();
+			
+			//CẬP NHẬT SỐ TIỀN KHÁCH HÀNG NỢ / TRẢ ĐẾN THỜI ĐIỂM HIỆN TẠI
+			$Value = 0;
+			while($CustomerAll->valid()){
+				$Customer = $CustomerAll->current();
+				$Value +=$Customer->getValue( $IdTrack, $IdTD );
+				$CustomerAll->next();
+			}
+			$NValue = new \MVC\Library\Number($Value);
+						
+			$Title 			= "KHÁCH HÀNG ".$TD->getDatePrint();
 			$Navigation = array(
 				array("BÁO CÁO"				, "/report"),
-				array($Tracking->getName()	, $Tracking->getURLView())				
+				array($Tracking->getName()	, $Tracking->getURLView())
 			);
-			
+									
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
@@ -47,6 +56,7 @@
 			$request->setObject('CustomerAll'	, $CustomerAll);
 								
 			$request->setObject('TD'			, $TD);
+			$request->setObject('NValue'		, $NValue);
 			$request->setObject('ConfigName'	, $ConfigName);
 		}
 	}

@@ -29,7 +29,10 @@ class Customer extends Object{
 		
 	function getType(){return $this->Type;}	
     function setType( $Type ) {$this->Type = $type;$this->markDirty();}
-	function getTypePrint(){if ($this->Type==1)return "VIP"; return "Thường";}
+	function getTypePrint(){
+		$Arr = array("Hệ thống", "Nhà", "Thường");
+		return $Arr[$this->Type];		
+	}
 	
 	function getCard(){return $this->Card;}	
     function setCard( $Card ) {$this->Card = $Card;$this->markDirty();}

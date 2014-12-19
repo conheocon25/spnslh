@@ -26,11 +26,11 @@
 									<tr>
 										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
 										<th width="200" class="left">TÊN</th>
+										<th width="100" class="left">LOẠI</th>
 										<th width="120" class="left">CMND</th>
 										<th width="120" class="left">ĐIỆN THOẠI</th>
 										<th width="120" class="left">GIẢM GIÁ</th>
-										<th class="left">ĐỊA CHỈ</th>
-										<th width="40"><i class="glyphicons-edit"/></th>
+										<th class="left">ĐỊA CHỈ</th>										
 										<th width="40"><i class="glyphicons-bin"/></th>
 									</tr>
 								</thead>
@@ -38,15 +38,11 @@
 									<tr tal:repeat="Customer CustomerAll1">
 										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Customer/getId"/></td>
 										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="Customer" tal:attributes="data-id Customer/getId" tal:content="Customer/getName"/></td>
+										<td><span tal:content="Customer/getTypePrint"/></td>
 										<td><span tal:content="Customer/getCard"/></td>
 										<td><span tal:content="Customer/getPhone"/></td>
 										<td><span tal:content="Customer/getDiscount"/></td>
-										<td><span tal:content="Customer/getAddress"/></td>
-										<td class="center">
-											<a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="Customer" tal:attributes="data-id Customer/getId">
-												<i class="glyphicon glyphicon-pencil"/>
-											</a>
-										</td>
+										<td><span tal:content="Customer/getAddress"/></td>										
 										<td class="center">
 											<a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Customer/getId">
 												<i class="glyphicon glyphicon-remove"/>
@@ -78,11 +74,15 @@
 												<div class="controls">								
 													<input id="Phone1" name="Phone1" type="text" class="form-control input-small"/>
 												</div>
-											</div>
+											</div>											
 											<div class="control-group">
 												<label class="control-label">Loại</label>
-												<div class="controls">								
-													<input id="Type1" name="Type1" type="text" class="form-control input-small"/>
+												<div class="controls">
+													<select name="Type1" id="Type1" style="width:80%;">
+														<option value="0" >Hệ thống</option>
+														<option value="1" >Nhà</option>
+														<option value="2" >Thường</option>
+													</select>
 												</div>
 											</div>
 											<div class="control-group">
@@ -143,8 +143,12 @@
 											</div>
 											<div class="control-group">
 												<label class="control-label">Loại</label>
-												<div class="controls">								
-													<input id="Type2" name="Type2" type="text" class="form-control input-small"/>
+												<div class="controls">
+													<select name="Type2" id="Type2" style="width:80%;">
+														<option value="0" >Hệ thống</option>
+														<option value="1" >Nhà</option>
+														<option value="2" >Thường</option>
+													</select>
 												</div>
 											</div>
 											<div class="control-group">
@@ -295,8 +299,8 @@
 				$('#update-link').attr('action', $(this).attr('alt'));
 				$.getJSON(url, function(data) {
 					$('#URLUpdButton').attr('alt', 	data.Id);
-					$('#Name2').attr('value', 		data.Name);										
-					$('#Type2').attr('value', 		data.Type);
+					$('#Name2').attr('value', 		data.Name);																				
+					$('#Type2').select2('val', 		data.Type);					
 					$('#Card2').attr('value', 		data.Card);
 					$('#Phone2').attr('value', 		data.Phone);
 					$('#Address2').attr('value', 	data.Address);

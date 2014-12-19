@@ -39,9 +39,9 @@
 			$ConfigMarqueeWelcome	= $mConfig->findByName("MARQUEE_WELCOME");
 			$ConfigPresentation 	= $mConfig->findByName("PRESENTATION_HOME");
 			
-			$Presentation1 			= $mPresentation->find($ConfigPresentation->getValue());
-			$Category 				= $mCategory->find($ConfigMenu->getValue());
 			$Product 				= $mProduct->findByKey($KProduct);
+			$Category 				= $mCategory->find($ConfigMenu->getValue());			
+			$Presentation1 			= $Product->getCategory()->getPresentation();			
 			$TagAll 				= $mTag->findByPosition(array(1));
 			$BranchAll 				= $mBranch->findAll();						
 			$LinkedAll 				= $mLinked->findByTop(array());
