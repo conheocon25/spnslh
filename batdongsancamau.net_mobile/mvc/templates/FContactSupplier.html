@@ -14,16 +14,14 @@
 				    <li tal:repeat="Supplier SupplierAll">
 						<a tal:attributes="href Supplier/getURLView" rel="external">
 					        <img tal:attributes="src Supplier/getPicture" />
-					    	<h2 tal:content="Supplier/getName" />
-						    <p tal:content="Supplier/getPhone"/>
+					    	<h2 tal:content="Supplier/getName" />						
+							<span class="ui-li-count" tal:content="Supplier/getProductAll/count"/>
 						</a>
 				    </li>
 				</ul>
-			</div>
-			
+			</div>			
 			<tal:block metal:use-macro="mFront.xhtml/Menu"/>
-			<tal:block metal:use-macro="mFront.xhtml/Search"/>
-			<tal:block metal:use-macro="mFront.xhtml/Footer"/>			
+			<tal:block metal:use-macro="mFront.xhtml/Footer"/>
 		</div>
 	</body>
 </html>

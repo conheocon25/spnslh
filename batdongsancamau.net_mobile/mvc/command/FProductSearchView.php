@@ -34,11 +34,10 @@
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
 			$EstateAll 		= $mEstate->findAll();
-			$CategoryAll 	= $mCategory->findAll();
-			$CategoryAll1 	= $mCategory1->findAll();
+			$CategoryAll 	= $mCategory->findAll();			
 			$Province		= $mProvince->find(15);
 			$TagAll 		= $mTag->findByPosition(array(1));
-			
+									
 			$ConfigName 	= $mConfig->findByName("NAME");
 			$ConfigContact 	= $mConfig->findByName("CONTACT_NAME");
 			$ConfigSlogan 	= $mConfig->findByName("SLOGAN");
@@ -70,7 +69,12 @@
 			$ProductAll1	= $mProduct->search($IdCategory, $IdEstate, $IdDistrict, $IdDirection, $IdPrice, $IdArea);
 			$ProductAll 	= $mProduct->searchPage($IdCategory, $IdEstate, $IdDistrict, $IdDirection, $IdPrice, $IdArea, $Page, 9);
 			$PN 			= new \MVC\Domain\PageNavigation($ProductAll1->count(), 9, "/tim-kiem");
-									
+			
+			$CategoryCurrent= $mCategory1->find($IdCategory);
+			$CategoryAll1 	= $CategoryCurrent->getCategory()->getCategoryAll();
+			
+			$Supplier 		= $ProductAll->current()->getSupplier();
+			
 			$Title 			= "TÌM KIẾM";
 			$Navigation 	= array();
 			
@@ -92,10 +96,12 @@
 			$request->setObject("ProductAll", 			$ProductAll);
 			$request->setObject("PN", 					$PN);
 			
-			$request->setObject("Province", 			$Province);			
+			$request->setObject("Province", 			$Province);
+			$request->setObject("Supplier", 			$Supplier);
 			$request->setObject("TagAll", 				$TagAll);
 			$request->setObject("CategoryAll", 			$CategoryAll);
 			$request->setObject("CategoryAll1", 		$CategoryAll1);
+			$request->setObject("CategoryCurrent", 		$CategoryCurrent);
 			$request->setObject("EstateAll", 			$EstateAll);
 			
 			return self::statuses('CMD_DEFAULT');

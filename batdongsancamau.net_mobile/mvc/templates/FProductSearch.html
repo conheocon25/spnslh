@@ -9,10 +9,10 @@
 	<body>
 		<div data-role="page" class="jqm-demos jqm-home">
 			<tal:block metal:use-macro="mFront.xhtml/Header"/>	
-			<div role="main" class="ui-content jqm-content">
+			<div role="main" class="ui-content jqm-content">				
 				<form action="/tim-kiem/page/1" method="POST" role="form" data-ajax="false">
 					<div class="form-group">
-						<select name="IdCategory" id="IdCategory" class="form-control">						
+						<select name="IdCategory" id="IdCategory" class="form-control">
 							<option tal:repeat="Category CategoryAll1" tal:attributes="value Category/getId;selected php:Category->getId()==@\MVC\Base\SessionRegistry::instance()->getIdCategory()?'selected':''" >
 								<span tal:content="Category/getName" />
 							</option>
@@ -43,7 +43,7 @@
 							<option value="4" tal:attributes="selected php:@\MVC\Base\SessionRegistry::instance()->getIdDirection()==4?'selected':''">Bắc</option>						
 							<option value="5" tal:attributes="selected php:@\MVC\Base\SessionRegistry::instance()->getIdDirection()==5?'selected':''">Đông Bắc</option>						
 							<option value="6" tal:attributes="selected php:@\MVC\Base\SessionRegistry::instance()->getIdDirection()==6?'selected':''">Đông Nam</option>						
-							<option value="7" tal:attributes="selected php:@\MVC\Base\SessionRegistry::instance()->getIdDirection()==7?'selected':''">Tây Bắc</option>						
+							<option value="7" tal:attributes="selected php:@\MVC\Base\SessionRegistry::instance()->getIdDirection()==7?'selected':''">Tây Bắc</option>
 							<option value="8" tal:attributes="selected php:@\MVC\Base\SessionRegistry::instance()->getIdDirection()==8?'selected':''">Tây Nam</option>
 						</select>
 					</div>
@@ -92,9 +92,8 @@
 					<input type="submit" data-inline="true" value="Tìm kiếm" data-theme="b" />
 				</form>					
 			</div>			
-			<tal:block metal:use-macro="mFront.xhtml/Menu"/>
-			<tal:block metal:use-macro="mFront.xhtml/Search"/>
-			<tal:block metal:use-macro="mFront.xhtml/Footer"/>			
+			<tal:block metal:use-macro="mFront.xhtml/Menu"/>			
+			<tal:block metal:use-macro="mFront.xhtml/Footer"/>
 		</div>
 	</body>
 </html>
