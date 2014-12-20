@@ -44,7 +44,7 @@
 	<div metal:define-macro="Header" data-role="header" class="jqm-header">		
 		<h2><a href="/"><img src="/mvc/templates/mobile/img/logo.png" alt="Bất Động Sản Cà Mau"/></a></h2>
 		<a href="#" class="jqm-navmenu-link ui-btn ui-btn-icon-notext ui-corner-all ui-icon-bars ui-nodisc-icon ui-alt-icon ui-btn-left">Menu</a>
-		<a href="/tim-kiem" rel="external" class="jqm-search-link ui-btn ui-btn-icon-notext ui-corner-all ui-icon-search ui-nodisc-icon ui-alt-icon ui-btn-right">Tìm kiếm</a>
+		<a href="/tim-kiem" rel="external" class="ui-btn ui-btn-icon-notext ui-corner-all ui-icon-search ui-nodisc-icon ui-alt-icon ui-btn-right">Tìm kiếm</a>
 	</div>
 	
 	<!-- ======================================================================== -->
@@ -145,94 +145,25 @@
 	</div>
 	
 	<!-- ======================================================================== -->
-	<!-- SEARCH																	  -->
+	<!-- MENU CATEGORY SUPPLIER													  -->
 	<!-- ======================================================================== -->
-	<div metal:define-macro="Search" data-role="panel" class="jqm-search-panel" data-position="right" data-display="overlay" data-theme="a">
-		<div class="jqm-search">
-			<ul class="jqm-list" data-filter-placeholder="Nhập từ khóa tìm kiếm..." data-filter-reveal="true">
-				<li tal:repeat="Category CategoryAll" data-role="collapsible" data-enhanced="true" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" data-iconpos="right" data-inset="false" class="ui-collapsible ui-collapsible-themed-content ui-collapsible-collapsed">
-					<h3 class="ui-collapsible-heading ui-collapsible-heading-collapsed">
-						<a href="#" class="ui-collapsible-heading-toggle ui-btn ui-btn-icon-right ui-btn-inherit ui-icon-carat-d">
-							<span tal:content="Category/getName"/><span class="ui-collapsible-heading-status"> click to expand contents</span>
-						</a>
-					</h3>
-					<div class="ui-collapsible-content ui-body-inherit ui-collapsible-content-collapsed" aria-hidden="true">
-						<ul>
-							<li tal:repeat="Category1 Category/getCategoryAll" tal:attributes="data-filtertext Category1/getName">												
-								<a tal:attributes="href Category1/getURLView" tal:content="Category1/getName" data-ajax="false"/>
-							</li>
-						</ul>
-					</div>
-				</li>
-				<li data-role="collapsible" data-enhanced="true" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" data-iconpos="right" data-inset="false" class="ui-collapsible ui-collapsible-themed-content ui-collapsible-collapsed">
-					<h3 class="ui-collapsible-heading ui-collapsible-heading-collapsed">
-						<a href="#" class="ui-collapsible-heading-toggle ui-btn ui-btn-icon-right ui-btn-inherit ui-icon-carat-d">
-							Tin tức<span class="ui-collapsible-heading-status"> click to expand contents</span>
-						</a>
-					</h3>
-					<div class="ui-collapsible-content ui-body-inherit ui-collapsible-content-collapsed" aria-hidden="true">
-						<ul>
-							<li tal:repeat="Tag TagAll" tal:attributes="data-filtertext Tag/getName">												
-								<a tal:attributes="href Tag/getURLView" tal:content="Tag/getName" data-ajax="false"/>
-							</li>
-						</ul>
-					</div>
-				</li>
-				<li data-role="collapsible" data-enhanced="true" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" data-iconpos="right" data-inset="false" class="ui-collapsible ui-collapsible-themed-content ui-collapsible-collapsed">
-					<h3 class="ui-collapsible-heading ui-collapsible-heading-collapsed">
-						<a href="#" class="ui-collapsible-heading-toggle ui-btn ui-btn-icon-right ui-btn-inherit ui-icon-carat-d">
-							Bảng giá<span class="ui-collapsible-heading-status"> click to expand contents</span>
-						</a>
-					</h3>
-					<div class="ui-collapsible-content ui-body-inherit ui-collapsible-content-collapsed" aria-hidden="true">
-						<ul>
-							<li data-filtertext="giá"><a tal:attributes="href '/bang-gia/gia-dat'" data-ajax="false">Giá đất</a></li>
-							<li data-filtertext="giá"><a tal:attributes="href '/bang-gia/gia-nha'" data-ajax="false">Giá nhà</a></li>
-						</ul>
-					</div>
-				</li>
-				<li data-role="collapsible" data-enhanced="true" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" data-iconpos="right" data-inset="false" class="ui-collapsible ui-collapsible-themed-content ui-collapsible-collapsed">
-					<h3 class="ui-collapsible-heading ui-collapsible-heading-collapsed">
-						<a href="#" class="ui-collapsible-heading-toggle ui-btn ui-btn-icon-right ui-btn-inherit ui-icon-carat-d">
-							Liên hệ<span class="ui-collapsible-heading-status"> click to expand contents</span>
-						</a>
-					</h3>
-					<div class="ui-collapsible-content ui-body-inherit ui-collapsible-content-collapsed" aria-hidden="true">
-						<ul>
-							<li data-filtertext="liên hệ đăng ký mua"><a tal:attributes="href '/lien-he/dang-ki-mua'" data-ajax="false">Đăng ký mua</a></li>
-							<li data-filtertext="liên hệ đăng ký bán"><a tal:attributes="href '/lien-he/dang-ki-ban'" data-ajax="false">Đăng ký bán</a></li>
-							<li data-filtertext="liên hệ nhà môi giới"><a tal:attributes="href '/lien-he/nha-moi-gioi'" data-ajax="false">Nhà môi giới</a></li>
-							<li data-filtertext="liên hệ giá đăng"><a tal:attributes="href '/lien-he/gia-dich-vu'" data-ajax="false">Giá đăng</a></li>
-						</ul>
-					</div>
-				</li>
-			</ul>
-		</div>
+	<div metal:define-macro="MenuCategorySupplier" data-role="panel" class="jqm-navmenu-panel" data-position="left" data-display="overlay" data-theme="a">
+		<ul class="jqm-list ui-alt-icon ui-nodisc-icon">
+			<li tal:repeat="Category CategoryAll1" tal:attributes="data-theme php: Category->getId()==CategoryCurrent->getId()?'b':'a'">			
+				<a tal:attributes="href Category/getURLView" tal:content="Category/getName" data-ajax="false"/>
+			</li>
+			<li data-theme="a">
+				<a tal:attributes="href Supplier/getURLView" tal:content="Supplier/getName" data-ajax="false"/>
+			</li>
+		 </ul>
 	</div>
 	
 	<!-- ======================================================================== -->
-	<!-- BREADCRUMB																  -->
+	<!-- SEARCH																	  -->
 	<!-- ======================================================================== -->
-	<ol metal:define-macro="Breadcrumb" class="breadcrumb">
-		<li><a href="/">TRANG CHỦ</a></li>
-		<li tal:repeat="Item Navigation"> 
-			<a tal:attributes="href php:Item[1]" tal:content="php:Item[0]" />
-		</li>
-		<li class="active" tal:content="Title"/>
-	</ol>
-	
-	<!-- ======================================================================== -->
-	<!-- BREADCRUMB																  -->
-	<!-- ======================================================================== -->
-	<tal:block metal:define-macro="DoubleAds">
-		<div style="padding:0;width:102px;height:452px;position:fixed;left:10px;top:20px;border:1px solid #0090b5;">
-			<a href="/"><img src="/mvc/templates/mobile/img/ads.gif" width="100%" height="100%"/></a>
-		</div>
-		<div style="padding:0;width:102px;height:452px;position:fixed;right:10px;top:20px;border:1px solid #0090b5;">
-			<a href="/"><img src="/mvc/templates/mobile/img/ads.gif" width="100%" height="100%"/></a>
-		</div>
-	</tal:block>
-
+	<div metal:define-macro="Search" data-role="panel" class="jqm-search-panel" data-position="right" data-display="overlay" data-theme="a">
+	</div>
+				
 	<!-- ======================================================================== -->
 	<!-- FOOTER																	  -->
 	<!-- ======================================================================== -->	
