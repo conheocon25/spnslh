@@ -38,15 +38,18 @@
 			$ConfigGmail 	= $mConfig->findByName("CONTACT_GTALK");
 			$ConfigSkype 	= $mConfig->findByName("CONTACT_SKYPE");
 			
-			$CategoryAll 	= $mCategory->findAll();
-			$CategoryAll1 	= $mCategory1->findAll();
+			$CategoryAll 	= $mCategory->findAll();			
 			$EstateAll 		= $mEstate->findAll();
 			$Product 		= $mProduct->findByKey($KProduct);
 			$Category1 		= $Product->getCategory();
 			$Category 		= $Category1->getCategory();
 			$Province 		= $mProvince->find(15);
 			$TagAll 		= $mTag->findByPosition(array(1));
-						
+			
+			$CategoryCurrent = $Product->getCategory();
+			$CategoryAll1 	 = $CategoryCurrent->getCategory()->getCategoryAll();
+			$Supplier		 = $Product->getSupplier();
+			
 			$Title = mb_strtoupper($Product->getName(),'UTF8');
 			$Navigation = array(
 				array(mb_strtoupper($Category->getName(), 'UTF8'), 	$Category->getURLView()),
@@ -70,12 +73,14 @@
 						
 			$request->setObject("TagAll", 		$TagAll);
 			$request->setObject("CategoryAll", 	$CategoryAll);
+			$request->setObject("CategoryCurrent", 	$CategoryCurrent);
 			$request->setObject("CategoryAll1", $CategoryAll1);
 			$request->setObject("EstateAll", 	$EstateAll);
 			$request->setObject("Category", 	$Category);
 			$request->setObject("Category1", 	$Category1);
 			$request->setObject("Province", 	$Province);
 			$request->setObject("Product", 		$Product);
+			$request->setObject("Supplier", 	$Supplier);
 						
 			return self::statuses('CMD_DEFAULT');
 		}
