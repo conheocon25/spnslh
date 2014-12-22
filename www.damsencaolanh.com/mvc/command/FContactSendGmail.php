@@ -23,11 +23,7 @@
 			$Name 		= $Data[0];
 			$Email 		= $Data[1];
 			$Subject 	= $Data[2];
-			$Content 	= $Data[3];
-			
-			
-			
-			
+			$Content 	= $Data[3];			
 			if (isset($Email)) {
 			
 				$gmail = new \PHPMailer();
@@ -42,7 +38,7 @@
 				$gmail->CharSet="UTF-8";
 				$gmail->IsHTML(true);
 				$gmail->SMTPSecure = 'tls';
-				$gmail->Host = "smtp.gmail.com";	
+				$gmail->Host = "smtp.gmail.com";
 				$gmail->Port = 587;			
 				$gmail->Username = "huongsenhongdongthap@gmail.com";
 				$gmail->Password = "truongquangthai";

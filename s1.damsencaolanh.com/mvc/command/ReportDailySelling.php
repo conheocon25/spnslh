@@ -22,7 +22,10 @@
 			$mTracking 	= new \MVC\Mapper\Tracking();
 			$mTD 		= new \MVC\Mapper\TrackingDaily();
 			$mPC 		= new \MVC\Mapper\PaidCustomer();
+			$mPG 		= new \MVC\Mapper\PaidGeneral();
+			$mPS 		= new \MVC\Mapper\PaidSupplier();
 			$mCC 		= new \MVC\Mapper\CollectCustomer();
+			$mCG 		= new \MVC\Mapper\CollectGeneral();
 			$mConfig 	= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
@@ -37,7 +40,17 @@
 			$Tracking	= $mTracking->find($IdTrack);
 			$DomainAll	= $mDomain->findAll();
 			
-			//NỢ PHIẾU
+			//2.1. CHI CHUNG
+			$PGAll = $mPG->findByTracking(array($TD->getDate(), $TD->getDate()));
+			$PGValue = 0;
+			while($PGAll->valid()){
+				$PG = $PGAll->current();
+				$PGValue+= $PG->getValue();
+				$PGAll->next();
+			}
+			$NPGValue = new \MVC\Library\Number($PGValue);
+			
+			//2.2. CHI KHÁCH NỢ PHIẾU
 			$PCAll = $mPC->findByTracking1(array($TD->getDate(), $TD->getDate()));
 			$PCValue = 0;
 			while($PCAll->valid()){
@@ -47,16 +60,19 @@
 			}
 			$NPCValue = new \MVC\Library\Number($PCValue);
 			
-			//TRẢ TIỀN
-			$CCAll = $mCC->findByTracking1(array($TD->getDate(), $TD->getDate()));
-			$CCValue = 0;
-			while($CCAll->valid()){
-				$CC = $CCAll->current();
-				$CCValue += $CC->getValue();
-				$CCAll->next();
+			//2.3. CHI NHÀ CUNG CẤP
+			$PSAll = $mPS->findByTracking(array($TD->getDate(), $TD->getDate()));
+			$PSValue = 0;
+			while($PSAll->valid()){
+				$PS = $PSAll->current();
+				$PSValue+= $PS->getValue();
+				$PSAll->next();
 			}
-			$NCCValue = new \MVC\Library\Number($CCValue);
-			
+			$NPSValue = new \MVC\Library\Number($PSValue);
+															
+									
+						
+			//1.1 THU BÁN HÀNG
 			$SessionAll = $mSession->findByTracking( array(
 				$TD->getDate()." 0:0:0",
 				$TD->getDate()." 23:59:59"
@@ -71,18 +87,37 @@
 					$Value2 += $Session->getValue();
 					
 				$SessionAll->next();
-			}
-			//TỔNG CỘNG
+			}			
 			$NTotal 	= new \MVC\Library\Number($Value1);
 			$NTotal1 	= new \MVC\Library\Number($Value1); 
 			$NTotal2 	= new \MVC\Library\Number($Value2);
-						
-			//Update vào Daily
-			$TD->setSelling($Value1);
-			$mTD->update($TD);
 			
-			$Summary 	= ($Value1 - $Value2) - $PCValue + $CCValue;
+			//1.2. THU TỪ KHÁCH HÀNG TRẢ
+			$CCAll = $mCC->findByTracking1(array($TD->getDate(), $TD->getDate()));
+			$CCValue = 0;
+			while($CCAll->valid()){
+				$CC = $CCAll->current();
+				$CCValue += $CC->getValue();
+				$CCAll->next();
+			}
+			$NCCValue = new \MVC\Library\Number($CCValue);
+			
+			//1.3. THU KHÁC
+			$CGAll = $mCG->findByTracking(array($TD->getDate(), $TD->getDate()));
+			$CGValue = 0;
+			while($CGAll->valid()){
+				$CG = $CGAll->current();
+				$CGValue+= $CG->getValue();
+				$CGAll->next();
+			}
+			$NCGValue = new \MVC\Library\Number($CGValue);
+												
+			$Summary 	= ($Value1 + $CCValue + $CGValue) - ($PGValue + $PCValue + $PSValue);
 			$NSummary 	= new \MVC\Library\Number($Summary);
+			
+			//Update vào Daily
+			$TD->setSelling($Summary);
+			$mTD->update($TD);
 						
 			$Title 	= "BÁN HÀNG ".$TD->getDatePrint();
 			$Navigation = array(
@@ -100,11 +135,20 @@
 			$request->setObject('SessionAll2'	, $SessionAll2);			
 			$request->setObject('SessionAll'	, $SessionAll);
 			
+			$request->setObject('PGAll'			, $PGAll);
+			$request->setObject('NPGValue'		, $NPGValue);
+			
 			$request->setObject('PCAll'			, $PCAll);
 			$request->setObject('NPCValue'		, $NPCValue);
 			
+			$request->setObject('PSAll'			, $PSAll);
+			$request->setObject('NPSValue'		, $NPSValue);
+			
 			$request->setObject('CCAll'			, $CCAll);
 			$request->setObject('NCCValue'		, $NCCValue);
+			
+			$request->setObject('CGAll'			, $CGAll);
+			$request->setObject('NCGValue'		, $NCGValue);
 			
 			$request->setObject('NSummary'		, $NSummary);
 			

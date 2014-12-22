@@ -15,39 +15,22 @@
 					<div class="widget-box">
 						<div class="widget-content nopadding">
 							<table class="table table-bordered table-striped table-hover">
-								<thead>
-									<tr>
-										<th width="40"><i class="glyphicons-transfer"/></th>
-										<th class="left">CÁC KHOẢN</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td class="center">2</td>
-										<td><a tal:attributes="href '/money/collect/general'" >KHOẢN THU / KHÁC</a></td>
-									</tr>									
-									<tr>
-										<td class="center">3</td>
-										<td><a tal:attributes="href '/money/paid/general'" >KHOẢN CHI / KHÁC</a></td>
-									</tr>									
-									<tr>
-										<td class="center">4</td>
-										<td><a tal:attributes="href '/money/paid/supplier'" >KHOẢN CHI / NHÀ CUNG CẤP</a></td>
-									</tr>
-									<tr>
-										<td class="center">5</td>
-										<td><a tal:attributes="href '/money/paid/employee'" >KHOẢN CHI / ỨNG LƯƠNG</a></td>
-									</tr>
-									<tr>
-										<td class="center">1.1</td>
-										<td><a tal:attributes="href '/money/paid/customer'" >KHÁCH HÀNG NỢ PHIẾU</a></td>
-									</tr>
-									<tr>
-										<td class="center">1.2</td>
-										<td><a tal:attributes="href '/money/collect/customer'" >KHÁCH HÀNG TRẢ TIỀN</a></td>
-									</tr>									
+								<thead><tr><th width="40">1</th><th class="left">THU</th></tr></thead>
+								<tbody>									
+									<tr><td class="left">1.1</td><td>THU TỪ BÁN HÀNG (* KHÔNG NHẬP)</td></tr>
+									<tr><td class="left">1.2</td><td><a tal:attributes="href '/money/collect/general'" >THU KHÁC</a></td></tr>
+									<tr><td class="left">1.3</td><td><a tal:attributes="href '/money/collect/customer'" >THU TỪ KHÁCH TRẢ</a></td></tr>
 								</tbody>
 							</table>
+							<table class="table table-bordered table-striped table-hover">
+								<thead><tr><th width="40">2</th><th class="left">CHI</th></tr></thead>
+								<tbody>
+									<tr><td class="left">2.1</td><td><a tal:attributes="href '/money/paid/general'" >CHI CHUNG</a></td></tr>
+									<tr><td class="left">2.2</td><td><a tal:attributes="href '/money/paid/customer'" >CHI KHÁCH NỢ PHIẾU</a></td></tr>
+									<tr><td class="left">2.3</td><td><a tal:attributes="href '/money/paid/supplier'" >CHI NHÀ CUNG CẤP</a></td></tr>
+									<tr><td class="left">2.4</td><td><a tal:attributes="href '/money/paid/employee'" >ỨNG LƯƠNG NHÂN VIÊN</a></td></tr>
+								</tbody>
+							</table>							
 						</div>
 					</div>
 				</div>
