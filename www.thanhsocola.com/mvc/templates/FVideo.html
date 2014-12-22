@@ -1,67 +1,57 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<div metal:use-macro="mFront.xhtml/IncludeMETA"/>
-		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>
+		<tal:block metal:use-macro="mFront.xhtml/IncludeMETA"/>
+		<tal:block metal:use-macro="mFront.xhtml/IncludeCSS"/>
 	</head>	
-	<body>
-		<div id="wrapper">
-			<div metal:use-macro="mFront.xhtml/Header"/>
-			<section id="content">								
-				<div metal:use-macro="mFront.xhtml/LocationBar"/>
-				<div class="container">
-					<div class="row">
-						<div class="col-md-12">
+	<body>		
+		<div class="container">
+			<tal:block metal:use-macro="mFront.xhtml/Header"/>
+			<tal:block metal:use-macro="mFront.xhtml/Presentation"/>
+			<tal:block metal:use-macro="mFront.xhtml/Marquee"/>
+			<div class="row">						
+				<div class="col-md-8">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">Video</h3>
+						</div>						
+						<div class="panel-body">
 							<div class="row">
-								<div class="col-md-9 col-sm-8 col-xs-12 main-content">									
-									<div class="category-item-container category-list-container">
-										<div class="item item-list clearfix" tal:repeat="Video VideoAll">
-											<div class="item-image-container">
-												<figure>
-													<a tal:attributes="href Video/getURLView">
-														<img tal:attributes="src Video/getImage" alt="item1" class="item-image"/>
-														<img tal:attributes="src Video/getImage" alt="item1  Hover" class="item-image-hover"/>
-													</a>
-												</figure>
-											</div>
-											<div class="item-meta-container">
-												<h3 class="item-name">
-													<a tal:attributes="href Video/getURLView">
-														<span tal:content="Video/getName"/>
-													</a>
-												</h3>
-												<div class="ratings-container">
-													<div class="ratings">
-														<div class="ratings-result" data-result="100"></div>
-													</div>
-												</div>
-												<p tal:content="structure Video/getNote"/>
-											</div>
-										</div>
+								<div tal:repeat="Video VideoAll" class="col-md-4 item-config">
+									<div class="item-thumb">
+										<a tal:attributes="href Video/getURLView">
+											<img tal:attributes="src Video/getImage" class="img-thumbnail" width="100%"/>
+										</a>
 									</div>
-									<div class="md-margin" />
-									<div class="category-toolbar clearfix">										
-										<div class="toolbox-pagination clearfix">
-											<ul class="pagination">
-												<li tal:repeat="P PN/getPages" tal:attributes="class php:Page==P->getId()?'active':'disable'">
-													<a tal:attributes="href P/getURL" tal:content="P/getName"/>
-												</li>
-											</ul>
-										</div>
-									</div>									
+									<div class="item-info">
+										<a tal:attributes="href Video/getURLView">
+											<h3 tal:content="Video/getName"/>
+										</a>
+									</div>
 								</div>
-								<aside class="col-md-3 col-sm-4 col-xs-12 sidebar">
-									<div metal:use-macro="mFront.xhtml/Subscribe"/>
-									<div metal:use-macro="mFront.xhtml/Testmonials"/>
-									<div metal:use-macro="mFront.xhtml/LastestPost"/>
-								</aside>
 							</div>
+							<nav>
+								<ul class="pagination">
+									<li tal:repeat="P PN/getPages" tal:attributes="class php:Page==P->getId()?'active':'disable'">
+										<a tal:attributes="href P/getURL" tal:content="P/getName"/>
+									</li>
+								</ul>
+							</nav>
 						</div>
 					</div>
 				</div>
-			</section>
-			<div metal:use-macro="mFront.xhtml/Footer"/>
+				<div class="col-md-4">
+					<tal:block metal:use-macro="mFront.xhtml/ADS-1"/>
+					<tal:block metal:use-macro="mFront.xhtml/Subscribe"/>					
+					<tal:block metal:use-macro="mFront.xhtml/LikeBox"/>
+				</div>
+			</div>
+			<tal:block metal:use-macro="mFront.xhtml/Footer"/>
 		</div>
-		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
+		<tal:block metal:use-macro="mFront.xhtml/IncludeJS"/>
+		<script>
+			$('#carousel-presentation-generic').carousel({pause: "false"});
+			$('#carousel-presentation-generic .item:first-child').addClass('active');			
+		</script>
 	</body>
 </html>

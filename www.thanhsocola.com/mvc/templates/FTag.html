@@ -7,8 +7,9 @@
 	<body>		
 		<div class="container">
 			<tal:block metal:use-macro="mFront.xhtml/Header"/>
-			<tal:block metal:use-macro="mFront.xhtml/Breadcrumb"/>
-			<div class="row">						
+			<tal:block metal:use-macro="mFront.xhtml/Presentation"/>
+			<tal:block metal:use-macro="mFront.xhtml/Marquee"/>
+			<div class="row">
 				<div class="col-md-8">
 					<div class="panel panel-default">
 						<div class="panel-heading"><h3 class="panel-title" tal:content="Tag/getName"/></div>						
@@ -34,28 +35,20 @@
 								</ul>
 							</nav>
 						</div>
-					</div>
-					
-					<div class="panel panel-default">
-						<div class="panel-heading"><h3 class="panel-title">Danh mục tin</h3></div>						
-						<div class="panel-body">
-							<ul class="category-filter-list jscrollpane">
-								<li tal:repeat="Tag TagAll">
-									<a tal:attributes="href Tag/getURLView"><span tal:content="Tag/getName"/> (<span tal:content="Tag/getPostAll/count"/>)</a>
-								</li>
-							</ul>
-						</div>
-					</div>
+					</div>										
 				</div>
 				<div class="col-md-4">
+					<tal:block metal:use-macro="mFront.xhtml/ADS-1"/>
 					<tal:block metal:use-macro="mFront.xhtml/Subscribe"/>
+					<tal:block metal:use-macro="mFront.xhtml/LikeBox"/>
 				</div>
 			</div>
 			<tal:block metal:use-macro="mFront.xhtml/Footer"/>
 		</div>
 		<tal:block metal:use-macro="mFront.xhtml/IncludeJS"/>
 		<script>
-			$('#carousel-top-news .item:first-child').addClass('active');
+			$('#carousel-presentation-generic').carousel({pause: "false"});
+			$('#carousel-presentation-generic .item:first-child').addClass('active');			
 		</script>
 	</body>
 </html>

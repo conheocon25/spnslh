@@ -17,14 +17,15 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mConfig 	= new \MVC\Mapper\Config();
-			$mCategory 	= new \MVC\Mapper\Category();
-			$mPost 		= new \MVC\Mapper\Post();
-			$mPostTag 	= new \MVC\Mapper\PostTag();
-			$mTag 		= new \MVC\Mapper\Tag();
-			$mBranch 	= new \MVC\Mapper\Branch();
-			$mStoryLine = new \MVC\Mapper\StoryLine();
-			
+			$mConfig 		= new \MVC\Mapper\Config();
+			$mCategory 		= new \MVC\Mapper\Category();
+			$mPost 			= new \MVC\Mapper\Post();
+			$mPostTag 		= new \MVC\Mapper\PostTag();
+			$mTag 			= new \MVC\Mapper\Tag();
+			$mBranch 		= new \MVC\Mapper\Branch();
+			$mStoryLine 	= new \MVC\Mapper\StoryLine();
+			$mLinked		= new \MVC\Mapper\Linked();
+			$mPresentation 	= new \MVC\Mapper\Presentation();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -36,8 +37,11 @@
 			$ConfigPhone2 			= $mConfig->findByName("PHONE2");
 			$ConfigGmail 			= $mConfig->findByName("CONTACT_GTALK");
 			$ConfigSkype 			= $mConfig->findByName("CONTACT_SKYPE");
+			$ConfigMenu 			= $mConfig->findByName("MENU_MAIN");
+			$ConfigMarqueeWelcome	= $mConfig->findByName("MARQUEE_WELCOME");
 			
-			$Category 				= $mCategory->find(1);
+			$Presentation1 			= $mPresentation->find($ConfigPHome->getValue());
+			$Category 				= $mCategory->find($ConfigMenu->getValue());
 			$BranchAll 				= $mBranch->findAll();
 			$StoryLineAll			= $mStoryLine->findAll();
 			
@@ -49,7 +53,8 @@
 			$Post->setViewed($Post->getViewed()+1);
 			$mPost->update($Post);
 			
-			$LastestPostAll = $mPostTag->findByLastest4(array(null));
+			$LastestPostAll = $mPostTag->findByLastest4(array(null));			
+			$LinkedAll 		= $mLinked->findByTop(array());
 			
 			$Title = mb_strtoupper($Post->getTitle(), 'UTF8');
 			$Navigation = array(
@@ -68,9 +73,11 @@
 			$request->setObject("ConfigPhone2", 		$ConfigPhone2);
 			$request->setObject("ConfigGmail", 			$ConfigGmail);
 			$request->setObject("ConfigSkype", 			$ConfigSkype);
+			$request->setObject("ConfigMarqueeWelcome", $ConfigMarqueeWelcome);
 			
 			$request->setObject("URLShare", 			$URLShare);
 			
+			$request->setObject("Presentation1", 		$Presentation1);
 			$request->setObject("Post", 				$Post);
 			$request->setObject("Category", 			$Category);
 			$request->setObject("BranchAll", 			$BranchAll);
@@ -78,6 +85,7 @@
 			$request->setObject("LastestPostAll", 		$LastestPostAll);
 			$request->setObject("TagAll", 				$TagAll);
 			$request->setObject("Tag", 					$Tag);
+			$request->setObject("LinkedAll", 			$LinkedAll);
 			
 			return self::statuses('CMD_DEFAULT');
 		}

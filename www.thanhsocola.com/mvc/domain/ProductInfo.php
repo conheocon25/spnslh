@@ -39,6 +39,21 @@ class ProductInfo extends Object{
 		return $Product;
 	}
 	
+	function getImage(){		
+		$first_img = '';
+		\ob_start();
+		\ob_end_clean();
+		if(preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $this->Info, $matches)){
+			$first_img = $matches[1][0];
+		}
+		else {
+			$first_img = "/data/images/post.jpg";
+		}
+		return $first_img;
+	}
+	
+	function getInfoReduce(){$S = new \MVC\Library\String($this->Info);return $S->reduceHTML(320);}
+	
 	function setImage1( $Image1 ) 	{$this->Image1 = $Image1;$this->markDirty();}
     function getImage1( ){
 		if ($this->Image1=="")
@@ -55,6 +70,7 @@ class ProductInfo extends Object{
 	
     function setInfo( $Info ) {$this->Info = $Info;$this->markDirty();}
     function getInfo( ) {return $this->Info;}
+	
 				
 	function toJSON(){
 		$json = array(

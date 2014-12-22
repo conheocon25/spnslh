@@ -22,7 +22,10 @@ RewriteRule ^gioi-thieu$ 						?cmd=FIntroduction 	[L]
 RewriteRule ^chinh-sach$ 						?cmd=FPolicy 		[L]
 RewriteRule ^faq$ 								?cmd=FFAQ 			[L]
 RewriteRule ^lien-he$ 							?cmd=FContact 		[L]
+RewriteRule ^lien-he1$ 							?cmd=FContact1 		[L]
 RewriteRule ^lien-he/email$ 					?cmd=FContactSend	[L]
+RewriteRule ^lien-he/gmail$ 					?cmd=FContactSendGmail	[L]
+RewriteRule ^lien-he/RefreshCaptcha      		?cmd=RefreshCaptcha	[L]
 RewriteRule ^nhan-thong-tin$ 					?cmd=FSubcribe 		[L]
 
 RewriteRule ^khuyen-mai$ 									?cmd=FDealer 		[L]
@@ -32,21 +35,9 @@ RewriteRule ^khuyen-mai/([A-Za-z0-9_-]+)/page/([0-9]+)$ 	?cmd=FDealer&KCategory2
 RewriteRule ^khuyen-mai/m/([0-9]+)$ 						?cmd=FDealer&IdManufacturer=$1 	[L]
 RewriteRule ^khuyen-mai/m/([0-9]+)/page/([0-9]+)$ 			?cmd=FDealer&IdManufacturer=$1&Page=$2 	[L]
 
-RewriteRule ^gio-hang$ 							?cmd=FCart 			[L]
-RewriteRule ^gio-hang/them$ 					?cmd=FCartAdd		[L]
-RewriteRule ^gio-hang/([0-9]+)/cap-nhat/cong$ 	?cmd=FCartUpd&IdProduct=$1&Delta=1	[L]
-RewriteRule ^gio-hang/([0-9]+)/cap-nhat/tru$ 	?cmd=FCartUpd&IdProduct=$1&Delta=-1	[L]
-RewriteRule ^gio-hang/([0-9]+)/xoa$ 			?cmd=FCartDel&IdProduct=$1	[L]
+RewriteRule ^thuc-don/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$ 	?cmd=FProduct&KCategory=$2&KProduct=$3 [L]
+RewriteRule ^thuc-don/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$ 					?cmd=FCategory&KCategory=$1&KCategory1=$2 [L]
 
-RewriteRule ^danh-dau$ 							?cmd=FBookmark		[L]
-RewriteRule ^danh-dau/them$ 					?cmd=FBookmarkAdd	[L]
-RewriteRule ^danh-dau/([0-9]+)/xoa$ 			?cmd=FBookmarkDel&IdProduct=$1	[L]
-
-RewriteRule ^tim-kiem$ 							?cmd=FProductSearch [L]
-RewriteRule ^tim-kiem/page/([0-9]+)$ 			?cmd=FProductSearch&Page=$1 [L]
-
-RewriteRule ^san-pham/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$ 	?cmd=FProduct&KCategory1=$1&KCategory2=$2&KProduct=$3 [L]
-RewriteRule ^san-pham/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$ 					?cmd=FCategory&KCategory1=$1&KCategory2=$2 [L]
 RewriteRule ^san-pham/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/page/([0-9]+)$ 		?cmd=FCategory&KCategory1=$1&KCategory2=$2&Page=$3 [L]
 RewriteRule ^san-pham/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/([0-9]+)/m$ 		?cmd=FCategory&KCategory1=$1&KCategory2=$2&IdManufacturer=$3 [L]
 RewriteRule ^san-pham/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/([0-9]+)/m/page/([0-9]+)$ ?cmd=FCategory&KCategory1=$1&KCategory2=$2&IdManufacturer=$3&Page=$4 [L]
@@ -54,6 +45,8 @@ RewriteRule ^san-pham/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/([0-9]+)/m/page/([0-9]+)
 RewriteRule ^tin-tuc/([A-Za-z0-9_-]+)$ 							?cmd=FTag&KTag=$1 [L]
 RewriteRule ^tin-tuc/([A-Za-z0-9_-]+)/page/([0-9]+)$ 			?cmd=FTag&KTag=$1&Page=$2 [L]
 RewriteRule ^tin-tuc/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$ 		?cmd=FPost&KTag=$1&KPost=$2 [L]
+
+RewriteRule ^lien-ket$ 											?cmd=FLinked [L]
 
 RewriteRule ^hinh-anh$ 											?cmd=FAlbum [L]
 RewriteRule ^hinh-anh/page/([0-9]+)$ 							?cmd=FAlbum&Page=$1 [L]
@@ -80,12 +73,6 @@ RewriteRule ^object/liked/([A-Za-z0-9]+)/([0-9]+)$ 				?cmd=ObjectLiked&ObjectNa
 # SELLING
 #---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^admin$ 											?cmd=Admin [L]
-
-#---------------------------------------------------------------------------------------------------------------------------
-# DEALER
-#---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^admin/saving$ 										?cmd=ASaving [L]
-RewriteRule ^admin/saving/([0-9]+)$ 							?cmd=ASavingDetail&IdSave=$1 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # SETTING
@@ -154,6 +141,9 @@ RewriteRule ^admin/setting/user/page/([0-9]+)$ 							?cmd=ASettingUser&Page=$1 
 
 RewriteRule ^admin/setting/branch$ 										?cmd=ASettingBranch [L]
 RewriteRule ^admin/setting/branch/page/([0-9]+)$ 						?cmd=ASettingBranch&Page=$1 [L]
+
+RewriteRule ^admin/setting/linked$ 										?cmd=ASettingLinked [L]
+RewriteRule ^admin/setting/linked/page/([0-9]+)$ 						?cmd=ASettingLinked&Page=$1 [L]
 
 RewriteRule ^admin/setting/storyline$ 									?cmd=ASettingStoryLine [L]
 RewriteRule ^admin/setting/storyline/page/([0-9]+)$ 					?cmd=ASettingStoryLine&Page=$1 [L]

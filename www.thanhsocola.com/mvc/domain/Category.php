@@ -67,7 +67,7 @@ class Category extends Object{
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
 	function getURLView(){
-		return "/san-pham/".$this->getKey();
+		return "/thuc-don/".$this->getKey();
 	}
 	
 	function getURLSetting(){return "/admin/setting/category/".$this->getId();}

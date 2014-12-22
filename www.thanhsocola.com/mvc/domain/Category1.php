@@ -8,23 +8,21 @@ class Category1 extends Object{
 	//-------------------------------------------------------------------------------
 	private $Id;
 	private $IdCategory;
-	private $IdGAttribute;
-	private $Name;
-	private $Info;
+	private $IdPresentation;
+	private $Name;	
 	private $Order;
 	private $Key;
 	
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-	function __construct($Id=null, $IdCategory=null, $IdGAttribute=null, $Name=null, $Info=null, $Order=null, $Key=null){
-		$this->Id 			= $Id;
-		$this->IdCategory 	= $IdCategory;
-		$this->IdGAttribute = $IdGAttribute;
-		$this->Name 		= $Name;
-		$this->Info 		= $Info;
-		$this->Order 		= $Order;
-		$this->Key 			= $Key;
+	function __construct($Id=null, $IdCategory=null, $IdPresentation=null, $Name=null, $Order=null, $Key=null){
+		$this->Id 				= $Id;
+		$this->IdCategory 		= $IdCategory;		
+		$this->IdPresentation 	= $IdPresentation;
+		$this->Name 			= $Name;		
+		$this->Order 			= $Order;
+		$this->Key 				= $Key;
 		parent::__construct( $Id );
 	}
 		
@@ -38,20 +36,17 @@ class Category1 extends Object{
 		return $Category;
 	}
 	
-	function setIdGAttribute($IdGAttribute) {$this->IdGAttribute = $IdGAttribute;$this->markDirty();}
-	function getIdGAttribute() 			{return $this->IdGAttribute;}
-	function getGAttribute(){
-		$mGAttribute = new \MVC\Mapper\GAttribute();
-		$GAttribute = $mGAttribute->find($this->IdGAttribute);
-		return $GAttribute;
+	function setIdPresentation($IdPresentation) {$this->IdPresentation = $IdPresentation;$this->markDirty();}
+	function getIdPresentation() 			{return $this->IdPresentation;}
+	function getPresentation(){
+		$mPresentation = new \MVC\Mapper\Presentation();
+		$Presentation = $mPresentation->find($this->IdPresentation);
+		return $Presentation;
 	}
 	
 	function setName($Name) {$this->Name = $Name;$this->markDirty();}
 	function getName() 		{return $this->Name;}
-	
-	function setInfo($Info) {$this->Info = $Info;$this->markDirty();}
-	function getInfo() 		{return $this->Info;}
-	
+			
 	function setOrder($Order){$this->Order = $Order;$this->markDirty();}
 	function getOrder() 	{return $this->Order;}
 	
@@ -66,9 +61,8 @@ class Category1 extends Object{
 		$json = array(
 			'Id' 			=> $this->getId(),
 			'IdCategory' 	=> $this->getIdCategory(),
-			'IdGAttribute' 	=> $this->getIdGAttribute(),
-			'Name'			=> $this->getName(),
-			'Info'			=> $this->getInfo(),
+			'IdPresentation'=> $this->getIdPresentation(),
+			'Name'			=> $this->getName(),			
 			'Order'			=> $this->getOrder(),
 			'Key'			=> $this->getKey()
 		);
@@ -76,12 +70,11 @@ class Category1 extends Object{
 	}
 	
 	function setArray( $Data ){
-        $this->Id 			= $Data[0];
-		$this->IdCategory 	= $Data[1];
-		$this->IdGAttribute	= $Data[2];
-		$this->Name 		= $Data[3];
-		$this->Info 		= $Data[4];
-		$this->Order		= $Data[5];
+        $this->Id 				= $Data[0];
+		$this->IdCategory 		= $Data[1];
+		$this->IdPresentation 	= $Data[2];
+		$this->Name 			= $Data[3];		
+		$this->Order			= $Data[4];
 		$this->reKey();
     }
 	
@@ -93,30 +86,16 @@ class Category1 extends Object{
 		$ProductAll = $mProduct->findByCategory(array($this->getId()));	
 		return $ProductAll;
 	}
-	
-	function getProductManufacturerAll($IdManufacturer){
-		$mProduct = new \MVC\Mapper\Product();
-		$ProductAll = $mProduct->findByCategoryManufacturer(array($this->getId(), $IdManufacturer));	
-		return $ProductAll;
-	}
-	
+			
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
 	function getURLSettting(){return "admin/setting/category1/".$this->getId();}
 		
 	function getURLView(){
-		return "/san-pham/".$this->getCategory()->getKey()."/".$this->getKey();
+		return "/thuc-don/".$this->getCategory()->getKey()."/".$this->getKey();
 	}
-	
-	function getURLViewSave(){
-		return "/khuyen-mai/".$this->getKey();
-	}
-	
-	function getURLViewManufacturer($IdManufacturer){
-		return "/san-pham/".$this->getCategory()->getKey()."/".$this->getKey()."/".$IdManufacturer."/m";
-	}
-	
+					
 	//-------------------------------------------------------------------------------
 	static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
 	static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}

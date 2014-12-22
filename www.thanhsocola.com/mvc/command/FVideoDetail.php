@@ -23,20 +23,25 @@
 			$mTag 		= new \MVC\Mapper\Tag();
 			$mPostTag 	= new \MVC\Mapper\PostTag();
 			$mStoryLine	= new \MVC\Mapper\StoryLine();
-						
+			$mLinked	= new \MVC\Mapper\Linked();
+			$mPresentation 	= new \MVC\Mapper\Presentation();
+			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
 			$ConfigName 			= $mConfig->findByName("NAME");
 			$ConfigSlogan 			= $mConfig->findByName("SLOGAN");
-			$ConfigPHome 			= $mConfig->findByName("PRESENTATION_HOME");
+			$ConfigPIntro 			= $mConfig->findByName("PRESENTATION_INTRO");
 			$ConfigPhone1 			= $mConfig->findByName("PHONE1");
 			$ConfigPhone2 			= $mConfig->findByName("PHONE2");
 			$ConfigGmail		 	= $mConfig->findByName("CONTACT_GTALK");
 			$ConfigSkype 			= $mConfig->findByName("CONTACT_SKYPE");
+			$ConfigMenu 			= $mConfig->findByName("MENU_MAIN");
+			$ConfigMarqueeWelcome	= $mConfig->findByName("MARQUEE_WELCOME");
 			
+			$Presentation1 			= $mPresentation->find($ConfigPIntro->getValue());
 			$BranchAll 				= $mBranch->findAll();
-			$CategoryAll 			= $mCategory->findAll();
+			$Category 				= $mCategory->find($ConfigMenu->getValue());
 			
 			if (!isset($Page)) $Page = 1;
 			$TagAll 				= $mTag->findByPosition(array(1));			
@@ -47,6 +52,8 @@
 			
 			$StoryLineAll	= $mStoryLine->findAll();
 			$LastestPostAll = $mPostTag->findByLastest4(array(null));
+			
+			$LinkedAll 		= $mLinked->findByTop(array());
 			
 			$Title = mb_strtoupper($Video->getName(), 'UTF8');
 			$Navigation = array(array("VIDEO", "/video"));
@@ -65,14 +72,17 @@
 			$request->setObject("ConfigPhone2", 		$ConfigPhone2);
 			$request->setObject("ConfigGmail", 			$ConfigGmail);
 			$request->setObject("ConfigSkype", 			$ConfigSkype);
+			$request->setObject("ConfigMarqueeWelcome", $ConfigMarqueeWelcome);
 
+			$request->setObject("Presentation1", 		$Presentation1);
 			$request->setObject("BranchAll", 			$BranchAll);
 			$request->setObject("StoryLineAll", 		$StoryLineAll);
 			$request->setObject("LastestPostAll", 		$LastestPostAll);
 			
-			$request->setObject("CategoryAll", 			$CategoryAll);
+			$request->setObject("Category", 			$Category);
 			$request->setObject("TagAll", 				$TagAll);
 			$request->setObject("Video", 				$Video);			
+			$request->setObject("LinkedAll", 			$LinkedAll);
 						
 			return self::statuses('CMD_DEFAULT');
 		}

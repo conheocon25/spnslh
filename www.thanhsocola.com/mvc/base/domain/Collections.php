@@ -6,6 +6,7 @@ interface ImageCollection 				extends \Iterator {function add( Object $Image );	
 interface VideoCollection 				extends \Iterator {function add( Object $Video);		}
 
 interface BranchCollection 				extends \Iterator {function add( Object $Branch );		}
+interface LinkedCollection 				extends \Iterator {function add( Object $Linked );		}
 
 interface UserCollection 				extends \Iterator {function add( Object $User );		}
 interface FeedCollection 				extends \Iterator {function add( Object $Feed );		}

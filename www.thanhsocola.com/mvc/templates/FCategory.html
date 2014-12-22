@@ -7,60 +7,23 @@
 	<body>		
 		<div class="container">
 			<tal:block metal:use-macro="mFront.xhtml/Header"/>
-			<tal:block metal:use-macro="mFront.xhtml/Breadcrumb"/>
-			<div class="row">						
+			<tal:block metal:use-macro="mFront.xhtml/Presentation"/>
+			<tal:block metal:use-macro="mFront.xhtml/Marquee"/>
+			<div class="row">
 				<div class="col-md-8">
 					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h3 class="panel-title" tal:content="Title"/>
-						</div>						
+						<div class="panel-heading"><h3 class="panel-title" tal:content="Category1/getName"/></div>
 						<div class="panel-body">
 							<div class="row">
-								<div class="col-md-3 item-config">
+								<div class="col-md-3 item-config" tal:repeat="Product Category1/getProductAll">
 									<div class="item-thumb">
-										<a href="/thuc-don/do-dong/mon-an">
+										<a tal:attributes="href Product/getURLView">
 											<img src="/mvc/templates/front/img/item.png" class="img-thumbnail img-circle"/>
 										</a>
 									</div>
 									<div class="item-info">
-										<a href="/thuc-don/do-dong/mon-an">
-											<h3>Tên món</h3>
-										</a>
-									</div>
-								</div>
-								<div class="col-md-3 item-config">
-									<div class="item-thumb">
-										<a href="/thuc-don/do-dong/mon-an">
-											<img src="/mvc/templates/front/img/item.png" class="img-thumbnail img-circle"/>
-										</a>
-									</div>
-									<div class="item-info">
-										<a href="/thuc-don/do-dong/mon-an">
-											<h3>Tên món</h3>
-										</a>
-									</div>
-								</div>
-								<div class="col-md-3 item-config">
-									<div class="item-thumb">
-										<a href="/thuc-don/do-dong/mon-an">
-											<img src="/mvc/templates/front/img/item.png" class="img-thumbnail img-circle"/>
-										</a>
-									</div>
-									<div class="item-info">
-										<a href="/thuc-don/do-dong/mon-an">
-											<h3>Tên món</h3>
-										</a>
-									</div>
-								</div>
-								<div class="col-md-3 item-config">
-									<div class="item-thumb">
-										<a href="/thuc-don/do-dong/mon-an">
-											<img src="/mvc/templates/front/img/item.png" class="img-thumbnail img-circle"/>
-										</a>
-									</div>
-									<div class="item-info">
-										<a href="/thuc-don/do-dong/mon-an">
-											<h3>Tên món</h3>
+										<a tal:attributes="href Product/getURLView">
+											<h3 tal:content="Product/getName" />
 										</a>
 									</div>
 								</div>
@@ -69,11 +32,18 @@
 					</div>
 				</div>
 				<div class="col-md-4">
-					<tal:block metal:use-macro="mFront.xhtml/Subscribe"/>
+					<tal:block metal:use-macro="mFront.xhtml/ADS-1"/>
+					<tal:block metal:use-macro="mFront.xhtml/Subscribe"/>					
+					<tal:block metal:use-macro="mFront.xhtml/LikeBox"/>
 				</div>
 			</div>
 			<tal:block metal:use-macro="mFront.xhtml/Footer"/>
 		</div>
 		<tal:block metal:use-macro="mFront.xhtml/IncludeJS"/>
+		<script>
+			$('#carousel-presentation-generic').carousel({pause: "false"});
+			$('#carousel-presentation-generic .item:first-child').addClass('active');
+						
+		</script>
 	</body>
 </html>

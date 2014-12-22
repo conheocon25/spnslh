@@ -10,7 +10,10 @@
 		<command name="FPolicy" 		type="public"><view>FPolicy</view></command>
 		<command name="FFAQ" 			type="public"><view>FFAQ</view></command>
 		<command name="FContact" 		type="public"><view>FContact</view></command>
+		<command name="FContact1" 		type="public"><view>FContact1</view></command>
 		<command name="FContactSend" 	type="public"><view>FContactSend</view></command>
+		<command name="FContactSendGmail" 	type="public"><view>FContactSendGmail</view></command>
+		<command name="RefreshCaptcha" 	type="public"><view>RefreshCaptcha</view></command>		
 		<command name="FCategory" 		type="public"><view>FCategory</view></command>
 		<command name="FProduct" 		type="public"><view>FProduct</view></command>
 		<command name="FProductSearch" 	type="public"><view>FProductSearch</view></command>
@@ -23,12 +26,10 @@
 		
 		<command name="FVideo" 			type="public"><view>FVideo</view></command>
 		<command name="FVideoDetail" 	type="public"><view>FVideoDetail</view></command>
-				
-		<command name="FCart" 			type="public"><view>FCart</view></command>
-		<command name="FCartAdd" 		type="public"><view>FCartAdd</view></command>
-		<command name="FCartDel" 		type="public"><view>FCartDel</view></command>
-		<command name="FCartUpd" 		type="public"><view>FCartUpd</view></command>
 		
+		<command name="FLinked" 		type="public"><view>FLinked</view></command>
+			
+				
 		<command name="FSubcribe" 		type="public">
 			<view>FSubcribe</view>
 			<status value="CMD_OK"><forward>FHome</forward></status>
@@ -96,8 +97,9 @@
 		<command name="ASettingEmployee">		<view>ASettingEmployee		</view></command>		
 		<command name="ASettingUser">			<view>ASettingUser			</view></command>		
 		<command name="ASettingUnit">			<view>ASettingUnit			</view></command>
-		<command name="ASettingConfig">			<view>ASettingConfig		</view></command>				
+		<command name="ASettingConfig">			<view>ASettingConfig		</view></command>
 		<command name="ASettingSupplier">		<view>ASettingSupplier		</view></command>
+		<command name="ASettingLinked">			<view>ASettingLinked		</view></command>
 		
 		<command name="ASettingSupplierProduct"><view>ASettingSupplierProduct</view></command>
 		<command name="ASettingProductImage">	<view>ASettingProductImage</view></command>
@@ -105,12 +107,5 @@
 		<command name="ASettingProductInfoExe">	<view>ASettingProductInfoExe</view><status value="CMD_OK"><forward>ASettingProductInfo</forward></status></command>
 		<command name="ASettingProductAttribute">	<view>ASettingProductAttribute</view></command>
 		<command name="ASettingProductAttributeExe"><view>ASettingProductAttributeExe</view><status value="CMD_OK"><forward>ASettingSupplierProduct</forward></status></command>
-		
-		<!-- ============================================================================== -->
-		<!-- SAVING				 															-->		
-		<!-- ============================================================================== -->
-		<command name="ASaving"><view>ASaving</view></command>
-		<command name="ASavingDetail"><view>ASavingDetail</view></command>
-		
 	</control>
 </options>

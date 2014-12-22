@@ -6,7 +6,7 @@ class Video extends Mapper implements \MVC\Domain\VideoFinder {
 
     function __construct() {
         parent::__construct();
-		$tblVideo = "res_video";
+		$tblVideo = "tbl_video";
 						
 		$selectAllStmt = sprintf("select * from %s", $tblVideo);
 		$selectStmt = sprintf("select * from %s where id=?", $tblVideo);

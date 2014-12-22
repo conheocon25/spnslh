@@ -6,7 +6,7 @@ class Manufacturer extends Mapper implements \MVC\Domain\ManufacturerFinder {
     function __construct() {
         parent::__construct();
 		
-		$tblManufacturer = "res_manufacturer";
+		$tblManufacturer = "tbl_manufacturer";
 						
 		$selectAllStmt 	= sprintf("select * from %s order by `order`", $tblManufacturer);
 		$selectStmt 	= sprintf("select * from %s where id=?", $tblManufacturer);
@@ -64,7 +64,7 @@ class Manufacturer extends Mapper implements \MVC\Domain\ManufacturerFinder {
 		$this->findByPageStmt->bindValue(':start', ((int)($values[0])-1)*(int)($values[1]), \PDO::PARAM_INT);
 		$this->findByPageStmt->bindValue(':max', (int)($values[1]), \PDO::PARAM_INT);
 		$this->findByPageStmt->execute();
-        return new EmployeeCollection( $this->findByPageStmt->fetchAll(), $this );
+        return new ManufacturerCollection( $this->findByPageStmt->fetchAll(), $this );
     }
 	
 	function findByKey( $values ) {	

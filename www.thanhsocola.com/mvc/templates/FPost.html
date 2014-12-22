@@ -6,12 +6,13 @@
 		<meta property="og:description"		tal:attributes="content Post/getContentReduce"/>
 		<meta property="og:image"			tal:attributes="content Post/getImage"/>
 		<tal:block metal:use-macro="mFront.xhtml/IncludeCSS"/>
-	</head>	
+	</head>
 	<body>		
 		<div class="container">
 			<tal:block metal:use-macro="mFront.xhtml/Header"/>
-			<tal:block metal:use-macro="mFront.xhtml/Breadcrumb"/>
-			<div class="row">						
+			<tal:block metal:use-macro="mFront.xhtml/Presentation"/>
+			<tal:block metal:use-macro="mFront.xhtml/Marquee"/>
+			<div class="row">
 				<div class="col-md-8">
 					<div class="panel panel-default">
 						<div class="panel-heading"><h3 class="panel-title" tal:content="Post/getTitle"/></div>						
@@ -28,16 +29,19 @@
 					</div>
 				</div>
 				<div class="col-md-4">
-					<tal:block metal:use-macro="mFront.xhtml/Subscribe"/>
 					<tal:block metal:use-macro="mFront.xhtml/ADS-1"/>
+					<tal:block metal:use-macro="mFront.xhtml/Subscribe"/>					
 					<tal:block metal:use-macro="mFront.xhtml/LikeBox"/>
 				</div>
 			</div>
 			<tal:block metal:use-macro="mFront.xhtml/Footer"/>
 		</div>
-		<tal:block metal:use-macro="mFront.xhtml/IncludeJS"/>
+		<tal:block metal:use-macro="mFront.xhtml/IncludeJS"/>						
 		<script type="text/javascript">
 		/*<![CDATA[*/
+			$('#carousel-presentation-generic').carousel({pause: "false"});
+			$('#carousel-presentation-generic .item:first-child').addClass('active');			
+			
 			$('.Liked').click(function(){
 				var Data = [];								
 				var Id 	= $(this).attr('data-id');

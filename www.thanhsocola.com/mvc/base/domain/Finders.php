@@ -15,6 +15,7 @@ interface ImageFinder  			extends Finder {}
 interface VideoFinder  			extends Finder {}
 
 interface BranchFinder  		extends Finder {}
+interface LinkedFinder  		extends Finder {}
 
 interface UserFinder  			extends Finder {}
 interface FeedFinder  			extends Finder {}
