@@ -51,7 +51,7 @@ class PaidSupplier extends Object{
     }
 	function getValuePrint( ) {        
 		$num = number_format($this->Value, 0, ',', '.');
-		return $num." đ";
+		return $num;
     }
 	
 	function setDate( $Date ) 	{$this->Date = $Date; $this->markDirty(); }

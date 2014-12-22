@@ -8,18 +8,17 @@
 	<body>
 		<div data-role="page" class="jqm-demos jqm-home">
 			<tal:block metal:use-macro="mFront.xhtml/Header"/>	
-			<div role="main" class="ui-content jqm-content">
-				<ul data-role="listview" data-inset="true">
+			<div role="main" class="ui-content jqm-content">				
+				<ul data-role="listview">
 					<li data-role="list-divider">Tin mới cập nhật</li>
 				    <li tal:repeat="PT PostTopAll">
 						<a tal:attributes="href PT/getURLRead" rel="external">
-					        <img tal:attributes="src PT/getPost/getImage" />
+							<img tal:attributes="src PT/getPost/getImage" />
 					    	<h2 tal:content="PT/getPost/getTitle" />
 						    <p tal:content="structure PT/getPost/getContentReduce"/>
 						</a>
 				    </li>				
 				</ul>
-				
 				<ul data-role="listview" data-inset="true" tal:repeat="Category CategoryAll">
 					<li data-role="list-divider" tal:content="Category/getName" />					
 				    <li tal:repeat="Product Category/getTopProductAll">
@@ -29,40 +28,7 @@
 						    <p tal:content="structure Product/getInfo/getInfoReduce"/>
 						</a>
 				    </li>					
-				</ul>
-				<!--
-				<div class="panel panel-default" >
-						<div class="panel-heading"><h3 class="panel-title" tal:content="Category/getName"/></div>						
-						<div class="panel-body">
-							<div class="media media-config" >
-								
-								<div class="media-tit">
-									<a tal:attributes="href Product/getURLView">
-										<h4 tal:content="Product/getNameReduce"/>
-									</a>
-								</div>
-								<div class="media-ctn">
-									<a class="media-left" tal:attributes="href Product/getURLView">
-										<img tal:attributes="src Product/getInfo/getImage; alt Product/getName" width="130" class="img-thumbnail"/>
-									</a>
-									<div class="media-body">
-										<p tal:content="structure Product/getInfo/getInfoReduce" style="text-align:justify"/>
-										<div class="row media-inf">
-											<div class="col-md-10" style="padding-left:0;padding-right:0;">
-												Giá: <span tal:content="Product/getPricePrint" style="color:#055699;font-weight:bold;"/> 
-												Diện tích: <span tal:condition="Product/getInfo" tal:content="structure Product/getInfo/getInfoEx13Print" style="color:#055699;font-weight:bold;" />
-												Quận/Huyện: <span style="color:#055699;font-weight:bold;" tal:content="Product/getDistrict/getName" />, <span style="color:#055699;font-weight:bold;" tal:content="Product/getDistrict/getProvince/getName" />
-											</div>
-											<div class="col-md-2" style="text-align:right;padding-left:0;padding-right:0;">
-												<span tal:content="Product/getDateTimePrint"/>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>					
-					!-->
+				</ul>				
 			</div>
 			<tal:block metal:use-macro="mFront.xhtml/Menu"/>
 			<tal:block metal:use-macro="mFront.xhtml/Footer"/>

@@ -86,10 +86,9 @@ class Session extends Object{
 			$Id = 1;
 		}else{
 			$Session = $SessionAll->current();
-			$Id = ($this->getId() - $Session->getId()) + 1;			
-			//$Id = $this->getId()."-".$Session->getId();
+			$Id = ($this->getId() - $Session->getId()) + 1;						
+		}
 		return date('dmy_',strtotime($this->DateTime)).$Id." (".$this->getId().")";
-		}		
 	}
 	
 	function getIdTable( ) {return $this->IdTable;}	
