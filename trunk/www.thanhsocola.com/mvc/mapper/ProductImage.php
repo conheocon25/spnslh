@@ -6,7 +6,7 @@ class ProductImage extends Mapper implements \MVC\Domain\ProductImageFinder {
 
     function __construct() {
         parent::__construct();
-		$tblProductImage = "res_product_image";
+		$tblProductImage = "tbl_product_image";
 						
 		$selectAllStmt = sprintf("select * from %s", $tblProductImage);
 		$selectStmt = sprintf("select * from %s where id=?", $tblProductImage);

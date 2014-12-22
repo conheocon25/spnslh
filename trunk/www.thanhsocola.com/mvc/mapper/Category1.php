@@ -6,25 +6,25 @@ class Category1 extends Mapper implements \MVC\Domain\Category1Finder {
     function __construct() {
         parent::__construct();
 		
-		$tblCategory1 	= "res_category1";
+		$tblCategory1 	= "tbl_category1";
 						
-		$selectAllStmt 	= sprintf("SELECT * from %s order by id_category, name", $tblCategory1);
-		$selectStmt 	= sprintf("SELECT * from %s where id=?", $tblCategory1);
-		$updateStmt 	= sprintf("update %s set id_category=?, id_gattribute=?, info=?, name=?, `order`=?, `key`=? where id=?", $tblCategory1);
-		$insertStmt 	= sprintf("insert into %s ( id_category, id_gattribute, info, name, `order`, `key`) values(?, ?, ?, ?, ?, ?)", $tblCategory1);
-		$deleteStmt 	= sprintf("delete from %s where id=?", $tblCategory1);
-		$findByStmt 	= sprintf("SELECT * FROM  %s WHERE id_category=? ORDER BY `order`", $tblCategory1);
-		$findByPageStmt = sprintf("SELECT * FROM  %s ORDER BY `order` LIMIT :start,:max", $tblCategory1);
-		$findByKeyStmt 	= sprintf("select *  from %s where id_category=? AND `key`=?", $tblCategory1);
+		$selectAllStmt 		= sprintf("SELECT * from %s order by id_category, name", $tblCategory1);
+		$selectStmt 		= sprintf("SELECT * from %s where id=?", $tblCategory1);
+		$updateStmt 		= sprintf("update %s set id_category=?, id_presentation=?, name=?, `order`=?, `key`=? where id=?", $tblCategory1);
+		$insertStmt 		= sprintf("insert into %s ( id_category, id_presentation, name, `order`, `key`) values(?, ?, ?, ?, ?, ?)", $tblCategory1);
+		$deleteStmt 		= sprintf("delete from %s where id=?", $tblCategory1);
+		$findByStmt 		= sprintf("SELECT * FROM  %s WHERE id_category=? ORDER BY `order`", $tblCategory1);
+		$findByPageStmt 	= sprintf("SELECT * FROM  %s ORDER BY `order` LIMIT :start,:max", $tblCategory1);
+		$findByKeyStmt 		= sprintf("select *  from %s where id_category=? AND `key`=?", $tblCategory1);
 				
-        $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
-        $this->selectStmt = self::$PDO->prepare($selectStmt);
-        $this->updateStmt = self::$PDO->prepare($updateStmt);
-        $this->insertStmt = self::$PDO->prepare($insertStmt);
-		$this->deleteStmt = self::$PDO->prepare($deleteStmt);
-		$this->findByStmt = self::$PDO->prepare($findByStmt);
-		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);
-		$this->findByKeyStmt = self::$PDO->prepare($findByKeyStmt);
+        $this->selectAllStmt 	= self::$PDO->prepare($selectAllStmt);
+        $this->selectStmt 		= self::$PDO->prepare($selectStmt);
+        $this->updateStmt 		= self::$PDO->prepare($updateStmt);
+        $this->insertStmt 		= self::$PDO->prepare($insertStmt);
+		$this->deleteStmt 		= self::$PDO->prepare($deleteStmt);
+		$this->findByStmt 		= self::$PDO->prepare($findByStmt);
+		$this->findByPageStmt 	= self::$PDO->prepare($findByPageStmt);
+		$this->findByKeyStmt 	= self::$PDO->prepare($findByKeyStmt);
 									
     } 
     function getCollection( array $raw ) {return new Category1Collection( $raw, $this );}
@@ -32,9 +32,8 @@ class Category1 extends Mapper implements \MVC\Domain\Category1Finder {
         $obj = new \MVC\Domain\Category1( 
 			$array['id'],
 			$array['id_category'],
-			$array['id_gattribute'],
-			$array['name'],
-			$array['info'],
+			$array['id_presentation'],
+			$array['name'],			
 			$array['order'],
 			$array['key']
 		);
@@ -44,9 +43,8 @@ class Category1 extends Mapper implements \MVC\Domain\Category1Finder {
     protected function targetClass() {  return "Category1";}
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array( 
-			$object->getIdCategory(),
-			$object->getIdGAttribute(),
-			$object->getInfo(),
+			$object->getIdCategory(),			
+			$object->getIdPresentation(),
 			$object->getName(),			
 			$object->getOrder(),
 			$object->getKey()
@@ -58,10 +56,9 @@ class Category1 extends Mapper implements \MVC\Domain\Category1Finder {
     
     protected function doUpdate( \MVC\Domain\Object $object ) {
         $values = array( 
-			$object->getIdCategory(),
-			$object->getIdGAttribute(),
-			$object->getInfo(),
-			$object->getName(),			
+			$object->getIdCategory(),			
+			$object->getIdPresentation(),
+			$object->getName(),
 			$object->getOrder(),
 			$object->getKey(),
 			$object->getId()

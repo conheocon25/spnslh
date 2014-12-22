@@ -6,7 +6,7 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 
     function __construct() {
         parent::__construct();
-		$tblProduct = "res_product";
+		$tblProduct = "tbl_product";
 						
 		$selectAllStmt = sprintf("select * from %s", $tblProduct);
 		$selectStmt = sprintf("select * from %s where id=?", $tblProduct);
@@ -37,7 +37,7 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 		$findBySupplierManufacturerStmt = sprintf("select * from %s where idsupplier=? AND idmanufacturer=? order by id DESC", $tblProduct);
 		$findBySupplierCategoryStmt = sprintf("select * from %s where idsupplier=? AND idcategory=? order by id DESC", $tblProduct);
 						
-		$findByTopStmt 				= sprintf("select * from %s order by id DESC LIMIT 9", $tblProduct);
+		$findByTopStmt 				= sprintf("select * from %s order by id DESC LIMIT 12", $tblProduct);
 		$findByManufacturerTopStmt 	= sprintf("select * from %s where idmanufacturer=? order by idcategory, name LIMIT 9", $tblProduct);
 		$findManufacturerStmt 		= sprintf("
 				select 
@@ -86,11 +86,11 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 					'abc' as `key`
 				from 
 					(
-						res_save S INNER JOIN 
-						res_save_product SP 
+						tbl_save S INNER JOIN 
+						tbl_save_product SP 
 						ON S.id = SP.idsave
 					) INNER JOIN
-						res_product P
+						tbl_product P
 					ON 
 						P.id = SP.idproduct	
 				where					

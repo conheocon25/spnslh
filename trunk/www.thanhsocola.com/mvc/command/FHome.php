@@ -25,6 +25,7 @@
 			$mBranch		= new \MVC\Mapper\Branch();
 			$mStoryLine		= new \MVC\Mapper\StoryLine();
 			$mVideo			= new \MVC\Mapper\Video();
+			$mLinked		= new \MVC\Mapper\Linked();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -36,11 +37,12 @@
 			$ConfigPhone2 			= $mConfig->findByName("PHONE2");
 			$ConfigGmail 			= $mConfig->findByName("CONTACT_GTALK");
 			$ConfigSkype 			= $mConfig->findByName("CONTACT_SKYPE");
+			$ConfigMenu 			= $mConfig->findByName("MENU_MAIN");
+			$ConfigMarqueeWelcome	= $mConfig->findByName("MARQUEE_WELCOME");
 			
 			$BranchAll		= $mBranch->findAll();
-			$StoryLineAll	= $mStoryLine->findAll();
-												
-			$Category 		= $mCategory->find(1);
+			$StoryLineAll	= $mStoryLine->findAll();												
+			$Category 		= $mCategory->find($ConfigMenu->getValue());
 			$ProductAll 	= $mProduct->findByTop(array());			
 			$Presentation1 	= $mPresentation->find($ConfigPHome->getValue());
 			$Presentation2	= $mPresentation->find(3);
@@ -50,6 +52,8 @@
 			$LastestPostAll = $mPostTag->findByLastest4(array(null));
 			$LastestAlbumAll= $mAlbum->findByLastest(array(null));
 			$LastestVideoAll= $mVideo->findByLastest(array(null));
+			
+			$LinkedAll 		= $mLinked->findByTop(array());
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
@@ -61,6 +65,8 @@
 			$request->setObject("ConfigPhone2", 		$ConfigPhone2);
 			$request->setObject("ConfigGmail", 			$ConfigGmail);
 			$request->setObject("ConfigSkype", 			$ConfigSkype);
+			$request->setObject("ConfigMenu", 			$ConfigMenu);
+			$request->setObject("ConfigMarqueeWelcome", $ConfigMarqueeWelcome);
 			
 			$request->setObject("TagAll", 				$TagAll);
 			$request->setObject("BranchAll", 			$BranchAll);
@@ -73,7 +79,8 @@
 			$request->setObject("Presentation1", 		$Presentation1);
 			$request->setObject("Presentation2", 		$Presentation2);
 			$request->setObject("Category", 			$Category);
-			$request->setObject("ProductAll", 			$ProductAll);
+			$request->setObject("ProductAll", 			$ProductAll);			
+			$request->setObject("LinkedAll", 			$LinkedAll);
 			
 			return self::statuses('CMD_DEFAULT');
 		}

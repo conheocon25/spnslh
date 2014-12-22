@@ -82,7 +82,7 @@
 							</ul>
 						</li>
 						<li tal:attributes="class php:Active=='Menu'?'active dropdown':'dropdown'">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">THỰC ĐƠN <span class="caret"></span></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">MENU <span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
 								<li tal:repeat="Category Category/getCategoryAll">
 									<a tal:attributes="href Category/getURLView">
@@ -97,6 +97,7 @@
 				</div>
 			</div>
 		</nav>
+		<!--
 		<div class="row">						
 			<div class="col-md-12">
 				<div id="carousel-example-generic" class="carousel slide fade" data-ride="carousel">
@@ -122,6 +123,7 @@
 				<marquee class="intro-line" scrolldelay="2" scrollamount="2" behavior="scroll" direction="left">Có một sản phẩm thơm ngon, quyến rũ, làm say lòng người… Hãy cảm nhận từ từ sự tan chảy của nó khi cho vào miệng, vị thơm của cacao, vị đăng đắng thú vị hòa quyện với vị ngọt ngào quyến rũ, nó đã chinh phục hàng triệu triệu trái tim của con người ở khắp hành tinh của chúng ta… Điều bí ẩn… nằm trong viên sô cô la</marquee>
 			</div>
 		</div>
+		!-->
 	</div>
 	
 	<!-- ======================================================================== -->
@@ -157,7 +159,27 @@
 			</form>
 		</div>
 	</div>
-
+	<!-- ======================================================================== -->
+	<!-- MARQUEE																  -->
+	<!-- ======================================================================== -->
+	<div metal:define-macro="Marquee" class="row">
+		<div class="col-md-12">
+			<marquee tal:content="ConfigMarqueeWelcome/getValue" class="intro-line" scrolldelay="2" scrollamount="2" behavior="scroll" direction="left" />				
+		</div>
+	</div>
+	
+	<!-- ======================================================================== -->
+	<!-- PRESENTATION															  -->
+	<!-- ======================================================================== -->
+	<div metal:define-macro="Presentation" id="carousel-presentation-generic" class="carousel slide fade" data-ride="carousel">
+		<div class="carousel-inner" role="listbox">
+			<div class="item" tal:repeat="Slide Presentation1/getSlideAll">
+				<img tal:attributes="src Slide/getURL;alt php:'sequence-slide-' . repeat.Slide.number" width="100%"/>
+				<div class="carousel-caption" tal:content="structure Slide/getNote"/>
+			</div>
+		</div>
+	</div>
+	
 	<!-- ======================================================================== -->
 	<!-- LIKE BOX															  	  -->
 	<!-- ======================================================================== -->

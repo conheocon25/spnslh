@@ -7,8 +7,39 @@
 	<body>		
 		<div class="container">
 			<tal:block metal:use-macro="mFront.xhtml/Header"/>
+			<tal:block metal:use-macro="mFront.xhtml/Presentation"/>
+			<tal:block metal:use-macro="mFront.xhtml/Marquee"/>
 			<div class="row">						
 				<div class="col-md-8">
+					<div class="row">						
+						<div class="col-md-7">
+							<div id="carousel-top-news" class="carousel slide" data-ride="carousel">
+								<div class="carousel-inner" role="listbox">
+									<div class="item" tal:repeat="PT LastestPostAll">
+										<a tal:attributes="href PT/getURLRead">
+											<img tal:attributes="src PT/getPost/getImage; alt PT/getPost/getTitle"/>
+											<div class="carousel-caption" tal:content="PT/getPost/getTitle"/>
+										</a>
+									</div>
+								</div>
+								<a class="left carousel-control" href="#carousel-top-news" role="button" data-slide="prev">
+									<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+									<span class="sr-only">Previous</span>
+								</a>
+								<a class="right carousel-control" href="#carousel-top-news" role="button" data-slide="next">
+									<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+									<span class="sr-only">Next</span>
+								</a>
+								<div class="news-title"/>
+							</div>
+						</div>
+						<div class="col-md-5 rspdl">
+							<div class="list-group list-group-config">
+								<a class="list-group-item active"><center>Tin mới cập nhật</center></a>
+								<a tal:repeat="PT LastestPostAll" tal:attributes="href PT/getURLRead" tal:content="PT/getPost/getTitleReduce" class="list-group-item"/>
+							</div>
+						</div>
+					</div>
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h3 class="panel-title">Menu</h3>
@@ -18,7 +49,11 @@
 								<div tal:repeat="Product ProductAll" class="col-md-3 item-config">
 									<div class="item-thumb">
 										<a tal:attributes="href Product/getURLView">
-											<img src="/mvc/templates/front/img/item.png" class="img-thumbnail"/>
+											<img src="/mvc/templates/front/img/item.png" class="img-thumbnail img-circle"/>
+										</a>
+									</div>
+									<div class="item-info">
+										<a tal:attributes="href Product/getURLView">
 											<h3 tal:content="Product/getName"/>
 										</a>
 									</div>
@@ -37,6 +72,10 @@
 									<div class="item-thumb">
 										<a tal:attributes="href Album/getURLView">
 											<img tal:attributes="src Album/getImage" class="img-thumbnail" width="100%"/>
+										</a>
+									</div>
+									<div class="item-info">
+										<a tal:attributes="href Album/getURLView">
 											<h3 tal:content="Album/getName"/>
 										</a>
 									</div>
@@ -46,15 +85,17 @@
 					</div>
 					
 					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h3 class="panel-title">Videos</h3>
-						</div>						
+						<div class="panel-heading"><h3 class="panel-title">Video</h3></div>						
 						<div class="panel-body">
 							<div class="row">
 								<div tal:repeat="Video LastestVideoAll" class="col-md-3 item-config">
 									<div class="item-thumb">
 										<a tal:attributes="href Video/getURLView">
 											<img tal:attributes="src Video/getImage" class="img-thumbnail" width="100%"/>
+										</a>
+									</div>
+									<div class="item-info">
+										<a tal:attributes="href Video/getURLView">
 											<h3 tal:content="Video/getName"/>
 										</a>
 									</div>
@@ -64,13 +105,19 @@
 					</div>
 				</div>
 				<div class="col-md-4">
-					<tal:block metal:use-macro="mFront.xhtml/Subscribe"/>
+					<tal:block metal:use-macro="mFront.xhtml/ADS-1"/>
+					<tal:block metal:use-macro="mFront.xhtml/Subscribe"/>					
+					<tal:block metal:use-macro="mFront.xhtml/LikeBox"/>
 				</div>
 			</div>
 			<tal:block metal:use-macro="mFront.xhtml/Footer"/>
 		</div>
 		
 		<tal:block metal:use-macro="mFront.xhtml/IncludeJS"/>
-		<script>$('#carousel-example-generic').carousel({pause: "false"});</script>
+		<script>
+			$('#carousel-presentation-generic').carousel({pause: "false"});
+			$('#carousel-presentation-generic .item:first-child').addClass('active');			
+			$('#carousel-top-news .item:first-child').addClass('active');			
+		</script>
 	</body>
 </html>

@@ -6,7 +6,7 @@ class GAttribute extends Mapper implements \MVC\Domain\GAttributeFinder {
     function __construct() {
         parent::__construct();
 		
-		$tblGAttribute = "res_gattribute";
+		$tblGAttribute = "tbl_gattribute";
 						
 		$selectAllStmt 	= sprintf("select * from %s order by `order`", $tblGAttribute);
 		$selectStmt 	= sprintf("select * from %s where id=?", $tblGAttribute);
