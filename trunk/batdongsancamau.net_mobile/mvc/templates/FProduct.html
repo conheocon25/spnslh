@@ -53,13 +53,13 @@
 				
 				<div class="ui-grid-a" tal:condition="Product/getInfo">
 					<div class="ui-block-a">
-						<div class="ui-bar ui-bar-a">
-							Diện tích: <B style="color:#055699;font-weight:bold;" tal:content="structure Product/getInfo/getInfoEx13Print"/>
+						<div class="ui-bar ui-bar-a" style="height:60px">
+							Diện tích: <span style="color:#055699;font-weight:bold;" tal:content="structure Product/getInfo/getInfoEx13Print"/>
 						</div>
 					</div>
 				    <div class="ui-block-b">
-						<div class="ui-bar ui-bar-a">
-							Giá: <B style="color:#055699;font-weight:bold;" tal:content="Product/getPricePrint"/>
+						<div class="ui-bar ui-bar-a" style="height:60px">
+							Giá: <span style="color:#055699;font-weight:bold;" tal:content="Product/getPricePrint"/>
 						</div>
 					</div>
 				    <div class="ui-block-a">
