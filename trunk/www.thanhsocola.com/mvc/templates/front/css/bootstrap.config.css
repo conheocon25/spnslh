@@ -95,6 +95,17 @@
 		text-decoration: none;
 	}
 	
+	.item-config .item-info h3 {
+		margin-top: 5px;
+		color: #5A1C10;
+		font-family: Segoe UI;
+		font-size: 13px;
+		font-weight: normal;
+		min-height: 15px;
+		max-height: 15px;
+		overflow: hidden;
+	}
+	
 	.item-config .item-thumb h3 {
 		margin-top: 5px;
 		color: #fff;
