@@ -8,15 +8,15 @@
 	<body>
 		<div data-role="page" class="jqm-demos jqm-home">
 			<tal:block metal:use-macro="mFront.xhtml/Header"/>
-			<div role="main" class="ui-content jqm-content">									
-				<ul data-role="listview" data-inset="false">
-				    <li tal:repeat="Product ProductAll">
-						<a tal:attributes="href Product/getURLView" rel="external">
-					        <img tal:attributes="src Product/getInfo/getImage" />
-					    	<h2 tal:content="Product/getName" />
-						    <p tal:content="structure Product/getInfo/getInfoReduce"/>
+			<div role="main" class="ui-content jqm-content">
+				<ul data-role="listview" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
+					<li class="ui-li-has-thumb" tal:repeat="Product ProductAll">
+						<a tal:attributes="href Product/getURLView" rel="external" class="ui-btn ui-btn-icon-right ui-icon-carat-r">
+							<img tal:attributes="src Product/getInfo/getImage" />
+							<h2 tal:content="Product/getName" />
+							<p tal:content="structure Product/getInfo/getInfoReduce"/>
 						</a>
-				    </li>
+					</li>
 				</ul>
 				<div data-role="controlgroup" data-type="horizontal">
 					<a tal:repeat="P PN/getPages" tal:attributes="href P/getURL" class="ui-btn">
