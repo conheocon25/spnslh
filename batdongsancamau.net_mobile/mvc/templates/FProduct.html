@@ -53,96 +53,104 @@
 				
 				<div class="ui-grid-a" tal:condition="Product/getInfo">
 					<div class="ui-block-a">
-						<div class="ui-bar ui-bar-a" style="height:60px">
+						<div class="ui-bar ui-bar-a">
 							Diện tích: <span style="color:#055699;font-weight:bold;" tal:content="structure Product/getInfo/getInfoEx13Print"/>
 						</div>
 					</div>
-				    <div class="ui-block-b">
-						<div class="ui-bar ui-bar-a" style="height:60px">
+					<div class="ui-block-b">
+						<div class="ui-bar ui-bar-a">
 							Giá: <span style="color:#055699;font-weight:bold;" tal:content="Product/getPricePrint"/>
 						</div>
 					</div>
-				    <div class="ui-block-a">
+					
+					<div class="ui-block-a">
 						<div class="ui-bar ui-bar-a">
 							Mã tin: <B style="color:#055699;font-weight:bold;" tal:content="Product/getId" />
 						</div>
 					</div>
-				    <div class="ui-block-b">
+					<div class="ui-block-b">
 						<div class="ui-bar ui-bar-a">
 							Hướng: <B style="color:#055699;font-weight:bold;" tal:content="Product/getInfo/getInfoEx03Print" />
 						</div>
 					</div>
+					
 					<div class="ui-block-a">
 						<div class="ui-bar ui-bar-a">
 							Phòng ăn:<B style="color:#055699;font-weight:bold;" tal:content="Product/getInfo/getInfoEx08Print" />
 						</div>
 					</div>
-				    <div class="ui-block-b">
+					<div class="ui-block-b">
 						<div class="ui-bar ui-bar-a">
 							Loại tin: <B style="color:#055699;font-weight:bold;" tal:content="Product/getCategory/getName" />
 						</div>
 					</div>
+					
 					<div class="ui-block-a">
 						<div class="ui-bar ui-bar-a">
 							Lộ giới: <B style="color:#055699;font-weight:bold;" tal:content="Product/getInfo/getInfoEx04Print" />
 						</div>
 					</div>
-				    <div class="ui-block-b">
+					<div class="ui-block-b">
 						<div class="ui-bar ui-bar-a">
 							Nhà bếp: <B style="color:#055699;font-weight:bold;" tal:content="Product/getInfo/getInfoEx09Print" />
 						</div>
 					</div>
+					
 					<div class="ui-block-a">
 						<div class="ui-bar ui-bar-a">
 							Lộ giới: <B style="color:#055699;font-weight:bold;" tal:content="Product/getInfo/getInfoEx04Print" />
 						</div>
 					</div>
-				    <div class="ui-block-b">
+					<div class="ui-block-b">
 						<div class="ui-bar ui-bar-a">
 							Loại BĐS: <B style="color:#055699;font-weight:bold;" tal:content="Product/getEstate/getName" tal:condition="Product/getEstate"/>
 						</div>
 					</div>
+					
 					<div class="ui-block-a">
 						<div class="ui-bar ui-bar-a">
 							Pháp lý: <B style="color:#055699;font-weight:bold;" tal:content="Product/getInfo/getInfoEx05Print" />
 						</div>
 					</div>
-				    <div class="ui-block-b">
+					<div class="ui-block-b">
 						<div class="ui-bar ui-bar-a">
 							Sân thượng: <B style="color:#055699;font-weight:bold;" tal:content="Product/getInfo/getInfoEx10Print" />
 						</div>
 					</div>
+					
 					<div class="ui-block-a">
 						<div class="ui-bar ui-bar-a">
 							Chiều ngang: <B style="color:#055699;font-weight:bold;" tal:content="Product/getInfo/getInfoEx01Print" />
 						</div>
 					</div>
-				    <div class="ui-block-b">
+					<div class="ui-block-b">
 						<div class="ui-bar ui-bar-a">
 							Số lầu: <B style="color:#055699;font-weight:bold;" tal:content="Product/getInfo/getInfoEx06Print" />
 						</div>
 					</div>
+					
 					<div class="ui-block-a">
 						<div class="ui-bar ui-bar-a">
 							Chỗ để xe hơi: <B style="color:#055699;font-weight:bold;" tal:content="Product/getInfo/getInfoEx11Print" />
 						</div>
 					</div>
-				    <div class="ui-block-b">
+					<div class="ui-block-b">
 						<div class="ui-bar ui-bar-a">
 							Chiều dài: <B style="color:#055699;font-weight:bold;" tal:content="Product/getInfo/getInfoEx02Print" />
 						</div>
 					</div>
+					
 					<div class="ui-block-a">
 						<div class="ui-bar ui-bar-a">
 							Số phòng ngủ: <B style="color:#055699;font-weight:bold;" tal:content="Product/getInfo/getInfoEx07Print" />
 						</div>
 					</div>
-				    <div class="ui-block-b">
+					<div class="ui-block-b">
 						<div class="ui-bar ui-bar-a">
 							Chính chủ: <B style="color:#055699;font-weight:bold;" tal:content="Product/getInfo/getInfoEx12Print" />
 						</div>
 					</div>
-				</div>
+				</div>				
 				<div tal:condition="Product/getMap" class="ui-content" id="map-canvas" style="height:320px" tal:attributes="latitude Product/getMap/getLatitude;longitude Product/getMap/getLongitude"/>
 			</div>
 			<tal:block metal:use-macro="mFront.xhtml/MenuCategorySupplier"/>
