@@ -31,11 +31,13 @@
 										<tr>																					
 											<th><div class="text-left">NGÀY</div></th>											
 											<th width="90"><div class="text-right">BÁN HÀNG</div></th>																			
-											<th width="90"><div class="text-right">QUỸ</div></th>											
+											<th width="90"><div class="text-right">QUỸ</div></th>
 											<th width="90"><div class="text-center">TK.MÓN</div></th>
 											<th width="90"><div class="text-center">TK.KHÁCH</div></th>
 											<th width="90"><div class="text-center">TK.NCC</div></th>
 											<th width="90"><div class="text-center">TK KHO</div></th>
+											<th width="90"><div class="text-right">THU</div></th>
+											<th width="90"><div class="text-right">CHI</div></th>
 										</tr>
 									</thead>
 									<tbody>
@@ -47,6 +49,8 @@
 											<td align="center"><a tal:attributes="href TD/getURLReportCustomer">Xem</a></td>
 											<td align="center"><a tal:attributes="href TD/getURLReportSupplier">Xem</a></td>
 											<td align="center"><a tal:attributes="href TD/getURLReportStore">Xem</a></td>
+											<td align="center"><a tal:attributes="href TD/getURLReportCollect"><span tal:content="TD/getCollectPrint"/></a></td>
+											<td align="center"><a tal:attributes="href TD/getURLReportPaid"><span tal:content="TD/getPaidPrint"/></a></td>
 										</tr>
 										<tr>
 											<td align="right"><B>TỔNG KẾT</B></td>
@@ -56,9 +60,28 @@
 											<td align="center" />
 											<td align="center" />
 											<td align="center" />
+											<td align="center" />
+											<td align="center" />
 										</tr>
 									</tbody>
-								</table>								
+								</table>
+								
+								<table tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isManager()" class="table table-bordered table-striped table-hover">
+									<thead>
+										<tr>																					
+											<th><div class="text-left">NGÀY</div></th>											
+											<th width="90"><div class="text-right">THU</div></th>
+											<th width="90"><div class="text-right">CHI</div></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr tal:repeat="TD Tracking/getDailyAll">
+											<td><div tal:content="TD/getDatePrint"></div></td>
+											<td align="right"><a tal:attributes="href TD/getURLReportPaid"><span tal:content="TD/getPaidPrint"/></a></td>
+											<td align="right"><a tal:attributes="href TD/getURLReportCollect"><span tal:content="TD/getCollectPrint"/></a></td>
+										</tr>										
+									</tbody>
+								</table>
 							</div>
 						</div>
 					</div>
@@ -67,31 +90,5 @@
 		</div>
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>
 		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
-		<script type="text/javascript">
-		/*<![CDATA[*/
-			//-----------------------------------------------------------------------------------
-			//EXE DAILY			
-			//-----------------------------------------------------------------------------------
-			/*	
-			$('.TDExe').click(function(){
-				var URL = $(this).attr('alt');				
-				$.ajax({
-					type: "POST",					
-					url: URL,
-					success: function(msg){
-						$.gritter.add({
-							title		:'Thông tin',
-							class_name	:'gritter-green',
-							text		:'Đã cập nhật xong BÁO CÁO TRONG NGÀY',
-							time		:5000,
-							sticky		: false
-						});
-					}
-				});
-				location.reload();
-			});
-			*/			
-		/*]]>*/
-		</script>
 	</body>
 </html>

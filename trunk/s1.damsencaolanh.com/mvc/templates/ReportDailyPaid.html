@@ -16,30 +16,94 @@
 					<div class="col-12">
 						<div class="widget-box">
 							<div class="widget-content nopadding">								
+								<table class="table table-striped table-hover">									
+									<tbody>										
+										<tr>
+											<td align="left" colspan="4"><B>2. TỔNG CHI:</B></td>
+											<td align="right">
+												<B tal:content="TD/getPaidPrint" style="color:red"/>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+								<B>2.1. CHI CHUNG</B>
 								<table class="table table-striped table-hover">
 									<thead>
 										<tr>										
 											<th width="5%"><B>#ID</B></th>
 											<th width="18%"><div class="text-left">THỜI GIAN</div></th>
-											<th width="15%"><div class="text-left">LOẠI CHI</div></th>
-											<th width="40%"><div class="text-left">DIỄN GIẢI</div></th>
+											<th width="20%"><div class="text-left">TÊN</div></th>
+											<th width="35%"><div class="text-left">DIỄN GIẢI</div></th>
 											<th width="22%"><div class="text-right">GIÁ TRỊ</div></th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr tal:repeat="Paid PaidAll">
-											<td align="center"><span tal:content="Paid/getId"/></td>
+										<tr tal:repeat="Paid PaidGeneralAll">
+											<td align="center"><span tal:content="repeat/Paid/number"/></td>
 											<td align="left"><span tal:content="Paid/getDatePrint"/></td>
 											<td align="left"><span tal:content="Paid/getTerm/getName"/></td>											
 											<td align="left"><span tal:content="Paid/getNote"/></td>
 											<td align="right"><span tal:content="Paid/getValuePrint"/></td>
 										</tr>
 										<tr>
-											<td align="right" colspan="4">TỔNG CỘNG</td>
-											<td align="right"><B tal:content="php: NTotal->formatCurrency() . ' đ'"/></td>
+											<td align="right" colspan="4" />
+											<td align="right"><B tal:content="php: NGeneralValue->formatCurrency()"/></td>
 										</tr>
 									</tbody>
-								</table>								
+								</table>
+								
+								<B>2.2. KHÁCH NỢ PHIẾU</B>
+								<table class="table table-striped table-hover">
+									<thead>
+										<tr>										
+											<th width="5%"><B>#ID</B></th>
+											<th width="18%"><div class="text-left">THỜI GIAN</div></th>
+											<th width="20%"><div class="text-left">TÊN</div></th>
+											<th width="35%"><div class="text-left">DIỄN GIẢI</div></th>
+											<th width="22%"><div class="text-right">GIÁ TRỊ</div></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr tal:repeat="Paid PaidCustomerAll">
+											<td align="center"><span tal:content="repeat/Paid/number"/></td>
+											<td align="left"><span tal:content="Paid/getDatePrint"/></td>
+											<td align="left"><span tal:content="Paid/getCustomer/getName"/></td>											
+											<td align="left"><span tal:content="Paid/getNote"/></td>
+											<td align="right"><span tal:content="Paid/getValuePrint"/></td>
+										</tr>
+										<tr>
+											<td align="right" colspan="4" />
+											<td align="right"><B tal:content="php: NCustomerValue->formatCurrency()"/></td>
+										</tr>
+									</tbody>
+								</table>
+								
+								<B>2.3. CHI NHÀ CUNG CẤP</B>
+								<table class="table table-striped table-hover">
+									<thead>
+										<tr>										
+											<th width="5%"><B>#ID</B></th>
+											<th width="18%"><div class="text-left">THỜI GIAN</div></th>
+											<th width="20%"><div class="text-left">TÊN</div></th>
+											<th width="35%"><div class="text-left">DIỄN GIẢI</div></th>
+											<th width="22%"><div class="text-right">GIÁ TRỊ</div></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr tal:repeat="Paid PaidSupplierAll">
+											<td align="center"><span tal:content="repeat/Paid/number"/></td>
+											<td align="left"><span tal:content="Paid/getDatePrint"/></td>
+											<td align="left"><span tal:content="Paid/getSupplier/getName"/></td>											
+											<td align="left"><span tal:content="Paid/getNote"/></td>
+											<td align="right"><span tal:content="Paid/getValuePrint"/></td>
+										</tr>
+										<tr>
+											<td align="right" colspan="4" />
+											<td align="right"><B tal:content="php: NSupplierValue->formatCurrency()"/></td>
+										</tr>
+									</tbody>
+								</table>
+																
 							</div>
 						</div>
 					</div>

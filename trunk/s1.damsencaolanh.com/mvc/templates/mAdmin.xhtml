@@ -62,14 +62,7 @@
 		<script src="/mvc/templates/theme/cms/js/bootstrap-datetimepicker.js"></script>
 		<script src="/mvc/templates/theme/cms/js/bootstrap-datetimepicker.vi.js"></script>
 		<script src="/mvc/templates/theme/cms/js/jquery.jplayer.min.js"/>
-		<script src="/mvc/templates/theme/cms/js/jquery.validate.js"/>
-		<!--		
-		<script src="/mvc/templates/theme/cms/js/excanvas.min.js"/>
-		<script src="/mvc/templates/theme/cms/js/jquery.flot.js"/>
-        <script src="/mvc/templates/theme/cms/js/jquery.flot.pie.min.js"/>
-        <script src="/mvc/templates/theme/cms/js/jquery.flot.resize.min.js"/>
-		<script src="/mvc/templates/theme/cms/js/jquery.flot.categories.js"/>
-		!-->
+		<script src="/mvc/templates/theme/cms/js/jquery.validate.js"/>		
 	</span>
 	
 	<!-- ======================================================================== -->
@@ -165,6 +158,9 @@
 			</li>
 			<li tal:attributes="class php:ActiveAdmin=='Money'?'active':'disable'">
 				<a tal:attributes="href '/money'"><i class="glyphicons-transfer" />THU / CHI</a>
+			</li>
+			<li tal:attributes="class php:ActiveAdmin=='Report'?'active':'disable'">
+				<a tal:attributes="href '/report'"><i class="glyphicons-fax" />BÁO CÁO</a>
 			</li>
 			<li tal:attributes="class php:ActiveAdmin=='Setting'?'active':'disable'">
 				<a tal:attributes="href '/setting'"><i class="glyphicons-cogwheels" />THIẾT LẬP</a>
