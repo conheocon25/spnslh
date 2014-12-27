@@ -41,7 +41,7 @@
 			$Province 		= $mProvince->find(15);
 			$TagAll 		= $mTag->findByPosition(array(1));
 			
-			$Title 			= "NHÀ MÔI GIỚI";
+			$Title 			= "NHÀ TƯ VẤN";
 			$Navigation 	= array();
 									
 			//-------------------------------------------------------------
