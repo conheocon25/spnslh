@@ -17,10 +17,11 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mCollect 	= new \MVC\Mapper\CollectGeneral();
-			$mTracking 	= new \MVC\Mapper\Tracking();
-			$mTD 		= new \MVC\Mapper\TrackingDaily();
-			$mConfig 	= new \MVC\Mapper\Config();
+			$mCollectGeneral= new \MVC\Mapper\CollectGeneral();
+			$mCollectCustomer= new \MVC\Mapper\CollectCustomer();
+			$mTracking 		= new \MVC\Mapper\Tracking();
+			$mTD 			= new \MVC\Mapper\TrackingDaily();
+			$mConfig 		= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -29,24 +30,29 @@
 			$TD 		= $mTD->find($IdTD);
 			$Tracking	= $mTracking->find($IdTrack);
 			
-			$CollectAll = $mCollect->findByTracking( array(
-				$TD->getDate(), 
-				$TD->getDate()
-			));
-			
-			$Value 		= 0;
-			while ($CollectAll->valid()){
-				$Collect 	= $CollectAll->current();
-				$Value 	+= $Collect->getValue();
-				$CollectAll->next();
+			$CollectGeneralAll = $mCollectGeneral->findByTracking( array($TD->getDate(), $TD->getDate()));			
+			$GeneralValue = 0;
+			while ($CollectGeneralAll->valid()){
+				$Collect 		= $CollectGeneralAll->current();
+				$GeneralValue 	+= $Collect->getValue();
+				$CollectGeneralAll->next();
 			}			
-			$NTotal = new \MVC\Library\Number($Value);
+			$NGeneralValue = new \MVC\Library\Number($GeneralValue);
+			
+			$CollectCustomerAll = $mCollectCustomer->findByTracking1( array($TD->getDate(), $TD->getDate()));
+			$CustomerValue = 0;
+			while ($CollectCustomerAll->valid()){
+				$Collect 		= $CollectCustomerAll->current();
+				$CustomerValue 	+= $Collect->getValue();
+				$CollectCustomerAll->next();
+			}			
+			$NCustomerValue = new \MVC\Library\Number($CustomerValue);
 			
 			//Cập nhật kết quả vào DB
-			$TD->setCollect($Value);
+			$TD->setCollect($GeneralValue + $CustomerValue);
 			$mTD->update($TD);
 			
-			$Title 		= "TIỀN THU".$TD->getDatePrint();
+			$Title 		= "THU ".$TD->getDatePrint();
 			$Navigation = array(
 				array("BÁO CÁO"				, "/report"),
 				array($Tracking->getName()	, $Tracking->getURLView())
@@ -57,9 +63,15 @@
 			//-------------------------------------------------------------
 			$request->setProperty('Title'		, $Title);			
 			$request->setObject('Navigation'	, $Navigation);
-			$request->setObject('NTotal'		, $NTotal);
 			$request->setObject('ConfigName'	, $ConfigName);
-			$request->setObject('CollectAll'	, $CollectAll);
+			
+			$request->setObject('TD'			, $TD);
+			
+			$request->setObject('NGeneralValue'	, $NGeneralValue);
+			$request->setObject('CollectGeneralAll'	, $CollectGeneralAll);
+			
+			$request->setObject('NCustomerValue'	, $NCustomerValue);
+			$request->setObject('CollectCustomerAll', $CollectCustomerAll);
 		}
 	}
 ?>

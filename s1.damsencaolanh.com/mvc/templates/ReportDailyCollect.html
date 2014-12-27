@@ -15,31 +15,68 @@
 				<div class="container-fluid">
 					<div class="col-12">
 						<div class="widget-box">
-							<div class="widget-content nopadding">								
+							<div class="widget-content nopadding">
+								<table class="table table-striped table-hover">									
+									<tbody>										
+										<tr>
+											<td align="left" colspan="4"><B>1. TỔNG THU:</B></td>
+											<td align="right">
+												<B tal:content="TD/getCollectPrint" style="color:blue"/>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+								<B>1.1. THU TỪ BÁN HÀNG</B><BR/>
+								<B>1.2. THU KHÁC</B>
 								<table class="table table-striped table-hover">
 									<thead>
 										<tr>										
 											<th width="5%"><B>#ID</B></th>
 											<th width="18%"><div class="text-left">THỜI GIAN</div></th>
-											<th width="15%"><div class="text-left">LOẠI CHI</div></th>
-											<th width="40%"><div class="text-left">DIỄN GIẢI</div></th>
+											<th width="20%"><div class="text-left">TÊN</div></th>
+											<th width="35%"><div class="text-left">DIỄN GIẢI</div></th>
 											<th width="22%"><div class="text-right">GIÁ TRỊ</div></th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr tal:repeat="Collect CollectAll">
-											<td align="center"><span tal:content="Collect/getId"/></td>
+										<tr tal:repeat="Collect CollectGeneralAll">
+											<td align="center"><span tal:content="repeat/Collect/number"/></td>
 											<td align="left"><span tal:content="Collect/getDatePrint"/></td>
 											<td align="left"><span tal:content="Collect/getTerm/getName"/></td>
 											<td align="left"><span tal:content="Collect/getNote"/></td>
 											<td align="right"><span tal:content="Collect/getValuePrint"/></td>
 										</tr>
 										<tr>
-											<td align="right" colspan="4">TỔNG CỘNG</td>
-											<td align="right"><B tal:content="php: NTotal->formatCurrency() . ' đ'"/></td>
+											<td align="right" colspan="4" />
+											<td align="right"><B tal:content="php: NGeneralValue->formatCurrency()"/></td>
 										</tr>
 									</tbody>
-								</table>								
+								</table>
+								<B>1.3. THU TỪ KHÁCH TRẢ</B>
+								<table class="table table-striped table-hover">
+									<thead>
+										<tr>										
+											<th width="5%"><B>#ID</B></th>
+											<th width="18%"><div class="text-left">THỜI GIAN</div></th>
+											<th width="20%"><div class="text-left">TÊN</div></th>
+											<th width="35%"><div class="text-left">DIỄN GIẢI</div></th>
+											<th width="22%"><div class="text-right">GIÁ TRỊ</div></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr tal:repeat="Collect CollectCustomerAll">
+											<td align="center"><span tal:content="repeat/Collect/number"/></td>
+											<td align="left"><span tal:content="Collect/getDatePrint"/></td>
+											<td align="left"><span tal:content="Collect/getCustomer/getName"/></td>
+											<td align="left"><span tal:content="Collect/getNote"/></td>
+											<td align="right"><span tal:content="Collect/getValuePrint"/></td>
+										</tr>
+										<tr>
+											<td align="right" colspan="4" />
+											<td align="right"><B tal:content="NCustomerValue/formatCurrency"/></td>
+										</tr>
+									</tbody>
+								</table>			
 							</div>
 						</div>
 					</div>

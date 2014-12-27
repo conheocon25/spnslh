@@ -11,7 +11,7 @@
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
 			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
 			<div class="row">																	
-				<div class="col-12">										
+				<div class="col-12" tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">
 					<a href="#DialogIns" data-toggle="modal" class="btn btn-primary btn-ins">
 						<i class="glyphicon glyphicon-plus"/> Thêm mới
 					</a>
@@ -148,6 +148,28 @@
 					</div>
 					<!-- END DELETE DIALOG  -->
 				</div>
+				
+				<div class="col-12" tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isManager()">
+					<div class="widget-box">
+						<div class="widget-content nopadding">
+							<table class="table table-bordered table-striped table-hover">
+								<thead>
+									<tr>
+										<th width="40"><i class="glyphicons-fax"/></th>
+										<th><div class="text-left">THÁNG</div></th>
+									</tr>
+								</thead>
+								<tbody role="alert" aria-live="polite" aria-relevant="all">
+									<tr tal:repeat="Track Tracks">
+										<td align="center" tal:content="repeat/Track/number"/>
+										<td><a tal:attributes="href Track/getURLView" tal:content="Track/getName"/></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>										
+				</div>
+				
 			</div>
 		</div>
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>
