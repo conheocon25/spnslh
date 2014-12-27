@@ -18,8 +18,8 @@ AddOutputFilterByType DEFLATE application/x-javascript
 #---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^trang-chu$ 									?cmd=FHome 					[L]
 
-RewriteRule ^nha-moi-gioi/([A-Za-z0-9_-]+)$ 				?cmd=FSupplier&KSupplier=$1	[L]
-RewriteRule ^nha-moi-gioi/([A-Za-z0-9_-]+)/page/([0-9]+)$ 	?cmd=FSupplier&KSupplier=$1&Page=$2	[L]
+RewriteRule ^nha-tu-van/([A-Za-z0-9_-]+)$ 				?cmd=FSupplier&KSupplier=$1	[L]
+RewriteRule ^nha-tu-van/([A-Za-z0-9_-]+)/page/([0-9]+)$ 	?cmd=FSupplier&KSupplier=$1&Page=$2	[L]
 
 RewriteRule ^tim-kiem$ 										?cmd=FProductSearch 		[L]
 RewriteRule ^tim-kiem/page/([0-9]+)$ 						?cmd=FProductSearch&Page=$1	[L]
@@ -30,7 +30,7 @@ RewriteRule ^bang-gia/gia-nha$ 								?cmd=FPriceHouse 			[L]
 RewriteRule ^lien-he/dang-ki-mua$ 							?cmd=FContactRegisterBuy	[L]
 RewriteRule ^lien-he/dang-ki-ban$ 							?cmd=FContactRegisterSell	[L]
 
-RewriteRule ^lien-he/nha-moi-gioi$ 							?cmd=FContactSupplier 		[L]
+RewriteRule ^lien-he/nha-tu-van$ 							?cmd=FContactSupplier 		[L]
 RewriteRule ^lien-he/gia-dich-vu$ 							?cmd=FContactPriceService 	[L]
 RewriteRule ^lien-he/email$ 								?cmd=FContactSend			[L]
 RewriteRule ^lien-he/gmail$ 								?cmd=FContactSendGmail		[L]

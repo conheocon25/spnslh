@@ -51,7 +51,7 @@
 			
 			$Title = $Supplier->getName();
 			$Navigation = array(
-				array(mb_strtoupper('Nhà môi giới', 'UTF8'), '/trang-chu')
+				array(mb_strtoupper('Nhà tư vấn', 'UTF8'), '/trang-chu')
 			);
 			
 			//-------------------------------------------------------------

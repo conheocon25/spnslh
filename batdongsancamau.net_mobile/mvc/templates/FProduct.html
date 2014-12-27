@@ -25,7 +25,7 @@
 			    }
 			    function drawMap(latlng) {
 			        var myOptions = {
-			            zoom: 16,
+			            zoom: 18,
 			            center: latlng,
 			            mapTypeId: google.maps.MapTypeId.ROADMAP
 			        };
@@ -49,8 +49,7 @@
 					(<B style="color:#055699;font-weight:bold;" tal:content="Product/getDateTimePrint"/>)
 					<B style="color:#055699;font-weight:bold;" tal:content="Product/getAddress"/>
 				</p>
-				<p tal:content="structure Product/getInfo/getInfo"/>
-				
+				<p tal:content="structure Product/getInfo/getInfo"/>				
 				<div class="ui-grid-a" tal:condition="Product/getInfo">
 					<div class="ui-block-a">
 						<div class="ui-bar ui-bar-a">
@@ -87,7 +86,7 @@
 					
 					<div class="ui-block-a">
 						<div class="ui-bar ui-bar-a">
-							Lộ giới: <B style="color:#055699;font-weight:bold;" tal:content="Product/getInfo/getInfoEx04Print" />
+							Chính chủ: <B style="color:#055699;font-weight:bold;" tal:content="Product/getInfo/getInfoEx12Print" />
 						</div>
 					</div>
 					<div class="ui-block-b">
@@ -147,11 +146,14 @@
 					</div>
 					<div class="ui-block-b">
 						<div class="ui-bar ui-bar-a">
-							Chính chủ: <B style="color:#055699;font-weight:bold;" tal:content="Product/getInfo/getInfoEx12Print" />
+							_
 						</div>
 					</div>
-				</div>				
+				</div>
 				<div tal:condition="Product/getMap" class="ui-content" id="map-canvas" style="height:320px" tal:attributes="latitude Product/getMap/getLatitude;longitude Product/getMap/getLongitude"/>
+				<div tal:repeat="Image Product/getImageAll">
+					<img width="100%" tal:attributes="src Image/getURL"/>
+				</div>	
 			</div>
 			<tal:block metal:use-macro="mFront.xhtml/MenuCategorySupplier"/>
 			<tal:block metal:use-macro="mFront.xhtml/Footer"/>
