@@ -55,7 +55,24 @@
 		<command name="Admin"><view>Admin</view></command>		
 		<command name="SettingThemeChangeExe"><view>SettingThemeChangeExe</view><status value="CMD_OK"><forward>App</forward></status></command>
 							
-											
+		<!-- ============================================================================== -->
+		<!-- ARSS																	-->
+		<!-- ============================================================================== -->
+		<command name="ARss"><view>ARss</view></command>		
+		<command name="ARssInsLoad"><view>ARssInsLoad</view></command>
+		<command name="ARssInsExe"><view>ARssInsExe</view><status value="CMD_OK"><forward>ARss</forward></status></command>
+		<command name="ARssUpdLoad"><view>ARssUpdLoad</view></command>
+		<command name="ARssUpdExe"><view>ARssUpdExe</view><status value="CMD_OK"><forward>ARss</forward></status></command>
+												
+		<!-- ============================================================================== -->
+		<!-- RSS NEWS AUTO	 																	-->
+		<!-- ============================================================================== -->
+		<command name="APostRss"><view>APostRss</view></command>
+		<command name="APostRssView"><view>APostRssView</view></command>
+		<command name="APostPublished"><view>APostPublished</view></command>
+		<command name="APostRssPublish" type="public"><view>APostRssPublish</view></command>	
+		<command name="AGetListRss" type="public"><view>AGetListRss</view></command>
+		
 		<!-- ============================================================================== -->
 		<!-- SETTING	 																	-->
 		<!-- ============================================================================== -->
