@@ -4,36 +4,35 @@ class Date{
 	private $Value;
 	
 	function __construct( $Value=null){
-		date_default_timezone_set('Asia/Jakarta');
 		$this->Value = $Value;        
     }
 	
-	function getDateFormat(){
-		return date('d/m/Y',strtotime($this->Value));	
+	//them 11h lech mui gio tu 1=>+7 luc tao moi news
+
+        function getDateFormat(){
+		$interval = new \DateInterval('P0Y0DT11H0M');
+		$dateVN = new \DateTime($this->Value);	
+		$dateVN->add($interval);
+		return $dateVN->format('d/m/Y');
+		//return date('d/m/Y',strtotime($this->Value));
 	}
-	
-	function getDateTimeFormat(){
-		return date('d/m H:i',strtotime($this->Value));
+
+        function getDateTimeFormat(){
+		$interval = new \DateInterval('P0Y0DT11H0M');
+		$dateVN = new \DateTime($this->Value);	
+		$dateVN->add($interval);
+		return $dateVN->format('d/m/Y H:i:s');
+		//return date('d/m/Y H:i:s',strtotime($this->Value));
 	}
-	
-	function getFullDateTimeFormat(){
-		return date('d/m/Y H:i',strtotime($this->Value));
-	}
-	
+
 	function getTimeFormat(){
 		return date('H:i:s',strtotime($this->Value));
 	}
 	
-	function getCurrentDateTime(){		
+	function getCurrentDateTime(){
 		$Today = \getdate();
         $d = $Today['year']."-".$Today['mon']."-".$Today['mday']." ".$Today['hours'].":".$Today['minutes'].":".$Today['seconds'];
 		return $d;
-	}
-	function getCurrentDateVN(){	
-		//date_default_timezone_set('Asia/Jakarta');
-		$now = getdate();		
-		$currentDate = $now["mday"] . "/" . $now["mon"] . "/" . $now["year"];       
-		return $currentDate;
 	}
 	
 	//Buổi sáng là từ 6h sáng đến trước 12h trưa

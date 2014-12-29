@@ -37,6 +37,8 @@ class GuestCollection 			extends Collection implements \MVC\Domain\GuestCollecti
 class PostCollection 			extends Collection implements \MVC\Domain\PostCollection			{function targetClass(){return "\MVC\Domain\Post";			}}
 class PresentationCollection 	extends Collection implements \MVC\Domain\PresentationCollection	{function targetClass(){return "\MVC\Domain\Presentation";	}}
 class SlideCollection 			extends Collection implements \MVC\Domain\SlideCollection			{function targetClass(){return "\MVC\Domain\Slide";			}}
+class PostRssCollection 		extends Collection implements \MVC\Domain\PostRssCollection			{function targetClass(){return "\MVC\Domain\PostRss";		}}
+class RssLinkCollection 		extends Collection implements \MVC\Domain\RssLinkCollection			{function targetClass(){return "\MVC\Domain\RssLink";		}}
 
 
 ?>

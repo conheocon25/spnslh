@@ -35,6 +35,8 @@ interface GuestCollection 				extends \Iterator {function add( Object $Guest);		
 interface PostCollection 				extends \Iterator {function add( Object $Post);			}
 interface PresentationCollection 		extends \Iterator {function add( Object $Presentation);	}
 interface SlideCollection 				extends \Iterator {function add( Object $Slide);		}
+interface RssLinkCollection				extends \Iterator {function add( Object $RssLink);		}
+interface PostRssCollection				extends \Iterator {function add( Object $PostRss);		}
 
 
 ?>
