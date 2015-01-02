@@ -113,8 +113,7 @@ RewriteRule ^report/info$ 									?cmd=ReportInfo [L]
 RewriteRule ^report/([0-9]+)$ 								?cmd=ReportDetail&IdTrack=$1 [L]
 
 RewriteRule ^report/([0-9]+)/([0-9]+)$ 						?cmd=ReportDaily&IdTrack=$1&IdTD=$2 [L]
-RewriteRule ^report/([0-9]+)/([0-9]+)/selling/cash$ 		?cmd=ReportDailySellingCash&IdTrack=$1&IdTD=$2 [L]
-RewriteRule ^report/([0-9]+)/([0-9]+)/selling/debt$ 		?cmd=ReportDailySellingDebt&IdTrack=$1&IdTD=$2 [L]
+RewriteRule ^report/([0-9]+)/([0-9]+)/selling$ 				?cmd=ReportDailySelling&IdTrack=$1&IdTD=$2 [L]
 RewriteRule ^report/([0-9]+)/([0-9]+)/paid$ 				?cmd=ReportDailyPaid&IdTrack=$1&IdTD=$2 [L]
 RewriteRule ^report/([0-9]+)/([0-9]+)/collect$ 				?cmd=ReportDailyCollect&IdTrack=$1&IdTD=$2 [L]
 

@@ -51,7 +51,7 @@ class PaidGeneral extends Object{
     
 	function setValue( $Value ) {$this->Value = $Value;$this->markDirty();}	
 	function getValue( ) {if (!isset($this->Value))return 0;return $this->Value;}
-	function getValuePrint( ){$num = number_format($this->Value, 0, ',', '.');return $num." đ";}
+	function getValuePrint( ){$num = number_format($this->Value, 0, ',', '.');return $num;}
 	
 	function setDate( $Date ) {$this->Date = $Date;$this->markDirty();}
 	function getDate( ) {return $this->Date;}

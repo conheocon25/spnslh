@@ -6,16 +6,7 @@
 	</head>
 	
 	<body data-menu-position="closed">
-		<div metal:use-macro="mAdmin.xhtml/Header"/>
-		<div class="menu">			
-			<div id="sidebar">
-				<ul style="display: block;">																				
-					<li><a tal:attributes="href Tracking/getURLCustomer"><i class="icon-book" />KHÁCH HÀNG</a></li>
-					<li><a tal:attributes="href Tracking/getURLSupplier"><i class="icon-book" />NHÀ CUNG CẤP</a></li>
-					<li><a tal:attributes="href Tracking/getURLStore"><i class="icon-book" />KHO HÀNG</a></li>
-				</ul>
-			</div>
-		</div>
+		<div metal:use-macro="mAdmin.xhtml/Header"/>		
 		<div id="content">
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>			
 			<div metal:use-macro="mAdmin.xhtml/LocationBar"/>
@@ -25,31 +16,24 @@
 						<div class="widget-box">
 							<div class="widget-content nopadding">								
 								<table tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()" class="table table-bordered table-striped table-hover">
-									<thead>
-										<tr>																					
-											<th rowspan="2"><div class="text-left">NGÀY</div></th>
-											<th colspan="2" width="90"><div class="text-center">BÁN HÀNG</div></th>
-											<th colspan="2" width="90"><div class="text-center">KHO HÀNG</div></th>
-											<th colspan="2" width="90"><div class="text-center">TIỀN</div></th>
-										</tr>
-										<tr>																																
-											<th width="90"><div class="text-right">C.NỢ</div></th>
-											<th width="90"><div class="text-right">T.MẶT</div></th>
-											<th width="90"><div class="text-right">NHẬP</div></th>
-											<th width="90"><div class="text-right">XUẤT</div></th>
-											<th width="90"><div class="text-right">K.CHI</div></th>
-											<th width="90"><div class="text-right">K.THU</div></th>											
+									<thead>										
+										<tr>
+											<th width="120"><div class="text-right">NGÀY</div></th>
+											<th width="120"><div class="text-right">SỐ DƯ</div></th>
+											<th width="120"><div class="text-right">QUỸ</div></th>
+											<th width="120"><div class="text-right">KHÁCH HÀNG</div></th>
+											<th width="120"><div class="text-right">NHÀ CUNG CẤP</div></th>
+											<th width="120"><div class="text-right">KHO HÀNG</div></th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr tal:repeat="TD Tracking/getDailyAll">											
+										<tr tal:repeat="TD Tracking/getDailyAll">
 											<td><div tal:attributes="alt TD/getURLReport" tal:content="TD/getDatePrint"></div></td>
-											<td align="right"><a tal:attributes="href TD/getURLReportSellingDebt"><span tal:content="TD/getSellingDebtPrint"/></a></td>
-											<td align="right"><a tal:attributes="href TD/getURLReportSellingCash"><span tal:content="TD/getSellingCashPrint"/></a></td>
-											<td align="right"><a tal:attributes="href TD/getURLReportImport"><span tal:content="TD/getImportPrint"/></a></td>
-											<td align="right"><a tal:attributes="href TD/getURLReportExport"><span tal:content="TD/getExportPrint"/></a></td>
-											<td align="right"><a tal:attributes="href TD/getURLReportPaid"><span tal:content="TD/getPaidPrint"/></a></td>
-											<td align="right"><a tal:attributes="href TD/getURLReportCollect"><span tal:content="TD/getCollectPrint"/></a></td>											
+											<td align="right"><a tal:attributes="href TD/getURLReportSelling"><span tal:content="TD/getSellingPrint"/></a></td>
+											<td align="right"><a tal:attributes="href TD/getURLReportSelling">Xem</a></td>
+											<td align="right"><a tal:attributes="href TD/getURLReportImport">Xem</a></td>
+											<td align="right"><a tal:attributes="href TD/getURLReportExport">Xem</a></td>
+											<td align="right"><a tal:attributes="href TD/getURLReportExport">Xem</a></td>
 										</tr>										
 									</tbody>
 								</table>								
