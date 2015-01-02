@@ -35,9 +35,8 @@
 		<command name="ReportDetail">		<view>ReportDetail</view>		</command>
 				
 		<command name="ReportDaily">		<view>ReportDaily</view>		</command>
-		<command name="ReportDailySellingCash">	<view>ReportDailySellingCash</view></command>
-		<command name="ReportDailySellingDebt">	<view>ReportDailySellingDebt</view>	</command>
-		
+		<command name="ReportDailySelling">	<view>ReportDailySelling</view></command>
+				
 		<command name="ReportDailyImport"><view>ReportDailyImport</view></command>		
 		<command name="ReportDailyExport"><view>ReportDailyExport</view></command>		
 		<command name="ReportDailyPaid"><view>ReportDailyPaid</view></command>

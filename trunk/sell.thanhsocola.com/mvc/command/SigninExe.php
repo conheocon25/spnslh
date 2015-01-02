@@ -45,7 +45,7 @@
 							$AD[1]
 						);
 						$mTracking->insert($Tracking);
-						//$Tracking->generateDaily();
+						$Tracking->generateDaily();
 					}
 					
 					return self::statuses('CMD_OK');

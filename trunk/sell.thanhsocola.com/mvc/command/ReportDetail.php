@@ -26,41 +26,12 @@
 			$TrackingAll 		= $mTracking->findAll();
 			$ConfigName 		= $mConfig->findByName("NAME");
 			
-			$TDAll 				= $Tracking->getDailyAll();
-						
-			$ValueSellingCash 	= 0;
-			$ValueSellingDebt 	= 0;
-			$ValueImport 		= 0;
-			$ValueExport 		= 0;
-			$ValueStore 		= 0;
-			$ValuePaid 			= 0;
-			$ValueCollect		= 0;
-			$ValueNew			= 0;
-			
-			while ($TDAll->valid()){
-				$TD = $TDAll->current();
-				$ValueSellingCash 	+= $TD->getSellingCash();
-				$ValueSellingDebt 	+= $TD->getSellingDebt();
-				$ValueImport 		+= $TD->getImport();
-				$ValueExport 		+= $TD->getExport();
-				$ValueStore 		+= $TD->getStore();
-				$ValuePaid 			+= $TD->getPaid();
-				$ValueCollect		+= $TD->getCollect();
-				$TDAll->next();		
+			$TDAll 				= $Tracking->getDailyAll();			
+			if ($TDAll->count()<=0){
+				$Tracking->generateDaily();
+				$TDAll = $Tracking->getDailyAll();
 			}
-			
-			$NValueSellingCash 	= new \MVC\Library\Number($ValueSellingCash);
-			$NValueSellingDebt 	= new \MVC\Library\Number($ValueSellingDebt);
-			$NValueImport 		= new \MVC\Library\Number($ValueImport);
-			$NValueExport 		= new \MVC\Library\Number($ValueExport);
-			$NValueStore 		= new \MVC\Library\Number($ValueStore);
-			$NValuePaid 		= new \MVC\Library\Number($ValuePaid);
-			$NValueCollect 		= new \MVC\Library\Number($ValueCollect);
-			
-			if ($TDAll->count()==0) $ValueNew = 0;
-			else $ValueNew = $TDAll->last()->getValueDebt();
-				
-			$NValueNew 		= new \MVC\Library\Number($ValueNew);			
+												
 			$Title = $Tracking->getName();
 			$Navigation = array(				
 				array("BÁO CÁO", "/report")
@@ -74,14 +45,6 @@
 			$request->setObject('TrackingAll'	, $TrackingAll);
 			$request->setObject('Tracking'		, $Tracking);
 			$request->setObject('ConfigName'	, $ConfigName);
-			
-			$request->setObject('ValueSellingCash'	, $NValueSellingCash);
-			$request->setObject('ValueSellingDebt'	, $NValueSellingDebt);
-			$request->setObject('ValueImport'		, $NValueImport);
-			$request->setObject('ValueStore'		, $NValueStore);
-			$request->setObject('ValuePaid'			, $NValuePaid);
-			$request->setObject('ValueCollect'		, $NValueCollect);
-			$request->setObject('ValueNew'			, $NValueNew);
 		}
 	}
 ?>

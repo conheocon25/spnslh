@@ -17,24 +17,24 @@
 						<div class="widget-box">
 							<div class="widget-title">
 								<span class="icon"><i class="icon-align-justify"></i></span>
-								<h5>CẬP NHẬT</h5>
+								<h5>CẬP NHẬT MẬT KHẨU</h5>
 							</div>
 							<div class="widget-content nopadding">
 								<form class="form-horizontal" tal:attributes="action '/change/pass/exe'" method="post">
 									<div class="control-group">
-										<label class="control-label">Mật khẩu</label>
+										<label class="control-label">Mật khẩu mới</label>
 										<div class="controls">
-											<input id="Pass" name="Pass" type="password" class="form-control input-sm"/>											
+											<input id="Pass" name="Pass" type="password" class="form-control input-sm"/>
 										</div>
 									</div>
 									<div class="control-group">
-										<label class="control-label">Gõ lại mật khẩu</label>
+										<label class="control-label">Gõ lại mật khẩu mới</label>
 										<div class="controls">
 											<input id="Pass1" name="Pass1" type="password" class="form-control input-sm"/>
 										</div>
 									</div>
 									<div class="form-actions">
-										<button class="btn btn-primary btn-sm" type="submit"><i class="icon-key"/>Thay đổi</button>
+										<button id="UpdateButton" class="btn btn-primary btn-sm" type="submit"><i class="icon-key"/>Thay đổi</button>
 									</div>
 								</form>
 							</div>
@@ -45,5 +45,32 @@
 		</div>
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>
 		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<script type="text/javascript">
+		/*<![CDATA[*/
+			$("#UpdateButton").hide();			
+			$("#Pass").keyup(function(){				
+				var s1 = $("#Pass").val();
+				var s2 = $("#Pass1").val();
+				if (s1==s2){
+					if ( s1 != "")
+						$("#UpdateButton").show();
+				}else{
+					$("#UpdateButton").hide();
+				}
+			});
+			
+			$("#Pass1").keyup(function(){				
+				var s1 = $("#Pass").val();
+				var s2 = $("#Pass1").val();
+				if (s1==s2){
+					if ( s2 != "")
+						$("#UpdateButton").show();
+				}else{
+					$("#UpdateButton").hide();
+				}
+			});
+			
+		/*]]>*/
+		</script>
 	</body>
 </html>
