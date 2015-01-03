@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<span metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<span metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+	</head>
+	<body>
+		<div metal:use-macro="mAdmin.xhtml/Header"/>
+		<div metal:use-macro="mAdmin.xhtml/UserNavigation"/>		
+		<div id="content">
+			<div id="content-header">
+				<h1 tal:content="Title"/>
+			</div>
+			<div metal:use-macro="mAdmin.xhtml/Breadcrumb"/>
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-12">
+						<div class="widget-box">
+							<div class="widget-content nopadding">
+								<form class="form-horizontal" tal:attributes="action News/getURLUpdExe" method="post">						
+									<div class="control-group">
+										<label class="control-label" for="Title">Tiêu đề</label>
+										<div class="controls">
+											<input type="text" id="Title" name="Title" placeholder="Name" tal:attributes="value News/getTitle" />
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label" for="Type">Loại tin</label>
+										<div class="controls">									
+											 <input type="checkbox" id="Type" name="Type" />
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label" for="Date">Thời gian</label>
+										<div class="controls">
+											<input type="text" id="Date" name="Date" placeholder="Thời gian" tal:attributes="value News/getDate"  class="form-control input-small" data-date-format="yyyy-mm-dd hh:ii"/>
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label" for="Author">Tác giả</label>
+										<div class="controls">
+											<input type="text" id="Author" name="Author" placeholder="Tác giả" tal:attributes="value News/getAuthor" />
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label" for="Author">Nội dung</label>
+										<div class="controls">
+											<textarea id="Content" class="ckeditor" name="Content" placeholder="Nội dung" tal:content="News/getContent" />
+										</div>
+									</div>
+									<div class="form-actions">
+										<button type="submit" class="btn btn-success" value="submit-value">Lưu</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/SignoutDialog"/>
+		<span metal:use-macro="mAdmin.xhtml/IncludeJS"/>		
+		<script type="text/javascript" language="javascript" src="/mvc/templates/theme/cms/ckeditor/ckeditor.js"/>
+		<script type="text/javascript">
+		/*<![CDATA[*/
+			/* ---------------------------------------------------------------------------- */
+			/* SET TODAY FOR DATEPICKER														*/
+			/* ---------------------------------------------------------------------------- */
+			//THIẾT LẬP NGÀY GIỜ GIAO DỊCH
+			$('#Date').datetimepicker({
+				language:  'vi',
+				weekStart: 1,
+				todayBtn:  1,
+				autoclose: 1,
+				todayHighlight: 1,
+				startView: 2,
+				forceParse: 0,
+				showMeridian: 1
+			});			
+		/*]]>*/
+		</script>
+	</body>
+</html>

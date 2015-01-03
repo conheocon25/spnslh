@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<span metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<span metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+	</head>
+	<body>
+		<div metal:use-macro="mAdmin.xhtml/Header"/>
+		<div metal:use-macro="mAdmin.xhtml/UserNavigation"/>		
+		<div id="content">
+			<div id="content-header">
+				<h1 tal:content="Title"/>
+			</div>
+			<div metal:use-macro="mAdmin.xhtml/Breadcrumb"/>
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-12">
+						<div class="widget-box">
+							<div class="widget-content nopadding">
+								<div class="form-horizontal" style="padding-right:0px">						
+									<div class="control-group">
+										<b class="control-label" for="Title">Tiêu đề</b>
+										<div class="controls" tal:content="NewsRss/getTitle" />											
+									</div>									
+									<div class="control-group">
+										<b class="control-label" for="Date">Thời gian</b>
+										<div class="controls" tal:content="NewsRss/getDate" />											
+									</div>									
+									<div class="control-group">
+										<b class="control-label" for="Author">Nội dung</b>
+										<div class="controls" tal:content="structure NewsRss/getContent" />										
+									</div>									
+									<div class="control-group">
+										<b class="control-label" for="Author">Tác giả</b>
+										<div class="controls" tal:content="NewsRss/getAuthor" />											
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/SignoutDialog"/>
+		<span metal:use-macro="mAdmin.xhtml/IncludeJS"/>		
+		<script type="text/javascript" language="javascript" src="/mvc/templates/theme/cms/ckeditor/ckeditor.js"/>
+		<script type="text/javascript">
+		/*<![CDATA[*/
+			/* ---------------------------------------------------------------------------- */
+			/* SET TODAY FOR DATEPICKER														*/
+			/* ---------------------------------------------------------------------------- */
+			//THIẾT LẬP NGÀY GIỜ GIAO DỊCH
+			$('#Date').datetimepicker({
+				language:  'vi',
+				weekStart: 1,
+				todayBtn:  1,
+				autoclose: 1,
+				todayHighlight: 1,
+				startView: 2,
+				forceParse: 0,
+				showMeridian: 1
+			});			
+		/*]]>*/
+		</script>
+	</body>
+</html>
