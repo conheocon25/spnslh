@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+	</head>
+	
+	<body>
+		<div metal:use-macro="mAdmin.xhtml/Header"/>
+		<div metal:use-macro="mAdmin.xhtml/StyleTools"/>
+		<div metal:use-macro="mAdmin.xhtml/MenuSetting"/>
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
+			<div class="row">
+				<div class="col-12">
+					<a href="#DialogIns" data-toggle="modal" class="btn btn-primary btn-ins">
+						<i class="glyphicons-plus"/> Thêm mới
+					</a>
+					<a href="#DialogDelSelected" data-toggle="modal" class="btn btn-primary btn-ins">
+						<i class="glyphicons-remove_2"/> Xóa chọn
+					</a>
+					<div class="widget-box">
+						<div class="widget-content nopadding">
+							<table class="table table-bordered table-striped table-hover with-check">
+								<thead>
+									<tr>
+										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
+										<th class="left">TÊN</th>										
+										<th width="40"><i class="glyphicons-edit"/></th>
+										<th width="40"><i class="glyphicons-bin"/></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr tal:repeat="User UserAll1">
+										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id User/getId"/></td>
+										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id User/getId" tal:content="User/getName"/></td>
+										<td class="center">
+											<a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id User/getId">
+												<i class="glyphicon glyphicon-pencil"/>
+											</a>
+										</td>
+										<td class="center">
+											<a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id User/getId">
+												<i class="glyphicon glyphicon-remove"/>
+											</a>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+					<!-- INSERT DIALOG  -->
+					<div id="DialogIns" class="modal fade">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h3><i class="glyphicons-user modal-icon"/>THÊM MỚI NGƯỜI DÙNG</h3>
+								</div>
+								<form id="FormUserInsert" action="#" class="form-horizontal" novalidate="novalidate">
+									<div class="modal-body">
+										<div class="form-group">
+											<label class="control-label">Tên</label>
+											<div class="controls">
+												<input id="Name1" name="Name1" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">Email</label>
+											<div class="controls">
+												<input id="Email1" name="Email1" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">Mật khẩu</label>
+											<div class="controls">
+												<input id="Pass1" name="Pass1" type="password" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">Giới tính</label>
+											<div class="controls">
+												<select name="Gender1" id="Gender1" style="width:80%;">
+													<option value="0" >Nam</option>
+													<option value="1" >Nữ</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">Quyền</label>
+											<div class="controls">
+												<select name="Type1" id="Type1" style="width:80%;">
+													<option value="1" >Bán hàng</option>
+													<option value="2" >Quản lý</option>
+													<option value="3" >Quan sát</option>
+													<option value="4" >Quản trị</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">Mã vạch</label>
+											<div class="controls">
+												<input id="Code1" name="Code1" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button id="URLInsButton" class="btn btn-primary btn-small" type="submit"><i class="glyphicons-download_alt"/> Lưu</button>
+										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<!-- END INSERT DIALOG  -->
+					
+					<!-- UPDATE DIALOG  -->
+					<div id="DialogEdit" class="modal fade">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h3><i class="glyphicons-user modal-icon"/>CẬP NHẬT NGƯỜI DÙNG</h3>
+								</div>
+								<form id="FormUserUpdate" action="#" class="form-horizontal" novalidate="novalidate">
+									<div class="modal-body">
+										<div class="form-group">
+											<label class="control-label">Tên</label>
+											<div class="controls">
+												<input id="Name2" name="Name2" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">Email</label>
+											<div class="controls">
+												<input id="Email2" name="Email2" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">Mật khẩu</label>
+											<div class="controls">
+												<input id="Pass2" name="Pass2" type="password" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">Giới tính</label>
+											<div class="controls">
+												<select name="Gender2" id="Gender2" style="width:80%;">
+													<option value="0" >Nam</option>
+													<option value="1" >Nữ</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">Quyền</label>
+											<div class="controls">
+												<select name="Type2" id="Type2" style="width:80%;">
+													<option value="1" >Bán hàng</option>
+													<option value="2" >Quản lý</option>
+													<option value="3" >Quan sát</option>
+													<option value="4" >Quản trị</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">Mã vạch</label>
+											<div class="controls">
+												<input id="Code2" name="Code2" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+									</div>	
+									<div class="modal-footer">
+										<button id="URLUpdButton" class="btn btn-primary btn-small" type="submit"><i class="glyphicons-download_alt"/> Lưu</button>
+										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<!-- END UPDATE DIALOG  -->
+					<div metal:use-macro="mDialog.xhtml/DialogDel"/>
+					<div metal:use-macro="mDialog.xhtml/DialogDelSelected"/>
+				</div>
+			</div>
+		</div>
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<script type="text/javascript">
+		/*<![CDATA[*/
+			$('#URLDelSelectedButton').click(function(){
+				var count = 0;
+				var Data = [];
+				var URL = "/object/del/User/0";
+				
+				$(".CheckedDel").each(function( i, obj){
+					if ( $(this).is(':checked')==true ){
+						count += 1;
+						Data[count] = $(this).attr('data-id');
+					}
+				});
+				
+				$.ajax({
+					type: "POST",
+					data: {ListId:Data},
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
+			});
+			
+			//-----------------------------------------------------------------------------------
+			//Delete 1 USER			
+			//-----------------------------------------------------------------------------------
+			$('.remove-item').click(function(){
+				$('#URLDelButton').attr('alt', $(this).attr('data-id'));
+			});
+			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
+			$('#URLDelButton').click(function(){			
+				var URL = "/object/del/User/" + $(this).attr('alt');
+				$.ajax({
+					type: "POST",					
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
+			});
+		
+			//-----------------------------------------------------------------------------------
+			//Insert 1 USER
+			$("#FormUserInsert").validate({
+				rules:{
+					Name1:{
+						minlength: 2,
+						required:true
+					},
+					Email1:{
+						email: true,
+						required:true
+					}
+				},
+				errorClass: "help-inline",
+				errorElement: "span",
+				highlight:function(element, errorClass, validClass) {
+					$(element).parents('.form-group').addClass('has-error');
+				},
+				unhighlight: function(element, errorClass, validClass) {
+					$(element).parents('.form-group').removeClass('has-error');
+					$(element).parents('.form-group').addClass('has-success');
+				},
+				submitHandler: function (form) {					
+					var Data = [];
+					Data[0] = 'null';
+					Data[1] = $('#Name1').val();
+					Data[2] = $('#Email1').val();				
+					Data[3] = $('#Pass1').val();
+					Data[4] = $('#Gender1').val();
+					Data[5] = $('#Note1').val();
+					Data[6] = 'null';
+					Data[7] = 'null';				
+					Data[8] = 'null';
+					Data[9] = $('#Type1').val();
+					Data[10] = $('#Code1').val();
+								
+					var URL = "/object/ins/User";
+					$.ajax({
+						type: "POST",
+						data: {Data:Data},
+						url: URL,
+						success: function(msg){
+							location.reload();
+						}
+					});
+					return false;
+				}
+			});
+			$("#DialogIns").on('show.bs.modal', function(event){
+				window.setTimeout(
+					function(){$(event.currentTarget).find('input#Name1').first().focus()},
+					0500
+				);
+			});
+			
+			//-----------------------------------------------------------------------------------
+			//Load 1 USER
+			//-----------------------------------------------------------------------------------
+			$('.update-item').click(function(){
+				//Load dữ liệu JSON về
+				var url = "/object/load/User/" + $(this).attr('data-id');
+				
+				//Load dữ liệu JSON lên FORM
+				$.getJSON(url, function(data){
+					$('#URLUpdButton').attr('alt', data.Id);
+					$('#Name2').attr('value', data.Name);
+					$('#Email2').attr('value', data.Email);
+					$('#Pass2').attr('value', data.Pass);
+					$('#Gender2').select2('val',data.Gender);
+					$('#Note2').attr('value', data.Note);
+					$('#Type2').select2('val', data.Type);
+					$('#Code2').attr('value', data.Code);
+				});
+			});
+			
+			//-----------------------------------------------------------------------------------
+			//Update 1 USER
+			//-----------------------------------------------------------------------------------			
+			$("#FormUserUpdate").validate({
+				rules:{
+					Name2:{
+						minlength: 2,
+						required:true
+					},
+					Email2:{
+						email: true,
+						required:true
+					}
+				},
+				errorClass: "help-inline",
+				errorElement: "span",
+				highlight:function(element, errorClass, validClass) {
+					$(element).parents('.form-group').addClass('has-error');
+				},
+				unhighlight: function(element, errorClass, validClass) {
+					$(element).parents('.form-group').removeClass('has-error');
+					$(element).parents('.form-group').addClass('has-success');
+				},
+				submitHandler: function (form) {					
+					var Data = [];								
+					Data[0] = $('#URLUpdButton').attr('alt');
+					Data[1] = $('#Name2').val();
+					Data[2] = $('#Email2').val();				
+					Data[3] = $('#Pass2').val();
+					Data[4] = $('#Gender2').val();
+					Data[5] = $('#Note2').val();
+					Data[6] = 'null';
+					Data[7] = 'null';				
+					Data[8] = 'null';
+					Data[9] = $('#Type2').val();
+					Data[10] = $('#Code2').val();
+									
+					var URL = "/object/upd/User";
+					$.ajax({
+						type: "POST",
+						data: {Data:Data},
+						url: URL,
+						success: function(msg){
+							location.reload();
+						}
+					});
+					return false;
+				}
+			});
+			$("#DialogEdit").on('show.bs.modal', function(event){
+				window.setTimeout(
+					function(){$(event.currentTarget).find('input#Name2').first().focus()},
+					0500
+				);
+			});
+			
+		/*]]>*/
+		</script>
+	</body>
+</html>
