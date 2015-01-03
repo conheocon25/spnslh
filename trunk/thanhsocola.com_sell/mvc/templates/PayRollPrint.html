@@ -1,0 +1,88 @@
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<style>
+	@media print{
+		.header, .hide { visibility: hidden };
+		body { font-size: 9px };
+		margin: 0mm 0mm 0mm 0mm;
+	}	 
+	@media screen {
+		body { font-size: 9px }
+	}
+	@media screen, print {
+		body { line-height: 1.0 }
+	}
+	@page  
+	{ 
+		size: auto;   /* auto is the initial value */ 
+		/* this affects the margin in the printer settings */ 
+		margin: 0mm 0mm 0mm 0mm;
+	}
+	</style>
+</head>
+<body onload="window.print()">
+<table width="100%" cellpadding="1" cellspacing="0" border="0">
+	<tr>
+		<td width="100%" align="center">
+			<B tal:content="ConfigName/getValue"/>
+		</td>
+	</tr>	
+	<tr>
+		<td width="100%" align="center">
+			<b>CHI TIẾT LƯƠNG <span tal:content="php:mb_strtoupper(PayRoll->getEmployee()->getName(), 'UTF8')"/></b>
+		</td>
+	</tr>
+	<tr>
+		<td width="100%" align="center">
+			<B tal:content="Track/getName" />
+		</td>
+	</tr>	
+</table>
+<br/>
+<font size="9pt">
+	<table style="padding-bottom:0px;" width="100%" cellpadding="2" cellspacing="0" border="0">		
+		<tbody>
+			<tr>
+				<td width="60%" align='left'>1. LƯƠNG CB</td>
+				<td width="40%" align='right' tal:content="PayRoll/getBaseValuePrint"/>
+			</tr>						
+			<tr>
+				<td width="60%" align='left'>2. THƯỞNG</td>
+				<td width="40%" align='right' tal:content="PayRoll/getExtraValuePrint"/>
+			</tr>
+			<tr>
+				<td width="60%" align='left'>3. PHẠT</td>
+				<td width="40%" align='right' tal:content="PayRoll/getPunishValuePrint"/>
+			</tr>			
+			<tr>
+				<td width="60%" align='left'>4. NGHỈ (<span tal:content="PayRoll/getAbsentPrint"/>)</td>
+				<td width="40%" align='right' tal:content="PayRoll/getAbsentValuePrint"/>
+			</tr>
+			<tr>
+				<td width="100%" align='left'><span tal:content="PayRoll/getNote"/></td>
+			</tr>
+			<tr>
+				<td width="60%" align='left'>5. ỨNG</td>
+				<td width="40%" align='right' />
+			</tr>
+			<tr tal:repeat="Paid PaidAll">
+				<td width="60%" align='left'>
+					<span tal:content="Paid/getDatePrint"/> - 
+					<span tal:content="Paid/getNote"/>
+				</td>				
+				<td width="40%" align='right' tal:content="Paid/getValuePrint"/>
+			</tr>
+			<tr>
+				<td width="60%" align="right">---------------------------</td>
+				<td width="40%" align='left'>----------</td>
+			</tr>
+			<tr>
+				<td width="60%" align="left">THỰC LÃNH</td>
+				<td width="40%" align='right'>
+					<B tal:content="PayRoll/getValuePrint" />
+				</td>
+			</tr>
+		</tbody>		
+	</table>	
+</font>
+</body>
