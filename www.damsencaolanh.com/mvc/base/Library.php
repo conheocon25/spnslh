@@ -7,5 +7,5 @@
 	require_once("mvc/library/Encrypted.php");
 	require_once("mvc/library/Mail.php");	
 	require_once("mvc/library/Captcha.php");	
-	equire_once("mvc/library/ReadRss.php");
+	require_once("mvc/library/ReadRss.php");
 ?>
