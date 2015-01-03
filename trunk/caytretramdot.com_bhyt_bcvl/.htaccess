@@ -47,65 +47,6 @@ RewriteRule ^selling/search/customer$ 							?cmd=SellingSearchCustomer [L]
 RewriteRule ^selling/([0-9]+)/([0-9]+)/([0-9]+)/checkout/exe$	?cmd=SellingTableCheckoutExe&IdDomain=$1&IdTable=$2&IdSession=$3 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
-# MONEY
-#---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^money$ 												?cmd=Money [L]
-
-RewriteRule ^money/collect/general$ 								?cmd=MoneyCollectGeneral [L]
-RewriteRule ^money/collect/general/([0-9]+)$ 						?cmd=MoneyCollectGeneral&IdTerm=$1 [L]
-RewriteRule ^money/collect/general/([0-9]+)/page/([0-9]+)$ 			?cmd=MoneyCollectGeneral&IdTerm=$1&Page=$2 [L]
-
-RewriteRule ^money/collect/customer$ 								?cmd=MoneyCollectCustomer [L]
-RewriteRule ^money/collect/customer/([0-9]+)$ 						?cmd=MoneyCollectCustomer&IdCustomer=$1 [L]
-RewriteRule ^money/collect/customer/([0-9]+)/page/([0-9]+)$ 		?cmd=MoneyCollectCustomer&IdCustomer=$1&Page=$2 [L]
-
-RewriteRule ^money/paid/general$ 									?cmd=MoneyPaidGeneral [L]
-RewriteRule ^money/paid/general/([0-9]+)$ 							?cmd=MoneyPaidGeneral&IdTerm=$1 [L]
-RewriteRule ^money/paid/general/([0-9]+)/page/([0-9]+)$ 			?cmd=MoneyPaidGeneral&IdTerm=$1&Page=$2 [L]
-
-RewriteRule ^money/paid/employee$ 									?cmd=MoneyPaidEmployee [L]
-RewriteRule ^money/paid/employee/([0-9]+)$ 							?cmd=MoneyPaidEmployee&IdEmployee=$1 [L]
-RewriteRule ^money/paid/employee/([0-9]+)/page/([0-9]+)$ 			?cmd=MoneyPaidEmployee&IdEmployee=$1&Page=$2 [L]
-
-RewriteRule ^money/paid/supplier$ 									?cmd=MoneyPaidSupplier [L]
-RewriteRule ^money/paid/supplier/([0-9]+)$ 							?cmd=MoneyPaidSupplier&IdSupplier=$1 [L]
-RewriteRule ^money/paid/supplier/([0-9]+)/page/([0-9]+)$ 			?cmd=MoneyPaidSupplier&IdSupplier=$1&Page=$2 [L]
-
-#---------------------------------------------------------------------------------------------------------------------------
-# PAYROLL
-#---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^payroll$ 												?cmd=PayRoll [L]
-RewriteRule ^payroll/([0-9]+)$ 										?cmd=PayRoll&IdTrack=$1 [L]
-RewriteRule ^payroll/([0-9]+)/reset$ 								?cmd=PayRollReset&IdTrack=$1 [L]
-RewriteRule ^payroll/([0-9]+)/([0-9]+)/print$ 						?cmd=PayRollPrint&IdTrack=$1&IdPayRoll=$2 [L]
-
-
-#---------------------------------------------------------------------------------------------------------------------------
-# IMPORT
-#---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^import$ 								?cmd=Import [L]
-RewriteRule ^import/([0-9]+)$ 						?cmd=ImportSupplier&IdSupplier=$1 [L]
-RewriteRule ^import/([0-9]+)$ 						?cmd=ImportSupplier&IdSupplier=$1 [L]
-RewriteRule ^import/([0-9]+)/page/([0-9]+)$ 		?cmd=ImportSupplier&IdSupplier=$1&Page=$2 [L]
-
-RewriteRule ^import/([0-9]+)/([0-9]+)$				?cmd=ImportSupplierOrder&IdSupplier=$1&IdOrder=$2 [L]
-RewriteRule ^import/([0-9]+)/([0-9]+)/print$		?cmd=ImportSupplierOrderPrint&IdSupplier=$1&IdOrder=$2 [L]
-RewriteRule ^import/([0-9]+)/([0-9]+)/([0-9]+)/([0-9_.]+)/([0-9]+)$ 	?cmd=ImportSupplierOrderExe&IdSupplier=$1&IdOrder=$2&IdResource=$3&Count=$4&Price=$5 [L]
-
-#---------------------------------------------------------------------------------------------------------------------------
-# EXPORT
-#---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^export$ 								?cmd=Export [L]
-RewriteRule ^export/([0-9]+)$ 						?cmd=ExportSupplier&IdSupplier=$1 [L]
-RewriteRule ^export/([0-9]+)$ 						?cmd=ExportSupplier&IdSupplier=$1 [L]
-RewriteRule ^export/([0-9]+)/page/([0-9]+)$ 		?cmd=ExportSupplier&IdSupplier=$1&Page=$2 [L]
-
-RewriteRule ^export/([0-9]+)/([0-9]+)$				?cmd=ExportSupplierOrder&IdSupplier=$1&IdOrder=$2 [L]
-RewriteRule ^export/([0-9]+)/([0-9]+)/print$		?cmd=ExportSupplierOrderPrint&IdSupplier=$1&IdOrder=$2 [L]
-RewriteRule ^export/([0-9]+)/([0-9]+)/([0-9]+)/([0-9_.]+)/([0-9]+)$ 	?cmd=ExportSupplierOrderExe&IdSupplier=$1&IdOrder=$2&IdResource=$3&Count=$4&Price=$5 [L]
-
-
-#---------------------------------------------------------------------------------------------------------------------------
 # REPORT
 #---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^report$ 										?cmd=Report [L]

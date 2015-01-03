@@ -41,47 +41,7 @@
 		<command name="ReportDailyExport"><view>ReportDailyExport</view></command>		
 		<command name="ReportDailyPaid"><view>ReportDailyPaid</view></command>
 		<command name="ReportDailyCollect">	<view>ReportDailyCollect</view>	</command>
-		
-		<command name="ReportDetailStore"><view>ReportDetailStore</view></command>
-		
-		<command name="ReportDetailCustomer">	<view>ReportDetailCustomer</view>	</command>
-		<command name="ReportDetailCustomerDetail">	<view>ReportDetailCustomerDetail</view>	</command>
-		
-		<command name="ReportDetailSupplier">	<view>ReportDetailSupplier</view>	</command>
-		<command name="ReportDetailSupplierDetail"><view>ReportDetailSupplierDetail</view></command>
-												
-		<!-- ============================================================================== -->
-		<!-- SELLING		 																-->
-		<!-- ============================================================================== -->		
-		<command name="Selling">					<view>Selling</view></command>
-		
-		<command name="SellingSearchCourse">		<view>SellingSearchCourse</view></command>		
-		<command name="SellingSearchCustomer">		<view>SellingSearchCustomer</view></command>
-		
-		<command name="SellingSessionInsert">		<view>SellingSessionInsert</view></command>
-		<command name="SellingSessionLoad">			<view>SellingSessionLoad</view></command>
-		<command name="SellingSessionPrint">		<view>SellingSessionPrint</view></command>
-		
-		<command name="SellingCustomerLoad">		<view>SellingCustomerLoad</view></command>
-		<command name="SellingTableCallExe">		<view>SellingTableCallExe</view></command>
-												
-		<!-- ============================================================================== -->
-		<!-- PAYROLL			 															-->
-		<!-- ============================================================================== -->		
-		<command name="PayRoll"><view>PayRoll</view></command>
-		<command name="PayRollReset"><view>PayRollReset</view></command>
-		<command name="PayRollPrint"><view>PayRollPrint</view></command>		
-		
-		<!-- ============================================================================== -->
-		<!-- MONEY		 																	-->
-		<!-- ============================================================================== -->
-		<command name="Money"><view>Money</view></command>		
-		<command name="MoneyCollectGeneral"><view>MoneyCollectGeneral</view></command>
-		<command name="MoneyCollectCustomer"><view>MoneyCollectCustomer</view></command>
-		<command name="MoneyPaidGeneral"><view>MoneyPaidGeneral</view></command>
-		<command name="MoneyPaidEmployee"><view>MoneyPaidEmployee</view></command>
-		<command name="MoneyPaidSupplier"><view>MoneyPaidSupplier</view></command>
-							
+											
 		<!-- ============================================================================== -->
 		<!-- SETTING	 															-->
 		<!-- ============================================================================== -->
@@ -100,22 +60,6 @@
 		<command name="SettingTermPaid"><view>SettingTermPaid</view></command>
 		<command name="SettingTermCollect"><view>SettingTermCollect</view></command>
 		<command name="SettingSupplierResource"><view>SettingSupplierResource</view></command>
-													
-		<!-- ============================================================================== -->
-		<!-- IMPORT				 															-->
-		<!-- ============================================================================== -->
-		<command name="Import"><view>Import</view></command>
-		<command name="ImportSupplier"><view>ImportSupplier</view></command>
-		<command name="ImportSupplierOrder"><view>ImportSupplierOrder</view></command>
-		<command name="ImportSupplierOrderPrint"><view>ImportSupplierOrderPrint</view></command>
-		
-		<!-- ============================================================================== -->
-		<!-- EXPORT				 															-->
-		<!-- ============================================================================== -->
-		<command name="Export"><view>Export</view></command>
-		<command name="ExportSupplier"><view>ExportSupplier</view></command>
-		<command name="ExportSupplierOrder"><view>ExportSupplierOrder</view></command>
-		<command name="ExportSupplierOrderPrint"><view>ExportSupplierOrderPrint</view></command>
-				
+						
 	</control>
 </options>

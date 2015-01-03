@@ -23,7 +23,7 @@
 			//-------------------------------------------------------------						
 			$DomainAll = $mDomain->findAll();			
 						
-			$Title = "KHU VỰC";
+			$Title = "KHỐI";
 			$Navigation = array(				
 				array("THIẾT LẬP", "/setting")
 			);

@@ -1,13 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
+	<head>		
 		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
-		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/icheck/flat/blue.css"/>		
-		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/bootstrap.min.css"/>
-		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/bootstrap-glyphicons.css"/>
-		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/glyphicons-regular.css"/>
-		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/unicorn.main.css"/>		
-		<link rel="stylesheet" tal:attributes="href php:'/mvc/templates/theme/cms/css/unicorn.' . @\MVC\Base\SessionRegistry::instance()->getCurrentTheme() . '.css'" class="skin-color"/>		
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>	
 	</head>
 	
 	<body data-menu-position="closed">
@@ -28,42 +23,14 @@
 											<th><div class="text-left">THIẾT LẬP</div></th>
 										</tr>
 									</thead>
-									<tbody>
-										<tr>
-											<td align="center"><a href="/setting/customer"><i class="glyphicons-cogwheel"/></a></td>
-											<td><a tal:attributes="href '/setting/customer'" >KHÁCH HÀNG</a></td>
-										</tr>
-										<tr>
-											<td align="center"><a href="/setting/category"><i class="glyphicons-cogwheel"/></a></td>
-											<td><a tal:attributes="href '/setting/category'" >DANH MỤC MÓN</a></td>
-										</tr>
-										<tr>
-											<td align="center"><a href="/setting/supplier"><i class="glyphicons-cogwheel"/></a></td>
-											<td><a tal:attributes="href '/setting/supplier'" >NHÀ CUNG CẤP</a></td>
-										</tr>
+									<tbody>										
 										<tr>
 											<td align="center"><a href="/setting/domain"><i class="glyphicons-cogwheel"/></a></td>
-											<td><a tal:attributes="href '/setting/domain'" >KHU VỰC</a></td>
+											<td><a tal:attributes="href '/setting/domain'" >KHỐI</a></td>
 										</tr>
 										<tr>
 											<td align="center"><a href="/setting/user"><i class="glyphicons-cogwheel"/></a></td>
 											<td><a tal:attributes="href '/setting/user'" >NGƯỜI DÙNG</a></td>
-										</tr>									
-										<tr>
-											<td align="center"><a href="/setting/unit"><i class="glyphicons-cogwheel"/></a></td>
-											<td><a tal:attributes="href '/setting/unit'" >ĐƠN VỊ TÍNH</a></td>
-										</tr>
-										<tr>
-											<td align="center"><a href="/setting/employee"><i class="glyphicons-cogwheel"/></a></td>
-											<td><a tal:attributes="href '/setting/employee'" >NHÂN VIÊN</a></td>
-										</tr>
-										<tr>
-											<td align="center"><a href="/setting/termpaid"><i class="glyphicons-cogwheel"/></a></td>
-											<td><a tal:attributes="href '/setting/termpaid'" >DANH MỤC THU</a></td>
-										</tr>
-										<tr>
-											<td align="center"><a href="/setting/termcollect"><i class="glyphicons-cogwheel"/></a></td>
-											<td><a tal:attributes="href '/setting/termcollect'" >DANH MỤC CHI</a></td>
 										</tr>
 										<tr>
 											<td align="center"><a href="/setting/config"><i class="glyphicons-cogwheel"/></a></td>
@@ -82,25 +49,17 @@
 									</thead>
 									<tbody>
 										<tr>
-											<td align="center"><a href="/setting/customer"><i class="glyphicons-cogwheel"/></a></td>
-											<td><a tal:attributes="href '/setting/customer'" >KHÁCH HÀNG</a></td>
-										</tr>
-										<tr>
-											<td align="center"><a href="/setting/category"><i class="glyphicons-cogwheel"/></a></td>
-											<td><a tal:attributes="href '/setting/category'" >DANH MỤC MÓN</a></td>
-										</tr>
-										<tr>
-											<td align="center"><a href="/setting/supplier"><i class="glyphicons-cogwheel"/></a></td>
-											<td><a tal:attributes="href '/setting/supplier'" >NHÀ CUNG CẤP</a></td>
-										</tr>
-										<tr>
 											<td align="center"><a href="/setting/domain"><i class="glyphicons-cogwheel"/></a></td>
-											<td><a tal:attributes="href '/setting/domain'" >KHU VỰC</a></td>
-										</tr>										
+											<td><a tal:attributes="href '/setting/domain'" >KHỐI</a></td>
+										</tr>
 										<tr>
-											<td align="center"><a href="/setting/unit"><i class="glyphicons-cogwheel"/></a></td>
-											<td><a tal:attributes="href '/setting/unit'" >ĐƠN VỊ TÍNH</a></td>
-										</tr>										
+											<td align="center"><a href="/setting/user"><i class="glyphicons-cogwheel"/></a></td>
+											<td><a tal:attributes="href '/setting/user'" >NGƯỜI DÙNG</a></td>
+										</tr>
+										<tr>
+											<td align="center"><a href="/setting/config"><i class="glyphicons-cogwheel"/></a></td>
+											<td><a tal:attributes="href '/setting/config'" >CẤU HÌNH</a></td>
+										</tr>
 									</tbody>
 								</table>
 							</div>
@@ -110,6 +69,6 @@
 			</div>
 		</div>
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>		
-		<script src="/mvc/templates/theme/cms/js/jquery.min.js" />
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
 	</body>
 </html>
