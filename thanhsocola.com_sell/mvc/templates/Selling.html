@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/icheck/flat/blue.css"/>
+		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/select2.css"/>
+		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/bootstrap.min.css"/>
+		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/bootstrap-glyphicons.css"/>
+		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/glyphicons-regular.css"/>
+		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/unicorn.main.css"/>		
+		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/custom.css"/>
+		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/grid-menu.css"/>		
+		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/gritter.css"/>
+		<link rel="stylesheet" tal:attributes="href php:'/mvc/templates/theme/cms/css/unicorn.' . @\MVC\Base\SessionRegistry::instance()->getCurrentTheme() . '.css'" class="skin-color"/>
+	</head>
+	<body>
+		<div metal:use-macro="mAdmin.xhtml/Header"/>
+		<div id="sidebar">
+			<div style="padding:5px;">				
+				<input id="SearchCustomer" type="text" placeholder="Nhập tìm khách hàng" style="width:100%; padding:5px;"/>
+			</div>
+			<div id="LoadCustomer"/>
+		</div>
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+			<div metal:use-macro="mAdmin.xhtml/LocationBar"/>
+			<div class="row">
+				<div class="col-3"><div id="SessionAll"/></div>
+				<div class="col-5"><div id="SessionView"/></div>
+				<div class="col-4">
+					<div class="widget-box">
+						<div class="controls">
+							<input id="SearchName" type="text" placeholder="Nhập tìm sản phẩm ..." style="width:75%;"/>
+							<div class="btn RemoveCourseSearch"><i class="glyphicons-circle_remove" /></div>
+						</div>
+					</div>
+					<div id="CourseF"/>					
+				</div>
+			</div>			
+		</div>
+		<!-- END INSERT DIALOG  -->
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>		
+		<script src="/mvc/templates/theme/cms/js/jquery.min.js"></script>
+		<script src="/mvc/templates/theme/cms/js/jquery-ui.custom.js"></script>
+		<script src="/mvc/templates/theme/cms/js/bootstrap.min.js"></script>
+		<script src="/mvc/templates/theme/cms/js/unicorn.js"></script>
+		<script src="/mvc/templates/theme/cms/js/jquery.jpanelmenu.min.js"></script>
+		<script src="/mvc/templates/theme/cms/js/jquery.icheck.min.js"></script>
+		<script src="/mvc/templates/theme/cms/js/select2.min.js"></script>		
+        <script src="/mvc/templates/theme/cms/js/jquery.masonry.min.js"></script>
+		<script src="/mvc/templates/theme/cms/js/jquery.validate.js"/>
+						
+        <script>						
+			//NẠP DANH SÁCH GIAO DỊCH VỚI KHÁCH HÀNG
+			$('.Customer').click(function(){				
+				var IdCustomer = $(this).attr('alt');				
+				$("#SessionAll").load("/selling/load/customer/"+IdCustomer);
+				$(this).toggleClass('active').siblings().removeClass('active');
+				$("#SearchName").focus();
+			});
+			$('.Customer:first').click();
+			
+			//---------------------------------------------------------------------------
+			//Xử lí search tên			
+			$('#SearchName').keyup(function(e){
+				var Name 		= $(this).val();										
+				$("#CourseF").load("/selling/search/course", { Name: Name });
+			});
+			
+			//---------------------------------------------------------------------------
+			//Xử lí search khách hàng
+			$('#SearchCustomer').keyup(function(e){
+				var Name 		= $(this).val();										
+				$("#LoadCustomer").load("/selling/search/customer", { Name: Name });
+			});
+			
+			//-----------------------------------------------------------------------------------
+			//CALL COURSE
+			$(".RemoveCourseSearch").click(function(){$("#CourseF").html("");});
+									
+			//Mặc định vào ô tìm kiếm
+			$("#SearchName").focus();
+			
+        </script>
+	</body>
+</html>
