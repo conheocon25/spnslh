@@ -1,0 +1,21 @@
+	
+	.gallery-masonry {
+		padding: 10px 0;
+	}
+	
+	.gallery-masonry .item {
+		width: 50px !important;
+		cursor: pointer;
+		background-color: rgba(0, 0, 0, .7);
+		margin: 2px;
+	}
+	
+	.gallery-masonry .item a { font-size: 12px; color: white; }
+	
+	.gallery-masonry .item .thumbnail { background-color: transparent; }
+	.gallery-masonry .active { background-color: green !important; }
+	.gallery-masonry .actived { background-color: rgba(255, 0, 0, .7); }
+	
+	.Course button { width: 27px; }
+	.Course a { text-align: center; }
+	.Course strong { font-weight: normal; color: black; font-size: 12px; }
