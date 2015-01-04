@@ -9,7 +9,7 @@ class StudentTemp extends Mapper implements \MVC\Domain\StudentTempFinder {
 		$selectAllStmt 			= sprintf("select * from %s", $tblStudentTemp);
 		$selectStmt 			= sprintf("select * from %s where id=?", $tblStudentTemp);
 		$updateStmt 			= sprintf("update %s set name=? where id=?", $tblStudentTemp);
-		$insertStmt 			= sprintf("insert into %s ( code, sur_name, last_name) values(?, ?, ?)", $tblStudentTemp);
+		$insertStmt 			= sprintf("insert into %s ( code, sur_name, last_name, code_ext1, birthday, gender, id_class) values(?, ?, ?, ?, ?, ?, ?)", $tblStudentTemp);
 		$deleteStmt 			= sprintf("delete from %s where id=?", $tblStudentTemp);
 		$deleteAllStmt 			= sprintf("delete from %s", $tblStudentTemp);
 		$findByPageStmt 		= sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblStudentTemp);
@@ -29,7 +29,11 @@ class StudentTemp extends Mapper implements \MVC\Domain\StudentTempFinder {
 			$array['id'],
 			$array['code'],
 			$array['sur_name'],
-			$array['last_name']
+			$array['last_name'],
+			$array['code_ext1'],
+			$array['birthday'],
+			$array['gender'],
+			$array['id_class']
 		);
         return $obj;
     }
@@ -39,7 +43,11 @@ class StudentTemp extends Mapper implements \MVC\Domain\StudentTempFinder {
         $values = array( 
 			$object->getCode(),
 			$object->getSurName(),
-			$object->getLastName()
+			$object->getLastName(),
+			$object->getCodeExt1(),
+			$object->getBirthday(),
+			$object->getGender(),
+			$object->getIdClass()
 		); 
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
