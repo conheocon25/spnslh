@@ -14,32 +14,8 @@
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-12">
-						<div class="widget-box">
-							<div class="widget-content nopadding" tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">
-								<table class="table table-bordered table-striped table-hover">
-									<thead>
-										<tr>
-											<th width="40"><i class="glyphicons-cogwheels"/></th>
-											<th><div class="text-left">THIẾT LẬP</div></th>
-										</tr>
-									</thead>
-									<tbody>										
-										<tr>
-											<td align="center"><a href="/setting/domain"><i class="glyphicons-cogwheel"/></a></td>
-											<td><a tal:attributes="href '/setting/domain'" >KHỐI</a></td>
-										</tr>
-										<tr>
-											<td align="center"><a href="/setting/user"><i class="glyphicons-cogwheel"/></a></td>
-											<td><a tal:attributes="href '/setting/user'" >NGƯỜI DÙNG</a></td>
-										</tr>
-										<tr>
-											<td align="center"><a href="/setting/config"><i class="glyphicons-cogwheel"/></a></td>
-											<td><a tal:attributes="href '/setting/config'" >CẤU HÌNH</a></td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-							<div class="widget-content nopadding" tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isManager()">
+						<div class="widget-box">							
+							<div class="widget-content nopadding">
 								<table class="table table-bordered table-striped table-hover">
 									<thead>
 										<tr>
@@ -48,6 +24,10 @@
 										</tr>
 									</thead>
 									<tbody>
+										<tr>
+											<td align="center"><a href="/setting/init"><i class="glyphicons-cogwheel"/></a></td>
+											<td><a tal:attributes="href '/setting/init'" >KHỞI TẠO</a></td>
+										</tr>
 										<tr>
 											<td align="center"><a href="/setting/domain"><i class="glyphicons-cogwheel"/></a></td>
 											<td><a tal:attributes="href '/setting/domain'" >KHỐI</a></td>
