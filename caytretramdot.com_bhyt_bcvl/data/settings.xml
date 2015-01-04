@@ -1,4 +1,4 @@
-<options>    
+<options>
 	<control>
 		<!-- ============================================================================== -->
 		<!-- Các lệnh xử lí SYSTEM 															-->
@@ -23,43 +23,25 @@
 		<command name="ObjectDel"><view>ObjectDel</view></command>
 		<command name="ObjectIns"><view>ObjectIns</view></command>
 		<command name="ObjectUpd"><view>ObjectUpd</view></command>
-		
-		<command name="SearchCustomer"><view>SearchCustomer</view></command>
-		<command name="NotifyCourse"><view>NotifyCourse</view></command>
-						
+										
 		<!-- ============================================================================== -->
 		<!-- REPORT.DETAIL			 														-->
 		<!-- ============================================================================== -->
-		<command name="Report">				<view>Report</view>				</command>
-		<command name="ReportInfo">			<view>ReportInfo</view>			</command>
-		<command name="ReportDetail">		<view>ReportDetail</view>		</command>
-				
+		<command name="Report">				<view>Report</view>				</command>		
+		<command name="ReportDetail">		<view>ReportDetail</view>		</command>				
 		<command name="ReportDaily">		<view>ReportDaily</view>		</command>
-		<command name="ReportDailySelling">	<view>ReportDailySelling</view></command>
-				
-		<command name="ReportDailyImport"><view>ReportDailyImport</view></command>		
-		<command name="ReportDailyExport"><view>ReportDailyExport</view></command>		
-		<command name="ReportDailyPaid"><view>ReportDailyPaid</view></command>
-		<command name="ReportDailyCollect">	<view>ReportDailyCollect</view>	</command>
 											
 		<!-- ============================================================================== -->
-		<!-- SETTING	 															-->
+		<!-- SETTING	 																	-->
 		<!-- ============================================================================== -->
 		<command name="Setting"><view>Setting</view></command>
-		<command name="SettingCustomer"><view>SettingCustomer</view></command>		
-		<command name="SettingEmployee"><view>SettingEmployee</view></command>		
+		<command name="SettingInit"><view>SettingInit</view></command>
+		<command name="SettingInitExe"><view>SettingInitExe</view></command>
+		
 		<command name="SettingUser"><view>SettingUser</view></command>		
 		<command name="SettingDomain"><view>SettingDomain</view></command>		
-		<command name="SettingDomainTable"><view>SettingDomainTable</view></command>
-		<command name="SettingUnit"><view>SettingUnit</view></command>		
-		<command name="SettingConfig"><view>SettingConfig</view></command>		
-		<command name="SettingCategory"><view>SettingCategory</view></command>		
-		<command name="SettingCategoryCourse"><view>SettingCategoryCourse</view></command>		
-		<command name="SettingCategoryCourseRecipe"><view>SettingCategoryCourseRecipe</view></command>		
-		<command name="SettingSupplier"><view>SettingSupplier</view></command>
-		<command name="SettingTermPaid"><view>SettingTermPaid</view></command>
-		<command name="SettingTermCollect"><view>SettingTermCollect</view></command>
-		<command name="SettingSupplierResource"><view>SettingSupplierResource</view></command>
+		<command name="SettingDomainTable"><view>SettingDomainTable</view></command>		
+		<command name="SettingConfig"><view>SettingConfig</view></command>				
 						
 	</control>
 </options>
