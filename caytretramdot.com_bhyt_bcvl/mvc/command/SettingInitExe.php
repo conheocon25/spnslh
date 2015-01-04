@@ -35,13 +35,21 @@
 				$StrCode 		= $DataExcel->val($DEI,'A');
 				$StrSurName 	= $DataExcel->val($DEI,'B');
 				$StrLastName 	= $DataExcel->val($DEI,'C');
+				$StrCodeExt1 	= $DataExcel->val($DEI,'D');
+				$StrBirthday 	= $DataExcel->val($DEI,'E');
+				$StrGender 		= $DataExcel->val($DEI,'F');
+				$StrClass 		= $DataExcel->val($DEI,'G');
 				
 				if ($StrSurName !=""){
 					$StudentTemp = new \MVC\Domain\StudentTemp(
 						null,
 						$StrCode,
 						$StrSurName,
-						$StrLastName
+						$StrLastName,
+						$StrCodeExt1,
+						$StrBirthday,
+						$StrGender,
+						$StrClass
 					);								
 					$mStudentTemp->insert($StudentTemp);
 				}				

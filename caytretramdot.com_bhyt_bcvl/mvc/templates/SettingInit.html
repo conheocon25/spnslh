@@ -21,9 +21,12 @@
 									<tr>
 										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
 										<th width="40">STT</th>
-										<th width="60">SỐ BH</th>
+										<th width="60">SBHYT</th>
 										<th class="left">HỌ</th>
-										<th class="left">TÊN</th>
+										<th width="90" class="left">TÊN</th>										
+										<th width="140">NGÀY SINH</th>
+										<th width="60">G.TÍNH</th>
+										<th>LỚP</th>
 										<th width="40"><i class="glyphicons-bin"/></th>
 									</tr>
 								</thead>
@@ -33,7 +36,10 @@
 										<td class="center"><span tal:content="repeat/StudentTemp/number"/></td>
 										<td class="center"><span tal:content="StudentTemp/getCode"/></td>
 										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id StudentTemp/getId" tal:content="StudentTemp/getSurName"/></td>
-										<td class="left"><span tal:content="StudentTemp/getLastName"/></td>
+										<td class="left"><span tal:content="StudentTemp/getLastName"/></td>										
+										<td class="left"><span tal:content="StudentTemp/getBirthday"/></td>
+										<td class="left"><span tal:content="StudentTemp/getGenderPrint"/></td>
+										<td class="left"><span tal:content="StudentTemp/getIdClass"/></td>
 										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id StudentTemp/getId"><i class="glyphicon glyphicon-remove"/></a></td>
 									</tr>
 								</tbody>																								
