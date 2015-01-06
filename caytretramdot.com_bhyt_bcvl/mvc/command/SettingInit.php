@@ -15,16 +15,24 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mConfig = new \MVC\Mapper\Config();
-			$mStudentTemp = new \MVC\Mapper\StudentTemp();
+			$mConfig 		= new \MVC\Mapper\Config();
+			$mStudentTemp 	= new \MVC\Mapper\StudentTemp();
+			$mTable 		= new \MVC\Mapper\Table();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------			
-			$ConfigName = $mConfig->findByName("NAME");
+			$ConfigName 	= $mConfig->findByName("NAME");
 			$StudentTempAll = $mStudentTemp->findAll();
-						
-			$Title = "KHỞI TẠO";
+			$TableAll 		= $mTable->findAll();
+			
+			$Valid = 0;
+			while ($StudentTempAll->valid()){
+				$ST = $StudentTempAll->current();
+				if ($ST->checkClass()==true) $Valid += 1;
+				$StudentTempAll->next();		
+			}			
+			$Title = "KHỞI TẠO (".$Valid."/".$StudentTempAll->count()." học sinh)";
 			$Navigation = array(array("THIẾT LẬP", "/setting"));
 			
 			//-------------------------------------------------------------
@@ -34,6 +42,7 @@
 			$request->setObject('Navigation', 		$Navigation);
 			$request->setObject('ConfigName', 		$ConfigName);
 			$request->setObject('StudentTempAll', 	$StudentTempAll);
+			$request->setObject('TableAll', 		$TableAll);
 						
 			return self::statuses('CMD_DEFAULT');
 		}
