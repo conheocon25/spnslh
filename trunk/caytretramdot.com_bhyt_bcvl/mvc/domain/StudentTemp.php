@@ -57,6 +57,37 @@ class StudentTemp extends Object{
 	function setIdClass($IdClass) {$this->IdClass = $IdClass;$this->markDirty();}
 	function getIdClass() {return $this->IdClass;}
 	
+	function checkClass(){
+		$mTable = new \MVC\Mapper\Table();
+		$TableAll = $mTable->findByName(array($this->getIdClass()));
+		return ($TableAll->count()>0)?true:false;
+	}
+	
+	function toJSON(){
+		$json = array(
+			'Id' 			=> $this->getId(),
+			'SurName'		=> $this->getSurName(),
+			'LastName'		=> $this->getLastName(),
+			'Code'			=> $this->getCode(),
+			'CodeExt1'		=> $this->getCodeExt1(),
+			'Birthday'		=> $this->getBirthday(),
+			'Gender'		=> $this->getGender(),
+			'IdClass'		=> $this->getIdClass()
+		);
+		return json_encode($json);							
+	}
+	
+	function setArray( $Data ){
+        $this->Id 			= $Data[0];
+		$this->SurName 		= $Data[1];
+		$this->LastName 	= $Data[2];
+		$this->Code			= $Data[3];
+		$this->CodeExt1		= $Data[4];
+		$this->Birthday		= $Data[5];
+		$this->Gender		= $Data[6];
+		$this->IdClass		= $Data[7];
+    }
+	
 	//-------------------------------------------------------------------------------
 	static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
 	static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}

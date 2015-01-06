@@ -37,9 +37,9 @@
 				$StrLastName 	= $DataExcel->val($DEI,'C');
 				$StrCodeExt1 	= $DataExcel->val($DEI,'D');
 				$StrBirthday 	= $DataExcel->val($DEI,'E');
-				$StrGender 		= $DataExcel->val($DEI,'F');
-				$StrClass 		= $DataExcel->val($DEI,'G');
-				
+				$StrGender 		= $DataExcel->val($DEI,'F');				
+				$StrClass 		= \end(explode(" ", $DataExcel->val($DEI,'G')));
+																
 				if ($StrSurName !=""){
 					$StudentTemp = new \MVC\Domain\StudentTemp(
 						null,

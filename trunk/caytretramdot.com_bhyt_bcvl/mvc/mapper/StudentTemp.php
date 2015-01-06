@@ -8,7 +8,7 @@ class StudentTemp extends Mapper implements \MVC\Domain\StudentTempFinder {
 						
 		$selectAllStmt 			= sprintf("select * from %s", $tblStudentTemp);
 		$selectStmt 			= sprintf("select * from %s where id=?", $tblStudentTemp);
-		$updateStmt 			= sprintf("update %s set name=? where id=?", $tblStudentTemp);
+		$updateStmt 			= sprintf("update %s set code=?, sur_name=?, last_name=?, code_ext1=?, birthday=?, gender=?, id_class=?  where id=?", $tblStudentTemp);
 		$insertStmt 			= sprintf("insert into %s ( code, sur_name, last_name, code_ext1, birthday, gender, id_class) values(?, ?, ?, ?, ?, ?, ?)", $tblStudentTemp);
 		$deleteStmt 			= sprintf("delete from %s where id=?", $tblStudentTemp);
 		$deleteAllStmt 			= sprintf("delete from %s", $tblStudentTemp);
@@ -58,7 +58,11 @@ class StudentTemp extends Mapper implements \MVC\Domain\StudentTempFinder {
         $values = array( 
 			$object->getCode(),
 			$object->getSurName(),
-			$object->getLastName(),			
+			$object->getLastName(),
+			$object->getCodeExt1(),
+			$object->getBirthday(),
+			$object->getGender(),
+			$object->getIdClass(),
 			$object->getId()
 		);		
         $this->updateStmt->execute( $values );

@@ -34,7 +34,7 @@
 									<tr tal:repeat="Domain DomainAll1">
 										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Domain/getId"/></td>
 										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="Domain" tal:attributes="data-id Domain/getId" tal:content="Domain/getName"/></td>
-										<td class="center"><a tal:attributes="href Domain/getURLTable"> <span tal:content="Domain/getTableAll/count"/> bàn</a></td>
+										<td class="center"><a tal:attributes="href Domain/getURLTable"> <span tal:content="Domain/getTableAll/count"/> lớp</a></td>
 										<td class="center"><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Domain/getId"><i class="glyphicon glyphicon-pencil"/></a></td>
 										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Domain/getId"><i class="glyphicon glyphicon-remove"/></a></td>
 									</tr>

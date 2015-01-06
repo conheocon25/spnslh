@@ -35,9 +35,7 @@ class Domain extends Mapper implements \MVC\Domain\DomainFinder {
         return $obj;
     }
 	
-    protected function targetClass() {        
-		return "Domain";
-    }
+    protected function targetClass() {return "Domain";}
 
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array( 
@@ -67,7 +65,7 @@ class Domain extends Mapper implements \MVC\Domain\DomainFinder {
 		$this->findByPageStmt->bindValue(':start', ((int)($values[0])-1)*(int)($values[1]), \PDO::PARAM_INT);
 		$this->findByPageStmt->bindValue(':max', (int)($values[1]), \PDO::PARAM_INT);
 		$this->findByPageStmt->execute();
-        return new EmployeeCollection( $this->findByPageStmt->fetchAll(), $this );
+        return new DomainCollection( $this->findByPageStmt->fetchAll(), $this );
     }	
 }
 ?>

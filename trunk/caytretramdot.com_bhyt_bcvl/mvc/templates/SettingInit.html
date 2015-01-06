@@ -20,13 +20,14 @@
 								<thead>
 									<tr>
 										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
-										<th width="40">STT</th>
-										<th width="60">SBHYT</th>
-										<th class="left">HỌ</th>
-										<th width="90" class="left">TÊN</th>										
-										<th width="140">NGÀY SINH</th>
-										<th width="60">G.TÍNH</th>
-										<th>LỚP</th>
+										<th width="40"><div class="text-center">STT</div></th>
+										<th width="60"><div class="text-left">SBHYT</div></th>
+										<th><div class="text-left">HỌ</div></th>
+										<th width="90"><div class="text-left">TÊN</div></th>										
+										<th width="140"><div class="text-left">NGÀY SINH</div></th>
+										<th width="60"><div class="text-left">G.TÍNH</div></th>
+										<th><div class="text-left">LỚP</div></th>
+										<th width="32"></th>
 										<th width="40"><i class="glyphicons-bin"/></th>
 									</tr>
 								</thead>
@@ -40,12 +41,83 @@
 										<td class="left"><span tal:content="StudentTemp/getBirthday"/></td>
 										<td class="left"><span tal:content="StudentTemp/getGenderPrint"/></td>
 										<td class="left"><span tal:content="StudentTemp/getIdClass"/></td>
+										<td class="left">
+											<span tal:condition="StudentTemp/checkClass">
+												<font color="blue"><div class="glyphicons-check"/></font>
+											</span>
+											<span tal:condition="not:StudentTemp/checkClass">
+												<font color="red"><div class="glyphicons-check"/></font>
+											</span>
+										</td>
 										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id StudentTemp/getId"><i class="glyphicon glyphicon-remove"/></a></td>
 									</tr>
 								</tbody>																								
 							</table>							
 						</div>
-					</div>					
+					</div>
+					<!-- UPDATE DIALOG  -->
+					<div id="DialogEdit" class="modal fade">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header"><h3><i class="glyphicons-show_big_thumbnails modal-icon"/>CẬP NHẬT HỌC SINH</h3></div>
+								<form id="FormStudentUpdate" action="#" class="form-horizontal" novalidate="novalidate">
+									<div class="form-group">
+										<label class="control-label">SBHYT</label>
+										<div class="controls">
+											<input id="Code2" name="Code2" type="text" class="form-control input-small" readonly="true"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Họ</label>
+										<div class="controls">
+											<input id="SurName2" name="SurName2" type="text" class="form-control input-small"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Tên</label>
+										<div class="controls">
+											<input id="LastName2" name="LastName2" type="text" class="form-control input-small"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">SKCB</label>
+										<div class="controls">
+											<input id="CodeExt12" name="CodeExt12" type="text" class="form-control input-small"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Ngày sinh</label>
+										<div class="controls">
+											<input id="Birthday2" name="Birthday2" type="text" class="form-control input-small"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Giới tính</label>
+										<div class="controls">
+											<select name="Gender2" id="Gender2" style="width:80%;">
+												<option value="0" >Nữ</option>
+												<option value="1" >Nam</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Lớp</label>
+										<div class="controls">
+											<select name="IdClass2" id="IdClass2" style="width:80%;">
+												<option tal:repeat="Table TableAll" tal:attributes="value Table/getName">
+													<span tal:content="Table/getName"/>
+												</option>
+											</select>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button  id="URLUpdButton" class="btn btn-primary btn-small" type="submit"><i class="glyphicons-download_alt"/> Lưu</button>
+										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
 					<div metal:use-macro="mDialog.xhtml/DialogDel"/>
 					<div metal:use-macro="mDialog.xhtml/DialogDelSelected"/>
 				</div>
@@ -93,6 +165,75 @@
 						location.reload();
 					}
 				});
+			});
+			
+			//-----------------------------------------------------------------------------------
+			//Update 1 Student			
+			//-----------------------------------------------------------------------------------
+			$('.update-item').click(function(){
+				//Load dữ liệu JSON về
+				var url = "/object/load/StudentTemp/" + $(this).attr('data-id');
+				
+				//Load dữ liệu JSON lên FORM
+				$.getJSON(url, function(data){
+					$('#URLUpdButton').attr('alt', 	data.Id);
+					$('#SurName2').attr('value', 	data.SurName);
+					$('#LastName2').attr('value', 	data.LastName);
+					$('#Code2').attr('value', 		data.Code);
+					$('#CodeExt12').attr('value', 	data.CodeExt1);
+					$('#Birthday2').attr('value', 	data.Birthday);
+					$('#Gender2').select2('val', 	data.Gender);
+					$('#IdClass2').select2('val', 	data.IdClass);
+				});
+			});
+			
+			//-----------------------------------------------------------------------------------
+			//Update 1 DOMAIN
+			//-----------------------------------------------------------------------------------
+			$("#FormStudentUpdate").validate({
+				rules:{
+					Name2:{
+						minlength: 2,
+						required:true
+					}
+				},
+				errorClass: "help-inline",
+				errorElement: "span",
+				highlight:function(element, errorClass, validClass) {
+					$(element).parents('.form-group').addClass('has-error');
+				},
+				unhighlight: function(element, errorClass, validClass) {
+					$(element).parents('.form-group').removeClass('has-error');
+					$(element).parents('.form-group').addClass('has-success');
+				},
+				submitHandler: function (form) {					
+					var Data = [];
+					Data[0] = $('#URLUpdButton').attr('alt');
+					Data[1] = $('#SurName2').val();
+					Data[2] = $('#LastName2').val();
+					Data[3] = $('#Code2').val();
+					Data[4] = $('#CodeExt12').val();
+					Data[5] = $('#Birthday2').val();
+					Data[6] = $('#Gender2').val();
+					Data[7] = $('#IdClass2').val();
+																		
+					var URL = "/object/upd/StudentTemp";
+					$.ajax({
+						type: "POST",
+						data: {Data:Data},
+						url: URL,
+						success: function(msg){
+							location.reload();
+						}
+					});		
+					return false;
+				}
+			});
+			$("#DialogEdit").on('show.bs.modal', function(event){
+				window.setTimeout(
+					function(){$(event.currentTarget).find('input#Name2').first().focus()},
+					0500
+				);
 			});
 			
 			//-----------------------------------------------------------------------------------
