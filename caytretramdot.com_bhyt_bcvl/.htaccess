@@ -30,27 +30,17 @@ RewriteRule ^object/upd/([A-Za-z0-9]+)$ 							?cmd=ObjectUpd&ObjectName=$1 [L]
 #---------------------------------------------------------------------------------------------------------------------------
 # SELLING
 #---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^app$ 												?cmd=App [L]
+RewriteRule ^app$ 													?cmd=App [L]
 
-RewriteRule ^selling$ 											?cmd=Selling [L]
-RewriteRule ^selling/load/customer/([0-9]+)$ 					?cmd=SellingCustomerLoad&IdCustomer=$1 [L]
-RewriteRule ^selling/session/load/([0-9]+)$ 					?cmd=SellingSessionLoad&IdSession=$1 [L]
-RewriteRule ^selling/session/insert/([0-9]+)$ 					?cmd=SellingSessionInsert&IdCustomer=$1 [L]
-RewriteRule ^selling/session/print/([0-9]+)$ 					?cmd=SellingSessionPrint&IdSession=$1 [L]
-
-RewriteRule ^selling/call/table/([0-9]+)/([0-9]+)/plus$ 		?cmd=SellingTableCallExe&IdSession=$1&IdCourse=$2&Delta=1 [L]
-RewriteRule ^selling/call/table/([0-9]+)/([0-9]+)/minus$ 		?cmd=SellingTableCallExe&IdSession=$1&IdCourse=$2&Delta=-1 [L]
-
-RewriteRule ^selling/search/course$ 							?cmd=SellingSearchCourse [L]
-RewriteRule ^selling/search/customer$ 							?cmd=SellingSearchCustomer [L]
-
-RewriteRule ^selling/([0-9]+)/([0-9]+)/([0-9]+)/checkout/exe$	?cmd=SellingTableCheckoutExe&IdDomain=$1&IdTable=$2&IdSession=$3 [L]
+RewriteRule ^checking$ 												?cmd=Checking [L]
+RewriteRule ^checking/([0-9]+)$ 									?cmd=CheckingDomain&IdDomain=$1 [L]
+RewriteRule ^checking/([0-9]+)/([0-9]+)$ 							?cmd=CheckingDomainTable&IdDomain=$1&IdTable=$2 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # REPORT
 #---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^report$ 										?cmd=Report [L]
-RewriteRule ^report/([0-9]+)$ 								?cmd=ReportDetail&IdTrack=$1 [L]
+RewriteRule ^report$ 												?cmd=Report [L]
+RewriteRule ^report/([0-9]+)$ 										?cmd=ReportDetail&IdTrack=$1 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # SETTING
@@ -59,11 +49,13 @@ RewriteRule ^setting$ 												?cmd=Setting [L]
 
 RewriteRule ^setting/init$ 											?cmd=SettingInit [L]
 RewriteRule ^setting/init/exe$ 										?cmd=SettingInitExe [L]
+RewriteRule ^setting/init/move$ 									?cmd=SettingInitMove [L]
 
 RewriteRule ^setting/domain$ 										?cmd=SettingDomain [L]
 RewriteRule ^setting/domain/page/([0-9]+)$ 							?cmd=SettingDomain&Page=$1 [L]
 RewriteRule ^setting/domain/([0-9]+)$ 								?cmd=SettingDomainTable&IdDomain=$1 [L]
 RewriteRule ^setting/domain/([0-9]+)/page/([0-9]+)$ 				?cmd=SettingDomainTable&IdDomain=$1&Page=$2 [L]
+RewriteRule ^setting/domain/([0-9]+)/([0-9]+)$ 						?cmd=SettingTableStudent&IdDomain=$1&IdTable=$2 [L]
 
 RewriteRule ^setting/config$ 										?cmd=SettingConfig [L]
 RewriteRule ^setting/config/page/([0-9]+)$ 							?cmd=SettingConfig&Page=$1 [L]

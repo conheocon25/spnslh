@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+	</head>
+	
+	<body>
+		<div metal:use-macro="mAdmin.xhtml/Header"/>
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
+			<div class="row">
+				<div class="col-12">					
+					<div class="widget-box">
+						<div class="widget-content nopadding">
+							<table class="table table-bordered table-striped table-hover with-check">								
+								<thead>
+									<tr>
+										<th width="40">#ID</th>
+										<th class="left">KHỐI</th>
+										<th width="80">SỐ LỚP</th>										
+									</tr>
+								</thead>
+								<tbody>
+									<tr tal:repeat="Domain DomainAll">
+										<td class="center"><span tal:content="repeat/Domain/number"/></td>
+										<td><span tal:content="Domain/getName"/></td>
+										<td class="center"><a tal:attributes="href Domain/getURLChecking"> <span tal:content="Domain/getTableAll/count"/> lớp</a></td>
+									</tr>
+								</tbody>																								
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<script type="text/javascript">
+		/*<![CDATA[*/
+			
+		/*]]>*/
+		</script>
+	</body>
+</html>
