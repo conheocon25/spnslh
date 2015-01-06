@@ -2,7 +2,7 @@
 namespace MVC\Domain;
 require_once( "mvc/base/domain/DomainObject.php" );
 
-class StudentTemp extends Object{
+class Student extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE PROPERTY
 	//-------------------------------------------------------------------------------
@@ -18,7 +18,7 @@ class StudentTemp extends Object{
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-	function __construct($Id=null, $Code, $SurName=null, $LastName=null, $CodeExt1=null, $Birthday=null, $Gender=null, $IdClass=null){
+	function __construct($Id=null, $Code=null, $SurName=null, $LastName=null, $CodeExt1=null, $Birthday=null, $Gender=null, $IdClass=null){
 		$this->Id 		= $Id;
 		$this->Code 	= $Code;
 		$this->SurName 	= $SurName;
@@ -68,6 +68,8 @@ class StudentTemp extends Object{
 		$TableAll = $mTable->findByName(array($this->getIdClass()));
 		return ($TableAll->count()>0)?true:false;
 	}
+	
+	
 	
 	function toJSON(){
 		$json = array(

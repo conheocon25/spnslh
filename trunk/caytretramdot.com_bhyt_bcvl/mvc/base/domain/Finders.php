@@ -14,6 +14,7 @@ interface AppFinder  			extends Finder {}
 interface UserFinder  			extends Finder {}
 interface DomainFinder  		extends Finder {}
 interface TableFinder  			extends Finder {}
+interface StudentFinder  		extends Finder {}
 interface StudentTempFinder  	extends Finder {}
 interface ConfigFinder 			extends Finder {}
 interface TrackingFinder 		extends Finder {}

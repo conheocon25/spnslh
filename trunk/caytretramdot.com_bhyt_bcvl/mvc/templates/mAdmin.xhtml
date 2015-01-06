@@ -5,7 +5,7 @@
 	<!-- ======================================================================== -->
 	<span metal:define-macro="IncludeMETA">
 		<title tal:content="string:Hệ thống quản lý BHYT cho Giáo Dục"/>
-		<base href="http://bhyt_bcvl.caytretramdot.com/"/>
+		<base href="http://bhyt-bcvl.caytretramdot.com/"/>
 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -66,6 +66,7 @@
 	<!-- ======================================================================== -->
 	<!-- HEADER																	  -->
 	<!-- ======================================================================== -->
+	
 	<div metal:define-macro="Header">
 		<div id="header">
 			<h1><a>Store Management App</a></h1>
@@ -86,7 +87,7 @@
             </ul>
         </div>
 	</div>
-
+	
 	<!-- ======================================================================== -->
 	<!-- LOCATION BAR															  -->
 	<!-- ======================================================================== -->
@@ -118,7 +119,7 @@
 	<div metal:define-macro="MenuApp" id="sidebar">
 		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">
 			<li tal:attributes="class php:ActiveAdmin=='Selling'?'active':'disable'">
-				<a tal:attributes="href '/selling'"><i class="glyphicons-drink" />ĐÓNG PHÍ</a>
+				<a tal:attributes="href '/checking'"><i class="glyphicons-check" />ĐÓNG PHÍ</a>
 			</li>
 			<li tal:attributes="class php:ActiveAdmin=='Report'?'active':'disable'">
 				<a tal:attributes="href '/report'"><i class="glyphicons-fax" />BÁO CÁO</a>

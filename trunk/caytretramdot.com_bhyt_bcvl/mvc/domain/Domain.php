@@ -47,18 +47,10 @@ class Domain extends Object{
 			
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
-	//-------------------------------------------------------------------------------
-	function getURLUpdLoad(){	return "/setting/domain/".$this->getId()."/upd/load";}
-	function getURLUpdExe(){	return "/setting/domain/".$this->getId()."/upd/exe";}
-	
-	function getURLDelLoad(){	return "/setting/domain/".$this->getId()."/del/load";}
-	function getURLDelExe(){	return "/setting/domain/".$this->getId()."/del/exe";}
+	//-------------------------------------------------------------------------------	
 					
-	function getURLTable(){		return "/setting/domain/".$this->getId();}
-	function getURLTableInsLoad(){return "/setting/domain/".$this->getId()."/ins/load";}
-	function getURLTableInsExe(){return "/setting/domain/".$this->getId()."/ins/exe";}
-	
-	function getURLSelling(){return "/selling/".$this->getId();}
+	function getURLTable()		{return "/setting/domain/".$this->getId();}
+	function getURLChecking()	{return "/checking/".$this->getId();}
 			
 	//-------------------------------------------------------------------------------
 	static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

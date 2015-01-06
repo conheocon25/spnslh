@@ -12,9 +12,8 @@
 			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
 			<div class="row">
 				<div class="col-12">
-					<a id="MoveExe" class="btn btn-primary btn-ins"><i class="glyphicons-cogwheel"/> Nạp qua hệ thống</a>
-					<a id="InitExe" class="btn btn-primary btn-ins"><i class="glyphicons-cogwheel"/> Tải lên mới</a>
-					<div class="widget-box">
+					<a href="#DialogIns" data-toggle="modal" class="btn btn-primary btn-ins"><i class="glyphicons-plus"/> Thêm mới</a>
+					<div class="widget-box">						
 						<div class="widget-content nopadding">
 							<table class="table table-bordered table-striped table-hover with-check">								
 								<thead>
@@ -26,35 +25,79 @@
 										<th width="90"><div class="text-left">TÊN</div></th>										
 										<th width="140"><div class="text-left">NGÀY SINH</div></th>
 										<th width="60"><div class="text-left">G.TÍNH</div></th>
-										<th><div class="text-left">LỚP</div></th>
-										<th width="32"></th>
 										<th width="40"><i class="glyphicons-bin"/></th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr tal:repeat="StudentTemp StudentTempAll">
-										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id StudentTemp/getId"/></td>
-										<td class="center"><span tal:content="repeat/StudentTemp/number"/></td>
-										<td class="center"><span tal:content="StudentTemp/getCode"/></td>
-										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id StudentTemp/getId" tal:content="StudentTemp/getSurName"/></td>
-										<td class="left"><span tal:content="StudentTemp/getLastName"/></td>										
-										<td class="left"><span tal:content="StudentTemp/getBirthday"/></td>
-										<td class="left"><span tal:content="StudentTemp/getGenderPrint"/></td>
-										<td class="left"><span tal:content="StudentTemp/getIdClass"/></td>
-										<td class="left">
-											<span tal:condition="StudentTemp/getClass">
-												<font color="blue"><div class="glyphicons-check"/></font>
-											</span>
-											<span tal:condition="not:StudentTemp/getClass">
-												<font color="red"><div class="glyphicons-check"/></font>
-											</span>
-										</td>
-										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id StudentTemp/getId"><i class="glyphicon glyphicon-remove"/></a></td>
+									<tr tal:repeat="Student Table/getStudentAll">
+										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Student/getId"/></td>
+										<td class="center"><span tal:content="repeat/Student/number"/></td>
+										<td class="center"><span tal:content="Student/getCode"/></td>
+										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Student/getId" tal:content="Student/getSurName"/></td>
+										<td class="left"><span tal:content="Student/getLastName"/></td>										
+										<td class="left"><span tal:content="Student/getBirthday"/></td>
+										<td class="left"><span tal:content="Student/getGenderPrint"/></td>										
+										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Student/getId"><i class="glyphicon glyphicon-remove"/></a></td>
 									</tr>
 								</tbody>																								
 							</table>							
 						</div>
 					</div>
+					<!-- INSERT DIALOG  -->
+					<div id="DialogIns" class="modal fade">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header"><h3><i class="glyphicons-show_big_thumbnails modal-icon"/>THÊM HỌC SINH</h3></div>
+								<form id="FormStudentInsert" action="#" class="form-horizontal" novalidate="novalidate">
+									<div class="form-group">
+										<label class="control-label">SBHYT</label>
+										<div class="controls">
+											<input id="Code1" name="Code1" type="text" class="form-control input-small" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Họ</label>
+										<div class="controls">
+											<input id="SurName1" name="SurName1" type="text" class="form-control input-small"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Tên</label>
+										<div class="controls">
+											<input id="LastName1" name="LastName1" type="text" class="form-control input-small"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">SKCB</label>
+										<div class="controls">
+											<input id="CodeExt11" name="CodeExt11" type="text" class="form-control input-small"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Ngày sinh</label>
+										<div class="controls">
+											<input id="Birthday1" name="Birthday1" type="text" class="form-control input-small"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Giới tính</label>
+										<div class="controls">
+											<select name="Gender1" id="Gender1" style="width:80%;">
+												<option value="0" >Nữ</option>
+												<option value="1" >Nam</option>
+											</select>
+										</div>
+									</div>
+									<div id="IdClass1" tal:attributes="alt Table/getId" />
+									<div class="modal-footer">
+										<button  id="URLInsButton" class="btn btn-primary btn-small" type="submit"><i class="glyphicons-download_alt"/> Lưu</button>
+										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					
 					<!-- UPDATE DIALOG  -->
 					<div id="DialogEdit" class="modal fade">
 						<div class="modal-dialog">
@@ -104,7 +147,7 @@
 										<label class="control-label">Lớp</label>
 										<div class="controls">
 											<select name="IdClass2" id="IdClass2" style="width:80%;">
-												<option tal:repeat="Table TableAll" tal:attributes="value Table/getName">
+												<option tal:repeat="Table TableAll" tal:attributes="value Table/getId">
 													<span tal:content="Table/getName"/>
 												</option>
 											</select>
@@ -130,7 +173,7 @@
 			$('#URLDelSelectedButton').click(function(){
 				var count = 0;
 				var Data = [];
-				var URL = "/object/del/Domain/0";
+				var URL = "/object/del/Student/0";
 				
 				$(".CheckedDel").each(function( i, obj){
 					if ( $(this).is(':checked')==true ){
@@ -157,7 +200,7 @@
 			});
 			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
 			$('#URLDelButton').click(function(){			
-				var URL = "/object/del/Domain/" + $(this).attr('alt');
+				var URL = "/object/del/Student/" + $(this).attr('alt');
 				$.ajax({
 					type: "POST",					
 					url: URL,
@@ -172,7 +215,7 @@
 			//-----------------------------------------------------------------------------------
 			$('.update-item').click(function(){
 				//Load dữ liệu JSON về
-				var url = "/object/load/StudentTemp/" + $(this).attr('data-id');
+				var url = "/object/load/Student/" + $(this).attr('data-id');
 				
 				//Load dữ liệu JSON lên FORM
 				$.getJSON(url, function(data){
@@ -186,7 +229,6 @@
 					$('#IdClass2').select2('val', 	data.IdClass);
 				});
 			});
-			
 			//-----------------------------------------------------------------------------------
 			//Update 1 DOMAIN
 			//-----------------------------------------------------------------------------------
@@ -217,7 +259,7 @@
 					Data[6] = $('#Gender2').val();
 					Data[7] = $('#IdClass2').val();
 																		
-					var URL = "/object/upd/StudentTemp";
+					var URL = "/object/upd/Student";
 					$.ajax({
 						type: "POST",
 						data: {Data:Data},
@@ -236,35 +278,56 @@
 				);
 			});
 			
+			
 			//-----------------------------------------------------------------------------------
-			//Upload			
-			//-----------------------------------------------------------------------------------						
-			$('#InitExe').click(function(){			
-				var URL = "/setting/init/exe";
-				$.ajax({
-					type: "POST",					
-					url: URL,
-					success: function(msg){						
-						location.reload();
+			//Insert 1 STUDENT
+			//-----------------------------------------------------------------------------------
+			$("#FormStudentInsert").validate({
+				rules:{
+					Name1:{
+						minlength: 2,
+						required:true
 					}
-				});
+				},
+				errorClass: "help-inline",
+				errorElement: "span",
+				highlight:function(element, errorClass, validClass) {
+					$(element).parents('.form-group').addClass('has-error');
+				},
+				unhighlight: function(element, errorClass, validClass) {
+					$(element).parents('.form-group').removeClass('has-error');
+					$(element).parents('.form-group').addClass('has-success');
+				},
+				submitHandler: function (form) {					
+					var Data = [];
+					Data[0] = $('#URLInsButton').attr('alt');
+					Data[1] = $('#SurName1').val();
+					Data[2] = $('#LastName1').val();
+					Data[3] = $('#Code1').val();
+					Data[4] = $('#CodeExt11').val();
+					Data[5] = $('#Birthday1').val();
+					Data[6] = $('#Gender1').val();
+					Data[7] = $('#IdClass1').attr('alt');
+																		
+					var URL = "/object/ins/Student";
+					$.ajax({
+						type: "POST",
+						data: {Data:Data},
+						url: URL,
+						success: function(msg){
+							//location.reload();
+						}
+					});		
+					return false;
+				}
 			});
-			
-			//-----------------------------------------------------------------------------------
-			//Upload			
-			//-----------------------------------------------------------------------------------						
-			$('#MoveExe').click(function(){			
-				var URL = "/setting/init/move";
-				$.ajax({
-					type: "POST",					
-					url: URL,
-					success: function(msg){
-						//alert("Đã chuyển xong ...");
-						//location.reload();
-					}
-				});
-			});						
-			
+			$("#DialogIns").on('show.bs.modal', function(event){
+				window.setTimeout(
+					function(){$(event.currentTarget).find('input#Code1').first().focus()},
+					0500
+				);
+			});
+						
 		/*]]>*/
 		</script>
 	</body>

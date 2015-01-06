@@ -10,9 +10,7 @@ class Table extends Object{
 	private $Name;
 	private $IdUser;
 	private $Type;
-	
-	private $Sessions;
-	private $SessionsTracking;
+			
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------		
@@ -68,84 +66,13 @@ class Table extends Object{
 	
 	//-------------------------------------------------------------------------------
 	//GET LISTs
-	//-------------------------------------------------------------------------------	
-	function getSessionActive(){
-		$mSession = new	\MVC\Mapper\Session();
-		$Session = $mSession->findLast(array($this->getId()));
-		return $Session;
+	//-------------------------------------------------------------------------------				
+	function getStudentAll(){
+		$mStudent = new \MVC\Mapper\Student();
+		$StudentAll = $mStudent->findByTable(array($this->getId()));		
+		return $StudentAll;
 	}
-	
-	function getSessionRecent(){		
-		$mSession = new	\MVC\Mapper\Session();		
-		$SessionAll = $mSession->findByTablePage(array($this->getId(), 1, 5));
-		return $SessionAll;
-	}
-	
-	function getSessions(){
-		if (!isset($this->Sessions)){
-			$mSession = new	\MVC\Mapper\Session();		
-			$this->Sessions = $mSession->findByTable(array($this->getId()));
-		}
-		return $this->Sessions;
-	}
-	
-	function getSessionsValue(){
-		$Sessions = $this->getSessions();
-		$Sum = 0;
-		$Sessions->rewind();
-		while($Sessions->valid()){
-			$Session = $Sessions->current();
-			$Sum += $Session->getValue();
-			$Sessions->next();
-		}
-		return $Sum;
-	}
-	
-	function getSessionsValuePrint(){
-		$num = new Number($this->getSessionsValue());
-		return $num->formatCurrency()." đ";
-	}
-	
-	function getSessionsTracking(){			
-		if (!isset($this->SessionsTracking)){
-			$Session = \MVC\Base\SessionRegistry::instance();
-			$DateStart = $Session->getReportSellingDateStart();
-			$DateEnd = $Session->getReportSellingDateEnd();
 		
-			$mSession = new	\MVC\Mapper\Session();		
-			$this->SessionsTracking = $mSession->findByTracking2(array($this->getId(), $DateStart, $DateEnd));
-		}
-		return $this->SessionsTracking;
-	}
-	
-	function getSessionsTrackingValue(){
-		$Sessions = $this->getSessionsTracking();
-		$Sum = 0;
-		$Sessions->rewind();
-		while($Sessions->valid()){
-			$Session = $Sessions->current();
-			$Sum += $Session->getValue();
-			$Sessions->next();
-		}
-		return $Sum;
-	}
-	
-	function getSessionsTrackingValuePrint(){
-		$num = new Number($this->getSessionsTrackingValue());
-		return $num->formatCurrency()." đ";
-	}
-	
-	function getTrackingCount($DateStart, $DateEnd){
-		$mSession = new \MVC\Mapper\Session();
-		return $mSession->trackingCount(array($this->getId(), $DateStart, $DateEnd));
-	}
-	
-	function getLog($Date){
-		$mLog 	= new \MVC\Mapper\TableLog();
-		$LogAll = $mLog->findBy(array($this->getId(), $Date));
-		return $LogAll;
-	}
-	
 	function toJSON(){
 		$json = array(
 			'Id' 			=> $this->getId(),
@@ -168,18 +95,9 @@ class Table extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE SELLING URL
 	//-------------------------------------------------------------------------------	
-	function getURLDetail(){return "/selling/".$this->IdDomain."/".$this->getId();}	
-	function getURLCheckinExe(){return "/selling/".$this->IdDomain."/".$this->getId()."/checkin/exe";}
-	
-	function getURLCheckoutExe(){return "/selling/".$this->IdDomain."/".$this->getId()."/checkout/exe";}	
-	function getURLCallLoad(){return "/selling/".$this->IdDomain."/".$this->getId()."/call/load";}
-	function getURLCallExe(){return "/selling/".$this->IdDomain."/".$this->getId()."/call/exe";}		
-	function getURLEvalExe(){return "/selling/".$this->IdDomain."/".$this->getId()."/eval/exe";}	
-	function getURLMoveLoad(){return "/selling/".$this->IdDomain."/".$this->getId()."/move/load";}
-	function getURLMoveExe(){return "/selling/".$this->IdDomain."/".$this->getId()."/move/exe";}	
-	function getURLMergeLoad(){return "/selling/".$this->IdDomain."/".$this->getId()."/merge/load";}
-	function getURLMergeExe(){return "/selling/".$this->IdDomain."/".$this->getId()."/merge/exe";}		
-	function getURLLog(){return "/selling/".$this->IdDomain."/".$this->getId()."/log";}
+	function getURLSetting()	{ return "/setting/domain/".$this->getIdDomain()."/".$this->getId();}
+	function getURLChecking()	{ return "/checking/".$this->getIdDomain()."/".$this->getId();}
+		
 
 	//---------------------------------------------------------	
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
