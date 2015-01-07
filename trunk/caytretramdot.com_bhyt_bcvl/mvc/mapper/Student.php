@@ -13,6 +13,8 @@ class Student extends Mapper implements \MVC\Domain\StudentFinder {
 		$deleteStmt 			= sprintf("delete from %s where id=?", $tblStudent);
 		$deleteAllStmt 			= sprintf("delete from %s", $tblStudent);
 		$findByTableStmt 		= sprintf("select * from %s where id_class=?", $tblStudent);
+		$findByGenderStmt 		= sprintf("select * from %s where gender=?", $tblStudent);
+		$findByTableGenderStmt 	= sprintf("select * from %s where id_class=? AND gender=?", $tblStudent);
 		$findByPageStmt 		= sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblStudent);
 				
         $this->selectAllStmt 	= self::$PDO->prepare($selectAllStmt);
@@ -22,6 +24,8 @@ class Student extends Mapper implements \MVC\Domain\StudentFinder {
 		$this->deleteStmt 		= self::$PDO->prepare($deleteStmt);
 		$this->deleteAllStmt 	= self::$PDO->prepare($deleteAllStmt);
 		$this->findByTableStmt 	= self::$PDO->prepare($findByTableStmt);
+		$this->findByGenderStmt = self::$PDO->prepare($findByGenderStmt);
+		$this->findByTableGenderStmt = self::$PDO->prepare($findByTableGenderStmt);
 		$this->findByPageStmt 	= self::$PDO->prepare($findByPageStmt);
 									
     } 
@@ -77,6 +81,16 @@ class Student extends Mapper implements \MVC\Domain\StudentFinder {
 	function findByTable($values ) {	
         $this->findByTableStmt->execute( $values );
         return new StudentCollection( $this->findByTableStmt->fetchAll(), $this );
+    }
+	
+	function findByGender($values ){
+        $this->findByGenderStmt->execute( $values );
+        return new StudentCollection( $this->findByGenderStmt->fetchAll(), $this );
+    }
+	
+	function findByTableGender($values ){
+        $this->findByTableGenderStmt->execute( $values );
+        return new StudentCollection( $this->findByTableGenderStmt->fetchAll(), $this );
     }
 	
 	function findByPage( $values ){

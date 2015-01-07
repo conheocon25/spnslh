@@ -13,18 +13,22 @@ class Session extends Mapper implements \MVC\Domain\SessionFinder {
 		$insertStmt 			= sprintf("insert into %s ( id_tracking, id_student, state) values(?, ?, ?)", $tblSession);
 		$deleteStmt 			= sprintf("delete from %s where id=?", $tblSession);
 		$deleteByTableStmt 		= sprintf("DELETE FROM %s WHERE id_student IN (SELECT id FROM %s WHERE id_class=?)", $tblSession, $tblStudent);
-		$findByTableStmt 		= sprintf("SELECT SE.id, SE.id_tracking, SE.id_student, SE.state FROM %s SE INNER JOIN %s SU ON SE.id_student=SU.id WHERE SU.id_class=?", $tblSession, $tblStudent);
-		$findByPageStmt 		= sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblSession);
-				
-        $this->selectAllStmt 	= self::$PDO->prepare($selectAllStmt);
-        $this->selectStmt 		= self::$PDO->prepare($selectStmt);
-        $this->updateStmt 		= self::$PDO->prepare($updateStmt);
-        $this->insertStmt 		= self::$PDO->prepare($insertStmt);
-		$this->deleteStmt 		= self::$PDO->prepare($deleteStmt);
-		$this->deleteByTableStmt= self::$PDO->prepare($deleteByTableStmt);
-		$this->findByTableStmt 	= self::$PDO->prepare($findByTableStmt);
-		$this->findByPageStmt 	= self::$PDO->prepare($findByPageStmt);
-									
+		$findByTrackingStmt 	= sprintf("SELECT * FROM %s WHERE id_tracking=?", $tblSession);
+		$findByTrackingTableStmt = sprintf("SELECT SE.id, SE.id_tracking, SE.id_student, SE.state FROM %s SE INNER JOIN %s SU ON SE.id_student=SU.id WHERE SE.id_tracking=? AND SU.id_class=?", $tblSession, $tblStudent);
+		$findByTrackingTableGenderStmt = sprintf("SELECT SE.id, SE.id_tracking, SE.id_student, SE.state FROM %s SE INNER JOIN %s SU ON SE.id_student=SU.id WHERE SE.id_tracking=? AND SU.id_class=? AND SU.gender=?", $tblSession, $tblStudent);
+		$findByTrackingGenderStmt= sprintf("SELECT SE.id, SE.id_tracking, SE.id_student, SE.state FROM %s SE INNER JOIN %s SU ON SE.id_student=SU.id WHERE SE.id_tracking=? AND SU.gender=?", $tblSession, $tblStudent);
+						
+        $this->selectAllStmt 		= self::$PDO->prepare($selectAllStmt);
+        $this->selectStmt 			= self::$PDO->prepare($selectStmt);
+        $this->updateStmt 			= self::$PDO->prepare($updateStmt);
+        $this->insertStmt 			= self::$PDO->prepare($insertStmt);
+		$this->deleteStmt 			= self::$PDO->prepare($deleteStmt);
+		$this->deleteByTableStmt	= self::$PDO->prepare($deleteByTableStmt);
+		$this->findByTrackingStmt 	= self::$PDO->prepare($findByTrackingStmt);
+		$this->findByTrackingTableStmt 		= self::$PDO->prepare($findByTrackingTableStmt);
+		$this->findByTrackingTableGenderStmt= self::$PDO->prepare($findByTrackingTableGenderStmt);
+		$this->findByTrackingGenderStmt 	= self::$PDO->prepare($findByTrackingGenderStmt);
+											
     } 
     function getCollection( array $raw ) {return new SessionCollection( $raw, $this );}
     protected function doCreateObject( array $array ) {		
@@ -63,16 +67,25 @@ class Session extends Mapper implements \MVC\Domain\SessionFinder {
     function selectAllStmt() {return $this->selectAllStmt;}
 	function deleteByTable($values) {return $this->deleteByTableStmt->execute( $values );}
 	
-	function findByTable($values ) {	
-        $this->findByTableStmt->execute( $values );
-        return new SessionCollection( $this->findByTableStmt->fetchAll(), $this );
+	function findByTracking($values ) {	
+        $this->findByTrackingStmt->execute( $values );
+        return new SessionCollection( $this->findByTrackingStmt->fetchAll(), $this );
     }
 	
-	function findByPage( $values ){
-		$this->findByPageStmt->bindValue(':start', ((int)($values[0])-1)*(int)($values[1]), \PDO::PARAM_INT);
-		$this->findByPageStmt->bindValue(':max', (int)($values[1]), \PDO::PARAM_INT);
-		$this->findByPageStmt->execute();
-        return new SessionCollection( $this->findByPageStmt->fetchAll(), $this );
-    }	
+	function findByTrackingTable($values ) {	
+        $this->findByTrackingTableStmt->execute( $values );
+        return new SessionCollection( $this->findByTrackingTableStmt->fetchAll(), $this );
+    }
+	
+	function findByTrackingTableGender($values ) {	
+        $this->findByTrackingTableGenderStmt->execute( $values );
+        return new SessionCollection( $this->findByTrackingTableGenderStmt->fetchAll(), $this );
+    }
+	
+	function findByTrackingGender($values ) {	
+        $this->findByTrackingGenderStmt->execute( $values );
+        return new SessionCollection( $this->findByTrackingGenderStmt->fetchAll(), $this );
+    }
+		
 }
 ?>
