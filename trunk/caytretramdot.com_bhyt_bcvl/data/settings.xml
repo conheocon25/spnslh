@@ -19,8 +19,11 @@
 		
 		<command name="Checking"><view>Checking</view></command>
 		<command name="CheckingDomain"><view>CheckingDomain</view></command>
-		<command name="CheckingDomainTable"><view>CheckingDomainTable</view></command>
+		<command name="CheckingDomainTable"><view>CheckingDomainTable</view></command>		
+		<command name="CheckingDomainTableInit"><view>CheckingDomainTableInit</view></command>
 		
+		<command name="CheckingUpdate"><view>CheckingUpdate</view></command>
+				
 		<!-- ============================================================================== -->
 		<!-- JSON LOAD			 															-->
 		<!-- ============================================================================== -->		

@@ -97,7 +97,7 @@ class Table extends Object{
 	//-------------------------------------------------------------------------------	
 	function getURLSetting()	{ return "/setting/domain/".$this->getIdDomain()."/".$this->getId();}
 	function getURLChecking()	{ return "/checking/".$this->getIdDomain()."/".$this->getId();}
-		
+	function getURLCheckingInit()	{ return "/checking/".$this->getIdDomain()."/".$this->getId()."/init";}	
 
 	//---------------------------------------------------------	
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

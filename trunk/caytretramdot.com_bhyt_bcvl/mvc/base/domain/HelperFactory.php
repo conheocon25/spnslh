@@ -9,6 +9,7 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	require_once( "mvc/mapper/StudentTemp.php" );
 	require_once( "mvc/mapper/Config.php");
 	require_once( "mvc/mapper/Tracking.php");	
+	require_once( "mvc/mapper/Session.php");
 	require_once( "mvc/mapper/Guest.php");	
 }
 

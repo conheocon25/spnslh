@@ -20,6 +20,8 @@
 			$mDomain 	= new \MVC\Mapper\Domain();
 			$mTable 	= new \MVC\Mapper\Table();
 			$mConfig 	= new \MVC\Mapper\Config();
+			$mSession 	= new \MVC\Mapper\Session();
+			$mTracking 	= new \MVC\Mapper\Tracking();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -28,19 +30,38 @@
 			$Table 		= $mTable->find($IdTable);
 			$TableAll	= $mTable->findAll();
 			
+			$SessionAll = $mSession->findByTable(array($Table->getId()));
+			if ($SessionAll->count()<1){
+				//Phát sinh dữ liệu mẫu
+				$StudentAll = $Table->getStudentAll();
+				while($StudentAll->valid()){
+					$Student = $StudentAll->current();
+					$Session = new \MVC\Domain\Session(
+						null,
+						24,
+						$Student->getId(),
+						0
+					);
+					$mSession->insert($Session);				
+					$StudentAll->next();
+				}
+				$SessionAll = $mSession->findByTable(array($Table->getId()));
+			}
+						
 			$Title = mb_strtoupper($Table->getName(), 'UTF8');
 			$Navigation = array(				
 				array("ĐÓNG PHÍ", "/checking"),
 				array($Domain->getName(), $Domain->getURLChecking() ),
 			);						
 			$ConfigName = $mConfig->findByName("NAME");
-						
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------						
 			$request->setObject("Domain"	, $Domain);
 			$request->setObject("Table"		, $Table);
 			$request->setObject("TableAll"	, $TableAll);
+			$request->setObject("SessionAll", $SessionAll);
 			$request->setObject("ConfigName", $ConfigName);
 			
 			$request->setProperty("Title"	, $Title);			
