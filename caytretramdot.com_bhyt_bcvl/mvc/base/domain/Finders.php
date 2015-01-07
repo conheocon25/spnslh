@@ -18,5 +18,6 @@ interface StudentFinder  		extends Finder {}
 interface StudentTempFinder  	extends Finder {}
 interface ConfigFinder 			extends Finder {}
 interface TrackingFinder 		extends Finder {}
+interface SessionFinder 		extends Finder {}
 interface GuestFinder 			extends Finder {}
 ?>

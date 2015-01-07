@@ -9,6 +9,7 @@ interface StudentCollection 		extends \Iterator {function add( Object $Student);
 interface StudentTempCollection 	extends \Iterator {function add( Object $StudentTemp);}
 interface ConfigCollection 			extends \Iterator {function add( Object $Config );}
 interface TrackingCollection 		extends \Iterator {function add( Object $Tracking);}
+interface SessionCollection 		extends \Iterator {function add( Object $Session);}
 interface PageCollection 			extends \Iterator {function add( Object $Page);}
 interface GuestCollection 			extends \Iterator {function add( Object $Guest);}
 ?>

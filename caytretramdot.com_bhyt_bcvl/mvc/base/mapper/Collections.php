@@ -9,9 +9,10 @@ class DomainCollection 			extends Collection implements \MVC\Domain\DomainCollec
 class TableCollection 			extends Collection implements \MVC\Domain\TableCollection 			{function targetClass( ) {return "\MVC\Domain\Table";}}
 class StudentCollection 		extends Collection implements \MVC\Domain\StudentCollection 		{function targetClass( ) {return "\MVC\Domain\Student";}}
 class StudentTempCollection 	extends Collection implements \MVC\Domain\StudentTempCollection 	{function targetClass( ) {return "\MVC\Domain\StudentTemp";}}
-class ConfigCollection 			extends Collection implements \MVC\Domain\ConfigCollection			{function targetClass(){return "\MVC\Domain\Config";}}
-class TrackingCollection 		extends Collection implements \MVC\Domain\TrackingCollection		{function targetClass(){return "\MVC\Domain\Tracking";}}
-class PageCollection 			extends Collection implements \MVC\Domain\PageCollection			{function targetClass(){return "\MVC\Domain\Page";}}
-class GuestCollection 			extends Collection implements \MVC\Domain\GuestCollection			{function targetClass(){return "\MVC\Domain\Guest";}}
+class ConfigCollection 			extends Collection implements \MVC\Domain\ConfigCollection			{function targetClass( ) {return "\MVC\Domain\Config";}}
+class TrackingCollection 		extends Collection implements \MVC\Domain\TrackingCollection		{function targetClass( ) {return "\MVC\Domain\Tracking";}}
+class SessionCollection 		extends Collection implements \MVC\Domain\SessionCollection			{function targetClass( ) {return "\MVC\Domain\Session";}}
+class PageCollection 			extends Collection implements \MVC\Domain\PageCollection			{function targetClass( ) {return "\MVC\Domain\Page";}}
+class GuestCollection 			extends Collection implements \MVC\Domain\GuestCollection			{function targetClass( ) {return "\MVC\Domain\Guest";}}
 
 ?>
