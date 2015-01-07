@@ -14,29 +14,60 @@
 				<div class="container-fluid">
 					<div class="col-12">
 						<div class="widget-box">
-							<div class="widget-content nopadding">								
-								<table tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()" class="table table-bordered table-striped table-hover">
-									<thead>										
-										<tr>
-											<th width="120"><div class="text-right">NGÀY</div></th>
-											<th width="120"><div class="text-right">SỐ DƯ</div></th>
-											<th width="120"><div class="text-right">QUỸ</div></th>
-											<th width="120"><div class="text-right">KHÁCH HÀNG</div></th>
-											<th width="120"><div class="text-right">NHÀ CUNG CẤP</div></th>
-											<th width="120"><div class="text-right">KHO HÀNG</div></th>
-										</tr>
-									</thead>
+							<div class="widget-content nopadding">
+								<table class="table table-bordered table-striped table-hover">									
 									<tbody>
-										<tr tal:repeat="TD Tracking/getDailyAll">
-											<td><div tal:attributes="alt TD/getURLReport" tal:content="TD/getDatePrint"></div></td>
-											<td align="right"><a tal:attributes="href TD/getURLReportSelling"><span tal:content="TD/getSellingPrint"/></a></td>
-											<td align="right"><a tal:attributes="href TD/getURLReportSelling">Xem</a></td>
-											<td align="right"><a tal:attributes="href TD/getURLReportImport">Xem</a></td>
-											<td align="right"><a tal:attributes="href TD/getURLReportExport">Xem</a></td>
-											<td align="right"><a tal:attributes="href TD/getURLReportExport">Xem</a></td>
+										<tr>
+											<td width="50%" align="right">TỔNG SỐ LỚP</td>
+											<td width="50%" align="right"><B tal:content="TableAll/count" /></td>
+										</tr>
+										<tr>
+											<td align="right">TỔNG SỐ</td>
+											<td align="right"><B tal:content="StudentAll/count" /> trong đó <B tal:content="StudentAll1/count" /> nam / <B tal:content="StudentAll2/count" /> nữ</td>
+										</tr>
+										<tr>
+											<td align="right">THAM GIA BẢO HIỂM</td>
+											<td align="right"><B tal:content="SessionAll/count" /> trong đó <B tal:content="SessionAll1/count" /> nam / <B tal:content="SessionAll2/count" /> nữ</td>
 										</tr>										
 									</tbody>
-								</table>								
+								</table>
+								<h4>THỐNG KẾ CHI TIẾT CÁC LỚP</h4>
+								<span tal:repeat="Domain DomainAll">
+									<h4 tal:content="Domain/getName"/>
+									<table class="table table-bordered table-striped table-hover">
+										<thead>										
+											<tr>
+												<th width="60" rowspan="2"><div class="text-center">STT</div></th>
+												<th rowspan="2"><div class="text-left">LỚP</div></th>
+												<th width="270" colspan="3"><div class="text-center">SỐ LƯỢNG HỌC SINH</div></th>
+												<th width="20" rowspan="2" />
+												<th width="270" colspan="3"><div class="text-center">THAM GIA BẢO HIỂM</div></th>
+											</tr>
+											<tr>
+												<th width="90"><div class="text-right">NAM</div></th>
+												<th width="90"><div class="text-right">NỮ</div></th>
+												<th width="90"><div class="text-right">TC</div></th>
+												
+												<th width="90"><div class="text-right">NAM</div></th>
+												<th width="90"><div class="text-right">NỮ</div></th>
+												<th width="90"><div class="text-right">TC</div></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr tal:repeat="Table Domain/getTableAll">												
+												<td width="60" align="center"><span tal:content="repeat/Table/number"/></td>
+												<td align="left"><span tal:content="Table/getName"/></td>
+												<td width="90" align="right"><span tal:content="php: Table->getStudentByGender(1)->count()"/></td>
+												<td width="90" align="right"><span tal:content="php: Table->getStudentByGender(0)->count()"/></td>
+												<td width="90" align="right"><B tal:content="Table/getStudentAll/count"/></td>
+												<td width="20" /> 
+												<td width="90" align="right"><span tal:content="php: Table->getSessionByGender(Tracking->getId(), 1)->count()"/></td>
+												<td width="90" align="right"><span tal:content="php: Table->getSessionByGender(Tracking->getId(), 0)->count()"/></td>
+												<td width="90" align="right"><B tal:content="php: Table->getSessionAll(Tracking->getId())->count()"/></td>
+											</tr>
+										</tbody>
+									</table>
+								</span>
 							</div>
 						</div>
 					</div>

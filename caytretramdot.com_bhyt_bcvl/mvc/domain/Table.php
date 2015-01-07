@@ -72,6 +72,24 @@ class Table extends Object{
 		$StudentAll = $mStudent->findByTable(array($this->getId()));		
 		return $StudentAll;
 	}
+	
+	function getStudentByGender($Gender){
+		$mStudent = new \MVC\Mapper\Student();
+		$StudentAll = $mStudent->findByTableGender(array($this->getId(), $Gender));		
+		return $StudentAll;
+	}
+	
+	function getSessionAll($IdTracking){
+		$mSession = new \MVC\Mapper\Session();
+		$SessionAll = $mSession->findByTrackingTable(array($IdTracking, $this->getId()));
+		return $SessionAll;
+	}
+	
+	function getSessionByGender($IdTracking, $Gender){
+		$mSession = new \MVC\Mapper\Session();
+		$SessionAll = $mSession->findByTrackingTableGender(array($IdTracking, $this->getId(), $Gender));
+		return $SessionAll;
+	}
 		
 	function toJSON(){
 		$json = array(
