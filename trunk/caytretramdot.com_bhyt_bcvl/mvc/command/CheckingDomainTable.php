@@ -29,8 +29,9 @@
 			$Domain 	= $mDomain->find($IdDomain);
 			$Table 		= $mTable->find($IdTable);
 			$TableAll	= $mTable->findAll();
-			
-			$SessionAll = $mSession->findByTable(array($Table->getId()));
+			$TrackingAll= $mTracking->findAll();
+			$Tracking	= $TrackingAll->last();
+			$SessionAll = $mSession->findByTrackingTable(array($Tracking->getId(), $Table->getId()));
 			if ($SessionAll->count()<1){
 				//Phát sinh dữ liệu mẫu
 				$StudentAll = $Table->getStudentAll();
@@ -38,14 +39,14 @@
 					$Student = $StudentAll->current();
 					$Session = new \MVC\Domain\Session(
 						null,
-						24,
+						$Tracking->getId(),
 						$Student->getId(),
 						0
 					);
 					$mSession->insert($Session);				
 					$StudentAll->next();
 				}
-				$SessionAll = $mSession->findByTable(array($Table->getId()));
+				$SessionAll = $mSession->findByTrackingTable(array($Tracking->getId(), $Table->getId()));
 			}
 						
 			$Title = mb_strtoupper($Table->getName(), 'UTF8');

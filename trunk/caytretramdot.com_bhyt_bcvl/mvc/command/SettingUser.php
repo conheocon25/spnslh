@@ -16,7 +16,8 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			require_once("mvc/base/mapper/MapperDefault.php");
+			$mUser 		= new \MVC\Mapper\User();
+			$mConfig 	= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -24,9 +25,7 @@
 			$UserAll = $mUser->findAll();
 						
 			$Title = "NGƯỜI DÙNG";
-			$Navigation = array(				
-				array("THIẾT LẬP", "/setting")
-			);
+			$Navigation = array(array("THIẾT LẬP", "/setting"));
 			
 			if (!isset($Page)) $Page=1;
 			$Config 	= $mConfig->findByName("ROW_PER_PAGE");

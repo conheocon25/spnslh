@@ -18,11 +18,14 @@
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------						
 			$mSession 	= new \MVC\Mapper\Session();
+			$mTracking 	= new \MVC\Mapper\Tracking();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------												
-			$mSession->deleteByTable(array($IdTable));
+			$TrackingAll 	= $mTracking->findAll();
+			$Tracking 		= $TrackingAll->last();
+			$mSession->deleteByTrackingTable(array($Tracking->getId(), $IdTable));
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
