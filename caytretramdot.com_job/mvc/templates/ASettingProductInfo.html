@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+	</head>
+	
+	<body>
+		<div metal:use-macro="mAdmin.xhtml/Header"/>		
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
+			<div class="row">
+				<div class="col-12">					
+					<div class="widget-box">
+						<div class="widget-content nopadding">
+							<form class="form-horizontal" tal:attributes="action PI/getURLSettingExe" method="post">								
+								<div class="control-group">
+									<label class="control-label" for="Info">Thông tin</label>
+									<div class="controls">
+										<textarea id="Info" class="ckeditor" name="Info" tal:content="PI/getInfo"/>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="InfoEx01">Chiều ngang</label>
+									<div class="controls"><input type="text" id="InfoEx01" name="InfoEx01" tal:attributes="value PI/getInfoEx01" style="width:100%;"/></div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="InfoEx01">Chiều dài</label>
+									<div class="controls"><input type="text" id="InfoEx02" name="InfoEx02" tal:attributes="value PI/getInfoEx02" style="width:100%;"/></div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="InfoEx13">Diện tích</label>
+									<div class="controls"><input type="text" id="InfoEx13" name="InfoEx13" tal:attributes="value PI/getInfoEx13" style="width:100%;"/></div>
+								</div>
+								<div class="form-group">
+									<label class="control-label">Hướng</label>
+									<div class="controls">
+										<select name="InfoEx03" id="InfoEx03" style="width:100%;">											
+											<option tal:attributes="selected php: PI->getInfoEx03()==0?'selected':''" value="0">...</option>
+											<option tal:attributes="selected php: PI->getInfoEx03()==1?'selected':''" value="1">Đông</option>
+											<option tal:attributes="selected php: PI->getInfoEx03()==2?'selected':''" value="2">Tây</option>
+											<option tal:attributes="selected php: PI->getInfoEx03()==3?'selected':''" value="3">Nam</option>
+											<option tal:attributes="selected php: PI->getInfoEx03()==4?'selected':''" value="4">Bắc</option>											
+											<option tal:attributes="selected php: PI->getInfoEx03()==5?'selected':''" value="5">Đông Bắc</option>											
+											<option tal:attributes="selected php: PI->getInfoEx03()==6?'selected':''" value="6">Đông Nam</option>											
+											<option tal:attributes="selected php: PI->getInfoEx03()==7?'selected':''" value="7">Tây Bắc</option>
+											<option tal:attributes="selected php: PI->getInfoEx03()==8?'selected':''" value="8">Tây Nam</option>
+										</select>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="InfoEx04">Lộ giới</label>
+									<div class="controls"><input type="text" id="InfoEx04" name="InfoEx04" tal:attributes="value PI/getInfoEx04" style="width:100%;"/></div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="InfoEx05">Pháp lý</label>
+									<div class="controls">
+										<input tal:condition="PI/getInfoEx05" type="checkbox" checked="1" id="InfoEx05" name="InfoEx05" />
+										<input tal:condition="not: PI/getInfoEx05" type="checkbox" id="InfoEx05" name="InfoEx05" />
+									</div>
+								</div>								
+								<div class="form-group">
+									<label class="control-label">Số lầu</label>
+									<div class="controls">
+										<select name="InfoEx06" id="InfoEx06" style="width:100%;">
+											<option tal:attributes="selected php: PI->getInfoEx06()==0?'selected':''" value="0">0 lầu</option>
+											<option tal:attributes="selected php: PI->getInfoEx06()==1?'selected':''" value="1">1 lầu</option>
+											<option tal:attributes="selected php: PI->getInfoEx06()==2?'selected':''" value="2">2 lầu</option>
+											<option tal:attributes="selected php: PI->getInfoEx06()==3?'selected':''" value="3">3 lầu</option>
+											<option tal:attributes="selected php: PI->getInfoEx06()==4?'selected':''" value="4">4 lầu</option>											
+										</select>
+									</div>
+								</div>								
+								<div class="form-group">
+									<label class="control-label">Số phòng ngủ</label>
+									<div class="controls">
+										<select name="InfoEx07" id="InfoEx07" style="width:100%;">
+											<option tal:attributes="selected php: PI->getInfoEx07()==0?'selected':''" value="0">0 phòng</option>
+											<option tal:attributes="selected php: PI->getInfoEx07()==1?'selected':''" value="1">1 phòng</option>
+											<option tal:attributes="selected php: PI->getInfoEx07()==2?'selected':''" value="2">2 phòng</option>
+											<option tal:attributes="selected php: PI->getInfoEx07()==3?'selected':''" value="3">3 phòng</option>
+											<option tal:attributes="selected php: PI->getInfoEx07()==4?'selected':''" value="4">4 phòng</option>
+										</select>
+									</div>
+								</div>								
+								<div class="control-group">
+									<label class="control-label" for="InfoEx08">Phòng ăn</label>
+									<div class="controls">										
+										<input tal:condition="PI/getInfoEx08" type="checkbox" checked="1" id="InfoEx08" name="InfoEx08" />
+										<input tal:condition="not: PI/getInfoEx08" type="checkbox" id="InfoEx08" name="InfoEx08" />
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="InfoEx09">Nhà bếp</label>
+									<div class="controls">										
+										<input tal:condition="PI/getInfoEx09" type="checkbox" checked="1" id="InfoEx09" name="InfoEx09" />
+										<input tal:condition="not: PI/getInfoEx09" type="checkbox" id="InfoEx09" name="InfoEx09" />
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="InfoEx10">Sân thượng</label>
+									<div class="controls">										
+										<input tal:condition="PI/getInfoEx10" type="checkbox" checked="1" id="InfoEx10" name="InfoEx10" />
+										<input tal:condition="not: PI/getInfoEx10" type="checkbox" id="InfoEx10" name="InfoEx10" />
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="InfoEx11">Chỗ để xe hơi</label>
+									<div class="controls">
+										<input tal:condition="PI/getInfoEx11" type="checkbox" checked="1" id="InfoEx11" name="InfoEx11" />
+										<input tal:condition="not: PI/getInfoEx11" type="checkbox" id="InfoEx11" name="InfoEx11" />
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="InfoEx12">Chính chủ</label>
+									<div class="controls">
+										<input tal:condition="PI/getInfoEx12" type="checkbox" checked="1" id="InfoEx12" name="InfoEx12" />
+										<input tal:condition="not: PI/getInfoEx12" type="checkbox" id="InfoEx12" name="InfoEx12" />
+									</div>
+								</div>
+								<div class="form-actions">
+									<button type="submit" class="btn btn-success" value="submit-value">Lưu</button>
+								</div>
+							</form>
+						</div>
+					</div>										
+				</div>
+			</div>
+		</div>
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<script type="text/javascript" language="javascript" src="/mvc/templates/back/ckeditor/ckeditor.js"/>
+	</body>
+</html>

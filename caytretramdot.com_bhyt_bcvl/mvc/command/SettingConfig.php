@@ -17,13 +17,12 @@
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
 			$mConfig 	= new \MVC\Mapper\Config();
-			$mCategory 	= new \MVC\Mapper\Category();
-						
+									
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
 			$ConfigAll 		= $mConfig->findAll();
-			$CategoryAll 	= $mCategory->findAll();
+			
 			
 			$Title = "CẤU HÌNH";
 			$Navigation = array(				
@@ -103,8 +102,7 @@
 			$request->setProperty('Title', 				$Title);
 			$request->setProperty('ActiveAdmin', 		'Config');
 			$request->setObject('Navigation', 			$Navigation);
-			$request->setObject('CategoryAll', 			$CategoryAll);
-			
+						
 			$request->setObject('ConfigName', 				$ConfigName);			
 			$request->setObject('ConfigAddress', 			$ConfigAddress);
 			$request->setObject('ConfigPhone', 				$ConfigPhone);

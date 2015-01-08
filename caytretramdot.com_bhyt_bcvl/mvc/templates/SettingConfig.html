@@ -5,9 +5,7 @@
 		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
 	</head>	
 	<body>
-		<div metal:use-macro="mAdmin.xhtml/Header"/>
-		<div metal:use-macro="mAdmin.xhtml/StyleTools"/>
-		<div metal:use-macro="mAdmin.xhtml/MenuSetting"/>
+		<div metal:use-macro="mAdmin.xhtml/Header"/>		
 		<div id="content">
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
 			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
@@ -18,7 +16,7 @@
 							<div class="form-horizontal">
 								<div class="modal-body">
 									<div class="form-group">
-										<label class="control-label">Tên quán</label>
+										<label class="control-label">Tên trường</label>
 										<div class="controls">
 											<input id="Name2" tal:attributes="value ConfigName/getValue;data-id ConfigName/getId" type="text" class="form-control input-small"/>
 										</div>
@@ -46,57 +44,7 @@
 										<div class="controls">
 											<input id="GuestVisit2" tal:attributes="value ConfigGuestVisit/getValue;data-id ConfigGuestVisit/getId" type="text" class="form-control input-small"/>
 										</div>
-									</div>
-									<div class="form-group">
-										<label class="control-label">Giảm giá (mặc định)</label>
-										<div class="controls">
-											<input id="Discount2" tal:attributes="value ConfigDiscount/getValue;data-id ConfigDiscount/getId" type="text" class="form-control input-small"/>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="control-label">Phạt trễ giờ</label>
-										<div class="controls">
-											<input id="Every5Minutes2" tal:attributes="value ConfigEvery5Minutes/getValue;data-id ConfigEvery5Minutes/getId" type="text" class="form-control input-small"/>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="control-label">Danh mục tự chọn</label>
-										<div class="controls">											
-											<select name="CategoryAuto2" id="CategoryAuto2" style="width:80%;" tal:attributes="data-id ConfigCategoryAuto/getId">
-												<option tal:repeat="Category CategoryAll" tal:attributes="value Category/getId; selected php:ConfigCategoryAuto->getValue()==Category->getId()?'selected':''">
-													<span tal:content="Category/getName" />
-												</option>
-											</select>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="control-label">Hiển thị gọi món</label>
-										<div class="controls">											
-											<select name="SwitchBoardCall2" id="SwitchBoardCall2" style="width:80%;" tal:attributes="data-id ConfigSwitchBoardCall/getId">
-												<option value="0" tal:attributes="selected php:ConfigSwitchBoardCall->getValue()=='0'?'selected':''">Tắt</option>
-												<option value="1" tal:attributes="selected php:ConfigSwitchBoardCall->getValue()=='1'?'selected':''">Bật</option>
-											</select>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="control-label">Giả lặp phiếu 2 liên</label>
-										<div class="controls">											
-											<select name="ReceiptVirtualDouble2" id="ReceiptVirtualDouble2" style="width:80%;" tal:attributes="data-id ConfigReceiptVirtualDouble/getId">
-												<option value="0" tal:attributes="selected php:ConfigReceiptVirtualDouble->getValue()=='0'?'selected':''">Tắt</option>
-												<option value="1" tal:attributes="selected php:ConfigReceiptVirtualDouble->getValue()=='1'?'selected':''">Bật</option>
-											</select>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="control-label">Thời gian lưu Log</label>
-										<div class="controls">											
-											<select name="nMonthLog2" id="nMonthLog2" style="width:80%;" tal:attributes="data-id ConfignMonthLog/getId">
-												<option value="1" tal:attributes="selected php:ConfigReceiptVirtualDouble->getValue()=='1'?'selected':''">1 tháng</option>
-												<option value="2" tal:attributes="selected php:ConfigReceiptVirtualDouble->getValue()=='2'?'selected':''">2 tháng</option>
-												<option value="3" tal:attributes="selected php:ConfigReceiptVirtualDouble->getValue()=='3'?'selected':''">3 tháng</option>
-											</select>
-										</div>
-									</div>
+									</div>									
 								</div>
 								<div class="modal-footer">
 									<button id="URLUpdButton" class="btn btn-primary btn-small" type="submit"><i class="glyphicons-download_alt"/> Lưu</button>
