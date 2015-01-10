@@ -19,16 +19,28 @@
 									<tbody>
 										<tr>
 											<td width="50%" align="right">TỔNG SỐ LỚP</td>
-											<td width="50%" align="right"><B tal:content="TableAll/count" /></td>
+											<td width="20%" align="right"><B tal:content="TableAll/count" /></td>
+											<td width="15%" />
+											<td width="15%" />
 										</tr>
 										<tr>
-											<td align="right">TỔNG SỐ</td>
-											<td align="right"><B tal:content="StudentAll/count" /> trong đó <B tal:content="StudentAll1/count" /> nam / <B tal:content="StudentAll2/count" /> nữ</td>
+											<td align="right">TỔNG SỐ HỌC SINH</td>
+											<td align="right"><B tal:content="StudentAll/count" /> </td>
+											<td align="right"><B tal:content="StudentAll1/count" /> nam </td>
+											<td align="right"><B tal:content="StudentAll2/count" /> nữ</td>
 										</tr>
 										<tr>
-											<td align="right">THAM GIA BẢO HIỂM</td>
-											<td align="right"><B tal:content="SessionAll/count" /> trong đó <B tal:content="SessionAll1/count" /> nam / <B tal:content="SessionAll2/count" /> nữ</td>
-										</tr>										
+											<td align="right">THAM GIA BẢO HIỂM</td>											
+											<td align="right"><B tal:content="SessionAll/count" /> </td>
+											<td align="right"><B tal:content="SessionAll1/count" /> nam </td>
+											<td align="right"><B tal:content="SessionAll2/count" /> nữ</td>
+										</tr>
+										<tr>
+											<td align="right">TỈ LỆ THAM GIA</td>
+											<td align="right"><B tal:content="php:round( SessionAll->count()*100 / StudentAll->count(), 1) . '%'" /></td>
+											<td align="right"><B tal:content="php:round( SessionAll1->count()*100 / StudentAll->count(), 1) . '%'" /></td>
+											<td align="right"><B tal:content="php:round( SessionAll2->count()*100 / StudentAll->count(), 1) . '%'" /></td>
+										</tr>
 									</tbody>
 								</table>
 								<h4>THỐNG KẾ CHI TIẾT CÁC LỚP</h4>

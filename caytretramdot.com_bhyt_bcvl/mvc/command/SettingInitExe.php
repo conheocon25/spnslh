@@ -20,7 +20,8 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
-			
+			\ini_set('max_execution_time', 300); //300 seconds = 5 minutes
+
 			//Xóa hết dữ liệu cũ
 			$mStudentTemp->deleteAll(array());
 						
@@ -37,8 +38,9 @@
 				$StrLastName 	= $DataExcel->val($DEI,'C');
 				$StrCodeExt1 	= $DataExcel->val($DEI,'D');
 				$StrBirthday 	= $DataExcel->val($DEI,'E');
-				$StrGender 		= $DataExcel->val($DEI,'F');				
-				$StrClass 		= \end(explode(" ", $DataExcel->val($DEI,'G')));
+				$StrGender 		= $DataExcel->val($DEI,'F');
+				$CA				= explode(" ", $DataExcel->val($DEI,'G'));
+				$StrClass 		= \end($CA);
 																
 				if ($StrSurName !=""){
 					$StudentTemp = new \MVC\Domain\StudentTemp(

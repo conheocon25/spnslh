@@ -23,7 +23,7 @@ class Tracking extends Object{
 	}
     function setId($Id) {return $this->Id = $Id;}
 	function getId() {return $this->Id;}
-	function getName(){$Name = 'THÁNG '.\date("m/Y", strtotime($this->getDateStart()));return $Name;}
+	function getName(){$Name = 'ĐỢT THÁNG '.\date("m/Y", strtotime($this->getDateStart()));return $Name;}
 	
     function setDateStart( $DateStart ) {$this->DateStart = $DateStart;$this->markDirty();}   
 	function getDateStart( ) {return $this->DateStart;}	
