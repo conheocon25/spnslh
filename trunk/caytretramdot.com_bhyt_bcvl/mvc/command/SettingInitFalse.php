@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class SettingInitMove extends Command {
+	class SettingInitFalse extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -11,46 +11,48 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$fDel = $request->getProperty('fDel');
-			
+						
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
-			//-------------------------------------------------------------			
+			//-------------------------------------------------------------
+			$mConfig 		= new \MVC\Mapper\Config();
 			$mStudentTemp 	= new \MVC\Mapper\StudentTemp();
-			$mStudent 		= new \MVC\Mapper\Student();
+			$mTable 		= new \MVC\Mapper\Table();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
-			\ini_set('max_execution_time', 300); //300 seconds = 5 minutes
-			
-			//Xóa hết dữ liệu cũ
-			if ($fDel == 1){
-				$mStudent->deleteAll(array());
-			}
-			
+			$ConfigName	= $mConfig->findByName("NAME");
+						
 			$StudentTempAll = $mStudentTemp->findAll();
+			$TableAll 		= $mTable->findAll();
+			
+			$Valid = 0;
+			$StudentTempAll1 = new \MVC\Mapper\StudentTempCollection();
 			while ($StudentTempAll->valid()){
-				$StudentTemp = $StudentTempAll->current();
-				$Student = new \MVC\Domain\Student(
-					null,
-					$StudentTemp->getCode(),
-					$StudentTemp->getSurName(),
-					$StudentTemp->getLastName(),
-					$StudentTemp->getCodeExt1(),
-					$StudentTemp->getBirthday(),
-					$StudentTemp->getGender(),
-					$StudentTemp->getClass()->getId()
-				);
-				$mStudent->insert($Student);
-				
-				$StudentTempAll->next();
+				$ST = $StudentTempAll->current();
+				if ($ST->checkClass()==false){
+					$StudentTempAll1->add($ST);
+					$Valid += 1;
+				} 
+				$StudentTempAll->next();		
 			}
+									
+			$Title = "SAI THÔNG TIN (".$Valid."/".$StudentTempAll->count()." học sinh)";
+			$Navigation = array(
+				array("THIẾT LẬP", "/setting"),
+				array("KHỞI TẠO", "/setting/init")
+			);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-									
+			$request->setProperty('Title', 			$Title);						
+			$request->setObject('Navigation', 		$Navigation);
+			$request->setObject('ConfigName', 		$ConfigName);
+			$request->setObject('StudentTempAll', 	$StudentTempAll1);
+			$request->setObject('TableAll', 		$TableAll);
+						
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

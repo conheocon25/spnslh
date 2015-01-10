@@ -43,8 +43,15 @@
 		<!-- ============================================================================== -->
 		<command name="Setting"><view>Setting</view></command>
 		<command name="SettingInit"><view>SettingInit</view></command>
+		<command name="SettingInitFalse"><view>SettingInitFalse</view></command>
 		<command name="SettingInitExe"><view>SettingInitExe</view></command>
 		<command name="SettingInitMove"><view>SettingInitMove</view></command>
+		<command name="SettingInitUpload"><view>SettingInitUpload</view></command>
+		<command name="SettingInitUploadExe"><view>SettingInitUploadExe</view></command>
+		<command name="SettingInitUploadExe">
+			<view>SettingInitUploadExe</view>			
+			<status value="CMD_OK"><forward>Setting</forward></status>
+		</command>
 		
 		<command name="SettingUser"><view>SettingUser</view></command>		
 		<command name="SettingDomain"><view>SettingDomain</view></command>		

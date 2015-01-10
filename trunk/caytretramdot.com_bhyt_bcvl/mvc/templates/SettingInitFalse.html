@@ -7,20 +7,11 @@
 	
 	<body>
 		<div metal:use-macro="mAdmin.xhtml/Header"/>
-		<div id="sidebar">
-			<ul style="display: block;">
-				<li><a href="/setting/init/false"><i class="glyphicons-show_big_thumbnails"/>DỮ LIỆU LỚP SAI</a></li>
-				<li><a href="/setting/init/upload"><i class="glyphicons-show_big_thumbnails"/>TẢI FILE EXCEL</a></li>
-			</ul>			
-		</div>
 		<div id="content">
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
-			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>			
+			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
 			<div class="row">
-				<div class="col-12">
-					<a id="MoveExe1" class="btn btn-primary btn-ins" tal:condition="fUpdate"><i class="glyphicons-cogwheel" /> Nạp nối đuôi</a>
-					<a id="MoveExe2" class="btn btn-primary btn-ins" tal:condition="fUpdate"><i class="glyphicons-cogwheel" /> Nạp từ đầu</a>
-					<a id="InitExe" class="btn btn-primary btn-ins"><i class="glyphicons-cogwheel"/> Chuyển từ Excel qua tạm</a>
+				<div class="col-12">					
 					<div class="widget-box">
 						<div class="widget-content nopadding">
 							<table class="table table-bordered table-striped table-hover with-check">								
@@ -60,8 +51,7 @@
 									</tr>
 								</tbody>																								
 							</table>							
-						</div>
-						<div metal:use-macro="mAdmin.xhtml/PageBar"/>
+						</div>						
 					</div>
 					<!-- UPDATE DIALOG  -->
 					<div id="DialogEdit" class="modal fade">
@@ -247,8 +237,7 @@
 			//-----------------------------------------------------------------------------------
 			//Upload			
 			//-----------------------------------------------------------------------------------						
-			$('#InitExe').click(function(){
-				$('#InitExe').hide();
+			$('#InitExe').click(function(){			
 				var URL = "/setting/init/exe";
 				$.ajax({
 					type: "POST",					
@@ -261,37 +250,19 @@
 			});
 			
 			//-----------------------------------------------------------------------------------
-			//NẠP NỐI ĐUÔI			
+			//Upload			
 			//-----------------------------------------------------------------------------------						
-			$('#MoveExe1').click(function(){			
-				var URL = "/setting/init/move/false";
-				$('#MoveExe1').hide();
-				$('#MoveExe2').hide();
-				$('#InitExe').hide();
+			$('#MoveExe').click(function(){			
+				var URL = "/setting/init/move";
 				$.ajax({
 					type: "POST",					
 					url: URL,
 					success: function(msg){
-						alert("Đã nạp nối đuôi vào dữ liệu hiện tại ...");
-						location.reload();
+						//alert("Đã chuyển xong ...");
+						//location.reload();
 					}
 				});
-			});
-			
-			$('#MoveExe2').click(function(){			
-				var URL = "/setting/init/move/true";
-				$('#MoveExe1').hide();
-				$('#MoveExe2').hide();
-				$('#InitExe').hide();
-				$.ajax({
-					type: "POST",					
-					url: URL,
-					success: function(msg){
-						alert("Đã nạp khởi tạo dữ liệu lại từ đầu ...");
-						location.reload();
-					}
-				});
-			});	
+			});						
 			
 		/*]]>*/
 		</script>
