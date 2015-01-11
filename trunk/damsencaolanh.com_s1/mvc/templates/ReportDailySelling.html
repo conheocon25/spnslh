@@ -35,12 +35,12 @@
 											<td align="left"><span tal:content="Session/getTable/getName"/></td>
 											<td align="left"><span tal:content="Session/getCustomer/getName"/></td>
 											<td align="right">
-												<a tal:condition="Session/checkDisable" class="Ticket" tal:attributes="alt Session/getURLPrint">
+												<a tal:condition="Session/checkDisable" class="Ticket" tal:attributes="alt Session/getURLPrint1">
 													<span tal:content="Session/getValuePrint"/>
 												</a>
 											</td>
 											<td align="right">
-												<a tal:condition="not: Session/checkDisable" class="Ticket" tal:attributes="alt Session/getURLPrint">
+												<a tal:condition="not: Session/checkDisable" class="Ticket" tal:attributes="alt Session/getURLPrint1">
 													<span tal:content="Session/getValuePrint"/>
 												</a>	
 											</td>											

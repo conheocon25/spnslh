@@ -77,7 +77,7 @@ class Table extends Object{
 	
 	function getSessionRecent(){		
 		$mSession = new	\MVC\Mapper\Session();		
-		$SessionAll = $mSession->findByTablePage(array($this->getId(), 1, 5));
+		$SessionAll = $mSession->findByTableRecent(array($this->getId()));
 		return $SessionAll;
 	}
 	

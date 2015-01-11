@@ -74,19 +74,14 @@
 		<command name="SellingDomainLoad"><view>SellingDomainLoad</view></command>
 		<command name="SellingTableLoad"><view>SellingTableLoad</view></command>
 		<command name="SellingTableCallExe"><view>SellingTableCallExe</view></command>
-		<command name="SellingTableMoveExe"><view>SellingTableMoveExe</view><status value="CMD_OK"><forward>Selling</forward></status></command>
-		<command name="SellingTableMergeExe">
-			<view>SellingTableMergeExe</view>
-			<status value="CMD_OK"><forward>Selling</forward></status>
-		</command>				
+		<command name="SellingTableMoveExe"><view>SellingTableMoveExe</view></command>
+		<command name="SellingTableMergeExe"><view>SellingTableMergeExe</view></command>
 		<command name="SellingTablePrint"><view>SellingTablePrint</view></command>
 		<command name="SellingTablePrint1"><view>SellingTablePrint1</view></command>
 		<command name="SellingTableCheckoutExe"><view>SellingTableCheckoutExe</view></command>
 		<command name="CallLog"><view>CallLog</view></command>
 		<command name="CallLogLoading"><view>CallLogLoading</view></command>
-		
-		<command name="SellingEndCase"><view>SellingEndCase</view></command>
-		
+						
 		<!-- ============================================================================== -->
 		<!-- FIXED			 																-->
 		<!-- ============================================================================== -->		

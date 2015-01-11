@@ -21,19 +21,21 @@
 			$mDomain 	= new \MVC\Mapper\Domain();
 			$mTable 	= new \MVC\Mapper\Table();
 			$mSession 	= new \MVC\Mapper\Session();
+			$mSD 		= new \MVC\Mapper\SessionDetail();
 			$mConfig 	= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
-			$Table 		= $mTable->find($IdTable);
-			$Domain 	= $mDomain->find($IdDomain);
-			$Session 	= $mSession->find($IdSession);
+			$Table 			= $mTable->find($IdTable);
+			$Domain 		= $mDomain->find($IdDomain);
+			$Session 		= $mSession->find($IdSession);
 			
 			$ConfigReceiptVirtualDouble 		= $mConfig->findByName("RECEIPT_VIRTUAL_DOUBLE");
 			$ConfigName							= $mConfig->findByName("NAME");
 			$ConfigAddress						= $mConfig->findByName("ADDRESS");
 			$ConfigPhone						= $mConfig->findByName("PHONE");
+					
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI

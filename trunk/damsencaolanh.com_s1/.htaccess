@@ -49,9 +49,10 @@ RewriteRule ^selling/search/course$ 							?cmd=SellingSearchCourse [L]
 RewriteRule ^selling/log/course$ 								?cmd=SellingLogCourse [L]
 RewriteRule ^selling/log/course/print/prepare$ 					?cmd=SellingLogCoursePreparePrint [L]
 
-RewriteRule ^selling/([0-9]+)/([0-9]+)/move/exe$				?cmd=SellingTableMoveExe&IdDomain=$1&IdTable=$2 [L]
+RewriteRule ^selling/move/([0-9]+)/([0-9]+)$					?cmd=SellingTableMoveExe&IdTable1=$1&IdTable2=$2 [L]
 RewriteRule ^selling/([0-9]+)/([0-9]+)/merge/exe$ 				?cmd=SellingTableMergeExe&IdDomain=$1&IdTable=$2 [L]
 RewriteRule ^selling/([0-9]+)/([0-9]+)/([0-9]+)/print.pdf$		?cmd=SellingTablePrint&IdDomain=$1&IdTable=$2&IdSession=$3 [L]
+RewriteRule ^selling/([0-9]+)/([0-9]+)/([0-9]+)/print1.pdf$		?cmd=SellingTablePrint1&IdDomain=$1&IdTable=$2&IdSession=$3 [L]
 RewriteRule ^selling/([0-9]+)/([0-9]+)/([0-9]+)/checkout/exe$	?cmd=SellingTableCheckoutExe&IdDomain=$1&IdTable=$2&IdSession=$3 [L]
 
 RewriteRule ^calllog$ 											?cmd=CallLog [L]
