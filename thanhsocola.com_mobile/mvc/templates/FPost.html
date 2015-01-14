@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<tal:block metal:use-macro="mFront.xhtml/IncludeMETA"/>
+		<tal:block metal:use-macro="mFront.xhtml/IncludeCSS"/>
+		<tal:block metal:use-macro="mFront.xhtml/IncludeJS"/>
+	</head>
+	
+	<body>
+		<div data-role="page" class="jqm-demos jqm-home">
+			<tal:block metal:use-macro="mFront.xhtml/Header"/>
+			<div role="main" class="ui-content jqm-content">									
+				<div class="panel-heading"><h3 class="panel-title" tal:content="Post/getTitle" /></div>
+				<div class="panel-body">
+					<div class="page-header clearfix">								
+						<p class="pull-left">Ngày đăng: <i tal:content="Post/getTimePrint"/></p>
+						<div class="share-button-group pull-right">
+							<div class="fb-share-button" tal:attributes="data-href URLShare" data-type="button_count"/>
+						</div>
+					</div>					
+					<div tal:content="structure Post/getContent" class="article-content-container"/>
+					<b class="pull-right" tal:content="Post/getAuthor"/>
+				</div>
+			</div>			
+			<tal:block metal:use-macro="mFront.xhtml/MenuTag"/>			
+			<tal:block metal:use-macro="mFront.xhtml/Footer"/>
+		</div>
+	</body>
+</html>

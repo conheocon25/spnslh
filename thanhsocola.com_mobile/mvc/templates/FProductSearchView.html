@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<tal:block metal:use-macro="mFront.xhtml/IncludeMETA"/>
+		<tal:block metal:use-macro="mFront.xhtml/IncludeCSS"/>
+		<tal:block metal:use-macro="mFront.xhtml/IncludeJS"/>
+	</head>	
+	<body>
+		<div data-role="page" class="jqm-demos jqm-home">
+			<tal:block metal:use-macro="mFront.xhtml/Header"/>
+			<div role="main" class="ui-content jqm-content">
+				<ul data-role="listview" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
+					<li class="ui-li-has-thumb" tal:repeat="Product ProductAll">
+						<a tal:attributes="href Product/getURLView" rel="external" class="ui-btn ui-btn-icon-right ui-icon-carat-r">
+							<img tal:attributes="src Product/getInfo/getImage" />
+							<h2 tal:content="Product/getName" />
+							<p tal:content="structure Product/getInfo/getInfoReduce"/>
+						</a>
+					</li>
+				</ul>
+				<div data-role="controlgroup" data-type="horizontal">
+					<a tal:repeat="P PN/getPages" tal:attributes="href P/getURL" class="ui-btn">
+						<span tal:content="P/getName"/>
+					</a>
+				</div>
+			</div>			
+			<tal:block metal:use-macro="mFront.xhtml/MenuCategorySupplier"/>
+			<tal:block metal:use-macro="mFront.xhtml/Footer"/>			
+		</div>
+	</body>
+</html>
