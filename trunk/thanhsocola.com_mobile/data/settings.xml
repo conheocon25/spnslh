@@ -1,0 +1,42 @@
+<options>    
+	<control>
+		<!-- ============================================================================== -->
+		<!-- Các lệnh xử lí SYSTEM 															-->
+		<!-- ============================================================================== -->		
+		<command name="DefaultCommand" 			type="public"><view>DefaultCommand</view><status value="CMD_OK"><forward>FHome</forward></status></command>
+		<command name="FGate" 					type="public"><view>FGate</view></command>
+		<command name="FHome" 					type="public"><view>FHome</view></command>
+				
+		<command name="FPriceLand" 				type="public"><view>FPriceLand</view></command>
+		<command name="FPriceHouse" 			type="public"><view>FPriceHouse</view></command>
+		
+		<command name="FContactRegisterBuy" 	type="public"><view>FContactRegisterBuy</view></command>
+		<command name="FContactRegisterSell" 	type="public"><view>FContactRegisterSell</view></command>
+		
+		<command name="FSupplier" 				type="public"><view>FSupplier</view></command>
+		
+		<command name="FContact" 				type="public"><view>FContact</view></command>
+		<command name="FContactSupplier" 		type="public"><view>FContactSupplier</view></command>
+		<command name="FContactPriceService" 	type="public"><view>FContactPriceService</view></command>
+		
+		<command name="FContactSend" 			type="public"><view>FContactSend</view></command>
+		<command name="FContactSendGmail" 		type="public"><view>FContactSendGmail</view></command>
+		
+		<command name="FCategory" 				type="public"><view>FCategory</view></command>
+		<command name="FProduct" 				type="public"><view>FProduct</view></command>
+		<command name="FProductSearch" 			type="public"><view>FProductSearch</view></command>
+		<command name="FProductSearchView" 		type="public"><view>FProductSearchView</view></command>
+		<command name="FTag" 					type="public"><view>FTag</view></command>
+		<command name="FPost" 					type="public"><view>FPost</view></command>		
+				
+		<!-- ============================================================================== -->
+		<!-- JSON LOAD			 															-->
+		<!-- ============================================================================== -->		
+		<command name="ObjectLoad"><view>ObjectLoad</view></command>
+		<command name="ObjectDel"><view>ObjectDel</view></command>
+		<command name="ObjectIns"><view>ObjectIns</view></command>
+		<command name="ObjectUpd"><view>ObjectUpd</view></command>
+		<command name="ObjectLiked"><view>ObjectLiked</view></command>
+				
+	</control>
+</options>

@@ -1,0 +1,36 @@
+<html lang="en" xml:lang="en">
+<body>		
+	<!-- DELETE SELECTED DIALOG  -->
+	<div metal:define-macro="DialogDelSelected" id="DialogDelSelected" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header"><h3>XÓA ĐÃ CHỌN</h3></div>
+				<div class="modal-body">
+					<p>Bạn có chắc muốn xóa không ?</p>
+				</div>
+				<div class="modal-footer">
+					<button id="URLDelSelectedButton" class="btn btn-primary btn-small">Xóa</button>
+					<button data-dismiss="modal" class="btn btn-default btn-small">Không</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- DELETE DIALOG  -->
+	<div metal:define-macro="DialogDel" id="DialogDel" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header"><h3>XÓA</h3></div>
+				<div class="modal-body">
+					<p>Bạn có chắc muốn xóa mục này ?</p>
+				</div>
+				<div class="modal-footer">
+					<button id="URLDelButton" class="btn btn-primary btn-small">Xóa</button>
+					<button data-dismiss="modal" class="btn btn-default btn-small">Không</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</body>
+</html>

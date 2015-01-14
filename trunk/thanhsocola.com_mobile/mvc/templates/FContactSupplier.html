@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<tal:block metal:use-macro="mFront.xhtml/IncludeMETA"/>
+		<tal:block metal:use-macro="mFront.xhtml/IncludeCSS"/>
+		<tal:block metal:use-macro="mFront.xhtml/IncludeJS"/>
+	</head>
+	
+	<body>
+		<div data-role="page" class="jqm-demos jqm-home">
+			<tal:block metal:use-macro="mFront.xhtml/Header"/>
+			<div role="main" class="ui-content jqm-content">									
+				<ul data-role="listview" data-inset="false">
+				    <li tal:repeat="Supplier SupplierAll">
+						<a tal:attributes="href Supplier/getURLView" rel="external">
+					        <img tal:attributes="src Supplier/getPicture" />
+					    	<h2 tal:content="Supplier/getName" />						
+							<span class="ui-li-count" tal:content="Supplier/getProductAll/count"/>
+						</a>
+				    </li>
+				</ul>
+			</div>			
+			<tal:block metal:use-macro="mFront.xhtml/Menu"/>
+			<tal:block metal:use-macro="mFront.xhtml/Footer"/>
+		</div>
+	</body>
+</html>

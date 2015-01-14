@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<tal:block metal:use-macro="mFront.xhtml/IncludeMETA"/>
+		<tal:block metal:use-macro="mFront.xhtml/IncludeCSS"/>
+		<tal:block metal:use-macro="mFront.xhtml/IncludeJS"/>
+	</head>
+	
+	<body>
+		<div data-role="page" class="jqm-demos jqm-home">
+			<tal:block metal:use-macro="mFront.xhtml/Header"/>
+			<div role="main" class="ui-content jqm-content">									
+				<div class="panel-heading">
+					<h3 class="panel-title" tal:content="string:ĐĂNG KÍ MUA"/>
+				</div>
+				<div class="panel-body">
+					
+				</div>
+			</div>			
+			<tal:block metal:use-macro="mFront.xhtml/Menu"/>			
+			<tal:block metal:use-macro="mFront.xhtml/Footer"/>			
+		</div>
+	</body>
+</html>

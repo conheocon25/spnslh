@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<tal:block metal:use-macro="mFront.xhtml/IncludeMETA"/>
+		<tal:block metal:use-macro="mFront.xhtml/IncludeCSS"/>
+		<tal:block metal:use-macro="mFront.xhtml/IncludeJS"/>
+		<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+		<script>
+			$( document ).on( "pageinit", "#product-page", function() {				
+				var defaultLatLng = new google.maps.LatLng(34.0983425, -118.3267434);
+				var latitude = $("#map-canvas").attr('latitude');
+				var longitude= $("#map-canvas").attr('longitude');
+			    if ( navigator.geolocation ){
+			        function success(pos) {
+			            // Location found, show map with these coordinates
+			            drawMap(new google.maps.LatLng(latitude, longitude));
+			        }
+			        function fail(error) {
+			            drawMap(defaultLatLng); 
+			        }
+			        // Find the users current position.  Cache the location for 5 minutes, timeout after 6 seconds
+			        navigator.geolocation.getCurrentPosition(success, fail, {maximumAge: 500000, enableHighAccuracy:true, timeout: 6000});
+			    } else {
+			        drawMap(defaultLatLng); 
+			    }
+			    function drawMap(latlng) {
+			        var myOptions = {
+			            zoom: 18,
+			            center: latlng,
+			            mapTypeId: google.maps.MapTypeId.ROADMAP
+			        };
+			        var map = new google.maps.Map(document.getElementById("map-canvas"), myOptions);
+			        // Add an overlay to the map of current lat/lng
+			        var marker = new google.maps.Marker({
+			            position: latlng,
+			            map: map,
+			            title: "Sản phẩm BĐS Cà Mau .NET"
+			        });
+			    }				
+			});
+		</script>			
+	</head>
+	<body>
+		<div id="product-page" data-role="page" class="jqm-demos jqm-home">
+			<tal:block metal:use-macro="mFront.xhtml/Header"/>
+			<div role="main" class="ui-content jqm-content">									
+				<h3 class="panel-title" tal:content="Product/getName"/>
+				<p>
+					(<B style="color:#055699;font-weight:bold;" tal:content="Product/getDateTimePrint"/>)
+					<B style="color:#055699;font-weight:bold;" tal:content="Product/getAddress"/>
+				</p>
+				<p tal:content="structure Product/getInfo/getInfo"/>				
+				<div class="ui-grid-a" tal:condition="Product/getInfo">
+					<div class="ui-block-a">
+						<div class="ui-bar ui-bar-a">
+							Diện tích: <span style="color:#055699;font-weight:bold;" tal:content="structure Product/getInfo/getInfoEx13Print"/>
+						</div>
+					</div>
+					<div class="ui-block-b">
+						<div class="ui-bar ui-bar-a">
+							Giá: <span style="color:#055699;font-weight:bold;" tal:content="Product/getPricePrint"/>
+						</div>
+					</div>
+					
+					<div class="ui-block-a">
+						<div class="ui-bar ui-bar-a">
+							Mã tin: <B style="color:#055699;font-weight:bold;" tal:content="Product/getId" />
+						</div>
+					</div>
+					<div class="ui-block-b">
+						<div class="ui-bar ui-bar-a">
+							Hướng: <B style="color:#055699;font-weight:bold;" tal:content="Product/getInfo/getInfoEx03Print" />
+						</div>
+					</div>
+					
+					<div class="ui-block-a">
+						<div class="ui-bar ui-bar-a">
+							Phòng ăn:<B style="color:#055699;font-weight:bold;" tal:content="Product/getInfo/getInfoEx08Print" />
+						</div>
+					</div>
+					<div class="ui-block-b">
+						<div class="ui-bar ui-bar-a">
+							Loại tin: <B style="color:#055699;font-weight:bold;" tal:content="Product/getCategory/getName" />
+						</div>
+					</div>
+					
+					<div class="ui-block-a">
+						<div class="ui-bar ui-bar-a">
+							Chính chủ: <B style="color:#055699;font-weight:bold;" tal:content="Product/getInfo/getInfoEx12Print" />
+						</div>
+					</div>
+					<div class="ui-block-b">
+						<div class="ui-bar ui-bar-a">
+							Nhà bếp: <B style="color:#055699;font-weight:bold;" tal:content="Product/getInfo/getInfoEx09Print" />
+						</div>
+					</div>
+					
+					<div class="ui-block-a">
+						<div class="ui-bar ui-bar-a">
+							Lộ giới: <B style="color:#055699;font-weight:bold;" tal:content="Product/getInfo/getInfoEx04Print" />
+						</div>
+					</div>
+					<div class="ui-block-b">
+						<div class="ui-bar ui-bar-a">
+							Loại BĐS: <B style="color:#055699;font-weight:bold;" tal:content="Product/getEstate/getName" tal:condition="Product/getEstate"/>
+						</div>
+					</div>
+					
+					<div class="ui-block-a">
+						<div class="ui-bar ui-bar-a">
+							Pháp lý: <B style="color:#055699;font-weight:bold;" tal:content="Product/getInfo/getInfoEx05Print" />
+						</div>
+					</div>
+					<div class="ui-block-b">
+						<div class="ui-bar ui-bar-a">
+							Sân thượng: <B style="color:#055699;font-weight:bold;" tal:content="Product/getInfo/getInfoEx10Print" />
+						</div>
+					</div>
+					
+					<div class="ui-block-a">
+						<div class="ui-bar ui-bar-a">
+							Chiều ngang: <B style="color:#055699;font-weight:bold;" tal:content="Product/getInfo/getInfoEx01Print" />
+						</div>
+					</div>
+					<div class="ui-block-b">
+						<div class="ui-bar ui-bar-a">
+							Số lầu: <B style="color:#055699;font-weight:bold;" tal:content="Product/getInfo/getInfoEx06Print" />
+						</div>
+					</div>
+					
+					<div class="ui-block-a">
+						<div class="ui-bar ui-bar-a">
+							Chỗ để xe hơi: <B style="color:#055699;font-weight:bold;" tal:content="Product/getInfo/getInfoEx11Print" />
+						</div>
+					</div>
+					<div class="ui-block-b">
+						<div class="ui-bar ui-bar-a">
+							Chiều dài: <B style="color:#055699;font-weight:bold;" tal:content="Product/getInfo/getInfoEx02Print" />
+						</div>
+					</div>
+					
+					<div class="ui-block-a">
+						<div class="ui-bar ui-bar-a">
+							Số phòng ngủ: <B style="color:#055699;font-weight:bold;" tal:content="Product/getInfo/getInfoEx07Print" />
+						</div>
+					</div>
+					<div class="ui-block-b">
+						<div class="ui-bar ui-bar-a">
+							_
+						</div>
+					</div>
+				</div>
+				<div tal:condition="Product/getMap" class="ui-content" id="map-canvas" style="height:320px" tal:attributes="latitude Product/getMap/getLatitude;longitude Product/getMap/getLongitude"/>
+				<div tal:repeat="Image Product/getImageAll">
+					<img width="100%" tal:attributes="src Image/getURL"/>
+				</div>	
+			</div>
+			<tal:block metal:use-macro="mFront.xhtml/MenuCategorySupplier"/>
+			<tal:block metal:use-macro="mFront.xhtml/Footer"/>
+			
+		</div>
+	</body>
+</html>
