@@ -16,6 +16,8 @@
 		<command name="FToolGoogleTranslate" 	type="public"><view>FToolGoogleTranslate</view></command>
 		<command name="FToolUnitChange" 		type="public"><view>FToolUnitChange</view></command>
 		<command name="FToolTyping" 			type="public"><view>FToolTyping</view></command>		
+		<command name="FToolChineseChess" 		type="public"><view>FToolChineseChess</view></command>
+		<command name="FToolChineseChessDrawBoard" 		type="public"><view>FToolChineseChessDrawBoard</view></command>
 		
 		<command name="FMusicType001" 	type="public"><view>FMusicType001</view></command>
 		
