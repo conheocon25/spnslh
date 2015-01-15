@@ -16,5 +16,6 @@ class PageCollection 			extends Collection implements \MVC\Domain\PageCollection
 class GuestCollection 			extends Collection implements \MVC\Domain\GuestCollection			{function targetClass(){return "\MVC\Domain\Guest";			}}
 class ProvinceCollection 		extends Collection implements \MVC\Domain\ProvinceCollection		{function targetClass(){return "\MVC\Domain\Province";		}}
 class DistrictCollection 		extends Collection implements \MVC\Domain\DistrictCollection		{function targetClass(){return "\MVC\Domain\District";		}}
-
+class CBMCollection 			extends Collection implements \MVC\Domain\CBMCollection				{function targetClass(){return "\MVC\Domain\CBM";			}}
+class CBMDetailCollection 		extends Collection implements \MVC\Domain\CBMDetailCollection		{function targetClass(){return "\MVC\Domain\CBMDetail";		}}
 ?>

@@ -1,7 +1,6 @@
 <?php
 namespace MVC\Domain;
-if ( ! isset( $EG_DISABLE_INCLUDES ) ) {	
-		
+if ( ! isset( $EG_DISABLE_INCLUDES ) ) {			
 	require_once( "mvc/mapper/User.php" 			);		
 	require_once( "mvc/mapper/UserTag.php" 			);		
 	require_once( "mvc/mapper/Tag.php" 				);
@@ -14,6 +13,8 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	require_once( "mvc/mapper/Guest.php"			);	
 	require_once( "mvc/mapper/Province.php"			);
 	require_once( "mvc/mapper/District.php"			);
+	require_once( "mvc/mapper/CBM.php"				);
+	require_once( "mvc/mapper/CBMDetail.php"		);
 }
 
 class HelperFactory {
@@ -42,7 +43,6 @@ class HelperFactory {
             return new $model();
         }
         throw new \MVC\Base\AppException( "Không biết: $model" );
-    }
-	
+    }	
 }
 ?>

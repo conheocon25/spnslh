@@ -1,5 +1,5 @@
 <?php
-Namespace MVC\Domain;
+namespace MVC\Domain;
 require_once( "mvc/base/domain/DomainObject.php" );
 
 class Chess extends Object{
@@ -18,11 +18,13 @@ class Chess extends Object{
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------	
     function __construct($Width = null, $StrState = null){
+		
+		
 		$this->BOARD_WIDTH 	= $Width;
 		$this->BOARD_HEIGHT = ($this->BOARD_WIDTH/9)*10;
 		$this->PIECE_WIDTH	= $this->BOARD_WIDTH/9;
 		$this->PIECE_HEIGHT	= $this->BOARD_WIDTH/9;
-		
+						
         $this->Canvas 		= imagecreatetruecolor($this->BOARD_WIDTH, $this->BOARD_HEIGHT);
 		
 		$this->ImagePieceAll= array(	"RR"=>imagecreatefrompng("data/chess/RRook.png"),
@@ -55,7 +57,7 @@ class Chess extends Object{
 					$this->PositionMap[]= $D;					
 				}				
 			}
-			else{
+			else{				
 				$this->PositionMap = array(
 					array("BR", "BH", "BE", "BA", "BK", "BA", "BE", "BH", "BR"),
 					array("0", "0", "0", "0", "0", "0", "0", "0", "0"),
@@ -139,6 +141,7 @@ class Chess extends Object{
 		imageline( $this->Canvas, $XStart + 7*$this->PIECE_WIDTH, $YStart + 5*$this->PIECE_HEIGHT, $XStart + 8*$this->PIECE_WIDTH, $YStart + 4*$this->PIECE_HEIGHT, $BGC);
 		
 		//Nạp hình các quân cờ
+		
 		for ($i=0; $i<10; $i++){
 			for ($j=0;$j<9; $j++){
 				$Name = $this->PositionMap[$i][$j];
@@ -156,13 +159,13 @@ class Chess extends Object{
 				}
 			}
 		}
+		
 		//Vẽ tiêu đề
-		
-		
-		//Xuất ảnh ra
+				
+		//Xuất ảnh ra		
 		header('Content-Type: image/png');
 		imagepng($this->Canvas);
-		imagedestroy($this->Canvas);
+		imagedestroy($this->Canvas);		
 	}
 	
 	//-------------------------------------------------------------------------------
