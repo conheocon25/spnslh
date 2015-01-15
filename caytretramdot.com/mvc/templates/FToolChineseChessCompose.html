@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mFront.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>
+	</head>
+	<body>
+		<div metal:use-macro="mFront.xhtml/Header"/>
+		<div class="container-fluid" id="wraper">
+			<div class="row">
+				<div class="col-md-9">
+					<h1>SOẠN VÁN CỜ</h1>					
+					<img id="ChessBoard" src="/tien-ich/co-tuong/ve/ban-co/600/biensoan"/>
+				</div>
+				<div class="col-md-3">
+					<div class="Move btn btn-primary" alt="/tien-ich/co-tuong/ve/ban-co/400/BR BH BE BA BK BA BE BH BR 0 0 0 0 0 0 0 0 0 0 BC 0 0 0 0 0 BC 0 BP 0 BP 0 BP 0 BP 0 BP 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 RP 0 RP 0 RP 0 RP 0 RP 0 RC 0 0 0 0 0 RC 0 0 0 0 0 0 0 0 0 0 RR RH RE RA RK RA RE RH RR">Bắt đầu</div>
+					<BR/>
+					<div class="Move btn btn-primary" alt="/tien-ich/co-tuong/ve/ban-co/400/BR 0 BE BA BK BA BE BH BR 0 0 0 0 0 0 0 0 0 0 BC BH 0 0 0 0 BC 0 BP 0 BP 0 BP 0 BP 0 BP 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 RP 0 RP 0 RP 0 RP 0 RP 0 RC 0 0 0 0 0 RC 0 0 0 0 0 0 0 0 0 0 RR RH RE RA RK RA RE RH RR">Nước 1.1</div>
+					<BR/>
+					<div class="Move btn btn-primary" alt="/tien-ich/co-tuong/ve/ban-co/400/BR 0 BE BA BK BA BE BH BR 0 0 0 0 0 0 0 0 0 0 BC BH 0 0 0 0 BC 0 BP 0 BP 0 BP 0 BP 0 BP 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 RP 0 RP 0 RP 0 RP 0 RP 0 RC 0 0 0 0 RH RC 0 0 0 0 0 0 0 0 0 0 RR RH RE RA RK RA RE 0 RR">Nước 1.2</div>
+					<BR/>					
+					<div class="Move btn btn-primary" alt="/tien-ich/co-tuong/ve/ban-co/400/BR 0 BE BA BK BA BE BH BR 0 0 0 0 0 0 0 0 0 0 BC BH 0 BC 0 0 0 0 BP 0 BP 0 BP 0 BP 0 BP 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 RP 0 RP 0 RP 0 RP 0 RP 0 RC 0 0 0 0 RH RC 0 0 0 0 0 0 0 0 0 0 RR RH RE RA RK RA RE 0 RR">Nước 2.1</div>
+					<BR/>
+					<div class="Move btn btn-primary" alt="/tien-ich/co-tuong/ve/ban-co/400/BR 0 BE BA BK BA BE BH BR 0 0 0 0 0 0 0 0 0 0 BC BH 0 BC 0 0 0 0 BP 0 BP 0 BP 0 BP 0 BP 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 RP 0 RP 0 RP 0 RP 0 RP 0 RC 0 0 RE 0 RH RC 0 0 0 0 0 0 0 0 0 0 RR RH 0 RA RK RA RE 0 RR">Nước 2.2</div>
+					<BR/>
+				</div>
+			</div>
+		</div>			
+		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
+		<script type="text/javascript">
+		/*<![CDATA[*/
+			$(function() {				
+				$(".Move").click(function(){
+					var URL = $(this).attr('alt');					
+					$("#ChessBoard").attr('src', URL);
+				});
+			});
+		/*]]>*/
+		</script>	
+	</body>
+</html>

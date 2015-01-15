@@ -6,8 +6,8 @@ class Chess extends Object{
 	private $BOARD_WIDTH	= 32;
 	private $BOARD_HEIGHT	= 32;
 	
-	private $PIECE_WIDTH	= 32;
-	private	$PIECE_HEIGHT	= 32;
+	private $PIECE_WIDTH	= 150;
+	private	$PIECE_HEIGHT	= 150;
 	
     private $Canvas;	
 	
@@ -17,7 +17,7 @@ class Chess extends Object{
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------	
-    function __construct($Width = null, $Height = null, $StrState = null){
+    function __construct($Width = null, $StrState = null){
 		$this->BOARD_WIDTH 	= $Width;
 		$this->BOARD_HEIGHT = ($this->BOARD_WIDTH/9)*10;
 		$this->PIECE_WIDTH	= $this->BOARD_WIDTH/9;
@@ -25,24 +25,25 @@ class Chess extends Object{
 		
         $this->Canvas 		= imagecreatetruecolor($this->BOARD_WIDTH, $this->BOARD_HEIGHT);
 		
-		$this->ImagePieceAll= array(	"RR"=>imagecreatefromgif("data/chess/rrook.gif"),
-										"RH"=>imagecreatefromgif("data/chess/rhorse.gif"),
-										"RE"=>imagecreatefromgif("data/chess/relephant.gif"),
-										"RA"=>imagecreatefromgif("data/chess/rassansin.gif"),
-										"RK"=>imagecreatefromgif("data/chess/rking.gif"),
-										"RC"=>imagecreatefromgif("data/chess/rcannon.gif"),
-										"RP"=>imagecreatefromgif("data/chess/rpawn.gif"),
-										"BR"=>imagecreatefromgif("data/chess/brook.gif"),
-										"BH"=>imagecreatefromgif("data/chess/bhorse.gif"),
-										"BE"=>imagecreatefromgif("data/chess/belephant.gif"),
-										"BA"=>imagecreatefromgif("data/chess/bassansin.gif"),
-										"BK"=>imagecreatefromgif("data/chess/bking.gif"),
-										"BC"=>imagecreatefromgif("data/chess/bcannon.gif"),
-										"BP"=>imagecreatefromgif("data/chess/bpawn.gif")
+		$this->ImagePieceAll= array(	"RR"=>imagecreatefrompng("data/chess/RRook.png"),
+										"RH"=>imagecreatefrompng("data/chess/RHorse.png"),
+										"RE"=>imagecreatefrompng("data/chess/RElephant.png"),
+										"RA"=>imagecreatefrompng("data/chess/RAssansin.png"),
+										"RK"=>imagecreatefrompng("data/chess/RKing.png"),
+										"RC"=>imagecreatefrompng("data/chess/RCannon.png"),
+										"RP"=>imagecreatefrompng("data/chess/RPawn.png"),
+										"BR"=>imagecreatefrompng("data/chess/GRook.png"),
+										"BH"=>imagecreatefrompng("data/chess/GHorse.png"),
+										"BE"=>imagecreatefrompng("data/chess/GElephant.png"),
+										"BA"=>imagecreatefrompng("data/chess/GAssansin.png"),
+										"BK"=>imagecreatefrompng("data/chess/GKing.png"),
+										"BC"=>imagecreatefrompng("data/chess/GCannon.png"),
+										"BP"=>imagecreatefrompng("data/chess/GPawn.png")
 		);
 		
 		//Phân tích trạng thái hiện tại bàn cờ		
-		if ($StrState !=null){			
+		if ($StrState !=null){
+			
 			$ArrState = explode(" ", $StrState);			
 			
 			if (count($ArrState)==90){				
@@ -52,8 +53,8 @@ class Chess extends Object{
 						$D[]= $ArrState[$i*9+$j];
 					}					
 					$this->PositionMap[]= $D;					
-				}
-			}			
+				}				
+			}
 			else{
 				$this->PositionMap = array(
 					array("BR", "BH", "BE", "BA", "BK", "BA", "BE", "BH", "BR"),
@@ -67,8 +68,9 @@ class Chess extends Object{
 					array("0", "0", "0", "0", "0", "0", "0", "0", "0"),
 					array("RR", "RH", "RE", "RA", "RK", "RA", "RE", "RH", "RR")
 				);
+				
 			}			
-		}else{
+		}else{			
 			$this->PositionMap = array(
 					array("BR", "BH", "BE", "BA", "BK", "BA", "BE", "BH", "BR"),
 					array("0", "0", "0", "0", "0", "0", "0", "0", "0"),
@@ -141,12 +143,16 @@ class Chess extends Object{
 			for ($j=0;$j<9; $j++){
 				$Name = $this->PositionMap[$i][$j];
 				if ($Name != "0"){
+					
+					$NewImage = imagecreatetruecolor($this->PIECE_WIDTH, $this->PIECE_HEIGHT);
+					imagecopyresized($NewImage, $this->ImagePieceAll[$Name], 0, 0, 0, 0, $this->PIECE_WIDTH, $this->PIECE_HEIGHT, 150, 150);
+					
 					imagecopy(
 						$this->Canvas, 
-						$this->ImagePieceAll[$Name],
+						$NewImage,
 						$j*$this->PIECE_WIDTH,
 						$i*$this->PIECE_HEIGHT, 
-						0, 0, $this->PIECE_WIDTH, $this->PIECE_HEIGHT);
+						0, 0, $this->PIECE_WIDTH, $this->PIECE_HEIGHT);					
 				}
 			}
 		}
@@ -154,8 +160,8 @@ class Chess extends Object{
 		
 		
 		//Xuất ảnh ra
-		header('Content-Type: image/jpeg');
-		imagejpeg($this->Canvas);
+		header('Content-Type: image/png');
+		imagepng($this->Canvas);
 		imagedestroy($this->Canvas);
 	}
 	
