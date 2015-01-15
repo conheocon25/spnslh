@@ -20,8 +20,9 @@ interface PostLinkedFinder 		extends Finder {}
 interface PostMapFinder 		extends Finder {}
 interface ConfigFinder 			extends Finder {}
 interface GuestFinder 			extends Finder {}
-
 interface ProvinceFinder 		extends Finder {}
 interface DistrictFinder 		extends Finder {}
 
+interface CBMFinder 			extends Finder {}
+interface CBMDetailFinder 		extends Finder {}
 ?>

@@ -12,8 +12,8 @@ interface PostMapCollection 			extends \Iterator {function add( Object $PostMap)
 interface ConfigCollection 				extends \Iterator {function add( Object $Config );		}
 interface PageCollection 				extends \Iterator {function add( Object $Page);			}
 interface GuestCollection 				extends \Iterator {function add( Object $Guest);		}
-
 interface ProvinceCollection 			extends \Iterator {function add( Object $Province);		}
 interface DistrictCollection 			extends \Iterator {function add( Object $District);		}
-
+interface CBMCollection 				extends \Iterator {function add( Object $CBM);			}
+interface CBMDetailCollection 			extends \Iterator {function add( Object $CBMDetail);	}
 ?>

@@ -1,34 +1,35 @@
 <?php
 	namespace MVC\Command;	
-	class FToolChineseChessDrawBoard extends Command {
+	class FToolChineseChessViewer extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
 			//THAM SỐ TOÀN CỤC
 			//-------------------------------------------------------------						
-			//$Session = \MVC\Base\SessionRegistry::instance();
-						
+			$Session = \MVC\Base\SessionRegistry::instance();
+									
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$StrState 	= $request->getProperty('StrState');
-			$Width 		= $request->getProperty('Width');			
-			//$StrState = "0 0 BE BA BK BA BE BH BR 0 0 0 0 0 0 0 0 0 0 BC 0 0 0 0 0 BC 0 BP 0 BP 0 BP 0 BP 0 BP 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 RP 0 RP 0 RP 0 RP 0 RP 0 RC 0 0 0 0 0 RC 0 0 0 0 0 0 0 0 0 0 RR RH RE RA RK RA RE RH RR";
+			$KeyCBM = $request->getProperty('KeyCBM');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------						
-			$mConfig 		= new \MVC\Mapper\Config();									
+			$mConfig 		= new \MVC\Mapper\Config();
+			$mCBM 			= new \MVC\Mapper\CBM();
+									
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
-			if ($Width<=0){$Width	= 480;}
-			
-			$Chess = new \MVC\Domain\Chess($Width, $StrState);
-			$Chess->draw();
+			$CBM 	= 	$mCBM->findByKey($KeyCBM);
+												
+			//-------------------------------------------------------------
+			//THAM SỐ GỬI ĐI
+			//-------------------------------------------------------------			
+			$request->setObject("CBM", $CBM);
 						
-			
-			
+			return self::statuses('CMD_DEFAULT');
 		}
 	}
 ?>
