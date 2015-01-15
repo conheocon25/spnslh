@@ -30,6 +30,7 @@ class Student extends Object{
 	
 		parent::__construct( $Id );
 	}		
+	function setId($Id) {$this->Id = $Id;}
 	function getId() {return $this->Id;}
 		
 	function setCode($Code) {$this->Code = $Code;$this->markDirty();}

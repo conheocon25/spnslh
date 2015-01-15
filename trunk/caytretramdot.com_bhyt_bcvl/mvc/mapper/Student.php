@@ -57,7 +57,7 @@ class Student extends Mapper implements \MVC\Domain\StudentFinder {
 		); 
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
-        $object->setId( $id );
+        $object->setId( $id );		
     }
     
     protected function doUpdate( \MVC\Domain\Object $object ){

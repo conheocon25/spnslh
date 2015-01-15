@@ -22,13 +22,8 @@
 				<div class="col-12">
 					<a href="#DialogApplySelected" data-toggle="modal" class="btn btn-primary btn-ins">
 						<i class="glyphicons-cogwheel"/> Áp dụng
-					</a>
-					<!--
-					<a href="#DialogInitChecking" data-toggle="modal" id="CheckingInit" class="btn btn-primary btn-ins" tal:attributes="data-url Table/getURLCheckingInit" >
-						<i class="glyphicons-cogwheel"/> Khởi tạo lại
-					</a>
-					!-->
-					<div class="widget-box">
+					</a>					
+					<div class="widget-box">						
 						<div class="widget-content nopadding">
 							<table class="table table-bordered table-striped table-hover with-check">
 								<thead>
@@ -38,8 +33,8 @@
 										<th width="60"><div class="text-left">SBHYT</div></th>
 										<th><div class="text-left">HỌ</div></th>
 										<th width="90"><div class="text-left">TÊN</div></th>										
-										<th width="140"><div class="text-left">NGÀY SINH</div></th>
-										<th width="60"><div class="text-left">G.TÍNH</div></th>
+										<th width="140"><div class="text-left">NGÀY THAM GIA</div></th>
+										<th width="80"><div class="text-left">SỐ THÁNG</div></th>
 									</tr>
 								</thead>
 								<tbody>
@@ -52,12 +47,12 @@
 										<td class="center"><span tal:content="Session/getStudent/getCode"/></td>
 										<td><span tal:content="Session/getStudent/getSurName"/></td>
 										<td class="left"><span tal:content="Session/getStudent/getLastName"/></td>										
-										<td class="left"><span tal:content="Session/getStudent/getBirthday"/></td>
-										<td class="left"><span tal:content="Session/getStudent/getGenderPrint"/></td>
+										<td class="left"><span tal:content="Session/getDateJoinedPrint"/></td>
+										<td class="left"><span tal:content="Session/getCountMonth"/></td>
 									</tr>
 								</tbody>																								
 							</table>							
-						</div>
+						</div>						
 					</div>					
 				</div>
 			</div>

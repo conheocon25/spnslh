@@ -8,8 +8,8 @@ class StudentTemp extends Mapper implements \MVC\Domain\StudentTempFinder {
 						
 		$selectAllStmt 			= sprintf("select * from %s", $tblStudentTemp);
 		$selectStmt 			= sprintf("select * from %s where id=?", $tblStudentTemp);
-		$updateStmt 			= sprintf("update %s set code=?, sur_name=?, last_name=?, code_ext1=?, birthday=?, gender=?, id_class=?  where id=?", $tblStudentTemp);
-		$insertStmt 			= sprintf("insert into %s ( code, sur_name, last_name, code_ext1, birthday, gender, id_class) values(?, ?, ?, ?, ?, ?, ?)", $tblStudentTemp);
+		$updateStmt 			= sprintf("update %s set code=?, sur_name=?, last_name=?, code_ext1=?, birthday=?, gender=?, date_joined=?, count_month=?, id_class=?  where id=?", $tblStudentTemp);
+		$insertStmt 			= sprintf("insert into %s ( code, sur_name, last_name, code_ext1, birthday, gender, date_joined, count_month, id_class) values(?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblStudentTemp);
 		$deleteStmt 			= sprintf("delete from %s where id=?", $tblStudentTemp);
 		$deleteAllStmt 			= sprintf("delete from %s", $tblStudentTemp);
 		$findByPageStmt 		= sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblStudentTemp);
@@ -33,6 +33,8 @@ class StudentTemp extends Mapper implements \MVC\Domain\StudentTempFinder {
 			$array['code_ext1'],
 			$array['birthday'],
 			$array['gender'],
+			$array['date_joined'],
+			$array['count_month'],
 			$array['id_class']
 		);
         return $obj;
@@ -47,6 +49,8 @@ class StudentTemp extends Mapper implements \MVC\Domain\StudentTempFinder {
 			$object->getCodeExt1(),
 			$object->getBirthday(),
 			$object->getGender(),
+			$object->getDateJoined(),
+			$object->getCountMonth(),
 			$object->getIdClass()
 		); 
         $this->insertStmt->execute( $values );
@@ -62,6 +66,8 @@ class StudentTemp extends Mapper implements \MVC\Domain\StudentTempFinder {
 			$object->getCodeExt1(),
 			$object->getBirthday(),
 			$object->getGender(),
+			$object->getDateJoined(),
+			$object->getCountMonth(),
 			$object->getIdClass(),
 			$object->getId()
 		);		
