@@ -47,9 +47,12 @@ RewriteRule ^tien-ich/may-tinh-con$								?cmd=FTool001 		 [L]
 RewriteRule ^tien-ich/doi-don-vi$								?cmd=FToolUnitChange [L]
 RewriteRule ^tien-ich/giai-phuong-trinh-bac2$					?cmd=FTool001 		 [L]
 RewriteRule ^tien-ich/luyen-go-phim$							?cmd=FToolTyping	 [L]
-RewriteRule ^tien-ich/co-tuong$									?cmd=FToolChineseChess [L]	
-RewriteRule ^tien-ich/co-tuong/ve/ban-co$						?cmd=FToolChineseChessDrawBoard [L]	
-RewriteRule ^tien-ich/co-tuong/ve/ban-co/([0-9]+)/([0-9]+)/([A-Za-z0-9-\s]+)$		?cmd=FToolChineseChessDrawBoard&Width=$1&Height=$2&StrState=$3 [QSA,L]
+
+RewriteRule ^tien-ich/co-tuong$									?cmd=FToolChineseChess [L]
+RewriteRule ^tien-ich/co-tuong/bien-soan$						?cmd=FToolChineseChessCompose [L]
+RewriteRule ^tien-ich/co-tuong/ve/ban-co$						?cmd=FToolChineseChessDrawBoard [L]
+RewriteRule ^tien-ich/co-tuong/ve/ban-co/([0-9]+)/([A-Za-z0-9-\s]+)$		?cmd=FToolChineseChessDrawBoard&Width=$1&StrState=$2 [QSA,L]
+
 
 RewriteRule ^giai-tri/nhac-khong-loi$							?cmd=FMusicType001	 [L]
 
