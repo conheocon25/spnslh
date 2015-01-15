@@ -41,6 +41,8 @@
 				$StrGender 		= $DataExcel->val($DEI,'F');
 				$CA				= explode(" ", $DataExcel->val($DEI,'G'));
 				$StrClass 		= \end($CA);
+				$StrDateJoined 	= date('y-m-d', strtotime($DataExcel->val($DEI,'H')));				
+				$StrCountMonth 	= $DataExcel->val($DEI,'I');
 																
 				if ($StrSurName !=""){
 					$StudentTemp = new \MVC\Domain\StudentTemp(
@@ -51,7 +53,9 @@
 						$StrCodeExt1,
 						$StrBirthday,
 						$StrGender,
-						$StrClass
+						$StrDateJoined,
+						$StrCountMonth,
+						$StrClass						
 					);								
 					$mStudentTemp->insert($StudentTemp);
 				}				

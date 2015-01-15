@@ -13,20 +13,24 @@ class StudentTemp extends Object{
 	private $CodeExt1;
 	private $Birthday;
 	private $Gender;
+	private $DateJoined;
+	private $CountMonth;
 	private $IdClass;
 		
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-	function __construct($Id=null, $Code, $SurName=null, $LastName=null, $CodeExt1=null, $Birthday=null, $Gender=null, $IdClass=null){
-		$this->Id 		= $Id;
-		$this->Code 	= $Code;
-		$this->SurName 	= $SurName;
-		$this->LastName = $LastName;
-		$this->CodeExt1	= $CodeExt1;
-		$this->Birthday = $Birthday;
-		$this->Gender	= $Gender;
-		$this->IdClass 	= $IdClass;
+	function __construct($Id=null, $Code, $SurName=null, $LastName=null, $CodeExt1=null, $Birthday=null, $Gender=null, $DateJoined=null, $CountMonth=null, $IdClass=null){
+		$this->Id 			= $Id;
+		$this->Code 		= $Code;
+		$this->SurName 		= $SurName;
+		$this->LastName 	= $LastName;
+		$this->CodeExt1		= $CodeExt1;
+		$this->Birthday 	= $Birthday;
+		$this->Gender		= $Gender;
+		$this->DateJoined	= $DateJoined;
+		$this->CountMonth	= $CountMonth;
+		$this->IdClass 		= $IdClass;
 	
 		parent::__construct( $Id );
 	}		
@@ -54,6 +58,12 @@ class StudentTemp extends Object{
 		return $Arr[$this->Gender];
 	}
 	
+	function setDateJoined($DateJoined) {$this->DateJoined = $DateJoined;$this->markDirty();}
+	function getDateJoined() {return $this->DateJoined;}
+	
+	function setCountMonth($CountMonth) {$this->CountMonth = $CountMonth;$this->markDirty();}
+	function getCountMonth() {return $this->CountMonth;}
+	
 	function setIdClass($IdClass) {$this->IdClass = $IdClass;$this->markDirty();}
 	function getIdClass() {return $this->IdClass;}
 	
@@ -78,6 +88,8 @@ class StudentTemp extends Object{
 			'CodeExt1'		=> $this->getCodeExt1(),
 			'Birthday'		=> $this->getBirthday(),
 			'Gender'		=> $this->getGender(),
+			'DateJoined'	=> $this->getDateJoined(),
+			'CountMonth'	=> $this->getCountMonth(),
 			'IdClass'		=> $this->getIdClass()
 		);
 		return json_encode($json);							
@@ -91,7 +103,9 @@ class StudentTemp extends Object{
 		$this->CodeExt1		= $Data[4];
 		$this->Birthday		= $Data[5];
 		$this->Gender		= $Data[6];
-		$this->IdClass		= $Data[7];
+		$this->DateJoined	= $Data[7];
+		$this->CountMonth	= $Data[8];
+		$this->IdClass		= $Data[9];
     }
 	
 	//-------------------------------------------------------------------------------

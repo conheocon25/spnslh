@@ -6,8 +6,8 @@ class Chess extends Object{
 	private $BOARD_WIDTH	= 32;
 	private $BOARD_HEIGHT	= 32;
 	
-	private $PIECE_WIDTH	= 150;
-	private	$PIECE_HEIGHT	= 150;
+	private $PIECE_WIDTH	= 64;
+	private	$PIECE_HEIGHT	= 64;
 	
     private $Canvas;	
 	
@@ -27,6 +27,7 @@ class Chess extends Object{
 						
         $this->Canvas 		= imagecreatetruecolor($this->BOARD_WIDTH, $this->BOARD_HEIGHT);
 		
+		/*
 		$this->ImagePieceAll= array(	"RR"=>imagecreatefrompng("data/chess/RRook.png"),
 										"RH"=>imagecreatefrompng("data/chess/RHorse.png"),
 										"RE"=>imagecreatefrompng("data/chess/RElephant.png"),
@@ -41,6 +42,23 @@ class Chess extends Object{
 										"BK"=>imagecreatefrompng("data/chess/GKing.png"),
 										"BC"=>imagecreatefrompng("data/chess/GCannon.png"),
 										"BP"=>imagecreatefrompng("data/chess/GPawn.png")
+		);
+		*/
+		
+		$this->ImagePieceAll= array(	"RR"=>imagecreatefromgif("data/chess/RRook.gif"),
+										"RH"=>imagecreatefromgif("data/chess/RHorse.gif"),
+										"RE"=>imagecreatefromgif("data/chess/RElephant.gif"),
+										"RA"=>imagecreatefromgif("data/chess/RAssansin.gif"),
+										"RK"=>imagecreatefromgif("data/chess/RKing.gif"),
+										"RC"=>imagecreatefromgif("data/chess/RCannon.gif"),
+										"RP"=>imagecreatefromgif("data/chess/RPawn.gif"),
+										"BR"=>imagecreatefromgif("data/chess/GRook.gif"),
+										"BH"=>imagecreatefromgif("data/chess/GHorse.gif"),
+										"BE"=>imagecreatefromgif("data/chess/GElephant.gif"),
+										"BA"=>imagecreatefromgif("data/chess/GAssansin.gif"),
+										"BK"=>imagecreatefromgif("data/chess/GKing.gif"),
+										"BC"=>imagecreatefromgif("data/chess/GCannon.gif"),
+										"BP"=>imagecreatefromgif("data/chess/GPawn.gif")
 		);
 		
 		//Phân tích trạng thái hiện tại bàn cờ		
@@ -148,7 +166,7 @@ class Chess extends Object{
 				if ($Name != "0"){
 					
 					$NewImage = imagecreatetruecolor($this->PIECE_WIDTH, $this->PIECE_HEIGHT);
-					imagecopyresized($NewImage, $this->ImagePieceAll[$Name], 0, 0, 0, 0, $this->PIECE_WIDTH, $this->PIECE_HEIGHT, 150, 150);
+					imagecopyresized($NewImage, $this->ImagePieceAll[$Name], 0, 0, 0, 0, $this->PIECE_WIDTH, $this->PIECE_HEIGHT, 64, 64);
 					
 					imagecopy(
 						$this->Canvas, 
@@ -163,8 +181,8 @@ class Chess extends Object{
 		//Vẽ tiêu đề
 				
 		//Xuất ảnh ra		
-		header('Content-Type: image/png');
-		imagepng($this->Canvas);
+		header('Content-Type: image/jpeg');
+		imagejpeg($this->Canvas);
 		imagedestroy($this->Canvas);		
 	}
 	

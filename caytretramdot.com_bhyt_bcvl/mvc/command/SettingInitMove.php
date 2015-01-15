@@ -6,8 +6,7 @@
 			//-------------------------------------------------------------
 			//THAM SỐ TOÀN CỤC
 			//-------------------------------------------------------------			
-			$Session = \MVC\Base\SessionRegistry::instance();
-			
+						
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
@@ -18,22 +17,25 @@
 			//-------------------------------------------------------------			
 			$mStudentTemp 	= new \MVC\Mapper\StudentTemp();
 			$mStudent 		= new \MVC\Mapper\Student();
+			$mSession 		= new \MVC\Mapper\Session();
+			$mTracking 		= new \MVC\Mapper\Tracking();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
 			\ini_set('max_execution_time', 300); //300 seconds = 5 minutes
 			
-			//Xóa hết dữ liệu cũ
-			if ($fDel == 1){
+			$Tracking = $mTracking->findAll()->current();
+			if ($fDel == 1){				
 				$mStudent->deleteAll(array());
+				$mSession->deleteAll(array());
 			}
-			
+									
 			$StudentTempAll = $mStudentTemp->findAll();
 			while ($StudentTempAll->valid()){
 				$StudentTemp = $StudentTempAll->current();
 				$Student = new \MVC\Domain\Student(
-					null,
+					$StudentTemp->getId(),
 					$StudentTemp->getCode(),
 					$StudentTemp->getSurName(),
 					$StudentTemp->getLastName(),
@@ -44,7 +46,22 @@
 				);
 				$mStudent->insert($Student);
 				
+				//Tạo giao dịch sẵn
+				$Session = new \MVC\Domain\Session(
+					null,
+					24,
+					$Student->getId(),
+					$StudentTemp->getDateJoined(),
+					$StudentTemp->getCountMonth(),
+					1
+				);
+				$mSession->insert($Session);
+				
 				$StudentTempAll->next();
+			}
+			
+			if ($fDel == 1){
+				$mStudentTemp->deleteAll(array());				
 			}
 			
 			//-------------------------------------------------------------
