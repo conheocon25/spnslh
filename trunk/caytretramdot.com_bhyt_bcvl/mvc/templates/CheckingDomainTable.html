@@ -44,7 +44,9 @@
 											<input tal:condition="Session/getState" class="Checking" type="checkbox" tal:attributes="data-id Session/getId" checked="true"/>
 										</td>
 										<td class="center"><span tal:content="repeat/Session/number"/></td>
-										<td class="center"><span tal:content="Session/getStudent/getCode"/></td>
+										<td class="center">
+											<a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Session/getId" tal:content="Session/getStudent/getCode"/>
+										</td>
 										<td><span tal:content="Session/getStudent/getSurName"/></td>
 										<td class="left"><span tal:content="Session/getStudent/getLastName"/></td>										
 										<td class="left"><span tal:content="Session/getDateJoinedPrint"/></td>
@@ -57,12 +59,50 @@
 				</div>
 			</div>
 		</div>
+		<!-- UPDATE DIALOG  -->
+		<div id="DialogEdit" class="modal fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header"><h3><i class="glyphicons-show_big_thumbnails modal-icon"/>CẬP NHẬT GIAO DỊCH</h3></div>
+					<form id="FormSessionUpdate" action="#" class="form-horizontal" novalidate="novalidate">																		
+						<input id="IdTracking2" name="IdTracking2" type="hidden" class="form-control input-small" />
+						<input id="IdStudent2" name="IdStudent2" type="hidden" class="form-control input-small"/>
+						<div class="form-group">
+							<label class="control-label">Ngày tham gia</label>
+							<div class="controls">
+								<input id="DateJoined2" name="DateJoined2" type="text" class="form-control input-small" data-date-format="yyyy-mm-dd"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label">Số tháng tham gia</label>
+							<div class="controls">
+								<input id="CountMonth2" name="CountMonth2" type="text" class="form-control input-small"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label">Xác nhận tham gia</label>
+							<div class="controls">
+								<select name="State2" id="State2" style="width:80%;">
+									<option value="0" >Không</option>
+									<option value="1" >Có</option>
+								</select>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button  id="URLUpdButton" class="btn btn-primary btn-small" type="submit"><i class="glyphicons-download_alt"/> Lưu</button>
+							<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
 		<div metal:use-macro="mDialog.xhtml/DialogApplySelected" />
 		<div metal:use-macro="mDialog.xhtml/DialogInitChecking" />
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>
 		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
 		<script type="text/javascript">
 		/*<![CDATA[*/
+			$('#DateJoined2').datepicker({language:'vi'});
 			$('#URLApplySelectedButton').click(function(){
 				var count 		= 0;
 				var DataId 		= [];
@@ -88,6 +128,68 @@
 					}
 				});
 			});
+			
+			//-----------------------------------------------------------------------------------
+			//Update 1 Session			
+			//-----------------------------------------------------------------------------------
+			$('.update-item').click(function(){
+				//Load dữ liệu JSON về
+				var url = "/object/load/Session/" + $(this).attr('data-id');
+				
+				//Load dữ liệu JSON lên FORM
+				$.getJSON(url, function(data){
+					$('#URLUpdButton').attr('alt', 		data.Id);
+					$('#IdStudent2').attr('value', 		data.IdStudent);
+					$('#IdTracking2').attr('value', 	data.IdTracking);
+					$('#DateJoined2').attr('value', 	data.DateJoined);
+					$('#CountMonth2').attr('value', 	data.CountMonth);
+					$('#State2').select2('val', 		data.State);
+				});
+			});
+			
+			//-----------------------------------------------------------------------------------
+			//Update 1 SESSION
+			//-----------------------------------------------------------------------------------
+			$("#FormSessionUpdate").validate({
+				rules:{
+					/*
+					Name2:{
+						minlength: 2,
+						required:true
+					}*/
+				},
+				errorClass: "help-inline",
+				errorElement: "span",
+				highlight:function(element, errorClass, validClass) {
+					$(element).parents('.form-group').addClass('has-error');
+				},
+				unhighlight: function(element, errorClass, validClass) {
+					$(element).parents('.form-group').removeClass('has-error');
+					$(element).parents('.form-group').addClass('has-success');
+				},
+				submitHandler: function (form) {					
+					var Data = [];
+										
+					Data[0] = $('#URLUpdButton').attr('alt');
+					Data[1] = $('#IdTracking2').val();
+					Data[2] = $('#IdStudent2').val();
+					Data[3] = $('#DateJoined2').val();
+					Data[4] = $('#CountMonth2').val();
+					Data[5] = $('#State2').val();
+																							
+					var URL = "/object/upd/Session";
+					$.ajax({
+						type: "POST",
+						data: {Data:Data},
+						url: URL,
+						success: function(msg){
+							location.reload();
+						}
+					});		
+					return false;
+				}
+			});
+			
 			
 			$('#URLInitCheckingButton').click(function(){				
 				var URL = $("#CheckingInit").attr('data-url');

@@ -6,16 +6,18 @@ class OrderImportDetail extends Object{
     private $Id;
 	private $IdOrder;
 	private $IdResource;
-	private $Count;
+	private $Count;	
     private $Price;
+	private $PriceDiscount;
 		
 	/*Hàm khởi tạo và thiết lập các thuộc tính*/
-    function __construct( $Id=null, $IdOrder=null, $IdResource=null, $Count=null, $Price=null) {
-        $this->Id = $Id;
-		$this->IdOrder = $IdOrder;
-		$this->IdResource = $IdResource;
-		$this->Count = $Count;
-		$this->Price = $Price;
+    function __construct( $Id=null, $IdOrder=null, $IdResource=null, $Count=null, $Price=null, $PriceDiscount=null) {
+        $this->Id 			= $Id;
+		$this->IdOrder 		= $IdOrder;
+		$this->IdResource 	= $IdResource;
+		$this->Count 		= $Count;
+		$this->Price 		= $Price;
+		$this->PriceDiscount= $PriceDiscount;
         parent::__construct( $Id );
     }
     function getId( ) {return $this->Id;}	
@@ -49,7 +51,13 @@ class OrderImportDetail extends Object{
 	function setPrice( $Price ) {$this->Price = $Price;$this->markDirty();}
 	function getPricePrint( ) {$N = new \MVC\Library\Number($this->Price);return $N->formatCurrency();}
 
-	function getValue( ) {return $this->Count*$this->Price;}
+	
+	function getPriceDiscount( ) {return $this->PriceDiscount;}
+	function setPriceDiscount( $PriceDiscount ) {$this->PriceDiscount = $PriceDiscount; $this->markDirty();}
+	function getPriceDiscountPrint( ) {$N = new \MVC\Library\Number($this->PriceDiscount);return $N->formatCurrency();}
+	
+	
+	function getValue( ) {return $this->Count*($this->Price - $this->PriceDiscount);}
 	function getValuePrint( ) {$N = new \MVC\Library\Number($this->getValue());return $N->formatCurrency()." đ";}
 
 	function toJSON(){
@@ -58,7 +66,8 @@ class OrderImportDetail extends Object{
 			'IdOrder' 		=> $this->getIdOrder(),
 			'IdResource'	=> $this->getIdResource(),
 			'Count'			=> $this->getCount(),
-			'Price'			=> $this->getPrice()
+			'Price'			=> $this->getPrice(),
+			'PriceDiscount'	=> $this->getPriceDiscount()
 		);
 		return json_encode($json);
 	}
@@ -69,6 +78,7 @@ class OrderImportDetail extends Object{
 		$this->IdResource 	= $Data[2];	
 		$this->Count 		= $Data[3];	
 		$this->Price 		= $Data[4];	
+		$this->PriceDiscount= $Data[5];	
     }	
 	
 	//-------------------------------------------------------------------------------
@@ -87,5 +97,4 @@ class OrderImportDetail extends Object{
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}
 	
 }
-
 ?>

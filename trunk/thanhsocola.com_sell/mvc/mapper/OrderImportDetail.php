@@ -15,8 +15,8 @@ class OrderImportDetail extends Mapper implements \MVC\Domain\OrderImportDetailF
 								
 		$selectAllStmt = sprintf("select * from %s", $tblOrderImportDetail);
 		$selectStmt = sprintf("select * from %s where id=?", $tblOrderImportDetail);
-		$updateStmt = sprintf("update %s set count=?, price=? where id=?", $tblOrderImportDetail);
-		$insertStmt = sprintf("insert into %s ( idorder, idresource, count, price ) values( ?, ?, ?, ?)", $tblOrderImportDetail);
+		$updateStmt = sprintf("update %s set count=?, price=?, price_discount=? where id=?", $tblOrderImportDetail);
+		$insertStmt = sprintf("insert into %s ( idorder, idresource, count, price, price_discount ) values( ?, ?, ?, ?, ?)", $tblOrderImportDetail);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblOrderImportDetail);
 		
 		$evalPriceStmt = sprintf("
@@ -40,7 +40,8 @@ class OrderImportDetail extends Mapper implements \MVC\Domain\OrderImportDetailF
 								(?) as idorder,
 								P.id as idresource,
 								ODI.count,
-								IFNULL(ODI.price, P.price) as price
+								IFNULL(ODI.price, P.price) as price,
+								IFNULL(ODI.price_discount, 0) as price_discount
 							FROM 
 							(
 								SELECT *
@@ -93,7 +94,8 @@ class OrderImportDetail extends Mapper implements \MVC\Domain\OrderImportDetailF
 			$array['idorder'], 
 			$array['idresource'], 
 			$array['count'],	
-			$array['price']
+			$array['price'],
+			$array['price_discount']
 		);
         return $obj;
     }
@@ -107,7 +109,8 @@ class OrderImportDetail extends Mapper implements \MVC\Domain\OrderImportDetailF
 			$object->getIdOrder(), 
 			$object->getIdResource(), 
 			$object->getCount(),
-			$object->getPrice()
+			$object->getPrice(),
+			$object->getPriceDiscount()
 		); 
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
@@ -118,6 +121,7 @@ class OrderImportDetail extends Mapper implements \MVC\Domain\OrderImportDetailF
         $values = array( 
 			$object->getCount(),
 			$object->getPrice(),
+			$object->getPriceDiscount(),
 			$object->getId()
 		);		
         $this->updateStmt->execute( $values );

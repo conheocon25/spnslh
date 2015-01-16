@@ -115,7 +115,7 @@ class Session extends Object{
 	function setDateTime( $DateTime ) {$this->DateTime = $DateTime;$this->markDirty();}	
 	function getDateTime( ){return $this->DateTime;}
 	function getDatePrint( ) {$date = new Date($this->getDateTime());return $date->getDateFormat();}
-    function getDateTimePrint( ){return date('d/m H:i',strtotime($this->DateTime));}
+    function getDateTimePrint( ){return date('d/m/y H:i',strtotime($this->DateTime));}
 		
 	//Giờ kết thúc
 	function setDateTimeEnd( $DateTime ) {$this->DateTimeEnd = $DateTime;$this->markDirty();}

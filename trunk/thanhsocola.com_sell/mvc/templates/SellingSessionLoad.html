@@ -29,6 +29,7 @@
 						<thead>
 							<tr>										
 								<th width="30">STT</th>
+								<th width="30" />
 								<th><div class="text-left">TÊN</div></th>
 								<th width="30">SL</th>
 								<th width="80"><div class="text-right">Đ.GIÁ</div></th>
@@ -39,6 +40,7 @@
 						<tbody>
 							<tr tal:repeat="Detail Session/getDetails1">
 								<td><div class="text-center" tal:content="repeat/Detail/number" /></td>
+								<td><img width="30" tal:attributes="src Detail/getCourse/getPicture"/></td>
 								<td><a class="update-item" href="#DialogEdit" data-toggle="modal" 
 									tal:attributes="id 			Detail/getId;
 													idcourse 	Detail/getIdCourse;
@@ -104,6 +106,7 @@
 						<thead>
 							<tr>										
 								<th width="30">STT</th>
+								<th width="30" />
 								<th><div class="text-left">TÊN</div></th>
 								<th width="30">SL</th>
 								<th width="80"><div class="text-right">Đ.GIÁ</div></th>
@@ -113,6 +116,7 @@
 						<tbody>
 							<tr tal:repeat="Detail Session/getDetails1">
 								<td><div class="text-center" tal:content="repeat/Detail/number" /></td>
+								<td><img width="30" tal:attributes="src Detail/getCourse/getPicture"/></td>
 								<td><span tal:content="Detail/getCourse/getName"/></td>
 								<td><div class="text-center" tal:content="Detail/getCountPrint"/></td>
 								<td><div class="text-right" tal:content="Detail/getPricePrint"/></td>

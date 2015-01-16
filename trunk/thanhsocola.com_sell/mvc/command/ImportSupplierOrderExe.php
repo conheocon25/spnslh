@@ -11,11 +11,12 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-			$IdSupplier = $request->getProperty("IdSupplier");
-			$IdOrder = $request->getProperty("IdOrder");
-			$IdResource = $request->getProperty("IdResource");
-			$Count = $request->getProperty("Count");
-			$Price = $request->getProperty("Price");
+			$IdSupplier 	= $request->getProperty("IdSupplier");
+			$IdOrder 		= $request->getProperty("IdOrder");
+			$IdResource 	= $request->getProperty("IdResource");
+			$Count 			= $request->getProperty("Count");
+			$Price 			= $request->getProperty("Price");
+			$PriceDiscount 	= $request->getProperty("PriceDiscount");
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
@@ -42,6 +43,7 @@
 				}else{
 					$OID = $mOID->find($IdOID);
 					$OID->setPrice($Price);
+					$OID->setPriceDiscount($PriceDiscount);
 					$OID->setCount($Count);
 					$mOID->update($OID);
 				}
@@ -51,7 +53,8 @@
 					$IdOrder,
 					$IdResource,
 					$Count,
-					$Price
+					$Price,
+					0
 				);
 				$mOID->insert($OID);
 			}			

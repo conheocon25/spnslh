@@ -38,6 +38,7 @@
 										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
 										<th width="40" />
 										<th width="40" />
+										<th width="70" />
 										<th><div class="text-left">TÊN</div></th>
 										<th width="120"><div class="text-left">ĐƠN VỊ</div></th>
 										<th width="120"><div class="text-right">GIÁ BÁN</div></th>
@@ -53,6 +54,7 @@
 											<i tal:condition="not: Course/getIsDiscount" class="glyphicons-dislikes"/>
 										</td>
 										<td><i tal:condition="Course/getEnable" class="glyphicons-eye_open"/></td>
+										<td><img width="64" tal:attributes="src Course/getPicture"/></td>
 										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Course/getId" tal:content="Course/getName"/></td>
 										<td><div tal:content="Course/getUnit"/></td>
 										<td align="right"><div tal:content="Course/getPrice1Print"/></td>
@@ -105,6 +107,12 @@
 											<label class="control-label">Số phút chuẩn bị</label>
 											<div class="controls">
 												<input id="Prepare1" name="Prepare1" type="text" class="form-control input-small" value="1"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">Hình ảnh</label>
+											<div class="controls">
+												<input id="Picture1" name="Picture1" type="text" class="form-control input-small"/>
 											</div>
 										</div>
 										<div class="form-group">
@@ -176,6 +184,12 @@
 										<label class="control-label">Số phút chuẩn bị</label>
 										<div class="controls">
 											<input id="Prepare2" name="Prepare2" type="text" class="form-control input-small"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Hình ảnh</label>
+										<div class="controls">
+											<input id="Picture2" name="Picture2" type="text" class="form-control input-small"/>
 										</div>
 									</div>
 									<div class="form-group">
@@ -300,7 +314,7 @@
 					Data[6] = $('#Price1').val();
 					Data[7] = $('#Price1').val();
 					Data[8] = $('#Price1').val();
-					Data[9] = "";
+					Data[9] = $('#Picture1').val();
 					Data[10] = $('#Prepare1').val();
 					Data[11] = $('#IsDiscount1').val();
 					Data[12] = $('#Enable1').val();
@@ -338,6 +352,7 @@
 					$('#ShortName2').attr('value'	, data.ShortName);
 					$('#Unit2').select2('val'		, data.Unit);
 					$('#Price2').attr('value'		, data.Price1);
+					$('#Picture2').attr('value'		, data.Picture);
 					$('#Prepare2').attr('value'		, data.Prepare);
 					$('#IsDiscount2').select2('val'	, data.IsDiscount);
 					$('#Enable2').select2('val'		, data.Enable);
@@ -390,7 +405,7 @@
 					Data[6] = $('#Price2').val();
 					Data[7] = $('#Price2').val();
 					Data[8] = $('#Price2').val();
-					Data[9] = "";
+					Data[9] = $('#Picture2').val();
 					Data[10] = $('#Prepare2').val();
 					Data[11] = $('#IsDiscount2').val();
 					Data[12] = $('#Enable2').val();
