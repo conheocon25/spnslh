@@ -7,14 +7,16 @@ class OrderImport extends Object{
     private $Id;
 	private $IdSupplier;
 	private $Date;
+	private $Discount;
     private $Description;
 			
 	/*Hàm khởi tạo và thiết lập các thuộc tính*/
-    function __construct( $Id=null, $IdSupplier=null, $Date=null, $Description=null) {
-        $this->Id = $Id;
-		$this->IdSupplier = $IdSupplier;
-		$this->Date = $Date;
-		$this->Description = $Description;
+    function __construct( $Id=null, $IdSupplier=null, $Date=null, $Discount=null, $Description=null) {
+        $this->Id 			= $Id;
+		$this->IdSupplier 	= $IdSupplier;
+		$this->Date 		= $Date;
+		$this->Discount 	= $Discount;
+		$this->Description 	= $Description;
         parent::__construct( $Id );
     }
     function getId( ) {return $this->Id;}
@@ -30,7 +32,11 @@ class OrderImport extends Object{
 	function getDate( ) {return $this->Date;}
     function setDate( $Date ) {$this->Date = $Date;$this->markDirty();}
 	function getDatePrint( ) {$Date = new \MVC\Library\Date($this->Date); return $Date->getDateFormat();}
-			
+	
+	function getDiscount( ) {return $this->Discount;}
+	function setDiscount( $Discount ) {$this->Discount = $Discount;$this->markDirty();}
+	function getDiscountPrint( ) {return $this->Discount."%";}
+	
 	function getDescription( ) {return $this->Description;}
 	function setDescription( $Description ) {$this->Description = $Description;$this->markDirty();}
 	
@@ -45,7 +51,7 @@ class OrderImport extends Object{
 		return $Tracks;
 	}
 	
-	function getValue(){
+	function getValueBase(){
 		$DetailAll = $this->getDetailAll();
 		$Count = 0;
 		while ($DetailAll->valid()){
@@ -53,6 +59,21 @@ class OrderImport extends Object{
 			$DetailAll->next();
 		}
 		return $Count;
+	}
+	function getValueBasePrint(){
+		$Value = new \MVC\Library\Number($this->getValueBase());
+		return $Value->formatCurrency()." đ";
+	}
+	
+	
+	function getValue(){
+		$DetailAll = $this->getDetailAll();
+		$Count = 0;
+		while ($DetailAll->valid()){
+			$Count += $DetailAll->current()->getValue();
+			$DetailAll->next();
+		}
+		return ($Count*(100-$this->Discount))/100;
 	}
 	
 	function getValuePrint(){
@@ -70,6 +91,7 @@ class OrderImport extends Object{
 			'Id' 			=> $this->getId(),
 			'IdSupplier' 	=> $this->getIdSupplier(),
 			'Date'			=> $this->getDate(),
+			'Discount'		=> $this->getDiscount(),
 			'Description'	=> $this->getDescription()
 		);
 		return json_encode($json);
@@ -79,7 +101,8 @@ class OrderImport extends Object{
         $this->Id 			= $Data[0];	
 		$this->IdSupplier 	= $Data[1];	
 		$this->Date 		= $Data[2];
-		$this->Description 	= $Data[3];
+		$this->Discount		= $Data[3];
+		$this->Description 	= $Data[4];
     }
 	
 	//-------------------------------------------------------------------------------

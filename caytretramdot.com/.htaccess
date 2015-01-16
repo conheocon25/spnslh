@@ -54,6 +54,8 @@ RewriteRule ^tien-ich/co-tuong/bien-soan$						?cmd=FToolChineseChessCompose [L]
 RewriteRule ^tien-ich/co-tuong/ve/ban-co$						?cmd=FToolChineseChessDrawBoard [L]
 RewriteRule ^tien-ich/co-tuong/ve/ban-co/([0-9]+)/([A-Za-z0-9-\s]+)$		?cmd=FToolChineseChessDrawBoard&Width=$1&StrState=$2 [QSA,L]
 
+RewriteRule ^tien-ich/co-tuong/ban-co$							?cmd=FToolChineseChessBoard [L]
+
 
 RewriteRule ^giai-tri/nhac-khong-loi$							?cmd=FMusicType001	 [L]
 

@@ -2,8 +2,12 @@
 <html>
 	<head>
 		<tal:block metal:use-macro="mFront.xhtml/IncludeMETA"/>
+		<meta property="og:title" tal:attributes="content Product/getName"/>
+		<meta property="og:description" tal:attributes="content Product/getInfo/getInfoReduce"/>
+		<meta tal:condition="Product/getImageAll/count" property="og:image" tal:attributes="content Product/getImageAll/current/getURL"/>
+		<meta tal:condition="not: Product/getImageAll/count" property="og:image" tal:attributes="content 'mvc/templates/front/img/logo.png'"/>
 		<tal:block metal:use-macro="mFront.xhtml/IncludeCSS"/>
-	</head>	
+	</head>
 	<body>		
 		<div class="container">
 			<tal:block metal:use-macro="mFront.xhtml/DoubleAds"/>
@@ -36,6 +40,7 @@
 									</tr>
 								</tbody>
 							</table>
+							<div class="fb-share-button" tal:attributes="data-href URLShare" data-type="button_count"/>
 						</div>
 					</div>
 					<div class="panel panel-default" tal:condition="Product/getInfo">
@@ -147,15 +152,7 @@
 				var mapCanvas 	= document.getElementById('ProductMap');
 				var Latitude 	= $("#ProductMap").attr('latitude');
 				var Longitude	= $("#ProductMap").attr('longitude');
-				var defaultLatLng = new google.maps.LatLng(Latitude, Longitude);
-				/*	
-				var mapOptions = {
-				  center: new google.maps.LatLng(Latitude, Longitude),				  
-				  zoom: 18,
-				  mapTypeId: google.maps.MapTypeId.ROADMAP
-				}
-				*/
-				//var map = new google.maps.Map(mapCanvas, mapOptions);
+				var defaultLatLng = new google.maps.LatLng(Latitude, Longitude);				
 				
 			    var myOptions = {
 		            zoom: 18,
@@ -171,6 +168,15 @@
 		        });
 			}
 			google.maps.event.addDomListener(window, 'load', initialize);
+			
+			(function(d, s, id) {
+				var js, fjs = d.getElementsByTagName(s)[0];
+				if (d.getElementById(id)) return;
+				js = d.createElement(s); js.id = id;
+				js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&appId=525611617524479&version=v2.0";
+				fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));
+			
 		</script>
 	</body>
 </html>

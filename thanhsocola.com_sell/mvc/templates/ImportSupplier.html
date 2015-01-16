@@ -36,6 +36,7 @@
 										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
 										<th width="90" class="left">NGÀY</th>										
 										<th class="left">DIỄN GIẢI</th>
+										<th class="right" width="60">CK</th>
 										<th class="right" width="120">GIÁ TRỊ</th>
 										<th width="40"><i class="glyphicons-print"/></th>
 										<th width="40"><i class="glyphicons-bin"/></th>
@@ -46,6 +47,7 @@
 										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Order/getId"/></td>
 										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Order/getId" tal:content="Order/getDatePrint"/></td>
 										<td><div class="text-left" tal:content="Order/getDescription"/></td>
+										<td><div class="text-right"><span tal:content="Order/getDiscountPrint" /></div></td>
 										<td>
 											<div class="text-right">
 												<a tal:attributes="href Order/getURLDetail" tal:content="Order/getValuePrint" />
@@ -75,6 +77,12 @@
 										</div>
 									</div>
 									<div class="control-group">
+										<label class="control-label">Chiết khấu</label>
+										<div class="controls">
+											<input id="Discount1" name="Discount1" type="text" class="form-control input-small"/>
+										</div>
+									</div>									
+									<div class="control-group">
 										<label class="control-label">Diễn giải</label>
 										<div class="controls">
 											<input id="Description1" name="Description1" type="text" class="form-control input-small"/>
@@ -102,6 +110,12 @@
 										<label class="control-label">Ngày</label>
 										<div class="controls">
 											<input id="Date2" name="Date2" type="text" data-date-format="yyyy-mm-dd" class="form-control input-small"/>
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label">Chiết khấu</label>
+										<div class="controls">
+											<input id="Discount2" name="Discount2" type="text" class="form-control input-small"/>
 										</div>
 									</div>									
 									<div class="control-group">
@@ -178,7 +192,8 @@
 				Data[0] = 'null';
 				Data[1] = $('#IdSupplier').attr('alt');
 				Data[2] = $('#Date1').val();				
-				Data[3] = $('#Description1').val();
+				Data[3] = $('#Discount1').val();
+				Data[4] = $('#Description1').val();
 							
 				var URL = "/object/ins/OrderImport";
 				$.ajax({
@@ -208,9 +223,10 @@
 				
 				//Load dữ liệu JSON lên FORM
 				$.getJSON(url, function(data){
-					$('#URLUpdButton').attr('alt', data.Id);
-					$('#Date2').attr('value', data.Date);
-					$('#Description2').attr('value', data.Description);
+					$('#URLUpdButton').attr('alt'	, data.Id);
+					$('#Date2').attr('value'		, data.Date);
+					$('#Discount2').attr('value'	, data.Discount);
+					$('#Description2').attr('value'	, data.Description);
 				});
 			});
 			
@@ -221,8 +237,9 @@
 				var Data = [];
 				Data[0] = $('#URLUpdButton').attr('alt');				
 				Data[1] = $('#IdSupplier').attr('alt');
-				Data[2] = $('#Date2').val();				
-				Data[3] = $('#Description2').val();
+				Data[2] = $('#Date2').val();
+				Data[3] = $('#Discount2').val();
+				Data[4] = $('#Description2').val();
 				
 				var URL = "/object/upd/OrderImport";
 				$.ajax({

@@ -46,7 +46,9 @@
 			$Category 		= $Category1->getCategory();
 			$Province 		= $mProvince->find(15);
 			$TagAll 		= $mTag->findByPosition(array(1));
-						
+			
+			$URLShare 		= $Product->getURLViewFull();
+			
 			$Title = mb_strtoupper($Product->getName(),'UTF8');
 			$Navigation = array(
 				array(mb_strtoupper($Category->getName(), 'UTF8'), 	$Category->getURLView()),
@@ -58,6 +60,7 @@
 			//-------------------------------------------------------------			
 			$request->setProperty("Title", 		$Title);
 			$request->setProperty("Active", 	"Menu");
+			$request->setProperty("URLShare", 	$URLShare);
 			$request->setObject("Navigation", 	$Navigation);
 			
 			$request->setObject("ConfigName", 	$ConfigName);

@@ -49,7 +49,7 @@
 				//Tạo giao dịch sẵn
 				$Session = new \MVC\Domain\Session(
 					null,
-					24,
+					$Tracking->getId(),
 					$Student->getId(),
 					$StudentTemp->getDateJoined(),
 					$StudentTemp->getCountMonth(),

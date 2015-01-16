@@ -24,21 +24,31 @@
 										<th class="right" width="80">SỐ LƯỢNG</th>
 										<th class="left" width="80">ĐƠN VỊ</th>
 										<th class="right" width="120">ĐƠN GIÁ</th>
+										<th class="right" width="120">GIẢM</th>
 										<th class="right" width="120">T.TIỀN</th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr tal:repeat="Detail Order/getDetailAll">
 										<td class="center"><div tal:content="repeat/Detail/number"/></td>
-										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Detail/getId; data-name Detail/getResource/getName; data-idresource Detail/getResource/getId; data-count Detail/getCount; data-price Detail/getPrice" tal:content="Detail/getResource/getName"/></td>
+										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Detail/getId; data-name Detail/getResource/getName; data-idresource Detail/getResource/getId; data-count Detail/getCount; data-price Detail/getPrice; data-price-discount Detail/getPriceDiscount" tal:content="Detail/getResource/getName"/></td>
 										<td><div class="text-right" tal:content="Detail/getCountPrint"/></td>
 										<td><div class="text-left" tal:content="Detail/getResource/getUnit"/></td>
 										<td><div class="text-right" tal:content="Detail/getPricePrint"/></td>
+										<td><div class="text-right" tal:content="Detail/getPriceDiscountPrint"/></td>
 										<td><div class="text-right" tal:content="Detail/getValuePrint"/></td>
 									</tr>
 									<tr>
-										<td colspan="5"><div class="text-right" tal:content="string:TỔNG CỘNG"/></td>
-										<td><div class="text-right" tal:content="Order/getValuePrint"/></td>
+										<td colspan="6"><div class="text-right" tal:content="string:TỔNG TẠM"/></td>
+										<td><div class="text-right" tal:content="Order/getValueBasePrint"/></td>
+									</tr>
+									<tr>
+										<td colspan="6"><div class="text-right" tal:content="string:CHIẾT KHẤU"/></td>
+										<td><div class="text-right" tal:content="Order/getDiscountPrint"/></td>
+									</tr>
+									<tr>
+										<td colspan="6"><div class="text-right" tal:content="string:TỔNG CỘNG"/></td>
+										<td><div class="text-right"><B tal:content="Order/getValuePrint"/></div></td>
 									</tr>
 								</tbody>																
 							</table>
@@ -77,6 +87,12 @@
 											<input id="Price2" name="Price2" type="text" class="form-control input-small"/>
 										</div>
 									</div>
+									<div class="control-group">
+										<label class="control-label">Đơn giá KM</label>
+										<div class="controls">
+											<input id="PriceDiscount2" name="PriceDiscount2" type="text" class="form-control input-small"/>
+										</div>
+									</div>
 									<div class="modal-footer">
 										<button id="URLUpdButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Lưu</button>
 										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
@@ -109,6 +125,7 @@
 				}
 					
 				$('#Price2').attr('value', $(this).attr('data-price'));
+				$('#PriceDiscount2').attr('value', $(this).attr('data-price-discount'));
 			});
 			
 			//-----------------------------------------------------------------------------------
@@ -121,8 +138,9 @@
 				Data[2] = $('#IdResource2').val();									
 				Data[3] = $('#Count2').val();
 				Data[4] = $('#Price2').val();
+				Data[5] = $('#PriceDiscount2').val();
 				
-				var URL = "/import/"+Data[0]+"/"+Data[1]+"/"+Data[2]+"/"+Data[3]+"/"+Data[4];
+				var URL = "/import/"+Data[0]+"/"+Data[1]+"/"+Data[2]+"/"+Data[3]+"/"+Data[4]+"/"+Data[5];
 				$.ajax({
 					type: "POST",					
 					url: URL,
