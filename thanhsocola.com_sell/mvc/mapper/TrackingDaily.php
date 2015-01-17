@@ -35,7 +35,7 @@ class TrackingDaily extends Mapper implements \MVC\Domain\TrackingDailyFinder{
 			$array['id'],
 			$array['id_tracking'],
 			$array['date'],
-			$array['selling'],
+			$array['selling_cash'],
 			$array['selling_debt'],
 			$array['import'],
 			$array['export'],

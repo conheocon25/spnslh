@@ -4,7 +4,9 @@
 		<div id="sidebar">
 			<ul>
 				<li tal:repeat="Customer CustomerFAll" class="Customer" tal:attributes="alt Customer/getId">
-					<a><i class="glyphicons-show_big_thumbnails" /><span tal:content="Customer/getName"/></a>
+					<a class="ctt" data-toggle="tooltip" data-placement="right" tal:attributes="data-original-title Customer/getName">
+						<i class="glyphicons-show_big_thumbnails" /><span tal:content="Customer/getName"/>
+					</a>
 				</li>
 			</ul>
 		</div>
@@ -19,6 +21,6 @@
 			});
 			$('.Customer:first').click();
 			$("#SearchCustomer").focus();
-						
+			$(".ctt").tooltip();
     </script>
 </html>
