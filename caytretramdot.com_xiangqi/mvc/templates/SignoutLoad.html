@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html style="overflow-y:hidden;" lang="en">
+	<head>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+	</head>
+	
+	<body data-menu-position="closed">
+		<div metal:use-macro="mAdmin.xhtml/Header"/>
+		
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+			<div metal:use-macro="mAdmin.xhtml/LocationBar"/>
+			<div class="container-fluid">							
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="widget-box">
+							<div class="widget-title">
+								<span class="icon"><i class="icon-warning-sign"></i></span>
+								<h5>HỆ THỐNG</h5>
+							</div>
+							<div class="widget-content">								
+								<form class="form-actions" tal:attributes="action '/signout/exe'" method="post">
+									<div class="alert alert-danger alert-block">
+										<h4 class="alert-heading">Bạn có chắc chắn muốn thoát khỏi hệ thống ?</h4>
+									</div>
+									<button type="submit" class="btn btn-primary" value="submit-value"><i class="icon-trash"/> THOÁT</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+	</body>
+</html>

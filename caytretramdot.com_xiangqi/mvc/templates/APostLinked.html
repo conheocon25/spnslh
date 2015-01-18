@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+	</head>
+	
+	<body>
+		<div metal:use-macro="mAdmin.xhtml/Header"/>		
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
+			<div class="row">
+				<div class="col-12">
+					<a href="#DialogIns" data-toggle="modal" class="btn btn-primary btn-ins">
+						<i class="glyphicons-plus"/> Thêm mới
+					</a>
+					<a href="#DialogDelSelected" data-toggle="modal" class="btn btn-primary btn-ins">
+						<i class="glyphicons-remove_2"/> Xóa chọn
+					</a>
+					<div class="widget-box">
+						<div class="widget-content nopadding">
+							<table class="table table-bordered table-striped table-hover with-check">								
+								<thead>
+									<tr>
+										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
+										<th width="120" class="left">LIÊN KẾT</th>
+										<th class="left">BÀI VIẾT</th>
+										<th width="40"><i class="glyphicons-bin"/></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr tal:repeat="PL Post/getPLAll">
+										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id PL/getId"/></td>
+										<td><span tal:content="PL/getLinked/getName"/></td>
+										<td><span tal:content="PL/getPost2/getTitle"/></td>
+										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id PL/getId"><i class="glyphicon glyphicon-remove"/></a></td>
+									</tr>
+								</tbody>								
+							</table>
+						</div>
+					</div>
+					
+					<!-- INSERT DIALOG  -->
+					<div id="DialogIns" class="modal fade">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header"><h3><i class="glyphicons-show_big_thumbnails modal-icon"/>GẮN LIÊN KẾT</h3></div>
+								<form id="FormPTInsert" action="#" class="form-horizontal" novalidate="novalidate">
+									<div class="modal-body">
+										<div class="control-group">
+											<label class="control-label">Id</label>
+											<div class="controls">
+												<input id="IdPost1" name="IdPost1" type="text" class="form-control input-small" tal:attributes="value Post/getId"/>
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label">Bài viết</label>
+											<div class="controls">
+												<select name="IdPost2" id="IdPost2" style="width:80%;">
+													<option tal:repeat="Post PostAll" tal:attributes="value Post/getId">
+														<span tal:content="Post/getTitle" />
+													</option>
+												</select>
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label">Thẻ bài</label>
+											<div class="controls">
+												<select name="IdLinked1" id="IdLinked1" style="width:80%;">
+													<option tal:repeat="Linked LinkedAll" tal:attributes="value Linked/getId">
+														<span tal:content="Linked/getName" />														
+													</option>
+												</select>
+											</div>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button id="URLInsButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Lưu</button>
+										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<!-- END INSERT DIALOG  -->
+										
+					<div metal:use-macro="mDialog.xhtml/DialogDel"/>
+					<div metal:use-macro="mDialog.xhtml/DialogDelSelected"/>
+				</div>
+			</div>
+		</div>
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<script type="text/javascript">
+		/*<![CDATA[*/
+			$('#URLDelSelectedButton').click(function(){
+				var count = 0;
+				var Data = [];
+				var URL = "/object/del/PostLinked/0";
+				
+				$(".CheckedDel").each(function( i, obj){
+					if ( $(this).is(':checked')==true ){
+						count += 1;
+						Data[count] = $(this).attr('data-id');
+					}
+				});
+				
+				$.ajax({
+					type: "POST",
+					data: {ListId:Data},
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
+			});
+			
+			//-----------------------------------------------------------------------------------
+			//Delete 1 PT			
+			//-----------------------------------------------------------------------------------
+			$('.remove-item').click(function(){
+				$('#URLDelButton').attr('alt', $(this).attr('data-id'));
+			});
+			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
+			$('#URLDelButton').click(function(){			
+				var URL = "/object/del/PostLinked/" + $(this).attr('alt');
+				$.ajax({
+					type: "POST",					
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
+			});
+		
+			//-----------------------------------------------------------------------------------
+			//Insert 1 PT			
+			$("#FormPTInsert").validate({
+				rules:{
+					Name1:{
+						minlength: 2,
+						required:true
+					}
+				},
+				errorClass: "help-inline",
+				errorElement: "span",
+				highlight:function(element, errorClass, validClass) {
+					$(element).parents('.form-group').addClass('has-error');
+				},
+				unhighlight: function(element, errorClass, validClass) {
+					$(element).parents('.form-group').removeClass('has-error');
+					$(element).parents('.form-group').addClass('has-success');
+				},
+				submitHandler: function (form) {					
+					var Data = [];
+					Data[0] = 'null';					
+					Data[1] = $('#IdPost1').val();
+					Data[2] = $('#IdPost2').val();
+					Data[3] = $('#IdLinked1').val();
+					
+					var URL = "/object/ins/PostLinked";
+					$.ajax({
+						type: "POST",
+						data: {Data:Data},
+						url: URL,
+						success: function(msg){
+							location.reload();
+						}
+					});
+					return false;
+				}
+			});
+			$("#DialogIns").on('show.bs.modal', function(event){
+				window.setTimeout(
+					function(){$(event.currentTarget).find('input#Name1').first().focus()},
+					0500
+				);
+			});	
+		/*]]>*/
+		</script>
+	</body>
+</html>
