@@ -16,4 +16,7 @@ interface ProvinceCollection 			extends \Iterator {function add( Object $Provinc
 interface DistrictCollection 			extends \Iterator {function add( Object $District);		}
 interface CBMCollection 				extends \Iterator {function add( Object $CBM);			}
 interface CBMDetailCollection 			extends \Iterator {function add( Object $CBMDetail);	}
+interface CategoryBookCollection 		extends \Iterator {function add( Object $CategoryBook);	}
+interface BookCollection 				extends \Iterator {function add( Object $Book);			}
+
 ?>

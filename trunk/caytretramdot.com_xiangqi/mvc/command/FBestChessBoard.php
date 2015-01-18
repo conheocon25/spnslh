@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class FToolGoogleTranslate extends Command {
+	class FBestChessBoard extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -15,13 +15,12 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------						
-			$mConfig 		= new \MVC\Mapper\Config();						
+			$mConfig = new \MVC\Mapper\Config();						
 									
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------											
-			
-									
+												
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			

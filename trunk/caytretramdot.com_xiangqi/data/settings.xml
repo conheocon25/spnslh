@@ -11,23 +11,17 @@
 		<command name="FSearch" 		type="public"><view>FSearch</view></command>		
 		<command name="FUser" 			type="public"><view>FUser</view></command>
 		<command name="FUserTag" 		type="public"><view>FUserTag</view></command>
-		
-		<command name="FTool001" 				type="public"><view>FTool001</view></command>
-		<command name="FToolGoogleTranslate" 	type="public"><view>FToolGoogleTranslate</view></command>
-		<command name="FToolUnitChange" 		type="public"><view>FToolUnitChange</view></command>
-		<command name="FToolTyping" 			type="public"><view>FToolTyping</view></command>		
-		<command name="FToolChineseChess" 		type="public"><view>FToolChineseChess</view></command>
-		<command name="FToolChineseChessCompose" 	type="public"><view>FToolChineseChessCompose</view></command>
-		<command name="FToolChineseChessDrawBoard" 	type="public"><view>FToolChineseChessDrawBoard</view></command>
-		<command name="FToolChineseChessBoard" 		type="public"><view>FToolChineseChessBoard</view></command>
-		<command name="FToolChineseChessViewer" 	type="public"><view>FToolChineseChessViewer</view></command>
+				
+		<command name="FSmartChessBoard" 	type="public"><view>FSmartChessBoard</view></command>
 		
 		<command name="FMusicType001" 	type="public"><view>FMusicType001</view></command>
 		
 		<command name="FContact" 		type="public"><view>FContact</view></command>		
-		<command name="FContactSend" 	type="public"><view>FContactSend</view></command>
-		<command name="FContactSendGmail" 	type="public"><view>FContactSendGmail</view></command>
-		<command name="RefreshCaptcha" 	type="public"><view>RefreshCaptcha</view></command>				
+		<command name="RefreshCaptcha" 	type="public"><view>RefreshCaptcha</view></command>	
+		
+		<command name="FDownloadSoftware" 	type="public"><view>FDownloadSoftware</view></command>
+		<command name="FDownloadEbook" 		type="public"><view>FDownloadEbook</view></command>
+		<command name="FDownloadEbookDetail" 	type="public"><view>FDownloadEbookDetail</view></command>
 		
 		<!-- ============================================================================== -->
 		<!-- JSON LOAD			 															-->
