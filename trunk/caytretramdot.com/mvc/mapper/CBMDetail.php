@@ -28,6 +28,7 @@ class CBMDetail extends Mapper implements \MVC\Domain\CBMDetailFinder{
         $obj = new \MVC\Domain\CBMDetail( 
 			$array['id'],
 			$array['id_cbm'],
+			$array['move'],
 			$array['name1'],
 			$array['state1'],
 			$array['name2'],
@@ -40,6 +41,7 @@ class CBMDetail extends Mapper implements \MVC\Domain\CBMDetailFinder{
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array( 
 			$object->getIdCBM(),
+			$object->getMove(),
 			$object->getName1(),
 			$object->getState1(),
 			$object->getName2(),
@@ -53,6 +55,7 @@ class CBMDetail extends Mapper implements \MVC\Domain\CBMDetailFinder{
     protected function doUpdate( \MVC\Domain\Object $object ) {
         $values = array( 
 			$object->getIdCBM(),
+			$object->getMove(),
 			$object->getName1(),
 			$object->getState1(),
 			$object->getName2(),

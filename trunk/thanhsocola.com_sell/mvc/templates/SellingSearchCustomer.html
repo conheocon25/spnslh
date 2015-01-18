@@ -4,7 +4,7 @@
 		<div id="sidebar">
 			<ul>
 				<li tal:repeat="Customer CustomerFAll" class="Customer" tal:attributes="alt Customer/getId">
-					<a class="ctt" data-toggle="tooltip" data-placement="right" tal:attributes="data-original-title Customer/getName">
+					<a class="ctt" data-toggle="tooltip" data-placement="right" tal:attributes="data-original-title php: Customer->getPhone() . ' ' . Customer->getNote() . ' ' . Customer->getAddress()">
 						<i class="glyphicons-show_big_thumbnails" /><span tal:content="Customer/getName"/>
 					</a>
 				</li>
