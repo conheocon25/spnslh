@@ -31,33 +31,12 @@ RewriteRule ^nguoi-dung/([0-9]+)/([0-9]+)$ 						?cmd=FUserTag&IdUser=$1&IdTag=$
 RewriteRule ^nguoi-dung/([0-9]+)/([0-9]+)page/([0-9]+)$ 		?cmd=FUserTag&IdUser=$1&IdTag=$2&Page=$3 [L]
 
 RewriteRule ^lien-he$ 											?cmd=FContact 		[L]
-RewriteRule ^lien-he1$ 											?cmd=FContact1 		[L]
-RewriteRule ^lien-he/email$ 									?cmd=FContactSend	[L]
-RewriteRule ^lien-he/gmail$ 									?cmd=FContactSendGmail	[L]
-RewriteRule ^lien-he/RefreshCaptcha$     						?cmd=RefreshCaptcha	[L]
 
-RewriteRule ^tien-ich/tinh-lai-gop-von$							?cmd=FTool001 		[L]
-RewriteRule ^tien-ich/tinh-lai-tra-gop$							?cmd=FTool001 		[L]
-RewriteRule ^tien-ich/khau-hao-tai-san$							?cmd=FTool001 		[L]
-RewriteRule ^tien-ich/tu-van-goi-cuoc-di-dong$					?cmd=FTool001 		[L]
-RewriteRule ^tien-ich/tu-van-ngon-ngu-lap-trinh$				?cmd=FTool001 		[L]	
-RewriteRule ^tien-ich/kiem-tra-ten-mien$						?cmd=FTool001 		[L]
-RewriteRule ^tien-ich/dich-thuat$								?cmd=FToolGoogleTranslate [L]
-RewriteRule ^tien-ich/may-tinh-con$								?cmd=FTool001 		 [L]	
-RewriteRule ^tien-ich/doi-don-vi$								?cmd=FToolUnitChange [L]
-RewriteRule ^tien-ich/giai-phuong-trinh-bac2$					?cmd=FTool001 		 [L]
-RewriteRule ^tien-ich/luyen-go-phim$							?cmd=FToolTyping	 [L]
+RewriteRule ^van-co-tinh-tuyen$									?cmd=FBestChessBoard [L]
 
-RewriteRule ^tien-ich/co-tuong$									?cmd=FToolChineseChess [L]
-RewriteRule ^tien-ich/co-tuong/xem/([A-Za-z0-9-]+)$				?cmd=FToolChineseChessViewer&KeyCBM=$1 [L]
-RewriteRule ^tien-ich/co-tuong/bien-soan$						?cmd=FToolChineseChessCompose [L]
-RewriteRule ^tien-ich/co-tuong/ve/ban-co$						?cmd=FToolChineseChessDrawBoard [L]
-RewriteRule ^tien-ich/co-tuong/ve/ban-co/([0-9]+)/([A-Za-z0-9-\s]+)$		?cmd=FToolChineseChessDrawBoard&Width=$1&StrState=$2 [QSA,L]
-
-RewriteRule ^tien-ich/co-tuong/ban-co/([A-Za-z0-9-]+)$			?cmd=FToolChineseChessBoard&KeyCBM=$1 [L]
-
-
-RewriteRule ^giai-tri/nhac-khong-loi$							?cmd=FMusicType001	 [L]
+RewriteRule ^download/software$									?cmd=FDownloadSoftware [L]
+RewriteRule ^download/ebook$									?cmd=FDownloadEbook [L]
+RewriteRule ^download/ebook/([A-Za-z0-9_-]+)$					?cmd=FDownloadEbookDetail&KCategory=$1 [L]
 
 RewriteRule ^dang-nhap$ 										?cmd=SigninLoad [L]
 RewriteRule ^dang-nhap/exe$ 									?cmd=SigninExe [L]

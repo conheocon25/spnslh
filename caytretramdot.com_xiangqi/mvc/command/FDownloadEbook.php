@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class FTool001 extends Command {
+	class FDownloadEbook extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -15,17 +15,18 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------						
-			$mConfig 		= new \MVC\Mapper\Config();						
+			$mConfig 		= new \MVC\Mapper\Config();
+			$mCategoryBook 	= new \MVC\Mapper\CategoryBook();
 									
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------											
-			
+			$CategoryBookAll = $mCategoryBook->findAll();
 									
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
-			$request->setProperty("Active", 'Tool');
+			$request->setObject("CategoryBookAll", $CategoryBookAll);
 						
 			return self::statuses('CMD_DEFAULT');
 		}

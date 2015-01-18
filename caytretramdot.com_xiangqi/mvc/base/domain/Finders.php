@@ -25,4 +25,6 @@ interface DistrictFinder 		extends Finder {}
 
 interface CBMFinder 			extends Finder {}
 interface CBMDetailFinder 		extends Finder {}
+interface CategoryBookFinder 	extends Finder {}
+interface BookFinder 			extends Finder {}
 ?>

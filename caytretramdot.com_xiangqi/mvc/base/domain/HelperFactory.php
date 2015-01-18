@@ -15,6 +15,8 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	require_once( "mvc/mapper/District.php"			);
 	require_once( "mvc/mapper/CBM.php"				);
 	require_once( "mvc/mapper/CBMDetail.php"		);
+	require_once( "mvc/mapper/CategoryBook.php"		);
+	require_once( "mvc/mapper/Book.php"				);
 }
 
 class HelperFactory {

@@ -18,4 +18,6 @@ class ProvinceCollection 		extends Collection implements \MVC\Domain\ProvinceCol
 class DistrictCollection 		extends Collection implements \MVC\Domain\DistrictCollection		{function targetClass(){return "\MVC\Domain\District";		}}
 class CBMCollection 			extends Collection implements \MVC\Domain\CBMCollection				{function targetClass(){return "\MVC\Domain\CBM";			}}
 class CBMDetailCollection 		extends Collection implements \MVC\Domain\CBMDetailCollection		{function targetClass(){return "\MVC\Domain\CBMDetail";		}}
+class CategoryBookCollection 	extends Collection implements \MVC\Domain\CategoryBookCollection	{function targetClass(){return "\MVC\Domain\CategoryBook";	}}
+class BookCollection 			extends Collection implements \MVC\Domain\BookCollection			{function targetClass(){return "\MVC\Domain\Book";			}}
 ?>

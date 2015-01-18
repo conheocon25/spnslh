@@ -1,5 +1,5 @@
 <?php
 	require_once("mvc/base/Viewer.php");
-	$Viewer = new Viewer("mvc/templates/FTool001.html");
+	$Viewer = new Viewer("mvc/templates/FDownloadEbookDetail.html");
 	echo $Viewer->html();
 ?>
