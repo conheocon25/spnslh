@@ -7,10 +7,24 @@
 	<body>		
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-md-9">
+				<div class="col-md-8">
 					<div class="row">
-						<table width="100%" border="1" cellspacing="0" cellpadding="0" style="background-image: url(data/chess/150/Board.jpg); background-size: 100% 100%;">
-							<!-- R1-->
+						<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-image: url(data/chess/150/Board.jpg); background-size: 100% 100%;">
+							<!-- TỌA ĐỘ-->
+							<tr>
+								<td width="10%" ><div class="text-center">1</div></td>
+								<td width="10%" ><div class="text-center">2</div></td>
+								<td width="10%" ><div class="text-center">3</div></td>
+								<td width="10%" ><div class="text-center">4</div></td>
+								<td width="10%" ><div class="text-center">5</div></td>
+								<td width="10%" ><div class="text-center">6</div></td>
+								<td width="10%" ><div class="text-center">7</div></td>
+								<td width="10%" ><div class="text-center">8</div></td>
+								<td width="10%" ><div class="text-center">9</div></td>
+								<td width="10%" />
+							</tr>
+							
+							<!-- R0-->
 							<tr>
 								<td width="10%" ><img class="CCell" width="100%" id="Piece00" X="0" Y="0"/></td>
 								<td width="10%" ><img class="CCell" width="100%" id="Piece10" X="1" Y="0"/></td>
@@ -150,96 +164,96 @@
 								<td width="10%" ><img class="CCell" width="100%" id="Piece89" X="8" Y="9"/></td>
 								<td width="10%"><img width="100%" src="data/chess/150/space.png" /></td>
 							</tr>
+							<!-- TỌA ĐỘ-->
+							<tr>
+								<td width="10%" ><div class="text-center">9</div></td>
+								<td width="10%" ><div class="text-center">8</div></td>
+								<td width="10%" ><div class="text-center">7</div></td>
+								<td width="10%" ><div class="text-center">6</div></td>
+								<td width="10%" ><div class="text-center">5</div></td>
+								<td width="10%" ><div class="text-center">4</div></td>
+								<td width="10%" ><div class="text-center">3</div></td>
+								<td width="10%" ><div class="text-center">2</div></td>
+								<td width="10%" ><div class="text-center">1</div></td>
+								<td width="10%" />
+							</tr>
 						</table>
 					</div>
 				</div>
-				<div class="col-md-3">
-					<div class="Move btn btn-primary" alt='r0eakaehr0000000000ch0000c0p0p0p0p0p000000000000000000P0P0P0P0P0C00000C0000000000RHEAKAEHR'>Nước 1.1</div>
-					<div class="Move btn btn-primary" alt='r0eakaehr0000000000ch0000c0p0p0p0p0p000000000000000000P0P0P0P0P0000C00C0000000000RHEAKAEHR'>Nước 1.2</div> 
-					<BR/>
-					<div class="Move btn btn-primary" alt='r0eakae0r0000000000ch000hc0p0p0p0p0p000000000000000000P0P0P0P0P0000C00C0000000000RHEAKAEHR'>Nước 2.1</div>
-					<div class="Move btn btn-primary" alt='r0eakae0r0000000000ch000hc0p0p0p0p0p000000000000000000P0P0P0P0P0000C0HC0000000000RHEAKAE0R'>Nước 2.2</div>
-					<BR/>
+				<div id="MoveList" class="col-md-4" tal:attributes="MoveStart CBM/getMoveStart; MoveEnd CBM/getMoveEnd">
+					<div class="row"><B tal:content="CBM/getName"/></div>
+					
+					<div class="row" tal:repeat="Detail CBM/getDetailAll">
+						<span tal:content="Detail/getMove" /> . 
+						<div class="Move btn btn-success" tal:attributes="alt Detail/getState1; move Detail/getMove1"><span tal:content="Detail/getName1"/></div>
+						<div class="Move btn btn-danger"  tal:attributes="alt Detail/getState2; move Detail/getMove2"><span tal:content="Detail/getName2"/></div>
+					</div>
+										
+					<div class="row">
+						<div class="MoveFirst btn btn-primary"> |< </div>
+						<div class="MoveBack btn btn-primary"> < </div>
+						<div class="MoveNext btn btn-primary"> > </div> 
+						<div class="MoveLast btn btn-primary"> >|</div>
+					</div>
 				</div>
 			</div>
 		</div>
 		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
 		<script type="text/javascript">
-		/*<![CDATA[*/
-			function drawBoard(State){
-				$(".CCell").attr('src', '');
+		/*<![CDATA[*/			
+			$(function(){
+				var MoveCurrent = -1;				
+				var MoveSTART 	= parseInt($("#MoveList").attr("MoveStart"));
+				var MoveEND 	= parseInt($("#MoveList").attr("MoveEnd"));
 				
-				for (var i=0; i<10; i++){
-					for (var j=0; j<9; j++){
-						var n = State.charAt(i*9+j);
-						if (n!='0'){
-							var IdCell = "#Piece" + j + i;
-							switch (n){
-								//Cặp sĩ
-								case 'a':										
-									$(IdCell).attr("src", 'data/chess/150/GAssansin.png');
-									break;
-								case 'A':
-									$(IdCell).attr("src", 'data/chess/150/RAssansin.png');
-									break;
-								//Cặp ngựa
-								case 'h':																				
-									$(IdCell).attr("src", 'data/chess/150/GHorse.png');
-									break;
-								case 'H':
-									$(IdCell).attr("src", 'data/chess/150/RHorse.png');
-									break;
-								//Cặp xe
-								case 'r':										
-									$(IdCell).attr("src", 'data/chess/150/GRook.png');
-									break;
-								case 'R':
-									$(IdCell).attr("src", 'data/chess/150/RRook.png');
-									break;
-								//Cặp tượng
-								case 'e':										
-									$(IdCell).attr("src", 'data/chess/150/GElephant.png');
-									break;
-								case 'E':
-									$(IdCell).attr("src", 'data/chess/150/RElephant.png');
-									break;
-								//Con tướng
-								case 'k':										
-									$(IdCell).attr("src", 'data/chess/150/GKing.png');
-									break;
-								case 'K':
-									$(IdCell).attr("src", 'data/chess/150/RKing.png');
-									break;
-								//Cặp pháo
-								case 'c':										
-									$(IdCell).attr("src", 'data/chess/150/GCannon.png');
-									break;
-								case 'C':
-									$(IdCell).attr("src", 'data/chess/150/RCannon.png');
-									break;	
-								
-								//Bầy chốt
-								case 'p':																				
-									$(IdCell).attr("src", 'data/chess/150/GPawn.png');
-									break;
-								case 'P':										
-									$(IdCell).attr("src", 'data/chess/150/RPawn.png');
-									break;
-									
-							}								
-						}
-					}												
-				}
-			}
-			$(function(){																					
-				var State1 = "rheakaehr0000000000c00000c0p0p0p0p0p000000000000000000P0P0P0P0P0C00000C0000000000RHEAKAEHR";				
-				drawBoard(State1);
+				init();				
 				
-				$(".Move").click(function(){					
+				$(".Move").click(function(){								
+					MoveCurrent = parseInt($(this).attr('move'));
+					$(".Move").removeClass('active');
+					$(".Move[move='"+MoveCurrent+"']").addClass('active');
 					drawBoard($(this).attr('alt'));
 				});
+												
+				$(".MoveNext").click(function(){					
+					if (MoveCurrent < MoveEND){						
+						MoveCurrent +=1;						
+						var State = $(".Move[move='"+MoveCurrent+"']").attr('alt');
+						$(".Move").removeClass('active');
+						$(".Move[move='"+MoveCurrent+"']").addClass('active');
+						drawBoard(State);
+					}
+				});
+				
+				$(".MoveBack").click(function(){
+					if (MoveCurrent > MoveSTART){
+						MoveCurrent -=1;
+						var State = $(".Move[move='"+MoveCurrent+"']").attr('alt');
+						$(".Move").removeClass('active');
+						$(".Move[move='"+MoveCurrent+"']").addClass('active');
+						drawBoard(State);
+					}					
+				});
+				
+				$(".MoveFirst").click(function(){					
+					MoveCurrent = MoveSTART;					
+					var State = $(".Move[move='"+MoveCurrent+"']").attr('alt');						
+					
+					$(".Move").removeClass('active');
+					$(".Move[move='"+MoveCurrent+"']").addClass('active');
+					
+					drawBoard(State);
+				});
+				$(".MoveLast").click(function(){										
+					MoveCurrent = MoveEND;
+					var State = $(".Move[move='"+MoveCurrent+"']").attr('alt');						
+					$(".Move").removeClass('active');
+					$(".Move[move='"+MoveCurrent+"']").addClass('active');
+					drawBoard(State);
+				});
+				
 			});
 		/*]]>*/
-		</script>	
+		</script>
 	</body>
 </html>

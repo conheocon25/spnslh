@@ -6,6 +6,7 @@ class CBMDetail extends Object{
 
     private $Id;
 	private $IdCBM;
+	private $Move;	
 	private $Name1;	
 	private $State1;	
 	private $Name2;	
@@ -14,10 +15,11 @@ class CBMDetail extends Object{
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-    function __construct( $Id=null, $IdCBM=null, $Name1=null, $State1=null, $Name2=null, $State2=null){
+    function __construct( $Id=null, $IdCBM=null, $Move=null,  $Name1=null, $State1=null, $Name2=null, $State2=null){
 		$this->Id 		= $Id;
 		$this->IdCBM 	= $IdCBM;
-		$this->Name1 	= $Name1; 		
+		$this->Move		= $Move; 
+		$this->Name1 	= $Name1; 
 		$this->State1	= $State1;
 		$this->Name2 	= $Name2; 		
 		$this->State2	= $State2;
@@ -33,6 +35,11 @@ class CBMDetail extends Object{
 		$CBM 	= $mCBM->find($this->IdCBM);
 		return $CBM;
 	}
+	
+	function setMove( $Move ) {$this->Move = $Move;$this->markDirty();}   
+	function getMove( ) {return $this->Move;}
+	function getMove1( ) {return ($this->Move-1)*2;}
+	function getMove2( ) {return ($this->Move-1)*2 + 1;}
 	
     function setName1( $Name1 ) {$this->Name1 = $Name1;$this->markDirty();}   
 	function getName1( ) {return $this->Name1;}
@@ -50,6 +57,7 @@ class CBMDetail extends Object{
 		$json = array(
 			'Id' 		=> $this->getId(),
 			'IdCBM' 	=> $this->getIdCBM(),
+			'Move'		=> $this->getMove(),	
 			'Name1'		=> $this->getName1(),	
 		 	'State1'	=> $this->getState1(),
 			'Name2'		=> $this->getName2(),			 	
@@ -61,10 +69,11 @@ class CBMDetail extends Object{
 	function setArray( $Data ){
         $this->Id 		= $Data[0];
 		$this->IdCBM	= $Data[1];
-		$this->Name1 	= $Data[2];		
-		$this->State1 	= $Data[3];		
-		$this->Name2 	= $Data[4];		
-		$this->State2 	= $Data[5];
+		$this->Move		= $Data[2];
+		$this->Name1 	= $Data[3];		
+		$this->State1 	= $Data[4];		
+		$this->Name2 	= $Data[5];		
+		$this->State2 	= $Data[6];
     }
 			
 	//-------------------------------------------------------------------------------

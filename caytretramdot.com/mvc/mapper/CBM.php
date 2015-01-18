@@ -32,6 +32,8 @@ class CBM extends Mapper implements \MVC\Domain\CBMFinder{
 			$array['id'],
 			$array['name'],			
 			$array['time'],
+			$array['move_start'],
+			$array['move_end'],
 			$array['key']
 		);
         return $obj;
@@ -42,6 +44,8 @@ class CBM extends Mapper implements \MVC\Domain\CBMFinder{
         $values = array( 
 			$object->getName(),			
 			$object->getTime(),
+			$object->getMoveStart(),
+			$object->getMoveEnd(),
 			$object->getKey()			
 		);
         $this->insertStmt->execute( $values );
@@ -53,6 +57,8 @@ class CBM extends Mapper implements \MVC\Domain\CBMFinder{
         $values = array( 
 			$object->getName(),			
 			$object->getTime(),
+			$object->getMoveStart(),
+			$object->getMoveEnd(),
 			$object->getKey(),
 			$object->getId()
 		);

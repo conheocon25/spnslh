@@ -7,15 +7,19 @@ class CBM extends Object{
     private $Id;
 	private $Name;	
 	private $Time;
+	private $MoveStart;
+	private $MoveEnd;
 	private $Key;
 	
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-    function __construct( $Id=null, $Name=null, $Time=0, $Key=0){
+    function __construct( $Id=null, $Name=null, $Time=0, $MoveStart=null,  $MoveEnd=null, $Key=0){
 		$this->Id 		= $Id;
 		$this->Name 	= $Name; 		
 		$this->Time 	= $Time;
+		$this->MoveStart= $MoveStart;
+		$this->MoveEnd	= $MoveEnd;
 		$this->Key 		= $Key;
 		
 		parent::__construct( $Id );
@@ -28,6 +32,12 @@ class CBM extends Object{
 	function setTime( $Time ) {$this->Time = $Time;$this->markDirty();}   
 	function getTime( ) {return $this->Time;}	
 	
+	function setMoveStart( $MoveStart ) {$this->MoveStart = $MoveStart;$this->markDirty();}   
+	function getMoveStart( ) {return $this->MoveStart;}
+	
+	function setMoveEnd( $MoveEnd ) {$this->MoveEnd = $MoveEnd; $this->markDirty();}   
+	function getMoveEnd( ) {return $this->MoveEnd;}
+	
 	function setKey( $Key ) {$this->Key = $Key;$this->markDirty();}   
 	function getKey( ) {return $this->Key;}	
 	
@@ -36,6 +46,8 @@ class CBM extends Object{
 			'Id' 		=> $this->getId(),
 			'Name'		=> $this->getName(),	
 		 	'Time'		=> $this->getTime(),
+			'MoveStart'	=> $this->getMoveStart(),
+			'MoveEnd'	=> $this->getMoveEnd(),
 			'Key'		=> $this->getKey()			
 		);
 		return json_encode($json);
@@ -44,8 +56,10 @@ class CBM extends Object{
 	function setArray( $Data ){
         $this->Id 		= $Data[0];
 		$this->Name 	= $Data[1];		
-		$this->Time 	= $Data[2];		
-		$this->Key		= $Data[3];		
+		$this->Time 	= $Data[2];
+		$this->MoveStart= $Data[3];
+		$this->MoveEnd	= $Data[4];		
+		$this->Key		= $Data[5];
     }
 			
 	//-------------------------------------------------------------------------------
