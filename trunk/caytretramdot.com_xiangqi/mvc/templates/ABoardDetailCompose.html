@@ -38,7 +38,7 @@
 							<td width="10%" ><img class="CCell" width="100%" id="Piece60" X="6" Y="0"/></td>
 							<td width="10%" ><img class="CCell" width="100%" id="Piece70" X="7" Y="0"/></td>
 							<td width="10%" ><img class="CCell" width="100%" id="Piece80" X="8" Y="0"/></td>
-							<td width="10%"><img width="100%" src="/data/chess/150/space.png" /></td>
+							<td width="10%"><img id="RoundGreen" width="100%" src="/data/chess/150/space.png" /></td>
 						</tr>
 						
 						<!-- R1-->
@@ -165,7 +165,7 @@
 							<td width="10%" ><img class="CCell" width="100%" id="Piece69" X="6" Y="9"/></td>
 							<td width="10%" ><img class="CCell" width="100%" id="Piece79" X="7" Y="9"/></td>
 							<td width="10%" ><img class="CCell" width="100%" id="Piece89" X="8" Y="9"/></td>
-							<td width="10%"><img width="100%" src="/data/chess/150/space.png" /></td>
+							<td width="10%"><img id="RoundRed" width="100%" src="/data/chess/150/space.png" /></td>
 						</tr>
 						<!-- TỌA ĐỘ-->
 						<tr>
@@ -182,15 +182,16 @@
 						</tr>
 					</table>					
 				</div>
-				<div id="MoveList" class="col-md-3 col-xs-3" tal:attributes="MoveStart CBM/getMoveStart; MoveEnd CBM/getMoveEnd">
+				<div id="MoveList" class="col-md-3 col-xs-3" tal:attributes="MoveStart CBM/getMoveStart; MoveEnd CBM/getMoveEnd; URLExe CBM/getURLSettingComposeExe">
 					<div class="row"><H3>NƯỚC ĐI</H3></div>
 					<div class="row" tal:repeat="Detail CBM/getDetailAll">
 						<span tal:content="Detail/getMove" /> . 
-						<div class="Move btn btn-success" tal:attributes="alt Detail/getState1; move Detail/getMove1"><span tal:content="Detail/getName1"/></div>
-						<div class="Move btn btn-danger"  tal:attributes="alt Detail/getState2; move Detail/getMove2"><span tal:content="Detail/getName2"/></div>
+						<div class="Move btn btn-danger" tal:attributes="alt Detail/getState1; move Detail/getMove1"><span tal:content="Detail/getName1"/></div>
+						<div class="Move btn btn-success"  tal:attributes="alt Detail/getState2; move Detail/getMove2"><span tal:content="Detail/getName2"/></div>
 					</div>
 										
 					<div class="row">
+						<div class="MoveSave btn btn-primary">Lưu</div>
 						<div class="MoveFirst btn btn-primary"> |< </div>
 						<div class="MoveBack btn btn-primary"> < </div>
 						<div class="MoveNext btn btn-primary"> > </div> 
@@ -205,36 +206,67 @@
 		/*<![CDATA[*/			
 			$(function(){
 				var TempPiece 	= '';
+				var TempPiece 	= '';
 				var TempX 		= -1;
 				var TempY 		= -1;
-				var State		= '';
+				var State		= '';				
 				var Selected	= 0;
+				var Round		= -1;
+												
+				initCompose();
+				drawRound(Round);
 				
-				initCompose();								
 				$(".CCell").click(function(){
 					var X = parseInt($(this).attr('X'));
 					var Y = parseInt($(this).attr('Y'));
+					var Color = isColor(aState[Y][X]);
 					
 					//Hành vi chọn quân
-					if (aState[Y][X] != '0'){
+					if (aState[Y][X] != '0' && Selected == 0 && Color==Round){
 						TempPiece = aState[Y][X];
 						TempX = X;						
 						TempY = Y;
 						Selected = 1;
-					}					
-					else{
+					}
+					else if (Selected == 1){
 						//Di chuyển quân
-						if (aState[Y][X] == '0' && Selected == 1){
+						if (aState[Y][X] == '0'){
+							aStepA[iStep] = exportStep(TempY, TempX, Y, X);
 							movePiece(TempY, TempX, Y, X);
 							State = exportState();
 							drawBoard(State);
 							Selected = 0;
+							Round = Round*(-1);
+							drawRound(Round);
+							//Lưu lại nước đi
+							aStep[iStep++] = State;							
 						}
 						//Ăn quân
 						else{
-												
+							aStepA[iStep] 	= exportStep(TempY, TempX, Y, X);
+							movePiece(TempY, TempX, Y, X);
+							State = exportState();
+							drawBoard(State);
+							Selected = 0;
+							Round = Round*(-1);
+							drawRound(Round);
+							//Lưu lại nước đi
+							aStep[iStep++] 	= State;
 						}
 					}
+				});
+				$(".MoveSave").click(function(){															
+					var URL = $("#MoveList").attr('URLExe');
+																				
+					$.ajax({
+						type: "POST",
+						data: {aStep:aStep, aStepA:aStepA},
+						url: URL,
+						success: function(msg){							
+							alert("Đã cập nhật nước đi mới cho ván cờ !");
+						}
+					});
+			
 				});
 			});
 		/*]]>*/

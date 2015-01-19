@@ -10,6 +10,18 @@ var aState = [
 	['0', '0', '0', '0', '0', '0', '0', '0', '0'], //8
 	['R', 'H', 'E', 'A', 'K', 'A', 'E', 'H', 'R']  //9
 ];
+var aStep = [];
+var aStepA = [];
+
+var iStep = 0;
+
+function isColor(C){	
+	if (C=='r' || C=='h' || C=='e' || C=='a' || C=='k' || C=='p' || C=='c')
+		return 1;
+	else if (C=='R' || C=='H' || C=='E' || C=='A' || C=='K' || C=='P' || C=='C')
+		return -1;
+	return 0;
+}
 
 function exportState(){
 	var i=0, j=0;
@@ -32,14 +44,50 @@ function movePiece(Y, X, NY, NX){
 	aState[Y][X]	= '0';
 }
 
+function exportStep(Y, X, NY, NX){
+	var S = "";
+	X = parseInt(X);
+	Y = parseInt(Y);
+	NX = parseInt(NX);
+	NY = parseInt(NY);
+	
+	if (aState[Y][X]=='r' || aState[Y][X]=='R')
+		S = "Xe";
+	else if (aState[Y][X]=='h' || aState[Y][X]=='H')
+		S = "Mã";
+	else if (aState[Y][X]=='e' || aState[Y][X]=='E')
+		S = "Tượng";
+	else if (aState[Y][X]=='a' || aState[Y][X]=='A')
+		S = "Sĩ";
+	else if (aState[Y][X]=='k' || aState[Y][X]=='K')
+		S = "Tướng";
+	else if (aState[Y][X]=='c' || aState[Y][X]=='C')
+		S = "Pháo";
+	else if (aState[Y][X]=='p' || aState[Y][X]=='P')
+		S = "Chốt";
+		
+	return S + " " + (X+1) + " ? " +  (NX+1);
+}
+
 function initCompose(){
-	var State = exportState();
+	var State = exportState();	
 	drawBoard(State);
+	iStep = 0;
 }
 
 function init(){
 	var State = "rheakaehr0000000000c00000c0p0p0p0p0p000000000000000000P0P0P0P0P0C00000C0000000000RHEAKAEHR";
 	drawBoard(State);
+}
+
+function drawRound(Round){
+	$("#RoundRed").attr('src', '');
+	$("#RoundGreen").attr('src', '');
+	if (Round<0){
+		$("#RoundRed").attr("src", '/data/chess/150/Select.png');
+	}else{
+		$("#RoundGreen").attr("src", '/data/chess/150/Select.png');
+	}
 }
 
 function drawBoard(State){

@@ -11,8 +11,8 @@ class CBM extends Mapper implements \MVC\Domain\CBMFinder{
 		
 		$selectAllStmt 		= sprintf("select * from %s ORDER BY id", $tblCBM);
 		$selectStmt 		= sprintf("select *  from %s where id=?", $tblCBM);
-		$updateStmt 		= sprintf("update %s set name=?, time=?, key=? where id=?", $tblCBM);
-		$insertStmt 		= sprintf("insert into %s ( name, time, key) values(?, ?, ?)", $tblCBM);
+		$updateStmt 		= sprintf("update %s set id_category=?, name=?, `time`=?, move_start=?, move_end=?, `key`=? where id=?", $tblCBM);
+		$insertStmt 		= sprintf("insert into %s ( id_category, name, time, move_start, move_end, key) values(?, ?, ?, ?, ?, ?)", $tblCBM);
 		$deleteStmt 		= sprintf("delete from %s where id=?", $tblCBM);
 		$findByStmt 		= sprintf("select *  from %s where `id_category`=?", $tblCBM);
 		$findByKeyStmt 		= sprintf("select *  from %s where `key`=?", $tblCBM);

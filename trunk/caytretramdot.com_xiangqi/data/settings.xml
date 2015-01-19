@@ -44,10 +44,10 @@
 		<command name="ABoard">					<view>ABoard		</view></command>
 		<command name="ABoardDetail">			<view>ABoardDetail	</view></command>
 		<command name="ABoardDetailCompose">	<view>ABoardDetailCompose</view></command>
+		<command name="ABoardDetailComposeExe">	<view>ABoardDetailComposeExe</view></command>
 				
 		<command name="ASetting">				<view>ASetting		</view></command>				
-		<command name="ASettingTag">			<view>ASettingTag	</view></command>
-				
+					
 		<command name="APost">					<view>APost			</view></command>
 		<command name="APostDetail">			<view>APostDetail	</view></command>
 		<command name="APostInsLoad">			<view>APostInsLoad	</view></command>

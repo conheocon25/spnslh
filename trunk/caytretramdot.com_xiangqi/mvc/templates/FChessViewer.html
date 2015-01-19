@@ -114,7 +114,7 @@
 							<td width="10%" ><img class="CCell" width="100%" id="Piece75" X="7" Y="5"/></td>
 							<td width="10%" ><img class="CCell" width="100%" id="Piece85" X="8" Y="5"/></td>
 							<td width="10%"><img width="100%" src="/data/chess/150/space.png" /></td>
-						</tr>														
+						</tr>
 						<!-- R6-->
 						<tr>								
 							<td width="10%" ><img class="CCell" width="100%" id="Piece06" X="0" Y="6"/></td>
@@ -187,8 +187,8 @@
 					<div class="row"><H3>NƯỚC ĐI</H3></div>
 					<div class="row" tal:repeat="Detail CBM/getDetailAll">
 						<span tal:content="Detail/getMove" /> . 
-						<div class="Move btn btn-success" tal:attributes="alt Detail/getState1; move Detail/getMove1"><span tal:content="Detail/getName1"/></div>
-						<div class="Move btn btn-danger"  tal:attributes="alt Detail/getState2; move Detail/getMove2"><span tal:content="Detail/getName2"/></div>
+						<div class="Move btn btn-danger" 	tal:attributes="alt Detail/getState1; move Detail/getMove1"><span tal:content="Detail/getName1"/></div>
+						<div class="Move btn btn-success"  	tal:attributes="alt Detail/getState2; move Detail/getMove2"><span tal:content="Detail/getName2"/></div>
 					</div>
 										
 					<div class="row">
