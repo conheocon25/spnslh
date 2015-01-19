@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class FToolChineseChessCompose extends Command {
+	class FBoard extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -15,17 +15,19 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------						
-			$mConfig 		= new \MVC\Mapper\Config();						
+			$mConfig 		= new \MVC\Mapper\Config();
+			$mCategoryBoard = new \MVC\Mapper\CategoryBoard();
 									
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------
-												
+			//-------------------------------------------------------------											
+			$CategoryBoardAll = $mCategoryBoard->findAll();
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
-			$request->setProperty("Active", 'Tool');
-						
+			$request->setObject('CategoryBoardAll', $CategoryBoardAll);
+			
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

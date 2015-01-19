@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class ARestaurant extends Command {
+	class ABoardDetailCompose extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -11,35 +11,36 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$Page = $request->getProperty('Page');
+			$IdCategory = $request->getProperty('IdCategory');
+			$IdBoard 	= $request->getProperty('IdBoard');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mProvince 	= new \MVC\Mapper\Province();
-			$mConfig 	= new \MVC\Mapper\Config();
+			$mCategoryBoard = new \MVC\Mapper\CategoryBoard();
+			$mCBM 			= new \MVC\Mapper\CBM();
+			$mConfig 		= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------															
-			$Title = "TỈNH THÀNH";
+			$Title = "VÁN CỜ";
 			$Navigation = array();
 						
 			$ConfigName = $mConfig->findByName("NAME");
-						
-			$ProvinceAll = $mProvince->findAll(array());
-			$Province 	 = $ProvinceAll->current();
-						
+			
+			$Category 			= $mCategoryBoard->find($IdCategory);
+			$CBM				= $mCBM->find($IdBoard);
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
-			$request->setProperty('Title'		, $Title);						
+			$request->setProperty('Title'		, $Title);			
 			$request->setObject('Navigation'	, $Navigation);			
-			$request->setObject('ConfigName'	, $ConfigName);
-			
-			$request->setObject('ProvinceAll'	, $ProvinceAll);
-			$request->setObject('Province'		, $Province);
-															
+			$request->setObject('ConfigName'	, $ConfigName);			
+			$request->setObject('Category'		, $Category);
+			$request->setObject('CBM'			, $CBM);
+																					
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

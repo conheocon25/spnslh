@@ -4,15 +4,16 @@
 		<div metal:use-macro="mFront.xhtml/IncludeMETA"/>
 		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>
 	</head>
-	<body>		
-		<div class="container">
+	<body>
+		<div metal:use-macro="mFront.xhtml/Header"/>
+		<div class="container" id="wraper">
 			<div class="row"><h1 tal:content="CBM/getName"/></div>
 			<div class="row">
 				<div class="col-md-3 col-sm-3">
 					GIỚI THIỆU THÔNG TIN VỀ VÁN CỜ
 				</div>
 				<div class="col-md-6 col-sm-6">
-					<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-image: url(data/chess/150/Board.jpg); background-size: 100% 100%;">
+					<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-image: url(/data/chess/150/Board.jpg); background-size: 100% 100%;">
 						<!-- TỌA ĐỘ-->
 						<tr>
 							<td width="10%" ><div class="text-center">1</div></td>
@@ -38,7 +39,7 @@
 							<td width="10%" ><img class="CCell" width="100%" id="Piece60" X="6" Y="0"/></td>
 							<td width="10%" ><img class="CCell" width="100%" id="Piece70" X="7" Y="0"/></td>
 							<td width="10%" ><img class="CCell" width="100%" id="Piece80" X="8" Y="0"/></td>
-							<td width="10%"><img width="100%" src="data/chess/150/space.png" /></td>
+							<td width="10%"><img width="100%" src="/data/chess/150/space.png" /></td>
 						</tr>
 						
 						<!-- R1-->
@@ -53,7 +54,7 @@
 							<td width="10%" ><img class="CCell" width="100%" id="Piece61" X="6" Y="1"/></td>
 							<td width="10%" ><img class="CCell" width="100%" id="Piece71" X="7" Y="1"/></td>
 							<td width="10%" ><img class="CCell" width="100%" id="Piece81" X="8" Y="1"/></td>
-							<td width="10%"><img width="100%" src="data/chess/150/space.png" /></td>								
+							<td width="10%"><img width="100%" src="/data/chess/150/space.png" /></td>								
 						</tr>
 						
 						<!-- R2-->
@@ -68,7 +69,7 @@
 							<td width="10%" ><img class="CCell" width="100%" id="Piece62" X="6" Y="2"/></td>
 							<td width="10%" ><img class="CCell" width="100%" id="Piece72" X="7" Y="2"/></td>
 							<td width="10%" ><img class="CCell" width="100%" id="Piece82" X="8" Y="2"/></td>
-							<td width="10%"><img width="100%" src="data/chess/150/space.png" /></td>
+							<td width="10%"><img width="100%" src="/data/chess/150/space.png" /></td>
 							
 						</tr>
 													
@@ -84,7 +85,7 @@
 							<td width="10%" ><img class="CCell" width="100%" id="Piece63" X="6" Y="3"/></td>
 							<td width="10%" ><img class="CCell" width="100%" id="Piece73" X="7" Y="3"/></td>
 							<td width="10%" ><img class="CCell" width="100%" id="Piece83" X="8" Y="3"/></td>
-							<td width="10%"><img width="100%" src="data/chess/150/space.png" /></td>
+							<td width="10%"><img width="100%" src="/data/chess/150/space.png" /></td>
 							
 						</tr>
 													
@@ -99,7 +100,7 @@
 							<td width="10%" ><img class="CCell" width="100%" id="Piece64" X="6" Y="4"/></td>
 							<td width="10%" ><img class="CCell" width="100%" id="Piece74" X="7" Y="4"/></td>
 							<td width="10%" ><img class="CCell" width="100%" id="Piece84" X="8" Y="4"/></td>
-							<td width="10%"><img width="100%" src="data/chess/150/space.png" /></td>								
+							<td width="10%"><img width="100%" src="/data/chess/150/space.png" /></td>								
 						</tr>														
 						<!-- R5-->
 						<tr>								
@@ -112,7 +113,7 @@
 							<td width="10%" ><img class="CCell" width="100%" id="Piece65" X="6" Y="5"/></td>
 							<td width="10%" ><img class="CCell" width="100%" id="Piece75" X="7" Y="5"/></td>
 							<td width="10%" ><img class="CCell" width="100%" id="Piece85" X="8" Y="5"/></td>
-							<td width="10%"><img width="100%" src="data/chess/150/space.png" /></td>
+							<td width="10%"><img width="100%" src="/data/chess/150/space.png" /></td>
 						</tr>														
 						<!-- R6-->
 						<tr>								
@@ -125,7 +126,7 @@
 							<td width="10%" ><img class="CCell" width="100%" id="Piece66" X="6" Y="6"/></td>
 							<td width="10%" ><img class="CCell" width="100%" id="Piece76" X="7" Y="6"/></td>
 							<td width="10%" ><img class="CCell" width="100%" id="Piece86" X="8" Y="6"/></td>
-							<td width="10%"><img width="100%" src="data/chess/150/space.png" /></td>								
+							<td width="10%"><img width="100%" src="/data/chess/150/space.png" /></td>								
 						</tr>														
 						<!-- R7-->
 						<tr>
@@ -138,7 +139,7 @@
 							<td width="10%" ><img class="CCell" width="100%" id="Piece67" X="6" Y="7"/></td>
 							<td width="10%" ><img class="CCell" width="100%" id="Piece77" X="7" Y="7"/></td>
 							<td width="10%" ><img class="CCell" width="100%" id="Piece87" X="8" Y="7"/></td>
-							<td width="10%"><img width="100%" src="data/chess/150/space.png" /></td>
+							<td width="10%"><img width="100%" src="/data/chess/150/space.png" /></td>
 						</tr>														
 						<!-- R8-->
 						<tr>
@@ -151,7 +152,7 @@
 							<td width="10%" ><img class="CCell" width="100%" id="Piece68" X="6" Y="8"/></td>
 							<td width="10%" ><img class="CCell" width="100%" id="Piece78" X="7" Y="8"/></td>
 							<td width="10%" ><img class="CCell" width="100%" id="Piece88" X="8" Y="8"/></td>
-							<td width="10%"><img width="100%" src="data/chess/150/space.png" /></td>
+							<td width="10%"><img width="100%" src="/data/chess/150/space.png" /></td>
 						</tr>
 																										
 						<!-- R9-->
@@ -165,7 +166,7 @@
 							<td width="10%" ><img class="CCell" width="100%" id="Piece69" X="6" Y="9"/></td>
 							<td width="10%" ><img class="CCell" width="100%" id="Piece79" X="7" Y="9"/></td>
 							<td width="10%" ><img class="CCell" width="100%" id="Piece89" X="8" Y="9"/></td>
-							<td width="10%"><img width="100%" src="data/chess/150/space.png" /></td>
+							<td width="10%"><img width="100%" src="/data/chess/150/space.png" /></td>
 						</tr>
 						<!-- TỌA ĐỘ-->
 						<tr>

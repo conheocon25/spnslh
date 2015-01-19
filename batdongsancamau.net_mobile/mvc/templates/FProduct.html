@@ -5,11 +5,16 @@
 		<tal:block metal:use-macro="mFront.xhtml/IncludeCSS"/>
 		<tal:block metal:use-macro="mFront.xhtml/IncludeJS"/>
 		<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
-		<script>
+		<script>			
 			$( document ).on( "pageinit", "#product-page", function() {				
 				var defaultLatLng = new google.maps.LatLng(34.0983425, -118.3267434);
 				var latitude = $("#map-canvas").attr('latitude');
 				var longitude= $("#map-canvas").attr('longitude');
+				
+				if(!(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))){
+					window.location =$("#ABC").attr("alt");
+				}
+			
 			    if ( navigator.geolocation ){
 			        function success(pos) {
 			            // Location found, show map with these coordinates
@@ -38,13 +43,16 @@
 			        });
 			    }				
 			});
+										
+						
 		</script>			
 	</head>
 	<body>
 		<div id="product-page" data-role="page" class="jqm-demos jqm-home">
 			<tal:block metal:use-macro="mFront.xhtml/Header"/>
-			<div role="main" class="ui-content jqm-content">									
+			<div role="main" class="ui-content jqm-content">
 				<h3 class="panel-title" tal:content="Product/getName"/>
+				<div id="ABC" tal:attributes="alt Product/getURLViewFull"/>
 				<p>
 					(<B style="color:#055699;font-weight:bold;" tal:content="Product/getDateTimePrint"/>)
 					<B style="color:#055699;font-weight:bold;" tal:content="Product/getAddress"/>
@@ -150,7 +158,7 @@
 						</div>
 					</div>
 				</div>
-				<div tal:condition="Product/getMap" class="ui-content" id="map-canvas" style="height:320px" tal:attributes="latitude Product/getMap/getLatitude;longitude Product/getMap/getLongitude"/>
+				<div tal:condition="Product/getMap" class="ui-content" id="map-canvas" style="height:320px" tal:attributes="latitude Product/getMap/getLatitude;longitude Product/getMap/getLongitude;alt 'sao su'"/>
 				<div tal:repeat="Image Product/getImageAll">
 					<img width="100%" tal:attributes="src Image/getURL"/>
 				</div>	

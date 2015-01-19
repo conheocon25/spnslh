@@ -13,53 +13,53 @@ function drawBoard(State){
 				switch (n){
 					//Cặp sĩ
 					case 'a':										
-						$(IdCell).attr("src", 'data/chess/150/GAssansin.png');
+						$(IdCell).attr("src", '/data/chess/150/GAssansin.png');
 						break;
 					case 'A':
-						$(IdCell).attr("src", 'data/chess/150/RAssansin.png');
+						$(IdCell).attr("src", '/data/chess/150/RAssansin.png');
 						break;
 					//Cặp ngựa
 					case 'h':																				
-						$(IdCell).attr("src", 'data/chess/150/GHorse.png');
+						$(IdCell).attr("src", '/data/chess/150/GHorse.png');
 						break;
 					case 'H':
-						$(IdCell).attr("src", 'data/chess/150/RHorse.png');
+						$(IdCell).attr("src", '/data/chess/150/RHorse.png');
 						break;
 					//Cặp xe
 					case 'r':										
-						$(IdCell).attr("src", 'data/chess/150/GRook.png');
+						$(IdCell).attr("src", '/data/chess/150/GRook.png');
 						break;
 					case 'R':
-						$(IdCell).attr("src", 'data/chess/150/RRook.png');
+						$(IdCell).attr("src", '/data/chess/150/RRook.png');
 						break;
 					//Cặp tượng
 					case 'e':										
-						$(IdCell).attr("src", 'data/chess/150/GElephant.png');
+						$(IdCell).attr("src", '/data/chess/150/GElephant.png');
 						break;
 					case 'E':
-						$(IdCell).attr("src", 'data/chess/150/RElephant.png');
+						$(IdCell).attr("src", '/data/chess/150/RElephant.png');
 						break;
 					//Con tướng
 					case 'k':										
-						$(IdCell).attr("src", 'data/chess/150/GKing.png');
+						$(IdCell).attr("src", '/data/chess/150/GKing.png');
 						break;
 					case 'K':
-						$(IdCell).attr("src", 'data/chess/150/RKing.png');
+						$(IdCell).attr("src", '/data/chess/150/RKing.png');
 						break;
 					//Cặp pháo
 					case 'c':										
-						$(IdCell).attr("src", 'data/chess/150/GCannon.png');
+						$(IdCell).attr("src", '/data/chess/150/GCannon.png');
 						break;
 					case 'C':
-						$(IdCell).attr("src", 'data/chess/150/RCannon.png');
+						$(IdCell).attr("src", '/data/chess/150/RCannon.png');
 						break;	
 					
 					//Bầy chốt
 					case 'p':																				
-						$(IdCell).attr("src", 'data/chess/150/GPawn.png');
+						$(IdCell).attr("src", '/data/chess/150/GPawn.png');
 						break;
 					case 'P':										
-						$(IdCell).attr("src", 'data/chess/150/RPawn.png');
+						$(IdCell).attr("src", '/data/chess/150/RPawn.png');
 						break;
 						
 				}								
