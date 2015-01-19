@@ -18,10 +18,12 @@
 			//-------------------------------------------------------------						
 			$mConfig 		= new \MVC\Mapper\Config();
 			$mCategoryBoard = new \MVC\Mapper\CategoryBoard();
+			$mCategoryPost 	= new \MVC\Mapper\CategoryPost();
 									
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------											
+			$CategoryPostAll 	= $mCategoryPost->findAll();
 			$CategoryBoardAll 	= $mCategoryBoard->findAll();
 			$Category 			= $mCategoryBoard->findByKey($KCategory);
 			
@@ -30,6 +32,7 @@
 			//-------------------------------------------------------------			
 			$request->setObject('Category'			, $Category);
 			$request->setObject('CategoryBoardAll'	, $CategoryBoardAll);
+			$request->setObject("CategoryPostAll", 		$CategoryPostAll);
 			
 			return self::statuses('CMD_DEFAULT');
 		}
