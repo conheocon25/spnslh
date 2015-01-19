@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class FToolChineseChessBoard extends Command {
+	class FChessViewer extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -11,23 +11,27 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$KeyCBM = $request->getProperty('KeyCBM');
+			$KCategory 	= $request->getProperty('KCategory');
+			$KBoard 	= $request->getProperty('KBoard');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------						
-			$mConfig 	= new \MVC\Mapper\Config();
-			$mCBM 		= new \MVC\Mapper\CBM();
+			$mConfig 		= new \MVC\Mapper\Config();
+			$mCategoryBoard = new \MVC\Mapper\CategoryBoard();
+			$mCBM 			= new \MVC\Mapper\CBM();
 									
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
-			$CBM = $mCBM->findByKey($KeyCBM);
+			$Category 	= $mCategoryBoard->findByKey($KBoard);
+			$CBM 		= $mCBM->findByKey($KBoard);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
-			$request->setObject('CBM', $CBM);
+			$request->setObject('CBM'		, $CBM);
+			$request->setObject('Category'	, $Category);
 			return self::statuses('CMD_DEFAULT');
 			
 		}

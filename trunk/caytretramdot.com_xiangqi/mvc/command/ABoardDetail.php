@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class ADistrict extends Command {
+	class ABoardDetail extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -11,33 +11,33 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$IdProvince = $request->getProperty('IdProvince');
-						
+			$IdCategory = $request->getProperty('IdCategory');
+			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mProvince 	= new \MVC\Mapper\Province();
-			$mConfig 	= new \MVC\Mapper\Config();
+			$mCategoryBoard = new \MVC\Mapper\CategoryBoard();
+			$mConfig 		= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------															
-			$Province 	= $mProvince->find($IdProvince);
-			$Title 		= mb_strtoupper($Province->getName(), 'UTF8');
-			$Navigation = array(
-				array("TỈNH THÀNH", "/admin/province")
-			);
+			$Title = "VÁN CỜ";
+			$Navigation = array();
 						
 			$ConfigName = $mConfig->findByName("NAME");
-						
+			
+			$Category 			= $mCategoryBoard->find($IdCategory);
+			$CategoryBoardAll 	= $mCategoryBoard->findAll();
+									
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
-			$request->setProperty('Title'		, $Title);						
+			$request->setProperty('Title'		, $Title);			
 			$request->setObject('Navigation'	, $Navigation);			
-			$request->setObject('ConfigName'	, $ConfigName);
-			
-			$request->setObject('Province'		, $Province);
+			$request->setObject('ConfigName'	, $ConfigName);			
+			$request->setObject('Category'		, $Category);
+			$request->setObject('CategoryBoardAll'	, $CategoryBoardAll);
 																		
 			return self::statuses('CMD_DEFAULT');
 		}

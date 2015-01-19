@@ -4,6 +4,13 @@
 		<tal:block metal:use-macro="mFront.xhtml/IncludeMETA"/>
 		<tal:block metal:use-macro="mFront.xhtml/IncludeCSS"/>
 		<tal:block metal:use-macro="mFront.xhtml/IncludeJS"/>
+		<script>			
+			$('.carousel .item:first-child').addClass('active');
+			/*
+			if(!(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent))){
+				window.location ="http://batdongsancamau.net";				
+			}*/
+		</script>
 	</head>	
 	<body class="ui-mobile-viewport ui-overlay-a">
 		<div data-role="page" class="jqm-demos ui-page ui-page-theme-a ui-page-footer-fixed ui-page-active">

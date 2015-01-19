@@ -62,6 +62,7 @@
 			$request->setProperty("Title", 		$Title);
 			$request->setProperty("Active", 	"Menu");
 			$request->setObject("Navigation", 	$Navigation);
+			$request->setProperty("URLForward", $Product->getURLViewFull());
 			
 			$request->setObject("ConfigName", 	$ConfigName);
 			$request->setObject("ConfigContact",$ConfigContact);

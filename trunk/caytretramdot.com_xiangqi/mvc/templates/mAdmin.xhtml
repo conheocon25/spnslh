@@ -114,8 +114,8 @@
 	<!-- ======================================================================== -->
 	<div metal:define-macro="MenuApp" id="sidebar">
 		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">
-			<li tal:attributes="class php:ActiveAdmin=='Province'?'active':'disable'">
-				<a tal:attributes="href '/admin/province'"><i class="glyphicons-cogwheels" />TỈNH / THÀNH</a>
+			<li tal:attributes="class php:ActiveAdmin=='Board'?'active':'disable'">
+				<a tal:attributes="href '/admin/board'"><i class="glyphicons-cogwheels" />VÁN CỜ</a>
 			</li>
 			<li tal:attributes="class php:ActiveAdmin=='Post'?'active':'disable'">
 				<a tal:attributes="href '/admin/post'"><i class="glyphicons-cogwheels" />BÀI VIẾT</a>

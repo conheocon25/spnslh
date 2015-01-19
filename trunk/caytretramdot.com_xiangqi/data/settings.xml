@@ -8,17 +8,13 @@
 		<command name="FTag" 			type="public"><view>FTag</view></command>
 		<command name="FTagAll" 		type="public"><view>FTagAll</view></command>
 		<command name="FPost" 			type="public"><view>FPost</view></command>		
-		<command name="FSearch" 		type="public"><view>FSearch</view></command>		
-		<command name="FUser" 			type="public"><view>FUser</view></command>
-		<command name="FUserTag" 		type="public"><view>FUserTag</view></command>
+		<command name="FSearch" 		type="public"><view>FSearch</view></command>								
+		<command name="FContact" 		type="public"><view>FContact</view></command>
+		
+		<command name="FBoard" 			type="public"><view>FBoard</view></command>
+		<command name="FBoardDetail" 	type="public"><view>FBoardDetail</view></command>
+		<command name="FChessViewer" 	type="public"><view>FChessViewer</view></command>						
 				
-		<command name="FSmartChessBoard" 	type="public"><view>FSmartChessBoard</view></command>
-		
-		<command name="FMusicType001" 	type="public"><view>FMusicType001</view></command>
-		
-		<command name="FContact" 		type="public"><view>FContact</view></command>		
-		<command name="RefreshCaptcha" 	type="public"><view>RefreshCaptcha</view></command>	
-		
 		<command name="FDownloadSoftware" 	type="public"><view>FDownloadSoftware</view></command>
 		<command name="FDownloadEbook" 		type="public"><view>FDownloadEbook</view></command>
 		<command name="FDownloadEbookDetail" 	type="public"><view>FDownloadEbookDetail</view></command>
@@ -44,16 +40,13 @@
 											
 		<!-- ============================================================================== -->
 		<!-- SETTING	 																	-->
-		<!-- ============================================================================== -->
-		<command name="AProvince">				<view>AProvince			</view></command>
-		<command name="ADistrict">				<view>ADistrict			</view></command>
-		
-		<command name="ARestaurant">			<view>ARestaurant			</view></command>
-		<command name="AHotel">					<view>AHotel				</view></command>
-		<command name="AKaraoke">				<view>AKaraoke				</view></command>
-		
-		<command name="ASetting">				<view>ASetting				</view></command>				
-		<command name="ASettingTag">			<view>ASettingTag			</view></command>
+		<!-- ============================================================================== -->				
+		<command name="ABoard">					<view>ABoard		</view></command>
+		<command name="ABoardDetail">			<view>ABoardDetail	</view></command>
+		<command name="ABoardDetailCompose">	<view>ABoardDetailCompose</view></command>
+				
+		<command name="ASetting">				<view>ASetting		</view></command>				
+		<command name="ASettingTag">			<view>ASettingTag	</view></command>
 				
 		<command name="APost">					<view>APost			</view></command>
 		<command name="APostDetail">			<view>APostDetail	</view></command>

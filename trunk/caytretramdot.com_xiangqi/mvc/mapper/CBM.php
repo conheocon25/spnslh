@@ -14,14 +14,16 @@ class CBM extends Mapper implements \MVC\Domain\CBMFinder{
 		$updateStmt 		= sprintf("update %s set name=?, time=?, key=? where id=?", $tblCBM);
 		$insertStmt 		= sprintf("insert into %s ( name, time, key) values(?, ?, ?)", $tblCBM);
 		$deleteStmt 		= sprintf("delete from %s where id=?", $tblCBM);
+		$findByStmt 		= sprintf("select *  from %s where `id_category`=?", $tblCBM);
 		$findByKeyStmt 		= sprintf("select *  from %s where `key`=?", $tblCBM);
 		$findByPageStmt 	= sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblCBM);
-								
+						
         $this->selectAllStmt 	= self::$PDO->prepare($selectAllStmt);
         $this->selectStmt 		= self::$PDO->prepare($selectStmt);
         $this->updateStmt 		= self::$PDO->prepare($updateStmt);
         $this->insertStmt 		= self::$PDO->prepare($insertStmt);
-		$this->deleteStmt 		= self::$PDO->prepare($deleteStmt);		
+		$this->deleteStmt 		= self::$PDO->prepare($deleteStmt);
+		$this->findByStmt 		= self::$PDO->prepare($findByStmt);
 		$this->findByPageStmt 	= self::$PDO->prepare($findByPageStmt);		
 		$this->findByKeyStmt 	= self::$PDO->prepare($findByKeyStmt);
 	}
@@ -30,7 +32,8 @@ class CBM extends Mapper implements \MVC\Domain\CBMFinder{
     protected function doCreateObject( array $array ) {
         $obj = new \MVC\Domain\CBM( 
 			$array['id'],
-			$array['name'],			
+			$array['id_category'],
+			$array['name'],
 			$array['time'],
 			$array['move_start'],
 			$array['move_end'],
@@ -42,7 +45,8 @@ class CBM extends Mapper implements \MVC\Domain\CBMFinder{
     protected function targetClass() {return "CBM";}
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array( 
-			$object->getName(),			
+			$object->getIdCategory(),
+			$object->getName(),
 			$object->getTime(),
 			$object->getMoveStart(),
 			$object->getMoveEnd(),
@@ -55,6 +59,7 @@ class CBM extends Mapper implements \MVC\Domain\CBMFinder{
     
     protected function doUpdate( \MVC\Domain\Object $object ) {
         $values = array( 
+			$object->getIdCategory(),
 			$object->getName(),			
 			$object->getTime(),
 			$object->getMoveStart(),
@@ -68,6 +73,11 @@ class CBM extends Mapper implements \MVC\Domain\CBMFinder{
 
     function selectStmt() {return $this->selectStmt;}
     function selectAllStmt() {return $this->selectAllStmt;}	
+	
+	function findBy( $values ){
+		$this->findByStmt->execute($values);
+        return new CBMCollection( $this->findByStmt->fetchAll(), $this);
+    }			
 	
 	function findByKey( $values ) {	
 		$this->findByKeyStmt->execute( array($values) );

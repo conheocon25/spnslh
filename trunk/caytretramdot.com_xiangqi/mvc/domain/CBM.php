@@ -5,7 +5,8 @@ require_once( "mvc/base/domain/DomainObject.php" );
 class CBM extends Object{
 
     private $Id;
-	private $Name;	
+	private $IdCategory;
+	private $Name;
 	private $Time;
 	private $MoveStart;
 	private $MoveEnd;
@@ -14,18 +15,27 @@ class CBM extends Object{
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-    function __construct( $Id=null, $Name=null, $Time=0, $MoveStart=null,  $MoveEnd=null, $Key=0){
-		$this->Id 		= $Id;
-		$this->Name 	= $Name; 		
-		$this->Time 	= $Time;
-		$this->MoveStart= $MoveStart;
-		$this->MoveEnd	= $MoveEnd;
-		$this->Key 		= $Key;
+    function __construct( $Id=null, $IdCategory=null, $Name=null, $Time=0, $MoveStart=null,  $MoveEnd=null, $Key=0){
+		$this->Id 			= $Id;
+		$this->IdCategory 	= $IdCategory;
+		$this->Name 		= $Name; 		
+		$this->Time 		= $Time;
+		$this->MoveStart	= $MoveStart;
+		$this->MoveEnd		= $MoveEnd;
+		$this->Key 			= $Key;
 		
 		parent::__construct( $Id );
 	}
     function getId() {return $this->Id;}	
-		
+	
+	function setIdCategory( $IdCategory ) {$this->IdCategory = $IdCategory;$this->markDirty();}   
+	function getIdCategory( ) {return $this->IdCategory;}
+	function getCategory( ) {
+		$mCategoryBoard = new \MVC\Mapper\CategoryBoard();
+		$Category = $mCategoryBoard->find($this->IdCategory);
+		return $Category;
+	}
+	
     function setName( $Name ) {$this->Name = $Name;$this->markDirty();}   
 	function getName( ) {return $this->Name;}
 			
@@ -54,12 +64,13 @@ class CBM extends Object{
 	}
 	
 	function setArray( $Data ){
-        $this->Id 		= $Data[0];
-		$this->Name 	= $Data[1];		
-		$this->Time 	= $Data[2];
-		$this->MoveStart= $Data[3];
-		$this->MoveEnd	= $Data[4];		
-		$this->Key		= $Data[5];
+        $this->Id 			= $Data[0];
+		$this->IdCategory 	= $Data[1];
+		$this->Name 		= $Data[2];		
+		$this->Time 		= $Data[3];
+		$this->MoveStart	= $Data[4];
+		$this->MoveEnd		= $Data[5];		
+		$this->Key			= $Data[6];
     }
 			
 	//-------------------------------------------------------------------------------
@@ -73,7 +84,8 @@ class CBM extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------			
-	function getURLView(){return "/tien-ich/co-tuong/van/".$this->getKey();}
+	function getURLView(){return "/van-co/".$this->getCategory()->getKey()."/".$this->getKey();}
+	function getURLSetting(){return "/admin/board/".$this->getIdCategory()."/".$this->getId();}
 	
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

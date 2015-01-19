@@ -32,7 +32,9 @@ RewriteRule ^nguoi-dung/([0-9]+)/([0-9]+)page/([0-9]+)$ 		?cmd=FUserTag&IdUser=$
 
 RewriteRule ^lien-he$ 											?cmd=FContact 		[L]
 
-RewriteRule ^van-co-tinh-tuyen$									?cmd=FBestChessBoard [L]
+RewriteRule ^van-co$											?cmd=FBoard [L]
+RewriteRule ^van-co/([A-Za-z0-9_-]+)$							?cmd=FBoardDetail&KCategory=$1 [L]
+RewriteRule ^van-co/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$			?cmd=FChessViewer&KCategory=$1&KBoard=$2 [L]
 
 RewriteRule ^download/software$									?cmd=FDownloadSoftware [L]
 RewriteRule ^download/ebook$									?cmd=FDownloadEbook [L]
@@ -57,11 +59,9 @@ RewriteRule ^admin$ 											?cmd=Admin [L]
 #---------------------------------------------------------------------------------------------------------------------------
 # SETTING
 #---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^admin/province$ 											?cmd=AProvince [L]
-RewriteRule ^admin/province/([0-9]+)$ 									?cmd=ADistrict&IdProvince=$1 [L]
-RewriteRule ^admin/province/([0-9]+)/([0-9]+)/restaurant$ 				?cmd=ARestaurant&IdProvince=$1&IdDistrict=$2 [L]
-RewriteRule ^admin/province/([0-9]+)/([0-9]+)/hotel$ 					?cmd=AHotel&IdProvince=$1&IdDistrict=$2 [L]
-RewriteRule ^admin/province/([0-9]+)/([0-9]+)/karaoke$ 					?cmd=AKaraoke&IdProvince=$1&IdDistrict=$2 [L]
+RewriteRule ^admin/board$ 												?cmd=ABoard [L]
+RewriteRule ^admin/board/([0-9]+)$ 										?cmd=ABoardDetail&IdCategory=$1 [L]
+RewriteRule ^admin/board/([0-9]+)/([0-9]+)$ 							?cmd=ABoardDetailCompose&IdCategory=$1&IdBoard=$2 [L]
 
 RewriteRule ^admin/post$ 												?cmd=APost [L]
 RewriteRule ^admin/post/([0-9]+)$ 										?cmd=APost&IdTag=$1 [L]
