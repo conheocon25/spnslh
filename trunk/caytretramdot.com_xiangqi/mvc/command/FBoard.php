@@ -17,16 +17,19 @@
 			//-------------------------------------------------------------						
 			$mConfig 		= new \MVC\Mapper\Config();
 			$mCategoryBoard = new \MVC\Mapper\CategoryBoard();
+			$mCategoryPost 	= new \MVC\Mapper\CategoryPost();
 									
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------											
-			$CategoryBoardAll = $mCategoryBoard->findAll();
+			$CategoryPostAll 	= $mCategoryPost->findAll();
+			$CategoryBoardAll 	= $mCategoryBoard->findAll();
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
 			$request->setObject('CategoryBoardAll', $CategoryBoardAll);
+			$request->setObject("CategoryPostAll", 		$CategoryPostAll);
 			
 			return self::statuses('CMD_DEFAULT');
 		}

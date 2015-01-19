@@ -55,27 +55,21 @@
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-left">
 					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Điểm tin<span class="caret"></span></a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Bài viết<span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="/tin-tuc/trong-nuoc" class="clearfix"><span  class="pull-left">Trong nước</span></a></li>
-							<li><a href="/tin-tuc/the-gioi" class="clearfix"><span  class="pull-left">Thế giới</span></a></li>
+							<li tal:repeat="Category CategoryPostAll">
+								<a href="/tin-tuc/trong-nuoc" class="clearfix"><span class="pull-left" tal:content="Category/getName"/></a>
+							</li>
 						</ul>
 					</li>
 					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Luận cờ<span class="caret"></span></a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Ván cờ<span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="/tin-tuc/trong-nuoc" class="clearfix"><span  class="pull-left">Trong nước</span></a></li>
-							<li><a href="/tin-tuc/the-gioi" class="clearfix"><span  class="pull-left">Thế giới</span></a></li>
+							<li tal:repeat="Category CategoryBoardAll">
+								<a tal:attributes="href Category/getURLView" class="clearfix"><span class="pull-left" tal:content="Category/getName"/><span class="pull-right" tal:content="Category/getBoardAll/count"/></a>
+							</li>
 						</ul>
 					</li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Kỳ thủ<span class="caret"></span></a>
-						<ul class="dropdown-menu" role="menu">
-							<li><a href="/tin-tuc/trong-nuoc" class="clearfix"><span  class="pull-left">Trong nước</span></a></li>
-							<li><a href="/tin-tuc/the-gioi" class="clearfix"><span  class="pull-left">Thế giới</span></a></li>
-						</ul>
-					</li>
-					<li><a href="/van-co">Ván cờ</a></li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Download<span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
@@ -89,94 +83,5 @@
 		</div>
 	</nav>
 		
-	<!-- ======================================================================== -->
-	<!-- BOXES																	  -->
-	<!-- ======================================================================== -->
-	<div metal:define-macro="Box1" class="panel panel-default">
-		<div class="panel-heading">
-			Box 1
-		</div>
-		<div class="panel-body">
-			Config in <font color="red"><i>mFront.xhtml</i></font>
-		</div>
-	</div>
-	
-	<div metal:define-macro="BoxUserTag" class="panel panel-default">
-		<div class="panel-heading">
-			THẺ BÀI
-		</div>
-		<div class="panel-body">
-			<ul>
-				<li tal:repeat="UT User/getUTAll">
-					<a tal:attributes="href UT/getURLView">
-						<B>
-							<I class="glyphicon glyphicon-tag"/>
-							<span tal:content="UT/getTag/getName"/>
-						</B>
-					</a>
-				</li>	
-			</ul>
-		</div>
-	</div>
-	
-	<div metal:define-macro="BoxPostParents" class="panel panel-default" tal:condition="Post/getPLIsParent/count">
-		<div class="panel-heading">Bài trước</div>
-		<div class="panel-body">
-			<ul>
-				<li tal:repeat="PT Post/getPLIsParent">
-					<a tal:attributes="href PT/getPost2/getURLView">
-						<span tal:content="PT/getPost2/getTitle" />
-					</a>
-				</li>
-			</ul>
-		</div>
-	</div>
-	
-	<div metal:define-macro="BoxPostChildren" class="panel panel-default" tal:condition="Post/getPLIsChild/count">
-		<div class="panel-heading">Nên xem</div>
-		<div class="panel-body">
-			<ul>
-				<li tal:repeat="PT Post/getPLIsChild">
-					<a tal:attributes="href PT/getPost2/getURLView">
-						<span tal:content="PT/getPost2/getTitle" />
-					</a>
-				</li>
-			</ul>
-		</div>
-	</div>
-	
-	<div metal:define-macro="BoxPostRelated" class="panel panel-default" tal:condition="Post/getPLIsRelated/count">
-		<div class="panel-heading">Liên quan</div>
-		<div class="panel-body">
-			<ul>
-				<li tal:repeat="PT Post/getPLIsRelated">
-					<a tal:attributes="href PT/getPost2/getURLView">
-						<span tal:content="PT/getPost2/getTitle" />
-					</a>
-				</li>
-			</ul>
-		</div>
-	</div>
-	
-	<div metal:define-macro="BoxPostAlso" class="panel panel-default" tal:condition="Post/getPLIsAlso/count">
-		<div class="panel-heading">Xem thêm</div>
-		<div class="panel-body">
-			<ul>
-				<li tal:repeat="PT Post/getPLIsAlso">
-					<a tal:attributes="href PT/getPost2/getURLView">
-						<span tal:content="PT/getPost2/getTitle" />
-					</a>
-				</li>
-			</ul>
-		</div>
-	</div>
-	
-	<div metal:define-macro="BoxPostMap" class="panel panel-default" tal:condition="Post/getPMAll/count">
-		<div class="panel-heading" tal:content="Post/getPMAll/current/getName"/>
-		<div class="panel-body">			
-			<div id="PostMap"/>			
-		</div>
-	</div>
-	
 </body>
 </html>

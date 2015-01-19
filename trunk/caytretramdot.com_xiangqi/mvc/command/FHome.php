@@ -15,20 +15,22 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------						
-			$mConfig 		= new \MVC\Mapper\Config();						
-			$mTag 			= new \MVC\Mapper\Tag();
+			$mConfig 		= new \MVC\Mapper\Config();									
+			$mCategoryPost	= new \MVC\Mapper\CategoryPost();
+			$mCategoryBoard	= new \MVC\Mapper\CategoryBoard();
 						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------											
-			$TagAll 	= $mTag->findAll();
+			$CategoryPostAll 	= $mCategoryPost->findAll();
+			$CategoryBoardAll 	= $mCategoryBoard->findAll();
 									
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
 			$request->setProperty("Active", 			'Home');
-						
-			$request->setObject("TagAll", 				$TagAll);
+			$request->setObject("CategoryPostAll", 		$CategoryPostAll);
+			$request->setObject("CategoryBoardAll", 	$CategoryBoardAll);
 						
 			return self::statuses('CMD_DEFAULT');
 		}
