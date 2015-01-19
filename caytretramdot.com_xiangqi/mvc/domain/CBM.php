@@ -86,6 +86,7 @@ class CBM extends Object{
 	//-------------------------------------------------------------------------------			
 	function getURLView(){return "/van-co/".$this->getCategory()->getKey()."/".$this->getKey();}
 	function getURLSetting(){return "/admin/board/".$this->getIdCategory()."/".$this->getId();}
+	function getURLSettingComposeExe(){return "/admin/board/".$this->getIdCategory()."/".$this->getId()."/compose/exe";}
 	
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

@@ -10,9 +10,10 @@ class CBMDetail extends Mapper implements \MVC\Domain\CBMDetailFinder{
 		
 		$selectAllStmt 		= sprintf("select * from %s ORDER BY id", $tblCBMDetail);
 		$selectStmt 		= sprintf("select *  from %s where id=?", $tblCBMDetail);
-		$updateStmt 		= sprintf("update %s set name=?, time=?, key=? where id=?", $tblCBMDetail);
-		$insertStmt 		= sprintf("insert into %s ( name, time, key) values(?, ?, ?)", $tblCBMDetail);
+		$updateStmt 		= sprintf("update %s set id_cbm=?, move=?, name1=?, state1=?, name2=?, state2=? where id=?", $tblCBMDetail);
+		$insertStmt 		= sprintf("insert into %s ( id_cbm, move, name1, state1, name2, state2) values(?, ?, ?, ?, ?, ?)", $tblCBMDetail);
 		$deleteStmt 		= sprintf("delete from %s where id=?", $tblCBMDetail);
+		$deleteByStmt 		= sprintf("delete from %s where id_cbm=?", $tblCBMDetail);
 		$findByStmt 		= sprintf("SELECT * FROM  %s WHERE id_cbm=?", $tblCBMDetail);
 												
         $this->selectAllStmt 	= self::$PDO->prepare($selectAllStmt);
@@ -20,6 +21,7 @@ class CBMDetail extends Mapper implements \MVC\Domain\CBMDetailFinder{
         $this->updateStmt 		= self::$PDO->prepare($updateStmt);
         $this->insertStmt 		= self::$PDO->prepare($insertStmt);
 		$this->deleteStmt 		= self::$PDO->prepare($deleteStmt);		
+		$this->deleteByStmt 	= self::$PDO->prepare($deleteByStmt);
 		$this->findByStmt 		= self::$PDO->prepare($findByStmt);		
 	}
 	
@@ -68,6 +70,7 @@ class CBMDetail extends Mapper implements \MVC\Domain\CBMDetailFinder{
 
     function selectStmt() {return $this->selectStmt;}
     function selectAllStmt() {return $this->selectAllStmt;}	
+	function deleteBy(array $values) {return $this->deleteByStmt->execute( $values );}
 			
 	function findBy( $values ){
 		$this->findByStmt->execute($values);
