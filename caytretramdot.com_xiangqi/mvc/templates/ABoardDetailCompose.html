@@ -204,56 +204,38 @@
 		<script type="text/javascript">
 		/*<![CDATA[*/			
 			$(function(){
-				var MoveCurrent = -1;				
-				var MoveSTART 	= parseInt($("#MoveList").attr("MoveStart"));
-				var MoveEND 	= parseInt($("#MoveList").attr("MoveEnd"));
+				var TempPiece 	= '';
+				var TempX 		= -1;
+				var TempY 		= -1;
+				var State		= '';
+				var Selected	= 0;
 				
-				init();
-				
-				$(".Move").click(function(){								
-					MoveCurrent = parseInt($(this).attr('move'));
-					$(".Move").removeClass('active');
-					$(".Move[move='"+MoveCurrent+"']").addClass('active');
-					drawBoard($(this).attr('alt'));
-				});
+				initCompose();								
+				$(".CCell").click(function(){
+					var X = parseInt($(this).attr('X'));
+					var Y = parseInt($(this).attr('Y'));
+					
+					//Hành vi chọn quân
+					if (aState[Y][X] != '0'){
+						TempPiece = aState[Y][X];
+						TempX = X;						
+						TempY = Y;
+						Selected = 1;
+					}					
+					else{
+						//Di chuyển quân
+						if (aState[Y][X] == '0' && Selected == 1){
+							movePiece(TempY, TempX, Y, X);
+							State = exportState();
+							drawBoard(State);
+							Selected = 0;
+						}
+						//Ăn quân
+						else{
 												
-				$(".MoveNext").click(function(){					
-					if (MoveCurrent < MoveEND){						
-						MoveCurrent +=1;						
-						var State = $(".Move[move='"+MoveCurrent+"']").attr('alt');
-						$(".Move").removeClass('active');
-						$(".Move[move='"+MoveCurrent+"']").addClass('active');
-						drawBoard(State);
+						}
 					}
 				});
-				
-				$(".MoveBack").click(function(){
-					if (MoveCurrent > MoveSTART){
-						MoveCurrent -=1;
-						var State = $(".Move[move='"+MoveCurrent+"']").attr('alt');
-						$(".Move").removeClass('active');
-						$(".Move[move='"+MoveCurrent+"']").addClass('active');
-						drawBoard(State);
-					}					
-				});
-				
-				$(".MoveFirst").click(function(){					
-					MoveCurrent = MoveSTART;					
-					var State = $(".Move[move='"+MoveCurrent+"']").attr('alt');						
-					
-					$(".Move").removeClass('active');
-					$(".Move[move='"+MoveCurrent+"']").addClass('active');
-					
-					drawBoard(State);
-				});
-				$(".MoveLast").click(function(){										
-					MoveCurrent = MoveEND;
-					var State = $(".Move[move='"+MoveCurrent+"']").attr('alt');						
-					$(".Move").removeClass('active');
-					$(".Move[move='"+MoveCurrent+"']").addClass('active');
-					drawBoard(State);
-				});
-				
 			});
 		/*]]>*/
 		</script>

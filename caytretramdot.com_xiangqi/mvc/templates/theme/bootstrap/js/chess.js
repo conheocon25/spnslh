@@ -1,5 +1,44 @@
+var aState = [
+	['r', 'h', 'e', 'a', 'k', 'a', 'e', 'h', 'r'], //0
+	['0', '0', '0', '0', '0', '0', '0', '0', '0'], //1
+	['0', 'c', '0', '0', '0', '0', '0', 'c', '0'], //2
+	['p', '0', 'p', '0', 'p', '0', 'p', '0', 'p'], //3
+	['0', '0', '0', '0', '0', '0', '0', '0', '0'], //4					
+	['0', '0', '0', '0', '0', '0', '0', '0', '0'], //5
+	['P', '0', 'P', '0', 'P', '0', 'P', '0', 'P'], //6
+	['0', 'C', '0', '0', '0', '0', '0', 'C', '0'], //7
+	['0', '0', '0', '0', '0', '0', '0', '0', '0'], //8
+	['R', 'H', 'E', 'A', 'K', 'A', 'E', 'H', 'R']  //9
+];
+
+function exportState(){
+	var i=0, j=0;
+	var State = "";
+	for (i=0;i<10;i++){
+		for (j=0;j<9;j++){
+			State = State + aState[i][j];
+		}	
+	}
+	return State;
+}
+
+function movePiece(Y, X, NY, NX){
+	X = parseInt(X);
+	Y = parseInt(Y);
+	NX = parseInt(NX);
+	NY = parseInt(NY);
+	
+	aState[NY][NX] 	= aState[Y][X];
+	aState[Y][X]	= '0';
+}
+
+function initCompose(){
+	var State = exportState();
+	drawBoard(State);
+}
+
 function init(){
-	var State = "rheakaehr0000000000c00000c0p0p0p0p0p000000000000000000P0P0P0P0P0C00000C0000000000RHEAKAEHR";				
+	var State = "rheakaehr0000000000c00000c0p0p0p0p0p000000000000000000P0P0P0P0P0C00000C0000000000RHEAKAEHR";
 	drawBoard(State);
 }
 
@@ -8,8 +47,8 @@ function drawBoard(State){
 	for (var i=0; i<10; i++){
 		for (var j=0; j<9; j++){
 			var n = State.charAt(i*9+j);
-			if (n!='0'){
-				var IdCell = "#Piece" + j + i;
+			var IdCell = "#Piece" + j + i;
+			if (n!='0'){				
 				switch (n){
 					//Cặp sĩ
 					case 'a':										
@@ -19,7 +58,7 @@ function drawBoard(State){
 						$(IdCell).attr("src", '/data/chess/150/RAssansin.png');
 						break;
 					//Cặp ngựa
-					case 'h':																				
+					case 'h':
 						$(IdCell).attr("src", '/data/chess/150/GHorse.png');
 						break;
 					case 'H':
@@ -60,9 +99,10 @@ function drawBoard(State){
 						break;
 					case 'P':										
 						$(IdCell).attr("src", '/data/chess/150/RPawn.png');
-						break;
-						
+						break;										
 				}								
+			}else{
+				$(IdCell).attr("src", '/data/chess/150/space.png');
 			}
 		}												
 	}
