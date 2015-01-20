@@ -1,5 +1,5 @@
 <?php
 	require_once("mvc/base/Viewer.php");
-	$Viewer = new Viewer("mvc/templates/ABoardDetail.html");
+	$Viewer = new Viewer("mvc/templates/ABoardUpdLoad.html");
 	echo $Viewer->html();
 ?>

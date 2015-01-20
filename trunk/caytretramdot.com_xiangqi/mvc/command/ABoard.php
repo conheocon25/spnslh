@@ -11,23 +11,29 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
+			$IdCategory = $request->getProperty('IdCategory');
 						
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
 			$mCategoryBoard = new \MVC\Mapper\CategoryBoard();
+			$mCBM 			= new \MVC\Mapper\CBM();
 			$mConfig 		= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------															
-			$Title = "VÁN CỜ";
+			$CategoryBoardAll	= $mCategoryBoard->findAll();
+			if (!isset($IdCategory)){
+				$IdCategory = $CategoryBoardAll->current()->getId();
+			}
+			$Category	= $mCategoryBoard->find($IdCategory);
+			$CBMAll 	= $mCBM->findBy(array($IdCategory));
+			
+			$Title 		= mb_strtoupper($Category->getName(), 'UTF8')." / VÁN CỜ";
 			$Navigation = array();
-						
-			$ConfigName = $mConfig->findByName("NAME");
-						
-			$CategoryBoardAll = $mCategoryBoard->findAll();
-									
+			$ConfigName = $mConfig->findByName("NAME");				
+												
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
@@ -35,6 +41,8 @@
 			$request->setObject('Navigation'	, $Navigation);			
 			$request->setObject('ConfigName'	, $ConfigName);			
 			$request->setObject('CategoryBoardAll'	, $CategoryBoardAll);
+			$request->setObject('Category'			, $Category);
+			$request->setObject('BoardAll'			, $CBMAll);
 																		
 			return self::statuses('CMD_DEFAULT');
 		}

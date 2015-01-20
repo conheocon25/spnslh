@@ -14,53 +14,35 @@
 				<div class="col-12">					
 					<div class="widget-box">
 						<div class="widget-content nopadding">
-							<form class="form-horizontal" tal:attributes="action Book/getURLUpdExe" method="POST">
+							<form class="form-horizontal" tal:attributes="action CBM/getURLUpdExe" method="POST">
 								<div class="control-group">
 									<label class="control-label" for="Title">Tiêu đề</label>
 									<div class="controls">
-										<input type="text" id="Title" name="Title" tal:attributes="value Book/getTitle"/>
+										<input type="text" id="Name" name="Name" tal:attributes="value CBM/getName"/>
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="Time">Thời gian</label>
 									<div class="controls">
-										<input type="text" id="Time" name="Time" tal:attributes="value Book/getTime" data-date-format="yyyy-mm-dd hh:ii"/>
+										<input type="text" id="Time" name="Time" tal:attributes="value CBM/getTime" data-date-format="yyyy-mm-dd hh:ii"/>
 									</div>
 								</div>
 								<div class="control-group">
-									<label class="control-label" for="Author">Tác giả</label>
+									<label class="control-label" for="MoveStart">Nước đầu</label>
 									<div class="controls">
-										<input type="text" id="Author" name="Author" tal:attributes="value Book/getAuthor"/>
+										<input type="text" id="MoveStart" name="MoveStart" tal:attributes="value CBM/getMoveStart"/>
 									</div>
 								</div>
 								<div class="control-group">
-									<label class="control-label" for="Language">Ngôn ngữ</label>
+									<label class="control-label" for="MoveStart">Nước cuối</label>
 									<div class="controls">
-										<input type="text" id="Language" name="Language" tal:attributes="value Book/getLanguage"/>
+										<input type="text" id="MoveEnd" name="MoveEnd" tal:attributes="value CBM/getMoveEnd"/>
 									</div>
 								</div>
-								<div class="control-group">
-									<label class="control-label" for="URL">URL</label>
-									<div class="controls">
-										<input type="text" id="URL" name="URL" tal:attributes="value Book/getURL"/>
-									</div>
-								</div>								
-								<div class="control-group">
-									<label class="control-label" for="Order">Thứ tự</label>
-									<div class="controls">
-										<input type="text" id="Order" name="Order" tal:attributes="value Book/getOrder"/>
-									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label" for="Order">Lượt xem</label>
-									<div class="controls">
-										<input type="text" id="Viewed" name="Viewed" tal:attributes="value Book/getViewed"/>
-									</div>
-								</div>								
 								<div class="control-group">
 									<label class="control-label" for="Info">Giới thiệu</label>
 									<div class="controls">
-										<textarea id="Info" class="ckeditor" name="Info" tal:content="Book/getInfo"/>
+										<textarea id="Info" class="ckeditor" name="Info" tal:content="CBM/getInfo"/>
 									</div>
 								</div>
 								<div class="form-actions">

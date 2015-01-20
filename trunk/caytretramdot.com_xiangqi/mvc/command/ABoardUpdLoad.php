@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class ABoardDetailCompose extends Command {
+	class ABoardUpdLoad extends Command{
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -11,36 +11,37 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$IdCategory = $request->getProperty('IdCategory');
-			$IdBoard 	= $request->getProperty('IdBoard');
+			$IdCategory 	= $request->getProperty('IdCategory');
+			$IdBoard 		= $request->getProperty('IdBoard');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
-			//-------------------------------------------------------------
-			$mCategoryBoard = new \MVC\Mapper\CategoryBoard();
-			$mCBM 			= new \MVC\Mapper\CBM();
-			$mConfig 		= new \MVC\Mapper\Config();
+			//-------------------------------------------------------------			
+			$mCBM 		= new \MVC\Mapper\CBM();
+			$mConfig	= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------															
-			$Title = "VÁN CỜ";
-			$Navigation = array();
-						
-			$ConfigName = $mConfig->findByName("NAME");
+			//-------------------------------------------------------------																																	
+			$CBM 		= $mCBM->find($IdBoard);
+			$Category 	= $CBM->getCategory();
 			
-			$Category 			= $mCategoryBoard->find($IdCategory);
-			$CBM				= $mCBM->find($IdBoard);
-			
+			$Title 		= $CBM->getName();
+			$Navigation = array(								
+				array(\mb_strtoupper($Category->getName(), 'UTF8'), $Category->getURLSetting()),
+			);
+			$ConfigName		= $mConfig->findByName("NAME");
+												
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
 			$request->setProperty('Title'		, $Title);			
+			$request->setProperty('ActiveAdmin'	, 'Post');			
 			$request->setObject('Navigation'	, $Navigation);			
 			$request->setObject('ConfigName'	, $ConfigName);			
-			$request->setObject('Category'		, $Category);
 			$request->setObject('CBM'			, $CBM);
-																					
+			$request->setObject('Category'		, $Category);
+			
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

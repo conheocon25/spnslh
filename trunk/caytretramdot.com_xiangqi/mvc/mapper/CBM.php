@@ -1,22 +1,21 @@
 <?php
 namespace MVC\Mapper;
-
 require_once( "mvc/base/Mapper.php" );
 class CBM extends Mapper implements \MVC\Domain\CBMFinder{
 
     function __construct() {
         parent::__construct();
 				
-		$tblCBM 			= "bamboo100_cbm";
+		$tblCBM 				= "bamboo100_cbm";
 		
-		$selectAllStmt 		= sprintf("select * from %s ORDER BY id", $tblCBM);
-		$selectStmt 		= sprintf("select *  from %s where id=?", $tblCBM);
-		$updateStmt 		= sprintf("update %s set id_category=?, name=?, `time`=?, move_start=?, move_end=?, `key`=? where id=?", $tblCBM);
-		$insertStmt 		= sprintf("insert into %s ( id_category, name, time, move_start, move_end, key) values(?, ?, ?, ?, ?, ?)", $tblCBM);
-		$deleteStmt 		= sprintf("delete from %s where id=?", $tblCBM);
-		$findByStmt 		= sprintf("select *  from %s where `id_category`=?", $tblCBM);
-		$findByKeyStmt 		= sprintf("select *  from %s where `key`=?", $tblCBM);
-		$findByPageStmt 	= sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblCBM);
+		$selectAllStmt 			= sprintf("select * from %s ORDER BY id", $tblCBM);
+		$selectStmt 			= sprintf("select *  from %s where id=?", $tblCBM);
+		$updateStmt 			= sprintf("update %s set id_category=?, name=?, `time`=?, info=?, move_start=?, move_end=?, `key`=? where id=?", $tblCBM);
+		$insertStmt 			= sprintf("insert into %s ( id_category, name, time, info, move_start, move_end, key) values(?, ?, ?, ?, ?, ?, ?)", $tblCBM);
+		$deleteStmt 			= sprintf("delete from %s where id=?", $tblCBM);
+		$findByStmt 			= sprintf("select *  from %s where `id_category`=?", $tblCBM);
+		$findByKeyStmt 			= sprintf("select *  from %s where `key`=?", $tblCBM);
+		$findByPageStmt 		= sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblCBM);
 						
         $this->selectAllStmt 	= self::$PDO->prepare($selectAllStmt);
         $this->selectStmt 		= self::$PDO->prepare($selectStmt);
@@ -35,6 +34,7 @@ class CBM extends Mapper implements \MVC\Domain\CBMFinder{
 			$array['id_category'],
 			$array['name'],
 			$array['time'],
+			$array['info'],
 			$array['move_start'],
 			$array['move_end'],
 			$array['key']
@@ -48,6 +48,7 @@ class CBM extends Mapper implements \MVC\Domain\CBMFinder{
 			$object->getIdCategory(),
 			$object->getName(),
 			$object->getTime(),
+			$object->getInfo(),
 			$object->getMoveStart(),
 			$object->getMoveEnd(),
 			$object->getKey()			
@@ -62,6 +63,7 @@ class CBM extends Mapper implements \MVC\Domain\CBMFinder{
 			$object->getIdCategory(),
 			$object->getName(),			
 			$object->getTime(),
+			$object->getInfo(),
 			$object->getMoveStart(),
 			$object->getMoveEnd(),
 			$object->getKey(),

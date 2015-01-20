@@ -19,6 +19,7 @@ class Book extends Mapper implements \MVC\Domain\BookFinder{
 												`language`=?, 
 												`order`=?, 
 												`url`=?, 
+												`viewed`=?, 
 												`key`=? 
 									where 
 										id=?", $tblBook);
@@ -31,7 +32,8 @@ class Book extends Mapper implements \MVC\Domain\BookFinder{
 												`language`, 
 												`order`, 
 												`url`, 
-												`key`) values(?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblBook);
+												`viewed`, 
+												`key`) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblBook);
 		$deleteStmt 		= sprintf("delete from %s where id=?", $tblBook);				
 		$findByStmt 		= sprintf("select *  from %s where id_category=? ORDER BY `order`", $tblBook);
 		$findByKeyStmt 		= sprintf("select *  from %s where `key`=?", $tblBook);
@@ -60,6 +62,7 @@ class Book extends Mapper implements \MVC\Domain\BookFinder{
 			$array['language'],
 			$array['order'],
 			$array['url'],
+			$array['viewed'],
 			$array['key']
 		);
         return $obj;
@@ -76,6 +79,7 @@ class Book extends Mapper implements \MVC\Domain\BookFinder{
 			$object->getLanguage(),
 			$object->getOrder(),
 			$object->getURL(),
+			$object->getViewed(),
 			$object->getKey()
 		); 
         $this->insertStmt->execute( $values );
@@ -93,6 +97,7 @@ class Book extends Mapper implements \MVC\Domain\BookFinder{
 			$object->getLanguage(),
 			$object->getOrder(),
 			$object->getURL(),
+			$object->getViewed(),
 			$object->getKey(),
 			$object->getId()
 		);		

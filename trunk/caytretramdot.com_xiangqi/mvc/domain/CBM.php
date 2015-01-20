@@ -3,11 +3,11 @@ Namespace MVC\Domain;
 require_once( "mvc/base/domain/DomainObject.php" );
 
 class CBM extends Object{
-
     private $Id;
 	private $IdCategory;
-	private $Name;
+	private $Name;	
 	private $Time;
+	private $Info;
 	private $MoveStart;
 	private $MoveEnd;
 	private $Key;
@@ -15,11 +15,12 @@ class CBM extends Object{
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-    function __construct( $Id=null, $IdCategory=null, $Name=null, $Time=0, $MoveStart=null,  $MoveEnd=null, $Key=0){
+    function __construct( $Id=null, $IdCategory=null, $Name=null, $Time=null, $Info=null, $MoveStart=null,  $MoveEnd=null, $Key=null){
 		$this->Id 			= $Id;
 		$this->IdCategory 	= $IdCategory;
 		$this->Name 		= $Name; 		
 		$this->Time 		= $Time;
+		$this->Info			= $Info;
 		$this->MoveStart	= $MoveStart;
 		$this->MoveEnd		= $MoveEnd;
 		$this->Key 			= $Key;
@@ -38,6 +39,9 @@ class CBM extends Object{
 	
     function setName( $Name ) {$this->Name = $Name;$this->markDirty();}   
 	function getName( ) {return $this->Name;}
+	
+	function setInfo( $Info) {$this->Info = $Info; $this->markDirty();}   
+	function getInfo( ) {return $this->Info;}
 			
 	function setTime( $Time ) {$this->Time = $Time;$this->markDirty();}   
 	function getTime( ) {return $this->Time;}	
@@ -48,14 +52,25 @@ class CBM extends Object{
 	function setMoveEnd( $MoveEnd ) {$this->MoveEnd = $MoveEnd; $this->markDirty();}   
 	function getMoveEnd( ) {return $this->MoveEnd;}
 	
-	function setKey( $Key ) {$this->Key = $Key;$this->markDirty();}   
-	function getKey( ) {return $this->Key;}	
+	function setKey( $Key ){$this->Key = $Key;$this->markDirty();}
+	function getKey( ) {return $this->Key;}
+	function reKey( ){
+		if (!isset($this->Id))
+			$Id = time();
+		else
+			$Id = $this->Id;
+			
+		$Str = new \MVC\Library\String($this->Name." ".$Id);
+		$this->Key = $Str->converturl();		
+	}	
+	function getInfoReduce(){$S = new \MVC\Library\String($this->Info);return $S->reduceHTML(320);}
 	
 	function toJSON(){
 		$json = array(
 			'Id' 		=> $this->getId(),
 			'Name'		=> $this->getName(),	
 		 	'Time'		=> $this->getTime(),
+			'Info'		=> $this->getInfo(),
 			'MoveStart'	=> $this->getMoveStart(),
 			'MoveEnd'	=> $this->getMoveEnd(),
 			'Key'		=> $this->getKey()			
@@ -68,9 +83,10 @@ class CBM extends Object{
 		$this->IdCategory 	= $Data[1];
 		$this->Name 		= $Data[2];		
 		$this->Time 		= $Data[3];
-		$this->MoveStart	= $Data[4];
-		$this->MoveEnd		= $Data[5];		
-		$this->Key			= $Data[6];
+		$this->Info 		= $Data[4];
+		$this->MoveStart	= $Data[5];
+		$this->MoveEnd		= $Data[6];		
+		$this->Key			= $Data[7];
     }
 			
 	//-------------------------------------------------------------------------------
@@ -85,8 +101,12 @@ class CBM extends Object{
 	//DEFINE URL
 	//-------------------------------------------------------------------------------			
 	function getURLView(){return "/van-co/".$this->getCategory()->getKey()."/".$this->getKey();}
-	function getURLSetting(){return "/admin/board/".$this->getIdCategory()."/".$this->getId();}
-	function getURLSettingComposeExe(){return "/admin/board/".$this->getIdCategory()."/".$this->getId()."/compose/exe";}
+	
+	function getURLSettingPose(){return "/admin/board/".$this->getIdCategory()."/".$this->getId()."/pose";}
+	function getURLSettingPoseExe(){return "/admin/board/".$this->getIdCategory()."/".$this->getId()."/pose/exe";}
+	
+	function getURLUpdLoad(){	return "admin/board/".$this->getIdCategory()."/".$this->getId()."/upd/load";}
+	function getURLUpdExe(){	return "admin/board/".$this->getIdCategory()."/".$this->getId()."/upd/exe";}
 	
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

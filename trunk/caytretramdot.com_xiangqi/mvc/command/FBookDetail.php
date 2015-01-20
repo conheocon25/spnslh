@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class FPostDetail extends Command {
+	class FBookDetail extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -12,23 +12,23 @@
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
 			$KCategory 	= $request->getProperty('KCategory');
-			$KPost 		= $request->getProperty('KPost');
+			$KBook 		= $request->getProperty('KBook');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------						
 			$mConfig 		= new \MVC\Mapper\Config();
-			$mPost 			= new \MVC\Mapper\Post();
+			$mBook 			= new \MVC\Mapper\Book();
 			$mCategoryBoard = new \MVC\Mapper\CategoryBoard();
-			$mCategoryBook 	= new \MVC\Mapper\CategoryBook();
 			$mCategoryPost 	= new \MVC\Mapper\CategoryPost();
+			$mCategoryBook 	= new \MVC\Mapper\CategoryBook();
 									
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------											
-			$Post 				= $mPost->findByKey($KPost);
-			$Post->setViewed($Post->getViewed() + 1);
-			$mPost->update($Post);
+			$Book 				= $mBook->findByKey($KBook);
+			$Book->setViewed($Book->getViewed() + 1);
+			$mBook->update($Book);
 			
 			$CategoryPostAll 	= $mCategoryPost->findAll();
 			$CategoryBookAll 	= $mCategoryBook->findAll();
@@ -37,8 +37,8 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
-			$request->setObject("URLShare", 			$Post->getURLViewFull());
-			$request->setObject("Post", 				$Post);			
+			$request->setObject("URLShare", 			$Book->getURLViewFull());
+			$request->setObject("Book", 				$Book);			
 			$request->setObject("CategoryPostAll", 		$CategoryPostAll);
 			$request->setObject("CategoryBookAll", 		$CategoryBookAll);
 			$request->setObject("CategoryBoardAll", 	$CategoryBoardAll);

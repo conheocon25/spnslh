@@ -48,22 +48,7 @@
 		function getCurrentIdUser() {
 			return self::instance()->get('cafe_current_Iduser');
 		}
-		
-		//Quản lí TỪ KHÓA TÌM KIẾM
-		function setSearchContent( $SearchContent ) {
-			return self::instance()->set('bamboo100_search_content', $SearchContent);
-		}
-		function getSearchContent() {
-			return self::instance()->get('bamboo100_search_content');
-		}
 				
-				
-		function setCurrentCaptcha( $CurrentCaptcha ) { 
-			self::instance()->set('huongsenhong_CurrentCaptcha', $CurrentCaptcha); 
-		}
-		function getCurrentCaptcha( ){
-			return self::instance()->get('huongsenhong_CurrentCaptcha');
-		}				
 	}
 	/*--------------------------------------------------------------------------------*/
 	class RequestRegistry extends Registry { 
