@@ -1,18 +1,37 @@
 <?php
 namespace MVC\Mapper;
-
 require_once( "mvc/base/Mapper.php" );
 class Book extends Mapper implements \MVC\Domain\BookFinder{
 
     function __construct() {
         parent::__construct();
 				
-		$tblBook = "bamboo100_book";
+		$tblBook 			= "bamboo100_book";
 		
 		$selectAllStmt 		= sprintf("select * from %s ORDER BY `order`", $tblBook);
 		$selectStmt 		= sprintf("select *  from %s where id=?", $tblBook);
-		$updateStmt 		= sprintf("update %s set name=?, `order`=?, `key`=? where id=?", $tblBook);
-		$insertStmt 		= sprintf("insert into %s ( name, `order`, `key`) values(?, ?, ?)", $tblBook);
+		$updateStmt 		= sprintf("update %s set 
+												id_category=?, 
+												`title`=?, 
+												`time`=?, 
+												`info`=?, 
+												`author`=?, 
+												`language`=?, 
+												`order`=?, 
+												`url`=?, 
+												`key`=? 
+									where 
+										id=?", $tblBook);
+		$insertStmt 		= sprintf("insert into %s ( 
+												id_category, 
+												`title`, 
+												`time`, 
+												`info`, 
+												`author`, 
+												`language`, 
+												`order`, 
+												`url`, 
+												`key`) values(?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblBook);
 		$deleteStmt 		= sprintf("delete from %s where id=?", $tblBook);				
 		$findByStmt 		= sprintf("select *  from %s where id_category=? ORDER BY `order`", $tblBook);
 		$findByKeyStmt 		= sprintf("select *  from %s where `key`=?", $tblBook);
@@ -34,11 +53,14 @@ class Book extends Mapper implements \MVC\Domain\BookFinder{
         $obj = new \MVC\Domain\Book( 
 			$array['id'],
 			$array['id_category'],
-			$array['name'],
+			$array['title'],
+			$array['time'],
+			$array['info'],
 			$array['author'],
 			$array['language'],
 			$array['order'],
-			$array['url']
+			$array['url'],
+			$array['key']
 		);
         return $obj;
     }
@@ -47,9 +69,14 @@ class Book extends Mapper implements \MVC\Domain\BookFinder{
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array( 
 			$object->getIdCategory(),
-			$object->getName(),
+			$object->getTitle(),
+			$object->getTime(),
+			$object->getInfo(),
+			$object->getAuthor(),
+			$object->getLanguage(),
 			$object->getOrder(),
-			$object->getURL()
+			$object->getURL(),
+			$object->getKey()
 		); 
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
@@ -59,11 +86,16 @@ class Book extends Mapper implements \MVC\Domain\BookFinder{
     protected function doUpdate( \MVC\Domain\Object $object ) {
         $values = array( 
 			$object->getIdCategory(),
-			$object->getName(),
+			$object->getTitle(),
+			$object->getTime(),
+			$object->getInfo(),
+			$object->getAuthor(),
+			$object->getLanguage(),
 			$object->getOrder(),
+			$object->getURL(),
 			$object->getKey(),
 			$object->getId()
-		);
+		);		
         $this->updateStmt->execute( $values );
     }
 	protected function doDelete(array $values) {return $this->deleteStmt->execute( $values );}

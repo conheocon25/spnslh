@@ -24,6 +24,7 @@ class Post extends Object{
 		$this->Key 			= $Key;
 		$this->Viewed 		= $Viewed;
 		$this->Liked 		= $Liked;
+		$this->Key 			= $Key;
 		
         parent::__construct( $Id );
     }

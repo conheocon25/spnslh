@@ -10,8 +10,8 @@ class CategoryBoard extends Mapper implements \MVC\Domain\CategoryBoardFinder{
 						
 		$selectAllStmt 	= sprintf("select * from %s order by `order` DESC", $tblCategoryBoard);
 		$selectStmt 	= sprintf("select * from %s where id=?", $tblCategoryBoard);
-		$updateStmt 	= sprintf("update %s set name=?, `order`=?, post_count=?, `key`=? where id=?", $tblCategoryBoard);
-		$insertStmt 	= sprintf("insert into %s ( name, `order`, post_count, `key`) values(?, ?, ?, ?)", $tblCategoryBoard);
+		$updateStmt 	= sprintf("update %s set name=?, `order`=?, `key`=? where id=?", $tblCategoryBoard);
+		$insertStmt 	= sprintf("insert into %s ( name, `order`, `key`) values(?, ?, ?)", $tblCategoryBoard);
 		$deleteStmt 	= sprintf("delete from %s where id=?", $tblCategoryBoard);
 		$findByPageStmt = sprintf("SELECT * FROM  %s ORDER BY `order`, name	LIMIT :start,:max", $tblCategoryBoard);
 		$findByKeyStmt 	= sprintf("select *  from %s where `key`=?", $tblCategoryBoard);		

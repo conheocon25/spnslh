@@ -6,24 +6,61 @@ class Book extends Object{
 
     private $Id;
 	private $IdCategory;
-	private $Name;	
+	private $Title;
+	private $Time;
+	private $Info;
 	private $Author;
 	private $Language;	
 	private $Order;
 	private $URL;
+	private $Key;
 		
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-    function __construct( $Id=null, $IdCategory=null, $Name=null , $Author=null, $Language=null , $Order=Null, $URL=Null) {$this->Id = $Id; $this->IdCategory = $IdCategory; $this->Name = $Name; $this->Author = $Author; $this->Language = $Language; $this->Order = $Order;$this->URL = $URL;parent::__construct( $Id );}
+    function __construct( 
+		$Id=null, 
+		$IdCategory=null, 
+		$Title=null , 
+		$Time=null, 
+		$Info=null, 
+		$Author=null, 
+		$Language=null , 
+		$Order=Null, 
+		$URL=Null, 
+		$Key=Null) 
+	{
+		$this->Id 			= $Id; 
+		$this->IdCategory 	= $IdCategory; 
+		$this->Title 		= $Title; 
+		$this->Time 		= $Time; 
+		$this->Info 		= $Info;
+		$this->Author 		= $Author; 
+		$this->Language 	= $Language; 
+		$this->Order 		= $Order;
+		$this->URL 			= $URL;
+		$this->Key 			= $Key;
+		
+		parent::__construct( $Id );
+	}
     function getId() {return $this->Id;}
-	function getIdPrint(){return "c" . $this->getId();}
-	
+		
 	function setIdCategory( $IdCategory ) {$this->IdCategory = $IdCategory;$this->markDirty();}
 	function getIdCategory( ) {return $this->IdCategory;}
+	function getCategory( ) {
+		$mCategory 	= new \MVC\Mapper\CategoryBook();
+		$Category 	= $mCategory->find($this->IdCategory);
+		return $Category;
+	}
 	
-    function setName( $Name ) {$this->Name = $Name;$this->markDirty();}   
-	function getName( ) {return $this->Name;}
+    function setTitle( $Title ) {$this->Title = $Title;$this->markDirty();}   
+	function getTitle( ) {return $this->Title;}
+	
+	function setTime( $Time ) {$this->Time = $Time;$this->markDirty();}   
+	function getTime( ) {return $this->Time;}
+	
+	function setInfo( $Info ) {$this->Info = $Info;$this->markDirty();}   
+	function getInfo( ) {return $this->Info;}
 	
 	function setAuthor( $Author ) {$this->Author = $Author;$this->markDirty();}   
 	function getAuthor( ) {return $this->Author;}
@@ -37,6 +74,19 @@ class Book extends Object{
 	function setOrder( $Order ) {$this->Order = $Order;$this->markDirty();}   
 	function getOrder( ) {return $this->Order;}
 	
+	function setKey( $Key ){$this->Key = $Key;$this->markDirty();}
+	function getKey( ) {return $this->Key;}
+	function reKey( ){
+		if (!isset($this->Id))
+			$Id = time();
+		else
+			$Id = $this->Id;
+			
+		$Str = new \MVC\Library\String($this->Title." ".$Id);
+		$this->Key = $Str->converturl();		
+	}	
+	function getInfoReduce(){$S = new \MVC\Library\String($this->Info);return $S->reduceHTML(320);}
+	
 	//-------------------------------------------------------------------------------
 	//GET LISTs
 	//-------------------------------------------------------------------------------	
@@ -44,9 +94,12 @@ class Book extends Object{
 		$json = array(
 			'Id' 			=> $this->getId(),
 			'IdCategory' 	=> $this->getIdCategory(),
-			'Name'			=> $this->getName(),		 	
+			'Title'			=> $this->getTitle(),
+			'Time'			=> $this->getTime(),
+			'Info'			=> $this->getInfo(),
 		 	'Order'			=> $this->getOrder(),
-			'URL'			=> $this->getURL()
+			'URL'			=> $this->getURL(),
+			'Key'			=> $this->getKey()
 		);
 		return json_encode($json);
 	}
@@ -54,20 +107,22 @@ class Book extends Object{
 	function setArray( $Data ){
         $this->Id 			= $Data[0];
 		$this->IdCategory	= $Data[1];
-		$this->Name 		= $Data[2];
-		$this->Order 		= $Data[3];
-		$this->URL 			= $Data[4];
+		$this->Title 		= $Data[2];
+		$this->Time 		= $Data[3];
+		$this->Info 		= $Data[4];
+		$this->Order 		= $Data[5];
+		$this->URL 			= $Data[6];
+		$this->Key 			= $Data[7];
     }
 	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
 	function getURLRead(){return "/van-ban/".$this->getkey();}
-	function getURLView(){return "/download/ebook/".$this->getCategory()->getKey()."/";}
+	function getURLView(){return "/sach/".$this->getCategory()->getKey()."/".$this->getKey();}
 
-			
-	function getURLNewsInsLoad(){return "/app/Book/".$this->getId()."/ins/load";}
-	function getURLNewsInsExe(){return "/app/Book/".$this->getId()."/ins/exe";}
+	function getURLUpdLoad(){	return "admin/book/".$this->getIdCategory()."/".$this->getId()."/upd/load";}
+	function getURLUpdExe(){	return "admin/book/".$this->getIdCategory()."/".$this->getId()."/upd/exe";}	
 	
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

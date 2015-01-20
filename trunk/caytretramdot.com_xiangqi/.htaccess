@@ -26,8 +26,7 @@ RewriteRule ^van-co/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$			?cmd=FBoardViewer&KCate
 
 RewriteRule ^soft$												?cmd=FSoft [L]
 
-RewriteRule ^ebook$												?cmd=FEbook [L]
-RewriteRule ^ebook/([A-Za-z0-9_-]+)$							?cmd=FEbookDetail&KCategory=$1 [L]
+RewriteRule ^sach/([A-Za-z0-9_-]+)$								?cmd=FBook&KCategory=$1 [L]
 
 RewriteRule ^lien-he$ 											?cmd=FContact 		[L]
 
@@ -45,7 +44,7 @@ RewriteRule ^object/liked/([A-Za-z0-9]+)/([0-9]+)$ 				?cmd=ObjectLiked&ObjectNa
 #---------------------------------------------------------------------------------------------------------------------------
 # SELLING
 #---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^admin$ 											?cmd=Admin [L]
+RewriteRule ^admin$ 													?cmd=Admin [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # SETTING
@@ -55,16 +54,29 @@ RewriteRule ^admin/board/([0-9]+)$ 										?cmd=ABoardDetail&IdCategory=$1 [L]
 RewriteRule ^admin/board/([0-9]+)/([0-9]+)$ 							?cmd=ABoardDetailCompose&IdCategory=$1&IdBoard=$2 [L]
 RewriteRule ^admin/board/([0-9]+)/([0-9]+)/compose/exe$ 				?cmd=ABoardDetailComposeExe&IdCategory=$1&IdBoard=$2 [L]
 
+RewriteRule ^admin/book$ 												?cmd=ABook [L]
+RewriteRule ^admin/book/([0-9]+)$ 										?cmd=ABook&IdCategory=$1 [L]
+RewriteRule ^admin/book/([0-9]+)/ins/load$ 								?cmd=ABookInsLoad&IdCategory=$1 			[L]
+RewriteRule ^admin/book/([0-9]+)/ins/exe$ 								?cmd=ABookInsExe&IdCategory=$1 				[L]
+RewriteRule ^admin/book/([0-9]+)/([0-9]+)/upd/load$ 					?cmd=ABookUpdLoad&IdCategory=$1&IdBook=$2 	[L]
+RewriteRule ^admin/book/([0-9]+)/([0-9]+)/upd/exe$ 						?cmd=ABookUpdExe&IdCategory=$1&IdBook=$2	[L]
+
 RewriteRule ^admin/post$ 												?cmd=APost [L]
 RewriteRule ^admin/post/([0-9]+)$ 										?cmd=APost&IdCategory=$1 [L]
 
 RewriteRule ^admin/post/([0-9]+)/ins/load$ 								?cmd=APostInsLoad&IdCategory=$1 			[L]
 RewriteRule ^admin/post/([0-9]+)/ins/exe$ 								?cmd=APostInsExe&IdCategory=$1 			[L]
-RewriteRule ^admin/post/([0-9]+)/([0-9]+)$ 								?cmd=APostDetail&IdCategory=$1&IdPost=$2 [L]
 RewriteRule ^admin/post/([0-9]+)/([0-9]+)/upd/load$ 					?cmd=APostUpdLoad&IdCategory=$1&IdPost=$2 [L]
 RewriteRule ^admin/post/([0-9]+)/([0-9]+)/upd/exe$ 						?cmd=APostUpdExe&IdCategory=$1&IdPost=$2	[L]
 
 RewriteRule ^admin/setting$ 											?cmd=ASetting [L]
+
+RewriteRule ^admin/setting/category/post$ 								?cmd=ASettingCategoryPost [L]
+RewriteRule ^admin/setting/category/post/page/([0-9]+)$ 				?cmd=ASettingCategoryPost&Page=$1 [L]
+RewriteRule ^admin/setting/category/book$ 								?cmd=ASettingCategoryBook [L]
+RewriteRule ^admin/setting/category/book/page/([0-9]+)$ 				?cmd=ASettingCategoryBook&Page=$1 [L]
+RewriteRule ^admin/setting/category/board$ 								?cmd=ASettingCategoryBoard [L]
+RewriteRule ^admin/setting/category/board/page/([0-9]+)$ 				?cmd=ASettingCategoryBoard&Page=$1 [L]
 
 RewriteRule ^admin/setting/config$ 										?cmd=ASettingConfig [L]
 RewriteRule ^admin/setting/config/page/([0-9]+)$ 						?cmd=ASettingConfig&Page=$1 [L]

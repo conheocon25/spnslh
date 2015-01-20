@@ -10,8 +10,8 @@ class CategoryBook extends Mapper implements \MVC\Domain\CategoryBookFinder{
 						
 		$selectAllStmt 	= sprintf("select * from %s order by `order` DESC", $tblCategoryBook);
 		$selectStmt 	= sprintf("select * from %s where id=?", $tblCategoryBook);
-		$updateStmt 	= sprintf("update %s set name=?, `order`=?, post_count=?, `key`=? where id=?", $tblCategoryBook);
-		$insertStmt 	= sprintf("insert into %s ( name, `order`, post_count, `key`) values(?, ?, ?, ?)", $tblCategoryBook);
+		$updateStmt 	= sprintf("update %s set name=?, `order`=?, `key`=? where id=?", $tblCategoryBook);
+		$insertStmt 	= sprintf("insert into %s ( name, `order`, `key`) values(?, ?, ?)", $tblCategoryBook);
 		$deleteStmt 	= sprintf("delete from %s where id=?", $tblCategoryBook);
 		$findByPageStmt = sprintf("SELECT * FROM  %s ORDER BY `order`, name	LIMIT :start,:max", $tblCategoryBook);
 		$findByKeyStmt 	= sprintf("select *  from %s where `key`=?", $tblCategoryBook);		

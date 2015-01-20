@@ -26,7 +26,10 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------											
-			$Post 				= $mPost->findByKey($KPost);			
+			$Post 				= $mPost->findByKey($KPost);
+			$Post->setViewed($Post->getViewed() + 1);
+			$mPost->update($Post);
+			
 			$CategoryPostAll 	= $mCategoryPost->findAll();
 			$CategoryBookAll 	= $mCategoryBook->findAll();
 			$CategoryBoardAll 	= $mCategoryBoard->findAll();

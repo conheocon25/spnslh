@@ -10,8 +10,8 @@ class CategoryPost extends Mapper implements \MVC\Domain\CategoryPostFinder{
 						
 		$selectAllStmt 	= sprintf("select * from %s order by `order` DESC", $tblCategoryPost);
 		$selectStmt 	= sprintf("select * from %s where id=?", $tblCategoryPost);
-		$updateStmt 	= sprintf("update %s set name=?, `order`=?, post_count=?, `key`=? where id=?", $tblCategoryPost);
-		$insertStmt 	= sprintf("insert into %s ( name, `order`, post_count, `key`) values(?, ?, ?, ?)", $tblCategoryPost);
+		$updateStmt 	= sprintf("update %s set name=?, `order`=?, `key`=? where id=?", $tblCategoryPost);
+		$insertStmt 	= sprintf("insert into %s ( name, `order`, `key`) values(?, ?, ?)", $tblCategoryPost);
 		$deleteStmt 	= sprintf("delete from %s where id=?", $tblCategoryPost);
 		$findByPageStmt = sprintf("SELECT * FROM  %s ORDER BY `order`, name	LIMIT :start,:max", $tblCategoryPost);
 		$findByKeyStmt 	= sprintf("select *  from %s where `key`=?", $tblCategoryPost);		

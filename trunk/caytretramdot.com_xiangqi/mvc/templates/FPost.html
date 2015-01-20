@@ -12,7 +12,11 @@
 					<table class="table table-striped">						
 						<tr tal:repeat="Post Category/getPostAll">
 							<td width="15%"><img width="96px" tal:attributes="src Post/getImage"/></td>
-							<td><a tal:attributes="href Post/getURLView"><span tal:content="Post/getTitle"/></a></td>
+							<td>
+								<a tal:attributes="href Post/getURLView"><span tal:content="Post/getTitle"/></a>
+								<p tal:content="structure Post/getContentReduce"/>
+								<p><span tal:content="Post/getViewed"/> lượt xem</p>
+							</td>
 						</tr>
 					</table>
 				</div>
