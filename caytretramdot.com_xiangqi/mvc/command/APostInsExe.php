@@ -11,8 +11,7 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------												
-			$IdTag 		= $request->getProperty('IdTag');
-			$IdUser 	= $Session->getCurrentIdUser();
+			$IdCategory = $request->getProperty('IdCategory');			
 			$Title 		= $request->getProperty('Title');
 			$Content 	= \stripslashes($request->getProperty('Content'));
 			$Author 	= $request->getProperty('Author');			
@@ -23,16 +22,14 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mPost 	= new \MVC\Mapper\Post();
-			$mTag 	= new \MVC\Mapper\Tag();
-			$mPT 	= new \MVC\Mapper\PostTag();
-					
+			$mPost 	= new \MVC\Mapper\Post();			
+								
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------							
 			$Post = new \MVC\Domain\Post(
 				null,
-				$IdUser,
+				$IdCategory,
 				$Title,
 				$Content,				
 				$Time,				
@@ -42,14 +39,7 @@
 			);
 			$Post->reKey();
 			$mPost->insert($Post);
-			
-			$PT = new \MVC\Domain\PostTag(
-				null,
-				$Post->getId(),
-				$IdTag
-			);
-			$mPT->insert($PT);
-			
+									
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			

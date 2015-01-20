@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class APostInsLoad extends Command{
+	class ASettingCategoryBook extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -11,36 +11,43 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$IdCategory = $request->getProperty('IdCategory');
+			$Page = $request->getProperty('Page');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mCategoryPost 	= new \MVC\Mapper\CategoryPost();
-			$mPost 			= new \MVC\Mapper\Post();
-			$mConfig		= new \MVC\Mapper\Config();
+			$mCategoryBook 	= new \MVC\Mapper\CategoryBook();
+			$mConfig 		= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------																					
-			$Category 	= $mCategoryPost->find($IdCategory);
-			
-			$Title = mb_strtoupper($Category->getName(), 'UTF8');
+			//-------------------------------------------------------------									
+			$CategoryBookAll = $mCategoryBook->findAll();
+						
+			$Title = "DANH MỤC SÁCH";
 			$Navigation = array(				
-				array("BÀI VIẾT", 	"/admin/post"),	
+				array("THIẾT LẬP", "/admin/setting")
 			);
 			
+			if (!isset($Page)) $Page=1;
+			$Config 	= $mConfig->findByName("ROW_PER_PAGE");
 			$ConfigName	= $mConfig->findByName("NAME");
-												
+			
+			$CategoryBookAll1 = $mCategoryBook->findByPage(array($Page, $Config->getValue() ));
+			$PN = new \MVC\Domain\PageNavigation($CategoryBookAll->count(), $Config->getValue(), "/setting/CategoryBook" );
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
-			$request->setProperty('Title'		, $Title);
-			$request->setProperty('ActiveAdmin'	, 'Post');			
-			$request->setObject('Navigation'	, $Navigation);			
-			$request->setObject('ConfigName'	, $ConfigName);
-			$request->setObject('Category'		, $Category);
-																		
+			$request->setProperty('Title'			, $Title);
+			$request->setProperty('ActiveAdmin'		, 'CategoryBook');
+			$request->setProperty('Page'			, $Page);
+			$request->setObject('PN'				, $PN);
+			$request->setObject('Navigation'		, $Navigation);
+			
+			$request->setObject('ConfigName'		, $ConfigName);
+			$request->setObject('CategoryBookAll1'	, $CategoryBookAll1);
+															
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

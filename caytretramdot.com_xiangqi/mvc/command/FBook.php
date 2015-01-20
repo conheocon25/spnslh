@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class FEbookDetail extends Command {
+	class FBook extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------

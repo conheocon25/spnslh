@@ -5,7 +5,7 @@
 	<!-- ======================================================================== -->
 	<span metal:define-macro="IncludeMETA">
 		<title tal:content="string:Cờ Tướng Online"/>
-		<base href="http://xiangqi.caytretramdot.com"/>
+		<base href="http://cotuong.caytretramdot.com"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 		<meta http-equiv="Pragma" content="no-cache"/>
@@ -120,68 +120,22 @@
 			<li tal:attributes="class php:ActiveAdmin=='Post'?'active':'disable'">
 				<a tal:attributes="href '/admin/post'"><i class="glyphicons-cogwheels" />BÀI VIẾT</a>
 			</li>
+			<li tal:attributes="class php:ActiveAdmin=='Book'?'active':'disable'">
+				<a tal:attributes="href '/admin/book'"><i class="glyphicons-cogwheels" />SÁCH CỜ</a>
+			</li>
 			<li tal:attributes="class php:ActiveAdmin=='Setting'?'active':'disable'">				
 				<a tal:attributes="href '/admin/setting'"><i class="glyphicons-cogwheels" />THIẾT LẬP</a>
 			</li>
 		</ul>		
 	</div>
 	
-	<!-- ======================================================================== -->
-	<!-- MENU.SETTING															  -->
-	<!-- ======================================================================== -->
-	<div metal:define-macro="MenuSetting" id="sidebar">				
-		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">			
-			<li tal:attributes="class php:ActiveAdmin=='Tag'?'active':'disable'">
-				<a tal:attributes="href '/admin/setting/tag'" >
-					<i class="glyphicons-book" />THẺ BÀI
-				</a>
-			</li>			
-			<li tal:attributes="class php:ActiveAdmin=='User'?'active':'disable'">
-				<a tal:attributes="href '/admin/setting/user'">
-					<i class="glyphicons-group" />NGƯỜI DÙNG 
-				</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='Config'?'active':'disable'">
-				<a tal:attributes="href '/admin/setting/config'">
-					<i class="glyphicons-cogwheel" />CẤU HÌNH
-				</a>
-			</li>
-		</ul>
-		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isSeller()">						
-			<li tal:attributes="class php:ActiveAdmin=='User'?'active':'disable'">
-				<a tal:attributes="href '/admin/setting/user'">
-					<i class="glyphicons-group" />NGƯỜI DÙNG 
-				</a>
-			</li>			
-		</ul>
-	</div>
-	
-	<div metal:define-macro="MenuSettingGeneral" id="sidebar">				
-		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">												
-			<li tal:attributes="class php:ActiveAdmin=='Linked'?'active':'disable'">
-				<a tal:attributes="href '/admin/setting/linked'">
-					<i class="glyphicons-group" />LIÊN KẾT WEBSITE
-				</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='User'?'active':'disable'">
-				<a tal:attributes="href '/admin/setting/user'">
-					<i class="glyphicons-group" />NGƯỜI DÙNG 
-				</a>
-			</li>			
-			<li tal:attributes="class php:ActiveAdmin=='Config'?'active':'disable'">
-				<a tal:attributes="href '/admin/setting/config'">
-					<i class="glyphicons-cogwheel" />CẤU HÌNH
-				</a>
-			</li>
-		</ul>
-	</div>
-					
+						
 	<!-- ======================================================================== -->
 	<!-- FOOTER																	  -->
 	<!-- ======================================================================== -->
 	<div metal:define-macro="Footer" class="row">
 		<div id="footer" class="col-12" style="text-align:right; padding-right:20px;">
-			2009 - 2015 &copy; <a href="http://xiangqi.caytretramdot.com">SPN Team - Cờ Tướng Online</a>
+			2009 - 2015 &copy; <a href="http://cotuong.caytretramdot.com">SPN Team - Cờ Tướng Online</a>
 		</div>
 	</div>
 	

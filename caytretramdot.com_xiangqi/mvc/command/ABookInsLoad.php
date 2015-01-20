@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class APostInsLoad extends Command{
+	class ABookInsLoad extends Command{
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -16,14 +16,14 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mCategoryPost 	= new \MVC\Mapper\CategoryPost();
-			$mPost 			= new \MVC\Mapper\Post();
+			$mCategoryBook 	= new \MVC\Mapper\CategoryBook();
+			$mBook 			= new \MVC\Mapper\Book();
 			$mConfig		= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------																					
-			$Category 	= $mCategoryPost->find($IdCategory);
+			$Category 	= $mCategoryBook->find($IdCategory);
 			
 			$Title = mb_strtoupper($Category->getName(), 'UTF8');
 			$Navigation = array(				
@@ -36,7 +36,7 @@
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
 			$request->setProperty('Title'		, $Title);
-			$request->setProperty('ActiveAdmin'	, 'Post');			
+			$request->setProperty('ActiveAdmin'	, 'Book');			
 			$request->setObject('Navigation'	, $Navigation);			
 			$request->setObject('ConfigName'	, $ConfigName);
 			$request->setObject('Category'		, $Category);

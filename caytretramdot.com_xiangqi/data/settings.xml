@@ -14,8 +14,8 @@
 		<command name="FBoardViewer" 	type="public"><view>FBoardViewer</view></command>						
 				
 		<command name="FSoft" 			type="public"><view>FSoft</view></command>
-		<command name="FEbook" 			type="public"><view>FEbook</view></command>
-		<command name="FEbookDetail" 	type="public"><view>FEbookDetail</view></command>
+		<command name="FBook" 			type="public"><view>FBook</view></command>
+		<command name="FBookDetail" 	type="public"><view>FBookDetail</view></command>
 		
 		<!-- ============================================================================== -->
 		<!-- JSON LOAD			 															-->
@@ -45,7 +45,18 @@
 		<command name="ABoardDetailComposeExe">	<view>ABoardDetailComposeExe</view></command>
 				
 		<command name="ASetting">				<view>ASetting		</view></command>				
-					
+		
+		<command name="ASettingCategoryPost">	<view>ASettingCategoryPost</view></command>				
+		<command name="ASettingCategoryBook">	<view>ASettingCategoryBook</view></command>
+		<command name="ASettingCategoryBoard">	<view>ASettingCategoryBoard</view></command>
+		
+		<command name="ABook">					<view>ABook			</view></command>
+		<command name="ABookDetail">			<view>ABookDetail	</view></command>
+		<command name="ABookInsLoad">			<view>ABookInsLoad	</view></command>
+		<command name="ABookInsExe">			<view>ABookInsExe	</view><status value="CMD_OK"><forward>ABook</forward></status></command>
+		<command name="ABookUpdLoad">			<view>ABookUpdLoad	</view></command>
+		<command name="ABookUpdExe">			<view>ABookUpdExe	</view><status value="CMD_OK"><forward>ABook</forward></status></command>
+		
 		<command name="APost">					<view>APost			</view></command>
 		<command name="APostDetail">			<view>APostDetail	</view></command>
 		<command name="APostInsLoad">			<view>APostInsLoad	</view></command>

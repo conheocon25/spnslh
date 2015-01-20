@@ -66,12 +66,11 @@ class CategoryBook extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLView(){return "/ebook/".$this->getKey();}
+	function getURLView(){return "/sach/".$this->getKey();}
 	
-	function getURLSetting(){return "/admin/tag/".$this->getId();}
-	function getURLSettingPost(){return "/admin/post/".$this->getId();}
-	function getURLSettingPostInsLoad()	{return "/admin/post/".$this->getId()."/ins/load";}
-	function getURLSettingPostInsExe()	{return "/admin/post/".$this->getId()."/ins/exe";}
+	function getURLSetting(){return "/admin/book/".$this->getId();}	
+	function getURLSettingBookInsLoad()	{return "/admin/book/".$this->getId()."/ins/load";}
+	function getURLSettingBookInsExe()	{return "/admin/book/".$this->getId()."/ins/exe";}
 	
 	//-------------------------------------------------------------------------------
 	static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
