@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mFront.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>
+	</head>
+	<body>
+		<div metal:use-macro="mFront.xhtml/Header"/>
+		<div class="container" id="wraper">			
+			<div class="row-fluid">
+				<div class="col-md-9 col-sm-9">
+					<table class="table table-striped">
+						<tr>
+							<th width="32px">STT</th>
+							<th>DANH MỤC</th>
+							<th width="20%">SÁCH</th>
+						</tr>
+						<tr tal:repeat="CB CategoryBookAll">
+							<td><div class="text-center" tal:content="repeat/CB/number"/></td>
+							<td><a tal:attributes="href CB/getURLView"><span tal:content="CB/getName"/></a></td>
+							<td><a tal:attributes="href CB/getURLView">Xem(<span tal:content="CB/getBookAll/count" />)</a></td>
+						</tr>
+					</table>
+				</div>
+				<div class="col-md-3 col-sm-3">
+					
+				</div>
+			</div>
+		</div>
+		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
+	</body>
+</html>

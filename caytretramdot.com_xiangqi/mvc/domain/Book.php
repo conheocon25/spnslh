@@ -7,13 +7,15 @@ class Book extends Object{
     private $Id;
 	private $IdCategory;
 	private $Name;	
+	private $Author;
+	private $Language;	
 	private $Order;
 	private $URL;
 		
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-    function __construct( $Id=null, $IdCategory=null, $Name=null , $Order=Null, $URL=Null) {$this->Id = $Id; $this->IdCategory = $IdCategory; $this->Name = $Name;$this->Order = $Order;$this->URL = $URL;parent::__construct( $Id );}
+    function __construct( $Id=null, $IdCategory=null, $Name=null , $Author=null, $Language=null , $Order=Null, $URL=Null) {$this->Id = $Id; $this->IdCategory = $IdCategory; $this->Name = $Name; $this->Author = $Author; $this->Language = $Language; $this->Order = $Order;$this->URL = $URL;parent::__construct( $Id );}
     function getId() {return $this->Id;}
 	function getIdPrint(){return "c" . $this->getId();}
 	
@@ -22,6 +24,12 @@ class Book extends Object{
 	
     function setName( $Name ) {$this->Name = $Name;$this->markDirty();}   
 	function getName( ) {return $this->Name;}
+	
+	function setAuthor( $Author ) {$this->Author = $Author;$this->markDirty();}   
+	function getAuthor( ) {return $this->Author;}
+	
+	function setLanguage( $Language ) {$this->Language = $Language; $this->markDirty();}
+	function getLanguage( ) {return $this->Language;}
 	
 	function setURL( $URL ) {$this->URL = $URL;$this->markDirty();}   
 	function getURL( ) {return $this->URL;}

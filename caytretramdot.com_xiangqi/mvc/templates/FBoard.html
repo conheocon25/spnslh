@@ -8,25 +8,33 @@
 		<div metal:use-macro="mFront.xhtml/Header"/>
 		<div class="container" id="wraper">
 			<div class="row-fluid">
-				<table class="table table-striped">
-					<tr>
-						<th width="32px">STT</th>
-						<th>DANH MỤC</th>
-						<th width="20%">VÁN CỜ</th>
-					</tr>
-					<tr tal:repeat="CB CategoryBoardAll">
-						<td><div class="text-center" tal:content="repeat/CB/number"/></td>
-						<td><a tal:attributes="href CB/getURLView"><span tal:content="CB/getName"/></a></td>
-						<td>
-							<a tal:attributes="href CB/getURLView">Xem(<span tal:content="CB/getBoardAll/count" />)</a>
-						</td>
-					</tr>
-				</table>
-			</div>
-			<div style="position:absolute; bottom:10px; width:500px; text-align:center; color:#868686; margin-left:-250px; left:50%; font-size:11px; line-height:8px;">
-				<p>Cờ Tướng Online &#169; 2015</p>
-				<p>SPN Team</p>
-			</div>
+				<div class="col-md-9 col-sm-9">
+					<table class="table table-striped">
+						<tr>
+							<th width="32px">STT</th>
+							<th>VÁN CỜ</th>						
+						</tr>
+						<tr tal:repeat="Board Category/getBoardAll">
+							<td><div class="text-center" tal:content="repeat/Board/number"/></td>
+							<td><a tal:attributes="href Board/getURLView"><span tal:content="Board/getName"/></a></td>
+						</tr>
+					</table>
+				</div>
+				<div class="col-md-3 col-sm-3">
+					<div class="panel panel-default">
+						<div class="panel-heading">Danh mục</div>
+						<div class="panel-body">
+							<ul>
+								<li tal:repeat="Category CategoryBoardAll">
+									<a tal:attributes="href Category/getURLView">
+										<span tal:content="Category/getName"/> (<span tal:content="Category/getBoardAll/count"/>)
+									</a>
+								</li>
+							</ul>
+						</div>						
+					</div>					
+				</div>
+			</div>			
 		</div>
 		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
 	</body>

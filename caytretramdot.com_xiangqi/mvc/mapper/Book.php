@@ -35,6 +35,8 @@ class Book extends Mapper implements \MVC\Domain\BookFinder{
 			$array['id'],
 			$array['id_category'],
 			$array['name'],
+			$array['author'],
+			$array['language'],
 			$array['order'],
 			$array['url']
 		);

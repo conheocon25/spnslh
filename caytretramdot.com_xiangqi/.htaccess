@@ -21,13 +21,13 @@ RewriteRule ^trang-chu$ 										?cmd=FHome [L]
 RewriteRule ^bai-viet/([A-Za-z0-9_-]+)$							?cmd=FPost&KCategory=$1 [L]
 RewriteRule ^bai-viet/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$		?cmd=FPostDetail&KCategory=$1&KPost=$2 [L]
 
-RewriteRule ^van-co$											?cmd=FBoard [L]
-RewriteRule ^van-co/([A-Za-z0-9_-]+)$							?cmd=FBoardDetail&KCategory=$1 [L]
-RewriteRule ^van-co/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$			?cmd=FChessViewer&KCategory=$1&KBoard=$2 [L]
+RewriteRule ^van-co/([A-Za-z0-9_-]+)$							?cmd=FBoard&KCategory=$1 [L]
+RewriteRule ^van-co/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$			?cmd=FBoardViewer&KCategory=$1&KBoard=$2 [L]
 
-RewriteRule ^download/software$									?cmd=FDownloadSoftware [L]
-RewriteRule ^download/ebook$									?cmd=FDownloadEbook [L]
-RewriteRule ^download/ebook/([A-Za-z0-9_-]+)$					?cmd=FDownloadEbookDetail&KCategory=$1 [L]
+RewriteRule ^soft$												?cmd=FSoft [L]
+
+RewriteRule ^ebook$												?cmd=FEbook [L]
+RewriteRule ^ebook/([A-Za-z0-9_-]+)$							?cmd=FEbookDetail&KCategory=$1 [L]
 
 RewriteRule ^lien-he$ 											?cmd=FContact 		[L]
 
