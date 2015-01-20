@@ -18,7 +18,8 @@ AddOutputFilterByType DEFLATE application/x-javascript
 #---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^trang-chu$ 										?cmd=FHome [L]
 
-RewriteRule ^lien-he$ 											?cmd=FContact 		[L]
+RewriteRule ^bai-viet/([A-Za-z0-9_-]+)$							?cmd=FPost&KCategory=$1 [L]
+RewriteRule ^bai-viet/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$		?cmd=FPostDetail&KCategory=$1&KPost=$2 [L]
 
 RewriteRule ^van-co$											?cmd=FBoard [L]
 RewriteRule ^van-co/([A-Za-z0-9_-]+)$							?cmd=FBoardDetail&KCategory=$1 [L]
@@ -27,6 +28,8 @@ RewriteRule ^van-co/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$			?cmd=FChessViewer&KCate
 RewriteRule ^download/software$									?cmd=FDownloadSoftware [L]
 RewriteRule ^download/ebook$									?cmd=FDownloadEbook [L]
 RewriteRule ^download/ebook/([A-Za-z0-9_-]+)$					?cmd=FDownloadEbookDetail&KCategory=$1 [L]
+
+RewriteRule ^lien-he$ 											?cmd=FContact 		[L]
 
 RewriteRule ^dang-nhap$ 										?cmd=SigninLoad [L]
 RewriteRule ^dang-nhap/exe$ 									?cmd=SigninExe [L]
@@ -53,16 +56,13 @@ RewriteRule ^admin/board/([0-9]+)/([0-9]+)$ 							?cmd=ABoardDetailCompose&IdCa
 RewriteRule ^admin/board/([0-9]+)/([0-9]+)/compose/exe$ 				?cmd=ABoardDetailComposeExe&IdCategory=$1&IdBoard=$2 [L]
 
 RewriteRule ^admin/post$ 												?cmd=APost [L]
-RewriteRule ^admin/post/([0-9]+)$ 										?cmd=APost&IdTag=$1 [L]
+RewriteRule ^admin/post/([0-9]+)$ 										?cmd=APost&IdCategory=$1 [L]
 
-RewriteRule ^admin/post/([0-9]+)/ins/load$ 								?cmd=APostInsLoad&IdTag=$1 			[L]
-RewriteRule ^admin/post/([0-9]+)/ins/exe$ 								?cmd=APostInsExe&IdTag=$1 			[L]
-RewriteRule ^admin/post/([0-9]+)/([0-9]+)$ 								?cmd=APostDetail&IdTag=$1&IdPost=$2 [L]
-RewriteRule ^admin/post/([0-9]+)/([0-9]+)/upd/load$ 					?cmd=APostUpdLoad&IdTag=$1&IdPost=$2 [L]
-RewriteRule ^admin/post/([0-9]+)/([0-9]+)/upd/exe$ 						?cmd=APostUpdExe&IdTag=$1&IdPost=$2	[L]
-RewriteRule ^admin/post/([0-9]+)/([0-9]+)/tag$ 							?cmd=APostTag&IdTag=$1&IdPost=$2 	[L]
-RewriteRule ^admin/post/([0-9]+)/([0-9]+)/linked$ 						?cmd=APostLinked&IdTag=$1&IdPost=$2 [L]
-RewriteRule ^admin/post/([0-9]+)/([0-9]+)/map$ 							?cmd=APostMap&IdTag=$1&IdPost=$2	[L]
+RewriteRule ^admin/post/([0-9]+)/ins/load$ 								?cmd=APostInsLoad&IdCategory=$1 			[L]
+RewriteRule ^admin/post/([0-9]+)/ins/exe$ 								?cmd=APostInsExe&IdCategory=$1 			[L]
+RewriteRule ^admin/post/([0-9]+)/([0-9]+)$ 								?cmd=APostDetail&IdCategory=$1&IdPost=$2 [L]
+RewriteRule ^admin/post/([0-9]+)/([0-9]+)/upd/load$ 					?cmd=APostUpdLoad&IdCategory=$1&IdPost=$2 [L]
+RewriteRule ^admin/post/([0-9]+)/([0-9]+)/upd/exe$ 						?cmd=APostUpdExe&IdCategory=$1&IdPost=$2	[L]
 
 RewriteRule ^admin/setting$ 											?cmd=ASetting [L]
 
@@ -71,5 +71,3 @@ RewriteRule ^admin/setting/config/page/([0-9]+)$ 						?cmd=ASettingConfig&Page=
 
 RewriteRule ^admin/setting/user$ 										?cmd=ASettingUser [L]
 RewriteRule ^admin/setting/user/page/([0-9]+)$ 							?cmd=ASettingUser&Page=$1 [L]
-
-RewriteRule ^admin/setting/usertag$ 									?cmd=ASettingUserTag [L]

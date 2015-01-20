@@ -9,13 +9,13 @@ class Post extends Mapper implements \MVC\Domain\PostFinder {
 		
 		$selectAllStmt 	= sprintf("select * from %s", $tblPost);
 		$selectStmt 	= sprintf("select *  from %s where id=?", $tblPost);
-		$updateStmt 	= sprintf("update %s set id_user=?, title=?, content=?, `time`=?, `key`=?, `viewed`=?, `liked`=? where id=?", $tblPost);
-		$insertStmt 	= sprintf("insert into %s ( id_user, title, content, `time`, `key`, `viewed`, `liked`) values(?, ?, ?, ?, ?, ?, ?)", $tblPost);
+		$updateStmt 	= sprintf("update %s set id_category=?, title=?, content=?, `time`=?, `key`=?, `viewed`=?, `liked`=? where id=?", $tblPost);
+		$insertStmt 	= sprintf("insert into %s ( id_category, title, content, `time`, `key`, `viewed`, `liked`) values(?, ?, ?, ?, ?, ?, ?)", $tblPost);
 		$deleteStmt 	= sprintf("delete from %s where id=?", $tblPost);
 		$findByKeyStmt 	= sprintf("select *  from %s where `key`=?", $tblPost);
 
-		$searchByUserStmt 		= sprintf("select *  from %s where id_user=:id_user", $tblPost);
-		$searchByUserPageStmt 	= sprintf("select *  from %s where id_user=:id_user LIMIT :start,:max", $tblPost);
+		$findByStmt 		= sprintf("select *  from %s where id_category=:id_category", $tblPost);
+		$findByPageStmt 	= sprintf("select *  from %s where id_category=:id_category LIMIT :start,:max", $tblPost);
 		
 		$searchByTitleStmt 		= sprintf("select *  from %s where `title` like :title", $tblPost);
 		$searchByTitlePageStmt 	= sprintf("select *  from %s where `title` like :title LIMIT :start,:max", $tblPost);
@@ -27,8 +27,8 @@ class Post extends Mapper implements \MVC\Domain\PostFinder {
 		$this->deleteStmt 		= self::$PDO->prepare($deleteStmt);
 		$this->findByKeyStmt 	= self::$PDO->prepare($findByKeyStmt);
 		
-		$this->searchByUserStmt 		= self::$PDO->prepare($searchByUserStmt);
-		$this->searchByUserPageStmt 	= self::$PDO->prepare($searchByUserPageStmt);
+		$this->findByStmt 		= self::$PDO->prepare($findByStmt);
+		$this->findByPageStmt 	= self::$PDO->prepare($findByPageStmt);
 		$this->searchByTitleStmt 		= self::$PDO->prepare($searchByTitleStmt);
 		$this->searchByTitlePageStmt 	= self::$PDO->prepare($searchByTitlePageStmt);
 
@@ -37,7 +37,7 @@ class Post extends Mapper implements \MVC\Domain\PostFinder {
     protected function doCreateObject( array $array ) {
         $obj = new \MVC\Domain\Post( 
 			$array['id'],
-			$array['id_user'],
+			$array['id_category'],
 			$array['title'],
 			$array['content'],			
 			$array['time'],
@@ -51,7 +51,7 @@ class Post extends Mapper implements \MVC\Domain\PostFinder {
     protected function targetClass() {return "Post";}
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array( 			
-			$object->getIdUser(),
+			$object->getIdCategory(),
 			$object->getTitle(),
 			$object->getContent(),			
 			$object->getTime(),			
@@ -66,7 +66,7 @@ class Post extends Mapper implements \MVC\Domain\PostFinder {
     
     protected function doUpdate( \MVC\Domain\Object $object ) {
         $values = array(
-			$object->getIdUser(),
+			$object->getIdCategory(),
 			$object->getTitle(),
 			$object->getContent(),			
 			$object->getTime(),			
@@ -110,18 +110,18 @@ class Post extends Mapper implements \MVC\Domain\PostFinder {
         return new PostCollection( $this->searchByTitlePageStmt->fetchAll(), $this );
     }
 	
-	function searchByUser( $values ) {		
-		$this->searchByUserStmt->bindValue(':id_user', 	$values[0], \PDO::PARAM_INT);
-		$this->searchByUserStmt->execute();
-        return new PostCollection( $this->searchByUserStmt->fetchAll(), $this );
+	function findBy( $values ) {		
+		$this->findByStmt->bindValue(':id_category', 	$values[0], \PDO::PARAM_INT);
+		$this->findByStmt->execute();
+        return new PostCollection( $this->findByStmt->fetchAll(), $this );
     }
 	
-	function searchByUserPage( $values ) {		
-		$this->searchByUserPageStmt->bindValue(':id_user', $values[0], \PDO::PARAM_INT);
-		$this->searchByUserPageStmt->bindValue(':start', ((int)($values[1])-1)*(int)($values[2]), \PDO::PARAM_INT);
-		$this->searchByUserPageStmt->bindValue(':max', (int)($values[2]), \PDO::PARAM_INT);
-		$this->searchByUserPageStmt->execute();
-        return new PostCollection( $this->searchByUserPageStmt->fetchAll(), $this );
+	function findByPage( $values ) {		
+		$this->findByPageStmt->bindValue(':id_category', $values[0], \PDO::PARAM_INT);
+		$this->findByPageStmt->bindValue(':start', ((int)($values[1])-1)*(int)($values[2]), \PDO::PARAM_INT);
+		$this->findByPageStmt->bindValue(':max', (int)($values[2]), \PDO::PARAM_INT);
+		$this->findByPageStmt->execute();
+        return new PostCollection( $this->findByPageStmt->fetchAll(), $this );
     }
 
 }

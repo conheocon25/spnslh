@@ -11,29 +11,25 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$IdTag 	= $request->getProperty('IdTag');
-			$IdPost = $request->getProperty('IdPost');
+			$IdCategory 	= $request->getProperty('IdCategory');
+			$IdPost 		= $request->getProperty('IdPost');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mPT 	= new \MVC\Mapper\PostTag();
+			$mPost 	= new \MVC\Mapper\Post();
 			$mConfig= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------																					
-			$PTAll 	= $mPT->findByTagPost(array($IdTag, $IdPost));
-			$PT		= $PTAll->current();
+			//-------------------------------------------------------------																																	
+			$Post 		= $mPost->find($IdPost);
+			$Category 	= $Post->getCategory();
 			
-			$Tag 	= $PT->getTag();
-			$Post 	= $PT->getPost();
-			
-			$Title 	= "CẬP NHẬT";
+			$Title 		= $Post->getTitle();
 			$Navigation = array(								
-				array(\mb_strtoupper($Tag->getName(), 'UTF8'), $Tag->getURLSettingPost()),
-				array(\mb_strtoupper($Post->getTitle(), 'UTF8'), $PT->getURLSetting())
-			);									
+				array(\mb_strtoupper($Category->getName(), 'UTF8'), $Category->getURLSettingPost()),				
+			);
 			$ConfigName		= $mConfig->findByName("NAME");
 												
 			//-------------------------------------------------------------
@@ -42,9 +38,9 @@
 			$request->setProperty('Title'		, $Title);			
 			$request->setProperty('ActiveAdmin'	, 'Post');			
 			$request->setObject('Navigation'	, $Navigation);			
-			$request->setObject('ConfigName'	, $ConfigName);
-			$request->setObject('PT'			, $PT);
+			$request->setObject('ConfigName'	, $ConfigName);			
 			$request->setObject('Post'			, $Post);
+			$request->setObject('Category'		, $Category);
 			
 			return self::statuses('CMD_DEFAULT');
 		}

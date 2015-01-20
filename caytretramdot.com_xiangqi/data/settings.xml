@@ -4,11 +4,10 @@
 		<!-- Các lệnh xử lí SYSTEM 															-->
 		<!-- ============================================================================== -->		
 		<command name="DefaultCommand" 	type="public"><view>DefaultCommand</view><status value="CMD_OK"><forward>FHome</forward></status></command>
-		<command name="FHome" 			type="public"><view>FHome</view></command>				
-		<command name="FTag" 			type="public"><view>FTag</view></command>
-		<command name="FTagAll" 		type="public"><view>FTagAll</view></command>
+		<command name="FHome" 			type="public"><view>FHome</view></command>						
 		<command name="FPost" 			type="public"><view>FPost</view></command>		
-		<command name="FSearch" 		type="public"><view>FSearch</view></command>								
+		<command name="FPostDetail" 	type="public"><view>FPostDetail</view></command>								
+		
 		<command name="FContact" 		type="public"><view>FContact</view></command>
 		
 		<command name="FBoard" 			type="public"><view>FBoard</view></command>
@@ -53,11 +52,8 @@
 		<command name="APostInsLoad">			<view>APostInsLoad	</view></command>
 		<command name="APostInsExe">			<view>APostInsExe	</view><status value="CMD_OK"><forward>APost</forward></status></command>
 		<command name="APostUpdLoad">			<view>APostUpdLoad	</view></command>
-		<command name="APostUpdExe">			<view>APostUpdExe	</view><status value="CMD_OK"><forward>APostDetail</forward></status></command>
-		<command name="APostTag">				<view>APostTag		</view></command>
-		<command name="APostLinked">			<view>APostLinked	</view></command>
-		<command name="APostMap">				<view>APostMap		</view></command>
-				
+		<command name="APostUpdExe">			<view>APostUpdExe	</view><status value="CMD_OK"><forward>APost</forward></status></command>
+						
 		<command name="ASettingUser">			<view>ASettingUser			</view></command>
 		<command name="ASettingUserTag">		<view>ASettingUserTag		</view></command>
 		<command name="ASettingConfig">			<view>ASettingConfig		</view></command>

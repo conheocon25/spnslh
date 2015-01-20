@@ -3,37 +3,34 @@
 	<head>
 		<div metal:use-macro="mFront.xhtml/IncludeMETA"/>
 		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>
-		<div metal:use-macro="mFront.xhtml/IncludeJS"/>				
 	</head>
 	<body>
 		<div metal:use-macro="mFront.xhtml/Header"/>
-		<div class="container-fluid" id="wraper">
-			<div class="row">
-				<div class="col-md-9">
-					<div class="panel panel-default">
-						<div class="panel-heading" tal:content="Post/getTitle"/>
-						<div class="panel-body">
-							<div class="article-meta-date">
-								<a tal:attributes="href Post/getUser/getURLView"><span class="separator"><i class="fa fa-user"></i></span> <span tal:content="Post/getUser/getName"></span></a>
-								<span tal:content="Post/getTimePrint"/>
-							</div>
-							<div class="article-meta-more">																				
-								<div class="share-button-group">
-									<div class="fb-share-button" tal:attributes="data-href URLShare" data-type="button_count" />
-								</div>
-								<div tal:content="structure Post/getContent" class="article-content-container"/>
-							</div>
-						</div>						
-					</div>
+		<div class="container" id="wraper">
+			<div class="row-fluid">
+				<div class="col-md-9 col-sm-9">
+					<table class="table table-striped">						
+						<tr tal:repeat="Post Category/getPostAll">
+							<td width="96px"><img tal:attributes="src Post/getImage"/></td>
+							<td><a tal:attributes="href Post/getURLView"><span tal:content="Post/getTitle"/></a></td>
+						</tr>
+					</table>
 				</div>
-				<div class="col-md-3">
-					<div metal:use-macro="mFront.xhtml/BoxPostParents"/>
-					<div metal:use-macro="mFront.xhtml/BoxPostChildren"/>
-					<div metal:use-macro="mFront.xhtml/BoxPostRelated"/>
-					<div metal:use-macro="mFront.xhtml/BoxPostAlso"/>
-					<div metal:use-macro="mFront.xhtml/BoxPostMap"/>
+				<div class="col-md-3 col-sm-3">
+					<ul>
+						<li tal:repeat="Category CategoryPostAll">
+							<a tal:attributes="href Category/getURLView">
+								<span tal:content="Category/getName"/> (<span tal:content="Category/getPostAll/count"/>)
+							</a>
+						</li>
+					</ul>
 				</div>
 			</div>
-		</div>				
+			<div style="position:absolute; bottom:10px; width:500px; text-align:center; color:#868686; margin-left:-250px; left:50%; font-size:11px; line-height:8px;">
+				<p>Cờ Tướng Online &#169; 2015</p>
+				<p>SPN Team</p>
+			</div>
+		</div>
+		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
 	</body>
 </html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mFront.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>
+		<div metal:use-macro="mFront.xhtml/IncludeJS"/>				
+	</head>
+	<body>
+		<div metal:use-macro="mFront.xhtml/Header"/>
+		<div class="container-fluid" id="wraper">
+			<div class="row">
+				<div class="col-md-9">
+					<div class="panel panel-default">
+						<div class="panel-heading" tal:content="Post/getTitle"/>
+						<div class="panel-body">
+							<div class="article-meta-date">
+								<a tal:attributes="href '#'"><span class="separator"><i class="fa fa-user"></i></span> </a>
+								<span tal:content="Post/getTimePrint"/>
+							</div>
+							<div class="article-meta-more">																				
+								<div class="share-button-group">
+									<div class="fb-share-button" tal:attributes="data-href URLShare" data-type="button_count" />
+								</div>
+								<div tal:content="structure Post/getContent" class="article-content-container"/>
+							</div>
+						</div>						
+					</div>
+				</div>
+				<div class="col-md-3">
+					
+				</div>
+			</div>
+		</div>				
+	</body>
+</html>
