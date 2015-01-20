@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class ABookUpdExe extends Command{
+	class ABoardUpdExe extends Command{
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -11,38 +11,33 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
-			$IdBook 	= $request->getProperty('IdBook');
+			$IdBoard 	= $request->getProperty('IdBoard');
 			$IdCategory = $request->getProperty('IdCategory');									
-			$Title 		= $request->getProperty('Title');			
+			$Name 		= $request->getProperty('Name');			
 			$Time 		= $request->getProperty('Time');			
 			$Info 		= \stripslashes($request->getProperty('Info'));
-			$Author 	= $request->getProperty('Author');
-			$Language	= $request->getProperty('Language');
-			$Order		= $request->getProperty('Order');
-			$Viewed		= $request->getProperty('Viewed');
-			$URL		= $request->getProperty('URL');
-						
+			$MoveStart	= $request->getProperty('MoveStart');
+			$MoveEnd	= $request->getProperty('MoveEnd');
+												
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mBook = new \MVC\Mapper\Book();
+			$mCBM = new \MVC\Mapper\CBM();
 					
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------										
-			$Book = $mBook->find($IdBook);
+			//-------------------------------------------------------------
 			
-			$Book->setInfo($Info);			
-			$Book->setTitle($Title);
-			$Book->setTime($Time);			
-			$Book->setAuthor($Author);
-			$Book->setLanguage($Language);
-			$Book->setOrder($Order);
-			$Book->setURL($URL);
-			$Book->setViewed($Viewed);
-			$Book->reKey();
+			$CBM= $mCBM->find($IdBoard);
 			
-			$mBook->update($Book);
+			$CBM->setInfo($Info);			
+			$CBM->setName($Name);
+			$CBM->setTime($Time);			
+			$CBM->setMoveStart($MoveStart);
+			$CBM->setMoveEnd($MoveEnd);			
+			$CBM->reKey();
+			
+			$mCBM->update($CBM);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI

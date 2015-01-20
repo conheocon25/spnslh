@@ -52,19 +52,19 @@ function exportStep(Y, X, NY, NX){
 	NY = parseInt(NY);
 	
 	if (aState[Y][X]=='r' || aState[Y][X]=='R')
-		S = "Xe";
+		S = "X";
 	else if (aState[Y][X]=='h' || aState[Y][X]=='H')
-		S = "Mã";
+		S = "M";
 	else if (aState[Y][X]=='e' || aState[Y][X]=='E')
-		S = "Tượng";
+		S = "B";
 	else if (aState[Y][X]=='a' || aState[Y][X]=='A')
-		S = "Sĩ";
+		S = "S";
 	else if (aState[Y][X]=='k' || aState[Y][X]=='K')
-		S = "Tướng";
+		S = "T";
 	else if (aState[Y][X]=='c' || aState[Y][X]=='C')
-		S = "Pháo";
+		S = "P";
 	else if (aState[Y][X]=='p' || aState[Y][X]=='P')
-		S = "Chốt";
+		S = "C";
 		
 	return S + " " + (X+1) + " ? " +  (NX+1);
 }

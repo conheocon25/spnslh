@@ -132,9 +132,7 @@ class User extends Object{
 		$this->Type 		= $Data[9];
 		$this->Code 		= $Data[10];
     }
-	
-	function getURLView(){return "/nguoi-dung/".$this->getId();}
-			
+					
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}
 }

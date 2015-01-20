@@ -7,7 +7,7 @@ class Post extends Object{
 	private $IdCategory;
 	private $Title;
 	private $Content;	
-	private $Time;	
+	private $Time;
 	private $Key;
 	private $Viewed;
 	private $Liked;
@@ -17,7 +17,7 @@ class Post extends Object{
 	//-------------------------------------------------------------------------------
     function __construct( $Id=null, $IdCategory, $Title=null, $Content=null, $Time=null, $Key=null, $Viewed=null, $Liked=null){
         $this->Id 			= $Id;
-		$this->IdCategory 		= $IdCategory;
+		$this->IdCategory 	= $IdCategory;
 		$this->Title 		= $Title;
 		$this->Content 		= $Content;				
 		$this->Time 		= $Time;				
@@ -104,7 +104,7 @@ class Post extends Object{
 	
 	function setArray( $Data ){
         $this->Id 			= $Data[0];
-		$this->IdCategory		= $Data[2];
+		$this->IdCategory	= $Data[2];
 		$this->Title		= $Data[3];
 		$this->Content 		= \stripslashes($Data[4]);
 		$this->Time 		= $Data[5];		
@@ -117,6 +117,7 @@ class Post extends Object{
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
 	function getURLView(){		return "/bai-viet/".$this->getCategory()->getKey()."/".$this->getKey();}
+	function getURLViewFull(){	return "http://cotuong.caytretramdot.com/bai-viet/".$this->getCategory()->getKey()."/".$this->getKey();}
 			
 	function getURLUpdLoad(){	return "admin/post/".$this->getIdCategory()."/".$this->getId()."/upd/load";}
 	function getURLUpdExe(){	return "admin/post/".$this->getIdCategory()."/".$this->getId()."/upd/exe";}

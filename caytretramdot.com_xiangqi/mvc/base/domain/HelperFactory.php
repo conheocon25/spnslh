@@ -3,12 +3,8 @@ namespace MVC\Domain;
 if ( ! isset( $EG_DISABLE_INCLUDES ) ) {			
 	require_once( "mvc/mapper/User.php" 			);		
 	require_once( "mvc/mapper/UserTag.php" 			);		
-	require_once( "mvc/mapper/Tag.php" 				);
 	
-	require_once( "mvc/mapper/Post.php"				);
-	require_once( "mvc/mapper/PostTag.php" 			);
-	require_once( "mvc/mapper/PostLinked.php" 		);
-	require_once( "mvc/mapper/PostMap.php"			);
+	require_once( "mvc/mapper/Post.php"				);	
 	require_once( "mvc/mapper/Config.php"			);	
 	require_once( "mvc/mapper/Guest.php"			);	
 	

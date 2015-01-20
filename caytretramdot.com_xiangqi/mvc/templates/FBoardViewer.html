@@ -14,7 +14,7 @@
 			<div class="row"><h1 tal:content="CBM/getName"/></div>
 			<div class="row">
 				<div class="col-md-3 col-sm-3">
-					GIỚI THIỆU THÔNG TIN VỀ VÁN CỜ
+					<p tal:content="structure CBM/getInfo"/>
 				</div>
 				<div class="col-md-6 col-sm-6">
 					<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-image: url(/data/chess/150/Board.jpg); background-size: 100% 100%;">
@@ -187,8 +187,7 @@
 						</tr>
 					</table>					
 				</div>
-				<div id="MoveList" class="col-md-3 col-xs-3" tal:attributes="MoveStart CBM/getMoveStart; MoveEnd CBM/getMoveEnd">
-					<div class="row"><H3>NƯỚC ĐI</H3></div>
+				<div id="MoveList" class="col-md-3 col-xs-3" tal:attributes="MoveStart CBM/getMoveStart; MoveEnd CBM/getMoveEnd">					
 					<div class="row btn-row" tal:repeat="Detail CBM/getDetailAll">
 						<span tal:content="Detail/getMove" /> . 
 						<div class="Move btn btn-danger btn-conf" 		tal:attributes="alt Detail/getState1; move Detail/getMove1"><span tal:content="Detail/getName1"/></div>

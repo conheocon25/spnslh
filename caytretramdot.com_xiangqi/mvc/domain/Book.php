@@ -13,6 +13,7 @@ class Book extends Object{
 	private $Language;	
 	private $Order;
 	private $URL;
+	private $Viewed;
 	private $Key;
 		
 	//-------------------------------------------------------------------------------
@@ -28,6 +29,7 @@ class Book extends Object{
 		$Language=null , 
 		$Order=Null, 
 		$URL=Null, 
+		$Viewed=Null, 
 		$Key=Null) 
 	{
 		$this->Id 			= $Id; 
@@ -39,6 +41,7 @@ class Book extends Object{
 		$this->Language 	= $Language; 
 		$this->Order 		= $Order;
 		$this->URL 			= $URL;
+		$this->Viewed 		= $Viewed;
 		$this->Key 			= $Key;
 		
 		parent::__construct( $Id );
@@ -58,6 +61,9 @@ class Book extends Object{
 	
 	function setTime( $Time ) {$this->Time = $Time;$this->markDirty();}   
 	function getTime( ) {return $this->Time;}
+	function getTimePrint( ){		
+		$D = new \MVC\Library\Date($this->Time);return $D->getFullDateTimeFormat();
+	}
 	
 	function setInfo( $Info ) {$this->Info = $Info;$this->markDirty();}   
 	function getInfo( ) {return $this->Info;}
@@ -73,6 +79,9 @@ class Book extends Object{
 	
 	function setOrder( $Order ) {$this->Order = $Order;$this->markDirty();}   
 	function getOrder( ) {return $this->Order;}
+	
+	function setViewed( $Viewed ) {$this->Viewed = $Viewed; $this->markDirty();}   
+	function getViewed( ) {return $this->Viewed;}
 	
 	function setKey( $Key ){$this->Key = $Key;$this->markDirty();}
 	function getKey( ) {return $this->Key;}
@@ -99,6 +108,7 @@ class Book extends Object{
 			'Info'			=> $this->getInfo(),
 		 	'Order'			=> $this->getOrder(),
 			'URL'			=> $this->getURL(),
+			'Viewed'		=> $this->getViewed(),
 			'Key'			=> $this->getKey()
 		);
 		return json_encode($json);
@@ -112,14 +122,15 @@ class Book extends Object{
 		$this->Info 		= $Data[4];
 		$this->Order 		= $Data[5];
 		$this->URL 			= $Data[6];
-		$this->Key 			= $Data[7];
+		$this->Viewed		= $Data[7];
+		$this->Key 			= $Data[8];
     }
 	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
-	//-------------------------------------------------------------------------------
-	function getURLRead(){return "/van-ban/".$this->getkey();}
-	function getURLView(){return "/sach/".$this->getCategory()->getKey()."/".$this->getKey();}
+	//-------------------------------------------------------------------------------	
+	function getURLView()		{return "/sach/".$this->getCategory()->getKey()."/".$this->getKey();}
+	function getURLViewFull()	{return "http://cotuong.caytretramdot.com/sach/".$this->getCategory()->getKey()."/".$this->getKey();}
 
 	function getURLUpdLoad(){	return "admin/book/".$this->getIdCategory()."/".$this->getId()."/upd/load";}
 	function getURLUpdExe(){	return "admin/book/".$this->getIdCategory()."/".$this->getId()."/upd/exe";}	

@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class ABoardDetailComposeExe extends Command {
+	class ABoardPoseExe extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -30,15 +30,30 @@
 			
 			$Count = count($aStep);
 			for ($i=0; $i<$Count; $i+=2){
-				$CBMD = new \MVC\Domain\CBMDetail(
-					null,
-					$IdBoard,
-					($i/2)+1,
-					$aStepA[$i],
-					$aStep[$i],
-					$aStepA[$i+1],
-					$aStep[$i+1]
-				);
+				
+				if (isset($aStepA[$i+1])){
+					$CBMD = new \MVC\Domain\CBMDetail(
+						null,
+						$IdBoard,
+						($i/2)+1,
+						$aStepA[$i],
+						$aStep[$i],
+						$aStepA[$i+1],
+						$aStep[$i+1]
+					);	
+				}else{
+					$CBMD = new \MVC\Domain\CBMDetail(
+						null,
+						$IdBoard,
+						($i/2)+1,
+						$aStepA[$i],
+						$aStep[$i],
+						"0",
+						"END"
+					);				
+				}
+				
+				
 				$mCBMDetail->insert($CBMD);
 			}
 			$CBM->setMoveStart(0);

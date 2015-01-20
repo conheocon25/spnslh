@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class ABoardDetail extends Command {
+	class ABoardPose extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -12,11 +12,13 @@
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
 			$IdCategory = $request->getProperty('IdCategory');
+			$IdBoard 	= $request->getProperty('IdBoard');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
 			$mCategoryBoard = new \MVC\Mapper\CategoryBoard();
+			$mCBM 			= new \MVC\Mapper\CBM();
 			$mConfig 		= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
@@ -28,8 +30,8 @@
 			$ConfigName = $mConfig->findByName("NAME");
 			
 			$Category 			= $mCategoryBoard->find($IdCategory);
-			$CategoryBoardAll 	= $mCategoryBoard->findAll();
-									
+			$CBM				= $mCBM->find($IdBoard);
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
@@ -37,8 +39,8 @@
 			$request->setObject('Navigation'	, $Navigation);			
 			$request->setObject('ConfigName'	, $ConfigName);			
 			$request->setObject('Category'		, $Category);
-			$request->setObject('CategoryBoardAll'	, $CategoryBoardAll);
-																		
+			$request->setObject('CBM'			, $CBM);
+																					
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

@@ -24,9 +24,8 @@ RewriteRule ^bai-viet/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$		?cmd=FPostDetail&KCate
 RewriteRule ^van-co/([A-Za-z0-9_-]+)$							?cmd=FBoard&KCategory=$1 [L]
 RewriteRule ^van-co/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$			?cmd=FBoardViewer&KCategory=$1&KBoard=$2 [L]
 
-RewriteRule ^soft$												?cmd=FSoft [L]
-
 RewriteRule ^sach/([A-Za-z0-9_-]+)$								?cmd=FBook&KCategory=$1 [L]
+RewriteRule ^sach/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$			?cmd=FBookDetail&KCategory=$1&KBook=$2 [L]
 
 RewriteRule ^lien-he$ 											?cmd=FContact 		[L]
 
@@ -50,9 +49,14 @@ RewriteRule ^admin$ 													?cmd=Admin [L]
 # SETTING
 #---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^admin/board$ 												?cmd=ABoard [L]
-RewriteRule ^admin/board/([0-9]+)$ 										?cmd=ABoardDetail&IdCategory=$1 [L]
-RewriteRule ^admin/board/([0-9]+)/([0-9]+)$ 							?cmd=ABoardDetailCompose&IdCategory=$1&IdBoard=$2 [L]
-RewriteRule ^admin/board/([0-9]+)/([0-9]+)/compose/exe$ 				?cmd=ABoardDetailComposeExe&IdCategory=$1&IdBoard=$2 [L]
+RewriteRule ^admin/board/([0-9]+)$ 										?cmd=ABoard&IdCategory=$1 [L]
+RewriteRule ^admin/board/([0-9]+)/ins/load$ 							?cmd=ABoardInsLoad&IdCategory=$1 [L]
+RewriteRule ^admin/board/([0-9]+)/ins/exe$ 								?cmd=ABoardInsExe&IdCategory=$1 [L]
+RewriteRule ^admin/board/([0-9]+)/([0-9]+)/upd/load$ 					?cmd=ABoardUpdLoad&IdCategory=$1&IdBoard=$2 [L]
+RewriteRule ^admin/board/([0-9]+)/([0-9]+)/upd/exe$ 					?cmd=ABoardUpdExe&IdCategory=$1&IdBoard=$2 [L]
+
+RewriteRule ^admin/board/([0-9]+)/([0-9]+)/pose$ 						?cmd=ABoardPose&IdCategory=$1&IdBoard=$2 [L]
+RewriteRule ^admin/board/([0-9]+)/([0-9]+)/pose/exe$ 					?cmd=ABoardPoseExe&IdCategory=$1&IdBoard=$2 [L]
 
 RewriteRule ^admin/book$ 												?cmd=ABook [L]
 RewriteRule ^admin/book/([0-9]+)$ 										?cmd=ABook&IdCategory=$1 [L]

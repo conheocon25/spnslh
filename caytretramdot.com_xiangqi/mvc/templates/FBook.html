@@ -18,7 +18,7 @@
 						</tr>
 						<tr tal:repeat="Book Category/getBookAll">
 							<td><div class="text-center" tal:content="repeat/Book/number"/></td>
-							<td><a tal:attributes="href Book/getURL"><span tal:content="Book/getName"/></a></td>
+							<td><a tal:attributes="href Book/getURLView"><span tal:content="Book/getTitle"/></a></td>
 							<td><div class="text-left" tal:content="Book/getAuthor"/></td>
 							<td><div class="text-left" tal:content="Book/getLanguage"/></td>
 						</tr>
