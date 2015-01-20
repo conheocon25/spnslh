@@ -25,7 +25,7 @@
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------											
 			$Category 			= $mCategoryPost->findByKey($KCategory);
-			$CategoryAll 		= $mCategoryBook->findAll();
+			$CategoryBookAll 	= $mCategoryBook->findAll();
 			$CategoryPostAll 	= $mCategoryPost->findAll();
 			$CategoryBoardAll 	= $mCategoryBoard->findAll();
 									
@@ -33,7 +33,7 @@
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
 			$request->setObject("Category", 			$Category);
-			$request->setObject("CategoryAll", 			$CategoryAll);
+			$request->setObject("CategoryBookAll", 		$CategoryBookAll);
 			$request->setObject("CategoryPostAll", 		$CategoryPostAll);
 			$request->setObject("CategoryBoardAll", 	$CategoryBoardAll);
 						

@@ -20,13 +20,15 @@
 			$mConfig 		= new \MVC\Mapper\Config();
 			$mPost 			= new \MVC\Mapper\Post();
 			$mCategoryBoard = new \MVC\Mapper\CategoryBoard();
+			$mCategoryBook 	= new \MVC\Mapper\CategoryBook();
 			$mCategoryPost 	= new \MVC\Mapper\CategoryPost();
 									
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------											
-			$Post 				= $mPost->findByKey($KPost);
+			$Post 				= $mPost->findByKey($KPost);			
 			$CategoryPostAll 	= $mCategoryPost->findAll();
+			$CategoryBookAll 	= $mCategoryBook->findAll();
 			$CategoryBoardAll 	= $mCategoryBoard->findAll();
 												
 			//-------------------------------------------------------------
@@ -35,6 +37,7 @@
 			$request->setObject("URLShare", 			'abc');			
 			$request->setObject("Post", 				$Post);			
 			$request->setObject("CategoryPostAll", 		$CategoryPostAll);
+			$request->setObject("CategoryBookAll", 		$CategoryBookAll);
 			$request->setObject("CategoryBoardAll", 	$CategoryBoardAll);
 						
 			return self::statuses('CMD_DEFAULT');

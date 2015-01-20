@@ -12,28 +12,33 @@
 					<table class="table table-striped">
 						<tr>
 							<th width="32px">STT</th>
-							<th>SÁCH</th>						
+							<th>SÁCH</th>
+							<th>TÁC GIẢ</th>						
+							<th width="32px"/>
 						</tr>
 						<tr tal:repeat="Book Category/getBookAll">
 							<td><div class="text-center" tal:content="repeat/Book/number"/></td>
 							<td><a tal:attributes="href Book/getURL"><span tal:content="Book/getName"/></a></td>
+							<td><div class="text-left" tal:content="Book/getAuthor"/></td>
+							<td><div class="text-left" tal:content="Book/getLanguage"/></td>
 						</tr>
 					</table>
 				</div>
 				<div class="col-md-3 col-sm-3">
-					<ul>
-						<li tal:repeat="Category CategoryAll">
-							<a tal:attributes="href Category/getURLView">
-								<span tal:content="Category/getName"/> (<span tal:content="Category/getBookAll/count"/>)
-							</a>
-						</li>
-					</ul>
+					<div class="panel panel-default">
+						<div class="panel-heading">Danh mục</div>
+						<div class="panel-body">
+							<ul>
+								<li tal:repeat="Category CategoryBookAll">
+									<a tal:attributes="href Category/getURLView">
+										<span tal:content="Category/getName"/> (<span tal:content="Category/getBookAll/count"/>)
+									</a>
+								</li>
+							</ul>
+						</div>						
+					</div>					
 				</div>
-			</div>
-			<div style="position:absolute; bottom:10px; width:500px; text-align:center; color:#868686; margin-left:-250px; left:50%; font-size:11px; line-height:8px;">
-				<p>Cờ Tướng Online &#169; 2015</p>
-				<p>SPN Team</p>
-			</div>
+			</div>			
 		</div>
 		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
 	</body>

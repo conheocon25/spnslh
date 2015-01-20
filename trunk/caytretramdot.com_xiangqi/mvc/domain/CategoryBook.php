@@ -66,7 +66,7 @@ class CategoryBook extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLView(){return "/download/ebook/".$this->getKey();}
+	function getURLView(){return "/ebook/".$this->getKey();}
 	
 	function getURLSetting(){return "/admin/tag/".$this->getId();}
 	function getURLSettingPost(){return "/admin/post/".$this->getId();}

@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class FDownloadEbookDetail extends Command {
+	class FSoft extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -11,31 +11,29 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$KCategory = $request->getProperty('KCategory');
-			
+						
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------						
-			$mConfig 		= new \MVC\Mapper\Config();
-			$mCategoryBook 	= new \MVC\Mapper\CategoryBook();
-			$mCategoryBoard = new \MVC\Mapper\CategoryBoard();
+			$mConfig 		= new \MVC\Mapper\Config();						
 			$mCategoryPost 	= new \MVC\Mapper\CategoryPost();
+			$mCategoryBoard = new \MVC\Mapper\CategoryBoard();
+			$mCategoryBook 	= new \MVC\Mapper\CategoryBook();
 									
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------											
-			$Category 			= $mCategoryBook->findByKey($KCategory);
-			$CategoryAll 		= $mCategoryBook->findAll();
 			$CategoryPostAll 	= $mCategoryPost->findAll();
 			$CategoryBoardAll 	= $mCategoryBoard->findAll();
-									
+			$CategoryBookAll 	= $mCategoryBook->findAll();
+												
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
-			$request->setObject("Category", 			$Category);
-			$request->setObject("CategoryAll", 			$CategoryAll);
+			$request->setProperty("Active", 'Tool');
 			$request->setObject("CategoryPostAll", 		$CategoryPostAll);
 			$request->setObject("CategoryBoardAll", 	$CategoryBoardAll);
+			$request->setObject("CategoryBookAll", 		$CategoryBookAll);
 						
 			return self::statuses('CMD_DEFAULT');
 		}
