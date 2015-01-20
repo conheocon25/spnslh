@@ -43,7 +43,7 @@
 							<td width="10%" ><img class="CCell" width="100%" id="Piece60" X="6" Y="0"/></td>
 							<td width="10%" ><img class="CCell" width="100%" id="Piece70" X="7" Y="0"/></td>
 							<td width="10%" ><img class="CCell" width="100%" id="Piece80" X="8" Y="0"/></td>
-							<td width="10%"><img width="100%" src="/data/chess/150/space.png" /></td>
+							<td width="10%"><img id="RoundGreen" width="50%" src="/data/chess/150/space.png" /></td>
 						</tr>
 						
 						<!-- R1-->
@@ -170,7 +170,7 @@
 							<td width="10%" ><img class="CCell" width="100%" id="Piece69" X="6" Y="9"/></td>
 							<td width="10%" ><img class="CCell" width="100%" id="Piece79" X="7" Y="9"/></td>
 							<td width="10%" ><img class="CCell" width="100%" id="Piece89" X="8" Y="9"/></td>
-							<td width="10%"><img width="100%" src="/data/chess/150/space.png" /></td>
+							<td width="10%"><img id="RoundRed" width="50%" src="/data/chess/150/space.png" /></td>
 						</tr>
 						<!-- TỌA ĐỘ-->
 						<tr>
@@ -207,8 +207,8 @@
 		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
 		<script type="text/javascript">
 		/*<![CDATA[*/			
-			$(function(){
-				var MoveCurrent = -1;				
+			$(function(){				
+				var MoveCurrent = -1;
 				var MoveSTART 	= parseInt($("#MoveList").attr("MoveStart"));
 				var MoveEND 	= parseInt($("#MoveList").attr("MoveEnd"));
 				
@@ -219,6 +219,7 @@
 					$(".Move").removeClass('active');
 					$(".Move[move='"+MoveCurrent+"']").addClass('active');
 					drawBoard($(this).attr('alt'));
+					drawRound1(MoveCurrent);
 				});
 												
 				$(".MoveNext").click(function(){					
@@ -228,6 +229,7 @@
 						$(".Move").removeClass('active');
 						$(".Move[move='"+MoveCurrent+"']").addClass('active');
 						drawBoard(State);
+						drawRound1(MoveCurrent);
 					}
 				});
 				
@@ -238,6 +240,7 @@
 						$(".Move").removeClass('active');
 						$(".Move[move='"+MoveCurrent+"']").addClass('active');
 						drawBoard(State);
+						drawRound1(MoveCurrent);
 					}					
 				});
 				
@@ -246,9 +249,9 @@
 					var State = $(".Move[move='"+MoveCurrent+"']").attr('alt');						
 					
 					$(".Move").removeClass('active');
-					$(".Move[move='"+MoveCurrent+"']").addClass('active');
-					
+					$(".Move[move='"+MoveCurrent+"']").addClass('active');					
 					drawBoard(State);
+					drawRound1(MoveCurrent);
 				});
 				$(".MoveLast").click(function(){										
 					MoveCurrent = MoveEND;
@@ -256,8 +259,8 @@
 					$(".Move").removeClass('active');
 					$(".Move[move='"+MoveCurrent+"']").addClass('active');
 					drawBoard(State);
-				});
-				
+					drawRound1(MoveCurrent);
+				});				
 			});
 		/*]]>*/
 		</script>

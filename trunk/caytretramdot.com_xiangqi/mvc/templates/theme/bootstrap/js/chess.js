@@ -65,8 +65,47 @@ function exportStep(Y, X, NY, NX){
 		S = "P";
 	else if (aState[Y][X]=='p' || aState[Y][X]=='P')
 		S = "C";
+	
+	//Xác định hướng tọa độ
+	if (aState[Y][X]=='r' || aState[Y][X]=='h' || aState[Y][X]=='e' || aState[Y][X]=='a'  || aState[Y][X]=='k' || aState[Y][X]=='c' || aState[Y][X]=='p'){
 		
-	return S + " " + (X+1) + " ? " +  (NX+1);
+		if (Y==NY){
+			S += " " + (X+1) + " - " +  (NX+1);
+		}			
+		else{
+			if (X==NX){
+				if (Y>NY)
+					S += " " + (X+1) + " / " +  (Y-NY);
+				else
+					S += " " + (X+1) + " . " +  (NY-Y);
+			}				
+			else{
+				if (Y>NY)
+					S += " " + (X+1) + " / " +  (NX+1);
+				else
+					S += " " + (X+1) + " . " +  (NX+1);
+			}
+		}				
+	}else{
+		if (Y==NY){
+			S += " " + (10- (X+1)) + " - " +  (10-(NX+1));
+		}else{
+		
+			if (X==NX){
+				if (Y>NY)
+					S += " " + (10-(X+1)) + " . " +  (Y-NY);
+				else
+					S += " " + (10-(X+1)) + " / " +  (NY-Y);
+			}				
+			else{
+				if (Y>NY)
+					S += " " + (10-(X+1)) + " . " +  (10-(NX+1));
+				else
+					S += " " + (10-(X+1)) + " / " +  (10-(NX+1));
+			}					
+		}
+	}
+	return S;
 }
 
 function initCompose(){
@@ -84,9 +123,19 @@ function drawRound(Round){
 	$("#RoundRed").attr('src', '');
 	$("#RoundGreen").attr('src', '');
 	if (Round<0){
-		$("#RoundRed").attr("src", '/data/chess/150/Select.png');
+		$("#RoundRed").attr("src", '/data/chess/150/CircleRed.png');
 	}else{
-		$("#RoundGreen").attr("src", '/data/chess/150/Select.png');
+		$("#RoundGreen").attr("src", '/data/chess/150/CircleGreen.png');
+	}
+}
+
+function drawRound1(Round){
+	$("#RoundRed").attr('src', '');
+	$("#RoundGreen").attr('src', '');
+	if (Round % 2 === 0){
+		$("#RoundRed").attr("src", '/data/chess/150/CircleRed.png');
+	}else{
+		$("#RoundGreen").attr("src", '/data/chess/150/CircleGreen.png');
 	}
 }
 
