@@ -57,16 +57,16 @@ class CategoryPost extends Object{
 	//-------------------------------------------------------------------------------
 	//GET LIST
 	//-------------------------------------------------------------------------------
-	function getBookAll(){
-		$mBook 		= new \MVC\Mapper\Book();
-		$BookAll 	= $mBook->findBy(array($this->getId()));
-		return $BookAll;
+	function getPostAll(){
+		$mPost 		= new \MVC\Mapper\Post();
+		$PostAll 	= $mPost->findBy(array($this->getId()));
+		return $PostAll;
 	}
 		
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLView(){return "/download/ebook/".$this->getKey();}
+	function getURLView(){return "/bai-viet/".$this->getKey();}
 	
 	function getURLSetting(){return "/admin/tag/".$this->getId();}
 	function getURLSettingPost(){return "/admin/post/".$this->getId();}

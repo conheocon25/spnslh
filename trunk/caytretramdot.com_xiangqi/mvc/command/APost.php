@@ -11,28 +11,27 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$IdTag = $request->getProperty('IdTag');
+			$IdCategory = $request->getProperty('IdCategory');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mTag 		= new \MVC\Mapper\Tag();
-			$mPT 		= new \MVC\Mapper\PostTag();			
-			$mConfig	= new \MVC\Mapper\Config();
+			$mCategoryPost 	= new \MVC\Mapper\CategoryPost();
+			$mPost 			= new \MVC\Mapper\Post();
+			$mConfig		= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------									
-			$User 		= $Session->getCurrentUser();
-			$TagAll		= $mTag->findAll();
-			if (!isset($IdTag)){
-				$IdTag = $TagAll->current()->getId();
+			//-------------------------------------------------------------
+			$CategoryPostAll	= $mCategoryPost->findAll();
+			if (!isset($IdCategory)){
+				$IdCategory = $CategoryPostAll->current()->getId();
 			}
 			
-			$Tag 			= $mTag->find($IdTag);
-			$PTAll 			= $mPT->findByUserTag(array($Session->getCurrentIdUser(), $IdTag));
+			$Category		= $mCategoryPost->find($IdCategory);
+			$PostAll 		= $mPost->findBy(array($IdCategory));
 									
-			$Title 			= mb_strtoupper($Tag->getName(), 'UTF8')." / BÀI VIẾT";
+			$Title 			= mb_strtoupper($Category->getName(), 'UTF8')." / BÀI VIẾT";
 			$Navigation 	= array();
 			$ConfigName		= $mConfig->findByName("NAME");
 									
@@ -43,11 +42,10 @@
 			$request->setProperty('ActiveAdmin'	, 'Post');			
 			$request->setObject('Navigation'	, $Navigation);
 			
-			$request->setObject('ConfigName'	, $ConfigName);
-			$request->setObject('TagAll'		, $TagAll);
-			$request->setProperty('User'		, $User);
-			$request->setProperty('Tag'			, $Tag);
-			$request->setObject('PTAll'			, $PTAll);
+			$request->setObject('ConfigName'		, $ConfigName);
+			$request->setObject('CategoryPostAll'	, $CategoryPostAll);			
+			$request->setObject('Category'			, $Category);
+			$request->setObject('PostAll'			, $PostAll);
 															
 			return self::statuses('CMD_DEFAULT');
 		}

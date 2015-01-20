@@ -4,7 +4,7 @@ require_once( "mvc/base/domain/DomainObject.php" );
 
 class Post extends Object{
     private $Id;
-	private $IdUser;
+	private $IdCategory;
 	private $Title;
 	private $Content;	
 	private $Time;	
@@ -15,9 +15,9 @@ class Post extends Object{
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-    function __construct( $Id=null, $IdUser, $Title=null, $Content=null, $Time=null, $Key=null, $Viewed=null, $Liked=null){
+    function __construct( $Id=null, $IdCategory, $Title=null, $Content=null, $Time=null, $Key=null, $Viewed=null, $Liked=null){
         $this->Id 			= $Id;
-		$this->IdUser 		= $IdUser;
+		$this->IdCategory 		= $IdCategory;
 		$this->Title 		= $Title;
 		$this->Content 		= $Content;				
 		$this->Time 		= $Time;				
@@ -39,12 +39,12 @@ class Post extends Object{
 		$D = new \MVC\Library\Date($this->Time);return $D->getFullDateTimeFormat();
 	}
 	
-	function setIdUser( $IdUser ){$this->IdUser = $IdUser;$this->markDirty();}   
-	function getIdUser( ) {return $this->IdUser;}
-	function getUser( ) {
-		$mUser = new \MVC\Mapper\User();
-		$User = $mUser->find($this->IdUser);
-		return $User;
+	function setIdCategory( $IdCategory ){$this->IdCategory = $IdCategory;$this->markDirty();}   
+	function getIdCategory( ) {return $this->IdCategory;}
+	function getCategory( ) {
+		$mCategory 	= new \MVC\Mapper\CategoryPost();
+		$Category 	= $mCategory->find($this->IdCategory);
+		return $Category;
 	}
 	
 	function setTitle( $Title ){$this->Title = $Title;$this->markDirty();}   
@@ -86,52 +86,11 @@ class Post extends Object{
 	//-------------------------------------------------------------------------------
 	//GET LISTs
 	//-------------------------------------------------------------------------------
-	function getPTAll(){
-		$mPT 	= new \MVC\Mapper\PostTag();	
-		$PTAll 	= $mPT->findByPost(array($this->getId()));
-		return $PTAll;
-	}
-	
-	function getPLAll(){
-		$mPL 	= new \MVC\Mapper\PostLinked();	
-		$PLAll 	= $mPL->findByPost(array($this->getId()));
-		return $PLAll;
-	}
-	
-	function getPLIsRelated(){
-		$mPL 	= new \MVC\Mapper\PostLinked();	
-		$PLAll 	= $mPL->findByPostLinked(array($this->getId(), 1));
-		return $PLAll;
-	}
-	
-	function getPLIsAlso(){
-		$mPL 	= new \MVC\Mapper\PostLinked();	
-		$PLAll 	= $mPL->findByPostLinked(array($this->getId(), 2));
-		return $PLAll;
-	}
-	
-	function getPLIsChild(){
-		$mPL 	= new \MVC\Mapper\PostLinked();	
-		$PLAll 	= $mPL->findByPostLinked(array($this->getId(), 4));
-		return $PLAll;
-	}
-	
-	function getPLIsParent(){
-		$mPL 	= new \MVC\Mapper\PostLinked();
-		$PLAll 	= $mPL->findByPostLinked(array($this->getId(), 3));
-		return $PLAll;
-	}
-	
-	function getPMAll(){
-		$mPM 	= new \MVC\Mapper\PostMap();	
-		$PMAll 	= $mPM->findByPost(array($this->getId()));
-		return $PMAll;
-	}
-	
+				
 	function toJSON(){
 		$json = array(
 			'Id' 			=> $this->getId(),
-			'IdUser'		=> $this->getIdUser(),
+			'IdCategory'	=> $this->getIdCategory(),
 			'Title'			=> $this->getTitle(),
 			'Content'		=> $this->getContent(),			
 			'Time'			=> $this->getTime(),			
@@ -144,7 +103,7 @@ class Post extends Object{
 	
 	function setArray( $Data ){
         $this->Id 			= $Data[0];
-		$this->IdUser		= $Data[2];
+		$this->IdCategory		= $Data[2];
 		$this->Title		= $Data[3];
 		$this->Content 		= \stripslashes($Data[4]);
 		$this->Time 		= $Data[5];		
@@ -156,14 +115,10 @@ class Post extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLView(){		return "/bai-viet/".$this->getKey();}
-	
-	function getURLSettingTag(){return "admin/post/".$this->getId()."/tag";}
-	function getURLSettingLinked(){return "admin/post/".$this->getId()."/linked";}
-	function getURLSettingMap(){return "admin/post/".$this->getId()."/map";}
-	
-	function getURLUpdLoad(){	return "admin/post/".$this->getId()."/upd/load";}
-	function getURLUpdExe(){	return "admin/post/".$this->getId()."/upd/exe";}
+	function getURLView(){		return "/bai-viet/".$this->getCategory()->getKey()."/".$this->getKey();}
+			
+	function getURLUpdLoad(){	return "admin/post/".$this->getIdCategory()."/".$this->getId()."/upd/load";}
+	function getURLUpdExe(){	return "admin/post/".$this->getIdCategory()."/".$this->getId()."/upd/exe";}
 					
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

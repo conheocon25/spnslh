@@ -123,16 +123,7 @@
 			<li tal:attributes="class php:ActiveAdmin=='Setting'?'active':'disable'">				
 				<a tal:attributes="href '/admin/setting'"><i class="glyphicons-cogwheels" />THIẾT LẬP</a>
 			</li>
-		</ul>
-		
-		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isSeller()">			
-			<li tal:attributes="class php:ActiveAdmin=='Post'?'active':'disable'">
-				<a tal:attributes="href '/admin/post'"><i class="glyphicons-cogwheels" />BÀI VIẾT</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='Setting'?'active':'disable'">
-				<a tal:attributes="href '/admin/setting'"><i class="glyphicons-cogwheels" />THIẾT LẬP</a>
-			</li>
-		</ul>
+		</ul>		
 	</div>
 	
 	<!-- ======================================================================== -->
