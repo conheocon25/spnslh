@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class ABoardUpdExe extends Command{
+	class ABoardInsExe extends Command{
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -10,15 +10,15 @@
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------			
-			$IdBoard 	= $request->getProperty('IdBoard');
+			//-------------------------------------------------------------						
 			$IdCategory = $request->getProperty('IdCategory');									
 			$Name 		= $request->getProperty('Name');			
 			$Time 		= $request->getProperty('Time');			
 			$Info 		= \stripslashes($request->getProperty('Info'));
-			$MoveStart	= $request->getProperty('MoveStart');
+			$MoveStart 	= $request->getProperty('MoveStart');
 			$MoveEnd	= $request->getProperty('MoveEnd');
-												
+			
+						
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
@@ -26,18 +26,20 @@
 					
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------
-			
-			$Board= $mBoard->find($IdBoard);
-			
-			$Board->setInfo($Info);			
-			$Board->setName($Name);
-			$Board->setTime($Time);			
-			$Board->setMoveStart($MoveStart);
-			$Board->setMoveEnd($MoveEnd);			
+			//-------------------------------------------------------------										
+			$Board = new \MVC\Domain\Board(
+				null, 
+				$IdCategory, 
+				$Name, 
+				$Time, 
+				$Info, 
+				$MoveStart, 
+				$MoveEnd, 				
+				""
+			);
 			$Board->reKey();
 			
-			$mBoard->update($Board);
+			$mBoard->insert($Board);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI

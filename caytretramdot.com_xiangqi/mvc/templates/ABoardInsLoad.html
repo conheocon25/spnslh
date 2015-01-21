@@ -14,35 +14,35 @@
 				<div class="col-12">					
 					<div class="widget-box">
 						<div class="widget-content nopadding">
-							<form class="form-horizontal" tal:attributes="action Board/getURLUpdExe" method="POST">
+							<form class="form-horizontal" tal:attributes="action Category/getURLSettingBoardInsExe" method="POST">
 								<div class="control-group">
 									<label class="control-label" for="Title">Tiêu đề</label>
 									<div class="controls">
-										<input type="text" id="Name" name="Name" tal:attributes="value Board/getName"/>
+										<input type="text" id="Name" name="Name" />
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="Time">Thời gian</label>
 									<div class="controls">
-										<input type="text" id="Time" name="Time" tal:attributes="value Board/getTime" data-date-format="yyyy-mm-dd hh:ii"/>
+										<input type="text" id="Time" name="Time" data-date-format="yyyy-mm-dd hh:ii"/>
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="MoveStart">Nước đầu</label>
 									<div class="controls">
-										<input type="text" id="MoveStart" name="MoveStart" tal:attributes="value Board/getMoveStart"/>
+										<input type="text" id="MoveStart" name="MoveStart" />
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="MoveStart">Nước cuối</label>
 									<div class="controls">
-										<input type="text" id="MoveEnd" name="MoveEnd" tal:attributes="value Board/getMoveEnd"/>
+										<input type="text" id="MoveEnd" name="MoveEnd" />
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="Info">Giới thiệu</label>
 									<div class="controls">
-										<textarea id="Info" class="ckeditor" name="Info" tal:content="Board/getInfo"/>
+										<textarea id="Info" class="ckeditor" name="Info" />
 									</div>
 								</div>
 								<div class="form-actions">

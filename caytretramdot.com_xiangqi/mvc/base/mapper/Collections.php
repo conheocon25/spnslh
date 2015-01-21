@@ -11,8 +11,9 @@ class ConfigCollection 			extends Collection implements \MVC\Domain\ConfigCollec
 class PageCollection 			extends Collection implements \MVC\Domain\PageCollection			{function targetClass(){return "\MVC\Domain\Page";			}}
 class GuestCollection 			extends Collection implements \MVC\Domain\GuestCollection			{function targetClass(){return "\MVC\Domain\Guest";			}}
 
-class CBMCollection 			extends Collection implements \MVC\Domain\CBMCollection				{function targetClass(){return "\MVC\Domain\CBM";			}}
-class CBMDetailCollection 		extends Collection implements \MVC\Domain\CBMDetailCollection		{function targetClass(){return "\MVC\Domain\CBMDetail";		}}
+class BoardCollection 			extends Collection implements \MVC\Domain\BoardCollection			{function targetClass(){return "\MVC\Domain\Board";			}}
+class BoardDetailCollection 	extends Collection implements \MVC\Domain\BoardDetailCollection		{function targetClass(){return "\MVC\Domain\BoardDetail";	}}
+
 class CategoryBookCollection 	extends Collection implements \MVC\Domain\CategoryBookCollection	{function targetClass(){return "\MVC\Domain\CategoryBook";	}}
 class BookCollection 			extends Collection implements \MVC\Domain\BookCollection			{function targetClass(){return "\MVC\Domain\Book";			}}
 class CategoryBoardCollection 	extends Collection implements \MVC\Domain\CategoryBoardCollection	{function targetClass(){return "\MVC\Domain\CategoryBoard";	}}

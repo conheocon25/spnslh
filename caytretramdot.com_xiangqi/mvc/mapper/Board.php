@@ -1,21 +1,21 @@
 <?php
 namespace MVC\Mapper;
 require_once( "mvc/base/Mapper.php" );
-class CBM extends Mapper implements \MVC\Domain\CBMFinder{
+class Board extends Mapper implements \MVC\Domain\BoardFinder{
 
     function __construct() {
         parent::__construct();
 				
-		$tblCBM 				= "bamboo100_cbm";
+		$tblBoard 				= "bamboo100_board";
 		
-		$selectAllStmt 			= sprintf("select * from %s ORDER BY id", $tblCBM);
-		$selectStmt 			= sprintf("select *  from %s where id=?", $tblCBM);
-		$updateStmt 			= sprintf("update %s set id_category=?, name=?, `time`=?, info=?, move_start=?, move_end=?, `key`=? where id=?", $tblCBM);
-		$insertStmt 			= sprintf("insert into %s ( id_category, name, time, info, move_start, move_end, key) values(?, ?, ?, ?, ?, ?, ?)", $tblCBM);
-		$deleteStmt 			= sprintf("delete from %s where id=?", $tblCBM);
-		$findByStmt 			= sprintf("select *  from %s where `id_category`=?", $tblCBM);
-		$findByKeyStmt 			= sprintf("select *  from %s where `key`=?", $tblCBM);
-		$findByPageStmt 		= sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblCBM);
+		$selectAllStmt 			= sprintf("select * from %s ORDER BY id", $tblBoard);
+		$selectStmt 			= sprintf("select *  from %s where id=?", $tblBoard);
+		$updateStmt 			= sprintf("update %s set id_category=?, name=?, `time`=?, info=?, move_start=?, move_end=?, `key`=? where id=?", $tblBoard);
+		$insertStmt 			= sprintf("insert into %s ( id_category, name, `time`, info, move_start, move_end, `key`) values(?, ?, ?, ?, ?, ?, ?)", $tblBoard);
+		$deleteStmt 			= sprintf("delete from %s where id=?", $tblBoard);
+		$findByStmt 			= sprintf("select *  from %s where `id_category`=?", $tblBoard);
+		$findByKeyStmt 			= sprintf("select *  from %s where `key`=?", $tblBoard);
+		$findByPageStmt 		= sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblBoard);
 						
         $this->selectAllStmt 	= self::$PDO->prepare($selectAllStmt);
         $this->selectStmt 		= self::$PDO->prepare($selectStmt);
@@ -27,9 +27,9 @@ class CBM extends Mapper implements \MVC\Domain\CBMFinder{
 		$this->findByKeyStmt 	= self::$PDO->prepare($findByKeyStmt);
 	}
 	
-    function getCollection( array $raw ) {return new CBMCollection( $raw, $this );}
+    function getCollection( array $raw ) {return new BoardCollection( $raw, $this );}
     protected function doCreateObject( array $array ) {
-        $obj = new \MVC\Domain\CBM( 
+        $obj = new \MVC\Domain\Board( 
 			$array['id'],
 			$array['id_category'],
 			$array['name'],
@@ -42,7 +42,7 @@ class CBM extends Mapper implements \MVC\Domain\CBMFinder{
         return $obj;
     }
 
-    protected function targetClass() {return "CBM";}
+    protected function targetClass() {return "Board";}
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array( 
 			$object->getIdCategory(),
@@ -78,7 +78,7 @@ class CBM extends Mapper implements \MVC\Domain\CBMFinder{
 	
 	function findBy( $values ){
 		$this->findByStmt->execute($values);
-        return new CBMCollection( $this->findByStmt->fetchAll(), $this);
+        return new BoardCollection( $this->findByStmt->fetchAll(), $this);
     }			
 	
 	function findByKey( $values ) {	
@@ -95,7 +95,7 @@ class CBM extends Mapper implements \MVC\Domain\CBMFinder{
 		$this->findByPageStmt->bindValue(':start', ((int)($values[0])-1)*(int)($values[1]), \PDO::PARAM_INT);
 		$this->findByPageStmt->bindValue(':max', (int)($values[1]), \PDO::PARAM_INT);
 		$this->findByPageStmt->execute();
-        return new CBMCollection( $this->findByPageStmt->fetchAll(), $this );
+        return new BoardCollection( $this->findByPageStmt->fetchAll(), $this );
     }
 			
 }

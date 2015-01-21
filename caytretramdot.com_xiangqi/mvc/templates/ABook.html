@@ -35,7 +35,7 @@
 									<tr>
 										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
 										<th class="left">TIÊU ĐỀ</th>
-										<th width="120">TÁC GIẢ</th>										
+										<th width="120">TÁC GIẢ</th>
 										<th width="40"><i class="glyphicons-bin"/></th>
 									</tr>
 								</thead>
@@ -73,7 +73,7 @@
 				});
 				
 				$.ajax({
-					type: "Book",
+					type: "POST",
 					data: {ListId:Data},
 					url: URL,
 					success: function(msg){
@@ -92,7 +92,7 @@
 			$('#URLDelButton').click(function(){			
 				var URL = "/object/del/Book/" + $(this).attr('alt');
 				$.ajax({
-					type: "Book",					
+					type: "POST",					
 					url: URL,
 					success: function(msg){
 						location.reload();

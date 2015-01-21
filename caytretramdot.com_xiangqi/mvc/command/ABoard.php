@@ -17,7 +17,7 @@
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
 			$mCategoryBoard = new \MVC\Mapper\CategoryBoard();
-			$mCBM 			= new \MVC\Mapper\CBM();
+			$mBoard 		= new \MVC\Mapper\Board();
 			$mConfig 		= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
@@ -28,7 +28,7 @@
 				$IdCategory = $CategoryBoardAll->current()->getId();
 			}
 			$Category	= $mCategoryBoard->find($IdCategory);
-			$CBMAll 	= $mCBM->findBy(array($IdCategory));
+			$BoardAll 	= $mBoard->findBy(array($IdCategory));
 			
 			$Title 		= mb_strtoupper($Category->getName(), 'UTF8')." / VÁN CỜ";
 			$Navigation = array();
@@ -42,7 +42,7 @@
 			$request->setObject('ConfigName'	, $ConfigName);			
 			$request->setObject('CategoryBoardAll'	, $CategoryBoardAll);
 			$request->setObject('Category'			, $Category);
-			$request->setObject('BoardAll'			, $CBMAll);
+			$request->setObject('BoardAll'			, $BoardAll);
 																		
 			return self::statuses('CMD_DEFAULT');
 		}

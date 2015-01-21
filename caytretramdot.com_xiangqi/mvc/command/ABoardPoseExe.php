@@ -19,20 +19,20 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mCBM 			= new \MVC\Mapper\CBM();
-			$mCBMDetail		= new \MVC\Mapper\CBMDetail();
+			$mBoard 			= new \MVC\Mapper\Board();
+			$mBoardDetail		= new \MVC\Mapper\BoardDetail();
 						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------																					
-			$CBM			= $mCBM->find($IdBoard);
-			$mCBMDetail->deleteBy(array($IdBoard));
+			$Board			= $mBoard->find($IdBoard);
+			$mBoardDetail->deleteBy(array($IdBoard));
 			
 			$Count = count($aStep);
 			for ($i=0; $i<$Count; $i+=2){
 				
 				if (isset($aStepA[$i+1])){
-					$CBMD = new \MVC\Domain\CBMDetail(
+					$BoardD = new \MVC\Domain\BoardDetail(
 						null,
 						$IdBoard,
 						($i/2)+1,
@@ -42,7 +42,7 @@
 						$aStep[$i+1]
 					);	
 				}else{
-					$CBMD = new \MVC\Domain\CBMDetail(
+					$BoardD = new \MVC\Domain\BoardDetail(
 						null,
 						$IdBoard,
 						($i/2)+1,
@@ -54,12 +54,12 @@
 				}
 				
 				
-				$mCBMDetail->insert($CBMD);
+				$mBoardDetail->insert($BoardD);
 			}
-			$CBM->setMoveStart(0);
-			$CBM->setMoveEnd($Count-1);
+			$Board->setMoveStart(0);
+			$Board->setMoveEnd($Count-1);
 			
-			$mCBM->update($CBM);
+			$mBoard->update($Board);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
