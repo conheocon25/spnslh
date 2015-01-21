@@ -16,6 +16,8 @@ class BoardDetailCollection 	extends Collection implements \MVC\Domain\BoardDeta
 
 class CategoryBookCollection 	extends Collection implements \MVC\Domain\CategoryBookCollection	{function targetClass(){return "\MVC\Domain\CategoryBook";	}}
 class BookCollection 			extends Collection implements \MVC\Domain\BookCollection			{function targetClass(){return "\MVC\Domain\Book";			}}
+class ChapterCollection 		extends Collection implements \MVC\Domain\ChapterCollection			{function targetClass(){return "\MVC\Domain\Chapter";		}}
+
 class CategoryBoardCollection 	extends Collection implements \MVC\Domain\CategoryBoardCollection	{function targetClass(){return "\MVC\Domain\CategoryBoard";	}}
 class CategoryPostCollection 	extends Collection implements \MVC\Domain\CategoryPostCollection	{function targetClass(){return "\MVC\Domain\CategoryPost";	}}
 ?>

@@ -6,15 +6,15 @@ class BoardDetail extends Mapper implements \MVC\Domain\BoardDetailFinder{
     function __construct() {
         parent::__construct();
 				
-		$tblBoardDetail 		= "bamboo100_board_detail";
+		$tblBoardDetail 	= "bamboo100_board_detail";
 		
 		$selectAllStmt 		= sprintf("select * from %s ORDER BY id", $tblBoardDetail);
 		$selectStmt 		= sprintf("select *  from %s where id=?", $tblBoardDetail);
-		$updateStmt 		= sprintf("update %s set id_cbm=?, move=?, name1=?, state1=?, name2=?, state2=? where id=?", $tblBoardDetail);
-		$insertStmt 		= sprintf("insert into %s ( id_cbm, move, name1, state1, name2, state2) values(?, ?, ?, ?, ?, ?)", $tblBoardDetail);
+		$updateStmt 		= sprintf("update %s set id_board=?, move=?, name1=?, state1=?, name2=?, state2=? where id=?", $tblBoardDetail);
+		$insertStmt 		= sprintf("insert into %s ( id_board, move, name1, state1, name2, state2) values(?, ?, ?, ?, ?, ?)", $tblBoardDetail);
 		$deleteStmt 		= sprintf("delete from %s where id=?", $tblBoardDetail);
-		$deleteByStmt 		= sprintf("delete from %s where id_cbm=?", $tblBoardDetail);
-		$findByStmt 		= sprintf("SELECT * FROM  %s WHERE id_cbm=?", $tblBoardDetail);
+		$deleteByStmt 		= sprintf("delete from %s where id_board=?", $tblBoardDetail);
+		$findByStmt 		= sprintf("SELECT * FROM  %s WHERE id_board=?", $tblBoardDetail);
 												
         $this->selectAllStmt 	= self::$PDO->prepare($selectAllStmt);
         $this->selectStmt 		= self::$PDO->prepare($selectStmt);
@@ -29,7 +29,7 @@ class BoardDetail extends Mapper implements \MVC\Domain\BoardDetailFinder{
     protected function doCreateObject( array $array ) {
         $obj = new \MVC\Domain\BoardDetail( 
 			$array['id'],
-			$array['id_cbm'],
+			$array['id_board'],
 			$array['move'],
 			$array['name1'],
 			$array['state1'],
@@ -42,7 +42,7 @@ class BoardDetail extends Mapper implements \MVC\Domain\BoardDetailFinder{
     protected function targetClass() {return "BoardDetail";}
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array( 
-			$object->getIdCBM(),
+			$object->getIdBoard(),
 			$object->getMove(),
 			$object->getName1(),
 			$object->getState1(),
@@ -56,7 +56,7 @@ class BoardDetail extends Mapper implements \MVC\Domain\BoardDetailFinder{
     
     protected function doUpdate( \MVC\Domain\Object $object ) {
         $values = array( 
-			$object->getIdCBM(),
+			$object->getIdBoard(),
 			$object->getMove(),
 			$object->getName1(),
 			$object->getState1(),

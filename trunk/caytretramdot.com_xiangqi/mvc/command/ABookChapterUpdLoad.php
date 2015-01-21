@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class ABook extends Command {
+	class ABookChapterUpdLoad extends Command{
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -11,42 +11,42 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$IdCategory = $request->getProperty('IdCategory');
+			$IdCategory 	= $request->getProperty('IdCategory');
+			$IdBook 		= $request->getProperty('IdBook');
+			$IdChapter 		= $request->getProperty('IdChapter');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
-			//-------------------------------------------------------------
+			//-------------------------------------------------------------			
 			$mCategoryBook 	= new \MVC\Mapper\CategoryBook();
 			$mBook 			= new \MVC\Mapper\Book();
+			$mChapter 		= new \MVC\Mapper\Chapter();
 			$mConfig		= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------
-			$CategoryBookAll	= $mCategoryBook->findAll();
-			if (!isset($IdCategory)){
-				$IdCategory = $CategoryBookAll->current()->getId();
-			}
+			//-------------------------------------------------------------																																	
+			$Chapter 	= $mChapter->find($IdChapter);
+			$Book 		= $mBook->find($IdBook);
+			$Category 	= $Book->getCategory();
 			
-			$Category		= $mCategoryBook->find($IdCategory);
-			$BookAll 		= $mBook->findBy(array($IdCategory));
-									
-			$Title 			= "SÁCH CỜ / ". mb_strtoupper($Category->getName(), 'UTF8');
-			$Navigation 	= array();
+			$Title 		= \mb_strtoupper($Chapter->getTitle(), 'UTF8');
+			$Navigation = array(								
+				array(\mb_strtoupper($Category->getName(), 'UTF8'), $Category->getURLSetting()),
+				array(\mb_strtoupper($Book->getTitle(), 'UTF8'), $Book->getURLSettingChapter()),
+			);
 			$ConfigName		= $mConfig->findByName("NAME");
-									
+												
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
-			$request->setProperty('Title'		, $Title);						
-			$request->setProperty('ActiveAdmin'	, 'Book');			
-			$request->setObject('Navigation'	, $Navigation);
+			$request->setProperty('Title'		, $Title);
+			$request->setObject('Navigation'	, $Navigation);			
+			$request->setObject('ConfigName'	, $ConfigName);			
+			$request->setObject('Book'			, $Book);
+			$request->setObject('Category'		, $Category);
+			$request->setObject('Chapter'		, $Chapter);
 			
-			$request->setObject('ConfigName'		, $ConfigName);
-			$request->setObject('CategoryBookAll'	, $CategoryBookAll);			
-			$request->setObject('Category'			, $Category);
-			$request->setObject('BookAll'			, $BookAll);
-															
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

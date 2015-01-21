@@ -7,14 +7,14 @@
 	
 	<body>
 		<div metal:use-macro="mAdmin.xhtml/Header"/>						
-		<div id="sidebar">
+		<div id="sidebar">			
 			<ul style="display: block;">				
-				<li tal:repeat="Category1 CategoryBookAll" tal:attributes="class php: Category1->getId()==Category->getId()?'active':''">
-					<a tal:attributes="href Category1/getURLSetting">
-						<i class="glyphicons-tag"/><span tal:content="Category1/getName"/>
+				<li tal:repeat="Book1 Category/getBookAll" tal:attributes="class php: Book1->getId()==Book->getId()?'active':''">
+					<a tal:attributes="href Book1/getURLSettingChapter">
+						<i class="glyphicons-tag"/><span tal:content="Book1/getTitle"/>
 					</a>
 				</li>
-			</ul>
+			</ul>			
 		</div>
 		
 		<div id="content">
@@ -22,7 +22,7 @@
 			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
 			<div class="row">
 				<div class="col-12">					
-					<a tal:attributes="href Category/getURLSettingBookInsLoad" class="btn btn-primary btn-ins">
+					<a tal:attributes="href Book/getURLSettingChapterInsLoad" class="btn btn-primary btn-ins">
 						<i class="glyphicons-plus"/> Thêm mới
 					</a>
 					<a href="#DialogDelSelected" data-toggle="modal" class="btn btn-primary btn-ins">
@@ -35,20 +35,20 @@
 									<tr>
 										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
 										<th class="left">TIÊU ĐỀ</th>
-										<th width="120">CHƯƠNG</th>
+										<th width="120">VÁN CỜ</th>
 										<th width="40"><i class="glyphicons-bin"/></th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr tal:repeat="Book BookAll">
-										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Book/getId"/></td>
-										<td><a tal:attributes="href Book/getURLUpdLoad" tal:content="Book/getTitle"/></td>
-										<td>
-											<a tal:attributes="href Book/getURLSettingChapter">
-												Xem (<span tal:content="Book/getChapterAll/count"/>)
+									<tr tal:repeat="Chapter Book/getChapterAll">
+										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Chapter/getId"/></td>
+										<td><a tal:attributes="href Chapter/getURLUpdLoad" tal:content="Chapter/getTitle"/></td>
+										<td class="center">
+											<a tal:attributes="href Chapter/getURLSettingBoard">
+												Xem (<span tal:content="Chapter/getBoardAll/count"/>)	
 											</a>
 										</td>
-										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Book/getId"><i class="glyphicon glyphicon-remove"/></a></td>
+										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Chapter/getId"><i class="glyphicon glyphicon-remove"/></a></td>
 									</tr>
 								</tbody>								
 							</table>							
@@ -67,7 +67,7 @@
 			$('#URLDelSelectedButton').click(function(){
 				var count = 0;
 				var Data = [];
-				var URL = "/object/del/Book/0";
+				var URL = "/object/del/Chapter/0";
 				
 				$(".CheckedDel").each(function( i, obj){
 					if ( $(this).is(':checked')==true ){
@@ -94,7 +94,7 @@
 			});
 			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
 			$('#URLDelButton').click(function(){			
-				var URL = "/object/del/Book/" + $(this).attr('alt');
+				var URL = "/object/del/Chapter/" + $(this).attr('alt');
 				$.ajax({
 					type: "POST",					
 					url: URL,
