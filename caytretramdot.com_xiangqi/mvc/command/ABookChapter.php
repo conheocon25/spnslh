@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class ABook extends Command {
+	class ABookChapter extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -12,6 +12,7 @@
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
 			$IdCategory = $request->getProperty('IdCategory');
+			$IdBook 	= $request->getProperty('IdBook');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
@@ -22,17 +23,14 @@
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------
-			$CategoryBookAll	= $mCategoryBook->findAll();
-			if (!isset($IdCategory)){
-				$IdCategory = $CategoryBookAll->current()->getId();
-			}
-			
+			//-------------------------------------------------------------						
 			$Category		= $mCategoryBook->find($IdCategory);
-			$BookAll 		= $mBook->findBy(array($IdCategory));
-									
-			$Title 			= "SÁCH CỜ / ". mb_strtoupper($Category->getName(), 'UTF8');
-			$Navigation 	= array();
+			$Book 			= $mBook->find($IdBook);
+												
+			$Title 			= mb_strtoupper($Book->getTitle(), 'UTF8');
+			$Navigation 	= array(
+				array(mb_strtoupper("SÁCH CỜ / ".$Category->getName(), 'UTF8'), $Category->getURLSetting())
+			);
 			$ConfigName		= $mConfig->findByName("NAME");
 									
 			//-------------------------------------------------------------
@@ -42,10 +40,9 @@
 			$request->setProperty('ActiveAdmin'	, 'Book');			
 			$request->setObject('Navigation'	, $Navigation);
 			
-			$request->setObject('ConfigName'		, $ConfigName);
-			$request->setObject('CategoryBookAll'	, $CategoryBookAll);			
+			$request->setObject('ConfigName'		, $ConfigName);			
 			$request->setObject('Category'			, $Category);
-			$request->setObject('BookAll'			, $BookAll);
+			$request->setObject('Book'				, $Book);
 															
 			return self::statuses('CMD_DEFAULT');
 		}

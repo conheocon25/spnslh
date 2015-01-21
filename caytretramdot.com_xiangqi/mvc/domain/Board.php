@@ -4,7 +4,7 @@ require_once( "mvc/base/domain/DomainObject.php" );
 
 class Board extends Object{
     private $Id;
-	private $IdCategory;
+	private $IdChapter;
 	private $Name;	
 	private $Time;
 	private $Info;
@@ -15,9 +15,9 @@ class Board extends Object{
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-    function __construct( $Id=null, $IdCategory=null, $Name=null, $Time=null, $Info=null, $MoveStart=null,  $MoveEnd=null, $Key=null){
+    function __construct( $Id=null, $IdChapter=null, $Name=null, $Time=null, $Info=null, $MoveStart=null,  $MoveEnd=null, $Key=null){
 		$this->Id 			= $Id;
-		$this->IdCategory 	= $IdCategory;
+		$this->IdChapter 	= $IdChapter;
 		$this->Name 		= $Name; 		
 		$this->Time 		= $Time;
 		$this->Info			= $Info;
@@ -29,12 +29,12 @@ class Board extends Object{
 	}
     function getId() {return $this->Id;}	
 	
-	function setIdCategory( $IdCategory ) {$this->IdCategory = $IdCategory;$this->markDirty();}   
-	function getIdCategory( ) {return $this->IdCategory;}
-	function getCategory( ) {
-		$mCategoryBoard = new \MVC\Mapper\CategoryBoard();
-		$Category = $mCategoryBoard->find($this->IdCategory);
-		return $Category;
+	function setIdChapter( $IdChapter ) {$this->IdChapter = $IdChapter;$this->markDirty();}   
+	function getIdChapter( ) {return $this->IdChapter;}
+	function getChapter( ) {
+		$mChapter 	= new \MVC\Mapper\Chapter();
+		$Chapter 	= $mChapter->find($this->IdChapter);
+		return $Chapter;
 	}
 	
     function setName( $Name ) {$this->Name = $Name;$this->markDirty();}   
@@ -68,7 +68,8 @@ class Board extends Object{
 	function toJSON(){
 		$json = array(
 			'Id' 		=> $this->getId(),
-			'Name'		=> $this->getName(),	
+			'IdChapter' => $this->getIdChapter(),
+			'Name'		=> $this->getName(),
 		 	'Time'		=> $this->getTime(),
 			'Info'		=> $this->getInfo(),
 			'MoveStart'	=> $this->getMoveStart(),
@@ -80,7 +81,7 @@ class Board extends Object{
 	
 	function setArray( $Data ){
         $this->Id 			= $Data[0];
-		$this->IdCategory 	= $Data[1];
+		$this->IdChapter 	= $Data[1];
 		$this->Name 		= $Data[2];		
 		$this->Time 		= $Data[3];
 		$this->Info 		= $Data[4];
@@ -101,13 +102,36 @@ class Board extends Object{
 	//DEFINE URL
 	//-------------------------------------------------------------------------------			
 	function getURLView(){return "/van-co/".$this->getCategory()->getKey()."/".$this->getKey();}
+			
+	function getURLUpdLoad(){
+		$Chapter  	= $this->getChapter();
+		$Book 		= $Chapter->getBook();
+		$Category	= $Book->getCategory();
+		return "/admin/book/".$Category->getId()."/".$Book->getId()."/chapter/".$Chapter->getId()."/board/".$this->getId()."/upd/load";
+	}
 	
-	function getURLSettingPose(){return "/admin/board/".$this->getIdCategory()."/".$this->getId()."/pose";}
-	function getURLSettingPoseExe(){return "/admin/board/".$this->getIdCategory()."/".$this->getId()."/pose/exe";}
+	function getURLUpdExe(){
+		$Chapter  	= $this->getChapter();
+		$Book 		= $Chapter->getBook();
+		$Category	= $Book->getCategory();		
+		return "/admin/book/".$Category->getId()."/".$Book->getId()."/chapter/".$Chapter->getId()."/board/".$this->getId()."/upd/exe";
+	}
 	
-	function getURLUpdLoad(){	return "admin/board/".$this->getIdCategory()."/".$this->getId()."/upd/load";}
-	function getURLUpdExe(){	return "admin/board/".$this->getIdCategory()."/".$this->getId()."/upd/exe";}
+	function getURLSettingPoseLoad(){
+		$Chapter  	= $this->getChapter();
+		$Book 		= $Chapter->getBook();
+		$Category	= $Book->getCategory();
+		return "/admin/book/".$Category->getId()."/".$Book->getId()."/chapter/".$Chapter->getId()."/board/".$this->getId()."/pose/load";
+	}
 	
+	function getURLSettingPoseExe(){
+		$Chapter  	= $this->getChapter();
+		$Book 		= $Chapter->getBook();
+		$Category	= $Book->getCategory();
+		return "/admin/book/".$Category->getId()."/".$Book->getId()."/chapter/".$Chapter->getId()."/board/".$this->getId()."/pose/exe";
+	}
+	
+		
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}

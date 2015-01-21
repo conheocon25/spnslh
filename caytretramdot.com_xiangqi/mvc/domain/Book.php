@@ -98,7 +98,13 @@ class Book extends Object{
 	
 	//-------------------------------------------------------------------------------
 	//GET LISTs
-	//-------------------------------------------------------------------------------	
+	//-------------------------------------------------------------------------------
+	function getChapterAll(){
+		$mChapter 		= new \MVC\Mapper\Chapter();
+		$ChapterAll 	= $mChapter->findBy(array($this->getId()));
+		return $ChapterAll;
+	}
+	
 	function toJSON(){
 		$json = array(
 			'Id' 			=> $this->getId(),
@@ -133,7 +139,11 @@ class Book extends Object{
 	function getURLViewFull()	{return "http://cotuong.caytretramdot.com/sach/".$this->getCategory()->getKey()."/".$this->getKey();}
 
 	function getURLUpdLoad(){	return "admin/book/".$this->getIdCategory()."/".$this->getId()."/upd/load";}
-	function getURLUpdExe(){	return "admin/book/".$this->getIdCategory()."/".$this->getId()."/upd/exe";}	
+	function getURLUpdExe(){	return "admin/book/".$this->getIdCategory()."/".$this->getId()."/upd/exe";}
+	
+	function getURLSettingChapter()			{	return "admin/book/".$this->getIdCategory()."/".$this->getId()."/chapter";}
+	function getURLSettingChapterInsLoad()	{	return "admin/book/".$this->getIdCategory()."/".$this->getId()."/chapter/ins/load";}
+	function getURLSettingChapterInsExe()	{	return "admin/book/".$this->getIdCategory()."/".$this->getId()."/chapter/ins/exe";}
 	
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

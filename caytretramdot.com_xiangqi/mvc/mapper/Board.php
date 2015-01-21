@@ -10,10 +10,10 @@ class Board extends Mapper implements \MVC\Domain\BoardFinder{
 		
 		$selectAllStmt 			= sprintf("select * from %s ORDER BY id", $tblBoard);
 		$selectStmt 			= sprintf("select *  from %s where id=?", $tblBoard);
-		$updateStmt 			= sprintf("update %s set id_category=?, name=?, `time`=?, info=?, move_start=?, move_end=?, `key`=? where id=?", $tblBoard);
-		$insertStmt 			= sprintf("insert into %s ( id_category, name, `time`, info, move_start, move_end, `key`) values(?, ?, ?, ?, ?, ?, ?)", $tblBoard);
+		$updateStmt 			= sprintf("update %s set id_chapter=?, name=?, `time`=?, info=?, move_start=?, move_end=?, `key`=? where id=?", $tblBoard);
+		$insertStmt 			= sprintf("insert into %s ( id_chapter, name, `time`, info, move_start, move_end, `key`) values(?, ?, ?, ?, ?, ?, ?)", $tblBoard);
 		$deleteStmt 			= sprintf("delete from %s where id=?", $tblBoard);
-		$findByStmt 			= sprintf("select *  from %s where `id_category`=?", $tblBoard);
+		$findByStmt 			= sprintf("select *  from %s where `id_chapter`=?", $tblBoard);
 		$findByKeyStmt 			= sprintf("select *  from %s where `key`=?", $tblBoard);
 		$findByPageStmt 		= sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblBoard);
 						
@@ -31,7 +31,7 @@ class Board extends Mapper implements \MVC\Domain\BoardFinder{
     protected function doCreateObject( array $array ) {
         $obj = new \MVC\Domain\Board( 
 			$array['id'],
-			$array['id_category'],
+			$array['id_chapter'],
 			$array['name'],
 			$array['time'],
 			$array['info'],
@@ -45,7 +45,7 @@ class Board extends Mapper implements \MVC\Domain\BoardFinder{
     protected function targetClass() {return "Board";}
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array( 
-			$object->getIdCategory(),
+			$object->getIdChapter(),
 			$object->getName(),
 			$object->getTime(),
 			$object->getInfo(),
@@ -60,7 +60,7 @@ class Board extends Mapper implements \MVC\Domain\BoardFinder{
     
     protected function doUpdate( \MVC\Domain\Object $object ) {
         $values = array( 
-			$object->getIdCategory(),
+			$object->getIdChapter(),
 			$object->getName(),			
 			$object->getTime(),
 			$object->getInfo(),

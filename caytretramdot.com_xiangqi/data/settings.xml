@@ -58,6 +58,21 @@
 		<command name="ABookUpdLoad">			<view>ABookUpdLoad	</view></command>
 		<command name="ABookUpdExe">			<view>ABookUpdExe	</view><status value="CMD_OK"><forward>ABook</forward></status></command>
 		
+		<command name="ABookChapter">			<view>ABookChapter	</view></command>
+		<command name="ABookChapterInsLoad">	<view>ABookChapterInsLoad	</view></command>
+		<command name="ABookChapterInsExe">		<view>ABookChapterInsExe	</view><status value="CMD_OK"><forward>ABookChapter</forward></status></command>
+		<command name="ABookChapterUpdLoad">	<view>ABookChapterUpdLoad	</view></command>
+		<command name="ABookChapterUpdExe">		<view>ABookChapterUpdExe	</view><status value="CMD_OK"><forward>ABookChapter</forward></status></command>
+		
+		<command name="ABookChapterBoard">			<view>ABookChapterBoard			</view></command>
+		<command name="ABookChapterBoardInsLoad">	<view>ABookChapterBoardInsLoad	</view></command>
+		<command name="ABookChapterBoardInsExe">	<view>ABookChapterBoardInsExe	</view><status value="CMD_OK"><forward>ABookChapterBoard</forward></status></command>
+		<command name="ABookChapterBoardUpdLoad">	<view>ABookChapterBoardUpdLoad	</view></command>
+		<command name="ABookChapterBoardUpdExe">	<view>ABookChapterBoardUpdExe	</view><status value="CMD_OK"><forward>ABookChapterBoard</forward></status></command>
+		
+		<command name="ABookChapterBoardPoseLoad">	<view>ABookChapterBoardPoseLoad	</view></command>
+		<command name="ABookChapterBoardPoseExe">	<view>ABookChapterBoardPoseExe	</view><status value="CMD_OK"><forward>ABookChapterBoard</forward></status></command>
+		
 		<command name="APost">					<view>APost			</view></command>		
 		<command name="APostInsLoad">			<view>APostInsLoad	</view></command>
 		<command name="APostInsExe">			<view>APostInsExe	</view><status value="CMD_OK"><forward>APost</forward></status></command>

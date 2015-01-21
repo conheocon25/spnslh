@@ -65,6 +65,21 @@ RewriteRule ^admin/book/([0-9]+)/ins/exe$ 								?cmd=ABookInsExe&IdCategory=$1
 RewriteRule ^admin/book/([0-9]+)/([0-9]+)/upd/load$ 					?cmd=ABookUpdLoad&IdCategory=$1&IdBook=$2 	[L]
 RewriteRule ^admin/book/([0-9]+)/([0-9]+)/upd/exe$ 						?cmd=ABookUpdExe&IdCategory=$1&IdBook=$2	[L]
 
+RewriteRule ^admin/book/([0-9]+)/([0-9]+)/chapter$ 						?cmd=ABookChapter&IdCategory=$1&IdBook=$2 	[L]
+RewriteRule ^admin/book/([0-9]+)/([0-9]+)/chapter/ins/load$ 			?cmd=ABookChapterInsLoad&IdCategory=$1&IdBook=$2 	[L]
+RewriteRule ^admin/book/([0-9]+)/([0-9]+)/chapter/ins/exe$ 				?cmd=ABookChapterInsExe&IdCategory=$1&IdBook=$2 	[L]
+RewriteRule ^admin/book/([0-9]+)/([0-9]+)/chapter/([0-9]+)/upd/load$ 	?cmd=ABookChapterUpdLoad&IdCategory=$1&IdBook=$2&IdChapter=$3 	[L]
+RewriteRule ^admin/book/([0-9]+)/([0-9]+)/chapter/([0-9]+)/upd/exe$ 	?cmd=ABookChapterUpdExe&IdCategory=$1&IdBook=$2&IdChapter=$3 	[L]
+
+RewriteRule ^admin/book/([0-9]+)/([0-9]+)/chapter/([0-9]+)/board$ 					?cmd=ABookChapterBoard&IdCategory=$1&IdBook=$2&IdChapter=$3 	[L]
+RewriteRule ^admin/book/([0-9]+)/([0-9]+)/chapter/([0-9]+)/board/ins/load$ 			?cmd=ABookChapterBoardInsLoad&IdCategory=$1&IdBook=$2&IdChapter=$3 	[L]
+RewriteRule ^admin/book/([0-9]+)/([0-9]+)/chapter/([0-9]+)/board/ins/exe$ 			?cmd=ABookChapterBoardInsExe&IdCategory=$1&IdBook=$2&IdChapter=$3 	[L]
+RewriteRule ^admin/book/([0-9]+)/([0-9]+)/chapter/([0-9]+)/board/([0-9]+)/upd/load$ ?cmd=ABookChapterBoardUpdLoad&IdCategory=$1&IdBook=$2&IdChapter=$3&IdBoard=$4 	[L]
+RewriteRule ^admin/book/([0-9]+)/([0-9]+)/chapter/([0-9]+)/board/([0-9]+)/upd/exe$ 	?cmd=ABookChapterBoardUpdExe&IdCategory=$1&IdBook=$2&IdChapter=$3&IdBoard=$4 	[L]
+RewriteRule ^admin/book/([0-9]+)/([0-9]+)/chapter/([0-9]+)/board/([0-9]+)/pose/load$ 	?cmd=ABookChapterBoardPoseLoad&IdCategory=$1&IdBook=$2&IdChapter=$3&IdBoard=$4 	[L]
+RewriteRule ^admin/book/([0-9]+)/([0-9]+)/chapter/([0-9]+)/board/([0-9]+)/pose/exe$ 	?cmd=ABookChapterBoardPoseExe&IdCategory=$1&IdBook=$2&IdChapter=$3&IdBoard=$4 	[L]
+
+
 RewriteRule ^admin/post$ 												?cmd=APost [L]
 RewriteRule ^admin/post/([0-9]+)$ 										?cmd=APost&IdCategory=$1 [L]
 

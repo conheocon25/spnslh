@@ -11,8 +11,11 @@ interface GuestCollection 				extends \Iterator {function add( Object $Guest);		
 
 interface BoardCollection 				extends \Iterator {function add( Object $Board);		}
 interface BoardDetailCollection 		extends \Iterator {function add( Object $BoardDetail);	}
+
 interface CategoryBookCollection 		extends \Iterator {function add( Object $CategoryBook);	}
 interface BookCollection 				extends \Iterator {function add( Object $Book);			}
+interface ChapterCollection 			extends \Iterator {function add( Object $Chapter);		}
+
 interface CategoryBoardCollection 		extends \Iterator {function add( Object $CategoryBoard);}
 interface CategoryPostCollection 		extends \Iterator {function add( Object $CategoryPost);	}
 ?>

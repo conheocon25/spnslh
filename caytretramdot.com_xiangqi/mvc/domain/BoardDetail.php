@@ -5,7 +5,7 @@ require_once( "mvc/base/domain/DomainObject.php" );
 class BoardDetail extends Object{
 
     private $Id;
-	private $IdCBM;
+	private $IdBoard;
 	private $Move;	
 	private $Name1;	
 	private $State1;	
@@ -15,9 +15,9 @@ class BoardDetail extends Object{
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-    function __construct( $Id=null, $IdCBM=null, $Move=null,  $Name1=null, $State1=null, $Name2=null, $State2=null){
+    function __construct( $Id=null, $IdBoard=null, $Move=null,  $Name1=null, $State1=null, $Name2=null, $State2=null){
 		$this->Id 		= $Id;
-		$this->IdCBM 	= $IdCBM;
+		$this->IdBoard 	= $IdBoard;
 		$this->Move		= $Move; 
 		$this->Name1 	= $Name1; 
 		$this->State1	= $State1;
@@ -28,12 +28,12 @@ class BoardDetail extends Object{
 	}
     function getId() {return $this->Id;}	
 	
-	function setIdCBM( $IdCBM ) {$this->IdCBM = $IdCBM;$this->markDirty();}   
-	function getIdCBM( ) {return $this->IdCBM;}
-	function getCBM( ) {
-		$mCBM 	= new \MVC\Mapper\CBM();
-		$CBM 	= $mCBM->find($this->IdCBM);
-		return $CBM;
+	function setIdBoard( $IdBoard ) {$this->IdBoard = $IdBoard;$this->markDirty();}   
+	function getIdBoard( ) {return $this->IdBoard;}
+	function getBoard( ) {
+		$mBoard 	= new \MVC\Mapper\Board();
+		$Board 	= $mBoard->find($this->IdBoard);
+		return $Board;
 	}
 	
 	function setMove( $Move ) {$this->Move = $Move;$this->markDirty();}   
@@ -56,7 +56,7 @@ class BoardDetail extends Object{
 	function toJSON(){
 		$json = array(
 			'Id' 		=> $this->getId(),
-			'IdCBM' 	=> $this->getIdCBM(),
+			'IdBoard' 	=> $this->getIdBoard(),
 			'Move'		=> $this->getMove(),	
 			'Name1'		=> $this->getName1(),	
 		 	'State1'	=> $this->getState1(),
@@ -68,7 +68,7 @@ class BoardDetail extends Object{
 	
 	function setArray( $Data ){
         $this->Id 		= $Data[0];
-		$this->IdCBM	= $Data[1];
+		$this->IdBoard	= $Data[1];
 		$this->Move		= $Data[2];
 		$this->Name1 	= $Data[3];		
 		$this->State1 	= $Data[4];		
