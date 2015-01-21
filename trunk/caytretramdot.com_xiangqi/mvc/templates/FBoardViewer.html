@@ -11,10 +11,10 @@
 	<body>
 		<div metal:use-macro="mFront.xhtml/Header"/>
 		<div class="container" id="wraper">
-			<div class="row"><h1 tal:content="CBM/getName"/></div>
+			<div class="row"><h1 tal:content="Board/getName"/></div>
 			<div class="row">
 				<div class="col-md-3 col-sm-3">
-					<p tal:content="structure CBM/getInfo"/>
+					<p tal:content="structure Board/getInfo"/>
 				</div>
 				<div class="col-md-6 col-sm-6">
 					<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-image: url(/data/chess/150/Board.jpg); background-size: 100% 100%;">
@@ -187,8 +187,8 @@
 						</tr>
 					</table>					
 				</div>
-				<div id="MoveList" class="col-md-3 col-xs-3" tal:attributes="MoveStart CBM/getMoveStart; MoveEnd CBM/getMoveEnd">					
-					<div class="row btn-row" tal:repeat="Detail CBM/getDetailAll">
+				<div id="MoveList" class="col-md-3 col-xs-3" tal:attributes="MoveStart Board/getMoveStart; MoveEnd Board/getMoveEnd">					
+					<div class="row btn-row" tal:repeat="Detail Board/getDetailAll">
 						<span tal:content="Detail/getMove" /> . 
 						<div class="Move btn btn-danger btn-conf" 		tal:attributes="alt Detail/getState1; move Detail/getMove1"><span tal:content="Detail/getName1"/></div>
 						<div class="Move btn btn-success btn-conf"  	tal:attributes="alt Detail/getState2; move Detail/getMove2"><span tal:content="Detail/getName2"/></div>

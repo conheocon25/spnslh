@@ -17,8 +17,9 @@ interface PostFinder 			extends Finder {}
 interface ConfigFinder 			extends Finder {}
 interface GuestFinder 			extends Finder {}
 
-interface CBMFinder 			extends Finder {}
-interface CBMDetailFinder 		extends Finder {}
+interface BoardFinder 			extends Finder {}
+interface BoardDetailFinder 	extends Finder {}
+
 interface CategoryBookFinder 	extends Finder {}
 interface BookFinder 			extends Finder {}
 interface CategoryBoardFinder 	extends Finder {}

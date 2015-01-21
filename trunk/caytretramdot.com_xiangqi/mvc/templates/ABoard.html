@@ -20,15 +20,13 @@
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
 			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
 			<div class="row">
-				<div class="col-12">
-					<!--
-					<a tal:attributes="href Category/getURLSettingBookInsLoad" class="btn btn-primary btn-ins">
+				<div class="col-12">					
+					<a tal:attributes="href Category/getURLSettingBoardInsLoad" class="btn btn-primary btn-ins">
 						<i class="glyphicons-plus"/> Thêm mới
 					</a>
 					<a href="#DialogDelSelected" data-toggle="modal" class="btn btn-primary btn-ins">
 						<i class="glyphicons-remove_2"/> Xóa chọn
-					</a>
-					!-->
+					</a>					
 					<div class="widget-box">
 						<div class="widget-content nopadding">
 							<table class="table table-bordered table-striped table-hover with-check">
@@ -58,42 +56,52 @@
 					
 					<div metal:use-macro="mDialog.xhtml/DialogDel"/>
 					<div metal:use-macro="mDialog.xhtml/DialogDelSelected"/>
-				</div>
-				<!--
-				<div class="col-12">
-					<div class="widget-box">
-						<div class="widget-content nopadding">
-							<table class="table table-bordered table-striped table-hover with-check">
-								<thead>
-									<tr>
-										<th width="40">STT</th>
-										<th class="left">DANH MỤC</th>
-										<th width="180"><div class="text-left">VÁN CỜ</div></th>										
-									</tr>
-								</thead>
-								<tbody>
-									<tr tal:repeat="Category CategoryBoardAll">
-										<td class="center"><span tal:content="repeat/Category/number"/></td>
-										<td><span tal:content="Category/getName"/></td>
-										<td>
-											<a tal:attributes="href Category/getURLSetting">
-												Xem (<span tal:content="Category/getBoardAll/count"/>)
-											</a>
-										</td>
-									</tr>
-								</tbody>								
-							</table>
-						</div>
-					</div>
-				</div>
-				!-->
+				</div>				
 			</div>
 		</div>
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>
 		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
 		<script type="text/javascript">
 		/*<![CDATA[*/
+			$('#URLDelSelectedButton').click(function(){
+				var count = 0;
+				var Data = [];
+				var URL = "/object/del/Board/0";
+				
+				$(".CheckedDel").each(function( i, obj){
+					if ( $(this).is(':checked')==true ){
+						count += 1;
+						Data[count] = $(this).attr('data-id');
+					}
+				});
+				
+				$.ajax({
+					type: "POST",
+					data: {ListId:Data},
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
+			});
 			
+			//-----------------------------------------------------------------------------------
+			//Delete 1 Book			
+			//-----------------------------------------------------------------------------------
+			$('.remove-item').click(function(){
+				$('#URLDelButton').attr('alt', $(this).attr('data-id'));
+			});
+			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
+			$('#URLDelButton').click(function(){			
+				var URL = "/object/del/Board/" + $(this).attr('alt');
+				$.ajax({
+					type: "POST",					
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
+			});
 		/*]]>*/
 		</script>
 	</body>

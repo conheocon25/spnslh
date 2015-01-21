@@ -6,7 +6,10 @@
 	</head>
 	<body>		
 		<div class="container" id="wraper">
-			<div class="row"><h1 tal:content="CBM/getName"/></div>
+			<div class="row">
+				<h1 tal:content="Board/getName"/>
+				<a tal:attributes="href Category/getURLSetting" class="btn btn-primary">Quay lại</a>
+			</div>
 			<div class="row">
 				<div class="col-md-3 col-sm-3">
 					GIỚI THIỆU THÔNG TIN VỀ VÁN CỜ
@@ -182,9 +185,9 @@
 						</tr>
 					</table>					
 				</div>
-				<div id="MoveList" class="col-md-3 col-xs-3" tal:attributes="MoveStart CBM/getMoveStart; MoveEnd CBM/getMoveEnd; URLExe CBM/getURLSettingPoseExe">
+				<div id="MoveList" class="col-md-3 col-xs-3" tal:attributes="MoveStart Board/getMoveStart; MoveEnd Board/getMoveEnd; URLExe Board/getURLSettingPoseExe">
 					<div class="row"><H3>NƯỚC ĐI</H3></div>
-					<div class="row" tal:repeat="Detail CBM/getDetailAll">
+					<div class="row" tal:repeat="Detail Board/getDetailAll">
 						<span tal:content="Detail/getMove" /> . 
 						<div class="Move btn btn-danger" tal:attributes="alt Detail/getState1; move Detail/getMove1"><span tal:content="Detail/getName1"/></div>
 						<div class="Move btn btn-success"  tal:attributes="alt Detail/getState2; move Detail/getMove2"><span tal:content="Detail/getName2"/></div>

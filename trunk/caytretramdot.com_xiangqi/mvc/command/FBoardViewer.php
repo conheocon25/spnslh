@@ -21,7 +21,7 @@
 			$mCategoryBoard = new \MVC\Mapper\CategoryBoard();
 			$mCategoryBook 	= new \MVC\Mapper\CategoryBook();
 			$mCategoryPost 	= new \MVC\Mapper\CategoryPost();
-			$mCBM 			= new \MVC\Mapper\CBM();
+			$mBoard 		= new \MVC\Mapper\Board();
 												
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -30,12 +30,12 @@
 			$CategoryBookAll 	= $mCategoryBook->findAll();
 			$CategoryPostAll 	= $mCategoryPost->findAll();
 			$Category 			= $mCategoryBoard->findByKey($KBoard);
-			$CBM 				= $mCBM->findByKey($KBoard);
+			$Board 				= $mBoard->findByKey($KBoard);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
-			$request->setObject('CBM', 					$CBM);
+			$request->setObject('Board', 					$Board);
 			$request->setObject('Category', 			$Category);
 			$request->setObject("CategoryPostAll", 		$CategoryPostAll);
 			$request->setObject("CategoryBoardAll", 	$CategoryBoardAll);

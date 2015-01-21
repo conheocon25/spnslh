@@ -8,8 +8,9 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	require_once( "mvc/mapper/Config.php"			);	
 	require_once( "mvc/mapper/Guest.php"			);	
 	
-	require_once( "mvc/mapper/CBM.php"				);
-	require_once( "mvc/mapper/CBMDetail.php"		);
+	require_once( "mvc/mapper/Board.php"			);
+	require_once( "mvc/mapper/BoardDetail.php"		);
+	
 	require_once( "mvc/mapper/CategoryBook.php"		);
 	require_once( "mvc/mapper/Book.php"				);
 	require_once( "mvc/mapper/CategoryBoard.php"	);

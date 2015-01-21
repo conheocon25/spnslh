@@ -58,9 +58,9 @@ class CategoryBoard extends Object{
 	//GET LIST
 	//-------------------------------------------------------------------------------
 	function getBoardAll(){
-		$mCBM 		= new \MVC\Mapper\CBM();
-		$CBMAll 	= $mCBM->findBy(array($this->getId()));
-		return $CBMAll;
+		$mBoard		= new \MVC\Mapper\Board();
+		$BoardAll 	= $mBoard->findBy(array($this->getId()));
+		return $BoardAll;
 	}
 		
 	//-------------------------------------------------------------------------------
@@ -68,6 +68,8 @@ class CategoryBoard extends Object{
 	//-------------------------------------------------------------------------------
 	function getURLView(){return "/van-co/".$this->getKey();}	
 	function getURLSetting(){return "/admin/board/".$this->getId();}
+	function getURLSettingBoardInsLoad(){return "/admin/board/".$this->getId()."/ins/load"	;}
+	function getURLSettingBoardInsExe()	{return "/admin/board/".$this->getId()."/ins/exe"	;}
 		
 	//-------------------------------------------------------------------------------
 	static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

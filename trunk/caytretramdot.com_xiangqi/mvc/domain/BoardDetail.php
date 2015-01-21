@@ -2,7 +2,7 @@
 namespace MVC\Domain;
 require_once( "mvc/base/domain/DomainObject.php" );
 
-class CBMDetail extends Object{
+class BoardDetail extends Object{
 
     private $Id;
 	private $IdCBM;

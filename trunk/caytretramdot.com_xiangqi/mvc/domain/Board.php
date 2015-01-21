@@ -2,7 +2,7 @@
 Namespace MVC\Domain;
 require_once( "mvc/base/domain/DomainObject.php" );
 
-class CBM extends Object{
+class Board extends Object{
     private $Id;
 	private $IdCategory;
 	private $Name;	
@@ -93,8 +93,8 @@ class CBM extends Object{
 	//GET LISTs
 	//-------------------------------------------------------------------------------
 	function getDetailAll(){
-		$mCBMDetail = new \MVC\Mapper\CBMDetail();
-		$DetailAll = $mCBMDetail->findBy(array($this->getId()));
+		$mBoardDetail = new \MVC\Mapper\BoardDetail();
+		$DetailAll = $mBoardDetail->findBy(array($this->getId()));
 		return $DetailAll;
 	}
 	//-------------------------------------------------------------------------------

@@ -13,8 +13,11 @@
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
 			$ObjectName = $request->getProperty('ObjectName');
-			$Id = $request->getProperty('Id');
-			$ListId = $request->getProperty('ListId');
+			$Id 		= $request->getProperty('Id');
+			$ListId 	= $request->getProperty('ListId');
+			
+			//echo $ObjectName."-".$Id;
+			//print_r($ListId);
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
@@ -26,10 +29,11 @@
 			$mMapper 	= \MVC\Domain\HelperFactory::getFinder($ObjectName);
 						
 			if (!isset($ListId)){
-				$mMapper->delete(array($Id));
-			}else{
-				foreach ($ListId as $Id )
+				$mMapper->delete(array($Id));				
+			}else{				
+				foreach ($ListId as $Id ){
 					$mMapper->delete(array($Id));
+				}
 			}
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI

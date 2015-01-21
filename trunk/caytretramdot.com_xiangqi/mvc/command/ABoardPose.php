@@ -18,7 +18,7 @@
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
 			$mCategoryBoard = new \MVC\Mapper\CategoryBoard();
-			$mCBM 			= new \MVC\Mapper\CBM();
+			$mBoard 			= new \MVC\Mapper\Board();
 			$mConfig 		= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
@@ -30,7 +30,7 @@
 			$ConfigName = $mConfig->findByName("NAME");
 			
 			$Category 			= $mCategoryBoard->find($IdCategory);
-			$CBM				= $mCBM->find($IdBoard);
+			$Board				= $mBoard->find($IdBoard);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
@@ -39,7 +39,7 @@
 			$request->setObject('Navigation'	, $Navigation);			
 			$request->setObject('ConfigName'	, $ConfigName);			
 			$request->setObject('Category'		, $Category);
-			$request->setObject('CBM'			, $CBM);
+			$request->setObject('Board'			, $Board);
 																					
 			return self::statuses('CMD_DEFAULT');
 		}
