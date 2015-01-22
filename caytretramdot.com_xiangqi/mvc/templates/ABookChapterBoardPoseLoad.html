@@ -11,9 +11,7 @@
 				<a tal:attributes="href Chapter/getURLSettingBoard" class="btn btn-primary">Quay lại</a>
 			</div>
 			<div class="row">
-				<div class="col-md-3 col-sm-3">
-					GIỚI THIỆU THÔNG TIN VỀ VÁN CỜ
-				</div>
+				<div class="col-md-3 col-sm-3">SOẠN CÁC NƯỚC ĐI CỦA VÁN CỜ</div>
 				<div class="col-md-6 col-sm-6">
 					<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-image: url(/data/chess/150/Board.jpg); background-size: 100% 100%;">
 						<!-- TỌA ĐỘ-->
@@ -185,7 +183,7 @@
 						</tr>
 					</table>					
 				</div>
-				<div id="MoveList" class="col-md-3 col-xs-3" tal:attributes="MoveStart Board/getMoveStart; MoveEnd Board/getMoveEnd; URLExe Board/getURLSettingPoseExe">
+				<div id="MoveList" class="col-md-3 col-xs-3" tal:attributes="MoveStart Board/getMoveStart; MoveEnd Board/getMoveEnd; URLExe Board/getURLSettingPoseExe; State Board/getState">
 					<div class="row"><H3>NƯỚC ĐI</H3></div>
 					<div class="row" tal:repeat="Detail Board/getDetailAll">
 						<span tal:content="Detail/getMove" /> . 
@@ -212,11 +210,12 @@
 				var TempPiece 	= '';
 				var TempX 		= -1;
 				var TempY 		= -1;
-				var State		= '';				
+				var State		= $("#MoveList").attr('State');
 				var Selected	= 0;
 				var Round		= -1;
-												
-				initCompose();
+				
+				//Khởi tạo dữ liệu bàn cờ												
+				initCompose(State);
 				drawRound(Round);
 				
 				$(".CCell").click(function(){

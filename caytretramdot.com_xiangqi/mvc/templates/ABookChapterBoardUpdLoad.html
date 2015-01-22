@@ -22,6 +22,12 @@
 									</div>
 								</div>
 								<div class="control-group">
+									<label class="control-label" for="MoveStart">Trạng thái</label>
+									<div class="controls">
+										<input type="text" id="State" name="State" tal:attributes="value Board/getState"/>
+									</div>
+								</div>
+								<div class="control-group">
 									<label class="control-label" for="Time">Thời gian</label>
 									<div class="controls">
 										<input type="text" id="Time" name="Time" tal:attributes="value Board/getTime" data-date-format="yyyy-mm-dd hh:ii"/>
@@ -37,6 +43,25 @@
 									<label class="control-label" for="MoveStart">Nước cuối</label>
 									<div class="controls">
 										<input type="text" id="MoveEnd" name="MoveEnd" tal:attributes="value Board/getMoveEnd"/>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label">Lượt đi</label>
+									<div class="controls">
+										<select name="Round" id="Round" style="width:80%;">
+											<option value="-1" tal:attributes="selected php:Board->getRound()=='-1'?'selected':''">Xanh đi trước</option>
+											<option value="1" tal:attributes="selected php:Board->getRound()=='1'?'selected':''">Đỏ đi trước</option>
+										</select>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label">Kết quả</label>
+									<div class="controls">
+										<select name="Result" id="Result" style="width:80%;">
+											<option value="-1" tal:attributes="selected php:Board->getResult()=='-1'?'selected':''">Đỏ thắng</option>																						
+											<option value="0" tal:attributes="selected php:Board->getResult()=='0'?'selected':''">Hòa</option>
+											<option value="1" tal:attributes="selected php:Board->getResult()=='1'?'selected':''">Đỏ thua</option>
+										</select>
 									</div>
 								</div>
 								<div class="control-group">

@@ -10,12 +10,8 @@
 	</head>
 	<body>
 		<div metal:use-macro="mFront.xhtml/Header"/>
-		<div class="container" id="wraper">
-			<div class="row"><h1 tal:content="Board/getName"/></div>
+		<div class="container" id="wraper">			
 			<div class="row">
-				<div class="col-md-3 col-sm-3">
-					<p tal:content="structure Board/getInfo"/>
-				</div>
 				<div class="col-md-6 col-sm-6">
 					<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-image: url(/data/chess/150/Board.jpg); background-size: 100% 100%;">
 						<!-- TỌA ĐỘ-->
@@ -187,7 +183,8 @@
 						</tr>
 					</table>					
 				</div>
-				<div id="MoveList" class="col-md-3 col-xs-3" tal:attributes="MoveStart Board/getMoveStart; MoveEnd Board/getMoveEnd">					
+				<div id="MoveList" class="col-md-3 col-xs-3" tal:attributes="MoveStart Board/getMoveStart; MoveEnd Board/getMoveEnd; State Board/getState">
+					<div class="row btn-row"><div class="Move btn btn-primary btn-conf" 		tal:attributes="alt Board/getState; move '-1'"><span tal:content="Board/getName"/></div></div>
 					<div class="row btn-row" tal:repeat="Detail Board/getDetailAll">
 						<span tal:content="Detail/getMove" /> . 
 						<div class="Move btn btn-danger btn-conf" 		tal:attributes="alt Detail/getState1; move Detail/getMove1"><span tal:content="Detail/getName1"/></div>
@@ -201,8 +198,21 @@
 						<div class="MoveLast btn btn-primary"> >|</div>
 					</div>
 				</div>
-			</div>
-			<div class="row"><div class="text-right">Phát triển bởi SPN Team, 2009-2015</div></div>
+				<div class="col-md-3 col-sm-3">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<a tal:attributes="href Chapter/getURLView">
+								<span tal:content="Chapter/getTitle"/>
+							</a>
+						</div>
+						<div class="panel-body">							
+							<a tal:attributes="href Board1/getURLView;class php: Board1->getId()==Board->getId()?'btn btn-primary btn-block':'btn btn-default btn-block'"  tal:repeat="Board1 Chapter/getBoardAll">
+								<span tal:content="Board1/getName"/>
+							</a>							
+						</div>
+					</div>
+				</div>
+			</div>			
 		</div>
 		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
 		<script type="text/javascript">
@@ -211,8 +221,10 @@
 				var MoveCurrent = -1;
 				var MoveSTART 	= parseInt($("#MoveList").attr("MoveStart"));
 				var MoveEND 	= parseInt($("#MoveList").attr("MoveEnd"));
+				var State 		= $("#MoveList").attr("State");
 				
-				init();				
+				//KHỞI TẠO CHẾ ĐỘ XEM LẠI VÁN CỜ
+				initViewer(State);
 				
 				$(".Move").click(function(){								
 					MoveCurrent = parseInt($(this).attr('move'));

@@ -35,7 +35,7 @@
 			$CategoryPostAll 	= $mCategoryPost->findAll();
 			$Category 			= $mCategoryBoard->findByKey($KBoard);
 			$Book 				= $mBook->findByKey($KBook);
-			$Chapter 			= $mBook->findByKey($KChapter);
+			$Chapter 			= $mChapter->findByKey($KChapter);
 			$Board 				= $mBoard->findByKey($KBoard);
 			
 			//-------------------------------------------------------------

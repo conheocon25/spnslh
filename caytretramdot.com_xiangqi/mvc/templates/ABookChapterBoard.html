@@ -34,6 +34,9 @@
 									<tr>
 										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
 										<th class="left">TIÊU ĐỀ</th>
+										<th width="150" class="left">LƯỢT ĐI</th>
+										<th width="150" class="left">TRẠNG THÁI</th>
+										<th width="150" class="left">KẾT QUẢ</th>
 										<th width="120" class="left">NƯỚC ĐI</th>
 										<th width="40"><i class="glyphicons-bin"/></th>
 									</tr>
@@ -42,6 +45,13 @@
 									<tr tal:repeat="Board Chapter/getBoardAll">
 										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Board/getId"/></td>
 										<td><a tal:attributes="href Board/getURLUpdLoad" tal:content="Board/getName"/></td>
+										<td><span tal:content="Board/getRoundPrint"/></td>
+										<td><span tal:content="Board/getResultPrint"/></td>
+										<td>
+											<a tal:attributes="href Board/getURLSettingStateLoad">
+												Thiết lập
+											</a>
+										</td>
 										<td>
 											<a tal:attributes="href Board/getURLSettingPoseLoad">
 												<span tal:content="Board/getDetailAll/count"/> nước

@@ -14,11 +14,10 @@
 			<div class="row">
 				<div class="col-md-9">
 					<div class="panel panel-default">
-						<div class="panel-heading"><H1 tal:content="Chapter/getTitle"/></div>
-						<div class="panel-body">
-							<div class="article-meta-date">
-								
-							</div>
+						<div class="panel-heading"><H1 tal:content="Chapter/getTitle"/>
+						
+						</div>
+						<div class="panel-body">							
 							<div class="article-meta-more">								
 								<div tal:content="structure Chapter/getInfo" class="article-content-container"/>								
 							</div>
@@ -38,16 +37,16 @@
 				</div>
 				<div class="col-md-3">
 					<div class="panel panel-default">
-						<div class="panel-heading">Các chương khác</div>
+						<div class="panel-heading">
+							<a tal:attributes="href Book/getURLView">
+								<span tal:content="Book/getTitle"/>
+							</a>
+						</div>
 						<div class="panel-body">
-							<ul>
-								<li tal:repeat="Chapter Book/getChapterAll">
-									<a tal:attributes="href Chapter/getURLView">
-										<span tal:content="Chapter/getTitle"/>
-									</a>
-								</li>
-							</ul>
-						</div>						
+							<a tal:attributes="href Chapter1/getURLView;class php: Chapter1->getId()==Chapter->getId()?'btn btn-primary btn-block':'btn btn-default btn-block'"  tal:repeat="Chapter1 Book/getChapterAll">
+								<span tal:content="Chapter1/getTitleReduce"/>
+							</a>							
+						</div>
 					</div>					
 				</div>
 			</div>

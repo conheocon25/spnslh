@@ -44,16 +44,7 @@
 		<command name="ASettingCategoryPost">	<view>ASettingCategoryPost</view></command>				
 		<command name="ASettingCategoryBook">	<view>ASettingCategoryBook</view></command>
 		<command name="ASettingCategoryBoard">	<view>ASettingCategoryBoard</view></command>
-		
-		<command name="ABoard">					<view>ABoard		</view></command>
-		<command name="ABoardInsLoad">			<view>ABoardInsLoad	</view></command>
-		<command name="ABoardInsExe">			<view>ABoardInsExe	</view><status value="CMD_OK"><forward>ABoard</forward></status></command>
-		<command name="ABoardUpdLoad">			<view>ABoardUpdLoad	</view></command>
-		<command name="ABoardUpdExe">			<view>ABoardUpdExe	</view><status value="CMD_OK"><forward>ABoard</forward></status></command>
-				
-		<command name="ABoardPose">				<view>ABoardPose	</view></command>
-		<command name="ABoardPoseExe">			<view>ABoardPoseExe	</view></command>
-				
+								
 		<command name="ABook">					<view>ABook			</view></command>		
 		<command name="ABookInsLoad">			<view>ABookInsLoad	</view></command>
 		<command name="ABookInsExe">			<view>ABookInsExe	</view><status value="CMD_OK"><forward>ABook</forward></status></command>
@@ -73,7 +64,9 @@
 		<command name="ABookChapterBoardUpdExe">	<view>ABookChapterBoardUpdExe	</view><status value="CMD_OK"><forward>ABookChapterBoard</forward></status></command>
 		
 		<command name="ABookChapterBoardPoseLoad">	<view>ABookChapterBoardPoseLoad	</view></command>
-		<command name="ABookChapterBoardPoseExe">	<view>ABookChapterBoardPoseExe	</view><status value="CMD_OK"><forward>ABookChapterBoard</forward></status></command>
+		<command name="ABookChapterBoardPoseExe">	<view>ABookChapterBoardPoseExe	</view><status value="CMD_OK"><forward>ABookChapterBoard</forward></status></command>		
+		<command name="ABookChapterBoardStateLoad">	<view>ABookChapterBoardStateLoad	</view></command>
+		<command name="ABookChapterBoardStateExe">	<view>ABookChapterBoardStateExe		</view><status value="CMD_OK"><forward>ABookChapterBoard</forward></status></command>
 		
 		<command name="APost">					<view>APost			</view></command>		
 		<command name="APostInsLoad">			<view>APostInsLoad	</view></command>

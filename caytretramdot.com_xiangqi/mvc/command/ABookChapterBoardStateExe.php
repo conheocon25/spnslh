@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class ABoardPoseExe extends Command {
+	class ABookChapterBoardStateExe extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -10,55 +10,26 @@
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
-			//-------------------------------------------------------------
-			$IdCategory = $request->getProperty('IdCategory');
+			//-------------------------------------------------------------			
 			$IdBoard 	= $request->getProperty('IdBoard');
-			$aStep 		= $request->getProperty('aStep');
-			$aStepA 	= $request->getProperty('aStepA');
+			$aState		= $request->getProperty('aState');			
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
 			$mBoard 			= new \MVC\Mapper\Board();
-			$mBoardDetail		= new \MVC\Mapper\BoardDetail();
-						
+									
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------																					
-			$Board			= $mBoard->find($IdBoard);
-			$mBoardDetail->deleteBy(array($IdBoard));
-			
-			$Count = count($aStep);
-			for ($i=0; $i<$Count; $i+=2){
-				
-				if (isset($aStepA[$i+1])){
-					$BoardD = new \MVC\Domain\BoardDetail(
-						null,
-						$IdBoard,
-						($i/2)+1,
-						$aStepA[$i],
-						$aStep[$i],
-						$aStepA[$i+1],
-						$aStep[$i+1]
-					);	
-				}else{
-					$BoardD = new \MVC\Domain\BoardDetail(
-						null,
-						$IdBoard,
-						($i/2)+1,
-						$aStepA[$i],
-						$aStep[$i],
-						"0",
-						"END"
-					);				
-				}
-				
-				
-				$mBoardDetail->insert($BoardD);
+			$Board			= $mBoard->find($IdBoard);			
+			$State = "";			
+			for ($i=0;$i<10;$i++){
+				for ($j=0;$j<9;$j++){
+					$State = $State.$aState[$i][$j];
+				}	
 			}
-			$Board->setMoveStart(0);
-			$Board->setMoveEnd($Count-1);
-			
+			$Board->setState($State);
 			$mBoard->update($Board);
 			
 			//-------------------------------------------------------------

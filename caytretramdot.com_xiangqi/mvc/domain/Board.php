@@ -5,24 +5,30 @@ require_once( "mvc/base/domain/DomainObject.php" );
 class Board extends Object{
     private $Id;
 	private $IdChapter;
-	private $Name;	
+	private $Name;
+	private $State;
 	private $Time;
 	private $Info;
 	private $MoveStart;
-	private $MoveEnd;
+	private $MoveEnd;	
+	private $Round;
+	private $Result;
 	private $Key;
 	
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-    function __construct( $Id=null, $IdChapter=null, $Name=null, $Time=null, $Info=null, $MoveStart=null,  $MoveEnd=null, $Key=null){
+    function __construct( $Id=null, $IdChapter=null, $Name=null, $State=null, $Time=null, $Info=null, $MoveStart=null,  $MoveEnd=null, $Round=null, $Result=null, $Key=null){
 		$this->Id 			= $Id;
 		$this->IdChapter 	= $IdChapter;
-		$this->Name 		= $Name; 		
+		$this->Name 		= $Name;
+		$this->State 		= $State; 
 		$this->Time 		= $Time;
 		$this->Info			= $Info;
 		$this->MoveStart	= $MoveStart;
 		$this->MoveEnd		= $MoveEnd;
+		$this->Result		= $Result;
+		$this->Round		= $Round;
 		$this->Key 			= $Key;
 		
 		parent::__construct( $Id );
@@ -37,8 +43,11 @@ class Board extends Object{
 		return $Chapter;
 	}
 	
-    function setName( $Name ) {$this->Name = $Name;$this->markDirty();}   
-	function getName( ) {return $this->Name;}
+    function setName( $Name ) 	{$this->Name = $Name;$this->markDirty();}   
+	function getName( ) 		{return $this->Name;}
+	
+	function setState( $State ) {$this->State = $State;$this->markDirty();}   
+	function getState( ) 		{return $this->State;}
 	
 	function setInfo( $Info) {$this->Info = $Info; $this->markDirty();}   
 	function getInfo( ) {return $this->Info;}
@@ -51,6 +60,23 @@ class Board extends Object{
 	
 	function setMoveEnd( $MoveEnd ) {$this->MoveEnd = $MoveEnd; $this->markDirty();}   
 	function getMoveEnd( ) {return $this->MoveEnd;}
+	
+	//Xanh hay Đỏ đi trước !?
+	function setRound( $Round ) {$this->Round = $Round; $this->markDirty();}   
+	function getRound( ) {return $this->Round;}
+	function getRoundPrint( ){
+		if ($this->Round>0) return "Đỏ đi trước";
+		return "Xanh đi trước";
+	}
+	
+	//Kết quả: Đỏ thắng - hòa - thua !?
+	function setResult( $Result ) {$this->Result = $Result; $this->markDirty();}   
+	function getResult( ) {return $this->Result;}
+	function getResultPrint( ) {
+		if ($this->Result==0) return "Hòa";
+		else if ($this->Result<0) return "Đỏ thắng";
+		return "Đỏ thua";				
+	}
 	
 	function setKey( $Key ){$this->Key = $Key;$this->markDirty();}
 	function getKey( ) {return $this->Key;}
@@ -70,10 +96,13 @@ class Board extends Object{
 			'Id' 		=> $this->getId(),
 			'IdChapter' => $this->getIdChapter(),
 			'Name'		=> $this->getName(),
+			'State'		=> $this->getState(),
 		 	'Time'		=> $this->getTime(),
 			'Info'		=> $this->getInfo(),
 			'MoveStart'	=> $this->getMoveStart(),
 			'MoveEnd'	=> $this->getMoveEnd(),
+			'Round'		=> $this->getRound(),
+			'Result'	=> $this->getResult(),
 			'Key'		=> $this->getKey()			
 		);
 		return json_encode($json);
@@ -83,11 +112,14 @@ class Board extends Object{
         $this->Id 			= $Data[0];
 		$this->IdChapter 	= $Data[1];
 		$this->Name 		= $Data[2];		
-		$this->Time 		= $Data[3];
-		$this->Info 		= $Data[4];
-		$this->MoveStart	= $Data[5];
-		$this->MoveEnd		= $Data[6];		
-		$this->Key			= $Data[7];
+		$this->State 		= $Data[3];
+		$this->Time 		= $Data[4];
+		$this->Info 		= $Data[5];
+		$this->MoveStart	= $Data[6];
+		$this->MoveEnd		= $Data[7];		
+		$this->Round		= $Data[8];
+		$this->Result		= $Data[9];
+		$this->Key			= $Data[10];
     }
 			
 	//-------------------------------------------------------------------------------
@@ -136,6 +168,19 @@ class Board extends Object{
 		return "/admin/book/".$Category->getId()."/".$Book->getId()."/chapter/".$Chapter->getId()."/board/".$this->getId()."/pose/exe";
 	}
 	
+	function getURLSettingStateLoad(){
+		$Chapter  	= $this->getChapter();
+		$Book 		= $Chapter->getBook();
+		$Category	= $Book->getCategory();
+		return "/admin/book/".$Category->getId()."/".$Book->getId()."/chapter/".$Chapter->getId()."/board/".$this->getId()."/state/load";
+	}
+	
+	function getURLSettingStateExe(){
+		$Chapter  	= $this->getChapter();
+		$Book 		= $Chapter->getBook();
+		$Category	= $Book->getCategory();
+		return "/admin/book/".$Category->getId()."/".$Book->getId()."/chapter/".$Chapter->getId()."/board/".$this->getId()."/state/exe";
+	}
 		
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

@@ -113,12 +113,9 @@
 	<!-- MENU.APP															  	  -->
 	<!-- ======================================================================== -->
 	<div metal:define-macro="MenuApp" id="sidebar">
-		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">
-			<li tal:attributes="class php:ActiveAdmin=='Board'?'active':'disable'">
-				<a tal:attributes="href '/admin/board'"><i class="glyphicons-cogwheels" />VÁN CỜ</a>
-			</li>
+		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">			
 			<li tal:attributes="class php:ActiveAdmin=='Post'?'active':'disable'">
-				<a tal:attributes="href '/admin/post'"><i class="glyphicons-cogwheels" />BÀI VIẾT</a>
+				<a tal:attributes="href '/admin/post'"><i class="glyphicons-cogwheels" />TIN TỨC</a>
 			</li>
 			<li tal:attributes="class php:ActiveAdmin=='Book'?'active':'disable'">
 				<a tal:attributes="href '/admin/book'"><i class="glyphicons-cogwheels" />SÁCH CỜ</a>

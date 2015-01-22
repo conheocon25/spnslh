@@ -13,11 +13,14 @@
 			//-------------------------------------------------------------			
 			$IdBoard 	= $request->getProperty('IdBoard');
 			$IdChapter 	= $request->getProperty('IdChapter');
-			$Name 		= $request->getProperty('Name');			
+			$Name 		= $request->getProperty('Name');
+			$State 		= $request->getProperty('State');			
 			$Time 		= $request->getProperty('Time');			
 			$Info 		= \stripslashes($request->getProperty('Info'));
 			$MoveStart	= $request->getProperty('MoveStart');
 			$MoveEnd	= $request->getProperty('MoveEnd');
+			$Round		= $request->getProperty('Round');
+			$Result		= $request->getProperty('Result');
 												
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
@@ -31,9 +34,12 @@
 			
 			$Board->setInfo($Info);			
 			$Board->setName($Name);
+			$Board->setState($State);
 			$Board->setTime($Time);			
 			$Board->setMoveStart($MoveStart);
-			$Board->setMoveEnd($MoveEnd);			
+			$Board->setMoveEnd($MoveEnd);
+			$Board->setRound($Round);
+			$Board->setResult($Result);
 			$Board->reKey();
 			
 			$mBoard->update($Board);
