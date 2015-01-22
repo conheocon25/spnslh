@@ -101,7 +101,12 @@ class Board extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------			
-	function getURLView(){return "/van-co/".$this->getCategory()->getKey()."/".$this->getKey();}
+	function getURLView(){
+		$Chapter  	= $this->getChapter();
+		$Book 		= $Chapter->getBook();
+		$Category	= $Book->getCategory();
+		return "/sach/".$Category->getKey()."/".$Book->getKey()."/".$Chapter->getKey()."/".$this->getKey();
+	}
 			
 	function getURLUpdLoad(){
 		$Chapter  	= $this->getChapter();

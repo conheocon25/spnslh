@@ -14,6 +14,7 @@ class Book extends Object{
 	private $Order;
 	private $URL;
 	private $Viewed;
+	private $Thumb;
 	private $Key;
 		
 	//-------------------------------------------------------------------------------
@@ -27,10 +28,11 @@ class Book extends Object{
 		$Info=null, 
 		$Author=null, 
 		$Language=null , 
-		$Order=Null, 
-		$URL=Null, 
-		$Viewed=Null, 
-		$Key=Null) 
+		$Order=null, 
+		$URL=null, 
+		$Viewed=null, 
+		$Thumb=null, 
+		$Key=null) 
 	{
 		$this->Id 			= $Id; 
 		$this->IdCategory 	= $IdCategory; 
@@ -42,6 +44,7 @@ class Book extends Object{
 		$this->Order 		= $Order;
 		$this->URL 			= $URL;
 		$this->Viewed 		= $Viewed;
+		$this->Thumb 		= $Thumb;
 		$this->Key 			= $Key;
 		
 		parent::__construct( $Id );
@@ -80,8 +83,11 @@ class Book extends Object{
 	function setOrder( $Order ) {$this->Order = $Order;$this->markDirty();}   
 	function getOrder( ) {return $this->Order;}
 	
-	function setViewed( $Viewed ) {$this->Viewed = $Viewed; $this->markDirty();}   
+	function setViewed( $Viewed ) {$this->Viewed = $Viewed; $this->markDirty();}   		
 	function getViewed( ) {return $this->Viewed;}
+	
+	function setThumb( $Thumb ) {$this->Thumb = $Thumb; $this->markDirty();}   
+	function getThumb( ) 		{return $this->Thumb;}
 	
 	function setKey( $Key ){$this->Key = $Key;$this->markDirty();}
 	function getKey( ) {return $this->Key;}
@@ -115,6 +121,7 @@ class Book extends Object{
 		 	'Order'			=> $this->getOrder(),
 			'URL'			=> $this->getURL(),
 			'Viewed'		=> $this->getViewed(),
+			'Thumb'			=> $this->getThumb(),
 			'Key'			=> $this->getKey()
 		);
 		return json_encode($json);
@@ -129,7 +136,8 @@ class Book extends Object{
 		$this->Order 		= $Data[5];
 		$this->URL 			= $Data[6];
 		$this->Viewed		= $Data[7];
-		$this->Key 			= $Data[8];
+		$this->Thumb		= $Data[8];
+		$this->Key 			= $Data[9];
     }
 	
 	//-------------------------------------------------------------------------------

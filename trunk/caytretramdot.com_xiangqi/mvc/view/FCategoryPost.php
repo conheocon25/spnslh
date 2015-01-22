@@ -1,5 +1,5 @@
 <?php
 	require_once("mvc/base/Viewer.php");
-	$Viewer = new Viewer("mvc/templates/FSoft.html");
+	$Viewer = new Viewer("mvc/templates/FCategoryPost.html");
 	echo $Viewer->html();
 ?>

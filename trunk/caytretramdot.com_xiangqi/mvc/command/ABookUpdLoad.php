@@ -26,9 +26,9 @@
 			$Book 		= $mBook->find($IdBook);
 			$Category 	= $Book->getCategory();
 			
-			$Title 		= $Book->getTitle();
+			$Title 		= \mb_strtoupper($Book->getTitle(), 'UTF8');
 			$Navigation = array(								
-				array(\mb_strtoupper($Category->getName(), 'UTF8'), $Category->getURLSetting()),				
+				array("SÁCH CỜ / ".\mb_strtoupper($Category->getName(), 'UTF8'), $Category->getURLSetting()),				
 			);
 			$ConfigName		= $mConfig->findByName("NAME");
 												

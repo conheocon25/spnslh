@@ -20,6 +20,7 @@ class Book extends Mapper implements \MVC\Domain\BookFinder{
 												`order`=?, 
 												`url`=?, 
 												`viewed`=?, 
+												`thumb`=?, 
 												`key`=? 
 									where 
 										id=?", $tblBook);
@@ -33,20 +34,21 @@ class Book extends Mapper implements \MVC\Domain\BookFinder{
 												`order`, 
 												`url`, 
 												`viewed`, 
-												`key`) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblBook);
+												`thumb`, 
+												`key`) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblBook);
 		$deleteStmt 		= sprintf("delete from %s where id=?", $tblBook);				
 		$findByStmt 		= sprintf("select *  from %s where id_category=? ORDER BY `order`", $tblBook);
 		$findByKeyStmt 		= sprintf("select *  from %s where `key`=?", $tblBook);
 		$findByPageStmt 	= sprintf("SELECT * FROM  %s where id_category=:id_category ORDER BY `order` LIMIT :start,:max", $tblBook);
 				
-        $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
-        $this->selectStmt 	= self::$PDO->prepare($selectStmt);
-        $this->updateStmt 	= self::$PDO->prepare($updateStmt);
-        $this->insertStmt 	= self::$PDO->prepare($insertStmt);
-		$this->deleteStmt 	= self::$PDO->prepare($deleteStmt);
-		$this->findByStmt 	= self::$PDO->prepare($findByStmt);
-		$this->findByKeyStmt = self::$PDO->prepare($findByKeyStmt);
-		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);
+        $this->selectAllStmt 	= self::$PDO->prepare($selectAllStmt);
+        $this->selectStmt 		= self::$PDO->prepare($selectStmt);
+        $this->updateStmt 		= self::$PDO->prepare($updateStmt);
+        $this->insertStmt 		= self::$PDO->prepare($insertStmt);
+		$this->deleteStmt 		= self::$PDO->prepare($deleteStmt);
+		$this->findByStmt 		= self::$PDO->prepare($findByStmt);
+		$this->findByKeyStmt 	= self::$PDO->prepare($findByKeyStmt);
+		$this->findByPageStmt 	= self::$PDO->prepare($findByPageStmt);
 		
     } 
     function getCollection( array $raw ) {return new BookCollection( $raw, $this );}
@@ -63,6 +65,7 @@ class Book extends Mapper implements \MVC\Domain\BookFinder{
 			$array['order'],
 			$array['url'],
 			$array['viewed'],
+			$array['thumb'],
 			$array['key']
 		);
         return $obj;
@@ -80,6 +83,7 @@ class Book extends Mapper implements \MVC\Domain\BookFinder{
 			$object->getOrder(),
 			$object->getURL(),
 			$object->getViewed(),
+			$object->getThumb(),
 			$object->getKey()
 		); 
         $this->insertStmt->execute( $values );
@@ -98,6 +102,7 @@ class Book extends Mapper implements \MVC\Domain\BookFinder{
 			$object->getOrder(),
 			$object->getURL(),
 			$object->getViewed(),
+			$object->getThumb(),
 			$object->getKey(),
 			$object->getId()
 		);		

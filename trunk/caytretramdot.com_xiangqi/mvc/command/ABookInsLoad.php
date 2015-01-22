@@ -25,9 +25,9 @@
 			//-------------------------------------------------------------																					
 			$Category 	= $mCategoryBook->find($IdCategory);
 			
-			$Title = mb_strtoupper($Category->getName(), 'UTF8');
+			$Title = "THÊM SÁCH";
 			$Navigation = array(				
-				array("BÀI VIẾT", 	"/admin/post"),	
+				array("SÁCH CỜ / ".\mb_strtoupper($Category->getName(), 'UTF8'), $Category->getURLSetting())
 			);
 			
 			$ConfigName	= $mConfig->findByName("NAME");

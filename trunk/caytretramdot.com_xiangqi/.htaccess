@@ -16,18 +16,19 @@ AddOutputFilterByType DEFLATE application/x-javascript
 #---------------------------------------------------------------------------------------------------------------------------
 # SYSTEM
 #---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^trang-chu$ 										?cmd=FHome [L]
+RewriteRule ^trang-chu$ 																?cmd=FHome [L]
 
-RewriteRule ^bai-viet/([A-Za-z0-9_-]+)$							?cmd=FPost&KCategory=$1 [L]
-RewriteRule ^bai-viet/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$		?cmd=FPostDetail&KCategory=$1&KPost=$2 [L]
+RewriteRule ^bai-viet/([A-Za-z0-9_-]+)$													?cmd=FCategoryPost&KCategory=$1 [L]
+RewriteRule ^bai-viet/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$								?cmd=FPost&KCategory=$1&KPost=$2 [L]
 
-RewriteRule ^van-co/([A-Za-z0-9_-]+)$							?cmd=FBoard&KCategory=$1 [L]
-RewriteRule ^van-co/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$			?cmd=FBoardViewer&KCategory=$1&KBoard=$2 [L]
-
-RewriteRule ^sach/([A-Za-z0-9_-]+)$								?cmd=FBook&KCategory=$1 [L]
-RewriteRule ^sach/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$			?cmd=FBookDetail&KCategory=$1&KBook=$2 [L]
+RewriteRule ^sach/([A-Za-z0-9_-]+)$														?cmd=FCategoryBook&KCategory=$1 [L]
+RewriteRule ^sach/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$									?cmd=FBook&KCategory=$1&KBook=$2 [L]
+RewriteRule ^sach/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$					?cmd=FChapter&KCategory=$1&KBook=$2&KChapter=$3 [L]
+RewriteRule ^sach/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$	?cmd=FBoard&KCategory=$1&KBook=$2&KChapter=$3&KBoard=$4 [L]
 
 RewriteRule ^lien-he$ 											?cmd=FContact 		[L]
+RewriteRule ^login$ 											?cmd=FLogin 		[L]
+RewriteRule ^dang-ki$ 											?cmd=FRegister 		[L]
 
 RewriteRule ^dang-nhap$ 										?cmd=SigninLoad [L]
 RewriteRule ^dang-nhap/exe$ 									?cmd=SigninExe [L]
