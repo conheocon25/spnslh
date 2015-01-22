@@ -28,17 +28,19 @@
 							</div>
 						</div>
 					</div>
-				</div>
-				<div class="col-md-3">					
 					<div class="panel panel-default">
-						<div class="panel-heading">DANH MỤC CHƯƠNG</div>
+						<div class="panel-heading">CÁC CHƯƠNG</div>
 						<div class="panel-body">
-							<a tal:attributes="href Chapter1/getURLView;class 'btn btn-default btn-block'"  tal:repeat="Chapter1 Book/getChapterAll">
-								<span tal:content="Chapter1/getTitleReduce"/>
-							</a>							
+							<div class="article-meta-date" />							
+							<div class="article-meta-more">
+								<a tal:attributes="href Chapter1/getURLView;class 'btn btn-default btn-block'"  tal:repeat="Chapter1 Book/getChapterAll">
+									<span tal:content="Chapter1/getTitle"/>
+								</a>
+							</div>
 						</div>
 					</div>
-					
+				</div>
+				<div class="col-md-3">
 					<div class="panel panel-default">
 						<div class="panel-heading">DANH MỤC SÁCH</div>
 						<div class="panel-body">

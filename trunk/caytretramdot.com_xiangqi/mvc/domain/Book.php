@@ -90,7 +90,10 @@ class Book extends Object{
 	function getViewed( ) {return $this->Viewed;}
 	
 	function setThumb( $Thumb ) {$this->Thumb = $Thumb; $this->markDirty();}   
-	function getThumb( ) 		{return $this->Thumb;}
+	function getThumb( ) 		{
+		if ($this->Thumb=="") return "/data/chess/bg/book.png";
+		return $this->Thumb;
+	}
 	
 	function setKey( $Key ){$this->Key = $Key;$this->markDirty();}
 	function getKey( ) {return $this->Key;}
