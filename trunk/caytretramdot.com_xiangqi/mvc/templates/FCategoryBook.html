@@ -28,17 +28,13 @@
 				</div>
 				<div class="col-md-3 col-sm-3">
 					<div class="panel panel-default">
-						<div class="panel-heading">Danh mục</div>
+						<div class="panel-heading">DANH MỤC SÁCH</div>
 						<div class="panel-body">
-							<ul>
-								<li tal:repeat="Category CategoryBookAll">
-									<a tal:attributes="href Category/getURLView">
-										<span tal:content="Category/getName"/> (<span tal:content="Category/getBookAll/count"/>)
-									</a>
-								</li>
-							</ul>
-						</div>						
-					</div>					
+							<a tal:attributes="href Category1/getURLView;class php: Category1->getId()==Category->getId()?'btn btn-primary btn-block':'btn btn-default btn-block'"  tal:repeat="Category1 CategoryBookAll">
+								<span tal:content="Category1/getName"/>
+							</a>							
+						</div>
+					</div>										
 				</div>
 			</div>			
 		</div>

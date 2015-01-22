@@ -61,6 +61,9 @@ class Book extends Object{
 	
     function setTitle( $Title ) {$this->Title = $Title;$this->markDirty();}   
 	function getTitle( ) {return $this->Title;}
+	function getTitleReduce( ) {		
+		$S = new \MVC\Library\String($this->Title);return $S->reduceHTML(32);
+	}
 	
 	function setTime( $Time ) {$this->Time = $Time;$this->markDirty();}   
 	function getTime( ) {return $this->Time;}

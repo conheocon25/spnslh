@@ -40,6 +40,9 @@ class Chapter extends Object{
 	
     function setTitle( $Title ) {$this->Title = $Title;$this->markDirty();}   
 	function getTitle( ) {return $this->Title;}
+	function getTitleReduce( ) {		
+		$S = new \MVC\Library\String($this->Title);return $S->reduceHTML(32);
+	}
 			
 	function setInfo( $Info ) {$this->Info = $Info;$this->markDirty();}   
 	function getInfo( ) {return $this->Info;}

@@ -108,16 +108,38 @@ function exportStep(Y, X, NY, NX){
 	return S;
 }
 
-function initCompose(){
-	var State = exportState();	
+//KHỞI TẠO VỊ TRÍ CÁC QUÂN CỜ TRƯỚC KHI SOẠN NƯỚC
+function initCompose(State){
 	drawBoard(State);
 	iStep = 0;
+	
+	for (var i=0; i<10; i++){
+		for (var j=0; j<9; j++){			
+			aState[i][j] = State.charAt(i*9+j);
+		}
+	}
 }
 
-function init(){
-	var State = "rheakaehr0000000000c00000c0p0p0p0p0p000000000000000000P0P0P0P0P0C00000C0000000000RHEAKAEHR";
+function initViewer(State){
+	drawBoard(State);
+	for (var i=0; i<10; i++){
+		for (var j=0; j<9; j++){			
+			aState[i][j] = State.charAt(i*9+j);
+		}
+	}	
+}
+
+function initState(){	
+	var i=0, j=0;	
+	for (i=0;i<10;i++){
+		for (j=0;j<9;j++){
+			aState[i][j]='0';
+		}
+	}	
+	var State = exportState();	
 	drawBoard(State);
 }
+
 
 function drawRound(Round){
 	$("#RoundRed").attr('src', '');

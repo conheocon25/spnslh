@@ -2,16 +2,15 @@
 namespace MVC\Mapper;
 require_once( "mvc/base/Mapper.php" );
 class Board extends Mapper implements \MVC\Domain\BoardFinder{
-
-    function __construct() {
+    function __construct(){
         parent::__construct();
 				
 		$tblBoard 				= "bamboo100_board";
 		
 		$selectAllStmt 			= sprintf("select * from %s ORDER BY id", $tblBoard);
 		$selectStmt 			= sprintf("select *  from %s where id=?", $tblBoard);
-		$updateStmt 			= sprintf("update %s set id_chapter=?, name=?, `time`=?, info=?, move_start=?, move_end=?, `key`=? where id=?", $tblBoard);
-		$insertStmt 			= sprintf("insert into %s ( id_chapter, name, `time`, info, move_start, move_end, `key`) values(?, ?, ?, ?, ?, ?, ?)", $tblBoard);
+		$updateStmt 			= sprintf("update %s set id_chapter=?, name=?, state=?, `time`=?, info=?, move_start=?, move_end=?, round=?, result=?, `key`=? where id=?", $tblBoard);
+		$insertStmt 			= sprintf("insert into %s ( id_chapter, name, state, `time`, info, move_start, move_end, round, result, `key`) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblBoard);
 		$deleteStmt 			= sprintf("delete from %s where id=?", $tblBoard);
 		$findByStmt 			= sprintf("select *  from %s where `id_chapter`=?", $tblBoard);
 		$findByKeyStmt 			= sprintf("select *  from %s where `key`=?", $tblBoard);
@@ -33,10 +32,13 @@ class Board extends Mapper implements \MVC\Domain\BoardFinder{
 			$array['id'],
 			$array['id_chapter'],
 			$array['name'],
+			$array['state'],
 			$array['time'],
 			$array['info'],
 			$array['move_start'],
 			$array['move_end'],
+			$array['round'],
+			$array['result'],
 			$array['key']
 		);
         return $obj;
@@ -47,10 +49,13 @@ class Board extends Mapper implements \MVC\Domain\BoardFinder{
         $values = array( 
 			$object->getIdChapter(),
 			$object->getName(),
+			$object->getState(),
 			$object->getTime(),
 			$object->getInfo(),
 			$object->getMoveStart(),
 			$object->getMoveEnd(),
+			$object->getRound(),
+			$object->getResult(),
 			$object->getKey()			
 		);
         $this->insertStmt->execute( $values );
@@ -61,11 +66,14 @@ class Board extends Mapper implements \MVC\Domain\BoardFinder{
     protected function doUpdate( \MVC\Domain\Object $object ) {
         $values = array( 
 			$object->getIdChapter(),
-			$object->getName(),			
+			$object->getName(),
+			$object->getState(),
 			$object->getTime(),
 			$object->getInfo(),
 			$object->getMoveStart(),
 			$object->getMoveEnd(),
+			$object->getRound(),
+			$object->getResult(),
 			$object->getKey(),
 			$object->getId()
 		);
