@@ -20,6 +20,7 @@
 			$Language	= $request->getProperty('Language');
 			$Order		= $request->getProperty('Order');
 			$Viewed		= $request->getProperty('Viewed');
+			$Thumb		= $request->getProperty('Thumb');
 			$URL		= $request->getProperty('URL');
 						
 			//-------------------------------------------------------------
@@ -40,6 +41,7 @@
 			$Book->setOrder($Order);
 			$Book->setURL($URL);
 			$Book->setViewed($Viewed);
+			$Book->setThumb($Thumb);
 			$Book->reKey();
 			
 			$mBook->update($Book);

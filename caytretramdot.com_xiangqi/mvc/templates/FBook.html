@@ -1,45 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<div metal:use-macro="mFront.xhtml/IncludeMETA"/>
-		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>
+		<tal:block metal:use-macro="mFront.xhtml/IncludeMETA"/>
+		<meta property="og:title" tal:attributes="content Book/getTitle"/>
+		<meta property="og:description" tal:attributes="content Book/getInfoReduce"/>		
+		<meta property="og:image" tal:attributes="content Book/getThumb"/>
+		<tal:block metal:use-macro="mFront.xhtml/IncludeCSS"/>
+		<tal:block metal:use-macro="mFront.xhtml/IncludeJS"/>
 	</head>
 	<body>
 		<div metal:use-macro="mFront.xhtml/Header"/>
-		<div class="container" id="wraper">
-			<div class="row-fluid">
-				<div class="col-md-9 col-sm-9">
-					<table class="table table-striped">
-						<tr>
-							<th width="32px">STT</th>
-							<th>SÁCH</th>
-							<th>TÁC GIẢ</th>						
-							<th width="32px"/>
-						</tr>
-						<tr tal:repeat="Book Category/getBookAll">
-							<td><div class="text-center" tal:content="repeat/Book/number"/></td>
-							<td><a tal:attributes="href Book/getURLView"><span tal:content="Book/getTitle"/></a></td>
-							<td><div class="text-left" tal:content="Book/getAuthor"/></td>
-							<td><div class="text-left" tal:content="Book/getLanguage"/></td>
-						</tr>
-					</table>
-				</div>
-				<div class="col-md-3 col-sm-3">
+		<div class="container-fluid" id="wraper">
+			<div class="row">
+				<div class="col-md-9">
 					<div class="panel panel-default">
-						<div class="panel-heading">Danh mục</div>
+						<div class="panel-heading"><H1 tal:content="Book/getTitle"/></div>
+						<div class="panel-body">
+							<div class="article-meta-date">								
+								<span tal:content="Book/getTimePrint"/>, <span tal:content="Book/getViewed"/> lượt xem,  <span tal:content="Book/getAuthor"/> 
+								<span tal:condition="Book/getURL"><a tal:attributes="href Book/getURL" target="blank">Tải file gốc</a></span>
+							</div>
+							<div class="article-meta-more">																				
+								<div class="share-button-group">
+									<div class="fb-share-button" tal:attributes="data-href URLShare" data-type="button_count" />
+								</div>
+								<div tal:content="structure Book/getInfo" class="article-content-container"/>								
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="panel panel-default">
+						<div class="panel-heading">Nội dung</div>
 						<div class="panel-body">
 							<ul>
-								<li tal:repeat="Category CategoryBookAll">
-									<a tal:attributes="href Category/getURLView">
-										<span tal:content="Category/getName"/> (<span tal:content="Category/getBookAll/count"/>)
+								<li tal:repeat="Chapter Book/getChapterAll">
+									<a tal:attributes="href Chapter/getURLView">
+										<span tal:content="Chapter/getTitle"/>
 									</a>
 								</li>
 							</ul>
 						</div>						
-					</div>					
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">Sách cùng danh mục</div>
+						<div class="panel-body">
+							<ul>
+								<li tal:repeat="Book Category/getBookAll">
+									<a tal:attributes="href Book/getURLView">
+										<span tal:content="Book/getTitle"/>
+									</a>
+								</li>
+							</ul>
+						</div>						
+					</div>		
 				</div>
-			</div>			
+			</div>
 		</div>
-		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
-	</body>
+		<script type="text/javascript">
+		/*<![CDATA[*/						
+			(function(d, s, id) {
+				var js, fjs = d.getElementsByTagName(s)[0];
+				if (d.getElementById(id)) return;
+				js = d.createElement(s); js.id = id;
+				js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&appId=525611617524479&version=v2.0";
+				fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));
+		/*]]>*/
+		</script>
+	</body>	
 </html>

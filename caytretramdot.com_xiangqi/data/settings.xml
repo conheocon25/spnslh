@@ -5,16 +5,18 @@
 		<!-- ============================================================================== -->		
 		<command name="DefaultCommand" 	type="public"><view>DefaultCommand</view><status value="CMD_OK"><forward>FHome</forward></status></command>
 		<command name="FHome" 			type="public"><view>FHome</view></command>						
+		
+		<command name="FCategoryPost" 	type="public"><view>FCategoryPost</view></command>		
 		<command name="FPost" 			type="public"><view>FPost</view></command>		
-		<command name="FPostDetail" 	type="public"><view>FPostDetail</view></command>
+										
+		<command name="FCategoryBook" 	type="public"><view>FCategoryBook</view></command>
+		<command name="FBook" 			type="public"><view>FBook</view></command>
+		<command name="FChapter" 		type="public"><view>FChapter</view></command>
+		<command name="FBoard" 			type="public"><view>FBoard</view></command>		
 		
 		<command name="FContact" 		type="public"><view>FContact</view></command>
-		
-		<command name="FBoard" 			type="public"><view>FBoard</view></command>		
-		<command name="FBoardViewer" 	type="public"><view>FBoardViewer</view></command>						
-						
-		<command name="FBook" 			type="public"><view>FBook</view></command>
-		<command name="FBookDetail" 	type="public"><view>FBookDetail</view></command>
+		<command name="FRegister" 		type="public"><view>FRegister</view></command>
+		<command name="FLogin" 			type="public"><view>FLogin</view></command>
 		
 		<!-- ============================================================================== -->
 		<!-- JSON LOAD			 															-->

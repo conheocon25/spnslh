@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class FSoft extends Command {
+	class FChapter extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -11,29 +11,41 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-						
+			$KCategory 	= $request->getProperty('KCategory');
+			$KBook 		= $request->getProperty('KBook');
+			$KChapter	= $request->getProperty('KChapter');
+			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------						
-			$mConfig 		= new \MVC\Mapper\Config();						
-			$mCategoryPost 	= new \MVC\Mapper\CategoryPost();
+			$mConfig 		= new \MVC\Mapper\Config();
+			$mBook 			= new \MVC\Mapper\Book();
+			$mChapter 		= new \MVC\Mapper\Chapter();
 			$mCategoryBoard = new \MVC\Mapper\CategoryBoard();
+			$mCategoryPost 	= new \MVC\Mapper\CategoryPost();
 			$mCategoryBook 	= new \MVC\Mapper\CategoryBook();
 									
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------											
+			$Book 				= $mBook->findByKey($KBook);
+			$Category 			= $Book->getCategory();
+			$Chapter 			= $mChapter->findByKey($KChapter);
+						
 			$CategoryPostAll 	= $mCategoryPost->findAll();
-			$CategoryBoardAll 	= $mCategoryBoard->findAll();
 			$CategoryBookAll 	= $mCategoryBook->findAll();
+			$CategoryBoardAll 	= $mCategoryBoard->findAll();
 												
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
-			$request->setProperty("Active", 'Tool');
+			$request->setObject("URLShare", 			$Book->getURLViewFull());
+			$request->setObject("Category", 			$Category);
+			$request->setObject("Book", 				$Book);
+			$request->setObject("Chapter", 				$Chapter);
 			$request->setObject("CategoryPostAll", 		$CategoryPostAll);
-			$request->setObject("CategoryBoardAll", 	$CategoryBoardAll);
 			$request->setObject("CategoryBookAll", 		$CategoryBookAll);
+			$request->setObject("CategoryBoardAll", 	$CategoryBoardAll);
 						
 			return self::statuses('CMD_DEFAULT');
 		}

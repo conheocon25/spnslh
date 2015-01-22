@@ -20,6 +20,7 @@
 			$Language	= $request->getProperty('Language');
 			$Order		= $request->getProperty('Order');
 			$URL		= $request->getProperty('URL');
+			$Thumb		= $request->getProperty('Thumb');
 						
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
@@ -38,8 +39,10 @@
 				$Author, 
 				$Language, 
 				$Order, 
-				$URL, 
-				"");			
+				$URL,
+				1,
+				$Thumb, 
+				"");
 			$Book->reKey();
 			
 			$mBook->insert($Book);

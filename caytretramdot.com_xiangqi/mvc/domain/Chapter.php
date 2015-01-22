@@ -88,7 +88,11 @@ class Chapter extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------	
-	function getURLView()			{return "/sach/".$this->getCategory()->getKey()."/".$this->getKey();}
+	function getURLView(){
+		$Book 		= $this->getBook();
+		$Category 	= $Book->getCategory();
+		return "/sach/".$Category->getKey()."/".$Book->getKey()."/".$this->getKey();
+	}
 	
 	function getURLSettingBoard()			{return "/admin/book/".$this->getBook()->getCategory()->getId()."/".$this->getIdBook()."/chapter/".$this->getId()."/board";		}
 	function getURLSettingBoardInsLoad()	{return "/admin/book/".$this->getBook()->getCategory()->getId()."/".$this->getIdBook()."/chapter/".$this->getId()."/board/ins/load";	}
