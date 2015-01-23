@@ -5,7 +5,7 @@ require_once( "mvc/base/domain/DomainObject.php" );
 class RssLink extends Object{
 
     private $Id;	
-	private $IdCategory;
+	private $IdTag;
 	private $Name;
 	private $Weburl;
 	private $Rssurl;
@@ -15,9 +15,9 @@ class RssLink extends Object{
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-    function __construct( $Id=null, $IdCategory=null,$Name=null, $Weburl=null, $Rssurl=null, $Type=null, $Enable=null){
+    function __construct( $Id=null, $IdTag=null,$Name=null, $Weburl=null, $Rssurl=null, $Type=null, $Enable=null){
 		$this->Id 			= $Id;		
-		$this->IdCategory 	= $IdCategory; 
+		$this->IdTag 	= $IdTag; 
 		$this->Name 		= $Name; 
 		$this->Weburl 		= $Weburl;
 		$this->Rssurl		= $Rssurl;
@@ -28,8 +28,8 @@ class RssLink extends Object{
 	}
     function getId() {return $this->Id;}	
 		
-    function setIdCategory( $IdCategory ) {$this->IdCategory = $IdCategory;$this->markDirty();}   
-	function getIdCategory( ) {return $this->IdCategory;} 
+    function setIdTag( $IdTag ) {$this->IdTag = $IdTag;$this->markDirty();}   
+	function getIdTag( ) {return $this->IdTag;} 
 	
 	function setName( $Name ) {$this->Name = $Name;$this->markDirty();}   
 	function getName( ) {return $this->Name;}
@@ -46,7 +46,7 @@ class RssLink extends Object{
 	
 	function getCategoryVideo( ) {
 		$mCategoryNews = new \MVC\Mapper\CategoryNews();
-		$dCategoryVideo = $mCategoryNews->find($this->IdCategory);
+		$dCategoryVideo = $mCategoryNews->find($this->IdTag);
 		return $dCategoryVideo;
 	}
 	
@@ -63,7 +63,7 @@ class RssLink extends Object{
 	function toJSON(){
 		$json = array(
 			'Id' 			=> $this->getId(),			
-			'IdCategory'	=> $this->IdCategory(),
+			'IdTag'			=> $this->IdTag(),
 			'Name'			=> $this->getName(),
 			'Weburl'		=> $this->getWeburl(),
 			'Rssurl' 		=> $this->getRssurl(),
@@ -75,7 +75,7 @@ class RssLink extends Object{
 	
 	function setArray( $Data ){
         $this->Id 			= $Data[0];
-		$this->IdCategory 	= $Data[1];
+		$this->IdTag 		= $Data[1];
 		$this->Name 		= $Data[2];
 		$this->Weburl 		= $Data[3];
 		$this->Rssurl		= $Data[4];
