@@ -14,13 +14,20 @@ class Post extends Mapper implements \MVC\Domain\PostFinder {
 		$insertStmt 	= sprintf("insert into %s ( title, content, author, `time`, `count`, `key`, `viewed`, `liked`) values(?, ?, ?, ?, ?, ?, ?, ?)", $tblPost);
 		$deleteStmt 	= sprintf("delete from %s where id=?", $tblPost);
 		$findByKeyStmt 	= sprintf("select *  from %s where `key`=?", $tblPost);
-				
+		
+		$findByDateTimeStmt = sprintf(
+			"select *  
+			from %s 
+			where date >= ? AND date <= ?"
+		, $tblPost);
+		
         $this->selectAllStmt 	= self::$PDO->prepare($selectAllStmt);
         $this->selectStmt 		= self::$PDO->prepare($selectStmt);
         $this->updateStmt 		= self::$PDO->prepare($updateStmt);
         $this->insertStmt 		= self::$PDO->prepare($insertStmt);
 		$this->deleteStmt 		= self::$PDO->prepare($deleteStmt);
 		$this->findByKeyStmt 	= self::$PDO->prepare($findByKeyStmt);
+		$this->findByDateTimeStmt 	= self::$PDO->prepare($findByDateTimeStmt);
 
     } 
     function getCollection( array $raw ) {return new PostCollection( $raw, $this );}
@@ -86,6 +93,11 @@ class Post extends Mapper implements \MVC\Domain\PostFinder {
         if ( ! isset( $array['id'] ) ) { return null; }
         $object = $this->doCreateObject( $array );
         return $object;		
+    }
+	
+	function findByDateTime( $values ) {		
+		$this->findByDateTimeStmt->execute($values);
+        return new NewsCollection( $this->findByDateTimeStmt->fetchAll(), $this );
     }
 }
 ?>

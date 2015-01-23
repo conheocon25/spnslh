@@ -5,17 +5,11 @@
 		<span metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
 	</head>
 	<body>
-		<div metal:use-macro="mAdmin.xhtml/Header"/>
-		<div metal:use-macro="mAdmin.xhtml/UserNavigation"/>		
-		<div metal:use-macro="mAdmin.xhtml/Sidebar"/>			
+		<div metal:use-macro="mAdmin.xhtml/Header"/>		
+		<div metal:use-macro="mAdmin.xhtml/MenuApp"/>		
 		<div id="content">
-			<div id="content-header">
-				<h1 tal:content="Title"/>
-				<div class="btn-group">
-					<a href="/app/rss/ins/load" class="btn btn-success sinleins"><i class="glyphicon glyphicon-plus"> Thêm mới</i></a>
-				</div>
-			</div>
-			<div metal:use-macro="mAdmin.xhtml/Breadcrumb"/>
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+			<div metal:use-macro="mAdmin.xhtml/LocationBar"/>			
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-12">
@@ -57,11 +51,8 @@
 				</div>
 			</div>
 		</div>
-								
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>
-		<div metal:use-macro="mDialog.xhtml/DialogDel"/>
-		<div metal:use-macro="mAdmin.xhtml/SignoutDialog"/>
-		<span metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
 		<script type="text/javascript">
 		/*<![CDATA[*/
 			//-----------------------------------------------------------------------------------
