@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<tal:block metal:use-macro="mFront.xhtml/IncludeMETA"/>
+		<meta property="og:title" tal:attributes="content Book/getTitle"/>
+		<meta property="og:description" tal:attributes="content Book/getInfoReduce"/>		
+		<meta property="og:image" tal:attributes="content Book/getThumb"/>
+		<tal:block metal:use-macro="mFront.xhtml/IncludeCSS"/>
+		<tal:block metal:use-macro="mFront.xhtml/IncludeJS"/>
+	</head>
+	<body>
+		<div metal:use-macro="mFront.xhtml/Header"/>
+		<div class="container-fluid" id="wraper">
+			<div class="row">
+				<div class="col-md-9">
+					<div class="panel panel-default">
+						<div class="panel-heading"><H1 tal:content="Chapter/getTitle"/>
+						
+						</div>
+						<div class="panel-body">							
+							<div class="article-meta-more">								
+								<div tal:content="structure Chapter/getInfo" class="article-content-container"/>								
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading"><h2>Ván cờ minh họa</h2></div>
+						<div class="panel-body">
+							<div class="article-meta-date" />							
+							<div class="article-meta-more">
+								<a tal:attributes="href Board/getURLView" class="btn btn-default btn-lg btn-block" tal:repeat="Board Chapter/getBoardAll">
+									<span tal:content="Board/getName"/>									
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<a tal:attributes="href Book/getURLView">
+								<span tal:content="Book/getTitle"/>
+							</a>
+						</div>
+						<div class="panel-body">
+							<a tal:attributes="href Chapter1/getURLView;class php: Chapter1->getId()==Chapter->getId()?'btn btn-primary btn-block':'btn btn-default btn-block'"  tal:repeat="Chapter1 Book/getChapterAll">
+								<span tal:content="Chapter1/getTitleReduce"/>
+							</a>							
+						</div>
+					</div>					
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+		/*<![CDATA[*/						
+			(function(d, s, id) {
+				var js, fjs = d.getElementsByTagName(s)[0];
+				if (d.getElementById(id)) return;
+				js = d.createElement(s); js.id = id;
+				js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&appId=525611617524479&version=v2.0";
+				fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));
+		/*]]>*/
+		</script>
+	</body>	
+</html>

@@ -136,6 +136,12 @@ class Product extends Object{
 		$ImageAll = $mProductImage->findBy(array($this->getId()));
 		return $ImageAll;
 	}
+	function getThumb(){
+		$ImageAll = $this->getImageAll();
+		if ($ImageAll->count()>0)
+			return $ImageAll->current()->getURL();
+		return "/mvc/templates/front/img/item.png";
+	}
 	
 	function getInfo(){
 		$mProductInfo 	= new \MVC\Mapper\ProductInfo();
