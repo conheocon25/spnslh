@@ -12,7 +12,8 @@
 		<command name="FCategoryBook" 	type="public"><view>FCategoryBook</view></command>
 		<command name="FBook" 			type="public"><view>FBook</view></command>
 		<command name="FChapter" 		type="public"><view>FChapter</view></command>
-		<command name="FBoard" 			type="public"><view>FBoard</view></command>		
+		<command name="FBoard" 			type="public"><view>FBoard</view></command>
+		<command name="FBoardEmbeded" 	type="public"><view>FBoardEmbeded</view></command>
 		
 		<command name="FContact" 		type="public"><view>FContact</view></command>
 		<command name="FRegister" 		type="public"><view>FRegister</view></command>

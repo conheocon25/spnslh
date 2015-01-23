@@ -121,6 +121,7 @@ function initCompose(State){
 }
 
 function initViewer(State){
+	if (State=="") State = "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";
 	drawBoard(State);
 	for (var i=0; i<10; i++){
 		for (var j=0; j<9; j++){			
