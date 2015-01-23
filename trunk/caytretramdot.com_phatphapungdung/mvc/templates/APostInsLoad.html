@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+	</head>
+	
+	<body>
+		<div metal:use-macro="mAdmin.xhtml/Header"/>		
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
+			<div class="row">
+				<div class="col-12">					
+					<div class="widget-box">
+						<div class="widget-content nopadding">
+							<form class="form-horizontal" tal:attributes="action Category/getURLSettingPostInsExe" method="post">
+								<div class="control-group">
+									<label class="control-label" for="Title">Tiêu đề</label>
+									<div class="controls">
+										<input type="text" id="Title" name="Title" />
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="Time">Thời gian</label>
+									<div class="controls">
+										<input type="text" id="Time" name="Time" data-date-format="yyyy-mm-dd hh:ii"/>
+									</div>
+								</div>								
+								<div class="control-group">
+									<label class="control-label" for="Viewed">Lượt xem</label>
+									<div class="controls">
+										<input type="text" id="Viewed" name="Viewed" />
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="Count">Lượt Like</label>
+									<div class="controls">
+										<input type="text" id="Liked" name="Liked" />
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="Author">Nội dung</label>
+									<div class="controls">
+										<textarea id="Content" class="ckeditor" name="Content" />
+									</div>
+								</div>
+								<div class="form-actions">
+									<button type="submit" class="btn btn-success" value="submit-value">Lưu</button>
+								</div>
+							</form>
+						</div>
+					</div>										
+				</div>
+			</div>
+		</div>
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<script type="text/javascript" language="javascript" src="/mvc/templates/back/ckeditor/ckeditor.js"/>
+		<script type="text/javascript">
+		/*<![CDATA[*/
+			/* ---------------------------------------------------------------------------- */
+			/* SET TODAY FOR DATEPICKER														*/
+			/* ---------------------------------------------------------------------------- */
+			//THIẾT LẬP NGÀY GIỜ GIAO DỊCH
+			$('#Time').datetimepicker({
+				language:  'vi',
+				weekStart: 1,
+				todayBtn:  1,
+				autoclose: 1,
+				todayHighlight: 1,
+				startView: 2,
+				forceParse: 0,
+				showMeridian: 1
+			});			
+		/*]]>*/
+		</script>
+	</body>
+</html>

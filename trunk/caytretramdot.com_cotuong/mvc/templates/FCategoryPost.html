@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mFront.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>
+	</head>
+	<body>
+		<div metal:use-macro="mFront.xhtml/Header"/>
+		<div class="container-fluid" id="wraper">
+			<div class="row-fluid">
+				<div class="col-md-9 col-sm-9">
+					<table class="table table-striped">						
+						<tr tal:repeat="Post Category/getPostAll">
+							<td width="15%"><img width="96px" tal:attributes="src Post/getImage"/></td>
+							<td>
+								<a tal:attributes="href Post/getURLView"><span tal:content="Post/getTitle"/></a>
+								<p tal:content="structure Post/getContentReduce"/>
+								<p><span tal:content="Post/getTimePrint"/>, <span tal:content="Post/getViewed"/> lượt xem</p>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div class="col-md-3 col-sm-3">
+					<div class="panel panel-default">
+						<div class="panel-heading">Danh mục</div>
+						<div class="panel-body">
+							<ul>
+								<li tal:repeat="Category CategoryPostAll">
+									<a tal:attributes="href Category/getURLView">
+										<span tal:content="Category/getName"/> (<span tal:content="Category/getPostAll/count"/>)
+									</a>
+								</li>
+							</ul>
+						</div>						
+					</div>
+				</div>
+			</div>			
+		</div>
+		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
+	</body>
+</html>

@@ -48,8 +48,8 @@
 							<div class="row">
 								<div tal:repeat="Product ProductAll" class="col-md-3 item-config">
 									<div class="item-thumb">
-										<a tal:attributes="href Product/getURLView">
-											<img src="/mvc/templates/front/img/item.png" class="img-thumbnail img-circle"/>
+										<a tal:attributes="href Product/getURLView">										
+											<img tal:attributes="src Product/getThumb" class="img-thumbnail img-circle"/>
 										</a>
 									</div>
 									<div class="item-info">
@@ -104,9 +104,8 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-md-4">
-					<tal:block metal:use-macro="mFront.xhtml/ADS-1"/>
-					<tal:block metal:use-macro="mFront.xhtml/Subscribe"/>					
+				<div class="col-md-4">					
+					<tal:block metal:use-macro="mFront.xhtml/Subscribe"/>
 					<tal:block metal:use-macro="mFront.xhtml/LikeBox"/>
 				</div>
 			</div>

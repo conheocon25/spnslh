@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mFront.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>
+	</head>
+	<body>
+		<div metal:use-macro="mFront.xhtml/Header"/>
+		<div class="container-fluid" id="wraper">
+			<div class="row">
+				<div class="col-md-9">
+					<div class="page-header">
+						<h1><span tal:content="User1/getName"/> <small>Đã đăng</small></h1>
+					</div>
+					<div class="panel panel-default" tal:repeat="Post PostAll">
+						<div class="panel-body">
+							<div class="media">
+								<a class="media-left" tal:attributes="href Post/getURLView">
+									<img width="86" tal:attributes="src Post/getImage; alt Post/getTitle;"/>
+								</a>
+								<div class="media-body">
+									<a tal:attributes="href Post/getURLView">
+										<h4 tal:content="Post/getTitle" class="media-heading"/>
+									</a>
+									<small><i tal:content="Post/getTimePrint"/></small>
+									<p tal:content="structure Post/getContentReduce"/>
+								</div>
+							</div>
+						</div>
+					</div>
+					<nav>
+						<ul class="pagination">
+							<li tal:repeat="P PN/getPages" tal:attributes="class php:Page==P->getId()?'active':'disable'">
+								<a tal:attributes="href P/getURL" tal:content="P/getName"/>
+							</li>
+						</ul>
+					</nav>
+				</div>
+				<div class="col-md-3">
+					<div metal:use-macro="mFront.xhtml/BoxUserTag"/>
+				</div>
+			</div>
+		</div>
+		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
+	</body>
+</html>
