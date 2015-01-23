@@ -5,13 +5,9 @@
 		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>
 	</head>
 	<body>		
-		<div class="container" id="wraper">
-			<div class="row">
-				<h1 tal:content="Board/getName"/>
-				<a tal:attributes="href Chapter/getURLSettingBoard" class="btn btn-primary">Quay lại</a>
-			</div>
+		<div class="container" id="wraper">			
 			<div class="row">				
-				<div class="col-md-9 col-sm-9">
+				<div class="col-md-6 col-sm-6">
 					<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-image: url(/data/chess/150/Board.jpg); background-repeat:no-repeat; background-size: 80% 100%;">
 						<!-- TỌA ĐỘ-->
 						<tr>
@@ -177,8 +173,8 @@
 							<td width="8%" ><img class="CCell" width="100%" id="Piece78" X="7" Y="8"/></td>
 							<td width="8%" ><img class="CCell" width="100%" id="Piece88" X="8" Y="8"/></td>
 							<td width="8%"><img width="100%" src="/data/chess/150/space.png" /></td>
-							<td width="8%" />
-							<td width="8%" />
+							<td width="8%"><img class="Piece" data-piece="0" data-image="/data/chess/150/space.png" width="100%" src="/data/chess/150/select.png" /></td>
+							<td width="8%"><img class="Piece" data-piece="0" data-image="/data/chess/150/space.png" width="100%" src="/data/chess/150/select.png" /></td>
 							<td width="4%" />
 						</tr>
 																										
@@ -216,32 +212,39 @@
 						</tr>
 					</table>					
 				</div>
-				<div id="MoveList" class="col-md-3 col-xs-3" tal:attributes="MoveStart Board/getMoveStart; MoveEnd Board/getMoveEnd; URLExe Board/getURLSettingStateExe">
+				<div id="MoveList" class="col-md-3 col-xs-3" tal:attributes="MoveStart Board/getMoveStart; MoveEnd Board/getMoveEnd; URLExe Board/getURLSettingStateExe; State Board/getState">
 					<div class="row">
-						<div class="StateSave btn btn-primary">Lưu</div>
-						<div class="StateReset btn btn-primary">Làm lại</div>
+						<div class="StateSave btn btn-primary">Lưu</div>						
 					</div>
 					<div class="row">
-						Quân cờ đang chọn
+						Quân đang chọn
 						<img id="PieceSelect" width="64px" height="64px"/>
 					</div>
 				</div>
-			</div>
-			<div class="row"><div class="text-right">Phát triển bởi SPN Team, 2009-2015</div></div>
+				<div class="col-md-3 col-sm-3">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<a tal:attributes="href Chapter/getURLSettingBoard">
+								<span tal:content="Chapter/getTitle"/>
+							</a>
+						</div>
+						<div class="panel-body">
+							<a tal:attributes="href Board1/getURLSettingStateLoad;class php: Board1->getId()==Board->getId()?'btn btn-primary btn-block':'btn btn-default btn-block'"  tal:repeat="Board1 Chapter/getBoardAll">
+								<span tal:content="Board1/getName"/>
+							</a>							
+						</div>
+					</div>
+				</div>
+			</div>			
 		</div>
 		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
 		<script type="text/javascript">
 		/*<![CDATA[*/			
-			$(function(){
-				var TempPiece 	= '';
-				var TempPiece 	= '';
-				var TempX 		= -1;
-				var TempY 		= -1;
-				var State		= '';				
-				var Selected	= '';
-				var Round		= -1;
-												
-				initState();			
+			$(function(){				
+				var State		= $("#MoveList").attr('State');
+				var Select		= '0';
+								
+				initViewer(State);
 				
 				$(".CCell").click(function(){					
 					var X = parseInt($(this).attr('X'));
@@ -258,15 +261,12 @@
 						data: {aState:aState},
 						url: URL,
 						success: function(msg){							
-							alert("Đã cập nhật TRẠNG THÁI mới cho ván cờ !");
+							//alert("Đã cập nhật TRẠNG THÁI mới cho ván cờ !");
+							location.reload();
 						}
 					});			
 				});
-				
-				$(".StateReset").click(function(){															
-					initState();					
-				});
-				
+												
 				$(".Piece").click(function(){																				
 					$("#PieceSelect").attr('src', $(this).attr('data-image'));
 					Select = $(this).attr('data-piece');

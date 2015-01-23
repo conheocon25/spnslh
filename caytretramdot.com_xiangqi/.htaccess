@@ -25,6 +25,7 @@ RewriteRule ^sach/([A-Za-z0-9_-]+)$														?cmd=FCategoryBook&KCategory=$1
 RewriteRule ^sach/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$									?cmd=FBook&KCategory=$1&KBook=$2 [L]
 RewriteRule ^sach/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$					?cmd=FChapter&KCategory=$1&KBook=$2&KChapter=$3 [L]
 RewriteRule ^sach/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$	?cmd=FBoard&KCategory=$1&KBook=$2&KChapter=$3&KBoard=$4 [L]
+RewriteRule ^sach/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/embeded/([0-9]+)$	?cmd=FBoardEmbeded&KCategory=$1&KBook=$2&KChapter=$3&KBoard=$4&Mode=$5 [L]
 
 RewriteRule ^lien-he$ 											?cmd=FContact 		[L]
 RewriteRule ^login$ 											?cmd=FLogin 		[L]
