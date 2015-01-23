@@ -8,22 +8,25 @@ class Chapter extends Object{
 	private $IdBook;
 	private $Title;	
 	private $Info;
+	private $IdYouTube;
 	private $Key;
 		
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
     function __construct( 
-		$Id		=null, 
-		$IdBook	=null, 
-		$Title	=null , 		
-		$Info	=null, 		
-		$Key	=null)
+		$Id			=null, 
+		$IdBook		=null, 
+		$Title		=null , 		
+		$Info		=null, 
+		$IdYouTube	=null, 		
+		$Key		=null)
 	{
 		$this->Id 			= $Id;
 		$this->IdBook 		= $IdBook;
 		$this->Title 		= $Title; 
 		$this->Info 		= $Info;
+		$this->IdYouTube	= $IdYouTube;
 		$this->Key 			= $Key;
 		
 		parent::__construct( $Id );
@@ -46,7 +49,11 @@ class Chapter extends Object{
 			
 	function setInfo( $Info ) {$this->Info = $Info;$this->markDirty();}   
 	function getInfo( ) {return $this->Info;}
-			
+	
+	function setIdYouTube( $IdYouTube ) {$this->IdYouTube = $IdYouTube;$this->markDirty();}   
+	function getIdYouTube( ) 			{return $this->IdYouTube;}
+	function getYoutubeEmbeded()		{return "http://www.youtube.com/embed/".$this->getIdYouTube();}
+	
 	function setKey( $Key ){$this->Key = $Key;$this->markDirty();}
 	function getKey( ) {return $this->Key;}
 	function reKey( ){
@@ -96,10 +103,6 @@ class Chapter extends Object{
 		$Category 	= $Book->getCategory();
 		return "/sach/".$Category->getKey()."/".$Book->getKey()."/".$this->getKey();
 	}
-	
-	function getURLSettingBoard()			{return "/admin/book/".$this->getBook()->getCategory()->getId()."/".$this->getIdBook()."/chapter/".$this->getId()."/board";		}
-	function getURLSettingBoardInsLoad()	{return "/admin/book/".$this->getBook()->getCategory()->getId()."/".$this->getIdBook()."/chapter/".$this->getId()."/board/ins/load";	}
-	function getURLSettingBoardInsExe()		{return "/admin/book/".$this->getBook()->getCategory()->getId()."/".$this->getIdBook()."/chapter/".$this->getId()."/board/ins/exe";	}
 	
 	function getURLUpdLoad()		{return "/admin/book/".$this->getBook()->getCategory()->getId()."/".$this->getIdBook()."/chapter/".$this->getId()."/upd/load";	}
 	function getURLUpdExe()			{return "/admin/book/".$this->getBook()->getCategory()->getId()."/".$this->getIdBook()."/chapter/".$this->getId()."/upd/exe";	}

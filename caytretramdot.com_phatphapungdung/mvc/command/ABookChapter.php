@@ -29,7 +29,7 @@
 												
 			$Title 			= mb_strtoupper($Book->getTitle(), 'UTF8');
 			$Navigation 	= array(
-				array(mb_strtoupper("SÁCH CỜ / ".$Category->getName(), 'UTF8'), $Category->getURLSetting())
+				array(mb_strtoupper("SÁCH / ".$Category->getName(), 'UTF8'), $Category->getURLSetting())
 			);
 			$ConfigName		= $mConfig->findByName("NAME");
 									

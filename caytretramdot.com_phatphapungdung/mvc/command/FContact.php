@@ -16,16 +16,14 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mConfig 		= new \MVC\Mapper\Config();
-			$mCategoryBoard = new \MVC\Mapper\CategoryBoard();
+			$mConfig 		= new \MVC\Mapper\Config();			
 			$mCategoryBook 	= new \MVC\Mapper\CategoryBook();
 			$mCategoryPost 	= new \MVC\Mapper\CategoryPost();
 						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
-			$CategoryPostAll 	= $mCategoryPost->findAll();
-			$CategoryBoardAll 	= $mCategoryBoard->findAll();
+			$CategoryPostAll 	= $mCategoryPost->findAll();			
 			$CategoryBookAll 	= $mCategoryBook->findAll();
 			
 			//-------------------------------------------------------------

@@ -14,8 +14,9 @@
 			$IdCategory = $request->getProperty('IdCategory');						
 			$IdBook 	= $request->getProperty('IdBook');
 			$IdChapter 	= $request->getProperty('IdChapter');			
-			$Title 		= $request->getProperty('Title');						
+			$Title 		= $request->getProperty('Title');
 			$Info 		= \stripslashes($request->getProperty('Info'));
+			$IdYouTube 	= $request->getProperty('IdYouTube');
 									
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
@@ -29,6 +30,7 @@
 			
 			$Chapter->setInfo($Info);			
 			$Chapter->setTitle($Title);			
+			$Chapter->setIdYouTube($IdYouTube);			
 			$Chapter->reKey();
 			
 			$mChapter->update($Chapter);

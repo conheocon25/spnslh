@@ -19,30 +19,30 @@
 			//-------------------------------------------------------------						
 			$mConfig 		= new \MVC\Mapper\Config();
 			$mPost 			= new \MVC\Mapper\Post();
-			$mCategoryBoard = new \MVC\Mapper\CategoryBoard();
+
 			$mCategoryBook 	= new \MVC\Mapper\CategoryBook();
 			$mCategoryPost 	= new \MVC\Mapper\CategoryPost();
 									
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------											
+			$Category 			= $mCategoryPost->findByKey($KCategory);
 			$Post 				= $mPost->findByKey($KPost);
 			$Post->setViewed($Post->getViewed() + 1);
 			$mPost->update($Post);
 			
 			$CategoryPostAll 	= $mCategoryPost->findAll();
 			$CategoryBookAll 	= $mCategoryBook->findAll();
-			$CategoryBoardAll 	= $mCategoryBoard->findAll();
-												
+															
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
 			$request->setObject("URLShare", 			$Post->getURLViewFull());
-			$request->setObject("Post", 				$Post);			
+			$request->setObject("Category", 			$Category);
+			$request->setObject("Post", 				$Post);
 			$request->setObject("CategoryPostAll", 		$CategoryPostAll);
 			$request->setObject("CategoryBookAll", 		$CategoryBookAll);
-			$request->setObject("CategoryBoardAll", 	$CategoryBoardAll);
-						
+									
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

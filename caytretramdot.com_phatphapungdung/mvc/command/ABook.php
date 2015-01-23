@@ -31,7 +31,7 @@
 			$Category		= $mCategoryBook->find($IdCategory);
 			$BookAll 		= $mBook->findBy(array($IdCategory));
 									
-			$Title 			= "SÁCH CỜ / ". mb_strtoupper($Category->getName(), 'UTF8');
+			$Title 			= "SÁCH / ". mb_strtoupper($Category->getName(), 'UTF8');
 			$Navigation 	= array();
 			$ConfigName		= $mConfig->findByName("NAME");
 									

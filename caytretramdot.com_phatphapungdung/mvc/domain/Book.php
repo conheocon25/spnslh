@@ -10,7 +10,7 @@ class Book extends Object{
 	private $Time;
 	private $Info;
 	private $Author;
-	private $Language;	
+	private $Language;
 	private $Order;
 	private $URL;
 	private $Viewed;

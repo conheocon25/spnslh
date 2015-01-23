@@ -5,7 +5,7 @@ require_once( "mvc/base/Mapper.php" );
 class Post extends Mapper implements \MVC\Domain\PostFinder {
     function __construct() {
         parent::__construct();				
-		$tblPost = "bamboo100_post";
+		$tblPost = "tbl_post";
 		
 		$selectAllStmt 	= sprintf("select * from %s", $tblPost);
 		$selectStmt 	= sprintf("select *  from %s where id=?", $tblPost);
