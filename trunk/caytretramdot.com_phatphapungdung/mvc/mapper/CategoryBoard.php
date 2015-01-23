@@ -6,7 +6,7 @@ class CategoryBoard extends Mapper implements \MVC\Domain\CategoryBoardFinder{
     function __construct() {
         parent::__construct();
 		
-		$tblCategoryBoard = "bamboo100_category_board";
+		$tblCategoryBoard = "tbl_category_board";
 						
 		$selectAllStmt 	= sprintf("select * from %s order by `order` DESC", $tblCategoryBoard);
 		$selectStmt 	= sprintf("select * from %s where id=?", $tblCategoryBoard);

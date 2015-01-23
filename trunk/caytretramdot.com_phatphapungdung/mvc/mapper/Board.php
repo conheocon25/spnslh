@@ -5,7 +5,7 @@ class Board extends Mapper implements \MVC\Domain\BoardFinder{
     function __construct(){
         parent::__construct();
 				
-		$tblBoard 				= "bamboo100_board";
+		$tblBoard 				= "tbl_board";
 		
 		$selectAllStmt 			= sprintf("select * from %s ORDER BY id", $tblBoard);
 		$selectStmt 			= sprintf("select *  from %s where id=?", $tblBoard);

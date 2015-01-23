@@ -27,7 +27,7 @@
 			
 			$Title = "THÊM SÁCH";
 			$Navigation = array(				
-				array("SÁCH CỜ / ".\mb_strtoupper($Category->getName(), 'UTF8'), $Category->getURLSetting())
+				array("SÁCH / ".\mb_strtoupper($Category->getName(), 'UTF8'), $Category->getURLSetting())
 			);
 			
 			$ConfigName	= $mConfig->findByName("NAME");

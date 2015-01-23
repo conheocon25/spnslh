@@ -6,7 +6,7 @@ class UserTag extends Mapper implements \MVC\Domain\UserTagFinder {
     function __construct() {
         parent::__construct();
 		
-		$tblUserTag = "bamboo100_user_tag";
+		$tblUserTag = "tbl_user_tag";
 						
 		$selectAllStmt 				= sprintf("select * from %s order by `post_count` DESC, name", $tblUserTag);
 		$selectStmt 				= sprintf("select * from %s where id=?", $tblUserTag);
