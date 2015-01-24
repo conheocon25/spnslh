@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class ABookChapterBoardInsExe extends Command{
+	class ABookChapterUpdExe extends Command{
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -11,38 +11,29 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------						
-			$IdChapter 	= $request->getProperty('IdChapter');
-			$Name 		= $request->getProperty('Name');			
-			$Time 		= $request->getProperty('Time');			
+			$IdCategory = $request->getProperty('IdCategory');						
+			$IdBook 	= $request->getProperty('IdBook');
+			$IdChapter 	= $request->getProperty('IdChapter');			
+			$Title 		= $request->getProperty('Title');
 			$Info 		= \stripslashes($request->getProperty('Info'));
-			$MoveStart 	= $request->getProperty('MoveStart');
-			$MoveEnd	= $request->getProperty('MoveEnd');
-			$Round 		= $request->getProperty('Round');
-			$Result		= $request->getProperty('Result');
+			$IdYouTube 	= $request->getProperty('IdYouTube');
 									
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mBoard = new \MVC\Mapper\Board();
+			$mChapter = new \MVC\Mapper\Chapter();
 					
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------										
-			$Board = new \MVC\Domain\Board(
-				null, 
-				$IdChapter, 
-				$Name, 
-				$Time, 
-				$Info, 
-				$MoveStart, 
-				$MoveEnd,
-				$Round,
-				$Result,				
-				""
-			);
-			$Board->reKey();
+			$Chapter = $mChapter->find($IdChapter);
 			
-			$mBoard->insert($Board);
+			$Chapter->setInfo($Info);			
+			$Chapter->setTitle($Title);			
+			$Chapter->setIdYouTube($IdYouTube);			
+			$Chapter->reKey();
+			
+			$mChapter->update($Chapter);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI

@@ -162,13 +162,21 @@ function drawRound1(Round){
 	}
 }
 
+function drawSelect(TY, TX){
+	var Border = "#Border" + TY + TX;
+	//var Cell2 = "#Piece" + Y + X;
+	//$(IdCell).attr("src", '/data/chess/150/GAssansin.png');
+	//$(Cell1).css("background-image", "");
+	$(Border).css("background-image", "url(/data/chess/150/Select.png)");
+}
+
 function drawBoard(State){
 	$(".CCell").attr('src', '');
 	for (var i=0; i<10; i++){
 		for (var j=0; j<9; j++){
 			var n = State.charAt(i*9+j);
 			var IdCell = "#Piece" + j + i;
-			if (n!='0'){				
+			if (n!='0'){
 				switch (n){
 					//Cặp sĩ
 					case 'a':										
