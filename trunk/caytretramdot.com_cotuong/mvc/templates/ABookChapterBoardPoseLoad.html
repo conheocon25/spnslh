@@ -220,7 +220,6 @@
 						<div class="MoveSave btn btn-primary">Lưu</div>						
 						<div class="MoveBack btn btn-primary"> < </div>
 						<div class="MoveState btn btn-default">?</div>
-						<div class="MoveNext btn btn-primary"> > </div>
 						<a tal:attributes="href Board/getURLSettingStateLoad" class="btn btn-success">Thiết lập trạng thái</a>
 					</div>
 					<div class="row">						
@@ -281,6 +280,8 @@
 						if (!(TempX == X && TempY == Y)){
 							//Di chuyển quân
 							if (aState[Y][X] == '0'){
+								iStep++;
+								
 								aStepA[iStep] = exportStep(TempY, TempX, Y, X);
 								movePiece(TempY, TempX, Y, X);
 								State = exportState();
@@ -289,14 +290,14 @@
 								Round = Round*(-1);
 								drawRound(Round);
 								
-								//Lưu lại nước đi
-								//$('#StateList tr:last').after("<tr><td align='center'>"+(iStep+1)+"</td><td>"+aStepA[iStep]+"</td></tr>");
 								drawMoveState();
 								drawIState(iStep);
-								aStep[iStep++] = State;
+								aStep[iStep] = State;
 							}
 							//Ăn quân
 							else{
+								iStep++;
+								
 								aStepA[iStep] 	= exportStep(TempY, TempX, Y, X);
 								movePiece(TempY, TempX, Y, X);
 								State = exportState();
@@ -305,14 +306,10 @@
 								Round = Round*(-1);
 								drawRound(Round);
 								
-								//Lưu lại nước đi
-								//$('#StateList tr:last').after("<tr><td align='center'>"+(iStep+1)+"</td><td>"+aStepA[iStep]+"</td></tr>");
 								drawMoveState();
 								drawIState(iStep);
-								aStep[iStep++] 	= State;
-							}
-							//Lưu trạng thái tạm
-							iStepT = iStep;
+								aStep[iStep] 	= State;
+							}							
 						}						
 					}
 				});
@@ -332,16 +329,16 @@
 				//Tua tới và tua lui
 				$(".MoveBack").click(function(){					
 					$('#StateList tr:last').remove();					
-					iStepT--;
-					drawBoard(aStep[iStepT]);
-					drawIState(iStepT);
-				});
-				$(".MoveNext").click(function(){					
-					$('#StateList tr:last').after("<tr><td align='center'>"+(iStepT+1)+"</td><td>"+aStepA[iStepT]+"</td></tr>");										
-					iStepT++;
-					drawBoard(aStep[iStepT]);
-					drawIState(iStepT);
-				});
+					Round =  Round*(-1);
+					iStep--;
+					Selected = 0;
+					
+					updateAState(aStep[iStep]);
+					drawBoard(aStep[iStep]);
+					drawIState(iStep);
+					drawRound(Round);
+										
+				});				
 			});
 		/*]]>*/
 		</script>
