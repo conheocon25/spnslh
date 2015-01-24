@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+	</head>
+	
+	<body>
+		<div metal:use-macro="mAdmin.xhtml/Header"/>				
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
+			<div class="row">
+				<div class="col-12">					
+					<div class="widget-box">
+						<div class="widget-content nopadding">
+							<form class="form-horizontal" tal:attributes="action Chapter/getURLUpdExe" method="POST">
+								<div class="control-group">
+									<label class="control-label" for="Title">Tiêu đề</label>
+									<div class="controls">
+										<input type="text" id="Title" name="Title" tal:attributes="value Chapter/getTitle"/>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="Id Youtube">Id Youtube</label>
+									<div class="controls">
+										<input type="text" id="IdYoutube" name="IdYoutube" tal:attributes="value Chapter/getIdYoutube"/>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="Info">Giới thiệu</label>
+									<div class="controls">
+										<textarea id="Info" class="ckeditor" name="Info" tal:content="Chapter/getInfo"/>
+									</div>
+								</div>
+								<div class="form-actions">
+									<button type="submit" class="btn btn-success" value="submit-value">Lưu</button>
+								</div>
+							</form>
+						</div>
+					</div>										
+				</div>
+			</div>
+		</div>
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<script type="text/javascript" language="javascript" src="/mvc/templates/back/ckeditor/ckeditor.js"/>
+		<script type="text/javascript">
+		/*<![CDATA[*/
+			
+		/*]]>*/
+		</script>
+	</body>
+</html>

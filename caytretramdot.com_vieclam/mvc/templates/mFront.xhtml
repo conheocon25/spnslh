@@ -1,0 +1,82 @@
+<html lang="en" xml:lang="en">
+<body>
+	<!-- ======================================================================== -->
+	<!-- META TAG INCLUDE														  -->
+	<!-- ======================================================================== -->
+	<span metal:define-macro="IncludeMETA">
+		<title>Phật Pháp Ứng Dụng</title>
+		<base href="phatphapungdung.caytretramdot.com"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+		<meta http-equiv="Pragma" content="no-cache"/>
+		<meta http-equiv="Expires" content="-1"/>
+		<meta http-equiv="Cache-Control" content="no-cache"/>
+		<meta name="keywords" content="Website Phật Pháp Ứng Dụng"/>
+		<meta name="description" content="Website Phật Pháp Ứng Dụng"/>
+		<meta name="page-topic" content="Website Phật Pháp Ứng Dụng"/>
+		<meta name="Abstract" content="Website Phật Pháp Ứng Dụng"/>
+		<meta name="classification" content="Website Phật Pháp Ứng Dụng"/>		
+		<link rel="shortcut icon" type="image/ico" href="/mvc/templates/theme/img/favicon.ico" />
+	</span>
+		
+	<!-- ======================================================================== -->
+	<!-- CASCADING STYLE SHEETS INCLUDE											  -->
+	<!-- ======================================================================== -->
+	<span metal:define-macro="IncludeCSS">	
+		<link rel="stylesheet" href="/mvc/templates/theme/bootstrap/css/bootstrap.min.css"/>		
+		<link rel="stylesheet" href="/mvc/templates/theme/bootstrap/css/bootstrap.config.css"/>		
+	</span>
+	
+	<!-- ======================================================================== -->
+	<!-- JAVASCRIPT INCLUDE														  -->
+	<!-- ======================================================================== -->
+	<span metal:define-macro="IncludeJS">
+		<script src="/mvc/templates/theme/bootstrap/js/jquery-1.11.0.min.js"></script>
+		<script src="/mvc/templates/theme/bootstrap/js/bootstrap.min.js"></script>	
+		<script src="/mvc/templates/theme/bootstrap/js/chess.js"></script>
+	</span>
+		
+	<!-- ======================================================================== -->
+	<!-- HEADER																	  -->
+	<!-- ======================================================================== -->
+	<nav metal:define-macro="Header" class="navbar navbar-default navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Bật/tắt</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/trang-chu" style="padding:5px;">
+					<img alt="Brand" src="/mvc/templates/theme/img/bamboo.png" height="100%"/>
+				</a>
+			</div>			
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav navbar-left">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Tin tức<span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li tal:repeat="Category CategoryPostAll">
+								<a tal:attributes="href Category/getURLView" class="clearfix"><span class="pull-left" tal:content="Category/getName"/> <span class="pull-right" tal:content="Category/getPostAll/count"/></a>
+							</li>
+						</ul>
+					</li>					
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Sách<span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li tal:repeat="Category CategoryBookAll">
+								<a tal:attributes="href Category/getURLView" class="clearfix"><span class="pull-left" tal:content="Category/getName"/><span class="pull-right" tal:content="Category/getBookAll/count"/></a>
+							</li>
+						</ul>
+					</li>
+					<li><a href="/login">Đăng nhập</a></li>
+					<li><a href="/lien-he">Liên hệ</a></li>
+				</ul>				
+			</div>
+		</div>
+	</nav>
+	
+		
+</body>
+</html>
