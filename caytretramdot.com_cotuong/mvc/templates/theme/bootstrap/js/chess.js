@@ -13,8 +13,7 @@ var aState = [
 var aStep 	= [];
 var aStepA 	= [];
 
-var iStep 	= 0;
-var iStepT 	= 0;
+var iStep 	= -1;
 var Round 	= -1;
 
 function isColor(C){
@@ -113,7 +112,7 @@ function exportStep(Y, X, NY, NX){
 //KHỞI TẠO VỊ TRÍ CÁC QUÂN CỜ TRƯỚC KHI SOẠN NƯỚC
 function initCompose(State){
 	drawBoard(State);
-	iStep = 0;
+	iStep = -1;
 	
 	for (var i=0; i<10; i++){
 		for (var j=0; j<9; j++){			
@@ -143,6 +142,13 @@ function initState(){
 	drawBoard(State);
 }
 
+function updateAState(State){
+	for (var i=0; i<10; i++){
+		for (var j=0; j<9; j++){			
+			aState[i][j] = State.charAt(i*9+j);
+		}
+	}
+}
 
 function drawRound(Round){
 	$("#RoundRed").attr('src', '');
@@ -165,7 +171,7 @@ function drawRound1(Round){
 }
 
 function drawIState(Index){
-	$(".MoveState").html("<B>" + (Index) + " / " + iStep + "</B>");
+	$(".MoveState").html("<B>" + iStep + "</B>");
 }
 
 function drawMoveState(){
