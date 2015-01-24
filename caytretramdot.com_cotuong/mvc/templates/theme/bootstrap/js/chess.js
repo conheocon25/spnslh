@@ -10,12 +10,14 @@ var aState = [
 	['0', '0', '0', '0', '0', '0', '0', '0', '0'], //8
 	['R', 'H', 'E', 'A', 'K', 'A', 'E', 'H', 'R']  //9
 ];
-var aStep = [];
-var aStepA = [];
+var aStep 	= [];
+var aStepA 	= [];
 
-var iStep = 0;
+var iStep 	= 0;
+var iStepT 	= 0;
+var Round 	= -1;
 
-function isColor(C){	
+function isColor(C){
 	if (C=='r' || C=='h' || C=='e' || C=='a' || C=='k' || C=='p' || C=='c')
 		return 1;
 	else if (C=='R' || C=='H' || C=='E' || C=='A' || C=='K' || C=='P' || C=='C')
@@ -162,12 +164,17 @@ function drawRound1(Round){
 	}
 }
 
-function drawSelect(TY, TX){
-	var Border = "#Border" + TY + TX;
-	//var Cell2 = "#Piece" + Y + X;
-	//$(IdCell).attr("src", '/data/chess/150/GAssansin.png');
-	//$(Cell1).css("background-image", "");
-	$(Border).css("background-image", "url(/data/chess/150/Select.png)");
+function drawIState(Index){
+	$(".MoveState").html("<B>" + (Index) + " / " + iStep + "</B>");
+}
+
+function drawMoveState(){
+	var I1 = Math.floor(iStep/2) + 1;
+	var I2 = (iStep%2) + 1;	
+	if (Round>0)
+		$('#StateList tr:last').after("<tr><td align='center'><font color='red'><B>"+ I1 + "</B>." + I2 +"</font></td><td><font color='red'>"+aStepA[iStep]+"</font></td></tr>");
+	else
+		$('#StateList tr:last').after("<tr><td align='center'><font color='green'><B>"+ I1 + "</B>." + I2 +"</font></td><td><font color='green'>"+aStepA[iStep]+"</font></td></tr>");
 }
 
 function drawBoard(State){
