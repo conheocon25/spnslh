@@ -215,6 +215,7 @@
 				<div id="MoveList" class="col-md-3 col-xs-3" tal:attributes="MoveStart Board/getMoveStart; MoveEnd Board/getMoveEnd; URLExe Board/getURLSettingStateExe; State Board/getState">
 					<div class="row">
 						<div class="StateSave btn btn-primary">Lưu</div>
+						<div class="StateDefault btn btn-primary">Mặc định</div>
 						<a tal:attributes="href Board/getURLSettingPoseLoad" class="btn btn-success">Thiết lập nước đi</a>
 					</div>
 					<div class="row">
@@ -252,9 +253,9 @@
 					var Y = parseInt($(this).attr('Y'));
 					aState[Y][X] = Select;
 					State = exportState();					
-					drawBoard(State);					
+					drawBoard(State);
 				});
-				$(".StateSave").click(function(){															
+				$(".StateSave").click(function(){
 					var URL = $("#MoveList").attr('URLExe');
 																									
 					$.ajax({
@@ -266,6 +267,12 @@
 							location.reload();
 						}
 					});			
+				});
+				
+				$(".StateDefault").click(function(){
+					initDefault();
+					State = exportState();
+					drawBoard(State);
 				});
 												
 				$(".Piece").click(function(){																				

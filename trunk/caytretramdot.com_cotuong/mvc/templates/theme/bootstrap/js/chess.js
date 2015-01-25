@@ -121,6 +121,11 @@ function initCompose(State){
 	}
 }
 
+function initDefault(){
+	var State = "rheakaehr0000000000c00000c0p0p0p0p0p000000000000000000P0P0P0P0P0C00000C0000000000RHEAKAEHR";
+	initViewer(State);
+}
+
 function initViewer(State){
 	if (State=="") State = "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";
 	drawBoard(State);

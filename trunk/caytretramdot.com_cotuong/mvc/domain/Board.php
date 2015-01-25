@@ -45,6 +45,9 @@ class Board extends Object{
 	
     function setName( $Name ) 	{$this->Name = $Name;$this->markDirty();}   
 	function getName( ) 		{return $this->Name;}
+	function getNameReduce( ) {		
+		$S = new \MVC\Library\String($this->Name);return $S->reduceHTML(32);
+	}
 	
 	function setState( $State ) {$this->State = $State;$this->markDirty();}   
 	function getState( ) 		{return $this->State;}
@@ -139,7 +142,14 @@ class Board extends Object{
 		$Category	= $Book->getCategory();
 		return "/sach/".$Category->getKey()."/".$Book->getKey()."/".$Chapter->getKey()."/".$this->getKey();
 	}
-			
+	
+	function getURLDetail(){
+		$Chapter  	= $this->getChapter();
+		$Book 		= $Chapter->getBook();
+		$Category	= $Book->getCategory();
+		return "/admin/book/".$Category->getId()."/".$Book->getId()."/chapter/".$Chapter->getId()."/board/".$this->getId()."/detail";
+	}
+	
 	function getURLUpdLoad(){
 		$Chapter  	= $this->getChapter();
 		$Book 		= $Chapter->getBook();
