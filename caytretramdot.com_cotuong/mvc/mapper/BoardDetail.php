@@ -10,8 +10,8 @@ class BoardDetail extends Mapper implements \MVC\Domain\BoardDetailFinder{
 		
 		$selectAllStmt 		= sprintf("select * from %s ORDER BY id", $tblBoardDetail);
 		$selectStmt 		= sprintf("select *  from %s where id=?", $tblBoardDetail);
-		$updateStmt 		= sprintf("update %s set id_board=?, move=?, name1=?, state1=?, name2=?, state2=? where id=?", $tblBoardDetail);
-		$insertStmt 		= sprintf("insert into %s ( id_board, move, name1, state1, name2, state2) values(?, ?, ?, ?, ?, ?)", $tblBoardDetail);
+		$updateStmt 		= sprintf("update %s set id_board=?, move=?, name1=?, state1=?, name2=?, state2=?, note1=?, note2=?  where id=?", $tblBoardDetail);
+		$insertStmt 		= sprintf("insert into %s ( id_board, move, name1, state1, name2, state2, note1, note2) values(?, ?, ?, ?, ?, ?, ?, ?)", $tblBoardDetail);
 		$deleteStmt 		= sprintf("delete from %s where id=?", $tblBoardDetail);
 		$deleteByStmt 		= sprintf("delete from %s where id_board=?", $tblBoardDetail);
 		$findByStmt 		= sprintf("SELECT * FROM  %s WHERE id_board=?", $tblBoardDetail);
@@ -34,7 +34,9 @@ class BoardDetail extends Mapper implements \MVC\Domain\BoardDetailFinder{
 			$array['name1'],
 			$array['state1'],
 			$array['name2'],
-			$array['state2']			
+			$array['state2'],
+			$array['note1'],
+			$array['note2']
 		);
         return $obj;
     }
@@ -47,7 +49,9 @@ class BoardDetail extends Mapper implements \MVC\Domain\BoardDetailFinder{
 			$object->getName1(),
 			$object->getState1(),
 			$object->getName2(),
-			$object->getState2()
+			$object->getState2(),
+			$object->getNote1(),
+			$object->getNote2()
 		);
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
@@ -62,6 +66,8 @@ class BoardDetail extends Mapper implements \MVC\Domain\BoardDetailFinder{
 			$object->getState1(),
 			$object->getName2(),
 			$object->getState2(),
+			$object->getNote1(),
+			$object->getNote2(),
 			$object->getId()
 		);
         $this->updateStmt->execute( $values );

@@ -69,6 +69,10 @@
 		<command name="ABookChapterBoardStateLoad">	<view>ABookChapterBoardStateLoad	</view></command>
 		<command name="ABookChapterBoardStateExe">	<view>ABookChapterBoardStateExe		</view><status value="CMD_OK"><forward>ABookChapterBoard</forward></status></command>
 		
+		<command name="ABookChapterBoardDetail">	<view>ABookChapterBoardDetail</view></command>
+		<command name="ABookChapterBoardDetailUpdLoad"><view>ABookChapterBoardDetailUpdLoad</view></command>
+		<command name="ABookChapterBoardDetailUpdExe"><view>ABookChapterBoardDetailUpdExe</view><status value="CMD_OK"><forward>ABookChapterBoardDetail</forward></status></command>
+		
 		<command name="APost">					<view>APost			</view></command>		
 		<command name="APostInsLoad">			<view>APostInsLoad	</view></command>
 		<command name="APostInsExe">			<view>APostInsExe	</view><status value="CMD_OK"><forward>APost</forward></status></command>

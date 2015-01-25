@@ -6,48 +6,31 @@
 	</head>
 	
 	<body>
-		<div metal:use-macro="mAdmin.xhtml/Header"/>
-		<div id="sidebar">			
-			<ul style="display: block;">
-				<li tal:repeat="Chapter1 Book/getChapterAll" tal:attributes="class php: Chapter1->getId()==Chapter->getId()?'active':''">
-					<a tal:attributes="href Chapter1/getURLSettingBoard">
-						<i class="glyphicons-tag"/><span tal:content="Chapter1/getTitle"/>
-					</a>
-				</li>
-			</ul>			
-		</div>
+		<div metal:use-macro="mAdmin.xhtml/Header"/>		
 		<div id="content">
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
 			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
 			<div class="row">
-				<div class="col-12">					
-					<a tal:attributes="href Chapter/getURLSettingBoardInsLoad" class="btn btn-primary btn-ins">
-						<i class="glyphicons-plus"/> Thêm mới
-					</a>
-					<a href="#DialogDelSelected" data-toggle="modal" class="btn btn-primary btn-ins">
-						<i class="glyphicons-remove_2"/> Xóa chọn
-					</a>					
+				<div class="col-12">
 					<div class="widget-box">
 						<div class="widget-content nopadding">
 							<table class="table table-bordered table-striped table-hover with-check">
 								<thead>
 									<tr>
-										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
-										<th class="left">TIÊU ĐỀ</th>
-										<th width="120" class="left">THIẾT LẬP</th>
-										<th width="120" class="left">NƯỚC ĐI</th>
-										<th width="120" class="left">CHI TIẾT</th>
-										<th width="40"><i class="glyphicons-bin"/></th>
+										<th width="40">STT</th>
+										<th class="left">TIÊN</th>
+										<th width="120" class="left">GHI CHÚ</th>
+										<th class="left">HẬU</th>
+										<th width="120" class="left">GHI CHÚ</th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr tal:repeat="Board Chapter/getBoardAll">
-										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Board/getId"/></td>
-										<td><a tal:attributes="href Board/getURLUpdLoad" tal:content="Board/getNameReduce"/></td>										
-										<td><a tal:attributes="href Board/getURLSettingStateLoad">Thiết lập</a></td>
-										<td><a tal:attributes="href Board/getURLSettingPoseLoad"><span tal:content="Board/getDetailAll/count"/> nước</a></td>
-										<td><a tal:attributes="href Board/getURLDetail" tal:content="string:Chi tiết"/></td>
-										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Board/getId"><i class="glyphicon glyphicon-remove"/></a></td>
+									<tr tal:repeat="Detail Board/getDetailAll">
+										<td class="center"><span tal:content="repeat/Detail/number"/></td>
+										<td><a tal:attributes="href Detail/getURLUpdLoad" tal:content="Detail/getName1"/></td>										
+										<td><span tal:content="Detail/getNote1Status"/></td>
+										<td><span tal:content="Detail/getName2"/></td>
+										<td><span tal:content="Detail/getNote2Status"/></td>
 									</tr>
 								</tbody>								
 							</table>							

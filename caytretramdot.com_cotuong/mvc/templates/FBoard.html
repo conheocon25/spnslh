@@ -187,8 +187,8 @@
 					<div class="row btn-row"><div class="Move btn btn-primary btn-conf" 		tal:attributes="alt Board/getState; move '-1'"><span tal:content="Board/getName"/></div></div>
 					<div class="row btn-row" tal:repeat="Detail Board/getDetailAll">
 						<span tal:content="Detail/getMove" /> . 
-						<div class="Move btn btn-danger btn-conf" 		tal:attributes="alt Detail/getState1; move Detail/getMove1"><span tal:content="Detail/getName1"/></div>
-						<div class="Move btn btn-success btn-conf"  	tal:attributes="alt Detail/getState2; move Detail/getMove2"><span tal:content="Detail/getName2"/></div>
+						<div class="Move btn btn-danger btn-conf" 		tal:attributes="alt Detail/getState1; move Detail/getMove1; note Detail/getNote1"><span tal:content="Detail/getName1"/></div>
+						<div class="Move btn btn-success btn-conf"  	tal:attributes="alt Detail/getState2; move Detail/getMove2; note Detail/getNote2"><span tal:content="Detail/getName2"/></div>
 					</div>
 										
 					<div class="row btn-row" style="padding-left:25px;">
@@ -202,17 +202,18 @@
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<a tal:attributes="href Chapter/getURLView">
-								<span tal:content="Chapter/getTitle"/>
+								<span tal:content="Chapter/getTitleReduce"/>
 							</a>
 						</div>
 						<div class="panel-body">							
 							<a tal:attributes="href Board1/getURLView;class php: Board1->getId()==Board->getId()?'btn btn-primary btn-block':'btn btn-default btn-block'"  tal:repeat="Board1 Chapter/getBoardAll">
-								<span tal:content="Board1/getName"/>
+								<span tal:content="Board1/getNameReduce"/>
 							</a>							
 						</div>
 					</div>
 				</div>
-			</div>			
+			</div>
+			<div class="row"><div id="Note"/></div>
 		</div>
 		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
 		<script type="text/javascript">
@@ -229,19 +230,22 @@
 				$(".Move").click(function(){								
 					MoveCurrent = parseInt($(this).attr('move'));
 					$(".Move").removeClass('active');
-					$(".Move[move='"+MoveCurrent+"']").addClass('active');
+					$(".Move[move='"+MoveCurrent+"']").addClass('active');					
 					drawBoard($(this).attr('alt'));
 					drawRound1(MoveCurrent);
+					
+					$("#Note").html($(".Move[move='"+MoveCurrent+"']").attr('note'));
 				});
 												
 				$(".MoveNext").click(function(){					
-					if (MoveCurrent < MoveEND){						
+					if (MoveCurrent < MoveEND){
 						MoveCurrent +=1;						
 						var State = $(".Move[move='"+MoveCurrent+"']").attr('alt');
 						$(".Move").removeClass('active');
-						$(".Move[move='"+MoveCurrent+"']").addClass('active');
+						$(".Move[move='"+MoveCurrent+"']").addClass('active');						
 						drawBoard(State);
 						drawRound1(MoveCurrent);
+						$("#Note").html($(".Move[move='"+MoveCurrent+"']").attr('note'));
 					}
 				});
 				
@@ -253,17 +257,18 @@
 						$(".Move[move='"+MoveCurrent+"']").addClass('active');
 						drawBoard(State);
 						drawRound1(MoveCurrent);
+						$("#Note").html($(".Move[move='"+MoveCurrent+"']").attr('note'));
 					}					
 				});
 				
 				$(".MoveFirst").click(function(){					
 					MoveCurrent = MoveSTART;					
-					var State = $(".Move[move='"+MoveCurrent+"']").attr('alt');						
-					
+					var State = $(".Move[move='"+MoveCurrent+"']").attr('alt');											
 					$(".Move").removeClass('active');
 					$(".Move[move='"+MoveCurrent+"']").addClass('active');					
 					drawBoard(State);
 					drawRound1(MoveCurrent);
+					$("#Note").html($(".Move[move='"+MoveCurrent+"']").attr('note'));
 				});
 				$(".MoveLast").click(function(){										
 					MoveCurrent = MoveEND;
@@ -272,6 +277,7 @@
 					$(".Move[move='"+MoveCurrent+"']").addClass('active');
 					drawBoard(State);
 					drawRound1(MoveCurrent);
+					$("#Note").html($(".Move[move='"+MoveCurrent+"']").attr('note'));
 				});				
 			});
 		/*]]>*/
