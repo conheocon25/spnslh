@@ -9,22 +9,38 @@ class Board extends Object{
 	private $State;
 	private $Time;
 	private $Info;
+	private $MoveInit;	
 	private $MoveStart;
-	private $MoveEnd;	
+	private $MoveEnd;
 	private $Round;
 	private $Result;
 	private $Key;
 	
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
-	//-------------------------------------------------------------------------------
-    function __construct( $Id=null, $IdChapter=null, $Name=null, $State=null, $Time=null, $Info=null, $MoveStart=null,  $MoveEnd=null, $Round=null, $Result=null, $Key=null){
+	//-------------------------------------------------------------------------------		
+    function __construct( 
+		$Id=null, 
+		$IdChapter=null, 
+		$Name=null, 
+		$State=null, 
+		$Time=null, 
+		$Info=null, 
+		$MoveInit=null,  
+		$MoveStart=null, 
+		$MoveEnd=null, 
+		$Round=null, 
+		$Result=null, 
+		$Key=null)
+	{
+		
 		$this->Id 			= $Id;
 		$this->IdChapter 	= $IdChapter;
 		$this->Name 		= $Name;
 		$this->State 		= $State; 
 		$this->Time 		= $Time;
 		$this->Info			= $Info;
+		$this->MoveInit		= $MoveInit;
 		$this->MoveStart	= $MoveStart;
 		$this->MoveEnd		= $MoveEnd;
 		$this->Result		= $Result;
@@ -57,6 +73,9 @@ class Board extends Object{
 			
 	function setTime( $Time ) {$this->Time = $Time;$this->markDirty();}   
 	function getTime( ) {return $this->Time;}	
+	
+	function setMoveInit( $MoveInit ) {$this->MoveInit = $MoveInit;$this->markDirty();}   
+	function getMoveInit( ) {return $this->MoveInit;}
 	
 	function setMoveStart( $MoveStart ) {$this->MoveStart = $MoveStart;$this->markDirty();}   
 	function getMoveStart( ) {return $this->MoveStart;}
@@ -102,6 +121,7 @@ class Board extends Object{
 			'State'		=> $this->getState(),
 		 	'Time'		=> $this->getTime(),
 			'Info'		=> $this->getInfo(),
+			'MoveInit'	=> $this->getMoveInit(),
 			'MoveStart'	=> $this->getMoveStart(),
 			'MoveEnd'	=> $this->getMoveEnd(),
 			'Round'		=> $this->getRound(),
@@ -118,11 +138,12 @@ class Board extends Object{
 		$this->State 		= $Data[3];
 		$this->Time 		= $Data[4];
 		$this->Info 		= $Data[5];
-		$this->MoveStart	= $Data[6];
-		$this->MoveEnd		= $Data[7];		
-		$this->Round		= $Data[8];
-		$this->Result		= $Data[9];
-		$this->Key			= $Data[10];
+		$this->MoveInit		= $Data[6];
+		$this->MoveStart	= $Data[7];
+		$this->MoveEnd		= $Data[8];		
+		$this->Round		= $Data[9];
+		$this->Result		= $Data[10];
+		$this->Key			= $Data[11];
     }
 			
 	//-------------------------------------------------------------------------------

@@ -41,6 +41,8 @@
 		<!-- ============================================================================== -->
 		<!-- SETTING	 																	-->
 		<!-- ============================================================================== -->				
+		<command name="ATesting1">				<view>ATesting1		</view></command>
+		
 		<command name="ASetting">				<view>ASetting		</view></command>						
 		<command name="ASettingCategoryPost">	<view>ASettingCategoryPost</view></command>				
 		<command name="ASettingCategoryBook">	<view>ASettingCategoryBook</view></command>

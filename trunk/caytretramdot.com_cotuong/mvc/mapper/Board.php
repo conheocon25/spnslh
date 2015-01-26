@@ -3,14 +3,25 @@ namespace MVC\Mapper;
 require_once( "mvc/base/Mapper.php" );
 class Board extends Mapper implements \MVC\Domain\BoardFinder{
     function __construct(){
-        parent::__construct();
-				
+        parent::__construct();				
 		$tblBoard 				= "bamboo100_board";
 		
 		$selectAllStmt 			= sprintf("select * from %s ORDER BY id", $tblBoard);
 		$selectStmt 			= sprintf("select *  from %s where id=?", $tblBoard);
-		$updateStmt 			= sprintf("update %s set id_chapter=?, name=?, state=?, `time`=?, info=?, move_start=?, move_end=?, round=?, result=?, `key`=? where id=?", $tblBoard);
-		$insertStmt 			= sprintf("insert into %s ( id_chapter, name, state, `time`, info, move_start, move_end, round, result, `key`) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblBoard);
+		$updateStmt 			= sprintf("update %s set id_chapter=?, name=?, state=?, `time`=?, info=?, move_init=?, move_start=?, move_end=?, round=?, result=?, `key`=? where id=?", $tblBoard);
+		$insertStmt 			= sprintf("insert into %s ( 
+			id_chapter, 
+			name, 
+			state, 
+			`time`, 
+			`info`,
+			move_init, 
+			move_start, 
+			move_end, 
+			round, 
+			result, 
+			`key`) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblBoard);
+			
 		$deleteStmt 			= sprintf("delete from %s where id=?", $tblBoard);
 		$findByStmt 			= sprintf("select *  from %s where `id_chapter`=?", $tblBoard);
 		$findByKeyStmt 			= sprintf("select *  from %s where `key`=?", $tblBoard);
@@ -35,6 +46,7 @@ class Board extends Mapper implements \MVC\Domain\BoardFinder{
 			$array['state'],
 			$array['time'],
 			$array['info'],
+			$array['move_init'],
 			$array['move_start'],
 			$array['move_end'],
 			$array['round'],
@@ -52,12 +64,14 @@ class Board extends Mapper implements \MVC\Domain\BoardFinder{
 			$object->getState(),
 			$object->getTime(),
 			$object->getInfo(),
+			$object->getMoveInit(),
 			$object->getMoveStart(),
 			$object->getMoveEnd(),
 			$object->getRound(),
 			$object->getResult(),
-			$object->getKey()			
+			$object->getKey()
 		);
+					
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
         $object->setId( $id );
@@ -70,6 +84,7 @@ class Board extends Mapper implements \MVC\Domain\BoardFinder{
 			$object->getState(),
 			$object->getTime(),
 			$object->getInfo(),
+			$object->getMoveInit(),
 			$object->getMoveStart(),
 			$object->getMoveEnd(),
 			$object->getRound(),
@@ -105,6 +120,5 @@ class Board extends Mapper implements \MVC\Domain\BoardFinder{
 		$this->findByPageStmt->execute();
         return new BoardCollection( $this->findByPageStmt->fetchAll(), $this );
     }
-			
 }
 ?>

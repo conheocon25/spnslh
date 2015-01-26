@@ -38,7 +38,9 @@
 						$aStepA[$i],
 						$aStep[$i],
 						$aStepA[$i+1],
-						$aStep[$i+1]
+						$aStep[$i+1],
+						"",
+						""
 					);	
 				}else{
 					$BoardD = new \MVC\Domain\BoardDetail(
@@ -48,11 +50,12 @@
 						$aStepA[$i],
 						$aStep[$i],
 						"0",
-						"END"
+						"END",
+						"",
+						""
 					);				
 				}
-				
-				
+								
 				$mBoardDetail->insert($BoardD);
 			}
 			$Board->setMoveStart(0);
