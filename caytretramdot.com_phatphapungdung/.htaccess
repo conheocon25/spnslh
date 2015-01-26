@@ -50,6 +50,8 @@ RewriteRule ^admin$ 													?cmd=Admin [L]
 #---------------------------------------------------------------------------------------------------------------------------
 # SETTING
 #---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^admin/testing1$ 											?cmd=ATesting1 [L]
+
 RewriteRule ^admin/book$ 												?cmd=ABook [L]
 RewriteRule ^admin/book/([0-9]+)$ 										?cmd=ABook&IdCategory=$1 [L]
 RewriteRule ^admin/book/([0-9]+)/ins/load$ 								?cmd=ABookInsLoad&IdCategory=$1 			[L]

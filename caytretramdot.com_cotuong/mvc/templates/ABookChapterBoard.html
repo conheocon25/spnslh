@@ -11,7 +11,7 @@
 			<ul style="display: block;">
 				<li tal:repeat="Chapter1 Book/getChapterAll" tal:attributes="class php: Chapter1->getId()==Chapter->getId()?'active':''">
 					<a tal:attributes="href Chapter1/getURLSettingBoard">
-						<i class="glyphicons-tag"/><span tal:content="Chapter1/getTitle"/>
+						<i class="glyphicons-tag"/><span tal:content="Chapter1/getTitleReduce"/>
 					</a>
 				</li>
 			</ul>			

@@ -36,8 +36,8 @@
 			$Title 		= mb_strtoupper($Board->getName(), 'UTF8');
 			$Navigation = array(				
 				array(mb_strtoupper("SÁCH CỜ / ".$Category->getName(), 'UTF8')	, $Category->getURLSetting()),
-				array(mb_strtoupper($Book->getTitle(), 'UTF8')					, $Book->getURLSettingChapter()),
-				array(mb_strtoupper($Chapter->getTitle(), 'UTF8')				, $Chapter->getURLSettingBoard())
+				array(mb_strtoupper($Book->getTitleReduce(), 'UTF8')					, $Book->getURLSettingChapter()),
+				array(mb_strtoupper($Chapter->getTitleReduce(), 'UTF8')				, $Chapter->getURLSettingBoard())
 			);
 			
 			$ConfigName		= $mConfig->findByName("NAME");

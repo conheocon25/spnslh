@@ -16,9 +16,33 @@
 						<div class="widget-content nopadding">
 							<form class="form-horizontal" tal:attributes="action BoardDetail/getURLUpdExe" method="POST">
 								<div class="control-group">
-									<label class="control-label" for="Note">Ghi chú 1</label>
+									<label class="control-label" for="Name1">Nước Tiên</label>
+									<div class="controls">
+										<input type="text" id="Name1" name="Name1" tal:attributes="value BoardDetail/getName1"/>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="State1">Trạng thái Tiên</label>
+									<div class="controls">
+										<input type="text" id="State1" name="State1" tal:attributes="value BoardDetail/getState1"/>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="Note1">Ghi chú Tiên</label>
 									<div class="controls">
 										<textarea id="Note1" class="ckeditor" name="Note1" tal:content="BoardDetail/getNote1"/>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="Name2">Nước Hậu</label>
+									<div class="controls">
+										<input type="text" id="Name2" name="Name2" tal:attributes="value BoardDetail/getName2"/>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="State1">Trạng thái Hậu</label>
+									<div class="controls">
+										<input type="text" id="State2" name="State2" tal:attributes="value BoardDetail/getState2"/>
 									</div>
 								</div>
 								<div class="control-group">

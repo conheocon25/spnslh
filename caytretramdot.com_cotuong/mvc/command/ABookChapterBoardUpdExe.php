@@ -17,6 +17,7 @@
 			$State 		= $request->getProperty('State');			
 			$Time 		= $request->getProperty('Time');			
 			$Info 		= \stripslashes($request->getProperty('Info'));
+			$MoveInit	= $request->getProperty('MoveInit');
 			$MoveStart	= $request->getProperty('MoveStart');
 			$MoveEnd	= $request->getProperty('MoveEnd');
 			$Round		= $request->getProperty('Round');
@@ -35,7 +36,8 @@
 			$Board->setInfo($Info);			
 			$Board->setName($Name);
 			$Board->setState($State);
-			$Board->setTime($Time);			
+			$Board->setTime($Time);
+			$Board->setMoveInit($MoveInit);
 			$Board->setMoveStart($MoveStart);
 			$Board->setMoveEnd($MoveEnd);
 			$Board->setRound($Round);

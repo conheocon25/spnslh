@@ -15,6 +15,7 @@
 			$Name 		= $request->getProperty('Name');			
 			$Time 		= $request->getProperty('Time');			
 			$Info 		= \stripslashes($request->getProperty('Info'));
+			$MoveInit 	= $request->getProperty('MoveInit');
 			$MoveStart 	= $request->getProperty('MoveStart');
 			$MoveEnd	= $request->getProperty('MoveEnd');
 			$Round 		= $request->getProperty('Round');
@@ -32,16 +33,18 @@
 				null, 
 				$IdChapter, 
 				$Name, 
+				"000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
 				$Time, 
 				$Info, 
+				$MoveInit, 
 				$MoveStart, 
 				$MoveEnd,
 				$Round,
-				$Result,				
+				$Result,
 				""
 			);
 			$Board->reKey();
-			
+			//print_r($Board);
 			$mBoard->insert($Board);
 			
 			//-------------------------------------------------------------

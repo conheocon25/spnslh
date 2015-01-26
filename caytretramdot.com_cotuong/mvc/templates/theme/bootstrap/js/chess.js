@@ -180,7 +180,8 @@ function drawIState(Index){
 }
 
 function drawMoveState(){
-	var I1 = Math.floor(iStep/2) + 1;
+	var Init = Math.floor($("#MoveList").attr('MoveInit'));
+	var I1 = Init + Math.floor(iStep/2);
 	var I2 = (iStep%2) + 1;	
 	if (Round>0)
 		$('#StateList tr:last').after("<tr><td align='center'><font color='red'><B>"+ I1 + "</B>." + I2 +"</font></td><td><font color='red'>"+aStepA[iStep]+"</font></td></tr>");
