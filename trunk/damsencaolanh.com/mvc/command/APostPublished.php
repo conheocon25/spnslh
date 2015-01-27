@@ -144,6 +144,7 @@
 								}
 								
 								$PostContentSlash 	= \stripslashes($PostContent);
+								//$PostContentSlash = substr( $PostContentSlash, 379);
 								
 								if (!isset($PostAuthor)) {
 									$PostAuthor = "BBT";
@@ -151,7 +152,7 @@
 									$PostAuthor = html_entity_decode($PostAuthor->plaintext, ENT_QUOTES, 'UTF-8');
 								}				
 								// Thêm tin mới	nếu $AUTOPost = 1 thì ko cần duyệt tin còn $AUTOPost = 0 thì vào PostRss chờ duyệt tin	
-								if ($AUTOPost == 1) {
+								if ($AUTOPost == 1 && $PostContentSlash != null ) {
 									$Post = new \MVC\Domain\Post(
 										null,
 										$item['title'],
