@@ -11,18 +11,24 @@ class RssLink extends Object{
 	private $Rssurl;
 	private $Type;
 	private $Enable;
+	private $ClassContentName;
+	private $ClassAuthor;
+	private $ImgPath;
 	
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-    function __construct( $Id=null, $IdTag=null,$Name=null, $Weburl=null, $Rssurl=null, $Type=null, $Enable=null){
+    function __construct( $Id=null, $IdTag=null,$Name=null, $Weburl=null, $Rssurl=null, $Type=null, $Enable=null, $ClassContentName=null, $ClassAuthor=null, $ImgPath=null){
 		$this->Id 			= $Id;		
-		$this->IdTag 	= $IdTag; 
+		$this->IdTag 		= $IdTag; 
 		$this->Name 		= $Name; 
 		$this->Weburl 		= $Weburl;
 		$this->Rssurl		= $Rssurl;
 		$this->Type 		= $Type;
 		$this->Enable 		= $Enable;
+		$this->ClassContentName		= $ClassContentName;
+		$this->ClassAuthor 			= $ClassAuthor;
+		$this->ImgPath 				= $ImgPath;
 		
 		parent::__construct( $Id );
 	}
@@ -44,10 +50,19 @@ class RssLink extends Object{
 	function setType( $Type ) {$this->Type = $Type;$this->markDirty();}   
 	function getType( ) {return $this->Type;}
 	
+	function setClassContentName( $ClassContentName ) {$this->ClassContentName = $ClassContentName;$this->markDirty();}   
+	function getClassContentName( ) {return $this->ClassContentName;}
+	
+	function setClassAuthor( $ClassAuthor ) {$this->ClassAuthor = $ClassAuthor;$this->markDirty();}   
+	function getClassAuthor( ) {return $this->ClassAuthor;}
+	
+	function setImgPath( $ImgPath ) {$this->ImgPath = $ImgPath;$this->markDirty();}   
+	function getImgPath( ) {return $this->ImgPath;}
+	
 	function getCategoryVideo( ) {
-		$mCategoryNews = new \MVC\Mapper\CategoryNews();
-		$dCategoryVideo = $mCategoryNews->find($this->IdTag);
-		return $dCategoryVideo;
+		$mTag = new \MVC\Mapper\Tag();
+		$dTag = $mTag->find($this->IdTag);
+		return $dTag;
 	}
 	
 	function setEnable( $Enable ) {$this->Enable = $Enable;$this->markDirty();}   
@@ -91,9 +106,9 @@ class RssLink extends Object{
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
 	function getURLView(){return "/rss/".$this->getKey();}
-	function getURLGetNewsRss(){return "app/news/getnewsrss/".$this->getId();}
-	function getURLUpdLoad(){return "/app/rss/".$this->getId()."/upd/load";}	
-	function getURLUpdExe()	{return "/app/rss/".$this->getId()."/upd/exe";}
+	function getURLGetNewsRss(){return "admin/setting/news/getnewsrss/".$this->getId();}
+	function getURLUpdLoad(){return "/admin/setting/rss/".$this->getId()."/upd/load";}	
+	function getURLUpdExe()	{return "/admin/setting/rss/".$this->getId()."/upd/exe";}
 	//-------------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}	

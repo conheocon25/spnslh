@@ -39,9 +39,9 @@
 			$PostRssAll = $mPostRss->findAll();	
 			$PostTagAll = $mPostTag->findAll();						
 			
-			$Title = mb_strtoupper("THÊM TIN TỨC TỪ RSS URL", 'UTF8');
+			$Title = mb_strtoupper("DUYỆT TIN TỨC TỪ RSS URL", 'UTF8');
 			$Navigation = array(				
-				array("TIN TỨC", "/app/Post/rss")
+				array("DUYỆT TIN TỨC", "/admin/settting/post/rss")
 			);
 			
 			//-------------------------------------------------------------

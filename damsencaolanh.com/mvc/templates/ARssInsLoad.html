@@ -5,19 +5,15 @@
 		<span metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
 	</head>
 	<body>
-		<div metal:use-macro="mAdmin.xhtml/Header"/>
-		<div metal:use-macro="mAdmin.xhtml/UserNavigation"/>		
+		<div metal:use-macro="mAdmin.xhtml/Header"/>		
 		<div id="content">
-			<div id="content-header">
-				<h1>THÊM MỚI SỰ KIỆN</h1>
-			</div>
-			<div metal:use-macro="mAdmin.xhtml/Breadcrumb"/>
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-12">
-						<div class="widget-box">
-							<div class="widget-content nopadding">
-								<form class="form-horizontal" action='/app/rss/ins/exe' method="post">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
+			<div class="row">
+				<div class="col-12">					
+					<div class="widget-box">
+						<div class="widget-content nopadding">
+								<form class="form-horizontal" action='/admin/setting/rss/ins/exe' method="post">
 									<div class="control-group">
 										<label class="control-label" for="Title">Tên Trang Web</label>
 										<div class="controls">
@@ -37,6 +33,27 @@
 										</div>
 									</div>
 									<div class="control-group">
+										<label class="control-label" for="Rssurl">Lớp Lấy Nội dung tin</label>
+										<div class="controls">
+											<input type="text" id="ClassContentName" name="ClassContentName"/>
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label" for="Rssurl">Lớp Lấy Tên Tác giả</label>
+										<div class="controls">
+											<input type="text" id="ClassAuthor" name="ClassAuthor" />
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label" for="Rssurl">Đường dẫn Hình đầy đủ</label>
+										<div class="controls">
+											<select name="ImgPath" id="ImgPath">
+												<option value="1" ><span>Đầy đủ</span></option>
+												<option value="0" ><span>Không đầy đủ</span></option>
+											</select>											
+										</div>
+									</div>
+									<div class="control-group">
 										<label class="control-label" for="Type">Loại Rss</label>
 										<div class="controls">
 											<select name="Type" id="Type">
@@ -51,8 +68,8 @@
 										<label class="control-label" for="IdCategory">Thêm vào Danh mục tin tức</label>
 										<div class="controls">
 											<select name="IdCategory" id="IdCategory">
-												<option tal:repeat="CategoryNew AllCategoryNews" tal:attributes="value CategoryNew/getId;">
-													<span tal:content="CategoryNew/getName"/>
+												<option tal:repeat="Tag AllTag" tal:attributes="value Tag/getId;">
+													<span tal:content="Tag/getName"/>
 												</option>
 											</select>
 										</div>
@@ -71,23 +88,20 @@
 									</div>
 								</form>
 							</div>
-						</div>
-					</div>
+					</div>										
 				</div>
 			</div>
 		</div>
-		
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>
-		<div metal:use-macro="mAdmin.xhtml/SignoutDialog"/>
-		<span metal:use-macro="mAdmin.xhtml/IncludeJS"/>
-		<script type="text/javascript" language="javascript" src="/mvc/templates/theme/cms/ckeditor/ckeditor.js"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<script type="text/javascript" language="javascript" src="/mvc/templates/back/ckeditor/ckeditor.js"/>
 		<script type="text/javascript">
 		/*<![CDATA[*/
 			/* ---------------------------------------------------------------------------- */
 			/* SET TODAY FOR DATEPICKER														*/
 			/* ---------------------------------------------------------------------------- */
 			//THIẾT LẬP NGÀY GIỜ GIAO DỊCH
-			$('#Date').datetimepicker({
+			$('#Time').datetimepicker({
 				language:  'vi',
 				weekStart: 1,
 				todayBtn:  1,

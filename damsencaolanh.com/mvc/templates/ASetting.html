@@ -3,8 +3,7 @@
 	<head>
 		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
 		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
-	</head>
-	
+	</head>	
 	<body data-menu-position="closed">
 		<div metal:use-macro="mAdmin.xhtml/Header"/>		
 		<div metal:use-macro="mAdmin.xhtml/MenuApp"/>
@@ -109,6 +108,10 @@
 										<tr>
 											<td align="center"><a href="/admin/setting/rss"><i class="glyphicons-cogwheel"/></a></td>
 											<td><a tal:attributes="href '/admin/setting/rss'" >ĐỊA CHỈ RSS</a></td>
+										</tr>
+										<tr>
+											<td align="center"><a href="/admin/setting/post/rss"><i class="glyphicons-cogwheel"/></a></td>
+											<td><a tal:attributes="href '/admin/setting/post/rss'" >DUYỆT TIN POST TỰ ĐỘNG</a></td>
 										</tr>										
 										<tr>
 											<td align="center"><a href="/admin/setting/config"><i class="glyphicons-cogwheel"/></a></td>

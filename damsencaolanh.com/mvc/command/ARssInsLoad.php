@@ -16,22 +16,22 @@
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
 			$mRss = new \MVC\Mapper\RssLink();
-			$mCategoryNews = new \MVC\Mapper\CategoryNews();
+			$mTag = new \MVC\Mapper\Tag();
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------			
 			//$RssAll 	= $mRss->findAll();			
 			$Title 		= mb_strtoupper("THÊM MỚI", 'UTF8');
-			$AllCategoryNews 		= $mCategoryNews->findAll();
+			$AllTag 	= $mTag->findAll();
 			$Navigation = array(
-				array("RSS Lấy Tin", "/app/rss")
+				array("RSS Lấy Tin", "/admin/setting/rss")
 			);
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------																					
 			$request->setObject('Navigation', $Navigation);			
 			$request->setProperty("ActiveAdmin", 'RssLink');
-			$request->setProperty("AllCategoryNews", $AllCategoryNews);
+			$request->setProperty("AllTag", $AllTag);			
 			$request->setProperty("Title", $Title);
 			
 			return self::statuses('CMD_DEFAULT');

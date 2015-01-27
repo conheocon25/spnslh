@@ -18,6 +18,10 @@
 			$Enable 	= $request->getProperty('Enable');
 			$IdCategory = $request->getProperty('IdCategory');
 			
+			$ClassContentName = $request->getProperty('ClassContentName');
+			$ClassAuthor = $request->getProperty('ClassAuthor');
+			$ImgPath = $request->getProperty('ImgPath');
+			
 									
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
@@ -34,7 +38,10 @@
 				$Weburl,
 				$Rssurl,
 				$Type,
-				$Enable
+				$Enable,
+				$ClassContentName,
+				$ClassAuthor,
+				$ImgPath
 			);
 			//$dRssLink->reKey();
 			$mRssLink->insert($dRssLink);

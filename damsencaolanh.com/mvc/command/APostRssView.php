@@ -19,7 +19,7 @@
 			//-------------------------------------------------------------			
 			$mCategoryBType 	= new \MVC\Mapper\CategoryBType();
 			$mCategoryNews 		= new \MVC\Mapper\CategoryNews();						
-			$mNewsRss 				= new \MVC\Mapper\NewsRss();
+			$mNewsRss 			= new \MVC\Mapper\NewsRss();
 						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
