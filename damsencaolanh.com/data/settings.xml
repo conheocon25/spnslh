@@ -70,6 +70,7 @@
 		<command name="APostRss"><view>APostRss</view></command>
 		<command name="APostRssView"><view>APostRssView</view></command>
 		<command name="APostPublished"><view>APostPublished</view></command>
+		<command name="APostRssPublished"><view>APostRssPublished</view></command>
 		<command name="APostRssPublish" type="public"><view>APostRssPublish</view></command>	
 		<command name="AGetListRss" type="public"><view>AGetListRss</view></command>
 		
