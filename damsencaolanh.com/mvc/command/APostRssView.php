@@ -11,37 +11,34 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
-			$IdNewsRss = $request->getProperty('IdNewsRss');
-			$IdCategory = $request->getProperty('IdCategory');
+			$IdPostRss = $request->getProperty('IdPostRss');
+			
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mCategoryBType 	= new \MVC\Mapper\CategoryBType();
-			$mCategoryNews 		= new \MVC\Mapper\CategoryNews();						
-			$mNewsRss 			= new \MVC\Mapper\NewsRss();
+					
+			$mPostRss 			= new \MVC\Mapper\PostRss();
 						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
-			$CategoryBTypeAll 	= $mCategoryBType->findAll();
-			$CategoryNewsAll 	= $mCategoryNews->findAll();			
-			$NewsRss 				= $mNewsRss->find($IdNewsRss);
+			
+			$PostRss 				= $mPostRss->find($IdPostRss);
 						
-			$Title = $NewsRss->getTitle();
+			$Title = $PostRss->getTitle();
 			$Navigation = array(
-				array("DUYỆT TIN TỨC", "/app/news/rss")				
+				array("DUYỆT TIN TỨC", "/admin/setting/post/rss")				
 			);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------						
-			$request->setObject( 'CategoryBTypeAll', $CategoryBTypeAll );
-			$request->setObject( 'CategoryNewsAll', $CategoryNewsAll );									
-			$request->setObject( 'NewsRss', $NewsRss );
+			
+			$request->setObject( 'PostRss', $PostRss );
 			
 			$request->setObject( 'Navigation', $Navigation );
-			$request->setProperty("ActiveItem", 'NewsRss');
+			$request->setProperty("ActiveAdmin", 'PostRss');
 			$request->setProperty("Title", $Title);			
 		}
 	}

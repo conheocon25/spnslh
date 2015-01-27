@@ -122,6 +122,8 @@ class PostRss extends Object{
 	function getURLSettingTag(){return "admin/setting/post/".$this->getId()."/tag";}
 	
 	function getURLUpdLoad(){	return "admin/setting/post/".$this->getId()."/upd/load";}
+	function getURLView(){	return "admin/setting/post/rss/".$this->getId()."/view";}
+	
 	function getURLUpdExe(){	return "admin/setting/post/".$this->getId()."/upd/exe";}		
 	function getURLDelLoad(){	return "admin/setting/post/".$this->getId()."/del/load";}	
 	function getURLDelExe(){	return "admin/setting/post/".$this->getId()."/del/exe";}

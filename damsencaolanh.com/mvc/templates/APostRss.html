@@ -5,25 +5,21 @@
 		<span metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
 	</head>
 	<body>
-		<div metal:use-macro="mAdmin.xhtml/Header"/>
-		<div metal:use-macro="mAdmin.xhtml/UserNavigation"/>
-		<div metal:use-macro="mAdmin.xhtml/Sidebar"/>	
-		
+		<div metal:use-macro="mAdmin.xhtml/Header"/>		
+		<div metal:use-macro="mAdmin.xhtml/MenuApp"/>		
 		<div id="content">
-			<div id="content-header">
-				<h1 tal:content="Title"/>
-				<div class="btn-group">
-					<div id="URLPublishNews" class="btn btn-success "><i class="glyphicon glyphicon-plus"> Duyệt tin</i></div>
-					<span style="padding-left:3px" />
-					<div id="URLDeleteNews" class="btn btn-success "><i class="glyphicon glyphicon-plus"> Xóa tin</i></div>
-				</div>
-			</div>
-			<div metal:use-macro="mAdmin.xhtml/Breadcrumb"/>
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+			<div metal:use-macro="mAdmin.xhtml/LocationBar"/>			
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-12">
+						<div class="btn-group">
+							<div id="URLPublishPost" class="btn btn-success "><i class="glyphicon glyphicon-plus"> Duyệt tin</i></div>
+							<span style="padding-left:3px" />
+							<div id="URLDeletePost" class="btn btn-success "><i class="glyphicon glyphicon-plus"> Xóa tin</i></div>
+						</div>						
 						<div class="widget-box">
-							<div class="widget-content nopadding">
+							<div class="widget-content nopadding">		
 								<table class="table table-bordered table-striped table-hover">
 									<thead>
 										<tr>
@@ -31,39 +27,35 @@
 											<th width="30px">STT</th>											
 											<th><div class="text-left">NGÀY</div></th>
 											<th><div class="text-left">TIÊU ĐỀ</div></th>											
-											<th><div class="text-left">NGUỒN</div></th>											
-											<th><div class="text-left">DANH MỤC</div></th>																						
+											<th><div class="text-left">NỘI DUNG TÓM TẮT</div></th>											
 										</tr>
 									</thead>
 									<tbody>
-										<tr tal:repeat="News NewsRssAll" >
-											<td class="center"><input class="CheckedPublish" type="checkbox" tal:attributes="data-id News/getId"/></td>
-											<td><div tal:content="repeat/News/number" /></td>											
-											<td width="90px"><div tal:content="News/getDatePrint" /></td>
-											<td><a tal:attributes="href News/getURLViewLoad" tal:content="News/getTitle"/></td>											
-											<td><div tal:content="News/getRssLink/getName" /></td>											
-											<td><div tal:content="News/getRssLink/getCategoryVideo/getName" /></td>	
+										<tr tal:repeat="Post PostRssAll" >
+											<td class="center"><input class="CheckedPublish" type="checkbox" tal:attributes="data-id Post/getId"/></td>
+											<td><div tal:content="repeat/Post/number" /></td>											
+											<td width="90px"><div tal:content="Post/getTimePrint" /></td>
+											<td><a tal:attributes="href Post/getURLView" tal:content="Post/getTitle"/></td>
+											<td tal:content="structure Post/getContentReduce"/>											
 										</tr>
 									</tbody>
 								</table>	
 							</div>
 						</div>
 					</div>
+					<div metal:use-macro="mDialog.xhtml/DialogDel"/>
+					<div metal:use-macro="mDialog.xhtml/DialogDelSelected"/>
 				</div>
 			</div>
 		</div>
-
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>
-		<div metal:use-macro="mDialog.xhtml/DialogDel"/>
-		<div metal:use-macro="mAdmin.xhtml/SignoutDialog"/>
-		<span metal:use-macro="mAdmin.xhtml/IncludeJS"/>
-		
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
 		<script type="text/javascript">
 		/*<![CDATA[*/
-			$('#URLDeleteNews').click(function(){
+			$('#URLDeletePost').click(function(){
 				var count = 0;
 				var Data = [];
-				var URL = "/object/del/NewsRss/0";
+				var URL = "/object/del/PostRss/0";
 				
 				$(".CheckedPublish").each(function( i, obj){
 					if ( $(this).is(':checked')==true ){						
@@ -82,10 +74,10 @@
 				});
 			});
 			
-			$('#URLPublishNews').click(function(){
+			$('#URLPublishPost').click(function(){
 				var count = 0;
 				var Data = [];
-				var URL = "/app/news/published";
+				var URL = "/app/Post/published";
 				
 				$(".CheckedPublish").each(function( i, obj){
 					if ( $(this).is(':checked')==true ){						
