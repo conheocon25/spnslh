@@ -14,28 +14,33 @@
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
 			
-			$IdRss = $request->getProperty('IdRss');
+			//$IdRss = $request->getProperty('IdRss');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------						
 			
 			$mRssLink 		= new \MVC\Mapper\RssLink();
-			$mNewsRss 		= new \MVC\Mapper\NewsRss();
-			$mNews 			= new \MVC\Mapper\News();
+			$mPostRss 		= new \MVC\Mapper\PostRss();
+			$mPost 			= new \MVC\Mapper\Post();
 			$mConfig 		= new \MVC\Mapper\Config();
-			$mCategoryNews = new \MVC\Mapper\CategoryNews();
+			$mTag 			= new \MVC\Mapper\Tag();
+			$mPostTag 		= new \MVC\Mapper\PostTag();
 		
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------	
-			$dConfig = $mConfig->findByName("AUTO_NEWS");
 			
-			$AUTONEWS = $dConfig->getValue();
+			\ini_set('max_execution_time', 50); //300 seconds = 5 minutes
+			
+			$dConfig = $mConfig->findByName("AUTO_POST");
+			
+			$AUTOPost = $dConfig->getValue();
 			
 			if(isset($IdRss)) 
 			{
-				//$DRssLinkAll = $mRssLink->findAll();
+			
+			//$DRssLinkAll = $mRssLink->findAll();
 			
 			//while ($DRssLinkAll->valid())
 			//{			
@@ -44,9 +49,9 @@
 				//$IdRss 		= $dRssLink->getId();
 				$WebUrl 	= $dRssLink->getWeburl();
 				$Url 		= $dRssLink->getRssurl();
-				$IdCategory = $dRssLink->getIdCategory();
+				$IdTag = $dRssLink->getIdTag();
 				
-				$dCategoryVideo = $mCategoryNews->find($IdCategory);
+				$dTagPost = $mTag->find($IdTag);
 				
 					$todaytime = new \DateTime('NOW');
 					$interval = new \DateInterval('P0Y0DT11H0M');	
@@ -58,35 +63,35 @@
 					
 					
 					//Công thêm 11 tiếng do lệch múi giờ Mỹ - Việt Nam
-					$DateNews = $todaytime->add($interval);
+					$DatePost = $todaytime->add($interval);
 					//Số lấy tin trước đó để so sánh
 					$intervalSub = new \DateInterval('P0Y02DT0H0M');
 					
-					$DateEnd = $DateNews->format('Y-m-d') . " 23:59:59";
+					$DateEnd = $DatePost->format('Y-m-d') . " 23:59:59";
 					
-					$DateNews = $DateNews->sub($intervalSub);
-					$DateStart = $DateNews->format('Y-m-d') . " 0:0:0";
+					$DatePost = $DatePost->sub($intervalSub);
+					$DateStart = $DatePost->format('Y-m-d') . " 0:0:0";
 					
 					//echo "Ngày bắt đầu: " . $DateStart . "<br />";
 					//echo "Ngày kết thúc: " .$DateEnd. "<br />";
 					
-					$ListNews = $mNews->findByDateTime(array($IdCategory, $DateStart, $DateEnd));
+					$ListPost = $mPost->findByDateTime(array($DateStart, $DateEnd));
 					
-					$ListOldNews = array();
+					$ListOldPost = array();
 					$k=0;		
-					while ($ListNews->valid()){
-						$dNews = $ListNews->current();
-							$OldNew = trim($dNews->getTitle());
+					while ($ListPost->valid()){
+						$dPost = $ListPost->current();
+							$OldNew = trim($dPost->getTitle());
 							$OldNew = mb_convert_case($OldNew, MB_CASE_LOWER, "UTF-8"); 
-							$ListOldNews[$k] = $OldNew;	
+							$ListOldPost[$k] = $OldNew;	
 							$k=$k +1;
-						$ListNews->next();
+						$ListPost->next();
 					}
 							
 								
 					$flagIns = false;				
 					$i = 0;
-					$lengthOld = count($ListOldNews);
+					$lengthOld = count($ListOldPost);
 					
 					if (is_array($chItems) and count($chItems)>0)
 					{					
@@ -100,7 +105,7 @@
 								$lengthOld =0;
 							}
 								for($l=0; $l < $lengthOld; ++$l) {
-										$OldNew = $ListOldNews[$l];															
+										$OldNew = $ListOldPost[$l];															
 										if (strcmp($OldNew, $CurTitle) == 0) {
 											$flagIns = true;									
 											break;
@@ -122,73 +127,81 @@
 								$dom = new \DOMDocument();
 								@$dom->loadHTML($data);
 								
-								$dom->saveHTMLFile("data/giacngo_". $IdCategory . "_" . $strDatatime . "_" . $i . ".html");
-								$HTML = file_get_html("data/giacngo_". $IdCategory . "_" . $strDatatime . "_" . $i . ".html");					
+								$dom->saveHTMLFile("data/autopost_". $IdTag . "_" . $strDatatime . "_" . $i . ".html");
+								$HTML = file_get_html("data/autopost_". $IdTag . "_" . $strDatatime . "_" . $i . ".html");					
 									
-								$NewsAuthor = $HTML->find('.ctcSource', 0);										
-								$NewsContent = $HTML->find('.ctcBody', 0);					
-								foreach( $NewsContent->find('img') as $img){
+								$PostAuthor = $HTML->find('.ctcSource', 0);										
+								$PostContent = $HTML->find('.ctcBody', 0);					
+								foreach( $PostContent->find('img') as $img){
 									if (substr($img->src,0,1) == "/")
 										$img->src =  $WebUrl .$img->src; 
 								}
 								
-								if (!isset($NewsAuthor)) {
-									$NewsAuthor = "BBT";
+								$PostContentSlash 	= \stripslashes($PostContent);
+								
+								if (!isset($PostAuthor)) {
+									$PostAuthor = "BBT";
 								}else {
-									$NewsAuthor = html_entity_decode($NewsAuthor->plaintext, ENT_QUOTES, 'UTF-8');
+									$PostAuthor = html_entity_decode($PostAuthor->plaintext, ENT_QUOTES, 'UTF-8');
 								}				
-								// Thêm tin mới	nếu $AUTONEWS = 1 thì ko cần duyệt tin còn $AUTONEWS = 0 thì vào NewsRss chờ duyệt tin	
-								if ($AUTONEWS == 1) {
-									$News = new \MVC\Domain\News(
+								// Thêm tin mới	nếu $AUTOPost = 1 thì ko cần duyệt tin còn $AUTOPost = 0 thì vào PostRss chờ duyệt tin	
+								if ($AUTOPost == 1) {
+									$Post = new \MVC\Domain\Post(
 										null,
-										$IdCategory,										
-										$NewsAuthor,
-										null,
-										$NewsContent,
 										$item['title'],
-										0,
-										""
-									);						
+										$PostContentSlash,
+										$PostAuthor,
+										$Time,
+										1,
+										"",
+										10,
+										0
+									);
+									$Post->reKey();
+									$mPost->insert($Post);
+									//Them tin vao Tag Post
+									$dPostTag new \MVC\Domain\PostTag(
+										null,
+										$Post->getId(),
+										$IdTag
+										);
+									$mPostTag->insert($dPostTag);
 									
-									$News->reKey();
-									$mNews->insert($News);
 								} else {
-									$NewsRss = new \MVC\Domain\NewsRss(
-										null,
-										$IdCategory,
-										$IdRss,
-										$NewsAuthor,
-										null,
-										$NewsContent,
+									$PostRss = new \MVC\Domain\PostRss(
+										null,																			
 										$item['title'],
-										0,
-										""
-									);						
-									
-									$NewsRss->reKey();
-									$mNewsRss->insert($NewsRss);
+										$PostContentSlash,
+										$PostAuthor,
+										$Time,
+										1,
+										"",
+										10,
+										0
+									);
+									$PostRss->reKey();
+									$mPostRss->insert($PostRss);									
 								}
 									$i= $i + 1;
-									
-									//echo "<br />" . $i . "Đã thêm tin moi: " . $CurTitle . "<br />";							
-								
+									echo "<br />" . $i . "Đã thêm tin moi: " . $CurTitle . "<br />";
 								
 								unset($dom);
 								unset($HTML);								
-								unset($News);						
-								unset($NewsRss);														
-								$NewsAuthor = "";
-								$NewsContent = "";														
+								unset($Post);						
+								unset($PostRss);														
+								$PostAuthor = "";
+								$PostContent = "";														
 							}
 							$flagIns = false;
 						}
 							
 					}
 					
-					echo "Đã thêm ". $i . " của vào Danh mục: " . $dCategoryVideo->getName();
+					echo "Đã thêm ". $i . " của vào Danh mục: " . $dTagPost->getName();
 					
 				array_map('unlink', glob("data/*.html")); 
-				//$DRssLinkAll->next();				
+				
+				$DRssLinkAll->next();				
 			}
 			
 			//-------------------------------------------------------------

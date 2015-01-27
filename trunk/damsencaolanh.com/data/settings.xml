@@ -76,8 +76,7 @@
 		<!-- ============================================================================== -->
 		<!-- SETTING	 																	-->
 		<!-- ============================================================================== -->
-		<command name="ASetting">				<view>ASetting				</view></command>
-		
+		<command name="ASetting">				<view>ASetting				</view></command>		
 		<command name="ASettingPresentation">	<view>ASettingPresentation	</view></command>
 		<command name="ASettingSlide">			<view>ASettingSlide			</view></command>
 		<command name="ASettingSlideInsLoad">	<view>ASettingSlideInsLoad	</view></command>

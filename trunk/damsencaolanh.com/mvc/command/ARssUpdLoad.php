@@ -17,24 +17,24 @@
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
 			$mRss = new \MVC\Mapper\RssLink();
-			$mCategoryNews = new \MVC\Mapper\CategoryNews();
+			$mTag = new \MVC\Mapper\Tag();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------			
 			$Rss 		= $mRss->find($IdRss);
-			$AllCategoryNews 		= $mCategoryNews->findAll();
+			$AllTag 	= $mTag->findAll();
 			$Title 		= mb_strtoupper("CẬP NHẬT RSS Link", 'UTF8');
 			
-			$Navigation = array(array("RSS Lấy Tin", "/app/rss"));
+			$Navigation = array(array("RSS Lấy Tin", "/admin/setting/rss"));
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------																					
 			$request->setObject('Navigation', 	$Navigation);
-			$request->setObject('Rss', 		$Rss);			
-			$request->setObject('AllCategoryNews', 		$AllCategoryNews);			
+			$request->setObject('Rss', 			$Rss);			
+			$request->setObject('AllTag', 		$AllTag);			
 			$request->setProperty("Title", 		$Title);
-			
+			$request->setProperty("ActiveAdmin", 'RssLink');
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

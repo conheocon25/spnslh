@@ -18,7 +18,7 @@ class Post extends Mapper implements \MVC\Domain\PostFinder {
 		$findByDateTimeStmt = sprintf(
 			"select *  
 			from %s 
-			where date >= ? AND date <= ?"
+			where time >= ? AND time <= ?"
 		, $tblPost);
 		
         $this->selectAllStmt 	= self::$PDO->prepare($selectAllStmt);
@@ -97,7 +97,7 @@ class Post extends Mapper implements \MVC\Domain\PostFinder {
 	
 	function findByDateTime( $values ) {		
 		$this->findByDateTimeStmt->execute($values);
-        return new NewsCollection( $this->findByDateTimeStmt->fetchAll(), $this );
+        return new PostCollection( $this->findByDateTimeStmt->fetchAll(), $this );
     }
 }
 ?>

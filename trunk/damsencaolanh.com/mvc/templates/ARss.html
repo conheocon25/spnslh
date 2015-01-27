@@ -13,6 +13,9 @@
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-12">
+						<a href="admin/setting/rss/ins/load" class="btn btn-primary btn-ins">
+							<i class="glyphicons-plus"/> Thêm mới
+						</a>						
 						<div class="widget-box">
 							<div class="widget-content nopadding">
 								<table class="table table-bordered table-striped table-hover">
@@ -22,15 +25,17 @@
 											<th><div class="text-left">Web Gốc</div></th>
 											<th><div class="text-left">Địa chỉ Web</div></th>
 											<th><div class="text-left">Địa chỉ Rss lấy tin</div></th>
-											<th><div class="text-left">Thêm vào Danh Mục</div></th>
+											<th><div class="text-left">Thêm vào Danh Mục</div></th>											
+											<th><div class="text-left">Lớp Lấy Nội dung</div></th>
+											<th><div class="text-left">Lớp Lấy Tgiả</div></th>
+											<th><div class="text-left">Đừng dẫn hình đủ</div></th>
 											<th><div class="text-left">Loại Rss</div></th>
-											<th><div class="text-left">Khả dụng</div></th>											
-											<th><div class="text-left">Lấy tin</div></th>											
+											<th><div class="text-left">Khả dụng</div></th>
 											<th width="32"/>
 										</tr>
 									</thead>
 									<tbody>
-										<tr class="content-rows" tal:repeat="Rss RssAll">
+										<tr class="content-rows" tal:repeat="Rss RssAll">											
 											<td width="32" align="center"><div tal:content="repeat/Rss/number" /></td>											
 											<td align="left">
 												<a tal:attributes="href Rss/getURLUpdLoad" tal:content="Rss/getName"/>
@@ -38,9 +43,11 @@
 											<td align="left"><div tal:content="Rss/getWeburl" /></td>
 											<td align="left"><div tal:content="Rss/getRssurl" /></td>
 											<td align="left"><div tal:content="Rss/getCategoryVideo/getName" /></td>
+											<td align="left"><div tal:content="Rss/getClassContentName" /></td>
+											<td align="left"><div tal:content="Rss/getClassAuthor" /></td>
+											<td align="left"><div tal:content="Rss/getImgPath" /></td>
 											<td align="left"><div tal:content="Rss/getType" /></td>
-											<td align="left"><div tal:content="Rss/getEnablePrint" /></td>											
-											<td align="left"><div style="cursor:pointer; color:red;" class="get-newsrss" tal:attributes="data-id Rss/getURLGetNewsRss">Lấy tin</div></td>											
+											<td align="left"><div tal:content="Rss/getEnablePrint" /></td>																						
 											<td width="32" class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Rss/getId"><i class="glyphicon glyphicon-remove"/></a></td>
 										</tr>
 									</tbody>
@@ -48,6 +55,8 @@
 							</div>
 						</div>
 					</div>
+					<div metal:use-macro="mDialog.xhtml/DialogDel"/>
+					<div metal:use-macro="mDialog.xhtml/DialogDelSelected"/>
 				</div>
 			</div>
 		</div>
@@ -57,24 +66,13 @@
 		/*<![CDATA[*/
 			//-----------------------------------------------------------------------------------
 			//Delete 1 CategoryVideo			
-			//-----------------------------------------------------------------------------------
-		
-			
+			//-----------------------------------------------------------------------------------					
+						
 			$('.remove-item').click(function(){
 				$('#URLDelButton').attr('alt', $(this).attr('data-id'));
-			});
+			});			
 			
-			$('.get-newsrss').click(function(){
-				var URL = $(this).attr('data-id');
-				$.ajax({
-					type: "POST",
-					url: URL,
-					success: function(msg){
-						alert(msg);
-						//location.reload();
-					}
-				});
-			});
+			
 			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
 			$('#URLDelButton').click(function(){			
 				var URL = "/object/del/RssLink/" + $(this).attr('alt');

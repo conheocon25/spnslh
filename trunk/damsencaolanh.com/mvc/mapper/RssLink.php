@@ -11,8 +11,8 @@ class RssLink extends Mapper implements \MVC\Domain\RssLinkFinder{
 		
 		$selectAllStmt 		= sprintf("select * from %s where `enable`=1", $tblRssLink);
 		$selectStmt 		= sprintf("select *  from %s where id=?", $tblRssLink);
-		$updateStmt 		= sprintf("update %s set id_tag=?, name=?, `weburl`=?, rssurl=?, type=?, `enable`=? where id=?", $tblRssLink);
-		$insertStmt 		= sprintf("insert into %s ( id_tag, name, `weburl`, rssurl, type, `enable`) values(?, ?, ?, ?, ?, ?)", $tblRssLink);
+		$updateStmt 		= sprintf("update %s set id_tag=?, name=?, `weburl`=?, rssurl=?, type=?, `enable`=?, classcontentname=?, classauthor=?, imgpath=? where id=?", $tblRssLink);
+		$insertStmt 		= sprintf("insert into %s ( id_tag, name, `weburl`, rssurl, type, `enable`, classcontentname, classauthor, imgpath) values(?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblRssLink);
 		$deleteStmt 		= sprintf("delete from %s where id=?", $tblRssLink);
 		$findByStmt 		= sprintf("select *  from %s where id_tag=?", $tblRssLink);
 		$findByTypeStmt 	= sprintf("SELECT * FROM  %s WHERE id_tag=:id_tag LIMIT :start,:max", $tblRssLink);
@@ -37,7 +37,10 @@ class RssLink extends Mapper implements \MVC\Domain\RssLinkFinder{
 			$array['weburl'],
 			$array['rssurl'],
 			$array['type'],
-			$array['enable']
+			$array['enable'],
+			$array['classcontentname'],
+			$array['classauthor'],
+			$array['imgpath']
 		);
         return $obj;
     }
@@ -45,12 +48,15 @@ class RssLink extends Mapper implements \MVC\Domain\RssLinkFinder{
     protected function targetClass() {return "RssLink";}
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array( 
-			$object->getIdCategory(),
+			$object->getIdTag(),
 			$object->getName(),			
 			$object->getWeburl(),
 			$object->getRssurl(),
 			$object->getType(),
-			$object->getEnable()
+			$object->getEnable(),
+			$object->getClassContentName(),
+			$object->getClassauthor(),
+			$object->getImgPath()
 		);
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
@@ -59,12 +65,15 @@ class RssLink extends Mapper implements \MVC\Domain\RssLinkFinder{
     
     protected function doUpdate( \MVC\Domain\Object $object ) {
         $values = array(
-			$object->getIdCategory(),
+			$object->getIdTag(),
 			$object->getName(),
 			$object->getWeburl(),
 			$object->getRssurl(),
 			$object->getType(),
 			$object->getEnable(),
+			$object->getClassContentName(),
+			$object->getClassauthor(),
+			$object->getImgPath(),
 			$object->getId()			
 		);
         $this->updateStmt->execute( $values );
