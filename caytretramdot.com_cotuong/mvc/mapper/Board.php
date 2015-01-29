@@ -8,7 +8,7 @@ class Board extends Mapper implements \MVC\Domain\BoardFinder{
 		
 		$selectAllStmt 			= sprintf("select * from %s ORDER BY id", $tblBoard);
 		$selectStmt 			= sprintf("select *  from %s where id=?", $tblBoard);
-		$updateStmt 			= sprintf("update %s set id_chapter=?, name=?, state=?, `time`=?, info=?, move_init=?, move_start=?, move_end=?, round=?, result=?, `key`=? where id=?", $tblBoard);
+		$updateStmt 			= sprintf("update %s set id_chapter=?, name=?, state=?, `time`=?, info=?, move_init=?, move_start=?, move_end=?, round=?, result=?, viewed=?, liked=?, `key`=? where id=?", $tblBoard);
 		$insertStmt 			= sprintf("insert into %s ( 
 			id_chapter, 
 			name, 
@@ -20,7 +20,9 @@ class Board extends Mapper implements \MVC\Domain\BoardFinder{
 			move_end, 
 			round, 
 			result, 
-			`key`) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblBoard);
+			viewed, 
+			liked, 
+			`key`) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblBoard);
 			
 		$deleteStmt 			= sprintf("delete from %s where id=?", $tblBoard);
 		$findByStmt 			= sprintf("select *  from %s where `id_chapter`=? order by name", $tblBoard);
@@ -50,7 +52,9 @@ class Board extends Mapper implements \MVC\Domain\BoardFinder{
 			$array['move_start'],
 			$array['move_end'],
 			$array['round'],
-			$array['result'],
+			$array['result'],			
+			$array['viewed'],
+			$array['liked'],
 			$array['key']
 		);
         return $obj;
@@ -69,6 +73,8 @@ class Board extends Mapper implements \MVC\Domain\BoardFinder{
 			$object->getMoveEnd(),
 			$object->getRound(),
 			$object->getResult(),
+			$object->getViewed(),
+			$object->getLiked(),
 			$object->getKey()
 		);
 					
@@ -89,6 +95,8 @@ class Board extends Mapper implements \MVC\Domain\BoardFinder{
 			$object->getMoveEnd(),
 			$object->getRound(),
 			$object->getResult(),
+			$object->getViewed(),
+			$object->getLiked(),
 			$object->getKey(),
 			$object->getId()
 		);

@@ -18,8 +18,7 @@
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------						
 			$mConfig 		= new \MVC\Mapper\Config();
-			$mPost 			= new \MVC\Mapper\Post();
-			$mCategoryBoard = new \MVC\Mapper\CategoryBoard();
+			$mPost 			= new \MVC\Mapper\Post();			
 			$mCategoryBook 	= new \MVC\Mapper\CategoryBook();
 			$mCategoryPost 	= new \MVC\Mapper\CategoryPost();
 									
@@ -32,8 +31,7 @@
 			
 			$CategoryPostAll 	= $mCategoryPost->findAll();
 			$CategoryBookAll 	= $mCategoryBook->findAll();
-			$CategoryBoardAll 	= $mCategoryBoard->findAll();
-												
+															
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
@@ -42,8 +40,7 @@
 			$request->setObject("Category", 			$Post->getCategory());
 			$request->setObject("CategoryPostAll", 		$CategoryPostAll);
 			$request->setObject("CategoryBookAll", 		$CategoryBookAll);
-			$request->setObject("CategoryBoardAll", 	$CategoryBoardAll);
-						
+									
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

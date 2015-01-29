@@ -19,8 +19,7 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------						
-			$mConfig 		= new \MVC\Mapper\Config();
-			$mCategoryBoard = new \MVC\Mapper\CategoryBoard();
+			$mConfig 		= new \MVC\Mapper\Config();			
 			$mCategoryBook 	= new \MVC\Mapper\CategoryBook();
 			$mCategoryPost 	= new \MVC\Mapper\CategoryPost();
 			$mBook	 		= new \MVC\Mapper\Book();
@@ -29,20 +28,21 @@
 												
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------
-			$CategoryBoardAll 	= $mCategoryBoard->findAll();
+			//-------------------------------------------------------------			
 			$CategoryBookAll 	= $mCategoryBook->findAll();
 			$CategoryPostAll 	= $mCategoryPost->findAll();
-			$Category 			= $mCategoryBoard->findByKey($KBoard);
+			$Category 			= $mCategoryBook->findByKey($KBoard);
 			$Book 				= $mBook->findByKey($KBook);
 			$Chapter 			= $mChapter->findByKey($KChapter);
 			$Board 				= $mBoard->findByKey($KBoard);
 			
+			$Board->setViewed($Board->getViewed()+1);
+			$mBoard->update($Board);
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------						
-			$request->setObject("CategoryPostAll", 		$CategoryPostAll);
-			$request->setObject("CategoryBoardAll", 	$CategoryBoardAll);
+			$request->setObject("CategoryPostAll", 		$CategoryPostAll);			
 			$request->setObject("CategoryBookAll", 		$CategoryBookAll);
 						
 			$request->setObject('Category', 			$Category);

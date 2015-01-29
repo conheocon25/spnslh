@@ -22,7 +22,8 @@
 						</div>
 						<div class="panel-body">
 							<div class="article-meta-date">								
-								<span tal:content="Post/getTimePrint"/>, <span tal:content="Post/getViewed"/> lượt xem
+								<span tal:content="Post/getTimePrint"/>, <div class="btn"><i class="glyphicon glyphicon-eye-open"/> <span tal:content="Post/getViewedPrint"/></div> 
+								<div class="btn"><i class="glyphicon glyphicon-heart"/> <span tal:content="Post/getLikedPrint"/></div>
 							</div>
 							<div class="article-meta-more">																				
 								<div class="share-button-group">

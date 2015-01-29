@@ -196,8 +196,10 @@
 						<div class="MoveNext btn btn-sm"><i class="glyphicon glyphicon-forward"/></div> 
 						<div class="MoveLast btn btn-sm"><i class="glyphicon glyphicon-step-forward"/></div>
 					</div>
-					<div class="row btn-row">												
-						Tự trình diễn:
+					<div class="row btn-row">
+						<div class="btn"><i class="glyphicon glyphicon-eye-open"/> <span tal:content="Board/getViewedPrint"/></div> 
+						<div class="btn"><i class="glyphicon glyphicon-heart"/> <span tal:content="Board/getLikedPrint"/></div> 
+						Auto:
 						<select name="TimeAuto" id="TimeAuto">
 							<option value="1" >1 giây</option>
 							<option value="2" >2 giây</option>
@@ -206,7 +208,7 @@
 						</select>
 					</div>
 					<div class="row btn-row" tal:repeat="Detail Board/getDetailAll">
-						<span tal:content="php: Board->getMoveInit() + Detail->getMove()-1" /> . 
+						<span tal:content="php: sprintf('%03d', (Board->getMoveInit() + Detail->getMove()-1))" /> . 
 						<div class="Move btn btn-xs btn-danger" 	tal:attributes="alt Detail/getState1; move Detail/getMove1; note Detail/getNote1"><span tal:content="Detail/getName1"/></div>
 						<div class="Move btn btn-xs btn-success"  	tal:attributes="alt Detail/getState2; move Detail/getMove2; note Detail/getNote2"><span tal:content="Detail/getName2"/></div>
 					</div>

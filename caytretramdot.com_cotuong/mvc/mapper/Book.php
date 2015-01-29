@@ -20,6 +20,7 @@ class Book extends Mapper implements \MVC\Domain\BookFinder{
 												`order`=?, 
 												`url`=?, 
 												`viewed`=?, 
+												`liked`=?, 
 												`thumb`=?, 
 												`key`=? 
 									where 
@@ -34,8 +35,9 @@ class Book extends Mapper implements \MVC\Domain\BookFinder{
 												`order`, 
 												`url`, 
 												`viewed`, 
+												`liked`, 
 												`thumb`, 
-												`key`) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblBook);
+												`key`) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblBook);
 		$deleteStmt 		= sprintf("delete from %s where id=?", $tblBook);				
 		$findByStmt 		= sprintf("select *  from %s where id_category=? ORDER BY `order`", $tblBook);
 		$findByKeyStmt 		= sprintf("select *  from %s where `key`=?", $tblBook);
@@ -65,6 +67,7 @@ class Book extends Mapper implements \MVC\Domain\BookFinder{
 			$array['order'],
 			$array['url'],
 			$array['viewed'],
+			$array['liked'],
 			$array['thumb'],
 			$array['key']
 		);
@@ -83,6 +86,7 @@ class Book extends Mapper implements \MVC\Domain\BookFinder{
 			$object->getOrder(),
 			$object->getURL(),
 			$object->getViewed(),
+			$object->getLiked(),
 			$object->getThumb(),
 			$object->getKey()
 		); 
@@ -102,7 +106,8 @@ class Book extends Mapper implements \MVC\Domain\BookFinder{
 			$object->getOrder(),
 			$object->getURL(),
 			$object->getViewed(),
-			$object->getThumb(),
+			$object->getLiked(),
+			$object->getThumb(),			
 			$object->getKey(),
 			$object->getId()
 		);		

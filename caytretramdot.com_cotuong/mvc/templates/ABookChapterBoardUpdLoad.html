@@ -76,6 +76,18 @@
 										<textarea id="Info" class="ckeditor" name="Info" tal:content="Board/getInfo"/>
 									</div>
 								</div>
+								<div class="control-group">
+									<label class="control-label" for="Viewed">Lượt xem</label>
+									<div class="controls">
+										<input type="text" id="Viewed" name="Viewed" tal:attributes="value Board/getViewed"/>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="Liked">Lượt thích</label>
+									<div class="controls">
+										<input type="text" id="Liked" name="Liked" tal:attributes="value Board/getLiked"/>
+									</div>
+								</div>
 								<div class="form-actions">
 									<button type="submit" class="btn btn-success" value="submit-value">Lưu</button>
 								</div>

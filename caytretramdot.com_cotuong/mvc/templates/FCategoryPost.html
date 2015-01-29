@@ -15,7 +15,9 @@
 							<td>
 								<a tal:attributes="href Post/getURLView"><span tal:content="Post/getTitle"/></a>
 								<p tal:content="structure Post/getContentReduce"/>
-								<p><span tal:content="Post/getTimePrint"/>, <span tal:content="Post/getViewed"/> lượt xem</p>
+								<p><span tal:content="Post/getTimePrint"/>, <span><i class="glyphicon glyphicon-eye-open"/> <span tal:content="Post/getViewedPrint"/></span> 
+									<span><i class="glyphicon glyphicon-heart"/> <span tal:content="Post/getLikedPrint"/></span>
+								</p>
 							</td>
 						</tr>
 					</table>

@@ -14,6 +14,7 @@ class Book extends Object{
 	private $Order;
 	private $URL;
 	private $Viewed;
+	private $Liked;
 	private $Thumb;
 	private $Key;
 		
@@ -31,6 +32,7 @@ class Book extends Object{
 		$Order=null, 
 		$URL=null, 
 		$Viewed=null, 
+		$Liked=null, 
 		$Thumb=null, 
 		$Key=null) 
 	{
@@ -44,6 +46,7 @@ class Book extends Object{
 		$this->Order 		= $Order;
 		$this->URL 			= $URL;
 		$this->Viewed 		= $Viewed;
+		$this->Liked 		= $Liked;
 		$this->Thumb 		= $Thumb;
 		$this->Key 			= $Key;
 		
@@ -86,8 +89,19 @@ class Book extends Object{
 	function setOrder( $Order ) {$this->Order = $Order;$this->markDirty();}   
 	function getOrder( ) {return $this->Order;}
 	
-	function setViewed( $Viewed ) {$this->Viewed = $Viewed; $this->markDirty();}   		
-	function getViewed( ) {return $this->Viewed;}
+	function setViewed( $Viewed ) 	{$this->Viewed = $Viewed; $this->markDirty();}   
+	function getViewed( ) 			{return $this->Viewed;}
+	function getViewedPrint( ){
+		$N= new \MVC\Library\Number($this->Viewed);
+		return $N->formatCurrency();
+	}
+	
+	function setLiked( $Liked ) 	{$this->Liked = $Liked; $this->markDirty();}   
+	function getLiked( ) 			{return $this->Liked;}
+	function getLikedPrint( ){		
+		$N= new \MVC\Library\Number($this->Liked);
+		return $N->formatCurrency();
+	}
 	
 	function setThumb( $Thumb ) {$this->Thumb = $Thumb; $this->markDirty();}   
 	function getThumb( ) 		{
@@ -127,6 +141,7 @@ class Book extends Object{
 		 	'Order'			=> $this->getOrder(),
 			'URL'			=> $this->getURL(),
 			'Viewed'		=> $this->getViewed(),
+			'Liked'			=> $this->getLiked(),
 			'Thumb'			=> $this->getThumb(),
 			'Key'			=> $this->getKey()
 		);
@@ -142,8 +157,9 @@ class Book extends Object{
 		$this->Order 		= $Data[5];
 		$this->URL 			= $Data[6];
 		$this->Viewed		= $Data[7];
-		$this->Thumb		= $Data[8];
-		$this->Key 			= $Data[9];
+		$this->Liked		= $Data[8];
+		$this->Thumb		= $Data[9];
+		$this->Key 			= $Data[10];
     }
 	
 	//-------------------------------------------------------------------------------
