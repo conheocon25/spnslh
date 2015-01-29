@@ -14,8 +14,10 @@
 			<div class="row">
 				<div class="col-md-9">
 					<div class="panel panel-default">
-						<div class="panel-heading"><H1 tal:content="Chapter/getTitle"/>
-						
+						<div class="panel-heading">
+							<a tal:attributes="href Book/getURLView">
+								<i class="glyphicon glyphicon-home"/>
+							</a>
 						</div>
 						<div class="panel-body">							
 							<div class="article-meta-more">								
@@ -23,12 +25,11 @@
 							</div>
 						</div>
 					</div>
-					<div class="panel panel-default">
-						<div class="panel-heading"><h2>Ván cờ minh họa</h2></div>
+					<div class="panel panel-default">						
 						<div class="panel-body">
 							<div class="article-meta-date" />							
 							<div class="article-meta-more">
-								<a tal:attributes="href Board/getURLView" class="btn btn-default btn-lg btn-block" tal:repeat="Board Chapter/getBoardAll">
+								<a tal:attributes="href Board/getURLView" class="btn btn-default" tal:repeat="Board Chapter/getBoardAll">
 									<span tal:content="Board/getName"/>									
 								</a>
 							</div>
@@ -37,15 +38,10 @@
 				</div>
 				<div class="col-md-3">
 					<div class="panel panel-default">
-						<div class="panel-heading">
-							<a tal:attributes="href Book/getURLView">
-								<span tal:content="Book/getTitle"/>
-							</a>
-						</div>
 						<div class="panel-body">
-							<a tal:attributes="href Chapter1/getURLView;class php: Chapter1->getId()==Chapter->getId()?'btn btn-primary btn-block':'btn btn-default btn-block'"  tal:repeat="Chapter1 Book/getChapterAll">
+							<a tal:attributes="href Chapter1/getURLView;class php: Chapter1->getId()==Chapter->getId()?'btn btn-primary':'btn btn-default'"  tal:repeat="Chapter1 Book/getChapterAll">
 								<span tal:content="Chapter1/getTitleReduce"/>
-							</a>							
+							</a>
 						</div>
 					</div>					
 				</div>

@@ -9,7 +9,7 @@
  * @author   Laurent Bedubourg <lbedubourg@motion-twin.com>
  * @author   Kornel Lesiński <kornel@aardvarkmedia.co.uk>
  * @license  http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License
- * @version  SVN: $Id: Attribute.php 868 2010-05-25 22:27:39Z kornel $
+ * @version  SVN: $Id$
  * @link     http://phptal.org/
  */
 
@@ -38,39 +38,13 @@ abstract class PHPTAL_Php_Attribute
 
     /**
      * Called before element printing.
-     * Default implementation is for backwards compatibility only. Please always override both before() and after().
      */
-    public function before(PHPTAL_Php_CodeWriter $codewriter)
-    {
-        $this->tag = $this->phpelement; $this->phpelement->generator = $codewriter; $this->start(); // FIXME: remove
-    }
+    abstract function before(PHPTAL_Php_CodeWriter $codewriter);
 
     /**
      * Called after element printing.
-     * Default implementation is for backwards compatibility only. Please always override both before() and after().
      */
-    public function after(PHPTAL_Php_CodeWriter $codewriter)
-    {
-        $this->tag = $this->phpelement; $this->phpelement->generator = $codewriter; $this->end(); // FIXME: remove
-    }
-
-    /**
-     * for backwards compatibility ONLY. Do not use!
-     * @deprecated
-     */
-    public function start() { throw new PHPTAL_Exception('Do not use'); }
-
-    /**
-     * for backwards compatibility ONLY. Do not use!
-     * @deprecated
-     */
-    public function end() { throw new PHPTAL_Exception('Do not use'); }
-
-    /**
-     * for backwards compatibility ONLY. Do not use!
-     * @deprecated
-     */
-    final public function doEcho($code) { $this->doEchoAttribute($this->tag->generator, $code); }
+    abstract function after(PHPTAL_Php_CodeWriter $codewriter);
 
     function __construct(PHPTAL_Dom_Element $phpelement, $expression)
     {

@@ -9,7 +9,7 @@
  * @author   Laurent Bedubourg <lbedubourg@motion-twin.com>
  * @author   Kornel Lesiński <kornel@aardvarkmedia.co.uk>
  * @license  http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License
- * @version  SVN: $Id: Node.php 865 2010-05-25 22:16:24Z kornel $
+ * @version  SVN: $Id$
  * @link     http://phptal.org/
  */
 
@@ -96,46 +96,6 @@ abstract class PHPTAL_Dom_Node
      * use CodeWriter to compile this element to PHP code
      */
     public abstract function generateCode(PHPTAL_Php_CodeWriter $gen);
-
-
-    /**
-     * For backwards compatibility only! Do not use!
-     * @deprecated
-     */
-    public function generate()
-    {
-        $this->generateCode(self::$_codewriter_bc_hack_);
-    }
-
-    /**
-     * @deprecated
-     */
-    static $_codewriter_bc_hack_;
-
-    /**
-     * For backwards compatibility only
-     * @deprecated
-     */
-    function __get($prop)
-    {
-        if ($prop === 'children') return $this->childNodes;
-        if ($prop === 'node') return $this;
-        if ($prop === 'generator') return self::$_codewriter_bc_hack_;
-        if ($prop === 'attributes') {
-            $tmp = array();
-            foreach ($this->getAttributeNodes() as $att) {
-                $tmp[$att->getQualifiedName()] = $att->getValueEscaped();
-            }
-            return $tmp;
-        }
-        throw new PHPTAL_Exception("There is no property $prop on ".get_class($this));
-    }
-
-    /**
-     * For backwards compatibility only
-     * @deprecated
-     */
-    function getName(){ return $this->getQualifiedName(); }
 
     function __toString()
     {

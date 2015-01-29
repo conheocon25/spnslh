@@ -9,7 +9,7 @@
  * @author   Laurent Bedubourg <lbedubourg@motion-twin.com>
  * @author   Kornel Lesiński <kornel@aardvarkmedia.co.uk>
  * @license  http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License
- * @version  SVN: $Id: DefineMacro.php 914 2010-06-20 21:02:58Z kornel $
+ * @version  SVN: $Id$
  * @link     http://phptal.org/
  */
 
@@ -54,7 +54,7 @@ class PHPTAL_Php_Attribute_METAL_DefineMacro extends PHPTAL_Php_Attribute
         $codewriter->doFunction($macroname, 'PHPTAL $_thistpl, PHPTAL $tpl');
         $codewriter->doSetVar('$tpl', 'clone $tpl');
         $codewriter->doSetVar('$ctx', '$tpl->getContext()');
-        $codewriter->doSetVar('$_translator', '$tpl->getTranslator()');
+        $codewriter->doInitTranslator();
         $codewriter->doXmlDeclaration(true);
         $codewriter->doDoctype(true);
     }

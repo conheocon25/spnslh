@@ -9,7 +9,7 @@
  * @author   Laurent Bedubourg <lbedubourg@motion-twin.com>
  * @author   Kornel Lesiński <kornel@aardvarkmedia.co.uk>
  * @license  http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License
- * @version  SVN: $Id: Source.php 605 2009-05-03 02:50:26Z kornel $
+ * @version  SVN: $Id$
  * @link     http://phptal.org/
  */
 
@@ -35,13 +35,13 @@ class PHPTAL_Php_Attribute_I18N_Source extends PHPTAL_Php_Attribute
         $codewriter->end();
 
         // push current source and use new one
-        $codewriter->pushCode('$_i18n_sources[] = $_translator->setSource('.$codewriter->str($this->expression).')');
+        $codewriter->pushCode('$_i18n_sources[] = ' . $codewriter->getTranslatorReference(). '->setSource('.$codewriter->str($this->expression).')');
     }
 
     public function after(PHPTAL_Php_CodeWriter $codewriter)
     {
         // restore source
-        $code = '$_translator->setSource(array_pop($_i18n_sources))';
+        $code = $codewriter->getTranslatorReference().'->setSource(array_pop($_i18n_sources))';
         $codewriter->pushCode($code);
     }
 }

@@ -9,7 +9,7 @@
  * @author   Laurent Bedubourg <lbedubourg@motion-twin.com>
  * @author   Kornel Lesiński <kornel@aardvarkmedia.co.uk>
  * @license  http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License
- * @version  SVN: $Id: Define.php 865 2010-05-25 22:16:24Z kornel $
+ * @version  SVN: $Id$
  * @link     http://phptal.org/
  */
 
@@ -43,6 +43,10 @@ implements PHPTAL_Php_TalesChainReader
     private $_defineScope = null;
     private $_defineVar = null;
     private $_pushedContext = false;
+    /**
+     * Prevents generation of invalid PHP code when given invalid TALES
+     */
+    private $_chainPartGenerated=false;
 
     public function before(PHPTAL_Php_CodeWriter $codewriter)
     {
@@ -105,6 +109,8 @@ implements PHPTAL_Php_TalesChainReader
 
     public function talesChainNothingKeyword(PHPTAL_Php_TalesChainExecutor $executor)
     {
+        if (!$this->_chainPartGenerated) throw new PHPTAL_TemplateException("Invalid expression in tal:define", $this->phpelement->getSourceFile(), $this->phpelement->getSourceLine());
+
         $executor->doElse();
         $this->doDefineVarWith($executor->getCodeWriter(), 'null');
         $executor->breakChain();
@@ -112,6 +118,8 @@ implements PHPTAL_Php_TalesChainReader
 
     public function talesChainDefaultKeyword(PHPTAL_Php_TalesChainExecutor $executor)
     {
+        if (!$this->_chainPartGenerated) throw new PHPTAL_TemplateException("Invalid expression in tal:define", $this->phpelement->getSourceFile(), $this->phpelement->getSourceLine());
+
         $executor->doElse();
         $this->bufferizeContent($executor->getCodeWriter());
         $executor->breakChain();
@@ -119,6 +127,8 @@ implements PHPTAL_Php_TalesChainReader
 
     public function talesChainPart(PHPTAL_Php_TalesChainExecutor $executor, $exp, $islast)
     {
+        $this->_chainPartGenerated=true;
+
         if ($this->_defineScope == 'global') {
             $var = '$tpl->getGlobalContext()->'.$this->_defineVar;
         } else {

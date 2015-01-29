@@ -8,11 +8,11 @@
 			.btn-conf { width: 80px; }
 		</style>
 	</head>
-	<body>
-		<div metal:use-macro="mFront.xhtml/Header"/>
-		<div class="container-fluid" id="wraper">			
+	<body>		
+		<div class="container-fluid">
 			<div class="row">
-				<div class="col-md-6 col-sm-6">
+				<div class="col-md-6 col-sm-4">
+					<div class="row">
 					<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-image: url(/data/chess/150/Board.jpg); background-size: 100% 100%;">
 						<!-- TỌA ĐỘ-->
 						<tr>
@@ -182,40 +182,36 @@
 							<td width="10%" />
 						</tr>
 					</table>					
-				</div>
-				<div id="MoveList" class="col-md-3 col-xs-3" tal:attributes="MoveStart Board/getMoveStart; MoveEnd Board/getMoveEnd; State Board/getState">
-					<div class="row btn-row">
-						<div class="Move btn btn-primary btn-conf" 		tal:attributes="alt Board/getState; move '-1'"><span tal:content="Board/getName"/></div>
 					</div>
-					<div class="row btn-row" style="padding-left:25px;">
-						<div class="Auto btn btn-primary">Start</div>
-						<div class="MoveFirst btn btn-primary"> |< </div>
-						<div class="MoveBack btn btn-primary"> < </div>
-						<div class="MoveNext btn btn-primary"> > </div> 
-						<div class="MoveLast btn btn-primary"> >|</div>
+					<div class="row"><div class="text-justify" id="Note"/></div>
+				</div>
+				<div class="col-md-6 col-sm-4" />
+				<div class="col-md-6 col-sm-4" id="MoveList" tal:attributes="MoveStart Board/getMoveStart; MoveEnd Board/getMoveEnd; State Board/getState">					
+					<div class="row btn-row">
+						<a tal:attributes="href Chapter/getURLView" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon glyphicon-home"/></a>
+						<div class="Move btn btn-sm" tal:attributes="alt Board/getState; move '-1'"><i class="glyphicon glyphicon-th-large"/> <span tal:content="Board/getName"/></div>
+						<div class="MoveFirst btn btn-sm"><i class="glyphicon glyphicon-step-backward"/></div>
+						<div class="MoveBack btn btn-sm"><i class="glyphicon glyphicon-backward"/></div>
+						<div class="Auto btn btn-sm"><i class="glyphicon glyphicon-play"/></div>
+						<div class="MoveNext btn btn-sm"><i class="glyphicon glyphicon-forward"/></div> 
+						<div class="MoveLast btn btn-sm"><i class="glyphicon glyphicon-step-forward"/></div>
+					</div>
+					<div class="row btn-row">												
+						Tự trình diễn:
+						<select name="TimeAuto" id="TimeAuto">
+							<option value="1" >1 giây</option>
+							<option value="2" >2 giây</option>
+							<option value="5" >5 giây</option>
+							<option value="10" >10 giây</option>
+						</select>
 					</div>
 					<div class="row btn-row" tal:repeat="Detail Board/getDetailAll">
 						<span tal:content="php: Board->getMoveInit() + Detail->getMove()-1" /> . 
-						<div class="Move btn btn-danger btn-conf" 		tal:attributes="alt Detail/getState1; move Detail/getMove1; note Detail/getNote1"><span tal:content="Detail/getName1"/></div>
-						<div class="Move btn btn-success btn-conf"  	tal:attributes="alt Detail/getState2; move Detail/getMove2; note Detail/getNote2"><span tal:content="Detail/getName2"/></div>
-					</div>														
-				</div>
-				<div class="col-md-3 col-sm-3">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<a tal:attributes="href Chapter/getURLView">
-								<span tal:content="Chapter/getTitleReduce"/>
-							</a>
-						</div>
-						<div class="panel-body">							
-							<a tal:attributes="href Board1/getURLView;class php: Board1->getId()==Board->getId()?'btn btn-primary btn-block':'btn btn-default btn-block'"  tal:repeat="Board1 Chapter/getBoardAll">
-								<span tal:content="Board1/getNameReduce"/>
-							</a>							
-						</div>
+						<div class="Move btn btn-xs btn-danger" 	tal:attributes="alt Detail/getState1; move Detail/getMove1; note Detail/getNote1"><span tal:content="Detail/getName1"/></div>
+						<div class="Move btn btn-xs btn-success"  	tal:attributes="alt Detail/getState2; move Detail/getMove2; note Detail/getNote2"><span tal:content="Detail/getName2"/></div>
 					</div>
 				</div>
-			</div>
-			<div class="row"><div id="Note"/></div>
+			</div>			
 		</div>
 		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
 		<script type="text/javascript">
@@ -223,6 +219,7 @@
 			$(function(){			
 				var tmrAuto;
 				var Auto 		= 1;
+				var TimeAuto	= 1000;
 				var MoveCurrent = -1;
 				var MoveSTART 	= parseInt($("#MoveList").attr("MoveStart"));
 				var MoveEND 	= parseInt($("#MoveList").attr("MoveEnd"));
@@ -230,41 +227,27 @@
 				
 				//KHỞI TẠO CHẾ ĐỘ XEM LẠI VÁN CỜ
 				initViewer(State);
-								
-				$(".Auto").click(function(){
-					Auto = Auto*(-1);
-					if (Auto>0){
-						$(this).html("Start");
-						clearTimeout(tmrAuto);
-					}else{
-						$(this).html("Stop");
-						tmrAuto = setInterval(function(){
-							if (MoveCurrent < MoveEND){
-								MoveCurrent +=1;						
-								var State = $(".Move[move='"+MoveCurrent+"']").attr('alt');
-								$(".Move").removeClass('active');
-								$(".Move[move='"+MoveCurrent+"']").addClass('active');						
-								drawBoard(State);
-								drawRound1(MoveCurrent);
-								$("#Note").html($(".Move[move='"+MoveCurrent+"']").attr('note'));
-							}else{
-								MoveCurrent = MoveSTART;
-							}
-						}, 2000);						
-					}					
-				});
 				
-				$(".Move").click(function(){
-					MoveCurrent = parseInt($(this).attr('move'));
+				//Các tiện ích
+				function moveFirst(){
+					MoveCurrent = MoveSTART;					
+					var State = $(".Move[move='"+MoveCurrent+"']").attr('alt');											
 					$(".Move").removeClass('active');
 					$(".Move[move='"+MoveCurrent+"']").addClass('active');					
-					drawBoard($(this).attr('alt'));
+					drawBoard(State);
 					drawRound1(MoveCurrent);
-					
 					$("#Note").html($(".Move[move='"+MoveCurrent+"']").attr('note'));
-				});
-												
-				$(".MoveNext").click(function(){					
+				}
+				function moveLast(){
+					MoveCurrent = MoveEND;
+					var State = $(".Move[move='"+MoveCurrent+"']").attr('alt');						
+					$(".Move").removeClass('active');
+					$(".Move[move='"+MoveCurrent+"']").addClass('active');
+					drawBoard(State);
+					drawRound1(MoveCurrent);
+					$("#Note").html($(".Move[move='"+MoveCurrent+"']").attr('note'));
+				}
+				function moveNext(){
 					if (MoveCurrent < MoveEND){
 						MoveCurrent +=1;						
 						var State = $(".Move[move='"+MoveCurrent+"']").attr('alt');
@@ -274,9 +257,8 @@
 						drawRound1(MoveCurrent);
 						$("#Note").html($(".Move[move='"+MoveCurrent+"']").attr('note'));
 					}
-				});
-				
-				$(".MoveBack").click(function(){
+				}
+				function moveBack(){
 					if (MoveCurrent > MoveSTART){
 						MoveCurrent -=1;
 						var State = $(".Move[move='"+MoveCurrent+"']").attr('alt');
@@ -285,27 +267,81 @@
 						drawBoard(State);
 						drawRound1(MoveCurrent);
 						$("#Note").html($(".Move[move='"+MoveCurrent+"']").attr('note'));
-					}					
-				});
-				
-				$(".MoveFirst").click(function(){					
-					MoveCurrent = MoveSTART;					
-					var State = $(".Move[move='"+MoveCurrent+"']").attr('alt');											
+					}
+				}
+				function runAuto(){
+					TimeAuto	= parseInt($("#TimeAuto").val())*1000;
+					Auto = Auto*(-1);
+					if (Auto>0){
+						$(".Auto").html("<i class='glyphicon glyphicon-play'/>");
+						clearTimeout(tmrAuto);
+					}else{						
+						$(".Auto").html("<i class='glyphicon glyphicon-stop'/>");
+						tmrAuto = setInterval(function(){
+							if (MoveCurrent < MoveEND){
+								MoveCurrent +=1;						
+								var State = $(".Move[move='"+MoveCurrent+"']").attr('alt');
+								$(".Move").removeClass('active');
+								$(".Move[move='"+MoveCurrent+"']").addClass('active');
+								drawBoard(State);
+								drawRound1(MoveCurrent);
+								$("#Note").html($(".Move[move='"+MoveCurrent+"']").attr('note'));
+							}else{
+								MoveCurrent = MoveSTART;
+							}
+						}, TimeAuto);
+					}
+				}
+								
+				document.onkeydown = function(event) {
+					if (!event)
+						event = window.event;
+					var code = event.keyCode;
+					if (event.charCode && code == 0)
+						code = event.charCode;
+					switch(code) {
+						case 37:
+							// Key left.
+							moveBack();
+							break;
+						case 38:
+							// Key up.
+							moveFirst();
+							break;
+						case 39:
+							// Key right.							
+							moveNext();
+							break;
+						case 40:
+							// Key down.							
+							moveLast();
+							break;
+						case 13:
+							runAuto();
+							break;
+						case 27:
+							runAuto();
+							break;	
+					}
+					event.preventDefault();
+				};
+							
+								
+				$(".Move").click(function(){
+					MoveCurrent = parseInt($(this).attr('move'));
 					$(".Move").removeClass('active');
 					$(".Move[move='"+MoveCurrent+"']").addClass('active');					
-					drawBoard(State);
+					drawBoard($(this).attr('alt'));
 					drawRound1(MoveCurrent);
+					
 					$("#Note").html($(".Move[move='"+MoveCurrent+"']").attr('note'));
 				});
-				$(".MoveLast").click(function(){										
-					MoveCurrent = MoveEND;
-					var State = $(".Move[move='"+MoveCurrent+"']").attr('alt');						
-					$(".Move").removeClass('active');
-					$(".Move[move='"+MoveCurrent+"']").addClass('active');
-					drawBoard(State);
-					drawRound1(MoveCurrent);
-					$("#Note").html($(".Move[move='"+MoveCurrent+"']").attr('note'));
-				});				
+				
+				$('.Auto').bind('click', runAuto);
+				$('.MoveNext').bind('click', moveNext);
+				$(".MoveBack").bind('click', moveBack);				
+				$(".MoveFirst").bind('click', moveFirst);												
+				$(".MoveLast").bind('click', moveLast);
 			});
 		/*]]>*/
 		</script>

@@ -10,7 +10,7 @@
  * @author   Kornel Lesiński <kornel@aardvarkmedia.co.uk>
  * @author   Iván Montes <drslump@pollinimini.net>
  * @license  http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License
- * @version  SVN: $Id: RepeatController.php 867 2010-05-25 22:26:20Z kornel $
+ * @version  SVN: $Id$
  * @link     http://phptal.org/
  */
 
@@ -63,16 +63,18 @@ class PHPTAL_RepeatController implements Iterator
             $this->iterator = new ArrayIterator($source);
         } elseif ($source instanceof IteratorAggregate) {
             $this->iterator = $source->getIterator();
-        } elseif ($source instanceof Iterator) {
-            $this->iterator = $source;
-        } elseif ($source instanceof Traversable) {
-            $this->iterator = new IteratorIterator($source);
         } elseif ($source instanceof DOMNodeList) {
             $array = array();
             foreach ($source as $k=>$v) {
                 $array[$k] = $v;
             }
             $this->iterator = new ArrayIterator($array);
+        } elseif ($source instanceof Iterator) {
+            $this->iterator = $source;
+        } elseif ($source instanceof Traversable) {
+            $this->iterator = new IteratorIterator($source);
+        } elseif ($source instanceof Closure) {
+            $this->iterator = new ArrayIterator( (array) $source() );
         } elseif ($source instanceof stdClass) {
             $this->iterator = new ArrayIterator( (array) $source );
         } else {

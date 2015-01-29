@@ -10,7 +10,7 @@
  * @author   Moritz Bechler <mbechler@eenterphace.org>
  * @author   Kornel Lesiński <kornel@aardvarkmedia.co.uk>
  * @license  http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License
- * @version  SVN: $Id: TalesInternal.php 940 2010-06-23 13:35:28Z kornel $
+ * @version  SVN: $Id$
  * @link     http://phptal.org/
  */
 
@@ -50,14 +50,12 @@
  */
 class PHPTAL_Php_TalesInternal implements PHPTAL_Tales
 {
-    const DEFAULT_KEYWORD = '_DEFAULT_DEFAULT_DEFAULT_DEFAULT_';
-    const NOTHING_KEYWORD = '_NOTHING_NOTHING_NOTHING_NOTHING_';
+    const DEFAULT_KEYWORD = 'new PHPTAL_DefaultKeyword';
+    const NOTHING_KEYWORD = 'new PHPTAL_NothingKeyword';
 
     static public function true($src, $nothrow)
     {
-        $src = trim($src);
-        if (ctype_alnum($src)) return '!empty($ctx->'.$src.')';
-        return '!!$ctx->path($ctx, '.self::string($src).',true)';
+        return 'phptal_true(' . self::compileToPHPExpression($src, true) . ')';
     }
 
     /**
@@ -86,7 +84,7 @@ class PHPTAL_Php_TalesInternal implements PHPTAL_Tales
      */
     static public function not($expression, $nothrow)
     {
-        return '!(' . self::compileToPHPExpression($expression, $nothrow) . ')';
+        return '!phptal_true(' . self::compileToPHPExpression($expression, $nothrow) . ')';
     }
 
 
@@ -147,8 +145,14 @@ class PHPTAL_Php_TalesInternal implements PHPTAL_Tales
         // generate the array of sub expressions and return it.
         if (count($exps) > 1 || isset($string)) {
             $result = array();
-            foreach ($exps as $exp) {
-                $result[] = self::compileToPHPExpressions(trim($exp), true);
+            foreach ($exps as $i=>$exp) {
+                if(isset($string) || $i < count($exps) - 1) {
+                    $result[] = self::compileToPHPExpressions(trim($exp), true);
+                }
+                else {
+                    // the last expression can thorw exception.
+                    $result[] = self::compileToPHPExpressions(trim($exp), false);
+                }
             }
             if (isset($string)) {
                 $result[] = self::compileToPHPExpressions($string, true);
@@ -175,6 +179,10 @@ class PHPTAL_Php_TalesInternal implements PHPTAL_Tales
             $expression = null;
         }
 
+        if ($nothrow) {
+            return '$ctx->path($ctx, ' . $next . ($expression === null ? '' : '."/".'.$expression) . ', true)';
+        }
+
         if (preg_match('/^\'[a-z][a-z0-9_]*\'$/i', $next)) $next = substr($next, 1, -1); else $next = '{'.$next.'}';
 
         // if no sub part for this expression, just optimize the generated code
@@ -186,7 +194,7 @@ class PHPTAL_Php_TalesInternal implements PHPTAL_Tales
         // otherwise we have to call PHPTAL_Context::path() to resolve the path at runtime
         // extract the first part of the expression (it will be the PHPTAL_Context::path()
         // $base and pass the remaining of the path to PHPTAL_Context::path()
-        return '$ctx->path($ctx->'.$next.', '.$expression.($nothrow ? ', true' : '').')';
+        return '$ctx->path($ctx->'.$next.', '.$expression.')';
     }
 
     /**
@@ -214,6 +222,14 @@ class PHPTAL_Php_TalesInternal implements PHPTAL_Tales
      *      string:you have $$130 in your bank account
      */
     static public function string($expression, $nothrow=false)
+    {
+        return self::parseString($expression, $nothrow, '');
+    }
+
+    /**
+     * @param string $tales_prefix prefix added to all TALES in the string
+     */
+    static public function parseString($expression, $nothrow, $tales_prefix)
     {
         // This is a simple parser which evaluates ${foo} inside
         // 'string:foo ${foo} bar' expressions, it returns the php code which will
@@ -275,7 +291,7 @@ class PHPTAL_Php_TalesInternal implements PHPTAL_Tales
                 case '}':
                     if ($inAccoladePath) {
                         $inAccoladePath = false;
-                        $subEval = self::compileToPHPExpression($subPath,false);
+                        $subEval = self::compileToPHPExpression($tales_prefix.$subPath,false);
                         $result .= "'.(" . $subEval . ").'";
                         $subPath = '';
                         $lastWasDollar = false;
@@ -299,16 +315,16 @@ class PHPTAL_Php_TalesInternal implements PHPTAL_Tales
                             $c = '';
                         } else {
                             $inPath = false;
-                            $subEval = self::compileToPHPExpression($subPath,false);
+                            $subEval = self::compileToPHPExpression($tales_prefix.$subPath,false);
                             $result .= "'.(" . $subEval . ").'";
+                            }
                         }
-                    }
                     break;
             }
             $result .= $c;
         }
         if ($inPath) {
-            $subEval = self::compileToPHPExpression($subPath, false);
+            $subEval = self::compileToPHPExpression($tales_prefix.$subPath, false);
             $result .= "'.(" . $subEval . ").'";
         }
 
@@ -369,7 +385,7 @@ class PHPTAL_Php_TalesInternal implements PHPTAL_Tales
     {
         $src = trim($src);
         if (ctype_alnum($src)) return 'isset($ctx->'.$src.')';
-        return '(null !== $ctx->path($ctx,'.self::string($src).', true))';
+        return '(null !== ' . self::compileToPHPExpression($src, true) . ')';
     }
 
     /**
@@ -383,6 +399,21 @@ class PHPTAL_Php_TalesInternal implements PHPTAL_Tales
         return trim($src);
     }
 
+    /**
+     * json: modifier. Serializes anything as JSON.
+     */
+    static public function json($src, $nothrow)
+    {
+        return 'json_encode('.phptal_tale($src,$nothrow).')';
+    }
+
+    /**
+     * urlencode: modifier. Escapes a string.
+     */
+    static public function urlencode($src, $nothrow)
+    {
+        return 'rawurlencode('.phptal_tale($src,$nothrow).')';
+    }
 
     /**
      * translates TALES expression with alternatives into single PHP expression.
@@ -416,15 +447,6 @@ class PHPTAL_Php_TalesInternal implements PHPTAL_Tales
     }
 
     /**
-     * @deprecated
-     */
-    public static function compileToPHPStatements($expression, $nothrow=false)
-    {
-        trigger_error("Use phptal_tales() instead", E_USER_WARNING);
-        return self::compileToPHPExpressions($expression, $nothrow);
-    }
-
-    /**
      * returns PHP code that will evaluate given TALES expression.
      * e.g. "string:foo${bar}" may be transformed to "'foo'.phptal_escape($ctx->bar)"
      *
@@ -439,8 +461,8 @@ class PHPTAL_Php_TalesInternal implements PHPTAL_Tales
     {
         $expression = trim($expression);
 
-        // Look for tales modifier (string:, exists:, etc...)
-        if (preg_match('/^([a-z](?:[a-z0-9._-]*[a-z0-9])?):(.*)$/si', $expression, $m)) {
+        // Look for tales modifier (string:, exists:, Namespaced\Tale:, etc...)
+        if (preg_match('/^([a-z](?:[a-z0-9._\\\\-]*[a-z0-9])?):(.*)$/si', $expression, $m)) {
             list(, $typePrefix, $expression) = $m;
         }
         // may be a 'string'
@@ -453,11 +475,17 @@ class PHPTAL_Php_TalesInternal implements PHPTAL_Tales
             $typePrefix = 'path';
         }
 
-        $result = self::getPHPExpressionsForModifier($typePrefix, $expression, $nothrow);
+        // is a registered TALES expression modifier
+        $callback = PHPTAL_TalesRegistry::getInstance()->getCallback($typePrefix);
+        if ($callback !== NULL)
+        {
+            $result = call_user_func($callback, $expression, $nothrow);
+            self::verifyPHPExpressions($typePrefix, $result);
+            return $result;
+        }
 
-        self::verifyPHPExpressions($typePrefix, $result);
-
-        return $result;
+        $func = 'phptal_tales_'.str_replace('-', '_', $typePrefix);
+        throw new PHPTAL_UnknownModifierException("Unknown phptal modifier '$typePrefix'. Function '$func' does not exist", $typePrefix);
     }
 
     private static function verifyPHPExpressions($typePrefix,$expressions)
@@ -471,48 +499,5 @@ class PHPTAL_Php_TalesInternal implements PHPTAL_Tales
                 throw new PHPTAL_ParserException("Modifier $typePrefix generated PHP statement rather than expression (don't add semicolons)");
             }
         }
-    }
-
-    protected static function getPHPExpressionsForModifier($typePrefix, $expression, $nothrow)
-    {
-        // is a registered TALES expression modifier
-        if (PHPTAL_TalesRegistry::getInstance()->isRegistered($typePrefix)) {
-            $callback = PHPTAL_TalesRegistry::getInstance()->getCallback($typePrefix);
-            return call_user_func($callback, $expression, $nothrow);
-        }
-
-        // class method
-        if (strpos($typePrefix, '.')) {
-            $classCallback = explode('.', $typePrefix, 2);
-            $callbackName  = null;
-            if (!is_callable($classCallback, false, $callbackName)) {
-                throw new PHPTAL_UnknownModifierException("Unknown phptal modifier $typePrefix. Function $callbackName does not exists or is not statically callable", $typePrefix);
-            }
-            $ref = new ReflectionClass($classCallback[0]);
-            if (!$ref->implementsInterface('PHPTAL_Tales')) {
-                throw new PHPTAL_UnknownModifierException("Unable to use phptal modifier $typePrefix as the class $callbackName does not implement the PHPTAL_Tales interface", $typePrefix);
-            }
-            return call_user_func($classCallback, $expression, $nothrow);
-        }
-
-        // check if it is implemented via code-generating function
-        $func = 'phptal_tales_'.str_replace('-', '_', $typePrefix);
-        if (function_exists($func)) {
-            return $func($expression, $nothrow);
-        }
-
-        // The following code is automatically modified in version for PHP 5.3
-        $func = 'PHPTALNAMESPACE\\phptal_tales_'.str_replace('-', '_', $typePrefix);
-        if (function_exists($func)) {
-            return $func($expression, $nothrow);
-        }
-
-        // check if it is implemented via runtime function
-        $runfunc = 'phptal_runtime_tales_'.str_replace('-', '_', $typePrefix);
-        if (function_exists($runfunc)) {
-            return "$runfunc(".self::compileToPHPExpression($expression, $nothrow).")";
-        }
-
-        throw new PHPTAL_UnknownModifierException("Unknown phptal modifier '$typePrefix'. Function '$func' does not exist", $typePrefix);
     }
 }

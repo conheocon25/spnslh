@@ -8,7 +8,7 @@ class CategoryBook extends Mapper implements \MVC\Domain\CategoryBookFinder{
 		
 		$tblCategoryBook = "bamboo100_category_book";
 						
-		$selectAllStmt 	= sprintf("select * from %s order by `order` DESC", $tblCategoryBook);
+		$selectAllStmt 	= sprintf("select * from %s order by `order`", $tblCategoryBook);
 		$selectStmt 	= sprintf("select * from %s where id=?", $tblCategoryBook);
 		$updateStmt 	= sprintf("update %s set name=?, `order`=?, `key`=? where id=?", $tblCategoryBook);
 		$insertStmt 	= sprintf("insert into %s ( name, `order`, `key`) values(?, ?, ?)", $tblCategoryBook);

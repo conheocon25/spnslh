@@ -39,6 +39,7 @@
 			//-------------------------------------------------------------			
 			$request->setObject("URLShare", 			$Post->getURLViewFull());
 			$request->setObject("Post", 				$Post);			
+			$request->setObject("Category", 			$Post->getCategory());
 			$request->setObject("CategoryPostAll", 		$CategoryPostAll);
 			$request->setObject("CategoryBookAll", 		$CategoryBookAll);
 			$request->setObject("CategoryBoardAll", 	$CategoryBoardAll);

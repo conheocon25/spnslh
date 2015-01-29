@@ -6,19 +6,21 @@
  *
  * @category HTML
  * @package  PHPTAL
- * @author   Laurent Bedubourg <lbedubourg@motion-twin.com>
- * @author   Kornel Lesiński <kornel@aardvarkmedia.co.uk>
+ * @author Andrew Crites <explosion-pills@aysites.com>
  * @license  http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License
  * @version  SVN: $Id$
  * @link     http://phptal.org/
  */
 
+
 /**
- * Wrong macro name in metal:use-macro
+ * Interface for template keywords
  *
  * @package PHPTAL
- * @subpackage Exception
+ * @subpackage Keywords
  */
-class PHPTAL_MacroMissingException extends PHPTAL_TemplateException
+interface PHPTAL_Keywords extends Countable
 {
+    public function __toString();
 }
+?>

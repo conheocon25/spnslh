@@ -9,7 +9,7 @@
  * @author   Laurent Bedubourg <lbedubourg@motion-twin.com>
  * @author   Kornel Lesiński <kornel@aardvarkmedia.co.uk>
  * @license  http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License
- * @version  SVN: $Id: CodeWriter.php 974 2010-06-30 12:52:12Z kornel $
+ * @version  SVN: $Id$
  * @link     http://phptal.org/
  */
 /**
@@ -182,10 +182,10 @@ class PHPTAL_Php_CodeWriter
         $this->_result .= '<?php '."\n";
         foreach ($this->_codeBuffer as $codeLine) {
             // avoid adding ; after } and {
-            if (!preg_match('/\}\s*$|\{\s*$/', $codeLine))
-                $this->_result .= $codeLine . ' ;'."\n";
-            else
-                $this->_result .= $codeLine;
+            if (!preg_match('/[{};]\s*$/', $codeLine)) {
+                $codeLine .= ' ;'."\n";
+            }
+            $this->_result .= $codeLine;
         }
         $this->_result .= "?>\n";// PHP consumes newline
         $this->_codeBuffer = array();
@@ -236,7 +236,7 @@ class PHPTAL_Php_CodeWriter
         $this->doFunction($functionName, 'PHPTAL $tpl, PHPTAL_Context $ctx');
         $this->setFunctionPrefix($functionName . "_");
         $this->doSetVar('$_thistpl', '$tpl');
-        $this->doSetVar('$_translator', '$tpl->getTranslator()');
+        $this->doInitTranslator();
         $treeGen->generateCode($this);
         $this->doComment("end");
         $this->doEnd('function');
@@ -257,6 +257,21 @@ class PHPTAL_Php_CodeWriter
     {
         $comment = str_replace('*/', '* /', $comment);
         $this->pushCode("/* $comment */");
+    }
+
+    public function doInitTranslator()
+    {
+        if ($this->_state->isTranslationOn()) {
+            $this->doSetVar('$_translator', '$tpl->getTranslator()');
+        }
+    }
+
+    public function getTranslatorReference()
+    {
+        if (!$this->_state->isTranslationOn()) {
+            throw new PHPTAL_ConfigurationException("i18n used, but Translator has not been set");
+        }
+        return '$_translator';
     }
 
     public function doEval($code)
@@ -355,7 +370,7 @@ class PHPTAL_Php_CodeWriter
     public function doEchoRaw($code)
     {
         if ($code === "''") return;
-        $this->pushCode('echo '.$this->stringifyCode($this->interpolateHTML($code)));
+        $this->pushCode('echo '.$this->stringifyCode($code));
     }
 
     public function interpolateHTML($html)
@@ -387,7 +402,7 @@ class PHPTAL_Php_CodeWriter
      */
     public function str($string)
     {
-        return '\''.str_replace('\'', '\\\'', $string).'\'';
+        return "'".strtr($string,array("'"=>'\\\'','\\'=>'\\\\'))."'";
     }
 
     public function escapeCode($code)
@@ -459,14 +474,14 @@ class PHPTAL_Php_CodeWriter
 
     private function indentSpaces()
     {
-        return str_repeat("\t", $this->_indent);
+        return str_repeat("\t", $this->_indentation);
     }
 
     private function pushCodeWriterContext()
     {
         $this->_contexts[] =  clone $this;
         $this->_result = "";
-        $this->_indent = 0;
+        $this->_indentation = 0;
         $this->_codeBuffer = array();
         $this->_htmlBuffer = array();
         $this->_segments = array();
@@ -476,7 +491,7 @@ class PHPTAL_Php_CodeWriter
     {
         $oldContext = array_pop($this->_contexts);
         $this->_result = $oldContext->_result;
-        $this->_indent = $oldContext->_indent;
+        $this->_indentation = $oldContext->_indentation;
         $this->_codeBuffer = $oldContext->_codeBuffer;
         $this->_htmlBuffer = $oldContext->_htmlBuffer;
         $this->_segments = $oldContext->_segments;
@@ -484,7 +499,7 @@ class PHPTAL_Php_CodeWriter
 
     private $_state;
     private $_result = "";
-    private $_indent = 0;
+    private $_indentation = 0;
     private $_codeBuffer = array();
     private $_htmlBuffer = array();
     private $_segments = array();
@@ -493,5 +508,4 @@ class PHPTAL_Php_CodeWriter
     private $_doctype = "";
     private $_xmldeclaration = "";
 }
-
 

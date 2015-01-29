@@ -9,11 +9,11 @@
  * @author   Laurent Bedubourg <lbedubourg@motion-twin.com>
  * @author   Kornel Lesiński <kornel@aardvarkmedia.co.uk>
  * @license  http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License
- * @version  SVN: $Id: PHPTAL.php 958 2010-06-27 22:47:38Z kornel $
+ * @version  SVN: $Id$
  * @link     http://phptal.org/
  */
 
-define('PHPTAL_VERSION', '1_2_2');
+define('PHPTAL_VERSION', '1_3_0');
 
 PHPTAL::autoloadRegister();
 
@@ -183,18 +183,15 @@ class PHPTAL
         $this->_context->setGlobal($this->_globalContext);
 
         if (function_exists('sys_get_temp_dir')) {
-            //$this->setPhpCodeDestination(sys_get_temp_dir());
-            $this->setPhpCodeDestination('mvc/library/tmp/');
+            $this->setPhpCodeDestination(sys_get_temp_dir());
         } elseif (substr(PHP_OS, 0, 3) == 'WIN') {
             if (file_exists('c:\\WINNT\\Temp\\')) {
-                //$this->setPhpCodeDestination('c:\\WINNT\\Temp\\');
-                $this->setPhpCodeDestination('mvc/library/tmp/');
+                $this->setPhpCodeDestination('c:\\WINNT\\Temp\\');
             } else {
-                //$this->setPhpCodeDestination('c:\\WINDOWS\\Temp\\');
-                $this->setPhpCodeDestination('mvc/library/tmp/');
+                $this->setPhpCodeDestination('c:\\WINDOWS\\Temp\\');
             }
         } else {
-            $this->setPhpCodeDestination('mvc/library/tmp/');
+            $this->setPhpCodeDestination('/tmp/');
         }
     }
 
@@ -218,10 +215,7 @@ class PHPTAL
      */
     public function __clone()
     {
-        $context = $this->_context;
-        $this->_context = clone $this->_context;
-        $this->_context->setParent($context);
-        $this->_context->setGlobal($this->_globalContext);
+        $this->_context = $this->_context->pushContext();
     }
 
     /**
@@ -255,18 +249,13 @@ class PHPTAL
      *
      * @return $this
      */
-    public function setSource($src, $path=false)
+    public function setSource($src, $path = null)
     {
-        if (!$path) {
-            // this prefix tells string source that path has been faked
-            $path = PHPTAL_StringSource::NO_PATH_PREFIX.md5($src).'>';
-        }
-
         $this->_prepared = false;
         $this->_functionName = null;
         $this->_codeFile = null;
         $this->_source = new PHPTAL_StringSource($src, $path);
-        $this->_path = $path;
+        $this->_path = $this->_source->getRealPath();
         $this->_context->_docType = null;
         $this->_context->_xmlDeclaration = null;
         return $this;
@@ -1100,19 +1089,17 @@ class PHPTAL
      */
     protected function parse()
     {
-        // instantiate the PHPTAL source parser
         $data = $this->_source->getData();
 
         $prefilters = $this->getPreFilterInstances();
-
         foreach($prefilters as $prefilter) {
             $data = $prefilter->filter($data);
         }
 
-        $parser = new PHPTAL_Dom_SaxXmlParser($this->_encoding);
-        $builder = new PHPTAL_Dom_PHPTALDocumentBuilder();
         $realpath = $this->_source->getRealPath();
+        $parser = new PHPTAL_Dom_SaxXmlParser($this->_encoding);
 
+        $builder = new PHPTAL_Dom_PHPTALDocumentBuilder();
         $tree = $parser->parseString($builder, $data, $realpath)->getResult();
 
         foreach($prefilters as $prefilter) {
@@ -1223,7 +1210,15 @@ class PHPTAL
 
         $uses_autoload = function_exists('__autoload')
             && (!($tmp = spl_autoload_functions()) || ($tmp[0] === '__autoload'));
-        spl_autoload_register(array(__CLASS__,'autoload'));
+
+        // Prepending PHPTAL's autoloader helps if there are other autoloaders
+        // that throw/die when file is not found. Only >5.3 though.
+        if (version_compare(PHP_VERSION, '5.3', '>=')) {
+            spl_autoload_register(array(__CLASS__,'autoload'), false, true);
+        } else {
+            spl_autoload_register(array(__CLASS__,'autoload'));
+        }
+
         if ($uses_autoload) {
             spl_autoload_register('__autoload');
         }
