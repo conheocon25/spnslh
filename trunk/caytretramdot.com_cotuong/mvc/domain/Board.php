@@ -14,6 +14,8 @@ class Board extends Object{
 	private $MoveEnd;
 	private $Round;
 	private $Result;
+	private $Viewed;
+	private $Liked;
 	private $Key;
 	
 	//-------------------------------------------------------------------------------
@@ -31,6 +33,8 @@ class Board extends Object{
 		$MoveEnd=null, 
 		$Round=null, 
 		$Result=null, 
+		$Viewed=null, 
+		$Liked=null, 
 		$Key=null)
 	{
 		
@@ -45,6 +49,8 @@ class Board extends Object{
 		$this->MoveEnd		= $MoveEnd;
 		$this->Result		= $Result;
 		$this->Round		= $Round;
+		$this->Viewed		= $Viewed;
+		$this->Liked		= $Liked;
 		$this->Key 			= $Key;
 		
 		parent::__construct( $Id );
@@ -100,6 +106,20 @@ class Board extends Object{
 		return "Đỏ thua";				
 	}
 	
+	function setViewed( $Viewed ) 	{$this->Viewed = $Viewed; $this->markDirty();}   
+	function getViewed( ) 			{return $this->Viewed;}
+	function getViewedPrint( ){
+		$N= new \MVC\Library\Number($this->Viewed);
+		return $N->formatCurrency();
+	}
+	
+	function setLiked( $Liked ) 	{$this->Liked = $Liked; $this->markDirty();}   
+	function getLiked( ) 			{return $this->Liked;}
+	function getLikedPrint( ){		
+		$N= new \MVC\Library\Number($this->Liked);
+		return $N->formatCurrency();
+	}
+		
 	function setKey( $Key ){$this->Key = $Key;$this->markDirty();}
 	function getKey( ) {return $this->Key;}
 	function reKey( ){
@@ -126,6 +146,8 @@ class Board extends Object{
 			'MoveEnd'	=> $this->getMoveEnd(),
 			'Round'		=> $this->getRound(),
 			'Result'	=> $this->getResult(),
+			'Viewed'	=> $this->getViewed(),
+			'Liked'		=> $this->getLiked(),
 			'Key'		=> $this->getKey()			
 		);
 		return json_encode($json);
@@ -143,7 +165,9 @@ class Board extends Object{
 		$this->MoveEnd		= $Data[8];		
 		$this->Round		= $Data[9];
 		$this->Result		= $Data[10];
-		$this->Key			= $Data[11];
+		$this->Viewed		= $Data[11];
+		$this->Liked		= $Data[12];
+		$this->Key			= $Data[13];
     }
 			
 	//-------------------------------------------------------------------------------

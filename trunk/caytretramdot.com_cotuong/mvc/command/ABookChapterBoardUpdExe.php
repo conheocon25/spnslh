@@ -22,6 +22,8 @@
 			$MoveEnd	= $request->getProperty('MoveEnd');
 			$Round		= $request->getProperty('Round');
 			$Result		= $request->getProperty('Result');
+			$Viewed		= $request->getProperty('Viewed');
+			$Liked		= $request->getProperty('Liked');
 												
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
@@ -42,6 +44,8 @@
 			$Board->setMoveEnd($MoveEnd);
 			$Board->setRound($Round);
 			$Board->setResult($Result);
+			$Board->setViewed($Viewed);
+			$Board->setLiked($Liked);
 			$Board->reKey();
 			
 			$mBoard->update($Board);

@@ -56,17 +56,23 @@
 									<div class="controls">
 										<input type="text" id="Order" name="Order" tal:attributes="value Book/getOrder"/>
 									</div>
+								</div>								
+								<div class="control-group">
+									<label class="control-label" for="Info">Giới thiệu</label>
+									<div class="controls">
+										<textarea id="Info" class="ckeditor" name="Info" tal:content="Book/getInfo"/>
+									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="Order">Lượt xem</label>
 									<div class="controls">
 										<input type="text" id="Viewed" name="Viewed" tal:attributes="value Book/getViewed"/>
 									</div>
-								</div>								
+								</div>
 								<div class="control-group">
-									<label class="control-label" for="Info">Giới thiệu</label>
+									<label class="control-label" for="Order">Lượt thích</label>
 									<div class="controls">
-										<textarea id="Info" class="ckeditor" name="Info" tal:content="Book/getInfo"/>
+										<input type="text" id="Liked" name="Liked" tal:attributes="value Book/getLiked"/>
 									</div>
 								</div>
 								<div class="form-actions">

@@ -14,15 +14,26 @@
 			<div class="row">
 				<div class="col-12">
 					<div class="widget-box">
+						<!-- PLVd6o4LLw1kJMvLHEbiZRdZ_cEwPBWjJs !-->
 						<div class="widget-content nopadding">
-							<form class="form-horizontal" method="post">
+							<div class="form-horizontal">
 								<div class="control-group">
-									<label class="control-label" for="Title">IdYoutube</label>
+									<label class="control-label">Danh mục</label>
 									<div class="controls">
-										<input type="text" id="IdYoutube" name="IdYoutube" />										
+										<select name="IdBook" id="IdBook" style="width:80%;">
+											<option tal:repeat="Book BookAll" tal:attributes="value Book/getId">
+												<span tal:content="Book/getTitle"/>
+											</option>
+										</select>
 									</div>
-								</div>								
-							</form>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="IdPlayListYoutube">Id Playlist YouTube</label>
+									<div class="controls">
+										<input type="text" id="IdPlayListYoutube" name="IdPlayListYoutube" />
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>										
 				</div>
@@ -32,7 +43,36 @@
 		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
 		<script type="text/javascript">
 		/*<![CDATA[*/
+		$("#IdPlayListYoutube").change(function(){ 
+			var DTitle 	= [];
+			var DURL 	= [];
+			var IdPlayList 	= $(this).val();
+			var URL 		= "https://gdata.youtube.com/feeds/api/playlists/" + IdPlayList + "?v=2&alt=json&max-results=50";
+			var Count		= 0;
+			var IdBook		= $("#IdBook").val();
 			
+			//Load dữ liệu JSON lên FORM
+			$.getJSON(URL, function(data){								
+				Count = data.feed.entry.length;
+				
+				for (var i=0; i<Count; i++){					
+					DTitle[i] 	= data.feed.entry[i].title.$t;
+					DURL[i] 	= data.feed.entry[i].content.src;
+				}
+				//alert(Count);
+				
+				var URL = "/service/youtube/add/video/from/playlist";
+				$.ajax({
+					type: "POST",
+					data: {IdBook:IdBook, DTitle:DTitle, DURL:DURL},
+					url: URL,
+					success: function(msg){
+						alert("Đã thêm Video từ danh sách xong !");
+					}
+				});				
+			});
+		});
+
 		/*]]>*/
 		</script>
 	</body>

@@ -14,8 +14,8 @@ class Post extends Mapper implements \MVC\Domain\PostFinder {
 		$deleteStmt 	= sprintf("delete from %s where id=?", $tblPost);
 		$findByKeyStmt 	= sprintf("select *  from %s where `key`=?", $tblPost);
 
-		$findByStmt 		= sprintf("select *  from %s where id_category=:id_category", $tblPost);
-		$findByPageStmt 	= sprintf("select *  from %s where id_category=:id_category LIMIT :start,:max", $tblPost);
+		$findByStmt 		= sprintf("select *  from %s where id_category=:id_category order by `time` DESC", $tblPost);
+		$findByPageStmt 	= sprintf("select *  from %s where id_category=:id_category order by `time` DESC LIMIT :start,:max", $tblPost);
 		
 		$searchByTitleStmt 		= sprintf("select *  from %s where `title` like :title", $tblPost);
 		$searchByTitlePageStmt 	= sprintf("select *  from %s where `title` like :title LIMIT :start,:max", $tblPost);

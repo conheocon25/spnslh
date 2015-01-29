@@ -20,6 +20,8 @@
 			$Language	= $request->getProperty('Language');
 			$Order		= $request->getProperty('Order');
 			$URL		= $request->getProperty('URL');
+			$Viewed		= $request->getProperty('Viewed');
+			$Liked		= $request->getProperty('Liked');
 			$Thumb		= $request->getProperty('Thumb');
 						
 			//-------------------------------------------------------------
@@ -40,7 +42,8 @@
 				$Language, 
 				$Order, 
 				$URL,
-				1,
+				$Viewed,
+				$Liked,
 				$Thumb, 
 				"");
 			$Book->reKey();
