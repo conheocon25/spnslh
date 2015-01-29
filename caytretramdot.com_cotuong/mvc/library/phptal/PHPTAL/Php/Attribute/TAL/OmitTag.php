@@ -9,7 +9,7 @@
  * @author   Laurent Bedubourg <lbedubourg@motion-twin.com>
  * @author   Kornel Lesiński <kornel@aardvarkmedia.co.uk>
  * @license  http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License
- * @version  SVN: $Id: OmitTag.php 794 2009-11-27 11:54:13Z kornel $
+ * @version  SVN: $Id$
  * @link     http://phptal.org/
  */
 
@@ -57,7 +57,7 @@ class PHPTAL_Php_Attribute_TAL_OmitTag extends PHPTAL_Php_Attribute
 
             // print tag header/foot only if condition is false
             $cond = $codewriter->evaluateExpression($this->expression);
-            $this->phpelement->headPrintCondition = '('.$this->varname.' = !('.$cond.'))';
+            $this->phpelement->headPrintCondition = '('.$this->varname.' = !phptal_unravel_closure('.$cond.'))';
             $this->phpelement->footPrintCondition = $this->varname;
         }
     }
@@ -67,5 +67,4 @@ class PHPTAL_Php_Attribute_TAL_OmitTag extends PHPTAL_Php_Attribute
         if ($this->varname) $codewriter->recycleTempVariable($this->varname);
     }
 }
-
 

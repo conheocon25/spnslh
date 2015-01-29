@@ -9,7 +9,7 @@
  * @author   Laurent Bedubourg <lbedubourg@motion-twin.com>
  * @author   Kornel Lesiński <kornel@aardvarkmedia.co.uk>
  * @license  http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License
- * @version  SVN: $Id: GetTextTranslator.php 868 2010-05-25 22:27:39Z kornel $
+ * @version  SVN: $Id$
  * @link     http://phptal.org/
  */
 
@@ -147,7 +147,7 @@ class PHPTAL_GetTextTranslator implements PHPTAL_TranslationService
         $value = gettext($key);
 
         if ($htmlencode) {
-            $value = htmlspecialchars($value, ENT_QUOTES);
+            $value = htmlspecialchars($value, ENT_QUOTES, $this->_encoding);
         }
         while (preg_match('/\${(.*?)\}/sm', $value, $m)) {
             list($src, $var) = $m;

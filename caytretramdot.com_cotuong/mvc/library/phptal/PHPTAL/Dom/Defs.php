@@ -9,7 +9,7 @@
  * @author   Laurent Bedubourg <lbedubourg@motion-twin.com>
  * @author   Kornel Lesiński <kornel@aardvarkmedia.co.uk>
  * @license  http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License
- * @version  SVN: $Id: Defs.php 958 2010-06-27 22:47:38Z kornel $
+ * @version  SVN: $Id$
  * @link     http://phptal.org/
  */
 
@@ -78,6 +78,14 @@ class PHPTAL_Dom_Defs
         return array_search($uri, $this->prefix_to_uri, true);
     }
 
+    /**
+     * array prefix => uri for prefixes that don't have to be declared in PHPTAL
+     * @return array
+     */
+    public function getPredefinedPrefixes()
+    {
+        return $this->prefix_to_uri;
+    }
 
     /**
      * Returns true if the attribute is an xhtml boolean attribute.
@@ -185,14 +193,20 @@ class PHPTAL_Dom_Defs
         'basefont',
         'br',
         'col',
+        'command',
+        'embed',
         'frame',
         'hr',
         'img',
         'input',
         'isindex',
+        'keygen',
         'link',
         'meta',
         'param',
+        'wbr',
+        'source',
+        'track',
     );
 
     /**
@@ -200,17 +214,33 @@ class PHPTAL_Dom_Defs
      * contained (ie: they are present or not).
      */
     private static $XHTML_BOOLEAN_ATTRIBUTES = array(
+        'autoplay',
+        'async',
+        'autofocus',
         'checked',
         'compact',
+        'controls',
         'declare',
+        'default',
         'defer',
         'disabled',
+        'formnovalidate',
+        'hidden',
         'ismap',
+        'itemscope',
+        'loop',
         'multiple',
         'noresize',
         'noshade',
+        'novalidate',
         'nowrap',
+        'open',
+        'pubdate',
         'readonly',
+        'required',
+        'reversed',
+        'scoped',
+        'seamless',
         'selected',
     );
 }

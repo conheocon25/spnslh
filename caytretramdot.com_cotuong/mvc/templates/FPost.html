@@ -14,7 +14,12 @@
 			<div class="row">
 				<div class="col-md-9">
 					<div class="panel panel-default">
-						<div class="panel-heading"><H1 tal:content="Post/getTitle"/></div>
+						<div class="panel-heading">
+							<a tal:attributes="href Category/getURLView">
+								<i class="glyphicon glyphicon-home"/>
+								<span tal:content="Post/getTitle"/>
+							</a>
+						</div>
 						<div class="panel-body">
 							<div class="article-meta-date">								
 								<span tal:content="Post/getTimePrint"/>, <span tal:content="Post/getViewed"/> lượt xem
@@ -28,19 +33,15 @@
 						</div>						
 					</div>
 				</div>
-				<div class="col-md-3">
+				<div class="col-md-3 col-sm-3">
 					<div class="panel panel-default">
-						<div class="panel-heading">Danh mục</div>
+						<div class="panel-heading">DANH MỤC</div>
 						<div class="panel-body">
-							<ul>
-								<li tal:repeat="Category CategoryPostAll">
-									<a tal:attributes="href Category/getURLView">
-										<span tal:content="Category/getName"/> (<span tal:content="Category/getPostAll/count"/>)
-									</a>
-								</li>
-							</ul>
-						</div>						
-					</div>		
+							<a tal:attributes="href Category1/getURLView;class php: Category1->getId()==Category->getId()?'btn btn-primary btn-block':'btn btn-default btn-block'"  tal:repeat="Category1 CategoryPostAll">
+								<span tal:content="Category1/getName"/>
+							</a>							
+						</div>
+					</div>					
 				</div>
 			</div>
 		</div>

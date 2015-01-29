@@ -23,7 +23,7 @@ class Board extends Mapper implements \MVC\Domain\BoardFinder{
 			`key`) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblBoard);
 			
 		$deleteStmt 			= sprintf("delete from %s where id=?", $tblBoard);
-		$findByStmt 			= sprintf("select *  from %s where `id_chapter`=?", $tblBoard);
+		$findByStmt 			= sprintf("select *  from %s where `id_chapter`=? order by name", $tblBoard);
 		$findByKeyStmt 			= sprintf("select *  from %s where `key`=?", $tblBoard);
 		$findByPageStmt 		= sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblBoard);
 						

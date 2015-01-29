@@ -6,7 +6,7 @@
 			//-------------------------------------------------------------
 			//THAM SỐ TOÀN CỤC
 			//-------------------------------------------------------------						
-			$Session = \MVC\Base\SessionRegistry::instance();
+			//$Session = \MVC\Base\SessionRegistry::instance();
 									
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
@@ -26,7 +26,18 @@
 			$CategoryPostAll 	= $mCategoryPost->findAll();
 			$CategoryBoardAll 	= $mCategoryBoard->findAll();
 			$CategoryBookAll 	= $mCategoryBook->findAll();
+
+			/*	
+			Facebook\FacebookSession::setDefaultApplication('1550985445183957', 'f7345dd155eb805a0155a02cc430d351');
+
+			$session = new Facebook\FacebookSession('access-token');
 			
+			$session = Facebook\FacebookSession::newAppSession();
+			
+			$session->validate();
+			echo "Được làm gì đó ở đây";
+			*/
+						
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------						

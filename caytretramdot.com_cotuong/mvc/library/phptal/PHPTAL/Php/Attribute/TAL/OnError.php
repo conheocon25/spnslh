@@ -9,7 +9,7 @@
  * @author   Laurent Bedubourg <lbedubourg@motion-twin.com>
  * @author   Kornel Lesiński <kornel@aardvarkmedia.co.uk>
  * @license  http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License
- * @version  SVN: $Id: OnError.php 671 2009-07-11 18:11:35Z kornel $
+ * @version  SVN: $Id$
  * @link     http://phptal.org/
  */
 
@@ -56,8 +56,8 @@ class PHPTAL_Php_Attribute_TAL_OnError extends PHPTAL_Php_Attribute
                 break;
 
             case PHPTAL_Php_TalesInternal::DEFAULT_KEYWORD:
-                $codewriter->pushHTML('<pre class="phptalError"');
-                $codewriter->doEchoRaw($var);
+                $codewriter->pushHTML('<pre class="phptalError">');
+                $codewriter->doEcho($var);
                 $codewriter->pushHTML('</pre>');
                 break;
 

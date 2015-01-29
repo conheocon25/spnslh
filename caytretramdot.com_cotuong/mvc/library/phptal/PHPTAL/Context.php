@@ -9,7 +9,7 @@
  * @author   Laurent Bedubourg <lbedubourg@motion-twin.com>
  * @author   Kornel Lesiński <kornel@aardvarkmedia.co.uk>
  * @license  http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License
- * @version  SVN: $Id: Context.php 922 2010-06-20 21:28:42Z kornel $
+ * @version  SVN: $Id$
  * @link     http://phptal.org/
  */
 
@@ -103,6 +103,11 @@ class PHPTAL_Context
      */
     public function setDocType($doctype,$called_from_macro)
     {
+        // FIXME: this is temporary workaround for problem of DOCTYPE disappearing in cloned PHPTAL object (because clone keeps _parentContext)
+        if (!$this->_docType) {
+            $this->_docType = $doctype;
+        }
+
         if ($this->_parentContext) {
             $this->_parentContext->setDocType($doctype, $called_from_macro);
         } else if ($this->_echoDeclarations) {
@@ -130,6 +135,11 @@ class PHPTAL_Context
      */
     public function setXmlDeclaration($xmldec, $called_from_macro)
     {
+        // FIXME
+        if (!$this->_xmlDeclaration) {
+            $this->_xmlDeclaration = $xmldec;
+        }
+
         if ($this->_parentContext) {
             $this->_parentContext->setXmlDeclaration($xmldec, $called_from_macro);
         } else if ($this->_echoDeclarations) {
@@ -214,8 +224,8 @@ class PHPTAL_Context
     {
         $this->_slots[$key] = $content;
         if ($this->_parentContext) {
-            // setting slots in any context (probably violates TAL, but works around bug with tal:define popping context after fillslot)
-            $this->_parentContext->fillSlot($key, $content);
+            // Works around bug with tal:define popping context after fillslot
+            $this->_parentContext->_slots[$key] = $content;
         }
     }
 
@@ -224,7 +234,8 @@ class PHPTAL_Context
         assert('is_callable($callback)');
         $this->_slots[$key] = array($callback, $_thistpl, $tpl);
         if ($this->_parentContext) {
-            $this->_parentContext->fillSlotCallback($key,  $callback, $_thistpl, $tpl);
+            // Works around bug with tal:define popping context after fillslot
+            $this->_parentContext->_slots[$key] = array($callback, $_thistpl, $tpl);
         }
     }
 
@@ -302,18 +313,15 @@ class PHPTAL_Context
      *
      * @access private
      */
-    private static function pathError($base, $path, $current)
+    private static function pathError($base, $path, $current, $basename)
     {
-        $basename = '';
-        // PHPTAL_Context::path gets data in format ($object, "rest/of/the/path"),
-        // so name of the object is not really known and something in its place
-        // needs to be figured out
         if ($current !== $path) {
             $pathinfo = " (in path '.../$path')";
-            if (preg_match('!([^/]+)/'.preg_quote($current, '!').'(?:/|$)!', $path, $m)) {
-                $basename = "'".$m[1]."' ";
-            }
         } else $pathinfo = '';
+
+        if (!empty($basename)) {
+            $basename = "'" . $basename . "' ";
+        }
 
         if (is_array($base)) {
             throw new PHPTAL_VariableNotFoundException("Array {$basename}doesn't have key named '$current'$pathinfo");
@@ -346,12 +354,20 @@ class PHPTAL_Context
     {
         if ($base === null) {
             if ($nothrow) return null;
-            PHPTAL_Context::pathError($base, $path, $path);
+            PHPTAL_Context::pathError($base, $path, $path, $path);
         }
 
-        foreach (explode('/', $path) as $current) {
+        $chunks  = explode('/', $path);
+        $current = null;
+
+        for ($i = 0; $i < count($chunks); $i++) {
+            $prev    = $current;
+            $current = $chunks[$i];
+
             // object handling
             if (is_object($base)) {
+                $base = phptal_unravel_closure($base);
+
                 // look for method. Both method_exists and is_callable are required because of __call() and protected methods
                 if (method_exists($base, $current) && is_callable(array($base, $current))) {
                     $base = $base->$current();
@@ -404,7 +420,7 @@ class PHPTAL_Context
                     return null;
                 }
 
-                PHPTAL_Context::pathError($base, $path, $current);
+                PHPTAL_Context::pathError($base, $path, $current, $prev);
             }
 
             // array handling
@@ -424,7 +440,7 @@ class PHPTAL_Context
                 if ($nothrow)
                     return null;
 
-                PHPTAL_Context::pathError($base, $path, $current);
+                PHPTAL_Context::pathError($base, $path, $current, $prev);
             }
 
             // string handling
@@ -447,7 +463,7 @@ class PHPTAL_Context
             if ($nothrow)
                 return null;
 
-            PHPTAL_Context::pathError($base, $path, $current);
+            PHPTAL_Context::pathError($base, $path, $current, $prev);
         }
 
         return $base;
@@ -464,7 +480,7 @@ function phptal_path($base, $path, $nothrow=false)
 }
 
 /**
- * helper function for conditional expressions
+ * helper function for chained expressions
  *
  * @param mixed $var value to check
  * @return bool
@@ -477,22 +493,29 @@ function phptal_isempty($var)
 }
 
 /**
+ * helper function for conditional expressions
+ *
+ * @param mixed $var value to check
+ * @return bool
+ * @access private
+ */
+function phptal_true($var)
+{
+    $var = phptal_unravel_closure($var);
+    return $var && (!$var instanceof Countable || count($var));
+}
+
+/**
  * convert to string and html-escape given value (of any type)
  *
  * @access private
  */
-function phptal_escape($var)
+function phptal_escape($var, $encoding)
 {
     if (is_string($var)) {
-        return htmlspecialchars($var, ENT_QUOTES);
-    } elseif (is_object($var)) {
-        return htmlspecialchars((string)$var, ENT_QUOTES);
-    } elseif (is_bool($var)) {
-        return (int)$var;
-    } elseif (is_array($var)) {
-        return htmlspecialchars(implode(', ', $var), ENT_QUOTES);
+        return htmlspecialchars($var, ENT_QUOTES, $encoding);
     }
-    return $var;
+    return htmlspecialchars(phptal_tostring($var), ENT_QUOTES, $encoding);
 }
 
 /**
@@ -507,7 +530,7 @@ function phptal_tostring($var)
     } elseif (is_bool($var)) {
         return (int)$var;
     } elseif (is_array($var)) {
-        return implode(', ', $var);
+        return implode(', ', array_map('phptal_tostring', $var));
     } elseif ($var instanceof SimpleXMLElement) {
 
         /* There is no sane way to tell apart element and attribute nodes
@@ -519,5 +542,22 @@ function phptal_tostring($var)
             return $xml;
         }
     }
-    return (string)$var;
+    return (string)phptal_unravel_closure($var);
+}
+
+/**
+ * unravel the provided expression if it is a closure
+ *
+ * This will call the base expression and its result
+ * as long as it is a Closure.  Once the base (non-Closure)
+ * value is found it is returned.
+ *
+ * This function has no effect on non-Closure expressions
+ */
+function phptal_unravel_closure($var)
+{
+    while ($var instanceof Closure) {
+        $var = $var();
+    }
+    return $var;
 }

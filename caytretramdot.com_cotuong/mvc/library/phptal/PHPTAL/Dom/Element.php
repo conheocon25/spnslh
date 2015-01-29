@@ -9,18 +9,10 @@
  * @author   Laurent Bedubourg <lbedubourg@motion-twin.com>
  * @author   Kornel Lesiński <kornel@aardvarkmedia.co.uk>
  * @license  http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License
- * @version  SVN: $Id: Element.php 921 2010-06-20 21:26:13Z kornel $
+ * @version  SVN: $Id$
  * @link     http://phptal.org/
  */
 
-
-/**
- * For backwards compatibility only. Do not use!
- * @deprecated
- */
-interface PHPTAL_Php_Tree
-{
-}
 
 /**
  * Document Tag representation.
@@ -28,7 +20,7 @@ interface PHPTAL_Php_Tree
  * @package PHPTAL
  * @subpackage Dom
  */
-class PHPTAL_Dom_Element extends PHPTAL_Dom_Node implements PHPTAL_Php_Tree
+class PHPTAL_Dom_Element extends PHPTAL_Dom_Node
 {
     protected $qualifiedName, $namespace_uri;
     private $attribute_nodes = array();
@@ -124,30 +116,6 @@ class PHPTAL_Dom_Element extends PHPTAL_Dom_Node implements PHPTAL_Php_Tree
         $this->appendChild(new PHPTAL_Dom_Text('*/', $encoding));
     }
 
-    /**
-     * support <?php ?> inside attributes
-     */
-    private function replacePHPAttributes()
-    {
-        foreach ($this->attribute_nodes as $attr) {
-            $split = preg_split("/<\?(php|=|)(.*?)\?>/", $attr->getValueEscaped(), null, PREG_SPLIT_DELIM_CAPTURE);
-            if (count($split)==1) continue;
-
-            $new_value = '';
-            for ($i=0; $i < count($split); $i += 3) {
-                if (strlen($split[$i])) {
-                    $new_value .= 'echo \''.str_replace('\'', '\\\'', $split[$i]).'\';';
-                }
-
-                if (isset($split[$i+2])) {
-                    if ($split[$i+1] === '=') $new_value .= 'echo ';
-                    $new_value .= rtrim($split[$i+2], "; \n\r").';';
-                }
-            }
-            $attr->overwriteValueWithCode($new_value);
-        }
-    }
-
     public function appendChild(PHPTAL_Dom_Node $child)
     {
         if ($child->parentNode) $child->parentNode->removeChild($child);
@@ -185,14 +153,10 @@ class PHPTAL_Dom_Element extends PHPTAL_Dom_Node implements PHPTAL_Php_Tree
 
     public function generateCode(PHPTAL_Php_CodeWriter $codewriter)
     {
-        // For backwards compatibility only!
-        self::$_codewriter_bc_hack_ = $codewriter; // FIXME
-
         try
         {
             /// self-modifications
 
-            $this->replacePHPAttributes();
             if ($codewriter->getOutputMode() === PHPTAL::XHTML) {
                 $this->replaceTextWithCDATA();
             }
@@ -386,9 +350,6 @@ class PHPTAL_Dom_Element extends PHPTAL_Dom_Node implements PHPTAL_Php_Tree
 
     public function generateContent(PHPTAL_Php_CodeWriter $codewriter = null, $realContent=false)
     {
-        // For backwards compatibility only!
-        if ($codewriter===null) $codewriter = self::$_codewriter_bc_hack_; // FIXME!
-
         if (!$this->isEmptyNode($codewriter->getOutputMode())) {
             if ($realContent || !count($this->contentAttributes)) {
                 foreach($this->childNodes as $child) {
@@ -552,5 +513,9 @@ class PHPTAL_Dom_Element extends PHPTAL_Dom_Node implements PHPTAL_Php_Tree
     function __toString()
     {
         return '<{'.$this->getNamespaceURI().'}:'.$this->getLocalName().'>';
+    }
+
+    function setValueEscaped($e) {
+        throw new PHPTAL_Exception("Not supported");
     }
 }

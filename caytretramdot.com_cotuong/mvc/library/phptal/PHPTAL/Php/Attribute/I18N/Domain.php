@@ -9,7 +9,7 @@
  * @author   Laurent Bedubourg <lbedubourg@motion-twin.com>
  * @author   Kornel Lesiński <kornel@aardvarkmedia.co.uk>
  * @license  http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License
- * @version  SVN: $Id: Domain.php 671 2009-07-11 18:11:35Z kornel $
+ * @version  SVN: $Id$
  * @link     http://phptal.org/
  */
 
@@ -36,16 +36,15 @@ class PHPTAL_Php_Attribute_I18N_Domain extends PHPTAL_Php_Attribute
         $expression = $codewriter->interpolateTalesVarsInString($this->expression);
 
         // push current domain and use new domain
-        $code = '$_i18n_domains[] = $_translator->useDomain('.$expression.')';
+        $code = '$_i18n_domains[] = '.$codewriter->getTranslatorReference().'->useDomain('.$expression.')';
         $codewriter->pushCode($code);
     }
 
     public function after(PHPTAL_Php_CodeWriter $codewriter)
     {
         // restore domain
-        $code = '$_translator->useDomain(array_pop($_i18n_domains))';
+        $code = $codewriter->getTranslatorReference().'->useDomain(array_pop($_i18n_domains))';
         $codewriter->pushCode($code);
     }
 }
-
 
