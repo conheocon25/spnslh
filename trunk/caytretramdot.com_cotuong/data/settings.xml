@@ -8,16 +8,17 @@
 		
 		<command name="FCategoryPost" 	type="public"><view>FCategoryPost</view></command>		
 		<command name="FPost" 			type="public"><view>FPost</view></command>		
-										
+		
 		<command name="FCategoryBook" 	type="public"><view>FCategoryBook</view></command>
 		<command name="FBook" 			type="public"><view>FBook</view></command>
 		<command name="FChapter" 		type="public"><view>FChapter</view></command>
 		<command name="FBoard" 			type="public"><view>FBoard</view></command>
 		<command name="FBoardEmbeded" 	type="public"><view>FBoardEmbeded</view></command>
 		
-		<command name="FContact" 		type="public"><view>FContact</view></command>
-		<command name="FRegister" 		type="public"><view>FRegister</view></command>
-		<command name="FLogin" 			type="public"><view>FLogin</view></command>
+		<command name="FCategoryVideo" 	type="public"><view>FCategoryVideo</view></command>
+		<command name="FVideo" 			type="public"><view>FVideo</view></command>
+		
+		<command name="FContact" 		type="public"><view>FContact</view></command>		
 		
 		<!-- ============================================================================== -->
 		<!-- JSON LOAD			 															-->

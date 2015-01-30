@@ -6,7 +6,7 @@ class BoardDetail extends Mapper implements \MVC\Domain\BoardDetailFinder{
     function __construct() {
         parent::__construct();
 				
-		$tblBoardDetail 	= "bamboo100_board_detail";
+		$tblBoardDetail 	= "tbl_board_detail";
 		
 		$selectAllStmt 		= sprintf("select * from %s ORDER BY id", $tblBoardDetail);
 		$selectStmt 		= sprintf("select *  from %s where id=?", $tblBoardDetail);

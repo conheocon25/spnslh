@@ -6,7 +6,7 @@ class CategoryBook extends Mapper implements \MVC\Domain\CategoryBookFinder{
     function __construct() {
         parent::__construct();
 		
-		$tblCategoryBook = "bamboo100_category_book";
+		$tblCategoryBook = "tbl_category_book";
 						
 		$selectAllStmt 	= sprintf("select * from %s order by `order`", $tblCategoryBook);
 		$selectStmt 	= sprintf("select * from %s where id=?", $tblCategoryBook);

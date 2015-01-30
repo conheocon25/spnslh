@@ -24,6 +24,7 @@
 			
 			$mCategoryPost 	= new \MVC\Mapper\CategoryPost();
 			$mCategoryBook 	= new \MVC\Mapper\CategoryBook();
+			$mCategoryVideo	= new \MVC\Mapper\CategoryVideo();
 									
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -34,6 +35,7 @@
 						
 			$CategoryPostAll 	= $mCategoryPost->findAll();
 			$CategoryBookAll 	= $mCategoryBook->findAll();
+			$CategoryVideoAll 	= $mCategoryVideo->findAll();
 															
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
@@ -44,7 +46,7 @@
 			$request->setObject("Chapter", 				$Chapter);
 			$request->setObject("CategoryPostAll", 		$CategoryPostAll);
 			$request->setObject("CategoryBookAll", 		$CategoryBookAll);
-									
+			$request->setObject("CategoryVideoAll", 	$CategoryVideoAll);						
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

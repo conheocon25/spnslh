@@ -2,7 +2,7 @@
 Namespace MVC\Domain;
 require_once( "mvc/base/domain/DomainObject.php" );
 
-class CategoryBoard extends Object{
+class CategoryVideo extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE PROPERTY
 	//-------------------------------------------------------------------------------
@@ -57,19 +57,19 @@ class CategoryBoard extends Object{
 	//-------------------------------------------------------------------------------
 	//GET LIST
 	//-------------------------------------------------------------------------------
-	function getBoardAll(){
-		$mBoard		= new \MVC\Mapper\Board();
-		$BoardAll 	= $mBoard->findBy(array($this->getId()));
-		return $BoardAll;
+	function getVideoAll(){
+		$mVideo		= new \MVC\Mapper\Video();
+		$VideoAll 	= $mVideo->findBy(array($this->getId()));
+		return $VideoAll;
 	}
 		
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLView(){return "/van-co/".$this->getKey();}	
+	function getURLView(){return "/video/".$this->getKey();}	
 	function getURLSetting(){return "/admin/board/".$this->getId();}
-	function getURLSettingBoardInsLoad(){return "/admin/board/".$this->getId()."/ins/load"	;}
-	function getURLSettingBoardInsExe()	{return "/admin/board/".$this->getId()."/ins/exe"	;}
+	function getURLSettingBoardInsLoad(){return "/admin/video/".$this->getId()."/ins/load"	;}
+	function getURLSettingBoardInsExe()	{return "/admin/video/".$this->getId()."/ins/exe"	;}
 		
 	//-------------------------------------------------------------------------------
 	static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

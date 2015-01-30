@@ -16,6 +16,8 @@ interface CategoryBookCollection 		extends \Iterator {function add( Object $Cate
 interface BookCollection 				extends \Iterator {function add( Object $Book);			}
 interface ChapterCollection 			extends \Iterator {function add( Object $Chapter);		}
 
-interface CategoryBoardCollection 		extends \Iterator {function add( Object $CategoryBoard);}
+interface CategoryVideoCollection 		extends \Iterator {function add( Object $CategoryVideo);}
+interface VideoCollection 				extends \Iterator {function add( Object $Video);		}
+
 interface CategoryPostCollection 		extends \Iterator {function add( Object $CategoryPost);	}
 ?>
