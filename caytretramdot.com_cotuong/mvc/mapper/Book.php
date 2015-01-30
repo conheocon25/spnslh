@@ -6,7 +6,7 @@ class Book extends Mapper implements \MVC\Domain\BookFinder{
     function __construct() {
         parent::__construct();
 				
-		$tblBook 			= "bamboo100_book";
+		$tblBook 			= "tbl_book";
 		
 		$selectAllStmt 		= sprintf("select * from %s ORDER BY `order`", $tblBook);
 		$selectStmt 		= sprintf("select *  from %s where id=?", $tblBook);

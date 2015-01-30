@@ -2,25 +2,13 @@
 <html lang="en">
 	<head>
 		<div metal:use-macro="mFront.xhtml/IncludeMETA"/>
-		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>
-		<!--
-		<style type="text/css" media="screen">
-			img {
-				-moz-transform: scaleX(-1);
-				-o-transform: scaleX(-1);
-				-webkit-transform: scaleX(-1);
-				transform: scaleX(-1);
-				filter: FlipH;
-				-ms-filter: "FlipH";
-			}
-		</style>
-		!-->
+		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>		
 	</head>
 	<body>
-		<div metal:use-macro="mFront.xhtml/Header"/>
+		<tal:block metal:use-macro="mFront.xhtml/Header"/>
 		<div class="container-fluid" id="wraper">
 			<div class="row">				
-				<div class="col-md-12">					
+				<div class="col-md-12">
 					<table width="100%">
 						<tr>
 							<td width="20%" />							
@@ -28,9 +16,12 @@
 							<td width="20%" />
 						</tr>
 					</table>
-				</div>				
+				</div>
 			</div>
-		</div>				
+		</div>
+		<!--
+		<tal:block metal:use-macro="mFront.xhtml/Footer"/>
+		!-->
 		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
 	</body>
 </html>

@@ -22,6 +22,8 @@
 			$mConfig 		= new \MVC\Mapper\Config();			
 			$mCategoryBook 	= new \MVC\Mapper\CategoryBook();
 			$mCategoryPost 	= new \MVC\Mapper\CategoryPost();
+			$mCategoryVideo	= new \MVC\Mapper\CategoryVideo();
+			
 			$mBook	 		= new \MVC\Mapper\Book();
 			$mChapter 		= new \MVC\Mapper\Chapter();
 			$mBoard 		= new \MVC\Mapper\Board();
@@ -31,6 +33,8 @@
 			//-------------------------------------------------------------			
 			$CategoryBookAll 	= $mCategoryBook->findAll();
 			$CategoryPostAll 	= $mCategoryPost->findAll();
+			$CategoryVideoAll 	= $mCategoryVideo->findAll();
+			
 			$Category 			= $mCategoryBook->findByKey($KBoard);
 			$Book 				= $mBook->findByKey($KBook);
 			$Chapter 			= $mChapter->findByKey($KChapter);
@@ -44,6 +48,7 @@
 			//-------------------------------------------------------------						
 			$request->setObject("CategoryPostAll", 		$CategoryPostAll);			
 			$request->setObject("CategoryBookAll", 		$CategoryBookAll);
+			$request->setObject("CategoryVideoAll", 	$CategoryVideoAll);
 						
 			$request->setObject('Category', 			$Category);
 			$request->setObject('Book', 				$Book);

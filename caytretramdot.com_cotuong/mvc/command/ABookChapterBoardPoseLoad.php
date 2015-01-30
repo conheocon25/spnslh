@@ -19,7 +19,7 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mCategoryBoard = new \MVC\Mapper\CategoryBoard();
+			$mCategoryBook 	= new \MVC\Mapper\CategoryBook();
 			$mBook 			= new \MVC\Mapper\Book();
 			$mChapter 		= new \MVC\Mapper\Chapter();
 			$mBoard 		= new \MVC\Mapper\Board();
@@ -28,7 +28,7 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------															
-			$Category	= $mCategoryBoard->find($IdCategory);
+			$Category	= $mCategoryBook->find($IdCategory);
 			$Book		= $mBook->find($IdBook);
 			$Chapter	= $mChapter->find($IdChapter);
 			$Board		= $mBoard->find($IdBoard);

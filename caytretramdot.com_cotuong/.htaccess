@@ -27,6 +27,9 @@ RewriteRule ^sach/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$					?cmd=F
 RewriteRule ^sach/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$	?cmd=FBoard&KCategory=$1&KBook=$2&KChapter=$3&KBoard=$4 [L]
 RewriteRule ^sach/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/embeded/([0-9]+)$	?cmd=FBoardEmbeded&KCategory=$1&KBook=$2&KChapter=$3&KBoard=$4&Mode=$5 [L]
 
+RewriteRule ^video/([A-Za-z0-9_-]+)$													?cmd=FCategoryVideo&KCategory=$1 [L]
+RewriteRule ^video/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$									?cmd=FVideo&KCategory=$1&KVideo=$2 [L]
+
 RewriteRule ^lien-he$ 											?cmd=FContact 		[L]
 RewriteRule ^login$ 											?cmd=FLogin 		[L]
 RewriteRule ^dang-ki$ 											?cmd=FRegister 		[L]

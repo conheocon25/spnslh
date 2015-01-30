@@ -6,7 +6,7 @@ class CategoryPost extends Mapper implements \MVC\Domain\CategoryPostFinder{
     function __construct() {
         parent::__construct();
 		
-		$tblCategoryPost = "bamboo100_category_post";
+		$tblCategoryPost = "tbl_category_post";
 						
 		$selectAllStmt 	= sprintf("select * from %s order by `order` DESC", $tblCategoryPost);
 		$selectStmt 	= sprintf("select * from %s where id=?", $tblCategoryPost);

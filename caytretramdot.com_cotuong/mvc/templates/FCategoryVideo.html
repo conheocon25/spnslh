@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mFront.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>
+	</head>
+	<body>
+		<div metal:use-macro="mFront.xhtml/Header"/>
+		<div class="container-fluid" id="wraper">
+			<div class="row-fluid">
+				<div class="col-md-9 col-sm-9">
+					<table class="table table-striped">						
+						<tr tal:repeat="Video Category/getVideoAll">
+							<td width="15%"><img width="96px" tal:attributes="src Video/getImage"/></td>
+							<td>
+								<a tal:attributes="href Video/getURLView"><span tal:content="Video/getTitle"/></a>
+								<p tal:content="structure Video/getInfoReduce"/>								
+								<p><span tal:content="Video/getTimePrint"/>, <span><i class="glyphicon glyphicon-eye-open"/> <span tal:content="Video/getViewedPrint"/></span>
+									<span><i class="glyphicon glyphicon-heart"/> <span tal:content="Video/getLikedPrint"/></span>
+								</p>								
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div class="col-md-3 col-sm-3">
+					<div class="panel panel-default">
+						<div class="panel-heading">DANH MỤC</div>
+						<div class="panel-body">
+							<a tal:attributes="href Category1/getURLView;class php: Category1->getId()==Category->getId()?'btn btn-primary btn-block':'btn btn-default btn-block'"  tal:repeat="Category1 CategoryVideoAll">
+								<span tal:content="Category1/getName"/>
+							</a>							
+						</div>
+					</div>					
+				</div>
+			</div>			
+		</div>
+		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
+	</body>
+</html>

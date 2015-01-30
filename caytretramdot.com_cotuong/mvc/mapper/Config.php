@@ -5,7 +5,7 @@ class Config extends Mapper implements \MVC\Domain\ConfigFinder {
 
     function __construct() {
         parent::__construct();
-		$tblConfig = "bamboo100_config";
+		$tblConfig = "tbl_config";
 		
 		$selectAllStmt = sprintf("select * from %s", $tblConfig);
 		$selectStmt = sprintf("select *  from %s where id=?", $tblConfig);
