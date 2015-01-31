@@ -6,7 +6,7 @@
 	</head>	
 	<body>
 		<div metal:use-macro="mAdmin.xhtml/Header"/>		
-		<div metal:use-macro="mAdmin.xhtml/MenuSettingGeneral"/>
+		<div metal:use-macro="mAdmin.xhtml/MenuApp"/>
 		<div id="content">
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
 			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
@@ -102,43 +102,9 @@
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="control-label">Trang chủ - Presentation</label>
-										<div class="controls">											
-											<select name="ConfigPHome2" id="ConfigPHome2" style="width:80%;" tal:attributes="data-id ConfigPHome/getId">
-												<option tal:repeat="Presentation PresentationAll" tal:attributes="value Presentation/getId; selected php:ConfigPHome->getValue()==Presentation->getId()?'selected':''">
-													<span tal:content="Presentation/getName" />
-												</option>												
-											</select>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="control-label">Trang giới thiệu - Post</label>
-										<div class="controls">											
-											<select name="ConfigIntroduction2" id="ConfigIntroduction2" style="width:80%;" tal:attributes="data-id ConfigIntroduction/getId">
-												<option tal:repeat="PT Tag/getPostAll" tal:attributes="value PT/getPost/getId; selected php:ConfigIntroduction->getValue()==PT->getPost()->getId()?'selected':''">
-													<span tal:content="PT/getPost/getTitle" />
-												</option>
-											</select>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="control-label">Trang FAQ</label>
-										<div class="controls">											
-											<select name="ConfigFAQ2" id="ConfigFAQ2" style="width:80%;" tal:attributes="data-id ConfigFAQ/getId">
-												<option tal:repeat="PT Tag/getPostAll" tal:attributes="value PT/getPost/getId; selected php:ConfigFAQ->getValue()==PT->getPost()->getId()?'selected':''">
-													<span tal:content="PT/getPost/getTitle" />
-												</option>
-											</select>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="control-label">Trang Điều khoản</label>
-										<div class="controls">											
-											<select name="ConfigPolicy2" id="ConfigPolicy2" style="width:80%;" tal:attributes="data-id ConfigPolicy/getId">
-												<option tal:repeat="PT Tag/getPostAll" tal:attributes="value PT/getPost/getId; selected php:ConfigPolicy->getValue()==PT->getPost()->getId()?'selected':''">
-													<span tal:content="PT/getPost/getTitle" />
-												</option>
-											</select>
+										<label class="control-label">Lấy tin tức tự động</label>
+										<div class="controls">
+											<input id="Auto_Post" tal:attributes="value ConfigPost/getValue;data-id ConfigPost/getId" type="text" class="form-control input-small"/>
 										</div>
 									</div>
 								</div>
@@ -175,6 +141,7 @@
 				var Data14 = [];
 				var Data15 = [];
 				var Data16 = [];
+				var Data17 = [];
 				
 				Data1[0] = $('#RowPerPage2').attr('data-id');
 				Data1[1] = "ROW_PER_PAGE";
@@ -348,6 +315,17 @@
 				$.ajax({
 					type: "POST",
 					data: {Data:Data16},
+					url: URL,
+					success: function(msg){}
+				});
+				
+				//Cập nhật Auto_Post
+				Data17[0] = $('#Auto_Post').attr('data-id');
+				Data17[1] = "AUTO_POST";
+				Data17[2] = $('#Auto_Post').val();
+				$.ajax({
+					type: "POST",
+					data: {Data:Data17},
 					url: URL,
 					success: function(msg){}
 				});

@@ -18,4 +18,6 @@ interface ChapterCollection 			extends \Iterator {function add( Object $Chapter)
 
 interface CategoryBoardCollection 		extends \Iterator {function add( Object $CategoryBoard);}
 interface CategoryPostCollection 		extends \Iterator {function add( Object $CategoryPost);	}
+interface RssLinkCollection 		extends \Iterator {function add( Object $RssLink);	}
+interface PostRssCollection 		extends \Iterator {function add( Object $PostRss);	}
 ?>

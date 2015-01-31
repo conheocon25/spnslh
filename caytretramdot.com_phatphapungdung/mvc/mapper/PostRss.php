@@ -2,30 +2,24 @@
 namespace MVC\Mapper;
 
 require_once( "mvc/base/Mapper.php" );
-class Post extends Mapper implements \MVC\Domain\PostFinder {
+class PostRss extends Mapper implements \MVC\Domain\PostRssFinder {
     function __construct() {
         parent::__construct();				
-		$tblPost = "tbl_post";
+		$tblPostRss = "tbl_post_rss";
 		
-		$selectAllStmt 	= sprintf("select * from %s", $tblPost);
-		$selectStmt 	= sprintf("select *  from %s where id=?", $tblPost);
-		$updateStmt 	= sprintf("update %s set id_category=?, title=?, content=?, `time`=?, `key`=?, `viewed`=?, `liked`=? where id=?", $tblPost);
-		$insertStmt 	= sprintf("insert into %s ( id_category, title, content, `time`, `key`, `viewed`, `liked`) values(?, ?, ?, ?, ?, ?, ?)", $tblPost);
-		$deleteStmt 	= sprintf("delete from %s where id=?", $tblPost);
-		$findByKeyStmt 	= sprintf("select *  from %s where `key`=?", $tblPost);
+		$selectAllStmt 	= sprintf("select * from %s", $tblPostRss);
+		$selectStmt 	= sprintf("select *  from %s where id=?", $tblPostRss);
+		$updateStmt 	= sprintf("update %s set id_category=?, title=?, content=?, `time`=?, `key`=?, `viewed`=?, `liked`=? where id=?", $tblPostRss);
+		$insertStmt 	= sprintf("insert into %s ( id_category, title, content, `time`, `key`, `viewed`, `liked`) values(?, ?, ?, ?, ?, ?, ?)", $tblPostRss);
+		$deleteStmt 	= sprintf("delete from %s where id=?", $tblPostRss);
+		$findByKeyStmt 	= sprintf("select *  from %s where `key`=?", $tblPostRss);
 
-		$findByStmt 		= sprintf("select *  from %s where id_category=:id_category", $tblPost);
-		$findByPageStmt 	= sprintf("select *  from %s where id_category=:id_category LIMIT :start,:max", $tblPost);
+		$findByStmt 		= sprintf("select *  from %s where id_category=:id_category", $tblPostRss);
+		$findByPageStmt 	= sprintf("select *  from %s where id_category=:id_category LIMIT :start,:max", $tblPostRss);
 		
-		$searchByTitleStmt 		= sprintf("select *  from %s where `title` like :title", $tblPost);
-		$searchByTitlePageStmt 	= sprintf("select *  from %s where `title` like :title LIMIT :start,:max", $tblPost);
-		
-		$findByDateTimeStmt = sprintf(
-			"select *  
-			from %s 
-			where `time` >= ? AND `time` <= ?"
-		, $tblPost);
-		
+		$searchByTitleStmt 		= sprintf("select *  from %s where `title` like :title", $tblPostRss);
+		$searchByTitlePageStmt 	= sprintf("select *  from %s where `title` like :title LIMIT :start,:max", $tblPostRss);
+				
         $this->selectAllStmt 	= self::$PDO->prepare($selectAllStmt);
         $this->selectStmt 		= self::$PDO->prepare($selectStmt);
         $this->updateStmt 		= self::$PDO->prepare($updateStmt);
@@ -37,8 +31,7 @@ class Post extends Mapper implements \MVC\Domain\PostFinder {
 		$this->findByPageStmt 	= self::$PDO->prepare($findByPageStmt);
 		$this->searchByTitleStmt 		= self::$PDO->prepare($searchByTitleStmt);
 		$this->searchByTitlePageStmt 	= self::$PDO->prepare($searchByTitlePageStmt);
-		$this->findByDateTimeStmt 	= self::$PDO->prepare($findByDateTimeStmt);
-		
+
     } 
     function getCollection( array $raw ) {return new PostCollection( $raw, $this );}
     protected function doCreateObject( array $array ) {
@@ -130,10 +123,6 @@ class Post extends Mapper implements \MVC\Domain\PostFinder {
 		$this->findByPageStmt->execute();
         return new PostCollection( $this->findByPageStmt->fetchAll(), $this );
     }
-	
-	function findByDateTime( $values ) {		
-		$this->findByDateTimeStmt->execute($values);
-        return new PostCollection( $this->findByDateTimeStmt->fetchAll(), $this );
-    }
+
 }
 ?>

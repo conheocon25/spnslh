@@ -20,4 +20,6 @@ class ChapterCollection 		extends Collection implements \MVC\Domain\ChapterColle
 
 class CategoryBoardCollection 	extends Collection implements \MVC\Domain\CategoryBoardCollection	{function targetClass(){return "\MVC\Domain\CategoryBoard";	}}
 class CategoryPostCollection 	extends Collection implements \MVC\Domain\CategoryPostCollection	{function targetClass(){return "\MVC\Domain\CategoryPost";	}}
+class RssLinkCollection 	extends Collection implements \MVC\Domain\RssLinkCollection	{function targetClass(){return "\MVC\Domain\RssLink";	}}
+class PostRssCollection 	extends Collection implements \MVC\Domain\PostRssCollection	{function targetClass(){return "\MVC\Domain\PostRss";	}}
 ?>

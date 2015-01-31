@@ -98,3 +98,17 @@ RewriteRule ^admin/setting/config/page/([0-9]+)$ 						?cmd=ASettingConfig&Page=
 
 RewriteRule ^admin/setting/user$ 										?cmd=ASettingUser [L]
 RewriteRule ^admin/setting/user/page/([0-9]+)$ 							?cmd=ASettingUser&Page=$1 [L]
+
+RewriteRule ^admin/setting/rss$ 											?cmd=ARss [L]
+RewriteRule ^admin/setting/rss/ins/load$ 									?cmd=ARssInsLoad [L]
+RewriteRule ^admin/setting/rss/ins/exe$ 									?cmd=ARssInsExe [L]
+RewriteRule ^admin/setting/rss/([0-9]+)/upd/load$ 							?cmd=ARssUpdLoad&IdRss=$1 [L]
+RewriteRule ^admin/setting/rss/([0-9]+)/upd/exe$ 							?cmd=ARssUpdExe&IdRss=$1 	[L]
+
+RewriteRule ^admin/setting/post/getall$ 									?cmd=APostPublished [L]
+
+RewriteRule ^admin/setting/post/rss$ 										?cmd=APostRss [L]
+RewriteRule ^admin/setting/post/rss/([0-9]+)/view$ 							?cmd=APostRssView&IdPostRss=$1 [L]
+
+RewriteRule ^admin/setting/post/getpostrss/([0-9]+)$						?cmd=APostRssPublish&IdRss=$1 [L]
+RewriteRule ^admin/setting/post/published$ 									?cmd=APostRssPublished [L]
