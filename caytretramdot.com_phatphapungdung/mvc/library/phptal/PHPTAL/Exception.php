@@ -9,7 +9,7 @@
  * @author   Laurent Bedubourg <lbedubourg@motion-twin.com>
  * @author   Kornel Lesiński <kornel@aardvarkmedia.co.uk>
  * @license  http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License
- * @version  SVN: $Id: Exception.php 886 2010-06-07 09:42:59Z kornel $
+ * @version  SVN: $Id$
  * @link     http://phptal.org/
  */
 /**

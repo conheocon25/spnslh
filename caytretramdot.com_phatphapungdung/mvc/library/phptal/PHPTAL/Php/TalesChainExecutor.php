@@ -9,7 +9,7 @@
  * @author   Laurent Bedubourg <lbedubourg@motion-twin.com>
  * @author   Kornel Lesiński <kornel@aardvarkmedia.co.uk>
  * @license  http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License
- * @version  SVN: $Id: TalesChainExecutor.php 868 2010-05-25 22:27:39Z kornel $
+ * @version  SVN: $Id$
  * @link     http://phptal.org/
  */
 
@@ -49,9 +49,7 @@ class PHPTAL_Php_TalesChainExecutor
 
     public function doElse()
     {
-        if ($this->_chainStarted) {
-            $this->codewriter->doElse();
-        }
+        $this->codewriter->doElse();
     }
 
     public function breakChain()
@@ -72,25 +70,19 @@ class PHPTAL_Php_TalesChainExecutor
 
         foreach ($this->_chain as $key => $exp) {
             $this->_state = 0;
+
             if ($exp == PHPTAL_Php_TalesInternal::NOTHING_KEYWORD) {
                 $this->_reader->talesChainNothingKeyword($this);
-                if ($this->_state == self::CHAIN_BREAK)
-                    break;
-                if ($this->_state == self::CHAIN_CONT)
-                    continue;
             } elseif ($exp == PHPTAL_Php_TalesInternal::DEFAULT_KEYWORD) {
                 $this->_reader->talesChainDefaultKeyword($this);
-                if ($this->_state == self::CHAIN_BREAK)
-                    break;
-                if ($this->_state == self::CHAIN_CONT)
-                    continue;
             } else {
                 $this->_reader->talesChainPart($this, $exp, $lastkey === $key);
-                if ($this->_state == self::CHAIN_BREAK)
-                    break;
-                if ($this->_state == self::CHAIN_CONT)
-                    continue;
             }
+
+            if ($this->_state == self::CHAIN_BREAK)
+                break;
+            if ($this->_state == self::CHAIN_CONT)
+                continue;
         }
 
         $this->codewriter->doEnd('if');

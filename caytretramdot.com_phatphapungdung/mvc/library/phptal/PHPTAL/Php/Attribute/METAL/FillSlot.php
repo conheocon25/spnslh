@@ -9,7 +9,7 @@
  * @author   Laurent Bedubourg <lbedubourg@motion-twin.com>
  * @author   Kornel Lesiński <kornel@aardvarkmedia.co.uk>
  * @license  http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License
- * @version  SVN: $Id: FillSlot.php 865 2010-05-25 22:16:24Z kornel $
+ * @version  SVN: $Id$
  * @link     http://phptal.org/
  */
 
@@ -63,7 +63,7 @@ class PHPTAL_Php_Attribute_METAL_FillSlot extends PHPTAL_Php_Attribute
             $this->function_name = $codewriter->getFunctionPrefix().$function_base_name;
 
             $codewriter->doSetVar('$ctx', '$tpl->getContext()');
-            $codewriter->doSetVar('$_translator', '$tpl->getTranslator()');
+            $codewriter->doInitTranslator();
         } else {
             $codewriter->pushCode('ob_start()');
             $this->function_name = null;
@@ -109,7 +109,9 @@ class PHPTAL_Php_Attribute_METAL_FillSlot extends PHPTAL_Php_Attribute
 
         foreach ($element->getAttributeNodes() as $attr) {
             $estimated_bytes += 4+strlen($attr->getQualifiedName());
-            $estimated_bytes += strlen($attr->getValueEscaped()); // this is shoddy for replaced attributes
+            if ($attr->getReplacedState() === PHPTAL_Dom_Attr::NOT_REPLACED) {
+                $estimated_bytes += strlen($attr->getValueEscaped()); // this is shoddy for replaced attributes
+            }
         }
 
         $has_repeat_attr = $element->hasAttributeNS('http://xml.zope.org/namespaces/tal', 'repeat');

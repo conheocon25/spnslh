@@ -28,6 +28,22 @@ abstract class PHPTAL_PreFilter implements PHPTAL_Filter
      */
     private $phptal;
 
+
+    /**
+     * Receives DOMElement (of PHP5 DOM API) of parsed file (documentElement), or element
+     * that has phptal:filter attribute. Should edit DOM in place.
+     * Prefilters are called only once before template is compiled, so they can be slow.
+     *
+     * Default implementation does nothing. Override it.
+     *
+     * @param DOMElement $node PHP5 DOM node to modify in place
+     *
+     * @return void
+     */
+    public function filterElement(DOMElement $node)
+    {
+    }
+
     /**
      * Receives root PHPTAL DOM node of parsed file and should edit it in place.
      * Prefilters are called only once before template is compiled, so they can be slow.
@@ -36,7 +52,7 @@ abstract class PHPTAL_PreFilter implements PHPTAL_Filter
      *
      * @see PHPTAL_Dom_Element class for methods and fields available.
      *
-     * @param PHPTAL_Dom_Element $root PHPTAL's DOM node to modify in place
+     * @param PHPTAL_Dom_Element $root PHPTAL DOM node to modify in place
      *
      * @return void
      */
@@ -51,7 +67,7 @@ abstract class PHPTAL_PreFilter implements PHPTAL_Filter
      *
      * Default implementation calls filterDOM(). Override it.
      *
-     * @param PHPTAL_Dom_Element $node PHPTAL's DOM node to modify in place
+     * @param PHPTAL_Dom_Element $node PHPTAL DOM node to modify in place
      *
      * @return void
      */

@@ -9,7 +9,7 @@
  * @author   Laurent Bedubourg <lbedubourg@motion-twin.com>
  * @author   Kornel Lesiński <kornel@aardvarkmedia.co.uk>
  * @license  http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License
- * @version  SVN: $Id: CDATASection.php 605 2009-05-03 02:50:26Z kornel $
+ * @version  SVN: $Id$
  * @link     http://phptal.org/
  */
 
@@ -41,8 +41,9 @@ class PHPTAL_Dom_CDATASection extends PHPTAL_Dom_Node
 
             $codewriter->pushHTML($codewriter->interpolateCDATA('<![CDATA['.$value.']]>'));
         } else {
-            $codewriter->pushHTML($codewriter->interpolateHTML(htmlspecialchars($value)));
+            $codewriter->pushHTML($codewriter->interpolateHTML(
+                htmlspecialchars($value, ENT_QUOTES, $codewriter->getEncoding())
+            ));
         }
     }
 }
-

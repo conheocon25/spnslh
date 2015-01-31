@@ -24,6 +24,7 @@ class Post extends Object{
 		$this->Key 			= $Key;
 		$this->Viewed 		= $Viewed;
 		$this->Liked 		= $Liked;
+		$this->Key 			= $Key;
 		
         parent::__construct( $Id );
     }
@@ -77,11 +78,19 @@ class Post extends Object{
 	}	
 	function getContentReduce(){$S = new \MVC\Library\String($this->Content);return $S->reduceHTML(320);}
 	
-	function setViewed( $Viewed ){$this->Viewed = $Viewed;$this->markDirty();}   
-	function getViewed( ) {return $this->Viewed;}
+	function setViewed( $Viewed ) 	{$this->Viewed = $Viewed; $this->markDirty();}   
+	function getViewed( ) 			{return $this->Viewed;}
+	function getViewedPrint( ){
+		$N= new \MVC\Library\Number($this->Viewed);
+		return $N->formatCurrency();
+	}
 	
-	function setLiked( $Liked ){$this->Liked = $Liked; $this->markDirty();}
-	function getLiked( ) {return $this->Liked;}
+	function setLiked( $Liked ) 	{$this->Liked = $Liked; $this->markDirty();}   
+	function getLiked( ) 			{return $this->Liked;}
+	function getLikedPrint( ){		
+		$N= new \MVC\Library\Number($this->Liked);
+		return $N->formatCurrency();
+	}
 	
 	//-------------------------------------------------------------------------------
 	//GET LISTs

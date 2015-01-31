@@ -9,7 +9,7 @@
  * @author   Laurent Bedubourg <lbedubourg@motion-twin.com>
  * @author   Kornel Lesiński <kornel@aardvarkmedia.co.uk>
  * @license  http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License
- * @version  SVN: $Id: Comment.php 739 2009-09-25 18:11:22Z kornel $
+ * @version  SVN: $Id$
  * @link     http://phptal.org/
  */
 
