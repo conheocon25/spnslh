@@ -9,7 +9,7 @@
  * @author   Laurent Bedubourg <lbedubourg@motion-twin.com>
  * @author   Kornel Lesiński <kornel@aardvarkmedia.co.uk>
  * @license  http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License
- * @version  SVN: $Id: Attr.php 865 2010-05-25 22:16:24Z kornel $
+ * @version  SVN: $Id$
  * @link     http://phptal.org/
  */
 
@@ -105,7 +105,7 @@ class PHPTAL_Dom_Attr
      */
     function setValue($val)
     {
-        $this->value_escaped = htmlspecialchars($val);
+        $this->value_escaped = htmlspecialchars($val, ENT_QUOTES, $this->encoding);
     }
 
     /**

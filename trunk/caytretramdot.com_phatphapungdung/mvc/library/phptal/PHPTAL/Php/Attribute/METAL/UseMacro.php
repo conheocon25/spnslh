@@ -9,7 +9,7 @@
  * @author   Laurent Bedubourg <lbedubourg@motion-twin.com>
  * @author   Kornel Lesiński <kornel@aardvarkmedia.co.uk>
  * @license  http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License
- * @version  SVN: $Id: UseMacro.php 833 2010-01-24 20:46:40Z kornel $
+ * @version  SVN: $Id$
  * @link     http://phptal.org/
  */
 
@@ -51,6 +51,15 @@ class PHPTAL_Php_Attribute_METAL_UseMacro extends PHPTAL_Php_Attribute
         }
 
         $macroname = strtr($this->expression, '-', '_');
+
+	// throw error if attempting to define and use macro at same time
+	// [should perhaps be a TemplateException? but I don't know how to set that up...]
+	if ($defineAttr = $this->phpelement->getAttributeNodeNS(
+		'http://xml.zope.org/namespaces/metal', 'define-macro')) {
+		if ($defineAttr->getValue() == $macroname) 
+            		throw new PHPTAL_TemplateException("Cannot simultaneously define and use macro '$macroname'",
+                		$this->phpelement->getSourceFile(), $this->phpelement->getSourceLine());			
+	}
 
         // local macro (no filename specified) and non dynamic macro name
         // can be called directly if it's a known function (just generated or seen in previous compilation)

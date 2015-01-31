@@ -27,15 +27,20 @@
 							</div>
 						</div>
 					</div>
-					<div class="panel panel-default">
-						<div class="panel-heading">CHI TIẾT</div>
+					<div class="panel panel-default">						
 						<div class="panel-body">
-							<div class="article-meta-date" />							
-							<div class="article-meta-more">
-								<a tal:attributes="href Chapter1/getURLView;class 'btn btn-default btn-block'"  tal:repeat="Chapter1 Book/getChapterAll">
-									<span tal:content="Chapter1/getTitle"/>
-								</a>
-							</div>
+							<table class="table table-striped">
+								<tr tal:repeat="Video Book/getChapterAll">
+									<td width="15%"><img width="96px" tal:attributes="src Video/getImage"/></td>
+									<td>
+										<a tal:attributes="href Video/getURLView"><span tal:content="Video/getTitle"/></a>
+										<p tal:content="structure Video/getInfoReduce"/>								
+										<p><span tal:content="Video/getTimePrint"/>, <span><i class="glyphicon glyphicon-eye-open"/> <span tal:content="Video/getViewedPrint"/></span>
+											<span><i class="glyphicon glyphicon-heart"/> <span tal:content="Video/getLikedPrint"/></span>
+										</p>								
+									</td>
+								</tr>
+							</table>
 						</div>
 					</div>
 				</div>				

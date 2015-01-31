@@ -17,21 +17,21 @@
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------						
 			$mConfig 		= new \MVC\Mapper\Config();
-			$mCategoryBook 	= new \MVC\Mapper\CategoryBook();
+			$mCategoryVideo = new \MVC\Mapper\CategoryVideo();
 			$mCategoryPost 	= new \MVC\Mapper\CategoryPost();
 									
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------											
 			$Category 			= $mCategoryPost->findByKey($KCategory);
-			$CategoryBookAll 	= $mCategoryBook->findAll();
+			$CategoryVideoAll 	= $mCategoryVideo->findAll();
 			$CategoryPostAll 	= $mCategoryPost->findAll();
 												
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
 			$request->setObject("Category", 			$Category);
-			$request->setObject("CategoryBookAll", 		$CategoryBookAll);
+			$request->setObject("CategoryVideoAll", 	$CategoryVideoAll);
 			$request->setObject("CategoryPostAll", 		$CategoryPostAll);
 									
 			return self::statuses('CMD_DEFAULT');

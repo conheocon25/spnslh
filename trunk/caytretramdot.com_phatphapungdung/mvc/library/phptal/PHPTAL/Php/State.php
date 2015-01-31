@@ -9,7 +9,7 @@
  * @author   Laurent Bedubourg <lbedubourg@motion-twin.com>
  * @author   Kornel Lesiński <kornel@aardvarkmedia.co.uk>
  * @license  http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License
- * @version  SVN: $Id: State.php 874 2010-05-31 23:17:24Z kornel $
+ * @version  SVN: $Id$
  * @link     http://phptal.org/
  */
 
@@ -39,6 +39,14 @@ class PHPTAL_Php_State
     public function getCacheFilesBaseName()
     {
         return $this->phptal->getCodePath();
+    }
+
+    /**
+     * true if PHPTAL has translator set
+     */
+    public function isTranslationOn()
+    {
+        return !!$this->phptal->getTranslator();
     }
 
     /**
@@ -136,18 +144,7 @@ class PHPTAL_Php_State
      */
     public function interpolateTalesVarsInString($string)
     {
-        if ($this->getTalesMode() === 'tales') {
-            return PHPTAL_Php_TalesInternal::string($string);
-        }
-
-        // replace ${var} found in expression
-        while (preg_match('/(?<!\$)\$\{([^\}]+)\}/s', $string, $m)) {
-            list($ori, $exp) = $m;
-            $php  = PHPTAL_Php_TalesInternal::php($exp);
-            $string = str_replace($ori, '\'.('.$php.').\'', $string); // FIXME: that is not elegant
-        }
-        $string = str_replace('$${', '${', $string); // FIXME: that is not elegant
-        return '(\''.$string.'\')';
+        return PHPTAL_Php_TalesInternal::parseString($string, false, ($this->getTalesMode() === 'tales') ? '' : 'php:' );
     }
 
     /**
@@ -234,9 +231,9 @@ class PHPTAL_Php_State
     {
         // PHP strings can be escaped at compile time
         if (preg_match('/^\'((?:[^\'{]+|\\\\.)*)\'$/s', $php, $m)) {
-            return "'".htmlspecialchars(str_replace('\\\'', "'", $m[1]), ENT_QUOTES)."'";
+            return "'".htmlspecialchars(str_replace('\\\'', "'", $m[1]), ENT_QUOTES, $this->encoding)."'";
         }
-        return 'phptal_escape('.$php.')';
+        return 'phptal_escape('.$php.', \''.$this->encoding.'\')';
     }
 
     /**

@@ -14,18 +14,13 @@ class Post extends Mapper implements \MVC\Domain\PostFinder {
 		$deleteStmt 	= sprintf("delete from %s where id=?", $tblPost);
 		$findByKeyStmt 	= sprintf("select *  from %s where `key`=?", $tblPost);
 
-		$findByStmt 		= sprintf("select *  from %s where id_category=:id_category", $tblPost);
-		$findByPageStmt 	= sprintf("select *  from %s where id_category=:id_category LIMIT :start,:max", $tblPost);
+		$findByStmt 		= sprintf("select *  from %s where id_category=:id_category order by `time` DESC", $tblPost);
+		$findByPageStmt 	= sprintf("select *  from %s where id_category=:id_category order by `time` DESC LIMIT :start,:max", $tblPost);
+		$findByTopStmt 		= sprintf("select *  from %s order by `time` DESC LIMIT 6", $tblPost);
 		
 		$searchByTitleStmt 		= sprintf("select *  from %s where `title` like :title", $tblPost);
 		$searchByTitlePageStmt 	= sprintf("select *  from %s where `title` like :title LIMIT :start,:max", $tblPost);
-		
-		$findByDateTimeStmt = sprintf(
-			"select *  
-			from %s 
-			where `time` >= ? AND `time` <= ?"
-		, $tblPost);
-		
+				
         $this->selectAllStmt 	= self::$PDO->prepare($selectAllStmt);
         $this->selectStmt 		= self::$PDO->prepare($selectStmt);
         $this->updateStmt 		= self::$PDO->prepare($updateStmt);
@@ -34,11 +29,11 @@ class Post extends Mapper implements \MVC\Domain\PostFinder {
 		$this->findByKeyStmt 	= self::$PDO->prepare($findByKeyStmt);
 		
 		$this->findByStmt 		= self::$PDO->prepare($findByStmt);
+		$this->findByTopStmt 	= self::$PDO->prepare($findByTopStmt);
 		$this->findByPageStmt 	= self::$PDO->prepare($findByPageStmt);
 		$this->searchByTitleStmt 		= self::$PDO->prepare($searchByTitleStmt);
 		$this->searchByTitlePageStmt 	= self::$PDO->prepare($searchByTitlePageStmt);
-		$this->findByDateTimeStmt 	= self::$PDO->prepare($findByDateTimeStmt);
-		
+
     } 
     function getCollection( array $raw ) {return new PostCollection( $raw, $this );}
     protected function doCreateObject( array $array ) {
@@ -123,6 +118,11 @@ class Post extends Mapper implements \MVC\Domain\PostFinder {
         return new PostCollection( $this->findByStmt->fetchAll(), $this );
     }
 	
+	function findByTop( $values ){
+        $this->findByTopStmt->execute( $values );
+        return new PostCollection( $this->findByTopStmt->fetchAll(), $this);
+    }
+	
 	function findByPage( $values ) {		
 		$this->findByPageStmt->bindValue(':id_category', $values[0], \PDO::PARAM_INT);
 		$this->findByPageStmt->bindValue(':start', ((int)($values[1])-1)*(int)($values[2]), \PDO::PARAM_INT);
@@ -130,10 +130,6 @@ class Post extends Mapper implements \MVC\Domain\PostFinder {
 		$this->findByPageStmt->execute();
         return new PostCollection( $this->findByPageStmt->fetchAll(), $this );
     }
-	
-	function findByDateTime( $values ) {		
-		$this->findByDateTimeStmt->execute($values);
-        return new PostCollection( $this->findByDateTimeStmt->fetchAll(), $this );
-    }
+
 }
 ?>
