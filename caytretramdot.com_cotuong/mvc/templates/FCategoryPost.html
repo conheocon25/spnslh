@@ -9,18 +9,27 @@
 		<div class="container-fluid" id="wraper">
 			<div class="row-fluid">
 				<div class="col-md-9 col-sm-9">
-					<table class="table table-striped">						
-						<tr tal:repeat="Post Category/getPostAll">
-							<td width="15%"><img width="96px" tal:attributes="src Post/getImage"/></td>
-							<td>
-								<a tal:attributes="href Post/getURLView"><span tal:content="Post/getTitle"/></a>
-								<p tal:content="structure Post/getContentReduce"/>
-								<p><span tal:content="Post/getTimePrint"/>, <span><i class="glyphicon glyphicon-eye-open"/> <span tal:content="Post/getViewedPrint"/></span> 
-									<span><i class="glyphicon glyphicon-heart"/> <span tal:content="Post/getLikedPrint"/></span>
-								</p>
-							</td>
-						</tr>
-					</table>
+					<div class="row">
+						<table class="table table-striped">
+							<tr tal:repeat="Post PostAll">
+								<td width="15%"><img width="96px" tal:attributes="src Post/getImage"/></td>
+								<td>
+									<a tal:attributes="href Post/getURLView"><span tal:content="Post/getTitle"/></a>
+									<p tal:content="structure Post/getContentReduce"/>
+									<p><span tal:content="Post/getTimePrint"/>, <span><i class="glyphicon glyphicon-eye-open"/> <span tal:content="Post/getViewedPrint"/></span> 
+										<span><i class="glyphicon glyphicon-heart"/> <span tal:content="Post/getLikedPrint"/></span>
+									</p>
+								</td>
+							</tr>
+						</table>
+					</div>
+					<div class="row">
+						<ul class="pagination alternate pull-right page-bar">
+							<li tal:repeat="P PN/getPages" tal:attributes="class php:Page==P->getId()?'active':'disable'">
+								<a tal:attributes="href P/getURL" tal:content="P/getName"/>
+							</li>
+						</ul>
+					</div>
 				</div>
 				<div class="col-md-3 col-sm-3">
 					<div class="panel panel-default">

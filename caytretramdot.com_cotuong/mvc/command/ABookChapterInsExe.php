@@ -19,11 +19,16 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mChapter = new \MVC\Mapper\Chapter();
-					
+			$mChapter 	= new \MVC\Mapper\Chapter();
+			$mBook 		= new \MVC\Mapper\Book();
+			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------										
+			//-------------------------------------------------------------
+			$Book = $mBook->find($IdBook);
+			$Book->setTime(date('Y-m-d H:i:s'));
+			$mBook->update($Book);
+			
 			$Chapter = new \MVC\Domain\Chapter(
 				null, 
 				$IdBook, 

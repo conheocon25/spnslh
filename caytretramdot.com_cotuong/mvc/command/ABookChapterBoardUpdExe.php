@@ -11,11 +11,12 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
+			$IdBook 	= $request->getProperty('IdBook');
 			$IdBoard 	= $request->getProperty('IdBoard');
 			$IdChapter 	= $request->getProperty('IdChapter');
 			$Name 		= $request->getProperty('Name');
 			$State 		= $request->getProperty('State');			
-			$Time 		= $request->getProperty('Time');			
+			$Time 		= date('Y-m-d H:i:s');
 			$Info 		= \stripslashes($request->getProperty('Info'));
 			$MoveInit	= $request->getProperty('MoveInit');
 			$MoveStart	= $request->getProperty('MoveStart');
@@ -24,15 +25,20 @@
 			$Result		= $request->getProperty('Result');
 			$Viewed		= $request->getProperty('Viewed');
 			$Liked		= $request->getProperty('Liked');
-												
+									
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
 			$mBoard = new \MVC\Mapper\Board();
+			$mBook 	= new \MVC\Mapper\Book();
 					
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------			
+			$Book = $mBook->find($IdBook);
+			$Book->setTime();
+			$mBook->update($Book);
+			
 			$Board= $mBoard->find($IdBoard);
 			
 			$Board->setInfo($Info);			
