@@ -20,6 +20,24 @@
 		<command name="FLogin" 			type="public"><view>FLogin</view></command>
 		
 		<!-- ============================================================================== -->
+		<!-- ARSS																	-->
+		<!-- ============================================================================== -->
+		<command name="ARss"><view>ARss</view></command>		
+		<command name="ARssInsLoad"><view>ARssInsLoad</view></command>
+		<command name="ARssInsExe"><view>ARssInsExe</view><status value="CMD_OK"><forward>ARss</forward></status></command>
+		<command name="ARssUpdLoad"><view>ARssUpdLoad</view></command>
+		<command name="ARssUpdExe"><view>ARssUpdExe</view><status value="CMD_OK"><forward>ARss</forward></status></command>
+												
+		<!-- ============================================================================== -->
+		<!-- RSS NEWS AUTO	 																	-->
+		<!-- ============================================================================== -->
+		<command name="APostRss"><view>APostRss</view></command>
+		<command name="APostRssView"><view>APostRssView</view></command>
+		<command name="APostPublished" type="public"><view>APostPublished</view></command>
+		<command name="APostRssPublished"><view>APostRssPublished</view></command>
+		<command name="APostRssPublish" type="public"><view>APostRssPublish</view></command>	
+		<command name="AGetListRss" type="public"><view>AGetListRss</view></command>
+		<!-- ============================================================================== -->
 		<!-- JSON LOAD			 															-->
 		<!-- ============================================================================== -->		
 		<command name="ObjectLoad"><view>ObjectLoad</view></command>

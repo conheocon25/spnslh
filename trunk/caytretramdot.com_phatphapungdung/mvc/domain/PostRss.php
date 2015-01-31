@@ -4,11 +4,10 @@ require_once( "mvc/base/domain/DomainObject.php" );
 
 class PostRss extends Object{
     private $Id;
+	private $IdCategory;
 	private $Title;
 	private $Content;	
-	private $Author;	
 	private $Time;
-	private $Count;
 	private $Key;
 	private $Viewed;
 	private $Liked;
@@ -16,16 +15,15 @@ class PostRss extends Object{
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-    function __construct( $Id=null, $Title=null, $Content=null, $Author=null, $Time=null, $Count=null, $Key=null, $Viewed=null, $Liked=null){
+    function __construct( $Id=null, $IdCategory, $Title=null, $Content=null, $Time=null, $Key=null, $Viewed=null, $Liked=null){
         $this->Id 			= $Id;
+		$this->IdCategory 	= $IdCategory;
 		$this->Title 		= $Title;
-		$this->Content 		= $Content;		
-		$this->Author 		= $Author;
-		$this->Time 		= $Time;		
-		$this->Count 		= $Count;
+		$this->Content 		= $Content;				
+		$this->Time 		= $Time;				
 		$this->Key 			= $Key;
 		$this->Viewed 		= $Viewed;
-		$this->Liked 		= $Liked;
+		$this->Liked 		= $Liked;		
 		
         parent::__construct( $Id );
     }
@@ -34,18 +32,20 @@ class PostRss extends Object{
 		
 	function setContent( $Content ){$this->Content = $Content;$this->markDirty();}   
 	function getContent( ) {return $this->Content;}
-	
-	function setCount( $Count ){$this->Count = $Count;$this->markDirty();}   
-	function getCount( ) {return $this->Count;}
-	
+			
 	function setTime( $Time ){$this->Time = $Time;$this->markDirty();}   
 	function getTime( ) {return $this->Time;}
 	function getTimePrint( ){		
 		$D = new \MVC\Library\Date($this->Time);return $D->getFullDateTimeFormat();
 	}
 	
-	function setAuthor( $Author ){$this->Author = $Author;$this->markDirty();}   
-	function getAuthor( ) {return $this->Author;}
+	function setIdCategory( $IdCategory ){$this->IdCategory = $IdCategory;$this->markDirty();}   
+	function getIdCategory( ) {return $this->IdCategory;}
+	function getCategory( ) {
+		$mCategory 	= new \MVC\Mapper\CategoryPost();
+		$Category 	= $mCategory->find($this->IdCategory);
+		return $Category;
+	}
 	
 	function setTitle( $Title ){$this->Title = $Title;$this->markDirty();}   
 	function getTitle( ) {return $this->Title;}	
@@ -59,7 +59,7 @@ class PostRss extends Object{
 			$first_img = $matches[1][0];
 		}
 		else {
-			$first_img = "/data/images/post.jpg";
+			$first_img = "/mvc/templates/theme/img/post.jpg";
 		}
 		return $first_img;
 	}
@@ -67,7 +67,11 @@ class PostRss extends Object{
 	function setKey( $Key ){$this->Key = $Key;$this->markDirty();}
 	function getKey( ) {return $this->Key;}
 	function reKey( ){
-		$Id = time();
+		if (!isset($this->Id))
+			$Id = time();
+		else
+			$Id = $this->Id;
+			
 		$Str = new \MVC\Library\String($this->Title." ".$Id);
 		$this->Key = $Str->converturl();		
 	}	
@@ -82,20 +86,14 @@ class PostRss extends Object{
 	//-------------------------------------------------------------------------------
 	//GET LISTs
 	//-------------------------------------------------------------------------------
-	function getPTAll(){
-		$mPT 	= new \MVC\Mapper\PostTag();	
-		$PTAll 	= $mPT->findByPost(array($this->getId()));
-		return $PTAll;
-	}
-	
+				
 	function toJSON(){
 		$json = array(
 			'Id' 			=> $this->getId(),
+			'IdCategory'	=> $this->getIdCategory(),
 			'Title'			=> $this->getTitle(),
-			'Content'		=> $this->getContent(),
-			'Author'		=> $this->getAuthor(),
-			'Time'			=> $this->getTime(),
-			'Count'			=> $this->getCount(),
+			'Content'		=> $this->getContent(),			
+			'Time'			=> $this->getTime(),			
 			'Key'			=> $this->getKey(),
 			'Viewed'		=> $this->getViewed(),
 			'Liked'			=> $this->getLiked()
@@ -105,11 +103,10 @@ class PostRss extends Object{
 	
 	function setArray( $Data ){
         $this->Id 			= $Data[0];
-		$this->Title		= $Data[1];
-		$this->Content 		= \stripslashes($Data[2]);				
-		$this->Author		= $Data[3];
-		$this->Time 		= $Data[4];
-		$this->Count 		= $Data[5];
+		$this->IdCategory	= $Data[2];
+		$this->Title		= $Data[3];
+		$this->Content 		= \stripslashes($Data[4]);
+		$this->Time 		= $Data[5];		
 		$this->Viewed 		= $Data[6];
 		$this->Liked 		= $Data[7];
 		$this->reKey();
@@ -118,21 +115,13 @@ class PostRss extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLRead(){		return "/tin-tuc/".$this->getCategory()->getKey()."/".$this->getKey();}
-	
-	function getURLSettingTag(){return "admin/setting/post/".$this->getId()."/tag";}
-	
-	function getURLUpdLoad(){	return "admin/setting/post/".$this->getId()."/upd/load";}
-	function getURLView(){	return "admin/setting/post/rss/".$this->getId()."/view";}
-	
-	function getURLUpdExe(){	return "admin/setting/post/".$this->getId()."/upd/exe";}		
-	function getURLDelLoad(){	return "admin/setting/post/".$this->getId()."/del/load";}	
-	function getURLDelExe(){	return "admin/setting/post/".$this->getId()."/del/exe";}
-	
-	function getURLViewFull(){
-		return "http://amthuclangsen.com/gioi-thieu";
-	}
+	function getURLView1(){	return "admin/setting/post/rss/".$this->getId()."/view";}
+	function getURLView(){		return "/bai-viet/".$this->getCategory()->getKey()."/".$this->getKey();}
+	function getURLViewFull(){	return "http://cotuong.caytretramdot.com/bai-viet/".$this->getCategory()->getKey()."/".$this->getKey();}
 			
+	function getURLUpdLoad(){	return "admin/post/".$this->getIdCategory()."/".$this->getId()."/upd/load";}
+	function getURLUpdExe(){	return "admin/post/".$this->getIdCategory()."/".$this->getId()."/upd/exe";}
+					
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}	

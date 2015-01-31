@@ -26,4 +26,6 @@ interface ChapterFinder 		extends Finder {}
 
 interface CategoryBoardFinder 	extends Finder {}
 interface CategoryPostFinder 	extends Finder {}
+interface PostRssFinder 	extends Finder {}
+interface RssLinkFinder 	extends Finder {}
 ?>

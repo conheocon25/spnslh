@@ -24,9 +24,8 @@
 			$mPostRss 		= new \MVC\Mapper\PostRss();
 			$mPost 			= new \MVC\Mapper\Post();
 			$mConfig 		= new \MVC\Mapper\Config();
-			$mTag 			= new \MVC\Mapper\Tag();
-			$mPostTag 		= new \MVC\Mapper\PostTag();
-		
+			$mCategoryPost 			= new \MVC\Mapper\CategoryPost();
+			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------	
@@ -54,9 +53,9 @@
 				$ClassContent 		= $dRssLink->getClassContentName();
 				$ImgPath 			= $dRssLink->getImgPath();
 				
-				$IdTag = $dRssLink->getIdTag();
+				$IdCategoryPost = $dRssLink->getIdCategoryPost();
 				
-				$dTagPost = $mTag->find($IdTag);
+				$dCategoryPost = $mCategoryPost->find($IdCategoryPost);
 				
 					$todaytime = new \DateTime('NOW');
 					$interval = new \DateInterval('P0Y0DT11H0M');	
@@ -132,10 +131,10 @@
 								$dom = new \DOMDocument();
 								@$dom->loadHTML($data);
 								
-								$dom->saveHTMLFile("data/autopost_". $IdTag . "_" . $strDatatime . "_" . $i . ".html");
-								$HTML = file_get_html("data/autopost_". $IdTag . "_" . $strDatatime . "_" . $i . ".html");					
+								$dom->saveHTMLFile("data/autopost_". $IdCategoryPost . "_" . $strDatatime . "_" . $i . ".html");
+								$HTML = file_get_html("data/autopost_". $IdCategoryPost . "_" . $strDatatime . "_" . $i . ".html");					
 									
-								$PostAuthor = $HTML->find('.' . $ClassAuthor, 0);										
+								//$PostAuthor = $HTML->find('.' . $ClassAuthor, 0);										
 								$PostContent = $HTML->find('.' . $ClassContent, 0);					
 								
 								if ( $ImgPath == 0) {
@@ -147,42 +146,36 @@
 								
 								$PostContentSlash 	= \stripslashes($PostContent);
 								
+								/*
 								if (!isset($PostAuthor)) {
 									$PostAuthor = "BBT";
 								}else {
 									$PostAuthor = html_entity_decode($PostAuthor->plaintext, ENT_QUOTES, 'UTF-8');
-								}				
+								}
+								*/
 								// Thêm tin mới	nếu $AUTOPost = 1 thì ko cần duyệt tin còn $AUTOPost = 0 thì vào PostRss chờ duyệt tin	
 								if ($AUTOPost == 1) {
 									$Post = new \MVC\Domain\Post(
 										null,
+										$IdCategoryPost,
 										$item['title'],
-										$PostContentSlash,
-										$PostAuthor,
-										$Time,
-										1,
+										$PostContentSlash,										
+										$Time,										
 										"",
 										10,
 										0
 									);
 									$Post->reKey();
 									$mPost->insert($Post);
-									//Them tin vao Tag Post
-									$dPostTag new \MVC\Domain\PostTag(
-										null,
-										$Post->getId(),
-										$IdTag
-										);
-									$mPostTag->insert($dPostTag);
+									
 									
 								} else {
 									$PostRss = new \MVC\Domain\PostRss(
-										null,																			
+										null,
+										$IdCategoryPost,
 										$item['title'],
-										$PostContentSlash,
-										$PostAuthor,
-										$Time,
-										1,
+										$PostContentSlash,										
+										$Time,										
 										"",
 										10,
 										0
@@ -205,7 +198,7 @@
 							
 					}
 					
-					echo "Đã thêm ". $i . " của vào Danh mục: " . $dTagPost->getName();
+					echo "Đã thêm ". $i . " của vào Danh mục: " . $dCategoryPost->getName();
 					
 				array_map('unlink', glob("data/*.html")); 
 				
