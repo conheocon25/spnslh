@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class ABookChapterUpdExe extends Command{
+	class AVideoUpdExe extends Command{
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -10,32 +10,35 @@
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------						
+			//-------------------------------------------------------------			
 			$IdCategory = $request->getProperty('IdCategory');						
-			$IdBook 	= $request->getProperty('IdBook');
-			$IdChapter 	= $request->getProperty('IdChapter');			
-			$Title 		= $request->getProperty('Title');						
+			$IdVideo 	= $request->getProperty('IdVideo');
+			$Title 		= $request->getProperty('Title');			
+			$Time 		= date('Y-m-d H:i:s');
 			$Info 		= \stripslashes($request->getProperty('Info'));
-															
+			$IdYouTube 	= $request->getProperty('IdYouTube');
+			$Viewed 	= $request->getProperty('Viewed');
+			$Liked 		= $request->getProperty('Liked');
+			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mChapter 	= new \MVC\Mapper\Chapter();
-			$mBook 		= new \MVC\Mapper\Book();
+			$mVideo = new \MVC\Mapper\Video();
 					
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------
-			$Book = $mBook->find($IdBook);
-			$Book->setTime(date('Y-m-d H:i:s'));
-			$mBook->update($Book);
+			//-------------------------------------------------------------							
+			$Str = new \MVC\Library\String($Title." ".$IdVideo);
+			$Video = $mVideo->find($IdVideo);
 			
-			$Chapter = $mChapter->find($IdChapter);			
-			$Chapter->setInfo($Info);			
-			$Chapter->setTitle($Title);			
-			$Chapter->reKey();
-			
-			$mChapter->update($Chapter);
+			$Video->setInfo($Info);			
+			$Video->setTitle($Title);
+			$Video->setTime($Time);
+			$Video->setIdYouTube($IdYouTube);
+			$Video->setViewed($Viewed);
+			$Video->setLiked($Liked);			
+			$Video->reKey();
+			$mVideo->update($Video);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI

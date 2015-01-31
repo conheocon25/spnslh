@@ -14,7 +14,7 @@
 			$IdBook 	= $request->getProperty('IdBook');
 			$IdCategory = $request->getProperty('IdCategory');									
 			$Title 		= $request->getProperty('Title');			
-			$Time 		= $request->getProperty('Time');			
+			$Time 		= date('Y-m-d H:i:s');
 			$Info 		= \stripslashes($request->getProperty('Info'));
 			$Author 	= $request->getProperty('Author');
 			$Language	= $request->getProperty('Language');

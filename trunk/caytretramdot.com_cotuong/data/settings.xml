@@ -45,7 +45,7 @@
 		<command name="ASetting">				<view>ASetting		</view></command>						
 		<command name="ASettingCategoryPost">	<view>ASettingCategoryPost</view></command>				
 		<command name="ASettingCategoryBook">	<view>ASettingCategoryBook</view></command>
-		<command name="ASettingCategoryBoard">	<view>ASettingCategoryBoard</view></command>
+		<command name="ASettingCategoryVideo">	<view>ASettingCategoryVideo</view></command>
 								
 		<command name="ABook">					<view>ABook			</view></command>		
 		<command name="ABookInsLoad">			<view>ABookInsLoad	</view></command>
@@ -79,6 +79,12 @@
 		<command name="APostInsExe">			<view>APostInsExe	</view><status value="CMD_OK"><forward>APost</forward></status></command>
 		<command name="APostUpdLoad">			<view>APostUpdLoad	</view></command>
 		<command name="APostUpdExe">			<view>APostUpdExe	</view><status value="CMD_OK"><forward>APost</forward></status></command>
+		
+		<command name="AVideo">					<view>AVideo			</view></command>		
+		<command name="AVideoInsLoad">			<view>AVideoInsLoad	</view></command>
+		<command name="AVideoInsExe">			<view>AVideoInsExe	</view><status value="CMD_OK"><forward>AVideo</forward></status></command>
+		<command name="AVideoUpdLoad">			<view>AVideoUpdLoad	</view></command>
+		<command name="AVideoUpdExe">			<view>AVideoUpdExe	</view><status value="CMD_OK"><forward>AVideo</forward></status></command>
 						
 		<command name="ASettingUser">			<view>ASettingUser			</view></command>		
 		<command name="ASettingConfig">			<view>ASettingConfig		</view></command>

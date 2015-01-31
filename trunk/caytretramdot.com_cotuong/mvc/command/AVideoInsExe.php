@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class APostUpdExe extends Command{
+	class AVideoInsExe extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -10,37 +10,42 @@
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------			
-			$IdCategory = $request->getProperty('IdCategory');						
-			$IdPost 	= $request->getProperty('IdPost');
-			$Title 		= $request->getProperty('Title');			
+			//-------------------------------------------------------------												
+			$IdCategory = $request->getProperty('IdCategory');			
+			$Title 		= $request->getProperty('Title');
 			$Time 		= date('Y-m-d H:i:s');
-			$Content 	= \stripslashes($request->getProperty('Content'));
-			$Viewed 	= $request->getProperty('Viewed');
-			$Liked 		= $request->getProperty('Liked');
-			
+			$Info 		= \stripslashes($request->getProperty('Info'));			
+			$IdYouTube 	= $request->getProperty('IdYouTube');			
+			$Time	 	= $request->getProperty('Time');
+			$Viewed	 	= $request->getProperty('Viewed');
+			$Liked	 	= $request->getProperty('Liked');
+									
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mPost = new \MVC\Mapper\Post();
-					
+			$mVideo 	= new \MVC\Mapper\Video();			
+								
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------							
-			$Str = new \MVC\Library\String($Title." ".$IdPost);
-			$Post = $mPost->find($IdPost);
-			
-			$Post->setContent($Content);			
-			$Post->setTitle($Title);
-			$Post->setTime($Time);			
-			$Post->setViewed($Viewed);
-			$Post->setLiked($Liked);			
-			$Post->reKey();
-			$mPost->update($Post);
-			
+			$Video = new \MVC\Domain\Video(
+				null,
+				$IdCategory,
+				$Title,
+				$Info,				
+				$Time,				
+				$IdYouTube,
+				$Viewed,
+				$Liked,
+				""
+			);
+					
+			$Video->reKey();
+			$mVideo->insert($Video);
+									
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------
+			//-------------------------------------------------------------			
 			return self::statuses('CMD_OK');
 		}
 	}

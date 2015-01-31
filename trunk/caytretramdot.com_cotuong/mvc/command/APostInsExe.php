@@ -15,7 +15,7 @@
 			$Title 		= $request->getProperty('Title');
 			$Content 	= \stripslashes($request->getProperty('Content'));
 			$Author 	= $request->getProperty('Author');			
-			$Time	 	= $request->getProperty('Time');
+			$Time	 	= date('Y-m-d H:i:s');
 			$Viewed	 	= $request->getProperty('Viewed');
 			$Liked	 	= $request->getProperty('Liked');
 									

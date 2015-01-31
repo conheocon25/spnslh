@@ -30,12 +30,12 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr tal:repeat="CategoryPost CategoryPostAll1">
-										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id CategoryPost/getId"/></td>
-										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id CategoryPost/getId" tal:content="CategoryPost/getName"/></td>										
-										<td class="center"><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id CategoryPost/getId" tal:content="CategoryPost/getOrder"/></td>
+									<tr tal:repeat="CategoryVideo CategoryVideoAll1">
+										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id CategoryVideo/getId"/></td>
+										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id CategoryVideo/getId" tal:content="CategoryVideo/getName"/></td>										
+										<td class="center"><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id CategoryVideo/getId" tal:content="CategoryVideo/getOrder"/></td>
 										<td class="center">
-											<a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id CategoryPost/getId">
+											<a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id CategoryVideo/getId">
 												<i class="glyphicon glyphicon-remove"/>
 											</a>
 										</td>
@@ -50,9 +50,9 @@
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h3><i class="glyphicons-CategoryPost modal-icon"/>THÊM MỚI DANH MỤC BÀI VIẾT</h3>
+									<h3><i class="glyphicons-CategoryVideo modal-icon"/>THÊM MỚI DANH MỤC BÀI VIẾT</h3>
 								</div>
-								<form id="FormCategoryPostInsert" action="#" class="form-horizontal" novalidate="novalidate">
+								<form id="FormCategoryVideoInsert" action="#" class="form-horizontal" novalidate="novalidate">
 									<div class="modal-body">
 										<div class="form-group">
 											<label class="control-label">Tên</label>
@@ -82,9 +82,9 @@
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h3><i class="glyphicons-CategoryPost modal-icon"/>CẬP NHẬT DANH MỤC BÀI VIẾT</h3>
+									<h3><i class="glyphicons-CategoryVideo modal-icon"/>CẬP NHẬT DANH MỤC BÀI VIẾT</h3>
 								</div>
-								<form id="FormCategoryPostUpdate" action="#" class="form-horizontal" novalidate="novalidate">
+								<form id="FormCategoryVideoUpdate" action="#" class="form-horizontal" novalidate="novalidate">
 									<div class="modal-body">
 										<div class="form-group">
 											<label class="control-label">Tên</label>
@@ -120,7 +120,7 @@
 			$('#URLDelSelectedButton').click(function(){
 				var count = 0;
 				var Data = [];
-				var URL = "/object/del/CategoryPost/0";
+				var URL = "/object/del/CategoryVideo/0";
 				
 				$(".CheckedDel").each(function( i, obj){
 					if ( $(this).is(':checked')==true ){
@@ -140,14 +140,14 @@
 			});
 			
 			//-----------------------------------------------------------------------------------
-			//Delete 1 CategoryPost			
+			//Delete 1 CategoryVideo			
 			//-----------------------------------------------------------------------------------
 			$('.remove-item').click(function(){
 				$('#URLDelButton').attr('alt', $(this).attr('data-id'));
 			});
 			//Khi DANH MỤC BÀI VIẾT Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
 			$('#URLDelButton').click(function(){			
-				var URL = "/object/del/CategoryPost/" + $(this).attr('alt');
+				var URL = "/object/del/CategoryVideo/" + $(this).attr('alt');
 				$.ajax({
 					type: "POST",					
 					url: URL,
@@ -158,8 +158,8 @@
 			});
 		
 			//-----------------------------------------------------------------------------------
-			//Insert 1 CategoryPost
-			$("#FormCategoryPostInsert").validate({
+			//Insert 1 CategoryVideo
+			$("#FormCategoryVideoInsert").validate({
 				rules:{
 					Name1:{
 						minlength: 2,
@@ -181,7 +181,7 @@
 					Data[1] = $('#Name1').val();
 					Data[2] = $('#Order1').val();				
 													
-					var URL = "/object/ins/CategoryPost";
+					var URL = "/object/ins/CategoryVideo";
 					$.ajax({
 						type: "POST",
 						data: {Data:Data},
@@ -201,11 +201,11 @@
 			});
 			
 			//-----------------------------------------------------------------------------------
-			//Load 1 CategoryPost
+			//Load 1 CategoryVideo
 			//-----------------------------------------------------------------------------------
 			$('.update-item').click(function(){
 				//Load dữ liệu JSON về
-				var url = "/object/load/CategoryPost/" + $(this).attr('data-id');
+				var url = "/object/load/CategoryVideo/" + $(this).attr('data-id');
 				
 				//Load dữ liệu JSON lên FORM
 				$.getJSON(url, function(data){
@@ -216,9 +216,9 @@
 			});
 			
 			//-----------------------------------------------------------------------------------
-			//Update 1 CategoryPost
+			//Update 1 CategoryVideo
 			//-----------------------------------------------------------------------------------			
-			$("#FormCategoryPostUpdate").validate({
+			$("#FormCategoryVideoUpdate").validate({
 				rules:{
 					Name2:{
 						minlength: 2,
@@ -240,7 +240,7 @@
 					Data[1] = $('#Name2').val();
 					Data[2] = $('#Order2').val();									
 									
-					var URL = "/object/upd/CategoryPost";
+					var URL = "/object/upd/CategoryVideo";
 					$.ajax({
 						type: "POST",
 						data: {Data:Data},

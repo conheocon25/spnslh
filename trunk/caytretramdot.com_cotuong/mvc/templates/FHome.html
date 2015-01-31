@@ -7,21 +7,52 @@
 	<body>
 		<tal:block metal:use-macro="mFront.xhtml/Header"/>
 		<div class="container-fluid" id="wraper">
-			<div class="row">				
-				<div class="col-md-12">
-					<table width="100%">
-						<tr>
-							<td width="20%" />							
-							<td width="60%"><img width="100%" src="/data/chess/bg/CCElephant.png" /></td>							
-							<td width="20%" />
+			<div class="row">
+				<div class="col-md-9 col-sm-9">
+					<h3>TIN TỨC CẬP NHẬT</h3>
+					<table class="table table-striped">
+						<tr tal:repeat="Post PostTopAll">
+							<td width="15%"><img width="96px" tal:attributes="src Post/getImage"/></td>
+							<td>
+								<a tal:attributes="href Post/getURLView"><span tal:content="Post/getTitle"/></a>
+								<p tal:content="structure Post/getContentReduce"/>
+								<p><span tal:content="Post/getTimePrint"/>, <span><i class="glyphicon glyphicon-eye-open"/> <span tal:content="Post/getViewedPrint"/></span>
+									<span><i class="glyphicon glyphicon-heart"/> <span tal:content="Post/getLikedPrint"/></span>
+								</p>
+							</td>
 						</tr>
 					</table>
-				</div>
+					<h3>VIDEO MỚI CẬP NHẬT</h3>				
+					<table class="table table-striped">
+						<tr tal:repeat="Video VideoTopAll">
+							<td width="15%"><img width="96px" tal:attributes="src Video/getImage"/></td>
+							<td>
+								<a tal:attributes="href Video/getURLView"><span tal:content="Video/getTitle"/></a>
+								<p tal:content="structure Video/getInfoReduce"/>								
+								<p><span tal:content="Video/getTimePrint"/>, <span><i class="glyphicon glyphicon-eye-open"/> <span tal:content="Video/getViewedPrint"/></span>
+									<span><i class="glyphicon glyphicon-heart"/> <span tal:content="Video/getLikedPrint"/></span>
+								</p>								
+							</td>
+						</tr>
+					</table>
+					<h3>SÁCH MỚI CẬP NHẬT</h3>
+					<table class="table table-striped">
+						<tr tal:repeat="Book BookTopAll">
+							<td width="15%" >
+								<a tal:attributes="href Book/getURLView">
+									<img width="64px" tal:attributes="src Book/getThumb"/>
+								</a>
+							</td>
+							<td>
+								<a tal:attributes="href Book/getURLView"><span tal:content="Book/getTitle"/></a>
+								<p align="justify" tal:content="structure Book/getInfoReduce"/>
+								<span tal:content="Book/getTimePrint" />, <B tal:content="Book/getViewed" /> lượt xem, <B tal:content="Book/getAuthor" />
+							</td>
+						</tr>
+					</table>
+				</div>	
 			</div>
-		</div>
-		<!--
-		<tal:block metal:use-macro="mFront.xhtml/Footer"/>
-		!-->
+		</div>		
 		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
 	</body>
 </html>

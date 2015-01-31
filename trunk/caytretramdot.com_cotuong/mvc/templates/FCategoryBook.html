@@ -9,26 +9,35 @@
 		<div class="container-fluid" id="wraper">
 			<div class="row-fluid">
 				<div class="col-md-9 col-sm-9">
-					<table class="table table-striped">
-						<tr>
-							<th width="32px" align="center">STT</th>
-							<th width="64px" />
-							<th>SÁCH</th>
-						</tr>
-						<tr tal:repeat="Book Category/getBookAll">
-							<td><div class="text-center" tal:content="repeat/Book/number"/></td>
-							<td>
-								<a tal:attributes="href Book/getURLView">
-									<img width="64px" tal:attributes="src Book/getThumb"/>
-								</a>
-							</td>
-							<td>
-								<a tal:attributes="href Book/getURLView"><span tal:content="Book/getTitle"/></a>
-								<p align="justify" tal:content="structure Book/getInfoReduce"/>
-								<span tal:content="Book/getTimePrint" />, <B tal:content="Book/getViewed" /> lượt xem, <B tal:content="Book/getAuthor" />
-							</td>
-						</tr>
-					</table>
+					<div class="row">
+						<table class="table table-striped">
+							<tr>
+								<th width="32px" align="center">STT</th>
+								<th width="64px" />
+								<th>SÁCH</th>
+							</tr>
+							<tr tal:repeat="Book BookAll">
+								<td><div class="text-center" tal:content="repeat/Book/number"/></td>
+								<td>
+									<a tal:attributes="href Book/getURLView">
+										<img width="64px" tal:attributes="src Book/getThumb"/>
+									</a>
+								</td>
+								<td>
+									<a tal:attributes="href Book/getURLView"><span tal:content="Book/getTitle"/></a>
+									<p align="justify" tal:content="structure Book/getInfoReduce"/>
+									<span tal:content="Book/getTimePrint" />, <B tal:content="Book/getViewed" /> lượt xem, <B tal:content="Book/getAuthor" />
+								</td>
+							</tr>
+						</table>
+					</div>
+					<div class="row">
+						<ul class="pagination alternate pull-right page-bar">
+							<li tal:repeat="P PN/getPages" tal:attributes="class php:Page==P->getId()?'active':'disable'">
+								<a tal:attributes="href P/getURL" tal:content="P/getName"/>
+							</li>
+						</ul>
+					</div>
 				</div>
 				<div class="col-md-3 col-sm-3">
 					<div class="panel panel-default">

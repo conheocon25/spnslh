@@ -11,6 +11,7 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------			
+			$IdBook 	= $request->getProperty('IdBook');
 			$IdBoard 	= $request->getProperty('IdBoard');
 			$aStep 		= $request->getProperty('aStep');
 			$aStepA 	= $request->getProperty('aStepA');
@@ -18,12 +19,17 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
+			$mBook 				= new \MVC\Mapper\Book();
 			$mBoard 			= new \MVC\Mapper\Board();
 			$mBoardDetail		= new \MVC\Mapper\BoardDetail();
 						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------																					
+			$Book = $mBook->find($IdBook);
+			$Book->setTime(date('Y-m-d H:i:s'));
+			$mBook->update($Book);
+			
 			$Board			= $mBoard->find($IdBoard);
 			$mBoardDetail->deleteBy(array($IdBoard));
 			

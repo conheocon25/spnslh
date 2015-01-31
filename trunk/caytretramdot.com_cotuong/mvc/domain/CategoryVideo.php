@@ -67,9 +67,9 @@ class CategoryVideo extends Object{
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
 	function getURLView(){return "/video/".$this->getKey();}	
-	function getURLSetting(){return "/admin/board/".$this->getId();}
-	function getURLSettingBoardInsLoad(){return "/admin/video/".$this->getId()."/ins/load"	;}
-	function getURLSettingBoardInsExe()	{return "/admin/video/".$this->getId()."/ins/exe"	;}
+	function getURLSetting(){return "/admin/video/".$this->getId();}
+	function getURLSettingVideoInsLoad(){return "/admin/video/".$this->getId()."/ins/load"	;}
+	function getURLSettingVideoInsExe()	{return "/admin/video/".$this->getId()."/ins/exe"	;}
 		
 	//-------------------------------------------------------------------------------
 	static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
