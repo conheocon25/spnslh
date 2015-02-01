@@ -1,5 +1,11 @@
 	
-	body { background: url('/mvc/templates/front/img/bbg.jpg') no-repeat top left fixed transparent; }
+	body {
+		background: url('/mvc/templates/front/img/bbg.gif') no-repeat top left fixed transparent;
+		-webkit-background-size: cover !important;
+		-moz-background-size: cover !important;
+		-o-background-size: cover !important;
+		background-size: cover !important;
+	}
 	
 	@media (min-width: 1200px) {
 		.container {
@@ -13,7 +19,7 @@
 	}
 
 	#header {
-		background: url('/mvc/templates/front/img/hbg.png') no-repeat top left transparent;
+		background: #5A1C10;
 		padding-top: 10px;
 	}
 	
@@ -29,7 +35,7 @@
 	#header .navbar .navbar-brand{ padding: 11px 12px; height: auto; }
 	
 	#header .navbar-default {
-		background: url('/mvc/templates/front/img/hbg.png') no-repeat top left transparent;
+		background: #5A1C10;
 		border-radius: 0;
 		border: none;
 		border-top: 1px solid rgba(255, 255, 255, .7);
@@ -122,7 +128,7 @@
 	}
 	
 	.intro-line {
-		background: url('/mvc/templates/front/img/hbg.png') no-repeat top left transparent;
+		background: #5A1C10;
 		padding: 10px;
 		color: white;
 		margin-bottom: 15px;
@@ -132,7 +138,7 @@
 	.panel { border: 1px solid #562023; border-radius: 0; }
 	
 	.panel .panel-heading {
-		background: url('/mvc/templates/front/img/hbg.png') no-repeat top left transparent;
+		background: #5A1C10;
 		padding: 0;
 		border-radius: 0;
 	}
@@ -149,7 +155,7 @@
 	footer {
 		padding-top: 20px;
 		padding-bottom: 10px;
-		background: url('/mvc/templates/front/img/hbg.png') no-repeat top left transparent;
+		background: #5A1C10;
 		font-size: 12px;
 		color: #fff;
 		line-height: 10px;
