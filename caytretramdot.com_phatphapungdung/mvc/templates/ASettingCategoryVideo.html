@@ -7,6 +7,15 @@
 	
 	<body>
 		<div metal:use-macro="mAdmin.xhtml/Header"/>				
+		<div id="sidebar">
+			<ul style="display: block;">				
+				<li tal:repeat="Category1 CategoryBuddhaAll" tal:attributes="class php: Category1->getId()==Buddha->getId()?'active':''">
+					<a tal:attributes="href Category1/getURLSetting">
+						<i class="glyphicons-tag"/><span tal:content="Category1/getName"/>
+					</a>
+				</li>
+			</ul>
+		</div>
 		<div id="content">
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
 			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
@@ -50,7 +59,7 @@
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h3><i class="glyphicons-CategoryVideo modal-icon"/>THÊM MỚI DANH MỤC BÀI VIẾT</h3>
+									<h3><i class="glyphicons-CategoryVideo modal-icon"/>THÊM MỚI DANH MỤC VIDEO</h3>
 								</div>
 								<form id="FormCategoryVideoInsert" action="#" class="form-horizontal" novalidate="novalidate">
 									<div class="modal-body">
@@ -58,6 +67,12 @@
 											<label class="control-label">Tên</label>
 											<div class="controls">
 												<input id="Name1" name="Name1" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">Hình ảnh</label>
+											<div class="controls">
+												<input id="Image1" name="Image1" type="text" class="form-control input-small"/>
 											</div>
 										</div>
 										<div class="form-group">
@@ -82,7 +97,7 @@
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h3><i class="glyphicons-CategoryVideo modal-icon"/>CẬP NHẬT DANH MỤC BÀI VIẾT</h3>
+									<h3><i class="glyphicons-CategoryVideo modal-icon"/>CẬP NHẬT DANH MỤC VIDEO</h3>
 								</div>
 								<form id="FormCategoryVideoUpdate" action="#" class="form-horizontal" novalidate="novalidate">
 									<div class="modal-body">
@@ -90,6 +105,12 @@
 											<label class="control-label">Tên</label>
 											<div class="controls">
 												<input id="Name2" name="Name2" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">Hình ảnh</label>
+											<div class="controls">
+												<input id="Image2" name="Image2" type="text" class="form-control input-small"/>
 											</div>
 										</div>
 										<div class="form-group">
@@ -110,6 +131,7 @@
 					<!-- END UPDATE DIALOG  -->
 					<div metal:use-macro="mDialog.xhtml/DialogDel"/>
 					<div metal:use-macro="mDialog.xhtml/DialogDelSelected"/>
+					<div id="IdBuddha" tal:attributes="alt Buddha/getId"/>
 				</div>
 			</div>
 		</div>
@@ -178,8 +200,10 @@
 				submitHandler: function (form) {					
 					var Data = [];
 					Data[0] = 'null';
-					Data[1] = $('#Name1').val();
-					Data[2] = $('#Order1').val();				
+					Data[1] = $('#IdBuddha').attr('alt');
+					Data[2] = $('#Name1').val();
+					Data[3] = $('#Image1').val();
+					Data[4] = $('#Order1').val();
 													
 					var URL = "/object/ins/CategoryVideo";
 					$.ajax({
@@ -211,6 +235,7 @@
 				$.getJSON(url, function(data){
 					$('#URLUpdButton').attr('alt', 	data.Id);
 					$('#Name2').attr('value', 		data.Name);
+					$('#Image2').attr('value', 		data.Image);
 					$('#Order2').attr('value', 		data.Order);					
 				});
 			});
@@ -237,8 +262,10 @@
 				submitHandler: function (form) {					
 					var Data = [];								
 					Data[0] = $('#URLUpdButton').attr('alt');
-					Data[1] = $('#Name2').val();
-					Data[2] = $('#Order2').val();									
+					Data[1] = $('#IdBuddha').attr('alt');
+					Data[2] = $('#Name2').val();
+					Data[3] = $('#Image2').val();
+					Data[4] = $('#Order2').val();									
 									
 					var URL = "/object/upd/CategoryVideo";
 					$.ajax({

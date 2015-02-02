@@ -35,14 +35,8 @@
 			if (!isset($Page)) $Page = 1;
 			$CollectAll = $mCollect->findByPage(array($IdCustomer, $Page, $Config->getValue() ));
 			$PN = new \MVC\Domain\PageNavigation( $Customer->getCollectAll()->count(), $Config->getValue(), $Customer->getURLCollect());
-			
+						
 			$Title = mb_strtoupper($Customer->getName(), 'UTF8');
-			$Navigation = array(			
-				array("KHOẢN THU", "/collect"),
-				array("CHUNG", "/collect/general")
-			);
-			
-			$Title = "KHOẢN THU KHÁC";
 			$Navigation = array(
 				array("THU / CHI", "/money"),				
 			);

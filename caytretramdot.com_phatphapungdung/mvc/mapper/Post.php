@@ -16,7 +16,7 @@ class Post extends Mapper implements \MVC\Domain\PostFinder {
 
 		$findByStmt 		= sprintf("select *  from %s where id_category=:id_category order by `time` DESC", $tblPost);
 		$findByPageStmt 	= sprintf("select *  from %s where id_category=:id_category order by `time` DESC LIMIT :start,:max", $tblPost);
-		$findByTopStmt 		= sprintf("select *  from %s order by `time` DESC LIMIT 6", $tblPost);
+		$findByLastestStmt 	= sprintf("select *  from %s order by `time` DESC LIMIT 6", $tblPost);
 		
 		$searchByTitleStmt 		= sprintf("select *  from %s where `title` like :title", $tblPost);
 		$searchByTitlePageStmt 	= sprintf("select *  from %s where `title` like :title LIMIT :start,:max", $tblPost);
@@ -29,7 +29,7 @@ class Post extends Mapper implements \MVC\Domain\PostFinder {
 		$this->findByKeyStmt 	= self::$PDO->prepare($findByKeyStmt);
 		
 		$this->findByStmt 		= self::$PDO->prepare($findByStmt);
-		$this->findByTopStmt 	= self::$PDO->prepare($findByTopStmt);
+		$this->findByLastestStmt 	= self::$PDO->prepare($findByLastestStmt);
 		$this->findByPageStmt 	= self::$PDO->prepare($findByPageStmt);
 		$this->searchByTitleStmt 		= self::$PDO->prepare($searchByTitleStmt);
 		$this->searchByTitlePageStmt 	= self::$PDO->prepare($searchByTitlePageStmt);
@@ -118,9 +118,9 @@ class Post extends Mapper implements \MVC\Domain\PostFinder {
         return new PostCollection( $this->findByStmt->fetchAll(), $this );
     }
 	
-	function findByTop( $values ){
-        $this->findByTopStmt->execute( $values );
-        return new PostCollection( $this->findByTopStmt->fetchAll(), $this);
+	function findByLastest( $values ){
+        $this->findByLastestStmt->execute( $values );
+        return new PostCollection( $this->findByLastestStmt->fetchAll(), $this);
     }
 	
 	function findByPage( $values ) {		

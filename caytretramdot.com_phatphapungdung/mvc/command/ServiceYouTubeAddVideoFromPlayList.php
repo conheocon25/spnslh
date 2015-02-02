@@ -14,7 +14,8 @@
 			$IdCategory	= $request->getProperty("IdCategory");
 			$DTitle 	= $request->getProperty("DTitle");
 			$DURL 		= $request->getProperty("DURL");
-			
+			$DViewed 	= $request->getProperty("DViewed");
+						
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
@@ -24,6 +25,8 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------			
+			\ini_set('max_execution_time', 300); //300 seconds = 5 minutes
+			
 			for ($i = 0; $i< count($DURL); $i++)
 			{								
 				    $Id = preg_replace('~
@@ -52,8 +55,6 @@
 					'$1',
 					$DURL[$i]);
 								
-				//echo $Id." - ";
-				
 				$Video = new \MVC\Domain\Video(
 					null,
 					$IdCategory,
@@ -61,7 +62,7 @@
 					"",
 					date('Y-m-d H:i:s'),
 					$Id,
-					1,
+					$DViewed[$i],
 					1,
 					""
 				);

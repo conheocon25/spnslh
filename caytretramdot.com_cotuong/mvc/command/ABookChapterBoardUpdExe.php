@@ -36,7 +36,7 @@
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------			
 			$Book = $mBook->find($IdBook);
-			$Book->setTime();
+			$Book->setTime(date('Y-m-d H:i:s'));
 			$mBook->update($Book);
 			
 			$Board= $mBoard->find($IdBoard);

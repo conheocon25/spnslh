@@ -45,7 +45,7 @@
 			$request->setObject("PN", 					$PN);
 			$request->setProperty("Page", 				$Page);
 			$request->setObject("VideoAll", 			$VideoAll);
-			
+			$request->setObject("Buddha", 				$Buddha);
 			$request->setObject("Category", 			$Category);			
 			$request->setObject("CategoryPostAll", 		$CategoryPostAll);
 			$request->setObject("CategoryVideoAll", 	$CategoryVideoAll);
