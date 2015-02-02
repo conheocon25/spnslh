@@ -2,22 +2,20 @@
 Namespace MVC\Domain;
 require_once( "mvc/base/domain/DomainObject.php" );
 
-class CategoryVideo extends Object{
+class CategoryBuddha extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE PROPERTY
 	//-------------------------------------------------------------------------------
 	private $Id;
-	private $IdCategory;
 	private $Name;	
-	private $Order;
+	private $Order;	
 	private $Key;
 	
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-	function __construct($Id=null, $IdCategory=null, $Name=null, $Order=null, $Key=null){
+	function __construct($Id=null, $Name=null, $Order=null, $Key=null){
 		$this->Id 			= $Id;
-		$this->IdCategory 	= $IdCategory;
 		$this->Name 		= $Name;
 		$this->Order 		= $Order;		
 		$this->Key 			= $Key;
@@ -25,19 +23,9 @@ class CategoryVideo extends Object{
 	}
 		
 	function getId() {return $this->Id;}
-	
-	function setIdCategory($IdCategory) {$this->IdCategory = $IdCategory;$this->markDirty();}
-	function getIdCategory() 			{return $this->IdCategory;}
-	function getCategory(){
-		$mCategoryBuddha 	= new \MVC\Mapper\CategoryBuddha();
-		$Category 			= $mCategoryBuddha->find($this->IdCategory);
-		return $Category;
-	}
 		
 	function setName($Name) {$this->Name = $Name;$this->markDirty();}
 	function getName() 		{return $this->Name;}
-	
-	function getImage() 	{return "/data/image/bg/book.png";}
 	
 	function setOrder($Order){$this->Order = $Order;$this->markDirty();}
 	function getOrder() 	{return $this->Order;}
@@ -69,20 +57,18 @@ class CategoryVideo extends Object{
 	//-------------------------------------------------------------------------------
 	//GET LIST
 	//-------------------------------------------------------------------------------
-	function getVideoAll(){
-		$mVideo		= new \MVC\Mapper\Video();
-		$VideoAll 	= $mVideo->findBy(array($this->getId()));
-		return $VideoAll;
+	function getCategoryAll(){
+		$mCategoryVideo		= new \MVC\Mapper\CategoryVideo();
+		$CategoryVideoAll 	= $mCategoryVideo->findBy(array($this->getId()));
+		return $CategoryVideoAll;
 	}
 		
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLView()	{return "/video/".$this->getCategory()->getKey()."/".$this->getKey();}	
+	function getURLView()	{return "/video/".$this->getKey();}	
 	function getURLSetting(){return "/admin/video/".$this->getId();}
-	function getURLSettingVideoInsLoad(){return "/admin/video/".$this->getId()."/ins/load"	;}
-	function getURLSettingVideoInsExe()	{return "/admin/video/".$this->getId()."/ins/exe"	;}
-		
+			
 	//-------------------------------------------------------------------------------
 	static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
 	static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}

@@ -1,38 +1,35 @@
 <?php
 namespace MVC\Mapper;
 require_once( "mvc/base/Mapper.php" );
-class CategoryVideo extends Mapper implements \MVC\Domain\CategoryVideoFinder{
+class CategoryBuddha extends Mapper implements \MVC\Domain\CategoryBuddhaFinder{
 
     function __construct() {
         parent::__construct();
 		
-		$tblCategoryVideo = "tbl_category_video";
+		$tblCategoryBuddha = "tbl_category_buddha";
 						
-		$selectAllStmt 	= sprintf("select * from %s order by `order` DESC", $tblCategoryVideo);
-		$selectStmt 	= sprintf("select * from %s where id=?", $tblCategoryVideo);
-		$updateStmt 	= sprintf("update %s set id_buddha=?, name=?, `order`=?, `key`=? where id=?", $tblCategoryVideo);
-		$insertStmt 	= sprintf("insert into %s ( id_buddha, name, `order`, `key`) values(?, ?, ?, ?)", $tblCategoryVideo);
-		$deleteStmt 	= sprintf("delete from %s where id=?", $tblCategoryVideo);
-		$findByStmt 	= sprintf("SELECT * FROM  %s WHERE id_buddha=? ORDER BY `order`, name", $tblCategoryVideo);
-		$findByPageStmt = sprintf("SELECT * FROM  %s WHERE id_buddha=:id_buddha ORDER BY `order`, name	LIMIT :start,:max", $tblCategoryVideo);
-		$findByKeyStmt 	= sprintf("select *  from %s where `key`=?", $tblCategoryVideo);		
+		$selectAllStmt 	= sprintf("select * from %s order by `order` DESC", $tblCategoryBuddha);
+		$selectStmt 	= sprintf("select * from %s where id=?", $tblCategoryBuddha);
+		$updateStmt 	= sprintf("update %s set name=?, `order`=?, `key`=? where id=?", $tblCategoryBuddha);
+		$insertStmt 	= sprintf("insert into %s ( name, `order`, `key`) values(?, ?, ?)", $tblCategoryBuddha);
+		$deleteStmt 	= sprintf("delete from %s where id=?", $tblCategoryBuddha);
+		$findByPageStmt = sprintf("SELECT * FROM  %s ORDER BY `order`, name	LIMIT :start,:max", $tblCategoryBuddha);
+		$findByKeyStmt 	= sprintf("select *  from %s where `key`=?", $tblCategoryBuddha);		
 				
         $this->selectAllStmt 		= self::$PDO->prepare($selectAllStmt);
         $this->selectStmt 			= self::$PDO->prepare($selectStmt);
         $this->updateStmt 			= self::$PDO->prepare($updateStmt);
         $this->insertStmt 			= self::$PDO->prepare($insertStmt);
 		$this->deleteStmt 			= self::$PDO->prepare($deleteStmt);
-		$this->findByStmt 			= self::$PDO->prepare($findByStmt);
 		$this->findByPageStmt 		= self::$PDO->prepare($findByPageStmt);
 		$this->findByKeyStmt 		= self::$PDO->prepare($findByKeyStmt);							
 		
 		
     } 
-    function getCollection( array $raw ) {return new CategoryVideoCollection( $raw, $this );}
+    function getCollection( array $raw ) {return new CategoryBuddhaCollection( $raw, $this );}
     protected function doCreateObject( array $array ) {		
-        $obj = new \MVC\Domain\CategoryVideo( 
+        $obj = new \MVC\Domain\CategoryBuddha( 
 			$array['id'],
-			$array['id_buddha'],
 			$array['name'],
 			$array['order'],			
 			$array['key']
@@ -40,10 +37,9 @@ class CategoryVideo extends Mapper implements \MVC\Domain\CategoryVideoFinder{
         return $obj;
     }
 	
-    protected function targetClass() {  return "CategoryVideo";}
+    protected function targetClass() {  return "CategoryBuddha";}
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array( 
-			$object->getIdCategory(),
 			$object->getName(),
 			$object->getOrder(),			
 			$object->getKey()
@@ -55,7 +51,6 @@ class CategoryVideo extends Mapper implements \MVC\Domain\CategoryVideoFinder{
     
     protected function doUpdate( \MVC\Domain\Object $object ) {
         $values = array( 
-			$object->getIdCategory(),
 			$object->getName(),
 			$object->getOrder(),			
 			$object->getKey(),
@@ -67,17 +62,11 @@ class CategoryVideo extends Mapper implements \MVC\Domain\CategoryVideoFinder{
     function selectStmt() {return $this->selectStmt;}	
     function selectAllStmt() {return $this->selectAllStmt;}
 	
-	function findBy( $values ) {				
-		$this->findByStmt->execute($values);
-        return new CategoryVideoCollection( $this->findByStmt->fetchAll(), $this );
-    }
-	
 	function findByPage( $values ) {
-		$this->findByPageStmt->bindValue(':id_buddha', (int)($values[0]), \PDO::PARAM_INT);
-		$this->findByPageStmt->bindValue(':start', ((int)($values[1])-1)*(int)($values[2]), \PDO::PARAM_INT);
-		$this->findByPageStmt->bindValue(':max', (int)($values[2]), \PDO::PARAM_INT);
+		$this->findByPageStmt->bindValue(':start', ((int)($values[0])-1)*(int)($values[1]), \PDO::PARAM_INT);
+		$this->findByPageStmt->bindValue(':max', (int)($values[1]), \PDO::PARAM_INT);
 		$this->findByPageStmt->execute();
-        return new CategoryVideoCollection( $this->findByPageStmt->fetchAll(), $this );
+        return new CategoryBuddhaCollection( $this->findByPageStmt->fetchAll(), $this );
     }
 	
 	function findByKey( $values ) {	

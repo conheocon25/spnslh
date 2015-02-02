@@ -22,11 +22,13 @@ RewriteRule ^bai-viet/([A-Za-z0-9_-]+)$													?cmd=FCategoryPost&KCategory
 RewriteRule ^bai-viet/([A-Za-z0-9_-]+)/page/([0-9]+)$									?cmd=FCategoryPost&KCategory=$1&Page=$2 [L]
 RewriteRule ^bai-viet/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$								?cmd=FPost&KCategory=$1&KPost=$2 [L]
 
-RewriteRule ^video/([A-Za-z0-9_-]+)$													?cmd=FCategoryVideo&KCategory=$1 [L]
-RewriteRule ^video/([A-Za-z0-9_-]+)/page/([0-9]+)$										?cmd=FCategoryVideo&KCategory=$1&Page=$2 [L]
-RewriteRule ^video/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$									?cmd=FVideo&KCategory=$1&KVideo=$2 [L]
+RewriteRule ^video/([A-Za-z0-9_-]+)$													?cmd=FCategoryBuddha&KBuddha=$1 [L]
+RewriteRule ^video/([A-Za-z0-9_-]+)/page/([0-9]+)$										?cmd=FCategoryBuddha&KBuddha=$1&Page=$2 [L]
+RewriteRule ^video/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$									?cmd=FCategoryVideo&KBuddha=$1&KCategory=$2 [L]
+RewriteRule ^video/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/page/([0-9]+)$						?cmd=FCategoryVideo&KBuddha=$1&KCategory=$2&Page=$3 [L]
+RewriteRule ^video/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$					?cmd=FVideo&KBuddha=$1&KCategory=$2&KVideo=$3 [L]
 
-RewriteRule ^lien-he$ 											?cmd=FContact 		[L]
+RewriteRule ^lien-he$ 																	?cmd=FContact 		[L]
 
 RewriteRule ^dang-nhap$ 										?cmd=SigninLoad [L]
 RewriteRule ^dang-nhap/exe$ 									?cmd=SigninExe [L]

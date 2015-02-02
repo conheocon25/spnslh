@@ -65,8 +65,8 @@
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Video<span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-							<li tal:repeat="Category CategoryVideoAll">
-								<a tal:attributes="href Category/getURLView" class="clearfix"><span class="pull-left" tal:content="Category/getName"/><span class="pull-right" tal:content="Category/getVideoAll/count"/></a>
+							<li tal:repeat="Category CategoryBuddhaAll">
+								<a tal:attributes="href Category/getURLView" class="clearfix"><span class="pull-left" tal:content="Category/getName"/> <span class="pull-right" tal:content="Category/getCategoryAll/count"/></a>
 							</li>
 						</ul>
 					</li>					

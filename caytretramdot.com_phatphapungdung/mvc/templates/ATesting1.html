@@ -20,18 +20,21 @@
 								<div class="control-group">
 									<label class="control-label">Danh mục</label>
 									<div class="controls">
-										<select name="IdBook" id="IdBook" style="width:80%;">
-											<option tal:repeat="Book BookAll" tal:attributes="value Book/getId">
-												<span tal:content="Book/getTitle"/>
+										<select name="IdCategory" id="IdCategory" style="width:80%;">
+											<option tal:repeat="Category CategoryAll" tal:attributes="value Category/getId">
+												<span tal:content="Category/getName"/>
 											</option>
 										</select>
 									</div>
-								</div>
+								</div>								
 								<div class="control-group">
 									<label class="control-label" for="IdPlayListYoutube">Id Playlist YouTube</label>
 									<div class="controls">
 										<input type="text" id="IdPlayListYoutube" name="IdPlayListYoutube" />
 									</div>
+								</div>
+								<div class="form-actions">
+									<button class="btn btn-success Exe">Thực hiện</button>
 								</div>
 							</div>
 						</div>
@@ -43,36 +46,48 @@
 		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
 		<script type="text/javascript">
 		/*<![CDATA[*/
-		$("#IdPlayListYoutube").change(function(){ 
-			var DTitle 	= [];
-			var DURL 	= [];
-			var IdPlayList 	= $(this).val();
-			var URL 		= "https://gdata.youtube.com/feeds/api/playlists/" + IdPlayList + "?v=2&alt=json&max-results=50";
-			var Count		= 0;
-			var IdBook		= $("#IdBook").val();
+		$(".Exe").click(function(){
+			//PLg0vLHHEmNEKV2JKd2kS4N37ux1p1GNgE
+			//PLg0vLHHEmNEKV2JKd2kS4N37ux1p1GNgE
+			var Count 	= 2;
+			var Page 	= 0;
+			var IdPlayList 	= $("#IdPlayListYoutube").val();
+			var IdCategory	= $("#IdCategory").val();
 			
-			//Load dữ liệu JSON lên FORM
-			$.getJSON(URL, function(data){								
-				Count = data.feed.entry.length;
-				
-				for (var i=0; i<Count; i++){					
-					DTitle[i] 	= data.feed.entry[i].title.$t;
-					DURL[i] 	= data.feed.entry[i].content.src;
-				}
-				//alert(Count);
-				
-				var URL = "/service/youtube/add/video/from/playlist";
+			while (Count >0){
+				var URL = "https://gdata.youtube.com/feeds/api/playlists/" + IdPlayList + "?v=2&start-index="+(Page*50+1)+"&alt=json&max-results=50";
+								
+				//Load dữ liệu JSON lên FORM
 				$.ajax({
-					type: "POST",
-					data: {IdBook:IdBook, DTitle:DTitle, DURL:DURL},
 					url: URL,
-					success: function(msg){
-						alert("Đã thêm Video từ danh sách xong !");
+					async: false,
+					dataType: 'json',
+					success: function (data) {
+						var DTitle 	= [];
+						var DURL 	= [];
+						
+						Count = data.feed.entry.length;					
+						for (var i=0; i<Count; i++){
+							DTitle[i] 	= data.feed.entry[i].title.$t;
+							DURL[i] 	= data.feed.entry[i].content.src;
+						}					
+						
+						var URL1 = "/service/youtube/add/video/from/playlist";
+						$.ajax({
+							type: "POST",
+							data: {IdCategory:IdCategory, DTitle:DTitle, DURL:DURL},
+							url: URL1,
+							success: function(msg){
+								
+							}
+						});
 					}
-				});				
-			});
+				});
+				alert(Count);
+				Page = Page + 1;
+			}
+			alert("Đã thực hiện xong ! ");			
 		});
-
 		/*]]>*/
 		</script>
 	</body>
