@@ -20,7 +20,7 @@
 			$mConfig 		= new \MVC\Mapper\Config();
 			$mPost 			= new \MVC\Mapper\Post();
 
-			$mCategoryVideo = new \MVC\Mapper\CategoryVideo();
+			$mCategoryBuddha = new \MVC\Mapper\CategoryBuddha();
 			$mCategoryPost 	= new \MVC\Mapper\CategoryPost();
 									
 			//-------------------------------------------------------------
@@ -32,7 +32,7 @@
 			$mPost->update($Post);
 			
 			$CategoryPostAll 	= $mCategoryPost->findAll();
-			$CategoryVideoAll 	= $mCategoryVideo->findAll();
+			$CategoryBuddhaAll 	= $mCategoryBuddha->findAll();
 															
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
@@ -41,7 +41,7 @@
 			$request->setObject("Category", 			$Category);
 			$request->setObject("Post", 				$Post);
 			$request->setObject("CategoryPostAll", 		$CategoryPostAll);
-			$request->setObject("CategoryVideoAll", 		$CategoryVideoAll);
+			$request->setObject("CategoryBuddhaAll", 		$CategoryBuddhaAll);
 									
 			return self::statuses('CMD_DEFAULT');
 		}

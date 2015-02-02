@@ -50,7 +50,7 @@ class Post extends Object{
 	
 	function setTitle( $Title ){$this->Title = $Title;$this->markDirty();}   
 	function getTitle( ) {return $this->Title;}	
-	function getTitleReduce(){$S = new \MVC\Library\String($this->Title);return $S->reduce(45);}
+	function getTitleReduce(){$S = new \MVC\Library\String($this->Title);return $S->reduce(14);}
 			
 	function getImage(){		
 		$first_img = '';

@@ -13,8 +13,7 @@
 			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
 			<div class="row">
 				<div class="col-12">
-					<div class="widget-box">
-						<!-- PLVd6o4LLw1kJMvLHEbiZRdZ_cEwPBWjJs !-->
+					<div class="widget-box">						
 						<div class="widget-content nopadding">
 							<div class="form-horizontal">
 								<div class="control-group">
@@ -22,7 +21,7 @@
 									<div class="controls">
 										<select name="IdCategory" id="IdCategory" style="width:80%;">
 											<option tal:repeat="Category CategoryAll" tal:attributes="value Category/getId">
-												<span tal:content="Category/getName"/>
+												<span tal:content="Category/getCategory/getName"/> / <span tal:content="Category/getName"/>
 											</option>
 										</select>
 									</div>
@@ -46,15 +45,13 @@
 		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
 		<script type="text/javascript">
 		/*<![CDATA[*/
-		$(".Exe").click(function(){
-			//PLg0vLHHEmNEKV2JKd2kS4N37ux1p1GNgE
-			//PLg0vLHHEmNEKV2JKd2kS4N37ux1p1GNgE
-			var Count 	= 2;
+		$(".Exe").click(function(){			
+			var Count 	= 50;
 			var Page 	= 0;
 			var IdPlayList 	= $("#IdPlayListYoutube").val();
 			var IdCategory	= $("#IdCategory").val();
 			
-			while (Count >0){
+			while (Count >=50){
 				var URL = "https://gdata.youtube.com/feeds/api/playlists/" + IdPlayList + "?v=2&start-index="+(Page*50+1)+"&alt=json&max-results=50";
 								
 				//Load dữ liệu JSON lên FORM
@@ -63,19 +60,27 @@
 					async: false,
 					dataType: 'json',
 					success: function (data) {
-						var DTitle 	= [];
-						var DURL 	= [];
-						
-						Count = data.feed.entry.length;					
+						var DTitle 		= [];
+						var DURL 		= [];
+						var DViewed 	= [];
+						var DLiked	 	= [];
+						var Index   	= 0;
+												
+						Count = data.feed.entry.length;
 						for (var i=0; i<Count; i++){
-							DTitle[i] 	= data.feed.entry[i].title.$t;
-							DURL[i] 	= data.feed.entry[i].content.src;
-						}					
-						
+							//Video Private không thể truy xuất được
+							if (data.feed.entry[i].title.$t != "Private video"){
+								DTitle[Index] 	= data.feed.entry[i].title.$t;
+								DURL[Index] 	= data.feed.entry[i].content.src;
+								DViewed[Index] 	= data.feed.entry[i].yt$statistics.viewCount;								
+								Index ++;
+							}
+						}
+						alert("A");
 						var URL1 = "/service/youtube/add/video/from/playlist";
 						$.ajax({
 							type: "POST",
-							data: {IdCategory:IdCategory, DTitle:DTitle, DURL:DURL},
+							data: {IdCategory:IdCategory, DTitle:DTitle, DURL:DURL, DViewed:DViewed},
 							url: URL1,
 							success: function(msg){
 								
@@ -83,10 +88,9 @@
 						});
 					}
 				});
-				alert(Count);
 				Page = Page + 1;
 			}
-			alert("Đã thực hiện xong ! ");			
+			alert("Đã thêm xong !");
 		});
 		/*]]>*/
 		</script>

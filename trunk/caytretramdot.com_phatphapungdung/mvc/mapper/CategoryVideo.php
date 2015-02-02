@@ -10,8 +10,8 @@ class CategoryVideo extends Mapper implements \MVC\Domain\CategoryVideoFinder{
 						
 		$selectAllStmt 	= sprintf("select * from %s order by `order` DESC", $tblCategoryVideo);
 		$selectStmt 	= sprintf("select * from %s where id=?", $tblCategoryVideo);
-		$updateStmt 	= sprintf("update %s set id_buddha=?, name=?, `order`=?, `key`=? where id=?", $tblCategoryVideo);
-		$insertStmt 	= sprintf("insert into %s ( id_buddha, name, `order`, `key`) values(?, ?, ?, ?)", $tblCategoryVideo);
+		$updateStmt 	= sprintf("update %s set id_buddha=?, name=?, image=?, `order`=?, `key`=? where id=?", $tblCategoryVideo);
+		$insertStmt 	= sprintf("insert into %s ( id_buddha, name, image, `order`, `key`) values(?, ?, ?, ?, ?)", $tblCategoryVideo);
 		$deleteStmt 	= sprintf("delete from %s where id=?", $tblCategoryVideo);
 		$findByStmt 	= sprintf("SELECT * FROM  %s WHERE id_buddha=? ORDER BY `order`, name", $tblCategoryVideo);
 		$findByPageStmt = sprintf("SELECT * FROM  %s WHERE id_buddha=:id_buddha ORDER BY `order`, name	LIMIT :start,:max", $tblCategoryVideo);
@@ -34,6 +34,7 @@ class CategoryVideo extends Mapper implements \MVC\Domain\CategoryVideoFinder{
 			$array['id'],
 			$array['id_buddha'],
 			$array['name'],
+			$array['image'],
 			$array['order'],			
 			$array['key']
 		);
@@ -45,6 +46,7 @@ class CategoryVideo extends Mapper implements \MVC\Domain\CategoryVideoFinder{
         $values = array( 
 			$object->getIdCategory(),
 			$object->getName(),
+			$object->getImage(),
 			$object->getOrder(),			
 			$object->getKey()
 		); 
@@ -57,6 +59,7 @@ class CategoryVideo extends Mapper implements \MVC\Domain\CategoryVideoFinder{
         $values = array( 
 			$object->getIdCategory(),
 			$object->getName(),
+			$object->getImage(),
 			$object->getOrder(),			
 			$object->getKey(),
 			$object->getId()

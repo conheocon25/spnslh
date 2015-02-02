@@ -24,19 +24,18 @@
 						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------
-			$PostTopAll 		= $mPost->findByTop(array());
-			
-			$CategoryPostAll 	= $mCategoryPost->findAll();			
+			//-------------------------------------------------------------						
+			$CategoryPostAll 	= $mCategoryPost->findAll();
 			$CategoryBuddhaAll 	= $mCategoryBuddha->findAll();
+			$PostLastest		= $mPost->findByLastest(array());
 									
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
 			$request->setProperty("Active", 			'Home');			
-			$request->setObject("PostTopAll", 			$PostTopAll);
+			$request->setObject("PostLastest", 			$PostLastest);
 			
-			$request->setObject("CategoryPostAll", 		$CategoryPostAll);			
+			$request->setObject("CategoryPostAll", 		$CategoryPostAll);
 			$request->setObject("CategoryBuddhaAll", 	$CategoryBuddhaAll);
 						
 			return self::statuses('CMD_DEFAULT');

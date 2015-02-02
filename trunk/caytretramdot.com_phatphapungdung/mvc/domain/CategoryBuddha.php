@@ -62,13 +62,19 @@ class CategoryBuddha extends Object{
 		$CategoryVideoAll 	= $mCategoryVideo->findBy(array($this->getId()));
 		return $CategoryVideoAll;
 	}
+	
+	function getVideoLastest(){
+		$mVideo		= new \MVC\Mapper\Video();
+		$VideoAll 	= $mVideo->findByLastest(array($this->getId()));
+		return $VideoAll;
+	}
 		
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLView()	{return "/video/".$this->getKey();}	
-	function getURLSetting(){return "/admin/video/".$this->getId();}
-			
+	function getURLView()	{return "/video/".$this->getKey();}		
+	function getURLSetting(){return "/admin/setting/category/video/".$this->getId();}
+	
 	//-------------------------------------------------------------------------------
 	static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
 	static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}

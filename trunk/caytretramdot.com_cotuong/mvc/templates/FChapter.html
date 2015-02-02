@@ -16,7 +16,7 @@
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<a tal:attributes="href Book/getURLView">
-								<i class="glyphicon glyphicon-home"/>
+								<i class="glyphicon glyphicon-home"/> <span tal:content="Chapter/getTitle"/>
 							</a>
 						</div>
 						<div class="panel-body">							
@@ -26,11 +26,13 @@
 						</div>
 					</div>
 					<div class="panel panel-default">						
-						<div class="panel-body">
-							<div class="article-meta-date" />							
-							<div class="article-meta-more">
-								<a tal:attributes="href Board/getURLView" class="btn btn-default" tal:repeat="Board Chapter/getBoardAll">
-									<span tal:content="Board/getName"/>									
+						<div class="panel-body">							
+							<div class="col-xs-6 col-md-3" tal:repeat="Board Chapter/getBoardAll">
+								<a tal:attributes="href Board/getURLView" class="thumbnail">
+									<img src="/data/chess/150/BoardThumb.jpg" />
+									<div class="caption text-center">
+										<span tal:content="Board/getName"/> ( <span tal:content="Board/getDetailAll/count"/> nước)
+									</div>
 								</a>
 							</div>
 						</div>

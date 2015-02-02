@@ -36,14 +36,14 @@
 						</div>
 					</div>
 					<div class="panel panel-default">
-						<div class="panel-body">
-							<div class="article-meta-date" />
-							<div class="article-meta-more">
-								<a tal:attributes="href Chapter1/getURLView;class 'btn btn-default'"  tal:repeat="Chapter1 Book/getChapterAll">
-									<span tal:content="Chapter1/getTitle"/>
+						<div class="panel-body">							
+							<div class="col-xs-6 col-md-3" tal:repeat="Chapter1 Book/getChapterAll">
+								<a tal:attributes="href Chapter1/getURLView" class="thumbnail">
+									<img src="/data/chess/150/chapter.png" />
+									<div class="caption text-center" tal:content="Chapter1/getTitle" />
 								</a>
 							</div>
-						</div>
+						</div>						
 					</div>
 				</div>
 				<div class="col-md-3">

@@ -10,14 +10,8 @@
 			<div class="row-fluid">
 				<div class="col-md-9 col-sm-9">
 					<div class="row">
-						<table class="table table-striped">
-							<tr>
-								<th width="32px" align="center">STT</th>
-								<th width="64px" />
-								<th>SÁCH</th>
-							</tr>
-							<tr tal:repeat="Book BookAll">
-								<td><div class="text-center" tal:content="repeat/Book/number"/></td>
+						<table class="table table-striped">							
+							<tr tal:repeat="Book BookAll">								
 								<td>
 									<a tal:attributes="href Book/getURLView">
 										<img width="64px" tal:attributes="src Book/getThumb"/>

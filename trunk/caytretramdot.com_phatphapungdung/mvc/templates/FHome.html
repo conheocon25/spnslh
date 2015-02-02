@@ -9,34 +9,45 @@
 		<div class="container-fluid" id="wraper">
 			<div class="row">
 				<div class="col-md-9 col-sm-9">
-					<h3>TIN TỨC CẬP NHẬT</h3>
-					<table class="table table-striped">
-						<tr tal:repeat="Post PostTopAll">
-							<td width="15%"><img width="96px" tal:attributes="src Post/getImage"/></td>
-							<td>
-								<a tal:attributes="href Post/getURLView"><span tal:content="Post/getTitle"/></a>
-								<p tal:content="structure Post/getContentReduce"/>
-								<p><span tal:content="Post/getTimePrint"/>, <span><i class="glyphicon glyphicon-eye-open"/> <span tal:content="Post/getViewedPrint"/></span>
-									<span><i class="glyphicon glyphicon-heart"/> <span tal:content="Post/getLikedPrint"/></span>
-								</p>
-							</td>
-						</tr>
-					</table>
-					<!--
-					<h3>VIDEO MỚI CẬP NHẬT</h3>				
-					<table class="table table-striped">
-						<tr tal:repeat="Video VideoTopAll">
-							<td width="15%"><img width="96px" tal:attributes="src Video/getImage"/></td>
-							<td>
-								<a tal:attributes="href Video/getURLView"><span tal:content="Video/getTitle"/></a>
-								<p tal:content="structure Video/getInfoReduce"/>								
-								<p><span tal:content="Video/getTimePrint"/>, <span><i class="glyphicon glyphicon-eye-open"/> <span tal:content="Video/getViewedPrint"/></span>
-									<span><i class="glyphicon glyphicon-heart"/> <span tal:content="Video/getLikedPrint"/></span>
-								</p>								
-							</td>
-						</tr>
-					</table>
-					!-->
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<a>
+								<i class="glyphicon glyphicon-tag"/> BẢN TIN
+							</a>
+						</div>
+						<div class="panel-body">
+							<table class="table table-striped">
+								<tr tal:repeat="Post PostLastest">
+									<td width="15%"><img width="96px" tal:attributes="src Post/getImage"/></td>
+									<td>
+										<a tal:attributes="href Post/getURLView"><span tal:content="Post/getTitle"/></a>
+										<p tal:content="structure Post/getContentReduce"/>
+										<p><span tal:content="Post/getTimePrint"/>, <span><i class="glyphicon glyphicon-eye-open"/> <span tal:content="Post/getViewedPrint"/></span> 
+											<span><i class="glyphicon glyphicon-heart"/> <span tal:content="Post/getLikedPrint"/></span>
+										</p>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<tal:block tal:repeat="Buddha CategoryBuddhaAll">
+						<div class="panel panel-default" tal:condition="Buddha/getVideoLastest/count">
+							<div class="panel-heading">
+								<a tal:attributes="href Buddha/getURLView">
+									<i class="glyphicon glyphicon-facetime-video"/>
+									<span tal:content="Buddha/getName"/>
+								</a>
+							</div>
+							<div class="panel-body">
+								<div class="col-xs-6 col-md-3" tal:repeat="Video Buddha/getVideoLastest">
+									<a tal:attributes="href Video/getURLView" class="thumbnail">
+										<img tal:attributes="src Video/getImage" />
+										<div class="caption text-center" tal:content="Video/getTitleReduce" />
+									</a>
+								</div>
+							</div>
+						</div>
+					</tal:block>					
 				</div>	
 			</div>
 		</div>		

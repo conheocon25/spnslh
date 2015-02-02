@@ -26,11 +26,11 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------											
-			$Category 			= $mCategoryBuddha->findByKey($KBuddha);
+			$Buddha 			= $mCategoryBuddha->findByKey($KBuddha);
 			
 			if (!isset($Page)) $Page = 1;
-			$CategoryVideoAll 	= $mCategoryVideo->findByPage(array($Category->getId(), $Page, 8));
-			$PN 				= new \MVC\Domain\PageNavigation($Category->getCategoryAll()->count(), 8, $Category->getURLView() );
+			$CategoryVideoAll 	= $mCategoryVideo->findByPage(array($Buddha->getId(), $Page, 8));
+			$PN 				= new \MVC\Domain\PageNavigation($Buddha->getCategoryAll()->count(), 8, $Buddha->getURLView() );
 			
 			$CategoryPostAll 	= $mCategoryPost->findAll();
 			$CategoryBuddhaAll 	= $mCategoryBuddha->findAll();
@@ -41,7 +41,7 @@
 			$request->setObject("PN", 					$PN);
 			$request->setProperty("Page", 				$Page);
 									
-			$request->setObject("Category", 			$Category);			
+			$request->setObject("Buddha", 				$Buddha);			
 			$request->setObject("CategoryBuddhaAll", 	$CategoryBuddhaAll);
 			$request->setObject("CategoryPostAll", 		$CategoryPostAll);
 			$request->setObject("CategoryVideoAll", 	$CategoryVideoAll);								

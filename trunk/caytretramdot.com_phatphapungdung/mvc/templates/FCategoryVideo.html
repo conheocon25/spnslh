@@ -9,35 +9,44 @@
 		<div class="container-fluid" id="wraper">
 			<div class="row-fluid">
 				<div class="col-md-9 col-sm-9">
-					<div class="row">
-						<table class="table table-striped">
-							<tr tal:repeat="Video VideoAll">
-								<td width="15%"><img width="96px" tal:attributes="src Video/getImage"/></td>
-								<td>
-									<a tal:attributes="href Video/getURLView"><span tal:content="Video/getTitle"/></a>
-									<p tal:content="structure Video/getInfoReduce"/>								
-									<p><span tal:content="Video/getTimePrint"/>, <span><i class="glyphicon glyphicon-eye-open"/> <span tal:content="Video/getViewedPrint"/></span>
-										<span><i class="glyphicon glyphicon-heart"/> <span tal:content="Video/getLikedPrint"/></span>
-									</p>								
-								</td>
-							</tr>
-						</table>
-					</div>
-					<div class="row">
-						<ul class="pagination alternate pull-right page-bar">
-							<li tal:repeat="P PN/getPages" tal:attributes="class php:Page==P->getId()?'active':'disable'">
-								<a tal:attributes="href P/getURL" tal:content="P/getName"/>
-							</li>
-						</ul>
-					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<a tal:attributes="href Buddha/getURLView">
+								<i class="glyphicon glyphicon-facetime-video"/>
+								<span tal:content="Category/getName"/>
+							</a>							
+						</div>
+						<div class="panel-body">
+							
+						</div>
+					</div>					
+					<div class="panel panel-default">
+						<div class="panel-body">							
+							<div class="col-xs-6 col-md-3" tal:repeat="Video VideoAll">
+								<a tal:attributes="href Video/getURLView" class="thumbnail">
+									<img tal:attributes="src Video/getImage" />
+									<div class="caption text-center">
+										<span tal:content="Video/getTitleReduce"/>
+										<br/>
+										<i class="glyphicon glyphicon-stats"/> <span tal:content="Video/getViewedPrint"/>
+									</div>
+								</a>
+							</div>
+							<div class="row">
+								<ul class="pagination alternate pull-right page-bar">
+									<li tal:repeat="P PN/getPages" tal:attributes="class php:Page==P->getId()?'active':'disable'">
+										<a tal:attributes="href P/getURL" tal:content="P/getName"/>
+									</li>
+								</ul>
+							</div>
+						</div>						
+					</div>										
 				</div>
 				<div class="col-md-3 col-sm-3">
 					<div class="panel panel-default">
 						<div class="panel-heading">DANH MỤC</div>
 						<div class="panel-body">
-							<a tal:attributes="href Category1/getURLView;class php: Category1->getId()==Category->getId()?'btn btn-primary btn-block':'btn btn-default btn-block'"  tal:repeat="Category1 CategoryVideoAll">
-								<span tal:content="Category1/getName"/>
-							</a>							
+							
 						</div>
 					</div>					
 				</div>
