@@ -83,7 +83,10 @@ class RssLink extends Object{
 			'Weburl'		=> $this->getWeburl(),
 			'Rssurl' 		=> $this->getRssurl(),
 		 	'Type'			=> $this->getType(),
-			'Enable'		=> $this->getEnable()			
+			'Enable'		=> $this->getEnable(),			
+			'ClassContentName'		=> $this->getClassContentName(),			
+			'ClassAuthor'			=> $this->getClassAuthor(),		
+			'ImgPath'				=> $this->getImgPath()			
 		);
 		return json_encode($json);
 	}
@@ -96,6 +99,9 @@ class RssLink extends Object{
 		$this->Rssurl		= $Data[4];
 		$this->Type 		= $Data[5];
 		$this->Enable	 	= $Data[6];
+		$this->ClassContentName	 	= $Data[7];
+		$this->ClassAuthor	 		= $Data[8];
+		$this->ImgPath		 		= $Data[9];
     }
 			
 	//-------------------------------------------------------------------------------

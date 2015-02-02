@@ -149,7 +149,10 @@
 									$PostAuthor = "BBT";
 								}else {
 									$PostAuthor = html_entity_decode($PostAuthor->plaintext, ENT_QUOTES, 'UTF-8');
-								}				
+								}	
+									
+								$todaypost = new \DateTime('NOW');
+																
 								// Thêm tin mới	nếu $AUTOPost = 1 thì ko cần duyệt tin còn $AUTOPost = 0 thì vào PostRss chờ duyệt tin	
 								if ($AUTOPost == 1 && $PostContentSlash != null ) {
 									$Post = new \MVC\Domain\Post(
@@ -157,7 +160,7 @@
 										$IdCategoryPost,
 										$item['title'],
 										$PostContentSlash,										
-										$item['pubDate'],										
+										$todaypost->format('Y-m-d H:i:s'),										
 										"",
 										10,
 										0
@@ -172,7 +175,7 @@
 										$IdCategoryPost,
 										$item['title'],
 										$PostContentSlash,										
-										$item['pubDate'],										
+										$todaypost->format('Y-m-d H:i:s'),										
 										"",
 										10,
 										0
