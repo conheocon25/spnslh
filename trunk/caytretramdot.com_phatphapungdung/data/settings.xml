@@ -9,6 +9,7 @@
 		<command name="FCategoryPost" 	type="public"><view>FCategoryPost</view></command>		
 		<command name="FPost" 			type="public"><view>FPost</view></command>
 		
+		<command name="FCategoryBuddha" type="public"><view>FCategoryBuddha</view></command>
 		<command name="FCategoryVideo" 	type="public"><view>FCategoryVideo</view></command>
 		<command name="FVideo" 			type="public"><view>FVideo</view></command>
 						

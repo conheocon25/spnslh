@@ -11,6 +11,7 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
+			$KBuddha 	= $request->getProperty('KBuddha');
 			$KCategory 	= $request->getProperty('KCategory');
 			$Page 		= $request->getProperty('Page');
 			
@@ -19,13 +20,15 @@
 			//-------------------------------------------------------------						
 			$mConfig 		= new \MVC\Mapper\Config();
 			$mVideo 		= new \MVC\Mapper\Video();
-			
-			$mCategoryPost 	= new \MVC\Mapper\CategoryPost();
-			$mCategoryVideo	= new \MVC\Mapper\CategoryVideo();
+						
+			$mCategoryPost 		= new \MVC\Mapper\CategoryPost();
+			$mCategoryBuddha	= new \MVC\Mapper\CategoryBuddha();
+			$mCategoryVideo		= new \MVC\Mapper\CategoryVideo();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------											
+			$Buddha 			= $mCategoryBuddha->findByKey($KBuddha);
 			$Category 			= $mCategoryVideo->findByKey($KCategory);
 			
 			if (!isset($Page)) $Page = 1;
@@ -34,6 +37,7 @@
 			
 			$CategoryPostAll 	= $mCategoryPost->findAll();
 			$CategoryVideoAll 	= $mCategoryVideo->findAll();
+			$CategoryBuddhaAll 	= $mCategoryBuddha->findAll();
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
@@ -44,7 +48,9 @@
 			
 			$request->setObject("Category", 			$Category);			
 			$request->setObject("CategoryPostAll", 		$CategoryPostAll);
-			$request->setObject("CategoryVideoAll", 	$CategoryVideoAll);								
+			$request->setObject("CategoryVideoAll", 	$CategoryVideoAll);
+			$request->setObject("CategoryBuddhaAll", 	$CategoryBuddhaAll);
+			
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

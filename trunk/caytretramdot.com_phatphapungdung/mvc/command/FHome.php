@@ -15,31 +15,29 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------						
-			$mConfig 		= new \MVC\Mapper\Config();									
-			$mVideo 		= new \MVC\Mapper\Video();												
-			$mPost 			= new \MVC\Mapper\Post();
+			$mConfig 			= new \MVC\Mapper\Config();
+			$mCategoryBuddha	= new \MVC\Mapper\CategoryBuddha();
+			$mPost 				= new \MVC\Mapper\Post();
 			
-			$mCategoryPost	= new \MVC\Mapper\CategoryPost();						
-			$mCategoryVideo	= new \MVC\Mapper\CategoryVideo();
+			$mCategoryPost		= new \MVC\Mapper\CategoryPost();
+			$mCategoryBuddha	= new \MVC\Mapper\CategoryBuddha();
 						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------											
-			$VideoTopAll 		= $mVideo->findByTop(array());			
+			//-------------------------------------------------------------
 			$PostTopAll 		= $mPost->findByTop(array());
 			
 			$CategoryPostAll 	= $mCategoryPost->findAll();			
-			$CategoryVideoAll 	= $mCategoryVideo->findAll();
+			$CategoryBuddhaAll 	= $mCategoryBuddha->findAll();
 									
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
-			$request->setProperty("Active", 			'Home');
-			$request->setObject("VideoTopAll", 			$VideoTopAll);			
+			$request->setProperty("Active", 			'Home');			
 			$request->setObject("PostTopAll", 			$PostTopAll);
 			
 			$request->setObject("CategoryPostAll", 		$CategoryPostAll);			
-			$request->setObject("CategoryVideoAll", 	$CategoryVideoAll);
+			$request->setObject("CategoryBuddhaAll", 	$CategoryBuddhaAll);
 						
 			return self::statuses('CMD_DEFAULT');
 		}

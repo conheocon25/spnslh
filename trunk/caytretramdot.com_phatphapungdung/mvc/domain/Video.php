@@ -141,7 +141,8 @@ class Video extends Object{
 	//-------------------------------------------------------------------------------	
 	function getURLView(){		
 		$Category 	= $this->getCategory();
-		return "/video/".$Category->getKey()."/".$this->getKey();
+		$Buddha 	= $Category->getCategory();
+		return "/video/".$Buddha->getKey()."/".$Category->getKey()."/".$this->getKey();
 	}
 	
 	function getURLUpdLoad()		{return "/admin/video/".$this->getCategory()->getId()."/".$this->getId()."/upd/load";	}

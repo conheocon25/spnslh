@@ -11,6 +11,7 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
+			$KBuddha 	= $request->getProperty('KBuddha');
 			$KCategory 	= $request->getProperty('KCategory');
 			$KVideo 	= $request->getProperty('KVideo');
 			
@@ -21,7 +22,7 @@
 			$mVideo			= new \MVC\Mapper\Video();			
 			
 			$mCategoryPost 	= new \MVC\Mapper\CategoryPost();
-			$mCategoryVideo	= new \MVC\Mapper\CategoryVideo();
+			$mCategoryBuddha= new \MVC\Mapper\CategoryBuddha();
 									
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -31,7 +32,7 @@
 			$mVideo->update($Video);
 			
 			$CategoryPostAll 	= $mCategoryPost->findAll();			
-			$CategoryVideoAll 	= $mCategoryVideo->findAll();
+			$CategoryBuddhaAll 	= $mCategoryBuddha->findAll();
 															
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
@@ -40,7 +41,7 @@
 			$request->setObject("Video", 				$Video);			
 			$request->setObject("Category", 			$Video->getCategory());
 			$request->setObject("CategoryPostAll", 		$CategoryPostAll);			
-			$request->setObject("CategoryVideoAll", 	$CategoryVideoAll);
+			$request->setObject("CategoryBuddhaAll", 	$CategoryBuddhaAll);
 									
 			return self::statuses('CMD_DEFAULT');
 		}

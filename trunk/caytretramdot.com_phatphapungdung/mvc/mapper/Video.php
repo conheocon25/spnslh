@@ -30,9 +30,9 @@ class Video extends Mapper implements \MVC\Domain\VideoFinder{
 										`liked`, 
 										`key`) values(?, ?, ?, ?, ?, ?, ?, ?)", $tblVideo);
 		$deleteStmt 		= sprintf("delete from %s where id=?", $tblVideo);				
-		$findByStmt 		= sprintf("select *  from %s where id_category=? ORDER BY `title`", $tblVideo);
+		$findByStmt 		= sprintf("select *  from %s where id_category=? ORDER BY id", $tblVideo);
 		$findByKeyStmt 		= sprintf("select *  from %s where `key`=?", $tblVideo);
-		$findByPageStmt 	= sprintf("SELECT * FROM  %s where id_category=:id_category ORDER BY `time` LIMIT :start,:max", $tblVideo);
+		$findByPageStmt 	= sprintf("SELECT * FROM  %s where id_category=:id_category ORDER BY id LIMIT :start,:max", $tblVideo);
 		$findByTopStmt 		= sprintf("select *  from %s ORDER BY `time` DESC LIMIT 6", $tblVideo);
 				
         $this->selectAllStmt 	= self::$PDO->prepare($selectAllStmt);

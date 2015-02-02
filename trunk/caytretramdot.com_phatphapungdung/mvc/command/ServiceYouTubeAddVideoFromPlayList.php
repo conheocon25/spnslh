@@ -1,4 +1,4 @@
-<?php		
+<?php
 	namespace MVC\Command;	
 	class ServiceYouTubeAddVideoFromPlayList extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
@@ -11,7 +11,7 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$IdBook 	= $request->getProperty("IdBook");
+			$IdCategory	= $request->getProperty("IdCategory");
 			$DTitle 	= $request->getProperty("DTitle");
 			$DURL 		= $request->getProperty("DURL");
 			
@@ -19,7 +19,7 @@
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
 			$mConfig 	= new \MVC\Mapper\Config();
-			$mChapter 	= new \MVC\Mapper\Chapter();
+			$mVideo 	= new \MVC\Mapper\Video();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -53,16 +53,21 @@
 					$DURL[$i]);
 								
 				//echo $Id." - ";
-								
-				$Chapter = new \MVC\Domain\Chapter(
+				
+				$Video = new \MVC\Domain\Video(
 					null,
-					$IdBook, 
+					$IdCategory,
 					$DTitle[$i],
 					"",
-					$Id
+					date('Y-m-d H:i:s'),
+					$Id,
+					1,
+					1,
+					""
 				);
-				$Chapter->reKey();
-				$mChapter->insert($Chapter);
+						
+				$Video->reKey();
+				$mVideo->insert($Video);
 			}
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI

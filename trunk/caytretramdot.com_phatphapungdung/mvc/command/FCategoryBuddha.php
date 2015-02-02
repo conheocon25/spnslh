@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class FBook extends Command {
+	class FCategoryBuddha extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -11,37 +11,40 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$KCategory 	= $request->getProperty('KCategory');
-			$KBook 		= $request->getProperty('KBook');
+			$KBuddha 	= $request->getProperty('KBuddha');
+			$Page 		= $request->getProperty('Page');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------						
 			$mConfig 		= new \MVC\Mapper\Config();
-			$mBook 			= new \MVC\Mapper\Book();			
-			$mCategoryPost 	= new \MVC\Mapper\CategoryPost();
-			$mCategoryBook 	= new \MVC\Mapper\CategoryBook();
 									
+			$mCategoryPost 		= new \MVC\Mapper\CategoryPost();
+			$mCategoryBuddha	= new \MVC\Mapper\CategoryBuddha();
+			$mCategoryVideo		= new \MVC\Mapper\CategoryVideo();
+			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------											
-			$Book 				= $mBook->findByKey($KBook);
-			$Category 			= $Book->getCategory();
-			$Book->setViewed($Book->getViewed() + 1);
-			$mBook->update($Book);
+			$Category 			= $mCategoryBuddha->findByKey($KBuddha);
+			
+			if (!isset($Page)) $Page = 1;
+			$CategoryVideoAll 	= $mCategoryVideo->findByPage(array($Category->getId(), $Page, 8));
+			$PN 				= new \MVC\Domain\PageNavigation($Category->getCategoryAll()->count(), 8, $Category->getURLView() );
 			
 			$CategoryPostAll 	= $mCategoryPost->findAll();
-			$CategoryBookAll 	= $mCategoryBook->findAll();
-												
+			$CategoryBuddhaAll 	= $mCategoryBuddha->findAll();
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
-			$request->setObject("URLShare", 			$Book->getURLViewFull());
-			$request->setObject("Category", 			$Category);
-			$request->setObject("Book", 				$Book);
-			$request->setObject("CategoryPostAll", 		$CategoryPostAll);
-			$request->setObject("CategoryBookAll", 		$CategoryBookAll);
+			$request->setObject("PN", 					$PN);
+			$request->setProperty("Page", 				$Page);
 									
+			$request->setObject("Category", 			$Category);			
+			$request->setObject("CategoryBuddhaAll", 	$CategoryBuddhaAll);
+			$request->setObject("CategoryPostAll", 		$CategoryPostAll);
+			$request->setObject("CategoryVideoAll", 	$CategoryVideoAll);								
 			return self::statuses('CMD_DEFAULT');
 		}
 	}
