@@ -20,7 +20,13 @@ class Post extends Mapper implements \MVC\Domain\PostFinder {
 		
 		$searchByTitleStmt 		= sprintf("select *  from %s where `title` like :title", $tblPost);
 		$searchByTitlePageStmt 	= sprintf("select *  from %s where `title` like :title LIMIT :start,:max", $tblPost);
-				
+
+		$findByDateTimeStmt = sprintf(
+			"select *  
+			from %s 
+			where `time` >= ? AND `time` <= ?"
+		, $tblPost);
+		
         $this->selectAllStmt 	= self::$PDO->prepare($selectAllStmt);
         $this->selectStmt 		= self::$PDO->prepare($selectStmt);
         $this->updateStmt 		= self::$PDO->prepare($updateStmt);
@@ -33,7 +39,7 @@ class Post extends Mapper implements \MVC\Domain\PostFinder {
 		$this->findByPageStmt 	= self::$PDO->prepare($findByPageStmt);
 		$this->searchByTitleStmt 		= self::$PDO->prepare($searchByTitleStmt);
 		$this->searchByTitlePageStmt 	= self::$PDO->prepare($searchByTitlePageStmt);
-
+		$this->findByDateTimeStmt 	= self::$PDO->prepare($findByDateTimeStmt);
     } 
     function getCollection( array $raw ) {return new PostCollection( $raw, $this );}
     protected function doCreateObject( array $array ) {
@@ -130,6 +136,10 @@ class Post extends Mapper implements \MVC\Domain\PostFinder {
 		$this->findByPageStmt->execute();
         return new PostCollection( $this->findByPageStmt->fetchAll(), $this );
     }
-
+	
+	function findByDateTime( $values ) {		
+		$this->findByDateTimeStmt->execute($values);
+        return new PostCollection( $this->findByDateTimeStmt->fetchAll(), $this );
+    }
 }
 ?>
