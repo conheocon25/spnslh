@@ -62,8 +62,11 @@
 					$strDatatime = "_" . $todaytime->format('Y-m-d_H_i_s');
 					
 					$ReadRssXml = new ReadRss($Url);				
-					$ReadRssXml->ReadRssXMLByCurl();				
-					$chItems = $ReadRssXml->GetItems();
+					$ReadRssXml->ReadRssXMLByCurl();
+					
+					if (isset($ReadRssXml)) {
+						$chItems = $ReadRssXml->GetItems();
+					}else { $chItems = null; }
 					
 					
 					//Công thêm 11 tiếng do lệch múi giờ Mỹ - Việt Nam
@@ -137,9 +140,11 @@
 								$PostContent = $HTML->find('.' . $ClassContent, 0);					
 								
 								if ( $ImgPath == 0) {
-									foreach( $PostContent->find('img') as $img){
-										if (substr($img->src,0,1) == "/")
-											$img->src =  $WebUrl .$img->src; 
+									if (isset($PostContent)) {
+										foreach( $PostContent->find('img') as $img){
+											if (substr($img->src,0,1) == "/")
+												$img->src =  $WebUrl .$img->src; 
+										}
 									}
 								}
 								
