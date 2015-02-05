@@ -13,11 +13,11 @@
 		<div class="container-fluid" id="wraper">
 			<div class="row">
 				<div class="col-md-9">
-					<div class="panel panel-default">
-						<div class="panel-heading"><H1 tal:content="Post/getTitle"/></div>
+					<div class="panel panel-primary">
+						<div class="panel-heading"><H3 tal:content="Post/getTitle"/></div>
 						<div class="panel-body">
 							<div class="article-meta-date">								
-								<span tal:content="Post/getTimePrint"/>, <span tal:content="Post/getViewed"/> lượt xem
+								<span tal:content="Post/getTimePrint"/>, <i class="glyphicon glyphicon-stats"/> <span tal:content="Post/getViewed"/>
 							</div>
 							<div class="article-meta-more">																				
 								<div class="share-button-group">
@@ -29,11 +29,10 @@
 					</div>
 				</div>
 				<div class="col-md-3 col-sm-3">
-					<div class="panel panel-default">
-						<div class="panel-heading">DANH MỤC</div>
+					<div class="panel panel-default">						
 						<div class="panel-body">
 							<a tal:attributes="href Category1/getURLView;class php: Category1->getId()==Category->getId()?'btn btn-primary btn-block':'btn btn-default btn-block'"  tal:repeat="Category1 CategoryPostAll">
-								<span tal:content="Category1/getName"/> (<span tal:content="Category1/getPostAll/count"/>)
+								<span tal:content="Category1/getName"/>
 							</a>							
 						</div>
 					</div>										

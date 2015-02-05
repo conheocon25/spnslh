@@ -46,50 +46,62 @@
 		<script type="text/javascript">
 		/*<![CDATA[*/
 		$(".Exe").click(function(){			
-			var Count 	= 50;
-			var Page 	= 0;
-			var IdPlayList 	= $("#IdPlayListYoutube").val();
+			var Count 		= 50;
+			var nFlag 		= 1;
+			var URL 		= "";
+			var pageToken 	= "";
+			var IdPlayList 	= $("#IdPlayListYoutube").val();					
 			var IdCategory	= $("#IdCategory").val();
 			
-			while (Count >=50){
-				var URL = "https://gdata.youtube.com/feeds/api/playlists/" + IdPlayList + "?v=2&start-index="+(Page*50+1)+"&alt=json&max-results=50";
-								
-				//Load dữ liệu JSON lên FORM
+			while (nFlag >0)
+			{
+				if (pageToken == "")
+					URL = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId="+IdPlayList+"&key=AIzaSyD58ECe_-WDRAx010gQ1Pg8_Uj3W6o3OPI";
+				else
+					URL = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&pageToken="+pageToken+"&playlistId="+IdPlayList+"&key=AIzaSyD58ECe_-WDRAx010gQ1Pg8_Uj3W6o3OPI";
+				
 				$.ajax({
 					url: URL,
 					async: false,
 					dataType: 'json',
-					success: function (data) {
+					success: function(data){
 						var DTitle 		= [];
 						var DURL 		= [];
 						var DViewed 	= [];
-						var DLiked	 	= [];
-						var Index   	= 0;
-												
-						Count = data.feed.entry.length;
-						for (var i=0; i<Count; i++){
-							//Video Private không thể truy xuất được
-							if (data.feed.entry[i].title.$t != "Private video"){
-								DTitle[Index] 	= data.feed.entry[i].title.$t;
-								DURL[Index] 	= data.feed.entry[i].content.src;
-								DViewed[Index] 	= data.feed.entry[i].yt$statistics.viewCount;								
-								Index ++;
-							}
+						var DLiked 		= [];
+						
+						if(data.hasOwnProperty('nextPageToken')){pageToken = data.nextPageToken;}
+						else{nFlag = 0;}
+																								
+						Count = data.items.length;
+						for (var i=0; i<Count; i++){														
+							DTitle[i] 	= data.items[i].snippet.title;
+							DURL[i] 	= data.items[i].snippet.resourceId.videoId;
+														
+							var URL2 = "https://www.googleapis.com/youtube/v3/videos?part=statistics&id="+DURL[i]+"&key=AIzaSyD58ECe_-WDRAx010gQ1Pg8_Uj3W6o3OPI"
+							$.ajax({
+								url: URL2,
+								async: false,
+								dataType: 'json',
+								success: function(data2){
+									DViewed[i] 	= data2.items[0].statistics.viewCount;
+									DLiked[i] 	= data2.items[0].statistics.likeCount;
+								}
+							});														
 						}
-						alert("A");
+						
 						var URL1 = "/service/youtube/add/video/from/playlist";
 						$.ajax({
 							type: "POST",
-							data: {IdCategory:IdCategory, DTitle:DTitle, DURL:DURL, DViewed:DViewed},
+							data: {IdCategory:IdCategory, DTitle:DTitle, DURL:DURL, DViewed:DViewed, DLiked:DLiked},
 							url: URL1,
 							success: function(msg){
 								
 							}
-						});
+						});						
 					}
 				});
-				Page = Page + 1;
-			}
+			}											
 			alert("Đã thêm xong !");
 		});
 		/*]]>*/

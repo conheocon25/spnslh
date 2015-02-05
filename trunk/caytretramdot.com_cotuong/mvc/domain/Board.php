@@ -68,7 +68,7 @@ class Board extends Object{
     function setName( $Name ) 	{$this->Name = $Name;$this->markDirty();}   
 	function getName( ) 		{return $this->Name;}
 	function getNameReduce( ) {		
-		$S = new \MVC\Library\String($this->Name);return $S->reduceHTML(32);
+		$S = new \MVC\Library\String($this->Name);return $S->reduceHTML(14);
 	}
 	
 	function setState( $State ) {$this->State = $State;$this->markDirty();}   

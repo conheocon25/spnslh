@@ -9,33 +9,45 @@
 		<div class="container-fluid" id="wraper">
 			<div class="row-fluid">
 				<div class="col-md-9 col-sm-9">
-					<div class="row">
-						<table class="table table-striped">							
-							<tr tal:repeat="Book BookAll">								
-								<td>
-									<a tal:attributes="href Book/getURLView">
-										<img width="64px" tal:attributes="src Book/getThumb"/>
-									</a>
-								</td>
-								<td>
-									<a tal:attributes="href Book/getURLView"><span tal:content="Book/getTitle"/></a>
-									<p align="justify" tal:content="structure Book/getInfoReduce"/>
-									<span tal:content="Book/getTimePrint" />, <B tal:content="Book/getViewed" /> lượt xem, <B tal:content="Book/getAuthor" />
-								</td>
-							</tr>
-						</table>
-					</div>
-					<div class="row">
-						<ul class="pagination alternate pull-right page-bar">
-							<li tal:repeat="P PN/getPages" tal:attributes="class php:Page==P->getId()?'active':'disable'">
-								<a tal:attributes="href P/getURL" tal:content="P/getName"/>
-							</li>
-						</ul>
-					</div>
+					<nav class="navbar navbar-default">
+						<div class="navbar-header">
+							<a class="navbar-brand" tal:content="Category/getName"/>
+						</div>
+						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+							<ul class="nav navbar-nav navbar-right">
+								<li class="dropdown">
+									<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Sắp xếp <span class="caret"></span></a>
+									<ul class="dropdown-menu" role="menu">
+										<li><a href="/"><i class="glyphicon glyphicon-sort-by-alphabet"/> theo tên</a></li>
+										<li><a href="/"><i class="glyphicon glyphicon-calendar"/> theo ngày tháng</a></li>
+										<li><a href="/"><i class="glyphicon glyphicon-stats"/> theo lượt xem</a></li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+					</nav>
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<div class="col-xs-6 col-md-3" tal:repeat="Book BookAll" data-toggle="tooltip" data-placement="bottom" tal:attributes="title php: Book->getTitle() . ' ( ' . Book->getAuthor() . ' )'">
+								<a tal:attributes="href Book/getURLView" class="thumbnail">
+									<img tal:attributes="src Book/getThumb" />
+									<div class="caption text-center">
+										<span tal:content="Book/getTitleReduce"/><br/>
+										<i class="glyphicon glyphicon-stats"/> <span tal:content="Book/getViewedPrint"/>
+										<i class="glyphicon glyphicon-thumbs-up"/> <span tal:content="Book/getLikedPrint"/>
+									</div>
+								</a>
+							</div>
+							<ul class="pagination alternate pull-right page-bar">
+								<li tal:repeat="P PN/getPages" tal:attributes="class php:Page==P->getId()?'active':'disable'">
+									<a tal:attributes="href P/getURL" tal:content="P/getName"/>
+								</li>
+							</ul>
+						</div>
+					</div>					
 				</div>
 				<div class="col-md-3 col-sm-3">
-					<div class="panel panel-default">
-						<div class="panel-heading">DANH MỤC</div>
+					<div class="panel panel-default">						
 						<div class="panel-body">
 							<a tal:attributes="href Category1/getURLView;class php: Category1->getId()==Category->getId()?'btn btn-primary btn-block':'btn btn-default btn-block'"  tal:repeat="Category1 CategoryBookAll">
 								<span tal:content="Category1/getName"/>
@@ -46,5 +58,12 @@
 			</div>			
 		</div>
 		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
+		<script type="text/javascript">
+		/*<![CDATA[*/			
+			$(function(){
+				$('[data-toggle="tooltip"]').tooltip();
+			});
+		/*]]>*/
+		</script>
 	</body>
 </html>

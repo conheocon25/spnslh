@@ -30,9 +30,9 @@ class Video extends Mapper implements \MVC\Domain\VideoFinder{
 										`liked`, 
 										`key`) values(?, ?, ?, ?, ?, ?, ?, ?)", $tblVideo);
 		$deleteStmt 		= sprintf("delete from %s where id=?", $tblVideo);				
-		$findByStmt 		= sprintf("select *  from %s where id_category=? ORDER BY id", $tblVideo);
+		$findByStmt 		= sprintf("select *  from %s where id_category=? ORDER BY `viewed` DESC, 'liked' DESC", $tblVideo);
 		$findByKeyStmt 		= sprintf("select *  from %s where `key`=?", $tblVideo);
-		$findByPageStmt 	= sprintf("SELECT * FROM  %s where id_category=:id_category ORDER BY id LIMIT :start,:max", $tblVideo);
+		$findByPageStmt 	= sprintf("SELECT * FROM  %s where id_category=:id_category ORDER BY `viewed` DESC, 'liked' DESC LIMIT :start,:max", $tblVideo);
 		$findByLastestStmt 	= sprintf("			
 			SELECT * 
 				FROM `tbl_video` 
@@ -40,6 +40,16 @@ class Video extends Mapper implements \MVC\Domain\VideoFinder{
 					id_category IN (SELECT id FROM tbl_category_video CV WHERE CV.id_buddha=?)
 				ORDER BY
 					`time`	DESC
+				LIMIT 8	
+		", $tblVideo);
+		
+		$findByPopularStmt 	= sprintf("			
+			SELECT * 
+				FROM `tbl_video` 
+				WHERE 
+					id_category IN (SELECT id FROM tbl_category_video CV WHERE CV.id_buddha=?)
+				ORDER BY
+					`viewed` DESC, `liked` DESC
 				LIMIT 8	
 		", $tblVideo);
 				
@@ -52,6 +62,7 @@ class Video extends Mapper implements \MVC\Domain\VideoFinder{
 		$this->findByKeyStmt 	= self::$PDO->prepare($findByKeyStmt);
 		$this->findByPageStmt 	= self::$PDO->prepare($findByPageStmt);
 		$this->findByLastestStmt 	= self::$PDO->prepare($findByLastestStmt);
+		$this->findByPopularStmt 	= self::$PDO->prepare($findByPopularStmt);
 		
     } 
     function getCollection( array $raw ) {return new VideoCollection( $raw, $this );}
@@ -114,6 +125,11 @@ class Video extends Mapper implements \MVC\Domain\VideoFinder{
 	function findByLastest( $values ){
         $this->findByLastestStmt->execute( $values );
         return new VideoCollection( $this->findByLastestStmt->fetchAll(), $this);
+    }
+	
+	function findByPopular( $values ){
+        $this->findByPopularStmt->execute( $values );
+        return new VideoCollection( $this->findByPopularStmt->fetchAll(), $this);
     }
 	
 	function findByKey( $values ) {	

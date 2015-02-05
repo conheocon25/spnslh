@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class ServiceYouTubeAddVideoFromPlayList extends Command {
+	class ServiceYouTubeUpdateStatisticVideo extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -11,40 +11,22 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$IdCategory	= $request->getProperty("IdCategory");
-			$DTitle 	= $request->getProperty("DTitle");
-			$DURL 		= $request->getProperty("DURL");
-			$DViewed 	= $request->getProperty("DViewed");
-			$DLiked 	= $request->getProperty("DLiked");
+			$IdVideo	= $request->getProperty("IdVideo");
+			$Viewed 	= $request->getProperty("Viewed");
 						
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
-			//-------------------------------------------------------------
-			$mConfig 	= new \MVC\Mapper\Config();
+			//-------------------------------------------------------------			
 			$mVideo 	= new \MVC\Mapper\Video();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------			
-			\ini_set('max_execution_time', 300); //300 seconds = 5 minutes
-			
-			for ($i = 0; $i< count($DURL); $i++)
-			{															
-				$Video = new \MVC\Domain\Video(
-					null,
-					$IdCategory,
-					$DTitle[$i],
-					"",
-					date('Y-m-d H:i:s'),
-					$DURL[$i],
-					$DViewed[$i],
-					$DLiked[$i],
-					""
-				);
+			$Video = $mVideo->find($IdVideo);
+			$Video->setViewed($Viewed);
 						
-				$Video->reKey();
-				$mVideo->insert($Video);
-			}
+			$mVideo->update($Video);
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------

@@ -56,8 +56,8 @@
 		<!-- SETTING	 																	-->
 		<!-- ============================================================================== -->				
 		<command name="ATesting1">				<view>ATesting1		</view></command>
-		<command name="ServiceYouTubeAddVideoFromPlayList"><view>ServiceYouTubeAddVideoFromPlayList</view></command>
-		<command name="ServiceYouTubeUpdateStatisticVideo"><view>ServiceYouTubeUpdateStatisticVideo</view></command>
+		<command name="ServiceYouTubeAddVideoFromPlayList" type="public"><view>ServiceYouTubeAddVideoFromPlayList</view></command>
+		<command name="ServiceYouTubeUpdateStatisticVideo" type="public"><view>ServiceYouTubeUpdateStatisticVideo</view></command>
 						
 		<command name="ASetting">				<view>ASetting		</view></command>						
 		<command name="ASettingCategoryPost">	<view>ASettingCategoryPost</view></command>				

@@ -19,7 +19,8 @@
 		<command name="FVideo" 			type="public"><view>FVideo</view></command>
 		
 		<command name="FContact" 		type="public"><view>FContact</view></command>		
-		
+		<command name="ServiceYouTubeAddVideoFromPlayList" type="public"><view>ServiceYouTubeAddVideoFromPlayList</view></command>
+		<command name="ServiceYouTubeUpdateStatisticVideo" type="public"><view>ServiceYouTubeUpdateStatisticVideo</view></command>
 		<!-- ============================================================================== -->
 		<!-- JSON LOAD			 															-->
 		<!-- ============================================================================== -->		

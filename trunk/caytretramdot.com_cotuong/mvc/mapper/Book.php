@@ -42,7 +42,7 @@ class Book extends Mapper implements \MVC\Domain\BookFinder{
 		$findByStmt 		= sprintf("select *  from %s where id_category=? ORDER BY `order`", $tblBook);
 		$findByKeyStmt 		= sprintf("select *  from %s where `key`=?", $tblBook);
 		$findByPageStmt 	= sprintf("SELECT * FROM  %s where id_category=:id_category ORDER BY `order` LIMIT :start,:max", $tblBook);
-		$findByTopStmt 		= sprintf("select *  from %s ORDER BY `time` DESC LIMIT 6", $tblBook);
+		$findByTopStmt 		= sprintf("select *  from %s ORDER BY `time` DESC LIMIT 8", $tblBook);
 				
         $this->selectAllStmt 	= self::$PDO->prepare($selectAllStmt);
         $this->selectStmt 		= self::$PDO->prepare($selectStmt);
