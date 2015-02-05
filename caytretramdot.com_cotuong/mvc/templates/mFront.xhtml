@@ -12,10 +12,10 @@
 		<meta http-equiv="Expires" content="-1"/>
 		<meta http-equiv="Cache-Control" content="no-cache"/>
 		<meta name="keywords" content="Website Cờ Tướng Online"/>
-		<meta name="description" content="Website Cờ Tướng Online"/>
-		<meta name="page-topic" content="Website Cờ Tướng Online"/>
-		<meta name="Abstract" content="Website Cờ Tướng Online"/>
-		<meta name="classification" content="Website Cờ Tướng Online"/>		
+		<meta name="description" content="Cờ Tướng, Cờ Thế, Sách Cờ, Kỳ Phổ, Quất Trung Bí, Hoa Mai Phổ, Phản Hoa Mai, Bách Cục Tượng Kỳ, Thuận Pháo, Nghịch Pháo, Bình Phong Mã ..."/>
+		<meta name="page-topic" content="Cờ Tướng, Cờ Thế, Sách Cờ, Kỳ Phổ, Quất Trung Bí, Hoa Mai Phổ, Phản Hoa Mai, Bách Cục Tượng Kỳ, Thuận Pháo, Nghịch Pháo, Bình Phong Mã ..."/>
+		<meta name="Abstract" content="Cờ Tướng, Cờ Thế, Sách Cờ, Kỳ Phổ, Quất Trung Bí, Hoa Mai Phổ, Phản Hoa Mai, Bách Cục Tượng Kỳ, Thuận Pháo, Nghịch Pháo, Bình Phong Mã ..."/>
+		<meta name="classification" content="Cờ Tướng, Cờ Thế, Sách Cờ, Kỳ Phổ, Quất Trung Bí, Hoa Mai Phổ, Phản Hoa Mai, Bách Cục Tượng Kỳ, Thuận Pháo, Nghịch Pháo, Bình Phong Mã ..."/>
 		<link rel="shortcut icon" type="image/ico" href="/mvc/templates/theme/img/favicon.ico" />
 	</span>
 		
@@ -60,7 +60,7 @@
 						</a>
 						<ul class="dropdown-menu" role="menu">
 							<li tal:repeat="Category CategoryPostAll">
-								<a tal:attributes="href Category/getURLView" class="clearfix"><span class="pull-left" tal:content="Category/getName"/> <span class="pull-right" tal:content="Category/getPostAll/count"/></a>
+								<a tal:attributes="href Category/getURLView" class="clearfix"><span class="pull-left" tal:content="Category/getName"/></a>
 							</li>
 						</ul>
 					</li>
@@ -70,7 +70,7 @@
 						</a>
 						<ul class="dropdown-menu" role="menu">
 							<li tal:repeat="Category CategoryBookAll">
-								<a tal:attributes="href Category/getURLView" class="clearfix"><span class="pull-left" tal:content="Category/getName"/><span class="pull-right" tal:content="Category/getBookAll/count"/></a>
+								<a tal:attributes="href Category/getURLView" class="clearfix"><span class="pull-left" tal:content="Category/getName"/></a>
 							</li>
 						</ul>
 					</li>
@@ -80,7 +80,7 @@
 						</a>
 						<ul class="dropdown-menu" role="menu">
 							<li tal:repeat="Category CategoryVideoAll">
-								<a tal:attributes="href Category/getURLView" class="clearfix"><span class="pull-left" tal:content="Category/getName"/><span class="pull-right" tal:content="Category/getVideoAll/count"/></a>
+								<a tal:attributes="href Category/getURLView" class="clearfix"><span class="pull-left" tal:content="Category/getName"/></a>
 							</li>
 						</ul>
 					</li>
@@ -90,7 +90,7 @@
 						</a>
 					</li>
 					<li><a><b tal:content="php:@\MVC\Library\Statistic::getOnlinePrint()"/> <i class="glyphicon glyphicon-user"/></a></li>
-					<li><a><b tal:content="php:@\MVC\Library\Statistic::getCountPrint()"/> <i class="glyphicon glyphicon-eye-open"/></a></li>					
+					<li><a><b tal:content="php:@\MVC\Library\Statistic::getCountPrint()"/> <i class="glyphicon glyphicon-stats"/></a></li>					
 				</ul>				
 			</div>
 		</div>

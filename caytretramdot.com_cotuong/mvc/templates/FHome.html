@@ -9,50 +9,50 @@
 		<div class="container-fluid" id="wraper">
 			<div class="row">
 				<div class="col-md-9 col-sm-9">
-					<h3>TIN TỨC CẬP NHẬT</h3>
-					<table class="table table-striped">
-						<tr tal:repeat="Post PostTopAll">
-							<td width="15%"><img width="96px" tal:attributes="src Post/getImage"/></td>
-							<td>
-								<a tal:attributes="href Post/getURLView"><span tal:content="Post/getTitle"/></a>
-								<p tal:content="structure Post/getContentReduce"/>
-								<p><span tal:content="Post/getTimePrint"/>, <span><i class="glyphicon glyphicon-eye-open"/> <span tal:content="Post/getViewedPrint"/></span>
-									<span><i class="glyphicon glyphicon-heart"/> <span tal:content="Post/getLikedPrint"/></span>
-								</p>
-							</td>
-						</tr>
-					</table>
-					<h3>VIDEO MỚI CẬP NHẬT</h3>				
-					<table class="table table-striped">
-						<tr tal:repeat="Video VideoTopAll">
-							<td width="15%"><img width="96px" tal:attributes="src Video/getImage"/></td>
-							<td>
-								<a tal:attributes="href Video/getURLView"><span tal:content="Video/getTitle"/></a>
-								<p tal:content="structure Video/getInfoReduce"/>								
-								<p><span tal:content="Video/getTimePrint"/>, <span><i class="glyphicon glyphicon-eye-open"/> <span tal:content="Video/getViewedPrint"/></span>
-									<span><i class="glyphicon glyphicon-heart"/> <span tal:content="Video/getLikedPrint"/></span>
-								</p>								
-							</td>
-						</tr>
-					</table>
-					<h3>SÁCH MỚI CẬP NHẬT</h3>
-					<table class="table table-striped">
-						<tr tal:repeat="Book BookTopAll">
-							<td width="15%" >
-								<a tal:attributes="href Book/getURLView">
-									<img width="64px" tal:attributes="src Book/getThumb"/>
+					<div class="panel panel-info">
+						<div class="panel-heading">
+							<i class="glyphicon glyphicon-book"/> <B>SÁCH MỚI CẬP NHẬT</B>
+						</div>
+						<div class="panel-body">
+							<div class="col-xs-6 col-md-3" tal:repeat="Book BookTopAll" data-toggle="tooltip" data-placement="bottom" tal:attributes="title php: Book->getTitle() . ' ( ' . Book->getAuthor() . ' )'">
+								<a tal:attributes="href Book/getURLView" class="thumbnail">
+									<img tal:attributes="src Book/getThumb" />
+									<div class="caption text-center">
+										<span tal:content="Book/getTitleReduce"/><br/>
+										<i class="glyphicon glyphicon-stats"/> <span tal:content="Book/getViewedPrint"/>
+										<i class="glyphicon glyphicon-thumbs-up"/> <span tal:content="Book/getLikedPrint"/>
+									</div>
 								</a>
-							</td>
-							<td>
-								<a tal:attributes="href Book/getURLView"><span tal:content="Book/getTitle"/></a>
-								<p align="justify" tal:content="structure Book/getInfoReduce"/>
-								<span tal:content="Book/getTimePrint" />, <B tal:content="Book/getViewed" /> lượt xem, <B tal:content="Book/getAuthor" />
-							</td>
-						</tr>
-					</table>
-				</div>	
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-info">
+						<div class="panel-heading">							
+							<i class="glyphicon glyphicon-facetime-video"/> <B>VIDEO MỚI CẬP NHẬT</B>
+						</div>
+						<div class="panel-body">
+							<div class="col-xs-6 col-md-3" tal:repeat="Video VideoTopAll" data-toggle="tooltip" data-placement="bottom" tal:attributes="title php: Video->getTitle()">
+								<a tal:attributes="href Video/getURLView" class="thumbnail">
+									<img tal:attributes="src Video/getImage" />
+									<div class="caption text-center">
+										<span tal:content="Video/getTitleReduce"/><br/>
+										<i class="glyphicon glyphicon-stats"/> <span tal:content="Video/getViewedPrint"/>
+										<i class="glyphicon glyphicon-thumbs-up"/> <span tal:content="Video/getLikedPrint"/>
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>					
+				</div>
 			</div>
 		</div>		
 		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
+		<script type="text/javascript">
+		/*<![CDATA[*/			
+			$(function(){
+				$('[data-toggle="tooltip"]').tooltip();
+			});
+		/*]]>*/
+		</script>
 	</body>
 </html>

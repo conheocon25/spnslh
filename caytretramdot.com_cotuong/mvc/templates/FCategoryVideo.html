@@ -9,27 +9,42 @@
 		<div class="container-fluid" id="wraper">
 			<div class="row-fluid">
 				<div class="col-md-9 col-sm-9">
-					<div class="row">
-						<table class="table table-striped">
-							<tr tal:repeat="Video VideoAll">
-								<td width="15%"><img width="96px" tal:attributes="src Video/getImage"/></td>
-								<td>
-									<a tal:attributes="href Video/getURLView"><span tal:content="Video/getTitle"/></a>
-									<p tal:content="structure Video/getInfoReduce"/>								
-									<p><span tal:content="Video/getTimePrint"/>, <span><i class="glyphicon glyphicon-eye-open"/> <span tal:content="Video/getViewedPrint"/></span>
-										<span><i class="glyphicon glyphicon-heart"/> <span tal:content="Video/getLikedPrint"/></span>
-									</p>								
-								</td>
-							</tr>
-						</table>
-					</div>
-					<div class="row">
-						<ul class="pagination alternate pull-right page-bar">
-							<li tal:repeat="P PN/getPages" tal:attributes="class php:Page==P->getId()?'active':'disable'">
-								<a tal:attributes="href P/getURL" tal:content="P/getName"/>
-							</li>
-						</ul>
-					</div>
+					<nav class="navbar navbar-default">
+						<div class="navbar-header">
+							<a class="navbar-brand" tal:content="Category/getName"/>
+						</div>
+						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+							<ul class="nav navbar-nav navbar-right">
+								<li class="dropdown">
+									<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Sắp xếp <span class="caret"></span></a>
+									<ul class="dropdown-menu" role="menu">
+										<li><a href="/"><i class="glyphicon glyphicon-sort-by-alphabet"/> theo tên</a></li>
+										<li><a href="/"><i class="glyphicon glyphicon-calendar"/> theo ngày tháng</a></li>
+										<li><a href="/"><i class="glyphicon glyphicon-stats"/> theo lượt xem</a></li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+					</nav>
+					<div class="panel panel-default">						
+						<div class="panel-body">
+							<div class="col-xs-6 col-md-3" tal:repeat="Video VideoAll" data-toggle="tooltip" data-placement="bottom" tal:attributes="title php: Video->getTitle()">
+								<a tal:attributes="href Video/getURLView" class="thumbnail">
+									<img tal:attributes="src Video/getImage" />
+									<div class="caption text-center">
+										<span tal:content="Video/getTitleReduce"/><br/>
+										<i class="glyphicon glyphicon-stats"/> <span tal:content="Video/getViewedPrint"/>
+										<i class="glyphicon glyphicon-thumbs-up"/> <span tal:content="Video/getLikedPrint"/>
+									</div>
+								</a>
+							</div>
+							<ul class="pagination alternate pull-right page-bar">
+								<li tal:repeat="P PN/getPages" tal:attributes="class php:Page==P->getId()?'active':'disable'">
+									<a tal:attributes="href P/getURL" tal:content="P/getName"/>
+								</li>
+							</ul>
+						</div>
+					</div>					
 				</div>
 				<div class="col-md-3 col-sm-3">
 					<div class="panel panel-default">
@@ -44,5 +59,12 @@
 			</div>			
 		</div>
 		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
+		<script type="text/javascript">
+		/*<![CDATA[*/			
+			$(function(){
+				$('[data-toggle="tooltip"]').tooltip();
+			});
+		/*]]>*/
+		</script>
 	</body>
 </html>

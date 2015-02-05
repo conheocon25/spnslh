@@ -17,6 +17,7 @@ class Post extends Mapper implements \MVC\Domain\PostFinder {
 		$findByStmt 		= sprintf("select *  from %s where id_category=:id_category order by `time` DESC", $tblPost);
 		$findByPageStmt 	= sprintf("select *  from %s where id_category=:id_category order by `time` DESC LIMIT :start,:max", $tblPost);
 		$findByLastestStmt 	= sprintf("select *  from %s order by `time` DESC LIMIT 6", $tblPost);
+		$findByPopularStmt 	= sprintf("select *  from %s order by `viewed` DESC LIMIT 6", $tblPost);
 		
 		$searchByTitleStmt 		= sprintf("select *  from %s where `title` like :title", $tblPost);
 		$searchByTitlePageStmt 	= sprintf("select *  from %s where `title` like :title LIMIT :start,:max", $tblPost);
@@ -34,11 +35,12 @@ class Post extends Mapper implements \MVC\Domain\PostFinder {
 		$this->deleteStmt 		= self::$PDO->prepare($deleteStmt);
 		$this->findByKeyStmt 	= self::$PDO->prepare($findByKeyStmt);
 		
-		$this->findByStmt 		= self::$PDO->prepare($findByStmt);
+		$this->findByStmt 			= self::$PDO->prepare($findByStmt);
 		$this->findByLastestStmt 	= self::$PDO->prepare($findByLastestStmt);
-		$this->findByPageStmt 	= self::$PDO->prepare($findByPageStmt);
-		$this->searchByTitleStmt 		= self::$PDO->prepare($searchByTitleStmt);
-		$this->searchByTitlePageStmt 	= self::$PDO->prepare($searchByTitlePageStmt);
+		$this->findByPopularStmt 	= self::$PDO->prepare($findByPopularStmt);
+		$this->findByPageStmt 		= self::$PDO->prepare($findByPageStmt);
+		$this->searchByTitleStmt 	= self::$PDO->prepare($searchByTitleStmt);
+		$this->searchByTitlePageStmt= self::$PDO->prepare($searchByTitlePageStmt);
 		$this->findByDateTimeStmt 	= self::$PDO->prepare($findByDateTimeStmt);
     } 
     function getCollection( array $raw ) {return new PostCollection( $raw, $this );}
@@ -127,6 +129,11 @@ class Post extends Mapper implements \MVC\Domain\PostFinder {
 	function findByLastest( $values ){
         $this->findByLastestStmt->execute( $values );
         return new PostCollection( $this->findByLastestStmt->fetchAll(), $this);
+    }
+	
+	function findByPopular( $values ){
+        $this->findByPopularStmt->execute( $values );
+        return new PostCollection( $this->findByPopularStmt->fetchAll(), $this);
     }
 	
 	function findByPage( $values ) {		

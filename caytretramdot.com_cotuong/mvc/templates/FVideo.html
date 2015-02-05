@@ -22,15 +22,15 @@
 						</div>
 						<div class="panel-body">
 							<div class="article-meta-date">								
-								<span tal:content="Video/getTimePrint"/>, <div class="btn"><i class="glyphicon glyphicon-eye-open"/> <span tal:content="Video/getViewedPrint"/></div> 
-								<div class="btn"><i class="glyphicon glyphicon-heart"/> <span tal:content="Video/getLikedPrint"/></div>
+								<span tal:content="Video/getTimePrint"/>, 
+								<div class="btn"><i class="glyphicon glyphicon-stats"/> <span id="Viewed" tal:content="Video/getViewedPrint"/> <i class="glyphicon glyphicon-thumbs-up"/><span tal:content="Video/getLikedPrint"/></div>
 							</div>
 							<div class="article-meta-more">																				
 								<div class="share-button-group">
 									<div class="fb-share-button" tal:attributes="data-href URLShare" data-type="button_count" />
 								</div>
 								<div class="article-content-container">
-									<iframe width="100%" height="480px" id="IdYouTube" tal:attributes="src Video/getYouTubeEmbeded" frameborder="0" allowfullscreen="1" />
+									<iframe width="100%" height="480px" id="IdYouTube" tal:attributes="src Video/getYouTubeEmbeded;alt Video/getIdYouTube;data-id Video/getId" frameborder="0" allowfullscreen="1" />
 									<span tal:content="structure Video/getInfo"/>
 								</div>
 							</div>
@@ -38,19 +38,35 @@
 					</div>
 				</div>
 				<div class="col-md-3 col-sm-3">
-					<div class="panel panel-default">
-						<div class="panel-heading">DANH MỤC</div>
-						<div class="panel-body">
-							<a tal:attributes="href Category1/getURLView;class php: Category1->getId()==Category->getId()?'btn btn-primary btn-block':'btn btn-default btn-block'"  tal:repeat="Category1 CategoryVideoAll">
-								<span tal:content="Category1/getName"/>
-							</a>							
-						</div>
-					</div>					
+					
 				</div>
 			</div>
 		</div>
 		<script type="text/javascript">
-		/*<![CDATA[*/						
+		/*<![CDATA[*/
+			var IdYouTube = $("#IdYouTube").attr("alt");
+			var URL = "https://gdata.youtube.com/feeds/api/videos/" + IdYouTube + "?v=2&alt=json";
+			//Load dữ liệu JSON lên FORM
+			$.ajax({
+				url: URL,
+				async: false,
+				dataType: 'json',
+				success: function (data){
+					var Viewed 	= data.entry.yt$statistics.viewCount;					
+					var IdVideo = $("#IdYouTube").attr("data-id");
+															
+					var URL1 = "/service/youtube/update/statistic/video";
+					$.ajax({
+						type: "POST",
+						data: {Viewed:Viewed, IdVideo:IdVideo},
+						url: URL1,
+						success: function(msg){
+							
+						}
+					});					
+				}
+			});
+				
 			(function(d, s, id) {
 				var js, fjs = d.getElementsByTagName(s)[0];
 				if (d.getElementById(id)) return;

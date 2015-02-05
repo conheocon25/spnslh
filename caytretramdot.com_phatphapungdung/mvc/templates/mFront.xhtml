@@ -32,8 +32,7 @@
 	<!-- ======================================================================== -->
 	<span metal:define-macro="IncludeJS">
 		<script src="/mvc/templates/theme/bootstrap/js/jquery-1.11.0.min.js"></script>
-		<script src="/mvc/templates/theme/bootstrap/js/bootstrap.min.js"></script>	
-		<script src="/mvc/templates/theme/bootstrap/js/chess.js"></script>
+		<script src="/mvc/templates/theme/bootstrap/js/bootstrap.min.js"></script>			
 	</span>
 		
 	<!-- ======================================================================== -->
@@ -58,7 +57,7 @@
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Tin tức<span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
 							<li tal:repeat="Category CategoryPostAll">
-								<a tal:attributes="href Category/getURLView" class="clearfix"><span class="pull-left" tal:content="Category/getName"/> <span class="pull-right" tal:content="Category/getPostAll/count"/></a>
+								<a tal:attributes="href Category/getURLView" class="clearfix"><span class="pull-left" tal:content="Category/getName"/></a>
 							</li>
 						</ul>
 					</li>					
@@ -66,18 +65,17 @@
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Video<span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
 							<li tal:repeat="Category CategoryBuddhaAll">
-								<a tal:attributes="href Category/getURLView" class="clearfix"><span class="pull-left" tal:content="Category/getName"/> <span class="pull-right" tal:content="Category/getCategoryAll/count"/></a>
+								<a tal:attributes="href Category/getURLView" class="clearfix"><span class="pull-left" tal:content="Category/getName"/></a>
 							</li>
 						</ul>
 					</li>					
 					<li><a href="/lien-he">Liên hệ</a></li>
 					<li><a><b tal:content="php:@\MVC\Library\Statistic::getOnlinePrint()"/> <i class="glyphicon glyphicon-user"/></a></li>
-					<li><a><b tal:content="php:@\MVC\Library\Statistic::getCountPrint()"/> <i class="glyphicon glyphicon-eye-open"/></a></li>
+					<li><a><b tal:content="php:@\MVC\Library\Statistic::getCountPrint()"/> <i class="glyphicon glyphicon-stats"/></a></li>
 				</ul>				
 			</div>
 		</div>
 	</nav>
-	
 		
 </body>
 </html>

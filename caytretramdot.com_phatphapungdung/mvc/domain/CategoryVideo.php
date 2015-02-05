@@ -42,7 +42,7 @@ class CategoryVideo extends Object{
 	function setImage($Image) {$this->Image = $Image;$this->markDirty();}
 	function getImage(){
 		if ($this->Image=="")
-			return "/data/image/bg/book.png";
+			return "/data/image/bg/movies_folder.png";
 		return $this->Image;
 	}
 	

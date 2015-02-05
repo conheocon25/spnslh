@@ -8,49 +8,98 @@
 		<tal:block metal:use-macro="mFront.xhtml/Header"/>
 		<div class="container-fluid" id="wraper">
 			<div class="row">
-				<div class="col-md-9 col-sm-9">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<a>
-								<i class="glyphicon glyphicon-tag"/> BẢN TIN
-							</a>
-						</div>
+				<div class="col-md-8 col-sm-8">
+					<div class="panel panel-primary">
 						<div class="panel-body">
-							<table class="table table-striped">
-								<tr tal:repeat="Post PostLastest">
-									<td width="15%"><img width="96px" tal:attributes="src Post/getImage"/></td>
-									<td>
-										<a tal:attributes="href Post/getURLView"><span tal:content="Post/getTitle"/></a>
-										<p tal:content="structure Post/getContentReduce"/>
-										<p><span tal:content="Post/getTimePrint"/>, <span><i class="glyphicon glyphicon-eye-open"/> <span tal:content="Post/getViewedPrint"/></span> 
-											<span><i class="glyphicon glyphicon-heart"/> <span tal:content="Post/getLikedPrint"/></span>
-										</p>
-									</td>
-								</tr>
-							</table>
-						</div>
-					</div>
-					<tal:block tal:repeat="Buddha CategoryBuddhaAll">
-						<div class="panel panel-default" tal:condition="Buddha/getVideoLastest/count">
-							<div class="panel-heading">
-								<a tal:attributes="href Buddha/getURLView">
-									<i class="glyphicon glyphicon-facetime-video"/>
-									<span tal:content="Buddha/getName"/>
-								</a>
-							</div>
-							<div class="panel-body">
-								<div class="col-xs-6 col-md-3" tal:repeat="Video Buddha/getVideoLastest">
-									<a tal:attributes="href Video/getURLView" class="thumbnail">
-										<img tal:attributes="src Video/getImage" />
-										<div class="caption text-center" tal:content="Video/getTitleReduce" />
-									</a>
+							<div role="tabpanel">
+								<ul class="nav nav-tabs" role="tablist" id="PostTab">
+									<li role="presentation" class="active"><a href="#post-lastest" aria-controls="home" role="tab" data-toggle="tab">Tin hàng ngày</a></li>
+									<li role="presentation"><a href="#post-popular" aria-controls="profile" role="tab" data-toggle="tab">đọc nhiều</a></li>
+								</ul>
+								<div class="tab-content">
+									<div role="tabpanel" class="tab-pane active" id="post-lastest">
+										<table class="table">
+											<tr tal:repeat="Post PostLastest">									
+												<td>
+													<a tal:attributes="href Post/getURLView"><span tal:content="Post/getTitle"/></a>
+													<p><span tal:content="Post/getTimePrint"/></p>
+												</td>
+											</tr>
+										</table>
+									</div>
+									<div role="tabpanel" class="tab-pane" id="post-popular">
+										<table class="table">
+											<tr tal:repeat="Post PostPopular">									
+												<td>
+													<a tal:attributes="href Post/getURLView"><span tal:content="Post/getTitle"/></a>
+													<p><span tal:content="Post/getTimePrint"/></p>
+												</td>
+											</tr>
+										</table>
+									</div>							
 								</div>
 							</div>
 						</div>
-					</tal:block>					
-				</div>	
+					</div>	
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-8 col-sm-8">
+					<tal:block tal:repeat="Buddha CategoryBuddhaAll">
+					<div class="panel panel-primary" tal:condition="Buddha/getVideoLastest/count">
+						<div class="panel-body">
+							<div role="tabpanel">
+								<ul class="VideoCategory nav nav-tabs" role="tablist">
+									<li role="presentation" class="active">
+										<a tal:attributes="href php:'#' . Buddha->getIdTabLastest()" aria-controls="home" role="tab" data-toggle="tab"><B tal:content="Buddha/getName"/></a>
+									</li>
+									<li role="presentation">
+										<a tal:attributes="href php:'#' . Buddha->getIdTabPopular()" aria-controls="profile" role="tab" data-toggle="tab">xem nhiều</a>
+									</li>
+								</ul>
+								<div class="tab-content">
+									<div role="tabpanel" class="tab-pane active" tal:attributes="id Buddha/getIdTabLastest">
+										<div class="col-xs-6 col-md-3" tal:repeat="Video Buddha/getVideoLastest"  data-toggle="tooltip" data-placement="bottom" tal:attributes="title php: Video->getTitle()">
+											<a tal:attributes="href Video/getURLView" class="thumbnail">
+												<img tal:attributes="src Video/getImage" />
+												<div class="caption text-center">
+													<span tal:content="Video/getTitleReduce"/><br/>
+													<i class="glyphicon glyphicon-stats"/> <span tal:content="Video/getViewedPrint"/>
+													<i class="glyphicon glyphicon-thumbs-up"/> <span tal:content="Video/getLikedPrint"/>
+												</div>
+											</a>
+										</div>
+									</div>
+									<div role="tabpanel" class="tab-pane" tal:attributes="id Buddha/getIdTabPopular">
+										<div class="col-xs-6 col-md-3" tal:repeat="Video Buddha/getVideoPopular"  data-toggle="tooltip" data-placement="bottom" tal:attributes="title Video/getTitle">
+											<a tal:attributes="href Video/getURLView" class="thumbnail">
+												<img tal:attributes="src Video/getImage" />
+												<div class="caption text-center">
+													<span tal:content="Video/getTitleReduce"/><br/>
+													<i class="glyphicon glyphicon-stats"/> <span tal:content="Video/getViewedPrint"/>
+													<i class="glyphicon glyphicon-thumbs-up"/> <span tal:content="Video/getLikedPrint"/>
+												</div>
+											</a>
+										</div>
+									</div>							
+								</div>
+							</div>
+						</div>
+					</div>	
+					</tal:block>
+				</div>
 			</div>
 		</div>		
 		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
+		<script type="text/javascript">
+		/*<![CDATA[*/			
+			$(function(){
+				$('[data-toggle="tooltip"]').tooltip();
+				$('#PostTab a:first').tab('show');
+				$('VideoCategory a:first').tab('show')	;
+
+			});
+		/*]]>*/
+		</script>
 	</body>
 </html>

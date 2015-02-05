@@ -16,8 +16,8 @@
 								<td>
 									<a tal:attributes="href Post/getURLView"><span tal:content="Post/getTitle"/></a>
 									<p tal:content="structure Post/getContentReduce"/>
-									<p><span tal:content="Post/getTimePrint"/>, <span><i class="glyphicon glyphicon-eye-open"/> <span tal:content="Post/getViewedPrint"/></span> 
-										<span><i class="glyphicon glyphicon-heart"/> <span tal:content="Post/getLikedPrint"/></span>
+									<p><span tal:content="Post/getTimePrint"/>, <span><i class="glyphicon glyphicon-stats"/> <span tal:content="Post/getViewedPrint"/></span> 
+										<span><i class="glyphicon glyphicon-thumbs-up"/> <span tal:content="Post/getLikedPrint"/></span>
 									</p>
 								</td>
 							</tr>
@@ -32,8 +32,7 @@
 					</div>
 				</div>
 				<div class="col-md-3 col-sm-3">
-					<div class="panel panel-default">
-						<div class="panel-heading">DANH MỤC</div>
+					<div class="panel panel-default">						
 						<div class="panel-body">
 							<a tal:attributes="href Category1/getURLView;class php: Category1->getId()==Category->getId()?'btn btn-primary btn-block':'btn btn-default btn-block'"  tal:repeat="Category1 CategoryPostAll">
 								<span tal:content="Category1/getName"/>

@@ -23,6 +23,8 @@ class CategoryBuddha extends Object{
 	}
 		
 	function getId() {return $this->Id;}
+	function getIdTabLastest() {return "VideoLastest" . $this->Id;}
+	function getIdTabPopular() {return "VideoPopular" . $this->Id;}
 		
 	function setName($Name) {$this->Name = $Name;$this->markDirty();}
 	function getName() 		{return $this->Name;}
@@ -66,6 +68,12 @@ class CategoryBuddha extends Object{
 	function getVideoLastest(){
 		$mVideo		= new \MVC\Mapper\Video();
 		$VideoAll 	= $mVideo->findByLastest(array($this->getId()));
+		return $VideoAll;
+	}
+	
+	function getVideoPopular(){
+		$mVideo		= new \MVC\Mapper\Video();
+		$VideoAll 	= $mVideo->findByPopular(array($this->getId()));
 		return $VideoAll;
 	}
 		

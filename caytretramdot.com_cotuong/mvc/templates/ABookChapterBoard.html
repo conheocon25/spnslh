@@ -43,7 +43,7 @@
 								<tbody>
 									<tr tal:repeat="Board Chapter/getBoardAll">
 										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Board/getId"/></td>
-										<td><a tal:attributes="href Board/getURLUpdLoad" tal:content="Board/getNameReduce"/></td>										
+										<td><a tal:attributes="href Board/getURLUpdLoad" tal:content="Board/getName"/></td>										
 										<td><a tal:attributes="href Board/getURLSettingStateLoad">Thiết lập</a></td>
 										<td><a tal:attributes="href Board/getURLSettingPoseLoad"><span tal:content="Board/getDetailAll/count"/> nước</a></td>
 										<td><a tal:attributes="href Board/getURLDetail" tal:content="string:Chi tiết"/></td>

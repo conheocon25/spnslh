@@ -9,38 +9,63 @@
 		<div class="container-fluid" id="wraper">
 			<div class="row-fluid">
 				<div class="col-md-9 col-sm-9">
-					<div class="panel panel-default">
+					<div class="panel panel-primary">
 						<div class="panel-heading">
-							<a tal:attributes="href '/'">
-								<i class="glyphicon glyphicon-facetime-video"/>
-								<span tal:content="Buddha/getName"/>
-							</a>
+							<i class="glyphicon glyphicon-folder-open"/> <span tal:content="Buddha/getName"/>							
 						</div>
-						<div class="panel-body">
-							
-						</div>
+						<div class="panel-body" />
 					</div>
-					<div class="panel panel-default">
-						<div class="panel-body">							
-							<div class="col-xs-6 col-md-3" tal:repeat="Category CategoryVideoAll">
-								<a tal:attributes="href Category/getURLView" class="thumbnail">
-									<img tal:attributes="src Category/getImage" />
-									<div class="caption text-center">
-										<span tal:content="Category/getName" /> (<span tal:content="Category/getVideoAll/count" />)
+					<div class="panel panel-primary">
+						<div class="panel-body">
+							<div role="tabpanel">
+								<ul class="VideoCategory nav nav-tabs" role="tablist">
+									<li role="presentation" tal:attributes="class php:(OrderBy == 'Video')?'active':''">
+										<a tal:attributes="href php:'#TabViewed'" aria-controls="profile" role="tab" data-toggle="tab">nhiều Video</a>
+									</li>
+									<li role="presentation" tal:attributes="class php:(OrderBy == 'Name')?'active':''">
+										<a tal:attributes="href php:'#TabAZ'" aria-controls="home" role="tab" data-toggle="tab">thứ tự A-Z</a>
+									</li>									
+								</ul>
+								<div class="tab-content">									
+									<div role="tabpanel" tal:attributes="class php:(OrderBy == 'Video')?'tab-pane active':'tab-pane'"  id="TabViewed">
+										<div class="col-xs-6 col-md-3" tal:repeat="Category CategoryVideoOrderVideoAll">
+											<a tal:attributes="href Category/getURLView" class="thumbnail">
+												<img tal:attributes="src Category/getImage" />
+												<div class="caption text-center">
+													<span tal:content="Category/getName" /> <br/>
+													(<span tal:content="Category/getVideoAll/count" />)
+												</div>
+											</a>
+										</div>
+										<ul class="pagination alternate pull-right page-bar">
+											<li tal:repeat="P PNByVideo/getPages" tal:attributes="class php:Page==P->getId()?'active':'disable'">
+												<a tal:attributes="href P/getURL" tal:content="P/getName"/>
+											</li>
+										</ul>
 									</div>
-								</a>
-							</div>
-							<ul class="pagination alternate pull-right page-bar">
-								<li tal:repeat="P PN/getPages" tal:attributes="class php:Page==P->getId()?'active':'disable'">
-									<a tal:attributes="href P/getURL" tal:content="P/getName"/>
-								</li>
-							</ul>
+									<div role="tabpanel" tal:attributes="class php:(OrderBy == 'Name')?'tab-pane active':'tab-pane'" id="TabAZ">
+										<div class="col-xs-6 col-md-3" tal:repeat="Category CategoryVideoOrderNameAll">
+											<a tal:attributes="href Category/getURLView" class="thumbnail">
+												<img tal:attributes="src Category/getImage" />
+												<div class="caption text-center">
+													<span tal:content="Category/getName" /> <br/>
+													(<span tal:content="Category/getVideoAll/count" />)
+												</div>
+											</a>
+										</div>
+										<ul class="pagination alternate pull-right page-bar">
+											<li tal:repeat="P PNByName/getPages" tal:attributes="class php:Page==P->getId()?'active':'disable'">
+												<a tal:attributes="href P/getURL" tal:content="P/getName"/>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>							
 						</div>						
 					</div>					
 				</div>
 				<div class="col-md-3 col-sm-3">					
-					<div class="panel panel-default">
-						<div class="panel-heading">DANH MỤC</div>
+					<div class="panel panel-default">						
 						<div class="panel-body">
 							
 						</div>
@@ -49,5 +74,13 @@
 			</div>			
 		</div>
 		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
+		<script type="text/javascript">
+		/*<![CDATA[*/			
+			$(function(){
+				$('[data-toggle="tooltip"]').tooltip();				
+				//$('VideoCategory a:first').tab('show')	;
+			});
+		/*]]>*/
+		</script>
 	</body>
 </html>

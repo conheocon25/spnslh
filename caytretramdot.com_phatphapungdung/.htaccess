@@ -23,9 +23,14 @@ RewriteRule ^bai-viet/([A-Za-z0-9_-]+)/page/([0-9]+)$									?cmd=FCategoryPost
 RewriteRule ^bai-viet/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$								?cmd=FPost&KCategory=$1&KPost=$2 [L]
 
 RewriteRule ^video/([A-Za-z0-9_-]+)$													?cmd=FCategoryBuddha&KBuddha=$1 [L]
-RewriteRule ^video/([A-Za-z0-9_-]+)/page/([0-9]+)$										?cmd=FCategoryBuddha&KBuddha=$1&Page=$2 [L]
+RewriteRule ^video/([A-Za-z0-9_-]+)/page/([0-9]+)$										?cmd=FCategoryBuddha&KBuddha=$1&Page=$2&OrderBy=Name [L]
+RewriteRule ^video/([A-Za-z0-9_-]+)/orderbyname/page/([0-9]+)$							?cmd=FCategoryBuddha&KBuddha=$1&Page=$2&OrderBy=Name [L]
+RewriteRule ^video/([A-Za-z0-9_-]+)/orderbyvideo/page/([0-9]+)$							?cmd=FCategoryBuddha&KBuddha=$1&Page=$2&OrderBy=Video [L]
 RewriteRule ^video/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$									?cmd=FCategoryVideo&KBuddha=$1&KCategory=$2 [L]
 RewriteRule ^video/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/page/([0-9]+)$						?cmd=FCategoryVideo&KBuddha=$1&KCategory=$2&Page=$3 [L]
+RewriteRule ^video/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/orderbyname/page/([0-9]+)$			?cmd=FCategoryVideo&KBuddha=$1&KCategory=$2&Page=$3&OrderBy=Name [L]
+RewriteRule ^video/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/orderbydate/page/([0-9]+)$			?cmd=FCategoryVideo&KBuddha=$1&KCategory=$2&Page=$3&OrderBy=Date [L]
+RewriteRule ^video/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/orderbyvideo/page/([0-9]+)$		?cmd=FCategoryVideo&KBuddha=$1&KCategory=$2&Page=$3&OrderBy=Video [L]
 RewriteRule ^video/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$					?cmd=FVideo&KBuddha=$1&KCategory=$2&KVideo=$3 [L]
 
 RewriteRule ^lien-he$ 																	?cmd=FContact 		[L]

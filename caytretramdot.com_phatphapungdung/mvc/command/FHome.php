@@ -27,13 +27,16 @@
 			//-------------------------------------------------------------						
 			$CategoryPostAll 	= $mCategoryPost->findAll();
 			$CategoryBuddhaAll 	= $mCategoryBuddha->findAll();
+			
 			$PostLastest		= $mPost->findByLastest(array());
+			$PostPopular		= $mPost->findByPopular(array());
 									
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
 			$request->setProperty("Active", 			'Home');			
 			$request->setObject("PostLastest", 			$PostLastest);
+			$request->setObject("PostPopular", 			$PostPopular);
 			
 			$request->setObject("CategoryPostAll", 		$CategoryPostAll);
 			$request->setObject("CategoryBuddhaAll", 	$CategoryBuddhaAll);

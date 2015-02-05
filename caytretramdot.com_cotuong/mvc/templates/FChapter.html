@@ -13,7 +13,7 @@
 		<div class="container-fluid" id="wraper">
 			<div class="row">
 				<div class="col-md-9">
-					<div class="panel panel-default">
+					<div class="panel panel-info">
 						<div class="panel-heading">
 							<a tal:attributes="href Book/getURLView">
 								<i class="glyphicon glyphicon-home"/> <span tal:content="Chapter/getTitle"/>
@@ -27,11 +27,12 @@
 					</div>
 					<div class="panel panel-default">						
 						<div class="panel-body">							
-							<div class="col-xs-6 col-md-3" tal:repeat="Board Chapter/getBoardAll">
+							<div class="col-xs-6 col-md-3" tal:repeat="Board Chapter/getBoardAll" data-toggle="tooltip" data-placement="bottom" tal:attributes="title php: Board->getName()">
 								<a tal:attributes="href Board/getURLView" class="thumbnail">
 									<img src="/data/chess/150/BoardThumb.jpg" />
 									<div class="caption text-center">
-										<span tal:content="Board/getName"/> ( <span tal:content="Board/getDetailAll/count"/> nước)
+										<span tal:content="Board/getNameReduce"/> <br/>
+										<span tal:content="Board/getDetailAll/count"/> nước
 									</div>
 								</a>
 							</div>
@@ -41,7 +42,7 @@
 				<div class="col-md-3">
 					<div class="panel panel-default">
 						<div class="panel-body">
-							<a tal:attributes="href Chapter1/getURLView;class php: Chapter1->getId()==Chapter->getId()?'btn btn-primary':'btn btn-default'"  tal:repeat="Chapter1 Book/getChapterAll">
+							<a tal:attributes="href Chapter1/getURLView;class php: Chapter1->getId()==Chapter->getId()?'btn btn-primary btn-block':'btn btn-default btn-block'"  tal:repeat="Chapter1 Book/getChapterAll">
 								<span tal:content="Chapter1/getTitleReduce"/>
 							</a>
 						</div>
@@ -58,6 +59,7 @@
 				js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&appId=525611617524479&version=v2.0";
 				fjs.parentNode.insertBefore(js, fjs);
 			}(document, 'script', 'facebook-jssdk'));
+			$('[data-toggle="tooltip"]').tooltip();
 		/*]]>*/
 		</script>
 	</body>	

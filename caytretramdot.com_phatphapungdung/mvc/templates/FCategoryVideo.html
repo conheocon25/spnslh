@@ -9,26 +9,27 @@
 		<div class="container-fluid" id="wraper">
 			<div class="row-fluid">
 				<div class="col-md-9 col-sm-9">
-					<div class="panel panel-default">
+					<div class="panel panel-info">
 						<div class="panel-heading">
 							<a tal:attributes="href Buddha/getURLView">
-								<i class="glyphicon glyphicon-facetime-video"/>
+								<i class="glyphicon glyphicon-folder-open"/>
 								<span tal:content="Category/getName"/>
 							</a>							
 						</div>
 						<div class="panel-body">
 							
 						</div>
-					</div>					
+					</div>
 					<div class="panel panel-default">
 						<div class="panel-body">							
-							<div class="col-xs-6 col-md-3" tal:repeat="Video VideoAll">
+							<div class="col-xs-6 col-md-3" tal:repeat="Video VideoAll" data-toggle="tooltip"  data-placement="bottom" tal:attributes="title php: Video->getTitle()">
 								<a tal:attributes="href Video/getURLView" class="thumbnail">
 									<img tal:attributes="src Video/getImage" />
 									<div class="caption text-center">
 										<span tal:content="Video/getTitleReduce"/>
 										<br/>
 										<i class="glyphicon glyphicon-stats"/> <span tal:content="Video/getViewedPrint"/>
+										<i class="glyphicon glyphicon-thumbs-up"/> <span tal:content="Video/getLikedPrint"/>
 									</div>
 								</a>
 							</div>
@@ -43,8 +44,7 @@
 					</div>										
 				</div>
 				<div class="col-md-3 col-sm-3">
-					<div class="panel panel-default">
-						<div class="panel-heading">DANH MỤC</div>
+					<div class="panel panel-default">						
 						<div class="panel-body">
 							
 						</div>
@@ -53,5 +53,12 @@
 			</div>			
 		</div>
 		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
+		<script type="text/javascript">
+		/*<![CDATA[*/			
+			$(function(){
+				$('[data-toggle="tooltip"]').tooltip();				
+			});
+		/*]]>*/
+		</script>
 	</body>
 </html>
