@@ -22,15 +22,15 @@ RewriteRule ^bai-viet/([A-Za-z0-9_-]+)$													?cmd=FCategoryPost&KCategory
 RewriteRule ^bai-viet/([A-Za-z0-9_-]+)/page/([0-9]+)$									?cmd=FCategoryPost&KCategory=$1&Page=$2 [L]
 RewriteRule ^bai-viet/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$								?cmd=FPost&KCategory=$1&KPost=$2 [L]
 
-RewriteRule ^video/([A-Za-z0-9_-]+)$													?cmd=FCategoryBuddha&KBuddha=$1 [L]
-RewriteRule ^video/([A-Za-z0-9_-]+)/page/([0-9]+)$										?cmd=FCategoryBuddha&KBuddha=$1&Page=$2&OrderBy=Name [L]
+RewriteRule ^video/([A-Za-z0-9_-]+)$													?cmd=FCategoryBuddha&KBuddha=$1&Page=1&OrderBy=Video [L]
+RewriteRule ^video/([A-Za-z0-9_-]+)/page/([0-9]+)$										?cmd=FCategoryBuddha&KBuddha=$1&Page=$2&OrderBy=Video [L]
 RewriteRule ^video/([A-Za-z0-9_-]+)/orderbyname/page/([0-9]+)$							?cmd=FCategoryBuddha&KBuddha=$1&Page=$2&OrderBy=Name [L]
 RewriteRule ^video/([A-Za-z0-9_-]+)/orderbyvideo/page/([0-9]+)$							?cmd=FCategoryBuddha&KBuddha=$1&Page=$2&OrderBy=Video [L]
-RewriteRule ^video/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$									?cmd=FCategoryVideo&KBuddha=$1&KCategory=$2 [L]
-RewriteRule ^video/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/page/([0-9]+)$						?cmd=FCategoryVideo&KBuddha=$1&KCategory=$2&Page=$3 [L]
+RewriteRule ^video/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$									?cmd=FCategoryVideo&KBuddha=$1&KCategory=$2&Page=1&OrderBy=Viewed [L]
+RewriteRule ^video/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/page/([0-9]+)$						?cmd=FCategoryVideo&KBuddha=$1&KCategory=$2&Page=$3&OrderBy=Viewed [L]
 RewriteRule ^video/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/orderbyname/page/([0-9]+)$			?cmd=FCategoryVideo&KBuddha=$1&KCategory=$2&Page=$3&OrderBy=Name [L]
-RewriteRule ^video/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/orderbydate/page/([0-9]+)$			?cmd=FCategoryVideo&KBuddha=$1&KCategory=$2&Page=$3&OrderBy=Date [L]
-RewriteRule ^video/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/orderbyvideo/page/([0-9]+)$		?cmd=FCategoryVideo&KBuddha=$1&KCategory=$2&Page=$3&OrderBy=Video [L]
+RewriteRule ^video/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/orderbyviewed/page/([0-9]+)$		?cmd=FCategoryVideo&KBuddha=$1&KCategory=$2&Page=$3&OrderBy=Viewed [L]
+RewriteRule ^video/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/orderbyliked/page/([0-9]+)$		?cmd=FCategoryVideo&KBuddha=$1&KCategory=$2&Page=$3&OrderBy=Liked [L]
 RewriteRule ^video/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$					?cmd=FVideo&KBuddha=$1&KCategory=$2&KVideo=$3 [L]
 
 RewriteRule ^lien-he$ 																	?cmd=FContact 		[L]
@@ -67,13 +67,16 @@ RewriteRule ^admin/post/([0-9]+)/ins/exe$ 								?cmd=APostInsExe&IdCategory=$1
 RewriteRule ^admin/post/([0-9]+)/([0-9]+)/upd/load$ 					?cmd=APostUpdLoad&IdCategory=$1&IdPost=$2 [L]
 RewriteRule ^admin/post/([0-9]+)/([0-9]+)/upd/exe$ 						?cmd=APostUpdExe&IdCategory=$1&IdPost=$2	[L]
 
-RewriteRule ^admin/video$ 												?cmd=AVideo [L]
-RewriteRule ^admin/video/([0-9]+)$ 										?cmd=AVideo&IdCategory=$1 [L]
+RewriteRule ^admin/buddha$ 												?cmd=ABuddha [L]
+RewriteRule ^admin/buddha/([0-9]+)$ 									?cmd=ABuddha&IdCategoryBuddha=$1 [L]
 
-RewriteRule ^admin/video/([0-9]+)/ins/load$ 							?cmd=AVideoInsLoad&IdCategory=$1 			[L]
-RewriteRule ^admin/video/([0-9]+)/ins/exe$ 								?cmd=AVideoInsExe&IdCategory=$1 			[L]
-RewriteRule ^admin/video/([0-9]+)/([0-9]+)/upd/load$ 					?cmd=AVideoUpdLoad&IdCategory=$1&IdVideo=$2 [L]
-RewriteRule ^admin/video/([0-9]+)/([0-9]+)/upd/exe$ 					?cmd=AVideoUpdExe&IdCategory=$1&IdVideo=$2	[L]
+RewriteRule ^admin/buddha/([0-9]+)/([0-9]+)$ 							?cmd=AVideo&IdCategoryBuddha=$1&IdCategoryVideo=$2 [L]
+
+RewriteRule ^admin/buddha/([0-9]+)/([0-9]+)/ins/load$ 					?cmd=AVideoInsLoad&IdCategoryBuddha=$1&IdCategoryVideo=$2 [L]
+RewriteRule ^admin/buddha/([0-9]+)/([0-9]+)/ins/exe$ 					?cmd=AVideoInsExe&IdCategoryBuddha=$1&IdCategoryVideo=$2 [L]
+
+RewriteRule ^admin/buddha/([0-9]+)/([0-9]+)/([0-9]+)/upd/load$ 			?cmd=AVideoUpdLoad&IdCategoryBuddha=$1&IdCategoryVideo=$2&IdVideo=$3 [L]
+RewriteRule ^admin/buddha/([0-9]+)/([0-9]+)/([0-9]+)/upd/exe$ 			?cmd=AVideoUpdExe&IdCategoryBuddha=$1&IdCategoryVideo=$2&IdVideo=$3 [L]
 
 RewriteRule ^admin/setting$ 											?cmd=ASetting [L]
 

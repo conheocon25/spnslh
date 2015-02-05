@@ -10,8 +10,7 @@
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
-			//-------------------------------------------------------------
-			$IdCategory 	= $request->getProperty('IdCategory');
+			//-------------------------------------------------------------			
 			$IdVideo 		= $request->getProperty('IdVideo');
 			
 			//-------------------------------------------------------------
@@ -25,10 +24,12 @@
 			//-------------------------------------------------------------																																	
 			$Video 		= $mVideo->find($IdVideo);
 			$Category 	= $Video->getCategory();
+			$Buddha 	= $Category->getCategory();
 			
 			$Title 		= $Video->getTitle();
-			$Navigation = array(								
-				array(\mb_strtoupper($Category->getName(), 'UTF8')." / VIDEO", $Category->getURLSetting()),
+			$Navigation = array(
+				array(mb_strtoupper($Buddha->getName(), 'UTF8'), 	$Buddha->getURLSetting()),
+				array(\mb_strtoupper($Category->getName(), 'UTF8'), $Category->getURLSetting()),
 			);
 			$ConfigName		= $mConfig->findByName("NAME");
 												

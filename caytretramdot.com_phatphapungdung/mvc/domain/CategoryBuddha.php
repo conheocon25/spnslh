@@ -81,8 +81,8 @@ class CategoryBuddha extends Object{
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
 	function getURLView()	{return "/video/".$this->getKey();}		
-	function getURLSetting(){return "/admin/setting/category/video/".$this->getId();}
-	
+	function getURLSetting(){return "/admin/buddha/".$this->getId();}
+		
 	//-------------------------------------------------------------------------------
 	static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
 	static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}

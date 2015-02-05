@@ -145,8 +145,16 @@ class Video extends Object{
 		return "/video/".$Buddha->getKey()."/".$Category->getKey()."/".$this->getKey();
 	}
 	
-	function getURLUpdLoad()		{return "/admin/video/".$this->getCategory()->getId()."/".$this->getId()."/upd/load";	}
-	function getURLUpdExe()			{return "/admin/video/".$this->getCategory()->getId()."/".$this->getId()."/upd/exe";	}
+	function getURLUpdLoad(){
+		$Category 	= $this->getCategory();
+		$Buddha 	= $Category->getCategory();		
+		return "/admin/buddha/".$Buddha->getId()."/".$Category->getId()."/".$this->getId()."/upd/load";	
+	}
+	function getURLUpdExe(){
+		$Category 	= $this->getCategory();
+		$Buddha 	= $Category->getCategory();		
+		return "/admin/buddha/".$Buddha->getId()."/".$Category->getId()."/".$this->getId()."/upd/exe";	
+	}
 	
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
