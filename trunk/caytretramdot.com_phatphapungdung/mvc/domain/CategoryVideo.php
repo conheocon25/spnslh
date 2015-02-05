@@ -90,9 +90,9 @@ class CategoryVideo extends Object{
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
 	function getURLView()	{return "/video/".$this->getCategory()->getKey()."/".$this->getKey();}	
-	function getURLSetting(){return "/admin/video/".$this->getId();}
-	function getURLSettingVideoInsLoad(){return "/admin/video/".$this->getId()."/ins/load"	;}
-	function getURLSettingVideoInsExe()	{return "/admin/video/".$this->getId()."/ins/exe"	;}
+	function getURLSetting(){return "/admin/buddha/".$this->getIdCategory()."/".$this->getId();}
+	function getURLSettingVideoInsLoad(){return "/admin/buddha/".$this->getIdCategory()."/".$this->getId()."/ins/load"	;}
+	function getURLSettingVideoInsExe()	{return "/admin/buddha/".$this->getIdCategory()."/".$this->getId()."/ins/exe"	;}
 		
 	//-------------------------------------------------------------------------------
 	static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

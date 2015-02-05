@@ -13,11 +13,11 @@
 						<div class="panel-heading">
 							<i class="glyphicon glyphicon-folder-open"/> <span tal:content="Buddha/getName"/>							
 						</div>
-						<div class="panel-body" />
+						<div class="panel-body" tal:content="OrderBy"/>
 					</div>
 					<div class="panel panel-primary">
 						<div class="panel-body">
-							<div role="tabpanel">
+							<div role="tabpanel" id="TabBuddha">
 								<ul class="VideoCategory nav nav-tabs" role="tablist">
 									<li role="presentation" tal:attributes="class php:(OrderBy == 'Video')?'active':''">
 										<a tal:attributes="href php:'#TabViewed'" aria-controls="profile" role="tab" data-toggle="tab">nhiều Video</a>
@@ -78,7 +78,7 @@
 		/*<![CDATA[*/			
 			$(function(){
 				$('[data-toggle="tooltip"]').tooltip();				
-				//$('VideoCategory a:first').tab('show')	;
+				//$('#TabBuddha a:first').tab('show');
 			});
 		/*]]>*/
 		</script>

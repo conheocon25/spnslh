@@ -16,30 +16,79 @@
 								<span tal:content="Category/getName"/>
 							</a>							
 						</div>
-						<div class="panel-body">
-							
-						</div>
+						<div class="panel-body" />
 					</div>
-					<div class="panel panel-default">
-						<div class="panel-body">							
-							<div class="col-xs-6 col-md-3" tal:repeat="Video VideoAll" data-toggle="tooltip"  data-placement="bottom" tal:attributes="title php: Video->getTitle()">
-								<a tal:attributes="href Video/getURLView" class="thumbnail">
-									<img tal:attributes="src Video/getImage" />
-									<div class="caption text-center">
-										<span tal:content="Video/getTitleReduce"/>
-										<br/>
-										<i class="glyphicon glyphicon-stats"/> <span tal:content="Video/getViewedPrint"/>
-										<i class="glyphicon glyphicon-thumbs-up"/> <span tal:content="Video/getLikedPrint"/>
-									</div>
-								</a>
-							</div>
-							<div class="row">
-								<ul class="pagination alternate pull-right page-bar">
-									<li tal:repeat="P PN/getPages" tal:attributes="class php:Page==P->getId()?'active':'disable'">
-										<a tal:attributes="href P/getURL" tal:content="P/getName"/>
+					<div class="panel panel-primary">
+						<div class="panel-body">
+							<div role="tabpanel" id="TabBuddha">
+								<ul class="nav nav-tabs" role="tablist">
+									<li role="presentation" tal:attributes="class php:(OrderBy == 'Viewed')?'active':''">
+										<a tal:attributes="href php:'#TabViewed'" aria-controls="profile" role="tab" data-toggle="tab">xem nhiều</a>
 									</li>
+									<li role="presentation" tal:attributes="class php:(OrderBy == 'Liked')?'active':''">
+										<a tal:attributes="href php:'#TabLiked'" aria-controls="profile" role="tab" data-toggle="tab">yêu thích</a>
+									</li>
+									<li role="presentation" tal:attributes="class php:(OrderBy == 'Name')?'active':''">
+										<a tal:attributes="href php:'#TabName'" aria-controls="home" role="tab" data-toggle="tab">theo tên</a>
+									</li>									
 								</ul>
-							</div>
+								<div class="tab-content">
+									<div role="tabpanel" tal:attributes="class php:(OrderBy == 'Viewed')?'tab-pane active':'tab-pane'"  id="TabViewed">
+										<div class="col-xs-6 col-md-3" tal:repeat="Video VideoOrderViewedAll" data-toggle="tooltip"  data-placement="bottom" tal:attributes="title php: Video->getTitle()">
+											<a tal:attributes="href Video/getURLView" class="thumbnail">
+												<img tal:attributes="src Video/getImage" />
+												<div class="caption text-center">
+													<span tal:content="Video/getTitleReduce"/>
+													<br/>
+													<i class="glyphicon glyphicon-stats"/> <span tal:content="Video/getViewedPrint"/>
+													<i class="glyphicon glyphicon-thumbs-up"/> <span tal:content="Video/getLikedPrint"/>
+												</div>
+											</a>
+										</div>
+										<ul class="pagination alternate pull-right page-bar">
+											<li tal:repeat="P PNByViewed/getPages" tal:attributes="class php:Page==P->getId()?'active':'disable'">
+												<a tal:attributes="href P/getURL" tal:content="P/getName"/>
+											</li>
+										</ul>
+									</div>
+									<div role="tabpanel" tal:attributes="class php:(OrderBy == 'Liked')?'tab-pane active':'tab-pane'"  id="TabLiked">
+										<div class="col-xs-6 col-md-3" tal:repeat="Video VideoOrderLikedAll" data-toggle="tooltip"  data-placement="bottom" tal:attributes="title php: Video->getTitle()">
+											<a tal:attributes="href Video/getURLView" class="thumbnail">
+												<img tal:attributes="src Video/getImage" />
+												<div class="caption text-center">
+													<span tal:content="Video/getTitleReduce"/>
+													<br/>
+													<i class="glyphicon glyphicon-stats"/> <span tal:content="Video/getViewedPrint"/>
+													<i class="glyphicon glyphicon-thumbs-up"/> <span tal:content="Video/getLikedPrint"/>
+												</div>
+											</a>
+										</div>
+										<ul class="pagination alternate pull-right page-bar">
+											<li tal:repeat="P PNByLiked/getPages" tal:attributes="class php:Page==P->getId()?'active':'disable'">
+												<a tal:attributes="href P/getURL" tal:content="P/getName"/>
+											</li>
+										</ul>
+									</div>	
+									<div role="tabpanel" tal:attributes="class php:(OrderBy == 'Name')?'tab-pane active':'tab-pane'"  id="TabName">
+										<div class="col-xs-6 col-md-3" tal:repeat="Video VideoOrderNameAll" data-toggle="tooltip"  data-placement="bottom" tal:attributes="title php: Video->getTitle()">
+											<a tal:attributes="href Video/getURLView" class="thumbnail">
+												<img tal:attributes="src Video/getImage" />
+												<div class="caption text-center">
+													<span tal:content="Video/getTitleReduce"/>
+													<br/>
+													<i class="glyphicon glyphicon-stats"/> <span tal:content="Video/getViewedPrint"/>
+													<i class="glyphicon glyphicon-thumbs-up"/> <span tal:content="Video/getLikedPrint"/>
+												</div>
+											</a>
+										</div>
+										<ul class="pagination alternate pull-right page-bar">
+											<li tal:repeat="P PNByName/getPages" tal:attributes="class php:Page==P->getId()?'active':'disable'">
+												<a tal:attributes="href P/getURL" tal:content="P/getName"/>
+											</li>
+										</ul>
+									</div>	
+								</div>
+							</div>							
 						</div>						
 					</div>										
 				</div>
@@ -56,7 +105,8 @@
 		<script type="text/javascript">
 		/*<![CDATA[*/			
 			$(function(){
-				$('[data-toggle="tooltip"]').tooltip();				
+				$('[data-toggle="tooltip"]').tooltip();
+				//$('#TabBuddha a:first').tab('show');
 			});
 		/*]]>*/
 		</script>

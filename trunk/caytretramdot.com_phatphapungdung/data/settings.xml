@@ -63,7 +63,8 @@
 		<command name="ASettingCategoryPost">	<view>ASettingCategoryPost</view></command>				
 		<command name="ASettingCategoryVideo">	<view>ASettingCategoryVideo</view></command>
 				
-		<command name="AVideo">					<view>AVideo			</view></command>		
+		<command name="ABuddha">				<view>ABuddha			</view></command>
+		<command name="AVideo">					<view>AVideo			</view></command>
 		<command name="AVideoInsLoad">			<view>AVideoInsLoad	</view></command>
 		<command name="AVideoInsExe">			<view>AVideoInsExe	</view><status value="CMD_OK"><forward>AVideo</forward></status></command>
 		<command name="AVideoUpdLoad">			<view>AVideoUpdLoad	</view></command>
