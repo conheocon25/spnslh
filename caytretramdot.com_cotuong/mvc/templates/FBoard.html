@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<div metal:use-macro="mFront.xhtml/IncludeMETA"/>
-		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>
-		<style>
-			.btn-row { margin-top: 5px; }
-			.btn-conf { width: 80px; }
-		</style>
+		<tal:block metal:use-macro="mFront.xhtml/IncludeMETA"/>
+		<meta property="og:title" tal:attributes="content Board/getName"/>
+		<!--
+		<meta property="og:description" tal:attributes="content Board/getName"/>
+		!-->
+		<meta property="og:image" tal:attributes="content Board/getThumb"/>
+		<tal:block metal:use-macro="mFront.xhtml/IncludeCSS"/>		
 	</head>
 	<body>		
 		<div class="container-fluid">
@@ -16,7 +17,8 @@
 						<a tal:attributes="href Chapter/getURLView" class="btn btn-sm"><i class="glyphicon glyphicon-home"/></a>
 						<div class="btn btn-sm" data-toggle="modal" data-target="#Info"><B tal:content="Board/getName"/></div>
 						<div class="btn"><i class="glyphicon glyphicon-stats"/> <span tal:content="Board/getViewedPrint"/></div>
-						<div class="btn"><i class="glyphicon glyphicon-thumbs-up"/> <span tal:content="Board/getLikedPrint"/></div>
+						<div class="btn Liked" tal:attributes="data-id Board/getId"><i class="glyphicon glyphicon-star"/> <span tal:content="Board/getLikedPrint"/></div>
+						<div class="btn fb-share-button" tal:attributes="data-href Board/getURLShare" data-type="button_count" />
 					</div>
 					<div class="row">
 						<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-image: url(/data/chess/150/Board.jpg); background-size: 100% 100%;">
@@ -196,7 +198,7 @@
 						<div class="Move btn btn-sm" tal:attributes="alt Board/getState; move '-1'"><i class="glyphicon glyphicon-th-large"/></div>
 						<div class="MoveFirst btn btn-sm"><i class="glyphicon glyphicon-step-backward"/></div>
 						<div class="MoveBack btn btn-sm"><i class="glyphicon glyphicon-backward"/></div>
-						<div class="Auto btn btn-sm"><i class="glyphicon glyphicon-play"/></div>
+						<div class="Auto btn btn-sm btn-primary"><i class="glyphicon glyphicon-play"/></div>
 						<div class="MoveNext btn btn-sm"><i class="glyphicon glyphicon-forward"/></div> 
 						<div class="MoveLast btn btn-sm"><i class="glyphicon glyphicon-step-forward"/></div>
 						<select name="TimeAuto" id="TimeAuto">
@@ -206,14 +208,36 @@
 							<option value="10" >10 giây</option>
 						</select>
 					</div>					
-					<div class="row btn-row">						
-						<button class="btn btn-sm" type="button" data-toggle="collapse" data-target="#Movement" aria-expanded="false" aria-controls="Movement"><span id="MovementText" tal:content="string:Nước đi"/></button>
-						<div class="collapse" id="Movement">
-							<div class="well">
-								<div class="row btn-row" tal:repeat="Detail Board/getDetailAll">
-									<span tal:content="php: sprintf('%03d', (Board->getMoveInit() + Detail->getMove()-1))" /> . 
-									<div class="Move btn btn-xs btn-danger" 	tal:attributes="alt Detail/getState1; move Detail/getMove1; note Detail/getNote1"><span tal:content="Detail/getName1"/></div>
-									<div class="Move btn btn-xs btn-success"  	tal:attributes="alt Detail/getState2; move Detail/getMove2; note Detail/getNote2"><span tal:content="Detail/getName2"/></div>
+					<div class="row btn-row">
+						<div role="tabpanel">
+							<ul class="nav nav-tabs" role="tablist" id="PostTab">
+								<li role="presentation"><a href="#board-related" aria-controls="home" role="tab" data-toggle="tab">xem thêm</a></li>
+								<li role="presentation" class="active"><a href="#board-comment" aria-controls="profile" role="tab" data-toggle="tab">bình luận</a></li>
+								<li role="presentation"><a href="#board-detail" aria-controls="profile" role="tab" data-toggle="tab">nước đi</a></li>
+							</ul>
+							<div class="tab-content">
+								<div role="tabpanel" class="tab-pane" id="board-related">
+									<ul>
+										<li tal:repeat="Board1 Board/getRelatedAll">
+											<a tal:attributes="href Board1/getURLView">
+												<span tal:content="Board1/getName"/> (<span tal:content="Board1/getDetailAll/count"/>)
+											</a>
+										</li>
+									</ul>
+								</div>
+								<div role="tabpanel" class="tab-pane active" id="board-comment">
+									<div 
+										class="fb-comments" 
+										tal:attributes="data-href Board/getURLShare" 
+										data-numposts="5" data-colorscheme="light"
+									/>
+								</div>
+								<div role="tabpanel" class="tab-pane" id="board-detail">
+									<div class="row btn-row" tal:repeat="Detail Board/getDetailAll">
+										<span tal:content="php: sprintf('%03d', (Board->getMoveInit() + Detail->getMove()-1))" /> . 
+										<div class="Move btn btn-xs btn-danger" 	tal:attributes="alt Detail/getState1; move Detail/getMove1; note Detail/getNote1"><span tal:content="Detail/getName1"/></div>
+										<div class="Move btn btn-xs btn-success"  	tal:attributes="alt Detail/getState2; move Detail/getMove2; note Detail/getNote2"><span tal:content="Detail/getName2"/></div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -369,7 +393,29 @@
 				$(".MoveBack").bind('click', moveBack);				
 				$(".MoveFirst").bind('click', moveFirst);												
 				$(".MoveLast").bind('click', moveLast);
-			});
+				
+				$(".Liked").click(function(){									
+					//-----------------------------------------------------------------------------------			
+					var IdBoard = $(this).attr('data-id');
+													
+					var URL = "/object/liked/Board/"+IdBoard;
+					$.ajax({
+						type: "POST",						
+						url: URL,
+						success: function(msg){
+							location.reload();
+						}
+					});			
+				});
+				
+				(function(d, s, id) {
+				  var js, fjs = d.getElementsByTagName(s)[0];
+				  if (d.getElementById(id)) return;
+				  js = d.createElement(s); js.id = id;
+				  js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&appId=1550985445183957&version=v2.0";
+				  fjs.parentNode.insertBefore(js, fjs);
+				}(document, 'script', 'facebook-jssdk'));
+				});
 		/*]]>*/
 		</script>
 	</body>

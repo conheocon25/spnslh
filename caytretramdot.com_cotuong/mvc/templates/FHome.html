@@ -9,26 +9,113 @@
 		<div class="container-fluid" id="wraper">
 			<div class="row">
 				<div class="col-md-9 col-sm-9">
-					<div class="panel panel-info">
+					<div class="panel panel-primary">
 						<div class="panel-heading">
-							<i class="glyphicon glyphicon-book"/> <B>SÁCH MỚI CẬP NHẬT</B>
+							<i class="glyphicon glyphicon-folder-open"/> <B>SÁCH CỜ</B>
 						</div>
-						<div class="panel-body">
-							<div class="col-xs-6 col-md-3" tal:repeat="Book BookTopAll" data-toggle="tooltip" data-placement="bottom" tal:attributes="title php: Book->getTitle() . ' ( ' . Book->getAuthor() . ' )'">
-								<a tal:attributes="href Book/getURLView" class="thumbnail">
-									<img tal:attributes="src Book/getThumb" />
-									<div class="caption text-center">
-										<span tal:content="Book/getTitleReduce"/><br/>
-										<i class="glyphicon glyphicon-stats"/> <span tal:content="Book/getViewedPrint"/>
-										<i class="glyphicon glyphicon-thumbs-up"/> <span tal:content="Book/getLikedPrint"/>
+						<div class="panel-body">							
+							<div role="tabpanel">
+								<ul class="nav nav-tabs" role="tablist" id="PostTab">
+									<li role="presentation" class="active"><a href="#book-recent" aria-controls="home" role="tab" data-toggle="tab">cập nhật gần đây</a></li>
+									<li role="presentation"><a href="#book-viewed" aria-controls="profile" role="tab" data-toggle="tab">xem nhiều</a></li>
+									<li role="presentation"><a href="#book-liked" aria-controls="profile" role="tab" data-toggle="tab">đánh giá cao</a></li>
+								</ul>
+								<div class="tab-content">
+									<div role="tabpanel" class="tab-pane active" id="book-recent">
+										<div class="col-xs-6 col-md-3" tal:repeat="Book BookRecentAll" data-toggle="tooltip" data-placement="bottom" tal:attributes="title php: Book->getTitle() . ' ( ' . Book->getAuthor() . ' )'">
+											<a tal:attributes="href Book/getURLView" class="thumbnail">
+												<img tal:attributes="src Book/getThumb" />
+												<div class="caption text-center">
+													<span tal:content="Book/getTitleReduce"/><br/>
+													<i class="glyphicon glyphicon-stats"/> <span tal:content="Book/getViewedPrint"/>
+													<i class="glyphicon glyphicon-star"/> <span tal:content="Book/getLikedPrint"/>
+												</div>
+											</a>
+										</div>
 									</div>
-								</a>
+									<div role="tabpanel" class="tab-pane" id="book-viewed">
+										<div class="col-xs-6 col-md-3" tal:repeat="Book BookViewedAll" data-toggle="tooltip" data-placement="bottom" tal:attributes="title php: Book->getTitle() . ' ( ' . Book->getAuthor() . ' )'">
+											<a tal:attributes="href Book/getURLView" class="thumbnail">
+												<img tal:attributes="src Book/getThumb" />
+												<div class="caption text-center">
+													<span tal:content="Book/getTitleReduce"/><br/>
+													<i class="glyphicon glyphicon-stats"/> <span tal:content="Book/getViewedPrint"/>
+													<i class="glyphicon glyphicon-star"/> <span tal:content="Book/getLikedPrint"/>
+												</div>
+											</a>
+										</div>
+									</div>
+									<div role="tabpanel" class="tab-pane" id="book-viewed">
+										<div class="col-xs-6 col-md-3" tal:repeat="Book BookLikedAll" data-toggle="tooltip" data-placement="bottom" tal:attributes="title php: Book->getTitle() . ' ( ' . Book->getAuthor() . ' )'">
+											<a tal:attributes="href Book/getURLView" class="thumbnail">
+												<img tal:attributes="src Book/getThumb" />
+												<div class="caption text-center">
+													<span tal:content="Book/getTitleReduce"/><br/>
+													<i class="glyphicon glyphicon-stats"/> <span tal:content="Book/getViewedPrint"/>
+													<i class="glyphicon glyphicon-star"/> <span tal:content="Book/getLikedPrint"/>
+												</div>
+											</a>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
-					<div class="panel panel-info">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<i class="glyphicon glyphicon-folder-open"/> <B>VÁN CỜ</B>
+						</div>
+						<div class="panel-body">							
+							<div role="tabpanel">
+								<ul class="nav nav-tabs" role="tablist" id="BoardTab">
+									<li role="presentation" class="active"><a href="#board-recent" aria-controls="home" role="tab" data-toggle="tab">cập nhật gần đây</a></li>
+									<li role="presentation"><a href="#board-viewed" aria-controls="profile" role="tab" data-toggle="tab">xem nhiều</a></li>
+									<li role="presentation"><a href="#board-liked" aria-controls="profile" role="tab" data-toggle="tab">đánh giá cao</a></li>
+								</ul>
+								<div class="tab-content">
+									<div role="tabpanel" class="tab-pane active" id="board-recent">
+										<div class="col-xs-6 col-md-3" tal:repeat="Board BoardRecentAll" data-toggle="tooltip" data-placement="bottom" tal:attributes="title php: Board->getName() . ' ( ' . Board->getDetailAll()->count() . ' )'">
+											<a tal:attributes="href Board/getURLView" class="thumbnail">
+												<img tal:attributes="src Board/getThumb" />
+												<div class="caption text-center">
+													<span tal:content="Board/getNameReduce"/><br/>
+													<i class="glyphicon glyphicon-stats"/> <span tal:content="Board/getViewedPrint"/>
+													<i class="glyphicon glyphicon-star"/> <span tal:content="Board/getLikedPrint"/>
+												</div>
+											</a>
+										</div>
+									</div>
+									<div role="tabpanel" class="tab-pane" id="board-viewed">
+										<div class="col-xs-6 col-md-3" tal:repeat="Board BoardViewedAll" data-toggle="tooltip" data-placement="bottom" tal:attributes="title php: Board->getName() . ' ( ' . Board->getDetailAll()->count() . ' )'">
+											<a tal:attributes="href Board/getURLView" class="thumbnail">
+												<img tal:attributes="src Board/getThumb" />
+												<div class="caption text-center">
+													<span tal:content="Board/getNameReduce"/><br/>
+													<i class="glyphicon glyphicon-stats"/> <span tal:content="Board/getViewedPrint"/>
+													<i class="glyphicon glyphicon-star"/> <span tal:content="Board/getLikedPrint"/>
+												</div>
+											</a>
+										</div>
+									</div>									
+									<div role="tabpanel" class="tab-pane" id="board-liked">
+										<div class="col-xs-6 col-md-3" tal:repeat="Board BoardLikedAll" data-toggle="tooltip" data-placement="bottom" tal:attributes="title php: Board->getName() . ' ( ' . Board->getDetailAll()->count() . ' )'">
+											<a tal:attributes="href Board/getURLView" class="thumbnail">
+												<img tal:attributes="src Board/getThumb" />
+												<div class="caption text-center">
+													<span tal:content="Board/getNameReduce"/><br/>
+													<i class="glyphicon glyphicon-stats"/> <span tal:content="Board/getViewedPrint"/>
+													<i class="glyphicon glyphicon-star"/> <span tal:content="Board/getLikedPrint"/>
+												</div>
+											</a>
+										</div>
+									</div>									
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="panel panel-primary">
 						<div class="panel-heading">							
-							<i class="glyphicon glyphicon-facetime-video"/> <B>VIDEO MỚI CẬP NHẬT</B>
+							<i class="glyphicon glyphicon-folder-open"/> <B>VIDEO MỚI CẬP NHẬT</B>
 						</div>
 						<div class="panel-body">
 							<div class="col-xs-6 col-md-3" tal:repeat="Video VideoTopAll" data-toggle="tooltip" data-placement="bottom" tal:attributes="title php: Video->getTitle()">
@@ -37,7 +124,7 @@
 									<div class="caption text-center">
 										<span tal:content="Video/getTitleReduce"/><br/>
 										<i class="glyphicon glyphicon-stats"/> <span tal:content="Video/getViewedPrint"/>
-										<i class="glyphicon glyphicon-thumbs-up"/> <span tal:content="Video/getLikedPrint"/>
+										<i class="glyphicon glyphicon-star"/> <span tal:content="Video/getLikedPrint"/>
 									</div>
 								</a>
 							</div>

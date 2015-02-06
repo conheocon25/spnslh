@@ -41,8 +41,15 @@ class Book extends Mapper implements \MVC\Domain\BookFinder{
 		$deleteStmt 		= sprintf("delete from %s where id=?", $tblBook);				
 		$findByStmt 		= sprintf("select *  from %s where id_category=? ORDER BY `order`", $tblBook);
 		$findByKeyStmt 		= sprintf("select *  from %s where `key`=?", $tblBook);
-		$findByPageStmt 	= sprintf("SELECT * FROM  %s where id_category=:id_category ORDER BY `order` LIMIT :start,:max", $tblBook);
-		$findByTopStmt 		= sprintf("select *  from %s ORDER BY `time` DESC LIMIT 8", $tblBook);
+
+		$findByPageStmt 		= sprintf("SELECT * FROM  %s where id_category=:id_category ORDER BY `order` LIMIT :start,:max", $tblBook);
+		$findByRecentPageStmt 	= sprintf("SELECT * FROM  %s where id_category=:id_category ORDER BY `time` LIMIT :start,:max", $tblBook);
+		$findByViewedPageStmt 	= sprintf("SELECT * FROM  %s where id_category=:id_category ORDER BY `viewed` LIMIT :start,:max", $tblBook);
+		$findByLikedPageStmt 	= sprintf("SELECT * FROM  %s where id_category=:id_category ORDER BY `liked` LIMIT :start,:max", $tblBook);
+		
+		$findByRecentStmt 	= sprintf("select *  from %s ORDER BY `time` DESC LIMIT 8", $tblBook);
+		$findByViewedStmt 	= sprintf("select *  from %s ORDER BY `viewed` DESC LIMIT 8", $tblBook);
+		$findByLikedStmt 	= sprintf("select *  from %s ORDER BY `liked` DESC LIMIT 8", $tblBook);
 				
         $this->selectAllStmt 	= self::$PDO->prepare($selectAllStmt);
         $this->selectStmt 		= self::$PDO->prepare($selectStmt);
@@ -51,12 +58,18 @@ class Book extends Mapper implements \MVC\Domain\BookFinder{
 		$this->deleteStmt 		= self::$PDO->prepare($deleteStmt);
 		$this->findByStmt 		= self::$PDO->prepare($findByStmt);
 		$this->findByKeyStmt 	= self::$PDO->prepare($findByKeyStmt);
-		$this->findByPageStmt 	= self::$PDO->prepare($findByPageStmt);
-		$this->findByTopStmt 	= self::$PDO->prepare($findByTopStmt);
 		
-    } 
+		$this->findByPageStmt 	= self::$PDO->prepare($findByPageStmt);
+		$this->findByRecentPageStmt = self::$PDO->prepare($findByRecentPageStmt);
+		$this->findByViewedPageStmt = self::$PDO->prepare($findByViewedPageStmt);
+		$this->findByLikedPageStmt = self::$PDO->prepare($findByLikedPageStmt);
+		
+		$this->findByRecentStmt 	= self::$PDO->prepare($findByRecentStmt);
+		$this->findByViewedStmt 	= self::$PDO->prepare($findByViewedStmt);
+		$this->findByLikedStmt 		= self::$PDO->prepare($findByLikedStmt);		
+    }
+	
     function getCollection( array $raw ) {return new BookCollection( $raw, $this );}
-
     protected function doCreateObject( array $array ) {
         $obj = new \MVC\Domain\Book( 
 			$array['id'],
@@ -124,9 +137,19 @@ class Book extends Mapper implements \MVC\Domain\BookFinder{
         return new BookCollection( $this->findByStmt->fetchAll(), $this);
     }
 	
-	function findByTop( $values ){
-        $this->findByTopStmt->execute( $values );
-        return new BookCollection( $this->findByTopStmt->fetchAll(), $this);
+	function findByRecent( $values ){
+        $this->findByRecentStmt->execute( $values );
+        return new BookCollection( $this->findByRecentStmt->fetchAll(), $this);
+    }
+	
+	function findByViewed( $values ){
+        $this->findByViewedStmt->execute( $values );
+        return new BookCollection( $this->findByViewedStmt->fetchAll(), $this);
+    }
+	
+	function findByLiked( $values ){
+        $this->findByLikedStmt->execute( $values );
+        return new BookCollection( $this->findByLikedStmt->fetchAll(), $this);
     }
 	
 	function findByKey( $values ) {	
@@ -146,5 +169,30 @@ class Book extends Mapper implements \MVC\Domain\BookFinder{
 		$this->findByPageStmt->execute();
         return new BookCollection( $this->findByPageStmt->fetchAll(), $this );
     }
+	
+	function findByRecentPage( $values ) {
+		$this->findByRecentPageStmt->bindValue(':id_category', $values[0], \PDO::PARAM_INT);
+		$this->findByRecentPageStmt->bindValue(':start', ((int)($values[1])-1)*(int)($values[2]), \PDO::PARAM_INT);
+		$this->findByRecentPageStmt->bindValue(':max', (int)($values[2]), \PDO::PARAM_INT);
+		$this->findByRecentPageStmt->execute();
+        return new BookCollection( $this->findByRecentPageStmt->fetchAll(), $this );
+    }
+	
+	function findByViewedPage( $values ) {
+		$this->findByViewedPageStmt->bindValue(':id_category', $values[0], \PDO::PARAM_INT);
+		$this->findByViewedPageStmt->bindValue(':start', ((int)($values[1])-1)*(int)($values[2]), \PDO::PARAM_INT);
+		$this->findByViewedPageStmt->bindValue(':max', (int)($values[2]), \PDO::PARAM_INT);
+		$this->findByViewedPageStmt->execute();
+        return new BookCollection( $this->findByViewedPageStmt->fetchAll(), $this );
+    }
+	
+	function findByLikedPage( $values ) {
+		$this->findByLikedPageStmt->bindValue(':id_category', $values[0], \PDO::PARAM_INT);
+		$this->findByLikedPageStmt->bindValue(':start', ((int)($values[1])-1)*(int)($values[2]), \PDO::PARAM_INT);
+		$this->findByLikedPageStmt->bindValue(':max', (int)($values[2]), \PDO::PARAM_INT);
+		$this->findByLikedPageStmt->execute();
+        return new BookCollection( $this->findByLikedPageStmt->fetchAll(), $this );
+    }
+	
 }
 ?>
