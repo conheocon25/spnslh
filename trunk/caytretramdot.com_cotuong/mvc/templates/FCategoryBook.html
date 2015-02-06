@@ -8,52 +8,95 @@
 		<div metal:use-macro="mFront.xhtml/Header"/>
 		<div class="container-fluid" id="wraper">
 			<div class="row-fluid">
-				<div class="col-md-9 col-sm-9">
-					<nav class="navbar navbar-default">
-						<div class="navbar-header">
-							<a class="navbar-brand" tal:content="Category/getName"/>
-						</div>
-						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-							<ul class="nav navbar-nav navbar-right">
-								<li class="dropdown">
-									<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Sắp xếp <span class="caret"></span></a>
-									<ul class="dropdown-menu" role="menu">
-										<li><a href="/"><i class="glyphicon glyphicon-sort-by-alphabet"/> theo tên</a></li>
-										<li><a href="/"><i class="glyphicon glyphicon-calendar"/> theo ngày tháng</a></li>
-										<li><a href="/"><i class="glyphicon glyphicon-stats"/> theo lượt xem</a></li>
+				<div class="col-md-9 col-sm-9">															
+					<ol class="breadcrumb">						
+						<li class="active" tal:content="php: mb_strtoupper(Category->getName(), 'UTF8')"/>
+					</ol>
+
+					<div role="tabpanel" id="TabBook">
+						<ul class="nav nav-tabs" role="tablist">
+							<li role="presentation" tal:attributes="class php:(OrderBy == 'Viewed')?'active':''">
+								<a tal:attributes="href php:'#TabViewed'" aria-controls="profile" role="tab" data-toggle="tab">xem nhiều</a>
+							</li>
+							<li role="presentation" tal:attributes="class php:(OrderBy == 'Liked')?'active':''">
+								<a tal:attributes="href php:'#TabLiked'" aria-controls="profile" role="tab" data-toggle="tab">yêu thích</a>
+							</li>
+							<li role="presentation" tal:attributes="class php:(OrderBy == 'Recent')?'active':''">
+								<a tal:attributes="href php:'#TabRecent'" aria-controls="home" role="tab" data-toggle="tab">gần đây</a>
+							</li>									
+						</ul>
+						<div class="tab-content">
+							<div role="tabpanel" tal:attributes="class php:(OrderBy == 'Viewed')?'tab-pane active':'tab-pane'"  id="TabViewed">
+								<table class="table table-striped">
+									<tr tal:repeat="Book BookOrderByViewedAll">
+										<td width="10%">
+											<a tal:attributes="href Book/getURLView">
+												<img width="96px" tal:attributes="src Book/getThumb"/>
+											</a>	
+										</td>
+										<td>
+											<a tal:attributes="href Book/getURLView"><span tal:content="Book/getTitle"/></a>
+											<p class="text-justify" tal:content="structure Book/getInfoReduce"/>
+										</td>
+									</tr>
+								</table>
+								<nav>
+									<ul class="pagination alternate pull-center page-bar">
+										<li tal:repeat="P PNByViewed/getPages" tal:attributes="class php:Page==P->getId()?'active':'disable'">
+											<a tal:attributes="href P/getURL" tal:content="P/getName"/>
+										</li>
 									</ul>
-								</li>
-							</ul>
-						</div>
-					</nav>
-					<div class="panel panel-default">
-						<div class="panel-body">
-							<div class="col-xs-6 col-md-3" tal:repeat="Book BookAll" data-toggle="tooltip" data-placement="bottom" tal:attributes="title php: Book->getTitle() . ' ( ' . Book->getAuthor() . ' )'">
-								<a tal:attributes="href Book/getURLView" class="thumbnail">
-									<img tal:attributes="src Book/getThumb" />
-									<div class="caption text-center">
-										<span tal:content="Book/getTitleReduce"/><br/>
-										<i class="glyphicon glyphicon-stats"/> <span tal:content="Book/getViewedPrint"/>
-										<i class="glyphicon glyphicon-thumbs-up"/> <span tal:content="Book/getLikedPrint"/>
-									</div>
-								</a>
+								</nav>
 							</div>
-							<ul class="pagination alternate pull-right page-bar">
-								<li tal:repeat="P PN/getPages" tal:attributes="class php:Page==P->getId()?'active':'disable'">
-									<a tal:attributes="href P/getURL" tal:content="P/getName"/>
-								</li>
-							</ul>
+							<div role="tabpanel" tal:attributes="class php:(OrderBy == 'Liked')?'tab-pane active':'tab-pane'"  id="TabLiked">
+								<table class="table table-striped">
+									<tr tal:repeat="Book BookOrderByLikedAll">
+										<td width="10%">
+											<a tal:attributes="href Book/getURLView">
+												<img width="96px" tal:attributes="src Book/getThumb"/>
+											</a>	
+										</td>
+										<td>
+											<a tal:attributes="href Book/getURLView"><span tal:content="Book/getTitle"/></a>
+											<p class="text-justify" tal:content="structure Book/getInfoReduce"/>
+										</td>
+									</tr>
+								</table>
+								<nav>
+									<ul class="pagination alternate pull-center page-bar">
+										<li tal:repeat="P PNByLiked/getPages" tal:attributes="class php:Page==P->getId()?'active':'disable'">
+											<a tal:attributes="href P/getURL" tal:content="P/getName"/>
+										</li>
+									</ul>
+								</nav>
+							</div>
+							<div role="tabpanel" tal:attributes="class php:(OrderBy == 'Recent')?'tab-pane active':'tab-pane'"  id="TabRecent">
+								<table class="table table-striped">
+									<tr tal:repeat="Book BookOrderByRecentAll">
+										<td width="10%">
+											<a tal:attributes="href Book/getURLView">
+												<img width="96px" tal:attributes="src Book/getThumb"/>
+											</a>	
+										</td>
+										<td>
+											<a tal:attributes="href Book/getURLView"><span tal:content="Book/getTitle"/></a>
+											<p class="text-justify" tal:content="structure Book/getInfoReduce"/>
+										</td>
+									</tr>
+								</table>
+								<nav>
+									<ul class="pagination alternate pull-center page-bar">
+										<li tal:repeat="P PNByRecent/getPages" tal:attributes="class php:Page==P->getId()?'active':'disable'">
+											<a tal:attributes="href P/getURL" tal:content="P/getName"/>
+										</li>
+									</ul>
+								</nav>								
+							</div>
 						</div>
-					</div>					
+					</div>									
 				</div>
 				<div class="col-md-3 col-sm-3">
-					<div class="panel panel-default">						
-						<div class="panel-body">
-							<a tal:attributes="href Category1/getURLView;class php: Category1->getId()==Category->getId()?'btn btn-primary btn-block':'btn btn-default btn-block'"  tal:repeat="Category1 CategoryBookAll">
-								<span tal:content="Category1/getName"/>
-							</a>							
-						</div>
-					</div>
+					
 				</div>
 			</div>			
 		</div>

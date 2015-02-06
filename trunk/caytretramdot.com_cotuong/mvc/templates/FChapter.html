@@ -13,40 +13,47 @@
 		<div class="container-fluid" id="wraper">
 			<div class="row">
 				<div class="col-md-9">
-					<div class="panel panel-info">
-						<div class="panel-heading">
-							<a tal:attributes="href Book/getURLView">
-								<i class="glyphicon glyphicon-home"/> <span tal:content="Chapter/getTitle"/>
-							</a>
-						</div>
-						<div class="panel-body">							
-							<div class="article-meta-more">								
-								<div tal:content="structure Chapter/getInfo" class="article-content-container"/>								
+					<ol class="breadcrumb">
+						<li><a tal:attributes="href Category/getURLView" tal:content="php: mb_strtoupper(Category->getName(), 'UTF8')"/></li>
+						<li><a tal:attributes="href Book/getURLView" tal:content="php: mb_strtoupper(Book->getTitle(), 'UTF8')"/></li>
+						<li class="active" tal:content="php: mb_strtoupper(Chapter->getTitle(), 'UTF8')"/>
+					</ol>
+					<div role="tabpanel" id="TabChapter">
+						<ul class="nav nav-tabs" role="tablist">
+							<li role="presentation">
+								<a tal:attributes="href php:'#TabInfo'" aria-controls="profile" role="tab" data-toggle="tab">Tổng quan</a>
+							</li>
+							<li role="presentation" class="active">
+								<a tal:attributes="href php:'#TabBoard'" aria-controls="profile" role="tab" data-toggle="tab">Chi tiết</a>
+							</li>							
+						</ul>
+						<div class="tab-content">
+							<div role="tabpanel" class="tab-pane"  id="TabInfo">
+								<div class="article-meta-date">
+									
+								</div>
+								<div class="article-meta-more">									
+									<div tal:content="structure Chapter/getInfo" class="article-content-container"/>
+								</div>
 							</div>
-						</div>
-					</div>
-					<div class="panel panel-default">						
-						<div class="panel-body">							
-							<div class="col-xs-6 col-md-3" tal:repeat="Board Chapter/getBoardAll" data-toggle="tooltip" data-placement="bottom" tal:attributes="title php: Board->getName()">
-								<a tal:attributes="href Board/getURLView" class="thumbnail">
-									<img src="/data/chess/150/BoardThumb.jpg" />
-									<div class="caption text-center">
-										<span tal:content="Board/getNameReduce"/> <br/>
-										<span tal:content="Board/getDetailAll/count"/> nước
-									</div>
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3">
-					<div class="panel panel-default">
-						<div class="panel-body">
-							<a tal:attributes="href Chapter1/getURLView;class php: Chapter1->getId()==Chapter->getId()?'btn btn-primary btn-block':'btn btn-default btn-block'"  tal:repeat="Chapter1 Book/getChapterAll">
-								<span tal:content="Chapter1/getTitleReduce"/>
-							</a>
+							<div role="tabpanel" class="tab-pane active" id="TabBoard">
+								<table class="table table-striped">
+									<tr tal:repeat="Board Chapter/getBoardAll">										
+										<td width="15%"><img width="96px" tal:attributes="src Board/getThumb"/></td>
+										<td>
+											<a tal:attributes="href Board/getURLView">
+												<span tal:content="Board/getName"/> (<span tal:content="Board/getDetailAll/count"/> nước)
+											</a>
+											<p tal:content="structure Board/getInfoReduce"/>											
+										</td>										
+									</tr>
+								</table>
+							</div>							
 						</div>
 					</div>					
+				</div>
+				<div class="col-md-3">
+					
 				</div>
 			</div>
 		</div>

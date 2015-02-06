@@ -60,6 +60,8 @@ class Chapter extends Object{
 	}	
 	function getInfoReduce(){$S = new \MVC\Library\String($this->Info);return $S->reduceHTML(320);}
 	
+	function getThumb( ){return "/data/chess/150/chapter.png";}
+	
 	//-------------------------------------------------------------------------------
 	//GET LISTs
 	//-------------------------------------------------------------------------------	

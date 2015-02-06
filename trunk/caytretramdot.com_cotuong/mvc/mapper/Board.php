@@ -28,6 +28,20 @@ class Board extends Mapper implements \MVC\Domain\BoardFinder{
 		$findByStmt 			= sprintf("select *  from %s where `id_chapter`=? order by name", $tblBoard);
 		$findByKeyStmt 			= sprintf("select *  from %s where `key`=?", $tblBoard);
 		$findByPageStmt 		= sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblBoard);
+				
+		$findByRelatedStmt 		= sprintf("						
+			select 
+				*
+			from 
+				%s
+		where 
+			id_chapter=? AND (? -id+4)>0 AND (? -id+4)<=8 AND (?<>id)
+		ORDER BY 
+			`name`
+		", $tblBoard);
+		$findByRecentStmt 		= sprintf("select *  from %s ORDER BY `time` DESC LIMIT 8", $tblBoard);
+		$findByViewedStmt 		= sprintf("select *  from %s ORDER BY `viewed` DESC LIMIT 8", $tblBoard);
+		$findByLikedStmt 		= sprintf("select *  from %s ORDER BY `liked` DESC LIMIT 8", $tblBoard);
 						
         $this->selectAllStmt 	= self::$PDO->prepare($selectAllStmt);
         $this->selectStmt 		= self::$PDO->prepare($selectStmt);
@@ -37,6 +51,10 @@ class Board extends Mapper implements \MVC\Domain\BoardFinder{
 		$this->findByStmt 		= self::$PDO->prepare($findByStmt);
 		$this->findByPageStmt 	= self::$PDO->prepare($findByPageStmt);		
 		$this->findByKeyStmt 	= self::$PDO->prepare($findByKeyStmt);
+		$this->findByRelatedStmt 	= self::$PDO->prepare($findByRelatedStmt);
+		$this->findByRecentStmt 	= self::$PDO->prepare($findByRecentStmt);
+		$this->findByViewedStmt 	= self::$PDO->prepare($findByViewedStmt);
+		$this->findByLikedStmt 		= self::$PDO->prepare($findByLikedStmt);		
 	}
 	
     function getCollection( array $raw ) {return new BoardCollection( $raw, $this );}
@@ -110,8 +128,28 @@ class Board extends Mapper implements \MVC\Domain\BoardFinder{
 	function findBy( $values ){
 		$this->findByStmt->execute($values);
         return new BoardCollection( $this->findByStmt->fetchAll(), $this);
-    }			
+    }
 	
+	function findByRelated( $values ){
+        $this->findByRelatedStmt->execute( $values );
+        return new BoardCollection( $this->findByRelatedStmt->fetchAll(), $this);
+    }
+	
+	function findByRecent( $values ){
+        $this->findByRecentStmt->execute( $values );
+        return new BoardCollection( $this->findByRecentStmt->fetchAll(), $this);
+    }
+	
+	function findByViewed( $values ){
+        $this->findByViewedStmt->execute( $values );
+        return new BoardCollection( $this->findByViewedStmt->fetchAll(), $this);
+    }
+	
+	function findByLiked( $values ){
+        $this->findByLikedStmt->execute( $values );
+        return new BoardCollection( $this->findByLikedStmt->fetchAll(), $this);
+    }
+		
 	function findByKey( $values ) {	
 		$this->findByKeyStmt->execute( array($values) );
         $array = $this->findByKeyStmt->fetch();

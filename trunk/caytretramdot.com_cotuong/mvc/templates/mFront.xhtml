@@ -3,7 +3,7 @@
 	<!-- ======================================================================== -->
 	<!-- META TAG INCLUDE														  -->
 	<!-- ======================================================================== -->
-	<span metal:define-macro="IncludeMETA">
+	<tal:block metal:define-macro="IncludeMETA">
 		<title>Cờ Tướng Online</title>
 		<base href="cotuong.caytretramdot.com"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -17,24 +17,24 @@
 		<meta name="Abstract" content="Cờ Tướng, Cờ Thế, Sách Cờ, Kỳ Phổ, Quất Trung Bí, Hoa Mai Phổ, Phản Hoa Mai, Bách Cục Tượng Kỳ, Thuận Pháo, Nghịch Pháo, Bình Phong Mã ..."/>
 		<meta name="classification" content="Cờ Tướng, Cờ Thế, Sách Cờ, Kỳ Phổ, Quất Trung Bí, Hoa Mai Phổ, Phản Hoa Mai, Bách Cục Tượng Kỳ, Thuận Pháo, Nghịch Pháo, Bình Phong Mã ..."/>
 		<link rel="shortcut icon" type="image/ico" href="/mvc/templates/theme/img/favicon.ico" />
-	</span>
+	</tal:block>
 		
 	<!-- ======================================================================== -->
 	<!-- CASCADING STYLE SHEETS INCLUDE											  -->
 	<!-- ======================================================================== -->
-	<span metal:define-macro="IncludeCSS">	
+	<tal:block metal:define-macro="IncludeCSS">	
 		<link rel="stylesheet" href="/mvc/templates/theme/bootstrap/css/bootstrap.min.css"/>		
 		<link rel="stylesheet" href="/mvc/templates/theme/bootstrap/css/bootstrap.config.css"/>		
-	</span>
+	</tal:block>
 	
 	<!-- ======================================================================== -->
 	<!-- JAVASCRIPT INCLUDE														  -->
 	<!-- ======================================================================== -->
-	<span metal:define-macro="IncludeJS">
+	<tal:block metal:define-macro="IncludeJS">
 		<script src="/mvc/templates/theme/bootstrap/js/jquery-1.11.0.min.js"></script>
 		<script src="/mvc/templates/theme/bootstrap/js/bootstrap.min.js"></script>	
 		<script src="/mvc/templates/theme/bootstrap/js/chess.js"></script>
-	</span>
+	</tal:block>
 		
 	<!-- ======================================================================== -->
 	<!-- HEADER																	  -->
@@ -56,7 +56,7 @@
 				<ul class="nav navbar-nav navbar-left">
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">							
-							<i class="glyphicon glyphicon-th-list"/> Tin tức <span class="caret"></span>
+							<i class="glyphicon glyphicon-home"/> Tin tức <span class="caret"></span>
 						</a>
 						<ul class="dropdown-menu" role="menu">
 							<li tal:repeat="Category CategoryPostAll">
@@ -66,7 +66,7 @@
 					</li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<i class="glyphicon glyphicon-book"/> Sách <span class="caret"></span>
+							Sách <span class="caret"></span>
 						</a>
 						<ul class="dropdown-menu" role="menu">
 							<li tal:repeat="Category CategoryBookAll">
@@ -76,7 +76,7 @@
 					</li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<i class="glyphicon glyphicon-facetime-video"/> Video<span class="caret"></span>
+							Video<span class="caret"></span>
 						</a>
 						<ul class="dropdown-menu" role="menu">
 							<li tal:repeat="Category CategoryVideoAll">
@@ -86,7 +86,7 @@
 					</li>
 					<li>
 						<a href="/lien-he">
-							<i class="glyphicon glyphicon-envelope"/> Liên hệ
+							Liên hệ
 						</a>
 					</li>
 					<li><a><b tal:content="php:@\MVC\Library\Statistic::getOnlinePrint()"/> <i class="glyphicon glyphicon-user"/></a></li>

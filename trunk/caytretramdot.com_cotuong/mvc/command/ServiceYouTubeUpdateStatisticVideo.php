@@ -13,6 +13,7 @@
 			//-------------------------------------------------------------
 			$IdVideo	= $request->getProperty("IdVideo");
 			$Viewed 	= $request->getProperty("Viewed");
+			$Liked 		= $request->getProperty("Liked");
 						
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
@@ -24,6 +25,7 @@
 			//-------------------------------------------------------------			
 			$Video = $mVideo->find($IdVideo);
 			$Video->setViewed($Viewed);
+			$Video->setLiked($Liked);
 						
 			$mVideo->update($Video);
 			

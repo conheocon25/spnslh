@@ -71,6 +71,8 @@ class Board extends Object{
 		$S = new \MVC\Library\String($this->Name);return $S->reduceHTML(14);
 	}
 	
+	function getThumb( ){return "/data/chess/150/BoardThumb.jpg";}
+	
 	function setState( $State ) {$this->State = $State;$this->markDirty();}   
 	function getState( ) 		{return $this->State;}
 	
@@ -173,6 +175,12 @@ class Board extends Object{
 	//-------------------------------------------------------------------------------
 	//GET LISTs
 	//-------------------------------------------------------------------------------
+	function getRelatedAll(){
+		$mBoard 	= new \MVC\Mapper\Board();
+		$BoardAll 	= $mBoard->findByRelated(array($this->getIdChapter(), $this->getId(), $this->getId(), $this->getId()));
+		return $BoardAll;
+	}
+	
 	function getDetailAll(){
 		$mBoardDetail = new \MVC\Mapper\BoardDetail();
 		$DetailAll = $mBoardDetail->findBy(array($this->getId()));
@@ -186,6 +194,13 @@ class Board extends Object{
 		$Book 		= $Chapter->getBook();
 		$Category	= $Book->getCategory();
 		return "/sach/".$Category->getKey()."/".$Book->getKey()."/".$Chapter->getKey()."/".$this->getKey();
+	}
+	
+	function getURLShare(){
+		$Chapter  	= $this->getChapter();
+		$Book 		= $Chapter->getBook();
+		$Category	= $Book->getCategory();
+		return "http://cotuong.caytretramdot.com/sach/".$Category->getKey()."/".$Book->getKey()."/".$Chapter->getKey()."/".$this->getKey();
 	}
 	
 	function getURLDetail(){

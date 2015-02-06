@@ -13,62 +13,79 @@
 		<div class="container-fluid" id="wraper">
 			<div class="row">
 				<div class="col-md-9">
-					<div class="panel panel-info">
-						<div class="panel-heading">
-							<a tal:attributes="href Category/getURLView">
-								<i class="glyphicon glyphicon-home"/>
-								<span tal:content="Book/getTitle"/>
-							</a>
-						</div>
-						<div class="panel-body">
-							<div class="article-meta-date">
-								<B tal:content="Book/getAuthor"/>
-								<div class="btn"><i class="glyphicon glyphicon-stats"/> <span tal:content="Book/getViewed"/></div>  
-								<div class="btn"><i class="glyphicon glyphicon-thumbs-up"/> <span tal:content="Book/getLikedPrint"/></div>
-							</div>
-							<div class="article-meta-more">
-								<div class="share-button-group">
+					<ol class="breadcrumb">
+						<li><a tal:attributes="href Category/getURLView" tal:content="php: mb_strtoupper(Category->getName(), 'UTF8')"/></li>
+						<li class="active" tal:content="php: mb_strtoupper(Book->getTitle(), 'UTF8')"/>
+					</ol>
+					<div role="tabpanel" id="TabBook">
+						<ul class="nav nav-tabs" role="tablist">
+							<li role="presentation">
+								<a tal:attributes="href php:'#TabInfo'" aria-controls="profile" role="tab" data-toggle="tab">Tổng quan</a>
+							</li>
+							<li role="presentation" class="active">
+								<a tal:attributes="href php:'#TabChapter'" aria-controls="profile" role="tab" data-toggle="tab">Chi tiết</a>
+							</li>							
+						</ul>
+						<div class="tab-content">
+							<div role="tabpanel" class="tab-pane"  id="TabInfo">
+								<div class="article-meta-date">
 									<div class="btn fb-share-button" tal:attributes="data-href URLShare" data-type="button_count" />
 									<span tal:condition="Book/getURL"><a class="btn" tal:attributes="href Book/getURL" target="blank"><i class="glyphicon glyphicon-download-alt"/></a></span>
+									<div class="btn"><i class="glyphicon glyphicon-stats"/> <span tal:content="Book/getViewed"/></div>  
+									<div class="btn Liked" tal:attributes="data-id Book/getId"><i class="glyphicon glyphicon-star"/> <span tal:content="Book/getLikedPrint"/></div>
 								</div>
-								<div tal:content="structure Book/getInfo" class="article-content-container"/>
+								<div class="article-meta-more">									
+									<div tal:content="structure Book/getInfo" class="article-content-container"/>
+								</div>
 							</div>
+							<div role="tabpanel" class="tab-pane active" id="TabChapter">
+								<table class="table table-striped">
+									<tr tal:repeat="Chapter Book/getChapterAll">
+										<td width="15%"><img width="96px" tal:attributes="src Chapter/getThumb"/></td>
+										<td>
+											<a tal:attributes="href Chapter/getURLView">
+												<span tal:content="Chapter/getTitle"/>
+												 (<span tal:content="Chapter/getBoardAll/count"/> ván)
+											</a>
+											<p tal:content="structure Chapter/getInfoReduce"/>											
+										</td>
+									</tr>
+								</table>								
+							</div>							
 						</div>
-					</div>
-					<div class="panel panel-default">
-						<div class="panel-body">							
-							<div class="col-xs-6 col-md-3" tal:repeat="Chapter1 Book/getChapterAll" data-toggle="tooltip" data-placement="bottom" tal:attributes="title php: Chapter1->getTitle()">
-								<a tal:attributes="href Chapter1/getURLView" class="thumbnail">
-									<img src="/data/chess/150/chapter.png" />
-									<div class="caption text-center" tal:content="Chapter1/getTitleReduce" />
-								</a>
-							</div>
-						</div>						
 					</div>
 				</div>
 				<div class="col-md-3">
-					<div class="panel panel-default">						
-						<div class="panel-body">
-							<a tal:attributes="href Book1/getURLView;class php: Book1->getId()==Book->getId()?'btn btn-primary btn-block':'btn btn-default btn-block'"  tal:repeat="Book1 Category/getBookAll">
-								<span tal:content="Book1/getTitleReduce"/>
-							</a>							
-						</div>
-					</div>
+					
 				</div>
 			</div>
 		</div>
 		<script type="text/javascript">
-		/*<![CDATA[*/						
+		/*<![CDATA[*/															
 			(function(d, s, id) {
-				var js, fjs = d.getElementsByTagName(s)[0];
-				if (d.getElementById(id)) return;
-				js = d.createElement(s); js.id = id;
-				js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&appId=525611617524479&version=v2.0";
-				fjs.parentNode.insertBefore(js, fjs);
+			  var js, fjs = d.getElementsByTagName(s)[0];
+			  if (d.getElementById(id)) return;
+			  js = d.createElement(s); js.id = id;
+			  js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&appId=1550985445183957&version=v2.0";
+			  fjs.parentNode.insertBefore(js, fjs);
 			}(document, 'script', 'facebook-jssdk'));
 						
 			$(".ChessBoard").attr("height", ($(".ChessBoard").width() * 1.05));
 			$('[data-toggle="tooltip"]').tooltip();
+			
+			$(".Liked").click(function(){									
+				//-----------------------------------------------------------------------------------			
+				var IdBook = $(this).attr('data-id');
+												
+				var URL = "/object/liked/Book/"+IdBook;
+				$.ajax({
+					type: "POST",						
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});			
+			});
 		/*]]>*/
 		</script>
 	</body>	
