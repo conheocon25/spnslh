@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<div metal:use-macro="mFront.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>
+		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
+	</head>	
+	<body>
+		<div id="wrapper">
+			<div metal:use-macro="mFront.xhtml/Header"/>
+			<div class="container-fluid" id="wraper">
+				<div class="row">
+					<div class="col-md-8">
+						THỬ NGHIỆM FACEBOOK<br/>						
+						<div class="fb-login-button" scope="public_profile,email" onlogin="checkLoginState();" />
+						<div id="Status" />
+					</div>
+					<div class="col-md-4">
+						
+					</div>					
+				</div>
+			</div>
+		</div>				
+		<script type="text/javascript">
+		/*<![CDATA[*/
+			
+			// This is called with the results from from FB.getLoginStatus().
+			function statusChangeCallback(response) {
+				console.log('statusChangeCallback');
+				console.log(response);				
+				if (response.status === 'connected') {					
+					testAPI();
+				} else if (response.status === 'not_authorized') {					
+					document.getElementById('status').innerHTML = 'Please log ' + 'into this app.';
+				} else {					
+					document.getElementById('status').innerHTML = 'Please log ' + 'into Facebook.';
+				}
+			}
+
+			// This function is called when someone finishes with the Login
+			// Button.  See the onlogin handler attached to it in the sample
+			// code below.
+			function checkLoginState() {
+				FB.getLoginStatus(function(response) {
+				  statusChangeCallback(response);
+				});
+			}
+						
+			window.fbAsyncInit = function() {
+				FB.init({
+					appId      : '1550985445183957',
+					cookie     : true,  
+										
+					xfbml      : true,  
+					version    : 'v2.1' 
+			});
+									
+			FB.getLoginStatus(function(response) {
+				statusChangeCallback(response);
+			});
+
+		};
+
+  
+		// Here we run a very simple test of the Graph API after login is
+		// successful.  See statusChangeCallback() for when this call is made.
+		function testAPI() {
+			console.log('Welcome!  Fetching your information.... ');
+			FB.api('/me', function(response){
+				console.log('Da dang nhap voi cai ten: ' + response.name);
+				$('#Status').html('Cam on ban da dang nhap vao, ' + response.name + '!');
+			});
+		}
+
+		/*]]>*/
+		</script>
+	</body>
+</html>

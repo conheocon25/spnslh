@@ -16,6 +16,7 @@ class Book extends Object{
 	private $Viewed;
 	private $Liked;
 	private $Thumb;
+	private $Completed;
 	private $Key;
 		
 	//-------------------------------------------------------------------------------
@@ -34,6 +35,7 @@ class Book extends Object{
 		$Viewed=null, 
 		$Liked=null, 
 		$Thumb=null, 
+		$Completed=null, 
 		$Key=null) 
 	{
 		$this->Id 			= $Id; 
@@ -48,6 +50,7 @@ class Book extends Object{
 		$this->Viewed 		= $Viewed;
 		$this->Liked 		= $Liked;
 		$this->Thumb 		= $Thumb;
+		$this->Completed 	= $Completed;
 		$this->Key 			= $Key;
 		
 		parent::__construct( $Id );
@@ -105,8 +108,24 @@ class Book extends Object{
 	
 	function setThumb( $Thumb ) {$this->Thumb = $Thumb; $this->markDirty();}   
 	function getThumb( ) 		{
-		if ($this->Thumb=="") return "/data/chess/bg/book.png";
-		return $this->Thumb;
+		return "/data/chess/150/book.png";		
+	}
+	
+	function setCompleted( $Completed ) {$this->Completed = $Completed;$this->markDirty();}   
+	function getCompleted( ) {return $this->Completed;}
+	
+	function getCompletedPercent(){		
+		return \round($this->Completed/100, 2);
+	}
+			
+	function getCompletedPercentPrint1(){
+		$Value = $this->getCompletedPercent();		
+		return 'width:'.($Value*100)."%";
+	}
+	
+	function getCompletedPercentPrint2(){
+		$Value = $this->getCompletedPercent();		
+		return ($Value*100)."%";
 	}
 	
 	function setKey( $Key ){$this->Key = $Key;$this->markDirty();}
@@ -131,6 +150,18 @@ class Book extends Object{
 		return $ChapterAll;
 	}
 	
+	function reCompleted(){
+		$ChapterAll = $this->getChapterAll();				
+		$Count = 0;
+		while($ChapterAll->valid()){
+			$Chapter = $ChapterAll->current();
+			$Count += $Chapter->getCompleted();
+			$ChapterAll->next();
+		}
+		if ($ChapterAll->count()==0) $this->Completed = 0; 
+		$this->Completed = \round ($Count/$ChapterAll->count(), 2);
+	}
+	
 	function toJSON(){
 		$json = array(
 			'Id' 			=> $this->getId(),
@@ -143,6 +174,7 @@ class Book extends Object{
 			'Viewed'		=> $this->getViewed(),
 			'Liked'			=> $this->getLiked(),
 			'Thumb'			=> $this->getThumb(),
+			'Completed'		=> $this->getCompleted(),
 			'Key'			=> $this->getKey()
 		);
 		return json_encode($json);
@@ -159,7 +191,8 @@ class Book extends Object{
 		$this->Viewed		= $Data[7];
 		$this->Liked		= $Data[8];
 		$this->Thumb		= $Data[9];
-		$this->Key 			= $Data[10];
+		$this->Completed	= $Data[10];
+		$this->Key 			= $Data[11];
     }
 	
 	//-------------------------------------------------------------------------------

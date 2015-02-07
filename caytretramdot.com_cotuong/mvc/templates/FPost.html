@@ -13,17 +13,17 @@
 		<div class="container-fluid" id="wraper">
 			<div class="row">
 				<div class="col-md-9">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<a tal:attributes="href Category/getURLView">
-								<i class="glyphicon glyphicon-home"/>
-								<span tal:content="Post/getTitle"/>
-							</a>
+					<div class="panel panel-primary">
+						<div class="panel-heading">							
+							<ol class="breadcrumb">
+								<li><a tal:attributes="href Category/getURLView"><span tal:content="Category/getName"/></a></li>
+								<li class="active" tal:content="php: mb_strtoupper(Category->getName(), 'UTF8')"/>
+							</ol>							
 						</div>
 						<div class="panel-body">
 							<div class="article-meta-date">								
 								<span tal:content="Post/getTimePrint"/>, <div class="btn"><i class="glyphicon glyphicon-stats"/> <span tal:content="Post/getViewedPrint"/></div> 
-								<div class="btn"><i class="glyphicon glyphicon-thumbs-up"/> <span tal:content="Post/getLikedPrint"/></div>
+								<div class="btn"><i class="glyphicon glyphicon-star"/> <span tal:content="Post/getLikedPrint"/></div>
 							</div>
 							<div class="article-meta-more">																				
 								<div class="share-button-group">
@@ -35,27 +35,10 @@
 					</div>
 				</div>
 				<div class="col-md-3 col-sm-3">
-					<div class="panel panel-default">
-						<div class="panel-heading">DANH MỤC</div>
-						<div class="panel-body">
-							<a tal:attributes="href Category1/getURLView;class php: Category1->getId()==Category->getId()?'btn btn-primary btn-block':'btn btn-default btn-block'"  tal:repeat="Category1 CategoryPostAll">
-								<span tal:content="Category1/getName"/>
-							</a>							
-						</div>
-					</div>					
+					<tal:block metal:use-macro="mFront.xhtml/SuggestLevel01"/>					
+					<div width="100%" class="fb-like-box" data-href="https://www.facebook.com/pages/Caytretramdot/596061963849405" data-colorscheme="light" data-show-faces="true" data-header="false" data-stream="false" data-show-border="false"></div>
 				</div>
 			</div>
-		</div>
-		<script type="text/javascript">
-		/*<![CDATA[*/						
-			(function(d, s, id) {
-				var js, fjs = d.getElementsByTagName(s)[0];
-				if (d.getElementById(id)) return;
-				js = d.createElement(s); js.id = id;
-				js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&appId=525611617524479&version=v2.0";
-				fjs.parentNode.insertBefore(js, fjs);
-			}(document, 'script', 'facebook-jssdk'));
-		/*]]>*/
-		</script>
+		</div>		
 	</body>	
 </html>

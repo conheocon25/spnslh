@@ -22,6 +22,7 @@ class Book extends Mapper implements \MVC\Domain\BookFinder{
 												`viewed`=?, 
 												`liked`=?, 
 												`thumb`=?, 
+												`completed`=?, 
 												`key`=? 
 									where 
 										id=?", $tblBook);
@@ -37,15 +38,16 @@ class Book extends Mapper implements \MVC\Domain\BookFinder{
 												`viewed`, 
 												`liked`, 
 												`thumb`, 
-												`key`) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblBook);
+												`completed`, 
+												`key`) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblBook);
 		$deleteStmt 		= sprintf("delete from %s where id=?", $tblBook);				
 		$findByStmt 		= sprintf("select *  from %s where id_category=? ORDER BY `order`", $tblBook);
 		$findByKeyStmt 		= sprintf("select *  from %s where `key`=?", $tblBook);
 
 		$findByPageStmt 		= sprintf("SELECT * FROM  %s where id_category=:id_category ORDER BY `order` LIMIT :start,:max", $tblBook);
-		$findByRecentPageStmt 	= sprintf("SELECT * FROM  %s where id_category=:id_category ORDER BY `time` LIMIT :start,:max", $tblBook);
-		$findByViewedPageStmt 	= sprintf("SELECT * FROM  %s where id_category=:id_category ORDER BY `viewed` LIMIT :start,:max", $tblBook);
-		$findByLikedPageStmt 	= sprintf("SELECT * FROM  %s where id_category=:id_category ORDER BY `liked` LIMIT :start,:max", $tblBook);
+		$findByRecentPageStmt 	= sprintf("SELECT * FROM  %s where id_category=:id_category ORDER BY `time`  DESC LIMIT :start,:max", $tblBook);
+		$findByViewedPageStmt 	= sprintf("SELECT * FROM  %s where id_category=:id_category ORDER BY `viewed` DESC LIMIT :start,:max", $tblBook);
+		$findByLikedPageStmt 	= sprintf("SELECT * FROM  %s where id_category=:id_category ORDER BY `liked` DESC LIMIT :start,:max", $tblBook);
 		
 		$findByRecentStmt 	= sprintf("select *  from %s ORDER BY `time` DESC LIMIT 8", $tblBook);
 		$findByViewedStmt 	= sprintf("select *  from %s ORDER BY `viewed` DESC LIMIT 8", $tblBook);
@@ -84,6 +86,7 @@ class Book extends Mapper implements \MVC\Domain\BookFinder{
 			$array['viewed'],
 			$array['liked'],
 			$array['thumb'],
+			$array['completed'],
 			$array['key']
 		);
         return $obj;
@@ -103,6 +106,7 @@ class Book extends Mapper implements \MVC\Domain\BookFinder{
 			$object->getViewed(),
 			$object->getLiked(),
 			$object->getThumb(),
+			$object->getCompleted(),
 			$object->getKey()
 		); 
         $this->insertStmt->execute( $values );
@@ -122,7 +126,8 @@ class Book extends Mapper implements \MVC\Domain\BookFinder{
 			$object->getURL(),
 			$object->getViewed(),
 			$object->getLiked(),
-			$object->getThumb(),			
+			$object->getThumb(),
+			$object->getCompleted(),
 			$object->getKey(),
 			$object->getId()
 		);		

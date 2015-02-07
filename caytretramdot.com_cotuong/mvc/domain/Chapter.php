@@ -8,22 +8,25 @@ class Chapter extends Object{
 	private $IdBook;
 	private $Title;	
 	private $Info;
+	private $Completed;
 	private $Key;
 		
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
     function __construct( 
-		$Id		=null, 
-		$IdBook	=null, 
-		$Title	=null , 		
-		$Info	=null, 		
-		$Key	=null)
+		$Id			=null, 
+		$IdBook		=null, 
+		$Title		=null , 		
+		$Info		=null, 		
+		$Completed	=null, 
+		$Key		=null)
 	{
 		$this->Id 			= $Id;
 		$this->IdBook 		= $IdBook;
 		$this->Title 		= $Title; 
 		$this->Info 		= $Info;
+		$this->Completed 	= $Completed;
 		$this->Key 			= $Key;
 		
 		parent::__construct( $Id );
@@ -46,6 +49,24 @@ class Chapter extends Object{
 			
 	function setInfo( $Info ) {$this->Info = $Info;$this->markDirty();}   
 	function getInfo( ) {return $this->Info;}
+	
+	function setCompleted( $Completed ) {$this->Completed = $Completed;$this->markDirty();}   
+	function getCompleted( ) {return $this->Completed;}
+	
+	function getCompletedPercent(){		
+		return \round($this->Completed/100, 2);
+	}
+			
+	function getCompletedPercentPrint1(){
+		$Value = $this->getCompletedPercent();		
+		return 'width:'.($Value*100)."%";
+	}
+	
+	function getCompletedPercentPrint2(){
+		$Value = $this->getCompletedPercent();		
+		return ($Value*100)."%";
+	}
+	
 			
 	function setKey( $Key ){$this->Key = $Key;$this->markDirty();}
 	function getKey( ) {return $this->Key;}
@@ -70,13 +91,27 @@ class Chapter extends Object{
 		$BoardAll 	= $mBoard->findBy(array($this->getId()));
 		return $BoardAll;
 	}
-	
+		
+	function reCompleted(){
+		$BoardAll = $this->getBoardAll();
+		$Count = 0;
+		while ($BoardAll->valid()){
+			$Board = $BoardAll->current();
+			if ($Board->getDetailAll()->count()>0)
+				$Count ++;
+			$BoardAll->next();
+		}
+		if ($BoardAll->count()==0) return 0;		
+		$this->Completed = round(($Count/$BoardAll->count())*100,0);
+	}
+		
 	function toJSON(){
 		$json = array(
 			'Id' 			=> $this->getId(),
 			'IdBook' 		=> $this->getIdBook(),
 			'Title'			=> $this->getTitle(),
 			'Info'			=> $this->getInfo(),
+			'Completed'		=> $this->getCompleted(),
 			'Key'			=> $this->getKey()
 		);
 		return json_encode($json);
@@ -87,7 +122,8 @@ class Chapter extends Object{
 		$this->IdBook		= $Data[1];
 		$this->Title 		= $Data[2];		
 		$this->Info 		= $Data[3];		
-		$this->Key 			= $Data[4];
+		$this->Completed 	= $Data[4];		
+		$this->Key 			= $Data[5];
     }
 	
 	//-------------------------------------------------------------------------------

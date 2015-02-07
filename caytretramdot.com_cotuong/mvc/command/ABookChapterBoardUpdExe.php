@@ -29,16 +29,13 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mBoard = new \MVC\Mapper\Board();
-			$mBook 	= new \MVC\Mapper\Book();
+			$mBoard 	= new \MVC\Mapper\Board();
+			$mBook 		= new \MVC\Mapper\Book();
+			$mChapter	= new \MVC\Mapper\Chapter();
 					
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------			
-			$Book = $mBook->find($IdBook);
-			$Book->setTime(date('Y-m-d H:i:s'));
-			$mBook->update($Book);
-			
+			//-------------------------------------------------------------									
 			$Board= $mBoard->find($IdBoard);
 			
 			$Board->setInfo($Info);			
@@ -55,6 +52,15 @@
 			$Board->reKey();
 			
 			$mBoard->update($Board);
+			
+			$Chapter = $mChapter->find($IdChapter);
+			$Chapter->reCompleted();			
+			$mChapter->update($Chapter);
+
+			$Book 	= $mBook->find($IdBook);
+			$Book->setTime(date('Y-m-d H:i:s'));
+			$Book->reCompleted();			
+			$mBook->update($Book);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI

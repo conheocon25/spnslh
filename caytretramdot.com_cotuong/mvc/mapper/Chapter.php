@@ -13,6 +13,7 @@ class Chapter extends Mapper implements \MVC\Domain\ChapterFinder{
 										id_book=?, 
 										`title`=?, 												
 										`info`=?, 												
+										`completed`=?, 												
 										`key`=? 
 									where 
 										id=?", $tblChapter);
@@ -20,7 +21,8 @@ class Chapter extends Mapper implements \MVC\Domain\ChapterFinder{
 										id_book, 
 										`title`, 
 										`info`, 
-										`key`) values(?, ?, ?, ?)", $tblChapter);
+										`completed`, 
+										`key`) values(?, ?, ?, ?, ?)", $tblChapter);
 		$deleteStmt 		= sprintf("delete from %s where id=?", $tblChapter);				
 		$findByStmt 		= sprintf("select *  from %s where id_book=? ORDER BY `title`", $tblChapter);
 		$findByKeyStmt 		= sprintf("select *  from %s where `key`=?", $tblChapter);
@@ -44,6 +46,7 @@ class Chapter extends Mapper implements \MVC\Domain\ChapterFinder{
 			$array['id_book'],
 			$array['title'],
 			$array['info'],
+			$array['completed'],
 			$array['key']
 		);
         return $obj;
@@ -55,6 +58,7 @@ class Chapter extends Mapper implements \MVC\Domain\ChapterFinder{
 			$object->getIdBook(),
 			$object->getTitle(),
 			$object->getInfo(),
+			$object->getCompleted(),
 			$object->getKey()
 		); 
         $this->insertStmt->execute( $values );
@@ -66,7 +70,8 @@ class Chapter extends Mapper implements \MVC\Domain\ChapterFinder{
         $values = array( 
 			$object->getIdBook(),
 			$object->getTitle(),			
-			$object->getInfo(),			
+			$object->getInfo(),
+			$object->getCompleted(),
 			$object->getKey(),
 			$object->getId()
 		);		

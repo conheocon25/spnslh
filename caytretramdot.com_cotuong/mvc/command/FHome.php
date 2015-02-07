@@ -27,7 +27,10 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------											
-			$VideoTopAll 		= $mVideo->findByTop(array());			
+			$VideoRecentAll 	= $mVideo->findByRecent(array());
+			$VideoViewedAll 	= $mVideo->findByViewed(array());
+			$VideoLikedAll 		= $mVideo->findByLiked(array());
+			
 			$PostTopAll 		= $mPost->findByTop(array());
 			
 			$BookRecentAll 		= $mBook->findByRecent(array());
@@ -46,7 +49,11 @@
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
 			$request->setProperty("Active", 			'Home');
-			$request->setObject("VideoTopAll", 			$VideoTopAll);			
+			
+			$request->setObject("VideoRecentAll", 		$VideoRecentAll);
+			$request->setObject("VideoViewedAll", 		$VideoViewedAll);
+			$request->setObject("VideoLikedAll", 		$VideoLikedAll);
+			
 			$request->setObject("PostTopAll", 			$PostTopAll);
 			
 			$request->setObject("BookRecentAll", 		$BookRecentAll);
