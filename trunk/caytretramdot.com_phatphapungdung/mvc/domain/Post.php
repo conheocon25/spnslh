@@ -125,7 +125,7 @@ class Post extends Object{
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
 	function getURLView(){		return "/bai-viet/".$this->getCategory()->getKey()."/".$this->getKey();}
-	function getURLViewFull(){	return "http://cotuong.caytretramdot.com/bai-viet/".$this->getCategory()->getKey()."/".$this->getKey();}
+	function getURLViewFull(){	return "http://phatphapungdung.caytretramdot.com/bai-viet/".$this->getCategory()->getKey()."/".$this->getKey();}
 			
 	function getURLUpdLoad(){	return "admin/post/".$this->getIdCategory()."/".$this->getId()."/upd/load";}
 	function getURLUpdExe(){	return "admin/post/".$this->getIdCategory()."/".$this->getId()."/upd/exe";}

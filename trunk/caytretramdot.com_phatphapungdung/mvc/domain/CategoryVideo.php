@@ -91,6 +91,7 @@ class CategoryVideo extends Object{
 	//-------------------------------------------------------------------------------
 	function getURLView()	{return "/video/".$this->getCategory()->getKey()."/".$this->getKey();}	
 	function getURLSetting(){return "/admin/buddha/".$this->getIdCategory()."/".$this->getId();}
+	function getURLSetting1(){return "admin/setting/category/video/".$this->getIdCategory();}
 	function getURLSettingVideoInsLoad(){return "/admin/buddha/".$this->getIdCategory()."/".$this->getId()."/ins/load"	;}
 	function getURLSettingVideoInsExe()	{return "/admin/buddha/".$this->getIdCategory()."/".$this->getId()."/ins/exe"	;}
 		

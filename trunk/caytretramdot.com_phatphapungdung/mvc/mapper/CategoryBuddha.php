@@ -8,7 +8,7 @@ class CategoryBuddha extends Mapper implements \MVC\Domain\CategoryBuddhaFinder{
 		
 		$tblCategoryBuddha = "tbl_category_buddha";
 						
-		$selectAllStmt 	= sprintf("select * from %s order by `order` DESC", $tblCategoryBuddha);
+		$selectAllStmt 	= sprintf("select * from %s order by `order`", $tblCategoryBuddha);
 		$selectStmt 	= sprintf("select * from %s where id=?", $tblCategoryBuddha);
 		$updateStmt 	= sprintf("update %s set name=?, `order`=?, `key`=? where id=?", $tblCategoryBuddha);
 		$insertStmt 	= sprintf("insert into %s ( name, `order`, `key`) values(?, ?, ?)", $tblCategoryBuddha);

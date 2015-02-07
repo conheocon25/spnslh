@@ -25,17 +25,18 @@
 					
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------
-			$Book = $mBook->find($IdBook);
-			$Book->setTime(date('Y-m-d H:i:s'));
-			$mBook->update($Book);
-			
+			//-------------------------------------------------------------						
 			$Chapter = $mChapter->find($IdChapter);			
 			$Chapter->setInfo($Info);			
 			$Chapter->setTitle($Title);			
-			$Chapter->reKey();
-			
+			$Chapter->reCompleted();
+			$Chapter->reKey();			
 			$mChapter->update($Chapter);
+			
+			$Book = $mBook->find($IdBook);
+			$Book->setTime(date('Y-m-d H:i:s'));
+			$Book->reCompleted();
+			$mBook->update($Book);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI

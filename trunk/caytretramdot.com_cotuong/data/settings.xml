@@ -9,6 +9,9 @@
 		<command name="FCategoryPost" 	type="public"><view>FCategoryPost</view></command>		
 		<command name="FPost" 			type="public"><view>FPost</view></command>		
 		
+		<command name="FSuggest" 		type="public"><view>FSuggest</view></command>		
+		<command name="FMe" 			type="public"><view>FMe</view></command>
+		
 		<command name="FCategoryBook" 	type="public"><view>FCategoryBook</view></command>
 		<command name="FBook" 			type="public"><view>FBook</view></command>
 		<command name="FChapter" 		type="public"><view>FChapter</view></command>

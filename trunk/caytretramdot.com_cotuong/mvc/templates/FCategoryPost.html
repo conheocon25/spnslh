@@ -8,37 +8,37 @@
 		<div metal:use-macro="mFront.xhtml/Header"/>
 		<div class="container-fluid" id="wraper">
 			<div class="row-fluid">
-				<div class="col-md-9 col-sm-9">
-					<div class="row">
-						<table class="table table-striped">
-							<tr tal:repeat="Post PostAll">
-								<td width="15%"><img width="96px" tal:attributes="src Post/getImage"/></td>
-								<td>
-									<a tal:attributes="href Post/getURLView"><span tal:content="Post/getTitle"/></a>
-									<p tal:content="structure Post/getContentReduce"/>
-									<p><span tal:content="Post/getTimePrint"/>, <span><i class="glyphicon glyphicon-stats"/> <span tal:content="Post/getViewedPrint"/></span> 
-										<span><i class="glyphicon glyphicon-thumbs-up"/> <span tal:content="Post/getLikedPrint"/></span>
-									</p>
-								</td>
-							</tr>
-						</table>
-					</div>
-					<div class="row">
-						<ul class="pagination alternate pull-right page-bar">
-							<li tal:repeat="P PN/getPages" tal:attributes="class php:Page==P->getId()?'active':'disable'">
-								<a tal:attributes="href P/getURL" tal:content="P/getName"/>
-							</li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-md-3 col-sm-3">
-					<div class="panel panel-default">						
-						<div class="panel-body">
-							<a tal:attributes="href Category1/getURLView;class php: Category1->getId()==Category->getId()?'btn btn-primary btn-block':'btn btn-default btn-block'"  tal:repeat="Category1 CategoryPostAll">
-								<span tal:content="Category1/getName"/>
-							</a>							
+				<div class="col-md-8">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<ol class="breadcrumb">						
+								<li class="active" tal:content="php: mb_strtoupper(Category->getName(), 'UTF8')"/>
+							</ol>
 						</div>
-					</div>					
+						<div class="panel-body">
+							<table class="table table-striped">
+								<tr tal:repeat="Post PostAll">
+									<td width="15%"><img width="96px" tal:attributes="src Post/getImage"/></td>
+									<td>
+										<a tal:attributes="href Post/getURLView"><span tal:content="Post/getTitle"/></a>
+										<p tal:content="structure Post/getContentReduce"/>
+										<p><span tal:content="Post/getTimePrint"/>, <span><i class="glyphicon glyphicon-stats"/> <span tal:content="Post/getViewedPrint"/></span> 
+											<span><i class="glyphicon glyphicon-star"/> <span tal:content="Post/getLikedPrint"/></span>
+										</p>
+									</td>
+								</tr>
+							</table>
+							<ul class="pagination alternate pull-right page-bar">
+								<li tal:repeat="P PN/getPages" tal:attributes="class php:Page==P->getId()?'active':'disable'">
+									<a tal:attributes="href P/getURL" tal:content="P/getName"/>
+								</li>
+							</ul>
+						</div>
+					</div>												
+				</div>
+				<div class="col-md-4">
+					<tal:block metal:use-macro="mFront.xhtml/SuggestLevel01"/>					
+					<div width="100%" class="fb-like-box" data-href="https://www.facebook.com/pages/Caytretramdot/596061963849405" data-colorscheme="light" data-show-faces="true" data-header="false" data-stream="false" data-show-border="false"></div>
 				</div>
 			</div>			
 		</div>

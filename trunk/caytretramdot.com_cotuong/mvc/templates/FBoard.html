@@ -216,14 +216,10 @@
 								<li role="presentation"><a href="#board-detail" aria-controls="profile" role="tab" data-toggle="tab">nước đi</a></li>
 							</ul>
 							<div class="tab-content">
-								<div role="tabpanel" class="tab-pane" id="board-related">
-									<ul>
-										<li tal:repeat="Board1 Board/getRelatedAll">
-											<a tal:attributes="href Board1/getURLView">
-												<span tal:content="Board1/getName"/> (<span tal:content="Board1/getDetailAll/count"/>)
-											</a>
-										</li>
-									</ul>
+								<div role="tabpanel" class="tab-pane" id="board-related">									
+									<a class="btn btn-xs btn-primary" tal:attributes="href Board1/getURLView" tal:repeat="Board1 Board/getRelatedAll">
+										<span tal:content="Board1/getName"/> (<span tal:content="Board1/getDetailAll/count"/>)
+									</a>									
 								</div>
 								<div role="tabpanel" class="tab-pane active" id="board-comment">
 									<div 

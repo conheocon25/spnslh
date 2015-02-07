@@ -2,8 +2,7 @@
 namespace MVC\Domain;
 
 interface UserCollection 				extends \Iterator {function add( Object $User );		}
-interface UserTagCollection 			extends \Iterator {function add( Object $UserTag );		}
-interface PostCollection 				extends \Iterator {function add( Object $Post);			}
+interface FacebookerCollection 			extends \Iterator {function add( Object $Facebooker );	}
 
 interface ConfigCollection 				extends \Iterator {function add( Object $Config );		}
 interface PageCollection 				extends \Iterator {function add( Object $Page);			}
@@ -20,4 +19,5 @@ interface CategoryVideoCollection 		extends \Iterator {function add( Object $Cat
 interface VideoCollection 				extends \Iterator {function add( Object $Video);		}
 
 interface CategoryPostCollection 		extends \Iterator {function add( Object $CategoryPost);	}
+interface PostCollection 				extends \Iterator {function add( Object $Post);			}
 ?>

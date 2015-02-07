@@ -45,6 +45,7 @@
 			$Book->setLiked($Liked);
 			$Book->setThumb($Thumb);
 			$Book->reKey();
+			$Book->reCompleted();
 			
 			$mBook->update($Book);
 			

@@ -12,10 +12,10 @@
 		<meta http-equiv="Expires" content="-1"/>
 		<meta http-equiv="Cache-Control" content="no-cache"/>
 		<meta name="keywords" content="Website Cờ Tướng Online"/>
-		<meta name="description" content="Cờ Tướng, Cờ Thế, Sách Cờ, Kỳ Phổ, Quất Trung Bí, Hoa Mai Phổ, Phản Hoa Mai, Bách Cục Tượng Kỳ, Thuận Pháo, Nghịch Pháo, Bình Phong Mã ..."/>
-		<meta name="page-topic" content="Cờ Tướng, Cờ Thế, Sách Cờ, Kỳ Phổ, Quất Trung Bí, Hoa Mai Phổ, Phản Hoa Mai, Bách Cục Tượng Kỳ, Thuận Pháo, Nghịch Pháo, Bình Phong Mã ..."/>
-		<meta name="Abstract" content="Cờ Tướng, Cờ Thế, Sách Cờ, Kỳ Phổ, Quất Trung Bí, Hoa Mai Phổ, Phản Hoa Mai, Bách Cục Tượng Kỳ, Thuận Pháo, Nghịch Pháo, Bình Phong Mã ..."/>
-		<meta name="classification" content="Cờ Tướng, Cờ Thế, Sách Cờ, Kỳ Phổ, Quất Trung Bí, Hoa Mai Phổ, Phản Hoa Mai, Bách Cục Tượng Kỳ, Thuận Pháo, Nghịch Pháo, Bình Phong Mã ..."/>
+		<meta name="description" content="Cờ Tướng, Cờ Thế, Khai Cuộc, Trung Cuộc, Tàn Cuộc, Sách Cờ, Kỳ Phổ, Quất Trung Bí, Hoa Mai Phổ, Phản Hoa Mai, Bách Cục Tượng Kỳ, Thuận Pháo, Nghịch Pháo, Bình Phong Mã, Thiên Phong Pháo, Sĩ Giác Pháo, Quá Cung Pháo, Khởi Mã Cuộc"/>
+		<meta name="page-topic" content="Cờ Tướng, Cờ Thế, Khai Cuộc, Trung Cuộc, Tàn Cuộc, Sách Cờ, Kỳ Phổ, Quất Trung Bí, Hoa Mai Phổ, Phản Hoa Mai, Bách Cục Tượng Kỳ, Thuận Pháo, Nghịch Pháo, Bình Phong Mã, Thiên Phong Pháo, Sĩ Giác Pháo, Quá Cung Pháo, Khởi Mã Cuộc"/>
+		<meta name="Abstract" content="Cờ Tướng, Cờ Thế, Khai Cuộc, Trung Cuộc, Tàn Cuộc, Sách Cờ, Kỳ Phổ, Quất Trung Bí, Hoa Mai Phổ, Phản Hoa Mai, Bách Cục Tượng Kỳ, Thuận Pháo, Nghịch Pháo, Bình Phong Mã, Thiên Phong Pháo, Sĩ Giác Pháo, Quá Cung Pháo, Khởi Mã Cuộc"/>
+		<meta name="classification" content="Cờ Tướng, Cờ Thế, Khai Cuộc, Trung Cuộc, Tàn Cuộc, Sách Cờ, Kỳ Phổ, Quất Trung Bí, Hoa Mai Phổ, Phản Hoa Mai, Bách Cục Tượng Kỳ, Thuận Pháo, Nghịch Pháo, Bình Phong Mã, Thiên Phong Pháo, Sĩ Giác Pháo, Quá Cung Pháo, Khởi Mã Cuộc"/>
 		<link rel="shortcut icon" type="image/ico" href="/mvc/templates/theme/img/favicon.ico" />
 	</tal:block>
 		
@@ -33,6 +33,7 @@
 	<tal:block metal:define-macro="IncludeJS">
 		<script src="/mvc/templates/theme/bootstrap/js/jquery-1.11.0.min.js"></script>
 		<script src="/mvc/templates/theme/bootstrap/js/bootstrap.min.js"></script>	
+		<script src="/mvc/templates/theme/bootstrap/js/facebook.js"></script>
 		<script src="/mvc/templates/theme/bootstrap/js/chess.js"></script>
 	</tal:block>
 		
@@ -94,7 +95,30 @@
 				</ul>				
 			</div>
 		</div>
-	</nav>			
+	</nav>
+	
+	<div metal:define-macro="SuggestLevel01" class="jumbotron">
+		<h2 class="text-center">HIỂU BIẾT VỀ CỜ TƯỚNG CỦA BẠN</h2>
+		<p class="text-center">Cấp độ hiện tại Cờ Tướng của bạn là </p>
+		<p class="text-center">
+			<a class="btn btn-primary" href="/loi-khuyen/tap-su" role="button">Tập Sự</a>
+			<a class="btn btn-primary" href="/loi-khuyen/nang-cao" role="button">Nâng Cao</a>
+			<a class="btn btn-primary" href="/loi-khuyen/cao-thu" role="button">Cao Thủ</a>
+		</p>				
+	</div>
+	
+	<div metal:define-macro="SuggestLevel02" class="jumbotron">
+		<h2 class="text-center">NÂNG CAO</h2>
+		<p class="text-center">Bạn đã cơ bản Cờ Tướng, muốn học mà chưa biết bắt đầu từ đâu ...</p>
+		<p class="text-center"><a class="btn btn-primary btn-lg" href="/loi-khuyen/tap-su" role="button">Xem tiếp</a></p>
+	</div>
+	
+	<div metal:define-macro="SuggestLevel03" class="jumbotron">
+		<h2 class="text-center">CAO THỦ</h2>
+		<p class="text-center">Bạn chưa biết về Cờ Tướng, muốn học mà chưa biết bắt đầu từ đâu ...</p>
+		<p class="text-center"><a class="btn btn-primary btn-lg" href="/loi-khuyen/tap-su" role="button">Xem tiếp</a></p>
+	</div>
+	
 	<!-- ======================================================================== -->
 	<!-- FOOTER																	  -->
 	<!-- ======================================================================== -->	

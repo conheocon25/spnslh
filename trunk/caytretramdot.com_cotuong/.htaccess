@@ -35,6 +35,10 @@ AddOutputFilterByType DEFLATE application/x-javascript
 #---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^trang-chu$ 																?cmd=FHome [L]
 
+RewriteRule ^loi-khuyen/tap-su$ 														?cmd=FSuggest [L]
+RewriteRule ^loi-khuyen/nang-cao$ 														?cmd=FSuggest [L]
+RewriteRule ^loi-khuyen/cao-thu$ 														?cmd=FSuggest [L]
+
 RewriteRule ^bai-viet/([A-Za-z0-9_-]+)$													?cmd=FCategoryPost&KCategory=$1 [L]
 RewriteRule ^bai-viet/([A-Za-z0-9_-]+)/page/([0-9]+)$									?cmd=FCategoryPost&KCategory=$1&Page=$2 [L]
 RewriteRule ^bai-viet/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$								?cmd=FPost&KCategory=$1&KPost=$2 [L]
@@ -50,9 +54,14 @@ RewriteRule ^sach/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$					?cmd=F
 RewriteRule ^sach/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$	?cmd=FBoard&KCategory=$1&KBook=$2&KChapter=$3&KBoard=$4 [L]
 RewriteRule ^sach/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/embeded/([0-9]+)$	?cmd=FBoardEmbeded&KCategory=$1&KBook=$2&KChapter=$3&KBoard=$4&Mode=$5 [L]
 
-RewriteRule ^video/([A-Za-z0-9_-]+)$													?cmd=FCategoryVideo&KCategory=$1 [L]
-RewriteRule ^video/([A-Za-z0-9_-]+)/page/([0-9]+)$										?cmd=FCategoryVideo&KCategory=$1&Page=$2 [L]
+RewriteRule ^video/([A-Za-z0-9_-]+)$													?cmd=FCategoryVideo&KCategory=$1&Page=1&OrderBy=Viewed [L]
+RewriteRule ^video/([A-Za-z0-9_-]+)/page/([0-9]+)$										?cmd=FCategoryVideo&KCategory=$1&Page=$2&OrderBy=Viewed [L]
+RewriteRule ^video/([A-Za-z0-9_-]+)/orderbyviewed/page/([0-9]+)$						?cmd=FCategoryVideo&KCategory=$1&Page=$2&OrderBy=Viewed [L]
+RewriteRule ^video/([A-Za-z0-9_-]+)/orderbyliked/page/([0-9]+)$							?cmd=FCategoryVideo&KCategory=$1&Page=$2&OrderBy=Liked  [L]
+RewriteRule ^video/([A-Za-z0-9_-]+)/orderbyrecent/page/([0-9]+)$						?cmd=FCategoryVideo&KCategory=$1&Page=$2&OrderBy=Recent [L]
 RewriteRule ^video/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$									?cmd=FVideo&KCategory=$1&KVideo=$2 [L]
+
+RewriteRule ^me$ 												?cmd=FMe 			[L]
 
 RewriteRule ^lien-he$ 											?cmd=FContact 		[L]
 

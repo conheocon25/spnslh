@@ -12,62 +12,57 @@
 		<div metal:use-macro="mFront.xhtml/Header"/>
 		<div class="container-fluid" id="wraper">
 			<div class="row">
-				<div class="col-md-9">
-					<ol class="breadcrumb">
-						<li><a tal:attributes="href Category/getURLView" tal:content="php: mb_strtoupper(Category->getName(), 'UTF8')"/></li>
-						<li><a tal:attributes="href Book/getURLView" tal:content="php: mb_strtoupper(Book->getTitle(), 'UTF8')"/></li>
-						<li class="active" tal:content="php: mb_strtoupper(Chapter->getTitle(), 'UTF8')"/>
-					</ol>
-					<div role="tabpanel" id="TabChapter">
-						<ul class="nav nav-tabs" role="tablist">
-							<li role="presentation">
-								<a tal:attributes="href php:'#TabInfo'" aria-controls="profile" role="tab" data-toggle="tab">Tổng quan</a>
-							</li>
-							<li role="presentation" class="active">
-								<a tal:attributes="href php:'#TabBoard'" aria-controls="profile" role="tab" data-toggle="tab">Chi tiết</a>
-							</li>							
-						</ul>
-						<div class="tab-content">
-							<div role="tabpanel" class="tab-pane"  id="TabInfo">
-								<div class="article-meta-date">
-									
-								</div>
-								<div class="article-meta-more">									
-									<div tal:content="structure Chapter/getInfo" class="article-content-container"/>
+				<div class="col-md-8">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<ol class="breadcrumb">
+								<li><a tal:attributes="href Category/getURLView" tal:content="php: mb_strtoupper(Category->getName(), 'UTF8')"/></li>
+								<li><a tal:attributes="href Book/getURLView" tal:content="php: mb_strtoupper(Book->getTitleReduce(), 'UTF8')"/></li>
+								<li class="active" tal:content="php: mb_strtoupper(Chapter->getTitle(), 'UTF8')"/>
+							</ol>
+						</div>	
+						<div class="panel-body">
+							<div role="tabpanel" id="TabChapter">
+								<ul class="nav nav-tabs" role="tablist">
+									<li role="presentation">
+										<a tal:attributes="href php:'#TabInfo'" aria-controls="profile" role="tab" data-toggle="tab">Tổng quan</a>
+									</li>
+									<li role="presentation" class="active">
+										<a tal:attributes="href php:'#TabBoard'" aria-controls="profile" role="tab" data-toggle="tab">Chi tiết</a>
+									</li>							
+								</ul>
+								<div class="tab-content">
+									<div role="tabpanel" class="tab-pane"  id="TabInfo">
+										<div class="article-meta-date">
+											
+										</div>
+										<div class="article-meta-more">									
+											<div tal:content="structure Chapter/getInfo" class="article-content-container"/>
+										</div>
+									</div>
+									<div role="tabpanel" class="tab-pane active" id="TabBoard">
+										<table class="table table-striped">
+											<tr tal:repeat="Board Chapter/getBoardAll">										
+												<td width="48px"><img width="48px" tal:attributes="src Board/getThumb"/></td>
+												<td>
+													<a tal:attributes="href Board/getURLView">
+														<span tal:content="Board/getName"/> (<span tal:content="Board/getDetailAll/count"/> nước)
+													</a>
+													<p tal:content="structure Board/getInfoReduce"/>											
+												</td>										
+											</tr>
+										</table>
+									</div>							
 								</div>
 							</div>
-							<div role="tabpanel" class="tab-pane active" id="TabBoard">
-								<table class="table table-striped">
-									<tr tal:repeat="Board Chapter/getBoardAll">										
-										<td width="15%"><img width="96px" tal:attributes="src Board/getThumb"/></td>
-										<td>
-											<a tal:attributes="href Board/getURLView">
-												<span tal:content="Board/getName"/> (<span tal:content="Board/getDetailAll/count"/> nước)
-											</a>
-											<p tal:content="structure Board/getInfoReduce"/>											
-										</td>										
-									</tr>
-								</table>
-							</div>							
-						</div>
-					</div>					
+						</div>	
+					</div>
 				</div>
-				<div class="col-md-3">
-					
+				<div class="col-md-4">
+					<tal:block metal:use-macro="mFront.xhtml/SuggestLevel01"/>
+					<div width="100%" class="fb-like-box" data-href="https://www.facebook.com/pages/Caytretramdot/596061963849405" data-colorscheme="light" data-show-faces="true" data-header="false" data-stream="false" data-show-border="false"></div>
 				</div>
 			</div>
-		</div>
-		<script type="text/javascript">
-		/*<![CDATA[*/						
-			(function(d, s, id) {
-				var js, fjs = d.getElementsByTagName(s)[0];
-				if (d.getElementById(id)) return;
-				js = d.createElement(s); js.id = id;
-				js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&appId=525611617524479&version=v2.0";
-				fjs.parentNode.insertBefore(js, fjs);
-			}(document, 'script', 'facebook-jssdk'));
-			$('[data-toggle="tooltip"]').tooltip();
-		/*]]>*/
-		</script>
+		</div>		
 	</body>	
 </html>

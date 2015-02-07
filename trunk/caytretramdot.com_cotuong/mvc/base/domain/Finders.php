@@ -11,9 +11,8 @@ interface Finder {
 }
 
 interface UserFinder  			extends Finder {}
-interface UserTagFinder  		extends Finder {}
+interface FacebookerFinder  	extends Finder {}
 
-interface PostFinder 			extends Finder {}
 interface ConfigFinder 			extends Finder {}
 interface GuestFinder 			extends Finder {}
 
@@ -28,4 +27,5 @@ interface CategoryVideoFinder 	extends Finder {}
 interface VideoFinder 			extends Finder {}
 
 interface CategoryPostFinder 	extends Finder {}
+interface PostFinder 			extends Finder {}
 ?>

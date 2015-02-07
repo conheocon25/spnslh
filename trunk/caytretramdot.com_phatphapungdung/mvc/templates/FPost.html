@@ -2,9 +2,9 @@
 <html lang="en">
 	<head>
 		<tal:block metal:use-macro="mFront.xhtml/IncludeMETA"/>
+		<meta property="og:image" tal:attributes="content Post/getImage"/>
 		<meta property="og:title" tal:attributes="content Post/getTitle"/>
 		<meta property="og:description" tal:attributes="content Post/getContentReduce"/>
-		<meta property="og:image" tal:attributes="content Post/getImage"/>
 		<tal:block metal:use-macro="mFront.xhtml/IncludeCSS"/>
 		<tal:block metal:use-macro="mFront.xhtml/IncludeJS"/>
 	</head>
