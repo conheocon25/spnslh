@@ -9,17 +9,17 @@ class Facebooker extends Mapper implements \MVC\Domain\FacebookerFinder {
 		
 		$selectAllStmt 	= sprintf("select * from %s", $tblFacebooker);
 		$selectStmt 	= sprintf("select * from %s where id=?", $tblFacebooker);
-		$updateStmt 	= sprintf("update %s set code=?, email=?, first_name=?, last_name=?, gender=?, locale=?, timezone=?, created_date=?, updated_date=? where id=?", $tblFacebooker);
+		$updateStmt 	= sprintf("update %s set code=?, email=?, first_name=?, last_name=?, gender=?, locale=?, timezone=?, created_time=?, updated_time=? where id=?", $tblFacebooker);
 		$insertStmt 	= sprintf("insert into %s (
-				code, 					
-				email,
-				first_name, 
-				last_name, 
-				gender,
-				locale, 					
-				timezone, 					
-				created_date, 
-				updated_date					
+				`code`, 					
+				`email`,
+				`first_name`, 
+				`last_name`, 
+				`gender`,
+				`locale`, 					
+				`timezone`, 					
+				`created_time`, 
+				`updated_time`					
 			) 
 			values(?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblFacebooker);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblFacebooker);
@@ -53,8 +53,8 @@ class Facebooker extends Mapper implements \MVC\Domain\FacebookerFinder {
 			$array['gender'],
 			$array['locale'],
 			$array['timezone'],
-			$array['created_date'],
-			$array['updated_date']			
+			$array['created_time'],
+			$array['updated_time']			
 		);
         return $obj;
     }

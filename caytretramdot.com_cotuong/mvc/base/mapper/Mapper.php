@@ -6,8 +6,8 @@ require_once("mvc/base/Exceptions.php");
 require_once("mvc/base/domain/Finders.php");
 require_once("mvc/domain.php" );
 date_default_timezone_set('Asia/Ho_Chi_Minh');		
-//error_reporting ('E_ALL | E_STRICT');
-error_reporting ('E_ALL & ~E_DEPRECATED');
+error_reporting ('E_ALL | E_STRICT');
+//error_reporting ('E_ALL & ~E_DEPRECATED');
 
 //Default Value: E_ALL & ~E_NOTICE
 //Development Value: E_ALL | E_STRICT
