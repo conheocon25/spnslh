@@ -11,6 +11,7 @@
 		
 		<command name="FSuggest" 		type="public"><view>FSuggest</view></command>		
 		<command name="FMe" 			type="public"><view>FMe</view></command>
+		<command name="FUser" 			type="public"><view>FUser</view></command>
 		
 		<command name="FCategoryBook" 	type="public"><view>FCategoryBook</view></command>
 		<command name="FBook" 			type="public"><view>FBook</view></command>
@@ -22,8 +23,11 @@
 		<command name="FVideo" 			type="public"><view>FVideo</view></command>
 		
 		<command name="FContact" 		type="public"><view>FContact</view></command>		
+		
 		<command name="ServiceYouTubeAddVideoFromPlayList" type="public"><view>ServiceYouTubeAddVideoFromPlayList</view></command>
 		<command name="ServiceYouTubeUpdateStatisticVideo" type="public"><view>ServiceYouTubeUpdateStatisticVideo</view></command>
+		<command name="ServiceFacebookUpdateUser" 			type="public"><view>ServiceFacebookUpdateUser</view></command>
+		
 		<!-- ============================================================================== -->
 		<!-- JSON LOAD			 															-->
 		<!-- ============================================================================== -->		

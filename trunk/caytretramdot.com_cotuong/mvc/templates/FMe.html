@@ -29,17 +29,14 @@
 				console.log('statusChangeCallback');
 				console.log(response);				
 				if (response.status === 'connected') {					
-					testAPI();
+					updateFacebooker();
 				} else if (response.status === 'not_authorized') {					
 					document.getElementById('status').innerHTML = 'Please log ' + 'into this app.';
 				} else {					
 					document.getElementById('status').innerHTML = 'Please log ' + 'into Facebook.';
 				}
 			}
-
-			// This function is called when someone finishes with the Login
-			// Button.  See the onlogin handler attached to it in the sample
-			// code below.
+			
 			function checkLoginState() {
 				FB.getLoginStatus(function(response) {
 				  statusChangeCallback(response);
@@ -58,20 +55,24 @@
 			FB.getLoginStatus(function(response) {
 				statusChangeCallback(response);
 			});
-
 		};
-
   
-		// Here we run a very simple test of the Graph API after login is
-		// successful.  See statusChangeCallback() for when this call is made.
-		function testAPI() {
-			console.log('Welcome!  Fetching your information.... ');
+		// cập nhật thông tin người dùng cho hệ thống
+		function updateFacebooker() {
+			console.log('Welcome, welcome, ...');
 			FB.api('/me', function(response){
-				console.log('Da dang nhap voi cai ten: ' + response.name);
 				$('#Status').html('Cam on ban da dang nhap vao, ' + response.name + '!');
+				$.ajax({
+					url: "/service/facebook/update/user",
+					type: "POST",
+					data: {Id:response.id, Email:response.email, FirstName:response.first_name, LastName:response.last_name, Gender:response.gender, Locale:response.locale, TimeZone:response.timezone},
+					async: false,
+					success: function (data){
+						
+					}
+				});
 			});
 		}
-
 		/*]]>*/
 		</script>
 	</body>

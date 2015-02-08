@@ -62,6 +62,7 @@ RewriteRule ^video/([A-Za-z0-9_-]+)/orderbyrecent/page/([0-9]+)$						?cmd=FCate
 RewriteRule ^video/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$									?cmd=FVideo&KCategory=$1&KVideo=$2 [L]
 
 RewriteRule ^me$ 												?cmd=FMe 			[L]
+RewriteRule ^user$ 												?cmd=FUser 			[L]
 
 RewriteRule ^lien-he$ 											?cmd=FContact 		[L]
 
@@ -76,8 +77,9 @@ RewriteRule ^object/ins/([A-Za-z0-9]+)$ 						?cmd=ObjectIns&ObjectName=$1 [L]
 RewriteRule ^object/upd/([A-Za-z0-9]+)$ 						?cmd=ObjectUpd&ObjectName=$1 [L]
 RewriteRule ^object/liked/([A-Za-z0-9]+)/([0-9]+)$ 				?cmd=ObjectLiked&ObjectName=$1&Id=$2 [L]
 
-RewriteRule ^service/youtube/add/video/from/playlist$ 					?cmd=ServiceYouTubeAddVideoFromPlayList [L]
-RewriteRule ^service/youtube/update/statistic/video						?cmd=ServiceYouTubeUpdateStatisticVideo [L]
+RewriteRule ^service/youtube/add/video/from/playlist$ 			?cmd=ServiceYouTubeAddVideoFromPlayList [L]
+RewriteRule ^service/youtube/update/statistic/video				?cmd=ServiceYouTubeUpdateStatisticVideo [L]
+RewriteRule ^service/facebook/update/user						?cmd=ServiceFacebookUpdateUser [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # SELLING
