@@ -55,6 +55,13 @@
 		<command name="ASettingCategoryPost">	<view>ASettingCategoryPost</view></command>				
 		<command name="ASettingCategoryBook">	<view>ASettingCategoryBook</view></command>
 		<command name="ASettingCategoryVideo">	<view>ASettingCategoryVideo</view></command>
+		
+		<command name="APresentation">	<view>APresentation	</view></command>
+		<command name="ASlide">			<view>ASlide		</view></command>
+		<command name="ASlideInsLoad">	<view>ASlideInsLoad	</view></command>
+		<command name="ASlideInsExe">	<view>ASlideInsExe	</view><status value="CMD_OK"><forward>ASlide</forward></status></command>
+		<command name="ASlideUpdLoad">	<view>ASlideUpdLoad	</view></command>
+		<command name="ASlideUpdExe">	<view>ASlideUpdExe	</view><status value="CMD_OK"><forward>ASlide</forward></status></command>
 								
 		<command name="ABook">					<view>ABook			</view></command>		
 		<command name="ABookInsLoad">			<view>ABookInsLoad	</view></command>

@@ -20,4 +20,8 @@ interface VideoCollection 				extends \Iterator {function add( Object $Video);		
 
 interface CategoryPostCollection 		extends \Iterator {function add( Object $CategoryPost);	}
 interface PostCollection 				extends \Iterator {function add( Object $Post);			}
+
+interface PresentationCollection 		extends \Iterator {function add( Object $Presentation);	}
+interface SlideCollection 				extends \Iterator {function add( Object $Slide);		}
+
 ?>

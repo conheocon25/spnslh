@@ -12,7 +12,7 @@
 		<div metal:use-macro="mFront.xhtml/Header"/>
 		<div class="container-fluid" id="wraper">
 			<div class="row">
-				<div class="col-md-9">
+				<div class="col-md-8">
 					<div class="panel panel-primary">
 						<div class="panel-heading">							
 							<ol class="breadcrumb">
@@ -34,9 +34,13 @@
 						</div>						
 					</div>
 				</div>
-				<div class="col-md-3 col-sm-3">
-					<tal:block metal:use-macro="mFront.xhtml/SuggestLevel01"/>					
-					<div width="100%" class="fb-like-box" data-href="https://www.facebook.com/pages/Caytretramdot/596061963849405" data-colorscheme="light" data-show-faces="true" data-header="false" data-stream="false" data-show-border="false"></div>
+				<div class="col-md-4">
+					<div class="panel panel-default">						
+						<div class="panel-body">														
+							<tal:block metal:use-macro="mFront.xhtml/SuggestLevel01"/>
+							<div width="100%" class="fb-like-box" data-href="https://www.facebook.com/pages/Caytretramdot/596061963849405" data-colorscheme="light" data-show-faces="true" data-header="false" data-stream="false" data-show-border="false"></div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>		

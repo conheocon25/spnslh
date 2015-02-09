@@ -5,8 +5,7 @@
 		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
 	</head>	
 	<body>
-		<div metal:use-macro="mAdmin.xhtml/Header"/>		
-		<div metal:use-macro="mAdmin.xhtml/MenuSettingGeneral"/>
+		<div metal:use-macro="mAdmin.xhtml/Header"/>
 		<div id="content">
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
 			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
@@ -17,7 +16,7 @@
 							<div class="form-horizontal">
 								<div class="modal-body">
 									<div class="form-group">
-										<label class="control-label">Tên shop</label>
+										<label class="control-label">Tên Website</label>
 										<div class="controls">
 											<input id="Name2" tal:attributes="value ConfigName/getValue;data-id ConfigName/getId" type="text" class="form-control input-small"/>
 										</div>
@@ -81,15 +80,6 @@
 										<div class="controls">
 											<input id="GuestVisit2" tal:attributes="value ConfigGuestVisit/getValue;data-id ConfigGuestVisit/getId" type="text" class="form-control input-small"/>
 										</div>
-									</div>									
-									<div class="form-group">
-										<label class="control-label">Giả lặp phiếu 2 liên</label>
-										<div class="controls">											
-											<select name="ReceiptVirtualDouble2" id="ReceiptVirtualDouble2" style="width:80%;" tal:attributes="data-id ConfigReceiptVirtualDouble/getId">
-												<option value="0" tal:attributes="selected php:ConfigReceiptVirtualDouble->getValue()=='0'?'selected':''">Tắt</option>
-												<option value="1" tal:attributes="selected php:ConfigReceiptVirtualDouble->getValue()=='1'?'selected':''">Bật</option>
-											</select>
-										</div>
 									</div>
 									<div class="form-group">
 										<label class="control-label">Thời gian lưu Log</label>
@@ -108,36 +98,6 @@
 												<option tal:repeat="Presentation PresentationAll" tal:attributes="value Presentation/getId; selected php:ConfigPHome->getValue()==Presentation->getId()?'selected':''">
 													<span tal:content="Presentation/getName" />
 												</option>												
-											</select>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="control-label">Trang giới thiệu - Post</label>
-										<div class="controls">											
-											<select name="ConfigIntroduction2" id="ConfigIntroduction2" style="width:80%;" tal:attributes="data-id ConfigIntroduction/getId">
-												<option tal:repeat="PT Tag/getPostAll" tal:attributes="value PT/getPost/getId; selected php:ConfigIntroduction->getValue()==PT->getPost()->getId()?'selected':''">
-													<span tal:content="PT/getPost/getTitle" />
-												</option>
-											</select>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="control-label">Trang FAQ</label>
-										<div class="controls">											
-											<select name="ConfigFAQ2" id="ConfigFAQ2" style="width:80%;" tal:attributes="data-id ConfigFAQ/getId">
-												<option tal:repeat="PT Tag/getPostAll" tal:attributes="value PT/getPost/getId; selected php:ConfigFAQ->getValue()==PT->getPost()->getId()?'selected':''">
-													<span tal:content="PT/getPost/getTitle" />
-												</option>
-											</select>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="control-label">Trang Điều khoản</label>
-										<div class="controls">											
-											<select name="ConfigPolicy2" id="ConfigPolicy2" style="width:80%;" tal:attributes="data-id ConfigPolicy/getId">
-												<option tal:repeat="PT Tag/getPostAll" tal:attributes="value PT/getPost/getId; selected php:ConfigPolicy->getValue()==PT->getPost()->getId()?'selected':''">
-													<span tal:content="PT/getPost/getTitle" />
-												</option>
 											</select>
 										</div>
 									</div>
