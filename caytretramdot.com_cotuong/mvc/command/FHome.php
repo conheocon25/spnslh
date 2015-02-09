@@ -20,13 +20,17 @@
 			$mBook 			= new \MVC\Mapper\Book();
 			$mPost 			= new \MVC\Mapper\Post();
 			$mBoard 		= new \MVC\Mapper\Board();
+			$mPresentation 	= new \MVC\Mapper\Presentation();
 			$mCategoryPost	= new \MVC\Mapper\CategoryPost();			
 			$mCategoryBook	= new \MVC\Mapper\CategoryBook();
 			$mCategoryVideo	= new \MVC\Mapper\CategoryVideo();
 						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------											
+			//-------------------------------------------------------------
+			$ConfigPHome 		= $mConfig->findByName("PRESENTATION_HOME");
+			$Presentation 		= $mPresentation->find($ConfigPHome->getValue());
+			
 			$VideoRecentAll 	= $mVideo->findByRecent(array());
 			$VideoViewedAll 	= $mVideo->findByViewed(array());
 			$VideoLikedAll 		= $mVideo->findByLiked(array());
@@ -49,6 +53,8 @@
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
 			$request->setProperty("Active", 			'Home');
+			
+			$request->setObject("Presentation", 		$Presentation);
 			
 			$request->setObject("VideoRecentAll", 		$VideoRecentAll);
 			$request->setObject("VideoViewedAll", 		$VideoViewedAll);

@@ -131,6 +131,13 @@ RewriteRule ^admin/video/([0-9]+)/ins/exe$ 								?cmd=AVideoInsExe&IdCategory=
 RewriteRule ^admin/video/([0-9]+)/([0-9]+)/upd/load$ 					?cmd=AVideoUpdLoad&IdCategory=$1&IdVideo=$2 [L]
 RewriteRule ^admin/video/([0-9]+)/([0-9]+)/upd/exe$ 					?cmd=AVideoUpdExe&IdCategory=$1&IdVideo=$2	[L]
 
+RewriteRule ^admin/presentation$ 										?cmd=APresentation [L]
+RewriteRule ^admin/presentation/([0-9]+)$ 								?cmd=ASlide&IdPresentation=$1 [L]
+RewriteRule ^admin/presentation/([0-9]+)/ins/load$ 						?cmd=ASlideInsLoad&IdPresentation=$1 [L]
+RewriteRule ^admin/presentation/([0-9]+)/ins/exe$ 						?cmd=ASlideInsExe&IdPresentation=$1 [L]
+RewriteRule ^admin/presentation/([0-9]+)/([0-9]+)/upd/load$ 			?cmd=ASlideUpdLoad&IdPresentation=$1&IdSlide=$2 [L]
+RewriteRule ^admin/presentation/([0-9]+)/([0-9]+)/upd/exe$ 				?cmd=ASlideUpdExe&IdPresentation=$1&IdSlide=$2 [L]
+
 RewriteRule ^admin/setting$ 											?cmd=ASetting [L]
 
 RewriteRule ^admin/setting/category/post$ 								?cmd=ASettingCategoryPost [L]

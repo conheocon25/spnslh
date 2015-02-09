@@ -28,4 +28,8 @@ interface VideoFinder 			extends Finder {}
 
 interface CategoryPostFinder 	extends Finder {}
 interface PostFinder 			extends Finder {}
+
+interface PresentationFinder 	extends Finder {}
+interface SlideFinder 			extends Finder {}
+
 ?>
