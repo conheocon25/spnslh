@@ -1,4 +1,4 @@
-<?php		
+<?php
 	namespace MVC\Command;	
 	class ABookUpdLoad extends Command{
 		function doExecute( \MVC\Controller\Request $request ){
@@ -17,14 +17,16 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mBook 		= new \MVC\Mapper\Book();
-			$mConfig	= new \MVC\Mapper\Config();
+			$mBook 			= new \MVC\Mapper\Book();
+			$mPresentation 	= new \MVC\Mapper\Presentation();
+			$mConfig		= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------																																	
-			$Book 		= $mBook->find($IdBook);
-			$Category 	= $Book->getCategory();
+			$PresentationAll= $mPresentation->findAll();
+			$Book 			= $mBook->find($IdBook);
+			$Category 		= $Book->getCategory();
 			
 			$Title 		= \mb_strtoupper($Book->getTitle(), 'UTF8');
 			$Navigation = array(								
@@ -41,6 +43,7 @@
 			$request->setObject('ConfigName'	, $ConfigName);			
 			$request->setObject('Book'			, $Book);
 			$request->setObject('Category'		, $Category);
+			$request->setObject('PresentationAll',$PresentationAll);
 			
 			return self::statuses('CMD_DEFAULT');
 		}

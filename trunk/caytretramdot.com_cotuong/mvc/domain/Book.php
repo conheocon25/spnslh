@@ -6,6 +6,7 @@ class Book extends Object{
 
     private $Id;
 	private $IdCategory;
+	private $IdPresentation;
 	private $Title;
 	private $Time;
 	private $Info;
@@ -25,6 +26,7 @@ class Book extends Object{
     function __construct( 
 		$Id=null, 
 		$IdCategory=null, 
+		$IdPresentation=null, 
 		$Title=null , 
 		$Time=null, 
 		$Info=null, 
@@ -38,20 +40,21 @@ class Book extends Object{
 		$Completed=null, 
 		$Key=null) 
 	{
-		$this->Id 			= $Id; 
-		$this->IdCategory 	= $IdCategory; 
-		$this->Title 		= $Title; 
-		$this->Time 		= $Time; 
-		$this->Info 		= $Info;
-		$this->Author 		= $Author; 
-		$this->Language 	= $Language; 
-		$this->Order 		= $Order;
-		$this->URL 			= $URL;
-		$this->Viewed 		= $Viewed;
-		$this->Liked 		= $Liked;
-		$this->Thumb 		= $Thumb;
-		$this->Completed 	= $Completed;
-		$this->Key 			= $Key;
+		$this->Id 				= $Id; 
+		$this->IdCategory 		= $IdCategory; 
+		$this->IdPresentation 	= $IdPresentation; 
+		$this->Title 			= $Title; 
+		$this->Time 			= $Time; 
+		$this->Info 			= $Info;
+		$this->Author 			= $Author; 
+		$this->Language 		= $Language; 
+		$this->Order 			= $Order;
+		$this->URL 				= $URL;
+		$this->Viewed 			= $Viewed;
+		$this->Liked 			= $Liked;
+		$this->Thumb 			= $Thumb;
+		$this->Completed 		= $Completed;
+		$this->Key 				= $Key;
 		
 		parent::__construct( $Id );
 	}
@@ -65,6 +68,19 @@ class Book extends Object{
 		return $Category;
 	}
 	
+	function setIdPresentation( $IdPresentation ) {$this->IdPresentation = $IdPresentation;$this->markDirty();}
+	function getIdPresentation( ) {return $this->IdPresentation;}
+	function getPresentation(){
+		$mPresentation = new \MVC\Mapper\Presentation();		
+		if ($this->IdPresentation == 0){
+			$PresentationAll 	= $mPresentation->findAll();	
+			$Presentation 		= $PresentationAll->current();
+		}else{
+			$Presentation = $mPresentation->find($this->IdPresentation);
+		}				
+		return $Presentation;
+	}
+		
     function setTitle( $Title ) {$this->Title = $Title;$this->markDirty();}   
 	function getTitle( ) {return $this->Title;}
 	function getTitleReduce( ) {		
@@ -166,6 +182,7 @@ class Book extends Object{
 		$json = array(
 			'Id' 			=> $this->getId(),
 			'IdCategory' 	=> $this->getIdCategory(),
+			'IdPresentation'=> $this->getIdPresentation(),
 			'Title'			=> $this->getTitle(),
 			'Time'			=> $this->getTime(),
 			'Info'			=> $this->getInfo(),
@@ -181,18 +198,19 @@ class Book extends Object{
 	}
 	
 	function setArray( $Data ){
-        $this->Id 			= $Data[0];
-		$this->IdCategory	= $Data[1];
-		$this->Title 		= $Data[2];
-		$this->Time 		= $Data[3];
-		$this->Info 		= $Data[4];
-		$this->Order 		= $Data[5];
-		$this->URL 			= $Data[6];
-		$this->Viewed		= $Data[7];
-		$this->Liked		= $Data[8];
-		$this->Thumb		= $Data[9];
-		$this->Completed	= $Data[10];
-		$this->Key 			= $Data[11];
+        $this->Id 				= $Data[0];
+		$this->IdCategory		= $Data[1];
+		$this->IdPresentation	= $Data[2];
+		$this->Title 			= $Data[3];
+		$this->Time 			= $Data[4];
+		$this->Info 			= $Data[5];
+		$this->Order 			= $Data[6];
+		$this->URL 				= $Data[7];
+		$this->Viewed			= $Data[8];
+		$this->Liked			= $Data[9];
+		$this->Thumb			= $Data[10];
+		$this->Completed		= $Data[11];
+		$this->Key 				= $Data[12];
     }
 	
 	//-------------------------------------------------------------------------------

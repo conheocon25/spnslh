@@ -12,6 +12,7 @@ class Book extends Mapper implements \MVC\Domain\BookFinder{
 		$selectStmt 		= sprintf("select *  from %s where id=?", $tblBook);
 		$updateStmt 		= sprintf("update %s set 
 												id_category=?, 
+												id_presentation=?, 
 												`title`=?, 
 												`time`=?, 
 												`info`=?, 
@@ -28,6 +29,7 @@ class Book extends Mapper implements \MVC\Domain\BookFinder{
 										id=?", $tblBook);
 		$insertStmt 		= sprintf("insert into %s ( 
 												id_category, 
+												id_presentation, 
 												`title`, 
 												`time`, 
 												`info`, 
@@ -39,7 +41,7 @@ class Book extends Mapper implements \MVC\Domain\BookFinder{
 												`liked`, 
 												`thumb`, 
 												`completed`, 
-												`key`) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblBook);
+												`key`) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblBook);
 		$deleteStmt 		= sprintf("delete from %s where id=?", $tblBook);				
 		$findByStmt 		= sprintf("select *  from %s where id_category=? ORDER BY `order`", $tblBook);
 		$findByKeyStmt 		= sprintf("select *  from %s where `key`=?", $tblBook);
@@ -76,6 +78,7 @@ class Book extends Mapper implements \MVC\Domain\BookFinder{
         $obj = new \MVC\Domain\Book( 
 			$array['id'],
 			$array['id_category'],
+			$array['id_presentation'],
 			$array['title'],
 			$array['time'],
 			$array['info'],
@@ -96,6 +99,7 @@ class Book extends Mapper implements \MVC\Domain\BookFinder{
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array( 
 			$object->getIdCategory(),
+			$object->getIdPresentation(),
 			$object->getTitle(),
 			$object->getTime(),
 			$object->getInfo(),
@@ -117,6 +121,7 @@ class Book extends Mapper implements \MVC\Domain\BookFinder{
     protected function doUpdate( \MVC\Domain\Object $object ) {
         $values = array( 
 			$object->getIdCategory(),
+			$object->getIdPresentation(),
 			$object->getTitle(),
 			$object->getTime(),
 			$object->getInfo(),

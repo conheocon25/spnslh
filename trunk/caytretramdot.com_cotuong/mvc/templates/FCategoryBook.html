@@ -8,6 +8,30 @@
 		<div metal:use-macro="mFront.xhtml/Header"/>
 		<div class="container-fluid" id="wraper">
 			<div class="row">
+				<div class="col-md-12">
+					<div class="panel panel-primary">
+						<div class="panel-body">							
+							<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+								<div class="carousel-inner" role="listbox">
+									<div class="item active">										
+										<img tal:attributes="src Presentation/getSlideAll/current/getURL;alt php:'sequence-slide-1'" width="100%"/>
+										<div class="carousel-caption">
+											
+										</div>
+									</div>
+									<div class="item" tal:repeat="Slide Presentation/getSlideAll">
+										<img tal:attributes="src Slide/getURL;alt php:'sequence-slide-' . repeat.Slide.number" width="100%"/>
+										<div class="carousel-caption">
+											
+										</div>
+									</div>							
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
 				<div class="col-md-8">
 					<div class="panel panel-primary">
 						<div class="panel-heading">

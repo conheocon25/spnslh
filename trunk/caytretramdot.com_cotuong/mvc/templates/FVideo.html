@@ -13,12 +13,12 @@
 		<div class="container-fluid" id="wraper">
 			<div class="row">
 				<div class="col-md-8">
-					<div class="panel panel-default">
+					<div class="panel panel-primary">
 						<div class="panel-heading">
-							<a tal:attributes="href Category/getURLView">
-								<i class="glyphicon glyphicon-home"/>
-								<span tal:content="Video/getTitle"/>
-							</a>
+							<ol class="breadcrumb">
+								<li><a tal:attributes="href Category/getURLView"><span tal:content="php: mb_strtoupper(Category->getName(), 'UTF8')"/></a></li>
+								<li class="active" tal:content="php: mb_strtoupper(Video->getTitle(), 'UTF8')"/>
+							</ol>
 						</div>
 						<div class="panel-body">
 							<div class="article-meta-date">								
@@ -58,6 +58,7 @@
 				dataType: 'json',
 				success: function (data){
 					var Viewed 	= data.entry.yt$statistics.viewCount;					
+					var Liked 	= data.entry.yt$rating.numLikes;					
 					var IdVideo = $("#IdYouTube").attr("data-id");
 															
 					var URL1 = "/service/youtube/update/statistic/video";

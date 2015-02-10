@@ -35,6 +35,7 @@
 									<tr>
 										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
 										<th class="left">TIÊU ĐỀ</th>
+										<th class="left" width="260">PPT</th>
 										<th class="left" width="120">CHƯƠNG</th>
 										<th width="40"><i class="glyphicons-bin"/></th>
 									</tr>
@@ -43,6 +44,7 @@
 									<tr tal:repeat="Book BookAll">
 										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Book/getId"/></td>
 										<td><a tal:attributes="href Book/getURLUpdLoad" tal:content="Book/getTitle"/></td>
+										<td><span tal:content="Book/getPresentation/getName"/></td>
 										<td>
 											<a tal:attributes="href Book/getURLSettingChapter">
 												Xem (<span tal:content="Book/getChapterAll/count"/>)

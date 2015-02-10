@@ -10,8 +10,8 @@ class CategoryBook extends Mapper implements \MVC\Domain\CategoryBookFinder{
 						
 		$selectAllStmt 	= sprintf("select * from %s order by `order`", $tblCategoryBook);
 		$selectStmt 	= sprintf("select * from %s where id=?", $tblCategoryBook);
-		$updateStmt 	= sprintf("update %s set name=?, `order`=?, `key`=? where id=?", $tblCategoryBook);
-		$insertStmt 	= sprintf("insert into %s ( name, `order`, `key`) values(?, ?, ?)", $tblCategoryBook);
+		$updateStmt 	= sprintf("update %s set id_presentation=?, name=?, `order`=?, `key`=? where id=?", $tblCategoryBook);
+		$insertStmt 	= sprintf("insert into %s ( id_presentation, name, `order`, `key`) values(?, ?, ?, ?)", $tblCategoryBook);
 		$deleteStmt 	= sprintf("delete from %s where id=?", $tblCategoryBook);
 		$findByPageStmt = sprintf("SELECT * FROM  %s ORDER BY `order`, name	LIMIT :start,:max", $tblCategoryBook);
 		$findByKeyStmt 	= sprintf("select *  from %s where `key`=?", $tblCategoryBook);		
@@ -30,6 +30,7 @@ class CategoryBook extends Mapper implements \MVC\Domain\CategoryBookFinder{
     protected function doCreateObject( array $array ) {		
         $obj = new \MVC\Domain\CategoryBook( 
 			$array['id'],
+			$array['id_presentation'],
 			$array['name'],
 			$array['order'],			
 			$array['key']
@@ -40,6 +41,7 @@ class CategoryBook extends Mapper implements \MVC\Domain\CategoryBookFinder{
     protected function targetClass() {  return "CategoryBook";}
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array( 
+			$object->getIdPresentation(),
 			$object->getName(),
 			$object->getOrder(),			
 			$object->getKey()
@@ -51,6 +53,7 @@ class CategoryBook extends Mapper implements \MVC\Domain\CategoryBookFinder{
     
     protected function doUpdate( \MVC\Domain\Object $object ) {
         $values = array( 
+			$object->getIdPresentation(),
 			$object->getName(),
 			$object->getOrder(),			
 			$object->getKey(),

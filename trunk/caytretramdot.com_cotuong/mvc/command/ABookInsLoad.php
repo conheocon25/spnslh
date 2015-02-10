@@ -18,12 +18,14 @@
 			//-------------------------------------------------------------
 			$mCategoryBook 	= new \MVC\Mapper\CategoryBook();
 			$mBook 			= new \MVC\Mapper\Book();
+			$mPresentation 	= new \MVC\Mapper\Presentation();
 			$mConfig		= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------																					
-			$Category 	= $mCategoryBook->find($IdCategory);
+			$Category 			= $mCategoryBook->find($IdCategory);
+			$PresentationAll 	= $mPresentation->findAll();
 			
 			$Title = "THÊM SÁCH";
 			$Navigation = array(				
@@ -40,6 +42,7 @@
 			$request->setObject('Navigation'	, $Navigation);			
 			$request->setObject('ConfigName'	, $ConfigName);
 			$request->setObject('Category'		, $Category);
+			$request->setObject('PresentationAll', $PresentationAll);
 																		
 			return self::statuses('CMD_DEFAULT');
 		}

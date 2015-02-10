@@ -13,6 +13,7 @@
 			//-------------------------------------------------------------			
 			$IdBook 	= $request->getProperty('IdBook');
 			$IdCategory = $request->getProperty('IdCategory');									
+			$IdPresentation = $request->getProperty('IdPresentation');
 			$Title 		= $request->getProperty('Title');			
 			$Time 		= date('Y-m-d H:i:s');
 			$Info 		= \stripslashes($request->getProperty('Info'));
@@ -34,7 +35,8 @@
 			//-------------------------------------------------------------										
 			$Book = $mBook->find($IdBook);
 			
-			$Book->setInfo($Info);			
+			$Book->setIdPresentation($IdPresentation);
+			$Book->setInfo($Info);
 			$Book->setTitle($Title);
 			$Book->setTime($Time);			
 			$Book->setAuthor($Author);
