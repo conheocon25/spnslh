@@ -7,6 +7,7 @@ class CategoryBook extends Object{
 	//DEFINE PROPERTY
 	//-------------------------------------------------------------------------------
 	private $Id;
+	private $IdPresentation;
 	private $Name;	
 	private $Order;	
 	private $Key;
@@ -14,16 +15,31 @@ class CategoryBook extends Object{
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-	function __construct($Id=null, $Name=null, $Order=null, $Key=null){
-		$this->Id 			= $Id;
-		$this->Name 		= $Name;
-		$this->Order 		= $Order;		
-		$this->Key 			= $Key;
+	function __construct($Id=null, $IdPresentation=null, $Name=null, $Order=null, $Key=null){
+		$this->Id 				= $Id;
+		$this->IdPresentation 	= $IdPresentation;
+		$this->Name 			= $Name;
+		$this->Order 			= $Order;		
+		$this->Key 				= $Key;
 		parent::__construct( $Id );
 	}
 		
 	function getId() {return $this->Id;}
-		
+
+	function setIdPresentation($IdPresentation) {$this->IdPresentation = $IdPresentation;$this->markDirty();}
+	function getIdPresentation() 				{return $this->IdPresentation;}	
+	function getPresentation(){
+		$mPresentation = new \MVC\Mapper\Presentation();		
+		if ($this->IdPresentation == 0){
+			$PresentationAll 	= $mPresentation->findAll();	
+			$Presentation 		= $PresentationAll->current();
+		}else{
+			$Presentation = $mPresentation->find($this->IdPresentation);
+		}				
+		return $Presentation;
+	}
+	
+	
 	function setName($Name) {$this->Name = $Name;$this->markDirty();}
 	function getName() 		{return $this->Name;}
 	
@@ -40,6 +56,7 @@ class CategoryBook extends Object{
 	function toJSON(){
 		$json = array(
 			'Id' 			=> $this->getId(),
+			'IdPresentation'=> $this->getIdPresentation(),
 			'Name'			=> $this->getName(),			
 			'Order'			=> $this->getOrder(),		
 			'Key'			=> $this->getKey()
@@ -48,9 +65,10 @@ class CategoryBook extends Object{
 	}
 	
 	function setArray( $Data ){
-        $this->Id 		= $Data[0];
-		$this->Name 	= $Data[1];
-		$this->Order	= $Data[2];				
+        $this->Id 				= $Data[0];
+		$this->IdPresentation 	= $Data[1];
+		$this->Name 			= $Data[2];
+		$this->Order			= $Data[3];
 		$this->reKey();
     }
 	

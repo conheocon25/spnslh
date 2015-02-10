@@ -9,16 +9,16 @@
 		<meta property="og:image" tal:attributes="content Board/getThumb"/>
 		<tal:block metal:use-macro="mFront.xhtml/IncludeCSS"/>		
 	</head>
-	<body>		
+	<body>
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-6 col-sm-4">
 					<div class="row">						
-						<a tal:attributes="href Chapter/getURLView" class="btn btn-sm"><i class="glyphicon glyphicon-home"/></a>
-						<div class="btn btn-sm" data-toggle="modal" data-target="#Info"><B tal:content="Board/getName"/></div>
-						<div class="btn"><i class="glyphicon glyphicon-stats"/> <span tal:content="Board/getViewedPrint"/></div>
-						<div class="btn Liked" tal:attributes="data-id Board/getId"><i class="glyphicon glyphicon-star"/> <span tal:content="Board/getLikedPrint"/></div>
-						<div class="btn fb-share-button" tal:attributes="data-href Board/getURLShare" data-type="button_count" />
+						<a tal:attributes="href Chapter/getURLView" class="btn btn-sm" data-toggle="tooltip" data-placement="bottom" title="Về trang chủ"><i class="glyphicon glyphicon-home"/></a>
+						<div class="btn btn-sm" data-toggle="modal" data-target="#Info" data-placement="bottom" title="Giới thiệu thông tin ván cờ"><B tal:content="Board/getName"/></div>
+						<div class="btn" data-toggle="tooltip" data-placement="bottom" title="Số lượt xem"><i class="glyphicon glyphicon-stats"/> <span tal:content="Board/getViewedPrint"/></div>
+						<div class="btn Liked" tal:attributes="data-id Board/getId" data-toggle="tooltip" data-placement="bottom" title="Số lượt Like"><i class="glyphicon glyphicon-star"/> <span tal:content="Board/getLikedPrint"/></div>
+						<div class="btn fb-share-button" data-toggle="tooltip" data-placement="bottom" title="Chia sẻ Ván cờ lên Facebook" tal:attributes="data-href Board/getURLShare" data-type="button_count" />
 					</div>
 					<div class="row">
 						<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-image: url(/data/chess/150/Board.jpg); background-size: 100% 100%;">
@@ -196,12 +196,12 @@
 				<div class="col-md-6 col-sm-4" id="MoveList" tal:attributes="MoveStart Board/getMoveStart; MoveEnd Board/getMoveEnd; State Board/getState">
 					<div class="row btn-row">
 						<div class="Move btn btn-sm" tal:attributes="alt Board/getState; move '-1'"><i class="glyphicon glyphicon-th-large"/></div>
-						<div class="MoveFirst btn btn-sm"><i class="glyphicon glyphicon-step-backward"/></div>
-						<div class="MoveBack btn btn-sm"><i class="glyphicon glyphicon-backward"/></div>
-						<div class="Auto btn btn-sm btn-primary"><i class="glyphicon glyphicon-play"/></div>
-						<div class="MoveNext btn btn-sm"><i class="glyphicon glyphicon-forward"/></div> 
-						<div class="MoveLast btn btn-sm"><i class="glyphicon glyphicon-step-forward"/></div>
-						<select name="TimeAuto" id="TimeAuto">
+						<div class="MoveFirst btn btn-sm" data-toggle="tooltip" data-placement="bottom" title="Di chuyển nước đầu tiên"><i class="glyphicon glyphicon-step-backward"/></div>
+						<div class="MoveBack btn btn-sm" data-toggle="tooltip" data-placement="bottom" title="Di chuyển nước trước đó"><i class="glyphicon glyphicon-backward"/></div>
+						<div class="Auto btn btn-sm btn-primary" data-toggle="tooltip" data-placement="bottom" title="Bật / tắt chế độ tự trình diễn chơi cờ"><i class="glyphicon glyphicon-play"/></div>
+						<div class="MoveNext btn btn-sm" data-toggle="tooltip" data-placement="bottom" title="Di chuyển nước tiếp theo"><i class="glyphicon glyphicon-forward"/></div> 
+						<div class="MoveLast btn btn-sm" data-toggle="tooltip" data-placement="bottom" title="Di chuyển nước cuối cùng"><i class="glyphicon glyphicon-step-forward"/></div>
+						<select name="TimeAuto" id="TimeAuto" data-toggle="tooltip" data-placement="bottom" title="Số giây để hiển thị nước cờ tiếp theo">
 							<option value="1" >1 giây</option>
 							<option value="2" >2 giây</option>
 							<option value="5" >5 giây</option>
@@ -403,6 +403,8 @@
 						}
 					});			
 				});
+				
+				$('[data-toggle="tooltip"]').tooltip();
 				
 				(function(d, s, id) {
 				  var js, fjs = d.getElementsByTagName(s)[0];

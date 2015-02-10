@@ -13,6 +13,7 @@
 			//-------------------------------------------------------------			
 			$IdBook 	= $request->getProperty('IdBook');
 			$IdCategory = $request->getProperty('IdCategory');									
+			$IdPresentation = $request->getProperty('IdPresentation');
 			$Title 		= $request->getProperty('Title');			
 			$Time 		= date('Y-m-d H:i:s');
 			$Info 		= \stripslashes($request->getProperty('Info'));
@@ -35,6 +36,7 @@
 			$Book = new \MVC\Domain\Book(
 				null, 
 				$IdCategory, 
+				$IdPresentation, 
 				$Title, 
 				$Time, 
 				$Info, 

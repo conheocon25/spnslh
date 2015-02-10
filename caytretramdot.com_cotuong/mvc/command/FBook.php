@@ -28,6 +28,8 @@
 			//-------------------------------------------------------------											
 			$Book 				= $mBook->findByKey($KBook);
 			$Category 			= $Book->getCategory();
+			$Presentation 		= $Book->getPresentation();
+			
 			$Book->setViewed($Book->getViewed() + 1);
 			$mBook->update($Book);
 			
@@ -40,6 +42,7 @@
 			//-------------------------------------------------------------			
 			$request->setObject("URLShare", 			$Book->getURLViewFull());
 			$request->setObject("Category", 			$Category);
+			$request->setObject("Presentation", 		$Presentation);
 			$request->setObject("Book", 				$Book);
 			$request->setObject("CategoryPostAll", 		$CategoryPostAll);
 			$request->setObject("CategoryBookAll", 		$CategoryBookAll);

@@ -28,6 +28,7 @@
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------														
 			$Category 				= $mCategoryBook->findByKey($KCategory);
+			$Presentation			= $Category->getPresentation();
 			
 			$BookOrderByViewedAll 	= $mBook->findByViewedPage(array($Category->getId(), $Page, 8));
 			$BookOrderByLikedAll 	= $mBook->findByLikedPage(array($Category->getId(), $Page, 8));
@@ -45,6 +46,8 @@
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
 			$request->setObject("Category", 			$Category);
+			$request->setObject("Presentation", 		$Presentation);
+			
 			$request->setObject("BookOrderByViewedAll", $BookOrderByViewedAll);
 			$request->setObject("PNByViewed", 			$PNByViewed);
 			

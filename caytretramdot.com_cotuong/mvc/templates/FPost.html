@@ -16,8 +16,8 @@
 					<div class="panel panel-primary">
 						<div class="panel-heading">							
 							<ol class="breadcrumb">
-								<li><a tal:attributes="href Category/getURLView"><span tal:content="Category/getName"/></a></li>
-								<li class="active" tal:content="php: mb_strtoupper(Category->getName(), 'UTF8')"/>
+								<li><a tal:attributes="href Category/getURLView"><span tal:content="php: mb_strtoupper(Category->getName(), 'UTF8')"/></a></li>
+								<li class="active" tal:content="php: mb_strtoupper(Post->getTitle(), 'UTF8')"/>
 							</ol>							
 						</div>
 						<div class="panel-body">

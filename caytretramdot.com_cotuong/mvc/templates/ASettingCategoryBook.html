@@ -25,7 +25,8 @@
 									<tr>
 										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
 										<th class="left">TÊN</th>
-										<th width="80">THỨ TỰ</th>
+										<th class="left" width="260">PPT</th>
+										<th width="60">T.TỰ</th>
 										<th width="40"><i class="glyphicons-bin"/></th>
 									</tr>
 								</thead>
@@ -33,6 +34,7 @@
 									<tr tal:repeat="CategoryBook CategoryBookAll1">
 										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id CategoryBook/getId"/></td>
 										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id CategoryBook/getId" tal:content="CategoryBook/getName"/></td>										
+										<td><span tal:content="CategoryBook/getPresentation/getName"/></td>
 										<td class="center"><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id CategoryBook/getId" tal:content="CategoryBook/getOrder"/></td>
 										<td class="center">
 											<a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id CategoryBook/getId">
@@ -58,6 +60,16 @@
 											<label class="control-label">Tên</label>
 											<div class="controls">
 												<input id="Name1" name="Name1" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">PPT</label>
+											<div class="controls">
+												<select name="IdPresentation1" id="IdPresentation1" style="width:80%;">
+													<option tal:attributes="value Presentation/getId" tal:repeat="Presentation PresentationAll">
+														<span tal:content="Presentation/getName"/>
+													</option>
+												</select>
 											</div>
 										</div>
 										<div class="form-group">
@@ -90,6 +102,16 @@
 											<label class="control-label">Tên</label>
 											<div class="controls">
 												<input id="Name2" name="Name2" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">PPT</label>
+											<div class="controls">
+												<select name="IdPresentation2" id="IdPresentation2" style="width:80%;">
+													<option tal:attributes="value Presentation/getId" tal:repeat="Presentation PresentationAll">
+														<span tal:content="Presentation/getName"/>
+													</option>
+												</select>
 											</div>
 										</div>
 										<div class="form-group">
@@ -209,9 +231,10 @@
 				
 				//Load dữ liệu JSON lên FORM
 				$.getJSON(url, function(data){
-					$('#URLUpdButton').attr('alt', 	data.Id);
-					$('#Name2').attr('value', 		data.Name);
-					$('#Order2').attr('value', 		data.Order);					
+					$('#URLUpdButton').attr('alt'		, data.Id);
+					$('#IdPresentation2').select2('val'	, data.IdPresentation);
+					$('#Name2').attr('value'			, data.Name);
+					$('#Order2').attr('value'			, data.Order);					
 				});
 			});
 			
@@ -237,8 +260,9 @@
 				submitHandler: function (form) {					
 					var Data = [];								
 					Data[0] = $('#URLUpdButton').attr('alt');
-					Data[1] = $('#Name2').val();
-					Data[2] = $('#Order2').val();									
+					Data[1] = $('#IdPresentation2').val();
+					Data[2] = $('#Name2').val();
+					Data[3] = $('#Order2').val();									
 									
 					var URL = "/object/upd/CategoryBook";
 					$.ajax({
