@@ -15,21 +15,26 @@
 				<div class="col-md-12">
 					<div class="panel panel-primary">
 						<div class="panel-body">							
-							<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+							<div id="carousel-cotuong-generic" class="carousel slide" data-ride="carousel">
+								<ol class="carousel-indicators">
+									<li tal:repeat="Slide Presentation/getSlideAll" data-target="#carousel-cotuong-generic" tal:attributes="data-slide-to php: repeat.Slide.number" />
+								</ol>
 								<div class="carousel-inner" role="listbox">
-									<div class="item active">										
-										<img tal:attributes="src Presentation/getSlideAll/current/getURL;alt php:'sequence-slide-1'" width="100%"/>
-										<div class="carousel-caption">
-											
-										</div>
-									</div>
 									<div class="item" tal:repeat="Slide Presentation/getSlideAll">
 										<img tal:attributes="src Slide/getURL;alt php:'sequence-slide-' . repeat.Slide.number" width="100%"/>
 										<div class="carousel-caption">
 											
 										</div>
-									</div>							
+									</div>
 								</div>
+								<a class="left carousel-control" href="#carousel-cotuong-generic" role="button" data-slide="prev">
+									<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+									<span class="sr-only">Lui</span>
+								</a>
+								<a class="right carousel-control" href="#carousel-cotuong-generic" role="button" data-slide="next">
+									<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+									<span class="sr-only">Tới</span>
+								</a>
 							</div>
 						</div>
 					</div>
@@ -58,6 +63,7 @@
 									<div role="tabpanel" class="tab-pane"  id="TabInfo">
 										<div class="article-meta-date">
 											<div class="btn fb-share-button" tal:attributes="data-href URLShare" data-type="button_count" />
+											<span class="text-left">cập nhật mới nhất <B><i tal:content="Book/getTimePrint1" /></B></span>
 											<span tal:condition="Book/getURL"><a class="btn" tal:attributes="href Book/getURL" target="blank"><i class="glyphicon glyphicon-download-alt"/></a></span>
 											<div class="btn"><i class="glyphicon glyphicon-stats"/> <span tal:content="Book/getViewed"/></div>  
 											<div class="btn Liked" tal:attributes="data-id Book/getId"><i class="glyphicon glyphicon-star"/> <span tal:content="Book/getLikedPrint"/></div>
@@ -115,10 +121,12 @@
 			  js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&appId=1550985445183957&version=v2.0";
 			  fjs.parentNode.insertBefore(js, fjs);
 			}(document, 'script', 'facebook-jssdk'));
-						
-			$(".ChessBoard").attr("height", ($(".ChessBoard").width() * 1.05));
-			$('[data-toggle="tooltip"]').tooltip();
 			
+			$('#carousel-cotuong-generic').carousel({pause: "false"});
+			$('.carousel-inner .item:first-child').addClass('active');
+				
+			$(".ChessBoard").attr("height", ($(".ChessBoard").width() * 1.05));
+						
 			$(".Liked").click(function(){									
 				//-----------------------------------------------------------------------------------			
 				var IdBook = $(this).attr('data-id');

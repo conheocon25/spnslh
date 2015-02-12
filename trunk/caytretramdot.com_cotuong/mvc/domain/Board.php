@@ -80,7 +80,28 @@ class Board extends Object{
 	function getInfo( ) {return $this->Info;}
 			
 	function setTime( $Time ) {$this->Time = $Time;$this->markDirty();}   
-	function getTime( ) {return $this->Time;}	
+	function getTime( ) {return $this->Time;}
+	function getTimePrint1(){
+		$current 	= strtotime(date("Y-m-d H:i:s"));
+		$date    	= strtotime($this->Time);		
+		
+		$Str 		= "";
+		$Arr1		= array("giây"	, "phút"	, "giờ"	, "ngày", "tháng"	, "năm");
+		$Arr2		= array(60		, 60		, 24	, 30	, 12		, 1);
+		$Index		= 0;
+		$D 			= $current - $date;
+		
+		while ($D>0){
+			if ($Index>2)
+				$Str	= ($D%$Arr2[$Index]). " ". $Arr1[$Index]." hơn";
+			else
+				$Str	= ($D%$Arr2[$Index]). " ". $Arr1[$Index]." ".$Str;
+			
+			$D 		= floor($D/$Arr2[$Index]);
+			$Index ++;
+		}
+		return $Str;
+	}
 	
 	function setMoveInit( $MoveInit ) {$this->MoveInit = $MoveInit;$this->markDirty();}   
 	function getMoveInit( ) {return $this->MoveInit;}

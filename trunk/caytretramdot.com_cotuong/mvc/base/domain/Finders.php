@@ -11,6 +11,12 @@ interface Finder {
 }
 
 interface UserFinder  			extends Finder {}
+
+interface AlbumFinder  			extends Finder {}
+interface ImageFinder  			extends Finder {}
+
+interface LinkedFinder  		extends Finder {}
+
 interface FacebookerFinder  	extends Finder {}
 
 interface ConfigFinder 			extends Finder {}

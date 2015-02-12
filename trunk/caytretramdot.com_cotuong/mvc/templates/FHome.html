@@ -11,22 +11,27 @@
 				<div class="col-md-12">
 					<div class="panel panel-primary">
 						<div class="panel-body">							
-							<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">								
-								<div class="carousel-inner" role="listbox">
-									<div class="item active">										
-										<img tal:attributes="src Presentation/getSlideAll/current/getURL;alt php:'sequence-slide-1'" width="100%"/>
-										<div class="carousel-caption">
-											
-										</div>
-									</div>
+							<div id="carousel-cotuong-generic" class="carousel slide" data-ride="carousel">
+								<ol class="carousel-indicators">
+									<li tal:repeat="Slide Presentation/getSlideAll" data-target="#carousel-cotuong-generic" tal:attributes="data-slide-to php: repeat.Slide.number" />
+								</ol>
+								<div class="carousel-inner" role="listbox">									
 									<div class="item" tal:repeat="Slide Presentation/getSlideAll">
 										<img tal:attributes="src Slide/getURL;alt php:'sequence-slide-' . repeat.Slide.number" width="100%"/>
 										<div class="carousel-caption">
 											
 										</div>
-									</div>							
+									</div>
 								</div>
-							</div>
+								<a class="left carousel-control" href="#carousel-cotuong-generic" role="button" data-slide="prev">
+									<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+									<span class="sr-only">Lui</span>
+								</a>
+								<a class="right carousel-control" href="#carousel-cotuong-generic" role="button" data-slide="next">
+									<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+									<span class="sr-only">Tới</span>
+								</a>
+							</div>							
 						</div>
 					</div>
 				</div>
@@ -55,6 +60,7 @@
 												</td>
 												<td>
 													<a tal:attributes="href Book/getURLView"><span tal:content="Book/getTitle"/></a>
+													<p class="text-left">cập nhật mới nhất <B><i tal:content="Book/getTimePrint1" /></B></p>
 													<p class="text-justify" tal:content="structure Book/getInfoReduce"/>
 													<div class="progress">
 														<div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" tal:attributes="style Book/getCompletedPercentPrint1">
@@ -75,6 +81,7 @@
 												</td>
 												<td>
 													<a tal:attributes="href Book/getURLView"><span tal:content="Book/getTitle"/></a>
+													<p class="text-left">cập nhật mới nhất <B><i tal:content="Book/getTimePrint1" /></B></p>
 													<p class="text-justify" tal:content="structure Book/getInfoReduce"/>
 													<div class="progress">
 														<div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" tal:attributes="style Book/getCompletedPercentPrint1">
@@ -95,6 +102,7 @@
 												</td>
 												<td>
 													<a tal:attributes="href Book/getURLView"><span tal:content="Book/getTitle"/></a>
+													<p class="text-left">cập nhật mới nhất <B><i tal:content="Book/getTimePrint1" /></B></p>
 													<p class="text-justify" tal:content="structure Book/getInfoReduce"/>
 													<div class="progress">
 														<div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" tal:attributes="style Book/getCompletedPercentPrint1">
@@ -131,6 +139,7 @@
 												</td>
 												<td>
 													<a tal:attributes="href Board/getURLView"><span tal:content="Board/getName"/></a>
+													<p class="text-left">cập nhật mới nhất <B><i tal:content="Board/getTimePrint1" /></B></p>
 													<p class="text-justify" tal:content="structure Board/getInfoReduce"/>
 												</td>
 											</tr>
@@ -146,6 +155,7 @@
 												</td>
 												<td>
 													<a tal:attributes="href Board/getURLView"><span tal:content="Board/getName"/></a>
+													<p class="text-left">cập nhật mới nhất <B><i tal:content="Board/getTimePrint1" /></B></p>
 													<p class="text-justify" tal:content="structure Board/getInfoReduce"/>
 												</td>
 											</tr>
@@ -161,6 +171,7 @@
 												</td>
 												<td>
 													<a tal:attributes="href Board/getURLView"><span tal:content="Board/getName"/></a>
+													<p class="text-left">cập nhật mới nhất <B><i tal:content="Board/getTimePrint1" /></B></p>
 													<p class="text-justify" tal:content="structure Board/getInfoReduce"/>
 												</td>
 											</tr>
@@ -190,6 +201,7 @@
 												</td>
 												<td>
 													<a tal:attributes="href Video/getURLView"><span tal:content="Video/getTitle"/></a>
+													<p class="text-left">cập nhật mới nhất <B><i tal:content="Video/getTimePrint1" /></B></p>
 													<p class="text-justify" tal:content="structure Video/getInfoReduce"/>
 												</td>
 											</tr>
@@ -205,6 +217,7 @@
 												</td>
 												<td>
 													<a tal:attributes="href Video/getURLView"><span tal:content="Video/getTitle"/></a>
+													<p class="text-left">cập nhật mới nhất <B><i tal:content="Video/getTimePrint1" /></B></p>
 													<p class="text-justify" tal:content="structure Video/getInfoReduce"/>
 												</td>
 											</tr>
@@ -220,6 +233,7 @@
 												</td>
 												<td>
 													<a tal:attributes="href Video/getURLView"><span tal:content="Video/getTitle"/></a>
+													<p class="text-left">cập nhật mới nhất <B><i tal:content="Video/getTimePrint1" /></B></p>
 													<p class="text-justify" tal:content="structure Video/getInfoReduce"/>
 												</td>
 											</tr>
@@ -243,8 +257,8 @@
 		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
 		<script type="text/javascript">
 		/*<![CDATA[*/			
-			$('#carousel-presentation-generic').carousel({pause: "false"});
-			$('#carousel-presentation-generic .item:first-child').addClass('active');
+			$('#carousel-cotuong-generic').carousel({pause: "true"});
+			$('.carousel-inner .item:first-child').addClass('active');
 		/*]]>*/
 		</script>
 	</body>
