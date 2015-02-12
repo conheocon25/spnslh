@@ -2,6 +2,12 @@
 namespace MVC\Domain;
 if ( ! isset( $EG_DISABLE_INCLUDES ) ) {			
 	require_once( "mvc/mapper/User.php" 			);		
+	
+	require_once( "mvc/mapper/Album.php" 			);		
+	require_once( "mvc/mapper/Image.php" 			);
+	
+	require_once( "mvc/mapper/Linked.php" 			);		
+	
 	require_once( "mvc/mapper/Facebooker.php" 		);		
 			
 	require_once( "mvc/mapper/Config.php"			);	

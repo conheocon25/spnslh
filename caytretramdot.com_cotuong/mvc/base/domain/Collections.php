@@ -2,6 +2,12 @@
 namespace MVC\Domain;
 
 interface UserCollection 				extends \Iterator {function add( Object $User );		}
+
+interface AlbumCollection 				extends \Iterator {function add( Object $Album);		}
+interface ImageCollection 				extends \Iterator {function add( Object $Image);		}
+
+interface LinkedCollection 				extends \Iterator {function add( Object $Linked);		}
+
 interface FacebookerCollection 			extends \Iterator {function add( Object $Facebooker );	}
 
 interface ConfigCollection 				extends \Iterator {function add( Object $Config );		}

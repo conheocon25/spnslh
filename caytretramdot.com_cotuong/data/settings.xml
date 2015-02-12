@@ -23,6 +23,7 @@
 		<command name="FVideo" 			type="public"><view>FVideo</view></command>
 		
 		<command name="FContact" 		type="public"><view>FContact</view></command>		
+		<command name="FLinked" 		type="public"><view>FLinked</view></command>
 		
 		<command name="ServiceYouTubeAddVideoFromPlayList" type="public"><view>ServiceYouTubeAddVideoFromPlayList</view></command>
 		<command name="ServiceYouTubeUpdateStatisticVideo" type="public"><view>ServiceYouTubeUpdateStatisticVideo</view></command>
@@ -101,7 +102,9 @@
 		<command name="AVideoInsExe">			<view>AVideoInsExe	</view><status value="CMD_OK"><forward>AVideo</forward></status></command>
 		<command name="AVideoUpdLoad">			<view>AVideoUpdLoad	</view></command>
 		<command name="AVideoUpdExe">			<view>AVideoUpdExe	</view><status value="CMD_OK"><forward>AVideo</forward></status></command>
-						
+		
+		<command name="ALinked">				<view>ALinked		</view></command>
+		
 		<command name="ASettingUser">			<view>ASettingUser			</view></command>		
 		<command name="ASettingConfig">			<view>ASettingConfig		</view></command>
 	</control>
