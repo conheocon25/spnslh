@@ -28,7 +28,7 @@
 												</td>
 												<td>
 													<a tal:attributes="href Post/getURLView"><span tal:content="Post/getTitle"/></a>
-													<p><span tal:content="Post/getTimePrint"/></p>
+													<p><span tal:content="Post/getTimePrint1"/></p>
 												</td>
 											</tr>
 										</table>
@@ -43,7 +43,7 @@
 												</td>
 												<td>
 													<a tal:attributes="href Post/getURLView"><span tal:content="Post/getTitle"/></a>
-													<p><span tal:content="Post/getTimePrint"/></p>
+													<p><span tal:content="Post/getTimePrint1"/></p>
 												</td>
 											</tr>
 										</table>
@@ -71,11 +71,12 @@
 											<tr tal:repeat="Video Buddha/getVideoLastest">
 												<td width="48px">
 													<a tal:attributes="href Video/getURLView">
-														<img width="48px" tal:attributes="src Video/getImage"/>
+														<img width="48px" tal:attributes="src Video/getImage"/>														
 													</a>
 												</td>
 												<td>
 													<a tal:attributes="href Video/getURLView"><span tal:content="Video/getTitle"/></a>
+													<p><span tal:content="Video/getTimePrint1"/> <i class="glyphicon glyphicon-star"/><span tal:content="Video/getLikedPrint"/>, <i class="glyphicon glyphicon-stats"/><span tal:content="Video/getViewedPrint"/> </p>
 													<p class="text-justify" tal:content="structure Video/getInfoReduce"/>
 												</td>
 											</tr>
@@ -91,6 +92,7 @@
 												</td>
 												<td>
 													<a tal:attributes="href Video/getURLView"><span tal:content="Video/getTitle"/></a>
+													<p><span tal:content="Video/getTimePrint1"/> <i class="glyphicon glyphicon-star"/><span tal:content="Video/getLikedPrint"/>, <i class="glyphicon glyphicon-stats"/><span tal:content="Video/getViewedPrint"/> </p>
 													<p class="text-justify" tal:content="structure Video/getInfoReduce"/>
 												</td>
 											</tr>

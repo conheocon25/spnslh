@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+	</head>	
+	<body>
+		<div metal:use-macro="mAdmin.xhtml/Header"/>		
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
+			<div class="row">
+				<div class="col-12">					
+					<a href="#DialogIns" data-toggle="modal" class="btn btn-primary btn-ins"><i class="glyphicons-plus"/> Thêm biến</a>
+					<a href="#DialogDelSelected" data-toggle="modal" class="btn btn-primary btn-ins"><i class="glyphicons-remove_2"/> Xóa chọn</a>
+					<div class="widget-box">
+						<div class="widget-content nopadding">
+							<table class="table table-bordered table-striped table-hover with-check">
+								<thead>
+									<tr>
+										<th width="40">STT</th>
+										<th class="left">TÊN</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr tal:repeat="Sub BoardDetail/getSubAll">
+										<td class="center"><span tal:content="repeat/Sub/number"/></td>
+										<td><a tal:attributes="href Sub/getBoardMe/getURLSettingPoseLoad" tal:content="Sub/getBoardMe/getName"/></td>
+									</tr>
+								</tbody>								
+							</table>							
+						</div>
+					</div>					
+					<div id="URLInsExe" tal:attributes="alt BoardDetail/getURLSettingSubInsExe"/>
+					<!-- INSERT DIALOG  -->
+					<div id="DialogIns" class="modal fade">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header"><h3><i class="glyphicons-CategoryBook modal-icon"/>THÊM MỚI BIẾN</h3></div>
+								<form id="FormBoardSubInsert" action="#" class="form-horizontal" novalidate="novalidate">
+									<div class="modal-body">
+										<input type="hidden" id="IdBoardParent" name="IdBoardParent" tal:attributes="value Board/getId"/>
+										<input type="hidden" id="IdBoardDetail" name="IdBoardDetail" tal:attributes="value BoardDetail/getId"/>
+										<div class="control-group">
+											<label class="control-label" for="Title">Tiêu đề</label>
+											<div class="controls">
+												<input type="text" id="Name" name="Name" />
+											</div>
+										</div>																		
+										<div class="control-group">
+											<label class="control-label">Lượt đi</label>
+											<div class="controls">
+												<select name="Round" id="Round" style="width:80%;">
+													<option value="-1">Xanh đi trước</option>
+													<option value="1">Đỏ đi trước</option>
+												</select>
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label">Kết quả</label>
+											<div class="controls">
+												<select name="Result" id="Result" style="width:80%;">
+													<option value="-1">Đỏ thắng</option>
+													<option value="0">Hòa</option>
+													<option value="1">Đỏ thua</option>
+												</select>
+											</div>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button id="URLInsButton" class="btn btn-primary btn-small" type="submit"><i class="glyphicons-download_alt"/> Lưu</button>
+										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<!-- END INSERT DIALOG  -->
+					<div metal:use-macro="mDialog.xhtml/DialogDel"/>
+					<div metal:use-macro="mDialog.xhtml/DialogDelSelected"/>
+				</div>				
+			</div>
+		</div>
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<script type="text/javascript">
+		/*<![CDATA[*/
+			$('#URLDelSelectedButton').click(function(){
+				var count = 0;
+				var Data = [];
+				var URL = "/object/del/Board/0";
+				
+				$(".CheckedDel").each(function( i, obj){
+					if ( $(this).is(':checked')==true ){
+						count += 1;
+						Data[count] = $(this).attr('data-id');
+					}
+				});
+				
+				$.ajax({
+					type: "POST",
+					data: {ListId:Data},
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
+			});
+			
+			//-----------------------------------------------------------------------------------
+			//Delete 1 Book			
+			//-----------------------------------------------------------------------------------
+			$('.remove-item').click(function(){
+				$('#URLDelButton').attr('alt', $(this).attr('data-id'));
+			});
+			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
+			$('#URLDelButton').click(function(){			
+				var URL = "/object/del/Board/" + $(this).attr('alt');
+				$.ajax({
+					type: "POST",					
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
+			});
+			
+			//-----------------------------------------------------------------------------------
+			//INS 1 SUB			
+			//-----------------------------------------------------------------------------------
+			//-----------------------------------------------------------------------------------
+			//Insert 1 CategoryVideo
+			$("#FormBoardSubInsert").validate({
+				rules:{
+					Name:{
+						minlength: 2,
+						required:true
+					}					
+				},
+				errorClass: "help-inline",
+				errorElement: "span",
+				highlight:function(element, errorClass, validClass) {
+					$(element).parents('.form-group').addClass('has-error');
+				},
+				unhighlight: function(element, errorClass, validClass) {
+					$(element).parents('.form-group').removeClass('has-error');
+					$(element).parents('.form-group').addClass('has-success');
+				},
+				submitHandler: function (form) {					
+					var Name 	= $('#Name').val();
+					var Round 	= $('#Round').val();
+					var Result 	= $('#Result').val();
+					
+					var URL = $("#URLInsExe").attr('alt');
+					$.ajax({
+						type: "POST",
+						data: {Name:Name, Round:Round, Result:Result},
+						url: URL,
+						success: function(msg){
+							location.reload();
+						}
+					});
+					return false;
+				}
+			});
+			$("#DialogIns").on('show.bs.modal', function(event){
+				window.setTimeout(
+					function(){$(event.currentTarget).find('input#Name1').first().focus()},
+					0500
+				);
+			});
+			
+		/*]]>*/
+		</script>
+	</body>
+</html>

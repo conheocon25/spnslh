@@ -1,0 +1,132 @@
+<html lang="en" xml:lang="en">
+<body>
+	<!-- ======================================================================== -->
+	<!-- META TAG INCLUDE														  -->
+	<!-- ======================================================================== -->
+	<tal:block metal:define-macro="IncludeMETA">
+		<title>Cờ Tướng Online</title>
+		<base href="cotuong.caytretramdot.com"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+		<meta http-equiv="Pragma" content="no-cache"/>
+		<meta http-equiv="Expires" content="-1"/>
+		<meta http-equiv="Cache-Control" content="no-cache"/>
+		<meta name="keywords" content="Website Cờ Tướng Online"/>
+		<meta name="description" content="Cờ Tướng, Cờ Thế, Khai Cuộc, Trung Cuộc, Tàn Cuộc, Sách Cờ, Kỳ Phổ, Quất Trung Bí, Hoa Mai Phổ, Phản Hoa Mai, Bách Cục Tượng Kỳ, Thuận Pháo, Nghịch Pháo, Bình Phong Mã, Thiên Phong Pháo, Sĩ Giác Pháo, Quá Cung Pháo, Khởi Mã Cuộc"/>
+		<meta name="page-topic" content="Cờ Tướng, Cờ Thế, Khai Cuộc, Trung Cuộc, Tàn Cuộc, Sách Cờ, Kỳ Phổ, Quất Trung Bí, Hoa Mai Phổ, Phản Hoa Mai, Bách Cục Tượng Kỳ, Thuận Pháo, Nghịch Pháo, Bình Phong Mã, Thiên Phong Pháo, Sĩ Giác Pháo, Quá Cung Pháo, Khởi Mã Cuộc"/>
+		<meta name="Abstract" content="Cờ Tướng, Cờ Thế, Khai Cuộc, Trung Cuộc, Tàn Cuộc, Sách Cờ, Kỳ Phổ, Quất Trung Bí, Hoa Mai Phổ, Phản Hoa Mai, Bách Cục Tượng Kỳ, Thuận Pháo, Nghịch Pháo, Bình Phong Mã, Thiên Phong Pháo, Sĩ Giác Pháo, Quá Cung Pháo, Khởi Mã Cuộc"/>
+		<meta name="classification" content="Cờ Tướng, Cờ Thế, Khai Cuộc, Trung Cuộc, Tàn Cuộc, Sách Cờ, Kỳ Phổ, Quất Trung Bí, Hoa Mai Phổ, Phản Hoa Mai, Bách Cục Tượng Kỳ, Thuận Pháo, Nghịch Pháo, Bình Phong Mã, Thiên Phong Pháo, Sĩ Giác Pháo, Quá Cung Pháo, Khởi Mã Cuộc"/>
+		<link rel="shortcut icon" type="image/ico" href="/mvc/templates/theme/img/favicon.ico" />
+	</tal:block>
+		
+	<!-- ======================================================================== -->
+	<!-- CASCADING STYLE SHEETS INCLUDE											  -->
+	<!-- ======================================================================== -->
+	<tal:block metal:define-macro="IncludeCSS">	
+		<link rel="stylesheet" href="/mvc/templates/theme/bootstrap/css/bootstrap.min.css"/>		
+		<link rel="stylesheet" href="/mvc/templates/theme/bootstrap/css/bootstrap.config.css"/>		
+	</tal:block>
+	
+	<!-- ======================================================================== -->
+	<!-- JAVASCRIPT INCLUDE														  -->
+	<!-- ======================================================================== -->
+	<tal:block metal:define-macro="IncludeJS">
+		<script src="/mvc/templates/theme/bootstrap/js/jquery-1.11.0.min.js"></script>
+		<script src="/mvc/templates/theme/bootstrap/js/bootstrap.min.js"></script>	
+		<script src="/mvc/templates/theme/bootstrap/js/facebook.js"></script>
+		<script src="/mvc/templates/theme/bootstrap/js/chess.js"></script>
+	</tal:block>
+		
+	<!-- ======================================================================== -->
+	<!-- HEADER																	  -->
+	<!-- ======================================================================== -->
+	<nav metal:define-macro="Header" class="navbar navbar-default navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Bật/tắt</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/trang-chu" style="padding:5px;">
+					<img alt="Brand" src="/mvc/templates/theme/img/bamboo.png" height="100%"/>
+				</a>
+			</div>			
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav navbar-left">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">							
+							<i class="glyphicon glyphicon-home"/> Tin tức <span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu" role="menu">
+							<li tal:repeat="Category CategoryPostAll">
+								<a tal:attributes="href Category/getURLView" class="clearfix"><span class="pull-left" tal:content="Category/getName"/></a>
+							</li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							Sách <span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu" role="menu">
+							<li tal:repeat="Category CategoryBookAll">
+								<a tal:attributes="href Category/getURLView" class="clearfix"><span class="pull-left" tal:content="Category/getName"/></a>
+							</li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							Video<span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu" role="menu">
+							<li tal:repeat="Category CategoryVideoAll">
+								<a tal:attributes="href Category/getURLView" class="clearfix"><span class="pull-left" tal:content="Category/getName"/></a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="/lien-ket">
+							Liên kết
+						</a>
+					</li>
+					<li>
+						<a href="/lien-he">
+							Liên hệ
+						</a>
+					</li>
+					<li><a><b tal:content="php:@\MVC\Library\Statistic::getOnlinePrint()"/> <i class="glyphicon glyphicon-user"/></a></li>
+					<li><a><b tal:content="php:@\MVC\Library\Statistic::getCountPrint()"/> <i class="glyphicon glyphicon-stats"/></a></li>					
+				</ul>				
+			</div>
+		</div>
+	</nav>
+	
+	<div metal:define-macro="SuggestLevel01" class="jumbotron">
+		<h2 class="text-center">HIỂU BIẾT VỀ CỜ TƯỚNG CỦA BẠN</h2>
+		<p class="text-center">Cấp độ hiện tại Cờ Tướng của bạn là </p>
+		<p class="text-center">
+			<a class="btn btn-primary" href="/loi-khuyen/tap-su" role="button">Tập Sự</a>
+			<a class="btn btn-primary" href="/loi-khuyen/nang-cao" role="button">Nâng Cao</a>
+			<a class="btn btn-primary" href="/loi-khuyen/cao-thu" role="button">Cao Thủ</a>
+		</p>				
+	</div>
+	
+	<div metal:define-macro="SuggestLevel02" class="jumbotron">
+		<h2 class="text-center">NÂNG CAO</h2>
+		<p class="text-center">Bạn đã cơ bản Cờ Tướng, muốn học mà chưa biết bắt đầu từ đâu ...</p>
+		<p class="text-center"><a class="btn btn-primary btn-lg" href="/loi-khuyen/tap-su" role="button">Xem tiếp</a></p>
+	</div>
+	
+	<div metal:define-macro="SuggestLevel03" class="jumbotron">
+		<h2 class="text-center">CAO THỦ</h2>
+		<p class="text-center">Bạn chưa biết về Cờ Tướng, muốn học mà chưa biết bắt đầu từ đâu ...</p>
+		<p class="text-center"><a class="btn btn-primary btn-lg" href="/loi-khuyen/tap-su" role="button">Xem tiếp</a></p>
+	</div>
+	
+	<!-- ======================================================================== -->
+	<!-- FOOTER																	  -->
+	<!-- ======================================================================== -->	
+			
+</body>
+</html>

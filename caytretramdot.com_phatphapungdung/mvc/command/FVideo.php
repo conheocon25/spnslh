@@ -28,8 +28,8 @@
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------											
 			$Video 				= $mVideo->findByKey($KVideo);
-			$Video->setViewed($Video->getViewed() + 1);
-			$mVideo->update($Video);
+			//$Video->setViewed($Video->getViewed() + 1);
+			//$mVideo->update($Video);
 			
 			$CategoryPostAll 	= $mCategoryPost->findAll();			
 			$CategoryBuddhaAll 	= $mCategoryBuddha->findAll();
