@@ -4,18 +4,18 @@
 	<!-- META TAG INCLUDE														  -->
 	<!-- ======================================================================== -->
 	<span metal:define-macro="IncludeMETA">
-		<title tal:content="string:Cờ Tướng Online"/>
-		<base href="http://cotuong.caytretramdot.com"/>
+		<title tal:content="string:Hệ thống PCT - Accounting"/>
+		<base href="http://ptca.caytretramdot.com"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 		<meta http-equiv="Pragma" content="no-cache"/>
 		<meta http-equiv="Expires" content="-1"/>
 		<meta http-equiv="Cache-Control" content="no-cache"/>
-		<meta name="keywords" content="Cờ Tướng Online"/>
-		<meta name="description" content="Cờ Tướng Online"/>
-		<meta name="page-topic" content="Cờ Tướng Online"/>
-		<meta name="Abstract" content="Cờ Tướng Online"/>
-		<meta name="classification" content="Cờ Tướng Online"/>
+		<meta name="keywords" content="Hệ thống PCT - Accounting"/>
+		<meta name="description" content="Hệ thống PCT - Accounting"/>
+		<meta name="page-topic" content="Hệ thống PCT - Accounting"/>
+		<meta name="Abstract" content="Hệ thống PCT - Accounting"/>
+		<meta name="classification" content="Hệ thống PCT - Accounting"/>
 		<link rel="shortcut icon" type="image/png" href="/data/images/icon.ico" />
 	</span>
 	
@@ -113,22 +113,7 @@
 	<!-- MENU.APP															  	  -->
 	<!-- ======================================================================== -->
 	<div metal:define-macro="MenuApp" id="sidebar">
-		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">			
-			<li tal:attributes="class php:ActiveAdmin=='Presentation'?'active':'disable'">
-				<a tal:attributes="href '/admin/presentation'"><i class="glyphicons-cogwheels" />PPT</a>
-			</li>			
-			<li tal:attributes="class php:ActiveAdmin=='Post'?'active':'disable'">
-				<a tal:attributes="href '/admin/post'"><i class="glyphicons-cogwheels" />TIN TỨC</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='Book'?'active':'disable'">
-				<a tal:attributes="href '/admin/book'"><i class="glyphicons-cogwheels" />SÁCH CỜ</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='Video'?'active':'disable'">
-				<a tal:attributes="href '/admin/video'"><i class="glyphicons-cogwheels" />VIDEO</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='Linked'?'active':'disable'">
-				<a tal:attributes="href '/admin/linked'"><i class="glyphicons-cogwheels" />LIÊN KẾT</a>
-			</li>
+		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">
 			<li tal:attributes="class php:ActiveAdmin=='Setting'?'active':'disable'">				
 				<a tal:attributes="href '/admin/setting'"><i class="glyphicons-cogwheels" />THIẾT LẬP</a>
 			</li>
@@ -141,7 +126,7 @@
 	<!-- ======================================================================== -->
 	<div metal:define-macro="Footer" class="row">
 		<div id="footer" class="col-12" style="text-align:right; padding-right:20px;">
-			2009 - 2015 &copy; <a href="http://cotuong.caytretramdot.com">SPN Team - Cờ Tướng Online</a>
+			2009 - 2015 &copy; <a href="http://pcta.caytretramdot.com">SPN Team - Hệ thống PCT - Accounting</a>
 		</div>
 	</div>
 	
