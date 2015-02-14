@@ -6,9 +6,18 @@
 	</head>
 	
 	<body>
-		<div metal:use-macro="mAdmin.xhtml/Header"/>				
+		<div metal:use-macro="mAdmin.xhtml/Header"/>
+		<div id="sidebar">
+			<ul style="display: block;">
+				<li tal:repeat="TypeAccount TypeAccountSibblingAll" tal:attributes="class php: TypeAccount->getId()==TypeAccountParent->getId()?'active':''">
+					<a tal:attributes="href TypeAccount/getURLSettingTypeAccount">
+						<i class="glyphicons-tag"/><span tal:content="TypeAccount/getCode"/>
+					</a>
+				</li>
+			</ul>
+		</div>
 		<div id="content">
-			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>			
 			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
 			<div class="row">
 				<div class="col-12">
@@ -24,20 +33,22 @@
 								<thead>
 									<tr>
 										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
+										<th width="80" class="left">MÃ</th>
 										<th class="left">TÊN</th>
-										<th class="left" width="260">PPT</th>
-										<th width="60">T.TỰ</th>
+										<th width="60" class="right">TK CON</th>
+										<th width="40"><i class="glyphicons-edit"/></th>
 										<th width="40"><i class="glyphicons-bin"/></th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr tal:repeat="CategoryBook CategoryBookAll1">
-										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id CategoryBook/getId"/></td>
-										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id CategoryBook/getId" tal:content="CategoryBook/getName"/></td>										
-										<td><span tal:content="CategoryBook/getPresentation/getName"/></td>
-										<td class="center"><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id CategoryBook/getId" tal:content="CategoryBook/getOrder"/></td>
+									<tr tal:repeat="TypeAccount TypeAccountAll">
+										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id TypeAccount/getId"/></td>
+										<td><span tal:content="TypeAccount/getCode"/></td>
+										<td><a tal:attributes="href TypeAccount/getURLSettingTypeAccount" tal:content="TypeAccount/getName"/></td>
+										<td class="right"><span tal:content="TypeAccount/getChildAll/count"/></td>
+										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id TypeAccount/getId"><i class="glyphicons-edit"/></a></td>
 										<td class="center">
-											<a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id CategoryBook/getId">
+											<a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id TypeAccount/getId">
 												<i class="glyphicon glyphicon-remove"/>
 											</a>
 										</td>
@@ -52,32 +63,23 @@
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h3><i class="glyphicons-CategoryBook modal-icon"/>THÊM MỚI DANH MỤC BÀI VIẾT</h3>
+									<h3><i class="glyphicons-TypeAccount modal-icon"/>THÊM MỚI SỐ HIỆU TÀI KHOẢN</h3>
 								</div>
-								<form id="FormCategoryBookInsert" action="#" class="form-horizontal" novalidate="novalidate">
+								<form id="FormTypeAccountInsert" action="#" class="form-horizontal" novalidate="novalidate">
 									<div class="modal-body">
+										<input id="IdParent1" name="IdParent1" type="hidden" class="form-control input-small" tal:attributes="value TypeAccountParent/getId"/>
 										<div class="form-group">
+											<label class="control-label">Mã</label>
+											<div class="controls">
+												<input id="Code1" name="Code1" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="form-group">											
 											<label class="control-label">Tên</label>
 											<div class="controls">
 												<input id="Name1" name="Name1" type="text" class="form-control input-small"/>
 											</div>
 										</div>
-										<div class="form-group">
-											<label class="control-label">PPT</label>
-											<div class="controls">
-												<select name="IdPresentation1" id="IdPresentation1" style="width:80%;">
-													<option tal:attributes="value Presentation/getId" tal:repeat="Presentation PresentationAll">
-														<span tal:content="Presentation/getName"/>
-													</option>
-												</select>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label">Thứ tự</label>
-											<div class="controls">
-												<input id="Order1" name="Order1" type="text" class="form-control input-small"/>
-											</div>
-										</div>																			
 									</div>
 									<div class="modal-footer">
 										<button id="URLInsButton" class="btn btn-primary btn-small" type="submit"><i class="glyphicons-download_alt"/> Lưu</button>
@@ -94,30 +96,30 @@
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h3><i class="glyphicons-CategoryBook modal-icon"/>CẬP NHẬT DANH MỤC BÀI VIẾT</h3>
+									<h3><i class="glyphicons-TypeAccount modal-icon"/>CẬP NHẬT SÔ HIỆU TÀI KHOẢN</h3>
 								</div>
-								<form id="FormCategoryBookUpdate" action="#" class="form-horizontal" novalidate="novalidate">
+								<form id="FormTypeAccountUpdate" action="#" class="form-horizontal" novalidate="novalidate">
 									<div class="modal-body">
 										<div class="form-group">
-											<label class="control-label">Tên</label>
+											<label class="control-label">Số hiệu TK cha</label>
 											<div class="controls">
-												<input id="Name2" name="Name2" type="text" class="form-control input-small"/>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label">PPT</label>
-											<div class="controls">
-												<select name="IdPresentation2" id="IdPresentation2" style="width:80%;">
-													<option tal:attributes="value Presentation/getId" tal:repeat="Presentation PresentationAll">
-														<span tal:content="Presentation/getName"/>
+												<select name="IdParent2" id="IdParent2" style="width:80%;">
+													<option tal:attributes="value TypeAccount/getId;" tal:repeat="TypeAccount TypeAccountAll1">
+														<span tal:content="TypeAccount/getCode"/> / <span tal:content="TypeAccount/getName"/>
 													</option>
 												</select>
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="control-label">Thứ tự</label>
+											<label class="control-label">Mã</label>
 											<div class="controls">
-												<input id="Order2" name="Order2" type="text" class="form-control input-small"/>
+												<input id="Code2" name="Code2" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="form-group">											
+											<label class="control-label">Tên</label>
+											<div class="controls">
+												<input id="Name2" name="Name2" type="text" class="form-control input-small"/>
 											</div>
 										</div>
 									</div>	
@@ -142,7 +144,7 @@
 			$('#URLDelSelectedButton').click(function(){
 				var count = 0;
 				var Data = [];
-				var URL = "/object/del/CategoryBook/0";
+				var URL = "/object/del/TypeAccount/0";
 				
 				$(".CheckedDel").each(function( i, obj){
 					if ( $(this).is(':checked')==true ){
@@ -162,14 +164,14 @@
 			});
 			
 			//-----------------------------------------------------------------------------------
-			//Delete 1 CategoryBook			
+			//Delete 1 TypeAccount			
 			//-----------------------------------------------------------------------------------
 			$('.remove-item').click(function(){
 				$('#URLDelButton').attr('alt', $(this).attr('data-id'));
 			});
 			//Khi DANH MỤC BÀI VIẾT Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
 			$('#URLDelButton').click(function(){			
-				var URL = "/object/del/CategoryBook/" + $(this).attr('alt');
+				var URL = "/object/del/TypeAccount/" + $(this).attr('alt');
 				$.ajax({
 					type: "POST",					
 					url: URL,
@@ -180,8 +182,8 @@
 			});
 		
 			//-----------------------------------------------------------------------------------
-			//Insert 1 CategoryBook
-			$("#FormCategoryBookInsert").validate({
+			//Insert 1 TypeAccount
+			$("#FormTypeAccountInsert").validate({
 				rules:{
 					Name1:{
 						minlength: 2,
@@ -200,10 +202,11 @@
 				submitHandler: function (form) {					
 					var Data = [];
 					Data[0] = 'null';
-					Data[1] = $('#Name1').val();
-					Data[2] = $('#Order1').val();				
-													
-					var URL = "/object/ins/CategoryBook";
+					Data[1] = $('#IdParent1').val();
+					Data[2] = $('#Code1').val();
+					Data[3] = $('#Name1').val();
+																		
+					var URL = "/object/ins/TypeAccount";
 					$.ajax({
 						type: "POST",
 						data: {Data:Data},
@@ -223,25 +226,25 @@
 			});
 			
 			//-----------------------------------------------------------------------------------
-			//Load 1 CategoryBook
+			//Load 1 TypeAccount
 			//-----------------------------------------------------------------------------------
 			$('.update-item').click(function(){
 				//Load dữ liệu JSON về
-				var url = "/object/load/CategoryBook/" + $(this).attr('data-id');
+				var url = "/object/load/TypeAccount/" + $(this).attr('data-id');
 				
 				//Load dữ liệu JSON lên FORM
 				$.getJSON(url, function(data){
-					$('#URLUpdButton').attr('alt'		, data.Id);
-					$('#IdPresentation2').select2('val'	, data.IdPresentation);
+					$('#URLUpdButton').attr('alt'		, data.Id);					
+					$('#IdParent2').select2('val'		, data.IdParent);
+					$('#Code2').attr('value'			, data.Code);
 					$('#Name2').attr('value'			, data.Name);
-					$('#Order2').attr('value'			, data.Order);					
 				});
 			});
 			
 			//-----------------------------------------------------------------------------------
-			//Update 1 CategoryBook
+			//Update 1 TypeAccount
 			//-----------------------------------------------------------------------------------			
-			$("#FormCategoryBookUpdate").validate({
+			$("#FormTypeAccountUpdate").validate({
 				rules:{
 					Name2:{
 						minlength: 2,
@@ -260,11 +263,11 @@
 				submitHandler: function (form) {					
 					var Data = [];								
 					Data[0] = $('#URLUpdButton').attr('alt');
-					Data[1] = $('#IdPresentation2').val();
-					Data[2] = $('#Name2').val();
-					Data[3] = $('#Order2').val();									
-									
-					var URL = "/object/upd/CategoryBook";
+					Data[1] = $('#IdParent2').val();
+					Data[2] = $('#Code2').val();
+					Data[3] = $('#Name2').val();
+														
+					var URL = "/object/upd/TypeAccount";
 					$.ajax({
 						type: "POST",
 						data: {Data:Data},
