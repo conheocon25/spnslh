@@ -57,6 +57,7 @@ RewriteRule ^admin$ 													?cmd=Admin [L]
 RewriteRule ^admin/setting$ 											?cmd=ASetting [L]
 
 RewriteRule ^admin/setting/type/account$ 								?cmd=ASettingTypeAccount [L]
+RewriteRule ^admin/setting/type/account/([0-9]+)$ 						?cmd=ASettingTypeAccount&IdParent=$1 [L]
 
 RewriteRule ^admin/setting/config$ 										?cmd=ASettingConfig [L]
 RewriteRule ^admin/setting/config/page/([0-9]+)$ 						?cmd=ASettingConfig&Page=$1 [L]

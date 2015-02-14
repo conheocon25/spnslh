@@ -2,44 +2,45 @@
 Namespace MVC\Domain;
 require_once( "mvc/base/domain/DomainObject.php" );
 
-class Tag extends Object{
+class TypeAccount extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE PROPERTY
 	//-------------------------------------------------------------------------------
 	private $Id;
-	private $Name;	
-	private $Order;
-	private $PostCount;
+	private $IdParent;
+	private $Code;
+	private $Name;		
 	private $Key;
 	
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-	function __construct($Id=null, $Name=null, $Order=null, $PostCount=null, $Key=null) {
-		$this->Id 			= $Id;
-		$this->Name 		= $Name;
-		$this->Order 		= $Order;
-		$this->PostCount 	= $PostCount;
-		$this->Key 			= $Key;
+	function __construct($Id=null, $IdParent=null, $Code=null, $Name=null, $Key=null){
+		$this->Id 				= $Id;		
+		$this->IdParent 		= $IdParent;
+		$this->Code 			= $Code;
+		$this->Name 			= $Name;		
+		$this->Key 				= $Key;
 		parent::__construct( $Id );
 	}
 		
 	function getId() {return $this->Id;}
-		
+
+	function setIdParent($IdParent) {$this->IdParent = $IdParent; $this->markDirty();}
+	function getIdParent() 			{return $this->IdParent;}
+	function getParent(){
+		$mTypeAccount 	= new \MVC\Mapper\TypeAccount();				
+		$TypeAccount 	= $mTypeAccount->find($this->IdParent);
+		return $TypeAccount;
+	}
+	
+	
 	function setName($Name) {$this->Name = $Name;$this->markDirty();}
 	function getName() 		{return $this->Name;}
 	
-	function setOrder($Order){$this->Order = $Order;$this->markDirty();}
-	function getOrder() 	{return $this->Order;}
+	function setCode($Code)	{$this->Code = $Code;$this->markDirty();}
+	function getCode() 		{return $this->Code;}
 	
-	function setPostCount($PostCount){$this->PostCount = $PostCount; $this->markDirty();}
-	function getPostCount() 	{return $this->PostCount;}
-	
-	function rePostCount(){
-		$PTAll = $this->getPTAll();
-		$this->PostCount = $PTAll->count();
-	}
-			
 	function setKey($Key)	{$this->Key = $Key;$this->markDirty();}
 	function getKey() 		{return $this->Key;}
 	function reKey( ) {
@@ -50,42 +51,36 @@ class Tag extends Object{
 	function toJSON(){
 		$json = array(
 			'Id' 			=> $this->getId(),
+			'IdParent'		=> $this->getIdParent(),
 			'Name'			=> $this->getName(),			
-			'Order'			=> $this->getOrder(),
-			'PostCount'		=> $this->getPostCount(),
+			'Code'			=> $this->getCode(),
 			'Key'			=> $this->getKey()
 		);
 		return json_encode($json);
 	}
 	
 	function setArray( $Data ){
-        $this->Id 		= $Data[0];
-		$this->Name 	= $Data[1];
-		$this->Order	= $Data[2];
-		
-		$this->rePostCount();		
+        $this->Id 				= $Data[0];
+		$this->IdParent 		= $Data[1];		
+		$this->Code				= $Data[2];
+		$this->Name 			= $Data[3];
 		$this->reKey();
     }
 	
 	//-------------------------------------------------------------------------------
 	//GET LIST
 	//-------------------------------------------------------------------------------
-	function getPTAll(){
-		$mPT 	= new \MVC\Mapper\PostTag();
-		$PTAll 	= $mPT->findByTag(array($this->getId()));
-		return $PTAll;
+	function getChildAll(){
+		$mTypeAccount 	= new \MVC\Mapper\TypeAccount();
+		$TypeAccountAll = $mTypeAccount->findByParent(array($this->getId()));
+		return $TypeAccountAll;
 	}
-		
+	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
-	//-------------------------------------------------------------------------------
-	function getURLView(){return "/the-bai/".$this->getKey();}
-	
-	function getURLSetting(){return "/admin/tag/".$this->getId();}
-	function getURLSettingPost(){return "/admin/post/".$this->getId();}
-	function getURLSettingPostInsLoad()	{return "/admin/post/".$this->getId()."/ins/load";}
-	function getURLSettingPostInsExe()	{return "/admin/post/".$this->getId()."/ins/exe";}
-	
+	//-------------------------------------------------------------------------------		
+	function getURLSettingTypeAccount(){return "/admin/setting/type/account/".$this->getId();}
+		
 	//-------------------------------------------------------------------------------
 	static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
 	static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}
