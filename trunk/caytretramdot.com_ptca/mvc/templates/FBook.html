@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<tal:block metal:use-macro="mFront.xhtml/IncludeMETA"/>
+		<meta property="og:title" tal:attributes="content Book/getTitle"/>
+		<meta property="og:description" tal:attributes="content Book/getInfoReduce"/>		
+		<meta property="og:image" tal:attributes="content Book/getThumb"/>
+		<tal:block metal:use-macro="mFront.xhtml/IncludeCSS"/>
+		<tal:block metal:use-macro="mFront.xhtml/IncludeJS"/>
+	</head>
+	<body>
+		<div metal:use-macro="mFront.xhtml/Header"/>
+		<div class="container-fluid" id="wraper">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="panel panel-primary">
+						<div class="panel-body">							
+							<div id="carousel-cotuong-generic" class="carousel slide" data-ride="carousel">
+								<ol class="carousel-indicators">
+									<li tal:repeat="Slide Presentation/getSlideAll" data-target="#carousel-cotuong-generic" tal:attributes="data-slide-to php: repeat.Slide.number" />
+								</ol>
+								<div class="carousel-inner" role="listbox">
+									<div class="item" tal:repeat="Slide Presentation/getSlideAll">
+										<img tal:attributes="src Slide/getURL;alt php:'sequence-slide-' . repeat.Slide.number" width="100%"/>
+										<div class="carousel-caption">
+											
+										</div>
+									</div>
+								</div>
+								<a class="left carousel-control" href="#carousel-cotuong-generic" role="button" data-slide="prev">
+									<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+									<span class="sr-only">Lui</span>
+								</a>
+								<a class="right carousel-control" href="#carousel-cotuong-generic" role="button" data-slide="next">
+									<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+									<span class="sr-only">Tới</span>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-8">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<ol class="breadcrumb">
+								<li><a tal:attributes="href Category/getURLView" tal:content="php: mb_strtoupper(Category->getName(), 'UTF8')"/></li>
+								<li class="active" tal:content="php: mb_strtoupper(Book->getTitle(), 'UTF8')"/>
+							</ol>
+						</div>
+						<div class="panel-body">
+							<div role="tabpanel" id="TabBook">
+								<ul class="nav nav-tabs" role="tablist">
+									<li role="presentation">
+										<a tal:attributes="href php:'#TabInfo'" aria-controls="profile" role="tab" data-toggle="tab">Tổng quan</a>
+									</li>
+									<li role="presentation" class="active">
+										<a tal:attributes="href php:'#TabChapter'" aria-controls="profile" role="tab" data-toggle="tab">Chi tiết</a>
+									</li>							
+								</ul>
+								<div class="tab-content">
+									<div role="tabpanel" class="tab-pane"  id="TabInfo">
+										<div class="article-meta-date">
+											<div class="btn fb-share-button" tal:attributes="data-href URLShare" data-type="button_count" />
+											<span class="text-left">cập nhật mới nhất <B><i tal:content="Book/getTimePrint1" /></B></span>
+											<span tal:condition="Book/getURL"><a class="btn" tal:attributes="href Book/getURL" target="blank"><i class="glyphicon glyphicon-download-alt"/></a></span>
+											<div class="btn"><i class="glyphicon glyphicon-stats"/> <span tal:content="Book/getViewed"/></div>  
+											<div class="btn Liked" tal:attributes="data-id Book/getId"><i class="glyphicon glyphicon-star"/> <span tal:content="Book/getLikedPrint"/></div>
+											<div class="progress">
+												<div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" tal:attributes="style Book/getCompletedPercentPrint1">
+													<B tal:content="Book/getCompletedPercentPrint2"/> hoàn thành 
+												</div>
+											</div>
+										</div>
+										<div class="article-meta-more">									
+											<div tal:content="structure Book/getInfo" class="article-content-container"/>
+										</div>
+									</div>
+									<div role="tabpanel" class="tab-pane active" id="TabChapter">
+										<table class="table table-striped">
+											<tr tal:repeat="Chapter Book/getChapterAll">
+												<td width="48px"><img width="48px" tal:attributes="src Chapter/getThumb"/></td>
+												<td>
+													<a tal:attributes="href Chapter/getURLView">
+														<span tal:content="Chapter/getTitle"/>
+														 (<span tal:content="Chapter/getBoardAll/count"/> ván)
+													</a>
+													<p tal:content="structure Chapter/getInfoReduce"/>													
+													<div class="progress">
+														<div class="progress-bar progress-bar-striped progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100" tal:attributes="style Chapter/getCompletedPercentPrint1">
+															<B tal:content="Chapter/getCompletedPercentPrint2"/>
+														</div>
+													</div>
+																										
+												</td>
+											</tr>											
+										</table>								
+									</div>							
+								</div>
+							</div>
+						</div>		
+					</div>	
+				</div>
+				<div class="col-md-4">
+					<div class="panel panel-default">						
+						<div class="panel-body">														
+							<tal:block metal:use-macro="mFront.xhtml/SuggestLevel01"/>
+							<div width="100%" class="fb-like-box" data-href="https://www.facebook.com/pages/Caytretramdot/596061963849405" data-colorscheme="light" data-show-faces="true" data-header="false" data-stream="false" data-show-border="false"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+		/*<![CDATA[*/															
+			(function(d, s, id) {
+			  var js, fjs = d.getElementsByTagName(s)[0];
+			  if (d.getElementById(id)) return;
+			  js = d.createElement(s); js.id = id;
+			  js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&appId=1550985445183957&version=v2.0";
+			  fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));
+			
+			$('#carousel-cotuong-generic').carousel({pause: "false"});
+			$('.carousel-inner .item:first-child').addClass('active');
+				
+			$(".ChessBoard").attr("height", ($(".ChessBoard").width() * 1.05));
+						
+			$(".Liked").click(function(){									
+				//-----------------------------------------------------------------------------------			
+				var IdBook = $(this).attr('data-id');
+												
+				var URL = "/object/liked/Book/"+IdBook;
+				$.ajax({
+					type: "POST",						
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});			
+			});
+		/*]]>*/
+		</script>
+	</body>	
+</html>
