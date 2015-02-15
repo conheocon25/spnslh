@@ -215,9 +215,9 @@
 						</tr>
 					</table>					
 				</div>
-				<div id="MoveList" class="col-md-3 col-xs-3" tal:attributes="MoveStart Board/getMoveStart; MoveEnd Board/getMoveEnd; URLExe Board/getURLSettingPoseExe; State Board/getState; ;MoveInit Board/getMoveInit">
+				<div id="MoveList" class="col-md-3 col-xs-3" tal:attributes="MoveStart Board/getMoveStart; MoveEnd Board/getMoveEnd; URLExe Board/getURLSettingPoseExe; State Board/getState; Round Board/getRound; MoveInit Board/getMoveInit">
 					<div class="row">
-						<div class="MoveSave btn btn-primary">Lưu</div>						
+						<div class="MoveSave btn btn-primary">Lưu</div>
 						<div class="MoveBack btn btn-primary"> < </div>
 						<div class="MoveState btn btn-default">?</div>
 						<a tal:attributes="href Board/getURLSettingStateLoad" class="btn btn-success">Thiết lập trạng thái</a>
@@ -257,12 +257,12 @@
 				var TempY 		= -1;
 				var State		= $("#MoveList").attr('State');
 				var Selected	= 0;
-																
+												
 				//Khởi tạo dữ liệu bàn cờ												
 				initCompose(State);
+				Round = parseInt($("#MoveList").attr("Round"));				
 				drawRound(Round);
 				drawIState(iStep);
-								
 				
 				$(".CCell").click(function(){
 					var X = parseInt($(this).attr('X'));

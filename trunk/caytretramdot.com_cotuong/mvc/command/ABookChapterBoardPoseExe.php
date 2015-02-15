@@ -29,12 +29,29 @@
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------																											
 			$Board			= $mBoard->find($IdBoard);
-			$mBoardDetail->deleteBy(array($IdBoard));
-			
+			$mBoardDetail->deleteBy(array($IdBoard));			
 			$Count = count($aStep);
+			
+			if ($Board->getRound()>0){
+				array_unshift($aStep, $Board->getState());
+				array_unshift($aStepA, "...");
+			}
+												
 			for ($i=0; $i<$Count; $i+=2){
-				
-				if (isset($aStepA[$i+1])){
+				if ($aStepA[$i]=="-1"){
+					$BoardD = new \MVC\Domain\BoardDetail(
+						null,
+						$IdBoard,
+						($i/2)+1,
+						"0",
+						"START",
+						$aStepA[$i],
+						$aStep[$i],						
+						"",
+						""
+					);
+				}
+				else if (isset($aStepA[$i+1])){
 					$BoardD = new \MVC\Domain\BoardDetail(
 						null,
 						$IdBoard,
@@ -57,9 +74,8 @@
 						"END",
 						"",
 						""
-					);				
-				}
-								
+					);
+				}								
 				$mBoardDetail->insert($BoardD);
 			}
 			$Board->setMoveStart(0);

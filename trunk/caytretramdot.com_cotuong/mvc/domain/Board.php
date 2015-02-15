@@ -78,7 +78,9 @@ class Board extends Object{
 	function getThumb( ){return "/data/chess/150/BoardThumb.jpg";}
 	
 	function setState( $State ) {$this->State = $State;$this->markDirty();}   
-	function getState( ) 		{return $this->State;}
+	function getState( ){		
+		return $this->State;			
+	}
 	
 	function setInfo( $Info) {$this->Info = $Info; $this->markDirty();}   
 	function getInfo( ) {return $this->Info;}
@@ -205,6 +207,12 @@ class Board extends Object{
 	//-------------------------------------------------------------------------------
 	//GET LISTs
 	//-------------------------------------------------------------------------------
+	function getParent(){
+		$mBoardSub 	= new \MVC\Mapper\BoardSub();
+		$SubAll = $mBoardSub->findByMe(array($this->getId()));
+		return $SubAll->current()->getBoardParent();
+	}
+		
 	function getRelatedAll(){
 		$mBoard 	= new \MVC\Mapper\Board();
 		$BoardAll 	= $mBoard->findByRelated(array($this->getIdChapter(), $this->getId(), $this->getId(), $this->getId()));

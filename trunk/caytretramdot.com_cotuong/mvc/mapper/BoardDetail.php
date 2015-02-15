@@ -15,6 +15,7 @@ class BoardDetail extends Mapper implements \MVC\Domain\BoardDetailFinder{
 		$deleteStmt 		= sprintf("delete from %s where id=?", $tblBoardDetail);
 		$deleteByStmt 		= sprintf("delete from %s where id_board=?", $tblBoardDetail);
 		$findByStmt 		= sprintf("SELECT * FROM  %s WHERE id_board=?", $tblBoardDetail);
+		$findPreStmt 		= sprintf("SELECT * FROM  %s WHERE id_board=? AND `move` < ? ORDER BY `move` DESC", $tblBoardDetail);
 												
         $this->selectAllStmt 	= self::$PDO->prepare($selectAllStmt);
         $this->selectStmt 		= self::$PDO->prepare($selectStmt);
@@ -23,6 +24,7 @@ class BoardDetail extends Mapper implements \MVC\Domain\BoardDetailFinder{
 		$this->deleteStmt 		= self::$PDO->prepare($deleteStmt);		
 		$this->deleteByStmt 	= self::$PDO->prepare($deleteByStmt);
 		$this->findByStmt 		= self::$PDO->prepare($findByStmt);		
+		$this->findPreStmt 		= self::$PDO->prepare($findPreStmt);
 	}
 	
     function getCollection( array $raw ) {return new BoardDetailCollection( $raw, $this );}
@@ -82,5 +84,11 @@ class BoardDetail extends Mapper implements \MVC\Domain\BoardDetailFinder{
 		$this->findByStmt->execute($values);
         return new BoardDetailCollection( $this->findByStmt->fetchAll(), $this);
     }			
+	
+	function findPre( $values ){
+		$this->findPreStmt->execute($values);
+        return new BoardDetailCollection( $this->findPreStmt->fetchAll(), $this);
+    }
+	
 }
 ?>
