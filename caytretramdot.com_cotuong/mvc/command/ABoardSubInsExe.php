@@ -42,8 +42,11 @@
 			
 			if ($Round > 0)
 				$State 	= $BoardDetail->getState1();
-			else
-				$State 	= $BoardDetail->getState1();
+			else{				
+				$BoardDetailAll = $mBoardDetail->findPre(array($BoardDetail->getIdBoard(), $BoardDetail->getMove()));
+				$BoardDetailPre = $BoardDetailAll->current();
+				$State 			= $BoardDetailPre->getState2();
+			}
 						
 			$Board = new \MVC\Domain\Board(
 				null, 
@@ -51,7 +54,7 @@
 				$Name, 
 				$State,
 				date('Y-m-d H:i:s'),
-				"", 
+				"rẽ nhánh",
 				$BoardDetail->getMove(), 
 				0, 
 				0,
@@ -62,6 +65,7 @@
 				1,
 				""
 			);
+			
 			$Board->reKey();
 			
 			$mBoard->insert($Board);

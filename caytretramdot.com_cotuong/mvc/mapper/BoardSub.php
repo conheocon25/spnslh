@@ -12,6 +12,7 @@ class BoardSub extends Mapper implements \MVC\Domain\BoardSubFinder{
 		$insertStmt 			= sprintf("insert into %s (id_board_parent, id_board_me, id_board_detail) values(?, ?, ?)", $tblBoardSub);
 		$deleteStmt 			= sprintf("delete from %s where id=?", $tblBoardSub);
 		$findByStmt 			= sprintf("select *  from %s where `id_board_detail`=?", $tblBoardSub);
+		$findByMeStmt 			= sprintf("select *  from %s where `id_board_me`=?", $tblBoardSub);
 		$findByKeyStmt 			= sprintf("select *  from %s where `key`=?", $tblBoardSub);
 		$findByPageStmt 		= sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblBoardSub);
 										
@@ -21,6 +22,7 @@ class BoardSub extends Mapper implements \MVC\Domain\BoardSubFinder{
         $this->insertStmt 		= self::$PDO->prepare($insertStmt);
 		$this->deleteStmt 		= self::$PDO->prepare($deleteStmt);
 		$this->findByStmt 		= self::$PDO->prepare($findByStmt);
+		$this->findByMeStmt 	= self::$PDO->prepare($findByMeStmt);
 		$this->findByPageStmt 	= self::$PDO->prepare($findByPageStmt);		
 		$this->findByKeyStmt 	= self::$PDO->prepare($findByKeyStmt);
 	}
@@ -66,6 +68,11 @@ class BoardSub extends Mapper implements \MVC\Domain\BoardSubFinder{
 	function findBy( $values ){
 		$this->findByStmt->execute($values);
         return new BoardSubCollection( $this->findByStmt->fetchAll(), $this);
+    }
+	
+	function findByMe( $values ){
+		$this->findByMeStmt->execute($values);
+        return new BoardSubCollection( $this->findByMeStmt->fetchAll(), $this);
     }
 				
 	function findByPage( $values ) {

@@ -20,12 +20,24 @@
 									<tr>
 										<th width="40">STT</th>
 										<th class="left">TÊN</th>
+										<th width="40"><i class="glyphicons-edit"/></th>
+										<th width="40"><i class="glyphicons-bin"/></th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr tal:repeat="Sub BoardDetail/getSubAll">
 										<td class="center"><span tal:content="repeat/Sub/number"/></td>
 										<td><a tal:attributes="href Sub/getBoardMe/getURLSettingPoseLoad" tal:content="Sub/getBoardMe/getName"/></td>
+										<td class="center">
+											<a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Sub/getBoardMe/getId">
+												<i class="glyphicon glyphicon-pencil"/>
+											</a>
+										</td>
+										<td class="center">
+											<a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Sub/getId">
+												<i class="glyphicon glyphicon-remove"/>
+											</a>
+										</td>
 									</tr>
 								</tbody>								
 							</table>							
@@ -51,8 +63,8 @@
 											<label class="control-label">Lượt đi</label>
 											<div class="controls">
 												<select name="Round" id="Round" style="width:80%;">
-													<option value="-1">Xanh đi trước</option>
-													<option value="1">Đỏ đi trước</option>
+													<option value="-1">Đỏ đi</option>
+													<option value="1">Xanh đi </option>
 												</select>
 											</div>
 										</div>
@@ -88,7 +100,7 @@
 			$('#URLDelSelectedButton').click(function(){
 				var count = 0;
 				var Data = [];
-				var URL = "/object/del/Board/0";
+				var URL = "/object/del/BoardSub/0";
 				
 				$(".CheckedDel").each(function( i, obj){
 					if ( $(this).is(':checked')==true ){
@@ -115,7 +127,7 @@
 			});
 			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
 			$('#URLDelButton').click(function(){			
-				var URL = "/object/del/Board/" + $(this).attr('alt');
+				var URL = "/object/del/BoardSub/" + $(this).attr('alt');
 				$.ajax({
 					type: "POST",					
 					url: URL,
@@ -127,9 +139,7 @@
 			
 			//-----------------------------------------------------------------------------------
 			//INS 1 SUB			
-			//-----------------------------------------------------------------------------------
-			//-----------------------------------------------------------------------------------
-			//Insert 1 CategoryVideo
+			//-----------------------------------------------------------------------------------						
 			$("#FormBoardSubInsert").validate({
 				rules:{
 					Name:{

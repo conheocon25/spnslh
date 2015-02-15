@@ -98,7 +98,7 @@ class Board extends Mapper implements \MVC\Domain\BoardFinder{
 			$object->getSub(),
 			$object->getKey()
 		);
-					
+															
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
         $object->setId( $id );

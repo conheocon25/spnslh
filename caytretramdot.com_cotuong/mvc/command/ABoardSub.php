@@ -36,7 +36,7 @@
 			$Board 		= $mBoard->find($IdBoard);
 			$BoardDetail= $mBoardDetail->find($IdBoardDetail);
 						
-			$Title 		= $BoardDetail->getName1();
+			$Title 		= "BIẾN NƯỚC " . $BoardDetail->getMove();
 			$Navigation = array(				
 				array(mb_strtoupper("SÁCH CỜ / ".$Category->getName(), 'UTF8')	, $Category->getURLSetting()),
 				array(mb_strtoupper($Book->getTitleReduce(), 'UTF8')			, $Book->getURLSettingChapter()),

@@ -2,10 +2,8 @@
 <html lang="en">
 	<head>
 		<tal:block metal:use-macro="mFront.xhtml/IncludeMETA"/>
-		<meta property="og:title" tal:attributes="content Board/getName"/>
-		<!--
-		<meta property="og:description" tal:attributes="content Board/getName"/>
-		!-->
+		<meta property="og:title" tal:attributes="content Board/getName"/>		
+		<meta property="og:description" tal:attributes="content Board/getName"/>		
 		<meta property="og:image" tal:attributes="content Board/getThumb"/>
 		<tal:block metal:use-macro="mFront.xhtml/IncludeCSS"/>		
 	</head>
@@ -195,6 +193,7 @@
 				<div class="col-md-6 col-sm-4" />
 				<div class="col-md-6 col-sm-4" id="MoveList" tal:attributes="MoveStart Board/getMoveStart; MoveEnd Board/getMoveEnd; State Board/getState">
 					<div class="row btn-row">
+						<a tal:condition="Board/getSub" tal:attributes="href Board/getParent/getURLView" class="btn btn-sm" data-toggle="tooltip" data-placement="bottom" title="Về biến trước"><i class="glyphicon glyphicon-share-alt"/><span tal:content="Board/getSub"/></a>
 						<div class="Move btn btn-sm" tal:attributes="alt Board/getState; move '-1'"><i class="glyphicon glyphicon-th-large"/></div>
 						<div class="MoveFirst btn btn-sm" data-toggle="tooltip" data-placement="bottom" title="Di chuyển nước đầu tiên"><i class="glyphicon glyphicon-step-backward"/></div>
 						<div class="MoveBack btn btn-sm" data-toggle="tooltip" data-placement="bottom" title="Di chuyển nước trước đó"><i class="glyphicon glyphicon-backward"/></div>
