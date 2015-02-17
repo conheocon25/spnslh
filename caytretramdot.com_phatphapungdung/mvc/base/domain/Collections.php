@@ -12,6 +12,9 @@ interface CategoryBuddhaCollection 		extends \Iterator {function add( Object $Ca
 interface CategoryVideoCollection 		extends \Iterator {function add( Object $CategoryVideo);}
 interface VideoCollection 				extends \Iterator {function add( Object $Video);		}
 
+interface PresentationCollection 		extends \Iterator {function add( Object $Presentation);	}
+interface SlideCollection 				extends \Iterator {function add( Object $Slide);		}
+
 interface CategoryPostCollection 		extends \Iterator {function add( Object $CategoryPost);	}
 interface PostCollection 				extends \Iterator {function add( Object $Post);			}
 interface RssLinkCollection 		extends \Iterator {function add( Object $RssLink);	}

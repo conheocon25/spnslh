@@ -114,6 +114,9 @@
 	<!-- ======================================================================== -->
 	<div metal:define-macro="MenuApp" id="sidebar">
 		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">			
+			<li tal:attributes="class php:ActiveAdmin=='PPT'?'active':'disable'">
+				<a tal:attributes="href '/admin/presentation'"><i class="glyphicons-cogwheels" />PPT</a>
+			</li>
 			<li tal:attributes="class php:ActiveAdmin=='Post'?'active':'disable'">
 				<a tal:attributes="href '/admin/post'"><i class="glyphicons-cogwheels" />TIN TỨC</a>
 			</li>
@@ -128,7 +131,6 @@
 			</li>
 		</ul>		
 	</div>
-	
 						
 	<!-- ======================================================================== -->
 	<!-- FOOTER																	  -->
@@ -139,6 +141,5 @@
 		</div>
 	</div>
 	
-
 </body>
 </html>

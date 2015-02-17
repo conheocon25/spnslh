@@ -10,6 +10,9 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	require_once( "mvc/mapper/CategoryBuddha.php"	);
 	require_once( "mvc/mapper/CategoryVideo.php"	);
 	require_once( "mvc/mapper/Video.php"			);
+	
+	require_once( "mvc/mapper/Presentation.php"		);
+	require_once( "mvc/mapper/Slide.php"			);
 				
 	require_once( "mvc/mapper/CategoryPost.php"		);
 	require_once( "mvc/mapper/Post.php"				);	

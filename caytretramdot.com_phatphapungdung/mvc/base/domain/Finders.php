@@ -20,6 +20,9 @@ interface CategoryBuddhaFinder 	extends Finder {}
 interface CategoryVideoFinder 	extends Finder {}
 interface VideoFinder 			extends Finder {}
 
+interface PresentationFinder 	extends Finder {}
+interface SlideFinder 			extends Finder {}
+
 interface CategoryPostFinder 	extends Finder {}
 interface PostFinder 			extends Finder {}
 interface PostRssFinder 	extends Finder {}

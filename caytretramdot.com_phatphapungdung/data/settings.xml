@@ -14,9 +14,19 @@
 		<command name="FVideo" 			type="public"><view>FVideo</view></command>
 						
 		<command name="FContact" 		type="public"><view>FContact</view></command>
+		
+		<!-- ============================================================================== -->
+		<!-- APRESENTATION																	-->
+		<!-- ============================================================================== -->
+		<command name="APresentation">	<view>APresentation	</view></command>
+		<command name="ASlide">			<view>ASlide		</view></command>
+		<command name="ASlideInsLoad">	<view>ASlideInsLoad	</view></command>
+		<command name="ASlideInsExe">	<view>ASlideInsExe	</view><status value="CMD_OK"><forward>ASlide</forward></status></command>
+		<command name="ASlideUpdLoad">	<view>ASlideUpdLoad	</view></command>
+		<command name="ASlideUpdExe">	<view>ASlideUpdExe	</view><status value="CMD_OK"><forward>ASlide</forward></status></command>
 				
 		<!-- ============================================================================== -->
-		<!-- ARSS																	-->
+		<!-- ARSS																			-->
 		<!-- ============================================================================== -->
 		<command name="ARss"><view>ARss</view></command>		
 		<command name="ARssInsLoad"><view>ARssInsLoad</view></command>
@@ -33,6 +43,7 @@
 		<command name="APostRssPublished"><view>APostRssPublished</view></command>
 		<command name="APostRssPublish" type="public"><view>APostRssPublish</view></command>	
 		<command name="AGetListRss" type="public"><view>AGetListRss</view></command>
+		
 		<!-- ============================================================================== -->
 		<!-- JSON LOAD			 															-->
 		<!-- ============================================================================== -->		

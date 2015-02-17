@@ -29,14 +29,12 @@
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------																											
 			$Board			= $mBoard->find($IdBoard);
-			$mBoardDetail->deleteBy(array($IdBoard));			
-			$Count = count($aStep);
-			
+			$mBoardDetail->deleteBy(array($IdBoard));									
 			if ($Board->getRound()>0){
 				array_unshift($aStep, $Board->getState());
 				array_unshift($aStepA, "...");
 			}
-												
+			$Count = count($aStep);
 			for ($i=0; $i<$Count; $i+=2){
 				if ($aStepA[$i]=="-1"){
 					$BoardD = new \MVC\Domain\BoardDetail(

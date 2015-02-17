@@ -122,8 +122,8 @@ class Board extends Object{
 	function setRound( $Round ) {$this->Round = $Round; $this->markDirty();}   
 	function getRound( ) {return $this->Round;}
 	function getRoundPrint( ){
-		if ($this->Round>0) return "Đỏ đi trước";
-		return "Xanh đi trước";
+		if ($this->Round>0) return "Xanh đi trước";
+		return "Đỏ đi trước";
 	}
 	
 	//Kết quả: Đỏ thắng - hòa - thua !?
