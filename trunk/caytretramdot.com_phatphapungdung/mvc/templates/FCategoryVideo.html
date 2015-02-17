@@ -8,17 +8,14 @@
 		<div metal:use-macro="mFront.xhtml/Header"/>
 		<div class="container-fluid" id="wraper">
 			<div class="row-fluid">
-				<div class="col-md-8">
-					<div class="panel panel-info">
+				<div class="col-md-8">					
+					<div class="panel panel-primary">
 						<div class="panel-heading">
 							<a tal:attributes="href Buddha/getURLView">
 								<i class="glyphicon glyphicon-folder-open"/>
-								<span tal:content="Category/getName"/>
-							</a>							
+								<span tal:content="php: mb_strtoupper(Category->getName(), 'UTF8')"/>
+							</a>
 						</div>
-						<div class="panel-body" />
-					</div>
-					<div class="panel panel-primary">
 						<div class="panel-body">
 							<div role="tabpanel" id="TabBuddha">
 								<ul class="nav nav-tabs" role="tablist">
@@ -109,10 +106,7 @@
 		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
 		<script type="text/javascript">
 		/*<![CDATA[*/			
-			$(function(){
-				$('[data-toggle="tooltip"]').tooltip();
-				//$('#TabBuddha a:first').tab('show');
-			});
+			
 		/*]]>*/
 		</script>
 	</body>
