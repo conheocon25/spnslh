@@ -81,7 +81,8 @@
 										<div class="controls">
 											<input id="GuestVisit2" tal:attributes="value ConfigGuestVisit/getValue;data-id ConfigGuestVisit/getId" type="text" class="form-control input-small"/>
 										</div>
-									</div>									
+									</div>	
+																		
 									<div class="form-group">
 										<label class="control-label">Giả lặp phiếu 2 liên</label>
 										<div class="controls">											
@@ -139,6 +140,12 @@
 													<span tal:content="PT/getPost/getTitle" />
 												</option>
 											</select>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Tự cập nhật tin tức</label>
+										<div class="controls">
+											<input id="AutoPost" tal:attributes="value ConfigAutoPost/getValue; data-id ConfigAutoPost/getId" type="text" class="form-control input-small"/>
 										</div>
 									</div>
 								</div>
@@ -348,6 +355,18 @@
 				$.ajax({
 					type: "POST",
 					data: {Data:Data16},
+					url: URL,
+					success: function(msg){}
+				});
+				
+				//Cập nhật Config Auto Post
+				
+				Data17[0] = $('#AutoPost').attr('data-id');
+				Data17[1] = "AUTO_POST";
+				Data17[2] = $('#AutoPost').val();
+				$.ajax({
+					type: "POST",
+					data: {Data:Data17},
 					url: URL,
 					success: function(msg){}
 				});

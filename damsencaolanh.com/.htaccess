@@ -83,7 +83,7 @@ RewriteRule ^admin/setting/rss/ins/exe$ 									?cmd=ARssInsExe [L]
 RewriteRule ^admin/setting/rss/([0-9]+)/upd/load$ 							?cmd=ARssUpdLoad&IdRss=$1 [L]
 RewriteRule ^admin/setting/rss/([0-9]+)/upd/exe$ 							?cmd=ARssUpdExe&IdRss=$1 	[L]
 
-RewriteRule ^admin/setting/post/getall$ 										?cmd=APostPublished [L]
+RewriteRule ^admin/setting/post/getall$ 									?cmd=APostPublished [L]
 
 RewriteRule ^admin/setting/post/rss$ 										?cmd=APostRss [L]
 RewriteRule ^admin/setting/post/rss/([0-9]+)/view$ 							?cmd=APostRssView&IdPostRss=$1 [L]

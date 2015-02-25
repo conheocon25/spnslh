@@ -135,7 +135,15 @@
 									
 								$PostAuthor = $HTML->find('.' . $ClassAuthor, 0);										
 								$PostContent = $HTML->find('.' . $ClassContent, 0);					
+								// Loc Class ko hien thi
 								
+								
+								foreach( $PostContent->find('.fb-like') as $repost) {
+									if (isset($repost)) $repost->hidden = "hidden";;
+								}
+								foreach( $PostContent->find('script') as $Zone) {
+									if (isset($Zone)) $Zone->src = "";
+								}
 								if ( $ImgPath == 0) {
 									foreach( $PostContent->find('img') as $img){
 										if (substr($img->src,0,1) == "/")
@@ -150,7 +158,13 @@
 									$PostAuthor = "BBT";
 								}else {
 									$PostAuthor = html_entity_decode($PostAuthor->plaintext, ENT_QUOTES, 'UTF-8');
-								}				
+								}	
+								
+								$timepost = new \DateTime('NOW');
+								$interval = new \DateInterval('P0Y0DT11H0M');													
+								//Công thêm 11 tiếng do lệch múi giờ Mỹ - Việt Nam
+								$DatePost = $timepost->add($interval);
+					
 								// Thêm tin mới	nếu $AUTOPost = 1 thì ko cần duyệt tin còn $AUTOPost = 0 thì vào PostRss chờ duyệt tin	
 								if ($AUTOPost == 1 && $PostContentSlash != null ) {
 									$Post = new \MVC\Domain\Post(
@@ -158,7 +172,7 @@
 										$item['title'],
 										$PostContentSlash,
 										$PostAuthor,
-										$item['pubDate'] ,
+										$DatePost->format('Y-m-d H:i:s') ,
 										1,
 										"",
 										10,
@@ -180,7 +194,7 @@
 										$item['title'],
 										$PostContentSlash,
 										$PostAuthor,
-										$item['pubDate'] ,
+										$DatePost->format('Y-m-d H:i:s') ,
 										1,
 										"",
 										10,
