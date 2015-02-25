@@ -6,6 +6,8 @@ require_once( "mvc/base/mapper/Collection.php");
 class UserCollection 			extends Collection implements \MVC\Domain\UserCollection 			{function targetClass( ) {return "\MVC\Domain\User";		}}
 class FacebookerCollection 		extends Collection implements \MVC\Domain\UserCollection 			{function targetClass( ) {return "\MVC\Domain\Facebooker";	}}
 
+class TagCollection 			extends Collection implements \MVC\Domain\TagCollection 			{function targetClass( ) {return "\MVC\Domain\Tag";			}}
+
 class AlbumCollection 			extends Collection implements \MVC\Domain\AlbumCollection 			{function targetClass( ) {return "\MVC\Domain\Album";		}}
 class ImageCollection 			extends Collection implements \MVC\Domain\ImageCollection 			{function targetClass( ) {return "\MVC\Domain\Image";		}}
 
@@ -18,6 +20,7 @@ class GuestCollection 			extends Collection implements \MVC\Domain\GuestCollecti
 class BoardCollection 			extends Collection implements \MVC\Domain\BoardCollection			{function targetClass(){return "\MVC\Domain\Board";			}}
 class BoardSubCollection 		extends Collection implements \MVC\Domain\BoardSubCollection		{function targetClass(){return "\MVC\Domain\BoardSub";		}}
 class BoardDetailCollection 	extends Collection implements \MVC\Domain\BoardDetailCollection		{function targetClass(){return "\MVC\Domain\BoardDetail";	}}
+class BoardTagCollection 		extends Collection implements \MVC\Domain\BoardTagCollection		{function targetClass(){return "\MVC\Domain\BoardTag";		}}
 
 class CategoryBookCollection 	extends Collection implements \MVC\Domain\CategoryBookCollection	{function targetClass(){return "\MVC\Domain\CategoryBook";	}}
 class BookCollection 			extends Collection implements \MVC\Domain\BookCollection			{function targetClass(){return "\MVC\Domain\Book";			}}

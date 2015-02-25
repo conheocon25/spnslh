@@ -18,6 +18,7 @@ interface ImageFinder  			extends Finder {}
 interface LinkedFinder  		extends Finder {}
 
 interface FacebookerFinder  	extends Finder {}
+interface TagFinder  			extends Finder {}
 
 interface ConfigFinder 			extends Finder {}
 interface GuestFinder 			extends Finder {}
@@ -25,6 +26,7 @@ interface GuestFinder 			extends Finder {}
 interface BoardFinder 			extends Finder {}
 interface BoardSubFinder 		extends Finder {}
 interface BoardDetailFinder 	extends Finder {}
+interface BoardTagFinder 		extends Finder {}
 
 interface CategoryBookFinder 	extends Finder {}
 interface BookFinder 			extends Finder {}

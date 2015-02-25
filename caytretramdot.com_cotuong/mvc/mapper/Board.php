@@ -43,6 +43,7 @@ class Board extends Mapper implements \MVC\Domain\BoardFinder{
 		$findByRecentStmt 		= sprintf("select *  from %s where sub=0 ORDER BY `time` DESC LIMIT 8", $tblBoard);
 		$findByViewedStmt 		= sprintf("select *  from %s where sub=0 ORDER BY `viewed` DESC LIMIT 8", $tblBoard);
 		$findByLikedStmt 		= sprintf("select *  from %s where sub=0 ORDER BY `liked` DESC LIMIT 8", $tblBoard);
+		$findByRandomStmt 		= sprintf("select *  from %s where sub=0 ORDER BY rand() LIMIT 8", $tblBoard);
 						
         $this->selectAllStmt 	= self::$PDO->prepare($selectAllStmt);
         $this->selectStmt 		= self::$PDO->prepare($selectStmt);
@@ -55,7 +56,8 @@ class Board extends Mapper implements \MVC\Domain\BoardFinder{
 		$this->findByRelatedStmt 	= self::$PDO->prepare($findByRelatedStmt);
 		$this->findByRecentStmt 	= self::$PDO->prepare($findByRecentStmt);
 		$this->findByViewedStmt 	= self::$PDO->prepare($findByViewedStmt);
-		$this->findByLikedStmt 		= self::$PDO->prepare($findByLikedStmt);		
+		$this->findByLikedStmt 		= self::$PDO->prepare($findByLikedStmt);
+		$this->findByRandomStmt 	= self::$PDO->prepare($findByRandomStmt);
 	}
 	
     function getCollection( array $raw ) {return new BoardCollection( $raw, $this );}
@@ -152,6 +154,11 @@ class Board extends Mapper implements \MVC\Domain\BoardFinder{
 	function findByLiked( $values ){
         $this->findByLikedStmt->execute( $values );
         return new BoardCollection( $this->findByLikedStmt->fetchAll(), $this);
+    }
+	
+	function findByRandom( $values ){
+        $this->findByRandomStmt->execute( $values );
+        return new BoardCollection( $this->findByRandomStmt->fetchAll(), $this);
     }
 		
 	function findByKey( $values ) {	

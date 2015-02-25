@@ -8,7 +8,8 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	
 	require_once( "mvc/mapper/Linked.php" 			);		
 	
-	require_once( "mvc/mapper/Facebooker.php" 		);		
+	require_once( "mvc/mapper/Facebooker.php" 		);
+	require_once( "mvc/mapper/Tag.php" 				);
 			
 	require_once( "mvc/mapper/Config.php"			);	
 	require_once( "mvc/mapper/Guest.php"			);	
@@ -16,6 +17,7 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	require_once( "mvc/mapper/Board.php"			);
 	require_once( "mvc/mapper/BoardSub.php"			);
 	require_once( "mvc/mapper/BoardDetail.php"		);
+	require_once( "mvc/mapper/BoardTag.php"			);
 	
 	require_once( "mvc/mapper/CategoryBook.php"		);
 	require_once( "mvc/mapper/Book.php"				);

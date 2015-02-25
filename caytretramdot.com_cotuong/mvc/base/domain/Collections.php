@@ -7,8 +7,8 @@ interface AlbumCollection 				extends \Iterator {function add( Object $Album);		
 interface ImageCollection 				extends \Iterator {function add( Object $Image);		}
 
 interface LinkedCollection 				extends \Iterator {function add( Object $Linked);		}
-
 interface FacebookerCollection 			extends \Iterator {function add( Object $Facebooker );	}
+interface TagCollection 				extends \Iterator {function add( Object $Tag );			}
 
 interface ConfigCollection 				extends \Iterator {function add( Object $Config );		}
 interface PageCollection 				extends \Iterator {function add( Object $Page);			}
@@ -17,6 +17,7 @@ interface GuestCollection 				extends \Iterator {function add( Object $Guest);		
 interface BoardCollection 				extends \Iterator {function add( Object $Board);		}
 interface BoardSubCollection 			extends \Iterator {function add( Object $BoardSub);		}
 interface BoardDetailCollection 		extends \Iterator {function add( Object $BoardDetail);	}
+interface BoardTagCollection 			extends \Iterator {function add( Object $BoardTag);		}
 
 interface CategoryBookCollection 		extends \Iterator {function add( Object $CategoryBook);	}
 interface BookCollection 				extends \Iterator {function add( Object $Book);			}

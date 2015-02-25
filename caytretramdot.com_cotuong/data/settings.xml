@@ -4,13 +4,16 @@
 		<!-- Các lệnh xử lí SYSTEM 															-->
 		<!-- ============================================================================== -->		
 		<command name="DefaultCommand" 	type="public"><view>DefaultCommand</view><status value="CMD_OK"><forward>FHome</forward></status></command>
-		<command name="FHome" 			type="public"><view>FHome</view></command>						
+		<command name="FHome" 			type="public"><view>FHome</view></command>		
+		<command name="FSearch" 		type="public"><view>FSearch</view></command>
 		
-		<command name="FCategoryPost" 	type="public"><view>FCategoryPost</view></command>		
+		<command name="FCategoryPost" 	type="public"><view>FCategoryPost</view></command>
 		<command name="FPost" 			type="public"><view>FPost</view></command>		
+		<command name="FTag" 			type="public"><view>FTag</view></command>
+		<command name="FTagDetail" 		type="public"><view>FTagDetail</view></command>
 		
 		<command name="FSuggest" 		type="public"><view>FSuggest</view></command>		
-		<command name="FMe" 			type="public"><view>FMe</view></command>
+		<command name="FMe" 			type="public"><view>FMe</view></command>		
 		<command name="FUser" 			type="public"><view>FUser</view></command>
 		
 		<command name="FCategoryBook" 	type="public"><view>FCategoryBook</view></command>
@@ -22,7 +25,7 @@
 		<command name="FCategoryVideo" 	type="public"><view>FCategoryVideo</view></command>
 		<command name="FVideo" 			type="public"><view>FVideo</view></command>
 		
-		<command name="FContact" 		type="public"><view>FContact</view></command>		
+		<command name="FContact" 		type="public"><view>FContact</view></command>
 		<command name="FLinked" 		type="public"><view>FLinked</view></command>
 		
 		<command name="ServiceYouTubeAddVideoFromPlayList" type="public"><view>ServiceYouTubeAddVideoFromPlayList</view></command>
@@ -52,10 +55,11 @@
 		<!-- ============================================================================== -->
 		<!-- SETTING	 																	-->
 		<!-- ============================================================================== -->				
-		<command name="ASetting">				<view>ASetting		</view></command>						
+		<command name="ASetting">				<view>ASetting		</view></command>
 		<command name="ASettingCategoryPost">	<view>ASettingCategoryPost</view></command>				
 		<command name="ASettingCategoryBook">	<view>ASettingCategoryBook</view></command>
 		<command name="ASettingCategoryVideo">	<view>ASettingCategoryVideo</view></command>
+		<command name="ASettingTag">			<view>ASettingTag</view></command>
 		
 		<command name="APresentation">	<view>APresentation	</view></command>
 		<command name="ASlide">			<view>ASlide		</view></command>
@@ -88,6 +92,7 @@
 		<command name="ABookChapterBoardStateExe">	<view>ABookChapterBoardStateExe		</view><status value="CMD_OK"><forward>ABookChapterBoard</forward></status></command>
 		
 		<command name="ABookChapterBoardDetail">	<view>ABookChapterBoardDetail</view></command>
+		<command name="ABookChapterBoardDetailTag">	<view>ABookChapterBoardDetailTag</view></command>
 		<command name="ABookChapterBoardDetailUpdLoad"><view>ABookChapterBoardDetailUpdLoad</view></command>
 		<command name="ABookChapterBoardDetailUpdExe"><view>ABookChapterBoardDetailUpdExe</view><status value="CMD_OK"><forward>ABookChapterBoardDetail</forward></status></command>
 		

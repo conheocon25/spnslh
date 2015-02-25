@@ -45,12 +45,34 @@
 						<div class="panel-body">							
 							<div role="tabpanel">
 								<ul class="nav nav-tabs" role="tablist" id="PostTab">
-									<li role="presentation" class="active"><a href="#book-recent" aria-controls="home" role="tab" data-toggle="tab"><i class="glyphicon glyphicon-calendar"/></a></li>
+									<li role="presentation" class="active"><a href="#book-random" aria-controls="home" role="tab" data-toggle="tab"><i class="glyphicon glyphicon-flash"/></a></li>
+									<li role="presentation"><a href="#book-recent" aria-controls="home" role="tab" data-toggle="tab"><i class="glyphicon glyphicon-calendar"/></a></li>
 									<li role="presentation"><a href="#book-viewed" aria-controls="profile" role="tab" data-toggle="tab"><i class="glyphicon glyphicon-stats"/></a></li>
 									<li role="presentation"><a href="#book-liked" aria-controls="profile" role="tab" data-toggle="tab"><i class="glyphicon glyphicon-star"/></a></li>
 								</ul>
 								<div class="tab-content">
-									<div role="tabpanel" class="tab-pane active" id="book-recent">
+									<div role="tabpanel" class="tab-pane active" id="book-random">
+										<table class="table table-striped">
+											<tr tal:repeat="Book BookRandomAll">
+												<td width="48px">
+													<a tal:attributes="href Book/getURLView">
+														<img width="48px" tal:attributes="src Book/getThumb"/>
+													</a>	
+												</td>
+												<td>
+													<a tal:attributes="href Book/getURLView"><span tal:content="Book/getTitle"/></a>
+													<p class="text-left">cách đây <B><i tal:content="Book/getTimePrint1" /></B></p>
+													<p class="text-justify" tal:content="structure Book/getInfoReduce"/>
+													<div class="progress">
+														<div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" tal:attributes="style Book/getCompletedPercentPrint1">
+															<B tal:content="Book/getCompletedPercentPrint2"/> hoàn thành 
+														</div>
+													</div>
+												</td>
+											</tr>
+										</table>										
+									</div>
+									<div role="tabpanel" class="tab-pane" id="book-recent">
 										<table class="table table-striped">
 											<tr tal:repeat="Book BookRecentAll">
 												<td width="48px">
@@ -60,7 +82,7 @@
 												</td>
 												<td>
 													<a tal:attributes="href Book/getURLView"><span tal:content="Book/getTitle"/></a>
-													<p class="text-left">cập nhật mới nhất <B><i tal:content="Book/getTimePrint1" /></B></p>
+													<p class="text-left">cách đây <B><i tal:content="Book/getTimePrint1" /></B></p>
 													<p class="text-justify" tal:content="structure Book/getInfoReduce"/>
 													<div class="progress">
 														<div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" tal:attributes="style Book/getCompletedPercentPrint1">
@@ -81,7 +103,7 @@
 												</td>
 												<td>
 													<a tal:attributes="href Book/getURLView"><span tal:content="Book/getTitle"/></a>
-													<p class="text-left">cập nhật mới nhất <B><i tal:content="Book/getTimePrint1" /></B></p>
+													<p class="text-left">cách đây <B><i tal:content="Book/getTimePrint1" /></B></p>
 													<p class="text-justify" tal:content="structure Book/getInfoReduce"/>
 													<div class="progress">
 														<div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" tal:attributes="style Book/getCompletedPercentPrint1">
@@ -102,7 +124,7 @@
 												</td>
 												<td>
 													<a tal:attributes="href Book/getURLView"><span tal:content="Book/getTitle"/></a>
-													<p class="text-left">cập nhật mới nhất <B><i tal:content="Book/getTimePrint1" /></B></p>
+													<p class="text-left">cách đây <B><i tal:content="Book/getTimePrint1" /></B></p>
 													<p class="text-justify" tal:content="structure Book/getInfoReduce"/>
 													<div class="progress">
 														<div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" tal:attributes="style Book/getCompletedPercentPrint1">
@@ -124,12 +146,29 @@
 						<div class="panel-body">							
 							<div role="tabpanel">
 								<ul class="nav nav-tabs" role="tablist" id="BoardTab">
-									<li role="presentation" class="active"><a href="#board-recent" aria-controls="home" role="tab" data-toggle="tab"><i class="glyphicon glyphicon-calendar"/></a></li>
+									<li role="presentation" class="active"><a href="#board-random" aria-controls="home" role="tab" data-toggle="tab"><i class="glyphicon glyphicon-flash"/></a></li>
+									<li role="presentation"><a href="#board-recent" aria-controls="home" role="tab" data-toggle="tab"><i class="glyphicon glyphicon-calendar"/></a></li>
 									<li role="presentation"><a href="#board-viewed" aria-controls="profile" role="tab" data-toggle="tab"><i class="glyphicon glyphicon-stats"/></a></li>
 									<li role="presentation"><a href="#board-liked" aria-controls="profile" role="tab" data-toggle="tab"><i class="glyphicon glyphicon-star"/></a></li>
 								</ul>
 								<div class="tab-content">
-									<div role="tabpanel" class="tab-pane active" id="board-recent">
+									<div role="tabpanel" class="tab-pane active" id="board-random">
+										<table class="table table-striped">
+											<tr tal:repeat="Board BoardRandomAll">
+												<td width="48px">
+													<a tal:attributes="href Board/getURLView">
+														<img width="48px" tal:attributes="src Board/getThumb"/>
+													</a>	
+												</td>
+												<td>
+													<a tal:attributes="href Board/getURLView"><span tal:content="Board/getName"/></a>
+													<p class="text-left">cách đây <B><i tal:content="Board/getTimePrint1" /></B></p>
+													<p class="text-justify" tal:content="structure Board/getInfoReduce"/>
+												</td>
+											</tr>
+										</table>
+									</div>
+									<div role="tabpanel" class="tab-pane" id="board-recent">
 										<table class="table table-striped">
 											<tr tal:repeat="Board BoardRecentAll">
 												<td width="48px">
@@ -139,7 +178,7 @@
 												</td>
 												<td>
 													<a tal:attributes="href Board/getURLView"><span tal:content="Board/getName"/></a>
-													<p class="text-left">cập nhật mới nhất <B><i tal:content="Board/getTimePrint1" /></B></p>
+													<p class="text-left">cách đây <B><i tal:content="Board/getTimePrint1" /></B></p>
 													<p class="text-justify" tal:content="structure Board/getInfoReduce"/>
 												</td>
 											</tr>
@@ -155,7 +194,7 @@
 												</td>
 												<td>
 													<a tal:attributes="href Board/getURLView"><span tal:content="Board/getName"/></a>
-													<p class="text-left">cập nhật mới nhất <B><i tal:content="Board/getTimePrint1" /></B></p>
+													<p class="text-left">cách đây <B><i tal:content="Board/getTimePrint1" /></B></p>
 													<p class="text-justify" tal:content="structure Board/getInfoReduce"/>
 												</td>
 											</tr>
@@ -171,7 +210,7 @@
 												</td>
 												<td>
 													<a tal:attributes="href Board/getURLView"><span tal:content="Board/getName"/></a>
-													<p class="text-left">cập nhật mới nhất <B><i tal:content="Board/getTimePrint1" /></B></p>
+													<p class="text-left">cách đây <B><i tal:content="Board/getTimePrint1" /></B></p>
 													<p class="text-justify" tal:content="structure Board/getInfoReduce"/>
 												</td>
 											</tr>
@@ -186,12 +225,29 @@
 						<div class="panel-body">							
 							<div role="tabpanel">
 								<ul class="nav nav-tabs" role="tablist" id="VideoTab">
-									<li role="presentation" class="active"><a href="#video-recent" aria-controls="home" role="tab" data-toggle="tab"><i class="glyphicon glyphicon-calendar"/></a></li>
+									<li role="presentation" class="active"><a href="#video-random" aria-controls="home" role="tab" data-toggle="tab"><i class="glyphicon glyphicon-flash"/></a></li>
+									<li role="presentation"><a href="#video-recent" aria-controls="home" role="tab" data-toggle="tab"><i class="glyphicon glyphicon-calendar"/></a></li>
 									<li role="presentation"><a href="#video-viewed" aria-controls="profile" role="tab" data-toggle="tab"><i class="glyphicon glyphicon-stats"/></a></li>
 									<li role="presentation"><a href="#video-liked" aria-controls="profile" role="tab" data-toggle="tab"><i class="glyphicon glyphicon-star"/></a></li>
 								</ul>
 								<div class="tab-content">
-									<div role="tabpanel" class="tab-pane active" id="video-recent">
+									<div role="tabpanel" class="tab-pane active" id="video-random">
+										<table class="table table-striped">
+											<tr tal:repeat="Video VideoRandomAll">
+												<td width="48px">
+													<a tal:attributes="href Video/getURLView">
+														<img width="48px" tal:attributes="src Video/getImage"/>
+													</a>	
+												</td>
+												<td>
+													<a tal:attributes="href Video/getURLView"><span tal:content="Video/getTitle"/></a>
+													<p class="text-left">cách đây <B><i tal:content="Video/getTimePrint1" /></B></p>
+													<p class="text-justify" tal:content="structure Video/getInfoReduce"/>
+												</td>
+											</tr>
+										</table>
+									</div>
+									<div role="tabpanel" class="tab-pane" id="video-recent">
 										<table class="table table-striped">
 											<tr tal:repeat="Video VideoRecentAll">
 												<td width="48px">
@@ -201,7 +257,7 @@
 												</td>
 												<td>
 													<a tal:attributes="href Video/getURLView"><span tal:content="Video/getTitle"/></a>
-													<p class="text-left">cập nhật mới nhất <B><i tal:content="Video/getTimePrint1" /></B></p>
+													<p class="text-left">cách đây <B><i tal:content="Video/getTimePrint1" /></B></p>
 													<p class="text-justify" tal:content="structure Video/getInfoReduce"/>
 												</td>
 											</tr>
@@ -217,7 +273,7 @@
 												</td>
 												<td>
 													<a tal:attributes="href Video/getURLView"><span tal:content="Video/getTitle"/></a>
-													<p class="text-left">cập nhật mới nhất <B><i tal:content="Video/getTimePrint1" /></B></p>
+													<p class="text-left">cách đây <B><i tal:content="Video/getTimePrint1" /></B></p>
 													<p class="text-justify" tal:content="structure Video/getInfoReduce"/>
 												</td>
 											</tr>
@@ -233,7 +289,7 @@
 												</td>
 												<td>
 													<a tal:attributes="href Video/getURLView"><span tal:content="Video/getTitle"/></a>
-													<p class="text-left">cập nhật mới nhất <B><i tal:content="Video/getTimePrint1" /></B></p>
+													<p class="text-left">cách đây <B><i tal:content="Video/getTimePrint1" /></B></p>
 													<p class="text-justify" tal:content="structure Video/getInfoReduce"/>
 												</td>
 											</tr>
@@ -245,8 +301,9 @@
 					</div>					
 				</div>
 				<div class="col-md-4">
-					<div class="panel panel-default">						
-						<div class="panel-body">														
+					<tal:block metal:use-macro="mFront.xhtml/SearchBox"/>
+					<div class="panel panel-default">
+						<div class="panel-body">							
 							<tal:block metal:use-macro="mFront.xhtml/SuggestLevel01"/>
 							<div width="100%" class="fb-like-box" data-href="https://www.facebook.com/pages/Caytretramdot/596061963849405" data-colorscheme="light" data-show-faces="true" data-header="false" data-stream="false" data-show-border="false"></div>
 						</div>

@@ -290,14 +290,16 @@ class Session extends Object{
 	function getValuePrint(){$num = new Number($this->getValue());return $num->formatCurrency();}	
 	function getValueStrPrint(){$num = new Number($this->getValue());return $num->readDigit()." đồng";}	
 	function getValueBase(){
-		$Value = 0;
-		$SDs = $this->getDetails();
-		while($SDs->valid()){
-			$Value += $SDs->current()->getValueBase();
-			$SDs->next();
-		}
-		return $Value;
+		$SDAll = $this->getDetails();
+		$Sum = 0;				
+		while ($SDAll->valid()){
+			$SD = $SDAll->current();			
+			$Sum += $SD->getValue();
+			$SDAll->next();
+		}		
+		return $Sum;
 	}
+	function getValueBasePrint(){$num = new Number($this->getValueBase());return $num->formatCurrency();}
 	
 	function findItem($IdCourse){
 		$mSD = new \MVC\Mapper\SessionDetail();
