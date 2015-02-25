@@ -2,74 +2,61 @@
 Namespace MVC\Domain;
 require_once( "mvc/base/domain/DomainObject.php" );
 
-class Tag extends Object{
+class BoardTag extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE PROPERTY
 	//-------------------------------------------------------------------------------
 	private $Id;
-	private $Name;		
-	private $Weight;
-	private $Key;
-	
+	private $IdBoard;		
+	private $IdTag;
+		
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-	function __construct($Id=null, $Name=null, $Weight=null, $Key=null){
+	function __construct($Id=null, $IdBoard=null, $IdTag=null){
 		$this->Id 			= $Id;
-		$this->Name 		= $Name;		
-		$this->Weight 		= $Weight;
-		$this->Key 			= $Key;
+		$this->IdBoard 		= $IdBoard;		
+		$this->IdTag 		= $IdTag;	
 		parent::__construct( $Id );
 	}
 		
 	function getId() {return $this->Id;}
 		
-	function setName($Name) {$this->Name = $Name;$this->markDirty();}
-	function getName() 		{return $this->Name;}
-			
-	function setWeight($Weight){$this->Weight = $Weight; $this->markDirty();}
-	function getWeight() 	{return $this->Weight;}
-	
-	function reWeight(){
-		$PTAll = $this->getPTAll();
-		$this->Weight = $PTAll->count();
+	function setIdBoard($IdBoard) {$this->IdBoard = $IdBoard;$this->markDirty();}
+	function getIdBoard() 		{return $this->IdBoard;}
+	function getBoard(){
+		$mBoard = new \MVC\Mapper\Board();
+		$Board = $mBoard->find($this->IdBoard);
+		return $Board;
 	}
 			
-	function setKey($Key)	{$this->Key = $Key;$this->markDirty();}
-	function getKey() 		{return $this->Key;}
-	function reKey( ) {
-		$Str = new \MVC\Library\String($this->Name);
-		$this->Key = $Str->converturl();
+	function setIdTag($IdTag){$this->IdTag = $IdTag; $this->markDirty();}
+	function getIdTag() 	{return $this->IdTag;}
+	function getTag(){
+		$mTag = new \MVC\Mapper\Tag();
+		$Tag = $mTag->find($this->IdTag);
+		return $Tag;
 	}
-	
-	function getThumb( ){return "/data/chess/150/tag.png";}
 	
 	function toJSON(){
 		$json = array(
 			'Id' 			=> $this->getId(),
-			'Name'			=> $this->getName(),
-			'Weight'		=> $this->getWeight(),
-			'Key'			=> $this->getKey()
+			'IdBoard'		=> $this->getIdBoard(),
+			'IdTag'			=> $this->getIdTag()			
 		);
 		return json_encode($json);
 	}
 	
 	function setArray( $Data ){
         $this->Id 		= $Data[0];
-		$this->Name 	= $Data[1];
-		$this->Weight	= $Data[2];				
-		$this->reKey();
+		$this->IdBoard 	= $Data[1];
+		$this->IdTag	= $Data[2];						
     }
 	
 	//-------------------------------------------------------------------------------
 	//GET LIST
 	//-------------------------------------------------------------------------------
-	function getBTAll(){
-		$mBT 	= new \MVC\Mapper\BoardTag();
-		$BTAll 	= $mBT->findByTag(array($this->getId()));
-		return $BTAll;
-	}
-		
+			
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------

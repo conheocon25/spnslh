@@ -50,10 +50,11 @@ class Book extends Mapper implements \MVC\Domain\BookFinder{
 		$findByRecentPageStmt 	= sprintf("SELECT * FROM  %s where id_category=:id_category ORDER BY `time`  DESC LIMIT :start,:max", $tblBook);
 		$findByViewedPageStmt 	= sprintf("SELECT * FROM  %s where id_category=:id_category ORDER BY `viewed` DESC LIMIT :start,:max", $tblBook);
 		$findByLikedPageStmt 	= sprintf("SELECT * FROM  %s where id_category=:id_category ORDER BY `liked` DESC LIMIT :start,:max", $tblBook);
-		
+				
 		$findByRecentStmt 	= sprintf("select *  from %s ORDER BY `time` DESC LIMIT 8", $tblBook);
 		$findByViewedStmt 	= sprintf("select *  from %s ORDER BY `viewed` DESC LIMIT 8", $tblBook);
 		$findByLikedStmt 	= sprintf("select *  from %s ORDER BY `liked` DESC LIMIT 8", $tblBook);
+		$findByRandomStmt 	= sprintf("select *  from %s ORDER BY rand() LIMIT 8", $tblBook);
 				
         $this->selectAllStmt 	= self::$PDO->prepare($selectAllStmt);
         $this->selectStmt 		= self::$PDO->prepare($selectStmt);
@@ -71,6 +72,7 @@ class Book extends Mapper implements \MVC\Domain\BookFinder{
 		$this->findByRecentStmt 	= self::$PDO->prepare($findByRecentStmt);
 		$this->findByViewedStmt 	= self::$PDO->prepare($findByViewedStmt);
 		$this->findByLikedStmt 		= self::$PDO->prepare($findByLikedStmt);		
+		$this->findByRandomStmt 	= self::$PDO->prepare($findByRandomStmt);
     }
 	
     function getCollection( array $raw ) {return new BookCollection( $raw, $this );}
@@ -160,6 +162,11 @@ class Book extends Mapper implements \MVC\Domain\BookFinder{
 	function findByLiked( $values ){
         $this->findByLikedStmt->execute( $values );
         return new BookCollection( $this->findByLikedStmt->fetchAll(), $this);
+    }
+	
+	function findByRandom( $values ){
+        $this->findByRandomStmt->execute( $values );
+        return new BookCollection( $this->findByRandomStmt->fetchAll(), $this);
     }
 	
 	function findByKey( $values ) {	

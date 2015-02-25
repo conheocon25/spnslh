@@ -39,6 +39,12 @@ RewriteRule ^loi-khuyen/tap-su$ 														?cmd=FSuggest [L]
 RewriteRule ^loi-khuyen/nang-cao$ 														?cmd=FSuggest [L]
 RewriteRule ^loi-khuyen/cao-thu$ 														?cmd=FSuggest [L]
 
+RewriteRule ^tim-kiem$																	?cmd=FSearch [L]
+
+RewriteRule ^the-bai$																	?cmd=FTag [L]
+RewriteRule ^the-bai/([A-Za-z0-9_-]+)$													?cmd=FTagDetail&KTag=$1 [L]
+RewriteRule ^the-bai/([A-Za-z0-9_-]+)/page/([0-9]+)$									?cmd=FTagDetail&KTag=$1&Page=$2 [L]
+
 RewriteRule ^bai-viet/([A-Za-z0-9_-]+)$													?cmd=FCategoryPost&KCategory=$1 [L]
 RewriteRule ^bai-viet/([A-Za-z0-9_-]+)/page/([0-9]+)$									?cmd=FCategoryPost&KCategory=$1&Page=$2 [L]
 RewriteRule ^bai-viet/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$								?cmd=FPost&KCategory=$1&KPost=$2 [L]
@@ -113,6 +119,7 @@ RewriteRule ^admin/book/([0-9]+)/([0-9]+)/chapter/([0-9]+)/board/([0-9]+)/pose/e
 RewriteRule ^admin/book/([0-9]+)/([0-9]+)/chapter/([0-9]+)/board/([0-9]+)/state/load$ 	?cmd=ABookChapterBoardStateLoad&IdCategory=$1&IdBook=$2&IdChapter=$3&IdBoard=$4 [L]
 RewriteRule ^admin/book/([0-9]+)/([0-9]+)/chapter/([0-9]+)/board/([0-9]+)/state/exe$ 	?cmd=ABookChapterBoardStateExe&IdCategory=$1&IdBook=$2&IdChapter=$3&IdBoard=$4 	[L]
 RewriteRule ^admin/book/([0-9]+)/([0-9]+)/chapter/([0-9]+)/board/([0-9]+)/detail$ 		?cmd=ABookChapterBoardDetail&IdCategory=$1&IdBook=$2&IdChapter=$3&IdBoard=$4 	[L]
+RewriteRule ^admin/book/([0-9]+)/([0-9]+)/chapter/([0-9]+)/board/([0-9]+)/detail/tag$ 	?cmd=ABookChapterBoardDetailTag&IdCategory=$1&IdBook=$2&IdChapter=$3&IdBoard=$4 [L]
 RewriteRule ^admin/book/([0-9]+)/([0-9]+)/chapter/([0-9]+)/board/([0-9]+)/detail/([0-9]+)/upd/load$ 	?cmd=ABookChapterBoardDetailUpdLoad&IdCategory=$1&IdBook=$2&IdChapter=$3&IdBoard=$4&IdBoardDetail=$5 	[L]
 RewriteRule ^admin/book/([0-9]+)/([0-9]+)/chapter/([0-9]+)/board/([0-9]+)/detail/([0-9]+)/upd/exe$ 		?cmd=ABookChapterBoardDetailUpdExe&IdCategory=$1&IdBook=$2&IdChapter=$3&IdBoard=$4&IdBoardDetail=$5 	[L]
 
@@ -146,6 +153,9 @@ RewriteRule ^admin/presentation/([0-9]+)/([0-9]+)/upd/exe$ 				?cmd=ASlideUpdExe
 RewriteRule ^admin/linked$ 												?cmd=ALinked [L]
 
 RewriteRule ^admin/setting$ 											?cmd=ASetting [L]
+
+RewriteRule ^admin/setting/tag$ 										?cmd=ASettingTag [L]
+RewriteRule ^admin/setting/tag/page/([0-9]+)$ 							?cmd=ASettingTag&Page=$1 [L]
 
 RewriteRule ^admin/setting/category/post$ 								?cmd=ASettingCategoryPost [L]
 RewriteRule ^admin/setting/category/post/page/([0-9]+)$ 				?cmd=ASettingCategoryPost&Page=$1 [L]

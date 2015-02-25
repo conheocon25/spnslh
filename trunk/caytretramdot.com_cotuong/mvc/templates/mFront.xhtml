@@ -11,7 +11,7 @@
 		<meta http-equiv="Pragma" content="no-cache"/>
 		<meta http-equiv="Expires" content="-1"/>
 		<meta http-equiv="Cache-Control" content="no-cache"/>
-		<meta name="keywords" content="Website Cờ Tướng Online"/>
+		<meta name="keywords" content="Website Học Cờ Tướng Online"/>
 		<meta name="description" content="Cờ Tướng, Cờ Thế, Khai Cuộc, Trung Cuộc, Tàn Cuộc, Sách Cờ, Kỳ Phổ, Quất Trung Bí, Hoa Mai Phổ, Phản Hoa Mai, Bách Cục Tượng Kỳ, Thuận Pháo, Nghịch Pháo, Bình Phong Mã, Thiên Phong Pháo, Sĩ Giác Pháo, Quá Cung Pháo, Khởi Mã Cuộc"/>
 		<meta name="page-topic" content="Cờ Tướng, Cờ Thế, Khai Cuộc, Trung Cuộc, Tàn Cuộc, Sách Cờ, Kỳ Phổ, Quất Trung Bí, Hoa Mai Phổ, Phản Hoa Mai, Bách Cục Tượng Kỳ, Thuận Pháo, Nghịch Pháo, Bình Phong Mã, Thiên Phong Pháo, Sĩ Giác Pháo, Quá Cung Pháo, Khởi Mã Cuộc"/>
 		<meta name="Abstract" content="Cờ Tướng, Cờ Thế, Khai Cuộc, Trung Cuộc, Tàn Cuộc, Sách Cờ, Kỳ Phổ, Quất Trung Bí, Hoa Mai Phổ, Phản Hoa Mai, Bách Cục Tượng Kỳ, Thuận Pháo, Nghịch Pháo, Bình Phong Mã, Thiên Phong Pháo, Sĩ Giác Pháo, Quá Cung Pháo, Khởi Mã Cuộc"/>
@@ -91,6 +91,11 @@
 						</a>
 					</li>
 					<li>
+						<a href="/the-bai">
+							Thẻ bài
+						</a>
+					</li>
+					<li>
 						<a href="/lien-he">
 							Liên hệ
 						</a>
@@ -101,6 +106,67 @@
 			</div>
 		</div>
 	</nav>
+	
+	<div metal:define-macro="SearchBox" class="panel panel-info">
+		<div class="panel-heading"><h3 class="panel-title">TÌM KIẾM</h3></div>
+		<div class="panel-body">
+			<div role="tabpanel">
+				<ul class="nav nav-tabs" role="tablist" id="PostTab">
+					<li role="presentation" class="active"><a href="#search-by-name" aria-controls="home" role="tab" data-toggle="tab"><i class="glyphicon glyphicon-book"/></a></li>
+					<li role="presentation"><a href="#search-by-tag" aria-controls="profile" role="tab" data-toggle="tab"><i class="glyphicon glyphicon-tags"/></a></li>
+					<li role="presentation"><a href="#search-by-time" aria-controls="profile" role="tab" data-toggle="tab"><i class="glyphicon glyphicon-calendar"/></a></li>
+				</ul>
+				<div class="tab-content">
+					<div role="tabpanel" class="tab-pane active" id="search-by-name">
+						<form id="FormSearchByName" action="/tim-kiem" method="POST" role="form">
+							<div class="form-group">
+								<label for="NameContent">Nội dung</label>
+								<input type="text" class="form-control" id="NameContent" placeholder="Gõ vào nội dung" />
+							</div>
+							<center>
+								<button id="URLSearchButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/>
+									<span class="glyphicon glyphicon-search" aria-hidden="true"/> Tìm
+								</button>
+							</center>
+						</form>
+					</div>
+					
+					<div role="tabpanel" class="tab-pane" id="search-by-tag">
+						<form id="FormSearchByTag" action="/tim-kiem" method="POST" role="form">
+							<div class="form-group">
+								<label for="NameTag">Tên thẻ</label>
+								<input type="text" class="form-control" id="NameTag" placeholder="Gõ vào thẻ" />
+							</div>
+							<center>
+								<button id="URLSearchButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/>
+									<span class="glyphicon glyphicon-search" aria-hidden="true"/> Tìm
+								</button>
+							</center>
+						</form>
+					</div>
+					
+					<div role="tabpanel" class="tab-pane" id="search-by-time">
+						<form id="FormSearchByTime" action="/tim-kiem" method="POST" role="form">
+							<div class="form-group">
+								<label for="TimeStart">Bắt đầu</label>
+								<input type="text" class="form-control" id="TimeStart" placeholder="Chọn ngày bắt đầu" />
+							</div>
+							<div class="form-group">
+								<label for="TimeEnd">Kết thúc</label>
+								<input type="text" class="form-control" id="TimeEnd" placeholder="Chọn ngày kết thúc" />
+							</div>
+							<center>
+								<button id="URLSearchButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/>
+									<span class="glyphicon glyphicon-search" aria-hidden="true"/> Tìm
+								</button>
+							</center>
+						</form>
+					</div>
+					
+				</div>									
+			</div>			
+		</div>
+	</div>
 	
 	<div metal:define-macro="SuggestLevel01" class="jumbotron">
 		<h2 class="text-center">HIỂU BIẾT VỀ CỜ TƯỚNG CỦA BẠN</h2>

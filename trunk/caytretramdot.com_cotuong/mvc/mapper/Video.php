@@ -41,6 +41,7 @@ class Video extends Mapper implements \MVC\Domain\VideoFinder{
 		$findByRecentStmt 	= sprintf("select *  from %s ORDER BY `time` DESC LIMIT 8", $tblVideo);
 		$findByViewedStmt 	= sprintf("select *  from %s ORDER BY `viewed` DESC LIMIT 8", $tblVideo);
 		$findByLikedStmt 	= sprintf("select *  from %s ORDER BY `liked` DESC LIMIT 8", $tblVideo);
+		$findByRandomStmt 	= sprintf("select *  from %s ORDER BY rand() LIMIT 8", $tblVideo);
 				
         $this->selectAllStmt 	= self::$PDO->prepare($selectAllStmt);
         $this->selectStmt 		= self::$PDO->prepare($selectStmt);
@@ -58,6 +59,7 @@ class Video extends Mapper implements \MVC\Domain\VideoFinder{
 		$this->findByRecentStmt = self::$PDO->prepare($findByRecentStmt);
 		$this->findByViewedStmt = self::$PDO->prepare($findByViewedStmt);
 		$this->findByLikedStmt 	= self::$PDO->prepare($findByLikedStmt);
+		$this->findByRandomStmt = self::$PDO->prepare($findByRandomStmt);
     } 
     function getCollection( array $raw ) {return new VideoCollection( $raw, $this );}
 
@@ -129,6 +131,11 @@ class Video extends Mapper implements \MVC\Domain\VideoFinder{
 	function findByLiked( $values ){
         $this->findByLikedStmt->execute( $values );
         return new VideoCollection( $this->findByLikedStmt->fetchAll(), $this);
+    }
+	
+	function findByRandom( $values ){
+        $this->findByRandomStmt->execute( $values );
+        return new VideoCollection( $this->findByRandomStmt->fetchAll(), $this);
     }
 	
 	function findByKey( $values ) {	

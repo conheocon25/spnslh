@@ -89,7 +89,10 @@ class Board extends Object{
 	function getTime( ) {return $this->Time;}
 	function getTimePrint1(){
 		$current 	= strtotime(date("Y-m-d H:i:s"));
-		$date    	= strtotime($this->Time);		
+		$date    	= strtotime($this->Time);
+		if ($this->Time=="0000-00-00 00:00:00"){
+			$date = strtotime(date("Y-m-d H:i:s"));
+		}
 		
 		$Str 		= "";
 		$Arr1		= array("giây"	, "phút"	, "giờ"	, "ngày", "tháng"	, "năm");
@@ -103,6 +106,7 @@ class Board extends Object{
 			else
 				$Str	= ($D%$Arr2[$Index]). " ". $Arr1[$Index]." ".$Str;
 			
+			//if ($Arr2[$Index]==0) $D = -1;			
 			$D 		= floor($D/$Arr2[$Index]);
 			$Index ++;
 		}
@@ -224,6 +228,13 @@ class Board extends Object{
 		$DetailAll = $mBoardDetail->findBy(array($this->getId()));
 		return $DetailAll;
 	}
+	
+	function getBTAll(){
+		$mBoardTag 	= new \MVC\Mapper\BoardTag();
+		$BTAll 		= $mBoardTag->findByBoard(array($this->getId()));
+		return $BTAll;
+	}
+	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------			
@@ -246,6 +257,13 @@ class Board extends Object{
 		$Book 		= $Chapter->getBook();
 		$Category	= $Book->getCategory();
 		return "/admin/book/".$Category->getId()."/".$Book->getId()."/chapter/".$Chapter->getId()."/board/".$this->getId()."/detail";
+	}
+	
+	function getURLTag(){
+		$Chapter  	= $this->getChapter();
+		$Book 		= $Chapter->getBook();
+		$Category	= $Book->getCategory();
+		return "/admin/book/".$Category->getId()."/".$Book->getId()."/chapter/".$Chapter->getId()."/board/".$this->getId()."/detail/tag";
 	}
 	
 	function getURLUpdLoad(){
