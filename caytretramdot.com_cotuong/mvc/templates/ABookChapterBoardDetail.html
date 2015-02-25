@@ -18,20 +18,24 @@
 								<thead>
 									<tr>
 										<th width="40">STT</th>
-										<th class="left">TIÊN</th>
+										<th class="left">TIÊN</th>										
 										<th width="120" class="left">GHI CHÚ</th>
+										<th width="120" class="left">PRE</th>
 										<th class="left">HẬU</th>
 										<th width="120" class="left">GHI CHÚ</th>
+										<th width="120" class="left">PRE</th>
 										<th width="90" class="left">BIẾN</th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr tal:repeat="Detail Board/getDetailAll">
 										<td class="center"><span tal:content="repeat/Detail/number"/></td>
-										<td><a tal:attributes="href Detail/getURLUpdLoad" tal:content="Detail/getName1"/></td>										
+										<td><a tal:attributes="href Detail/getURLUpdLoad" tal:content="Detail/getName1"/></td>
 										<td><span tal:content="Detail/getNote1Status"/></td>
+										<td><span tal:content="Detail/getPre1"/></td>
 										<td><span tal:content="Detail/getName2"/></td>
 										<td><span tal:content="Detail/getNote2Status"/></td>
+										<td><span tal:content="Detail/getPre2"/></td>
 										<td>
 											<a tal:attributes="href Detail/getURLSettingSub">
 												 <span tal:content="Detail/getSubAll/count"/> biến

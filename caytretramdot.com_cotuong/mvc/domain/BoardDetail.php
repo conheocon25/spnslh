@@ -13,11 +13,13 @@ class BoardDetail extends Object{
 	private $State2;
 	private $Note1;
 	private $Note2;
+	private $Pre1;
+	private $Pre2;
 		
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-    function __construct( $Id=null, $IdBoard=null, $Move=null,  $Name1=null, $State1=null, $Name2=null, $State2=null, $Note1=null, $Note2=null){
+    function __construct( $Id=null, $IdBoard=null, $Move=null,  $Name1=null, $State1=null, $Name2=null, $State2=null, $Note1=null, $Note2=null, $Pre1=null, $Pre2=null){
 		$this->Id 		= $Id;
 		$this->IdBoard 	= $IdBoard;
 		$this->Move		= $Move; 
@@ -27,6 +29,8 @@ class BoardDetail extends Object{
 		$this->State2	= $State2;
 		$this->Note1	= $Note1;
 		$this->Note2	= $Note2;
+		$this->Pre1		= $Pre1;
+		$this->Pre2		= $Pre2;
 				
 		parent::__construct( $Id );
 	}
@@ -72,6 +76,12 @@ class BoardDetail extends Object{
 			return "Không";
 		return "Có";
 	}
+	
+	function setPre1( $Pre1 ) 	{$this->Pre1 = $Pre1; $this->markDirty();}
+	function getPre1( ) 		{return $this->Pre1;}
+	
+	function setPre2( $Pre2 ) 	{$this->Pre2 = $Pre2; $this->markDirty();}
+	function getPre2( ) 		{return $this->Pre2;}
 			
 	function toJSON(){
 		$json = array(
@@ -83,7 +93,9 @@ class BoardDetail extends Object{
 			'Name2'		=> $this->getName2(),			 	
 			'State2'	=> $this->getState2(),
 			'Note1'		=> $this->getNote1(),
-			'Note2'		=> $this->getNote2()
+			'Note2'		=> $this->getNote2(),
+			'Pre1'		=> $this->getPre1(),
+			'Pre2'		=> $this->getPre2()
 		);
 		return json_encode($json);
 	}
@@ -98,6 +110,8 @@ class BoardDetail extends Object{
 		$this->State2 	= $Data[6];
 		$this->Note1 	= $Data[7];
 		$this->Note2 	= $Data[8];
+		$this->Pre1 	= $Data[9];
+		$this->Pre2 	= $Data[10];
     }
 			
 	//-------------------------------------------------------------------------------

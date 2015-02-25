@@ -189,8 +189,8 @@ function drawMoveState(){
 		$('#StateList tr:last').after("<tr><td align='center'><font color='green'><B>"+ I1 + "</B>." + I2 +"</font></td><td><font color='green'>"+aStepA[iStep]+"</font></td></tr>");
 }
 
-function drawBoard(State){
-	$(".CCell").attr('src', '');
+function drawBoard(State, Pre){
+	$(".CCell").attr('src', '');	
 	for (var i=0; i<10; i++){
 		for (var j=0; j<9; j++){
 			var n = State.charAt(i*9+j);
@@ -253,4 +253,11 @@ function drawBoard(State){
 			}
 		}												
 	}
+	var PrePOS = "#Piece";
+	if (Pre == -1){
+		PrePOS = PrePOS + "00";		
+	}else{
+		PrePOS = PrePOS + Pre;
+	}
+	$(PrePOS).attr("src", '/data/chess/150/Select.png');
 }
