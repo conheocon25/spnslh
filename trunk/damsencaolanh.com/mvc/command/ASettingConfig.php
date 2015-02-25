@@ -142,6 +142,12 @@
 				$mConfig->insert($ConfigGTalk);
 			}
 			
+			$ConfigAutoPost = $mConfig->findByName("AUTO_POST");
+			if ($ConfigAutoPost==null){
+				$ConfigAutoPost = new \MVC\Domain\Config(null, 'AUTO_POST', '1');
+				$mConfig->insert($ConfigAutoPost);
+			}
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
@@ -172,6 +178,7 @@
 			$request->setObject('ConfigYahooMessenger', 	$ConfigYahooMessenger);
 			$request->setObject('ConfigSkype', 				$ConfigSkype);
 			$request->setObject('ConfigGTalk', 				$ConfigGTalk);
+			$request->setObject('ConfigAutoPost', 			$ConfigAutoPost);
 												
 			return self::statuses('CMD_DEFAULT');
 		}
