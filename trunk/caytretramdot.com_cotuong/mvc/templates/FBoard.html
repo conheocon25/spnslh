@@ -2,10 +2,10 @@
 <html lang="en">
 	<head>
 		<tal:block metal:use-macro="mFront.xhtml/IncludeMETA"/>
-		<meta property="og:title" tal:attributes="content Board/getName"/>		
-		<meta property="og:description" tal:attributes="content Board/getName"/>		
+		<meta property="og:title" tal:attributes="content Board/getName"/>
+		<meta property="og:description" tal:attributes="content Board/getName"/>
 		<meta property="og:image" tal:attributes="content Board/getThumb"/>
-		<tal:block metal:use-macro="mFront.xhtml/IncludeCSS"/>		
+		<tal:block metal:use-macro="mFront.xhtml/IncludeCSS"/>
 	</head>
 	<body>
 		<div class="container-fluid">
@@ -211,8 +211,8 @@
 						<div role="tabpanel">
 							<ul class="nav nav-tabs" role="tablist" id="PostTab">
 								<li role="presentation"><a href="#board-related" aria-controls="home" role="tab" data-toggle="tab">xem thêm</a></li>
-								<li role="presentation" class="active"><a href="#board-comment" aria-controls="profile" role="tab" data-toggle="tab">bình luận</a></li>
-								<li role="presentation"><a href="#board-detail" aria-controls="profile" role="tab" data-toggle="tab">nước đi</a></li>
+								<li role="presentation"><a href="#board-comment" aria-controls="profile" role="tab" data-toggle="tab">bình luận</a></li>
+								<li role="presentation" class="active"><a href="#board-detail" aria-controls="profile" role="tab" data-toggle="tab">nước đi</a></li>
 							</ul>
 							<div class="tab-content">
 								<div role="tabpanel" class="tab-pane" id="board-related">									
@@ -220,18 +220,18 @@
 										<span tal:content="Board1/getName"/> (<span tal:content="Board1/getDetailAll/count"/>)
 									</a>									
 								</div>
-								<div role="tabpanel" class="tab-pane active" id="board-comment">
+								<div role="tabpanel" class="tab-pane" id="board-comment">
 									<div 
 										class="fb-comments" 
 										tal:attributes="data-href Board/getURLShare" 
 										data-numposts="5" data-colorscheme="light"
 									/>
 								</div>
-								<div role="tabpanel" class="tab-pane" id="board-detail">
+								<div role="tabpanel" class="tab-pane active" id="board-detail">
 									<div class="row btn-row" tal:repeat="Detail Board/getDetailAll">
 										<span tal:content="php: sprintf('%03d', (Board->getMoveInit() + Detail->getMove()-1))" /> . 
-										<div class="Move btn btn-xs btn-danger" 	tal:attributes="alt Detail/getState1; move Detail/getMove1; note Detail/getNote1"><span tal:content="Detail/getName1"/></div>
-										<div class="Move btn btn-xs btn-success"  	tal:attributes="alt Detail/getState2; move Detail/getMove2; note Detail/getNote2"><span tal:content="Detail/getName2"/></div>
+										<div class="Move btn btn-xs btn-danger" 	tal:attributes="alt Detail/getState1; move Detail/getMove1; note Detail/getNote1; pre Detail/getPre1"><span tal:content="Detail/getName1"/></div>
+										<div class="Move btn btn-xs btn-success"  	tal:attributes="alt Detail/getState2; move Detail/getMove2; note Detail/getNote2; pre Detail/getPre2"><span tal:content="Detail/getName2"/></div>
 										<tal:block tal:condition="Detail/getSubAll/count">
 											<a tal:attributes="href Sub/getBoardMe/getURLView" class="btn btn-xs btn-info" tal:repeat="Sub Detail/getSubAll">
 												<span tal:content="Sub/getBoardMe/getName" />
@@ -282,29 +282,33 @@
 				//Các tiện ích
 				function moveFirst(){
 					MoveCurrent = MoveSTART;					
-					var State = $(".Move[move='"+MoveCurrent+"']").attr('alt');											
+					var State 	= $(".Move[move='"+MoveCurrent+"']").attr('alt');
+					var Pre 	= $(".Move[move='"+MoveCurrent+"']").attr('pre');
 					$(".Move").removeClass('active');
 					$(".Move[move='"+MoveCurrent+"']").addClass('active');					
-					drawBoard(State);
+					drawBoard(State, Pre);
 					drawRound1(MoveCurrent);
 					$("#Note").html($(".Move[move='"+MoveCurrent+"']").attr('note'));
 				}
 				function moveLast(){
 					MoveCurrent = MoveEND;
-					var State = $(".Move[move='"+MoveCurrent+"']").attr('alt');						
+					var State 	= $(".Move[move='"+MoveCurrent+"']").attr('alt');
+					var Pre 	= $(".Move[move='"+MoveCurrent+"']").attr('pre');
 					$(".Move").removeClass('active');
 					$(".Move[move='"+MoveCurrent+"']").addClass('active');
-					drawBoard(State);
+					drawBoard(State, Pre);
 					drawRound1(MoveCurrent);
 					$("#Note").html($(".Move[move='"+MoveCurrent+"']").attr('note'));
 				}
 				function moveNext(){
 					if (MoveCurrent < MoveEND){
 						MoveCurrent +=1;						
-						var State = $(".Move[move='"+MoveCurrent+"']").attr('alt');
+						var State 	= $(".Move[move='"+MoveCurrent+"']").attr('alt');
+						var Pre 	= $(".Move[move='"+MoveCurrent+"']").attr('pre');
+						//alert(Pre);
 						$(".Move").removeClass('active');
 						$(".Move[move='"+MoveCurrent+"']").addClass('active');						
-						drawBoard(State);
+						drawBoard(State, Pre);
 						drawRound1(MoveCurrent);
 						$("#Note").html($(".Move[move='"+MoveCurrent+"']").attr('note'));
 					}
@@ -312,10 +316,11 @@
 				function moveBack(){
 					if (MoveCurrent > MoveSTART){
 						MoveCurrent -=1;
-						var State = $(".Move[move='"+MoveCurrent+"']").attr('alt');
+						var State 	= $(".Move[move='"+MoveCurrent+"']").attr('alt');
+						var Pre 	= $(".Move[move='"+MoveCurrent+"']").attr('pre');
 						$(".Move").removeClass('active');
 						$(".Move[move='"+MoveCurrent+"']").addClass('active');
-						drawBoard(State);
+						drawBoard(State, Pre);
 						drawRound1(MoveCurrent);
 						$("#Note").html($(".Move[move='"+MoveCurrent+"']").attr('note'));
 					}
@@ -331,10 +336,11 @@
 						tmrAuto = setInterval(function(){
 							if (MoveCurrent < MoveEND){
 								MoveCurrent +=1;						
-								var State = $(".Move[move='"+MoveCurrent+"']").attr('alt');
+								var State 	= $(".Move[move='"+MoveCurrent+"']").attr('alt');
+								var Pre 	= $(".Move[move='"+MoveCurrent+"']").attr('pre');
 								$(".Move").removeClass('active');
 								$(".Move[move='"+MoveCurrent+"']").addClass('active');
-								drawBoard(State);
+								drawBoard(State, Pre);
 								drawRound1(MoveCurrent);
 								$("#Note").html($(".Move[move='"+MoveCurrent+"']").attr('note'));
 							}else{
