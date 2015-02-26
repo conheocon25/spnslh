@@ -23,7 +23,7 @@
 			$Email 		= $Data[1];
 			$Subject 	= $Data[2];
 			$Content 	= $Data[3];
-			$CodeCaptcha= $Data[4];	
+			
 			
 			$doMail = new Mail(
 						"mail.caytretramdot.com", 
@@ -32,7 +32,7 @@
 						"admin368189"
 					);					
 			
-			if (isset($Email) && ($OldCodeCaptcha == $CodeCaptcha)) {
+			if (isset($Email)) {
 				
 				$MContent = "Website ẨM THỰC HƯƠNG SEN HỒNG - Gửi phản hồi liên hệ <br /> 
 							Người gửi: $Name <br />

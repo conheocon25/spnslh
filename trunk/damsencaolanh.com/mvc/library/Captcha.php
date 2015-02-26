@@ -2,6 +2,7 @@
 Namespace MVC\Library;
 Class Captcha {
 	private $SecurityCode;
+	private $ImagePath;
 	private $width;
 	private $height;
 	
@@ -19,9 +20,15 @@ Class Captcha {
 	{		 
 		return $this->SecurityCode;		
 	}
+	function getImagePath() 
+	{		 
+		return $this->ImagePath;		
+	}
 	
 	function createImage() 
-	{ 		
+	{ 	
+		$day = new \DateTime();
+		$Today = $day->format('is');
 		//$_SESSION["spn_code_captcha"] = $security_code;
 		//$width = 150; 
 		//$height = 30; 	
@@ -37,23 +44,25 @@ Class Captcha {
 		$red = ImageColorAllocate($image, 255, 0, 0); 
 		$yellow = ImageColorAllocate($image, 250, 248, 204); 
 		$grey = ImageColorAllocate($image, 204, 204, 204); 
+		$greywhite = ImageColorAllocate($image, 239, 239, 239); 
 		
 		
 		
 		//Make the background black 
 		//ImageFill($image, 0, 0, 709, 150, $white); 	
-		imagefilledrectangle($image, 0,0, 709, 99, $yellow);
+		imagefilledrectangle($image, 0,0, 709, 99, $greywhite);
 		//Add randomly generated string in white to the image
 		ImageString($image, 5 ,5, 5, $this->SecurityCode, $red); 
 		//imagestring ($im, $font, $x, $y, $string, $textColor);
 		//Throw in some lines to make it a little bit harder for any bots to break 
-		ImageRectangle($image,0,0, $this->width-1, $this->height-1, $yellow); 
+		ImageRectangle($image,0,0, $this->width-1, $this->height-1, $greywhite); 
 		//imageline($image, 0,  $this->height/2,  $this->width,  $this->height/2, $grey); 
 		//imageline($image,  $this->width/2, 0,  $this->width/2,  $this->height,  $grey); 
 	  
 		//ImageJpeg($image,"captcha.jpg"); 		
-		//imagepng($image, $path.'/captcha.png'); 		
-		imagepng($image, 'data/captcha.jpg'); 		
+		//imagepng($image, $path.'/captcha.png');
+		$this->ImagePath = 'captcha'. $Today .'.jpg';
+		imagepng($image, 'data/captcha'. $Today .'.jpg'); 		
 		//Free up resources
 		ImageDestroy($image); 		
 	} 
