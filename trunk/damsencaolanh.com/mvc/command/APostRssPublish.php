@@ -185,7 +185,7 @@
 									$mPostRss->insert($PostRss);									
 								}
 									$i= $i + 1;
-									//echo "<br />" . $i . "Đã thêm tin moi: " . $CurTitle . "<br />";
+									echo "<br />" . $i . "Đã thêm tin moi: " . $CurTitle . "<br />";
 								
 								unset($dom);
 								unset($HTML);								
