@@ -40,13 +40,7 @@
 			if(isset($IdRss)) 
 			{
 			
-			//$DRssLinkAll = $mRssLink->findAll();
-			
-			//while ($DRssLinkAll->valid())
-			//{			
-				//$dRssLink 	= $DRssLinkAll->current();	
-				$dRssLink 	= $mRssLink->find($IdRss);
-				//$IdRss 		= $dRssLink->getId();
+				$dRssLink 	= $mRssLink->find($IdRss);				
 				$WebUrl 	= $dRssLink->getWeburl();
 				$Url 		= $dRssLink->getRssurl();
 				
@@ -65,8 +59,6 @@
 					$ReadRssXml = new ReadRss($Url);				
 					$ReadRssXml->ReadRssXMLByCurl();				
 					$chItems = $ReadRssXml->GetItems();
-					
-					
 					//Công thêm 11 tiếng do lệch múi giờ Mỹ - Việt Nam
 					$DatePost = $todaytime->add($interval);
 					//Số lấy tin trước đó để so sánh
@@ -76,9 +68,6 @@
 					
 					$DatePost = $DatePost->sub($intervalSub);
 					$DateStart = $DatePost->format('Y-m-d') . " 0:0:0";
-					
-					//echo "Ngày bắt đầu: " . $DateStart . "<br />";
-					//echo "Ngày kết thúc: " .$DateEnd. "<br />";
 					
 					$ListPost = $mPost->findByDateTime(array($DateStart, $DateEnd));
 					
@@ -173,7 +162,7 @@
 									$Post->reKey();
 									$mPost->insert($Post);
 									//Them tin vao Tag Post
-									$dPostTag new \MVC\Domain\PostTag(
+									$dPostTag = new \MVC\Domain\PostTag(
 										null,
 										$Post->getId(),
 										$IdTag
@@ -196,7 +185,7 @@
 									$mPostRss->insert($PostRss);									
 								}
 									$i= $i + 1;
-									echo "<br />" . $i . "Đã thêm tin moi: " . $CurTitle . "<br />";
+									//echo "<br />" . $i . "Đã thêm tin moi: " . $CurTitle . "<br />";
 								
 								unset($dom);
 								unset($HTML);								
