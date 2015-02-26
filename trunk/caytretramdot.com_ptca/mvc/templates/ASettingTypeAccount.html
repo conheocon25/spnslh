@@ -1,52 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
-		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+		<div metal:use-macro="mFront.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>
+		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
 	</head>
-	
 	<body>
-		<div metal:use-macro="mAdmin.xhtml/Header"/>
-		<div id="sidebar">
-			<ul style="display: block;">
-				<li tal:repeat="TypeAccount TypeAccountSibblingAll" tal:attributes="class php: TypeAccount->getId()==TypeAccountParent->getId()?'active':''">
-					<a tal:attributes="href TypeAccount/getURLSettingTypeAccount">
-						<i class="glyphicons-tag"/><span tal:content="TypeAccount/getCode"/>
-					</a>
-				</li>
-			</ul>
-		</div>
-		<div id="content">
-			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>			
-			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
-			<div class="row">
-				<div class="col-12">
-					<a href="#DialogIns" data-toggle="modal" class="btn btn-primary btn-ins">
-						<i class="glyphicons-plus"/> Thêm mới
-					</a>
-					<a href="#DialogDelSelected" data-toggle="modal" class="btn btn-primary btn-ins">
-						<i class="glyphicons-remove_2"/> Xóa chọn
-					</a>
-					<div class="widget-box">
-						<div class="widget-content nopadding">
+		<tal:block metal:use-macro="mFront.xhtml/Header"/>		
+		<div class="container-fluid" id="wraper">
+			<div class="row">				
+				<div class="col-md-8">
+					<div class="panel panel-primary">
+						<div class="panel-heading"><i class="glyphicon glyphicon-tags"/> <B>SỐ HIỆU TÀI KHOẢN</B></div>
+						<div class="panel-body">					
 							<table class="table table-bordered table-striped table-hover with-check">
 								<thead>
-									<tr>
-										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
+									<tr>										
 										<th width="80" class="left">MÃ</th>
 										<th class="left">TÊN</th>
-										<th width="60" class="right">TK CON</th>
-										<th width="40"><i class="glyphicons-edit"/></th>
-										<th width="40"><i class="glyphicons-bin"/></th>
+										<th width="80" class="right">TK CON</th>
+										<th width="40"><i class="glyphicon glyphicon-edit"/></th>
+										<th width="40"><i class="glyphicon glyphicon-remove"/></th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr tal:repeat="TypeAccount TypeAccountAll">
-										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id TypeAccount/getId"/></td>
 										<td><span tal:content="TypeAccount/getCode"/></td>
 										<td><a tal:attributes="href TypeAccount/getURLSettingTypeAccount" tal:content="TypeAccount/getName"/></td>
 										<td class="right"><span tal:content="TypeAccount/getChildAll/count"/></td>
-										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id TypeAccount/getId"><i class="glyphicons-edit"/></a></td>
+										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id TypeAccount/getId"><i class="glyphicon glyphicon-edit"/></a></td>
 										<td class="center">
 											<a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id TypeAccount/getId">
 												<i class="glyphicon glyphicon-remove"/>
@@ -56,89 +38,107 @@
 								</tbody>
 							</table>
 						</div>
-					</div>
-
-					<!-- INSERT DIALOG  -->
-					<div id="DialogIns" class="modal fade">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h3><i class="glyphicons-TypeAccount modal-icon"/>THÊM MỚI SỐ HIỆU TÀI KHOẢN</h3>
-								</div>
-								<form id="FormTypeAccountInsert" action="#" class="form-horizontal" novalidate="novalidate">
-									<div class="modal-body">
-										<input id="IdParent1" name="IdParent1" type="hidden" class="form-control input-small" tal:attributes="value TypeAccountParent/getId"/>
-										<div class="form-group">
-											<label class="control-label">Mã</label>
-											<div class="controls">
-												<input id="Code1" name="Code1" type="text" class="form-control input-small"/>
-											</div>
-										</div>
-										<div class="form-group">											
-											<label class="control-label">Tên</label>
-											<div class="controls">
-												<input id="Name1" name="Name1" type="text" class="form-control input-small"/>
-											</div>
-										</div>
-									</div>
-									<div class="modal-footer">
-										<button id="URLInsButton" class="btn btn-primary btn-small" type="submit"><i class="glyphicons-download_alt"/> Lưu</button>
-										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
-									</div>
-								</form>
-							</div>
+					</div>					
+				</div>
+				<div class="col-md-4">
+					<div class="panel panel-primary">						
+						<div class="panel-heading"><i class="glyphicon glyphicon-cog"/> <B>THAO TÁC</B></div>
+						<div class="panel-body">
+							<a href="#DialogIns" data-toggle="modal" class="btn btn-primary btn-ins">
+								<i class="glyphicons-plus"/> Thêm mới
+							</a>
+							<ul>
+								<li tal:condition="TypeAccountParent/getParent">
+									<a tal:attributes="href TypeAccountParent/getParent/getURLSettingTypeAccount">
+										<i class="glyphicon glyphicon-share-alt"/>										
+									</a>
+								</li>
+								<li tal:repeat="TypeAccount TypeAccountSibblingAll" tal:attributes="class php: TypeAccount->getId()==TypeAccountParent->getId()?'active':''">
+									<a tal:attributes="href TypeAccount/getURLSettingTypeAccount">
+										<i class="glyphicon glyphicon-tag"/> <span tal:content="TypeAccount/getCode"/> <span tal:content="TypeAccount/getName"/>
+									</a>
+								</li>
+							</ul>
 						</div>
 					</div>
-					<!-- END INSERT DIALOG  -->
-					
-					<!-- UPDATE DIALOG  -->
-					<div id="DialogEdit" class="modal fade">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h3><i class="glyphicons-TypeAccount modal-icon"/>CẬP NHẬT SÔ HIỆU TÀI KHOẢN</h3>
-								</div>
-								<form id="FormTypeAccountUpdate" action="#" class="form-horizontal" novalidate="novalidate">
-									<div class="modal-body">
-										<div class="form-group">
-											<label class="control-label">Số hiệu TK cha</label>
-											<div class="controls">
-												<select name="IdParent2" id="IdParent2" style="width:80%;">
-													<option tal:attributes="value TypeAccount/getId;" tal:repeat="TypeAccount TypeAccountAll1">
-														<span tal:content="TypeAccount/getCode"/> / <span tal:content="TypeAccount/getName"/>
-													</option>
-												</select>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label">Mã</label>
-											<div class="controls">
-												<input id="Code2" name="Code2" type="text" class="form-control input-small"/>
-											</div>
-										</div>
-										<div class="form-group">											
-											<label class="control-label">Tên</label>
-											<div class="controls">
-												<input id="Name2" name="Name2" type="text" class="form-control input-small"/>
-											</div>
-										</div>
-									</div>	
-									<div class="modal-footer">
-										<button id="URLUpdButton" class="btn btn-primary btn-small" type="submit"><i class="glyphicons-download_alt"/> Lưu</button>
-										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-					<!-- END UPDATE DIALOG  -->
-					<div metal:use-macro="mDialog.xhtml/DialogDel"/>
-					<div metal:use-macro="mDialog.xhtml/DialogDelSelected"/>
 				</div>
 			</div>
 		</div>
-		<div metal:use-macro="mAdmin.xhtml/Footer"/>
-		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<!-- INSERT DIALOG  -->
+		<div id="DialogIns" class="modal fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h3><i class="glyphicon glyphicon-tag modal-icon"/>THÊM MỚI SỐ HIỆU TÀI KHOẢN</h3>
+					</div>
+					<form id="FormTypeAccountInsert" action="#" class="form-horizontal" novalidate="novalidate">
+						<div class="modal-body">
+							<input id="IdParent1" name="IdParent1" type="hidden" class="form-control input-small" tal:attributes="value TypeAccountParent/getId"/>
+							<div class="form-group">								
+								<label class="col-sm-2 control-label">Mã</label>
+								<div class="col-sm-10 controls">
+									<input id="Code1" name="Code1" type="text" class="form-control input-small"/>
+								</div>
+							</div>
+							<div class="form-group">											
+								<label class="col-sm-2 control-label">Tên</label>
+								<div class="col-sm-10 controls">
+									<input id="Name1" name="Name1" type="text" class="form-control input-small"/>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button id="URLInsButton" class="btn btn-primary btn-small" type="submit"><i class="glyphicons-download_alt"/> Lưu</button>
+							<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- END INSERT DIALOG  -->
+		
+		<!-- UPDATE DIALOG  -->
+		<div id="DialogEdit" class="modal fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h3><i class="glyphicon glyphicon-tag modal-icon"/>CẬP NHẬT SÔ HIỆU TÀI KHOẢN</h3>
+					</div>
+					<form id="FormTypeAccountUpdate" action="#" class="form-horizontal" novalidate="novalidate">
+						<div class="modal-body">
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Số hiệu TK cha</label>
+								<div class="col-sm-10 controls">
+									<select name="IdParent2" id="IdParent2" style="width:100%;">
+										<option tal:attributes="value TypeAccount/getId;" tal:repeat="TypeAccount TypeAccountAll1">
+											<span tal:content="TypeAccount/getCode"/> / <span tal:content="TypeAccount/getName"/>
+										</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Mã</label>
+								<div class="col-sm-10 controls">
+									<input id="Code2" name="Code2" type="text" class="form-control input-small"/>
+								</div>
+							</div>
+							<div class="form-group">											
+								<label class="col-sm-2 control-label">Tên</label>
+								<div class="col-sm-10 controls">
+									<input id="Name2" name="Name2" type="text" class="form-control input-small"/>
+								</div>
+							</div>
+						</div>	
+						<div class="modal-footer">
+							<button id="URLUpdButton" class="btn btn-primary btn-small" type="submit"><i class="glyphicons-download_alt"/> Lưu</button>
+							<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- END UPDATE DIALOG  -->
+		<div metal:use-macro="mDialog.xhtml/DialogDel"/>
 		<script type="text/javascript">
 		/*<![CDATA[*/
 			$('#URLDelSelectedButton').click(function(){
