@@ -136,14 +136,7 @@
 								$PostAuthor = $HTML->find('.' . $ClassAuthor, 0);										
 								$PostContent = $HTML->find('.' . $ClassContent, 0);					
 								// Loc Class ko hien thi
-								
-								
-								foreach( $PostContent->find('.fb-like') as $repost) {
-									if (isset($repost)) $repost->hidden = "hidden";;
-								}
-								foreach( $PostContent->find('script') as $Zone) {
-									if (isset($Zone)) $Zone->src = "";
-								}
+																
 								if ( $ImgPath == 0) {
 									foreach( $PostContent->find('img') as $img){
 										if (substr($img->src,0,1) == "/")
