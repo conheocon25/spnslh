@@ -31,7 +31,13 @@
 		<!-- ============================================================================== -->				
 		<command name="ASetting">				<view>ASetting</view>			</command>						
 		<command name="ASettingTypeAccount">	<view>ASettingTypeAccount</view></command>								
+		
 		<command name="ASettingUser">			<view>ASettingUser</view>		</command>
+		<command name="ASettingCustomer">		<view>ASettingCustomer</view>	</command>
+		<command name="ASettingSupplier">		<view>ASettingSupplier</view>	</command>
+		<command name="ASettingStore">			<view>ASettingStore</view>		</command>
+		<command name="ASettingEmployee">		<view>ASettingEmployee</view>	</command>
+		
 		<command name="ASettingConfig">			<view>ASettingConfig</view>		</command>
 	</control>
 </options>

@@ -119,8 +119,12 @@
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Quản trị<span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="/admin/setting/type/account" class="clearfix"><span class="pull-left" tal:content="string:Số hiệu tài khoản"/></a></li>
-							<li><a href="/admin/setting/user" class="clearfix"><span class="pull-left" tal:content="string:Danh sách người dùng"/></a></li>
-							<li><a href="/admin/setting/supplier" class="clearfix"><span class="pull-left" tal:content="string:Danh sách khách hàng"/></a></li>
+							<li><a href="/admin/setting/user" class="clearfix"><span class="pull-left" tal:content="string:Người dùng"/></a></li>
+							<li><a href="/admin/setting/customer" class="clearfix"><span class="pull-left" tal:content="string:Khách hàng"/></a></li>
+							<li><a href="/admin/setting/supplier" class="clearfix"><span class="pull-left" tal:content="string:Nhà cung cấp"/></a></li>
+							<li><a href="/admin/setting/store" class="clearfix"><span class="pull-left" tal:content="string:Kho hàng"/></a></li>
+							<li><a href="/admin/setting/employee" class="clearfix"><span class="pull-left" tal:content="string:Nhân viên"/></a></li>
+							<li><a href="/admin/setting/config" class="clearfix"><span class="pull-left" tal:content="string:Thông số hệ thống"/></a></li>
 						</ul>
 					</li>
 					<li>						
@@ -137,7 +141,16 @@
 			</div>
 		</div>
 	</nav>
-		
+	
+	<!-- ======================================================================== -->
+	<!-- PAGE BAR																  -->
+	<!-- ======================================================================== -->
+	<ul metal:define-macro="PageBar" class="pagination alternate pull-right page-bar">
+		<li tal:repeat="P PN/getPages" tal:attributes="class php:Page==P->getId()?'active':'disable'">
+			<a tal:attributes="href P/getURL" tal:content="P/getName"/>
+		</li>
+	</ul>
+	
 	<!-- ======================================================================== -->
 	<!-- FOOTER																	  -->
 	<!-- ======================================================================== -->	
