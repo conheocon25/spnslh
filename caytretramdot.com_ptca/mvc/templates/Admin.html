@@ -1,21 +1,21 @@
 <!DOCTYPE html>
-<html style="overflow-y:hidden;" lang="en">
+<html lang="en">
 	<head>
-		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
-		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+		<div metal:use-macro="mFront.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>		
 	</head>
-	
-	<body data-menu-position="closed">
-		<div metal:use-macro="mAdmin.xhtml/Header"/>
-		<div metal:use-macro="mAdmin.xhtml/MenuApp"/>
-		<div id="content">
-			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
-			<div metal:use-macro="mAdmin.xhtml/LocationBar"/>
-			<div class="container-fluid">
-				
+	<body>
+		<tal:block metal:use-macro="mFront.xhtml/Header"/>
+		<div class="container-fluid" id="wraper">
+			<div class="row">
+				<H1 align="center">HỆ THỐNG QUẢN LÝ PTC</H1>
 			</div>
-		</div>
-		<div metal:use-macro="mAdmin.xhtml/Footer"/>
-		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		</div>		
+		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
+		<script type="text/javascript">
+		/*<![CDATA[*/			
+			$('[data-toggle="tooltip"]').tooltip();
+		/*]]>*/
+		</script>
 	</body>
 </html>
