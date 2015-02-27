@@ -15,11 +15,12 @@
  * @since      File available since Release 1.2.0
  * @deprecated File deprecated in Release 2.0.0
  */
-	namespace MVC\Domain;
-	require_once( "mvc/base/domain/DomainObject.php" );
-	class Employee extends Object{
+namespace MVC\Domain;
+require_once( "mvc/base/domain/DomainObject.php" );
+class Employee extends Object{
 
     private $Id;
+	private $IdRoom;
 	private $Name;
     private $Gender;
 	private $Job;
@@ -31,8 +32,9 @@
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-    function __construct( $Id=null, $Name=null, $Gender=null, $Job=null, $Phone=null, $Address=null, $SalaryBase=null, $Card=null){
+    function __construct( $Id=null, $IdRoom=null, $Name=null, $Gender=null, $Job=null, $Phone=null, $Address=null, $SalaryBase=null, $Card=null){
         $this->Id 			= $Id;
+		$this->IdRoom 		= $IdRoom;
 		$this->Name 		= $Name;
 		$this->Gender 		= $Gender;
 		$this->Job 			= $Job;
@@ -46,18 +48,26 @@
 	
 	function setArray( $Data ){
         $this->Id 			= $Data[0];
-		$this->Name 		= $Data[1];
-		$this->Gender 		= $Data[2];
-		$this->Job 			= $Data[3];
-		$this->Phone 		= $Data[4];
-		$this->Address 		= $Data[5];
-		$this->SalaryBase 	= $Data[6];
-		$this->Card 		= $Data[7];
+		$this->IdRoom		= $Data[1];
+		$this->Name 		= $Data[2];
+		$this->Gender 		= $Data[3];
+		$this->Job 			= $Data[4];
+		$this->Phone 		= $Data[5];
+		$this->Address 		= $Data[6];
+		$this->SalaryBase 	= $Data[7];
+		$this->Card 		= $Data[8];
     }
 	
     function getId( ) {return $this->Id;}
-	function getIdPrint( ) {return "e".$this->Id;}
-		
+	
+	function setIdRoom( $IdRoom ) {$this->IdRoom = $IdRoom;$this->markDirty();}
+	function getIdRoom(){return $this->IdRoom;}
+	function getRoom(){
+		$mRoom 	= new \MVC\Mapper\Room();
+		$Room 	= $mRoom->find($this->IdRoom);
+		return $Room;
+	}
+	
 	function setName( $Name ) {$this->Name = $Name;$this->markDirty();}
 	function getName(){return $this->Name;}
 	
@@ -99,6 +109,7 @@
 	function toJSON(){
 		$json = array(
 			'Id' 			=> $this->getId(),
+			'IdRoom'		=> $this->getIdRoom(),
 			'Name'			=> $this->getName(),
 			'Gender'		=> $this->getGender(),
 			'Job'			=> $this->getJob(),

@@ -65,17 +65,22 @@ RewriteRule ^admin/setting/config/page/([0-9]+)$ 						?cmd=ASettingConfig&Page=
 RewriteRule ^admin/setting/user$ 										?cmd=ASettingUser [L]
 RewriteRule ^admin/setting/user/page/([0-9]+)$ 							?cmd=ASettingUser&Page=$1 [L]
 
-RewriteRule ^admin/setting/customer$ 									?cmd=ASettingCustomer [L]
-RewriteRule ^admin/setting/customer/page/([0-9]+)$ 						?cmd=ASettingCustomer&Page=$1 [L]
+RewriteRule ^admin/setting/customer$ 									?cmd=ASettingCategoryCustomer [L]
+RewriteRule ^admin/setting/customer/page/([0-9]+)$ 						?cmd=ASettingCategoryCustomer&Page=$1 [L]
+
+RewriteRule ^admin/setting/customer/([0-9]+)$ 							?cmd=ASettingCustomer&IdCategory=$1 [L]
+RewriteRule ^admin/setting/customer/([0-9]+)/page/([0-9]+)$ 			?cmd=ASettingCustomer&IdCategory=$1&Page=$2 [L]
 
 RewriteRule ^admin/setting/supplier$ 									?cmd=ASettingSupplier [L]
 RewriteRule ^admin/setting/supplier/page/([0-9]+)$ 						?cmd=ASettingSupplier&Page=$1 [L]
 
-RewriteRule ^admin/setting/employee$ 									?cmd=ASettingEmployee [L]
-RewriteRule ^admin/setting/employee/page/([0-9]+)$ 						?cmd=ASettingEmployee&Page=$1 [L]
-
 RewriteRule ^admin/setting/store$ 										?cmd=ASettingStore [L]
 RewriteRule ^admin/setting/store/page/([0-9]+)$ 						?cmd=ASettingStore&Page=$1 [L]
 
-RewriteRule ^admin/setting/store$ 										?cmd=ASettingStore [L]
-RewriteRule ^admin/setting/store/page/([0-9]+)$ 						?cmd=ASettingStore&Page=$1 [L]
+RewriteRule ^admin/setting/room$ 										?cmd=ASettingRoom [L]
+RewriteRule ^admin/setting/room/page/([0-9]+)$ 							?cmd=ASettingRoom&Page=$1 [L]
+RewriteRule ^admin/setting/room/([0-9]+)$ 								?cmd=ASettingEmployee&IdRoom=$1 [L]
+RewriteRule ^admin/setting/room/([0-9]+)/page/([0-9]+)$ 				?cmd=ASettingEmployee&IdRoom=$1&Page=$2 [L]
+
+RewriteRule ^admin/setting/job$ 										?cmd=ASettingJob [L]
+RewriteRule ^admin/setting/job/page/([0-9]+)$ 							?cmd=ASettingJob&Page=$1 [L]

@@ -9,14 +9,18 @@ class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
 		
         $this->selectAllStmt 	= self::$PDO->prepare("select * from tbl_customer");
         $this->selectStmt 		= self::$PDO->prepare("select * from tbl_customer where id=?");
-        $this->updateStmt 		= self::$PDO->prepare("update tbl_customer set name=?, type=?, card=?, phone=?, address=?, note=?, discount=? where id=?");
-        $this->insertStmt 		= self::$PDO->prepare("insert into tbl_customer (name, type, card, phone, address, note, discount) values( ?, ?, ?, ?, ?, ?, ?)");
+        $this->updateStmt 		= self::$PDO->prepare("update tbl_customer set id_category=?, name=?, type=?, card=?, phone=?, address=?, note=?, discount=? where id=?");
+        $this->insertStmt 		= self::$PDO->prepare("insert into tbl_customer (id_category, name, type, card, phone, address, note, discount) values( ?, ?, ?, ?, ?, ?, ?, ?)");
 		$this->deleteStmt 		= self::$PDO->prepare("delete from tbl_customer where id=?");
+		$this->findByCategoryStmt = self::$PDO->prepare("SELECT * FROM tbl_customer WHERE id_category=? ORDER By type, name");
 		$this->findByNormalStmt = self::$PDO->prepare("SELECT * FROM tbl_customer WHERE type>0 ORDER By type, name");
 		$this->findByCardStmt 	= self::$PDO->prepare("select * from tbl_customer where card=?");
-				
+
 		$findByPageStmt 		= sprintf("SELECT * FROM  %s ORDER BY type, name LIMIT :start,:max", $tblCustomer);
 		$this->findByPageStmt 	= self::$PDO->prepare($findByPageStmt);
+		
+		$findByCategoryPageStmt 		= sprintf("SELECT * FROM  %s WHERE id_category=:id_category LIMIT :start,:max", $tblCustomer);
+		$this->findByCategoryPageStmt 	= self::$PDO->prepare($findByCategoryPageStmt);
 		 
     } 
     function getCollection( array $raw ) {return new CustomerCollection( $raw, $this );}
@@ -24,6 +28,7 @@ class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
     protected function doCreateObject( array $array ) {		
         $obj = new \MVC\Domain\Customer( 
 			$array['id'],  
+			$array['id_category'],  
 			$array['name'],
 			$array['type'],
 			$array['card'],
@@ -41,6 +46,7 @@ class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
 
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array(  
+			$object->getIdCategory(),
 			$object->getName(),
 			$object->getType(),	
 			$object->getCard(),	
@@ -55,7 +61,8 @@ class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
     }
     
     protected function doUpdate( \MVC\Domain\Object $object ) {
-        $values = array( 
+        $values = array(
+			$object->getIdCategory(),
 			$object->getName(),
 			$object->getType(),	
 			$object->getCard(),	
@@ -72,6 +79,11 @@ class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
     function selectStmt() {return $this->selectStmt;}	
     function selectAllStmt() {return $this->selectAllStmt;}
 	
+	function findByCategory($values) {		
+        $this->findByCategoryStmt->execute( $values );
+        return new CustomerCollection( $this->findByCategoryStmt->fetchAll(), $this );
+    }
+	
 	function findByNormal($values) {		
         $this->findByNormalStmt->execute( $values );
         return new CustomerCollection( $this->findByNormalStmt->fetchAll(), $this );
@@ -85,6 +97,14 @@ class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
         if ( ! isset( $array['id'] ) ) { return null; }
         $object = $this->doCreateObject( $array );
         return $object;		
+    }
+	
+	function findByCategoryPage( $values ) {
+		$this->findByCategoryPageStmt->bindValue(':id_category', (int)($values[0]), \PDO::PARAM_INT);
+		$this->findByCategoryPageStmt->bindValue(':start', ((int)($values[1])-1)*(int)($values[2]), \PDO::PARAM_INT);
+		$this->findByCategoryPageStmt->bindValue(':max', (int)($values[2]), \PDO::PARAM_INT);
+		$this->findByCategoryPageStmt->execute();
+        return new CustomerCollection( $this->findByCategoryPageStmt->fetchAll(), $this );
     }
 	
 	function findByPage( $values ) {

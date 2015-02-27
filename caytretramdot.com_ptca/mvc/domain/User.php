@@ -85,12 +85,16 @@ class User extends Object{
 	function getDateActivity(){return $this->DateActivity;}
 	
 	function setType( $Type){$this->Type = $Type;$this->markDirty();}
-	function getType(){return $this->Type;}	
-	function getTypePrint(){$Arr = array("", "Bán hàng", "Quản lý", "Quan sát", "Quản trị");return $Arr[$this->Type];}	
+	function getType(){return $this->Type;}
+	function getTypePrint(){
+		$Arr = array("", "Bán hàng", "Hành chính", "Kho hàng", "Kế toán", "Giám đốc", "Quản trị");return $Arr[$this->Type];
+	}	
 	
-	function isAdmin(){if ($this->getType()==4)return true;return false;}	
-	function isViewer(){if ($this->getType()==3)return true;return false;}	
-	function isManager(){if ($this->getType()==2)return true;return false;}	
+	function isAdmin(){if ($this->getType()==6)return true;return false;}
+	function isManager(){if ($this->getType()==5)return true;return false;}	
+	function isAccountant(){if ($this->getType()==4)return true;return false;}		
+	function isStore(){	if ($this->getType()==3)return true;return false;}
+	function isPersonal(){	if ($this->getType()==2)return true;return false;}
 	function isSeller(){	if ($this->getType()==1)return true;return false;}
 	
 	function setCode( $Code){	$this->Code= $Code;$this->markDirty();}

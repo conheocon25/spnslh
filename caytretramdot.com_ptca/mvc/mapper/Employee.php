@@ -8,17 +8,22 @@ class Employee extends Mapper implements \MVC\Domain\EmployeeFinder{
 		
 		$selectAllStmt 	= sprintf("select * from %s", $tblEmployee);
 		$selectStmt 	= sprintf("select * from %s where id=?", $tblEmployee);
-		$updateStmt 	= sprintf("update %s set name=?, gender=?, job=?, phone=?, address=?, salary_base=?, card=? where id=?", $tblEmployee);
-		$insertStmt 	= sprintf("insert into %s (name, gender, job, phone, address, salary_base, card) values(?, ?, ?, ?, ?, ?, ?)", $tblEmployee);
+		$updateStmt 	= sprintf("update %s set id_room=?, name=?, gender=?, job=?, phone=?, address=?, salary_base=?, card=? where id=?", $tblEmployee);
+		$insertStmt 	= sprintf("insert into %s (id_room, name, gender, job, phone, address, salary_base, card) values(?, ?, ?, ?, ?, ?, ?, ?)", $tblEmployee);
 		$deleteStmt 	= sprintf("delete from %s where id=?", $tblEmployee);
-		$findByPageStmt = sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblEmployee);
+		$findByRoomStmt		= sprintf("select * from %s where id_room=?", $tblEmployee);
+		$findByRoomPageStmt = sprintf("SELECT * FROM  %s WHERE id_room=:id_room LIMIT :start,:max", $tblEmployee);
 		
+		$findByPageStmt = sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblEmployee);
+				
         $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
         $this->selectStmt = self::$PDO->prepare($selectStmt);
         $this->updateStmt = self::$PDO->prepare($updateStmt);
         $this->insertStmt = self::$PDO->prepare($insertStmt);
 		$this->deleteStmt = self::$PDO->prepare($deleteStmt);
-		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);
+		$this->findByPageStmt 		= self::$PDO->prepare($findByPageStmt);
+		$this->findByRoomPageStmt 	= self::$PDO->prepare($findByRoomPageStmt);
+		$this->findByRoomStmt 		= self::$PDO->prepare($findByRoomStmt);
 			
     } 
     function getCollection( array $raw ) {return new EmployeeCollection( $raw, $this );}
@@ -26,6 +31,7 @@ class Employee extends Mapper implements \MVC\Domain\EmployeeFinder{
     protected function doCreateObject( array $array ){
         $obj = new \MVC\Domain\Employee(
 			$array['id'],
+			$array['id_room'],
 			$array['name'],
 			$array['gender'],
 			$array['job'],
@@ -38,7 +44,8 @@ class Employee extends Mapper implements \MVC\Domain\EmployeeFinder{
     }	
     protected function targetClass() { return "Employee";}
     protected function doInsert( \MVC\Domain\Object $object ) {
-        $values = array( 			
+        $values = array( 		
+			$object->getIdRoom(),
 			$object->getName(),
 			$object->getGender(),
 			$object->getJob(),
@@ -53,7 +60,8 @@ class Employee extends Mapper implements \MVC\Domain\EmployeeFinder{
     }
     
     protected function doUpdate( \MVC\Domain\Object $object ) {
-        $values = array(			
+        $values = array(
+			$object->getIdRoom(),
 			$object->getName(),
 			$object->getGender(),
 			$object->getJob(),
@@ -68,6 +76,19 @@ class Employee extends Mapper implements \MVC\Domain\EmployeeFinder{
 	protected function doDelete(array $values) {return $this->deleteStmt->execute( $values );}
     function selectStmt() {return $this->selectStmt;}
     function selectAllStmt() {return $this->selectAllStmt;}
+	
+	function findByRoom( array $values ) {
+		$this->findByRoomStmt->execute($values);
+        return new EmployeeCollection( $this->findByRoomStmt->fetchAll(), $this );
+    }
+	
+	function findByRoomPage( $values ) {
+		$this->findByRoomPageStmt->bindValue(':id_room', (int)($values[0]), \PDO::PARAM_INT);
+		$this->findByRoomPageStmt->bindValue(':start', ((int)($values[1])-1)*(int)($values[2]), \PDO::PARAM_INT);
+		$this->findByRoomPageStmt->bindValue(':max', (int)($values[2]), \PDO::PARAM_INT);
+		$this->findByRoomPageStmt->execute();
+        return new EmployeeCollection( $this->findByRoomPageStmt->fetchAll(), $this );
+    }
 	
 	function findByPage( $values ) {
 		$this->findByPageStmt->bindValue(':start', ((int)($values[0])-1)*(int)($values[1]), \PDO::PARAM_INT);
