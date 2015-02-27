@@ -5,6 +5,7 @@ require_once( "mvc/base/domain/DomainObject.php" );
 class Customer extends Object{
 
     private $Id;
+	private $IdCategory;
 	private $Name;
 	private $Phone;
     private $Type;
@@ -13,8 +14,9 @@ class Customer extends Object{
     private $Address;
 	private $Discount;
 		
-    function __construct( $Id=null, $Name=null, $Type=null, $Card=null, $Phone=null, $Address=null, $Note=null, $Discount=null ) {
-        $this->Id = $Id;
+    function __construct( $Id=null, $IdCategory=null, $Name=null, $Type=null, $Card=null, $Phone=null, $Address=null, $Note=null, $Discount=null ) {
+        $this->Id 		= $Id;
+		$this->IdCategory 		= $IdCategory;
 		$this->Name 	= $Name;
 		$this->Type 	= $Type;
 		$this->Card 	= $Card;
@@ -26,7 +28,15 @@ class Customer extends Object{
     }
 	function setId( $Id) {return $this->Id = $Id;}
     function getId( ) {return $this->Id;}
-		
+	
+	function setIdCategory( $IdCategory) {return $this->IdCategory= $IdCategory;}
+    function getIdCategory( ) {return $this->IdCategory;}
+	function getCategory(){
+		$mCategoryCustomer = new \MVC\Mapper\CategoryCustomer();
+		$Category = $mCategoryCustomer->find($this->IdCategory);
+		return $Category;
+	}
+	
 	function getType(){return $this->Type;}	
     function setType( $Type ) {$this->Type = $type;$this->markDirty();}
 	function getTypePrint(){
@@ -55,6 +65,7 @@ class Customer extends Object{
 	function toJSON(){
 		$json = array(
 			'Id' 			=> $this->getId(),
+			'IdCategory' 	=> $this->getIdCategory(),
 			'Name'			=> $this->getName(),
 			'Type'			=> $this->getType(),
 			'Card'			=> $this->getCard(),
@@ -67,14 +78,15 @@ class Customer extends Object{
 	}
 	
 	function setArray( $Data ){
-		$this->Id 		= $Data[0];
-		$this->Name 	= $Data[1];
-		$this->Type		= $Data[2];
-		$this->Card		= $Data[3];
-		$this->Phone	= $Data[4];
-		$this->Address	= $Data[5];
-		$this->Note		= $Data[6];
-		$this->Discount	= $Data[7];
+		$this->Id 			= $Data[0];
+		$this->IdCategory	= $Data[1];
+		$this->Name 		= $Data[2];
+		$this->Type			= $Data[3];
+		$this->Card			= $Data[4];
+		$this->Phone		= $Data[5];
+		$this->Address		= $Data[6];
+		$this->Note			= $Data[7];
+		$this->Discount		= $Data[8];
     }
 			
 	function getSessionAll(){

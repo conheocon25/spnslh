@@ -45,6 +45,13 @@
 					<div class="panel panel-primary">
 						<div class="panel-heading"><i class="glyphicon glyphicon-cog"/> <B>THAO TÁC</B></div>
 						<div class="panel-body">
+							<ul>								
+								<li tal:repeat="Category1 CategoryAll">
+									<a tal:attributes="href Category1/getURLSettingCustomer">
+										<i class="glyphicon glyphicon-tag"/> <span tal:content="Category1/getName"/> (<span tal:content="Category1/getCustomerAll/count"/>)
+									</a>
+								</li>
+							</ul>
 							<a href="#DialogIns" data-toggle="modal" class="btn btn-primary btn-ins">
 								<i class="glyphicons-plus"/> Thêm mới
 							</a>
@@ -60,7 +67,17 @@
 				<div class="modal-content">
 					<div class="modal-header"><h3><i class="glyphicon glyphicon-user modal-icon"/>THÊM MỚI KHÁCH HÀNG</h3></div>
 					<form id="FormCustomerInsert" action="#" class="form-horizontal" novalidate="novalidate">
-						<div class="modal-body">							
+						<div class="modal-body">
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Nhóm</label>
+								<div class="col-sm-10 controls">
+									<select name="IdCategory1" id="IdCategory1" style="width:100%;">
+										<option tal:repeat="Category CategoryAll" tal:attributes="value Category/getId">
+											<span tal:content="Category/getName"/>
+										</option>										
+									</select>
+								</div>
+							</div>
 							<div class="form-group">
 								<label class="col-sm-2 control-label">Tên</label>
 								<div class="col-sm-10 controls">
@@ -124,7 +141,17 @@
 				<div class="modal-content">
 					<div class="modal-header"><h3><i class="glyphicon glyphicon-user modal-icon"/>CẬP NHẬT KHÁCH HÀNG</h3></div>
 					<form id="FormCustomerUpdate" action="#" class="form-horizontal" novalidate="novalidate">
-						<div class="modal-body">							
+						<div class="modal-body">
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Nhóm</label>
+								<div class="col-sm-10 controls">
+									<select name="IdCategory2" id="IdCategory2" style="width:100%;">
+										<option tal:repeat="Category CategoryAll" tal:attributes="value Category/getId">
+											<span tal:content="Category/getName"/>
+										</option>										
+									</select>
+								</div>
+							</div>
 							<div class="form-group">
 								<label class="col-sm-2 control-label">Tên</label>
 								<div class="col-sm-10 controls">
@@ -228,14 +255,15 @@
 				},
 				submitHandler: function (form) {					
 					var Data = [];
-					Data[0] = 'null';				
-					Data[1] = $('#Name1').val();
-					Data[2] = $('#Type1').val();
-					Data[3] = $('#Card1').val();
-					Data[4] = $('#Phone1').val();
-					Data[5] = $('#Address1').val();
-					Data[6] = $('#Note1').val();
-					Data[7] = $('#Discount1').val();
+					Data[0] = 'null';
+					Data[1] = $('#IdCategory1').val();
+					Data[2] = $('#Name1').val();
+					Data[3] = $('#Type1').val();
+					Data[4] = $('#Card1').val();
+					Data[5] = $('#Phone1').val();
+					Data[6] = $('#Address1').val();
+					Data[7] = $('#Note1').val();
+					Data[8] = $('#Discount1').val();
 															
 					var URL = "/object/ins/Customer";
 					$.ajax({
@@ -267,7 +295,8 @@
 				$('#update-link').attr('action', $(this).attr('alt'));
 				$.getJSON(url, function(data) {
 					$('#URLUpdButton').attr('alt', 	data.Id);
-					$('#Name2').attr('value', 		data.Name);																				
+					$('#IdCategory2').val(			data.IdCategory);
+					$('#Name2').attr('value', 		data.Name);
 					$('#Type2').select2('val', 		data.Type);					
 					$('#Card2').attr('value', 		data.Card);
 					$('#Phone2').attr('value', 		data.Phone);
@@ -304,13 +333,14 @@
 				submitHandler: function (form) {					
 					var Data = [];
 					Data[0] = $('#URLUpdButton').attr('alt');
-					Data[1] = $('#Name2').val();
-					Data[2] = $('#Type2').val();
-					Data[3] = $('#Card2').val();
-					Data[4] = $('#Phone2').val();
-					Data[5] = $('#Address2').val();
-					Data[6] = $('#Note2').val();
-					Data[7] = $('#Discount2').val();
+					Data[1] = $('#IdCategory2').val();
+					Data[2] = $('#Name2').val();
+					Data[3] = $('#Type2').val();
+					Data[4] = $('#Card2').val();
+					Data[5] = $('#Phone2').val();
+					Data[6] = $('#Address2').val();
+					Data[7] = $('#Note2').val();
+					Data[8] = $('#Discount2').val();
 															
 					var URL = "/object/upd/Customer";
 					$.ajax({

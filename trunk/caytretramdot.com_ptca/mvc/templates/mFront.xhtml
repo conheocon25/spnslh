@@ -91,7 +91,59 @@
 				</a>
 			</div>			
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav navbar-left">					
+				<!-- QUẢN LÝ KHO HÀNG-->
+				<ul class="nav navbar-nav navbar-left" tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->IsStore()">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Quản lý kho hàng<span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="/ql-kho/nhap-hang" class="clearfix"><span class="pull-left" tal:content="string:Nhập hàng"/></a></li>
+							<li><a href="/ql-kho/xuat-hang" class="clearfix"><span class="pull-left" tal:content="string:Xuất hàng"/></a></li>
+							<li><a href="/ql-kho/bao-cao" class="clearfix"><span class="pull-left" tal:content="string:Báo cáo"/></a></li>
+						</ul>
+					</li>
+					<li><a data-toggle="tooltip" data-placement="bottom" title="IP của máy đăng nhập" href="/dang-nhap"><i class="glyphicons-imac" style="margin-top:-5px;margin-right:5px;"/> <span tal:content="php:@\MVC\Library\Statistic::getIPPrint()" /></a></li>
+					<li><a data-toggle="tooltip" data-placement="bottom" title="Click để đăng xuất" href="/signout/exe"><i class="glyphicon glyphicon-user"></i> <span class="text" tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()" tal:content="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->getEmail()"/></a></li>
+				</ul>
+				<!-- QUẢN LÝ BÁN HÀNG-->
+				<ul class="nav navbar-nav navbar-left" tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->IsSeller()">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Quản lý bán hàng<span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="/ql-ban-hang/don-hang" class="clearfix"><span class="pull-left" tal:content="string:Bán hàng"/></a></li>
+							<li><a href="/ql-ban-hang/bao-cao" class="clearfix"><span class="pull-left" tal:content="string:Báo cáo"/></a></li>
+						</ul>
+					</li>
+					<li><a data-toggle="tooltip" data-placement="bottom" title="IP của máy đăng nhập" href="/dang-nhap"><i class="glyphicons-imac" style="margin-top:-5px;margin-right:5px;"/> <span tal:content="php:@\MVC\Library\Statistic::getIPPrint()" /></a></li>
+					<li><a data-toggle="tooltip" data-placement="bottom" title="Click để đăng xuất" href="/signout/exe"><i class="glyphicon glyphicon-user"></i> <span class="text" tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()" tal:content="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->getEmail()"/></a></li>
+				</ul>
+				<!-- KẾ TOÁN -->
+				<ul class="nav navbar-nav navbar-left" tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->IsAccountant()">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Kế toán<span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="/ke-toan/so-lieu-ngay" class="clearfix"><span class="pull-left" tal:content="string:Số liệu ngày"/></a></li>
+							<li><a href="/ql-kho/so-lieu-thang" class="clearfix"><span class="pull-left" tal:content="string:Số liệu tháng"/></a></li>
+							<li><a href="/ql-kho/so-lieu-qui" class="clearfix"><span class="pull-left" tal:content="string:Số liệu quí"/></a></li>
+						</ul>
+					</li>
+					<li><a data-toggle="tooltip" data-placement="bottom" title="IP của máy đăng nhập" href="/dang-nhap"><i class="glyphicons-imac" style="margin-top:-5px;margin-right:5px;"/> <span tal:content="php:@\MVC\Library\Statistic::getIPPrint()" /></a></li>
+					<li><a data-toggle="tooltip" data-placement="bottom" title="Click để đăng xuất" href="/signout/exe"><i class="glyphicon glyphicon-user"></i> <span class="text" tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()" tal:content="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->getEmail()"/></a></li>
+				</ul>
+				<!-- GIÁM ĐỐC -->
+				<ul class="nav navbar-nav navbar-left" tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->IsManager()">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Giám đốc<span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="/ke-toan/so-lieu-ngay" class="clearfix"><span class="pull-left" tal:content="string:Số liệu ngày"/></a></li>
+							<li><a href="/ql-kho/so-lieu-thang" class="clearfix"><span class="pull-left" tal:content="string:Số liệu tháng"/></a></li>
+							<li><a href="/ql-kho/so-lieu-qui" class="clearfix"><span class="pull-left" tal:content="string:Số liệu quí"/></a></li>
+						</ul>
+					</li>
+					<li><a data-toggle="tooltip" data-placement="bottom" title="IP của máy đăng nhập" href="/dang-nhap"><i class="glyphicons-imac" style="margin-top:-5px;margin-right:5px;"/> <span tal:content="php:@\MVC\Library\Statistic::getIPPrint()" /></a></li>
+					<li><a data-toggle="tooltip" data-placement="bottom" title="Click để đăng xuất" href="/signout/exe"><i class="glyphicon glyphicon-user"></i> <span class="text" tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()" tal:content="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->getEmail()"/></a></li>
+				</ul>
+				<!-- QUẢN TRỊ -->
+				<ul class="nav navbar-nav navbar-left" tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->IsAdmin()">
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Quản lý bán hàng<span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
@@ -116,27 +168,27 @@
 						</ul>
 					</li>
 					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Giám đốc<span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="/ke-toan/so-lieu-ngay" class="clearfix"><span class="pull-left" tal:content="string:Số liệu ngày"/></a></li>
+							<li><a href="/ql-kho/so-lieu-thang" class="clearfix"><span class="pull-left" tal:content="string:Số liệu tháng"/></a></li>
+							<li><a href="/ql-kho/so-lieu-qui" class="clearfix"><span class="pull-left" tal:content="string:Số liệu quí"/></a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Quản trị<span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="/admin/setting/type/account" class="clearfix"><span class="pull-left" tal:content="string:Số hiệu tài khoản"/></a></li>
 							<li><a href="/admin/setting/user" class="clearfix"><span class="pull-left" tal:content="string:Người dùng"/></a></li>
 							<li><a href="/admin/setting/customer" class="clearfix"><span class="pull-left" tal:content="string:Khách hàng"/></a></li>
 							<li><a href="/admin/setting/supplier" class="clearfix"><span class="pull-left" tal:content="string:Nhà cung cấp"/></a></li>
-							<li><a href="/admin/setting/store" class="clearfix"><span class="pull-left" tal:content="string:Kho hàng"/></a></li>
-							<li><a href="/admin/setting/employee" class="clearfix"><span class="pull-left" tal:content="string:Nhân viên"/></a></li>
+							<li><a href="/admin/setting/store" class="clearfix"><span class="pull-left" tal:content="string:Kho hàng"/></a></li>							
+							<li><a href="/admin/setting/room" class="clearfix"><span class="pull-left" tal:content="string:Phòng Ban"/></a></li>
 							<li><a href="/admin/setting/config" class="clearfix"><span class="pull-left" tal:content="string:Thông số hệ thống"/></a></li>
 						</ul>
 					</li>
-					<li>						
-						<a data-toggle="tooltip" data-placement="bottom" title="IP của máy đăng nhập" href="/dang-nhap">
-							<i class="glyphicons-imac" style="margin-top:-5px;margin-right:5px;"/> <span tal:content="php:@\MVC\Library\Statistic::getIPPrint()" />
-						</a>
-					</li>
-					<li>
-						<a data-toggle="tooltip" data-placement="bottom" title="Click để đăng xuất" href="/signout/exe">
-							<i class="glyphicon glyphicon-user"></i> <span class="text" tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()" tal:content="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->getEmail()"/>
-						</a>
-					</li>
+					<li><a data-toggle="tooltip" data-placement="bottom" title="IP của máy đăng nhập" href="/dang-nhap"><i class="glyphicons-imac" style="margin-top:-5px;margin-right:5px;"/> <span tal:content="php:@\MVC\Library\Statistic::getIPPrint()" /></a></li>
+					<li><a data-toggle="tooltip" data-placement="bottom" title="Click để đăng xuất" href="/signout/exe"><i class="glyphicon glyphicon-user"></i> <span class="text" tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()" tal:content="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->getEmail()"/></a></li>
 				</ul>
 			</div>
 		</div>
