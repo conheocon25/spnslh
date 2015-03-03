@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<tal:block metal:use-macro="mFront.xhtml/IncludeMETA"/>
+		<meta property="og:title"			tal:attributes="content Product/getName"/>
+		<meta tal:condition="Product/getInfo" property="og:description"		tal:attributes="content Product/getInfo/getInfoReduce"/>
+		<meta tal:condition="Product/getInfo" property="og:image"			tal:attributes="content Product/getInfo/getImage"/>
+		<tal:block metal:use-macro="mFront.xhtml/IncludeCSS"/>
+	</head>
+	<body>
+		<div class="container">
+			<tal:block metal:use-macro="mFront.xhtml/Header"/>
+			<tal:block metal:use-macro="mFront.xhtml/Presentation"/>
+			<tal:block metal:use-macro="mFront.xhtml/Marquee"/>
+			<div class="row">
+				<div class="col-md-8">
+					<div class="panel panel-default">
+						<div class="panel-heading"><h3 class="panel-title" tal:content="Product/getName"/></div>
+						<div class="panel-body" tal:condition="Product/getInfo">
+							<div class="page-header clearfix">
+								<div class="share-button-group pull-right">
+									<div class="fb-share-button" tal:attributes="data-href URLShare" data-type="button_count" />
+								</div>
+							</div>
+							<p tal:content="structure Product/getInfo/getInfo"/>
+						</div>
+					</div>					
+					<div class="panel panel-default">
+						<div class="panel-heading"><h3 class="panel-title">Bình luận</h3></div>
+						<div class="panel-body">
+							<div class="fb-comments" data-href="https://www.facebook.com/amthuchuongsenhong" data-numposts="5" data-colorscheme="light" data-width="100%"/>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<tal:block metal:use-macro="mFront.xhtml/Subscribe"/>
+					<tal:block metal:use-macro="mFront.xhtml/ADS-1"/>
+					<tal:block metal:use-macro="mFront.xhtml/LikeBox"/>
+				</div>
+			</div>
+			<tal:block metal:use-macro="mFront.xhtml/Footer"/>
+		</div>
+		<tal:block metal:use-macro="mFront.xhtml/IncludeJS"/>
+		<div id="fb-root" />
+		<script>
+			$('#carousel-presentation-generic').carousel({pause: "false"});
+			$('#carousel-presentation-generic .item:first-child').addClass('active');
+			
+			(function(d, s, id) {
+				var js, fjs = d.getElementsByTagName(s)[0];
+				if (d.getElementById(id)) return;
+				js = d.createElement(s); js.id = id;
+				js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&appId=525611617524479&version=v2.0";
+				fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));
+		</script>		
+	</body>
+</html>

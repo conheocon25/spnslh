@@ -45,13 +45,13 @@
 						<div class="panel-body">							
 							<div role="tabpanel">
 								<ul class="nav nav-tabs" role="tablist" id="PostTab">
-									<li role="presentation" class="active"><a href="#book-random" aria-controls="home" role="tab" data-toggle="tab"><i class="glyphicon glyphicon-flash"/></a></li>
-									<li role="presentation"><a href="#book-recent" aria-controls="home" role="tab" data-toggle="tab"><i class="glyphicon glyphicon-calendar"/></a></li>
+									<li role="presentation"><a href="#book-random" aria-controls="home" role="tab" data-toggle="tab"><i class="glyphicon glyphicon-flash"/></a></li>
+									<li role="presentation" class="active"><a href="#book-recent" aria-controls="home" role="tab" data-toggle="tab"><i class="glyphicon glyphicon-calendar"/></a></li>
 									<li role="presentation"><a href="#book-viewed" aria-controls="profile" role="tab" data-toggle="tab"><i class="glyphicon glyphicon-stats"/></a></li>
 									<li role="presentation"><a href="#book-liked" aria-controls="profile" role="tab" data-toggle="tab"><i class="glyphicon glyphicon-star"/></a></li>
 								</ul>
 								<div class="tab-content">
-									<div role="tabpanel" class="tab-pane active" id="book-random">
+									<div role="tabpanel" class="tab-pane" id="book-random">
 										<table class="table table-striped">
 											<tr tal:repeat="Book BookRandomAll">
 												<td width="48px">
@@ -72,7 +72,7 @@
 											</tr>
 										</table>										
 									</div>
-									<div role="tabpanel" class="tab-pane" id="book-recent">
+									<div role="tabpanel" class="tab-pane active" id="book-recent">
 										<table class="table table-striped">
 											<tr tal:repeat="Book BookRecentAll">
 												<td width="48px">
@@ -146,13 +146,13 @@
 						<div class="panel-body">							
 							<div role="tabpanel">
 								<ul class="nav nav-tabs" role="tablist" id="BoardTab">
-									<li role="presentation" class="active"><a href="#board-random" aria-controls="home" role="tab" data-toggle="tab"><i class="glyphicon glyphicon-flash"/></a></li>
-									<li role="presentation"><a href="#board-recent" aria-controls="home" role="tab" data-toggle="tab"><i class="glyphicon glyphicon-calendar"/></a></li>
+									<li role="presentation"><a href="#board-random" aria-controls="home" role="tab" data-toggle="tab"><i class="glyphicon glyphicon-flash"/></a></li>
+									<li role="presentation" class="active"><a href="#board-recent" aria-controls="home" role="tab" data-toggle="tab"><i class="glyphicon glyphicon-calendar"/></a></li>
 									<li role="presentation"><a href="#board-viewed" aria-controls="profile" role="tab" data-toggle="tab"><i class="glyphicon glyphicon-stats"/></a></li>
 									<li role="presentation"><a href="#board-liked" aria-controls="profile" role="tab" data-toggle="tab"><i class="glyphicon glyphicon-star"/></a></li>
 								</ul>
 								<div class="tab-content">
-									<div role="tabpanel" class="tab-pane active" id="board-random">
+									<div role="tabpanel" class="tab-pane" id="board-random">
 										<table class="table table-striped">
 											<tr tal:repeat="Board BoardRandomAll">
 												<td width="48px">
@@ -168,7 +168,7 @@
 											</tr>
 										</table>
 									</div>
-									<div role="tabpanel" class="tab-pane" id="board-recent">
+									<div role="tabpanel" class="tab-pane active" id="board-recent">
 										<table class="table table-striped">
 											<tr tal:repeat="Board BoardRecentAll">
 												<td width="48px">
@@ -301,7 +301,7 @@
 					</div>					
 				</div>
 				<div class="col-md-4">
-					<tal:block metal:use-macro="mFront.xhtml/SearchBox"/>
+					
 					<div class="panel panel-default">
 						<div class="panel-body">							
 							<tal:block metal:use-macro="mFront.xhtml/SuggestLevel01"/>
