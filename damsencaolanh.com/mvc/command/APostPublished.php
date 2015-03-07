@@ -37,25 +37,24 @@
 			
 			$AUTOPost = $dConfig->getValue();
 			
-			//if(isset($IdRss)) 
-			//{
+			
 			$DRssLinkAll = $mRssLink->findAll();
 			
 			while ($DRssLinkAll->valid())
 			{			
-				$dRssLink 	= $DRssLinkAll->current();	
-				//$dRssLink 	= $mRssLink->find($IdRss);
-				$IdRss 		= $dRssLink->getId();
-				$WebUrl 	= $dRssLink->getWeburl();
-				$Url 		= $dRssLink->getRssurl();
-				$ClassAuthor 		= $dRssLink->getClassAuthor();
-				$ClassContent 		= $dRssLink->getClassContentName();
-				$ImgPath 			= $dRssLink->getImgPath();
-				
-				
-				$IdTag = $dRssLink->getIdTag();
-				
-				$dTagPost = $mTag->find($IdTag);
+					$dRssLink 			= $DRssLinkAll->current();					
+					$IdRss 				= $dRssLink->getId();
+					$WebUrl 			= $dRssLink->getWeburl();
+					$Url 				= $dRssLink->getRssurl();
+					
+					$ClassAuthor 		= $dRssLink->getClassAuthor();
+					$ClassContent 		= $dRssLink->getClassContentName();
+					$ImgPath 			= $dRssLink->getImgPath();
+									
+					$IdTag 				= $dRssLink->getIdTag();
+					$IdTypeRss 			= $dRssLink->getType();
+					
+					$dTagPost = $mTag->find($IdTag);
 				
 					$todaytime = new \DateTime('NOW');
 					$interval = new \DateInterval('P0Y0DT11H0M');	
@@ -147,6 +146,12 @@
 								$PostContentSlash 	= \stripslashes($PostContent);
 								//$PostContentSlash = substr( $PostContentSlash, 379);
 								
+								if ($IdTypeRss == 2) {									
+									foreach( $PostContent->find('script') as $Script) {
+										if (isset($Script)) $Script->src = "";
+									}
+								}
+								
 								if (!isset($PostAuthor)) {
 									$PostAuthor = "BBT";
 								}else {
@@ -172,15 +177,17 @@
 										0
 									);
 									$Post->reKey();
+									
 									$mPost->insert($Post);
 									//Them tin vao Tag Post
-									$dPostTag = new \MVC\Domain\PostTag(
-										null,
-										$Post->getId(),
-										$IdTag
-										);
-									$mPostTag->insert($dPostTag);
-									
+									if (!isset($IdTag)) {
+										$dPostTag = new \MVC\Domain\PostTag(
+											null,
+											$Post->getId(),
+											$IdTag
+											);
+										$mPostTag->insert($dPostTag);
+									}
 								} else {
 									$PostRss = new \MVC\Domain\PostRss(
 										null,																			
