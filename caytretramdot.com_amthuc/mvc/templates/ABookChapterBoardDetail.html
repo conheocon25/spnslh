@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+	</head>
+	
+	<body>
+		<div metal:use-macro="mAdmin.xhtml/Header"/>		
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
+			<div class="row">
+				<div class="col-12">
+					<div class="widget-box">
+						<div class="widget-content nopadding">
+							<table class="table table-bordered table-striped table-hover with-check">
+								<thead>
+									<tr>
+										<th width="40">STT</th>
+										<th class="left">TIÊN</th>										
+										<th width="120" class="left">GHI CHÚ</th>
+										<th width="120" class="left">PRE</th>
+										<th class="left">HẬU</th>
+										<th width="120" class="left">GHI CHÚ</th>
+										<th width="120" class="left">PRE</th>
+										<th width="90" class="left">BIẾN</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr tal:repeat="Detail Board/getDetailAll">
+										<td class="center"><span tal:content="repeat/Detail/number"/></td>
+										<td><a tal:attributes="href Detail/getURLUpdLoad" tal:content="Detail/getName1"/></td>
+										<td><span tal:content="Detail/getNote1Status"/></td>
+										<td><span tal:content="Detail/getPre1"/></td>
+										<td><span tal:content="Detail/getName2"/></td>
+										<td><span tal:content="Detail/getNote2Status"/></td>
+										<td><span tal:content="Detail/getPre2"/></td>
+										<td>
+											<a tal:attributes="href Detail/getURLSettingSub">
+												 <span tal:content="Detail/getSubAll/count"/> biến
+											</a>
+										</td>
+									</tr>
+								</tbody>								
+							</table>							
+						</div>
+					</div>					
+					
+					<div metal:use-macro="mDialog.xhtml/DialogDel"/>
+					<div metal:use-macro="mDialog.xhtml/DialogDelSelected"/>
+				</div>				
+			</div>
+		</div>
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<script type="text/javascript">
+		/*<![CDATA[*/
+			$('#URLDelSelectedButton').click(function(){
+				var count = 0;
+				var Data = [];
+				var URL = "/object/del/Board/0";
+				
+				$(".CheckedDel").each(function( i, obj){
+					if ( $(this).is(':checked')==true ){
+						count += 1;
+						Data[count] = $(this).attr('data-id');
+					}
+				});
+				
+				$.ajax({
+					type: "POST",
+					data: {ListId:Data},
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
+			});
+			
+			//-----------------------------------------------------------------------------------
+			//Delete 1 Book			
+			//-----------------------------------------------------------------------------------
+			$('.remove-item').click(function(){
+				$('#URLDelButton').attr('alt', $(this).attr('data-id'));
+			});
+			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
+			$('#URLDelButton').click(function(){			
+				var URL = "/object/del/Board/" + $(this).attr('alt');
+				$.ajax({
+					type: "POST",					
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
+			});
+		/*]]>*/
+		</script>
+	</body>
+</html>
