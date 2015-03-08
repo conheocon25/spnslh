@@ -1,0 +1,121 @@
+<options>    
+	<control>
+		<!-- ============================================================================== -->
+		<!-- Các lệnh xử lí SYSTEM 															-->
+		<!-- ============================================================================== -->		
+		<command name="DefaultCommand" 	type="public"><view>DefaultCommand</view><status value="CMD_OK"><forward>FHome</forward></status></command>
+		<command name="FHome" 			type="public"><view>FHome</view></command>		
+		<command name="FSearch" 		type="public"><view>FSearch</view></command>
+		
+		<command name="FCategoryPost" 	type="public"><view>FCategoryPost</view></command>
+		<command name="FPost" 			type="public"><view>FPost</view></command>		
+		<command name="FTag" 			type="public"><view>FTag</view></command>
+		<command name="FTagDetail" 		type="public"><view>FTagDetail</view></command>
+		
+		<command name="FSuggest" 		type="public"><view>FSuggest</view></command>		
+		<command name="FMe" 			type="public"><view>FMe</view></command>		
+		<command name="FUser" 			type="public"><view>FUser</view></command>
+		
+		<command name="FCategoryBook" 	type="public"><view>FCategoryBook</view></command>
+		<command name="FBook" 			type="public"><view>FBook</view></command>
+		<command name="FChapter" 		type="public"><view>FChapter</view></command>
+		<command name="FBoard" 			type="public"><view>FBoard</view></command>
+		<command name="FBoardEmbeded" 	type="public"><view>FBoardEmbeded</view></command>
+		
+		<command name="FCategoryVideo" 	type="public"><view>FCategoryVideo</view></command>
+		<command name="FVideo" 			type="public"><view>FVideo</view></command>
+		
+		<command name="FContact" 		type="public"><view>FContact</view></command>
+		<command name="FLinked" 		type="public"><view>FLinked</view></command>
+		
+		<command name="ServiceYouTubeAddVideoFromPlayList" type="public"><view>ServiceYouTubeAddVideoFromPlayList</view></command>
+		<command name="ServiceYouTubeUpdateStatisticVideo" type="public"><view>ServiceYouTubeUpdateStatisticVideo</view></command>
+		<command name="ServiceFacebookUpdateUser" 			type="public"><view>ServiceFacebookUpdateUser</view></command>
+		
+		<!-- ============================================================================== -->
+		<!-- JSON LOAD			 															-->
+		<!-- ============================================================================== -->		
+		<command name="ObjectLiked"		type="public"><view>ObjectLiked</view></command>
+		
+		<command name="ObjectLoad"><view>ObjectLoad</view></command>
+		<command name="ObjectDel"><view>ObjectDel</view></command>
+		<command name="ObjectIns"><view>ObjectIns</view></command>
+		<command name="ObjectUpd"><view>ObjectUpd</view></command>
+				
+		<command name="SigninLoad" 		type="public"><view>SigninLoad</view></command>
+		<command name="SigninExe" 		type="public">
+			<view>SigninExe</view>
+			<status value="CMD_OK"><forward>Admin</forward></status>
+			<status value="CMD_NO_AUTHOR"><forward>FHome</forward></status>
+		</command>
+		<command name="SignoutLoad"><view>SignoutLoad</view></command>
+		<command name="SignoutExe"><view>SignoutExe</view><status value="CMD_OK"><forward>FHome</forward></status></command>
+		<command name="Admin"><view>Admin</view></command>											
+											
+		<!-- ============================================================================== -->
+		<!-- SETTING	 																	-->
+		<!-- ============================================================================== -->				
+		<command name="ASetting">				<view>ASetting		</view></command>
+		<command name="ASettingCategoryPost">	<view>ASettingCategoryPost</view></command>				
+		<command name="ASettingCategoryBook">	<view>ASettingCategoryBook</view></command>
+		<command name="ASettingCategoryVideo">	<view>ASettingCategoryVideo</view></command>
+		<command name="ASettingTag">			<view>ASettingTag</view></command>
+		
+		<command name="APresentation">	<view>APresentation	</view></command>
+		<command name="ASlide">			<view>ASlide		</view></command>
+		<command name="ASlideInsLoad">	<view>ASlideInsLoad	</view></command>
+		<command name="ASlideInsExe">	<view>ASlideInsExe	</view><status value="CMD_OK"><forward>ASlide</forward></status></command>
+		<command name="ASlideUpdLoad">	<view>ASlideUpdLoad	</view></command>
+		<command name="ASlideUpdExe">	<view>ASlideUpdExe	</view><status value="CMD_OK"><forward>ASlide</forward></status></command>
+								
+		<command name="ABook">					<view>ABook			</view></command>		
+		<command name="ABookInsLoad">			<view>ABookInsLoad	</view></command>
+		<command name="ABookInsExe">			<view>ABookInsExe	</view><status value="CMD_OK"><forward>ABook</forward></status></command>
+		<command name="ABookUpdLoad">			<view>ABookUpdLoad	</view></command>
+		<command name="ABookUpdExe">			<view>ABookUpdExe	</view><status value="CMD_OK"><forward>ABook</forward></status></command>
+		
+		<command name="ABookChapter">			<view>ABookChapter	</view></command>
+		<command name="ABookChapterInsLoad">	<view>ABookChapterInsLoad	</view></command>
+		<command name="ABookChapterInsExe">		<view>ABookChapterInsExe	</view><status value="CMD_OK"><forward>ABookChapter</forward></status></command>
+		<command name="ABookChapterUpdLoad">	<view>ABookChapterUpdLoad	</view></command>
+		<command name="ABookChapterUpdExe">		<view>ABookChapterUpdExe	</view><status value="CMD_OK"><forward>ABookChapter</forward></status></command>
+		
+		<command name="ABookChapterBoard">			<view>ABookChapterBoard			</view></command>
+		<command name="ABookChapterBoardInsLoad">	<view>ABookChapterBoardInsLoad	</view></command>
+		<command name="ABookChapterBoardInsExe">	<view>ABookChapterBoardInsExe	</view><status value="CMD_OK"><forward>ABookChapterBoard</forward></status></command>
+		<command name="ABookChapterBoardUpdLoad">	<view>ABookChapterBoardUpdLoad	</view></command>
+		<command name="ABookChapterBoardUpdExe">	<view>ABookChapterBoardUpdExe	</view><status value="CMD_OK"><forward>ABookChapterBoard</forward></status></command>
+		
+		<command name="ABookChapterBoardPoseLoad">	<view>ABookChapterBoardPoseLoad	</view></command>
+		<command name="ABookChapterBoardPoseExe">	<view>ABookChapterBoardPoseExe	</view><status value="CMD_OK"><forward>ABookChapterBoard</forward></status></command>
+		<command name="ABookChapterBoardStateLoad">	<view>ABookChapterBoardStateLoad	</view></command>
+		<command name="ABookChapterBoardStateExe">	<view>ABookChapterBoardStateExe		</view><status value="CMD_OK"><forward>ABookChapterBoard</forward></status></command>
+		
+		<command name="ABookChapterBoardPreExe">	<view>ABookChapterBoardPreExe</view></command>
+		
+		<command name="ABookChapterBoardDetail">	<view>ABookChapterBoardDetail</view></command>
+		<command name="ABookChapterBoardDetailTag">	<view>ABookChapterBoardDetailTag</view></command>
+		<command name="ABookChapterBoardDetailUpdLoad"><view>ABookChapterBoardDetailUpdLoad</view></command>
+		<command name="ABookChapterBoardDetailUpdExe"><view>ABookChapterBoardDetailUpdExe</view><status value="CMD_OK"><forward>ABookChapterBoardDetail</forward></status></command>
+		
+		<command name="ABoardSub"><view>ABoardSub</view></command>
+		<command name="ABoardSubInsExe"><view>ABoardSubInsExe</view></command>
+		
+		<command name="APost">					<view>APost			</view></command>		
+		<command name="APostInsLoad">			<view>APostInsLoad	</view></command>
+		<command name="APostInsExe">			<view>APostInsExe	</view><status value="CMD_OK"><forward>APost</forward></status></command>
+		<command name="APostUpdLoad">			<view>APostUpdLoad	</view></command>
+		<command name="APostUpdExe">			<view>APostUpdExe	</view><status value="CMD_OK"><forward>APost</forward></status></command>
+		
+		<command name="AVideo">					<view>AVideo			</view></command>		
+		<command name="AVideoInsLoad">			<view>AVideoInsLoad	</view></command>
+		<command name="AVideoInsExe">			<view>AVideoInsExe	</view><status value="CMD_OK"><forward>AVideo</forward></status></command>
+		<command name="AVideoUpdLoad">			<view>AVideoUpdLoad	</view></command>
+		<command name="AVideoUpdExe">			<view>AVideoUpdExe	</view><status value="CMD_OK"><forward>AVideo</forward></status></command>
+		
+		<command name="ALinked">				<view>ALinked		</view></command>
+		
+		<command name="ASettingUser">			<view>ASettingUser			</view></command>		
+		<command name="ASettingConfig">			<view>ASettingConfig		</view></command>
+	</control>
+</options>
