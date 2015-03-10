@@ -116,13 +116,15 @@
 							
 							if ($flagIns == false) {
 								
+								$curl_Url = trim($item['link']);
+								
 								$curl_handle=curl_init();
-								curl_setopt($curl_handle, CURLOPT_URL,$item['link']);
+								curl_setopt($curl_handle, CURLOPT_URL, $curl_Url);
 								curl_setopt($curl_handle, CURLOPT_CONNECTTIMEOUT, 2);
 								curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);				
 								curl_setopt($curl_handle, CURLOPT_BINARYTRANSFER, true);
 								curl_setopt($curl_handle, CURLOPT_SSL_VERIFYPEER, FALSE);				
-								curl_setopt($curl_handle, CURLOPT_USERAGENT, $WebUrl);
+								//curl_setopt($curl_handle, CURLOPT_USERAGENT, $WebUrl);
 								$data = curl_exec($curl_handle);
 								curl_close($curl_handle);
 								
@@ -130,6 +132,7 @@
 								@$dom->loadHTML($data);
 								
 								$dom->saveHTMLFile("data/autopost_". $IdTag . "_" . $strDatatime . "_" . $i . ".html");
+								
 								$HTML = file_get_html("data/autopost_". $IdTag . "_" . $strDatatime . "_" . $i . ".html");					
 									
 								$PostAuthor = $HTML->find('.' . $ClassAuthor, 0);										
@@ -143,8 +146,7 @@
 									}
 								}
 								
-								$PostContentSlash 	= \stripslashes($PostContent);
-								//$PostContentSlash = substr( $PostContentSlash, 379);
+								$PostContentSlash 	= \stripslashes($PostContent);								
 								
 								if ($IdTypeRss == 2) {									
 									foreach( $PostContent->find('script') as $Script) {
@@ -161,10 +163,10 @@
 								$timepost = new \DateTime('NOW');
 								$interval = new \DateInterval('P0Y0DT11H0M');													
 								//Công thêm 11 tiếng do lệch múi giờ Mỹ - Việt Nam
-								$DatePost = $timepost->add($interval);
+								$DatePost = $timepost; //->add($interval);
 					
 								// Thêm tin mới	nếu $AUTOPost = 1 thì ko cần duyệt tin còn $AUTOPost = 0 thì vào PostRss chờ duyệt tin	
-								if ($AUTOPost == 1 && $PostContentSlash != null ) {
+								if ($AUTOPost == 1) {
 									$Post = new \MVC\Domain\Post(
 										null,
 										$item['title'],
@@ -176,18 +178,18 @@
 										10,
 										0
 									);
-									$Post->reKey();
-									
+									$Post->reKey();									
 									$mPost->insert($Post);
-									//Them tin vao Tag Post
-									if (!isset($IdTag)) {
-										$dPostTag = new \MVC\Domain\PostTag(
+									
+									$idPost = $Post->getId();
+									
+									$dPostTag = new \MVC\Domain\PostTag(
 											null,
-											$Post->getId(),
+											$idPost,
 											$IdTag
-											);
-										$mPostTag->insert($dPostTag);
-									}
+										);
+									$mPostTag->insert($dPostTag);
+									
 								} else {
 									$PostRss = new \MVC\Domain\PostRss(
 										null,																			
@@ -204,12 +206,12 @@
 									$mPostRss->insert($PostRss);									
 								}
 									$i= $i + 1;
-									echo "<br />" . $i . "Đã thêm tin moi: " . $CurTitle . "<br />";
+									echo "<br /> " . $i . "Đã thêm tin moi: " . $CurTitle . " <br />";
 								
-								unset($dom);
-								unset($HTML);								
-								unset($Post);						
-								unset($PostRss);														
+								//unset($dom);
+								//unset($HTML);								
+								//unset($Post);						
+								//unset($PostRss);														
 								$PostAuthor = "";
 								$PostContent = "";														
 							}
@@ -218,7 +220,7 @@
 							
 					}
 					
-					echo "Đã thêm ". $i . " của vào Danh mục: " . $dTagPost->getName();
+					echo "<br />  Đã thêm ". $i . " của vào Danh mục: " . $dTagPost->getName();
 					
 				array_map('unlink', glob("data/*.html")); 
 				
