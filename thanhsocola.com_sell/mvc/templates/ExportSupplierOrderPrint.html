@@ -25,7 +25,7 @@
 	<table width="100%" border="0" cellpadding="2" >
 		<tr>			
 			<td width="50%" align="left"><B tal:content="ConfigName/getValue"/></td>
-			<td width="50%" align="right"><B>PHIẾU NHẬP HÀNG</B></td>
+			<td width="50%" align="right"><B>PHIẾU XUẤT HÀNG</B></td>
 		</tr>
 		<tr>			
 			<td width="50%" align="left" tal:content="ConfigAddress/getValue" />
@@ -33,10 +33,10 @@
 		</tr>
 		<tr>			
 			<td width="50%" align="left" tal:content="ConfigPhone/getValue"/>
-			<td width="50%" align="right"><span tal:content="OI/getDatePrint"/></td>
+			<td width="50%" align="right"><span tal:content="OE/getDatePrint"/></td>
 		</tr>
 	</table>
-	<p align="center"><span tal:content="OI/getDescription"/></p>
+	<p align="center"><span tal:content="OE/getDescription"/></p>
 	<table width="100%" border="1" cellpadding="2" >
 		<tr>
 			<th width="5%"><B>STT</B></th>
@@ -45,7 +45,7 @@
 			<th width="25%" align="right"><B>ĐƠN GIÁ</B></th>
 			<th width="25%" align="right"><B>THÀNH TIỀN</B></th>
 		</tr>
-		<tr tal:repeat="Detail OI/getDetailAll">
+		<tr tal:repeat="Detail OE/getDetailAll">
 			<td align="center" tal:content="repeat/Detail/number" />
 			<td>
 				<span tal:content="Detail/getResource/getName" />
@@ -57,10 +57,10 @@
 		</tr>
 		<tr>
 			<th align="right" colspan="4">TỔNG CỘNG</th>
-			<th align="right" colspan="1" tal:content="OI/getValuePrint" />
+			<th align="right" colspan="1" tal:content="OE/getValuePrint" />
 		</tr>
 	</table>
-	<p align="right">( <span tal:content="OI/getValueStrPrint"/> )</p>
+	<p align="right">( <span tal:content="OE/getValueStrPrint"/> )</p>
 	<table width="100%" border="0" cellpadding="2" >
 		<tr>
 			<td width="35%" align="center"></td>
