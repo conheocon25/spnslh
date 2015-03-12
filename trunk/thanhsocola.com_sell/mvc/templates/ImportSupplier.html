@@ -53,7 +53,9 @@
 												<a tal:attributes="href Order/getURLDetail" tal:content="Order/getValuePrint" />
 											</div>
 										</td>
-										<td class="center"><a target="blank" tal:attributes="href Order/getURLPrint"><i class="glyphicon glyphicon-print"/></a></td>
+										<td class="center">											
+											<a title="In phiếu" 	class="Ticket" tal:attributes="alt Order/getURLPrint"><i class="glyphicons-print"></i></a>											
+										</td>
 										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Order/getId"><i class="glyphicon glyphicon-remove"/></a></td>
 									</tr>
 								</tbody>																
@@ -251,14 +253,12 @@
 					}
 				});
 			});
-			/*
-			$("#DialogEdit").on('show.bs.modal', function(event){
-				window.setTimeout(
-					function(){$(event.currentTarget).find('input#Date2').first().focus()},
-					0500
-				);
+			
+			$(".Ticket").click(function(){
+				var url = $(this).attr('alt');
+				var thePopup = window.open( url, "In Phiếu", "menubar=0,location=0,height=700,width=700" );
+				thePopup.print();
 			});
-			*/
 			
 		/*]]>*/
 		</script>

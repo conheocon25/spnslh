@@ -33,7 +33,7 @@
 	<tal:block metal:define-macro="IncludeJS">
 		<script src="/mvc/templates/theme/bootstrap/js/jquery-1.11.0.min.js"></script>
 		<script src="/mvc/templates/theme/bootstrap/js/bootstrap.min.js"></script>	
-		<script src="/mvc/templates/theme/bootstrap/js/facebook.js"></script>
+		<script src="/mvc/templates/theme/bootstrap/js/facebook.js"></script>		
 		<script src="/mvc/templates/theme/bootstrap/js/chess.js"></script>
 	</tal:block>
 		
@@ -84,9 +84,7 @@
 						<a href="/lien-he">
 							About
 						</a>
-					</li>
-					<li><a><b tal:content="php:@\MVC\Library\Statistic::getOnlinePrint()"/> <i class="glyphicon glyphicon-user"/></a></li>
-					<li><a><b tal:content="php:@\MVC\Library\Statistic::getCountPrint()"/> <i class="glyphicon glyphicon-stats"/></a></li>					
+					</li>					
 				</ul>				
 			</div>
 		</div>

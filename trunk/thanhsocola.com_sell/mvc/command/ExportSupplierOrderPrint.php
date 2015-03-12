@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class ImportSupplierOrderPrint extends Command{
+	class ExportSupplierOrderPrint extends Command{
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -17,14 +17,14 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------						
-			$mOI 		= new \MVC\Mapper\OrderImport();
+			$mOE 		= new \MVC\Mapper\OrderExport();
 			$mSupplier 	= new \MVC\Mapper\Supplier();
 			$mConfig 	= new \MVC\Mapper\Config();
 						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
-			$OI 			= $mOI->find($IdOrder);
+			$OE 			= $mOE->find($IdOrder);
 			$Supplier 		= $mSupplier->find($IdSupplier);
 			$DateCurrent 	= "Vĩnh Long, ngày ".\date("d")." tháng ".\date("m")." năm ".\date("Y");
 			
@@ -36,7 +36,7 @@
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
 			$request->setProperty('DateCurrent'	, $DateCurrent);
-			$request->setObject('OI'			, $OI);
+			$request->setObject('OE'			, $OE);
 			$request->setObject('Supplier'		, $Supplier );
 			$request->setObject('ConfigName'	, $ConfigName );
 			$request->setObject('ConfigAddress'	, $ConfigAddress );
