@@ -136,8 +136,7 @@ class Session extends Mapper implements \MVC\Domain\SessionFinder {
 							from 
 								%s S
 							where
-								S.idcustomer = ? AND
-								S.status = 1 AND
+								S.idcustomer = ? AND								
 								S.datetime >= ? AND 
 								S.datetime <= ?
 							order by 

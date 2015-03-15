@@ -10,8 +10,8 @@ class TrackingCustomer extends Mapper implements \MVC\Domain\TrackingCustomerFin
 		
 		$selectAllStmt 				= sprintf("select * from %s ORDER BY date_start", $tblTrackingCustomer);
 		$selectStmt 				= sprintf("select *  from %s where id=?", $tblTrackingCustomer);
-		$updateStmt 				= sprintf("update %s set id_tracking=?, id_customer=?, value_session1=?, value_session2=?, value_collect=?, value_old=? where id=?", $tblTrackingCustomer);
-		$insertStmt 				= sprintf("insert into %s (id_tracking, id_customer, value_session1, value_session2, value_collect, value_old) values(?, ?, ?, ?, ?, ?)", $tblTrackingCustomer);
+		$updateStmt 				= sprintf("update %s set id_tracking=?, id_customer=?, collect=?, paid=?, value=?, value_global=?, `count`=?, `count_global`=? where id=?", $tblTrackingCustomer);
+		$insertStmt 				= sprintf("insert into %s (id_tracking, id_customer, collect, paid, value, value_global, `count`, count_global) values(?, ?, ?, ?, ?, ?, ?)", $tblTrackingCustomer);
 		$deleteStmt 				= sprintf("delete from %s where id=?", $tblTrackingCustomer);
 		$deleteByTrackingStmt 		= sprintf("delete from %s where id_tracking=?", $tblTrackingCustomer);
 		$findByStmt 				= sprintf("select id, 0 as id_tracking, id_td, id_course, sum(count) as count, avg(price) as price, sum(value) as value from %s where id_td=? GROUP BY id_course ORDER BY count DESC", $tblTrackingCustomer);		
@@ -19,6 +19,8 @@ class TrackingCustomer extends Mapper implements \MVC\Domain\TrackingCustomerFin
 		$findByTrackingStmt 		= sprintf("select * from %s where id_tracking=?", $tblTrackingCustomer);
 				
 		$findByPreStmt 				= sprintf("select *  from %s where id_tracking<? AND id_customer=? ORDER BY id_tracking DESC", $tblTrackingCustomer);
+		$findByNextStmt 			= sprintf("select *  from %s where id_tracking>? AND id_customer=? ORDER BY id_tracking", $tblTrackingCustomer);
+		
 		$findByCourseStmt 			= sprintf("select *  from %s where id_tracking=? AND id_course=?", $tblTrackingCustomer);
 		
         $this->selectAllStmt 		= self::$PDO->prepare($selectAllStmt);
@@ -31,6 +33,7 @@ class TrackingCustomer extends Mapper implements \MVC\Domain\TrackingCustomerFin
 		$this->findBy1Stmt 			= self::$PDO->prepare($findBy1Stmt);		
 		$this->findByTrackingStmt 	= self::$PDO->prepare($findByTrackingStmt);
 		$this->findByPreStmt 		= self::$PDO->prepare($findByPreStmt);
+		$this->findByNextStmt 		= self::$PDO->prepare($findByNextStmt);
 		$this->findByCourseStmt 	= self::$PDO->prepare($findByCourseStmt);
     }
     function getCollection( array $raw ) {return new TrackingCustomerCollection( $raw, $this );}
@@ -39,10 +42,12 @@ class TrackingCustomer extends Mapper implements \MVC\Domain\TrackingCustomerFin
 			$array['id'],
 			$array['id_tracking'],			
 			$array['id_customer'],
-			$array['value_session1'],
-			$array['value_session2'],
-			$array['value_collect'],
-			$array['value_old']
+			$array['collect'],
+			$array['paid'],			
+			$array['value'],
+			$array['value_global'],
+			$array['count'],
+			$array['count_global']
 		);
 	    return $obj;
     }
@@ -51,10 +56,12 @@ class TrackingCustomer extends Mapper implements \MVC\Domain\TrackingCustomerFin
         $values = array( 
 			$object->getIdTracking(),			
 			$object->getIdCustomer(),
-			$object->getValueSession1(),			
-			$object->getValueSession2(),
-			$object->getValueCollect(),
-			$object->getValueOld()
+			$object->getCollect(),			
+			$object->getPaid(),
+			$object->getValue(),
+			$object->getValueGlobal(),
+			$object->getCount(),
+			$object->getCountGlobal()
 		);
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
@@ -65,10 +72,12 @@ class TrackingCustomer extends Mapper implements \MVC\Domain\TrackingCustomerFin
         $values = array( 
 			$object->getIdTracking(),
 			$object->getIdCustomer(),
-			$object->getValueSession1(),
-			$object->getValueSession2(),
-			$object->getValueCollect(),
-			$object->getValueOld(),
+			$object->getCollect(),
+			$object->getPaid(),			
+			$object->getValue(),
+			$object->getValueGlobal(),
+			$object->getCount(),
+			$object->getCountGlobal(),
 			$object->getId()
 		);
         $this->updateStmt->execute( $values );
@@ -97,6 +106,11 @@ class TrackingCustomer extends Mapper implements \MVC\Domain\TrackingCustomerFin
 	function findByPre(array $values) {
 		$this->findByPreStmt->execute( $values );
         return new TrackingCustomerCollection( $this->findByPreStmt->fetchAll(), $this );
+    }
+	
+	function findByNext(array $values){
+		$this->findByNextStmt->execute( $values );
+        return new TrackingCustomerCollection( $this->findByNextStmt->fetchAll(), $this );
     }
 	
 }

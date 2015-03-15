@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class ReportDetail extends Command {
+	class ReportDetailCustomer extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -16,26 +16,27 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mTracking 	= new \MVC\Mapper\Tracking();			
+			$mTracking 	= new \MVC\Mapper\Tracking();
+			$mCustomer 	= new \MVC\Mapper\Customer();
 			$mConfig 	= new \MVC\Mapper\Config();
 												
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
 			$Tracking 			= $mTracking->find($IdTrack);
-			$TrackingPre		= $mTracking->findPre(array($Tracking->getDateStart()));
-			
 			$TrackingAll 		= $mTracking->findAll();
+						
+			$CustomerAll 		= $mCustomer->findAll();
 			$ConfigName 		= $mConfig->findByName("NAME");
-			
-			$TDAll 				= $Tracking->getDailyAll();			
-			if ($TDAll->count()<=0){
-				$Tracking->generateDaily();
-				$TDAll = $Tracking->getDailyAll();
+						
+			$TCAll 				= $Tracking->getCustomerAll();			
+			if ($TCAll->count()<=0){
+				$Tracking->generateCustomer();
+				$TCAll = $Tracking->getCustomerAll();
 			}
 												
-			$Title = $Tracking->getName();
-			$Navigation = array(				
+			$Title = $Tracking->getName(). "/ KHÁCH HÀNG";
+			$Navigation = array(
 				array("BÁO CÁO", "/report")
 			);
 			
@@ -44,9 +45,10 @@
 			//-------------------------------------------------------------												
 			$request->setProperty('Title'		, $Title);			
 			$request->setObject('Navigation'	, $Navigation);
+			$request->setObject('CustomerAll'	, $CustomerAll);
+			$request->setObject('TCAll'			, $TCAll);
+			$request->setObject('Tracking'		, $Tracking);			
 			$request->setObject('TrackingAll'	, $TrackingAll);
-			$request->setObject('Tracking'		, $Tracking);
-			$request->setObject('TrackingPre'	, $TrackingPre->current());
 			$request->setObject('ConfigName'	, $ConfigName);
 		}
 	}

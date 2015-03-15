@@ -22,19 +22,19 @@ class CollectCustomer extends Mapper implements \MVC\Domain\CollectCustomerFinde
 			from 
 				%s
 			where
-				idcustomer=? AND date >= ? AND date <= ?
+				date >= ? AND date <= ?
 			order by 
 				date DESC
 			"
 		, $tblCollectCustomer);
 		
-		$findByTracking1Stmt = sprintf(
+		$findByTrackingCustomerStmt = sprintf(
 			"select
 				*
 			from 
 				%s
 			where
-				date >= ? AND date <= ?
+				idcustomer=? AND date >= ? AND date <= ?
 			order by 
 				date DESC
 			"
@@ -56,7 +56,7 @@ class CollectCustomer extends Mapper implements \MVC\Domain\CollectCustomerFinde
 		$this->findByStmt = self::$PDO->prepare($findByStmt);
 		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);
 		$this->findByTrackingStmt = self::$PDO->prepare($findByTrackingStmt);
-		$this->findByTracking1Stmt = self::$PDO->prepare($findByTracking1Stmt);
+		$this->findByTrackingCustomerStmt = self::$PDO->prepare($findByTrackingCustomerStmt);
     } 
     function getCollection( array $raw ) {return new CollectCustomerCollection( $raw, $this );}
 
@@ -114,9 +114,9 @@ class CollectCustomer extends Mapper implements \MVC\Domain\CollectCustomerFinde
         return new CollectCustomerCollection( $this->findByStmt->fetchAll(), $this );
     }
 	
-	function findByTracking1($values ){
-        $this->findByTracking1Stmt->execute( $values );
-        return new CollectCustomerCollection( $this->findByTracking1Stmt->fetchAll(), $this );
+	function findByTrackingCustomer($values ){
+        $this->findByTrackingCustomerStmt->execute( $values );
+        return new CollectCustomerCollection( $this->findByTrackingCustomerStmt->fetchAll(), $this );
     }
 	
 	function findByTracking($values ){

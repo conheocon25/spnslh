@@ -18,30 +18,58 @@
 								<table tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()" class="table table-bordered table-striped table-hover">
 									<thead>										
 										<tr>
-											<th rowspan="2" width="120"><div class="text-right">NGÀY</div></th>
-											<th rowspan="2" width="120"><div class="text-right">SỐ DƯ</div></th>
+											<th rowspan="2"><div class="text-left">NGÀY</div></th>
+											<th rowspan="2" width="100"><div class="text-right">SỐ DƯ</div></th>
+											<th rowspan="2" width="5px"/>
 											<th colspan="3"><div class="text-center">THU</div></th>
+											<th rowspan="2" width="5px"/>
 											<th colspan="3"><div class="text-center">CHI</div></th>
 										</tr>
 										<tr>											
-											<th width="120"><div class="text-right">BÁN HÀNG</div></th>
-											<th width="120"><div class="text-right">NGUỒN KHÁC</div></th>
-											<th width="120"><div class="text-right">KHÁCH HÀNG</div></th>
-											<th width="120"><div class="text-right">CHO KHÁC</div></th>
-											<th width="120"><div class="text-right">LƯƠNG NV</div></th>
-											<th width="120"><div class="text-right">NHÀ CC</div></th>
+											<th width="100"><div class="text-right">BÁN HÀNG</div></th>
+											<th width="100"><div class="text-right">NGUỒN KHÁC</div></th>
+											<th width="100"><div class="text-right">KHÁCH HÀNG</div></th>
+											<th width="100"><div class="text-right">CHO KHÁC</div></th>
+											<th width="100"><div class="text-right">LƯƠNG NV</div></th>
+											<th width="100"><div class="text-right">NHÀ CC</div></th>
 										</tr>
 									</thead>
-									<tbody>
+									<tbody>										
+										<tr tal:condition="TrackingPre">
+											<td><B>ĐẦU KỲ</B></td>
+											<td align="right"><font color="green"><span tal:content="TrackingPre/getValuePrint"/></font></td>
+											<td align="right" />
+											<td align="right"><font color="blue"><span tal:content="TrackingPre/getCollect1Print"/></font></td>
+											<td align="right"><font color="blue"><span tal:content="TrackingPre/getCollect2Print"/></font></td>
+											<td align="right"><font color="blue"><span tal:content="TrackingPre/getCollect3Print"/></font></td>
+											<td align="right" />
+											<td align="right"><font color="red"><span tal:content="TrackingPre/getPaid1Print"/></font></td>
+											<td align="right"><font color="red"><span tal:content="TrackingPre/getPaid2Print"/></font></td>
+											<td align="right"><font color="red"><span tal:content="TrackingPre/getPaid3Print"/></font></td>
+										</tr>
 										<tr tal:repeat="TD Tracking/getDailyAll">
-											<td><div tal:attributes="alt TD/getURLReport" tal:content="TD/getDatePrint"></div></td>
-											<td align="right"><a tal:attributes="href TD/getURLReportSelling"><span tal:content="TD/getSellingPrint"/></a></td>
-											<td align="right"><a tal:attributes="href TD/getURLReportSelling"><span tal:content="TD/getSellingPrint"/></a></td>
-											<td align="right"><a tal:attributes="href TD/getURLReportSelling"><span tal:content="TD/getSellingPrint"/></a></td>
-											<td align="right"><a tal:attributes="href TD/getURLReportSelling"><span tal:content="TD/getSellingPrint"/></a></td>
-											<td align="right"><a tal:attributes="href TD/getURLReportSelling"><span tal:content="TD/getSellingPrint"/></a></td>
-											<td align="right"><a tal:attributes="href TD/getURLReportSelling"><span tal:content="TD/getSellingPrint"/></a></td>
-											<td align="right"><a tal:attributes="href TD/getURLReportSelling"><span tal:content="TD/getSellingPrint"/></a></td>
+											<td><div tal:content="TD/getDatePrint"></div></td>
+											<td align="right"><a tal:attributes="href TD/getURLReport"><font color="green"><span tal:content="TD/getValuePrint"/></font></a></td>
+											<td align="right" />
+											<td align="right"><font color="blue"><span tal:content="TD/getCollect1Print"/></font></td>
+											<td align="right"><font color="blue"><span tal:content="TD/getCollect2Print"/></font></td>
+											<td align="right"><font color="blue"><span tal:content="TD/getCollect3Print"/></font></td>
+											<td align="right" />
+											<td align="right"><font color="red"><span tal:content="TD/getPaid1Print"/></font></td>
+											<td align="right"><font color="red"><span tal:content="TD/getPaid2Print"/></font></td>
+											<td align="right"><font color="red"><span tal:content="TD/getPaid3Print"/></font></td>
+										</tr>
+										<tr>
+											<td><B>CUỐI KỲ</B></td>
+											<td align="right"><font color="green"><span tal:content="Tracking/getValuePrint"/></font></td>
+											<td align="right" />
+											<td align="right"><font color="blue"><span tal:content="Tracking/getCollect1Print"/></font></td>
+											<td align="right"><font color="blue"><span tal:content="Tracking/getCollect2Print"/></font></td>
+											<td align="right"><font color="blue"><span tal:content="Tracking/getCollect3Print"/></font></td>
+											<td align="right" />
+											<td align="right"><font color="red"><span tal:content="Tracking/getPaid1Print"/></font></td>
+											<td align="right"><font color="red"><span tal:content="Tracking/getPaid2Print"/></font></td>
+											<td align="right"><font color="red"><span tal:content="Tracking/getPaid3Print"/></font></td>
 										</tr>
 									</tbody>
 								</table>								

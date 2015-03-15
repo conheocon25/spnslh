@@ -42,7 +42,7 @@ class CollectCustomer extends Object{
 	function getValue( ) {if (!isset($this->Value)) return 0; return $this->Value; }
 	function getValuePrint( ) { 
 		$num = number_format($this->Value, 0, ',', '.');
-		return $num." đ";
+		return $num;
     }	
 	function setDate( $Date ) {$this->Date = $Date; $this->markDirty(); }
 	function getDate( ) {return $this->Date; }
