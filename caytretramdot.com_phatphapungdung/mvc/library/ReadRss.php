@@ -18,17 +18,41 @@ class ReadRss {
 	{
 		$curl_handle=curl_init();
 		curl_setopt($curl_handle, CURLOPT_URL,self::$_rssUrl);
-		curl_setopt($curl_handle, CURLOPT_CONNECTTIMEOUT, 2);
+		curl_setopt($curl_handle, CURLOPT_CONNECTTIMEOUT, 5);
 		curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
-		curl_setopt($curl_handle, CURLOPT_HEADER, 0);		
-		curl_setopt($curl_handle, CURLOPT_USERAGENT, 'Your application name');
+		curl_setopt($curl_handle, CURLOPT_HEADER, 0);	
+		curl_setopt($curl_handle, CURLOPT_BINARYTRANSFER, true);
+		curl_setopt($curl_handle, CURLOPT_SSL_VERIFYPEER, FALSE);			
+		curl_setopt($curl_handle, CURLOPT_USERAGENT, 'user');
 		$xmlcontent = curl_exec($curl_handle);
 		curl_close($curl_handle);
-		//return $xmlcontent;
 		
 		self::$_doc = new \DOMDocument();		
 		@self::$_doc = dom_import_simplexml(simplexml_load_string($xmlcontent));		
 		self::$_loaded = TRUE;
+		
+		
+		$ch = self::$_doc->getElementsByTagName('channel')->item(0);
+		
+		$result = array();		
+		if ( ! is_null($ch))
+		{
+				if ($ch->hasChildNodes())
+				{
+					$i = 0;
+					foreach ($ch->getElementsByTagName('item') as $tag)
+					{
+						$result['item_'.$i] = array();
+						
+						foreach ($tag->getElementsByTagName('*') as $item)
+							$result['item_'.$i][$item->tagName] = html_entity_decode($item->nodeValue, ENT_QUOTES, 'UTF-8') ;
+
+						$i++;
+						
+					}
+				}
+			}
+		return $result;
 	}
 	/**
 	* Load the xml document

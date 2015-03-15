@@ -61,9 +61,7 @@
 					$strDatatime = "_" . $todaytime->format('Y-m-d_H_i_s');
 					
 					$ReadRssXml = new ReadRss($Url);				
-					$ReadRssXml->ReadRssXMLByCurl();				
-					$chItems = $ReadRssXml->GetItems();
-					
+					$chItems = $ReadRssXml->ReadRssXMLByCurl();	
 					
 					//Công thêm 11 tiếng do lệch múi giờ Mỹ - Việt Nam
 					$DatePost = $todaytime->add($interval);
@@ -116,24 +114,21 @@
 							
 							if ($flagIns == false) {
 								
-								$curl_Url = trim($item['link']);
-								
 								$curl_handle=curl_init();
-								curl_setopt($curl_handle, CURLOPT_URL, $curl_Url);
+								curl_setopt($curl_handle, CURLOPT_URL,$item['link']);
 								curl_setopt($curl_handle, CURLOPT_CONNECTTIMEOUT, 2);
 								curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);				
 								curl_setopt($curl_handle, CURLOPT_BINARYTRANSFER, true);
 								curl_setopt($curl_handle, CURLOPT_SSL_VERIFYPEER, FALSE);				
-								//curl_setopt($curl_handle, CURLOPT_USERAGENT, $WebUrl);
+								curl_setopt($curl_handle, CURLOPT_USERAGENT, $WebUrl);
 								$data = curl_exec($curl_handle);
 								curl_close($curl_handle);
 								
 								$dom = new \DOMDocument();
 								@$dom->loadHTML($data);
 								
-								$dom->saveHTMLFile("data/autopost_". $IdTag . "_" . $strDatatime . "_" . $i . ".html");
-								
-								$HTML = file_get_html("data/autopost_". $IdTag . "_" . $strDatatime . "_" . $i . ".html");					
+								$dom->saveHTMLFile("data/giacngo_". $IdCategory . "_" . $strDatatime . "_" . $i . ".html");
+								$HTML = file_get_html("data/giacngo_". $IdCategory . "_" . $strDatatime . "_" . $i . ".html");				
 									
 								$PostAuthor = $HTML->find('.' . $ClassAuthor, 0);										
 								$PostContent = $HTML->find('.' . $ClassContent, 0);					
@@ -146,13 +141,7 @@
 									}
 								}
 								
-								$PostContentSlash 	= \stripslashes($PostContent);								
-								
-								if ($IdTypeRss == 2) {									
-									foreach( $PostContent->find('script') as $Script) {
-										if (isset($Script)) $Script->src = "";
-									}
-								}
+								$PostContent 	= \stripslashes($PostContent);								
 								
 								if (!isset($PostAuthor)) {
 									$PostAuthor = "BBT";
@@ -170,7 +159,7 @@
 									$Post = new \MVC\Domain\Post(
 										null,
 										$item['title'],
-										$PostContentSlash,
+										$PostContent,
 										$PostAuthor,
 										$DatePost->format('Y-m-d H:i:s') ,
 										1,
@@ -194,7 +183,7 @@
 									$PostRss = new \MVC\Domain\PostRss(
 										null,																			
 										$item['title'],
-										$PostContentSlash,
+										$PostContent,
 										$PostAuthor,
 										$DatePost->format('Y-m-d H:i:s') ,
 										1,
@@ -208,10 +197,10 @@
 									$i= $i + 1;
 									echo "<br /> " . $i . "Đã thêm tin moi: " . $CurTitle . " <br />";
 								
-								//unset($dom);
-								//unset($HTML);								
-								//unset($Post);						
-								//unset($PostRss);														
+								unset($dom);
+								unset($HTML);								
+								unset($Post);						
+								unset($PostRss);														
 								$PostAuthor = "";
 								$PostContent = "";														
 							}
