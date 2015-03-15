@@ -6,6 +6,16 @@ class Tracking extends Object{
     private $Id;
 	private $DateStart;
 	private $DateEnd;
+	
+	private $Collect1;
+	private $Collect2;
+	private $Collect3;
+	
+	private $Paid1;
+	private $Paid2;
+	private $Paid3;
+	
+	private $Value;
 		
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
@@ -13,11 +23,28 @@ class Tracking extends Object{
     function __construct( 
 			$Id=null,
 			$DateStart=null, 
-			$DateEnd=null			
+			$DateEnd=null,
+			$Collect1=null,
+			$Collect2=null,
+			$Collect3=null,
+			$Paid1=null,
+			$Paid2=null,
+			$Paid3=null,
+			$Value=null
 	){
-			$this->Id 					= $Id; 
-			$this->DateStart 			= $DateStart; 
-			$this->DateEnd 				= $DateEnd;						
+			$this->Id 				= $Id; 
+			$this->DateStart 		= $DateStart; 
+			$this->DateEnd 			= $DateEnd;
+			
+			$this->Collect1 		= $Collect1;
+			$this->Collect2 		= $Collect2;
+			$this->Collect3 		= $Collect3;
+			
+			$this->Paid1 			= $Paid1;
+			$this->Paid2 			= $Paid2;
+			$this->Paid3 			= $Paid3;
+			
+			$this->Value 			= $Value;
 									
 			parent::__construct( $Id );
 	}
@@ -32,22 +59,78 @@ class Tracking extends Object{
 	function setDateEnd( $DateEnd ) {$this->DateEnd= $DateEnd;$this->markDirty();}   
 	function getDateEnd( ) {return $this->DateEnd;}	
 	function getDateEndPrint( ) {$D = new \MVC\Library\Date($this->DateEnd);return $D->getDateFormat();}
-					
-	function toJSON(){
-		$json = array(
-			'Id' 					=> $this->getId(),			
-			'DateStart'				=> $this->getDateStart(),
-			'DateEnd'				=> $this->getDateEnd()	
-		);
-		return json_encode($json);
+	
+	function setPaid1( $Paid1 ) {$this->Paid1 = $Paid1; $this->markDirty();}   
+	function getPaid1( ) {return $this->Paid1;}
+	function getPaid1Print( ) {$N = new \MVC\Library\Number($this->Paid1);return $N->formatCurrency();}
+	
+	function setPaid2( $Paid2 ) {$this->Paid2 = $Paid2; $this->markDirty();}   
+	function getPaid2( ) {return $this->Paid2;}
+	function getPaid2Print( ) {$N = new \MVC\Library\Number($this->Paid2);return $N->formatCurrency();}
+	
+	function setPaid3( $Paid3 ) {$this->Paid3 = $Paid3; $this->markDirty();}   
+	function getPaid3( ) {return $this->Paid3;}
+	function getPaid3Print( ) {$N = new \MVC\Library\Number($this->Paid3);return $N->formatCurrency();}
+	
+	function setCollect1( $Collect1 ) {$this->Collect1 = $Collect1; $this->markDirty();}
+	function getCollect1( ) {return $this->Collect1;}
+	function getCollect1Print( ) {$N = new \MVC\Library\Number($this->Collect1);return $N->formatCurrency();}
+
+	function setCollect2( $Collect2 ) {$this->Collect2 = $Collect2; $this->markDirty();}
+	function getCollect2( ) {return $this->Collect2;}
+	function getCollect2Print( ) {$N = new \MVC\Library\Number($this->Collect2);return $N->formatCurrency();}
+	
+	function setCollect3( $Collect3 ) {$this->Collect3 = $Collect3; $this->markDirty();}
+	function getCollect3( ) {return $this->Collect3;}
+	function getCollect3Print( ) {$N = new \MVC\Library\Number($this->Collect3);return $N->formatCurrency();}
+
+	function setValue( $Value ) {$this->Value = $Value; $this->markDirty();}
+	function getValue( ) {return $this->Value;}
+	function getValuePrint( ) {$N = new \MVC\Library\Number($this->Value);return $N->formatCurrency();}	
+	function reValue( ){
+		$mTracking = new \MVC\Mapper\Tracking();
+		$TrackingPre = $mTracking->findPre(array($this->getDateStart()));
+		
+		$TDAll = $this->getDailyAll();
+		
+		$Collect1 = 0;
+		$Collect2 = 0;
+		$Collect3 = 0;
+		
+		$Paid1 = 0;
+		$Paid2 = 0;
+		$Paid3 = 0;
+		
+		$Value = 0;
+		
+		while ($TDAll->valid())
+		{
+			$TD = $TDAll->current();
+			$Collect1 += $TD->getCollect1();
+			$Collect2 += $TD->getCollect2();
+			$Collect3 += $TD->getCollect3();
+			
+			$Paid1 += $TD->getPaid1();
+			$Paid2 += $TD->getPaid2();
+			$Paid3 += $TD->getPaid3();
+			if ($TD->getValue()>0) $Value = $TD->getValue();
+			
+			$TDAll->next();	
+		}		
+		$this->Collect1 = $Collect1;
+		$this->Collect2 = $Collect2;
+		$this->Collect3 = $Collect3;
+		$this->Paid1 = $Paid1;
+		$this->Paid2 = $Paid2;
+		$this->Paid3 = $Paid3;
+		
+		if ($TrackingPre->count()>0){
+			$this->Value = $Value + $TrackingPre->current()->getValue();
+		}else{
+			$this->Value = $Value;
+		}
 	}
-	
-	function setArray( $Data ){        
-		$this->Id 					= $Data[0];
-		$this->DateStart 			= $Data[1];
-		$this->DateEnd 				= $Data[2];		
-    }
-	
+			
 	//-------------------------------------------------------------------------------
 	//GET LISTs
 	//-------------------------------------------------------------------------------
@@ -62,7 +145,37 @@ class Tracking extends Object{
 		$TDAll 	= $mTD->findBy(array($this->getId()));
 		return $TDAll;
 	}
-	function generateDaily(){		
+	
+	function getCustomerAll(){
+		$mTC 	= new \MVC\Mapper\TrackingCustomer();
+		$TCAll 	= $mTC->findByTracking(array($this->getId()));
+		return $TCAll;
+	}
+	
+	function generateCustomer(){
+		$Date = $this->getDateStart();
+		$EndDate = $this->getDateEnd();
+		$mTC = new \MVC\Mapper\TrackingCustomer();
+		$mCustomer = new \MVC\Mapper\Customer();
+		$CustomerAll = $mCustomer->findAll();
+		
+		while ($CustomerAll->valid())
+		{
+			$Customer = $CustomerAll->current();
+			$TC = new \MVC\Domain\TrackingCustomer(
+				null,
+				$this->getId(), 
+				$Customer->getId(),
+				0, 
+				0, 
+				0				
+			);
+			$mTC->insert($TC);
+			$CustomerAll->next();	
+		}		
+	}	
+	
+	function generateDaily(){
 		$Date = $this->getDateStart();
 		$EndDate = $this->getDateEnd();
 		$mTD = new \MVC\Mapper\TrackingDaily();
@@ -102,78 +215,6 @@ class Tracking extends Object{
 			$Date = \date("Y-m-d", strtotime("+1 day", strtotime($Date)));
 		}
 		return $Data;
-	}
-	
-	//-------------------------------------------------------------------------------------
-	//THEO DÕI CÔNG NỢ KHÁCH HÀNG
-	//-------------------------------------------------------------------------------------
-	//TÍNH NỢ CŨ
-	function getCustomerOldDebt($IdCustomer){
-		$mSession = new \MVC\Mapper\Session();
-		$mCC = new \MVC\Mapper\CollectCustomer();
-		$Date1 = \date("Y-m-d", strtotime("2013-1-1"));		
-		$Date2 = \date("Y-m-d", strtotime($this->getDateStart()))." 7:59:0";
-						
-		//Tính phiếu nợ trước đó
-		$SessionAll = $mSession->findByTrackingDebtCustomer( array($IdCustomer, $Date1, $Date2) );
-		$ValueSessionAll = 0;
-		while ($SessionAll->valid()){
-			$Session = $SessionAll->current();
-			if ($Session->getStatus()==2)
-				$ValueSessionAll += $Session->getValue();
-			$SessionAll->next();
-		}
-		
-		//Tính tiền trả trước đó
-		$Date11 = \date("Y-m-d", strtotime("2013-1-1"));
-		$Date21 = \date("Y-m-d", strtotime("-1 day", strtotime($this->getDateStart())));
-		$CollectAll = $mCC->findByTracking( array($IdCustomer, $Date11, $Date21) );				
-		$ValueCollectAll = 0;
-		while ($CollectAll->valid()){
-			$Collect = $CollectAll->current();
-			$ValueCollectAll += $Collect->getValue();
-			$CollectAll->next();
-		}
-		
-		$Value = $ValueSessionAll - $ValueCollectAll;
-		return $Value;
-	}
-	function getCustomerOldDebtPrint($IdCustomer){$N = new \MVC\Library\Number( $this->getCustomerOldDebt($IdCustomer) );return $N->formatCurrency()." đ";}
-				
-	function getCustomerCollectGeneral(){
-		$mCC = new \MVC\Mapper\CollectCustomer();
-		$Date1 = \date("Y-m-d", strtotime($this->getDateStart() ));
-		$Date2 = \date("Y-m-d", strtotime($this->getDateEnd()   ));
-		$CollectAll = $mCC->findByTracking1( array($Date1, $Date2) );
-		return $CollectAll;
-	}
-	
-	function getCustomerCollectGeneralValue(){
-		$CollectAll = $this->getCustomerCollectGeneral();
-		$Value = 0;
-		while ($CollectAll->valid()){
-			$Collect = $CollectAll->current();
-			$Value += $Collect->getValue();
-			$CollectAll->next();
-		}
-		return $Value;
-	}
-	function getCustomerCollectGeneralValuePrint(){$N = new \MVC\Library\Number( $this->getCustomerCollectGeneralValue() );return $N->formatCurrency()." đ";}	
-	
-	//NỢ MỚI
-	function getCustomerNewDebt($IdCustomer){
-		return $this->getCustomerOldDebt($IdCustomer) + $this->getCustomerDebtSessionAllValue($IdCustomer) - $this->getCustomerCollectAllValue($IdCustomer);
-	}
-	function getCustomerNewDebtPrint($IdCustomer){$N = new \MVC\Library\Number( $this->getCustomerNewDebt($IdCustomer) );return $N->formatCurrency()." đ";}	
-	function getCustomerNewDebtStrPrint($IdCustomer){$N = new \MVC\Library\Number( $this->getCustomerNewDebt($IdCustomer) );return $N->readDigit();}
-	
-	//THỐNG KÊ PHÒNG/PHIẾU/GIỜ
-	function getTableSession($IdTable){		
-		$Date1 = \date("Y-m-d", strtotime($this->getDateStart()))." 8:0:0";
-		$Date2 = \date("Y-m-d", strtotime("+1 day", strtotime($this->getDateEnd())))." 7:59:59";		
-		$mSession = new \MVC\Mapper\Session();
-		$SessionAll = $mSession->findByTableTracking(array($IdTable,$Date1,$Date2));
-		return $SessionAll;
 	}
 	
 	//-------------------------------------------------------------------------------

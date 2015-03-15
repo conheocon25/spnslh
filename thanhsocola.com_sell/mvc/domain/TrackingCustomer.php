@@ -4,12 +4,14 @@ require_once( "mvc/base/domain/DomainObject.php" );
 class TrackingCustomer extends Object{
 
     private $Id;
-	private $IdTracking;	
+	private $IdTracking;
 	private $IdCustomer;
-	private $ValueSession1;	
-	private $ValueSession2;
-	private $ValueCollect;
-	private $ValueOld;
+	private $Collect;		
+	private $Paid;	
+	private $Value;
+	private $ValueGlobal;
+	private $Count;
+	private $CountGlobal;
 	
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
@@ -18,18 +20,22 @@ class TrackingCustomer extends Object{
 		$Id=null, 
 		$IdTracking=null,
 		$IdCustomer=null, 
-		$ValueSession1=null,
-		$ValueSession2=null, 		
-		$ValueCollect=null,
-		$ValueOld=null
+		$Collect=null,
+		$Paid=null,		
+		$Value=null,
+		$ValueGlobal=null,
+		$Count=null,
+		$CountGlobal=null
 	) {
         $this->Id 				= $Id;
 		$this->IdTracking 		= $IdTracking;
 		$this->IdCustomer 		= $IdCustomer;
-		$this->ValueSession1 	= $ValueSession1;
-		$this->ValueSession2 	= $ValueSession2;
-		$this->ValueCollect 	= $ValueCollect;
-		$this->ValueOld 		= $ValueOld;
+		$this->Collect 			= $Collect;
+		$this->Paid 			= $Paid;		
+		$this->Value 			= $Value;
+		$this->ValueGlobal		= $ValueGlobal;
+		$this->Count 			= $Count;
+		$this->CountGlobal		= $CountGlobal;
 		
         parent::__construct( $Id );
     }
@@ -38,31 +44,34 @@ class TrackingCustomer extends Object{
 		
     function setIdTracking( $IdTracking ) {$this->IdTracking = $IdTracking;$this->markDirty();}   
 	function getIdTracking( ) {return $this->IdTracking;}
-		
+	
 	function setIdCustomer( $IdCustomer ) {$this->IdCustomer = $IdCustomer;$this->markDirty();}   
 	function getIdCustomer( ) {return $this->IdCustomer;}
 	function getCustomer(){ $mCustomer = new \MVC\Mapper\Customer(); $Customer = $mCustomer->find( $this->getIdCustomer() ); return $Customer;}
 	
-	function setValueSession1( $ValueSession1 ) {$this->ValueSession1 = $ValueSession1;$this->markDirty();}
-	function getValueSession1( ) {return $this->ValueSession1;}
-	function getValueSession1Print( ) {$N = new \MVC\Library\Number($this->ValueSession1);return $N->formatCurrency();}
+	function setCollect( $Collect ) {$this->Collect = $Collect;$this->markDirty();}
+	function getCollect( ) {return $this->Collect;}
+	function getCollectPrint( ) {$N = new \MVC\Library\Number($this->Collect);return $N->formatCurrency();}
 	
-	function setValueSession2( $ValueSession2 ) {$this->ValueSession2 = $ValueSession2;$this->markDirty();}   
-	function getValueSession2( ) {return $this->ValueSession2;}
-	function getValueSession2Print( ) {$N = new \MVC\Library\Number($this->ValueSession2);return $N->formatCurrency();}
+	function setPaid( $Paid ) {$this->Paid = $Paid;$this->markDirty();}
+	function getPaid( ) {return $this->Paid;}
+	function getPaidPrint( ) {$N = new \MVC\Library\Number($this->Paid);return $N->formatCurrency();}	
 	
-	function setValueCollect( $ValueCollect ) {$this->ValueCollect = $ValueCollect;$this->markDirty();}   
-	function getValueCollect( ) {return $this->ValueCollect;}
-	function getValueCollectPrint( ) {$N = new \MVC\Library\Number($this->ValueCollect); return $N->formatCurrency();}
+	function setValue( $Value ) {$this->Value = $Value;$this->markDirty();}
+	function getValue( ) {return $this->Value;}
+	function getValuePrint( ) {$N = new \MVC\Library\Number($this->Value);return $N->formatCurrency();}	
 	
-	function setValueOld( $ValueOld ) {$this->ValueOld = $ValueOld;$this->markDirty();}
-	function getValueOld( ) {return $this->ValueOld;}
-	function getValueOldPrint( ) {$N = new \MVC\Library\Number($this->ValueOld); return $N->formatCurrency();}
+	function setValueGlobal( $ValueGlobal ) {$this->ValueGlobal = $ValueGlobal;$this->markDirty();}
+	function getValueGlobal( ) {return $this->ValueGlobal;}
+	function getValueGlobalPrint( ) {$N = new \MVC\Library\Number($this->ValueGlobal);return $N->formatCurrency();}	
 	
-	function getValue(){
-		return ($this->getValueOld() + $this->getValueSession2() - $this->getValueCollect());
-	}
-	function getValuePrint( ) {$N = new \MVC\Library\Number($this->getValue()); return $N->formatCurrency();}
+	function setCount( $Count ) {$this->Count = $Count;$this->markDirty();}
+	function getCount( ) {return $this->Count;}
+	function getCountPrint( ) {$N = new \MVC\Library\Number($this->Count);return $N->formatCurrency();}	
+	
+	function setCountGlobal( $CountGlobal ) {$this->CountGlobal = $Count;$this->markDirty();}
+	function getCountGlobal( ) {return $this->CountGlobal;}
+	function getCountGlobalPrint( ) {$N = new \MVC\Library\Number($this->CountGlobal);return $N->formatCurrency();}	
 	
 	//-------------------------------------------------------------------------------
 	//GET LISTs
@@ -71,7 +80,26 @@ class TrackingCustomer extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLView(){return "/report/".$this->IdTracking."/customer/".$this->IdCustomer;}
+	function getURLView(){return "/report/".$this->IdTracking."/customer/".$this->Id;}
+	
+	function getURLViewNext(){
+		$mTC = new \MVC\Mapper\TrackingCustomer();
+		$TCNextAll	= $mTC->findByNext(array($this->IdTracking, $this->getIdCustomer()));
+		if ($TCNextAll->count()>0 ){
+			$TCNext = $TCNextAll->current();
+			return "/report/".$TCNext->getIdTracking()."/customer/".$TCNext->getId();
+		}
+		return "/report/".$this->IdTracking."/customer/".$this->Id;
+	}
+	function getURLViewPrevious(){
+		$mTC = new \MVC\Mapper\TrackingCustomer();
+		$TCPreAll	= $mTC->findByPre(array($this->IdTracking, $this->getIdCustomer()));
+		if ($TCPreAll->count()>0 ){
+			$TCPre = $TCPreAll->current();
+			return "/report/".$TCPre->getIdTracking()."/customer/".$TCPre->getId();
+		}
+		return "/report/".$this->IdTracking."/customer/".$this->Id;
+	}
 	
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

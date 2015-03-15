@@ -12,15 +12,30 @@ class Tracking extends Mapper implements \MVC\Domain\TrackingFinder{
 		$selectStmt = sprintf("select *  from %s where id=?", $tblTracking);
 		$updateStmt = sprintf("update %s set 
 			date_start=?,
-			date_end=?			
+			date_end=?,
+			collect1=?,
+			collect2=?,
+			collect3=?,
+			paid1=?,
+			paid2=?,
+			paid3=?,
+			value=?
 		where id=?", $tblTracking);
+		
 		$insertStmt = sprintf("insert into %s (
 			date_start,
-			date_end		
-		) values(?, ?)", $tblTracking);
-		$deleteStmt 		= sprintf("delete from %s where id=?", $tblTracking);
-		$findByNearestStmt 	= sprintf("select * from %s where date_start<? ORDER BY date_start DESC LIMIT 1 ", $tblTracking);
-		$existStmt 			= sprintf("select * from %s where date_start>=? AND date_end<=?", $tblTracking);
+			date_end,
+			collect1,
+			collect2,
+			collect3,
+			paid1,
+			paid2,
+			paid3,
+			value
+		) values(?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblTracking);
+		$deleteStmt 	= sprintf("delete from %s where id=?", $tblTracking);
+		$findPreStmt 	= sprintf("select * from %s where date_start<? ORDER BY date_start DESC", $tblTracking);
+		$existStmt 		= sprintf("select * from %s where date_start>=? AND date_end<=?", $tblTracking);
 		
         $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
         $this->selectStmt = self::$PDO->prepare($selectStmt);
@@ -28,7 +43,7 @@ class Tracking extends Mapper implements \MVC\Domain\TrackingFinder{
         $this->insertStmt = self::$PDO->prepare($insertStmt);
 		$this->deleteStmt = self::$PDO->prepare($deleteStmt);
 		$this->existStmt  = self::$PDO->prepare($existStmt);
-		$this->findByNearestStmt = self::$PDO->prepare($findByNearestStmt);
+		$this->findPreStmt = self::$PDO->prepare($findPreStmt);
     } 
     function getCollection( array $raw ) {
         return new TrackingCollection( $raw, $this );
@@ -38,7 +53,14 @@ class Tracking extends Mapper implements \MVC\Domain\TrackingFinder{
         $obj = new \MVC\Domain\Tracking( 
 			$array['id'],
 			$array['date_start'],
-			$array['date_end']			
+			$array['date_end'],
+			$array['collect1'],
+			$array['collect2'],
+			$array['collect3'],
+			$array['paid1'],
+			$array['paid2'],
+			$array['paid3'],
+			$array['value']
 		);
         return $obj;
     }
@@ -47,7 +69,14 @@ class Tracking extends Mapper implements \MVC\Domain\TrackingFinder{
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array( 
 			$object->getDateStart(), 
-			$object->getDateEnd()			
+			$object->getDateEnd(),
+			$object->getCollect1(),
+			$object->getCollect2(),
+			$object->getCollect3(),
+			$object->getPaid1(),
+			$object->getPaid2(),
+			$object->getPaid3(),
+			$object->getValue()
 		);
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
@@ -56,7 +85,14 @@ class Tracking extends Mapper implements \MVC\Domain\TrackingFinder{
     protected function doUpdate( \MVC\Domain\Object $object ) {
         $values = array(
 			$object->getDateStart(), 
-			$object->getDateEnd(),			
+			$object->getDateEnd(),
+			$object->getCollect1(),
+			$object->getCollect2(),
+			$object->getCollect3(),
+			$object->getPaid1(),
+			$object->getPaid2(),
+			$object->getPaid3(),
+			$object->getValue(),
 			$object->getId()
 		);
         $this->updateStmt->execute( $values );
@@ -65,9 +101,9 @@ class Tracking extends Mapper implements \MVC\Domain\TrackingFinder{
     function selectStmt() {return $this->selectStmt;}
     function selectAllStmt() {return $this->selectAllStmt;}
 	
-	function findByNearest($values) {
-        $this->findByNearestStmt->execute( $values );
-        return new TrackingCollection( $this->findByNearestStmt->fetchAll(), $this );
+	function findPre($values) {
+        $this->findPreStmt->execute( $values );
+        return new TrackingCollection( $this->findPreStmt->fetchAll(), $this );
     }
 		
 	function exist( $values ){

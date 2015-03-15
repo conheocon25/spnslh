@@ -7,40 +7,42 @@
 	
 	<body data-menu-position="closed">
 		<div metal:use-macro="mAdmin.xhtml/Header"/>
-		<div class="menu">
-			
+		<div id="sidebar">
+			<ul style="display: block;">
+				<li><a tal:attributes="href TC/getURLViewNext"><i class="glyphicon glyphicon-arrow-right"/> THÁNG KẾ</a></li>
+				<li><a tal:attributes="href TC/getURLViewPrevious"><i class="glyphicon glyphicon-arrow-left"/> THÁNG TRƯỚC</a></li>
+			</ul>
 		</div>
 		<div id="content">
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>			
-			<div metal:use-macro="mAdmin.xhtml/LocationBar"/>			
+			<div metal:use-macro="mAdmin.xhtml/LocationBar"/>
 			<div class="container-fluid">							
 				<div class="row">
 					<div class="col-12">
 						<div class="widget-box">
 							<div class="widget-content nopadding">
 								<div role="grid" class="dataTables_wrapper">
-									<H3>TỔNG KẾT <span tal:content="Customer/getName"/></H3>
+									<H3>TỔNG KẾT <span tal:content="php: mb_strtoupper( TC->getCustomer()->getName(), 'UTF8')"/></H3>
 									<table class="table table-striped table-hover">										
 										<tbody>											
 											<tr>
-												<td align="right"><B>NỢ THÁNG TRƯỚC</B></td>
-												<td align="right" width="120"><B tal:content="NVO/formatCurrency"/> đ</td>
+												<td align="right"><B>NỢ CŨ</B></td>
+												<td align="right" width="120"><B tal:content="ValueOld"/> đ</td>
 											</tr>											
 											<tr>
-												<td align="right"><B>MUA THIẾU</B></td>
-												<td align="right" width="120"><B tal:content="NVS2/formatCurrency"/> đ</td>
+												<td align="right"><B>MUA HÀNG</B></td>
+												<td align="right" width="120"><B tal:content="TC/getPaidPrint"/> đ</td>
 											</tr>											
 											<tr>
 												<td align="right"><B>TRẢ TIỀN</B></td>
-												<td align="right" width="120"><B tal:content="NVC/formatCurrency"/> đ</td>
+												<td align="right" width="120"><B tal:content="TC/getCollectPrint"/> đ</td>
 											</tr>
 											<tr>
-												<td align="right"><B>TỔNG NỢ HIỆN TẠI</B></td>
-												<td align="right" width="120"><B tal:content="NVN/formatCurrency"/> đ</td>
+												<td align="right"><B>NỢ MỚI</B></td>
+												<td align="right" width="120"><B tal:content="TC/getValuePrint"/> đ</td>
 											</tr>
 										</tbody>
-									</table>
-									
+									</table>									
 									<p> Trong đó chi tiết như sau:</p>									
 									<H4>CÁC GIAO DỊCH</H4>
 									<table class="table table-bordered table-striped table-hover">
@@ -50,9 +52,8 @@
 												<th width="120"><div class="text-left">THỜI ĐIỂM</div></th>
 												<th width="120"><div class="text-left">NHÂN VIÊN</div></th>
 												<th width="160"><div class="text-left">ĐỊA ĐIỂM</div></th>
-												<th><div class="text-left">GHI CHÚ</div></th>
-												<th width="120"><div class="text-right">PHIẾU THIẾU</div></th>
-												<th width="120"><div class="text-right">TÍNH ĐỦ</div></th>
+												<th><div class="text-left">GHI CHÚ</div></th>												
+												<th width="120"><div class="text-right">THÀNH TIỀN</div></th>
 											</tr>
 										</thead>
 										<tbody role="alert" aria-live="polite" aria-relevant="all">
@@ -63,19 +64,11 @@
 												<td><span tal:content="Session/getTable/getDomain/getName"/> / <span tal:content="Session/getTable/getName"/></td>
 												<td><span tal:content="Session/getNote"/></td>
 												<td align="right">
-													<span tal:condition="php:Session->getStatus()==2" tal:content="Session/getValuePrint"/>
-												</td>
-												<td align="right">
-													<span tal:condition="php:Session->getStatus()==1" tal:content="Session/getValuePrint"/>
-												</td>
-											</tr>
-											<tr>
-												<td align="right" colspan="5"><B>TỔNG CỘNG</B></td>
-												<td align="right"><B tal:content="NVS2/formatCurrency"/> đ</td>
-												<td align="right"><B tal:content="NVS1/formatCurrency"/> đ</td>
-											</tr>
+													<span tal:content="Session/getValuePrint"/>
+												</td>												
+											</tr>											
 										</tbody>
-									</table>
+									</table>									
 									<H4>TRẢ TIỀN</H4>
 									<table class="table table-bordered table-striped table-hover">
 										<thead>
@@ -92,13 +85,9 @@
 												<td><span tal:content="Collect/getDatePrint"/></td>
 												<td><span tal:content="Collect/getNote"/></td>
 												<td align="right"><span tal:content="Collect/getValuePrint"/></td>
-											</tr>
-											<tr>
-												<td align="right" colspan="3"><B>TỔNG CỘNG</B></td>
-												<td align="right"><B tal:content="NVC/formatCurrency"/> đ</td>
-											</tr>
+											</tr>											
 										</tbody>
-									</table>
+									</table>									
 								</div>
 							</div>
 						</div>
