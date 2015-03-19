@@ -8,10 +8,10 @@ class Customer extends Object{
 	private $Name;
 	private $Tel;
     private $Fax;
-    private $Email;
-    private $TaxCode;
+    private $Email;    
     private $Web;
-	private $DebLimit;
+	private $TaxCode;
+	private $DebtLimit;
 	private $Address;
 	private $Note;
 	private $Visible;
@@ -22,12 +22,12 @@ class Customer extends Object{
 		$Id=null, 
 		$IdGroup=null, 
 		$Name=null, 
-		$Fax=null, 
-		$Email=null, 
 		$Tel=null, 
-		$Web=null, 
+		$Fax=null, 
+		$Email=null, 		
+		$Web=null,
 		$TaxCode=null, 
-		$DebLimit=null,
+		$DebtLimit=null,
 		$Address=null,
 		$Note=null,
 		$Visible=null,
@@ -37,12 +37,12 @@ class Customer extends Object{
         $this->Id 		= $Id;
 		$this->IdGroup 	= $IdGroup;
 		$this->Name 	= $Name;
-		$this->Fax 		= $Fax;
-		$this->Email 	= $Email;
 		$this->Tel 		= $Tel;
+		$this->Fax 		= $Fax;
+		$this->Email 	= $Email;		
 		$this->Web 		= $Web;
 		$this->TaxCode 	= $TaxCode;
-		$this->DebLimit = $DebLimit;
+		$this->DebtLimit = $DebtLimit;
 		$this->Address	= $Address;
 		$this->Note		= $Note;
 		$this->Visible	= $Visible;
@@ -84,20 +84,35 @@ class Customer extends Object{
     function setWeb( $Web ) {$this->Web = $Web;$this->markDirty();}
 	function getWeb(){return $this->Web;}
 		
-	function setDebLimit( $DebLimit ) {$this->DebLimit = $DebLimit;$this->markDirty();}
-	function getDebLimit(){return $this->DebLimit;}
+	function setDebtLimit( $DebtLimit ) {$this->DebtLimit = $DebtLimit;$this->markDirty();}
+	function getDebtLimit(){return $this->DebtLimit;}
+				
+    function setAddress( $Address ) {$this->Address = $Address;$this->markDirty();}
+	function getAddress(){return $this->Address;}
+	
+	function setNote( $Note ) {$this->Note = $Note;$this->markDirty();}
+	function getNote(){return $this->Note;}
+	
+	function setVisible( $Visible ) {$this->Visible = $Visible; $this->markDirty();}
+	function getVisible(){return $this->Visible;}
+	
+	function setSerial( $Serial ) {$this->Serial = $Serial; $this->markDirty();}
+	function getSerial(){return $this->Serial;}
+	
+	function setAvatar( $Avatar ) {$this->Avatar = $Avatar; $this->markDirty();}
+	function getAvatar(){return $this->Avatar;}
 	
 	function toJSON(){
 		$json = array(
 			'Id' 			=> $this->getId(),
 			'IdGroup' 		=> $this->getIdGroup(),
 			'Name'			=> $this->getName(),
-			'Fax'			=> $this->getFax(),
-			'Email'			=> $this->getEmail(),
 			'Tel'			=> $this->getTel(),
+			'Fax'			=> $this->getFax(),
+			'Email'			=> $this->getEmail(),			
 			'Web'			=> $this->getWeb(),
 			'TaxCode'		=> $this->getTaxCode(),
-			'DebLimit'		=> $this->getDebLimit(),
+			'DebtLimit'		=> $this->getDebtLimit(),
 			'Address'		=> $this->getAddress(),
 			'Note'			=> $this->getNote(),			
 			'Visible'		=> $this->getVisible(),
@@ -111,12 +126,12 @@ class Customer extends Object{
 		$this->Id 			= $Data[0];
 		$this->IdGroup		= $Data[1];
 		$this->Name 		= $Data[2];
-		$this->Fax			= $Data[3];
-		$this->Email		= $Data[4];
-		$this->Tel			= $Data[5];
+		$this->Tel			= $Data[3];
+		$this->Fax			= $Data[4];
+		$this->Email		= $Data[5];		
 		$this->Web			= $Data[6];
 		$this->TaxCode		= $Data[7];
-		$this->DebLimit		= $Data[8];
+		$this->DebtLimit	= $Data[8];
 		$this->Address		= $Data[9];
 		$this->Note			= $Data[10];
 		$this->Visible		= $Data[11];

@@ -23,12 +23,16 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr tal:repeat="Room RoomAll1">
-										<td class="center"><span tal:content="repeat/Room/number"/></td>
-										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="Room" tal:attributes="data-id Room/getId" tal:content="Room/getName"/></td>
-										<td><a tal:attributes="href Room/getURLSettingEmployee">Xem (<span tal:content="Room/getEmployeeAll/count"/>)</a></td>
+									<tr tal:repeat="Department DepartmentAll1">
+										<td class="center"><span tal:content="repeat/Department/number"/></td>
+										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="Department" tal:attributes="data-id Department/getId" tal:content="Department/getName"/></td>
+										<td><a tal:attributes="href Department/getURLSettingEmployee">Xem (
+											<!--
+											<span tal:content="Department/getEmployeeAll/count"/>
+											!-->
+										)</a></td>
 										<td class="center">
-											<a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Room/getId"><i class="glyphicon glyphicon-remove"/></a>
+											<a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Department/getId"><i class="glyphicon glyphicon-remove"/></a>
 										</td>
 									</tr>
 								</tbody>
@@ -55,14 +59,32 @@
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header"><h3><i class="glyphicon glyphicon-home modal-icon"/> THÊM MỚI PHÒNG BAN</h3></div>
-					<form id="FormRoomInsert" action="#" class="form-horizontal" novalidate="novalidate">
+					<form id="FormDepartmentInsert" action="#" class="form-horizontal" novalidate="novalidate">
 						<div class="modal-body">							
 							<div class="form-group">
 								<label class="col-sm-2 control-label">Tên</label>
 								<div class="col-sm-10 controls">
 									<input id="Name1" name="Name1" type="text" class="form-control input-small"/>
 								</div>
-							</div>							
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Điện thoại</label>
+								<div class="col-sm-10 controls">
+									<input id="Tel1" name="Tel1" type="text" class="form-control input-small"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Fax</label>
+								<div class="col-sm-10 controls">
+									<input id="Fax1" name="Fax1" type="text" class="form-control input-small"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Địa chỉ</label>
+								<div class="col-sm-10 controls">
+									<input id="Address1" name="Address1" type="text" class="form-control input-small"/>
+								</div>
+							</div>
 						</div>
 						<div class="modal-footer">
 							<button class="btn btn-primary btn-small" id="URLInsButton"><i class="glyphicons-download_alt"/> Lưu</button>
@@ -79,14 +101,32 @@
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header"><h3><i class="glyphicon glyphicon-home modal-icon"/> CẬP NHẬT PHÒNG BAN</h3></div>
-					<form id="FormRoomUpdate" action="#" class="form-horizontal" novalidate="novalidate">
+					<form id="FormDepartmentUpdate" action="#" class="form-horizontal" novalidate="novalidate">
 						<div class="modal-body">							
 							<div class="form-group">
 								<label class="col-sm-2 control-label">Tên</label>
 								<div class="col-sm-10 controls">
 									<input id="Name2" name="Name2" type="text" class="form-control input-small"/>
 								</div>
-							</div>							
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Điện thoại</label>
+								<div class="col-sm-10 controls">
+									<input id="Tel2" name="Tel2" type="text" class="form-control input-small"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Fax</label>
+								<div class="col-sm-10 controls">
+									<input id="Fax2" name="Fax2" type="text" class="form-control input-small"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Địa chỉ</label>
+								<div class="col-sm-10 controls">
+									<input id="Address2" name="Address2" type="text" class="form-control input-small"/>
+								</div>
+							</div>
 						</div>
 						<div class="modal-footer">
 							<button class="btn btn-primary btn-small" id="URLUpdButton"><i class="glyphicons-download_alt"/> Lưu</button>
@@ -109,7 +149,7 @@
 			});
 			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
 			$('#URLDelButton').click(function(){			
-				var URL = "/object/del/Room/" + $(this).attr('alt');
+				var URL = "/object/del/Department/" + $(this).attr('alt');
 				$.ajax({
 					type: "POST",					
 					url: URL,
@@ -120,8 +160,8 @@
 			});
 		
 			//-----------------------------------------------------------------------------------
-			//Insert 1 Room			
-			$("#FormRoomInsert").validate({
+			//Insert 1 Department			
+			$("#FormDepartmentInsert").validate({
 				rules:{
 					Name1:{
 						minlength: 2,
@@ -139,10 +179,14 @@
 				},
 				submitHandler: function (form) {					
 					var Data = [];
-					Data[0] = 'null';				
-					Data[1] = $('#Name1').val();					
+					Data[0] = 'null';
+					Data[1] = $('#Name1').val();
+					Data[2] = $('#Tel1').val();
+					Data[3] = $('#Fax1').val();
+					Data[4] = $('#Address1').val();
+					Data[5] = 1;
 																									
-					var URL = "/object/ins/Room";
+					var URL = "/object/ins/Department";
 					$.ajax({
 						type: "POST",
 						data: {Data:Data},
@@ -162,24 +206,27 @@
 			});
 			
 			//-----------------------------------------------------------------------------------
-			//Load 1 Room
+			//Load 1 Department
 			//-----------------------------------------------------------------------------------
 			$('.update-item').click(function(){
 				//Load dữ liệu JSON về
-				var url = "/object/load/Room/" + $(this).attr('data-id');
+				var url = "/object/load/Department/" + $(this).attr('data-id');
 				
 				//Load dữ liệu JSON lên FORM
 				$('#update-link').attr('action', $(this).attr('alt'));
 				$.getJSON(url, function(data) {
 					$('#URLUpdButton').attr('alt', 	data.Id);
-					$('#Name2').attr('value', 		data.Name);					
+					$('#Name2').attr('value', 		data.Name);
+					$('#Tel2').attr('value', 		data.Tel);
+					$('#Fax2').attr('value', 		data.Fax);
+					$('#Address2').attr('value', 	data.Address);
 				});
 			});
 			
 			//-----------------------------------------------------------------------------------
 			//Update 1 EMPLOYEEE
 			//-----------------------------------------------------------------------------------
-			$("#FormRoomUpdate").validate({
+			$("#FormDepartmentUpdate").validate({
 				rules:{
 					Name2:{
 						minlength: 2,
@@ -198,9 +245,13 @@
 				submitHandler: function (form) {					
 					var Data = [];
 					Data[0] = $('#URLUpdButton').attr('alt');
-					Data[1] = $('#Name2').val();					
+					Data[1] = $('#Name2').val();
+					Data[2] = $('#Tel2').val();
+					Data[3] = $('#Fax2').val();
+					Data[4] = $('#Address2').val();
+					Data[5] = 1;
 																									
-					var URL = "/object/upd/Room";
+					var URL = "/object/upd/Department";
 					$.ajax({
 						type: "POST",
 						data: {Data:Data},
