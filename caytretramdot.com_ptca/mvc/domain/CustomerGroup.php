@@ -1,7 +1,7 @@
 <?php
 namespace MVC\Domain;
 require_once( "mvc/base/domain/DomainObject.php" );
-class CategoryCustomer extends Object{
+class CustomerGroup extends Object{
 
     private $Id;
 	private $Name;    
@@ -10,18 +10,16 @@ class CategoryCustomer extends Object{
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-    function __construct( $Id=null, $Name=null, $Note=null){
+    function __construct( $Id=null, $Name=null){
         $this->Id 			= $Id;
 		$this->Name 		= $Name;		
-		$this->Note 		= $Note;
-		
+				
         parent::__construct( $Id );
     }
 	
 	function setArray( $Data ){
         $this->Id 			= $Data[0];
-		$this->Name 		= $Data[1];		
-		$this->Note 		= $Data[2];
+		$this->Name 		= $Data[1];				
     }
 	
     function getId( ) {return $this->Id;}
@@ -29,14 +27,10 @@ class CategoryCustomer extends Object{
 	function setName( $Name ) {$this->Name = $Name;$this->markDirty();}
 	function getName(){return $this->Name;}
 		
-	function setNote( $Note ) {$this->Note = $Note;$this->markDirty();}
-	function getNote( ) {return $this->Note;}
-	
 	function toJSON(){
 		$json = array(
 			'Id' 			=> $this->getId(),
-			'Name'			=> $this->getName(),			
-			'Note'			=> $this->getNote()
+			'Name'			=> $this->getName()			
 		);
 		return json_encode($json);
 	}
@@ -46,7 +40,7 @@ class CategoryCustomer extends Object{
 	//-------------------------------------------------------------------------------
 	function getCustomerAll(){
 		$mCustomer = new \MVC\Mapper\Customer();
-		$CustomerAll = $mCustomer->findByCategory(array($this->getId()));
+		$CustomerAll = $mCustomer->findByGroup(array($this->getId()));
 		return $CustomerAll;
 	}
 				

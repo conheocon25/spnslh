@@ -12,26 +12,26 @@
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
 			$Page 		= $request->getProperty('Page');
-			$IdCategory = $request->getProperty('IdCategory');
+			$IdGroup 	= $request->getProperty('IdGroup');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mCustomer 	= new \MVC\Mapper\Customer();
-			$mCategoryCustomer 	= new \MVC\Mapper\CategoryCustomer();
-			$mConfig 	= new \MVC\Mapper\Config();			
+			$mCustomer 			= new \MVC\Mapper\Customer();
+			$mCustomerGroup 	= new \MVC\Mapper\CustomerGroup();
+			$mConfig 			= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
-			$Category		= $mCategoryCustomer->find($IdCategory);
+			$Group			= $mCategoryCustomer->find($IdGroup);
 			$CategoryAll	= $mCategoryCustomer->findAll();
-			$CustomerAll 	= $mCustomer->findByCategory(array($IdCategory));
+			$CustomerAll 	= $mCustomer->findByCategory(array($IdGroup));
 						
 			if (!isset($Page)) $Page=1;
 			$Config 		= $mConfig->findByName("ROW_PER_PAGE");
 			$ConfigName		= $mConfig->findByName("NAME");			
-			$CustomerAll1 	= $mCustomer->findByCategoryPage(array($IdCategory, $Page, $Config->getValue() ));
+			$CustomerAll1 	= $mCustomer->findByCategoryPage(array($IdGroup, $Page, $Config->getValue() ));
 			$PN = new \MVC\Domain\PageNavigation($CustomerAll->count(), $Config->getValue(), "/admin/setting/customer");
 			
 			//-------------------------------------------------------------

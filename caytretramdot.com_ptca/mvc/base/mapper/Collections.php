@@ -5,8 +5,10 @@ require_once( "mvc/base/mapper/Collection.php");
 
 class UserCollection 			extends Collection implements \MVC\Domain\UserCollection 			{function targetClass( ) {return "\MVC\Domain\User";		}}
 class TypeAccountCollection 	extends Collection implements \MVC\Domain\TypeAccountCollection 	{function targetClass( ) {return "\MVC\Domain\TypeAccount";	}}
-class CategoryCustomerCollection 	extends Collection implements \MVC\Domain\CategoryCustomerCollection 		{function targetClass( ) {return "\MVC\Domain\CategoryCustomer";	}}
-class CustomerCollection 			extends Collection implements \MVC\Domain\CustomerCollection 		{function targetClass( ) {return "\MVC\Domain\Customer";	}}
+
+class CustomerGroupCollection 	extends Collection implements \MVC\Domain\CustomerGroupCollection	{function targetClass( ) {return "\MVC\Domain\CustomerGroup";	}}
+class CustomerCollection 		extends Collection implements \MVC\Domain\CustomerCollection 		{function targetClass( ) {return "\MVC\Domain\Customer";		}}
+
 class SupplierCollection 		extends Collection implements \MVC\Domain\SupplierCollection 		{function targetClass( ) {return "\MVC\Domain\Supplier";	}}
 class EmployeeCollection 		extends Collection implements \MVC\Domain\EmployeeCollection 		{function targetClass( ) {return "\MVC\Domain\Employee";	}}
 class RoomCollection 			extends Collection implements \MVC\Domain\RoomCollection 			{function targetClass( ) {return "\MVC\Domain\Room";		}}
