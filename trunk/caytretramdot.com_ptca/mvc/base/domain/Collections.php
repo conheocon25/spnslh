@@ -4,7 +4,7 @@ namespace MVC\Domain;
 interface UserCollection 				extends \Iterator {function add( Object $User );		}
 interface TypeAccountCollection 		extends \Iterator {function add( Object $TypeAccount);	}
 
-interface CategoryCustomerCollection 	extends \Iterator {function add( Object $CategoryCustomer);		}
+interface CustomerGroupCollection 		extends \Iterator {function add( Object $CustomerGroup);}
 interface CustomerCollection 			extends \Iterator {function add( Object $Customer);		}
 
 interface SupplierCollection 			extends \Iterator {function add( Object $Supplier);		}

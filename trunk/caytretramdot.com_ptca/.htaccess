@@ -65,8 +65,8 @@ RewriteRule ^admin/setting/config/page/([0-9]+)$ 						?cmd=ASettingConfig&Page=
 RewriteRule ^admin/setting/user$ 										?cmd=ASettingUser [L]
 RewriteRule ^admin/setting/user/page/([0-9]+)$ 							?cmd=ASettingUser&Page=$1 [L]
 
-RewriteRule ^admin/setting/customer$ 									?cmd=ASettingCategoryCustomer [L]
-RewriteRule ^admin/setting/customer/page/([0-9]+)$ 						?cmd=ASettingCategoryCustomer&Page=$1 [L]
+RewriteRule ^admin/setting/customer$ 									?cmd=ASettingCustomerGroup [L]
+RewriteRule ^admin/setting/customer/page/([0-9]+)$ 						?cmd=ASettingCustomerGroup&Page=$1 [L]
 
 RewriteRule ^admin/setting/customer/([0-9]+)$ 							?cmd=ASettingCustomer&IdCategory=$1 [L]
 RewriteRule ^admin/setting/customer/([0-9]+)/page/([0-9]+)$ 			?cmd=ASettingCustomer&IdCategory=$1&Page=$2 [L]

@@ -13,7 +13,7 @@ interface Finder {
 interface UserFinder  			extends Finder {}
 interface TypeAccountFinder  	extends Finder {}
 
-interface CategoryCustomerFinder  extends Finder {}
+interface CustomerGroupFinder  	extends Finder {}
 interface CustomerFinder  		extends Finder {}
 
 interface SupplierFinder  		extends Finder {}

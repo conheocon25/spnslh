@@ -33,7 +33,7 @@
 		<command name="ASettingTypeAccount">	<view>ASettingTypeAccount</view></command>								
 		
 		<command name="ASettingUser">			<view>ASettingUser</view>		</command>
-		<command name="ASettingCategoryCustomer"><view>ASettingCategoryCustomer</view></command>
+		<command name="ASettingCustomerGroup">	<view>ASettingCustomerGroup</view></command>
 		<command name="ASettingCustomer">		<view>ASettingCustomer</view>	</command>
 		<command name="ASettingSupplier">		<view>ASettingSupplier</view>	</command>
 		<command name="ASettingStore">			<view>ASettingStore</view>		</command>

@@ -5,22 +5,22 @@ class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
 
     function __construct() {
         parent::__construct();
-		$tblCustomer 			= "tbl_customer";
+		$tblCustomer 			= "customer";
 		
-        $this->selectAllStmt 	= self::$PDO->prepare("select * from tbl_customer");
-        $this->selectStmt 		= self::$PDO->prepare("select * from tbl_customer where id=?");
-        $this->updateStmt 		= self::$PDO->prepare("update tbl_customer set id_category=?, name=?, type=?, card=?, phone=?, address=?, note=?, discount=? where id=?");
-        $this->insertStmt 		= self::$PDO->prepare("insert into tbl_customer (id_category, name, type, card, phone, address, note, discount) values( ?, ?, ?, ?, ?, ?, ?, ?)");
-		$this->deleteStmt 		= self::$PDO->prepare("delete from tbl_customer where id=?");
-		$this->findByCategoryStmt = self::$PDO->prepare("SELECT * FROM tbl_customer WHERE id_category=? ORDER By type, name");
-		$this->findByNormalStmt = self::$PDO->prepare("SELECT * FROM tbl_customer WHERE type>0 ORDER By type, name");
-		$this->findByCardStmt 	= self::$PDO->prepare("select * from tbl_customer where card=?");
+        $this->selectAllStmt 	= self::$PDO->prepare("select * from customer");
+        $this->selectStmt 		= self::$PDO->prepare("select * from customer where id=?");
+        $this->updateStmt 		= self::$PDO->prepare("update customer set id_customer_group=?, name=?, type=?, card=?, phone=?, address=?, note=?, discount=? where id=?");
+        $this->insertStmt 		= self::$PDO->prepare("insert into customer (id_customer_group, name, type, card, phone, address, note, discount) values( ?, ?, ?, ?, ?, ?, ?, ?)");
+		$this->deleteStmt 		= self::$PDO->prepare("delete from customer where id=?");
+		$this->findByGroupStmt 	= self::$PDO->prepare("SELECT * FROM customer WHERE id_customer_group=? ORDER BY name");
+		$this->findByNormalStmt = self::$PDO->prepare("SELECT * FROM customer WHERE type>0 ORDER By type, name");
+		$this->findBySerialStmt = self::$PDO->prepare("select * from customer where serial=?");
 
 		$findByPageStmt 		= sprintf("SELECT * FROM  %s ORDER BY type, name LIMIT :start,:max", $tblCustomer);
 		$this->findByPageStmt 	= self::$PDO->prepare($findByPageStmt);
 		
-		$findByCategoryPageStmt 		= sprintf("SELECT * FROM  %s WHERE id_category=:id_category LIMIT :start,:max", $tblCustomer);
-		$this->findByCategoryPageStmt 	= self::$PDO->prepare($findByCategoryPageStmt);
+		$findByGroupPageStmt 		= sprintf("SELECT * FROM  %s WHERE id_customer_group=:id_customer_group LIMIT :start,:max", $tblCustomer);
+		$this->findByGroupPageStmt 	= self::$PDO->prepare($findByGroupPageStmt);
 		 
     } 
     function getCollection( array $raw ) {return new CustomerCollection( $raw, $this );}
@@ -28,14 +28,19 @@ class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
     protected function doCreateObject( array $array ) {		
         $obj = new \MVC\Domain\Customer( 
 			$array['id'],  
-			$array['id_category'],  
+			$array['id_customer_group'],  
 			$array['name'],
-			$array['type'],
-			$array['card'],
-			$array['phone'],
+			$array['tel'],
+			$array['fax'],
+			$array['email'],
+			$array['tax_code'],
+			$array['web'],
+			$array['debt_limit'],
 			$array['address'],
 			$array['note'],
-			$array['discount']
+			$array['visible'],
+			$array['serial'],
+			$array['avatar']
 		);
         return $obj;
     }
@@ -46,14 +51,19 @@ class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
 
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array(  
-			$object->getIdCategory(),
+			$object->getIdGroup(),
 			$object->getName(),
-			$object->getType(),	
-			$object->getCard(),	
-			$object->getPhone(),	
-			$object->getAddress(),	
+			$object->getTel(),	
+			$object->getFax(),	
+			$object->getEmail(),	
+			$object->getTaxCode(),	
+			$object->getWeb(),
+			$object->getDebLimit(),
+			$object->getAddress(),
 			$object->getNote(),
-			$object->getDiscount()
+			$object->getVisible(),
+			$object->getSerial(),
+			$object->getAvatar()
 		); 
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
@@ -62,14 +72,19 @@ class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
     
     protected function doUpdate( \MVC\Domain\Object $object ) {
         $values = array(
-			$object->getIdCategory(),
+			$object->getIdGroup(),
 			$object->getName(),
-			$object->getType(),	
-			$object->getCard(),	
-			$object->getPhone(),	
+			$object->getTel(),	
+			$object->getFax(),	
+			$object->getEmail(),	
+			$object->getTaxCode(),	
+			$object->getWeb(),
+			$object->getDebLimit(),
 			$object->getAddress(),
 			$object->getNote(),
-			$object->getDiscount(),
+			$object->getVisible(),
+			$object->getSerial(),
+			$object->getAvatar(),
 			$object->getId()
 		);		
         $this->updateStmt->execute( $values );
@@ -79,9 +94,9 @@ class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
     function selectStmt() {return $this->selectStmt;}	
     function selectAllStmt() {return $this->selectAllStmt;}
 	
-	function findByCategory($values) {		
-        $this->findByCategoryStmt->execute( $values );
-        return new CustomerCollection( $this->findByCategoryStmt->fetchAll(), $this );
+	function findByGroup($values) {		
+        $this->findByGroupStmt->execute( $values );
+        return new CustomerCollection( $this->findByGroupStmt->fetchAll(), $this );
     }
 	
 	function findByNormal($values) {		
@@ -90,21 +105,21 @@ class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
     }
 	
 	function findByCard( $values ) {	
-		$this->findByCardStmt->execute( $values );
-        $array = $this->findByCardStmt->fetch();
-        $this->findByCardStmt->closeCursor();
+		$this->findBySerialStmt->execute( $values );
+        $array = $this->findBySerialStmt->fetch();
+        $this->findBySerialStmt->closeCursor();
         if ( ! is_array( $array ) ) { return null; }
         if ( ! isset( $array['id'] ) ) { return null; }
         $object = $this->doCreateObject( $array );
         return $object;		
     }
 	
-	function findByCategoryPage( $values ) {
-		$this->findByCategoryPageStmt->bindValue(':id_category', (int)($values[0]), \PDO::PARAM_INT);
-		$this->findByCategoryPageStmt->bindValue(':start', ((int)($values[1])-1)*(int)($values[2]), \PDO::PARAM_INT);
-		$this->findByCategoryPageStmt->bindValue(':max', (int)($values[2]), \PDO::PARAM_INT);
-		$this->findByCategoryPageStmt->execute();
-        return new CustomerCollection( $this->findByCategoryPageStmt->fetchAll(), $this );
+	function findByGroupPage( $values ) {
+		$this->findByGroupPageStmt->bindValue(':id_customer_group', (int)($values[0]), \PDO::PARAM_INT);
+		$this->findByGroupPageStmt->bindValue(':start', ((int)($values[1])-1)*(int)($values[2]), \PDO::PARAM_INT);
+		$this->findByGroupPageStmt->bindValue(':max', (int)($values[2]), \PDO::PARAM_INT);
+		$this->findByGroupPageStmt->execute();
+        return new CustomerCollection( $this->findByGroupPageStmt->fetchAll(), $this );
     }
 	
 	function findByPage( $values ) {
