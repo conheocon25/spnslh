@@ -35,10 +35,12 @@
 		<command name="ASettingUser">			<view>ASettingUser</view>		</command>
 		<command name="ASettingCustomerGroup">	<view>ASettingCustomerGroup</view></command>
 		<command name="ASettingCustomer">		<view>ASettingCustomer</view>	</command>
-		<command name="ASettingSupplier">		<view>ASettingSupplier</view>	</command>
-		<command name="ASettingStore">			<view>ASettingStore</view>		</command>
+		
 		<command name="ASettingEmployee">		<view>ASettingEmployee</view>	</command>
-		<command name="ASettingRoom">			<view>ASettingRoom</view>		</command>
+		<command name="ASettingDepartment">		<view>ASettingDepartment</view>	</command>
+		
+		<command name="ASettingSupplier">		<view>ASettingSupplier</view>	</command>
+		<command name="ASettingStore">			<view>ASettingStore</view>		</command>		
 		<command name="ASettingJob">			<view>ASettingJob</view>		</command>
 		
 		<command name="ASettingConfig">			<view>ASettingConfig</view>		</command>

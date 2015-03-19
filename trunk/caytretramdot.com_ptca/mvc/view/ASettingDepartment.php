@@ -1,5 +1,5 @@
 <?php
 	require_once("mvc/base/Viewer.php");
-	$Viewer = new Viewer("mvc/templates/ASettingRoom.html");
+	$Viewer = new Viewer("mvc/templates/ASettingDepartment.html");
 	echo $Viewer->html();
 ?>

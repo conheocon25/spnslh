@@ -7,9 +7,10 @@ interface TypeAccountCollection 		extends \Iterator {function add( Object $TypeA
 interface CustomerGroupCollection 		extends \Iterator {function add( Object $CustomerGroup);}
 interface CustomerCollection 			extends \Iterator {function add( Object $Customer);		}
 
-interface SupplierCollection 			extends \Iterator {function add( Object $Supplier);		}
 interface EmployeeCollection 			extends \Iterator {function add( Object $Employee);		}
-interface RoomCollection 				extends \Iterator {function add( Object $Room);			}
+interface DepartmentCollection 			extends \Iterator {function add( Object $Department);	}
+
+interface SupplierCollection 			extends \Iterator {function add( Object $Supplier);		}
 interface StoreCollection 				extends \Iterator {function add( Object $Store);		}
 
 interface ConfigCollection 				extends \Iterator {function add( Object $Config );		}

@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class ASettingRoom extends Command {
+	class ASettingDepartment extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -16,26 +16,26 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mRoom 		= new \MVC\Mapper\Room();
-			$mConfig 	= new \MVC\Mapper\Config();			
+			$mDepartment 	= new \MVC\Mapper\Department();
+			$mConfig 		= new \MVC\Mapper\Config();			
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------									
-			$RoomAll = $mRoom->findAll();
+			$DepartmentAll = $mDepartment->findAll();
 						
 			if (!isset($Page)) $Page=1;
 			$Config 		= $mConfig->findByName("ROW_PER_PAGE");
 						
-			$RoomAll1 	= $mRoom->findByPage(array($Page, $Config->getValue() ));
-			$PN 		= new \MVC\Domain\PageNavigation($RoomAll->count(), $Config->getValue(), "/setting/Room");
+			$DepartmentAll1 	= $mDepartment->findByPage(array($Page, $Config->getValue() ));
+			$PN 				= new \MVC\Domain\PageNavigation($DepartmentAll->count(), $Config->getValue(), "/admin/setting/department");
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------												
 			$request->setProperty('Page'		, $Page);
 			$request->setObject('PN'			, $PN);									
-			$request->setObject('RoomAll1'	, $RoomAll1);
+			$request->setObject('DepartmentAll1'	, $DepartmentAll1);
 												
 			return self::statuses('CMD_DEFAULT');
 		}

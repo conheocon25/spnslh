@@ -9,8 +9,8 @@ class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
 		
         $this->selectAllStmt 	= self::$PDO->prepare("select * from customer");
         $this->selectStmt 		= self::$PDO->prepare("select * from customer where id=?");
-        $this->updateStmt 		= self::$PDO->prepare("update customer set id_customer_group=?, name=?, type=?, card=?, phone=?, address=?, note=?, discount=? where id=?");
-        $this->insertStmt 		= self::$PDO->prepare("insert into customer (id_customer_group, name, type, card, phone, address, note, discount) values( ?, ?, ?, ?, ?, ?, ?, ?)");
+        $this->updateStmt 		= self::$PDO->prepare("update customer set id_customer_group=?, name=?, tel=?, fax=?, email=?, web=?, tax_code=?, debt_limit=?, address=?, note=?, visible=?, serial=?, avatar=? where id=?");
+        $this->insertStmt 		= self::$PDO->prepare("insert into customer (id_customer_group, name, tel, fax, email, web, tax_code, debt_limit, address, note, visible, serial, avatar) values( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 		$this->deleteStmt 		= self::$PDO->prepare("delete from customer where id=?");
 		$this->findByGroupStmt 	= self::$PDO->prepare("SELECT * FROM customer WHERE id_customer_group=? ORDER BY name");
 		$this->findByNormalStmt = self::$PDO->prepare("SELECT * FROM customer WHERE type>0 ORDER By type, name");
@@ -27,14 +27,14 @@ class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
 
     protected function doCreateObject( array $array ) {		
         $obj = new \MVC\Domain\Customer( 
-			$array['id'],  
+			$array['id'],
 			$array['id_customer_group'],  
 			$array['name'],
 			$array['tel'],
 			$array['fax'],
 			$array['email'],
-			$array['tax_code'],
 			$array['web'],
+			$array['tax_code'],			
 			$array['debt_limit'],
 			$array['address'],
 			$array['note'],
@@ -55,10 +55,10 @@ class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
 			$object->getName(),
 			$object->getTel(),	
 			$object->getFax(),	
-			$object->getEmail(),	
-			$object->getTaxCode(),	
+			$object->getEmail(),			
 			$object->getWeb(),
-			$object->getDebLimit(),
+			$object->getTaxCode(),
+			$object->getDebtLimit(),
 			$object->getAddress(),
 			$object->getNote(),
 			$object->getVisible(),
@@ -76,10 +76,10 @@ class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
 			$object->getName(),
 			$object->getTel(),	
 			$object->getFax(),	
-			$object->getEmail(),	
-			$object->getTaxCode(),	
+			$object->getEmail(),				
 			$object->getWeb(),
-			$object->getDebLimit(),
+			$object->getTaxCode(),
+			$object->getDebtLimit(),
 			$object->getAddress(),
 			$object->getNote(),
 			$object->getVisible(),

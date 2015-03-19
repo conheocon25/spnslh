@@ -24,14 +24,14 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
-			$Group			= $mCategoryCustomer->find($IdGroup);
-			$CategoryAll	= $mCategoryCustomer->findAll();
-			$CustomerAll 	= $mCustomer->findByCategory(array($IdGroup));
+			$Group			= $mCustomerGroup->find($IdGroup);
+			$GroupAll		= $mCustomerGroup->findAll();
+			$CustomerAll 	= $mCustomer->findByGroup(array($IdGroup));
 						
 			if (!isset($Page)) $Page=1;
 			$Config 		= $mConfig->findByName("ROW_PER_PAGE");
 			$ConfigName		= $mConfig->findByName("NAME");			
-			$CustomerAll1 	= $mCustomer->findByCategoryPage(array($IdGroup, $Page, $Config->getValue() ));
+			$CustomerAll1 	= $mCustomer->findByGroupPage(array($IdGroup, $Page, $Config->getValue() ));
 			$PN = new \MVC\Domain\PageNavigation($CustomerAll->count(), $Config->getValue(), "/admin/setting/customer");
 			
 			//-------------------------------------------------------------
@@ -41,8 +41,8 @@
 			$request->setObject('PN'			, $PN);
 						
 			$request->setObject('ConfigName'	, $ConfigName);
-			$request->setObject('Category'		, $Category);
-			$request->setObject('CategoryAll'	, $CategoryAll);
+			$request->setObject('Group'			, $Group);
+			$request->setObject('GroupAll'		, $GroupAll);
 			$request->setObject('CustomerAll1'	, $CustomerAll1);
 															
 			return self::statuses('CMD_DEFAULT');
