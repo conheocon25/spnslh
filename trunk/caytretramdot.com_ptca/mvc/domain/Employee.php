@@ -1,71 +1,65 @@
 <?php
-/** 
- * PHP version 5.3
- *
- * LICENSE: Lưu hành nội bộ
- *
- * @category   Domain
- * @package    MVC\Domain
- * @author     Bùi Thanh Tuấn <tuanbuithanh@gmail.com> 
- * @copyright  2010-2012 SPN Group
- * @license    Bản quyền nhóm
- * @version    SVN: ?
- * @link       mvc/domain/employee.php
- * @see        Employee
- * @since      File available since Release 1.2.0
- * @deprecated File deprecated in Release 2.0.0
- */
 namespace MVC\Domain;
 require_once( "mvc/base/domain/DomainObject.php" );
 class Employee extends Object{
 
     private $Id;
-	private $IdRoom;
+	private $IdDepartment;
 	private $Name;
-    private $Gender;
-	private $Job;
-	private $Phone;
+    private $Gender;	
+	private $Tel;
+	private $Email;
 	private $Address;
-	private $SalaryBase;
-	private $Card;
+	private $Avatar;
+	private $Serial;
 			
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-    function __construct( $Id=null, $IdRoom=null, $Name=null, $Gender=null, $Job=null, $Phone=null, $Address=null, $SalaryBase=null, $Card=null){
+    function __construct( 
+		$Id=null, 
+		$IdDepartment=null, 
+		$Name=null, 
+		$Gender=null, 
+		$Tel=null, 
+		$Email=null,
+		$Address=null,
+		$Avatar=null,
+		$Serial=null
+	){
         $this->Id 			= $Id;
-		$this->IdRoom 		= $IdRoom;
+		$this->IdDepartment = $IdDepartment;
 		$this->Name 		= $Name;
-		$this->Gender 		= $Gender;
-		$this->Job 			= $Job;
-		$this->Phone 		= $Phone;
-		$this->Address 		= $Address;
-		$this->SalaryBase 	= $SalaryBase;
-		$this->Card 		= $Card;
+		$this->Gender 		= $Gender;	
+		$this->Tel 			= $Tel;
+		$this->Email 		= $Email;
+		$this->Address 		= $Address;		
+		$this->Avatar 		= $Avatar;
+		$this->Serial 		= $Serial;
 		
         parent::__construct( $Id );
     }
 	
 	function setArray( $Data ){
         $this->Id 			= $Data[0];
-		$this->IdRoom		= $Data[1];
+		$this->IdDepartment	= $Data[1];
 		$this->Name 		= $Data[2];
-		$this->Gender 		= $Data[3];
-		$this->Job 			= $Data[4];
-		$this->Phone 		= $Data[5];
+		$this->Gender 		= $Data[3];		
+		$this->Tel 			= $Data[4];
+		$this->Email		= $Data[5];
 		$this->Address 		= $Data[6];
-		$this->SalaryBase 	= $Data[7];
-		$this->Card 		= $Data[8];
+		$this->Avatar	 	= $Data[7];
+		$this->Serial 		= $Data[8];
     }
 	
     function getId( ) {return $this->Id;}
 	
-	function setIdRoom( $IdRoom ) {$this->IdRoom = $IdRoom;$this->markDirty();}
-	function getIdRoom(){return $this->IdRoom;}
-	function getRoom(){
-		$mRoom 	= new \MVC\Mapper\Room();
-		$Room 	= $mRoom->find($this->IdRoom);
-		return $Room;
+	function setIdDepartment( $IdDepartment ) {$this->IdDepartment = $IdDepartment;$this->markDirty();}
+	function getIdDepartment(){return $this->IdDepartment;}
+	function getDepartment(){
+		$mDepartment 	= new \MVC\Mapper\Department();
+		$Department 	= $mDepartment->find($this->IdDepartment);
+		return $Department;
 	}
 	
 	function setName( $Name ) {$this->Name = $Name;$this->markDirty();}
@@ -75,81 +69,46 @@ class Employee extends Object{
     function getGender( ){return $this->Gender;}
 	function getGenderPrint( ){if ($this->Gender==0) return "Nam"; return "Nữ";}
 	
-	function setJob( $Job) {$this->Job = $Job;$this->markDirty();}
-    function getJob( ){return $this->Job;}
+	function setEmail( $Email) {$this->Email = $Email;$this->markDirty();}
+    function getEmail( ){return $this->Email;}
 	
-    function setPhone( $Phone ) {$this->Phone = $Phone;$this->markDirty();}	
-    function getPhone( ) {return $this->Phone;}
+    function setTel( $Tel ) {$this->Tel = $Tel;$this->markDirty();}	
+    function getTel( ) {return $this->Tel;}
 		
 	function setAddress( $Address ) {$this->Address = $Address;$this->markDirty();}
 	function getAddress( ) {return $this->Address;}
 	
-	function setSalaryBase( $SalaryBase ) {$this->SalaryBase = $SalaryBase;$this->markDirty();}
-	function getSalaryBase( ) {return $this->SalaryBase;}
-	function getSalaryBasePrint( ) {
-		$N = new \MVC\Library\Number($this->SalaryBase);
-		return $N->formatCurrency();
-	}
-	
-	function getSalaryBaseH( ) {return $this->SalaryBase/30/8;}
-	function getSalaryBaseHPrint( ) {
-		$N = new \MVC\Library\Number($this->getSalaryBaseH() );
-		return $N->formatCurrency();
-	}
-	
-	function getSalaryBaseD( ) {return $this->SalaryBase/30;}
-	function getSalaryBaseDPrint( ) {
-		$N = new \MVC\Library\Number($this->getSalaryBaseD() );
-		return $N->formatCurrency();
-	}
-	
-	function setCard( $Card ) {$this->Card = $Card;$this->markDirty();}
-	function getCard( ) {return $this->Card;}
+	function setAvatar( $Avatar ) {$this->Avatar = $Avatar;$this->markDirty();}
+	function getAvatar( ) {return $this->Avatar;}
+			
+	function setSerial( $Serial ) {$this->Serial = $Serial;$this->markDirty();}
+	function getSerial( ) {return $this->Serial;}
 	
 	function toJSON(){
 		$json = array(
 			'Id' 			=> $this->getId(),
-			'IdRoom'		=> $this->getIdRoom(),
+			'IdDepartment'	=> $this->getIdDepartment(),
 			'Name'			=> $this->getName(),
 			'Gender'		=> $this->getGender(),
-			'Job'			=> $this->getJob(),
-			'Phone'			=> $this->getPhone(),
+			'Email'			=> $this->getEmail(),
+			'Tel'			=> $this->getTel(),
 			'Address'		=> $this->getAddress(),
-			'SalaryBase'	=> $this->getSalaryBase(),
-			'Card'			=> $this->getCard()
+			'Avatar'		=> $this->getAvatar(),
+			'Serial'		=> $this->getSerial()
 		);
 		return json_encode($json);
 	}
 	
 	//-------------------------------------------------------------------------------
 	//GET LISTs
-	//-------------------------------------------------------------------------------								
-	function getPayRollAll(){
-		$mPPR = new \MVC\Mapper\PaidPayRoll();
-		$PRRAll = $mPPR->findBy(array($this->getId()));
-		return $PRRAll;
-	}
-	
-	function getPayRoll($Date){
-		$mPR = new \MVC\Mapper\PayRoll();		
-		$IdPR = $mPR->check(array($this->getId(), $Date));
-		$PR = $mPR->find($IdPR);
-		return $PR;
-	}
-	
-	function getPaidAll(){
-		$mPE 	= new \MVC\Mapper\PaidEmployee();
-		$PEAll 	= $mPE->findBy(array($this->getId()));
-		return $PEAll;
-	}
-		
+	//-------------------------------------------------------------------------------
+			
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $id );}
 	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
-	//-------------------------------------------------------------------------------
-	function getURLPaid(){return "/money/paid/employee/".$this->getId();}
-		
+	//-------------------------------------------------------------------------------	
+	
 }
 ?>
