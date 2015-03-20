@@ -67,11 +67,17 @@ class TrackingCustomer extends Object{
 	
 	function setCount( $Count ) {$this->Count = $Count;$this->markDirty();}
 	function getCount( ) {return $this->Count;}
-	function getCountPrint( ) {$N = new \MVC\Library\Number($this->Count);return $N->formatCurrency();}	
+	function getCountPrint( ) {		
+		$N = number_format($this->Count, 1, ',', '.');
+		return $N;
+	}
 	
-	function setCountGlobal( $CountGlobal ) {$this->CountGlobal = $Count;$this->markDirty();}
+	function setCountGlobal( $CountGlobal ) {$this->CountGlobal = $CountGlobal;$this->markDirty();}
 	function getCountGlobal( ) {return $this->CountGlobal;}
-	function getCountGlobalPrint( ) {$N = new \MVC\Library\Number($this->CountGlobal);return $N->formatCurrency();}	
+	function getCountGlobalPrint( ) {		
+		$N = number_format($this->CountGlobal, 1, ',', '.');
+		return $N;
+	}
 	
 	//-------------------------------------------------------------------------------
 	//GET LISTs

@@ -130,6 +130,19 @@ class Tracking extends Object{
 			$this->Value = $Value;
 		}
 	}
+	
+	function setArray( $Data ){
+        $this->Id 			= $Data[0];
+		$this->DateStart 	= $Data[1];
+		$this->DateEnd 		= $Data[2];
+		$this->Collect1		= $Data[3];
+		$this->Collect2		= $Data[4];
+		$this->Collect3		= $Data[5];
+		$this->Paid1		= $Data[6];
+		$this->Paid2		= $Data[7];
+		$this->Paid3		= $Data[8];
+		$this->Value		= $Data[9];
+    }
 			
 	//-------------------------------------------------------------------------------
 	//GET LISTs
@@ -166,9 +179,7 @@ class Tracking extends Object{
 				null,
 				$this->getId(), 
 				$Customer->getId(),
-				0, 
-				0, 
-				0				
+				0, 0, 0, 0, 0, 0
 			);
 			$mTC->insert($TC);
 			$CustomerAll->next();	

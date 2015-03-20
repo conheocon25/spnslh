@@ -15,6 +15,7 @@ class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
 		$this->findByGroupStmt 	= self::$PDO->prepare("SELECT * FROM customer WHERE id_customer_group=? ORDER BY name");
 		$this->findByNormalStmt = self::$PDO->prepare("SELECT * FROM customer WHERE type>0 ORDER By type, name");
 		$this->findBySerialStmt = self::$PDO->prepare("select * from customer where serial=?");
+		$this->findByNameStmt 	= self::$PDO->prepare("select * from customer where name like :name ORDER BY name LIMIT 12");
 
 		$findByPageStmt 		= sprintf("SELECT * FROM  %s ORDER BY type, name LIMIT :start,:max", $tblCustomer);
 		$this->findByPageStmt 	= self::$PDO->prepare($findByPageStmt);
@@ -128,5 +129,11 @@ class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
 		$this->findByPageStmt->execute();
         return new CustomerCollection( $this->findByPageStmt->fetchAll(), $this );
     }
+	
+	function findByName( $value ) {
+		$this->findByNameStmt->bindValue(':name', $value."%", \PDO::PARAM_STR);
+		$this->findByNameStmt->execute();
+        return new CustomerCollection( $this->findByNameStmt->fetchAll(), $this );
+    }	
 }
 ?>

@@ -49,11 +49,15 @@ RewriteRule ^object/liked/([A-Za-z0-9]+)/([0-9]+)$ 				?cmd=ObjectLiked&ObjectNa
 #---------------------------------------------------------------------------------------------------------------------------
 # SELLING
 #---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^admin$ 													?cmd=Admin [L]
+RewriteRule ^ql-ban-hang/don-hang/dat$ 									?cmd=SaleInvoiceBooking [L]
+RewriteRule ^ql-ban-hang/don-hang/duyet$ 								?cmd=SaleInvoiceChecking [L]
+RewriteRule ^ql-ban-hang/khach-hang/tim-kiem$ 							?cmd=SaleInvoiceCustomerSearching [L]
+RewriteRule ^ql-ban-hang/khach-hang/([0-9]+)$ 							?cmd=SaleInvoiceCustomerDetail&IdCustomer=$1 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # SETTING
 #---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^admin$ 													?cmd=Admin [L]
 RewriteRule ^admin/setting$ 											?cmd=ASetting [L]
 
 RewriteRule ^admin/setting/type/account$ 								?cmd=ASettingTypeAccount [L]

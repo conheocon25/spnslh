@@ -263,8 +263,20 @@ class Session extends Object{
 		$Value = 	$this->getSurtax() + 					 
 					($Sum2 *(1.0 - $this->getDiscountPercent()/100.0) + $Sum1) - 
 					$this->getDiscountValue();
-		return $Value;
-		//return ;
+		return $Value;	
+	}
+	
+	function getCount(){		
+		$SDAll = $this->getDetails();
+		$Count = 0;	
+		while ($SDAll->valid()){
+			$SD = $SDAll->current();
+			if ($SD->getCourse()->getUnit()=="Kg"){
+				$Count += $SD->getCount();	
+			}
+			$SDAll->next();
+		}		
+		return $Count;		
 	}
 		
 	function getValuePrint(){$num = new Number($this->getValue());return $num->formatCurrency();}	

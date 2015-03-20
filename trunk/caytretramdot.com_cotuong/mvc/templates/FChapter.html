@@ -2,9 +2,11 @@
 <html lang="en">
 	<head>
 		<tal:block metal:use-macro="mFront.xhtml/IncludeMETA"/>
+		<meta property="fb:app_id" content="1550985445183957"/>
 		<meta property="og:title" tal:attributes="content Book/getTitle"/>
 		<meta property="og:description" tal:attributes="content Book/getInfoReduce"/>		
 		<meta property="og:image" tal:attributes="content Book/getThumb"/>
+		<meta property="og:type" content="article" />
 		<tal:block metal:use-macro="mFront.xhtml/IncludeCSS"/>
 		<tal:block metal:use-macro="mFront.xhtml/IncludeJS"/>
 	</head>
@@ -61,8 +63,7 @@
 				<div class="col-md-4">					
 					<div class="panel panel-default">						
 						<div class="panel-body">														
-							<tal:block metal:use-macro="mFront.xhtml/SuggestLevel01"/>
-							<div class="fb-like" data-share="true" data-width="100%" data-show-faces="true"></div>
+							<tal:block metal:use-macro="mFront.xhtml/SuggestLevel01"/>							
 						</div>
 					</div>
 				</div>

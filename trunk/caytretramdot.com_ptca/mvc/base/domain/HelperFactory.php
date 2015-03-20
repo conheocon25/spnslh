@@ -4,6 +4,8 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	require_once( "mvc/mapper/User.php" 			);
 	require_once( "mvc/mapper/TypeAccount.php" 		);
 	
+	require_once( "mvc/mapper/InvoiceSell.php" 		);
+	
 	require_once( "mvc/mapper/GoodGroup.php" 		);
 	require_once( "mvc/mapper/Good.php" 			);
 	

@@ -154,7 +154,7 @@ class Book extends Object{
 	
 	function setThumb( $Thumb ) {$this->Thumb = $Thumb; $this->markDirty();}   
 	function getThumb( ) 		{
-		return "/data/chess/150/book.png";		
+		return $this->Thumb;		
 	}
 	
 	function setCompleted( $Completed ) {$this->Completed = $Completed;$this->markDirty();}   
