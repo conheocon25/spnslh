@@ -13,6 +13,9 @@ interface Finder {
 interface UserFinder  			extends Finder {}
 interface TypeAccountFinder  	extends Finder {}
 
+interface GoodGroupFinder  		extends Finder {}
+interface GoodFinder  			extends Finder {}
+
 interface CustomerGroupFinder  	extends Finder {}
 interface CustomerFinder  		extends Finder {}
 
@@ -20,7 +23,7 @@ interface EmployeeFinder  		extends Finder {}
 interface DepartmentFinder  	extends Finder {}
 
 interface SupplierFinder  		extends Finder {}
-interface StoreFinder  			extends Finder {}
+interface WarehouseFinder  		extends Finder {}
 
 interface ConfigFinder 			extends Finder {}
 interface GuestFinder 			extends Finder {}

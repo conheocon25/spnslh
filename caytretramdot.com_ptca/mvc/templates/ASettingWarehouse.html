@@ -11,26 +11,28 @@
 			<div class="row">				
 				<div class="col-md-8">					
 					<div class="panel panel-primary">
-						<div class="panel-heading"><i class="glyphicon glyphicon-home"/> <B>PHÒNG BAN</B></div>
+						<div class="panel-heading"><i class="glyphicon glyphicon-home"/> <B>KHO HÀNG</B></div>
 						<div class="panel-body">		
 							<table class="table table-bordered table-striped table-hover">
 								<thead>
 									<tr>
 										<th width="40">ID</th>
 										<th class="left">TÊN</th>
-										<th width="120">NHÂN SỰ</th>
+										<th width="120">HÀNG HÓA</th>
 										<th width="40"><i class="glyphicon glyphicon-remove"/></th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr tal:repeat="Department DepartmentAll1">
-										<td class="center"><span tal:content="repeat/Department/number"/></td>
-										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="Department" tal:attributes="data-id Department/getId" tal:content="Department/getName"/></td>
-										<td><a tal:attributes="href Department/getURLSettingEmployee">Xem (											
-											<span tal:content="Department/getEmployeeAll/count"/>											
+									<tr tal:repeat="Warehouse WarehouseAll1">
+										<td class="center"><span tal:content="repeat/Warehouse/number"/></td>
+										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="Warehouse" tal:attributes="data-id Warehouse/getId" tal:content="Warehouse/getName"/></td>
+										<td><a tal:attributes="href Warehouse/getURLSettingEmployee">Xem (
+											<!--
+											<span tal:content="Warehouse/getEmployeeAll/count"/>											
+											!-->
 										)</a></td>
 										<td class="center">
-											<a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Department/getId"><i class="glyphicon glyphicon-remove"/></a>
+											<a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Warehouse/getId"><i class="glyphicon glyphicon-remove"/></a>
 										</td>
 									</tr>
 								</tbody>
@@ -44,7 +46,7 @@
 						<div class="panel-heading"><i class="glyphicon glyphicon-cog"/> <B>THAO TÁC</B></div>
 						<div class="panel-body">
 							<a href="#DialogIns" data-toggle="modal" class="btn btn-default btn-ins">
-								<i class="glyphicons-plus"/> Thêm mới PHÒNG BAN
+								<i class="glyphicons-plus"/> Thêm mới KHO HÀNG
 							</a>
 						</div>	
 					</div>
@@ -56,8 +58,8 @@
 		<div id="DialogIns" class="modal fade">
 			<div class="modal-dialog">
 				<div class="modal-content">
-					<div class="modal-header"><h3><i class="glyphicon glyphicon-home modal-icon"/> THÊM MỚI PHÒNG BAN</h3></div>
-					<form id="FormDepartmentInsert" action="#" class="form-horizontal" novalidate="novalidate">
+					<div class="modal-header"><h3><i class="glyphicon glyphicon-home modal-icon"/> THÊM MỚI KHO HÀNG</h3></div>
+					<form id="FormWarehouseInsert" action="#" class="form-horizontal" novalidate="novalidate">
 						<div class="modal-body">							
 							<div class="form-group">
 								<label class="col-sm-2 control-label">Tên</label>
@@ -98,8 +100,8 @@
 		<div id="DialogEdit" class="modal fade">
 			<div class="modal-dialog">
 				<div class="modal-content">
-					<div class="modal-header"><h3><i class="glyphicon glyphicon-home modal-icon"/> CẬP NHẬT PHÒNG BAN</h3></div>
-					<form id="FormDepartmentUpdate" action="#" class="form-horizontal" novalidate="novalidate">
+					<div class="modal-header"><h3><i class="glyphicon glyphicon-home modal-icon"/> CẬP NHẬT KHO HÀNG</h3></div>
+					<form id="FormWarehouseUpdate" action="#" class="form-horizontal" novalidate="novalidate">
 						<div class="modal-body">							
 							<div class="form-group">
 								<label class="col-sm-2 control-label">Tên</label>
@@ -147,7 +149,7 @@
 			});
 			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
 			$('#URLDelButton').click(function(){			
-				var URL = "/object/del/Department/" + $(this).attr('alt');
+				var URL = "/object/del/Warehouse/" + $(this).attr('alt');
 				$.ajax({
 					type: "POST",					
 					url: URL,
@@ -158,8 +160,8 @@
 			});
 		
 			//-----------------------------------------------------------------------------------
-			//Insert 1 Department			
-			$("#FormDepartmentInsert").validate({
+			//Insert 1 Warehouse			
+			$("#FormWarehouseInsert").validate({
 				rules:{
 					Name1:{
 						minlength: 2,
@@ -184,7 +186,7 @@
 					Data[4] = $('#Address1').val();
 					Data[5] = 1;
 																									
-					var URL = "/object/ins/Department";
+					var URL = "/object/ins/Warehouse";
 					$.ajax({
 						type: "POST",
 						data: {Data:Data},
@@ -204,11 +206,11 @@
 			});
 			
 			//-----------------------------------------------------------------------------------
-			//Load 1 Department
+			//Load 1 Warehouse
 			//-----------------------------------------------------------------------------------
 			$('.update-item').click(function(){
 				//Load dữ liệu JSON về
-				var url = "/object/load/Department/" + $(this).attr('data-id');
+				var url = "/object/load/Warehouse/" + $(this).attr('data-id');
 				
 				//Load dữ liệu JSON lên FORM
 				$('#update-link').attr('action', $(this).attr('alt'));
@@ -224,7 +226,7 @@
 			//-----------------------------------------------------------------------------------
 			//Update 1 EMPLOYEEE
 			//-----------------------------------------------------------------------------------
-			$("#FormDepartmentUpdate").validate({
+			$("#FormWarehouseUpdate").validate({
 				rules:{
 					Name2:{
 						minlength: 2,
@@ -249,7 +251,7 @@
 					Data[4] = $('#Address2').val();
 					Data[5] = 1;
 																									
-					var URL = "/object/upd/Department";
+					var URL = "/object/upd/Warehouse";
 					$.ajax({
 						type: "POST",
 						data: {Data:Data},
