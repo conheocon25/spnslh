@@ -11,34 +11,34 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$IdRoom	= $request->getProperty('IdRoom');
-			$Page 	= $request->getProperty('Page');
+			$IdDepartment	= $request->getProperty('IdDepartment');
+			$Page 			= $request->getProperty('Page');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mEmployee 	= new \MVC\Mapper\Employee();
-			$mRoom 		= new \MVC\Mapper\Room();
-			$mConfig 	= new \MVC\Mapper\Config();			
+			$mEmployee 		= new \MVC\Mapper\Employee();
+			$mDepartment 	= new \MVC\Mapper\Department();
+			$mConfig 		= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------									
-			$RoomAll		= $mRoom->findAll();
-			$Room			= $mRoom->find($IdRoom);
-			$EmployeeAll 	= $mEmployee->findByRoom(array($IdRoom));
+			$DepartmentAll	= $mDepartment->findAll();
+			$Department		= $mDepartment->find($IdDepartment);
+			$EmployeeAll 	= $mEmployee->findByDepartment(array($IdDepartment));
 						
 			if (!isset($Page)) $Page=1;
 			$Config 		= $mConfig->findByName("ROW_PER_PAGE");
 						
-			$EmployeeAll1 	= $mEmployee->findByRoomPage(array($IdRoom, $Page, $Config->getValue() ));
-			$PN 			= new \MVC\Domain\PageNavigation($EmployeeAll->count(), $Config->getValue(), "/setting/employee");
+			$EmployeeAll1 	= $mEmployee->findByDepartmentPage(array($IdDepartment, $Page, $Config->getValue() ));
+			$PN 			= new \MVC\Domain\PageNavigation($EmployeeAll->count(), $Config->getValue(), "/admin/setting/employee");
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------															
-			$request->setObject('Room'			, $Room);
-			$request->setObject('RoomAll'		, $RoomAll);
+			$request->setObject('Department'	, $Department);
+			$request->setObject('DepartmentAll'	, $DepartmentAll);
 			$request->setObject('EmployeeAll1'	, $EmployeeAll1);
 			$request->setProperty('Page'		, $Page);
 			$request->setObject('PN'			, $PN);
