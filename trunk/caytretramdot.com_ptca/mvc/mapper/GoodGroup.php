@@ -1,39 +1,37 @@
 <?php
 namespace MVC\Mapper;
 require_once( "mvc/base/Mapper.php" );
-class Store extends Mapper implements \MVC\Domain\StoreFinder {
+class GoodGroup extends Mapper implements \MVC\Domain\GoodGroupFinder {
 
     function __construct() {
         parent::__construct();
-		$tblStore 			= "tbl_store";
+		$tblGoodGroup 			= "good_group";
 		
-        $this->selectAllStmt 	= self::$PDO->prepare("select * from tbl_store");
-        $this->selectStmt 		= self::$PDO->prepare("select * from tbl_store where id=?");
-        $this->updateStmt 		= self::$PDO->prepare("update tbl_store set name=?, note=?  where id=?");
-        $this->insertStmt 		= self::$PDO->prepare("insert into tbl_store (name, note) values(?, ?)");
-		$this->deleteStmt 		= self::$PDO->prepare("delete from tbl_store where id=?");
+        $this->selectAllStmt 	= self::$PDO->prepare("select * from good_group");
+        $this->selectStmt 		= self::$PDO->prepare("select * from good_group where id=?");
+        $this->updateStmt 		= self::$PDO->prepare("update good_group set name=?  where id=?");
+        $this->insertStmt 		= self::$PDO->prepare("insert into good_group (name) values(?)");
+		$this->deleteStmt 		= self::$PDO->prepare("delete from good_group where id=?");
 						
-		$findByPageStmt 		= sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblStore);
+		$findByPageStmt 		= sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblGoodGroup);
 		$this->findByPageStmt 	= self::$PDO->prepare($findByPageStmt);
 		 
     } 
-    function getCollection( array $raw ) {return new StoreCollection( $raw, $this );}
+    function getCollection( array $raw ) {return new GoodGroupCollection( $raw, $this );}
 
     protected function doCreateObject( array $array ) {		
-        $obj = new \MVC\Domain\Store( 
+        $obj = new \MVC\Domain\GoodGroup( 
 			$array['id'],  
-			$array['name'],			
-			$array['note']			
+			$array['name']			
 		);
         return $obj;
     }
 	
-    protected function targetClass() {return "Store";}
+    protected function targetClass() {return "GoodGroup";}
 
     protected function doInsert( \MVC\Domain\Object $object ) {
-        $values = array(  
-			$object->getName(),			
-			$object->getNote()			
+        $values = array(
+			$object->getName()
 		); 
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
@@ -41,9 +39,8 @@ class Store extends Mapper implements \MVC\Domain\StoreFinder {
     }
     
     protected function doUpdate( \MVC\Domain\Object $object ) {
-        $values = array( 
+        $values = array(
 			$object->getName(),			
-			$object->getNote(),			
 			$object->getId()
 		);		
         $this->updateStmt->execute( $values );
@@ -57,7 +54,7 @@ class Store extends Mapper implements \MVC\Domain\StoreFinder {
 		$this->findByPageStmt->bindValue(':start', ((int)($values[0])-1)*(int)($values[1]), \PDO::PARAM_INT);
 		$this->findByPageStmt->bindValue(':max', (int)($values[1]), \PDO::PARAM_INT);
 		$this->findByPageStmt->execute();
-        return new StoreCollection( $this->findByPageStmt->fetchAll(), $this );
+        return new GoodGroupCollection( $this->findByPageStmt->fetchAll(), $this );
     }
 }
 ?>

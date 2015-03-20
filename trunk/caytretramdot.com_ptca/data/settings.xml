@@ -33,6 +33,10 @@
 		<command name="ASettingTypeAccount">	<view>ASettingTypeAccount</view></command>								
 		
 		<command name="ASettingUser">			<view>ASettingUser</view>		</command>
+		
+		<command name="ASettingGoodGroup">		<view>ASettingGoodGroup</view></command>
+		<command name="ASettingGood">			<view>ASettingGood</view></command>
+		
 		<command name="ASettingCustomerGroup">	<view>ASettingCustomerGroup</view></command>
 		<command name="ASettingCustomer">		<view>ASettingCustomer</view>	</command>
 		
@@ -40,9 +44,8 @@
 		<command name="ASettingDepartment">		<view>ASettingDepartment</view>	</command>
 		
 		<command name="ASettingSupplier">		<view>ASettingSupplier</view>	</command>
-		<command name="ASettingStore">			<view>ASettingStore</view>		</command>		
-		<command name="ASettingJob">			<view>ASettingJob</view>		</command>
-		
+		<command name="ASettingWarehouse">		<view>ASettingWarehouse</view>	</command>
+				
 		<command name="ASettingConfig">			<view>ASettingConfig</view>		</command>
 	</control>
 </options>

@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class ASettingStore extends Command {
+	class ASettingGoodGroup extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -16,26 +16,26 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mStore 	= new \MVC\Mapper\Store();
-			$mConfig 	= new \MVC\Mapper\Config();			
+			$mGoodGroup 	= new \MVC\Mapper\GoodGroup();
+			$mConfig 		= new \MVC\Mapper\Config();			
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------									
-			$StoreAll = $mStore->findAll();
+			$GoodGroupAll = $mGoodGroup->findAll();
 						
 			if (!isset($Page)) $Page=1;
 			$Config 		= $mConfig->findByName("ROW_PER_PAGE");
 						
-			$StoreAll1 	= $mStore->findByPage(array($Page, $Config->getValue() ));
-			$PN 		= new \MVC\Domain\PageNavigation($StoreAll->count(), $Config->getValue(), "/setting/Store");
+			$GoodGroupAll1 	= $mGoodGroup->findByPage(array($Page, $Config->getValue() ));
+			$PN 			= new \MVC\Domain\PageNavigation($GoodGroupAll->count(), $Config->getValue(), "/admin/setting/group");
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------												
-			$request->setProperty('Page'		, $Page);
-			$request->setObject('PN'			, $PN);									
-			$request->setObject('StoreAll1'	, $StoreAll1);
+			$request->setProperty('Page'			, $Page);
+			$request->setObject('PN'				, $PN);
+			$request->setObject('GoodGroupAll1'	, $GoodGroupAll1);
 												
 			return self::statuses('CMD_DEFAULT');
 		}

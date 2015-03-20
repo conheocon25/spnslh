@@ -11,24 +11,28 @@
 			<div class="row">				
 				<div class="col-md-8">					
 					<div class="panel panel-primary">
-						<div class="panel-heading"><i class="glyphicon glyphicon-home"/> <B>KHO HÀNG</B></div>
+						<div class="panel-heading"><i class="glyphicon glyphicon-tags"/><B> NHÓM HÀNG HÓA</B></div>
 						<div class="panel-body">		
 							<table class="table table-bordered table-striped table-hover">
 								<thead>
 									<tr>
-										<th width="40">ID</th>
-										<th width="200" class="left">TÊN</th>										
-										<th class="left">GHI CHÚ</th>
-										<th width="40"><i class="glyphicon glyphicon-remove"/></th>
+										<th width="32">ID</th>
+										<th class="left">TÊN NHÓM</th>
+										<th width="120" class="left">HÀNG HÓA</th>
+										<th width="32"><i class="glyphicon glyphicon-remove"/></th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr tal:repeat="Store StoreAll1">
-										<td class="center"><span tal:content="repeat/Store/number"/></td>
-										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="Store" tal:attributes="data-id Store/getId" tal:content="Store/getName"/></td>										
-										<td><span tal:content="Store/getNote"/></td>
+									<tr tal:repeat="GoodGroup GoodGroupAll1">
+										<td class="center"><span tal:content="repeat/GoodGroup/number"/></td>
+										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="GoodGroup" tal:attributes="data-id GoodGroup/getId" tal:content="GoodGroup/getName"/></td>
+										<td>
+											<a tal:attributes="href GoodGroup/getURLSettingGood">											
+												Xem <!--(<span tal:content="GoodGroup/getCustomerAll/count"/>)!-->
+											</a>
+										</td>
 										<td class="center">
-											<a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Store/getId">
+											<a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id GoodGroup/getId">
 												<i class="glyphicon glyphicon-remove"/>
 											</a>
 										</td>
@@ -40,11 +44,11 @@
 					</div>										
 				</div>
 				<div class="col-md-4">
-					<div class="panel panel-primary">
+					<div class="panel panel-default">
 						<div class="panel-heading"><i class="glyphicon glyphicon-cog"/> <B>THAO TÁC</B></div>
 						<div class="panel-body">
-							<a href="#DialogIns" data-toggle="modal" class="btn btn-primary btn-ins">
-								<i class="glyphicons-plus"/> Thêm mới
+							<a href="#DialogIns" data-toggle="modal" class="btn btn-default btn-ins">
+								<i class="glyphicons-plus"/> Thêm mới NHÓM
 							</a>
 						</div>	
 					</div>
@@ -56,21 +60,15 @@
 		<div id="DialogIns" class="modal fade">
 			<div class="modal-dialog">
 				<div class="modal-content">
-					<div class="modal-header"><h3><i class="glyphicon glyphicon-home modal-icon"/>THÊM MỚI KHO HÀNG</h3></div>
-					<form id="FormStoreInsert" action="#" class="form-horizontal" novalidate="novalidate">
+					<div class="modal-header"><h3><i class="glyphicon glyphicon-tag modal-icon"/>THÊM MỚI NHÓM</h3></div>
+					<form id="FormGoodGroupInsert" action="#" class="form-horizontal" novalidate="novalidate">
 						<div class="modal-body">							
 							<div class="form-group">
 								<label class="col-sm-2 control-label">Tên</label>
 								<div class="col-sm-10 controls">
 									<input id="Name1" name="Name1" type="text" class="form-control input-small"/>
 								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Ghi chú</label>
-								<div class="col-sm-10 controls">
-									<input id="Note1" name="Note1" type="text" class="form-control input-small"/>
-								</div>
-							</div>							
+							</div>								
 						</div>
 						<div class="modal-footer">
 							<button class="btn btn-primary btn-small" id="URLInsButton"><i class="glyphicons-download_alt"/> Lưu</button>
@@ -86,19 +84,13 @@
 		<div id="DialogEdit" class="modal fade">
 			<div class="modal-dialog">
 				<div class="modal-content">
-					<div class="modal-header"><h3><i class="glyphicon glyphicon-user modal-icon"/>CẬP NHẬT KHO HÀNG</h3></div>
-					<form id="FormStoreUpdate" action="#" class="form-horizontal" novalidate="novalidate">
+					<div class="modal-header"><h3><i class="glyphicon glyphicon-tag modal-icon"/>CẬP NHẬT NHÓM</h3></div>
+					<form id="FormGoodGroupUpdate" action="#" class="form-horizontal" novalidate="novalidate">
 						<div class="modal-body">							
 							<div class="form-group">
 								<label class="col-sm-2 control-label">Tên</label>
 								<div class="col-sm-10 controls">
 									<input id="Name2" name="Name2" type="text" class="form-control input-small"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Ghi chú</label>
-								<div class="col-sm-10 controls">
-									<input id="Note2" name="Note2" type="text" class="form-control input-small"/>
 								</div>
 							</div>							
 						</div>
@@ -123,7 +115,7 @@
 			});
 			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
 			$('#URLDelButton').click(function(){			
-				var URL = "/object/del/Store/" + $(this).attr('alt');
+				var URL = "/object/del/GoodGroup/" + $(this).attr('alt');
 				$.ajax({
 					type: "POST",					
 					url: URL,
@@ -134,8 +126,8 @@
 			});
 		
 			//-----------------------------------------------------------------------------------
-			//Insert 1 Store			
-			$("#FormStoreInsert").validate({
+			//Insert 1 GoodGroup			
+			$("#FormGoodGroupInsert").validate({
 				rules:{
 					Name1:{
 						minlength: 2,
@@ -154,10 +146,9 @@
 				submitHandler: function (form) {					
 					var Data = [];
 					Data[0] = 'null';				
-					Data[1] = $('#Name1').val();					
-					Data[2] = $('#Note1').val();
+					Data[1] = $('#Name1').val();										
 																				
-					var URL = "/object/ins/Store";
+					var URL = "/object/ins/GoodGroup";
 					$.ajax({
 						type: "POST",
 						data: {Data:Data},
@@ -177,25 +168,24 @@
 			});
 			
 			//-----------------------------------------------------------------------------------
-			//Load 1 Store
+			//Load 1 GoodGroup
 			//-----------------------------------------------------------------------------------
 			$('.update-item').click(function(){
 				//Load dữ liệu JSON về
-				var url = "/object/load/Store/" + $(this).attr('data-id');
+				var url = "/object/load/GoodGroup/" + $(this).attr('data-id');
 				
 				//Load dữ liệu JSON lên FORM
 				$('#update-link').attr('action', $(this).attr('alt'));
 				$.getJSON(url, function(data) {
 					$('#URLUpdButton').attr('alt', 	data.Id);
-					$('#Name2').attr('value', 		data.Name);
-					$('#Note2').attr('value', 		data.Note);
+					$('#Name2').attr('value', 		data.Name);					
 				});
 			});
 			
 			//-----------------------------------------------------------------------------------
 			//Update 1 EMPLOYEEE
 			//-----------------------------------------------------------------------------------
-			$("#FormStoreUpdate").validate({
+			$("#FormGoodGroupUpdate").validate({
 				rules:{
 					Name2:{
 						minlength: 2,
@@ -214,10 +204,9 @@
 				submitHandler: function (form) {					
 					var Data = [];
 					Data[0] = $('#URLUpdButton').attr('alt');
-					Data[1] = $('#Name2').val();					
-					Data[2] = $('#Note2').val();
+					Data[1] = $('#Name2').val();										
 																				
-					var URL = "/object/upd/Store";
+					var URL = "/object/upd/GoodGroup";
 					$.ajax({
 						type: "POST",
 						data: {Data:Data},

@@ -67,15 +67,19 @@ RewriteRule ^admin/setting/user/page/([0-9]+)$ 							?cmd=ASettingUser&Page=$1 
 
 RewriteRule ^admin/setting/customer$ 									?cmd=ASettingCustomerGroup [L]
 RewriteRule ^admin/setting/customer/page/([0-9]+)$ 						?cmd=ASettingCustomerGroup&Page=$1 [L]
-
 RewriteRule ^admin/setting/customer/([0-9]+)$ 							?cmd=ASettingCustomer&IdGroup=$1 [L]
 RewriteRule ^admin/setting/customer/([0-9]+)/page/([0-9]+)$ 			?cmd=ASettingCustomer&IdGroup=$1&Page=$2 [L]
+
+RewriteRule ^admin/setting/good$ 										?cmd=ASettingGoodGroup [L]
+RewriteRule ^admin/setting/good/page/([0-9]+)$ 							?cmd=ASettingGoodGroup&Page=$1 [L]
+RewriteRule ^admin/setting/good/([0-9]+)$ 								?cmd=ASettingGood&IdGroup=$1 [L]
+RewriteRule ^admin/setting/good/([0-9]+)/page/([0-9]+)$ 				?cmd=ASettingGood&IdGroup=$1&Page=$2 [L]
 
 RewriteRule ^admin/setting/supplier$ 									?cmd=ASettingSupplier [L]
 RewriteRule ^admin/setting/supplier/page/([0-9]+)$ 						?cmd=ASettingSupplier&Page=$1 [L]
 
-RewriteRule ^admin/setting/store$ 										?cmd=ASettingStore [L]
-RewriteRule ^admin/setting/store/page/([0-9]+)$ 						?cmd=ASettingStore&Page=$1 [L]
+RewriteRule ^admin/setting/warehouse$ 									?cmd=ASettingWarehouse [L]
+RewriteRule ^admin/setting/warehouse/page/([0-9]+)$ 					?cmd=ASettingWarehouse&Page=$1 [L]
 
 RewriteRule ^admin/setting/department$ 									?cmd=ASettingDepartment [L]
 RewriteRule ^admin/setting/department/page/([0-9]+)$ 					?cmd=ASettingDepartment&Page=$1 [L]
