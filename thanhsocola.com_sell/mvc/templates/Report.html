@@ -187,7 +187,15 @@
 				var Data = [];
 				Data[0] = 'null';
 				Data[1] = $('#DateStart1').val();
-				Data[2] = $('#DateEnd1').val();								
+				Data[2] = $('#DateEnd1').val();
+				Data[3] = 0;
+				Data[4] = 0;
+				Data[5] = 0;
+				Data[6] = 0;
+				Data[7] = 0;
+				Data[8] = 0;
+				Data[9] = 0;
+				
 				var URL = "/object/ins/Tracking";
 				$.ajax({
 					type: "POST",

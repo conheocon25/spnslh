@@ -13,6 +13,8 @@ interface Finder {
 interface UserFinder  			extends Finder {}
 interface TypeAccountFinder  	extends Finder {}
 
+interface InvoiceSellFinder  	extends Finder {}
+
 interface GoodGroupFinder  		extends Finder {}
 interface GoodFinder  			extends Finder {}
 

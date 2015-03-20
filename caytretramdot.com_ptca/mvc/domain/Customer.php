@@ -139,24 +139,12 @@ class Customer extends Object{
 		$this->Avatar		= $Data[13];
     }
 			
-	function getSessionAll(){
-		$mSession = new	\MVC\Mapper\Session();
-		$Sessions = $mSession->findByCustomer(array($this->Id));
-		return $Sessions;
+	function getInvoiceSellAll(){
+		$mInvoiceSell 	= new	\MVC\Mapper\InvoiceSell();
+		$InvoiceAll 	= $mInvoiceSell->findByCustomer(array($this->Id));
+		return $InvoiceAll;
 	}
-	
-	function getCollectAll(){
-		$mCC = new \MVC\Mapper\CollectCustomer();
-		$CollectAll = $mCC->findBy(array($this->getId()));
-		return $CollectAll;
-	}
-	
-	function getPaidAll(){
-		$mPC 		= new \MVC\Mapper\PaidCustomer();
-		$PaidAll 	= $mPC->findBy(array($this->getId()));
-		return $PaidAll;
-	}
-				
+					
 	//=================================================================================	
 	
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

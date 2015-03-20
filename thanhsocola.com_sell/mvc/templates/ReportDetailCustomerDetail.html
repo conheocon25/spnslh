@@ -26,12 +26,24 @@
 									<table class="table table-striped table-hover">										
 										<tbody>											
 											<tr>
+												<td align="right"><B>TỔNG MUA HÀNG TRƯỚC</B></td>
+												<td align="right" width="120"><B tal:content="ValueOldGlobal"/> đ</td>
+											</tr>
+											<tr>
+												<td align="right"><B>TỔNG TIÊU THỤ TRƯỚC</B></td>
+												<td align="right" width="120"><B tal:content="CountOldGlobal"/> kg</td>
+											</tr>
+											<tr>
 												<td align="right"><B>NỢ CŨ</B></td>
 												<td align="right" width="120"><B tal:content="ValueOld"/> đ</td>
-											</tr>											
+											</tr>
 											<tr>
 												<td align="right"><B>MUA HÀNG</B></td>
 												<td align="right" width="120"><B tal:content="TC/getPaidPrint"/> đ</td>
+											</tr>											
+											<tr>
+												<td align="right"><B>TIÊU THỤ</B></td>
+												<td align="right" width="120"><B tal:content="TC/getCountPrint"/> kg</td>
 											</tr>											
 											<tr>
 												<td align="right"><B>TRẢ TIỀN</B></td>

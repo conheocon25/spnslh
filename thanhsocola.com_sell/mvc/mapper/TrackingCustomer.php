@@ -11,7 +11,7 @@ class TrackingCustomer extends Mapper implements \MVC\Domain\TrackingCustomerFin
 		$selectAllStmt 				= sprintf("select * from %s ORDER BY date_start", $tblTrackingCustomer);
 		$selectStmt 				= sprintf("select *  from %s where id=?", $tblTrackingCustomer);
 		$updateStmt 				= sprintf("update %s set id_tracking=?, id_customer=?, collect=?, paid=?, value=?, value_global=?, `count`=?, `count_global`=? where id=?", $tblTrackingCustomer);
-		$insertStmt 				= sprintf("insert into %s (id_tracking, id_customer, collect, paid, value, value_global, `count`, count_global) values(?, ?, ?, ?, ?, ?, ?)", $tblTrackingCustomer);
+		$insertStmt 				= sprintf("insert into %s (id_tracking, id_customer, collect, paid, value, value_global, `count`, count_global) values(?, ?, ?, ?, ?, ?, ?, ?)", $tblTrackingCustomer);
 		$deleteStmt 				= sprintf("delete from %s where id=?", $tblTrackingCustomer);
 		$deleteByTrackingStmt 		= sprintf("delete from %s where id_tracking=?", $tblTrackingCustomer);
 		$findByStmt 				= sprintf("select id, 0 as id_tracking, id_td, id_course, sum(count) as count, avg(price) as price, sum(value) as value from %s where id_td=? GROUP BY id_course ORDER BY count DESC", $tblTrackingCustomer);		

@@ -2,8 +2,10 @@
 <html lang="en">
 	<head>
 		<tal:block metal:use-macro="mFront.xhtml/IncludeMETA"/>
+		<meta property="fb:app_id" content="1550985445183957"/>
 		<meta property="og:title" tal:attributes="content Book/getTitle"/>
 		<meta property="og:description" tal:attributes="content Book/getInfoReduce"/>		
+		<meta property="og:type" content="article" />
 		<meta property="og:image" tal:attributes="content Book/getThumb"/>
 		<tal:block metal:use-macro="mFront.xhtml/IncludeCSS"/>
 		<tal:block metal:use-macro="mFront.xhtml/IncludeJS"/>		

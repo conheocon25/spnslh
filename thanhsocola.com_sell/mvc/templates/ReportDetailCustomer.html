@@ -30,6 +30,7 @@
 												<th width="64"><div class="text-center">STT</div></th>
 												<th><div class="text-left">HỌ TÊN</div></th>												
 												<th width="120"><div class="text-right">BÁN HÀNG</div></th>
+												<th width="120"><div class="text-right">TIỂU THỤ</div></th>
 												<th width="120"><div class="text-right">THU TIỀN</div></th>
 												<th width="120"><div class="text-right">NỢ MỚI</div></th>
 											</tr>
@@ -38,8 +39,9 @@
 											<tr tal:repeat="TC TCAll" class="gradeA odd">
 												<td><div class="text-center" tal:content="repeat/TC/number"/></td>
 												<td><span tal:content="TC/getCustomer/getName"/></td>
-												<td class="right"><span tal:content="TC/getCollectPrint"/></td>
 												<td class="right"><span tal:content="TC/getPaidPrint"/></td>
+												<td class="right"><span tal:content="TC/getCountPrint"/> / <span tal:content="TC/getCountGlobalPrint"/></td>
+												<td class="right"><span tal:content="TC/getCollectPrint"/></td>												
 												<td class="right"><a tal:attributes="href TC/getURLView">
 													<div class="text-right" tal:content="TC/getValuePrint"/></a>
 												</td>

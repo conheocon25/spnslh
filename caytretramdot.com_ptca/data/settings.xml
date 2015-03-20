@@ -25,7 +25,15 @@
 		<command name="SignoutLoad"><view>SignoutLoad</view></command>
 		<command name="SignoutExe"><view>SignoutExe</view><status value="CMD_OK"><forward>FHome</forward></status></command>
 		<command name="Admin"><view>Admin</view></command>											
-											
+		
+		<!-- ============================================================================== -->
+		<!-- SALE	 																		-->
+		<!-- ============================================================================== -->
+		<command name="SaleInvoiceBooking">	<view>SaleInvoiceBooking</view></command>
+		<command name="SaleInvoiceChecking"><view>SaleInvoiceChecking</view></command>
+		<command name="SaleInvoiceCustomerSearching"><view>SaleInvoiceCustomerSearching</view></command>
+		<command name="SaleInvoiceCustomerDetail"><view>SaleInvoiceCustomerDetail</view></command>
+		
 		<!-- ============================================================================== -->
 		<!-- SETTING	 																	-->
 		<!-- ============================================================================== -->				
