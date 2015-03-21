@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class SaleInvoiceCustomerDetailInvoice extends Command{
+	class SaleInvoiceDetailUpdExe extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -10,33 +10,30 @@
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
-			//-------------------------------------------------------------			
-			$IdCustomer = $request->getProperty("IdCustomer");
-			$IdInvoice 	= $request->getProperty("IdInvoice");
-			
+			//-------------------------------------------------------------
+			$IdDetail 	= $request->getProperty('IdDetail');						
+			$Count 		= $request->getProperty('Count');
+			$Price 		= $request->getProperty('Price');
+						
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mCustomer 		= new \MVC\Mapper\Customer();
-			$mEmployee 		= new \MVC\Mapper\Employee();
-			$mGood 			= new \MVC\Mapper\Good();
-			$mInvoiceSell 	= new \MVC\Mapper\InvoiceSell();
-			
+			$mConfig 		= new \MVC\Mapper\Config();			
+			$mInvoiceSellDetail = new \MVC\Mapper\InvoiceSellDetail();
+															
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------									
-			$GoodAll	= $mGood->findAll();
-			$EmployeeAll= $mEmployee->findAll();
-			$Customer	= $mCustomer->find($IdCustomer);
-			$Invoice	= $mInvoiceSell->find($IdInvoice);						
+			//-------------------------------------------------------------
+			$InvoiceSellDetail = $mInvoiceSellDetail->find($IdDetail);
 			
+			$InvoiceSellDetail->setCount($Count);
+			$InvoiceSellDetail->setPrice($Price);
+			$mInvoiceSellDetail->update($InvoiceSellDetail);
+															
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-			$request->setObject('GoodAll'		, $GoodAll);
-			$request->setObject('EmployeeAll'	, $EmployeeAll);
-			$request->setObject('Customer'		, $Customer);
-			$request->setObject('Invoice'		, $Invoice);
+															
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

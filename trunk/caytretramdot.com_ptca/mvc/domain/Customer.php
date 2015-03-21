@@ -141,7 +141,7 @@ class Customer extends Object{
 			
 	function getInvoiceSellAll(){
 		$mInvoiceSell 	= new	\MVC\Mapper\InvoiceSell();
-		$InvoiceAll 	= $mInvoiceSell->findByCustomer(array($this->Id));
+		$InvoiceAll 	= $mInvoiceSell->findByCustomerTop12(array($this->Id));
 		return $InvoiceAll;
 	}
 					
