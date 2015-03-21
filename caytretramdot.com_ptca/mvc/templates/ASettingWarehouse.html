@@ -11,29 +11,21 @@
 			<div class="row">				
 				<div class="col-md-8">					
 					<div class="panel panel-primary">
-						<div class="panel-heading"><i class="glyphicon glyphicon-home"/> <B>KHO HÀNG</B></div>
+						<div class="panel-heading"><i class="glyphicon glyphicon-home"/> <B>QUẢN TRỊ / KHO HÀNG</B></div>
 						<div class="panel-body">		
 							<table class="table table-bordered table-striped table-hover">
 								<thead>
 									<tr>
 										<th width="40">ID</th>
-										<th class="left">TÊN</th>
-										<th width="120">HÀNG HÓA</th>
+										<th class="left">TÊN</th>										
 										<th width="40"><i class="glyphicon glyphicon-remove"/></th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr tal:repeat="Warehouse WarehouseAll1">
 										<td class="center"><span tal:content="repeat/Warehouse/number"/></td>
-										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="Warehouse" tal:attributes="data-id Warehouse/getId" tal:content="Warehouse/getName"/></td>
-										<td><a tal:attributes="href Warehouse/getURLSettingEmployee">Xem (
-											<!--
-											<span tal:content="Warehouse/getEmployeeAll/count"/>											
-											!-->
-										)</a></td>
-										<td class="center">
-											<a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Warehouse/getId"><i class="glyphicon glyphicon-remove"/></a>
-										</td>
+										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="Warehouse" tal:attributes="data-id Warehouse/getId" tal:content="Warehouse/getName"/></td>										
+										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Warehouse/getId"><i class="glyphicon glyphicon-remove"/></a></td>
 									</tr>
 								</tbody>
 							</table>
@@ -46,7 +38,7 @@
 						<div class="panel-heading"><i class="glyphicon glyphicon-cog"/> <B>THAO TÁC</B></div>
 						<div class="panel-body">
 							<a href="#DialogIns" data-toggle="modal" class="btn btn-default btn-ins">
-								<i class="glyphicons-plus"/> Thêm mới KHO HÀNG
+								<i class="glyphicon glyphicon-plus"/> KHO HÀNG
 							</a>
 						</div>	
 					</div>

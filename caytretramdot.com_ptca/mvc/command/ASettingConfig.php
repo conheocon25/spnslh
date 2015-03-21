@@ -26,9 +26,15 @@
 			$Title = "CẤU HÌNH";
 						
 			//Kiểm tra nếu chưa tồn tại trong DB thì sẽ tự động khởi tạo giá trị mặc định và lưu vào DB			
-			$ConfigName 	= $mConfig->findByName("NAME");
-			if ($ConfigName==null){
-				$ConfigName = new \MVC\Domain\Config(null, 'NAME', 'QUÁN CAFE');
+			$ConfigNameApp 	= $mConfig->findByName("NAME_APP");
+			if ($ConfigNameApp==null){
+				$ConfigNameApp = new \MVC\Domain\Config(null, 'NAME_APP', 'HỆ THỐNG QUẢN LÝ PTC');
+				$mConfig->insert($ConfigName);
+			}
+			
+			$ConfigNameCompany 	= $mConfig->findByName("NAME_COMPANY");
+			if ($ConfigNameCompany==null){
+				$ConfigNameCompany = new \MVC\Domain\Config(null, 'NAME_COMPANY', 'CÔNG TY CỔ PHẦN DẦU KHÍ CỬU LONG');
 				$mConfig->insert($ConfigName);
 			}
 			
@@ -46,7 +52,7 @@
 			
 			$ConfigPhone2 	= $mConfig->findByName("PHONE2");
 			if ($ConfigPhone2==null){
-				$ConfigPhone2 = new \MVC\Domain\Config(null, 'PHONE2', '0919 153 189');
+				$ConfigPhone2 = new \MVC\Domain\Config(null, 'PHONE2', '0996 355 368');
 				$mConfig->insert($ConfigPhone2);
 			}
 			
@@ -73,39 +79,19 @@
 				$ConfigReceiptVirtualDouble = new \MVC\Domain\Config(null, 'RECEIPT_VIRTUAL_DOUBLE', 1);
 				$mConfig->insert($ConfigReceiptVirtualDouble);
 			}
-			
-			$ConfignMonthLog	= $mConfig->findByName("N_MONTH_LOG");
-			if ($ConfignMonthLog==null){
-				$ConfignMonthLog = new \MVC\Domain\Config(null, 'N_MONTH_LOG', 1);
-				$mConfig->insert($ConfignMonthLog);
-			}
-			
-			$ConfigIntroduction = $mConfig->findByName("POST_INTRODUCTION");
-			if ($ConfigIntroduction==null){
-				$ConfigIntroduction = new \MVC\Domain\Config(null, 'POST_INTRODUCTION', 0);
-				$mConfig->insert($ConfigIntroduction);
-			}
-						
-			$ConfigContact = $mConfig->findByName("CONTACT_NAME");
-			if ($ConfigContact==null){
-				$ConfigContact = new \MVC\Domain\Config(null, 'CONTACT_NAME', 'A.Tuấn');
-				$mConfig->insert($ConfigContact);
-			}
 									
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------																											
-			$request->setObject('ConfigName', 				$ConfigName);
+			$request->setObject('ConfigNameApp', 			$ConfigNameApp);
+			$request->setObject('ConfigNameCompany', 		$ConfigNameCompany);
 			$request->setObject('ConfigAddress', 			$ConfigAddress);
 			$request->setObject('ConfigPhone1', 			$ConfigPhone1);
-			$request->setObject('ConfigPhone2', 			$ConfigPhone2);
-			$request->setObject('ConfigContact', 			$ConfigContact);
+			$request->setObject('ConfigPhone2', 			$ConfigPhone2);			
 			$request->setObject('ConfigRowPerPage', 		$ConfigRowPerPage);			
 			$request->setObject('ConfigGuestVisit', 		$ConfigGuestVisit);
 			$request->setObject('ConfigSlogan', 			$ConfigSlogan);			
 			$request->setObject('ConfigReceiptVirtualDouble', $ConfigReceiptVirtualDouble);
-			$request->setObject('ConfignMonthLog', 			$ConfignMonthLog);
-						
 															
 			return self::statuses('CMD_DEFAULT');
 		}

@@ -6,24 +6,33 @@ class Good extends Object{
     private $Id;
 	private $IdGroup;
 	private $Name;	
-	private $Vat;	
+	private $PriceImport;
+	private $PriceSale;
+	private $Unit;
+	private $Vat;
 	private $Note;
 	private $Visible;
 			
     function __construct( 
 		$Id=null, 
 		$IdGroup=null, 
-		$Name=null, 		
-		$Vat=null, 		
+		$Name=null,
+		$PriceImport=null,
+		$PriceSale=null,
+		$Unit=null,
+		$Vat=null, 
 		$Note=null,
 		$Visible=null		
 	) {
-        $this->Id 		= $Id;
-		$this->IdGroup 	= $IdGroup;
-		$this->Name 	= $Name;
-		$this->Vat 		= $Vat;		
-		$this->Note		= $Note;
-		$this->Visible	= $Visible;			
+        $this->Id 			= $Id;
+		$this->IdGroup 		= $IdGroup;
+		$this->Name 		= $Name;
+		$this->PriceImport 	= $PriceImport;
+		$this->PriceSale 	= $PriceSale;
+		$this->Unit 		= $Unit;
+		$this->Vat 			= $Vat;
+		$this->Note			= $Note;
+		$this->Visible		= $Visible;
         parent::__construct( $Id );
     }
 	function setId( $Id){return $this->Id = $Id;}
@@ -42,7 +51,24 @@ class Good extends Object{
 	
 	function getName(){return $this->Name;}	
     function setName( $Name ) {$this->Name = $Name;$this->markDirty();}
-		
+	
+	function setPriceImport( $PriceImport ) {$this->PriceImport = $PriceImport;$this->markDirty();}
+	function getPriceImport(){return $this->PriceImport;}
+	function getPriceImportPrint(){
+		$num = number_format($this->PriceImport, 0, ',', ' ');
+		return $num;		
+	}
+	
+	function setPriceSale( $PriceSale ) {$this->PriceSale = $PriceSale; $this->markDirty();}
+	function getPriceSale(){return $this->PriceSale;}
+	function getPriceSalePrint(){
+		$num = number_format($this->PriceSale, 0, ',', ' ');
+		return $num;		
+	}
+	
+	function setUnit( $Unit ) {$this->Unit = $Unit;$this->markDirty();}
+	function getUnit(){return $this->Unit;}
+	
 	function setNote( $Note ) {$this->Note = $Note;$this->markDirty();}
 	function getNote(){return $this->Note;}
 	
@@ -54,6 +80,9 @@ class Good extends Object{
 			'Id' 			=> $this->getId(),
 			'IdGroup' 		=> $this->getIdGroup(),
 			'Name'			=> $this->getName(),
+			'PriceImport'	=> $this->getPriceImport(),
+			'PriceSale'		=> $this->getPriceSale(),
+			'Unit'			=> $this->getUnit(),
 			'Vat'			=> $this->getVat(),
 			'Note'			=> $this->getNote(),
 			'Visible'		=> $this->getVisible()
@@ -65,9 +94,12 @@ class Good extends Object{
 		$this->Id 			= $Data[0];
 		$this->IdGroup		= $Data[1];
 		$this->Name 		= $Data[2];
-		$this->Vat			= $Data[3];
-		$this->Note			= $Data[4];
-		$this->Visible		= $Data[5];
+		$this->PriceImport	= $Data[3];
+		$this->PriceSale	= $Data[4];
+		$this->Unit			= $Data[5];
+		$this->Vat			= $Data[6];
+		$this->Note			= $Data[7];
+		$this->Visible		= $Data[8];
     }
 					
 	//=================================================================================	
