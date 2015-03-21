@@ -29,13 +29,13 @@
 		<!-- ============================================================================== -->
 		<!-- SALE	 																		-->
 		<!-- ============================================================================== -->
-		<command name="SaleInvoiceBooking">	<view>SaleInvoiceBooking</view></command>
-		<command name="SaleInvoiceChecking"><view>SaleInvoiceChecking</view></command>
-		<command name="SaleInvoiceCustomerSearching"><view>SaleInvoiceCustomerSearching</view></command>
-		<command name="SaleInvoiceCustomerDetail"><view>SaleInvoiceCustomerDetail</view></command>
-		<command name="SaleInvoiceCustomerDetailInvoiceInsExe"><view>SaleInvoiceCustomerDetailInvoiceInsExe</view></command>
-		<command name="SaleInvoiceCustomerDetailInvoice"><view>SaleInvoiceCustomerDetailInvoice</view></command>
-		<command name="SaleInvoiceCustomerDetailInvoicePrint"><view>SaleInvoiceCustomerDetailInvoicePrint</view></command>
+		<command name="Sale">				<view>Sale</view></command>				
+		<command name="SaleCustomerSearching"><view>SaleCustomerSearching</view></command>		
+		<command name="SaleCustomer"><view>SaleCustomer</view></command>		
+		<command name="SaleCustomerInsExe"><view>SaleCustomerInsExe</view></command>
+		
+		<command name="SaleCustomerInvoice"><view>SaleCustomerInvoice</view></command>
+		<command name="SaleCustomerInvoicePrint"><view>SaleCustomerInvoicePrint</view></command>
 		
 		<command name="SaleInvoiceDetailInsExe"><view>SaleInvoiceDetailInsExe</view></command>
 		<command name="SaleInvoiceDetailUpdExe"><view>SaleInvoiceDetailUpdExe</view></command>

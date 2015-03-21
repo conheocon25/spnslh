@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class SaleInvoiceCustomerDetailInvoice extends Command{
+	class SaleCustomerSearching extends Command{
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -11,32 +11,22 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------			
-			$IdCustomer = $request->getProperty("IdCustomer");
-			$IdInvoice 	= $request->getProperty("IdInvoice");
+			$Name 		= $request->getProperty("Name");
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mCustomer 		= new \MVC\Mapper\Customer();
-			$mEmployee 		= new \MVC\Mapper\Employee();
-			$mGood 			= new \MVC\Mapper\Good();
-			$mInvoiceSell 	= new \MVC\Mapper\InvoiceSell();
+			$mCustomer 	= new \MVC\Mapper\Customer();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------									
-			$GoodAll	= $mGood->findAll();
-			$EmployeeAll= $mEmployee->findAll();
-			$Customer	= $mCustomer->find($IdCustomer);
-			$Invoice	= $mInvoiceSell->find($IdInvoice);						
-			
+			$CustomerAll	= $mCustomer->findByName($Name);
+									
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-			$request->setObject('GoodAll'		, $GoodAll);
-			$request->setObject('EmployeeAll'	, $EmployeeAll);
-			$request->setObject('Customer'		, $Customer);
-			$request->setObject('Invoice'		, $Invoice);
+			$request->setObject('CustomerFAll'		, $CustomerAll);
 			return self::statuses('CMD_DEFAULT');
 		}
 	}
