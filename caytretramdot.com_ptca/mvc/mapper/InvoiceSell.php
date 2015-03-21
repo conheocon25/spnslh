@@ -39,9 +39,9 @@ class InvoiceSell extends Mapper implements \MVC\Domain\InvoiceSellFinder {
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array(
 			$object->getIdEmployee(),
-			$object->getIdCusotmer(),
+			$object->getIdCustomer(),
 			$object->getDateTimeCreated(),
-			$object->getDateTimeUpdate(),
+			$object->getDateTimeUpdated(),
 			$object->getNote(),
 			$object->getState()
 		); 
@@ -53,9 +53,9 @@ class InvoiceSell extends Mapper implements \MVC\Domain\InvoiceSellFinder {
     protected function doUpdate( \MVC\Domain\Object $object ) {
         $values = array(
 			$object->getIdEmployee(),
-			$object->getIdCusotmer(),
+			$object->getIdCustomer(),
 			$object->getDateTimeCreated(),
-			$object->getDateTimeUpdate(),
+			$object->getDateTimeUpdated(),
 			$object->getNote(),
 			$object->getState(),
 			$object->getId()

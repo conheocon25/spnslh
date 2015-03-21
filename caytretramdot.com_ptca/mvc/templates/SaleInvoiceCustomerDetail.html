@@ -12,8 +12,8 @@
 					</thead>
 					<tbody>
 						<tr tal:repeat="Invoice Customer/getInvoiceSellAll">
-							<td><div style="cursor: pointer" tal:attributes="alt Invoice/getId" class="InvoiceView text-left" tal:content="Invoice/getDateTimeCreatedPrint"/></td>
-							<td><div style="cursor: pointer" tal:attributes="alt Invoice/getId" class="InvoiceView text-right"><span tal:content="Invoice/getId"/></div></td>
+							<td><div style="cursor: pointer" tal:attributes="alt Invoice/getURLLoad" class="InvoiceView text-left" tal:content="Invoice/getDateTimeCreatedPrint"/></td>
+							<td><div style="cursor: pointer" tal:attributes="alt Invoice/getURLLoad" class="InvoiceView text-right"><span tal:content="Invoice/getStatePrint"/></div></td>
 						</tr>
 					</tbody>
 				</table>				
@@ -22,6 +22,24 @@
 		</div>	
 	</body>
 	<script>
+		$(".InvoiceView").click(function(){
+			var URL = $(this).attr('alt');			
+			$("#InvoiceView").load(URL);
+		});
+		$('.SessionView:first').click();
+		
+		$(".SessionInsert").click(function(){
+			var IdCustomer = $(this).attr('alt');								
+			var Data = [];
+			var URL = "/selling/session/insert/"+IdCustomer;												
+			$.ajax({
+				type: "POST",					
+				url: URL,
+				success: function(msg){						
+					$("#SessionAll").load("/selling/load/customer/"+IdCustomer);
+				}
+			});
 			
+		});	
     </script>
 </html>

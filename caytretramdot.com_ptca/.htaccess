@@ -53,6 +53,8 @@ RewriteRule ^ql-ban-hang/don-hang/dat$ 									?cmd=SaleInvoiceBooking [L]
 RewriteRule ^ql-ban-hang/don-hang/duyet$ 								?cmd=SaleInvoiceChecking [L]
 RewriteRule ^ql-ban-hang/khach-hang/tim-kiem$ 							?cmd=SaleInvoiceCustomerSearching [L]
 RewriteRule ^ql-ban-hang/khach-hang/([0-9]+)$ 							?cmd=SaleInvoiceCustomerDetail&IdCustomer=$1 [L]
+RewriteRule ^ql-ban-hang/khach-hang/([0-9]+)/([0-9]+)$ 					?cmd=SaleInvoiceCustomerDetailInvoice&IdCustomer=$1&IdInvoice=$2 [L]
+RewriteRule ^ql-ban-hang/khach-hang/([0-9]+)/([0-9]+)/print$ 			?cmd=SaleInvoiceCustomerDetailInvoicePrint&IdCustomer=$1&IdInvoice=$2 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # SETTING
