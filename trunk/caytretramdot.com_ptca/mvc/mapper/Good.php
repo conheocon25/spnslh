@@ -9,8 +9,8 @@ class Good extends Mapper implements \MVC\Domain\GoodFinder {
 		
         $this->selectAllStmt 	= self::$PDO->prepare("select * from good order by id_group, name");
         $this->selectStmt 		= self::$PDO->prepare("select * from good where id=?");
-        $this->updateStmt 		= self::$PDO->prepare("update good set id_group=?, name=?, vat=?, note=?, visible=?  where id=?");
-        $this->insertStmt 		= self::$PDO->prepare("insert into good (id_group, name, vat, note, visible) values(?,?,?,?,?)");
+        $this->updateStmt 		= self::$PDO->prepare("update good set id_group=?, name=?, price_import=?, price_sale=?, unit=?, vat=?, note=?, visible=?  where id=?");
+        $this->insertStmt 		= self::$PDO->prepare("insert into good (id_group, name, price_import, price_sale, unit, vat, note, visible) values(?,?,?,?,?,?,?,?)");
 		$this->deleteStmt 		= self::$PDO->prepare("delete from good where id=?");
 		
 		$findByGroupStmt		= sprintf("select * from %s where id_group=?", $tblGood);
@@ -26,6 +26,9 @@ class Good extends Mapper implements \MVC\Domain\GoodFinder {
 			$array['id'],  
 			$array['id_group'],
 			$array['name'],
+			$array['price_import'],
+			$array['price_sale'],
+			$array['unit'],
 			$array['vat'],
 			$array['note'],
 			$array['visible']			
@@ -39,6 +42,9 @@ class Good extends Mapper implements \MVC\Domain\GoodFinder {
         $values = array(
 			$object->getIdGroup(),
 			$object->getName(),
+			$object->getPriceImport(),
+			$object->getPriceSale(),
+			$object->getUnit(),
 			$object->getVat(),
 			$object->getNote(),
 			$object->getVisible()
@@ -52,6 +58,9 @@ class Good extends Mapper implements \MVC\Domain\GoodFinder {
         $values = array(
 			$object->getIdGroup(),
 			$object->getName(),
+			$object->getPriceImport(),
+			$object->getPriceSale(),
+			$object->getUnit(),
 			$object->getVat(),
 			$object->getNote(),
 			$object->getVisible(),

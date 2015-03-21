@@ -185,10 +185,10 @@
 							<li><a href="/admin/setting/warehouse" class="clearfix"><span class="pull-left" tal:content="string:Kho hàng"/></a></li>
 							<li><a href="/admin/setting/good" class="clearfix"><span class="pull-left" tal:content="string:Hàng hóa"/></a></li>
 							<li><a href="/admin/setting/department" class="clearfix"><span class="pull-left" tal:content="string:Phòng Ban"/></a></li>
-							<li><a href="/admin/setting/config" class="clearfix"><span class="pull-left" tal:content="string:Thông số hệ thống"/></a></li>
+							<li><a href="/admin/setting/config" class="clearfix"><span class="pull-left" tal:content="string:Tham số"/></a></li>
 						</ul>
 					</li>
-					<li><a data-toggle="tooltip" data-placement="bottom" title="IP của máy đăng nhập" href="/dang-nhap"><i class="glyphicons-imac" style="margin-top:-5px;margin-right:5px;"/> <span tal:content="php:@\MVC\Library\Statistic::getIPPrint()" /></a></li>
+					<li><a data-toggle="tooltip" data-placement="bottom" title="IP của máy đăng nhập" href="/dang-nhap"><i class="glyphicon glyphicon-phone" style="margin-top:-5px;margin-right:5px;"/> <span tal:content="php:@\MVC\Library\Statistic::getIPPrint()" /></a></li>
 					<li><a data-toggle="tooltip" data-placement="bottom" title="Click để đăng xuất" href="/signout/exe"><i class="glyphicon glyphicon-user"></i> <span class="text" tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()" tal:content="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->getEmail()"/></a></li>
 				</ul>
 			</div>
