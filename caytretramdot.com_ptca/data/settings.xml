@@ -33,9 +33,13 @@
 		<command name="SaleInvoiceChecking"><view>SaleInvoiceChecking</view></command>
 		<command name="SaleInvoiceCustomerSearching"><view>SaleInvoiceCustomerSearching</view></command>
 		<command name="SaleInvoiceCustomerDetail"><view>SaleInvoiceCustomerDetail</view></command>
+		<command name="SaleInvoiceCustomerDetailInvoiceInsExe"><view>SaleInvoiceCustomerDetailInvoiceInsExe</view></command>
 		<command name="SaleInvoiceCustomerDetailInvoice"><view>SaleInvoiceCustomerDetailInvoice</view></command>
 		<command name="SaleInvoiceCustomerDetailInvoicePrint"><view>SaleInvoiceCustomerDetailInvoicePrint</view></command>
-				
+		
+		<command name="SaleInvoiceDetailInsExe"><view>SaleInvoiceDetailInsExe</view></command>
+		<command name="SaleInvoiceDetailUpdExe"><view>SaleInvoiceDetailUpdExe</view></command>
+		
 		<!-- ============================================================================== -->
 		<!-- SETTING	 																	-->
 		<!-- ============================================================================== -->				

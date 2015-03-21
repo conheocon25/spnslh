@@ -1,15 +1,31 @@
 <body>
-	<div class="panel panel-primary" id="InvoiceView" tal:attributes="alt Invoice/getURLLoad">
+	<div id="InvoicePanel" class="panel panel-primary" tal:attributes="alt Invoice/getURLLoad; data-id Invoice/getId; data-customer-id Invoice/getIdCustomer">
 		<div class="panel-heading"><i class="glyphicon glyphicon-star"/> <B tal:content="php: 'ĐƠN HÀNG ' . Invoice->getDateTimeCreatedPrint()"/></div>
 		<div class="panel-body">
 			<table width="100%">
 				<tr>
-					<td width="45%">TẠO LÚC</td>
+					<td width="45%">KHÁCH HÀNG</td>
+					<td width="45%"><B tal:content="Invoice/getCustomer/getName" /></td>
+					<td width="10%" />
+				</tr>
+				<tr>
+					<td width="45%">ĐỊA CHỈ</td>
+					<td width="45%"><B tal:content="Invoice/getCustomer/getAddress" /></td>
+					<td width="10%" />
+				</tr>
+				<tr>
+					<td width="45%">ĐIỆN THOẠI</td>
+					<td width="45%"><B tal:content="Invoice/getCustomer/getTel" /></td>
+					<td width="10%" />
+				</tr>
+				<tr><td width="45%" /><td width="45%" /><td width="10%" /></tr>
+				<tr>
+					<td width="45%">KHỞI TẠO LÚC</td>
 					<td width="45%"><B tal:content="Invoice/getDateTimeCreatedPrint" /></td>
 					<td width="10%" />
 				</tr>
 				<tr>
-					<td width="45%">LẦN CUỐI</td>
+					<td width="45%">CẬP NHẬT LẦN CUỐI</td>
 					<td width="45%"><B tal:content="Invoice/getDateTimeUpdatedPrint" /></td>
 					<td width="10%" />
 				</tr>
@@ -50,7 +66,7 @@
 				<tbody>
 					<tr tal:repeat="Detail Invoice/getDetailAll">
 						<td><div class="text-center" tal:content="repeat/Detail/number" /></td>
-						<td><a class="invoice-detail-item" href="#DialogEdit" data-toggle="modal" 
+						<td><a class="invoice-detail-item" href="#DialogGoodUpd" data-toggle="modal" 
 							tal:attributes="id 			Detail/getId;
 											id_good 	Detail/getIdGood;
 											name_good	Detail/getGood/getName;
@@ -64,7 +80,7 @@
 						<td><div class="text-right" tal:content="Detail/getValuePrint"/></td>
 						<td>
 							<div class="text-right">
-								<a class="btn btn-default remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Detail/getId"><i class="glyphicon glyphicon-remove"/></a>
+								<a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Detail/getId"><i class="glyphicon glyphicon-remove"/></a>
 							</div>
 						</td>
 					</tr>
@@ -75,28 +91,29 @@
 					</tr>
 				</tbody>
 			</table>			
-			<a title="In phiếu" class="Ticket btn" tal:attributes="alt Invoice/getURLPrint"><i class="glyphicon glyphicon-print"/> IN PHIẾU</a>
+			<a title="In phiếu" class="Ticket btn" tal:attributes="alt Invoice/getURLPrint"><i class="glyphicon glyphicon-print"/> IN PHIẾU</a>			
+			<a href="#DialogGoodIns" data-toggle="modal"><i class="glyphicon glyphicon-plus"/> HÀNG HÓA</a>
 		</div>
 	</div>
 	
-	<!-- DIALOG SESSION EDIT	-->
+	<!-- DIALOG INVOICE EDIT -->
 	<div id="DialogChooseEmployee" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<div class="modal-header"><h3><i class="glyphicon glyphicon-user modal-icon"/>CẬP NHẬT ĐƠN HÀNG</h3></div>				
+				<div class="modal-header"><h3><i class="glyphicon glyphicon-star modal-icon"/>CẬP NHẬT ĐƠN HÀNG</h3></div>
 				<form id="FormInvoiceUpdate" action="#" class="form-horizontal" novalidate="novalidate">					
 					<input id="InvoiceId" type="hidden" />
 					<input id="InvoiceIdCustomer" type="hidden" />
 					<div class="form-group">
 						<label class="col-sm-3 control-label">Khởi tạo</label>
 						<div class="col-sm-8 controls">
-							<input id="InvoiceDateTimeCreated" type="text" class="form-control input-small" data-date-format="yyyy-mm-dd hh:ii"/>
+							<input id="InvoiceDateTimeCreated" type="text" class="form-control input-small" data-date-format="yyyy-mm-dd hh:ii" readonly="true"/>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-3 control-label">Cập nhật cuối</label>
 						<div class="col-sm-8 controls">
-							<input id="InvoiceDateTimeUpdated" type="text" class="form-control input-small" data-date-format="yyyy-mm-dd hh:ii"/>
+							<input id="InvoiceDateTimeUpdated" type="text" class="form-control input-small" data-date-format="yyyy-mm-dd hh:ii" readonly="true"/>
 						</div>
 					</div>
 					<div class="form-group">
@@ -132,8 +149,83 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- DIALOG GOOD INS -->
+	<div id="DialogGoodIns" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header"><h3><i class="glyphicon glyphicon-star modal-icon"/>THÊM HÀNG HÓA</h3></div>
+				<div id="FormGoodIns" class="form-horizontal">
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Hàng hóa</label>
+						<div class="col-sm-8 controls">
+							<select id="IdGood1" style="width:100%;" class="form-control">
+								<option tal:repeat="Good GoodAll" tal:attributes="value Good/getId">
+									<span tal:content="Good/getGroup/getName" /> / <span tal:content="Good/getName" />
+								</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Số lượng</label>
+						<div class="col-sm-8 controls">
+							<input id="Count1" type="text" class="form-control input-small" value="1"/>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-primary btn-small" id="URLGoodInsButton"><i class="glyphicons-download_alt"/> Thêm</button>
+						<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- DIALOG GOOD UPD-->
+	<div id="DialogGoodUpd" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header"><h3><i class="glyphicon glyphicon-star modal-icon"/>CẬP NHẬT HÀNG HÓA</h3></div>
+				<div id="FormGoodIns" class="form-horizontal">					
+					<div class="form-group">
+						<input id="DetailId2" type="hidden" class="form-control input-small" />
+						<input id="DetailIdGood2" type="hidden" class="form-control input-small" />
+						<label class="col-sm-3 control-label">Mặt hàng</label>
+						<div class="col-sm-8 controls">
+							<input id="DetailNameGood2" type="text" class="form-control input-small" readonly="true" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Số lượng</label>
+						<div class="col-sm-8 controls">
+							<input id="DetailCount2" type="text" class="form-control input-small" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Đơn giá</label>
+						<div class="col-sm-8 controls">
+							<input id="DetailPrice2" type="text" class="form-control input-small" />
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-primary btn-small" id="URLGoodUpdButton"><i class="glyphicons-download_alt"/> Cập nhật</button>
+						<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
 </body>
 <script>
+	$(".invoice-detail-item").click(function(){						
+		$("#DetailId2").val( $(this).attr('id') );
+		$("#DetailIdGood2").val( $(this).attr('id_good') );
+		$("#DetailNameGood2").val( $(this).attr('name_good') );
+		$("#DetailCount2").val( $(this).attr('count') );
+		$("#DetailPrice2").val( $(this).attr('price') );
+	});
+	
 	$(".invoice-item").click(function(){
 		var InvoiceId 				= $(this).attr('id');		
 		var InvoiceIdCustomer 		= $(this).attr('id_customer');
@@ -147,6 +239,48 @@
 		$("#InvoiceDateTimeCreated").val(InvoiceDateTimeCreated);
 		$("#InvoiceDateTimeUpdated").val(InvoiceDateTimeUpdated);
 		$("#InvoiceNote").val(InvoiceNote);			
+	});
+	
+	//Chèn vào HÀNG HÓA MỚI
+	$("#URLGoodInsButton").click(function(){
+		var IdCustomer 	= $("#InvoicePanel").attr("data-customer-id");
+		var IdInvoice 	= $("#InvoicePanel").attr("data-id");
+		var IdGood 		= $("#IdGood1").val();
+		var Count 		= $("#Count1").val();
+		var URL 		= "/ql-ban-hang/don-hang/chi-tiet/them-moi";
+		
+		$.ajax({
+			type: "POST",
+			data: {IdInvoice:IdInvoice, IdGood:IdGood, Count:Count},
+			url: URL,
+			success: function(msg){					
+				var URL = "/ql-ban-hang/khach-hang/" + IdCustomer +"/" + IdInvoice;
+				$("#InvoiceView").load(URL);
+			}
+		});
+	});
+	
+	
+	//Cập nhật HÀNG HÓA MỚI
+	$("#URLGoodUpdButton").click(function(){
+		var IdCustomer 	= $("#InvoicePanel").attr("data-customer-id");
+		var IdInvoice 	= $("#InvoicePanel").attr("data-id");
+		var IdDetail	= $("#DetailId2").val();
+		var IdGood 		= $("#DetailIdGood2").val();
+		var Count 		= $("#DetailCount2").val();
+		var Price 		= $("#DetailPrice2").val();
+		
+		var URL 		= "/ql-ban-hang/don-hang/chi-tiet/cap-nhat";
+						
+		$.ajax({
+			type: "POST",
+			data: {IdDetail:IdDetail, Count:Count, Price:Price},
+			url: URL,
+			success: function(msg){					
+				var URL = "/ql-ban-hang/khach-hang/" + IdCustomer +"/" + IdInvoice;
+				$("#InvoiceView").load(URL);
+			}
+		});		
 	});
 	
 	//-----------------------------------------------------------------------------------

@@ -7,7 +7,7 @@ class Good extends Mapper implements \MVC\Domain\GoodFinder {
         parent::__construct();
 		$tblGood 				= "good";
 		
-        $this->selectAllStmt 	= self::$PDO->prepare("select * from good");
+        $this->selectAllStmt 	= self::$PDO->prepare("select * from good order by id_group, name");
         $this->selectStmt 		= self::$PDO->prepare("select * from good where id=?");
         $this->updateStmt 		= self::$PDO->prepare("update good set id_group=?, name=?, vat=?, note=?, visible=?  where id=?");
         $this->insertStmt 		= self::$PDO->prepare("insert into good (id_group, name, vat, note, visible) values(?,?,?,?,?)");
