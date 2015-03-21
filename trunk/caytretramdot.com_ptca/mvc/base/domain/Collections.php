@@ -5,6 +5,7 @@ interface UserCollection 				extends \Iterator {function add( Object $User );		}
 interface TypeAccountCollection 		extends \Iterator {function add( Object $TypeAccount);	}
 
 interface InvoiceSellCollection 		extends \Iterator {function add( Object $InvoiceSell);	}
+interface InvoiceSellDetailCollection 	extends \Iterator {function add( Object $InvoiceSellDetail);	}
 
 interface GoodGroupCollection 			extends \Iterator {function add( Object $GoodGroup);	}
 interface GoodCollection 				extends \Iterator {function add( Object $Good);			}

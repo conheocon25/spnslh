@@ -78,7 +78,39 @@ class InvoiceSell extends Object{
 	
 	function setNote( $Note ) {$this->Note = $Note;$this->markDirty();}
 	function getNote(){return $this->Note;}
-		
+	
+	function setState( $State ){$this->State = $State; $this->markDirty();}
+	function getState(){return $this->State;}
+	function getStatePrint(){
+		if ($this->State == 0){
+			return "Chờ duyệt";
+		}
+		return "Duyệt xong";
+	}
+	
+	function getDetailAll(){
+		$mInvoiceSellDetail = new \MVC\Mapper\InvoiceSellDetail();
+		$DetailAll  = $mInvoiceSellDetail->findByInvoice(array($this->getId()));
+		return $DetailAll;
+	}
+	function getValue(){
+		$DetailAll = $this->getDetailAll();
+		$Sum = 0;
+		while ($DetailAll->valid()){
+			$Detail = $DetailAll->current();
+			$Sum 	+= $Detail->getValue();
+			$DetailAll->next();
+		}
+		return $Sum;
+	}
+	
+	function getValuePrint( ){
+		$num = number_format($this->getValue(), 0, ',', ' ');
+		return $num;
+	}
+	
+	function getValueStrPrint(){$num = new \MVC\Library\Number($this->getValue());return $num->readDigit()." đồng";}
+	
 	function toJSON(){
 		$json = array(
 			'Id' 				=> $this->getId(),
@@ -103,5 +135,7 @@ class InvoiceSell extends Object{
 	//DEFINE URL
 	//-------------------------------------------------------------------------------			
 	function getURLSettingCustomer(){return "/admin/setting/customer/".$this->getId();}
+	function getURLLoad(){return "/ql-ban-hang/khach-hang/".$this->getIdCustomer()."/".$this->getId();}
+	function getURLPrint(){return "/ql-ban-hang/khach-hang/".$this->getIdCustomer()."/".$this->getId()."/print";}
 }
 ?>
