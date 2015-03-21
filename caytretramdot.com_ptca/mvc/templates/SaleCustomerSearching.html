@@ -5,7 +5,7 @@
 			<ul>
 				<li class="Customer btn btn-default" tal:repeat="Customer CustomerFAll" tal:attributes="alt Customer/getId; data-name Customer/getName">
 					<a class="ctt" data-toggle="tooltip" data-placement="right" tal:attributes="data-original-title php: Customer->getTel() . ' ' . Customer->getAddress()">
-						<i class="glyphicon glyphicon-user" /><span tal:content="Customer/getName"/>
+						<img width="32px" tal:attributes="src Customer/getAvatar"/> <span tal:content="Customer/getName"/>
 					</a>
 				</li>
 			</ul>

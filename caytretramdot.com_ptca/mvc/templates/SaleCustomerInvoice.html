@@ -4,33 +4,30 @@
 		<div class="panel-body">
 			<table width="100%">
 				<tr>
-					<td width="45%">KHÁCH HÀNG</td>
+					<td width="35%">KHÁCH HÀNG</td>
 					<td width="45%"><B tal:content="Invoice/getCustomer/getName" /></td>
-					<td width="10%" />
+					<td width="20%" rowspan="7">
+						<img width="64px" tal:attributes="src Invoice/getEmployee/getAvatar"/>
+					</td>
 				</tr>
 				<tr>
-					<td width="45%">ĐỊA CHỈ</td>
-					<td width="45%"><B tal:content="Invoice/getCustomer/getAddress" /></td>
-					<td width="10%" />
+					<td width="35%">ĐỊA CHỈ</td>
+					<td width="45%"><B tal:content="Invoice/getCustomer/getAddress" /></td>					
 				</tr>
 				<tr>
-					<td width="45%">ĐIỆN THOẠI</td>
-					<td width="45%"><B tal:content="Invoice/getCustomer/getTel" /></td>
-					<td width="10%" />
-				</tr>
-				<tr><td width="45%" /><td width="45%" /><td width="10%" /></tr>
+					<td width="35%">ĐIỆN THOẠI</td>
+					<td width="45%"><B tal:content="Invoice/getCustomer/getTel" /></td>					
+				</tr>				
 				<tr>
-					<td width="45%">KHỞI TẠO LÚC</td>
-					<td width="45%"><B tal:content="Invoice/getDateTimeCreatedPrint" /></td>
-					<td width="10%" />
+					<td width="35%">KHỞI TẠO LÚC</td>
+					<td width="45%"><B tal:content="Invoice/getDateTimeCreatedPrint" /></td>					
 				</tr>
 				<tr>
-					<td width="45%">CẬP NHẬT LẦN CUỐI</td>
-					<td width="45%"><B tal:content="Invoice/getDateTimeUpdatedPrint" /></td>
-					<td width="10%" />
+					<td width="35%">CẬP NHẬT LẦN CUỐI</td>
+					<td width="45%"><B tal:content="Invoice/getDateTimeUpdatedPrint" /></td>					
 				</tr>
 				<tr>
-					<td width="45%">NHÂN VIÊN BÁN</td>
+					<td width="35%">NHÂN VIÊN BÁN</td>
 					<td width="45%">
 						<a href="#DialogChooseEmployee" data-toggle="modal" 
 								class="invoice-item"
@@ -42,13 +39,11 @@
 											note 				Invoice/getNote;
 											state 				Invoice/getState;"
 						><B tal:content="Invoice/getEmployee/getName" /></a>
-					</td>
-					<td width="10%" />
+					</td>					
 				</tr>
 				<tr>
-					<td width="45%">TÌNH TRẠNG</td>
-					<td width="45%"><B tal:content="Invoice/getStatePrint" /></td>
-					<td width="10%" />											
+					<td width="35%">TÌNH TRẠNG</td>
+					<td width="45%"><B tal:content="Invoice/getStatePrint" /></td>					
 				</tr>
 			</table>
 			<BR/>			
