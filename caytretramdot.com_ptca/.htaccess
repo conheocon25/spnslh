@@ -49,16 +49,16 @@ RewriteRule ^object/liked/([A-Za-z0-9]+)/([0-9]+)$ 				?cmd=ObjectLiked&ObjectNa
 #---------------------------------------------------------------------------------------------------------------------------
 # SELLING
 #---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^ql-ban-hang/don-hang/dat$ 									?cmd=SaleInvoiceBooking [L]
+RewriteRule ^ql-ban-hang$ 										?cmd=Sale [L]
 
-RewriteRule ^ql-ban-hang/khach-hang/tim-kiem$ 							?cmd=SaleInvoiceCustomerSearching [L]
-RewriteRule ^ql-ban-hang/khach-hang/([0-9]+)$ 							?cmd=SaleInvoiceCustomerDetail&IdCustomer=$1 [L]
-RewriteRule ^ql-ban-hang/khach-hang/([0-9]+)/ins/exe$ 					?cmd=SaleInvoiceCustomerDetailInvoiceInsExe&IdCustomer=$1 [L]
-RewriteRule ^ql-ban-hang/khach-hang/([0-9]+)/([0-9]+)$ 					?cmd=SaleInvoiceCustomerDetailInvoice&IdCustomer=$1&IdInvoice=$2 [L]
-RewriteRule ^ql-ban-hang/khach-hang/([0-9]+)/([0-9]+)/print$ 			?cmd=SaleInvoiceCustomerDetailInvoicePrint&IdCustomer=$1&IdInvoice=$2 [L]
+RewriteRule ^ql-ban-hang/khach-hang/([0-9]+)$ 					?cmd=SaleCustomer&IdCustomer=$1 [L]
+RewriteRule ^ql-ban-hang/khach-hang/([0-9]+)/ins/exe$ 			?cmd=SaleCustomerInsExe&IdCustomer=$1 [L]
+RewriteRule ^ql-ban-hang/khach-hang/([0-9]+)/([0-9]+)$ 			?cmd=SaleCustomerInvoice&IdCustomer=$1&IdInvoice=$2 [L]
+RewriteRule ^ql-ban-hang/khach-hang/([0-9]+)/([0-9]+)/print$ 	?cmd=SaleCustomerInvoicePrint&IdCustomer=$1&IdInvoice=$2 [L]
 
-RewriteRule ^ql-ban-hang/don-hang/chi-tiet/them-moi$ 					?cmd=SaleInvoiceDetailInsExe [L]
-RewriteRule ^ql-ban-hang/don-hang/chi-tiet/cap-nhat$ 					?cmd=SaleInvoiceDetailUpdExe [L]
+RewriteRule ^ql-ban-hang/khach-hang/tim-kiem$ 					?cmd=SaleCustomerSearching [L]
+RewriteRule ^ql-ban-hang/don-hang/chi-tiet/them-moi$ 			?cmd=SaleInvoiceDetailInsExe [L]
+RewriteRule ^ql-ban-hang/don-hang/chi-tiet/cap-nhat$ 			?cmd=SaleInvoiceDetailUpdExe [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # SETTING
