@@ -29,8 +29,9 @@
 				<tr>
 					<td width="35%">NHÂN VIÊN BÁN</td>
 					<td width="45%">
-						<a href="#DialogChooseEmployee" data-toggle="modal" 
-								class="invoice-item"
+						<a tal:condition="php:Invoice->getState()==0?true:false"
+							href="#DialogChooseEmployee" data-toggle="modal" 
+							class="invoice-item"
 								tal:attributes="id 				Invoice/getId;
 											id_employee 		Invoice/getIdEmployee;
 											id_customer 		Invoice/getIdCustomer;
@@ -39,6 +40,7 @@
 											note 				Invoice/getNote;
 											state 				Invoice/getState;"
 						><B tal:content="Invoice/getEmployee/getName" /></a>
+						<B tal:condition="php:Invoice->getState()==0?false:true" tal:content="Invoice/getEmployee/getName" />
 					</td>					
 				</tr>
 				<tr>
@@ -53,6 +55,7 @@
 						<th width="30">STT</th>
 						<th><div class="text-left">TÊN</div></th>
 						<th width="60"><div class="text-right">SL</div></th>
+						<th width="60">ĐVT</th>
 						<th width="120"><div class="text-right">Đ.GIÁ</div></th>
 						<th width="120"><div class="text-right">T.TIỀN</div></th>
 						<th width="30"><i class="glyphicons-bin"/></th>
@@ -61,7 +64,9 @@
 				<tbody>
 					<tr tal:repeat="Detail Invoice/getDetailAll">
 						<td><div class="text-center" tal:content="repeat/Detail/number" /></td>
-						<td><a class="invoice-detail-item" href="#DialogGoodUpd" data-toggle="modal" 
+						<td><a 
+							tal:condition="php:Invoice->getState()==0?true:false"
+							class="invoice-detail-item" href="#DialogGoodUpd" data-toggle="modal" 
 							tal:attributes="id 			Detail/getId;
 											id_good 	Detail/getIdGood;
 											name_good	Detail/getGood/getName;
@@ -69,25 +74,30 @@
 											price 		Detail/getPrice;											
 							" 
 							tal:content="Detail/getGood/getName"/>
+							
+							<span 	tal:condition="php:Invoice->getState()==0?false:true"							
+									tal:content="Detail/getGood/getName"/>
+							
 						</td>
-						<td><div class="text-center" tal:content="Detail/getCountPrint"/></td>
+						<td><div class="text-right" tal:content="Detail/getCountPrint"/></td>
+						<td><div class="text-left" tal:content="Detail/getGood/getUnit"/></td>
 						<td><div class="text-right" tal:content="Detail/getPricePrint"/></td>
 						<td><div class="text-right" tal:content="Detail/getValuePrint"/></td>
 						<td>
 							<div class="text-right">
-								<a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Detail/getId"><i class="glyphicon glyphicon-remove"/></a>
+								<a tal:condition="php:Invoice->getState()==0?true:false" class="remove-detail-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Detail/getId"><i class="glyphicon glyphicon-remove"/></a>
 							</div>
 						</td>
 					</tr>
 					<tr>
-						<td colspan="4"><div class="text-right"><B>TỔNG CỘNG</B></div></td>
+						<td colspan="5"><div class="text-right"><B>TỔNG CỘNG</B></div></td>
 						<td><div class="text-right"><B tal:content="Invoice/getValuePrint" /></div></td>
 						<td/>
 					</tr>
 				</tbody>
 			</table>			
 			<a title="In phiếu" class="Ticket btn" tal:attributes="alt Invoice/getURLPrint"><i class="glyphicon glyphicon-print"/> IN PHIẾU</a>			
-			<a href="#DialogGoodIns" data-toggle="modal"><i class="glyphicon glyphicon-plus"/> HÀNG HÓA</a>
+			<a tal:condition="php:Invoice->getState()==0?true:false" href="#DialogGoodIns" data-toggle="modal"><i class="glyphicon glyphicon-plus"/> HÀNG HÓA</a>
 		</div>
 	</div>
 	
@@ -210,6 +220,7 @@
 			</div>
 		</div>
 	</div>
+	<div metal:use-macro="mDialog.xhtml/DialogDel"/>
 	
 </body>
 <script>
@@ -325,6 +336,27 @@
 		var url = $(this).attr('alt');
 		var thePopup = window.open( url, "In Phiếu", "menubar=0,location=0,height=700,width=700" );
 		thePopup.print();
+	});
+	
+	//-----------------------------------------------------------------------------------
+	//Delete 1 DETAIL			
+	//-----------------------------------------------------------------------------------
+	$('.remove-detail-item').click(function(){
+		$('#URLDelButton').attr('alt', $(this).attr('data-id'));
+	});	
+	$('#URLDelButton').click(function(){			
+		var URL = "/object/del/InvoiceSellDetail/" + $(this).attr('alt');
+		var IdCustomer 	= $("#InvoicePanel").attr("data-customer-id");
+		var IdInvoice 	= $("#InvoicePanel").attr("data-id");
+		
+		$.ajax({
+			type: "POST",					
+			url: URL,
+			success: function(msg){
+				var URL = "/ql-ban-hang/khach-hang/" + IdCustomer +"/" + IdInvoice;
+				$("#InvoiceView").load(URL);
+			}
+		});
 	});
 			
 </script>

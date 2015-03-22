@@ -100,7 +100,11 @@ class Customer extends Object{
 	function getSerial(){return $this->Serial;}
 	
 	function setAvatar( $Avatar ) {$this->Avatar = $Avatar; $this->markDirty();}
-	function getAvatar(){return $this->Avatar;}
+	function getAvatar(){
+		if ($this->Avatar=="")
+			return "/data/image/user.png";
+		return $this->Avatar;
+	}
 	
 	function toJSON(){
 		$json = array(

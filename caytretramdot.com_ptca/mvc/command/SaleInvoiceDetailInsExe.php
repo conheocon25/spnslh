@@ -24,14 +24,15 @@
 			$mInvoiceSellDetail = new \MVC\Mapper\InvoiceSellDetail();
 															
 			//-------------------------------------------------------------
-			//XỬ LÝ CHÍNH
+			//XỬ LÝ CHÍNH			
 			//-------------------------------------------------------------
+			$Good = $mGood->find($IdGood);
 			$InvoiceSellDetail = new \MVC\Domain\InvoiceSellDetail(
 				null,
 				$IdInvoice,
 				$IdGood,
 				$Count,
-				10000
+				$Good->getPriceSale()
 			);
 			$mInvoiceSellDetail->insert($InvoiceSellDetail);
 															
