@@ -7,13 +7,13 @@ class CustomerGroup extends Mapper implements \MVC\Domain\CustomerGroupFinder {
         parent::__construct();
 		$tblCustomerGroup 		= "customer_group";
 		
-        $this->selectAllStmt 	= self::$PDO->prepare("select * from customer_group");
+        $this->selectAllStmt 	= self::$PDO->prepare("select * from customer_group ORDER BY name");
         $this->selectStmt 		= self::$PDO->prepare("select * from customer_group where id=?");
         $this->updateStmt 		= self::$PDO->prepare("update customer_group set name=?  where id=?");
         $this->insertStmt 		= self::$PDO->prepare("insert into customer_group (name) values(?)");
 		$this->deleteStmt 		= self::$PDO->prepare("delete from customer_group where id=?");
 						
-		$findByPageStmt 		= sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblCustomerGroup);
+		$findByPageStmt 		= sprintf("SELECT * FROM  %s ORDER BY name LIMIT :start,:max", $tblCustomerGroup);
 		$this->findByPageStmt 	= self::$PDO->prepare($findByPageStmt);
 		 
     } 
