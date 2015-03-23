@@ -8,14 +8,83 @@
 		<tal:block metal:use-macro="mFront.xhtml/Header"/>
 		<div class="container-fluid" id="wraper">
 			<div class="row">
-				<H1 align="center">HỆ THỐNG QUẢN LÝ PTC</H1>
+				<div tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->IsSeller()">
+					
+				</div>
+				<div tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->IsAdmin()">
+					<div class="col-md-8">						
+						<div class="panel panel-primary">
+							<div class="panel-heading"><i class="glyphicon glyphicon-cog"/> <B>BÁN HÀNG</B></div>
+							<div class="panel-body">
+								<a href="/ql-ban-hang" class="list-group-item">
+									<h4 class="list-group-item-heading">BÁN HÀNG</h4>
+									<p class="list-group-item-text">Mô tả chức năng bán hàng của hệ thống ...</p>
+								</a>
+								<a href="/ql-ban-hang/bao-cao" class="list-group-item">
+									<h4 class="list-group-item-heading">BÁO CÁO BÁN HÀNG</h4>
+									<p class="list-group-item-text">Mô tả chức năng báo cáo bán hàng của hệ thống ...</p>
+								</a>								
+							</div>	
+						</div>
+						<div class="panel panel-primary">
+							<div class="panel-heading"><i class="glyphicon glyphicon-cog"/> <B>THIẾT LẬP</B></div>
+							<div class="panel-body">
+								<a href="/admin/setting/type/account" class="list-group-item">
+									<h4 class="list-group-item-heading">Số hiệu tài khoản</h4>
+									<p class="list-group-item-text">Mô tả cây tài khoản của hệ thống ...</p>
+								</a>
+								<a href="/admin/setting/user" class="list-group-item">								  
+									<h4 class="list-group-item-heading">Người dùng</h4>
+									<p class="list-group-item-text">Mô tả tổ chức người dùng của hệ thống ...</p>
+								</a>
+								<a href="/admin/setting/customer" class="list-group-item">								  								  
+									<h4 class="list-group-item-heading">Khách hàng</h4>
+									<p class="list-group-item-text">Mô tả tổ chức Khách Hàng của hệ thống ...</p>
+								</a>
+								<a href="/admin/setting/supplier" class="list-group-item">
+									<h4 class="list-group-item-heading">Nhà Cung Cấp</h4>
+									<p class="list-group-item-text">Mô tả tổ chức Nhà Cung Cấp của hệ thống ...</p>
+								</a>
+								<a href="/admin/setting/warehouse" class="list-group-item">								  
+									<h4 class="list-group-item-heading">Kho hàng</h4>
+									<p class="list-group-item-text">Mô tả tổ chức Kho Hàng của hệ thống ...</p>
+								</a>								  
+								<a href="/admin/setting/good" class="list-group-item">
+									<h4 class="list-group-item-heading">Hàng hóa</h4>
+									<p class="list-group-item-text">Mô tả tổ chức Hàng Hóa của hệ thống ...</p>
+								</a>								
+								<a href="/admin/setting/department" class="list-group-item">
+									<h4 class="list-group-item-heading">Phòng Ban</h4>
+									<p class="list-group-item-text">Mô tả tổ chức Phòng Ban của hệ thống ...</p>
+								</a>								  
+								<a href="/admin/setting/track" class="list-group-item">
+									<h4 class="list-group-item-heading">Báo cáo</h4>
+									<p class="list-group-item-text">Mô tả tổ chức Báo Cáo của hệ thống ...</p>
+								</a>
+								<a href="/admin/setting/config" class="list-group-item">
+									<h4 class="list-group-item-heading">Tham số</h4>
+									<p class="list-group-item-text">Mô tả tổ chức Tham Số của hệ thống ...</p>
+								</a>								  
+							</div>
+						</div>						
+					</div>
+					<div class="col-md-4">
+						<div class="panel panel-primary">							
+							<div class="panel-body">								
+								<a href="/signout/exe" class="list-group-item">
+									<h4 class="list-group-item-heading"><span tal:content="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->getEmail()"/> <span tal:content="php:@\MVC\Library\Statistic::getIPPrint()"/></h4>
+									<p class="list-group-item-text">Dăng nhập đăng xuất hệ thống ...</p>
+								</a>
+								<a href="/signout/exe" class="list-group-item">
+									<h4 class="list-group-item-heading">Thông tin tài khoản</h4>
+									<p class="list-group-item-text">Xem / cập nhật thông tin tài khoản sử dụng ...</p>
+								</a>
+							</div>	
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>		
-		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
-		<script type="text/javascript">
-		/*<![CDATA[*/			
-			$('[data-toggle="tooltip"]').tooltip();
-		/*]]>*/
-		</script>
+		<div metal:use-macro="mFront.xhtml/IncludeJS"/>		
 	</body>
 </html>

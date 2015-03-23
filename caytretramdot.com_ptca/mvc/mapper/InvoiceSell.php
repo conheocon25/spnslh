@@ -13,8 +13,10 @@ class InvoiceSell extends Mapper implements \MVC\Domain\InvoiceSellFinder {
         $this->insertStmt 		= self::$PDO->prepare("insert into invoice_sell (id_employee, id_customer, datetime_created, datetime_updated, note, state) values(?, ?, ?, ?, ?, ?)");
 		$this->deleteStmt 		= self::$PDO->prepare("delete from invoice_sell where id=?");
 		$this->findByCustomerStmt		= self::$PDO->prepare("select * from invoice_sell where id_customer=? ORDER BY datetime_created DESC");
-		$this->findByCustomerTop12Stmt	= self::$PDO->prepare("select * from invoice_sell where id_customer=? ORDER BY datetime_created DESC LIMIT 12");
+		$this->findByCustomerTop12Stmt	= self::$PDO->prepare("select * from invoice_sell where id_customer=? ORDER BY datetime_created DESC LIMIT 12");						
 		$this->findByEmployeeStmt		= self::$PDO->prepare("select * from invoice_sell where id_employee=? ORDER BY datetime_created DESC");
+		
+		$this->findByTrackDailyStmt		= self::$PDO->prepare("select * from invoice_sell where date(datetime_created)=? ORDER BY datetime_created DESC");
 						
 		$findByPageStmt 		= sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblInvoiceSell);
 		$this->findByPageStmt 	= self::$PDO->prepare($findByPageStmt);
@@ -88,6 +90,11 @@ class InvoiceSell extends Mapper implements \MVC\Domain\InvoiceSellFinder {
 	function findByEmployee($values) {
         $this->findByEmployeeStmt->execute( $values );
         return new InvoiceSellCollection( $this->findByEmployeeStmt->fetchAll(), $this );
+    }
+	
+	function findByTrackDaily($values) {
+        $this->findByTrackDailyStmt->execute( $values );
+        return new InvoiceSellCollection( $this->findByTrackDailyStmt->fetchAll(), $this );
     }
 	
 }

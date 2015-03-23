@@ -39,7 +39,7 @@
 		<command name="SaleInvoiceDetailUpdExe"><view>SaleInvoiceDetailUpdExe</view></command>
 		
 		<command name="SaleReport">				<view>SaleReport</view></command>
-		<command name="SaleReportDetail">		<view>SaleReportDetail</view></command>
+		<command name="SaleReportDaily">		<view>SaleReportDaily</view></command>
 		
 		<!-- ============================================================================== -->
 		<!-- SETTING	 																	-->

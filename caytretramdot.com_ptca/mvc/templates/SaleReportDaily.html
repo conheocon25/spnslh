@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mFront.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>
+		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
+	</head>	
+	<body>	
+		<tal:block metal:use-macro="mFront.xhtml/Header"/>
+		<div class="container-fluid" id="wraper">
+			<div class="row">				
+				<div class="col-md-8">					
+					<div class="panel panel-primary">
+						<div class="panel-heading" tal:content="Title"/>
+						<div class="panel-body">
+							<table class="table table-bordered table-striped table-hover">
+								<thead>
+									<tr>
+										<th width="32">ID</th>
+										<th class="text-left" width="128">KHỞI TẠO</th>
+										<th class="text-left">KHÁCH HÀNG</th>
+										<th class="text-right" width="180">T. TIỀN</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr tal:repeat="InvoiceSell TrackDaily/getInvoiceSellAll">
+										<td class="text-center"><span tal:content="repeat/InvoiceSell/number"/></td>
+										<td><span tal:content="InvoiceSell/getDateTimeCreatedPrint"/></td>
+										<td><span tal:content="InvoiceSell/getCustomer/getName"/></td>
+										<td class="text-right"><span class="Ticket" tal:content="InvoiceSell/getValuePrint" tal:attributes="alt InvoiceSell/getURLPrint"/></td>
+									</tr>
+									<tr>
+										<td class="text-right" colspan="3"><B>TỔNG CỘNG</B></td>
+										<td class="text-right"><B tal:content="TrackDaily/getInvoiceSellValuePrint"/></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>																			
+				</div>
+				<div class="col-md-4">
+					<div class="panel panel-default">
+						<div class="panel-heading"><i class="glyphicon glyphicon-cog"/> <B>CÁC NGÀY</B></div>
+						<div class="panel-body">
+							<ul>
+								<li tal:attributes="class php:TrackDaily->getId()==TD1->getId()? 'btn btn-info' : 'btn btn-default'" tal:repeat="TD1 Track/getDetailAll">
+									<a tal:attributes="href TD1/getURLSale">
+										<i class="glyphicon glyphicon-book"/> <span tal:content="TD1/getDateShortPrint"/> 
+									</a>
+								</li>
+							</ul>
+						</div>	
+					</div>
+				</div>
+			</div>
+		</div>		
+		<script type="text/javascript">
+		/*<![CDATA[*/
+			$(".Ticket").click(function(){
+				var url = $(this).attr('alt');
+				var thePopup = window.open( url, "In Phiếu", "menubar=0,location=0,height=700,width=700" );
+				thePopup.print();
+			});	
+		/*]]>*/
+		</script>
+	</body>
+</html>
