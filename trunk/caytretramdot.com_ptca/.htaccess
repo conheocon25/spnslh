@@ -61,8 +61,8 @@ RewriteRule ^ql-ban-hang/don-hang/chi-tiet/them-moi$ 			?cmd=SaleInvoiceDetailIn
 RewriteRule ^ql-ban-hang/don-hang/chi-tiet/cap-nhat$ 			?cmd=SaleInvoiceDetailUpdExe [L]
 
 RewriteRule ^ql-ban-hang/bao-cao$ 								?cmd=SaleReport [L]
-RewriteRule ^ql-ban-hang/bao-cao/([0-9]+)/$ 					?cmd=SaleReport&IdTrack=$1 [L]
-RewriteRule ^ql-ban-hang/bao-cao/([0-9]+)/([0-9]+)/$ 			?cmd=SaleReportDetail&IdTrack=$1&IdDaily=$2 [L]
+RewriteRule ^ql-ban-hang/bao-cao/([0-9]+)$ 						?cmd=SaleReport&IdTrack=$1 [L]
+RewriteRule ^ql-ban-hang/bao-cao/([0-9]+)/([0-9]+)$ 			?cmd=SaleReportDaily&IdTrack=$1&IdDaily=$2 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # SETTING

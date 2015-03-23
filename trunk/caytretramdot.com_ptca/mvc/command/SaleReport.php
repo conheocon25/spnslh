@@ -21,8 +21,10 @@
 															
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------																					
-			$Title = "BÁN HÀNG / BÁO CÁO";
+			//-------------------------------------------------------------																								
+			$Title = "BÁO CÁO BÁN HÀNG";
+			$Navigation = array();
+			
 			$TrackAll 	= $mTrack->findAll();
 			
 			if (!isset($IdTrack)){
@@ -36,6 +38,9 @@
 			//-------------------------------------------------------------
 			$request->setObject("Track"		, $Track);
 			$request->setObject("TrackAll"	, $TrackAll);
+			
+			$request->setObject("Navigation", $Navigation);				
+			$request->setProperty("Title"	, $Title);
 																										
 			return self::statuses('CMD_DEFAULT');
 		}

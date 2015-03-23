@@ -34,17 +34,25 @@
 			$CustomerAll1 	= $mCustomer->findByGroupPage(array($IdGroup, $Page, $Config->getValue() ));
 			$PN = new \MVC\Domain\PageNavigation($CustomerAll->count(), $Config->getValue(), "/admin/setting/customer");
 			
+			$Title = mb_strtoupper($Group->getName(), 'UTF8');
+			$Navigation = array(				
+				array("THIẾT LẬP", "/admin"),
+				array("NHÓM KHÁCH HÀNG", "/admin/setting/customer")
+			);
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
 			$request->setProperty('Page'		, $Page);
 			$request->setObject('PN'			, $PN);
-						
+			$request->setProperty('Title'		, $Title);			
+			$request->setObject('Navigation'	, $Navigation);
+			
 			$request->setObject('ConfigName'	, $ConfigName);
 			$request->setObject('Group'			, $Group);
 			$request->setObject('GroupAll'		, $GroupAll);
 			$request->setObject('CustomerAll1'	, $CustomerAll1);
-															
+																					
 			return self::statuses('CMD_DEFAULT');
 		}
 	}
