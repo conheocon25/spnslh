@@ -25,10 +25,13 @@
 			$WarehouseAll = $mWarehouse->findAll();
 						
 			if (!isset($Page)) $Page=1;
-			$Config 		= $mConfig->findByName("ROW_PER_PAGE");
+			$Config 			= $mConfig->findByName("ROW_PER_PAGE");
 						
 			$WarehouseAll1 		= $mWarehouse->findByPage(array($Page, $Config->getValue() ));
 			$PN 				= new \MVC\Domain\PageNavigation($WarehouseAll->count(), $Config->getValue(), "/admin/setting/warehouse");
+			
+			$Title 		= "KHO HÀNG";
+			$Navigation = array(array("THIẾT LẬP", "/admin"));
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
@@ -36,6 +39,9 @@
 			$request->setProperty('Page'		, $Page);
 			$request->setObject('PN'			, $PN);									
 			$request->setObject('WarehouseAll1'	, $WarehouseAll1);
+			
+			$request->setProperty('Title'		, $Title);			
+			$request->setObject('Navigation'	, $Navigation);
 												
 			return self::statuses('CMD_DEFAULT');
 		}

@@ -30,13 +30,21 @@
 			$GoodGroupAll1 	= $mGoodGroup->findByPage(array($Page, $Config->getValue() ));
 			$PN 			= new \MVC\Domain\PageNavigation($GoodGroupAll->count(), $Config->getValue(), "/admin/setting/group");
 			
+			$Title = "NHÓM HÀNG HÓA";
+			$Navigation = array(				
+				array("THIẾT LẬP", "/admin")
+			);
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------												
 			$request->setProperty('Page'			, $Page);
 			$request->setObject('PN'				, $PN);
-			$request->setObject('GoodGroupAll1'	, $GoodGroupAll1);
-												
+			$request->setObject('GoodGroupAll1'		, $GoodGroupAll1);
+			
+			$request->setProperty('Title'			, $Title);
+			$request->setObject('Navigation'		, $Navigation);
+																		
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

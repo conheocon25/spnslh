@@ -109,6 +109,12 @@
 													<input id="Discount1" name="Discount1" type="text" class="form-control input-small"/>
 												</div>
 											</div>
+											<div class="control-group">
+												<label class="control-label">Nợ đầu kì</label>
+												<div class="controls">
+													<input id="Debt1" name="Debt1" type="text" class="form-control input-small"/>
+												</div>
+											</div>
 										</div>
 									</div>
 									<div class="modal-footer">
@@ -169,6 +175,12 @@
 												<label class="control-label">Giảm giá</label>
 												<div class="controls">
 													<input id="Discount2" name="Discount2" type="text" class="form-control input-small"/>
+												</div>
+											</div>
+											<div class="control-group">
+												<label class="control-label">Nợ đầu kì</label>
+												<div class="controls">
+													<input id="Debt2" name="Debt2" type="text" class="form-control input-small"/>
 												</div>
 											</div>
 										</div>
@@ -264,6 +276,7 @@
 					Data[5] = $('#Address1').val();
 					Data[6] = $('#Note1').val();
 					Data[7] = $('#Discount1').val();
+					Data[8] = $('#Debt1').val();
 															
 					var URL = "/object/ins/Customer";
 					$.ajax({
@@ -302,6 +315,7 @@
 					$('#Address2').attr('value', 	data.Address);
 					$('#Note2').attr('value', 		data.Note);
 					$('#Discount2').attr('value', 	data.Discount);
+					$('#Debt2').attr('value', 		data.Debt);
 				});
 			});
 			
@@ -339,6 +353,7 @@
 					Data[5] = $('#Address2').val();
 					Data[6] = $('#Note2').val();
 					Data[7] = $('#Discount2').val();
+					Data[8] = $('#Debt2').val();
 															
 					var URL = "/object/upd/Customer";
 					$.ajax({

@@ -34,8 +34,8 @@
 				$ValueOld 		= $TCPre->current()->getValue();
 				$ValueOldGlobal = $TCPre->current()->getValueGlobal();
 				$CountOldGlobal = $TCPre->current()->getCountGlobal();
-			}else{
-				$ValueOld 		= 0;
+			}else{				
+				$ValueOld 		= $TC->getCustomer()->getDebt();
 				$ValueOldGlobal = 0;
 				$CountOldGlobal = 0;
 			}

@@ -34,6 +34,12 @@
 			$GoodAll1 		= $mGood->findByGroupPage(array($IdGroup, $Page, $Config->getValue() ));
 			$PN 			= new \MVC\Domain\PageNavigation($GoodAll->count(), $Config->getValue(), "/admin/setting/good");
 			
+			$Title = mb_strtoupper($Group->getName(), 'UTF8');
+			$Navigation = array(				
+				array("THIẾT LẬP", "/admin"),
+				array("NHÓM HÀNG HÓA", "/admin/setting/good")
+			);
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------															
@@ -43,6 +49,8 @@
 			$request->setObject('GoodAll1'		, $GoodAll1);
 			$request->setProperty('Page'		, $Page);
 			$request->setObject('PN'			, $PN);
+			$request->setProperty('Title'		, $Title);			
+			$request->setObject('Navigation'	, $Navigation);
 												
 			return self::statuses('CMD_DEFAULT');
 		}

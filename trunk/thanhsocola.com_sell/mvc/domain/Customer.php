@@ -12,9 +12,10 @@ class Customer extends Object{
     private $Note;
     private $Address;
 	private $Discount;
+	private $Debt;
 	
 	/*Hàm kh?i t?o và thi?t l?p các thu?c tính*/
-    function __construct( $Id=null, $Name=null, $Type=null, $Card=null, $Phone=null, $Address=null, $Note=null, $Discount=null ) {
+    function __construct( $Id=null, $Name=null, $Type=null, $Card=null, $Phone=null, $Address=null, $Note=null, $Discount=null, $Debt=null ) {
         $this->Id = $Id;
 		$this->Name 	= $Name;
 		$this->Type 	= $Type;
@@ -23,6 +24,8 @@ class Customer extends Object{
 		$this->Address 	= $Address;
 		$this->Note 	= $Note;
 		$this->Discount = $Discount;
+		$this->Debt 	= $Debt;
+		
         parent::__construct( $Id );
     }
 	function setId( $Id) {return $this->Id = $Id;}
@@ -50,6 +53,10 @@ class Customer extends Object{
 	function setDiscount( $Discount ) {$this->Discount = $Discount;$this->markDirty();}
 	function getDiscount(){return $this->Discount;}
 	
+	function setDebt( $Debt ) {$this->Debt = $Debt;$this->markDirty();}
+	function getDebt(){return $this->Debt;}
+	function getDebtPrint( ) {$N = new \MVC\Library\Number($this->Debt);return $N->formatCurrency();}
+	
 	function toJSON(){
 		$json = array(
 			'Id' 			=> $this->getId(),
@@ -59,7 +66,8 @@ class Customer extends Object{
 			'Phone'			=> $this->getPhone(),
 			'Address'		=> $this->getAddress(),
 			'Note'			=> $this->getNote(),
-			'Discount'		=> $this->getDiscount()
+			'Discount'		=> $this->getDiscount(),
+			'Debt'			=> $this->getDebt()
 		);
 		return json_encode($json);
 	}
@@ -73,6 +81,7 @@ class Customer extends Object{
 		$this->Address	= $Data[5];
 		$this->Note		= $Data[6];
 		$this->Discount	= $Data[7];
+		$this->Debt		= $Data[8];
     }
 	
 	function toXML($Doc){

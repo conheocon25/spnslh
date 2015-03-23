@@ -34,6 +34,18 @@
 				$Tracking->generateCustomer();
 				$TCAll = $Tracking->getCustomerAll();
 			}
+			$Count 			= 0;
+			$CountGlobal 	= 0;
+			
+			while ($TCAll->valid()){
+				$TC = $TCAll->current();
+				$Count += $TC->getCount();
+				$CountGlobal += $TC->getCountGlobal();
+				$TCAll->next();
+			}
+			$Tracking->setCount($Count);
+			$Tracking->setCountGlobal($CountGlobal);
+			$mTracking->update($Tracking);
 												
 			$Title = $Tracking->getName(). "/ KHÁCH HÀNG";
 			$Navigation = array(
