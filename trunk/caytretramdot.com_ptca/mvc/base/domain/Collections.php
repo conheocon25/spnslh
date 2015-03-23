@@ -19,6 +19,9 @@ interface DepartmentCollection 			extends \Iterator {function add( Object $Depar
 interface SupplierCollection 			extends \Iterator {function add( Object $Supplier);		}
 interface WarehouseCollection 			extends \Iterator {function add( Object $Warehouse);	}
 
+interface TrackCollection 				extends \Iterator {function add( Object $Track);		}
+interface TrackDailyCollection 			extends \Iterator {function add( Object $TrackDaily);	}
+
 interface ConfigCollection 				extends \Iterator {function add( Object $Config );		}
 interface PageCollection 				extends \Iterator {function add( Object $Page);			}
 interface GuestCollection 				extends \Iterator {function add( Object $Guest);		}

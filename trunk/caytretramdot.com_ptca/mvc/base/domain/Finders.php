@@ -28,6 +28,9 @@ interface DepartmentFinder  	extends Finder {}
 interface SupplierFinder  		extends Finder {}
 interface WarehouseFinder  		extends Finder {}
 
+interface TrackFinder  			extends Finder {}
+interface TrackDailyFinder  	extends Finder {}
+
 interface ConfigFinder 			extends Finder {}
 interface GuestFinder 			extends Finder {}
 
