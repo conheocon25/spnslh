@@ -8,9 +8,7 @@
 				
 		<!-- ============================================================================== -->
 		<!-- JSON LOAD			 															-->
-		<!-- ============================================================================== -->		
-		<command name="ObjectLiked"		type="public"><view>ObjectLiked</view></command>
-		
+		<!-- ============================================================================== -->				
 		<command name="ObjectLoad"><view>ObjectLoad</view></command>
 		<command name="ObjectDel"><view>ObjectDel</view></command>
 		<command name="ObjectIns"><view>ObjectIns</view></command>
@@ -29,16 +27,19 @@
 		<!-- ============================================================================== -->
 		<!-- SALE	 																		-->
 		<!-- ============================================================================== -->
-		<command name="Sale">				<view>Sale</view></command>				
-		<command name="SaleCustomerSearching"><view>SaleCustomerSearching</view></command>		
-		<command name="SaleCustomer"><view>SaleCustomer</view></command>		
-		<command name="SaleCustomerInsExe"><view>SaleCustomerInsExe</view></command>
+		<command name="Sale">					<view>Sale</view></command>				
+		<command name="SaleCustomerSearching">	<view>SaleCustomerSearching</view></command>		
+		<command name="SaleCustomer">			<view>SaleCustomer</view></command>		
+		<command name="SaleCustomerInsExe">		<view>SaleCustomerInsExe</view></command>
 		
-		<command name="SaleCustomerInvoice"><view>SaleCustomerInvoice</view></command>
+		<command name="SaleCustomerInvoice">	<view>SaleCustomerInvoice</view></command>
 		<command name="SaleCustomerInvoicePrint"><view>SaleCustomerInvoicePrint</view></command>
 		
 		<command name="SaleInvoiceDetailInsExe"><view>SaleInvoiceDetailInsExe</view></command>
 		<command name="SaleInvoiceDetailUpdExe"><view>SaleInvoiceDetailUpdExe</view></command>
+		
+		<command name="SaleReport">				<view>SaleReport</view></command>
+		<command name="SaleReportDetail">		<view>SaleReportDetail</view></command>
 		
 		<!-- ============================================================================== -->
 		<!-- SETTING	 																	-->
@@ -59,6 +60,9 @@
 		
 		<command name="ASettingSupplier">		<view>ASettingSupplier</view>	</command>
 		<command name="ASettingWarehouse">		<view>ASettingWarehouse</view>	</command>
+		
+		<command name="ASettingTrack">			<view>ASettingTrack</view>		</command>
+		<command name="ASettingTrackDaily">		<view>ASettingTrackDaily</view>	</command>
 				
 		<command name="ASettingConfig">			<view>ASettingConfig</view>		</command>
 	</control>

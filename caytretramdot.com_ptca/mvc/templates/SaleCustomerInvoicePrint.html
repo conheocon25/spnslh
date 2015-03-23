@@ -55,6 +55,7 @@
 				<th align="center" width="30">STT</th>
 				<th align="left">TÊN</th>
 				<th align="right" width="60">SL</th>
+				<th align="left" width="60">ĐVT</th>
 				<th align="right" width="120">Đ.GIÁ</th>
 				<th align="right" width="120">T.TIỀN</th>
 			</tr>
@@ -62,13 +63,14 @@
 		<tbody>
 			<tr tal:repeat="Detail Invoice/getDetailAll">
 				<td align="center"><span tal:content="repeat/Detail/number" /></td>
-				<td align="left"><span tal:content="Detail/getGood/getName"/></td>
+				<td align="left"><span tal:content="Detail/getGood/getName"/></td>				
 				<td align="right"><span tal:content="Detail/getCountPrint"/></td>
+				<td align="left"><span tal:content="Detail/getGood/getUnit"/></td>
 				<td align="right"><span tal:content="Detail/getPricePrint"/></td>
 				<td align="right"><span tal:content="Detail/getValuePrint"/></td>				
 			</tr>
 			<tr>
-				<td align="right" colspan="4"><B>TỔNG CỘNG</B></td>
+				<td align="right" colspan="5"><B>TỔNG CỘNG</B></td>
 				<td align="right"><B tal:content="Invoice/getValuePrint" /></td>
 			</tr>
 		</tbody>		

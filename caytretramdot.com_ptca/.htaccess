@@ -60,6 +60,10 @@ RewriteRule ^ql-ban-hang/khach-hang/tim-kiem$ 					?cmd=SaleCustomerSearching [L
 RewriteRule ^ql-ban-hang/don-hang/chi-tiet/them-moi$ 			?cmd=SaleInvoiceDetailInsExe [L]
 RewriteRule ^ql-ban-hang/don-hang/chi-tiet/cap-nhat$ 			?cmd=SaleInvoiceDetailUpdExe [L]
 
+RewriteRule ^ql-ban-hang/bao-cao$ 								?cmd=SaleReport [L]
+RewriteRule ^ql-ban-hang/bao-cao/([0-9]+)/$ 					?cmd=SaleReport&IdTrack=$1 [L]
+RewriteRule ^ql-ban-hang/bao-cao/([0-9]+)/([0-9]+)/$ 			?cmd=SaleReportDetail&IdTrack=$1&IdDaily=$2 [L]
+
 #---------------------------------------------------------------------------------------------------------------------------
 # SETTING
 #---------------------------------------------------------------------------------------------------------------------------
@@ -95,3 +99,7 @@ RewriteRule ^admin/setting/department$ 									?cmd=ASettingDepartment [L]
 RewriteRule ^admin/setting/department/page/([0-9]+)$ 					?cmd=ASettingDepartment&Page=$1 [L]
 RewriteRule ^admin/setting/department/([0-9]+)$ 						?cmd=ASettingEmployee&IdDepartment=$1 [L]
 RewriteRule ^admin/setting/department/([0-9]+)/page/([0-9]+)$ 			?cmd=ASettingEmployee&IdDepartment=$1&Page=$2 [L]
+
+RewriteRule ^admin/setting/track$ 										?cmd=ASettingTrack [L]
+RewriteRule ^admin/setting/track/page/([0-9]+)$ 						?cmd=ASettingTrack&Page=$1 [L]
+RewriteRule ^admin/setting/track/([0-9]+)$ 								?cmd=ASettingTrackDaily&IdTrack=$1 [L]
