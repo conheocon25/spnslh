@@ -19,7 +19,9 @@ class Tracking extends Mapper implements \MVC\Domain\TrackingFinder{
 			paid1=?,
 			paid2=?,
 			paid3=?,
-			value=?
+			value=?,
+			count=?,
+			count_global=?
 		where id=?", $tblTracking);
 		
 		$insertStmt = sprintf("insert into %s (
@@ -31,8 +33,10 @@ class Tracking extends Mapper implements \MVC\Domain\TrackingFinder{
 			paid1,
 			paid2,
 			paid3,
-			value
-		) values(?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblTracking);
+			value,
+			count,
+			count_global
+		) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblTracking);
 		$deleteStmt 	= sprintf("delete from %s where id=?", $tblTracking);
 		$findPreStmt 	= sprintf("select * from %s where date_start<? ORDER BY date_start DESC", $tblTracking);
 		$existStmt 		= sprintf("select * from %s where date_start>=? AND date_end<=?", $tblTracking);
@@ -60,7 +64,9 @@ class Tracking extends Mapper implements \MVC\Domain\TrackingFinder{
 			$array['paid1'],
 			$array['paid2'],
 			$array['paid3'],
-			$array['value']
+			$array['value'],
+			$array['count'],
+			$array['count_global']
 		);
         return $obj;
     }
@@ -76,7 +82,9 @@ class Tracking extends Mapper implements \MVC\Domain\TrackingFinder{
 			$object->getPaid1(),
 			$object->getPaid2(),
 			$object->getPaid3(),
-			$object->getValue()
+			$object->getValue(),
+			$object->getCount(),
+			$object->getCountGlobal()
 		);
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
@@ -93,6 +101,8 @@ class Tracking extends Mapper implements \MVC\Domain\TrackingFinder{
 			$object->getPaid2(),
 			$object->getPaid3(),
 			$object->getValue(),
+			$object->getCount(),
+			$object->getCountGlobal(),
 			$object->getId()
 		);
         $this->updateStmt->execute( $values );

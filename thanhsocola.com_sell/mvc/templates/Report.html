@@ -26,6 +26,7 @@
 										<th width="40"><i class="glyphicons-fax"/></th>
 										<th><div class="text-left">THÁNG</div></th>
 										<th width="100"><div class="text-right">SỐ DƯ</div></th>
+										<th width="120"><div class="text-right">TIỂU THỤ</div></th>
 										<th width="100"><div class="text-right">KHÁCH HÀNG</div></th>
 										<th width="40"><i class="glyphicons-bin"/></th>
 									</tr>
@@ -35,6 +36,7 @@
 										<td align="center" tal:content="repeat/Track/number"/>
 										<td><a tal:attributes="href Track/getURLView" tal:content="Track/getName"/></td>
 										<td class="right"><span tal:content="Track/getValuePrint"/></td>
+										<td class="right"><span tal:content="Track/getCountPrint"/> / <span tal:content="Track/getCountGlobalPrint"/></td>
 										<td class="center"><a tal:attributes="href Track/getURLCustomer" tal:content="string:Xem"/></td>
 										<td class="center">
 											<a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Track/getId">

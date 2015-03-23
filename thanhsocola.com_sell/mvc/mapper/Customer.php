@@ -11,10 +11,10 @@ class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
         $this->selectStmt = self::$PDO->prepare( 
                             "select * from tbl_customer where id=?");
         $this->updateStmt = self::$PDO->prepare( 
-                            "update tbl_customer set name=?, type=?, card=?, phone=?, address=?, note=?, discount=? where id=?");
+                            "update tbl_customer set name=?, type=?, card=?, phone=?, address=?, note=?, discount=?, debt=? where id=?");
         $this->insertStmt = self::$PDO->prepare( 
-                            "insert into tbl_customer (name, type, card, phone, address, note, discount) 
-							values( ?, ?, ?, ?, ?, ?, ?)");
+                            "insert into tbl_customer (name, type, card, phone, address, note, discount, debt) 
+							values( ?, ?, ?, ?, ?, ?, ?, ?)");
 		$this->deleteStmt = self::$PDO->prepare( 
                             "delete from tbl_customer where id=?");
 		$this->findByPositionStmt = self::$PDO->prepare("
@@ -43,7 +43,8 @@ class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
 			$array['phone'],
 			$array['address'],
 			$array['note'],
-			$array['discount']
+			$array['discount'],
+			$array['debt']
 		);
         return $obj;
     }
@@ -60,7 +61,8 @@ class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
 			$object->getPhone(),	
 			$object->getAddress(),	
 			$object->getNote(),
-			$object->getDiscount()
+			$object->getDiscount(),
+			$object->getDebt()
 		); 
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
@@ -76,6 +78,7 @@ class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
 			$object->getAddress(),
 			$object->getNote(),
 			$object->getDiscount(),
+			$object->getDebt(),
 			$object->getId()
 		);		
         $this->updateStmt->execute( $values );

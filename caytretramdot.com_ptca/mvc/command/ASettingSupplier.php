@@ -31,12 +31,20 @@
 			$SupplierAll1 = $mSupplier->findByPage(array($Page, $Config->getValue() ));
 			$PN = new \MVC\Domain\PageNavigation($SupplierAll->count(), $Config->getValue(), "/admin/setting/supplier" );
 			
+			$Title = "NHÀ CUNG CẤP";
+			$Navigation = array(				
+				array("THIẾT LẬP", "/admin")
+			);
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------												
 			$request->setProperty('Page', 			$Page);
 			$request->setObject('PN', 				$PN);
 			$request->setObject('SupplierAll1', 	$SupplierAll1);
+			
+			$request->setProperty('Title'		, $Title);			
+			$request->setObject('Navigation'	, $Navigation);
 															
 			return self::statuses('CMD_DEFAULT');
 		}

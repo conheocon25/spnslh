@@ -31,9 +31,7 @@
 			$PN 				= new \MVC\Domain\PageNavigation($CustomerGroupAll->count(), $Config->getValue(), "/setting/group/customer");
 			
 			$Title = "NHÓM KHÁCH HÀNG";
-			$Navigation = array(				
-				array("THIẾT LẬP", "/admin")
-			);
+			$Navigation = array(array("THIẾT LẬP", "/admin"));
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI

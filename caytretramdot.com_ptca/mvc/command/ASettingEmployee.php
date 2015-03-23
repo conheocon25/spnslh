@@ -34,6 +34,12 @@
 			$EmployeeAll1 	= $mEmployee->findByDepartmentPage(array($IdDepartment, $Page, $Config->getValue() ));
 			$PN 			= new \MVC\Domain\PageNavigation($EmployeeAll->count(), $Config->getValue(), "/admin/setting/employee");
 			
+			$Title = mb_strtoupper($Department->getName(), 'UTF8');
+			$Navigation = array(				
+				array("THIẾT LẬP", "/admin"),
+				array("PHÒNG BAN", "/admin/setting/department")
+			);
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------															
@@ -42,6 +48,8 @@
 			$request->setObject('EmployeeAll1'	, $EmployeeAll1);
 			$request->setProperty('Page'		, $Page);
 			$request->setObject('PN'			, $PN);
+			$request->setProperty('Title'		, $Title);			
+			$request->setObject('Navigation'	, $Navigation);
 												
 			return self::statuses('CMD_DEFAULT');
 		}

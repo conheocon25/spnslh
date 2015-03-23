@@ -30,12 +30,17 @@
 			$TrackAll1 	= $mTrack->findByPage(array($Page, $Config->getValue() ));
 			$PN 		= new \MVC\Domain\PageNavigation($TrackAll->count(), $Config->getValue(), "/admin/setting/track");
 			
+			$Title = "BÁO CÁO";
+			$Navigation = array(array("THIẾT LẬP", "/admin"));
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------												
 			$request->setProperty('Page'			, $Page);
 			$request->setObject('PN'				, $PN);
-			$request->setObject('TrackAll1'	, $TrackAll1);
+			$request->setObject('TrackAll1'			, $TrackAll1);
+			$request->setProperty('Title'			, $Title);
+			$request->setObject('Navigation'		, $Navigation);
 												
 			return self::statuses('CMD_DEFAULT');
 		}

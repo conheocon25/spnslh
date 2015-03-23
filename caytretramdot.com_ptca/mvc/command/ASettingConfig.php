@@ -23,7 +23,8 @@
 			//-------------------------------------------------------------						
 			$ConfigAll 			= $mConfig->findAll();
 												
-			$Title = "CẤU HÌNH";
+			$Title 		= "CẤU HÌNH";			
+			$Navigation = array(array("THIẾT LẬP", "/admin"));
 						
 			//Kiểm tra nếu chưa tồn tại trong DB thì sẽ tự động khởi tạo giá trị mặc định và lưu vào DB			
 			$ConfigNameApp 	= $mConfig->findByName("NAME_APP");
@@ -79,7 +80,7 @@
 				$ConfigReceiptVirtualDouble = new \MVC\Domain\Config(null, 'RECEIPT_VIRTUAL_DOUBLE', 1);
 				$mConfig->insert($ConfigReceiptVirtualDouble);
 			}
-									
+												
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------																											
@@ -91,7 +92,9 @@
 			$request->setObject('ConfigRowPerPage', 		$ConfigRowPerPage);			
 			$request->setObject('ConfigGuestVisit', 		$ConfigGuestVisit);
 			$request->setObject('ConfigSlogan', 			$ConfigSlogan);			
-			$request->setObject('ConfigReceiptVirtualDouble', $ConfigReceiptVirtualDouble);
+			
+			$request->setProperty('Title',					$Title);			
+			$request->setObject('Navigation',				$Navigation);
 															
 			return self::statuses('CMD_DEFAULT');
 		}

@@ -30,12 +30,18 @@
 			$DepartmentAll1 	= $mDepartment->findByPage(array($Page, $Config->getValue() ));
 			$PN 				= new \MVC\Domain\PageNavigation($DepartmentAll->count(), $Config->getValue(), "/admin/setting/department");
 			
+			$Title = "PHÒNG BAN";
+			$Navigation = array(array("THIẾT LẬP", "/admin"));
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------												
 			$request->setProperty('Page'		, $Page);
 			$request->setObject('PN'			, $PN);									
 			$request->setObject('DepartmentAll1'	, $DepartmentAll1);
+			
+			$request->setProperty('Title'		, $Title);			
+			$request->setObject('Navigation'	, $Navigation);
 												
 			return self::statuses('CMD_DEFAULT');
 		}
