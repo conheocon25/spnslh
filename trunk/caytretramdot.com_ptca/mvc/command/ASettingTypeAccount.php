@@ -36,12 +36,12 @@
 			
 			if ($TypeAccountParent->getIdParent()>0){
 				$Navigation = array(				
-					array( "THIẾT LẬP", "/admin/setting" ),
+					array( "THIẾT LẬP", "/admin" ),
 					array( mb_strtoupper($TypeAccountParent->getParent()->getName(), 'UTF8'), $TypeAccountParent->getParent()->getURLSettingTypeAccount() )
 				);
 			}else{
 				$Navigation = array(				
-					array( "THIẾT LẬP", "/admin/setting" ),
+					array( "THIẾT LẬP", "/admin" ),
 					array( mb_strtoupper($TypeAccountParent->getName(), 'UTF8'), $TypeAccountParent->getURLSettingTypeAccount() )
 				);
 			}

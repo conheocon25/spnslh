@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class ASettingCustomerGroup extends Command {
+	class ASettingTransport extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -16,21 +16,21 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mCustomerGroup = new \MVC\Mapper\CustomerGroup();
-			$mConfig 		= new \MVC\Mapper\Config();			
+			$mTransport 	= new \MVC\Mapper\Transport();
+			$mConfig 		= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------									
-			$CustomerGroupAll = $mCustomerGroup->findAll();
+			$TransportAll = $mTransport->findAll();
 						
 			if (!isset($Page)) $Page=1;
 			$Config 		= $mConfig->findByName("ROW_PER_PAGE");
 						
-			$CustomerGroupAll1 	= $mCustomerGroup->findByPage(array($Page, $Config->getValue() ));
-			$PN 				= new \MVC\Domain\PageNavigation($CustomerGroupAll->count(), $Config->getValue(), "/admin/setting/group/customer");
+			$TransportAll1 	= $mTransport->findByPage(array($Page, $Config->getValue() ));
+			$PN 			= new \MVC\Domain\PageNavigation($TransportAll->count(), $Config->getValue(), "/admin/setting/transport");
 			
-			$Title = "NHÓM KHÁCH HÀNG";
+			$Title 		= "ĐỘI XE";
 			$Navigation = array(array("THIẾT LẬP", "/admin"));
 			
 			//-------------------------------------------------------------
@@ -38,7 +38,7 @@
 			//-------------------------------------------------------------												
 			$request->setProperty('Page'			, $Page);
 			$request->setObject('PN'				, $PN);
-			$request->setObject('CustomerGroupAll1'	, $CustomerGroupAll1);
+			$request->setObject('TransportAll1'	, $TransportAll1);
 			
 			$request->setProperty('Title'		, $Title);			
 			$request->setObject('Navigation'	, $Navigation);

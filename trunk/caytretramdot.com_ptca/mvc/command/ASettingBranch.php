@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class ASettingCustomerGroup extends Command {
+	class ASettingBranch extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -16,21 +16,21 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mCustomerGroup = new \MVC\Mapper\CustomerGroup();
-			$mConfig 		= new \MVC\Mapper\Config();			
+			$mBranch 	= new \MVC\Mapper\Branch();
+			$mConfig 	= new \MVC\Mapper\Config();			
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------									
-			$CustomerGroupAll = $mCustomerGroup->findAll();
+			$BranchAll = $mBranch->findAll();
 						
 			if (!isset($Page)) $Page=1;
 			$Config 		= $mConfig->findByName("ROW_PER_PAGE");
 						
-			$CustomerGroupAll1 	= $mCustomerGroup->findByPage(array($Page, $Config->getValue() ));
-			$PN 				= new \MVC\Domain\PageNavigation($CustomerGroupAll->count(), $Config->getValue(), "/admin/setting/group/customer");
+			$BranchAll1 	= $mBranch->findByPage(array($Page, $Config->getValue() ));
+			$PN 			= new \MVC\Domain\PageNavigation($BranchAll->count(), $Config->getValue(), "/admin/setting/branch");
 			
-			$Title = "NHÓM KHÁCH HÀNG";
+			$Title = "CHI NHÁNH";
 			$Navigation = array(array("THIẾT LẬP", "/admin"));
 			
 			//-------------------------------------------------------------
@@ -38,11 +38,11 @@
 			//-------------------------------------------------------------												
 			$request->setProperty('Page'			, $Page);
 			$request->setObject('PN'				, $PN);
-			$request->setObject('CustomerGroupAll1'	, $CustomerGroupAll1);
+			$request->setObject('BranchAll1'		, $BranchAll1);
 			
-			$request->setProperty('Title'		, $Title);			
-			$request->setObject('Navigation'	, $Navigation);
-												
+			$request->setProperty('Title'			, $Title);
+			$request->setObject('Navigation'		, $Navigation);
+																		
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

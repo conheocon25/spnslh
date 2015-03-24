@@ -47,6 +47,8 @@
 		<command name="ASetting">				<view>ASetting</view>			</command>						
 		<command name="ASettingTypeAccount">	<view>ASettingTypeAccount</view></command>								
 		
+		<command name="ASettingBranch">			<view>ASettingBranch</view>		</command>
+		
 		<command name="ASettingUser">			<view>ASettingUser</view>		</command>
 		
 		<command name="ASettingGoodGroup">		<view>ASettingGoodGroup</view></command>
@@ -63,7 +65,9 @@
 		
 		<command name="ASettingTrack">			<view>ASettingTrack</view>		</command>
 		<command name="ASettingTrackDaily">		<view>ASettingTrackDaily</view>	</command>
-				
+		
+		<command name="ASettingTransport">		<view>ASettingTransport</view>	</command>
+		
 		<command name="ASettingConfig">			<view>ASettingConfig</view>		</command>
 	</control>
 </options>
