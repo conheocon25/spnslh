@@ -9,6 +9,9 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	require_once( "mvc/mapper/InvoiceSell.php" 		);
 	require_once( "mvc/mapper/InvoiceSellDetail.php");
 	
+	require_once( "mvc/mapper/InvoiceImport.php" 	);
+	require_once( "mvc/mapper/InvoiceImportDetail.php");
+	
 	require_once( "mvc/mapper/GoodGroup.php" 		);
 	require_once( "mvc/mapper/Good.php" 			);
 	

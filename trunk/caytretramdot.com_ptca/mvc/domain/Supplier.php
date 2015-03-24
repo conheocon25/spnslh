@@ -87,6 +87,12 @@ class Supplier extends Object{
 	function setAvatar( $Avatar ) {$this->Avatar = $Avatar; $this->markDirty();}
 	function getAvatar(){return $this->Avatar;}
 	
+	function getInvoiceImportAll(){
+		$mInvoiceImport	= new	\MVC\Mapper\InvoiceImport();
+		$InvoiceAll 	= $mInvoiceImport->findBySupplier(array($this->Id));
+		return $InvoiceAll;
+	}
+	
 	function toJSON(){
 		$json = array(
 			'Id' 			=> $this->getId(),	
@@ -122,7 +128,8 @@ class Supplier extends Object{
 		$this->Avatar		= $Data[12];
     }
 					
-	//=================================================================================	
+	//=================================================================================
+	function getURLImport(){return "/ql-kho-hang/lenh-nhap/".$this->getId();}
 	
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}	

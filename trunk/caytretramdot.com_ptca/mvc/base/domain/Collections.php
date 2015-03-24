@@ -9,6 +9,9 @@ interface TypeAccountCollection 		extends \Iterator {function add( Object $TypeA
 interface InvoiceSellCollection 		extends \Iterator {function add( Object $InvoiceSell);	}
 interface InvoiceSellDetailCollection 	extends \Iterator {function add( Object $InvoiceSellDetail);	}
 
+interface InvoiceImportCollection 		extends \Iterator {function add( Object $InvoiceImport);		}
+interface InvoiceImportDetailCollection extends \Iterator {function add( Object $InvoiceImportDetail);	}
+
 interface GoodGroupCollection 			extends \Iterator {function add( Object $GoodGroup);	}
 interface GoodCollection 				extends \Iterator {function add( Object $Good);			}
 
