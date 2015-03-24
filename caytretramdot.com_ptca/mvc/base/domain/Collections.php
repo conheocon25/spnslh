@@ -1,6 +1,8 @@
 <?php
 namespace MVC\Domain;
 
+interface BranchCollection 				extends \Iterator {function add( Object $Branch );		}
+
 interface UserCollection 				extends \Iterator {function add( Object $User );		}
 interface TypeAccountCollection 		extends \Iterator {function add( Object $TypeAccount);	}
 
@@ -21,6 +23,8 @@ interface WarehouseCollection 			extends \Iterator {function add( Object $Wareho
 
 interface TrackCollection 				extends \Iterator {function add( Object $Track);		}
 interface TrackDailyCollection 			extends \Iterator {function add( Object $TrackDaily);	}
+
+interface TransportCollection 			extends \Iterator {function add( Object $Transport);	}
 
 interface ConfigCollection 				extends \Iterator {function add( Object $Config );		}
 interface PageCollection 				extends \Iterator {function add( Object $Page);			}

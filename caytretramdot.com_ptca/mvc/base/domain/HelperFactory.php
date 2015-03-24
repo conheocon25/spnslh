@@ -4,6 +4,8 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	require_once( "mvc/mapper/User.php" 			);
 	require_once( "mvc/mapper/TypeAccount.php" 		);
 	
+	require_once( "mvc/mapper/Branch.php" 			);
+	
 	require_once( "mvc/mapper/InvoiceSell.php" 		);
 	require_once( "mvc/mapper/InvoiceSellDetail.php");
 	
@@ -20,6 +22,8 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	
 	require_once( "mvc/mapper/Track.php" 			);
 	require_once( "mvc/mapper/TrackDaily.php" 		);
+	
+	require_once( "mvc/mapper/Transport.php" 		);
 	
 	require_once( "mvc/mapper/Config.php"			);
 	require_once( "mvc/mapper/Guest.php"			);

@@ -13,6 +13,8 @@ interface Finder {
 interface UserFinder  			extends Finder {}
 interface TypeAccountFinder  	extends Finder {}
 
+interface BranchFinder  			extends Finder {}
+
 interface InvoiceSellFinder  		extends Finder {}
 interface InvoiceSellDetailFinder  	extends Finder {}
 
@@ -30,6 +32,8 @@ interface WarehouseFinder  		extends Finder {}
 
 interface TrackFinder  			extends Finder {}
 interface TrackDailyFinder  	extends Finder {}
+
+interface TransportFinder  		extends Finder {}
 
 interface ConfigFinder 			extends Finder {}
 interface GuestFinder 			extends Finder {}

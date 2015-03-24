@@ -73,6 +73,9 @@ RewriteRule ^admin/setting$ 											?cmd=ASetting [L]
 RewriteRule ^admin/setting/type/account$ 								?cmd=ASettingTypeAccount [L]
 RewriteRule ^admin/setting/type/account/([0-9]+)$ 						?cmd=ASettingTypeAccount&IdParent=$1 [L]
 
+RewriteRule ^admin/setting/branch$ 										?cmd=ASettingBranch [L]
+RewriteRule ^admin/setting/branch/page/([0-9]+)$ 						?cmd=ASettingBranch&Page=$1 [L]
+
 RewriteRule ^admin/setting/config$ 										?cmd=ASettingConfig [L]
 RewriteRule ^admin/setting/config/page/([0-9]+)$ 						?cmd=ASettingConfig&Page=$1 [L]
 
@@ -103,3 +106,6 @@ RewriteRule ^admin/setting/department/([0-9]+)/page/([0-9]+)$ 			?cmd=ASettingEm
 RewriteRule ^admin/setting/track$ 										?cmd=ASettingTrack [L]
 RewriteRule ^admin/setting/track/page/([0-9]+)$ 						?cmd=ASettingTrack&Page=$1 [L]
 RewriteRule ^admin/setting/track/([0-9]+)$ 								?cmd=ASettingTrackDaily&IdTrack=$1 [L]
+
+RewriteRule ^admin/setting/transport$ 									?cmd=ASettingTransport [L]
+RewriteRule ^admin/setting/transport/page/([0-9]+)$ 					?cmd=ASettingTransport&Page=$1 [L]
