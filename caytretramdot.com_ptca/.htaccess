@@ -47,7 +47,7 @@ RewriteRule ^object/upd/([A-Za-z0-9]+)$ 						?cmd=ObjectUpd&ObjectName=$1 [L]
 RewriteRule ^object/liked/([A-Za-z0-9]+)/([0-9]+)$ 				?cmd=ObjectLiked&ObjectName=$1&Id=$2 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
-# SELLING
+# SALE
 #---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^ql-ban-hang$ 										?cmd=Sale [L]
 
@@ -63,6 +63,21 @@ RewriteRule ^ql-ban-hang/don-hang/chi-tiet/cap-nhat$ 			?cmd=SaleInvoiceDetailUp
 RewriteRule ^ql-ban-hang/bao-cao$ 								?cmd=SaleReport [L]
 RewriteRule ^ql-ban-hang/bao-cao/([0-9]+)$ 						?cmd=SaleReport&IdTrack=$1 [L]
 RewriteRule ^ql-ban-hang/bao-cao/([0-9]+)/([0-9]+)$ 			?cmd=SaleReportDaily&IdTrack=$1&IdDaily=$2 [L]
+
+#---------------------------------------------------------------------------------------------------------------------------
+# WAREHOUSE
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^ql-kho-hang$ 										?cmd=Warehouse [L]
+RewriteRule ^ql-kho-hang/lenh-nhap$ 							?cmd=WarehouseImport [L]
+RewriteRule ^ql-kho-hang/lenh-nhap/([0-9]+)$ 					?cmd=WarehouseImport&IdSupplier=$1 [L]
+RewriteRule ^ql-kho-hang/lenh-nhap/([0-9]+)/([0-9]+)$ 			?cmd=WarehouseImportDetail&IdSupplier=$1&IdInvoice=$2 [L]
+RewriteRule ^ql-kho-hang/lenh-nhap/([0-9]+)/([0-9]+)/print$ 	?cmd=WarehouseImportDetailPrint&IdSupplier=$1&IdInvoice=$2 [L]
+
+RewriteRule ^ql-kho-hang/lenh-xuat$ 							?cmd=WarehouseExport [L]
+RewriteRule ^ql-kho-hang/lenh-xuat/([0-9]+)$ 					?cmd=WarehouseExportDetail&IdInvoice=$1 [L]
+
+RewriteRule ^ql-kho-hang/bao-cao/([0-9]+)$ 						?cmd=WarehouseReport&IdTrack=$1 [L]
+RewriteRule ^ql-kho-hang/bao-cao/([0-9]+)/([0-9]+)$ 			?cmd=WarehouseReportDaily&IdTrack=$1&IdDaily=$2 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # SETTING

@@ -18,6 +18,9 @@ interface BranchFinder  			extends Finder {}
 interface InvoiceSellFinder  		extends Finder {}
 interface InvoiceSellDetailFinder  	extends Finder {}
 
+interface InvoiceImportFinder  		extends Finder {}
+interface InvoiceImportDetailFinder extends Finder {}
+
 interface GoodGroupFinder  		extends Finder {}
 interface GoodFinder  			extends Finder {}
 

@@ -8,8 +8,11 @@ class TypeAccountCollection 	extends Collection implements \MVC\Domain\TypeAccou
 
 class BranchCollection 			extends Collection implements \MVC\Domain\BranchCollection 			{function targetClass( ) {return "\MVC\Domain\Branch";		}}
 
-class InvoiceSellCollection 	extends Collection implements \MVC\Domain\InvoiceSellCollection		{function targetClass( ) {return "\MVC\Domain\InvoiceSell";	}}
-class InvoiceSellDetailCollection 	extends Collection implements \MVC\Domain\InvoiceSellDetailCollection		{function targetClass( ) {return "\MVC\Domain\InvoiceSellDetail";	}}
+class InvoiceSellCollection 		extends Collection implements \MVC\Domain\InvoiceSellCollection			{function targetClass( ) {return "\MVC\Domain\InvoiceSell";	}}
+class InvoiceSellDetailCollection 	extends Collection implements \MVC\Domain\InvoiceSellDetailCollection	{function targetClass( ) {return "\MVC\Domain\InvoiceSellDetail";	}}
+
+class InvoiceImportCollection 		extends Collection implements \MVC\Domain\InvoiceImportCollection		{function targetClass( ) {return "\MVC\Domain\InvoiceImport";		}}
+class InvoiceImportDetailCollection extends Collection implements \MVC\Domain\InvoiceImportDetailCollection	{function targetClass( ) {return "\MVC\Domain\InvoiceImportDetail";	}}
 
 class GoodGroupCollection 		extends Collection implements \MVC\Domain\GoodGroupCollection		{function targetClass( ) {return "\MVC\Domain\GoodGroup";	}}
 class GoodCollection 			extends Collection implements \MVC\Domain\GoodCollection			{function targetClass( ) {return "\MVC\Domain\Good";		}}
