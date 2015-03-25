@@ -16,24 +16,24 @@
 							<table class="table table-bordered table-striped table-hover with-check">
 								<thead>
 									<tr>
-										<th width="40">ID</th>
-										<th class="left">TÊN</th>
+										<th class="text-center" width="40">ID</th>
+										<th class="text-left">TÊN</th>
 										<th width="80">VAI TRÒ</th>
 										<th width="40"><i class="glyphicon glyphicon-pencil"/></th>
-										<th width="40"><i class="glyphicon glyphicon-remove"/></th>										
+										<th class="text-center" width="40"><i class="glyphicon glyphicon-trash"/></th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr tal:repeat="User UserAll1">
-										<td class="center"><span tal:content="repeat/User/number"/></td>
+										<td class="text-center"><span tal:content="repeat/User/number"/></td>
 										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id User/getId" tal:content="User/getName"/></td>
 										<td><span tal:content="User/getTypePrint"/></td>
-										<td class="center">
+										<td class="text-center">
 											<a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id User/getId">
 												<i class="glyphicon glyphicon-pencil"/>
 											</a>
 										</td>
-										<td class="center">
+										<td class="text-center">
 											<a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id User/getId">
 												<i class="glyphicon glyphicon-remove"/>
 											</a>
@@ -61,7 +61,7 @@
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h3><i class="glyphicons-user modal-icon"/>THÊM MỚI NGƯỜI DÙNG</h3>
+						<h3><i class="glyphicon glyphicon-cog modal-icon"/> THÊM MỚI NGƯỜI DÙNG</h3>
 					</div>
 					<form id="FormUserInsert" class="form-horizontal" action="#" novalidate="novalidate">
 						<div class="modal-body">
@@ -83,19 +83,19 @@
 									<input id="Pass1" name="Pass1" type="password" class="form-control input-small"/>
 								</div>
 							</div>
-							<div class="form-group">							
+							<div class="form-group">
 								<label class="col-sm-2 control-label">Giới tính</label>							
-								<div class="col-sm-10">
-									<select name="Gender1" id="Gender1" style="width:100%;">
+								<div class="col-sm-10 controls">
+									<select name="Gender1" id="Gender1" style="width:100%;" class="form-control">
 										<option value="0" >Nam</option>
 										<option value="1" >Nữ</option>
 									</select>
 								</div>
-							</div>
+							</div>												
 							<div class="form-group">							
 								<label class="col-sm-2 control-label">Quyền</label>							
-								<div class="col-sm-10">
-									<select name="Type1" id="Type1" style="width:100%;">
+								<div class="col-sm-10 controls" >
+									<select name="Type1" id="Type1" style="width:100%;" class="form-control">
 										<option value="1" >Bán hàng</option>
 										<option value="2" >Hành chính</option>
 										<option value="3" >Thủ kho</option>
@@ -131,7 +131,7 @@
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h3><i class="glyphicons-user modal-icon"/>CẬP NHẬT NGƯỜI DÙNG</h3>
+						<h3><i class="glyphicon glyphicon-cog modal-icon"/> CẬP NHẬT NGƯỜI DÙNG</h3>
 					</div>
 					<form id="FormUserUpdate" action="#" class="form-horizontal" novalidate="novalidate">
 						<div class="modal-body">
@@ -156,7 +156,7 @@
 							<div class="form-group">
 								<label class="col-sm-2 control-label">Giới tính</label>
 								<div class="col-sm-10">
-									<select name="Gender2" id="Gender2" style="width:100%;">
+									<select name="Gender2" id="Gender2" style="width:100%;" class="form-control">
 										<option value="0" >Nam</option>
 										<option value="1" >Nữ</option>
 									</select>
@@ -165,7 +165,7 @@
 							<div class="form-group">
 								<label class="col-sm-2 control-label">Quyền</label>
 								<div class="col-sm-10">
-									<select name="Type2" id="Type2" style="width:100%;">
+									<select name="Type2" id="Type2" style="width:100%;" class="form-control">
 										<option value="1" >Bán hàng</option>
 										<option value="2" >Hành chính</option>
 										<option value="3" >Thủ kho</option>

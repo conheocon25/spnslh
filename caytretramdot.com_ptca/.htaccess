@@ -44,7 +44,6 @@ RewriteRule ^object/load/([A-Za-z0-9]+)/([0-9]+)$ 				?cmd=ObjectLoad&ObjectName
 RewriteRule ^object/del/([A-Za-z0-9]+)/([0-9]+)$ 				?cmd=ObjectDel&ObjectName=$1&Id=$2 [L]
 RewriteRule ^object/ins/([A-Za-z0-9]+)$ 						?cmd=ObjectIns&ObjectName=$1 [L]
 RewriteRule ^object/upd/([A-Za-z0-9]+)$ 						?cmd=ObjectUpd&ObjectName=$1 [L]
-RewriteRule ^object/liked/([A-Za-z0-9]+)/([0-9]+)$ 				?cmd=ObjectLiked&ObjectName=$1&Id=$2 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # SALE
@@ -70,6 +69,7 @@ RewriteRule ^ql-ban-hang/bao-cao/([0-9]+)/([0-9]+)$ 			?cmd=SaleReportDaily&IdTr
 RewriteRule ^ql-kho-hang$ 										?cmd=Warehouse [L]
 RewriteRule ^ql-kho-hang/lenh-nhap$ 							?cmd=WarehouseImport [L]
 RewriteRule ^ql-kho-hang/lenh-nhap/([0-9]+)$ 					?cmd=WarehouseImport&IdSupplier=$1 [L]
+RewriteRule ^ql-kho-hang/lenh-nhap/([0-9]+)/ins/exe$ 			?cmd=WarehouseImportInsExe&IdSupplier=$1 [L]
 RewriteRule ^ql-kho-hang/lenh-nhap/([0-9]+)/([0-9]+)$ 			?cmd=WarehouseImportDetail&IdSupplier=$1&IdInvoice=$2 [L]
 RewriteRule ^ql-kho-hang/lenh-nhap/([0-9]+)/([0-9]+)/print$ 	?cmd=WarehouseImportDetailPrint&IdSupplier=$1&IdInvoice=$2 [L]
 

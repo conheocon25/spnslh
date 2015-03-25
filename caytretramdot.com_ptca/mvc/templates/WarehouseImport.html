@@ -16,20 +16,20 @@
 							<table class="table table-bordered table-striped table-hover">
 								<thead>
 									<tr>
-										<th width="32">ID</th>
-										<th class="left">NGÀY</th>
-										<th width="120" class="left">T. TIỀN</th>
-										<th width="90" class="left">IN</th>
-										<th width="32"><i class="glyphicon glyphicon-remove"/></th>
+										<th class="text-center" width="32">ID</th>
+										<th class="text-left">NGÀY LẬP</th>
+										<th class="text-right" width="120">T. TIỀN</th>
+										<th class="text-center" width="90">IN</th>
+										<th class="text-center" width="32"><i class="glyphicon glyphicon-trash"/></th>
 									</tr>
 								</thead>
 								<tbody>									
 									<tr tal:repeat="Import Supplier/getInvoiceImportAll">
-										<td class="center"><span tal:content="repeat/Import/number"/></td>
-										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="Import" tal:attributes="data-id Import/getId" tal:content="Import/getDateTimeCreatedPrint"/></td>
-										<td><a tal:attributes="href Import/getURLDetail">Xem</a></td>
-										<td><a class="Ticket" tal:attributes="alt Import/getURLPrint"><i class="glyphicon glyphicon-print"/></a></td>
-										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Import/getId"><i class="glyphicon glyphicon-remove"/></a></td>
+										<td class="text-center"><span tal:content="repeat/Import/number"/></td>
+										<td><a class="update-item" href="#DialogUpd" data-toggle="modal" data-name="Import" tal:attributes="data-id Import/getId" tal:content="Import/getDateTimeCreatedPrint"/></td>
+										<td class="text-right"><a tal:attributes="href Import/getURLDetail">Xem</a></td>
+										<td class="text-center"><a class="Ticket" tal:attributes="alt Import/getURLPrint"><i class="glyphicon glyphicon-print"/></a></td>
+										<td class="text-center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Import/getId"><i class="glyphicon glyphicon-remove"/></a></td>
 									</tr>									
 								</tbody>
 							</table>							
@@ -48,33 +48,65 @@
 										<i class="glyphicon glyphicon-user"/> <span tal:content="Supplier1/getName"/>
 									</a>
 								</li>
-							</ul>
-							<a href="#DialogIns" data-toggle="modal" class="btn btn-default btn-ins"><i class="glyphicon glyphicon-plus"/> LỆNH NHẬP</a>
+							</ul>							
+							<div class="btn btn-default InvoiceInsert" tal:attributes="alt Supplier/getId"><i class="glyphicon glyphicon-plus" /> LỆNH NHẬP</div>
 						</div>	
 					</div>
 				</div>
 			</div>
 		</div>
 		
-		<!-- INSERT DIALOG  -->
-		<div id="DialogIns" class="modal fade">
+		<!-- UPD DIALOG  -->
+		<div id="DialogUpd" class="modal fade">
 			<div class="modal-dialog">
 				<div class="modal-content">
-					<div class="modal-header"><h3><i class="glyphicon glyphicon-tag modal-icon"/>THÊM MỚI NHÓM</h3></div>
-					<form id="FormGoodGroupInsert" action="#" class="form-horizontal" novalidate="novalidate">
-						<div class="modal-body">							
+					<div class="modal-header"><h3><i class="glyphicon glyphicon-cog modal-icon"/>CẬP NHẬT LỆNH NHẬP</h3></div>
+					<div id="FormImportUpdate" class="form-horizontal">
+						<div class="modal-body">
 							<div class="form-group">
-								<label class="col-sm-2 control-label">Tên</label>
-								<div class="col-sm-10 controls">
-									<input id="Name1" name="Name1" type="text" class="form-control input-small"/>
+								<label class="col-sm-3 control-label" for="DateTimeCreated1">Ngày tạo</label>
+								<div class="col-sm-8 controls">
+									<input id="DateTimeCreated" name="DateTimeCreated" readonly="true" type="text" class="form-control input-small"/>
 								</div>
-							</div>								
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label" for="DateTimeCreated1">Cập nhật</label>
+								<div class="col-sm-8 controls">
+									<input id="DateTimeUpdated" name="DateTimeUpdated" readonly="true" type="text" class="form-control input-small"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Nhà cung cấp</label>
+								<div class="col-sm-8 controls">
+									<select id="IdSupplier" style="width:100%;" class="form-control">
+										<option tal:repeat="Supplier SupplierAll" tal:attributes="value Supplier/getId">
+											<span tal:content="Supplier/getName" />
+										</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Nhân viên</label>
+								<div class="col-sm-8 controls">
+									<select id="IdEmployee" style="width:100%;" class="form-control">
+										<option tal:repeat="Employee EmployeeAll" tal:attributes="value Employee/getId">
+											<span tal:content="Employee/getName" />
+										</option>
+									</select>
+								</div>
+							</div>							
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Ghi chú</label>
+								<div class="col-sm-8 controls">
+									<input id="Note" type="text" class="form-control input-small" />
+								</div>
+							</div>
 						</div>
 						<div class="modal-footer">
-							<button class="btn btn-primary btn-small" id="URLInsButton"><i class="glyphicons-download_alt"/> Lưu</button>
+							<button class="btn btn-primary btn-small" id="URLUpdButton"><i class="glyphicons-download_alt"/> Lưu</button>
 							<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
 						</div>
-					</form>								
+					</div>								
 				</div>
 			</div>
 		</div>
@@ -91,7 +123,7 @@
 			});
 			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
 			$('#URLDelButton').click(function(){			
-				var URL = "/object/del/GoodGroup/" + $(this).attr('alt');
+				var URL = "/object/del/InvoiceImport/" + $(this).attr('alt');
 				$.ajax({
 					type: "POST",					
 					url: URL,
@@ -100,100 +132,50 @@
 					}
 				});
 			});
-		
+								
 			//-----------------------------------------------------------------------------------
-			//Insert 1 GoodGroup			
-			$("#FormGoodGroupInsert").validate({
-				rules:{
-					Name1:{
-						minlength: 2,
-						required:true
-					}
-				},
-				errorClass: "help-inline",
-				errorElement: "span",
-				highlight:function(element, errorClass, validClass) {
-					$(element).parents('.form-group').addClass('has-error');
-				},
-				unhighlight: function(element, errorClass, validClass) {
-					$(element).parents('.form-group').removeClass('has-error');
-					$(element).parents('.form-group').addClass('has-success');
-				},
-				submitHandler: function (form) {					
-					var Data = [];
-					Data[0] = 'null';				
-					Data[1] = $('#Name1').val();										
-																				
-					var URL = "/object/ins/GoodGroup";
-					$.ajax({
-						type: "POST",
-						data: {Data:Data},
-						url: URL,
-						success: function(msg){
-							location.reload();
-						}
-					});
-					return false;
-				}
-			});
-			$("#DialogIns").on('show.bs.modal', function(event){
-				window.setTimeout(
-					function(){$(event.currentTarget).find('input#Name1').first().focus()},
-					0500
-				);
-			});
-			
-			//-----------------------------------------------------------------------------------
-			//Load 1 GoodGroup
+			//Load 1 InvoiceImport
 			//-----------------------------------------------------------------------------------
 			$('.update-item').click(function(){
 				//Load dữ liệu JSON về
-				var url = "/object/load/GoodGroup/" + $(this).attr('data-id');
+				var url = "/object/load/InvoiceImport/" + $(this).attr('data-id');
 				
 				//Load dữ liệu JSON lên FORM
 				$('#update-link').attr('action', $(this).attr('alt'));
 				$.getJSON(url, function(data) {
 					$('#URLUpdButton').attr('alt', 	data.Id);
-					$('#Name2').attr('value', 		data.Name);					
+					$('#IdEmployee').val(data.IdEmployee);
+					$('#IdSupplier').val(data.IdSupplier);
+					$('#DateTimeCreated').attr('value', data.DateTimeCreated);
+					$('#DateTimeUpdated').attr('value', data.DateTimeUpdated);
+					$('#Note').attr('value', data.Note);
 				});
 			});
 			
 			//-----------------------------------------------------------------------------------
-			//Update 1 EMPLOYEEE
-			//-----------------------------------------------------------------------------------
-			$("#FormGoodGroupUpdate").validate({
-				rules:{
-					Name2:{
-						minlength: 2,
-						required:true
-					}					
-				},
-				errorClass: "help-inline",
-				errorElement: "span",
-				highlight:function(element, errorClass, validClass) {
-					$(element).parents('.form-group').addClass('has-error');
-				},
-				unhighlight: function(element, errorClass, validClass) {
-					$(element).parents('.form-group').removeClass('has-error');
-					$(element).parents('.form-group').addClass('has-success');
-				},
-				submitHandler: function (form) {					
-					var Data = [];
-					Data[0] = $('#URLUpdButton').attr('alt');
-					Data[1] = $('#Name2').val();										
-																				
-					var URL = "/object/upd/GoodGroup";
-					$.ajax({
-						type: "POST",
-						data: {Data:Data},
-						url: URL,
-						success: function(msg){
-							location.reload();
-						}
-					});
-					return false;
-				}
+			//Update 1 IMPORT
+			//-----------------------------------------------------------------------------------			
+			$("#URLUpdButton").click(function(){
+				var Data = [];
+				Data[0] = $('#URLUpdButton').attr('alt');
+				Data[1] = $('#IdEmployee').val();
+				Data[2] = $('#IdSupplier').val();
+				Data[3] = $('#DateTimeCreated').val();
+				Data[4] = $('#DateTimeUpdated').val();
+				Data[5] = $('#Note').val();
+				Data[6] = 1;
+																													
+				var URL = "/object/upd/InvoiceImport";
+				$.ajax({
+					type: "POST",
+					data: {Data:Data},
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
 			});
+			
 			$("#DialogEdit").on('show.bs.modal', function(event){
 				window.setTimeout(
 					function(){$(event.currentTarget).find('input#Name2').first().focus()},
@@ -206,6 +188,19 @@
 				var thePopup = window.open( url, "In Phiếu", "menubar=0,location=0,height=700,width=700" );
 				thePopup.print();
 			});
+			
+			$(".InvoiceInsert").click(function(){
+				var IdSupplier = $(this).attr('alt');															
+				var URL = "/ql-kho-hang/lenh-nhap/"+IdSupplier+"/ins/exe";
+				$.ajax({
+					type: "POST",					
+					url: URL,
+					success: function(msg){						
+						location.reload();
+					}
+				});			
+			});
+			
 		/*]]>*/
 		</script>
 	</body>

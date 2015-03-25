@@ -45,6 +45,7 @@ class InvoiceImport extends Object{
     }
 	
     function getId( ) {return $this->Id;}
+	function getIdPrint( ) {return "XK / ".$this->Id;}
 
 	function setIdEmployee( $IdEmployee ) {$this->IdEmployee = $IdEmployee; $this->markDirty();}
 	function getIdEmployee(){return $this->IdEmployee;}
@@ -67,6 +68,10 @@ class InvoiceImport extends Object{
 	function getDateTimeCreatedPrint(){
 		$t = strtotime($this->DateTimeCreated);		
 		return date('d/m/y H:i',$t);
+	}
+	function getDateTimeCreatedStrPrint(){
+		$t = strtotime($this->DateTimeCreated);				
+		return "Vĩnh Long, ngày ".date('d',$t)." tháng ".date('m',$t)." năm ".date('Y',$t);
 	}
 	
 	function setDateTimeUpdated($DateTimeUpdated ) {$this->DateTimeUpdated = $DateTimeUpdated; $this->markDirty();}
@@ -136,5 +141,7 @@ class InvoiceImport extends Object{
 	//-------------------------------------------------------------------------------				
 	function getURLDetail()	{return "/ql-kho-hang/lenh-nhap/".$this->getIdSupplier()."/".$this->getId();}
 	function getURLPrint()	{return "/ql-kho-hang/lenh-nhap/".$this->getIdSupplier()."/".$this->getId()."/print";}
+	
+	
 }
 ?>

@@ -16,22 +16,22 @@
 							<table class="table table-bordered table-striped table-hover">
 								<thead>
 									<tr>
-										<th width="32">ID</th>
-										<th class="left">TÊN NHÓM</th>
+										<th class="text-center" width="32">ID</th>
+										<th class="text-left">TÊN NHÓM</th>
 										<th width="120" class="left">KHÁCH HÀNG</th>
-										<th width="32"><i class="glyphicon glyphicon-remove"/></th>
+										<th class="text-center" width="32"><i class="glyphicon glyphicon-trash"/></th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr tal:repeat="CustomerGroup CustomerGroupAll1">
-										<td class="center"><span tal:content="repeat/CustomerGroup/number"/></td>
+										<td class="text-center"><span tal:content="repeat/CustomerGroup/number"/></td>
 										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="CustomerGroup" tal:attributes="data-id CustomerGroup/getId" tal:content="CustomerGroup/getName"/></td>
 										<td>
 											<a tal:attributes="href CustomerGroup/getURLSettingCustomer">
 												Xem (<span tal:content="CustomerGroup/getCustomerAll/count"/>)
 											</a>
 										</td>
-										<td class="center">
+										<td class="text-center">
 											<a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id CustomerGroup/getId">
 												<i class="glyphicon glyphicon-remove"/>
 											</a>
@@ -60,7 +60,7 @@
 		<div id="DialogIns" class="modal fade">
 			<div class="modal-dialog">
 				<div class="modal-content">
-					<div class="modal-header"><h3><i class="glyphicon glyphicon-tag modal-icon"/>THÊM MỚI NHÓM</h3></div>
+					<div class="modal-header"><h3><i class="glyphicon glyphicon-cog modal-icon"/>THÊM MỚI NHÓM</h3></div>
 					<form id="FormCustomerGroupInsert" action="#" class="form-horizontal" novalidate="novalidate">
 						<div class="modal-body">							
 							<div class="form-group">
@@ -84,7 +84,7 @@
 		<div id="DialogEdit" class="modal fade">
 			<div class="modal-dialog">
 				<div class="modal-content">
-					<div class="modal-header"><h3><i class="glyphicon glyphicon-tag modal-icon"/>CẬP NHẬT NHÓM</h3></div>
+					<div class="modal-header"><h3><i class="glyphicon glyphicon-cog modal-icon"/>CẬP NHẬT NHÓM</h3></div>
 					<form id="FormCustomerGroupUpdate" action="#" class="form-horizontal" novalidate="novalidate">
 						<div class="modal-body">							
 							<div class="form-group">

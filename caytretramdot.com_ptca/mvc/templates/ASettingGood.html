@@ -16,18 +16,18 @@
 							<table class="table table-bordered table-striped table-hover">
 								<thead>
 									<tr>
-										<th class="center" width="40">ID</th>
-										<th class="left">TÊN</th>																				
-										<th class="left">GHI CHÚ</th>
-										<th width="40"><i class="glyphicon glyphicon-remove"/></th>
+										<th class="text-center" width="40">ID</th>
+										<th class="text-left">TÊN</th>
+										<th class="text-left">GHI CHÚ</th>
+										<th class="text-center" width="40"><i class="glyphicon glyphicon-trash"/></th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr tal:repeat="Good GoodAll1">
-										<td class="center"><span tal:content="repeat/Good/number"/></td>
+										<td class="text-center"><span tal:content="repeat/Good/number"/></td>
 										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Good/getId" tal:content="Good/getName"/></td>
 										<td><span tal:content="Good/getNote"/></td>
-										<td class="center">
+										<td class="text-center">
 											<a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Good/getId">
 												<i class="glyphicon glyphicon-remove"/>
 											</a>
@@ -63,14 +63,14 @@
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h3><i class="glyphicon glyphicon-user modal-icon"/>THÊM MỚI HÀNG HÓA</h3>
+						<h3><i class="glyphicon glyphicon-cog modal-icon"/>THÊM MỚI HÀNG HÓA</h3>
 					</div>
 					<form id="FormGoodInsert" action="#" class="form-horizontal" novalidate="novalidate">
 						<div class="modal-body">
 							<div class="form-group">
 								<label class="col-sm-2 control-label">Nhóm</label>
 								<div class="col-sm-10 controls">
-									<select name="IdGroup1" id="IdGroup1" style="width:100%;">
+									<select name="IdGroup1" id="IdGroup1" style="width:100%;" class="form-control">
 										<option tal:repeat="Group1 GoodGroupAll" tal:attributes="value Group1/getId; selected php:Group1->getId()==Group->getId()?true:false">
 											<span tal:content="Group/getName"/>
 										</option>										
@@ -139,14 +139,14 @@
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h3><i class="glyphicon glyphicon-user modal-icon"/>CẬP NHẬT HÀNG HÓA</h3>
+						<h3><i class="glyphicon glyphicon-cog modal-icon"/>CẬP NHẬT HÀNG HÓA</h3>
 					</div>
 					<form id="FormGoodUpdate" action="#" class="form-horizontal" novalidate="novalidate">
 						<div class="modal-body">							
 							<div class="form-group">
 								<label class="col-sm-2 control-label">Nhóm</label>
 								<div class="col-sm-10 controls">
-									<select name="IdGroup2" id="IdGroup2" style="width:100%;">
+									<select name="IdGroup2" id="IdGroup2" style="width:100%;" class="form-control">
 										<option tal:repeat="Group GoodGroupAll" tal:attributes="value Group/getId">
 											<span tal:content="Group/getName"/>
 										</option>										

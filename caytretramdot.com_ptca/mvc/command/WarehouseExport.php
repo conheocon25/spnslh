@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class WarehouseImport extends Command {
+	class WarehouseExport extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -11,38 +11,30 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$IdSupplier = $request->getProperty('IdSupplier');
-			
+						
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
 			$mConfig 		= new \MVC\Mapper\Config();
-			$mSupplier 		= new \MVC\Mapper\Supplier();
+			$mWarehouse 	= new \MVC\Mapper\Warehouse();
 			$mEmployee 		= new \MVC\Mapper\Employee();
+			$mInvoiceSell	= new \MVC\Mapper\InvoiceSell();
 															
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------																								
-			$SupplierAll 	= $mSupplier->findAll();
+			$WarehouseAll 	= $mWarehouse->findAll();
 			$EmployeeAll 	= $mEmployee->findAll();
-			
-			if (!isset($IdSupplier)){
-				$Supplier 	= $SupplierAll->current();
-			}else{
-				$Supplier 	= $mSupplier->find($IdSupplier);
-			}
-			
-			$Title 			= mb_strtoupper($Supplier->getName(), 'UTF8');
-			$Navigation 	= array(
-				array("QUẢN LÝ KHO", "/ql-kho-hang/lenh-nhap")
-			);
+			$InvoiceAll		= $mInvoiceSell->findByState(array(0));
+									
+			$Title 			= "LỆNH NHẬP";
+			$Navigation 	= array();
 																		
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------																											
-			$request->setObject("SupplierAll", 	$SupplierAll);
+			//-------------------------------------------------------------
+			$request->setObject("InvoiceAll", 	$InvoiceAll);
 			$request->setObject("EmployeeAll", 	$EmployeeAll);
-			$request->setObject("Supplier", 	$Supplier);
 			$request->setObject("Navigation", 	$Navigation);
 			$request->setProperty("Title"	, 	$Title);
 															
