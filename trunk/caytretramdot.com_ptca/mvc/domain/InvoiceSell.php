@@ -137,5 +137,8 @@ class InvoiceSell extends Object{
 	function getURLSettingCustomer(){return "/admin/setting/customer/".$this->getId();}
 	function getURLLoad(){return "/ql-ban-hang/khach-hang/".$this->getIdCustomer()."/".$this->getId();}
 	function getURLPrint(){return "/ql-ban-hang/khach-hang/".$this->getIdCustomer()."/".$this->getId()."/print";}
+	
+	function getURLExportLoad()	{return "/ql-kho-hang/lenh-xuat/".$this->getId();}
+	function getURLExportPrint(){return "/ql-kho-hang/lenh-xuat/".$this->getId()."/print";}
 }
 ?>

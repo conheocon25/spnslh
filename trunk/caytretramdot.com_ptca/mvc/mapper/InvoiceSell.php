@@ -12,6 +12,8 @@ class InvoiceSell extends Mapper implements \MVC\Domain\InvoiceSellFinder {
         $this->updateStmt 		= self::$PDO->prepare("update invoice_sell set id_employee=?, id_customer=?, datetime_created=?, datetime_updated=?, note=?, state=? where id=?");
         $this->insertStmt 		= self::$PDO->prepare("insert into invoice_sell (id_employee, id_customer, datetime_created, datetime_updated, note, state) values(?, ?, ?, ?, ?, ?)");
 		$this->deleteStmt 		= self::$PDO->prepare("delete from invoice_sell where id=?");
+		
+		$this->findByStateStmt			= self::$PDO->prepare("select * from invoice_sell where state=? ORDER BY datetime_created DESC");
 		$this->findByCustomerStmt		= self::$PDO->prepare("select * from invoice_sell where id_customer=? ORDER BY datetime_created DESC");
 		$this->findByCustomerTop12Stmt	= self::$PDO->prepare("select * from invoice_sell where id_customer=? ORDER BY datetime_created DESC LIMIT 12");						
 		$this->findByEmployeeStmt		= self::$PDO->prepare("select * from invoice_sell where id_employee=? ORDER BY datetime_created DESC");
@@ -75,6 +77,11 @@ class InvoiceSell extends Mapper implements \MVC\Domain\InvoiceSellFinder {
 		$this->findByPageStmt->bindValue(':max', (int)($values[1]), \PDO::PARAM_INT);
 		$this->findByPageStmt->execute();
         return new InvoiceSellCollection( $this->findByPageStmt->fetchAll(), $this );
+    }
+	
+	function findByState($values) {		
+        $this->findByStateStmt->execute( $values );
+        return new InvoiceSellCollection( $this->findByStateStmt->fetchAll(), $this );
     }
 	
 	function findByCustomer($values) {		

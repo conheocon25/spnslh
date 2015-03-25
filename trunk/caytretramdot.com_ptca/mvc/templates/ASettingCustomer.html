@@ -11,23 +11,23 @@
 			<div class="row">				
 				<div class="col-md-8">					
 					<div class="panel panel-primary">
-						<div class="panel-heading"><i class="glyphicon glyphicon-user"/> <B tal:content="Title"/></div>
+						<div class="panel-heading"><i class="glyphicon glyphicon-cog"/> <B tal:content="Title"/></div>
 						<div class="panel-body">		
 							<table class="table table-bordered table-striped table-hover">
 								<thead>
 									<tr>
-										<th width="60" />										
-										<th width="200" class="left">TÊN</th>										
-										<th class="left">ĐỊA CHỈ</th>										
-										<th width="40"><i class="glyphicon glyphicon-remove"/></th>
+										<th class="text-center" width="60" />										
+										<th width="200" class="text-left">TÊN</th>
+										<th class="text-left">ĐỊA CHỈ</th>										
+										<th class="text-center" width="40"><i class="glyphicon glyphicon-trash"/></th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr tal:repeat="Customer CustomerAll1">
-										<td class="center"><img tal:attributes="src Customer/getAvatar" width="60px"/></td>										
+										<td class="text-center"><img tal:attributes="src Customer/getAvatar" width="60px"/></td>										
 										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="Customer" tal:attributes="data-id Customer/getId" tal:content="Customer/getName"/></td>
-										<td><span tal:content="Customer/getAddress"/></td>										
-										<td class="center">
+										<td><span tal:content="Customer/getAddress"/></td>
+										<td class="text-center">
 											<a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Customer/getId">
 												<i class="glyphicon glyphicon-remove"/>
 											</a>
@@ -61,13 +61,13 @@
 		<div id="DialogIns" class="modal fade">
 			<div class="modal-dialog">
 				<div class="modal-content">
-					<div class="modal-header"><h3><i class="glyphicon glyphicon-user modal-icon"/>THÊM MỚI KHÁCH HÀNG</h3></div>
+					<div class="modal-header"><h3><i class="glyphicon glyphicon-cog modal-icon"/> THÊM MỚI KHÁCH HÀNG</h3></div>
 					<form id="FormCustomerInsert" action="#" class="form-horizontal" novalidate="novalidate">
 						<div class="modal-body">
 							<div class="form-group">
-								<label class="col-sm-2 control-label">Nhóm</label>
-								<div class="col-sm-10 controls">
-									<select name="IdGroup1" id="IdGroup1" style="width:100%;">
+								<label class="col-sm-3 control-label">Nhóm</label>
+								<div class="col-sm-9 controls">
+									<select name="IdGroup1" id="IdGroup1" style="width:100%;" class="form-control">
 										<option tal:repeat="Group GroupAll" tal:attributes="value Group/getId">
 											<span tal:content="Group/getName"/>
 										</option>										
@@ -75,68 +75,68 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-2 control-label">Tên</label>
-								<div class="col-sm-10 controls">
+								<label class="col-sm-3 control-label">Tên</label>
+								<div class="col-sm-9 controls">
 									<input id="Name1" name="Name1" type="text" class="form-control input-small"/>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-2 control-label">MST</label>
-								<div class="col-sm-10 controls">								
+								<label class="col-sm-3 control-label">MST</label>
+								<div class="col-sm-9 controls">								
 									<input id="TaxCode1" name="TaxCode1" type="text" class="form-control input-small"/>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-2 control-label">MÃ KH</label>
-								<div class="col-sm-10 controls">
+								<label class="col-sm-3 control-label">MÃ KH</label>
+								<div class="col-sm-9 controls">
 									<input id="Serial1" name="Serial1" type="text" class="form-control input-small"/>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-2 control-label">Điện thoại</label>
-								<div class="col-sm-10 controls">								
+								<label class="col-sm-3 control-label">Điện thoại</label>
+								<div class="col-sm-9 controls">								
 									<input id="Tel1" name="Tel1" type="text" class="form-control input-small"/>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-2 control-label">Fax</label>
-								<div class="col-sm-10 controls">								
+								<label class="col-sm-3 control-label">Fax</label>
+								<div class="col-sm-9 controls">								
 									<input id="Fax1" name="Fax1" type="text" class="form-control input-small"/>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-2 control-label">Email</label>
-								<div class="col-sm-10 controls">								
+								<label class="col-sm-3 control-label">Email</label>
+								<div class="col-sm-9 controls">								
 									<input id="Email1" name="Email1" type="text" class="form-control input-small"/>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-2 control-label">Web</label>
-								<div class="col-sm-10 controls">								
+								<label class="col-sm-3 control-label">Web</label>
+								<div class="col-sm-9 controls">								
 									<input id="Web1" name="Web1" type="text" class="form-control input-small"/>
 								</div>
 							</div>							
 							<div class="form-group">
-								<label class="col-sm-2 control-label">Giới hạn nợ</label>
-								<div class="col-sm-10 controls">								
+								<label class="col-sm-3 control-label">Giới hạn nợ</label>
+								<div class="col-sm-9 controls">								
 									<input id="DebtLimit1" name="DebtLimit1" type="text" class="form-control input-small"/>
 								</div>
 							</div>							
 							<div class="form-group">
-								<label class="col-sm-2 control-label">Ghi chú</label>
-								<div class="col-sm-10 controls">
+								<label class="col-sm-3 control-label">Ghi chú</label>
+								<div class="col-sm-9 controls">
 									<input id="Note1" name="Note1" type="text" class="form-control input-small"/>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-2 control-label">Địa chỉ</label>
-								<div class="col-sm-10 controls">
+								<label class="col-sm-3 control-label">Địa chỉ</label>
+								<div class="col-sm-9 controls">
 									<input id="Address1" name="Address1" type="text" class="form-control input-small"/>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-2 control-label">Avatar</label>
-								<div class="col-sm-10 controls">								
+								<label class="col-sm-3 control-label">Avatar</label>
+								<div class="col-sm-9 controls">								
 									<input id="Avatar1" name="Avatar1" type="text" class="form-control input-small"/>
 								</div>
 							</div>
@@ -155,13 +155,13 @@
 		<div id="DialogEdit" class="modal fade">
 			<div class="modal-dialog">
 				<div class="modal-content">
-					<div class="modal-header"><h3><i class="glyphicon glyphicon-user modal-icon"/>CẬP NHẬT KHÁCH HÀNG</h3></div>
+					<div class="modal-header"><h3><i class="glyphicon glyphicon-cog modal-icon"/> CẬP NHẬT KHÁCH HÀNG</h3></div>
 					<form id="FormCustomerUpdate" action="#" class="form-horizontal" novalidate="novalidate">
 						<div class="modal-body">
 							<div class="form-group">
-								<label class="col-sm-2 control-label">Nhóm</label>
-								<div class="col-sm-10 controls">
-									<select name="IdGroup2" id="IdGroup2" style="width:100%;">
+								<label class="col-sm-3 control-label">Nhóm</label>
+								<div class="col-sm-9 controls">
+									<select name="IdGroup2" id="IdGroup2" style="width:100%;" class="form-control">
 										<option tal:repeat="Group GroupAll" tal:attributes="value Group/getId">
 											<span tal:content="Group/getName"/>
 										</option>										
@@ -169,68 +169,68 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-2 control-label">Tên</label>
-								<div class="col-sm-10 controls">
+								<label class="col-sm-3 control-label">Tên</label>
+								<div class="col-sm-9 controls">
 									<input id="Name2" name="Name2" type="text" class="form-control input-small"/>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-2 control-label">MST</label>
-								<div class="col-sm-10 controls">								
+								<label class="col-sm-3 control-label">MST</label>
+								<div class="col-sm-9 controls">								
 									<input id="TaxCode2" name="TaxCode2" type="text" class="form-control input-small"/>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-2 control-label">MÃ KH</label>
-								<div class="col-sm-10 controls">
+								<label class="col-sm-3 control-label">MÃ KH</label>
+								<div class="col-sm-9 controls">
 									<input id="Serial2" name="Serial2" type="text" class="form-control input-small"/>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-2 control-label">Điện thoại</label>
-								<div class="col-sm-10 controls">								
+								<label class="col-sm-3 control-label">Điện thoại</label>
+								<div class="col-sm-9 controls">								
 									<input id="Tel2" name="Tel2" type="text" class="form-control input-small"/>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-2 control-label">Fax</label>
-								<div class="col-sm-10 controls">								
+								<label class="col-sm-3 control-label">Fax</label>
+								<div class="col-sm-9 controls">								
 									<input id="Fax2" name="Fax2" type="text" class="form-control input-small"/>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-2 control-label">Email</label>
-								<div class="col-sm-10 controls">								
+								<label class="col-sm-3 control-label">Email</label>
+								<div class="col-sm-9 controls">								
 									<input id="Email2" name="Email2" type="text" class="form-control input-small"/>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-2 control-label">Web</label>
-								<div class="col-sm-10 controls">								
+								<label class="col-sm-3 control-label">Web</label>
+								<div class="col-sm-9 controls">								
 									<input id="Web2" name="Web2" type="text" class="form-control input-small"/>
 								</div>
 							</div>							
 							<div class="form-group">
-								<label class="col-sm-2 control-label">Giới hạn nợ</label>
-								<div class="col-sm-10 controls">								
+								<label class="col-sm-3 control-label">Giới hạn nợ</label>
+								<div class="col-sm-9 controls">								
 									<input id="DebtLimit2" name="DebtLimit2" type="text" class="form-control input-small"/>
 								</div>
 							</div>							
 							<div class="form-group">
-								<label class="col-sm-2 control-label">Ghi chú</label>
-								<div class="col-sm-10 controls">
+								<label class="col-sm-3 control-label">Ghi chú</label>
+								<div class="col-sm-9 controls">
 									<input id="Note2" name="Note2" type="text" class="form-control input-small"/>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-2 control-label">Địa chỉ</label>
-								<div class="col-sm-10 controls">
+								<label class="col-sm-3 control-label">Địa chỉ</label>
+								<div class="col-sm-9 controls">
 									<input id="Address2" name="Address2" type="text" class="form-control input-small"/>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-2 control-label">Avatar</label>
-								<div class="col-sm-10 controls">
+								<label class="col-sm-3 control-label">Avatar</label>
+								<div class="col-sm-9 controls">
 									<input id="Avatar2" name="Avatar2" type="text" class="form-control input-small"/>
 								</div>
 							</div>
@@ -413,4 +413,4 @@
 		/*]]>*/
 		</script>
 	</body>
-</html>
+</html>	

@@ -37,10 +37,10 @@ class GoodGroup extends Object{
 	//-------------------------------------------------------------------------------
 	//GET LISTs
 	//-------------------------------------------------------------------------------
-	function getCustomerAll(){
-		$mCustomer = new \MVC\Mapper\Customer();
-		$CustomerAll = $mCustomer->findByGroup(array($this->getId()));
-		return $CustomerAll;
+	function getGoodAll(){
+		$mGood = new \MVC\Mapper\Good();
+		$GoodAll = $mGood->findByGroup(array($this->getId()));
+		return $GoodAll;
 	}
 				
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
