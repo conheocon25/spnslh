@@ -68,8 +68,8 @@
 					<form id="FormGoodInsert" action="#" class="form-horizontal" novalidate="novalidate">
 						<div class="modal-body">
 							<div class="form-group">
-								<label class="col-sm-2 control-label">Nhóm</label>
-								<div class="col-sm-10 controls">
+								<label class="col-sm-3 control-label">Nhóm</label>
+								<div class="col-sm-8 controls">
 									<select name="IdGroup1" id="IdGroup1" style="width:100%;" class="form-control">
 										<option tal:repeat="Group1 GoodGroupAll" tal:attributes="value Group1/getId; selected php:Group1->getId()==Group->getId()?true:false">
 											<span tal:content="Group/getName"/>
@@ -78,47 +78,47 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-2 control-label">Tên</label>								
-								<div class="col-sm-10 controls">
+								<label class="col-sm-3 control-label">Tên</label>								
+								<div class="col-sm-8 controls">
 									<input id="Name1" name="Name1" type="text" class="form-control input-small"/>
 								</div>
 							</div>							
 							<div class="form-group">
 								<div class="control-group">
-									<label class="col-sm-2 control-label">Giá nhập</label>
-									<div class="col-sm-10 controls">
+									<label class="col-sm-3 control-label">Giá nhập</label>
+									<div class="col-sm-8 controls">
 										<input id="PriceImport1" name="PriceImport1" type="text" class="form-control input-small"/>
 									</div>
 								</div>
 							</div>	
 							<div class="form-group">
 								<div class="control-group">
-									<label class="col-sm-2 control-label">Giá bán</label>
-									<div class="col-sm-10 controls">
+									<label class="col-sm-3 control-label">Giá bán</label>
+									<div class="col-sm-8 controls">
 										<input id="PriceSale1" name="PriceSale1" type="text" class="form-control input-small"/>
 									</div>
 								</div>
 							</div>
 							<div class="form-group">
 								<div class="control-group">
-									<label class="col-sm-2 control-label">ĐVT</label>
-									<div class="col-sm-10 controls">
+									<label class="col-sm-3 control-label">ĐVT</label>
+									<div class="col-sm-8 controls">
 										<input id="Unit1" name="Unit1" type="text" class="form-control input-small"/>
 									</div>
 								</div>
 							</div>
 							<div class="form-group">
 								<div class="control-group">
-									<label class="col-sm-2 control-label">Thuế VAT</label>
-									<div class="col-sm-10 controls">
+									<label class="col-sm-3 control-label">Thuế VAT</label>
+									<div class="col-sm-8 controls">
 										<input id="Vat1" name="Vat1" type="text" class="form-control input-small"/>
 									</div>
 								</div>
 							</div>
 							<div class="form-group">
 								<div class="control-group">
-									<label class="col-sm-2 control-label">Ghi chú</label>
-									<div class="col-sm-10 controls">
+									<label class="col-sm-3 control-label">Ghi chú</label>
+									<div class="col-sm-8 controls">
 										<input id="Note1" name="Note1" type="text" class="form-control input-small"/>
 									</div>
 								</div>
@@ -144,8 +144,8 @@
 					<form id="FormGoodUpdate" action="#" class="form-horizontal" novalidate="novalidate">
 						<div class="modal-body">							
 							<div class="form-group">
-								<label class="col-sm-2 control-label">Nhóm</label>
-								<div class="col-sm-10 controls">
+								<label class="col-sm-3 control-label">Nhóm</label>
+								<div class="col-sm-8 controls">
 									<select name="IdGroup2" id="IdGroup2" style="width:100%;" class="form-control">
 										<option tal:repeat="Group GoodGroupAll" tal:attributes="value Group/getId">
 											<span tal:content="Group/getName"/>
@@ -154,47 +154,47 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-2 control-label">Tên</label>								
-								<div class="col-sm-10 controls">
+								<label class="col-sm-3 control-label">Tên</label>								
+								<div class="col-sm-8 controls">
 									<input id="Name2" name="Name2" type="text" class="form-control input-small"/>
 								</div>
 							</div>
 							<div class="form-group">
 								<div class="control-group">
-									<label class="col-sm-2 control-label">Giá nhập</label>
-									<div class="col-sm-10 controls">
+									<label class="col-sm-3 control-label">Giá nhập</label>
+									<div class="col-sm-8 controls">
 										<input id="PriceImport2" name="PriceImport2" type="text" class="form-control input-small"/>
 									</div>
 								</div>
 							</div>	
 							<div class="form-group">
 								<div class="control-group">
-									<label class="col-sm-2 control-label">Giá bán</label>
-									<div class="col-sm-10 controls">
+									<label class="col-sm-3 control-label">Giá bán</label>
+									<div class="col-sm-8 controls">
 										<input id="PriceSale2" name="PriceSale2" type="text" class="form-control input-small"/>
 									</div>
 								</div>
 							</div>
 							<div class="form-group">
 								<div class="control-group">
-									<label class="col-sm-2 control-label">ĐVT</label>
-									<div class="col-sm-10 controls">
+									<label class="col-sm-3 control-label">ĐVT</label>
+									<div class="col-sm-8 controls">
 										<input id="Unit2" name="Unit2" type="text" class="form-control input-small"/>
 									</div>
 								</div>
 							</div>
 							<div class="form-group">
 								<div class="control-group">
-									<label class="col-sm-2 control-label">Thuế VAT</label>
-									<div class="col-sm-10 controls">
+									<label class="col-sm-3 control-label">Thuế VAT</label>
+									<div class="col-sm-8 controls">
 										<input id="Vat2" name="Vat2" type="text" class="form-control input-small"/>
 									</div>
 								</div>
 							</div>	
 							<div class="form-group">
 								<div class="control-group">
-									<label class="col-sm-2 control-label">Ghi chú</label>
-									<div class="col-sm-10 controls">
+									<label class="col-sm-3 control-label">Ghi chú</label>
+									<div class="col-sm-8 controls">
 										<input id="Note2" name="Note2" type="text" class="form-control input-small"/>
 									</div>
 								</div>

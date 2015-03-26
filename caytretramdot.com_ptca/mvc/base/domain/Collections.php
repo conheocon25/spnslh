@@ -21,7 +21,9 @@ interface CustomerCollection 			extends \Iterator {function add( Object $Custome
 interface EmployeeCollection 			extends \Iterator {function add( Object $Employee);		}
 interface DepartmentCollection 			extends \Iterator {function add( Object $Department);	}
 
+interface SupplierTypeCollection 		extends \Iterator {function add( Object $SupplierType);	}
 interface SupplierCollection 			extends \Iterator {function add( Object $Supplier);		}
+
 interface WarehouseCollection 			extends \Iterator {function add( Object $Warehouse);	}
 
 interface TrackCollection 				extends \Iterator {function add( Object $Track);		}

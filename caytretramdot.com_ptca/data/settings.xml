@@ -79,6 +79,8 @@
 		<command name="ASettingDepartment">		<view>ASettingDepartment</view>	</command>
 		
 		<command name="ASettingSupplier">		<view>ASettingSupplier</view>	</command>
+		<command name="ASettingSupplierType">	<view>ASettingSupplierType</view></command>
+		
 		<command name="ASettingWarehouse">		<view>ASettingWarehouse</view>	</command>
 		
 		<command name="ASettingTrack">			<view>ASettingTrack</view>		</command>
