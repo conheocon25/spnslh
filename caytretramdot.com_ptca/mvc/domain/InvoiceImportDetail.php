@@ -5,7 +5,7 @@ class InvoiceImportDetail extends Object{
 
     private $Id;
 	private $IdInvoice;
-	private $IdGood;	
+	private $IdGood;
 	private $Count;
 	private $Price;
 			

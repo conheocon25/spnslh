@@ -194,16 +194,17 @@
 			$(element).parents('.form-group').addClass('has-success');
 		},
 		submitHandler: function (form) {					
-			var Data = [];
+			var Data = [];						
 			Data[0] = $('#URLInvoiceUpdButton').attr('alt');
 			Data[1] = $('#InvoiceIdEmployee').val();
 			Data[2] = $('#InvoiceIdCustomer').val();
 			Data[3] = $('#InvoiceIdWarehouse').val();
 			Data[4] = $('#InvoiceIdTransport').val();
-			Data[5] = $('#InvoiceDateTimeCreated').val();
-			Data[6] = $('#InvoiceDateTimeUpdated').val();
-			Data[7] = $('#InvoiceNote').val();				
-			Data[8] = $('#InvoiceState').val();
+			Data[5] = $('#InvoiceIdBranch').val();
+			Data[6] = $('#InvoiceDateTimeCreated').val();
+			Data[7] = $('#InvoiceDateTimeUpdated').val();
+			Data[8] = $('#InvoiceNote').val();				
+			Data[9] = $('#InvoiceState').val();
 																
 			var URL = "/object/upd/InvoiceSell";
 			var URL1 = $(this).attr('data-url');

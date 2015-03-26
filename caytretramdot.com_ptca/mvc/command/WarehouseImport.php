@@ -34,7 +34,7 @@
 			
 			$Title 			= mb_strtoupper($Supplier->getName(), 'UTF8');
 			$Navigation 	= array(
-				array("QUẢN LÝ KHO", "/ql-kho-hang/lenh-nhap")
+				array("LỆNH NHẬP", "/ql-kho-hang/lenh-nhap")
 			);
 																		
 			//-------------------------------------------------------------

@@ -75,10 +75,10 @@
 				$mConfig->insert($ConfigSlogan);
 			}
 															
-			$ConfigReceiptVirtualDouble	= $mConfig->findByName("RECEIPT_VIRTUAL_DOUBLE");
-			if ($ConfigReceiptVirtualDouble==null){
-				$ConfigReceiptVirtualDouble = new \MVC\Domain\Config(null, 'RECEIPT_VIRTUAL_DOUBLE', 1);
-				$mConfig->insert($ConfigReceiptVirtualDouble);
+			$ConfigTimer1	= $mConfig->findByName("TIMER_01");
+			if ($ConfigTimer1==null){
+				$ConfigTimer1 = new \MVC\Domain\Config(null, 'TIMER_01', 1);
+				$mConfig->insert($ConfigTimer1);
 			}
 												
 			//-------------------------------------------------------------
@@ -91,7 +91,8 @@
 			$request->setObject('ConfigPhone2', 			$ConfigPhone2);			
 			$request->setObject('ConfigRowPerPage', 		$ConfigRowPerPage);			
 			$request->setObject('ConfigGuestVisit', 		$ConfigGuestVisit);
-			$request->setObject('ConfigSlogan', 			$ConfigSlogan);			
+			$request->setObject('ConfigSlogan', 			$ConfigSlogan);
+			$request->setObject('ConfigTimer1', 			$ConfigTimer1);
 			
 			$request->setProperty('Title',					$Title);			
 			$request->setObject('Navigation',				$Navigation);

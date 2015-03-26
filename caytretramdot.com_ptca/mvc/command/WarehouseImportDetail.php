@@ -18,23 +18,28 @@
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
 			$mConfig 		= new \MVC\Mapper\Config();
+			$mGood 			= new \MVC\Mapper\Good();
 			$mSupplier 		= new \MVC\Mapper\Supplier();
 			$mInvoiceImport = new \MVC\Mapper\InvoiceImport();
 															
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------																								
+			$GoodAll		= $mGood->findAll();
+			$Supplier		= $mSupplier->find($IdSupplier);
 			$Invoice		= $mInvoiceImport->find($IdInvoice);
 			
 			$Title 			= mb_strtoupper($Invoice->getDateTimeCreatedPrint(), 'UTF8');
 			$Navigation 	= array(
-				array("QUẢN LÝ KHO", "/ql-kho-hang/lenh-nhap")
+				array("LỆNH NHẬP", "/ql-kho-hang/lenh-nhap"),
+				array(mb_strtoupper($Supplier->getName(), 'UTF8'), $Supplier->getURLImport())
 			);
 																		
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------																											
-			$request->setObject("Invoice", 		$Invoice);			
+			$request->setObject("GoodAll", 		$GoodAll);
+			$request->setObject("Invoice", 		$Invoice);
 			$request->setObject("Navigation", 	$Navigation);
 			$request->setProperty("Title"	, 	$Title);
 															

@@ -74,6 +74,9 @@ RewriteRule ^ql-kho-hang/lenh-nhap/([0-9]+)/([0-9]+)$ 			?cmd=WarehouseImportDet
 RewriteRule ^ql-kho-hang/lenh-nhap/([0-9]+)/([0-9]+)/print$ 	?cmd=WarehouseImportDetailPrint&IdSupplier=$1&IdInvoice=$2 [L]
 
 RewriteRule ^ql-kho-hang/lenh-xuat$ 							?cmd=WarehouseExport [L]
+RewriteRule ^ql-kho-hang/lenh-xuat/nap-hang-doi$ 				?cmd=WarehouseExportLoadQueue [L]
+RewriteRule ^ql-kho-hang/lenh-xuat/nap-hoan-thanh$ 				?cmd=WarehouseExportLoadFinish [L]
+
 RewriteRule ^ql-kho-hang/lenh-xuat/([0-9]+)$ 					?cmd=WarehouseExportDetail&IdInvoice=$1 [L]
 RewriteRule ^ql-kho-hang/lenh-xuat/([0-9]+)/print$ 				?cmd=WarehouseExportDetailPrint&IdInvoice=$1 [L]
 RewriteRule ^ql-kho-hang/lenh-xuat/([0-9]+)/gioi-thieu/print$ 	?cmd=WarehouseExportDetailIntroPrint&IdInvoice=$1 [L]
