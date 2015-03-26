@@ -35,6 +35,7 @@
 		
 		<command name="WarehouseExport">			<view>WarehouseExport</view></command>		
 		<command name="WarehouseExportDetail">		<view>WarehouseExportDetail</view></command>
+		<command name="WarehouseExportDetailPrint">	<view>WarehouseExportDetailPrint</view></command>
 		
 		<command name="WarehouseReport">			<view>WarehouseReport</view></command>
 		

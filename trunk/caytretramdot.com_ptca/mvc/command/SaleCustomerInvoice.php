@@ -17,6 +17,7 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
+			$mBranch 		= new \MVC\Mapper\Branch();
 			$mCustomer 		= new \MVC\Mapper\Customer();
 			$mEmployee 		= new \MVC\Mapper\Employee();
 			$mGood 			= new \MVC\Mapper\Good();
@@ -25,6 +26,7 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------									
+			$BranchAll	= $mBranch->findAll();
 			$GoodAll	= $mGood->findAll();
 			$EmployeeAll= $mEmployee->findAll();
 			$Customer	= $mCustomer->find($IdCustomer);
@@ -33,6 +35,7 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
+			$request->setObject('BranchAll'		, $BranchAll);
 			$request->setObject('GoodAll'		, $GoodAll);
 			$request->setObject('EmployeeAll'	, $EmployeeAll);
 			$request->setObject('Customer'		, $Customer);
