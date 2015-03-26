@@ -45,7 +45,7 @@ class InvoiceImport extends Object{
     }
 	
     function getId( ) {return $this->Id;}
-	function getIdPrint( ) {return "XK / ".$this->Id;}
+	function getIdPrint( ) {return "NK / ".$this->Id;}
 
 	function setIdEmployee( $IdEmployee ) {$this->IdEmployee = $IdEmployee; $this->markDirty();}
 	function getIdEmployee(){return $this->IdEmployee;}

@@ -30,6 +30,7 @@
 										<td><div class="text-center" tal:content="repeat/Detail/number" /></td>
 										<td><a class="invoice-detail-item" href="#DialogGoodUpd" data-toggle="modal" 
 											tal:attributes="id 			Detail/getId;
+															id_invoice	Detail/getIdInvoice;
 															id_good 	Detail/getIdGood;
 															name_good	Detail/getGood/getName;
 															count 		Detail/getCount;
@@ -54,6 +55,7 @@
 									</tr>
 								</tbody>
 							</table>
+							<a href="#DialogGoodIns" data-toggle="modal"><i class="glyphicon glyphicon-plus"/> HÀNG HÓA</a>
 						</div>
 					</div>										
 				</div>
@@ -66,32 +68,76 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div>				
 		
-		<!-- INSERT DIALOG  -->
-		<div id="DialogIns" class="modal fade">
+		<!-- DIALOG GOOD INS -->
+		<div id="DialogGoodIns" class="modal fade">
 			<div class="modal-dialog">
 				<div class="modal-content">
-					<div class="modal-header"><h3><i class="glyphicon glyphicon-cog modal-icon"/>THÊM MỚI NHÓM</h3></div>
-					<form id="FormGoodGroupInsert" action="#" class="form-horizontal" novalidate="novalidate">
-						<div class="modal-body">							
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Tên</label>
-								<div class="col-sm-10 controls">
-									<input id="Name1" name="Name1" type="text" class="form-control input-small"/>
-								</div>
-							</div>								
+					<div class="modal-header"><h3><i class="glyphicon glyphicon-star modal-icon"/>THÊM HÀNG HÓA</h3></div>
+					<div id="FormGoodIns" class="form-horizontal">						
+						<input id="DetailIdInvoice1" type="hidden" class="form-control input-small" tal:attributes="value Invoice/getId"/>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">Hàng hóa</label>
+							<div class="col-sm-8 controls">
+								<select id="DetailIdGood1" style="width:100%;" class="form-control">
+									<option tal:repeat="Good GoodAll" tal:attributes="value Good/getId">
+										<span tal:content="Good/getGroup/getName" /> / <span tal:content="Good/getName" />
+									</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">							
+							<label class="col-sm-3 control-label">Số lượng</label>
+							<div class="col-sm-8 controls">								
+								<input id="DetailCount1" type="text" class="form-control input-small" value="1"/>
+							</div>
 						</div>
 						<div class="modal-footer">
-							<button class="btn btn-primary btn-small" id="URLInsButton"><i class="glyphicons-download_alt"/> Lưu</button>
+							<button class="btn btn-primary btn-small" id="URLGoodInsButton"><i class="glyphicons-download_alt"/> Thêm</button>
 							<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
 						</div>
-					</form>								
+					</div>
 				</div>
 			</div>
 		</div>
-		<!-- END INSERT DIALOG  -->
 		
+		<!-- DIALOG GOOD UPD-->
+		<div id="DialogGoodUpd" class="modal fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header"><h3><i class="glyphicon glyphicon-star modal-icon"/>CẬP NHẬT HÀNG HÓA</h3></div>
+					<div id="FormGoodUpd" class="form-horizontal">					
+						<div class="form-group">
+							<input id="DetailId2" type="hidden" class="form-control input-small" />
+							<input id="DetailIdInvoice2" type="hidden" class="form-control input-small" />
+							<input id="DetailIdGood2" type="hidden" class="form-control input-small" />
+							<label class="col-sm-3 control-label">Mặt hàng</label>
+							<div class="col-sm-8 controls">
+								<input id="DetailNameGood2" type="text" class="form-control input-small" readonly="true" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">Số lượng</label>
+							<div class="col-sm-8 controls">
+								<input id="DetailCount2" type="text" class="form-control input-small" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">Đơn giá</label>
+							<div class="col-sm-8 controls">
+								<input id="DetailPrice2" type="text" class="form-control input-small" />
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button class="btn btn-primary btn-small" id="URLGoodUpdButton"><i class="glyphicons-download_alt"/> Cập nhật</button>
+							<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	
 		<div metal:use-macro="mDialog.xhtml/DialogDel"/>
 		<script type="text/javascript">
 		/*<![CDATA[*/			
@@ -103,7 +149,7 @@
 			});
 			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
 			$('#URLDelButton').click(function(){			
-				var URL = "/object/del/GoodGroup/" + $(this).attr('alt');
+				var URL = "/object/del/InvoiceImportDetail/" + $(this).attr('alt');
 				$.ajax({
 					type: "POST",					
 					url: URL,
@@ -112,106 +158,56 @@
 					}
 				});
 			});
-		
-			//-----------------------------------------------------------------------------------
-			//Insert 1 GoodGroup			
-			$("#FormGoodGroupInsert").validate({
-				rules:{
-					Name1:{
-						minlength: 2,
-						required:true
-					}
-				},
-				errorClass: "help-inline",
-				errorElement: "span",
-				highlight:function(element, errorClass, validClass) {
-					$(element).parents('.form-group').addClass('has-error');
-				},
-				unhighlight: function(element, errorClass, validClass) {
-					$(element).parents('.form-group').removeClass('has-error');
-					$(element).parents('.form-group').addClass('has-success');
-				},
-				submitHandler: function (form) {					
-					var Data = [];
-					Data[0] = 'null';				
-					Data[1] = $('#Name1').val();										
-																				
-					var URL = "/object/ins/GoodGroup";
-					$.ajax({
-						type: "POST",
-						data: {Data:Data},
-						url: URL,
-						success: function(msg){
-							location.reload();
-						}
-					});
-					return false;
-				}
-			});
-			$("#DialogIns").on('show.bs.modal', function(event){
-				window.setTimeout(
-					function(){$(event.currentTarget).find('input#Name1').first().focus()},
-					0500
-				);
+			
+			$(".invoice-detail-item").click(function(){						
+				$("#DetailId2").val( $(this).attr('id') );
+				$("#DetailIdInvoice2").val( $(this).attr('id_invoice') );
+				$("#DetailIdGood2").val( $(this).attr('id_good') );
+				$("#DetailNameGood2").val( $(this).attr('name_good') );
+				$("#DetailCount2").val( $(this).attr('count') );
+				$("#DetailPrice2").val( $(this).attr('price') );
 			});
 			
-			//-----------------------------------------------------------------------------------
-			//Load 1 GoodGroup
-			//-----------------------------------------------------------------------------------
-			$('.update-item').click(function(){
-				//Load dữ liệu JSON về
-				var url = "/object/load/GoodGroup/" + $(this).attr('data-id');
-				
-				//Load dữ liệu JSON lên FORM
-				$('#update-link').attr('action', $(this).attr('alt'));
-				$.getJSON(url, function(data) {
-					$('#URLUpdButton').attr('alt', 	data.Id);
-					$('#Name2').attr('value', 		data.Name);					
+			//Cập nhật HÀNG HÓA MỚI
+			$("#URLGoodUpdButton").click(function(){												
+				var Data = [];
+				Data[0] = $("#DetailId2").val();
+				Data[1] = $("#DetailIdInvoice2").val();
+				Data[2] = $("#DetailIdGood2").val();
+				Data[3] = $("#DetailCount2").val();
+				Data[4] = $("#DetailPrice2").val();
+																			
+				var URL = "/object/upd/InvoiceImportDetail";
+				$.ajax({
+					type: "POST",
+					data: {Data:Data},
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
 				});
 			});
 			
-			//-----------------------------------------------------------------------------------
-			//Update 1 EMPLOYEEE
-			//-----------------------------------------------------------------------------------
-			$("#FormGoodGroupUpdate").validate({
-				rules:{
-					Name2:{
-						minlength: 2,
-						required:true
-					}					
-				},
-				errorClass: "help-inline",
-				errorElement: "span",
-				highlight:function(element, errorClass, validClass) {
-					$(element).parents('.form-group').addClass('has-error');
-				},
-				unhighlight: function(element, errorClass, validClass) {
-					$(element).parents('.form-group').removeClass('has-error');
-					$(element).parents('.form-group').addClass('has-success');
-				},
-				submitHandler: function (form) {					
-					var Data = [];
-					Data[0] = $('#URLUpdButton').attr('alt');
-					Data[1] = $('#Name2').val();										
-																				
-					var URL = "/object/upd/GoodGroup";
-					$.ajax({
-						type: "POST",
-						data: {Data:Data},
-						url: URL,
-						success: function(msg){
-							location.reload();
-						}
-					});
-					return false;
-				}
+			//Chèn vào HÀNG HÓA MỚI
+			$("#URLGoodInsButton").click(function(){											
+				var Data = [];
+				Data[0] = null;
+				Data[1] = $("#DetailIdInvoice1").val();
+				Data[2] = $("#DetailIdGood1").val();
+				Data[3] = $("#DetailCount1").val();
+				Data[4] = 0;
+				
+				var URL = "/object/ins/InvoiceImportDetail";
+				$.ajax({
+					type: "POST",
+					data: {Data:Data},
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
 			});
-			$("#DialogEdit").on('show.bs.modal', function(event){
-				window.setTimeout(
-					function(){$(event.currentTarget).find('input#Name2').first().focus()},
-					0500
-				);
-			});
+			
 		/*]]>*/
 		</script>
 	</body>

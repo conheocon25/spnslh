@@ -11,15 +11,17 @@
 			<div class="row">				
 				<div class="col-md-8"><div id="CommandDetail" /></div>
 				<div class="col-md-4">
-					<div class="panel panel-default">
+					<div class="panel panel-primary">
 						<div class="panel-heading"><i class="glyphicon glyphicon-cog"/> <B>ĐƠN HÀNG CHỜ XUẤT</B></div>
 						<div class="panel-body">
-							<ul>
-								<li tal:repeat="Invoice InvoiceAll" class= "btn btn-default Invoice" tal:attributes="data-url Invoice/getURLExportLoad">
-									<B tal:content="Invoice/getDateTimeCreatedPrint"/> <span tal:content="Invoice/getCustomer/getName"/> 
-								</li>
-							</ul>
-							<p>Danh sách 10s tự động cập nhật mới lại 1 lần</p>
+							<div class="btn btn-info InvoiceReload" id="MessageTime" tal:attributes="timer ConfigTimer/getValue" />
+							<div id="InvoiceQueue" />							
+						</div>
+					</div>
+					<div class="panel panel-success">
+						<div class="panel-heading"><i class="glyphicon glyphicon-cog"/> <B>ĐƠN HÀNG ĐÃ XUẤT</B></div>
+						<div class="panel-body">
+							<div id="InvoiceFinish" />
 						</div>	
 					</div>
 				</div>
@@ -28,12 +30,25 @@
 						
 		<script type="text/javascript">
 		/*<![CDATA[*/
-						
-			$(".Invoice").click(function(){
-				var URL = $(this).attr('data-url');
-				$(".Invoice").removeClass("active");
-				$(this).addClass("active");
-				$("#CommandDetail").load(URL);
+			//Thủ tục đếm ngược
+			var MAX 		= $("#MessageTime").attr('timer');
+			var CountDown 	= $("#MessageTime").attr('timer');
+			var myVar 		= setInterval(FMessageTime, 1000);
+			    
+			function FMessageTime(){
+				CountDown = CountDown-1;
+				$("#MessageTime").html("Sau <B>"+CountDown+"s</B> sẽ tự động cập nhật lại danh sách ...");
+				if (CountDown<=0){
+					CountDown = MAX;
+					$("#InvoiceQueue").load("/ql-kho-hang/lenh-xuat/nap-hang-doi");
+					$("#InvoiceFinish").load("/ql-kho-hang/lenh-xuat/nap-hoan-thanh");
+				}
+			}
+			$("#InvoiceQueue").load("/ql-kho-hang/lenh-xuat/nap-hang-doi");
+			$("#InvoiceFinish").load("/ql-kho-hang/lenh-xuat/nap-hoan-thanh");
+			
+			$(".InvoiceReload").click(function(){
+				location.reload();
 			});
 			
 		/*]]>*/

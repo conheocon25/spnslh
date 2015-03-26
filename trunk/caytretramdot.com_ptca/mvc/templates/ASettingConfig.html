@@ -62,7 +62,13 @@
 										<div class="col-sm-10 controls">
 											<input id="GuestVisit2" tal:attributes="value ConfigGuestVisit/getValue;data-id ConfigGuestVisit/getId" type="text" class="form-control input-small"/>
 										</div>
-									</div>									
+									</div>
+									<div class="form-group">
+										<label class="col-sm-2 control-label">Timer 1 (s)</label>
+										<div class="col-sm-10 controls">
+											<input id="Timer12" tal:attributes="value ConfigTimer1/getValue;data-id ConfigTimer1/getId" type="text" class="form-control input-small"/>
+										</div>
+									</div>
 								</div>
 								<div class="modal-footer">
 									<button id="URLUpdButton" class="btn btn-primary btn-small" type="submit"><i class="glyphicons-download_alt"/> Lưu</button>
@@ -87,6 +93,7 @@
 				var Data6 = [];
 				var Data7 = [];
 				var Data8 = [];
+				var Data9 = [];
 				var URL = "/object/upd/Config";
 								
 				Data1[0] = $('#NameApp2').attr('data-id');
@@ -174,6 +181,18 @@
 					url: URL,
 					success: function(msg){}
 				});
+				
+				Data9[0] = $('#Timer12').attr('data-id');
+				Data9[1] = "TIMER_01";
+				Data9[2] = $('#Timer12').val();			
+				$.ajax({
+					type: "POST",
+					data: {Data:Data9},
+					url: URL,
+					success: function(msg){}
+				});
+				
+				alert("Đã cập nhật xong tham số");
 			});
 		/*]]>*/
 		</script>

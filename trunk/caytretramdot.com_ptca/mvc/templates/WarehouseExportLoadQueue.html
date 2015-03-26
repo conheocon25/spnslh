@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">	
+	<body>		
+		<ul>
+			<li tal:repeat="Invoice InvoiceAll" class= "btn btn-default Invoice" tal:attributes="data-url Invoice/getURLExportLoad">
+				<B tal:content="Invoice/getDateTimeCreatedPrint"/> <span tal:content="Invoice/getCustomer/getName"/> 
+			</li>
+		</ul>
+		<script type="text/javascript">
+		/*<![CDATA[*/
+			//Thủ tục đếm ngược						
+			$(".Invoice").click(function(){
+				var URL = $(this).attr('data-url');
+				$(".Invoice").removeClass("active");
+				$(this).addClass("active");
+				$("#CommandDetail").load(URL);
+			});			
+		/*]]>*/
+		</script>
+	</body>
+</html>
