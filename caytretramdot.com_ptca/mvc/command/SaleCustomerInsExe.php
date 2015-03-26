@@ -30,7 +30,10 @@
 			$Invoice	= new \MVC\Domain\InvoiceSell(
 				null,
 				$Employee->getId(),
-				$Customer->getId(),				
+				$Customer->getId(),
+				0,
+				0,
+				0,
 				\date("Y-m-d H:i:s"),
 				\date("Y-m-d H:i:s"),
 				"",

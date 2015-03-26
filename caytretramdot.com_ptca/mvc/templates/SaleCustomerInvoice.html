@@ -5,7 +5,9 @@
 			<table width="100%">
 				<tr>
 					<td width="35%">KHÁCH HÀNG</td>
-					<td width="45%"><B tal:content="Invoice/getCustomer/getName" /></td>
+					<td width="45%">
+						<B tal:condition="Invoice/getBranch" tal:content="Invoice/getBranch/getName" /> / <B tal:content="Invoice/getCustomer/getName" />
+					</td>
 					<td width="20%" rowspan="7">
 						<img width="64px" tal:attributes="src Invoice/getEmployee/getAvatar"/>
 					</td>
@@ -35,6 +37,9 @@
 								tal:attributes="id 				Invoice/getId;
 											id_employee 		Invoice/getIdEmployee;
 											id_customer 		Invoice/getIdCustomer;
+											id_warehouse		Invoice/getIdWarehouse;
+											id_transport		Invoice/getIdTransport;
+											id_branch 			Invoice/getIdBranch;
 											datetime_created 	Invoice/getDateTimeCreated;
 											datetime_updated	Invoice/getDateTimeUpdated;
 											note 				Invoice/getNote;
@@ -109,6 +114,8 @@
 				<form id="FormInvoiceUpdate" action="#" class="form-horizontal" novalidate="novalidate">					
 					<input id="InvoiceId" type="hidden" />
 					<input id="InvoiceIdCustomer" type="hidden" />
+					<input id="InvoiceIdTransport" type="hidden" />
+					<input id="InvoiceIdWarehouse" type="hidden" />
 					<div class="form-group">
 						<label class="col-sm-3 control-label">Khởi tạo</label>
 						<div class="col-sm-8 controls">
@@ -125,6 +132,16 @@
 						<label class="col-sm-3 control-label">Ghi chú</label>
 						<div class="col-sm-8 controls">
 							<input id="InvoiceNote" type="text" class="form-control input-small" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Chi nhánh</label>
+						<div class="col-sm-8 controls">
+							<select id="InvoiceIdBranch" style="width:100%;" class="form-control">
+								<option tal:repeat="Branch BranchAll" tal:attributes="value Branch/getId;selected php:Branch->getId()==Invoice->getIdBranch()?true:false">
+									<span tal:content="Branch/getName" />
+								</option>
+							</select>
 						</div>
 					</div>
 					<div class="form-group">
@@ -235,13 +252,19 @@
 	$(".invoice-item").click(function(){
 		var InvoiceId 				= $(this).attr('id');		
 		var InvoiceIdCustomer 		= $(this).attr('id_customer');
+		var InvoiceIdWarehouse		= $(this).attr('id_warehouse');
+		var InvoiceIdTransport		= $(this).attr('id_transport');
+		var InvoiceIdBranch 		= $(this).attr('id_branch');
 		var InvoiceDateTimeCreated 	= $(this).attr('datetime_created');
-		var InvoiceDateTimeUpdated 	= $(this).attr('datetime_updated');		
+		var InvoiceDateTimeUpdated 	= $(this).attr('datetime_updated');	
 		var InvoiceNote 			= $(this).attr('note');
 				
 		$('#URLInvoiceUpdButton').attr('alt', InvoiceId);
-		$("#InvoiceId").val(InvoiceId);		
+		$("#InvoiceId").val(InvoiceId);
 		$("#InvoiceIdCustomer").val(InvoiceIdCustomer);
+		$("#InvoiceIdTransport").val(InvoiceIdTransport);
+		$("#InvoiceIdWarehouse").val(InvoiceIdWarehouse);
+		$("#InvoiceIdBranch").val(InvoiceIdBranch);
 		$("#InvoiceDateTimeCreated").val(InvoiceDateTimeCreated);
 		$("#InvoiceDateTimeUpdated").val(InvoiceDateTimeUpdated);
 		$("#InvoiceNote").val(InvoiceNote);			
@@ -313,10 +336,13 @@
 			Data[0] = $('#URLInvoiceUpdButton').attr('alt');
 			Data[1] = $('#InvoiceIdEmployee').val();
 			Data[2] = $('#InvoiceIdCustomer').val();
-			Data[3] = $('#InvoiceDateTimeCreated').val();
-			Data[4] = $('#InvoiceDateTimeUpdated').val();
-			Data[5] = $('#InvoiceNote').val();				
-			Data[6] = $('#InvoiceState').val();
+			Data[3] = $('#InvoiceIdWarehouse').val();
+			Data[4] = $('#InvoiceIdTransport').val();
+			Data[5] = $('#InvoiceIdBranch').val();
+			Data[6] = $('#InvoiceDateTimeCreated').val();
+			Data[7] = $('#InvoiceDateTimeUpdated').val();
+			Data[8] = $('#InvoiceNote').val();				
+			Data[9] = $('#InvoiceState').val();
 																
 			var URL = "/object/upd/InvoiceSell";
 			$.ajax({

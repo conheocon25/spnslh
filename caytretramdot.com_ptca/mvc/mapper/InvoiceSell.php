@@ -9,8 +9,8 @@ class InvoiceSell extends Mapper implements \MVC\Domain\InvoiceSellFinder {
 		
         $this->selectAllStmt 	= self::$PDO->prepare("select * from invoice_sell");
         $this->selectStmt 		= self::$PDO->prepare("select * from invoice_sell where id=?");
-        $this->updateStmt 		= self::$PDO->prepare("update invoice_sell set id_employee=?, id_customer=?, datetime_created=?, datetime_updated=?, note=?, state=? where id=?");
-        $this->insertStmt 		= self::$PDO->prepare("insert into invoice_sell (id_employee, id_customer, datetime_created, datetime_updated, note, state) values(?, ?, ?, ?, ?, ?)");
+        $this->updateStmt 		= self::$PDO->prepare("update invoice_sell set id_employee=?, id_customer=?, id_warehouse=?, id_transport=?, id_branch=?, datetime_created=?, datetime_updated=?, note=?, state=? where id=?");
+        $this->insertStmt 		= self::$PDO->prepare("insert into invoice_sell (id_employee, id_customer, id_warehouse, id_transport, id_branch, datetime_created, datetime_updated, note, state) values(?, ?, ?, ?, ?, ?, ?, ?, ?)");
 		$this->deleteStmt 		= self::$PDO->prepare("delete from invoice_sell where id=?");
 		
 		$this->findByStateStmt			= self::$PDO->prepare("select * from invoice_sell where state=? ORDER BY datetime_created DESC");
@@ -31,6 +31,9 @@ class InvoiceSell extends Mapper implements \MVC\Domain\InvoiceSellFinder {
 			$array['id'],  
 			$array['id_employee'],
 			$array['id_customer'],
+			$array['id_warehouse'],
+			$array['id_transport'],
+			$array['id_branch'],
 			$array['datetime_created'],
 			$array['datetime_updated'],
 			$array['note'],
@@ -45,6 +48,9 @@ class InvoiceSell extends Mapper implements \MVC\Domain\InvoiceSellFinder {
         $values = array(
 			$object->getIdEmployee(),
 			$object->getIdCustomer(),
+			$object->getIdWarehouse(),
+			$object->getIdTransport(),
+			$object->getIdBranch(),
 			$object->getDateTimeCreated(),
 			$object->getDateTimeUpdated(),
 			$object->getNote(),
@@ -59,6 +65,9 @@ class InvoiceSell extends Mapper implements \MVC\Domain\InvoiceSellFinder {
         $values = array(
 			$object->getIdEmployee(),
 			$object->getIdCustomer(),
+			$object->getIdWarehouse(),
+			$object->getIdTransport(),
+			$object->getIdBranch(),
 			$object->getDateTimeCreated(),
 			$object->getDateTimeUpdated(),
 			$object->getNote(),
