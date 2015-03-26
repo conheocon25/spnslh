@@ -90,7 +90,11 @@ class InvoiceSell extends Object{
 	function getDateTimeCreated(){return $this->DateTimeCreated;}
 	function getDateTimeCreatedPrint(){
 		$t = strtotime($this->DateTimeCreated);		
-		return date('d/m/y H:i',$t);
+		return date('d/m/Y H:i',$t);
+	}
+	function getDateTimeCreatedPrint1(){
+		$t = strtotime($this->DateTimeCreated);		
+		return date('d/m/Y',$t);
 	}
 	function getDateTimeCreatedStrPrint(){
 		$t = strtotime($this->DateTimeCreated);				
@@ -101,7 +105,7 @@ class InvoiceSell extends Object{
 	function getDateTimeUpdated(){return $this->DateTimeUpdated;}
 	function getDateTimeUpdatedPrint(){
 		$t = strtotime($this->DateTimeUpdated);
-		return date('d/m/y H:i',$t);
+		return date('d/m/Y H:i',$t);
 	}
 	
 	function setNote( $Note ) {$this->Note = $Note;$this->markDirty();}
@@ -130,14 +134,31 @@ class InvoiceSell extends Object{
 			$DetailAll->next();
 		}
 		return $Sum;
-	}
-	
+	}		
 	function getValuePrint( ){
 		$num = number_format($this->getValue(), 0, ',', ' ');
 		return $num;
-	}
-	
+	}	
 	function getValueStrPrint(){$num = new \MVC\Library\Number($this->getValue());return $num->readDigit()." đồng";}
+	
+	function getCount(){
+		$DetailAll = $this->getDetailAll();
+		$Count = 0;
+		while ($DetailAll->valid()){
+			$Detail = $DetailAll->current();
+			$Count 	+= $Detail->getCount();
+			$DetailAll->next();
+		}
+		return $Count;
+	}
+	function getCountPrint( ){
+		$num = number_format($this->getCount(), 0, ',', ' ');
+		return $num;
+	}
+	function getCountStrPrint( ){
+		$num = new \MVC\Library\Number($this->getCount());
+		return $num->readDigit();
+	}
 	
 	function toJSON(){
 		$json = array(
@@ -184,5 +205,6 @@ class InvoiceSell extends Object{
 	
 	function getURLExportLoad()	{return "/ql-kho-hang/lenh-xuat/".$this->getId();}
 	function getURLExportPrint(){return "/ql-kho-hang/lenh-xuat/".$this->getId()."/print";}
+	function getURLExportIntroPrint(){return "/ql-kho-hang/lenh-xuat/".$this->getId()."/gioi-thieu/print";}
 }
 ?>

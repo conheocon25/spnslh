@@ -18,6 +18,7 @@
 		/* this affects the margin in the printer settings */ 
 		margin: 0mm 0mm 0mm 0mm;
 	}
+	
 	ul {
 		list-style: none;
 		margin-left: 0;
@@ -34,7 +35,6 @@
 		content: "-";
 		padding-right: 5px;
 	}
-	
 	</style>
 </head>
 <body onload="window.print()">
@@ -55,13 +55,21 @@
 			<td width="50%" align="center"><I tal:content="Invoice/getDateTimeCreatedStrPrint"/></td>
 		</tr>
 	</table>
-	<p align="center" style="font-size:18pt;font-family:Arial; line-height:18pt"><b>LỆNH XUẤT KHO</b></p>
+	<p align="center" style="font-size:18pt;font-family:Arial; line-height:18pt"><b>GIẤY GIỚI THIỆU</b></p>
 	<p align="center" style="font-size:14pt;font-family:'Times New Roman'; line-height:14pt">
 		<u>Kính gửi</u>: <b>BAN GIÁM ĐỐC <span tal:content="php:mb_strtoupper(Invoice->getWarehouse()->getName(), 'UTF8')"/></b>
 	</p>
 	<p align="justify" style="font-size:13pt;font-family:'Times New Roman'; line-height:13pt; text-indent: 30px;">
-		<B>Công ty CP Thương Mại Dầu Khí Cửu Long</B> giới thiệu cho <B tal:content="php: mb_strtoupper(Invoice->getBranch()->getName(), 'UTF8')"/> nhận hàng tại <B tal:content="php:mb_strtoupper(Invoice->getWarehouse()->getName(), 'UTF8')"/> với số lượng như sau:
+		<B>Công ty CP Thương Mại Dầu Khí Cửu Long</B> trân trọng giới thiệu:
+	</p>	
+	<ul style="font-size:13pt;font-family:'Times New Roman'; line-height:13pt; text-indent: 30px;">
+		<li>Tài xế: <B tal:content="Invoice/getTransport/getDriver"/></li>
+		<li>Lái: <B tal:content="Invoice/getTransport/getName"/></li>
+	</ul>	
+	<p align="justify" style="font-size:13pt;font-family:'Times New Roman'; line-height:13pt; text-indent: 30px;">
+		Được cử đến <B tal:content="php:mb_strtoupper(Invoice->getWarehouse()->getName(), 'UTF8')"/> để liên hệ nhận hàng với số lượng như sau:
 	</p>
+	
 	<table width="100%" cellpadding="2" cellspacing="0" border="1" style="font-size:12pt;font-family:'Times New Roman'; line-height:12pt;padding-bottom:2px;">
 		<thead>
 			<tr>
@@ -99,14 +107,12 @@
 				<td align="left"/> 
 			</tr>
 		</tbody>		
-	</table>
-	<p style="font-size:12pt;font-family:'Times New Roman'; line-height:12pt;padding-bottom:2px;" align="right" tal:content="php: '(' . Invoice->getValueStrPrint() . ')' "/>
-	<p style="font-size:12pt;font-family:'Times New Roman'; line-height:12pt;padding-bottom:2px;text-indent: 30px;" align="justify">
-		Xuất cho: <B tal:content="Invoice/getTransport/getName"/> tài xế: <B tal:content="Invoice/getTransport/getDriver"/>
-	</p>
-	<p style="font-size:12pt;font-family:'Times New Roman'; line-height:12pt;padding-bottom:2px;text-indent: 30px;" align="justify">
-		Lệnh xuất kho có giá trị đến hết ngày: <B tal:content="Invoice/getDateTimeCreatedPrint1"/>
-	</p>	
+	</table>		    
+	<ul style="font-size:13pt;font-family:'Times New Roman'; line-height:13pt; text-indent: 30px;">
+		<li>Nơi giao hàng: <B tal:content="Invoice/getCustomer/getName"/> <span tal:content="Invoice/getCustomer/getAddress"/> </li>
+		<li>Giấy giới thiệu này có giá trị đến hết ngày: <B tal:content="Invoice/getDateTimeCreatedPrint1"/></li>
+	</ul>
+	
 	<table width="100%" cellpadding="1" cellspacing="0" border="0">
 		<tr>
 			<td width="30%" align="center"><B>LẬP PHIẾU</B></td>			

@@ -56,6 +56,10 @@ class InvoiceSellDetail extends Object{
 			
 	function setCount( $Count ) {$this->Count = $Count;$this->markDirty();}
 	function getCount(){return $this->Count;}
+	function getCountStrPrint( ){
+		$num = new \MVC\Library\Number($this->Count);
+		return $num->readDigit();
+	}
 	function getCountPrint( ){
 		$num = number_format($this->getCount(), 0, ',', ' ');
 		return $num;
