@@ -112,8 +112,10 @@ RewriteRule ^admin/setting/good/page/([0-9]+)$ 							?cmd=ASettingGoodGroup&Pag
 RewriteRule ^admin/setting/good/([0-9]+)$ 								?cmd=ASettingGood&IdGroup=$1 [L]
 RewriteRule ^admin/setting/good/([0-9]+)/page/([0-9]+)$ 				?cmd=ASettingGood&IdGroup=$1&Page=$2 [L]
 
-RewriteRule ^admin/setting/supplier$ 									?cmd=ASettingSupplier [L]
-RewriteRule ^admin/setting/supplier/page/([0-9]+)$ 						?cmd=ASettingSupplier&Page=$1 [L]
+RewriteRule ^admin/setting/supplier$ 									?cmd=ASettingSupplierType [L]
+RewriteRule ^admin/setting/supplier/page/([0-9]+)$ 						?cmd=ASettingSupplierType&Page=$1 [L]
+RewriteRule ^admin/setting/supplier/([0-9]+)$ 							?cmd=ASettingSupplier&IdType=$1 [L]
+RewriteRule ^admin/setting/supplier/([0-9]+)/page/([0-9]+)$ 			?cmd=ASettingSupplier&IdType=$1&Page=$2 [L]
 
 RewriteRule ^admin/setting/warehouse$ 									?cmd=ASettingWarehouse [L]
 RewriteRule ^admin/setting/warehouse/page/([0-9]+)$ 					?cmd=ASettingWarehouse&Page=$1 [L]

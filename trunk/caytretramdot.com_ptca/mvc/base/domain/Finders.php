@@ -30,7 +30,9 @@ interface CustomerFinder  		extends Finder {}
 interface EmployeeFinder  		extends Finder {}
 interface DepartmentFinder  	extends Finder {}
 
+interface SupplierTypeFinder  	extends Finder {}
 interface SupplierFinder  		extends Finder {}
+
 interface WarehouseFinder  		extends Finder {}
 
 interface TrackFinder  			extends Finder {}

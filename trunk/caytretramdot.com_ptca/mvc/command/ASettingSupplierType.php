@@ -1,6 +1,6 @@
-<?php
+<?php		
 	namespace MVC\Command;	
-	class ASettingSupplier extends Command {
+	class ASettingSupplierType extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -11,47 +11,40 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$IdType = $request->getProperty('IdType');
-			$Page 	= $request->getProperty('Page');
+			$Page = $request->getProperty('Page');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mSupplier 		= new \MVC\Mapper\Supplier();
 			$mSupplierType 	= new \MVC\Mapper\SupplierType();
 			$mConfig 		= new \MVC\Mapper\Config();			
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------									
-			$SupplierAll 	= $mSupplier->findByType(array($IdType));
-			$SupplierType	= $mSupplierType->find($IdType);
-			$SupplierTypeAll= $mSupplierType->findAll();
+			$SupplierTypeAll = $mSupplierType->findAll();
 						
 			if (!isset($Page)) $Page=1;
 			$Config 		= $mConfig->findByName("ROW_PER_PAGE");
 			$ConfigName		= $mConfig->findByName("NAME");
 			
-			$SupplierAll1 = $mSupplier->findByPage(array($IdType, $Page, $Config->getValue() ));
-			$PN = new \MVC\Domain\PageNavigation($SupplierAll->count(), $Config->getValue(), "/admin/setting/supplier" );
+			$SupplierTypeAll1 = $mSupplierType->findByPage(array($Page, $Config->getValue() ));
+			$PN = new \MVC\Domain\PageNavigation($SupplierTypeAll->count(), $Config->getValue(), "/admin/setting/SupplierType" );
 			
-			$Title = mb_strtoupper($SupplierType->getName(), 'UTF8');
+			$Title = "NHÀ CUNG CẤP";
 			$Navigation = array(				
-				array("THIẾT LẬP", "/admin"),
-				array("NHÀ CUNG CẤP", "/admin/setting/supplier")
+				array("THIẾT LẬP", "/admin")
 			);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------												
-			$request->setProperty('Page', 			$Page);
-			$request->setObject('PN', 				$PN);
-			$request->setObject('SupplierAll1', 	$SupplierAll1);
-			$request->setObject('SupplierType', 	$SupplierType);
-			$request->setObject('SupplierTypeAll', 	$SupplierTypeAll);
-						
-			$request->setProperty('Title'			, $Title);
-			$request->setObject('Navigation'		, $Navigation);
+			$request->setProperty('Page', 				$Page);
+			$request->setObject('PN', 					$PN);
+			$request->setObject('SupplierTypeAll1', 	$SupplierTypeAll1);
+			
+			$request->setProperty('Title'				, $Title);
+			$request->setObject('Navigation'			, $Navigation);
 															
 			return self::statuses('CMD_DEFAULT');
 		}

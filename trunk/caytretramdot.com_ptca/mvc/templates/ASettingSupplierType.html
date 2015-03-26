@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mFront.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>
+		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
+	</head>
+	<body>
+		<tal:block metal:use-macro="mFront.xhtml/Header"/>
+		<div class="container-fluid" id="wraper">
+			<div class="row">				
+				<div class="col-md-8">					
+					<div class="panel panel-primary">
+						<div class="panel-heading"><i class="glyphicon glyphicon-cog"/> <B tal:content="Title"/></div>
+						<div class="panel-body">		
+							<table class="table table-bordered table-striped table-hover">
+								<thead>
+									<tr>
+										<th class="text-center" width="30">ID</th>
+										<th class="text-left">TÊN NHÓM</th>
+										<th class="text-left" width="160">NHÀ CUNG CẤP</th>
+										<th class="text-center" width="40"><i class="glyphicon glyphicon-trash"/></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr tal:repeat="SupplierType SupplierTypeAll1">
+										<td class="text-center"><span tal:content="repeat/SupplierType/number"/></td>
+										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="SupplierType" tal:attributes="data-id SupplierType/getId" tal:content="SupplierType/getName"/></td>
+										<td>
+											<a tal:attributes="href SupplierType/getURLSetting">
+												Xem (<span tal:content="SupplierType/getSupplierAll/count"/>)
+											</a>
+										</td>
+										<td class="text-center">
+											<a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id SupplierType/getId">
+												<i class="glyphicon glyphicon-remove"/>
+											</a>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							<div metal:use-macro="mFront.xhtml/PageBar"/>
+							<a href="#DialogIns" data-toggle="modal" class="btn btn-default btn-ins"><i class="glyphicon glyphicon-plus"/> LOẠI NHÀ CUNG CẤP</a>
+						</div>
+					</div>										
+				</div>
+				<div class="col-md-4">
+					<div class="panel panel-default">
+						<div class="panel-heading"><i class="glyphicon glyphicon-cog"/> <B>DANH SÁCH NHÓM</B></div>
+						<div class="panel-body">
+							
+						</div>	
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- INSERT DIALOG  -->
+		<div id="DialogIns" class="modal fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header"><h3><i class="glyphicon glyphicon-cog modal-icon"/>THÊM MỚI NHÓM NHÀ CUNG ỨNG</h3></div>
+					<form id="FormSupplierTypeInsert" action="#" class="form-horizontal" novalidate="novalidate">
+						<div class="modal-body">							
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Tên</label>
+								<div class="col-sm-10 controls">
+									<input id="Name1" name="Name1" type="text" class="form-control input-small"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Mã</label>
+								<div class="col-sm-10 controls">								
+									<input id="Code1" name="Code1" type="text" class="form-control input-small"/>
+								</div>
+							</div>																						
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Ghi chú</label>
+								<div class="col-sm-10 controls">
+									<input id="Note1" name="Note1" type="text" class="form-control input-small"/>
+								</div>
+							</div>							
+						</div>
+						<div class="modal-footer">
+							<button class="btn btn-primary btn-small" id="URLInsButton"><i class="glyphicons-download_alt"/> Lưu</button>
+							<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
+						</div>
+					</form>								
+				</div>
+			</div>
+		</div>
+		<!-- END INSERT DIALOG  -->
+		
+		<!-- UPDATE DIALOG  -->
+		<div id="DialogEdit" class="modal fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header"><h3><i class="glyphicon glyphicon-cog modal-icon"/>CẬP NHẬT NHÓM NHÀ CUNG ỨNG</h3></div>
+					<form id="FormSupplierTypeUpdate" action="#" class="form-horizontal" novalidate="novalidate">
+						<div class="modal-body">							
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Tên</label>
+								<div class="col-sm-10 controls">
+									<input id="Name2" name="Name2" type="text" class="form-control input-small"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">MST</label>
+								<div class="col-sm-10 controls">								
+									<input id="Code2" name="Code2" type="text" class="form-control input-small"/>
+								</div>
+							</div>																						
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Ghi chú</label>
+								<div class="col-sm-10 controls">
+									<input id="Note2" name="Note2" type="text" class="form-control input-small"/>
+								</div>
+							</div>							
+						</div>
+						<div class="modal-footer">
+							<button class="btn btn-primary btn-small" id="URLUpdButton"><i class="glyphicons-download_alt"/> Lưu</button>
+							<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- END UPDATE DIALOG  -->
+		<div metal:use-macro="mDialog.xhtml/DialogDel"/>
+				
+		<script type="text/javascript">
+		/*<![CDATA[*/			
+			//-----------------------------------------------------------------------------------
+			//Delete 1 EMPLOYEEE			
+			//-----------------------------------------------------------------------------------
+			$('.remove-item').click(function(){
+				$('#URLDelButton').attr('alt', $(this).attr('data-id'));
+			});
+			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
+			$('#URLDelButton').click(function(){			
+				var URL = "/object/del/SupplierType/" + $(this).attr('alt');
+				$.ajax({
+					type: "POST",					
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
+			});
+		
+			//-----------------------------------------------------------------------------------
+			//Insert 1 SupplierType			
+			$("#FormSupplierTypeInsert").validate({
+				rules:{
+					Name1:{
+						minlength: 2,
+						required:true
+					}					
+				},
+				errorClass: "help-inline",
+				errorElement: "span",
+				highlight:function(element, errorClass, validClass) {
+					$(element).parents('.form-group').addClass('has-error');
+				},
+				unhighlight: function(element, errorClass, validClass) {
+					$(element).parents('.form-group').removeClass('has-error');
+					$(element).parents('.form-group').addClass('has-success');
+				},
+				submitHandler: function (form) {					
+					var Data = [];
+					Data[0] = 'null';					
+					Data[1] = $('#Name1').val();					
+					Data[2] = $('#Code1').val();					
+					Data[3] = $('#Note1').val();
+					Data[4] = 1;
+									
+					var URL = "/object/ins/SupplierType";
+					$.ajax({
+						type: "POST",
+						data: {Data:Data},
+						url: URL,
+						success: function(msg){
+							location.reload();
+						}
+					});
+					return false;
+				}
+			});
+			$("#DialogIns").on('show.bs.modal', function(event){
+				window.setTimeout(
+					function(){$(event.currentTarget).find('input#Name1').first().focus()},
+					0500
+				);
+			});
+			
+			//-----------------------------------------------------------------------------------
+			//Load 1 SupplierType
+			//-----------------------------------------------------------------------------------
+			$('.update-item').click(function(){
+				//Load dữ liệu JSON về
+				var url = "/object/load/SupplierType/" + $(this).attr('data-id');
+				
+				//Load dữ liệu JSON lên FORM
+				$('#update-link').attr('action', $(this).attr('alt'));
+				$.getJSON(url, function(data) {
+					$('#URLUpdButton').attr('alt', 	data.Id);					
+					$('#Name2').attr('value', 		data.Name);					
+					$('#Code2').attr('value', 		data.Code);					
+					$('#Note2').attr('value', 		data.Note);
+				});
+			});
+			
+			//-----------------------------------------------------------------------------------
+			//Update 1 EMPLOYEEE
+			//-----------------------------------------------------------------------------------
+			$("#FormSupplierTypeUpdate").validate({
+				rules:{
+					Name2:{
+						minlength: 2,
+						required:true
+					}					
+				},
+				errorClass: "help-inline",
+				errorElement: "span",
+				highlight:function(element, errorClass, validClass) {
+					$(element).parents('.form-group').addClass('has-error');
+				},
+				unhighlight: function(element, errorClass, validClass) {
+					$(element).parents('.form-group').removeClass('has-error');
+					$(element).parents('.form-group').addClass('has-success');
+				},
+				submitHandler: function (form) {					
+					var Data = [];
+					Data[0] = $('#URLUpdButton').attr('alt');																			
+					Data[1] = $('#Name2').val();
+					Data[2] = $('#Code2').val();					
+					Data[3] = $('#Note2').val();
+					Data[4] = 1;
+																				
+					var URL = "/object/upd/SupplierType";
+					$.ajax({
+						type: "POST",
+						data: {Data:Data},
+						url: URL,
+						success: function(msg){
+							location.reload();
+						}
+					});
+					return false;
+				}
+			});
+			$("#DialogEdit").on('show.bs.modal', function(event){
+				window.setTimeout(
+					function(){$(event.currentTarget).find('input#Name2').first().focus()},
+					0500
+				);
+			});
+		/*]]>*/
+		</script>
+	</body>
+</html>
