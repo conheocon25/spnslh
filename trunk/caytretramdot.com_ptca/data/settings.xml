@@ -33,9 +33,10 @@
 		<command name="WarehouseImportDetail">		<view>WarehouseImportDetail</view></command>
 		<command name="WarehouseImportDetailPrint">	<view>WarehouseImportDetailPrint</view></command>
 		
-		<command name="WarehouseExport">			<view>WarehouseExport</view></command>		
-		<command name="WarehouseExportDetail">		<view>WarehouseExportDetail</view></command>
-		<command name="WarehouseExportDetailPrint">	<view>WarehouseExportDetailPrint</view></command>
+		<command name="WarehouseExport">					<view>WarehouseExport</view></command>		
+		<command name="WarehouseExportDetail">				<view>WarehouseExportDetail</view></command>
+		<command name="WarehouseExportDetailPrint">			<view>WarehouseExportDetailPrint</view></command>
+		<command name="WarehouseExportDetailIntroPrint">	<view>WarehouseExportDetailIntroPrint</view></command>
 		
 		<command name="WarehouseReport">			<view>WarehouseReport</view></command>
 		

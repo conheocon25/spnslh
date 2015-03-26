@@ -36,11 +36,11 @@
 				</tr>
 				<tr>
 					<td width="35%">XUẤT Ở KHO</td>
-					<td width="45%"><B tal:content="Invoice/getWarehouse/getName" /></td>					
+					<td width="45%"><B tal:condition="Invoice/getWarehouse" tal:content="Invoice/getWarehouse/getName" /></td>
 				</tr>
 				<tr>
 					<td width="35%">VẬN CHUYỂN</td>
-					<td width="45%"><B tal:content="Invoice/getTransport/getName" /></td>
+					<td width="45%"><B tal:condition="Invoice/getTransport" tal:content="Invoice/getTransport/getName" /></td>
 				</tr>
 			</table>
 			<BR/>			
@@ -70,7 +70,8 @@
 					</tr>
 				</tbody>
 			</table>			
-			<a title="In phiếu" class="Ticket btn" tal:attributes="alt Invoice/getURLExportPrint"><i class="glyphicon glyphicon-print"/> IN LỆNH</a>
+			<a title="In Lệnh" class="Ticket btn" tal:attributes="alt Invoice/getURLExportPrint"><i class="glyphicon glyphicon-print"/> IN LỆNH XUẤT</a>
+			<a title="In Giấy Giới Thiệu" class="Ticket btn" tal:attributes="alt Invoice/getURLExportIntroPrint"><i class="glyphicon glyphicon-print"/> IN GIẤY GIỚI THIỆU</a>
 			<a title="Chọn kho" class="Warehouse btn"></a>
 			<a 
 				href="#DialogUpdateInvoice" data-toggle="modal" 
