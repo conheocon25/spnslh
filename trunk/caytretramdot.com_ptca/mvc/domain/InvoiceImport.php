@@ -6,11 +6,13 @@ class InvoiceImport extends Object{
     private $Id;
 	private $IdEmployee;
 	private $IdSupplier;
+	private $IdWarehouse;
 	private $DateTimeCreated;
 	private $DateTimeUpdated;
 	private $Note;
 	private $State;
-			
+	private $Enable;
+
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
@@ -18,18 +20,22 @@ class InvoiceImport extends Object{
 		$Id=null, 
 		$IdEmployee=null, 
 		$IdSupplier=null,
+		$IdWarehouse=null,
 		$DateTimeCreated=null,
 		$DateTimeUpdated=null,
 		$Note=null,
-		$State=null
+		$State=null,
+		$Enable=null
 	){
         $this->Id 				= $Id;
 		$this->IdEmployee 		= $IdEmployee;
 		$this->IdSupplier 		= $IdSupplier;
+		$this->IdWarehouse 		= $IdWarehouse;
 		$this->DateTimeCreated 	= $DateTimeCreated;
 		$this->DateTimeUpdated 	= $DateTimeUpdated;
 		$this->Note 			= $Note;
 		$this->State 			= $State;
+		$this->Enable 			= $Enable;
 								
         parent::__construct( $Id );
     }
@@ -38,10 +44,12 @@ class InvoiceImport extends Object{
         $this->Id 				= $Data[0];
 		$this->IdEmployee 		= $Data[1];
 		$this->IdSupplier 		= $Data[2];
-		$this->DateTimeCreated 	= $Data[3];
-		$this->DateTimeUpdated 	= $Data[4];
-		$this->Note 			= $Data[5];
-		$this->State 			= $Data[6];
+		$this->IdWarehouse 		= $Data[3];
+		$this->DateTimeCreated 	= $Data[4];
+		$this->DateTimeUpdated 	= $Data[5];
+		$this->Note 			= $Data[6];
+		$this->State 			= $Data[7];
+		$this->Enable 			= $Data[8];
     }
 	
     function getId( ) {return $this->Id;}
@@ -61,6 +69,14 @@ class InvoiceImport extends Object{
 		$mSupplier 	= new \MVC\Mapper\Supplier();
 		$Supplier 	= $mSupplier->find($this->IdSupplier);
 		return $Supplier;
+	}
+	
+	function setIdWarehouse( $IdWarehouse ) {$this->IdWarehouse = $IdWarehouse; $this->markDirty();}
+	function getIdWarehouse(){return $this->IdWarehouse;}
+	function getWarehouse(){
+		$mWarehouse 	= new \MVC\Mapper\Warehouse();
+		$Warehouse 		= $mWarehouse->find($this->IdWarehouse);
+		return $Warehouse;
 	}
 	
 	function setDateTimeCreated($DateTimeCreated ) {$this->DateTimeCreated = $DateTimeCreated; $this->markDirty();}
@@ -83,6 +99,9 @@ class InvoiceImport extends Object{
 	
 	function setNote( $Note ) {$this->Note = $Note;$this->markDirty();}
 	function getNote(){return $this->Note;}
+	
+	function setEnable( $Enable ) {$this->Enable = $Enable;$this->markDirty();}
+	function getEnable(){return $this->Enable;}
 	
 	function setState( $State ){$this->State = $State; $this->markDirty();}
 	function getState(){return $this->State;}
@@ -121,10 +140,12 @@ class InvoiceImport extends Object{
 			'Id' 				=> $this->getId(),
 			'IdEmployee'		=> $this->getIdEmployee(),
 			'IdSupplier'		=> $this->getIdSupplier(),
+			'IdWarehouse'		=> $this->getIdWarehouse(),
 			'DateTimeCreated'	=> $this->getDateTimeCreated(),
 			'DateTimeUpdated'	=> $this->getDateTimeUpdated(),
 			'Note'				=> $this->getNote(),
-			'State'				=> $this->getState()
+			'State'				=> $this->getState(),
+			'Enable'			=> $this->getEnable()
 		);
 		return json_encode($json);
 	}

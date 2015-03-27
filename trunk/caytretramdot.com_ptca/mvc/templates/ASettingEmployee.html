@@ -37,10 +37,7 @@
 									</tr>
 								</tbody>
 							</table>
-							<div metal:use-macro="mFront.xhtml/PageBar"/>
-							<a href="#DialogIns" data-toggle="modal" class="btn btn-default btn-ins">
-								<i class="glyphicon glyphicon-plus"/> NHÂN VIÊN
-							</a>
+							<div metal:use-macro="mFront.xhtml/PageBar"/>							
 						</div>
 					</div>					
 				</div>
@@ -54,7 +51,10 @@
 										<span tal:content="Department1/getName"/> (<span tal:content="Department1/getEmployeeAll/count"/>)
 									</a>
 								</li>
-							</ul>							
+							</ul>
+							<a href="#DialogIns" data-toggle="modal" class="btn btn-default btn-ins">
+								<i class="glyphicon glyphicon-plus"/> NHÂN VIÊN
+							</a>
 						</div>	
 					</div>
 				</div>
@@ -73,8 +73,8 @@
 								<label class="col-sm-2 control-label">Phòng</label>
 								<div class="col-sm-10 controls">
 									<select name="IdDepartment1" id="IdDepartment1" style="width:100%;" class="form-control">
-										<option tal:repeat="Department DepartmentAll" tal:attributes="value Department/getId">
-											<span tal:content="Department/getName"/>
+										<option tal:repeat="Department1 DepartmentAll" tal:attributes="value Department/getId;selected php:Department1->getId()==Department->getId()?true:false">
+											<span tal:content="Department1/getName"/>
 										</option>										
 									</select>
 								</div>
