@@ -33,6 +33,8 @@ class TrackDailyCollection 		extends Collection implements \MVC\Domain\TrackDail
 
 class TransportCollection 		extends Collection implements \MVC\Domain\TransportCollection 		{function targetClass( ) {return "\MVC\Domain\Transport";	}}
 
+class PaymentMethodCollection 	extends Collection implements \MVC\Domain\PaymentMethodCollection 	{function targetClass( ) {return "\MVC\Domain\PaymentMethod";}}
+
 class ConfigCollection 			extends Collection implements \MVC\Domain\ConfigCollection			{function targetClass(){return "\MVC\Domain\Config";		}}
 class PageCollection 			extends Collection implements \MVC\Domain\PageCollection			{function targetClass(){return "\MVC\Domain\Page";			}}
 class GuestCollection 			extends Collection implements \MVC\Domain\GuestCollection			{function targetClass(){return "\MVC\Domain\Guest";			}}

@@ -45,7 +45,7 @@
 									tal:attributes="class php: Supplier1->getId()==Supplier->getId()?'btn btn-default active':'btn btn-default'"
 								>
 									<a tal:attributes="href Supplier1/getURLImport">
-										<i class="glyphicon glyphicon-user"/> <span tal:content="Supplier1/getName"/>
+										<i class="glyphicon glyphicon-home"/> <span tal:content="php:mb_strtoupper(Supplier1->getName(),'UTF8')"/> (<span tal:content="Supplier1/getInvoiceImportAll/count"/>)
 									</a>
 								</li>
 							</ul>							
@@ -94,7 +94,17 @@
 										</option>
 									</select>
 								</div>
-							</div>							
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Kho hàng</label>
+								<div class="col-sm-8 controls">
+									<select id="IdWarehouse" style="width:100%;" class="form-control">
+										<option tal:repeat="Warehouse WarehouseAll" tal:attributes="value Warehouse/getId">
+											<span tal:content="Warehouse/getName" />
+										</option>
+									</select>
+								</div>
+							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Ghi chú</label>
 								<div class="col-sm-8 controls">
@@ -146,6 +156,7 @@
 					$('#URLUpdButton').attr('alt', 	data.Id);
 					$('#IdEmployee').val(data.IdEmployee);
 					$('#IdSupplier').val(data.IdSupplier);
+					$('#IdWarehouse').val(data.IdWarehouse);
 					$('#DateTimeCreated').attr('value', data.DateTimeCreated);
 					$('#DateTimeUpdated').attr('value', data.DateTimeUpdated);
 					$('#Note').attr('value', data.Note);
@@ -160,10 +171,12 @@
 				Data[0] = $('#URLUpdButton').attr('alt');
 				Data[1] = $('#IdEmployee').val();
 				Data[2] = $('#IdSupplier').val();
-				Data[3] = $('#DateTimeCreated').val();
-				Data[4] = $('#DateTimeUpdated').val();
-				Data[5] = $('#Note').val();
-				Data[6] = 1;
+				Data[3] = $('#IdWarehouse').val();
+				Data[4] = $('#DateTimeCreated').val();
+				Data[5] = $('#DateTimeUpdated').val();
+				Data[6] = $('#Note').val();
+				Data[7] = 1;
+				Data[8] = 1;
 																													
 				var URL = "/object/upd/InvoiceImport";
 				$.ajax({

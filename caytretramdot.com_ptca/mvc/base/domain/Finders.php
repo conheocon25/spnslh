@@ -40,6 +40,8 @@ interface TrackDailyFinder  	extends Finder {}
 
 interface TransportFinder  		extends Finder {}
 
+interface PaymentMethodFinder  	extends Finder {}
+
 interface ConfigFinder 			extends Finder {}
 interface GuestFinder 			extends Finder {}
 

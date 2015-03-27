@@ -30,6 +30,8 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	
 	require_once( "mvc/mapper/Transport.php" 		);
 	
+	require_once( "mvc/mapper/PaymentMethod.php" 	);
+	
 	require_once( "mvc/mapper/Config.php"			);
 	require_once( "mvc/mapper/Guest.php"			);
 }

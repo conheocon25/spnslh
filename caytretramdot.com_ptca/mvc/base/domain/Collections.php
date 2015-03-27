@@ -31,6 +31,8 @@ interface TrackDailyCollection 			extends \Iterator {function add( Object $Track
 
 interface TransportCollection 			extends \Iterator {function add( Object $Transport);	}
 
+interface PaymentMethodCollection 		extends \Iterator {function add( Object $PaymentMethod);}
+
 interface ConfigCollection 				extends \Iterator {function add( Object $Config );		}
 interface PageCollection 				extends \Iterator {function add( Object $Page);			}
 interface GuestCollection 				extends \Iterator {function add( Object $Guest);		}

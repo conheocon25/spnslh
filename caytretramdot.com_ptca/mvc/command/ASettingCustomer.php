@@ -17,6 +17,7 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
+			$mPaymentMethod		= new \MVC\Mapper\PaymentMethod();
 			$mBranch 			= new \MVC\Mapper\Branch();
 			$mCustomer 			= new \MVC\Mapper\Customer();
 			$mCustomerGroup 	= new \MVC\Mapper\CustomerGroup();
@@ -25,10 +26,11 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
-			$Group			= $mCustomerGroup->find($IdGroup);
-			$BranchAll		= $mBranch->findAll();
-			$GroupAll		= $mCustomerGroup->findAll();
-			$CustomerAll 	= $mCustomer->findByGroup(array($IdGroup));
+			$Group				= $mCustomerGroup->find($IdGroup);
+			$PaymentMethodAll	= $mPaymentMethod->findAll();
+			$BranchAll			= $mBranch->findAll();
+			$GroupAll			= $mCustomerGroup->findAll();
+			$CustomerAll 		= $mCustomer->findByGroup(array($IdGroup));
 						
 			if (!isset($Page)) $Page=1;
 			$Config 		= $mConfig->findByName("ROW_PER_PAGE");
@@ -45,16 +47,17 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-			$request->setProperty('Page'		, $Page);
-			$request->setObject('PN'			, $PN);
-			$request->setProperty('Title'		, $Title);			
-			$request->setObject('Navigation'	, $Navigation);
+			$request->setProperty('Page'			, $Page);
+			$request->setObject('PN'				, $PN);
+			$request->setProperty('Title'			, $Title);			
+			$request->setObject('Navigation'		, $Navigation);
 			
-			$request->setObject('ConfigName'	, $ConfigName);
-			$request->setObject('Group'			, $Group);
-			$request->setObject('GroupAll'		, $GroupAll);
-			$request->setObject('BranchAll'		, $BranchAll);
-			$request->setObject('CustomerAll1'	, $CustomerAll1);
+			$request->setObject('ConfigName'		, $ConfigName);
+			$request->setObject('Group'				, $Group);
+			$request->setObject('PaymentMethodAll'	, $PaymentMethodAll);
+			$request->setObject('GroupAll'			, $GroupAll);
+			$request->setObject('BranchAll'			, $BranchAll);
+			$request->setObject('CustomerAll1'		, $CustomerAll1);
 																					
 			return self::statuses('CMD_DEFAULT');
 		}

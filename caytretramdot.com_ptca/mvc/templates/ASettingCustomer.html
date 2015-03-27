@@ -17,16 +17,20 @@
 							<table class="table table-bordered table-striped table-hover">
 								<thead>
 									<tr>
-										<th class="text-center" width="60" />										
+										<th class="text-center" width="32" />
 										<th width="200" class="text-left">TÊN</th>
-										<th class="text-left">ĐỊA CHỈ</th>										
+										<th class="text-left">CHI TIẾT</th>
 										<th class="text-center" width="40"><i class="glyphicon glyphicon-trash"/></th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr tal:repeat="Customer CustomerAll1">
-										<td class="text-center"><img tal:attributes="src Customer/getAvatar" width="60px"/></td>										
-										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="Customer" tal:attributes="data-id Customer/getId" tal:content="Customer/getName"/></td>
+										<td class="text-center"><img tal:attributes="src Customer/getAvatar" width="32px"/></td>
+										<td>
+											<a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="Customer" tal:attributes="data-id Customer/getId">
+												<span tal:content="Customer/getName"/><br/><span tal:content="Customer/getRepresent"/>
+											</a>
+										</td>
 										<td><span tal:content="Customer/getAddress"/></td>
 										<td class="text-center">
 											<a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Customer/getId">
@@ -36,8 +40,7 @@
 									</tr>
 								</tbody>
 							</table>
-							<div metal:use-macro="mFront.xhtml/PageBar"/>
-							<a href="#DialogIns" data-toggle="modal" class="btn btn-default btn-ins"><i class="glyphicon glyphicon-plus"/> KHÁCH HÀNG</a>
+							<div metal:use-macro="mFront.xhtml/PageBar"/>							
 						</div>
 					</div>										
 				</div>
@@ -46,12 +49,13 @@
 						<div class="panel-heading"><i class="glyphicon glyphicon-cog"/> <B>DANH SÁCH NHÓM</B></div>
 						<div class="panel-body">
 							<ul>								
-								<li tal:attributes="class php:Group->getId()==Group1->getId()? 'btn btn-info' : 'btn btn-default'" tal:repeat="Group1 GroupAll">
+								<li tal:attributes="class php:Group->getId()==Group1->getId()? 'btn btn-success' : 'btn btn-default'" tal:repeat="Group1 GroupAll">
 									<a tal:attributes="href Group1/getURLSettingCustomer">
 										<i class="glyphicon glyphicon-tag"/> <span tal:content="Group1/getName"/> (<span tal:content="Group1/getCustomerAll/count"/>)
 									</a>
 								</li>
-							</ul>							
+							</ul>
+							<a href="#DialogIns" data-toggle="modal" class="btn btn-default btn-ins"><i class="glyphicon glyphicon-plus"/> KHÁCH HÀNG</a>
 						</div>	
 					</div>
 				</div>
@@ -68,9 +72,9 @@
 							<div class="form-group">
 								<div class="col-sm-6 controls">
 									<select name="IdGroup1" id="IdGroup1" style="width:100%;" class="form-control">
-										<option tal:repeat="Group GroupAll" tal:attributes="value Group/getId">
-											<span tal:content="Group/getName"/>
-										</option>										
+										<option tal:repeat="Group1 GroupAll" tal:attributes="value Group1/getId;selected php:Group->getId()==Group1->getId()?true:false">
+											<span tal:content="Group1/getName"/>
+										</option>
 									</select>
 								</div>
 								<div class="col-sm-6 controls">
@@ -149,8 +153,14 @@
 								</div>
 							</div>							
 							<div class="form-group">								
-								<div class="col-sm-12 controls">
-									<input id="PaymentMethod1" name="PaymentMethod1" type="text" class="form-control input-small" placeholder="Phương thức thanh toán"/>
+								<div class="col-sm-12 controls">									
+									<div class="col-sm-12 controls">
+										<select id="PaymentMethod1" name="PaymentMethod1" style="width:100%;" class="form-control">
+											<option tal:repeat="PaymentMethod PaymentMethodAll" tal:attributes="value PaymentMethod/getId">
+												<span tal:content="PaymentMethod/getName"/>
+											</option>										
+										</select>
+									</div>
 								</div>
 							</div>							
 							<div class="form-group">								
@@ -264,7 +274,11 @@
 							</div>							
 							<div class="form-group">								
 								<div class="col-sm-12 controls">
-									<input id="PaymentMethod2" name="PaymentMethod2" type="text" class="form-control input-small" placeholder="Phương thức thanh toán"/>
+									<select id="PaymentMethod2" name="PaymentMethod2" style="width:100%;" class="form-control">
+										<option tal:repeat="PaymentMethod PaymentMethodAll" tal:attributes="value PaymentMethod/getId">
+											<span tal:content="PaymentMethod/getName"/>
+										</option>										
+									</select>
 								</div>
 							</div>							
 							<div class="form-group">								
@@ -396,7 +410,7 @@
 					$('#ContractId2').attr('value', data.ContractId);
 					$('#ContractFrom2').attr('value', data.ContractFrom);
 					$('#ContractTo2').attr('value', data.ContractTo);
-					$('#PaymentMethod2').attr('value', data.PaymentMethod);							
+					$('#PaymentMethod2').val( 		data.PaymentMethod);
 					(data.Public==1)?$('#Public2').attr('checked', 'true'):0;
 					(data.Enable==1)?$('#Enable2').attr('checked', 'true'):0;					
 				});

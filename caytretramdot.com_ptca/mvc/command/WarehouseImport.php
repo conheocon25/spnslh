@@ -19,10 +19,12 @@
 			$mConfig 		= new \MVC\Mapper\Config();
 			$mSupplier 		= new \MVC\Mapper\Supplier();
 			$mEmployee 		= new \MVC\Mapper\Employee();
+			$mWarehouse 	= new \MVC\Mapper\Warehouse();
 															
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------																								
+			$WarehouseAll 	= $mWarehouse->findAll();
 			$SupplierAll 	= $mSupplier->findAll();
 			$EmployeeAll 	= $mEmployee->findAll();
 			
@@ -40,6 +42,7 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------																											
+			$request->setObject("WarehouseAll", $WarehouseAll);
 			$request->setObject("SupplierAll", 	$SupplierAll);
 			$request->setObject("EmployeeAll", 	$EmployeeAll);
 			$request->setObject("Supplier", 	$Supplier);

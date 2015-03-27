@@ -7,18 +7,18 @@ class InvoiceImport extends Mapper implements \MVC\Domain\InvoiceImportFinder {
         parent::__construct();
 		$tblInvoiceImport 		= "invoice_import";
 		
-        $this->selectAllStmt 	= self::$PDO->prepare("select * from invoice_import");
-        $this->selectStmt 		= self::$PDO->prepare("select * from invoice_import where id=?");
-        $this->updateStmt 		= self::$PDO->prepare("update invoice_import set id_employee=?, id_supplier=?, datetime_created=?, datetime_updated=?, note=?, state=? where id=?");
-        $this->insertStmt 		= self::$PDO->prepare("insert into invoice_import (id_employee, id_supplier, datetime_created, datetime_updated, note, state) values(?, ?, ?, ?, ?, ?)");
-		$this->deleteStmt 		= self::$PDO->prepare("delete from invoice_import where id=?");
-		$this->findBySupplierStmt		= self::$PDO->prepare("select * from invoice_import where id_supplier=? ORDER BY datetime_created DESC");
-		$this->findByEmployeeStmt		= self::$PDO->prepare("select * from invoice_import where id_employee=? ORDER BY datetime_created DESC");
+        $this->selectAllStmt 		= self::$PDO->prepare("select * from invoice_import");
+        $this->selectStmt 			= self::$PDO->prepare("select * from invoice_import where id=?");
+        $this->updateStmt 			= self::$PDO->prepare("update invoice_import set id_employee=?, id_supplier=?, id_warehouse=?, datetime_created=?, datetime_updated=?, note=?, state=?, enable=? where id=?");
+        $this->insertStmt 			= self::$PDO->prepare("insert into invoice_import (id_employee, id_supplier, id_warehouse, datetime_created, datetime_updated, note, state) values(?, ?, ?, ?, ?, ?, ?)");
+		$this->deleteStmt 			= self::$PDO->prepare("delete from invoice_import where id=?");
+		$this->findBySupplierStmt	= self::$PDO->prepare("select * from invoice_import where id_supplier=? ORDER BY datetime_created DESC");
+		$this->findByEmployeeStmt	= self::$PDO->prepare("select * from invoice_import where id_employee=? ORDER BY datetime_created DESC");
 		
-		$this->findByTrackDailyStmt		= self::$PDO->prepare("select * from invoice_import where date(datetime_created)=? ORDER BY datetime_created DESC");
+		$this->findByTrackDailyStmt	= self::$PDO->prepare("select * from invoice_import where date(datetime_created)=? ORDER BY datetime_created DESC");
 						
-		$findByPageStmt 		= sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblInvoiceImport);
-		$this->findByPageStmt 	= self::$PDO->prepare($findByPageStmt);
+		$findByPageStmt 			= sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblInvoiceImport);
+		$this->findByPageStmt 		= self::$PDO->prepare($findByPageStmt);
 		 
     } 
     function getCollection( array $raw ) {return new InvoiceImportCollection( $raw, $this );}
@@ -28,10 +28,12 @@ class InvoiceImport extends Mapper implements \MVC\Domain\InvoiceImportFinder {
 			$array['id'],  
 			$array['id_employee'],
 			$array['id_supplier'],
+			$array['id_warehouse'],
 			$array['datetime_created'],
 			$array['datetime_updated'],
 			$array['note'],
-			$array['state']
+			$array['state'],
+			$array['enable']
 		);
         return $obj;
     }
@@ -42,10 +44,12 @@ class InvoiceImport extends Mapper implements \MVC\Domain\InvoiceImportFinder {
         $values = array(
 			$object->getIdEmployee(),
 			$object->getIdSupplier(),
+			$object->getIdWarehouse(),
 			$object->getDateTimeCreated(),
 			$object->getDateTimeUpdated(),
 			$object->getNote(),
-			$object->getState()
+			$object->getState(),
+			$object->getEnable()
 		); 
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
@@ -56,10 +60,12 @@ class InvoiceImport extends Mapper implements \MVC\Domain\InvoiceImportFinder {
         $values = array(
 			$object->getIdEmployee(),
 			$object->getIdSupplier(),
+			$object->getIdWarehouse(),
 			$object->getDateTimeCreated(),
 			$object->getDateTimeUpdated(),
 			$object->getNote(),
 			$object->getState(),
+			$object->getEnable(),
 			$object->getId()
 		);		
         $this->updateStmt->execute( $values );
