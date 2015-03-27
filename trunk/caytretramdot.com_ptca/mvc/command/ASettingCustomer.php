@@ -17,6 +17,7 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
+			$mBranch 			= new \MVC\Mapper\Branch();
 			$mCustomer 			= new \MVC\Mapper\Customer();
 			$mCustomerGroup 	= new \MVC\Mapper\CustomerGroup();
 			$mConfig 			= new \MVC\Mapper\Config();
@@ -25,6 +26,7 @@
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
 			$Group			= $mCustomerGroup->find($IdGroup);
+			$BranchAll		= $mBranch->findAll();
 			$GroupAll		= $mCustomerGroup->findAll();
 			$CustomerAll 	= $mCustomer->findByGroup(array($IdGroup));
 						
@@ -51,6 +53,7 @@
 			$request->setObject('ConfigName'	, $ConfigName);
 			$request->setObject('Group'			, $Group);
 			$request->setObject('GroupAll'		, $GroupAll);
+			$request->setObject('BranchAll'		, $BranchAll);
 			$request->setObject('CustomerAll1'	, $CustomerAll1);
 																					
 			return self::statuses('CMD_DEFAULT');

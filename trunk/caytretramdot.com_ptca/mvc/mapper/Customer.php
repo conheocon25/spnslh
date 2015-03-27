@@ -9,8 +9,53 @@ class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
 		
         $this->selectAllStmt 	= self::$PDO->prepare("select * from customer");
         $this->selectStmt 		= self::$PDO->prepare("select * from customer where id=?");
-        $this->updateStmt 		= self::$PDO->prepare("update customer set id_customer_group=?, name=?, tel=?, fax=?, email=?, web=?, tax_code=?, debt_limit=?, address=?, note=?, visible=?, serial=?, avatar=? where id=?");
-        $this->insertStmt 		= self::$PDO->prepare("insert into customer (id_customer_group, name, tel, fax, email, web, tax_code, debt_limit, address, note, visible, serial, avatar) values( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $this->updateStmt 		= self::$PDO->prepare("
+			update customer set 
+				id_customer_group=?, 
+				id_branch=?,
+				name=?, 
+				code=?,
+				represent=?, 
+				tel=?, 
+				fax=?,
+				email=?,
+				tax_code=?,			
+				web=?,			
+				debt_limit=?,
+				address=?,
+				note=?,
+				avatar=?,
+				contract_id=?,
+				contract_from=?,
+				contract_to=?,
+				payment_method=?,
+				public=?,
+				enable=?
+			where id=?"
+		);
+        $this->insertStmt 		= self::$PDO->prepare("insert into customer (				
+				id_customer_group, 
+				id_branch, 
+				name, 
+				code, 
+				represent, 
+				tel, 
+				fax,
+				email,
+				tax_code,
+				web,			
+				debt_limit,			
+				address,
+				note,
+				avatar,
+				contract_id,
+				contract_from,
+				contract_to,
+				payment_method,
+				public,			
+				enable
+			) 
+			values( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 		$this->deleteStmt 		= self::$PDO->prepare("delete from customer where id=?");
 		$this->findByGroupStmt 	= self::$PDO->prepare("SELECT * FROM customer WHERE id_customer_group=? ORDER BY name");
 		$this->findByNormalStmt = self::$PDO->prepare("SELECT * FROM customer WHERE type>0 ORDER By type, name");
@@ -30,18 +75,25 @@ class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
         $obj = new \MVC\Domain\Customer( 
 			$array['id'],
 			$array['id_customer_group'],  
+			$array['id_branch'], 
 			$array['name'],
+			$array['code'],
+			$array['represent'],
 			$array['tel'],
 			$array['fax'],
 			$array['email'],
-			$array['web'],
 			$array['tax_code'],			
-			$array['debt_limit'],
+			$array['web'],			
+			$array['debt_limit'],			
 			$array['address'],
 			$array['note'],
-			$array['visible'],
-			$array['serial'],
-			$array['avatar']
+			$array['avatar'],
+			$array['contract_id'],
+			$array['contract_from'],
+			$array['contract_to'],
+			$array['payment_method'],
+			$array['public'],			
+			$array['enable']
 		);
         return $obj;
     }
@@ -53,39 +105,53 @@ class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array(  
 			$object->getIdGroup(),
+			$object->getIdBranch(),
 			$object->getName(),
-			$object->getTel(),	
+			$object->getCode(),
+			$object->getRepresent(),			
+			$object->getTel(),			
 			$object->getFax(),	
-			$object->getEmail(),			
-			$object->getWeb(),
+			$object->getEmail(),
 			$object->getTaxCode(),
-			$object->getDebtLimit(),
+			$object->getWeb(),			
+			$object->getDebtLimit(),			
 			$object->getAddress(),
 			$object->getNote(),
-			$object->getVisible(),
-			$object->getSerial(),
-			$object->getAvatar()
-		); 
+			$object->getAvatar(),
+			$object->getContractId(),
+			$object->getContractFrom(),
+			$object->getContractTo(),
+			$object->getPaymentMethod(),			
+			$object->getPublic(),			
+			$object->getEnable()
+		); 		
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
         $object->setId( $id );
     }
     
-    protected function doUpdate( \MVC\Domain\Object $object ) {
+    protected function doUpdate( \MVC\Domain\Object $object ) {												
         $values = array(
 			$object->getIdGroup(),
+			$object->getIdBranch(),
 			$object->getName(),
-			$object->getTel(),	
+			$object->getCode(),
+			$object->getRepresent(),			
+			$object->getTel(),			
 			$object->getFax(),	
-			$object->getEmail(),				
-			$object->getWeb(),
+			$object->getEmail(),
 			$object->getTaxCode(),
-			$object->getDebtLimit(),
+			$object->getWeb(),			
+			$object->getDebtLimit(),			
 			$object->getAddress(),
 			$object->getNote(),
-			$object->getVisible(),
-			$object->getSerial(),
 			$object->getAvatar(),
+			$object->getContractId(),
+			$object->getContractFrom(),
+			$object->getContractTo(),
+			$object->getPaymentMethod(),			
+			$object->getPublic(),			
+			$object->getEnable(),
 			$object->getId()
 		);		
         $this->updateStmt->execute( $values );
