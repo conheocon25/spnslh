@@ -4,6 +4,7 @@
 		<div metal:use-macro="mFront.xhtml/IncludeMETA"/>
 		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>
 		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
+		<style>.datepicker{z-index:1151 !important;}</style>		
 	</head>
 	<body>
 		<tal:block metal:use-macro="mFront.xhtml/Header"/>
@@ -65,79 +66,99 @@
 					<form id="FormCustomerInsert" action="#" class="form-horizontal" novalidate="novalidate">
 						<div class="modal-body">
 							<div class="form-group">
-								<label class="col-sm-3 control-label">Nhóm</label>
-								<div class="col-sm-9 controls">
+								<div class="col-sm-6 controls">
 									<select name="IdGroup1" id="IdGroup1" style="width:100%;" class="form-control">
 										<option tal:repeat="Group GroupAll" tal:attributes="value Group/getId">
 											<span tal:content="Group/getName"/>
 										</option>										
 									</select>
 								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Tên</label>
-								<div class="col-sm-9 controls">
-									<input id="Name1" name="Name1" type="text" class="form-control input-small"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">MST</label>
-								<div class="col-sm-9 controls">								
-									<input id="TaxCode1" name="TaxCode1" type="text" class="form-control input-small"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">MÃ KH</label>
-								<div class="col-sm-9 controls">
-									<input id="Serial1" name="Serial1" type="text" class="form-control input-small"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Điện thoại</label>
-								<div class="col-sm-9 controls">								
-									<input id="Tel1" name="Tel1" type="text" class="form-control input-small"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Fax</label>
-								<div class="col-sm-9 controls">								
-									<input id="Fax1" name="Fax1" type="text" class="form-control input-small"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Email</label>
-								<div class="col-sm-9 controls">								
-									<input id="Email1" name="Email1" type="text" class="form-control input-small"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Web</label>
-								<div class="col-sm-9 controls">								
-									<input id="Web1" name="Web1" type="text" class="form-control input-small"/>
+								<div class="col-sm-6 controls">
+									<select name="IdBranch1" id="IdBranch1" style="width:100%;" class="form-control">
+										<option tal:repeat="Branch BranchAll" tal:attributes="value Branch/getId">
+											<span tal:content="Branch/getName"/>
+										</option>
+									</select>
 								</div>
 							</div>							
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Giới hạn nợ</label>
-								<div class="col-sm-9 controls">								
-									<input id="DebtLimit1" name="DebtLimit1" type="text" class="form-control input-small"/>
+							<div class="form-group">								
+								<div class="col-sm-6 controls">
+									<input id="Code1" name="Code1" type="text" class="form-control input-small" placeholder="Mã KH"/>
+								</div>
+								<div class="col-sm-6 controls">
+									<input id="Name1" name="Name1" type="text" class="form-control input-small" placeholder="Tên KH"/>
+								</div>
+							</div>
+							<div class="form-group">								
+								<div class="col-sm-12 controls">
+									<input id="Represent1" name="Represent1" type="text" class="form-control input-small" placeholder="Người đại diện"/>
 								</div>
 							</div>							
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Ghi chú</label>
-								<div class="col-sm-9 controls">
-									<input id="Note1" name="Note1" type="text" class="form-control input-small"/>
+							<div class="form-group">								
+								<div class="col-sm-6 controls">								
+									<input id="Tel1" name="Tel1" type="text" class="form-control input-small" placeholder="Điện thoại"/>
+								</div>
+								<div class="col-sm-6 controls">
+									<input id="Fax1" name="Fax1" type="text" class="form-control input-small" placeholder="Fax"/>
+								</div>
+							</div>							
+							<div class="form-group">								
+								<div class="col-sm-6 controls">								
+									<input id="Email1" name="Email1" type="text" class="form-control input-small" placeholder="Email"/>
+								</div>
+								<div class="col-sm-6 controls">								
+									<input id="Web1" name="Web1" type="text" class="form-control input-small" placeholder="Web"/>
 								</div>
 							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Địa chỉ</label>
-								<div class="col-sm-9 controls">
-									<input id="Address1" name="Address1" type="text" class="form-control input-small"/>
+							<div class="form-group">								
+								<div class="col-sm-12 controls">								
+									<input id="TaxCode1" name="TaxCode1" type="text" class="form-control input-small" placeholder="Mã số thuế"/>
+								</div>
+							</div>							
+							<div class="form-group">								
+								<div class="col-sm-12 controls">								
+									<input id="DebtLimit1" name="DebtLimit1" type="text" class="form-control input-small" placeholder="Giới hạn nợ"/>
 								</div>
 							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Avatar</label>
-								<div class="col-sm-9 controls">								
-									<input id="Avatar1" name="Avatar1" type="text" class="form-control input-small"/>
+							<div class="form-group">								
+								<div class="col-sm-12 controls">
+									<input id="Address1" name="Address1" type="text" class="form-control input-small" placeholder="Địa chỉ"/>
+								</div>
+							</div>
+							<div class="form-group">								
+								<div class="col-sm-12 controls">
+									<input id="Note1" name="Note1" type="text" class="form-control input-small" placeholder="Ghi chú"/>
+								</div>
+							</div>							
+							<div class="form-group">								
+								<div class="col-sm-12 controls">
+									<input id="Avatar1" name="Avatar1" type="text" class="form-control input-small" placeholder="Hình ảnh KH"/>
+								</div>
+							</div>
+							<div class="form-group">								
+								<div class="col-sm-12 controls">
+									<input id="ContractId1" name="ContractId1" type="text" class="form-control input-small" placeholder="Mã hợp đồng"/>
+								</div>
+							</div>
+							<div class="form-group">								
+								<div class="col-sm-6 controls">
+									<input id="ContractFrom1" name="ContractFrom1" type="text" class="form-control input-small" data-date-format="yyyy-mm-dd" placeholder="Bắt đầu"/>
+								</div>
+								<div class="col-sm-6 controls">
+									<input id="ContractTo1" name="ContractTo1" type="text" class="form-control input-small" data-date-format="yyyy-mm-dd" placeholder="Kết thúc"/>
+								</div>
+							</div>							
+							<div class="form-group">								
+								<div class="col-sm-12 controls">
+									<input id="PaymentMethod1" name="PaymentMethod1" type="text" class="form-control input-small" placeholder="Phương thức thanh toán"/>
+								</div>
+							</div>							
+							<div class="form-group">								
+								<div class="col-sm-6 controls">
+									<input id="Public1" name="Public1" type="checkbox" /> Công cộng
+								</div>
+								<div class="col-sm-6 controls">
+									<input id="Enable1" name="Enable1" type="checkbox" /> Có hiệu lực
 								</div>
 							</div>
 						</div>
@@ -159,79 +180,99 @@
 					<form id="FormCustomerUpdate" action="#" class="form-horizontal" novalidate="novalidate">
 						<div class="modal-body">
 							<div class="form-group">
-								<label class="col-sm-3 control-label">Nhóm</label>
-								<div class="col-sm-9 controls">
+								<div class="col-sm-6 controls">
 									<select name="IdGroup2" id="IdGroup2" style="width:100%;" class="form-control">
 										<option tal:repeat="Group GroupAll" tal:attributes="value Group/getId">
 											<span tal:content="Group/getName"/>
 										</option>										
 									</select>
 								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Tên</label>
-								<div class="col-sm-9 controls">
-									<input id="Name2" name="Name2" type="text" class="form-control input-small"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">MST</label>
-								<div class="col-sm-9 controls">								
-									<input id="TaxCode2" name="TaxCode2" type="text" class="form-control input-small"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">MÃ KH</label>
-								<div class="col-sm-9 controls">
-									<input id="Serial2" name="Serial2" type="text" class="form-control input-small"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Điện thoại</label>
-								<div class="col-sm-9 controls">								
-									<input id="Tel2" name="Tel2" type="text" class="form-control input-small"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Fax</label>
-								<div class="col-sm-9 controls">								
-									<input id="Fax2" name="Fax2" type="text" class="form-control input-small"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Email</label>
-								<div class="col-sm-9 controls">								
-									<input id="Email2" name="Email2" type="text" class="form-control input-small"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Web</label>
-								<div class="col-sm-9 controls">								
-									<input id="Web2" name="Web2" type="text" class="form-control input-small"/>
+								<div class="col-sm-6 controls">
+									<select name="IdBranch2" id="IdBranch2" style="width:100%;" class="form-control">
+										<option tal:repeat="Branch BranchAll" tal:attributes="value Branch/getId">
+											<span tal:content="Branch/getName"/>
+										</option>
+									</select>
 								</div>
 							</div>							
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Giới hạn nợ</label>
-								<div class="col-sm-9 controls">								
-									<input id="DebtLimit2" name="DebtLimit2" type="text" class="form-control input-small"/>
+							<div class="form-group">								
+								<div class="col-sm-6 controls">
+									<input id="Code2" name="Code2" type="text" class="form-control input-small" placeholder="Mã KH"/>
+								</div>
+								<div class="col-sm-6 controls">
+									<input id="Name2" name="Name2" type="text" class="form-control input-small" placeholder="Tên KH"/>
+								</div>
+							</div>
+							<div class="form-group">								
+								<div class="col-sm-12 controls">
+									<input id="Represent2" name="Represent2" type="text" class="form-control input-small" placeholder="Người đại diện"/>
 								</div>
 							</div>							
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Ghi chú</label>
-								<div class="col-sm-9 controls">
-									<input id="Note2" name="Note2" type="text" class="form-control input-small"/>
+							<div class="form-group">								
+								<div class="col-sm-6 controls">								
+									<input id="Tel2" name="Tel2" type="text" class="form-control input-small" placeholder="Điện thoại"/>
+								</div>
+								<div class="col-sm-6 controls">
+									<input id="Fax2" name="Fax2" type="text" class="form-control input-small" placeholder="Fax"/>
+								</div>
+							</div>							
+							<div class="form-group">								
+								<div class="col-sm-6 controls">								
+									<input id="Email2" name="Email2" type="text" class="form-control input-small" placeholder="Email"/>
+								</div>
+								<div class="col-sm-6 controls">								
+									<input id="Web2" name="Web2" type="text" class="form-control input-small" placeholder="Web"/>
 								</div>
 							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Địa chỉ</label>
-								<div class="col-sm-9 controls">
-									<input id="Address2" name="Address2" type="text" class="form-control input-small"/>
+							<div class="form-group">								
+								<div class="col-sm-12 controls">								
+									<input id="TaxCode2" name="TaxCode2" type="text" class="form-control input-small" placeholder="Mã số thuế"/>
+								</div>
+							</div>							
+							<div class="form-group">								
+								<div class="col-sm-12 controls">								
+									<input id="DebtLimit2" name="DebtLimit2" type="text" class="form-control input-small" placeholder="Giới hạn nợ"/>
 								</div>
 							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Avatar</label>
-								<div class="col-sm-9 controls">
-									<input id="Avatar2" name="Avatar2" type="text" class="form-control input-small"/>
+							<div class="form-group">								
+								<div class="col-sm-12 controls">
+									<input id="Address2" name="Address2" type="text" class="form-control input-small" placeholder="Địa chỉ"/>
+								</div>
+							</div>
+							<div class="form-group">								
+								<div class="col-sm-12 controls">
+									<input id="Note2" name="Note2" type="text" class="form-control input-small" placeholder="Ghi chú"/>
+								</div>
+							</div>							
+							<div class="form-group">								
+								<div class="col-sm-12 controls">
+									<input id="Avatar2" name="Avatar2" type="text" class="form-control input-small" placeholder="Hình ảnh KH"/>
+								</div>
+							</div>
+							<div class="form-group">								
+								<div class="col-sm-12 controls">
+									<input id="ContractId2" name="ContractId2" type="text" class="form-control input-small" placeholder="Mã hợp đồng"/>
+								</div>
+							</div>
+							<div class="form-group">								
+								<div class="col-sm-6 controls">
+									<input id="ContractFrom2" name="ContractFrom2" type="text" class="form-control input-small" data-date-format="yyyy-mm-dd" placeholder="Bắt đầu"/>
+								</div>
+								<div class="col-sm-6 controls">
+									<input id="ContractTo2" name="ContractTo2" type="text" class="form-control input-small" data-date-format="yyyy-mm-dd" placeholder="Kết thúc"/>
+								</div>
+							</div>							
+							<div class="form-group">								
+								<div class="col-sm-12 controls">
+									<input id="PaymentMethod2" name="PaymentMethod2" type="text" class="form-control input-small" placeholder="Phương thức thanh toán"/>
+								</div>
+							</div>							
+							<div class="form-group">								
+								<div class="col-sm-6 controls">
+									<input id="Public2" name="Public2" type="checkbox" /> Công cộng
+								</div>
+								<div class="col-sm-6 controls">
+									<input id="Enable2" name="Enable2" type="checkbox" /> Có hiệu lực
 								</div>
 							</div>
 						</div>
@@ -244,10 +285,17 @@
 			</div>
 		</div>
 		<!-- END UPDATE DIALOG  -->
-		<div metal:use-macro="mDialog.xhtml/DialogDel"/>
-				
+		<div metal:use-macro="mDialog.xhtml/DialogDel"/>		
+		<script src="/mvc/templates/theme/cms/js/jquery-ui.custom.js"></script>	
+		<script src="/mvc/templates/theme/cms/js/bootstrap-datepicker.js"></script>
+		<script src="/mvc/templates/theme/cms/js/bootstrap-datepicker.vi.js"></script>		
 		<script type="text/javascript">
-		/*<![CDATA[*/			
+		/*<![CDATA[*/
+			$('#ContractFrom1').datepicker({language: 'vi'});
+			$('#ContractFrom2').datepicker({language: 'vi'});			
+			$('#ContractTo1').datepicker({language: 'vi'});
+			$('#ContractTo2').datepicker({language: 'vi'});
+			
 			//-----------------------------------------------------------------------------------
 			//Delete 1 EMPLOYEEE			
 			//-----------------------------------------------------------------------------------
@@ -273,12 +321,7 @@
 					Name1:{
 						minlength: 2,
 						required:true
-					},
-					Discount1:{
-						number: true,
-						required:true,
-						min:0
-					}
+					}					
 				},
 				errorClass: "help-inline",
 				errorElement: "span",
@@ -291,21 +334,27 @@
 				},
 				submitHandler: function (form) {					
 					var Data = [];
-					Data[0] = 'null';
+					Data[0] = 'null';					
 					Data[1] = $('#IdGroup1').val();
-					Data[2] = $('#Name1').val();
-					Data[3] = $('#Tel1').val();
-					Data[4] = $('#Fax1').val();				
-					Data[5] = $('#Email1').val();
-					Data[6] = $('#Web1').val();
-					Data[7] = $('#TaxCode1').val();
-					Data[8] = $('#DebtLimit1').val();					
-					Data[9] = $('#Address1').val();					
-					Data[10] = $('#Note1').val();
-					Data[11] = 1;
-					Data[12] = $('#Serial1').val();
-					Data[13] = $('#Avatar1').val();
-				
+					Data[2] = $('#IdBranch1').val();
+					Data[3] = $('#Name1').val();
+					Data[4] = $('#Code1').val();
+					Data[5] = $('#Represent1').val();
+					Data[6] = $('#Tel1').val();
+					Data[7] = $('#Fax1').val();
+					Data[8] = $('#Email1').val();
+					Data[9] = $('#TaxCode1').val();
+					Data[10] = $('#Web1').val();
+					Data[11] = $('#DebtLimit1').val();
+					Data[12] = $('#Address1').val();
+					Data[13] = $('#Note1').val();
+					Data[14] = $('#Avatar1').val();
+					Data[15] = $('#ContractId1').val();
+					Data[16] = $('#ContractFrom1').val();
+					Data[17] = $('#ContractTo1').val();
+					Data[18] = $('#PaymentMethod1').val();
+					Data[19] = $('#Public1').is(':checked')?1:0;
+					Data[20] = $('#Enable1').is(':checked')?1:0;
 					var URL = "/object/ins/Customer";
 					$.ajax({
 						type: "POST",
@@ -318,17 +367,11 @@
 					return false;
 				}
 			});
-			$("#DialogIns").on('show.bs.modal', function(event){
-				window.setTimeout(
-					function(){$(event.currentTarget).find('input#Name1').first().focus()},
-					0500
-				);
-			});
-			
+						
 			//-----------------------------------------------------------------------------------
 			//Load 1 Customer
 			//-----------------------------------------------------------------------------------
-			$('.update-item').click(function(){
+			$('.update-item').click(function(){				
 				//Load dữ liệu JSON về
 				var url = "/object/load/Customer/" + $(this).attr('data-id');
 				
@@ -337,17 +380,25 @@
 				$.getJSON(url, function(data) {
 					$('#URLUpdButton').attr('alt', 	data.Id);
 					$('#IdGroup2').val(				data.IdGroup);
-					$('#Name2').attr('value', 		data.Name);					
+					$('#IdBranch2').val(			data.IdBranch);
+					$('#Name2').attr('value', 		data.Name);
+					$('#Code2').attr('value', 		data.Code);
+					$('#Represent2').attr('value', 	data.Represent);					
 					$('#Tel2').attr('value', 		data.Tel);
 					$('#Fax2').attr('value', 		data.Fax);
 					$('#Email2').attr('value', 		data.Email);
-					$('#Web2').attr('value', 		data.Web);
 					$('#TaxCode2').attr('value', 	data.TaxCode);
+					$('#Web2').attr('value', 		data.Web);
 					$('#DebtLimit2').attr('value', 	data.DebtLimit);					
 					$('#Address2').attr('value', 	data.Address);
 					$('#Note2').attr('value', 		data.Note);
-					$('#Serial2').attr('value', 	data.Serial);
-					$('#Avatar2').attr('value', 	data.Avatar);
+					$('#Avatar2').attr('value', 	data.Avatar);					
+					$('#ContractId2').attr('value', data.ContractId);
+					$('#ContractFrom2').attr('value', data.ContractFrom);
+					$('#ContractTo2').attr('value', data.ContractTo);
+					$('#PaymentMethod2').attr('value', data.PaymentMethod);							
+					(data.Public==1)?$('#Public2').attr('checked', 'true'):0;
+					(data.Enable==1)?$('#Enable2').attr('checked', 'true'):0;					
 				});
 			});
 			
@@ -359,11 +410,6 @@
 					Name2:{
 						minlength: 2,
 						required:true
-					},
-					Discount2:{
-						number: true,
-						required:true,
-						min:0
 					}
 				},
 				errorClass: "help-inline",
@@ -376,21 +422,28 @@
 					$(element).parents('.form-group').addClass('has-success');
 				},
 				submitHandler: function (form) {					
-					var Data = [];
-					Data[0] = $('#URLUpdButton').attr('alt');														
+					var Data = [];										
+					Data[0] = $('#URLUpdButton').attr('alt');
 					Data[1] = $('#IdGroup2').val();
-					Data[2] = $('#Name2').val();
-					Data[3] = $('#Tel2').val();
-					Data[4] = $('#Fax2').val();				
-					Data[5] = $('#Email2').val();
-					Data[6] = $('#Web2').val();
-					Data[7] = $('#TaxCode2').val();
-					Data[8] = $('#DebtLimit2').val();					
-					Data[9] = $('#Address2').val();					
-					Data[10] = $('#Note2').val();
-					Data[11] = 1;
-					Data[12] = $('#Serial2').val();
-					Data[13] = $('#Avatar2').val();
+					Data[2] = $('#IdBranch2').val();
+					Data[3] = $('#Name2').val();
+					Data[4] = $('#Code2').val();
+					Data[5] = $('#Represent2').val();
+					Data[6] = $('#Tel2').val();
+					Data[7] = $('#Fax2').val();
+					Data[8] = $('#Email2').val();
+					Data[9] = $('#TaxCode2').val();
+					Data[10] = $('#Web2').val();
+					Data[11] = $('#DebtLimit2').val();
+					Data[12] = $('#Address2').val();
+					Data[13] = $('#Note2').val();
+					Data[14] = $('#Avatar2').val();
+					Data[15] = $('#ContractId2').val();
+					Data[16] = $('#ContractFrom2').val();
+					Data[17] = $('#ContractTo2').val();
+					Data[18] = $('#PaymentMethod2').val();					
+					Data[19] = $('#Public2').is(':checked')?1:0;
+					Data[20] = $('#Enable2').is(':checked')?1:0;
 															
 					var URL = "/object/upd/Customer";
 					$.ajax({
@@ -404,12 +457,7 @@
 					return false;
 				}
 			});
-			$("#DialogEdit").on('show.bs.modal', function(event){
-				window.setTimeout(
-					function(){$(event.currentTarget).find('input#Name2').first().focus()},
-					0500
-				);
-			});
+			
 		/*]]>*/
 		</script>
 	</body>
