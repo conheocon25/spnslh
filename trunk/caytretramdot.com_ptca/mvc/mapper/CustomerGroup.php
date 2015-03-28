@@ -9,8 +9,8 @@ class CustomerGroup extends Mapper implements \MVC\Domain\CustomerGroupFinder {
 		
         $this->selectAllStmt 	= self::$PDO->prepare("select * from customer_group ORDER BY name");
         $this->selectStmt 		= self::$PDO->prepare("select * from customer_group where id=?");
-        $this->updateStmt 		= self::$PDO->prepare("update customer_group set name=?  where id=?");
-        $this->insertStmt 		= self::$PDO->prepare("insert into customer_group (name) values(?)");
+        $this->updateStmt 		= self::$PDO->prepare("update customer_group set name=?, code=?  where id=?");
+        $this->insertStmt 		= self::$PDO->prepare("insert into customer_group (name, code) values(?, ?)");
 		$this->deleteStmt 		= self::$PDO->prepare("delete from customer_group where id=?");
 						
 		$findByPageStmt 		= sprintf("SELECT * FROM  %s ORDER BY name LIMIT :start,:max", $tblCustomerGroup);
@@ -22,7 +22,8 @@ class CustomerGroup extends Mapper implements \MVC\Domain\CustomerGroupFinder {
     protected function doCreateObject( array $array ) {		
         $obj = new \MVC\Domain\CustomerGroup( 
 			$array['id'],  
-			$array['name']			
+			$array['name'],
+			$array['code']
 		);
         return $obj;
     }
@@ -31,7 +32,8 @@ class CustomerGroup extends Mapper implements \MVC\Domain\CustomerGroupFinder {
 
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array(
-			$object->getName()
+			$object->getName(),
+			$object->getCode()
 		); 
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
@@ -40,7 +42,8 @@ class CustomerGroup extends Mapper implements \MVC\Domain\CustomerGroupFinder {
     
     protected function doUpdate( \MVC\Domain\Object $object ) {
         $values = array(
-			$object->getName(),			
+			$object->getName(),
+			$object->getCode(),
 			$object->getId()
 		);		
         $this->updateStmt->execute( $values );

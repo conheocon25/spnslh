@@ -29,12 +29,10 @@
 			$ConfigName		= $mConfig->findByName("NAME");
 			
 			$SupplierTypeAll1 = $mSupplierType->findByPage(array($Page, $Config->getValue() ));
-			$PN = new \MVC\Domain\PageNavigation($SupplierTypeAll->count(), $Config->getValue(), "/admin/setting/SupplierType" );
+			$PN = new \MVC\Domain\PageNavigation($SupplierTypeAll->count(), $Config->getValue(), "/ql-thiet-lap/nha-cung-cap" );
 			
 			$Title = "NHÀ CUNG CẤP";
-			$Navigation = array(				
-				array("THIẾT LẬP", "/admin")
-			);
+			$Navigation = array(array("THIẾT LẬP", "/ql-thiet-lap"));
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI

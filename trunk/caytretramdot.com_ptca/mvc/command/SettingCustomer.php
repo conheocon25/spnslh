@@ -36,12 +36,12 @@
 			$Config 		= $mConfig->findByName("ROW_PER_PAGE");
 			$ConfigName		= $mConfig->findByName("NAME");			
 			$CustomerAll1 	= $mCustomer->findByGroupPage(array($IdGroup, $Page, $Config->getValue() ));
-			$PN = new \MVC\Domain\PageNavigation($CustomerAll->count(), $Config->getValue(), "/admin/setting/customer");
+			$PN = new \MVC\Domain\PageNavigation($CustomerAll->count(), $Config->getValue(), $Group->getURLSettingCustomer() );
 			
 			$Title = mb_strtoupper($Group->getName(), 'UTF8');
 			$Navigation = array(				
-				array("THIẾT LẬP", "/admin"),
-				array("NHÓM KHÁCH HÀNG", "/admin/setting/customer")
+				array("THIẾT LẬP", "/ql-thiet-lap"),
+				array("NHÓM KHÁCH HÀNG", "/ql-thiet-lap/khach-hang")
 			);
 			
 			//-------------------------------------------------------------

@@ -38,9 +38,9 @@
 			$Config 		= $mConfig->findByName("ROW_PER_PAGE");
 						
 			$TransportAll1 	= $mTransport->findByGroupPage(array($IdGroup, $Page, $Config->getValue() ));			
-			$PN 			= new \MVC\Domain\PageNavigation($TransportAll->count(), $Config->getValue(), "/admin/setting/transport");
+			$PN 			= new \MVC\Domain\PageNavigation($TransportAll->count(), $Config->getValue(), $Group->getURLSetting() );
 			
-			$Title 		= "VẬN TẢI";
+			$Title 		= "PHƯƠNG TIỆN";
 			$Navigation = array(array("THIẾT LẬP", "/ql-thiet-lap"));
 			
 			//-------------------------------------------------------------

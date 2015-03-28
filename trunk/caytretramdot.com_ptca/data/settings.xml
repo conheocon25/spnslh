@@ -75,7 +75,8 @@
 		<command name="SettingDepartment">		<view>SettingDepartment</view>	</command>		
 		<command name="SettingSupplier">		<view>SettingSupplier</view>	</command>
 		<command name="SettingSupplierType">	<view>SettingSupplierType</view></command>		
-		<command name="SettingWarehouse">		<view>SettingWarehouse</view>	</command>		
+		<command name="SettingWarehouse">		<view>SettingWarehouse</view>	</command>
+		<command name="SettingWarehouseGroup">	<view>SettingWarehouseGroup</view></command>
 		<command name="SettingTrack">			<view>SettingTrack</view>		</command>
 		<command name="SettingTrackDaily">		<view>SettingTrackDaily</view>	</command>		
 		<command name="SettingTransport">		<view>SettingTransport</view>	</command>		

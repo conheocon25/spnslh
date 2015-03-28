@@ -28,10 +28,10 @@
 			$Config 		= $mConfig->findByName("ROW_PER_PAGE");
 						
 			$CustomerGroupAll1 	= $mCustomerGroup->findByPage(array($Page, $Config->getValue() ));
-			$PN 				= new \MVC\Domain\PageNavigation($CustomerGroupAll->count(), $Config->getValue(), "/admin/setting/group/customer");
+			$PN 				= new \MVC\Domain\PageNavigation($CustomerGroupAll->count(), $Config->getValue(), "/ql-thiet-lap/khach-hang");
 			
 			$Title = "NHÓM KHÁCH HÀNG";
-			$Navigation = array(array("THIẾT LẬP", "/admin"));
+			$Navigation = array(array("THIẾT LẬP", "/ql-thiet-lap"));
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
