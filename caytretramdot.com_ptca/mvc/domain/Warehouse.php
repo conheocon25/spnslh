@@ -4,6 +4,7 @@ require_once( "mvc/base/domain/DomainObject.php" );
 class Warehouse extends Object{
 
     private $Id;
+	private $IdGroup;
 	private $Name;
 	private $Tel;
 	private $Fax;
@@ -15,6 +16,7 @@ class Warehouse extends Object{
 	//-------------------------------------------------------------------------------
     function __construct( 
 		$Id=null, 
+		$IdGroup=null,
 		$Name=null, 
 		$Tel=null,
 		$Fax=null,
@@ -22,6 +24,7 @@ class Warehouse extends Object{
 		$Visible=null
 	){
         $this->Id 		= $Id;
+		$this->IdGroup 	= $IdGroup;
 		$this->Name 	= $Name;
 		$this->Tel 		= $Tel;
 		$this->Fax 		= $Fax;
@@ -32,15 +35,24 @@ class Warehouse extends Object{
 	
 	function setArray( $Data ){
         $this->Id 		= $Data[0];
-		$this->Name 	= $Data[1];
-		$this->Tel	 	= $Data[2];
-		$this->Fax	 	= $Data[3];
-		$this->Address 	= $Data[4];
-		$this->Visible 	= $Data[5];
+		$this->IdGroup 	= $Data[1];
+		$this->Name 	= $Data[2];
+		$this->Tel	 	= $Data[3];
+		$this->Fax	 	= $Data[4];
+		$this->Address 	= $Data[5];
+		$this->Visible 	= $Data[6];
     }
 	
     function getId( ) {return $this->Id;}
-			
+	
+	function setIdGroup( $IdGroup ) {$this->IdGroup = $IdGroup;$this->markDirty();}
+	function getIdGroup()			{return $this->IdGroup;}
+	function getGroup(){
+		$mGroup = new \MVC\Mapper\WarehouseGroup();
+		$Group 	= $mGroup->find($this->IdGroup);
+		return $Group;
+	}
+	
 	function setName( $Name ) 	{$this->Name = $Name;$this->markDirty();}
 	function getName()			{return $this->Name;}
 	
@@ -59,6 +71,7 @@ class Warehouse extends Object{
 	function toJSON(){
 		$json = array(
 			'Id' 			=> $this->getId(),
+			'IdGroup' 		=> $this->getIdGroup(),
 			'Name'			=> $this->getName(),
 			'Tel'			=> $this->getTel(),
 			'Fax'			=> $this->getFax(),
@@ -71,12 +84,7 @@ class Warehouse extends Object{
 	//-------------------------------------------------------------------------------
 	//GET LISTs
 	//-------------------------------------------------------------------------------
-	function getEmployeeAll(){
-		$mEmployee 		= new \MVC\Mapper\Employee();
-		$EmployeeAll 	= $mEmployee->findByWarehouse(array($this->getId()));
-		return $EmployeeAll;
-	}
-				
+					
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $id );}
 	

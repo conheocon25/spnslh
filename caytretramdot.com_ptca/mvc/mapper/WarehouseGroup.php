@@ -1,26 +1,26 @@
 <?php
 namespace MVC\Mapper;
 require_once( "mvc/base/Mapper.php" );
-class TransportGroup extends Mapper implements \MVC\Domain\TransportGroupFinder {
+class WarehouseGroup extends Mapper implements \MVC\Domain\WarehouseGroupFinder {
 
     function __construct() {
         parent::__construct();
-		$tblTransportGroup 		= "transport_group";
+		$tblWarehouseGroup 		= "warehouse_group";
 		
-        $this->selectAllStmt 	= self::$PDO->prepare("select * from transport_group");
-        $this->selectStmt 		= self::$PDO->prepare("select * from transport_group where id=?");
-        $this->updateStmt 		= self::$PDO->prepare("update transport_group set name=?, code=?  where id=?");
-        $this->insertStmt 		= self::$PDO->prepare("insert into transport_group (name, code) values(?, ?)");
-		$this->deleteStmt 		= self::$PDO->prepare("delete from transport_group where id=?");
+        $this->selectAllStmt 	= self::$PDO->prepare("select * from warehouse_group ORDER BY name");
+        $this->selectStmt 		= self::$PDO->prepare("select * from warehouse_group where id=?");
+        $this->updateStmt 		= self::$PDO->prepare("update warehouse_group set name=?, code=?  where id=?");
+        $this->insertStmt 		= self::$PDO->prepare("insert into warehouse_group (name, code) values(?, ?)");
+		$this->deleteStmt 		= self::$PDO->prepare("delete from warehouse_group where id=?");
 						
-		$findByPageStmt 		= sprintf("SELECT * FROM  %s ORDER BY name LIMIT :start,:max", $tblTransportGroup);
+		$findByPageStmt 		= sprintf("SELECT * FROM  %s ORDER BY name LIMIT :start,:max", $tblWarehouseGroup);
 		$this->findByPageStmt 	= self::$PDO->prepare($findByPageStmt);
 		 
     } 
-    function getCollection( array $raw ) {return new TransportGroupCollection( $raw, $this );}
+    function getCollection( array $raw ) {return new WarehouseGroupCollection( $raw, $this );}
 
     protected function doCreateObject( array $array ) {		
-        $obj = new \MVC\Domain\TransportGroup( 
+        $obj = new \MVC\Domain\WarehouseGroup( 
 			$array['id'],  
 			$array['name'],
 			$array['code']
@@ -28,7 +28,7 @@ class TransportGroup extends Mapper implements \MVC\Domain\TransportGroupFinder 
         return $obj;
     }
 	
-    protected function targetClass() {return "TransportGroup";}
+    protected function targetClass() {return "WarehouseGroup";}
 
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array(
@@ -43,7 +43,7 @@ class TransportGroup extends Mapper implements \MVC\Domain\TransportGroupFinder 
     protected function doUpdate( \MVC\Domain\Object $object ) {
         $values = array(
 			$object->getName(),
-			$object->getCode(),			
+			$object->getCode(),
 			$object->getId()
 		);		
         $this->updateStmt->execute( $values );
@@ -57,7 +57,7 @@ class TransportGroup extends Mapper implements \MVC\Domain\TransportGroupFinder 
 		$this->findByPageStmt->bindValue(':start', ((int)($values[0])-1)*(int)($values[1]), \PDO::PARAM_INT);
 		$this->findByPageStmt->bindValue(':max', (int)($values[1]), \PDO::PARAM_INT);
 		$this->findByPageStmt->execute();
-        return new TransportGroupCollection( $this->findByPageStmt->fetchAll(), $this );
+        return new WarehouseGroupCollection( $this->findByPageStmt->fetchAll(), $this );
     }
 }
 ?>

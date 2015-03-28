@@ -37,8 +37,8 @@
 			
 			$Title = mb_strtoupper($SupplierType->getName(), 'UTF8');
 			$Navigation = array(				
-				array("THIẾT LẬP", "/admin"),
-				array("NHÀ CUNG CẤP", "/admin/setting/supplier")
+				array("THIẾT LẬP", "/ql-thiet-lap"),
+				array("NHÀ CUNG CẤP", "/ql-thiet-lap/nha-cung-cap")
 			);
 			
 			//-------------------------------------------------------------

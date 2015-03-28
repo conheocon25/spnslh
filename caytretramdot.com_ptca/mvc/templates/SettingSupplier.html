@@ -40,14 +40,15 @@
 					</div>										
 				</div>
 				<div class="col-md-4">
-					<div class="panel panel-default">
+					<div class="panel panel-primary">
 						<div class="panel-heading"><i class="glyphicon glyphicon-cog"/> <B>DANH SÁCH NHÓM</B></div>
 						<div class="panel-body">
-							<ul>								
-								<li tal:attributes="class php:SupplierType->getId()==SupplierType1->getId()? 'btn btn-primary' : 'btn btn-default'" tal:repeat="SupplierType1 SupplierTypeAll">
+							<ul class="list-group">
+								<li tal:attributes="class php:SupplierType->getId()==SupplierType1->getId()? 'list-group-item list-group-item-success' : 'list-group-item'" tal:repeat="SupplierType1 SupplierTypeAll">
 									<a tal:attributes="href SupplierType1/getURLSetting">
 										<i class="glyphicon glyphicon-cog"/> <span tal:content="SupplierType1/getName"/> 
 									</a>
+									<span class="badge" tal:content="SupplierType1/getSupplierAll/count"/>
 								</li>
 							</ul>
 							<a href="#DialogIns" data-toggle="modal" class="btn btn-default btn-ins"><i class="glyphicon glyphicon-plus"/> NHÀ CUNG CẤP</a>

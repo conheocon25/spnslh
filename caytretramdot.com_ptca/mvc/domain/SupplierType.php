@@ -65,7 +65,7 @@ class SupplierType extends Object{
     }
 					
 	//=================================================================================
-	function getURLSetting(){return "/admin/setting/supplier/".$this->getId();}
+	function getURLSetting(){return "/ql-thiet-lap/nha-cung-cap/".$this->getId();}
 	
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}	

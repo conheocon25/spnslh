@@ -27,7 +27,9 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	
 	require_once( "mvc/mapper/Department.php" 		);
 	require_once( "mvc/mapper/Employee.php" 		);		
+	
 	require_once( "mvc/mapper/Warehouse.php" 		);
+	require_once( "mvc/mapper/WarehouseGroup.php" 	);
 	
 	require_once( "mvc/mapper/Track.php" 			);
 	require_once( "mvc/mapper/TrackDaily.php" 		);

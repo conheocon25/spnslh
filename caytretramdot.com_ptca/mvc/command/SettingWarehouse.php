@@ -11,33 +11,42 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$Page = $request->getProperty('Page');
+			$IdGroup 	= $request->getProperty('IdGroup');
+			$Page 		= $request->getProperty('Page');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
 			$mWarehouse 	= new \MVC\Mapper\Warehouse();
+			$mWarehouseGroup= new \MVC\Mapper\WarehouseGroup();
 			$mConfig 		= new \MVC\Mapper\Config();			
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------									
-			$WarehouseAll = $mWarehouse->findAll();
+			$GroupAll			= $mWarehouseGroup->findAll();
+			$Group 				= $mWarehouseGroup->find($IdGroup);
+			$WarehouseAll 		= $mWarehouse->findByGroup(array($IdGroup));
 						
 			if (!isset($Page)) $Page=1;
 			$Config 			= $mConfig->findByName("ROW_PER_PAGE");
 						
-			$WarehouseAll1 		= $mWarehouse->findByPage(array($Page, $Config->getValue() ));
-			$PN 				= new \MVC\Domain\PageNavigation($WarehouseAll->count(), $Config->getValue(), "/admin/setting/warehouse");
+			$WarehouseAll1 		= $mWarehouse->findByGroupPage(array($IdGroup, $Page, $Config->getValue() ));
+			$PN 				= new \MVC\Domain\PageNavigation($WarehouseAll->count(), $Config->getValue(), $Group->getURLSetting());
 			
-			$Title 		= "KHO HÀNG";
-			$Navigation = array(array("THIẾT LẬP", "/admin"));
+			$Title 	= mb_strtoupper($Group->getName(), 'UTF8');
+			$Navigation = array(
+				array("THIẾT LẬP", "/ql-thiet-lap"),
+				array("NHÓM KHO HÀNG", "/ql-thiet-lap/kho-hang")
+			);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------												
 			$request->setProperty('Page'		, $Page);
-			$request->setObject('PN'			, $PN);									
+			$request->setObject('PN'			, $PN);
+			$request->setObject('Group'			, $Group);
+			$request->setObject('GroupAll'		, $GroupAll);
 			$request->setObject('WarehouseAll1'	, $WarehouseAll1);
 			
 			$request->setProperty('Title'		, $Title);			
