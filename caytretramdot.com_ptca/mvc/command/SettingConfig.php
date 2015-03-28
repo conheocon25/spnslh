@@ -24,7 +24,7 @@
 			$ConfigAll 			= $mConfig->findAll();
 												
 			$Title 		= "CẤU HÌNH";			
-			$Navigation = array(array("THIẾT LẬP", "/admin"));
+			$Navigation = array(array("THIẾT LẬP", "/ql-thiet-lap"));
 						
 			//Kiểm tra nếu chưa tồn tại trong DB thì sẽ tự động khởi tạo giá trị mặc định và lưu vào DB			
 			$ConfigNameApp 	= $mConfig->findByName("NAME_APP");

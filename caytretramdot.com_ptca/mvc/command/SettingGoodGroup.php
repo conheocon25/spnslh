@@ -30,10 +30,8 @@
 			$GoodGroupAll1 	= $mGoodGroup->findByPage(array($Page, $Config->getValue() ));
 			$PN 			= new \MVC\Domain\PageNavigation($GoodGroupAll->count(), $Config->getValue(), "/admin/setting/group");
 			
-			$Title = "NHÓM HÀNG HÓA";
-			$Navigation = array(				
-				array("THIẾT LẬP", "/admin")
-			);
+			$Title = "HÀNG HÓA";
+			$Navigation = array(array("THIẾT LẬP", "/ql-thiet-lap"));
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI

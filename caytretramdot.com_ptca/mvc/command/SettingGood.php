@@ -19,6 +19,7 @@
 			//-------------------------------------------------------------
 			$mGoodGroup 	= new \MVC\Mapper\GoodGroup();
 			$mGood 			= new \MVC\Mapper\Good();
+			$mUnit 			= new \MVC\Mapper\Unit();
 			$mConfig 		= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
@@ -27,17 +28,18 @@
 			$GoodGroupAll	= $mGoodGroup->findAll();
 			$Group			= $mGoodGroup->find($IdGroup);
 			$GoodAll 		= $mGood->findByGroup(array($IdGroup));
+			$UnitAll 		= $mUnit->findAll();
 						
 			if (!isset($Page)) $Page=1;
 			$Config 		= $mConfig->findByName("ROW_PER_PAGE");
 						
 			$GoodAll1 		= $mGood->findByGroupPage(array($IdGroup, $Page, $Config->getValue() ));
-			$PN 			= new \MVC\Domain\PageNavigation($GoodAll->count(), $Config->getValue(), "/admin/setting/good");
+			$PN 			= new \MVC\Domain\PageNavigation($GoodAll->count(), $Config->getValue(), "/ql-thiet-lap/hang-hoa");
 			
 			$Title = mb_strtoupper($Group->getName(), 'UTF8');
 			$Navigation = array(				
-				array("THIẾT LẬP", "/admin"),
-				array("NHÓM HÀNG HÓA", "/admin/setting/good")
+				array("THIẾT LẬP", "/ql-thiet-lap"),
+				array("HÀNG HÓA", "/ql-thiet-lap/hang-hoa")
 			);
 			
 			//-------------------------------------------------------------
@@ -45,6 +47,7 @@
 			//-------------------------------------------------------------															
 			$request->setObject('Group'			, $Group);
 			$request->setObject('GoodGroupAll'	, $GoodGroupAll);
+			$request->setObject('UnitAll'		, $UnitAll);
 			$request->setObject('GoodAll'		, $GoodAll);
 			$request->setObject('GoodAll1'		, $GoodAll1);
 			$request->setProperty('Page'		, $Page);

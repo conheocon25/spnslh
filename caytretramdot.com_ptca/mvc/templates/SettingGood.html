@@ -17,16 +17,22 @@
 								<thead>
 									<tr>
 										<th class="text-center" width="40">ID</th>
+										<th class="text-left" width="60">MÃ</th>
 										<th class="text-left">TÊN</th>
-										<th class="text-left">GHI CHÚ</th>
-										<th class="text-center" width="40"><i class="glyphicon glyphicon-trash"/></th>
+										<th class="text-left" width="60">ĐVT</th>
+										<th class="text-right" width="90">GIÁ NHẬP</th>
+										<th class="text-right" width="90">GIÁ BÁN</th>
+										<th class="text-center" width="32"><i class="glyphicon glyphicon-trash"/></th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr tal:repeat="Good GoodAll1">
 										<td class="text-center"><span tal:content="repeat/Good/number"/></td>
+										<td class="text-left"><span tal:content="Good/getCode"/></td>
 										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Good/getId" tal:content="Good/getName"/></td>
-										<td><span tal:content="Good/getNote"/></td>
+										<td><span tal:content="Good/getUnit"/></td>
+										<td class="text-right"><span tal:content="Good/getPriceImportPrint"/></td>
+										<td class="text-right"><span tal:content="Good/getPriceSalePrint"/></td>
 										<td class="text-center">
 											<a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Good/getId">
 												<i class="glyphicon glyphicon-remove"/>
@@ -35,10 +41,7 @@
 									</tr>
 								</tbody>
 							</table>
-							<div metal:use-macro="mFront.xhtml/PageBar"/>
-							<a href="#DialogIns" data-toggle="modal" class="btn btn-default btn-ins">
-								<i class="glyphicon glyphicon-plus"/> HÀNG HÓA
-							</a>
+							<div metal:use-macro="mFront.xhtml/PageBar"/>							
 						</div>
 					</div>					
 				</div>
@@ -52,7 +55,10 @@
 										<i class="glyphicon glyphicon-user"/> <span tal:content="Group1/getName"/> 
 									</a>
 								</li>
-							</ul>							
+							</ul>
+							<a href="#DialogIns" data-toggle="modal" class="btn btn-default btn-ins">
+								<i class="glyphicon glyphicon-plus"/> HÀNG HÓA
+							</a>
 						</div>	
 					</div>
 				</div>
@@ -82,7 +88,13 @@
 								<div class="col-sm-8 controls">
 									<input id="Name1" name="Name1" type="text" class="form-control input-small"/>
 								</div>
-							</div>							
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Mã</label>								
+								<div class="col-sm-8 controls">
+									<input id="Code1" name="Code1" type="text" class="form-control input-small"/>
+								</div>
+							</div>
 							<div class="form-group">
 								<div class="control-group">
 									<label class="col-sm-3 control-label">Giá nhập</label>
@@ -102,8 +114,12 @@
 							<div class="form-group">
 								<div class="control-group">
 									<label class="col-sm-3 control-label">ĐVT</label>
-									<div class="col-sm-8 controls">
-										<input id="Unit1" name="Unit1" type="text" class="form-control input-small"/>
+									<div class="col-sm-8 controls">										
+										<select name="Unit1" id="Unit1" style="width:100%;" class="form-control">
+											<option tal:repeat="Unit UnitAll" tal:attributes="value Unit/getName">
+												<span tal:content="Unit/getName"/>
+											</option>
+										</select>
 									</div>
 								</div>
 							</div>
@@ -160,6 +176,12 @@
 								</div>
 							</div>
 							<div class="form-group">
+								<label class="col-sm-3 control-label">Mã</label>								
+								<div class="col-sm-8 controls">
+									<input id="Code2" name="Code2" type="text" class="form-control input-small"/>
+								</div>
+							</div>
+							<div class="form-group">
 								<div class="control-group">
 									<label class="col-sm-3 control-label">Giá nhập</label>
 									<div class="col-sm-8 controls">
@@ -179,7 +201,11 @@
 								<div class="control-group">
 									<label class="col-sm-3 control-label">ĐVT</label>
 									<div class="col-sm-8 controls">
-										<input id="Unit2" name="Unit2" type="text" class="form-control input-small"/>
+										<select name="Unit2" id="Unit2" style="width:100%;" class="form-control">
+											<option tal:repeat="Unit UnitAll" tal:attributes="value Unit/getName">
+												<span tal:content="Unit/getName"/>
+											</option>
+										</select>
 									</div>
 								</div>
 							</div>
@@ -254,12 +280,13 @@
 					Data[0] = 'null';
 					Data[1] = $('#IdGroup1').val();
 					Data[2] = $('#Name1').val();
-					Data[3] = $('#PriceImport1').val();
-					Data[4] = $('#PriceSale1').val();
-					Data[5] = $('#Unit1').val();
-					Data[6] = $('#Vat1').val();
-					Data[7] = $('#Note1').val();
-					Data[8] = 1;
+					Data[3] = $('#Code1').val();
+					Data[4] = $('#PriceImport1').val();
+					Data[5] = $('#PriceSale1').val();
+					Data[6] = $('#Unit1').val();
+					Data[7] = $('#Vat1').val();
+					Data[8] = $('#Note1').val();
+					Data[9] = 1;
 															
 					var URL = "/object/ins/Good";
 					$.ajax({
@@ -292,7 +319,8 @@
 				$.getJSON(url, function(data) {
 					$('#URLUpdButton').attr('alt', data.Id);
 					$('#IdGroup2').val(data.IdGroup);
-					$('#Name2').attr('value', data.Name);										
+					$('#Name2').attr('value', data.Name);
+					$('#Code2').attr('value', data.Code);										
 					$('#PriceImport2').val(data.PriceImport);
 					$('#PriceSale2').val(data.PriceSale);
 					$('#Unit2').val(data.Unit);
@@ -326,12 +354,13 @@
 					Data[0] = $('#URLUpdButton').attr('alt');
 					Data[1] = $('#IdGroup2').val();
 					Data[2] = $('#Name2').val();
-					Data[3] = $('#PriceImport2').val();
-					Data[4] = $('#PriceSale2').val();
-					Data[5] = $('#Unit2').val();
-					Data[6] = $('#Vat2').val();
-					Data[7] = $('#Note2').val();
-					Data[8] = 1;
+					Data[3] = $('#Code2').val();
+					Data[4] = $('#PriceImport2').val();
+					Data[5] = $('#PriceSale2').val();
+					Data[6] = $('#Unit2').val();
+					Data[7] = $('#Vat2').val();
+					Data[8] = $('#Note2').val();
+					Data[9] = 1;
 					
 					var URL = "/object/upd/Good";
 					$.ajax({

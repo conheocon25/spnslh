@@ -127,5 +127,6 @@ RewriteRule ^ql-thiet-lap/theo-doi$ 									?cmd=SettingTrack [L]
 RewriteRule ^ql-thiet-lap/theo-doi/page/([0-9]+)$ 						?cmd=SettingTrack&Page=$1 [L]
 RewriteRule ^ql-thiet-lap/theo-doi/([0-9]+)$ 							?cmd=SettingTrackDaily&IdTrack=$1 [L]
 
-RewriteRule ^ql-thiet-lap/van-chuyen$ 									?cmd=SettingTransport [L]
-RewriteRule ^ql-thiet-lap/van-chuyen/page/([0-9]+)$ 					?cmd=SettingTransport&Page=$1 [L]
+RewriteRule ^ql-thiet-lap/phuong-tien$ 									?cmd=SettingTransport [L]
+RewriteRule ^ql-thiet-lap/phuong-tien/([0-9]+)$ 						?cmd=SettingTransport&IdGroup=$1 [L]
+RewriteRule ^ql-thiet-lap/phuong-tien/([0-9]+)/page/([0-9]+)$ 			?cmd=SettingTransport&IdGroup=$1&Page=$2 [L]

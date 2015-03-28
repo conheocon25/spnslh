@@ -10,8 +10,9 @@ interface Finder {
     //function delete();
 }
 
-interface UserFinder  			extends Finder {}
-interface TypeAccountFinder  	extends Finder {}
+interface UserFinder  				extends Finder {}
+interface TypeAccountFinder  		extends Finder {}
+interface UnitFinder  				extends Finder {}
 
 interface BranchFinder  			extends Finder {}
 
@@ -42,6 +43,7 @@ interface TrackFinder  			extends Finder {}
 interface TrackDailyFinder  	extends Finder {}
 
 interface TransportFinder  		extends Finder {}
+interface TransportGroupFinder  extends Finder {}
 
 interface PaymentMethodFinder  	extends Finder {}
 

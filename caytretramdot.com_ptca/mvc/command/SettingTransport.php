@@ -11,33 +11,45 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$Page = $request->getProperty('Page');
+			$Page 			= $request->getProperty('Page');
+			$IdGroup 	= $request->getProperty('IdGroup');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mTransport 	= new \MVC\Mapper\Transport();
-			$mConfig 		= new \MVC\Mapper\Config();
+			$mTransportGroup 	= new \MVC\Mapper\TransportGroup();
+			$mTransport 		= new \MVC\Mapper\Transport();
+			$mConfig 			= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------									
-			$TransportAll = $mTransport->findAll();
+			//-------------------------------------------------------------
+			$GroupAll = $mTransportGroup->findAll();
+			if (!isset($IdGroup)){
+				$Group 		= $GroupAll->current();
+				$IdGroup 	= $Group->getId();
+			}else{
+				$Group 		= $mTransportGroup->find($IdGroup);
+			}
+									
+			$TransportAll 	= $mTransport->findByGroup(array($IdGroup));
 						
 			if (!isset($Page)) $Page=1;
 			$Config 		= $mConfig->findByName("ROW_PER_PAGE");
 						
-			$TransportAll1 	= $mTransport->findByPage(array($Page, $Config->getValue() ));
+			$TransportAll1 	= $mTransport->findByGroupPage(array($IdGroup, $Page, $Config->getValue() ));			
 			$PN 			= new \MVC\Domain\PageNavigation($TransportAll->count(), $Config->getValue(), "/admin/setting/transport");
 			
-			$Title 		= "ĐỘI XE";
-			$Navigation = array(array("THIẾT LẬP", "/admin"));
+			$Title 		= "VẬN TẢI";
+			$Navigation = array(array("THIẾT LẬP", "/ql-thiet-lap"));
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------												
-			$request->setProperty('Page'			, $Page);
-			$request->setObject('PN'				, $PN);
+			$request->setProperty('Page'		, $Page);
+			$request->setObject('PN'			, $PN);
+			$request->setObject('Group'			, $Group);
+			$request->setObject('GroupAll'		, $GroupAll);
 			$request->setObject('TransportAll1'	, $TransportAll1);
 			
 			$request->setProperty('Title'		, $Title);			
