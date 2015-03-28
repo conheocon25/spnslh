@@ -124,6 +124,9 @@
 	<!-- ======================================================================== -->
 	<div metal:define-macro="MenuApp" id="sidebar">
 		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">
+			<li tal:attributes="class php:ActiveAdmin=='Report'?'active':'disable'">
+				<a tal:attributes="href '/search'"><i class="glyphicons-search" />TÌM KIẾM</a>
+			</li>
 			<li tal:attributes="class php:ActiveAdmin=='Selling'?'active':'disable'">
 				<a tal:attributes="href '/selling'"><i class="glyphicons-drink" />BÁN HÀNG</a>
 			</li>

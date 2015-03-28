@@ -14,7 +14,14 @@
 		</command>
 		<command name="SignoutLoad"><view>SignoutLoad</view></command>
 		<command name="SignoutExe"><view>SignoutExe</view><status value="CMD_OK"><forward>Home</forward></status></command>
+
 		<command name="App"><view>App</view></command>		
+		
+		<!-- ============================================================================== -->
+		<!-- SEARCH		 																	-->
+		<!-- ============================================================================== -->
+		<command name="Search"><view>Search</view></command>
+		<command name="SearchExe"><view>SearchExe</view></command>
 		
 		<!-- ============================================================================== -->
 		<!-- JSON LOAD			 															-->
