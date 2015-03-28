@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mFront.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>		
+	</head>
+	<body>
+		<tal:block metal:use-macro="mFront.xhtml/Header"/>
+		<div class="container-fluid" id="wraper">
+			<div class="row">				
+				<div tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->IsAdmin()">
+					<div class="col-md-8">																		
+						<div class="panel panel-primary">
+							<div class="panel-heading"><i class="glyphicon glyphicon-cog"/> <B>THIẾT LẬP</B></div>
+							<div class="panel-body">								
+								<a href="/ql-thiet-lap/chi-nhanh" class="list-group-item">
+									<h4 class="list-group-item-heading"><B>CHI NHÁNH</B></h4>
+									<p class="list-group-item-text">Quản lý các thông tin chi nhánh của công ty.</p>
+								</a>
+								<a href="/ql-thiet-lap/van-chuyen" class="list-group-item">								  
+									<h4 class="list-group-item-heading"><B>ĐỘI XE</B></h4>
+									<p class="list-group-item-text">Quản lý các thông tin đội xe của công ty.</p>
+								</a>
+								<a href="/ql-thiet-lap/nguoi-dung" class="list-group-item">								  
+									<h4 class="list-group-item-heading"><B>NGƯỜI DÙNG</B></h4>
+									<p class="list-group-item-text">Quản lý các thông tin nhân viên sử dụng điều hành hệ thống.</p>
+								</a>
+								<a href="/ql-thiet-lap/nguoi-dung" class="list-group-item">
+									<h4 class="list-group-item-heading"><B>KHÁCH HÀNG</B></h4>
+									<p class="list-group-item-text">Quản lý các thông tin khách hàng của công ty.</p>
+								</a>
+								<a href="/ql-thiet-lap/nha-cung-cap" class="list-group-item">
+									<h4 class="list-group-item-heading"><B>NHÀ CUNG CẤP</B></h4>
+									<p class="list-group-item-text">Quản lý các thông tin nhà cung cấp sản phẩm / dịch vụ công ty.</p>
+								</a>
+								<a href="/ql-thiet-lap/kho-hang" class="list-group-item">								  
+									<h4 class="list-group-item-heading"><B>KHO HÀNG</B></h4>
+									<p class="list-group-item-text">Quản lý các thông tin kho hàng công ty.</p>
+								</a>								  
+								<a href="/ql-thiet-lap/hang-hoa" class="list-group-item">
+									<h4 class="list-group-item-heading"><B>HÀNG HÓA</B></h4>
+									<p class="list-group-item-text">Quản lý các thông tin về nhóm hàng hóa / hàng hóa công ty.</p>
+								</a>								
+								<a href="/ql-thiet-lap/phong-ban" class="list-group-item">
+									<h4 class="list-group-item-heading"><B>PHÒNG BAN</B></h4>
+									<p class="list-group-item-text">Quản lý các thông tin về phòng ban / nhân viên công ty.</p>
+								</a>								  
+								<a href="/ql-thiet-lap/theo-doi" class="list-group-item">
+									<h4 class="list-group-item-heading"><B>THEO DÕI</B></h4>
+									<p class="list-group-item-text">Quản lý các thông tin về báo cáo theo dõi hoạt động của hệ thống.</p>
+								</a>
+								<a href="/ql-thiet-lap/tham-so" class="list-group-item">
+									<h4 class="list-group-item-heading"><B>THAM SỐ</B></h4>
+									<p class="list-group-item-text">Quản lý các tham số hóa thông tin hệ thống.</p>
+								</a>								  
+							</div>
+						</div>						
+					</div>
+					<div class="col-md-4">
+						<div class="panel panel-primary">							
+							<div class="panel-heading"><i class="glyphicon glyphicon-cog"/> <B>THÔNG TIN NGƯỜI DÙNG</B></div>
+							<div class="panel-body">								
+								<a href="/signout/exe" class="list-group-item">
+									<h4 class="list-group-item-heading"><span tal:content="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->getEmail()"/> <span tal:content="php:@\MVC\Library\Statistic::getIPPrint()"/></h4>
+									<p class="list-group-item-text">Click vào để thoát khỏi hệ thống</p>
+								</a>
+								<a href="/signout/exe" class="list-group-item">
+									<h4 class="list-group-item-heading">Thông tin tài khoản</h4>
+									<p class="list-group-item-text">Xem / cập nhật thông tin tài khoản sử dụng ...</p>
+								</a>
+							</div>	
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>		
+		<div metal:use-macro="mFront.xhtml/IncludeJS"/>		
+	</body>
+</html>

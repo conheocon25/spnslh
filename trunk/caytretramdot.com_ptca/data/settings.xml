@@ -17,12 +17,12 @@
 		<command name="SigninLoad" 		type="public"><view>SigninLoad</view></command>
 		<command name="SigninExe" 		type="public">
 			<view>SigninExe</view>
-			<status value="CMD_OK"><forward>Admin</forward></status>
+			<status value="CMD_OK"><forward>App</forward></status>
 			<status value="CMD_NO_AUTHOR"><forward>FHome</forward></status>
 		</command>
 		<command name="SignoutLoad"><view>SignoutLoad</view></command>
 		<command name="SignoutExe"><view>SignoutExe</view><status value="CMD_OK"><forward>FHome</forward></status></command>
-		<command name="Admin"><view>Admin</view></command>											
+		<command name="App"><view>App</view></command>											
 		
 		<!-- ============================================================================== -->
 		<!-- WAREHOUSE 																		-->
@@ -63,32 +63,22 @@
 		<!-- ============================================================================== -->
 		<!-- SETTING	 																	-->
 		<!-- ============================================================================== -->				
-		<command name="ASetting">				<view>ASetting</view>			</command>						
-		<command name="ASettingTypeAccount">	<view>ASettingTypeAccount</view></command>								
-		
-		<command name="ASettingBranch">			<view>ASettingBranch</view>		</command>
-		
-		<command name="ASettingUser">			<view>ASettingUser</view>		</command>
-		
-		<command name="ASettingGoodGroup">		<view>ASettingGoodGroup</view></command>
-		<command name="ASettingGood">			<view>ASettingGood</view></command>
-		
-		<command name="ASettingCustomerGroup">	<view>ASettingCustomerGroup</view></command>
-		<command name="ASettingCustomer">		<view>ASettingCustomer</view>	</command>
-		
-		<command name="ASettingEmployee">		<view>ASettingEmployee</view>	</command>
-		<command name="ASettingDepartment">		<view>ASettingDepartment</view>	</command>
-		
-		<command name="ASettingSupplier">		<view>ASettingSupplier</view>	</command>
-		<command name="ASettingSupplierType">	<view>ASettingSupplierType</view></command>
-		
-		<command name="ASettingWarehouse">		<view>ASettingWarehouse</view>	</command>
-		
-		<command name="ASettingTrack">			<view>ASettingTrack</view>		</command>
-		<command name="ASettingTrackDaily">		<view>ASettingTrackDaily</view>	</command>
-		
-		<command name="ASettingTransport">		<view>ASettingTransport</view>	</command>
-		
-		<command name="ASettingConfig">			<view>ASettingConfig</view>		</command>
+		<command name="Setting">				<view>Setting</view>			</command>						
+				
+		<command name="SettingBranch">			<view>SettingBranch</view>		</command>		
+		<command name="SettingUser">			<view>SettingUser</view>		</command>		
+		<command name="SettingGoodGroup">		<view>SettingGoodGroup</view>	</command>
+		<command name="SettingGood">			<view>SettingGood</view>		</command>		
+		<command name="SettingCustomerGroup">	<view>SettingCustomerGroup</view></command>
+		<command name="SettingCustomer">		<view>SettingCustomer</view>	</command>		
+		<command name="SettingEmployee">		<view>SettingEmployee</view>	</command>
+		<command name="SettingDepartment">		<view>SettingDepartment</view>	</command>		
+		<command name="SettingSupplier">		<view>SettingSupplier</view>	</command>
+		<command name="SettingSupplierType">	<view>SettingSupplierType</view></command>		
+		<command name="SettingWarehouse">		<view>SettingWarehouse</view>	</command>		
+		<command name="SettingTrack">			<view>SettingTrack</view>		</command>
+		<command name="SettingTrackDaily">		<view>SettingTrackDaily</view>	</command>		
+		<command name="SettingTransport">		<view>SettingTransport</view>	</command>		
+		<command name="SettingConfig">			<view>SettingConfig</view>		</command>
 	</control>
 </options>

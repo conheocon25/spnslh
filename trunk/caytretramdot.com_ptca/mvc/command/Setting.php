@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class SaleReport extends Command{
+	class Setting extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -11,39 +11,28 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$IdTrack = $request->getProperty('IdTrack');
-						
+									
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
-			//-------------------------------------------------------------			
-			$mConfig 		= new \MVC\Mapper\Config();
-			$mTrack 		= new \MVC\Mapper\Track();
-															
+			//-------------------------------------------------------------
+			$mConfig = new \MVC\Mapper\Config();
+			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------																								
-			$Title = "BÁO CÁO";
-			$Navigation = array(
-				array("BÁN HÀNG", "/ql-ban-hang")
-			);
+			//-------------------------------------------------------------			
+			$ConfigName = $mConfig->findByName("NAME");
+						
+			$Title = "THIẾT LẬP";
+			$Navigation = array();
 			
-			$TrackAll 	= $mTrack->findAll();
-			
-			if (!isset($IdTrack)){
-				$Track		= $TrackAll->current();
-			}else{
-				$Track		= $mTrack->find($IdTrack);				
-			}
-																		
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-			$request->setObject("Track"		, $Track);
-			$request->setObject("TrackAll"	, $TrackAll);
-			
-			$request->setObject("Navigation", $Navigation);				
-			$request->setProperty("Title"	, $Title);
-																										
+			$request->setProperty('Title', 			$Title);
+			$request->setProperty('ActiveAdmin', 	'Setting');
+			$request->setObject('Navigation', 		$Navigation);
+			$request->setObject('ConfigName', 		$ConfigName);
+						
 			return self::statuses('CMD_DEFAULT');
 		}
 	}
