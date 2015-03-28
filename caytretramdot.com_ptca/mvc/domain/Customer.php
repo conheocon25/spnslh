@@ -204,7 +204,13 @@ class Customer extends Object{
 		$this->Public		= $Data[19];
 		$this->Enable		= $Data[20];
     }
-			
+	
+	function getSaleCommandAll(){
+		$mSaleCommand 		= new \MVC\Mapper\SaleCommand();
+		$SaleCommandAll 	= $mSaleCommand->findByCustomerTop12(array($this->Id));
+		return $SaleCommandAll;
+	}
+	
 	function getInvoiceSellAll(){
 		$mInvoiceSell 	= new	\MVC\Mapper\InvoiceSell();
 		$InvoiceAll 	= $mInvoiceSell->findByCustomerTop12(array($this->Id));

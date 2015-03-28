@@ -45,14 +45,15 @@
 		<!-- ============================================================================== -->
 		<!-- SALE	 																		-->
 		<!-- ============================================================================== -->
-		<command name="Sale">					<view>Sale</view></command>
-		<command name="SaleCustomerSearching">	<view>SaleCustomerSearching</view></command>		
-		<command name="SaleCustomer">			<view>SaleCustomer</view></command>		
-		<command name="SaleCustomerInsExe">		<view>SaleCustomerInsExe</view></command>
+		<command name="Sale">						<view>Sale</view></command>
+		<command name="SaleCommand">				<view>SaleCommand</view></command>		
+		<command name="SaleCommandCustomerSearch">	<view>SaleCommandCustomerSearch</view></command>
+		<command name="SaleCommandCustomer">		<view>SaleCommandCustomer</view></command>				
+		<command name="SaleCommandCustomerInsExe">	<view>SaleCommandCustomerInsExe</view></command>
 		
-		<command name="SaleCustomerInvoice">	<view>SaleCustomerInvoice</view></command>
-		<command name="SaleCustomerInvoicePrint"><view>SaleCustomerInvoicePrint</view></command>
-		
+		<command name="SaleCommandCustomerDetail">	<view>SaleCommandCustomerDetail</view></command>
+		<command name="SaleCommandCustomerDetailPrint"><view>SaleCommandCustomerDetailPrint</view></command>
+				
 		<command name="SaleInvoiceDetailInsExe"><view>SaleInvoiceDetailInsExe</view></command>
 		<command name="SaleInvoiceDetailUpdExe"><view>SaleInvoiceDetailUpdExe</view></command>
 		

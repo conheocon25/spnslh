@@ -1,56 +1,49 @@
 <body>
-	<div id="InvoicePanel" class="panel panel-primary" tal:attributes="alt Invoice/getURLLoad; data-id Invoice/getId; data-customer-id Invoice/getIdCustomer">
-		<div class="panel-heading"><i class="glyphicon glyphicon-star"/> <B tal:content="php: 'ĐƠN HÀNG ' . Invoice->getDateTimeCreatedPrint()"/></div>
+	<div id="CommandPanel" class="panel panel-primary" tal:attributes="alt Command/getURLLoad; data-id Command/getId; data-customer-id Command/getIdCustomer">
+		<div class="panel-heading"><i class="glyphicon glyphicon-star"/> <B tal:content="php: 'LỆNH BÁN ' . Command->getDateTimePrint()"/></div>
 		<div class="panel-body">
 			<table width="100%">
 				<tr>
 					<td width="35%">KHÁCH HÀNG</td>
 					<td width="45%">
-						<B tal:condition="Invoice/getBranch" tal:content="Invoice/getBranch/getName" /> / <B tal:content="Invoice/getCustomer/getName" />
+						<B tal:condition="Command/getBranch" tal:content="Command/getBranch/getName" /> / <B tal:content="Command/getCustomer/getName" />
 					</td>
 					<td width="20%" rowspan="7">
-						<img width="64px" tal:attributes="src Invoice/getEmployee/getAvatar"/>
+						<img width="64px" tal:attributes="src Command/getEmployee/getAvatar"/>
 					</td>
 				</tr>
 				<tr>
 					<td width="35%">ĐỊA CHỈ</td>
-					<td width="45%"><B tal:content="Invoice/getCustomer/getAddress" /></td>					
+					<td width="45%"><B tal:content="Command/getCustomer/getAddress" /></td>					
 				</tr>
 				<tr>
 					<td width="35%">ĐIỆN THOẠI</td>
-					<td width="45%"><B tal:content="Invoice/getCustomer/getTel" /></td>					
+					<td width="45%"><B tal:content="Command/getCustomer/getTel" /></td>					
 				</tr>				
 				<tr>
-					<td width="35%">KHỞI TẠO LÚC</td>
-					<td width="45%"><B tal:content="Invoice/getDateTimeCreatedPrint" /></td>					
-				</tr>
-				<tr>
-					<td width="35%">CẬP NHẬT LẦN CUỐI</td>
-					<td width="45%"><B tal:content="Invoice/getDateTimeUpdatedPrint" /></td>					
-				</tr>
+					<td width="35%">TẠO LÚC</td>
+					<td width="45%"><B tal:content="Command/getDateTimePrint" /></td>					
+				</tr>				
 				<tr>
 					<td width="35%">NHÂN VIÊN BÁN</td>
 					<td width="45%">
-						<a tal:condition="php:Invoice->getState()==0?true:false"
+						<a tal:condition="php:Command->getState()==0?true:false"
 							href="#DialogChooseEmployee" data-toggle="modal" 
-							class="invoice-item"
-								tal:attributes="id 				Invoice/getId;
-											id_employee 		Invoice/getIdEmployee;
-											id_customer 		Invoice/getIdCustomer;
-											id_warehouse		Invoice/getIdWarehouse;
-											id_transport		Invoice/getIdTransport;
-											id_branch 			Invoice/getIdBranch;
-											datetime_created 	Invoice/getDateTimeCreated;
-											datetime_updated	Invoice/getDateTimeUpdated;
-											note 				Invoice/getNote;
-											state 				Invoice/getState;"
-						><B tal:content="Invoice/getEmployee/getName" /></a>
-						<B tal:condition="php:Invoice->getState()==0?false:true" tal:content="Invoice/getEmployee/getName" />
+							class="Command-item"
+								tal:attributes="id 				Command/getId;
+											id_employee 		Command/getIdEmployee;
+											id_customer 		Command/getIdCustomer;																						
+											id_branch 			Command/getIdBranch;
+											datetime 			Command/getDateTime;											
+											note 				Command/getNote;
+											state 				Command/getState;"
+						><B tal:content="Command/getEmployee/getName" /></a>
+						<B tal:condition="php:Command->getState()==0?false:true" tal:content="Command/getEmployee/getName" />
 					</td>					
 				</tr>
 				<tr>
 					<td width="35%">TÌNH TRẠNG</td>
-					<td width="45%"><B tal:content="Invoice/getStatePrint" /></td>					
+					<td width="45%"><B tal:content="Command/getStatePrint" /></td>					
 				</tr>
 			</table>
 			<BR/>			
@@ -67,11 +60,11 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr tal:repeat="Detail Invoice/getDetailAll">
+					<tr tal:repeat="Detail Command/getDetailAll">
 						<td><div class="text-center" tal:content="repeat/Detail/number" /></td>
 						<td><a 
-							tal:condition="php:Invoice->getState()==0?true:false"
-							class="invoice-detail-item" href="#DialogGoodUpd" data-toggle="modal" 
+							tal:condition="php:Command->getState()==0?true:false"
+							class="Command-detail-item" href="#DialogGoodUpd" data-toggle="modal" 
 							tal:attributes="id 			Detail/getId;
 											id_good 	Detail/getIdGood;
 											name_good	Detail/getGood/getName;
@@ -80,7 +73,7 @@
 							" 
 							tal:content="Detail/getGood/getName"/>
 							
-							<span 	tal:condition="php:Invoice->getState()==0?false:true"							
+							<span 	tal:condition="php:Command->getState()==0?false:true"							
 									tal:content="Detail/getGood/getName"/>
 							
 						</td>
@@ -90,55 +83,55 @@
 						<td><div class="text-right" tal:content="Detail/getValuePrint"/></td>
 						<td>
 							<div class="text-right">
-								<a tal:condition="php:Invoice->getState()==0?true:false" class="remove-detail-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Detail/getId"><i class="glyphicon glyphicon-remove"/></a>
+								<a tal:condition="php:Command->getState()==0?true:false" class="remove-detail-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Detail/getId"><i class="glyphicon glyphicon-remove"/></a>
 							</div>
 						</td>
 					</tr>
 					<tr>
 						<td colspan="5"><div class="text-right"><B>TỔNG CỘNG</B></div></td>
-						<td><div class="text-right"><B tal:content="Invoice/getValuePrint" /></div></td>
+						<td><div class="text-right"><B tal:content="Command/getValuePrint" /></div></td>
 						<td/>
 					</tr>
 				</tbody>
 			</table>			
-			<a title="In phiếu" class="Ticket btn" tal:attributes="alt Invoice/getURLPrint"><i class="glyphicon glyphicon-print"/> IN PHIẾU</a>			
-			<a tal:condition="php:Invoice->getState()==0?true:false" href="#DialogGoodIns" data-toggle="modal"><i class="glyphicon glyphicon-plus"/> HÀNG HÓA</a>
+			<a title="In phiếu" class="Ticket btn" tal:attributes="alt Command/getURLPrint"><i class="glyphicon glyphicon-print"/> IN PHIẾU</a>			
+			<a tal:condition="php:Command->getState()==0?true:false" href="#DialogGoodIns" data-toggle="modal"><i class="glyphicon glyphicon-plus"/> HÀNG HÓA</a>
 		</div>
 	</div>
 	
-	<!-- DIALOG INVOICE EDIT -->
+	<!-- DIALOG Command EDIT -->
 	<div id="DialogChooseEmployee" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header"><h3><i class="glyphicon glyphicon-star modal-icon"/>CẬP NHẬT ĐƠN HÀNG</h3></div>
-				<form id="FormInvoiceUpdate" action="#" class="form-horizontal" novalidate="novalidate">					
-					<input id="InvoiceId" type="hidden" />
-					<input id="InvoiceIdCustomer" type="hidden" />
-					<input id="InvoiceIdTransport" type="hidden" />
-					<input id="InvoiceIdWarehouse" type="hidden" />
+				<form id="FormCommandUpdate" action="#" class="form-horizontal" novalidate="novalidate">					
+					<input id="CommandId" type="hidden" />
+					<input id="CommandIdCustomer" type="hidden" />
+					<input id="CommandIdTransport" type="hidden" />
+					<input id="CommandIdWarehouse" type="hidden" />
 					<div class="form-group">
 						<label class="col-sm-3 control-label">Khởi tạo</label>
 						<div class="col-sm-8 controls">
-							<input id="InvoiceDateTimeCreated" type="text" class="form-control input-small" data-date-format="yyyy-mm-dd hh:ii" readonly="true"/>
+							<input id="CommandDateTimeCreated" type="text" class="form-control input-small" data-date-format="yyyy-mm-dd hh:ii" readonly="true"/>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-3 control-label">Cập nhật cuối</label>
 						<div class="col-sm-8 controls">
-							<input id="InvoiceDateTimeUpdated" type="text" class="form-control input-small" data-date-format="yyyy-mm-dd hh:ii" readonly="true"/>
+							<input id="CommandDateTimeUpdated" type="text" class="form-control input-small" data-date-format="yyyy-mm-dd hh:ii" readonly="true"/>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-3 control-label">Ghi chú</label>
 						<div class="col-sm-8 controls">
-							<input id="InvoiceNote" type="text" class="form-control input-small" />
+							<input id="CommandNote" type="text" class="form-control input-small" />
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-3 control-label">Chi nhánh</label>
 						<div class="col-sm-8 controls">
-							<select id="InvoiceIdBranch" style="width:100%;" class="form-control">
-								<option tal:repeat="Branch BranchAll" tal:attributes="value Branch/getId;selected php:Branch->getId()==Invoice->getIdBranch()?true:false">
+							<select id="CommandIdBranch" style="width:100%;" class="form-control">
+								<option tal:repeat="Branch BranchAll" tal:attributes="value Branch/getId;selected php:Branch->getId()==Command->getIdBranch()?true:false">
 									<span tal:content="Branch/getName" />
 								</option>
 							</select>
@@ -147,24 +140,24 @@
 					<div class="form-group">
 						<label class="col-sm-3 control-label">Tình trạng</label>
 						<div class="col-sm-8 controls">							
-							<select id="InvoiceState" style="width:100%;" class="form-control">
-								<option tal:attributes="value string:0;selected php:Invoice->getState()==0?true:false">Chờ duyệt</option>
-								<option tal:attributes="value string:1;selected php:Invoice->getState()==1?true:false">Duyệt xong</option>
+							<select id="CommandState" style="width:100%;" class="form-control">
+								<option tal:attributes="value string:0;selected php:Command->getState()==0?true:false">Chờ duyệt</option>
+								<option tal:attributes="value string:1;selected php:Command->getState()==1?true:false">Duyệt xong</option>
 							</select>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-3 control-label">Nhân viên</label>
 						<div class="col-sm-8 controls">
-							<select id="InvoiceIdEmployee" style="width:100%;" class="form-control">
-								<option tal:repeat="Employee EmployeeAll" tal:attributes="value Employee/getId;selected php:Employee->getId()==Invoice->getIdEmployee()?true:false">
+							<select id="CommandIdEmployee" style="width:100%;" class="form-control">
+								<option tal:repeat="Employee EmployeeAll" tal:attributes="value Employee/getId;selected php:Employee->getId()==Command->getIdEmployee()?true:false">
 									<span tal:content="Employee/getName" />
 								</option>
 							</select>
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button class="btn btn-primary btn-small" id="URLInvoiceUpdButton"><i class="glyphicons-download_alt"/> Lưu</button>
+						<button class="btn btn-primary btn-small" id="URLCommandUpdButton"><i class="glyphicons-download_alt"/> Lưu</button>
 						<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
 					</div>
 				</form>
@@ -241,7 +234,7 @@
 	
 </body>
 <script>
-	$(".invoice-detail-item").click(function(){						
+	$(".Command-detail-item").click(function(){						
 		$("#DetailId2").val( $(this).attr('id') );
 		$("#DetailIdGood2").val( $(this).attr('id_good') );
 		$("#DetailNameGood2").val( $(this).attr('name_good') );
@@ -249,42 +242,42 @@
 		$("#DetailPrice2").val( $(this).attr('price') );
 	});
 	
-	$(".invoice-item").click(function(){
-		var InvoiceId 				= $(this).attr('id');		
-		var InvoiceIdCustomer 		= $(this).attr('id_customer');
-		var InvoiceIdWarehouse		= $(this).attr('id_warehouse');
-		var InvoiceIdTransport		= $(this).attr('id_transport');
-		var InvoiceIdBranch 		= $(this).attr('id_branch');
-		var InvoiceDateTimeCreated 	= $(this).attr('datetime_created');
-		var InvoiceDateTimeUpdated 	= $(this).attr('datetime_updated');	
-		var InvoiceNote 			= $(this).attr('note');
+	$(".Command-item").click(function(){
+		var CommandId 				= $(this).attr('id');		
+		var CommandIdCustomer 		= $(this).attr('id_customer');
+		var CommandIdWarehouse		= $(this).attr('id_warehouse');
+		var CommandIdTransport		= $(this).attr('id_transport');
+		var CommandIdBranch 		= $(this).attr('id_branch');
+		var CommandDateTimeCreated 	= $(this).attr('datetime_created');
+		var CommandDateTimeUpdated 	= $(this).attr('datetime_updated');	
+		var CommandNote 			= $(this).attr('note');
 				
-		$('#URLInvoiceUpdButton').attr('alt', InvoiceId);
-		$("#InvoiceId").val(InvoiceId);
-		$("#InvoiceIdCustomer").val(InvoiceIdCustomer);
-		$("#InvoiceIdTransport").val(InvoiceIdTransport);
-		$("#InvoiceIdWarehouse").val(InvoiceIdWarehouse);
-		$("#InvoiceIdBranch").val(InvoiceIdBranch);
-		$("#InvoiceDateTimeCreated").val(InvoiceDateTimeCreated);
-		$("#InvoiceDateTimeUpdated").val(InvoiceDateTimeUpdated);
-		$("#InvoiceNote").val(InvoiceNote);			
+		$('#URLCommandUpdButton').attr('alt', CommandId);
+		$("#CommandId").val(CommandId);
+		$("#CommandIdCustomer").val(CommandIdCustomer);
+		$("#CommandIdTransport").val(CommandIdTransport);
+		$("#CommandIdWarehouse").val(CommandIdWarehouse);
+		$("#CommandIdBranch").val(CommandIdBranch);
+		$("#CommandDateTimeCreated").val(CommandDateTimeCreated);
+		$("#CommandDateTimeUpdated").val(CommandDateTimeUpdated);
+		$("#CommandNote").val(CommandNote);			
 	});
 	
 	//Chèn vào HÀNG HÓA MỚI
 	$("#URLGoodInsButton").click(function(){
-		var IdCustomer 	= $("#InvoicePanel").attr("data-customer-id");
-		var IdInvoice 	= $("#InvoicePanel").attr("data-id");
+		var IdCustomer 	= $("#CommandPanel").attr("data-customer-id");
+		var IdCommand 	= $("#CommandPanel").attr("data-id");
 		var IdGood 		= $("#IdGood1").val();
 		var Count 		= $("#Count1").val();
 		var URL 		= "/ql-ban-hang/don-hang/chi-tiet/them-moi";
 		
 		$.ajax({
 			type: "POST",
-			data: {IdInvoice:IdInvoice, IdGood:IdGood, Count:Count},
+			data: {IdCommand:IdCommand, IdGood:IdGood, Count:Count},
 			url: URL,
 			success: function(msg){					
-				var URL = "/ql-ban-hang/khach-hang/" + IdCustomer +"/" + IdInvoice;
-				$("#InvoiceView").load(URL);
+				var URL = "/ql-ban-hang/khach-hang/" + IdCustomer +"/" + IdCommand;
+				$("#CommandView").load(URL);
 			}
 		});
 	});
@@ -292,8 +285,8 @@
 	
 	//Cập nhật HÀNG HÓA MỚI
 	$("#URLGoodUpdButton").click(function(){
-		var IdCustomer 	= $("#InvoicePanel").attr("data-customer-id");
-		var IdInvoice 	= $("#InvoicePanel").attr("data-id");
+		var IdCustomer 	= $("#CommandPanel").attr("data-customer-id");
+		var IdCommand 	= $("#CommandPanel").attr("data-id");
 		var IdDetail	= $("#DetailId2").val();
 		var IdGood 		= $("#DetailIdGood2").val();
 		var Count 		= $("#DetailCount2").val();
@@ -306,16 +299,16 @@
 			data: {IdDetail:IdDetail, Count:Count, Price:Price},
 			url: URL,
 			success: function(msg){					
-				var URL = "/ql-ban-hang/khach-hang/" + IdCustomer +"/" + IdInvoice;
-				$("#InvoiceView").load(URL);
+				var URL = "/ql-ban-hang/khach-hang/" + IdCustomer +"/" + IdCommand;
+				$("#CommandView").load(URL);
 			}
 		});		
 	});
 	
 	//-----------------------------------------------------------------------------------
-	//Update 1 INVOICE CURRENT
+	//Update 1 Command CURRENT
 	//-----------------------------------------------------------------------------------
-	$("#FormInvoiceUpdate").validate({
+	$("#FormCommandUpdate").validate({
 		rules:{
 			Name2:{
 				minlength: 2,
@@ -333,25 +326,25 @@
 		},
 		submitHandler: function (form) {					
 			var Data = [];
-			Data[0] = $('#URLInvoiceUpdButton').attr('alt');
-			Data[1] = $('#InvoiceIdEmployee').val();
-			Data[2] = $('#InvoiceIdCustomer').val();
-			Data[3] = $('#InvoiceIdWarehouse').val();
-			Data[4] = $('#InvoiceIdTransport').val();
-			Data[5] = $('#InvoiceIdBranch').val();
-			Data[6] = $('#InvoiceDateTimeCreated').val();
-			Data[7] = $('#InvoiceDateTimeUpdated').val();
-			Data[8] = $('#InvoiceNote').val();				
-			Data[9] = $('#InvoiceState').val();
+			Data[0] = $('#URLCommandUpdButton').attr('alt');
+			Data[1] = $('#CommandIdEmployee').val();
+			Data[2] = $('#CommandIdCustomer').val();
+			Data[3] = $('#CommandIdWarehouse').val();
+			Data[4] = $('#CommandIdTransport').val();
+			Data[5] = $('#CommandIdBranch').val();
+			Data[6] = $('#CommandDateTimeCreated').val();
+			Data[7] = $('#CommandDateTimeUpdated').val();
+			Data[8] = $('#CommandNote').val();				
+			Data[9] = $('#CommandState').val();
 																
-			var URL = "/object/upd/InvoiceSell";
+			var URL = "/object/upd/CommandSell";
 			$.ajax({
 				type: "POST",
 				data: {Data:Data},
 				url: URL,
 				success: function(msg){					
-					var URL1 = "/ql-ban-hang/khach-hang/" + $('#InvoiceIdCustomer').val()+"/"+$('#URLInvoiceUpdButton').attr('alt');					
-					$("#InvoiceView").load(URL1);
+					var URL1 = "/ql-ban-hang/khach-hang/" + $('#CommandIdCustomer').val()+"/"+$('#URLCommandUpdButton').attr('alt');					
+					$("#CommandView").load(URL1);
 				}
 			});
 			return false;
@@ -371,16 +364,16 @@
 		$('#URLDelButton').attr('alt', $(this).attr('data-id'));
 	});	
 	$('#URLDelButton').click(function(){			
-		var URL = "/object/del/InvoiceSellDetail/" + $(this).attr('alt');
-		var IdCustomer 	= $("#InvoicePanel").attr("data-customer-id");
-		var IdInvoice 	= $("#InvoicePanel").attr("data-id");
+		var URL = "/object/del/CommandSellDetail/" + $(this).attr('alt');
+		var IdCustomer 	= $("#CommandPanel").attr("data-customer-id");
+		var IdCommand 	= $("#CommandPanel").attr("data-id");
 		
 		$.ajax({
 			type: "POST",					
 			url: URL,
 			success: function(msg){
-				var URL = "/ql-ban-hang/khach-hang/" + IdCustomer +"/" + IdInvoice;
-				$("#InvoiceView").load(URL);
+				var URL = "/ql-ban-hang/khach-hang/" + IdCustomer +"/" + IdCommand;
+				$("#CommandView").load(URL);
 			}
 		});
 	});

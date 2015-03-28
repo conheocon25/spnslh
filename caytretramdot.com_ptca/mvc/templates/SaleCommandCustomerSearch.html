@@ -12,18 +12,15 @@
 		</div>
 	</body>
 	<script>
-			//NẠP DANH SÁCH GIAO DỊCH VỚI KHÁCH HÀNG
-			$('.Customer').click(function(){				
-				var IdCustomer = $(this).attr('alt');				
-				var CustomerName = $(this).attr('data-name');
-				
-				$("#InvoiceAllSell").load("/ql-ban-hang/khach-hang/"+IdCustomer);
-				$(this).toggleClass('active').siblings().removeClass('active');
-				$("#SearchName").focus();
-				$("#CustomerInvoiceSell").html("<B>ĐƠN HÀNG "+CustomerName+"</B>")
-			});
-			$('.Customer:first').click();
-			$("#SearchCustomer").focus();
-			$(".ctt").tooltip();
+		//NẠP DANH SÁCH GIAO DỊCH VỚI KHÁCH HÀNG
+		$('.Customer').click(function(){				
+			var IdCustomer = $(this).attr('alt');				
+			var CustomerName = $(this).attr('data-name');			
+			$("#CommandAll").load("/ql-ban-hang/lenh-ban/khach-hang/"+IdCustomer);
+			$(this).toggleClass('active').siblings().removeClass('active');								
+		});
+		$('.Customer:first').click();
+		$("#SearchCustomer").focus();
+		$(".ctt").tooltip();
     </script>
 </html>
