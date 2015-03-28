@@ -1,7 +1,7 @@
 <?php
 namespace MVC\Domain;
 require_once( "mvc/base/domain/DomainObject.php" );
-class GoodGroup extends Object{
+class Unit extends Object{
 
     private $Id;
 	private $Name;    
@@ -36,19 +36,13 @@ class GoodGroup extends Object{
 	
 	//-------------------------------------------------------------------------------
 	//GET LISTs
-	//-------------------------------------------------------------------------------
-	function getGoodAll(){
-		$mGood = new \MVC\Mapper\Good();
-		$GoodAll = $mGood->findByGroup(array($this->getId()));
-		return $GoodAll;
-	}
-				
+	//-------------------------------------------------------------------------------					
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $id );}
 	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------			
-	function getURLSettingGood(){return "/ql-thiet-lap/hang-hoa/".$this->getId();}
+	function getURLSettingCustomer(){return "/admin/setting/customer/".$this->getId();}
 }
 ?>

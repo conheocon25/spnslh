@@ -5,6 +5,7 @@ interface BranchCollection 				extends \Iterator {function add( Object $Branch )
 
 interface UserCollection 				extends \Iterator {function add( Object $User );		}
 interface TypeAccountCollection 		extends \Iterator {function add( Object $TypeAccount);	}
+interface UnitCollection 				extends \Iterator {function add( Object $Unit );		}
 
 interface SaleCommandCollection 		extends \Iterator {function add( Object $SaleCommand);		}
 interface SaleCommandDetailCollection 	extends \Iterator {function add( Object $SaleCommandDetail);}
@@ -32,7 +33,8 @@ interface WarehouseCollection 			extends \Iterator {function add( Object $Wareho
 interface TrackCollection 				extends \Iterator {function add( Object $Track);		}
 interface TrackDailyCollection 			extends \Iterator {function add( Object $TrackDaily);	}
 
-interface TransportCollection 			extends \Iterator {function add( Object $Transport);	}
+interface TransportCollection 			extends \Iterator {function add( Object $Transport);		}
+interface TransportGroupCollection 		extends \Iterator {function add( Object $TransportGroup);	}
 
 interface PaymentMethodCollection 		extends \Iterator {function add( Object $PaymentMethod);}
 

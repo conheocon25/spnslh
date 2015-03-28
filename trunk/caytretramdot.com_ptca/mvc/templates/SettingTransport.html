@@ -41,8 +41,15 @@
 					<div class="panel panel-default">
 						<div class="panel-heading"><i class="glyphicon glyphicon-cog"/> <B>THAO TÁC</B></div>
 						<div class="panel-body">
+							<ul>								
+								<li tal:attributes="class php:Group->getId()==Group1->getId()? 'btn btn-info' : 'btn btn-default'" tal:repeat="Group1 GroupAll">
+									<a tal:attributes="href Group1/getURLSetting">
+										<i class="glyphicon glyphicon-cog"/> <span tal:content="Group1/getName"/> 
+									</a>
+								</li>
+							</ul>
 							<a href="#DialogIns" data-toggle="modal" class="btn btn-default btn-ins">
-								<i class="glyphicon glyphicon-plus"/> XE
+								<i class="glyphicon glyphicon-plus"/> PHƯƠNG TIỆN
 							</a>
 						</div>	
 					</div>
@@ -54,9 +61,19 @@
 		<div id="DialogIns" class="modal fade">
 			<div class="modal-dialog">
 				<div class="modal-content">
-					<div class="modal-header"><h3><i class="glyphicon glyphicon-cog modal-icon"/> THÊM MỚI XE</h3></div>
+					<div class="modal-header"><h3><i class="glyphicon glyphicon-cog modal-icon"/> THÊM MỚI PHƯƠNG TIỆN</h3></div>
 					<form id="FormTransportInsert" action="#" class="form-horizontal" novalidate="novalidate">
 						<div class="modal-body">							
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Nhóm</label>
+								<div class="col-sm-8 controls">
+									<select name="IdGroup1" id="IdGroup1" style="width:100%;" class="form-control">
+										<option tal:repeat="Group1 GroupAll" tal:attributes="value Group1/getId; selected php:Group1->getId()==Group->getId()?true:false">
+											<span tal:content="Group1/getName"/>
+										</option>										
+									</select>
+								</div>
+							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Tên</label>
 								<div class="col-sm-8 controls">
@@ -64,11 +81,35 @@
 								</div>
 							</div>
 							<div class="form-group">
+								<label class="col-sm-3 control-label">Biển số</label>
+								<div class="col-sm-8 controls">
+									<input id="Code1" name="Code1" type="text" class="form-control input-small"/>
+								</div>
+							</div>
+							<div class="form-group">
 								<label class="col-sm-3 control-label">Tài xế</label>
 								<div class="col-sm-8 controls">
 									<input id="Driver1" name="Driver1" type="text" class="form-control input-small"/>
 								</div>
-							</div>							
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Dung tích</label>
+								<div class="col-sm-8 controls">
+									<input id="Quantity1" name="Quantity1" type="text" class="form-control input-small"/>
+								</div>
+							</div>					
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Ghi chú</label>
+								<div class="col-sm-8 controls">
+									<input id="Note1" name="Note1" type="text" class="form-control input-small"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Hiệu lực</label>
+								<div class="col-sm-8 controls">
+									<input id="Enable1" name="Enable1" type="text" class="form-control input-small"/>
+								</div>
+							</div>
 						</div>
 						<div class="modal-footer">
 							<button class="btn btn-primary btn-small" id="URLInsButton"><i class="glyphicons-download_alt"/> Lưu</button>
@@ -84,9 +125,19 @@
 		<div id="DialogEdit" class="modal fade">
 			<div class="modal-dialog">
 				<div class="modal-content">
-					<div class="modal-header"><h3><i class="glyphicon glyphicon-cog modal-icon"/> CẬP NHẬT XE</h3></div>
+					<div class="modal-header"><h3><i class="glyphicon glyphicon-cog modal-icon"/> CẬP NHẬT PHƯƠNG TIỆN</h3></div>
 					<form id="FormTransportUpdate" action="#" class="form-horizontal" novalidate="novalidate">
-						<div class="modal-body">							
+						<div class="modal-body">
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Nhóm</label>
+								<div class="col-sm-8 controls">
+									<select name="IdGroup2" id="IdGroup2" style="width:100%;" class="form-control">
+										<option tal:repeat="Group1 GroupAll" tal:attributes="value Group1/getId; selected php:Group1->getId()==Group->getId()?true:false">
+											<span tal:content="Group1/getName"/>
+										</option>										
+									</select>
+								</div>
+							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Tên</label>
 								<div class="col-sm-8 controls">
@@ -94,11 +145,35 @@
 								</div>
 							</div>
 							<div class="form-group">
+								<label class="col-sm-3 control-label">Biển số</label>
+								<div class="col-sm-8 controls">
+									<input id="Code2" name="Code2" type="text" class="form-control input-small"/>
+								</div>
+							</div>
+							<div class="form-group">
 								<label class="col-sm-3 control-label">Tài xế</label>
 								<div class="col-sm-8 controls">
 									<input id="Driver2" name="Driver2" type="text" class="form-control input-small"/>
 								</div>
-							</div>							
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Dung tích</label>
+								<div class="col-sm-8 controls">
+									<input id="Quantity2" name="Quantity2" type="text" class="form-control input-small"/>
+								</div>
+							</div>					
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Ghi chú</label>
+								<div class="col-sm-8 controls">
+									<input id="Note2" name="Note2" type="text" class="form-control input-small"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Hiệu lực</label>
+								<div class="col-sm-8 controls">
+									<input id="Enable2" name="Enable2" type="text" class="form-control input-small"/>
+								</div>
+							</div>
 						</div>
 						<div class="modal-footer">
 							<button class="btn btn-primary btn-small" id="URLUpdButton"><i class="glyphicons-download_alt"/> Lưu</button>
@@ -151,9 +226,14 @@
 				},
 				submitHandler: function (form) {					
 					var Data = [];
-					Data[0] = 'null';
-					Data[1] = $('#Name1').val();
-					Data[2] = $('#Driver1').val();					
+					Data[0] = 'null';					
+					Data[1] = $('#IdGroup1').val();
+					Data[2] = $('#Name1').val();
+					Data[3] = $('#Code1').val();
+					Data[4] = $('#Driver1').val();
+					Data[5] = $('#Quantity1').val();
+					Data[6] = $('#Note1').val();
+					Data[7] = $('#Enable1').val();
 																									
 					var URL = "/object/ins/Transport";
 					$.ajax({
@@ -185,8 +265,13 @@
 				$('#update-link').attr('action', $(this).attr('alt'));
 				$.getJSON(url, function(data) {
 					$('#URLUpdButton').attr('alt', 	data.Id);
+					$('#IdGroup2').attr('value', 	data.IdGroup);
 					$('#Name2').attr('value', 		data.Name);
+					$('#Code2').attr('value', 		data.Code);
 					$('#Driver2').attr('value', 	data.Driver);
+					$('#Quantity2').attr('value', 	data.Quantity);
+					$('#Note2').attr('value', 		data.Note);
+					$('#Enable2').attr('value', 	data.Enable);
 				});
 			});
 			
@@ -212,9 +297,14 @@
 				submitHandler: function (form) {					
 					var Data = [];
 					Data[0] = $('#URLUpdButton').attr('alt');
-					Data[1] = $('#Name2').val();
-					Data[2] = $('#Driver2').val();
-																									
+					Data[1] = $('#IdGroup2').val();
+					Data[2] = $('#Name2').val();
+					Data[3] = $('#Code2').val();
+					Data[4] = $('#Driver2').val();
+					Data[5] = $('#Quantity2').val();
+					Data[6] = $('#Note2').val();
+					Data[7] = $('#Enable2').val();
+																														
 					var URL = "/object/upd/Transport";
 					$.ajax({
 						type: "POST",

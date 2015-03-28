@@ -5,6 +5,7 @@ require_once( "mvc/base/mapper/Collection.php");
 
 class UserCollection 			extends Collection implements \MVC\Domain\UserCollection 			{function targetClass( ) {return "\MVC\Domain\User";		}}
 class TypeAccountCollection 	extends Collection implements \MVC\Domain\TypeAccountCollection 	{function targetClass( ) {return "\MVC\Domain\TypeAccount";	}}
+class UnitCollection 			extends Collection implements \MVC\Domain\UnitCollection 			{function targetClass( ) {return "\MVC\Domain\Unit";		}}
 
 class BranchCollection 			extends Collection implements \MVC\Domain\BranchCollection 			{function targetClass( ) {return "\MVC\Domain\Branch";		}}
 
@@ -35,6 +36,7 @@ class TrackCollection 			extends Collection implements \MVC\Domain\TrackCollecti
 class TrackDailyCollection 		extends Collection implements \MVC\Domain\TrackDailyCollection 		{function targetClass( ) {return "\MVC\Domain\TrackDaily";	}}
 
 class TransportCollection 		extends Collection implements \MVC\Domain\TransportCollection 		{function targetClass( ) {return "\MVC\Domain\Transport";	}}
+class TransportGroupCollection 	extends Collection implements \MVC\Domain\TransportGroupCollection 	{function targetClass( ) {return "\MVC\Domain\TransportGroup";	}}
 
 class PaymentMethodCollection 	extends Collection implements \MVC\Domain\PaymentMethodCollection 	{function targetClass( ) {return "\MVC\Domain\PaymentMethod";}}
 

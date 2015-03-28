@@ -5,7 +5,8 @@ class Good extends Object{
 
     private $Id;
 	private $IdGroup;
-	private $Name;	
+	private $Name;
+	private $Code;
 	private $PriceImport;
 	private $PriceSale;
 	private $Unit;
@@ -17,6 +18,7 @@ class Good extends Object{
 		$Id=null, 
 		$IdGroup=null, 
 		$Name=null,
+		$Code=null,
 		$PriceImport=null,
 		$PriceSale=null,
 		$Unit=null,
@@ -27,6 +29,7 @@ class Good extends Object{
         $this->Id 			= $Id;
 		$this->IdGroup 		= $IdGroup;
 		$this->Name 		= $Name;
+		$this->Code			= $Code;
 		$this->PriceImport 	= $PriceImport;
 		$this->PriceSale 	= $PriceSale;
 		$this->Unit 		= $Unit;
@@ -51,6 +54,9 @@ class Good extends Object{
 	
 	function getName(){return $this->Name;}	
     function setName( $Name ) {$this->Name = $Name;$this->markDirty();}
+	
+	function getCode(){return $this->Code;}	
+    function setCode( $Code ) {$this->Code = $Code;$this->markDirty();}
 	
 	function setPriceImport( $PriceImport ) {$this->PriceImport = $PriceImport;$this->markDirty();}
 	function getPriceImport(){return $this->PriceImport;}
@@ -80,6 +86,7 @@ class Good extends Object{
 			'Id' 			=> $this->getId(),
 			'IdGroup' 		=> $this->getIdGroup(),
 			'Name'			=> $this->getName(),
+			'Code'			=> $this->getCode(),
 			'PriceImport'	=> $this->getPriceImport(),
 			'PriceSale'		=> $this->getPriceSale(),
 			'Unit'			=> $this->getUnit(),
@@ -94,12 +101,13 @@ class Good extends Object{
 		$this->Id 			= $Data[0];
 		$this->IdGroup		= $Data[1];
 		$this->Name 		= $Data[2];
-		$this->PriceImport	= $Data[3];
-		$this->PriceSale	= $Data[4];
-		$this->Unit			= $Data[5];
-		$this->Vat			= $Data[6];
-		$this->Note			= $Data[7];
-		$this->Visible		= $Data[8];
+		$this->Code			= $Data[3];
+		$this->PriceImport	= $Data[4];
+		$this->PriceSale	= $Data[5];
+		$this->Unit			= $Data[6];
+		$this->Vat			= $Data[7];
+		$this->Note			= $Data[8];
+		$this->Visible		= $Data[9];
     }
 					
 	//=================================================================================	

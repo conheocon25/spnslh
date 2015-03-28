@@ -9,22 +9,33 @@ class Transport extends Mapper implements \MVC\Domain\TransportFinder {
 		
         $this->selectAllStmt 	= self::$PDO->prepare("select * from transport ORDER BY name");
         $this->selectStmt 		= self::$PDO->prepare("select * from transport where id=?");
-        $this->updateStmt 		= self::$PDO->prepare("update transport set name=?, driver=?  where id=?");
-        $this->insertStmt 		= self::$PDO->prepare("insert into transport (name, driver) values(?, ?)");
+        $this->updateStmt 		= self::$PDO->prepare("update transport set id_group=?, name=?, code=?, driver=?, quantity=?, note=?, enable=?  where id=?");
+        $this->insertStmt 		= self::$PDO->prepare("insert into transport (id_group, name, code, driver, quantity, note, enable) values(?, ?, ?, ?, ?, ?, ?)");
 		$this->deleteStmt 		= self::$PDO->prepare("delete from transport where id=?");
-						
+		
+		$findByGroupStmt		= sprintf("select * from %s where id_group=?", $tblTransport);
+		$this->findByGroupStmt 	= self::$PDO->prepare($findByGroupStmt);
+		
+		$findByGroupPageStmt 		= sprintf("SELECT * FROM  %s WHERE id_group=:id_group LIMIT :start,:max", $tblTransport);		
+		$this->findByGroupPageStmt 	= self::$PDO->prepare($findByGroupPageStmt);
+		
+		
 		$findByPageStmt 		= sprintf("SELECT * FROM  %s ORDER BY name LIMIT :start,:max", $tblTransport);
-		$this->findByPageStmt 	= self::$PDO->prepare($findByPageStmt);
-		 
+		$this->findByPageStmt 	= self::$PDO->prepare($findByPageStmt);					 
     } 
     function getCollection( array $raw ) {return new TransportCollection( $raw, $this );}
 
     protected function doCreateObject( array $array ) {		
         $obj = new \MVC\Domain\Transport( 
-			$array['id'],  
+			$array['id'],
+			$array['id_group'],
 			$array['name'],
-			$array['driver']
-		);
+			$array['code'],
+			$array['driver'],
+			$array['quantity'],
+			$array['note'],
+			$array['enable']
+		);			
         return $obj;
     }
 	
@@ -32,8 +43,13 @@ class Transport extends Mapper implements \MVC\Domain\TransportFinder {
 
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array(
+			$object->getIdGroup(),
 			$object->getName(),
-			$object->getDriver()
+			$object->getCode(),
+			$object->getDriver(),
+			$object->getQuantity(),
+			$object->getNote(),
+			$object->getEnable()
 		); 
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
@@ -42,8 +58,13 @@ class Transport extends Mapper implements \MVC\Domain\TransportFinder {
     
     protected function doUpdate( \MVC\Domain\Object $object ) {
         $values = array(
+			$object->getIdGroup(),
 			$object->getName(),
+			$object->getCode(),
 			$object->getDriver(),
+			$object->getQuantity(),
+			$object->getNote(),
+			$object->getEnable(),
 			$object->getId()
 		);		
         $this->updateStmt->execute( $values );
@@ -58,6 +79,19 @@ class Transport extends Mapper implements \MVC\Domain\TransportFinder {
 		$this->findByPageStmt->bindValue(':max', (int)($values[1]), \PDO::PARAM_INT);
 		$this->findByPageStmt->execute();
         return new TransportCollection( $this->findByPageStmt->fetchAll(), $this );
+    }
+	
+	function findByGroup( array $values ) {
+		$this->findByGroupStmt->execute($values);
+        return new TransportCollection( $this->findByGroupStmt->fetchAll(), $this );
+    }
+	
+	function findByGroupPage( $values ) {
+		$this->findByGroupPageStmt->bindValue(':id_group', (int)($values[0]), \PDO::PARAM_INT);
+		$this->findByGroupPageStmt->bindValue(':start', ((int)($values[1])-1)*(int)($values[2]), \PDO::PARAM_INT);
+		$this->findByGroupPageStmt->bindValue(':max', (int)($values[2]), \PDO::PARAM_INT);
+		$this->findByGroupPageStmt->execute();
+        return new TransportCollection( $this->findByGroupPageStmt->fetchAll(), $this );
     }
 }
 ?>

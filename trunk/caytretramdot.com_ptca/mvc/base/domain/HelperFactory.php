@@ -3,6 +3,7 @@ namespace MVC\Domain;
 if ( ! isset( $EG_DISABLE_INCLUDES ) ) {			
 	require_once( "mvc/mapper/User.php" 			);
 	require_once( "mvc/mapper/TypeAccount.php" 		);
+	require_once( "mvc/mapper/Unit.php" 			);
 	
 	require_once( "mvc/mapper/Branch.php" 			);
 	
@@ -32,6 +33,7 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	require_once( "mvc/mapper/TrackDaily.php" 		);
 	
 	require_once( "mvc/mapper/Transport.php" 		);
+	require_once( "mvc/mapper/TransportGroup.php" 	);
 	
 	require_once( "mvc/mapper/PaymentMethod.php" 	);
 	
