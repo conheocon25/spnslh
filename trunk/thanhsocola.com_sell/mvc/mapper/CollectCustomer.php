@@ -98,16 +98,24 @@ class CollectCustomer extends Mapper implements \MVC\Domain\CollectCustomerFinde
         $this->updateStmt->execute( $values );
     }
 
-	protected function doDelete(array $values) {
-        return $this->deleteStmt->execute( $values );
+	protected function doDelete(array $values) {return $this->deleteStmt->execute( $values );}
+    function selectStmt() {return $this->selectStmt;}
+    function selectAllStmt() {return $this->selectAllStmt;}
+	
+	function searchBy($SearchCustomer, $DateStart, $DateEnd, $ValueFrom, $ValueTo){
+		$searchByStmt = "SELECT * FROM  tbl_collect_customer WHERE 1 ";
+		if (isset($SearchCustomer)){
+			$searchByStmt = $searchByStmt." AND idcustomer=".$SearchCustomer;
+		}
+		if (isset($DateStart) && isset($DateEnd)){
+			$searchByStmt = $searchByStmt." AND `date`>='".$DateStart."' AND `date`<='".$DateEnd."'";
+		}
+		
+		$this->searchByStmt 	= self::$PDO->prepare($searchByStmt);
+        $this->searchByStmt->execute();
+        return new CollectCustomerCollection( $this->searchByStmt->fetchAll(), $this );	
     }
-
-    function selectStmt() {
-        return $this->selectStmt;
-    }
-    function selectAllStmt() {
-        return $this->selectAllStmt;
-    }
+	
 	
 	function findBy($values ){
         $this->findByStmt->execute( $values );

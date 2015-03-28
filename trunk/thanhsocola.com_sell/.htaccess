@@ -32,6 +32,9 @@ RewriteRule ^object/upd/([A-Za-z0-9]+)$ 							?cmd=ObjectUpd&ObjectName=$1 [L]
 #---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^app$ 												?cmd=App [L]
 
+RewriteRule ^search$ 											?cmd=Search [L]
+RewriteRule ^search/exe$ 										?cmd=SearchExe [L]
+
 RewriteRule ^selling$ 											?cmd=Selling [L]
 RewriteRule ^selling/load/customer/([0-9]+)$ 					?cmd=SellingCustomerLoad&IdCustomer=$1 [L]
 RewriteRule ^selling/session/load/([0-9]+)$ 					?cmd=SellingSessionLoad&IdSession=$1 [L]

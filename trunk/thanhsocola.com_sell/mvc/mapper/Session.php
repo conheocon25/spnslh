@@ -267,6 +267,21 @@ class Session extends Mapper implements \MVC\Domain\SessionFinder {
         return $result[0][0];
     }
 	
+	function searchBy($SearchCustomer, $DateStart, $DateEnd, $ValueFrom, $ValueTo){
+		$searchByStmt = "SELECT * FROM  tbl_session S WHERE 1 ";
+		if (isset($SearchCustomer)){
+			$searchByStmt = $searchByStmt." AND idcustomer=".$SearchCustomer;
+		}
+		if (isset($DateStart) && isset($DateEnd)){
+			$searchByStmt = $searchByStmt." AND date(`datetime`)>='".$DateStart."' AND date(`datetime`)<='".$DateEnd."'";
+		}
+		
+		$this->searchByStmt 	= self::$PDO->prepare($searchByStmt);
+        $this->searchByStmt->execute();
+        return new SessionCollection( $this->searchByStmt->fetchAll(), $this );
+		
+    }
+	
 	function findByCustomer($values ) {	
         $this->findByCustomerStmt->execute( $values );
         return new SessionCollection( $this->findByCustomerStmt->fetchAll(), $this );

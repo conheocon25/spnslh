@@ -278,7 +278,7 @@
 				var url = "/object/load/Session/" + $(this).attr('data-session-id');
 				
 				//Load dữ liệu JSON lên FORM
-				$.getJSON(url, function(data){					
+				$.getJSON(url, function(data){
 					$('#URLSessionUpdButton').attr('alt', data.Id);
 					$('#DateTime1').attr('value'		, data.DateTime);
 					$('#DateTimeEnd1').attr('value'		, data.DateTimeEnd);

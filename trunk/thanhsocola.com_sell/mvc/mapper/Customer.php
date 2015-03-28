@@ -7,7 +7,7 @@ class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
     function __construct() {
         parent::__construct();
         $this->selectAllStmt = self::$PDO->prepare( 
-                            "select * from tbl_customer");
+                            "select * from tbl_customer order by name");
         $this->selectStmt = self::$PDO->prepare( 
                             "select * from tbl_customer where id=?");
         $this->updateStmt = self::$PDO->prepare( 

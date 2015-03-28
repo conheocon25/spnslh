@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+	</head>
+	
+	<body data-menu-position="closed">
+		<div metal:use-macro="mAdmin.xhtml/Header"/>		
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>			
+			<div metal:use-macro="mAdmin.xhtml/LocationBar"/>
+			<div class="container-fluid">							
+				<div class="row">
+					<div class="col-12">
+						<div class="widget-box">
+							<div class="widget-content nopadding">
+								<div role="grid" class="dataTables_wrapper">
+									<H4>CÁC GIAO DỊCH (<span tal:content="SessionAll/count"/>)</H4>
+									<table class="table table-bordered table-striped table-hover">
+										<thead>
+											<tr role="row">
+												<th width="32"><div class="text-center">STT</div></th>
+												<th width="120"><div class="text-left">THỜI ĐIỂM</div></th>
+												<th width="240"><div class="text-left">KHÁCH HÀNG</div></th>
+												<th><div class="text-left">GHI CHÚ</div></th>
+												<th width="90"><div class="text-right">T.THỤ</div></th>
+												<th width="120"><div class="text-right">THÀNH TIỀN</div></th>
+											</tr>
+										</thead>
+										<tbody role="alert" aria-live="polite" aria-relevant="all">
+											<tr tal:repeat="Session SessionAll" class="gradeA odd">
+												<td class="text-center"><span tal:content="repeat/Session/number"/></td>
+												<td><span tal:content="Session/getDateTimePrint"/></td>
+												<td><span tal:content="Session/getCustomer/getName"/></td>
+												<td><span tal:content="Session/getNote"/></td>
+												<td align="right"><span tal:content="Session/getCount"/></td>
+												<td align="right"><span tal:content="Session/getValuePrint"/></td>
+											</tr>
+											<tr>
+												<td colspan="4" align="right"><B>TC</B></td>
+												<td align="right"><span tal:content="NSessionCount"/></td>
+												<td align="right"><span tal:content="NSessionValue"/></td>
+											</tr>
+										</tbody>
+									</table>									
+									<H4>TRẢ TIỀN (<span tal:content="CollectAll/count"/>)</H4>
+									<table class="table table-bordered table-striped table-hover">
+										<thead>
+											<tr role="row">
+												<th width="32"><div class="text-left">STT</div></th>
+												<th width="120"><div class="text-left">THỜI ĐIỂM</div></th>
+												<th width="240"><div class="text-left">KHÁCH HÀNG</div></th>
+												<th><div class="text-left">GHI CHÚ</div></th>												
+												<th width="120"><div class="text-right">TIỀN TRẢ</div></th>
+											</tr>
+										</thead>
+										<tbody role="alert" aria-live="polite" aria-relevant="all">
+											<tr tal:repeat="Collect CollectAll" class="gradeA odd">
+												<td><span tal:content="repeat/Collect/number"/></td>
+												<td><span tal:content="Collect/getDatePrint"/></td>
+												<td><span tal:content="Collect/getCustomer/getName"/></td>
+												<td><span tal:content="Collect/getNote"/></td>
+												<td align="right"><span tal:content="Collect/getValuePrint"/></td>
+											</tr>
+											<tr>
+												<td colspan="4" align="right"><B>TC</B></td>
+												<td align="right"><span tal:content="NCollectValue"/></td>
+											</tr>
+										</tbody>
+									</table>									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+	</body>
+</html>
