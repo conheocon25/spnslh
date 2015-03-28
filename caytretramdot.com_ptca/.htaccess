@@ -45,6 +45,7 @@ RewriteRule ^object/del/([A-Za-z0-9]+)/([0-9]+)$ 				?cmd=ObjectDel&ObjectName=$
 RewriteRule ^object/ins/([A-Za-z0-9]+)$ 						?cmd=ObjectIns&ObjectName=$1 [L]
 RewriteRule ^object/upd/([A-Za-z0-9]+)$ 						?cmd=ObjectUpd&ObjectName=$1 [L]
 
+RewriteRule ^app$ 														?cmd=App [L]
 #---------------------------------------------------------------------------------------------------------------------------
 # SALE
 #---------------------------------------------------------------------------------------------------------------------------
@@ -88,47 +89,43 @@ RewriteRule ^ql-kho-hang/bao-cao/([0-9]+)/([0-9]+)$ 			?cmd=WarehouseReportDaily
 #---------------------------------------------------------------------------------------------------------------------------
 # SETTING
 #---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^admin$ 													?cmd=Admin [L]
-RewriteRule ^admin/setting$ 											?cmd=ASetting [L]
+RewriteRule ^ql-thiet-lap$ 												?cmd=Setting [L]
 
-RewriteRule ^admin/setting/type/account$ 								?cmd=ASettingTypeAccount [L]
-RewriteRule ^admin/setting/type/account/([0-9]+)$ 						?cmd=ASettingTypeAccount&IdParent=$1 [L]
+RewriteRule ^ql-thiet-lap/chi-nhanh$ 									?cmd=SettingBranch [L]
+RewriteRule ^ql-thiet-lap/chi-nhanh/page/([0-9]+)$ 						?cmd=SettingBranch&Page=$1 [L]
 
-RewriteRule ^admin/setting/branch$ 										?cmd=ASettingBranch [L]
-RewriteRule ^admin/setting/branch/page/([0-9]+)$ 						?cmd=ASettingBranch&Page=$1 [L]
+RewriteRule ^ql-thiet-lap/tham-so$ 										?cmd=SettingConfig [L]
+RewriteRule ^ql-thiet-lap/tham-so/page/([0-9]+)$ 						?cmd=SettingConfig&Page=$1 [L]
 
-RewriteRule ^admin/setting/config$ 										?cmd=ASettingConfig [L]
-RewriteRule ^admin/setting/config/page/([0-9]+)$ 						?cmd=ASettingConfig&Page=$1 [L]
+RewriteRule ^ql-thiet-lap/nguoi-dung$ 									?cmd=SettingUser [L]
+RewriteRule ^ql-thiet-lap/nguoi-dung/page/([0-9]+)$ 					?cmd=SettingUser&Page=$1 [L]
 
-RewriteRule ^admin/setting/user$ 										?cmd=ASettingUser [L]
-RewriteRule ^admin/setting/user/page/([0-9]+)$ 							?cmd=ASettingUser&Page=$1 [L]
+RewriteRule ^ql-thiet-lap/khach-hang$ 									?cmd=SettingCustomerGroup [L]
+RewriteRule ^ql-thiet-lap/khach-hang/page/([0-9]+)$ 					?cmd=SettingCustomerGroup&Page=$1 [L]
+RewriteRule ^ql-thiet-lap/khach-hang/([0-9]+)$ 							?cmd=SettingCustomer&IdGroup=$1 [L]
+RewriteRule ^ql-thiet-lap/khach-hang/([0-9]+)/page/([0-9]+)$ 			?cmd=SettingCustomer&IdGroup=$1&Page=$2 [L]
 
-RewriteRule ^admin/setting/customer$ 									?cmd=ASettingCustomerGroup [L]
-RewriteRule ^admin/setting/customer/page/([0-9]+)$ 						?cmd=ASettingCustomerGroup&Page=$1 [L]
-RewriteRule ^admin/setting/customer/([0-9]+)$ 							?cmd=ASettingCustomer&IdGroup=$1 [L]
-RewriteRule ^admin/setting/customer/([0-9]+)/page/([0-9]+)$ 			?cmd=ASettingCustomer&IdGroup=$1&Page=$2 [L]
+RewriteRule ^ql-thiet-lap/hang-hoa$ 									?cmd=SettingGoodGroup [L]
+RewriteRule ^ql-thiet-lap/hang-hoa/page/([0-9]+)$ 						?cmd=SettingGoodGroup&Page=$1 [L]
+RewriteRule ^ql-thiet-lap/hang-hoa/([0-9]+)$ 							?cmd=SettingGood&IdGroup=$1 [L]
+RewriteRule ^ql-thiet-lap/hang-hoa/([0-9]+)/page/([0-9]+)$ 				?cmd=SettingGood&IdGroup=$1&Page=$2 [L]
 
-RewriteRule ^admin/setting/good$ 										?cmd=ASettingGoodGroup [L]
-RewriteRule ^admin/setting/good/page/([0-9]+)$ 							?cmd=ASettingGoodGroup&Page=$1 [L]
-RewriteRule ^admin/setting/good/([0-9]+)$ 								?cmd=ASettingGood&IdGroup=$1 [L]
-RewriteRule ^admin/setting/good/([0-9]+)/page/([0-9]+)$ 				?cmd=ASettingGood&IdGroup=$1&Page=$2 [L]
+RewriteRule ^ql-thiet-lap/nha-cung-cap$ 								?cmd=SettingSupplierType [L]
+RewriteRule ^ql-thiet-lap/nha-cung-cap/page/([0-9]+)$ 					?cmd=SettingSupplierType&Page=$1 [L]
+RewriteRule ^ql-thiet-lap/nha-cung-cap/([0-9]+)$ 						?cmd=SettingSupplier&IdType=$1 [L]
+RewriteRule ^ql-thiet-lap/nha-cung-cap/([0-9]+)/page/([0-9]+)$ 			?cmd=SettingSupplier&IdType=$1&Page=$2 [L]
 
-RewriteRule ^admin/setting/supplier$ 									?cmd=ASettingSupplierType [L]
-RewriteRule ^admin/setting/supplier/page/([0-9]+)$ 						?cmd=ASettingSupplierType&Page=$1 [L]
-RewriteRule ^admin/setting/supplier/([0-9]+)$ 							?cmd=ASettingSupplier&IdType=$1 [L]
-RewriteRule ^admin/setting/supplier/([0-9]+)/page/([0-9]+)$ 			?cmd=ASettingSupplier&IdType=$1&Page=$2 [L]
+RewriteRule ^ql-thiet-lap/kho-hang$ 									?cmd=SettingWarehouse [L]
+RewriteRule ^ql-thiet-lap/kho-hang/([0-9]+)$ 							?cmd=SettingWarehouse&Page=$1 [L]
 
-RewriteRule ^admin/setting/warehouse$ 									?cmd=ASettingWarehouse [L]
-RewriteRule ^admin/setting/warehouse/page/([0-9]+)$ 					?cmd=ASettingWarehouse&Page=$1 [L]
+RewriteRule ^ql-thiet-lap/phong-ban$ 									?cmd=SettingDepartment [L]
+RewriteRule ^ql-thiet-lap/phong-ban/page/([0-9]+)$ 						?cmd=SettingDepartment&Page=$1 [L]
+RewriteRule ^ql-thiet-lap/phong-ban/([0-9]+)$ 							?cmd=SettingEmployee&IdDepartment=$1 [L]
+RewriteRule ^ql-thiet-lap/phong-ban/([0-9]+)/page/([0-9]+)$ 			?cmd=SettingEmployee&IdDepartment=$1&Page=$2 [L]
 
-RewriteRule ^admin/setting/department$ 									?cmd=ASettingDepartment [L]
-RewriteRule ^admin/setting/department/page/([0-9]+)$ 					?cmd=ASettingDepartment&Page=$1 [L]
-RewriteRule ^admin/setting/department/([0-9]+)$ 						?cmd=ASettingEmployee&IdDepartment=$1 [L]
-RewriteRule ^admin/setting/department/([0-9]+)/page/([0-9]+)$ 			?cmd=ASettingEmployee&IdDepartment=$1&Page=$2 [L]
+RewriteRule ^ql-thiet-lap/theo-doi$ 									?cmd=SettingTrack [L]
+RewriteRule ^ql-thiet-lap/theo-doi/page/([0-9]+)$ 						?cmd=SettingTrack&Page=$1 [L]
+RewriteRule ^ql-thiet-lap/theo-doi/([0-9]+)$ 							?cmd=SettingTrackDaily&IdTrack=$1 [L]
 
-RewriteRule ^admin/setting/track$ 										?cmd=ASettingTrack [L]
-RewriteRule ^admin/setting/track/page/([0-9]+)$ 						?cmd=ASettingTrack&Page=$1 [L]
-RewriteRule ^admin/setting/track/([0-9]+)$ 								?cmd=ASettingTrackDaily&IdTrack=$1 [L]
-
-RewriteRule ^admin/setting/transport$ 									?cmd=ASettingTransport [L]
-RewriteRule ^admin/setting/transport/page/([0-9]+)$ 					?cmd=ASettingTransport&Page=$1 [L]
+RewriteRule ^ql-thiet-lap/van-chuyen$ 									?cmd=SettingTransport [L]
+RewriteRule ^ql-thiet-lap/van-chuyen/page/([0-9]+)$ 					?cmd=SettingTransport&Page=$1 [L]
