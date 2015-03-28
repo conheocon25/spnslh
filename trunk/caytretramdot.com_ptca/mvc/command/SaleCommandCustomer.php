@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class SaleCustomerSearching extends Command{
+	class SaleCommandCustomer extends Command{
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -11,7 +11,7 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------			
-			$Name 		= $request->getProperty("Name");
+			$IdCustomer = $request->getProperty("IdCustomer");
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
@@ -21,12 +21,12 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------									
-			$CustomerAll	= $mCustomer->findByName($Name);
+			$Customer	= $mCustomer->find($IdCustomer);
 									
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-			$request->setObject('CustomerFAll'		, $CustomerAll);
+			$request->setObject('Customer'		, $Customer);
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

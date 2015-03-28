@@ -8,6 +8,9 @@ class TypeAccountCollection 	extends Collection implements \MVC\Domain\TypeAccou
 
 class BranchCollection 			extends Collection implements \MVC\Domain\BranchCollection 			{function targetClass( ) {return "\MVC\Domain\Branch";		}}
 
+class SaleCommandCollection 		extends Collection implements \MVC\Domain\SaleCommandCollection			{function targetClass( ) {return "\MVC\Domain\SaleCommand";			}}
+class SaleCommandDetailCollection 	extends Collection implements \MVC\Domain\SaleCommandDetailCollection	{function targetClass( ) {return "\MVC\Domain\SaleCommandDetail";	}}
+
 class InvoiceSellCollection 		extends Collection implements \MVC\Domain\InvoiceSellCollection			{function targetClass( ) {return "\MVC\Domain\InvoiceSell";	}}
 class InvoiceSellDetailCollection 	extends Collection implements \MVC\Domain\InvoiceSellDetailCollection	{function targetClass( ) {return "\MVC\Domain\InvoiceSellDetail";	}}
 

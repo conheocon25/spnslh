@@ -15,6 +15,9 @@ interface TypeAccountFinder  	extends Finder {}
 
 interface BranchFinder  			extends Finder {}
 
+interface SaleCommandFinder  		extends Finder {}
+interface SaleCommandDetailFinder  	extends Finder {}
+
 interface InvoiceSellFinder  		extends Finder {}
 interface InvoiceSellDetailFinder  	extends Finder {}
 

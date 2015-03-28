@@ -6,6 +6,9 @@ interface BranchCollection 				extends \Iterator {function add( Object $Branch )
 interface UserCollection 				extends \Iterator {function add( Object $User );		}
 interface TypeAccountCollection 		extends \Iterator {function add( Object $TypeAccount);	}
 
+interface SaleCommandCollection 		extends \Iterator {function add( Object $SaleCommand);		}
+interface SaleCommandDetailCollection 	extends \Iterator {function add( Object $SaleCommandDetail);}
+
 interface InvoiceSellCollection 		extends \Iterator {function add( Object $InvoiceSell);	}
 interface InvoiceSellDetailCollection 	extends \Iterator {function add( Object $InvoiceSellDetail);	}
 

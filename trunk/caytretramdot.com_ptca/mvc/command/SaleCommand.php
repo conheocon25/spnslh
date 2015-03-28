@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class SaleCustomerInsExe extends Command{
+	class SaleCommand extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -10,40 +10,25 @@
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
-			//-------------------------------------------------------------			
-			$IdCustomer = $request->getProperty("IdCustomer");
+			//-------------------------------------------------------------
 						
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mCustomer 		= new \MVC\Mapper\Customer();
-			$mEmployee 		= new \MVC\Mapper\Employee();
-			$mInvoiceSell 	= new \MVC\Mapper\InvoiceSell();
-			
+			$mConfig 		= new \MVC\Mapper\Config();
+															
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------									
-			$EmployeeAll= $mEmployee->findAll();
-			$Employee 	= $EmployeeAll->current();
-				
-			$Customer	= $mCustomer->find($IdCustomer);
-			$Invoice	= new \MVC\Domain\InvoiceSell(
-				null,
-				$Employee->getId(),
-				$Customer->getId(),
-				0,
-				0,
-				0,
-				\date("Y-m-d H:i:s"),
-				\date("Y-m-d H:i:s"),
-				"",
-				0
-			);	
-			$mInvoiceSell->insert($Invoice);
-			
+			//-------------------------------------------------------------																					
+			$Title = "LỆNH BÁN";
+			$Navigation = array();
+												
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------			
+			//-------------------------------------------------------------																											
+			$request->setObject("Navigation", $Navigation);				
+			$request->setProperty("Title"	, $Title);
+															
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

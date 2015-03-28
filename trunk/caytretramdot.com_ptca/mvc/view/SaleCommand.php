@@ -1,5 +1,5 @@
 <?php
 	require_once("mvc/base/Viewer.php");
-	$Viewer = new Viewer("mvc/templates/SaleCustomer.html");
+	$Viewer = new Viewer("mvc/templates/SaleCommand.html");
 	echo $Viewer->html();
 ?>
