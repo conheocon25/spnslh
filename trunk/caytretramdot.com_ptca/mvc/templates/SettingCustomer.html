@@ -46,9 +46,9 @@
 				</div>
 				<div class="col-md-4">
 					<div class="panel panel-primary">
-						<div class="panel-heading"><i class="glyphicon glyphicon-cog"/> <B>DANH SÁCH NHÓM</B></div>
+						<div class="panel-heading"><i class="glyphicon glyphicon-cog"/> <B>DS NHÓM</B></div>
 						<div class="panel-body">
-							<ul class="list-group">								
+							<ul class="list-group">
 								<li tal:attributes="class php:Group->getId()==Group1->getId()? 'list-group-item list-group-item-success' : 'list-group-item'" tal:repeat="Group1 GroupAll">
 									<a tal:attributes="href Group1/getURLSettingCustomer">
 										<span tal:content="Group1/getName"/>

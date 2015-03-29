@@ -11,28 +11,33 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$Page = $request->getProperty('Page');
+			$Page 		= $request->getProperty('Page');
+			$IdGroup 	= $request->getProperty('IdGroup');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mBranch 	= new \MVC\Mapper\Branch();
-			$mConfig 	= new \MVC\Mapper\Config();			
+			$mBranch 		= new \MVC\Mapper\Branch();
+			$mBranchGroup 	= new \MVC\Mapper\BranchGroup();
+			$mConfig 		= new \MVC\Mapper\Config();			
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------									
-			$BranchAll = $mBranch->findAll();
+			$Group 			= $mBranchGroup->find($IdGroup);
+			$GroupAll 		= $mBranchGroup->findAll();			
+			$BranchAll 		= $mBranch->findByGroup(array($IdGroup));
 						
 			if (!isset($Page)) $Page=1;
 			$Config 		= $mConfig->findByName("ROW_PER_PAGE");
 						
-			$BranchAll1 	= $mBranch->findByPage(array($Page, $Config->getValue() ));
-			$PN 			= new \MVC\Domain\PageNavigation($BranchAll->count(), $Config->getValue(), "/ql-thiet-lap/chi-nhanh");
+			$BranchAll1 	= $mBranch->findByGroupPage(array($IdGroup, $Page, $Config->getValue() ));
+			$PN 			= new \MVC\Domain\PageNavigation($BranchAll->count(), $Config->getValue(), $Group->getURLSetting() );
 			
-			$Title = "CHI NHÁNH";
+			$Title = mb_strtoupper($Group->getName(), 'UTF8');
 			$Navigation = array(				
-				array("THIẾT LẬP", "/ql-thiet-lap")
+				array("THIẾT LẬP", "/ql-thiet-lap"),
+				array("ĐƠN VỊ TRỰC THUỘC", "/ql-thiet-lap/don-vi-truc-thuoc")
 			);
 			
 			//-------------------------------------------------------------
@@ -40,6 +45,8 @@
 			//-------------------------------------------------------------												
 			$request->setProperty('Page'			, $Page);
 			$request->setObject('PN'				, $PN);
+			$request->setObject('Group'				, $Group);
+			$request->setObject('GroupAll'			, $GroupAll);
 			$request->setObject('BranchAll1'		, $BranchAll1);
 			
 			$request->setProperty('Title'			, $Title);

@@ -7,7 +7,8 @@ class UserCollection 			extends Collection implements \MVC\Domain\UserCollection
 class TypeAccountCollection 	extends Collection implements \MVC\Domain\TypeAccountCollection 	{function targetClass( ) {return "\MVC\Domain\TypeAccount";	}}
 class UnitCollection 			extends Collection implements \MVC\Domain\UnitCollection 			{function targetClass( ) {return "\MVC\Domain\Unit";		}}
 
-class BranchCollection 			extends Collection implements \MVC\Domain\BranchCollection 			{function targetClass( ) {return "\MVC\Domain\Branch";		}}
+class BranchCollection 				extends Collection implements \MVC\Domain\BranchCollection 			{function targetClass( ) {return "\MVC\Domain\Branch";		}}
+class BranchGroupCollection 		extends Collection implements \MVC\Domain\BranchGroupCollection 	{function targetClass( ) {return "\MVC\Domain\BranchGroup";	}}
 
 class SaleCommandCollection 		extends Collection implements \MVC\Domain\SaleCommandCollection			{function targetClass( ) {return "\MVC\Domain\SaleCommand";			}}
 class SaleCommandDetailCollection 	extends Collection implements \MVC\Domain\SaleCommandDetailCollection	{function targetClass( ) {return "\MVC\Domain\SaleCommandDetail";	}}
