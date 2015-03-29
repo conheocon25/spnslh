@@ -142,6 +142,8 @@ class SaleCommand extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------				
+	function getURLCheck(){return "/ql-ban-hang/lenh-ban/".$this->getId();}
+	function getURLCheckExe(){return "/ql-ban-hang/lenh-ban/".$this->getId()."/exe";}
 	function getURLLoad(){return "/don-vi/".$this->getBranch()->getKey()."/lenh-ban/".$this->getId();}
 	function getURLMail(){return "/don-vi/".$this->getBranch()->getKey()."/lenh-ban/".$this->getId()."/trinh";}
 	function getURLPrint(){return "/don-vi/".$this->getBranch()->getKey()."/lenh-ban/".$this->getId()."/in";}	

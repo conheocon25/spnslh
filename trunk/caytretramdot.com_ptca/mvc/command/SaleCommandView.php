@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class SaleCommandCustomerDetail extends Command{
+	class SaleCommandView extends Command{
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -10,37 +10,26 @@
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
-			//-------------------------------------------------------------			
-			$IdCustomer = $request->getProperty("IdCustomer");
+			//-------------------------------------------------------------						
 			$IdCommand 	= $request->getProperty("IdCommand");
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mBranch 		= new \MVC\Mapper\Branch();
-			$mCustomer 		= new \MVC\Mapper\Customer();
-			$mEmployee 		= new \MVC\Mapper\Employee();
-			$mGood 			= new \MVC\Mapper\Good();
-			$mSaleCommand 	= new \MVC\Mapper\SaleCommand();
+			$mGood 		= new \MVC\Mapper\Good();			
+			$mCommand 	= new \MVC\Mapper\SaleCommand();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------									
-			$BranchAll	= $mBranch->findAll();
+			//-------------------------------------------------------------												
+			$Command	= $mCommand->find($IdCommand);
 			$GoodAll	= $mGood->findAll();
-			$EmployeeAll= $mEmployee->findAll();
-			$Customer	= $mCustomer->find($IdCustomer);
-			$Command	= $mSaleCommand->find($IdCommand);						
-			
+									
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------
-			$request->setObject('BranchAll'		, $BranchAll);
-			$request->setObject('GoodAll'		, $GoodAll);
-			$request->setObject('EmployeeAll'	, $EmployeeAll);
-			$request->setObject('Customer'		, $Customer);
+			//-------------------------------------------------------------			
 			$request->setObject('Command'		, $Command);
-			
+			$request->setObject('GoodAll'		, $GoodAll);
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

@@ -2,11 +2,11 @@
 <html lang="en">	
 	<body>
 		<div class="panel panel-primary">
-			<div class="panel-heading"><i class="glyphicon glyphicon-cog"/> <B>DS LỆNH</B></div>
+			<div class="panel-heading"><i class="glyphicon glyphicon-cog"/> <B>DS LỆNH CHỜ DUYỆT</B></div>
 			<div class="panel-body">
 				<ul class="list-group">
 					<li class="list-group-item Command" 
-						tal:repeat="Command Branch/getCommandAll" 
+						tal:repeat="Command CommandAllQueue" 
 						style="cursor: pointer;"
 						tal:attributes="data-url Command/getURLLoad"
 					>
@@ -14,21 +14,46 @@
 						<span class="badge" tal:content="Command/getStatePrint"/>
 					</li>
 				</ul>
-				<a href="#DialogIns" data-toggle="modal" class="btn btn-default btn-ins">
+				<a id="CommandIns" class="btn btn-default" tal:attributes="data-url Branch/getURLSaleCommandInsExe">
 					<i class="glyphicon glyphicon-plus"/> LỆNH BÁN
 				</a>
 			</div>	
 		</div>
+		<div class="panel panel-primary">
+			<div class="panel-heading"><i class="glyphicon glyphicon-cog"/> <B>DS LỆNH ĐÃ DUYỆT</B></div>
+			<div class="panel-body">
+				<ul class="list-group">
+					<li class="list-group-item Command" 
+						tal:repeat="Command CommandAllFinish" 
+						style="cursor: pointer;"
+						tal:attributes="data-url Command/getURLLoad"
+					>
+						<span tal:content="Command/getDateTimePrint"/>
+						<span class="badge" tal:content="Command/getStatePrint"/>
+					</li>
+				</ul>				
+			</div>
+		</div>
 		<script type="text/javascript">
 		/*<![CDATA[*/
+			$("#CommandIns").click(function(){				
+				var URLIns = $(this).attr('data-url');
+				$.ajax({
+					type: "POST",					
+					url: URLIns,
+					success: function(msg){
+						location.reload();
+					}
+				});
+			});
+			
 			$(".Command").click(function(){				
 				$(".Command").removeClass("list-group-item-success");
 				$(this).addClass("list-group-item-success");
 				
 				var URLLoad = $(this).attr('data-url');				
-				$("#CommandView").load(URLLoad);			
-			});
-			$('.Command:first').click();
+				$("#CommandView").load(URLLoad);
+			});			
 			
 		/*]]>*/
 		</script>

@@ -18,16 +18,21 @@
 			//-------------------------------------------------------------			
 			$mConfig 		= new \MVC\Mapper\Config();
 			$mBranch 		= new \MVC\Mapper\Branch();
+			$mSaleCommand 	= new \MVC\Mapper\SaleCommand();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
-			$Branch		= $mBranch->findByKey($IdKey);
-																		
+			$Branch				= $mBranch->findByKey($IdKey);
+			$CommandAllQueue 	= $mSaleCommand->findByBranchQueue(array($Branch->getId()));
+			$CommandAllFinish 	= $mSaleCommand->findByBranchFinish(array($Branch->getId()));
+																	
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------																											
 			$request->setObject("Branch"		, $Branch);
+			$request->setObject("CommandAllQueue"		, $CommandAllQueue);
+			$request->setObject("CommandAllFinish"		, $CommandAllFinish);
 																					
 			return self::statuses('CMD_DEFAULT');
 		}

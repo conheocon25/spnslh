@@ -16,7 +16,11 @@ class SaleCommand extends Mapper implements \MVC\Domain\SaleCommandFinder {
 		$this->findByStateStmt		= self::$PDO->prepare("select * from sale_command where state=? ORDER BY datetime DESC");		
 		$this->findByEmployeeStmt	= self::$PDO->prepare("select * from sale_command where id_employee=? ORDER BY datetime DESC");
 		$this->findByBranchStmt		= self::$PDO->prepare("select * from sale_command where id_branch=? ORDER BY datetime DESC");
-		$this->findByBranchDateStateStmt = self::$PDO->prepare("select * from sale_command where id_branch=? AND date(datetime)=? AND state=? ORDER BY datetime DESC");
+		
+		$this->findByBranchDateStateStmt 	= self::$PDO->prepare("select * from sale_command where id_branch=? AND date(datetime)=? AND state=? ORDER BY datetime DESC");
+		$this->findByBranchQueueStmt 		= self::$PDO->prepare("select * from sale_command where id_branch=? AND state<2 ORDER BY datetime DESC");
+		$this->findByBranchFinishStmt 		= self::$PDO->prepare("select * from sale_command where id_branch=? AND state>=2 ORDER BY datetime DESC");
+		$this->findByDateStateStmt 			= self::$PDO->prepare("select * from sale_command where date(datetime)=? AND state=? ORDER BY datetime DESC");
 						
 		$findByPageStmt 			= sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblSaleCommand);
 		$this->findByPageStmt 		= self::$PDO->prepare($findByPageStmt);
@@ -84,11 +88,26 @@ class SaleCommand extends Mapper implements \MVC\Domain\SaleCommandFinder {
         return new SaleCommandCollection( $this->findByBranchStmt->fetchAll(), $this );
     }
 	
+	function findByDateState($values) {
+        $this->findByDateStateStmt->execute( $values );
+        return new SaleCommandCollection( $this->findByDateStateStmt->fetchAll(), $this );
+    }
+	
 	function findByBranchDateState($values) {
         $this->findByBranchDateStateStmt->execute( $values );
         return new SaleCommandCollection( $this->findByBranchDateStateStmt->fetchAll(), $this );
     }
-			
+	
+	function findByBranchQueue($values){
+        $this->findByBranchQueueStmt->execute( $values );
+        return new SaleCommandCollection( $this->findByBranchQueueStmt->fetchAll(), $this );
+    }
+	
+	function findByBranchFinish($values){
+        $this->findByBranchFinishStmt->execute( $values );
+        return new SaleCommandCollection( $this->findByBranchFinishStmt->fetchAll(), $this );
+    }
+	
 	function findByEmployee($values){
         $this->findByEmployeeStmt->execute( $values );
         return new SaleCommandCollection( $this->findByEmployeeStmt->fetchAll(), $this );
