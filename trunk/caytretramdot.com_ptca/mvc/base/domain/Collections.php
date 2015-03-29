@@ -3,6 +3,7 @@ namespace MVC\Domain;
 
 interface BranchCollection 				extends \Iterator {function add( Object $Branch );		}
 interface BranchGroupCollection 		extends \Iterator {function add( Object $BranchGroup );	}
+interface BranchQuotaCollection 		extends \Iterator {function add( Object $BranchQuota );	}
 
 interface UserCollection 				extends \Iterator {function add( Object $User );		}
 interface TypeAccountCollection 		extends \Iterator {function add( Object $TypeAccount);	}

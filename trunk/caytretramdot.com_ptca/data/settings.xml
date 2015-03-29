@@ -36,7 +36,9 @@
 		<command name="BranchSaleCommandDelExe">	<view>BranchSaleCommandDelExe</view></command>
 		<command name="BranchSaleCommandLoad">		<view>BranchSaleCommandLoad</view></command>
 		<command name="BranchSaleCommandView">		<view>BranchSaleCommandView</view></command>
+		<command name="BranchSaleCommandMail">		<view>BranchSaleCommandMail</view></command>
 		<command name="BranchSaleCommandQuota">		<view>BranchSaleCommandQuota</view></command>
+		<command name="BranchSaleCommandPrint">		<view>BranchSaleCommandPrint</view></command>
 		
 		<command name="BranchSaleInvoice">			<view>BranchSaleInvoice</view></command>		
 		<command name="BranchReport">				<view>BranchReport</view></command>
