@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mFront.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>
+		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
+	</head>	
+	<body>
+		<tal:block metal:use-macro="mFront.xhtml/Header"/>
+		<div class="container-fluid" id="wraper">
+			<div class="row">
+				<div class="col-md-3">
+					<div id="CommandAll" tal:attributes="data-url Branch/getURLSaleCommandLoad"/>
+				</div>
+				<div class="col-md-5"><div id="CommandView" /></div>
+				<div class="col-md-4">
+					<div id="Quota" tal:attributes="data-url Branch/getURLSaleCommandQuota"/>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+		/*<![CDATA[*/
+			//---------------------------------------------------------------------------
+			var URLCommand = $("#CommandAll").attr('data-url');				
+			$("#CommandAll").load(URLCommand);
+			
+			var URLQuota = $("#Quota").attr('data-url');				
+			$("#Quota").load(URLQuota);
+			
+		/*]]>*/
+		</script>
+	</body>
+</html>

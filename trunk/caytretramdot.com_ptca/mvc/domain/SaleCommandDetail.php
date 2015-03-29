@@ -42,10 +42,10 @@ class SaleCommandDetail extends Object{
 	
 	function setIdGood( $IdGood ) {$this->IdGood = $IdGood; $this->markDirty();}
 	function getIdGood(){return $this->IdGood;}
-	function getCustomer(){
-		$mCustomer 	= new \MVC\Mapper\Customer();
-		$Customer 	= $mCustomer->find($this->IdGood);
-		return $Customer;
+	function getGood(){
+		$mGood 	= new \MVC\Mapper\Good();
+		$Good 	= $mGood->find($this->IdGood);
+		return $Good;
 	}
 		
 	function setCount1( $Count1 ) {$this->Count1 = $Count1; $this->markDirty();}

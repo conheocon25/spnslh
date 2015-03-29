@@ -5,7 +5,6 @@ class SaleCommand extends Object{
 
     private $Id;
 	private $IdEmployee;
-	private $IdCustomer;
 	private $IdBranch;
 	private $DateTime;
 	private $Note;
@@ -16,16 +15,14 @@ class SaleCommand extends Object{
 	//-------------------------------------------------------------------------------
     function __construct( 
 		$Id=null,
-		$IdEmployee=null, 
-		$IdCustomer=null,				
+		$IdEmployee=null, 		
 		$IdBranch=null,
 		$DateTime=null,		
 		$Note=null,
 		$State=null
 	){
         $this->Id 				= $Id;
-		$this->IdEmployee 		= $IdEmployee;
-		$this->IdCustomer 		= $IdCustomer;		
+		$this->IdEmployee 		= $IdEmployee;		
 		$this->IdBranch 		= $IdBranch;
 		$this->DateTime 		= $DateTime;		
 		$this->Note 			= $Note;
@@ -44,15 +41,7 @@ class SaleCommand extends Object{
 		$Employee 	= $mEmployee->find($this->IdEmployee);
 		return $Employee;
 	}
-	
-	function setIdCustomer( $IdCustomer ) {$this->IdCustomer = $IdCustomer; $this->markDirty();}
-	function getIdCustomer(){return $this->IdCustomer;}
-	function getCustomer(){
-		$mCustomer 	= new \MVC\Mapper\Customer();
-		$Customer 	= $mCustomer->find($this->IdCustomer);
-		return $Customer;
-	}
-		
+				
 	function setIdBranch( $IdBranch ) {$this->IdBranch = $IdBranch; $this->markDirty();}
 	function getIdBranch(){return $this->IdBranch;}
 	function getBranch(){
@@ -75,6 +64,8 @@ class SaleCommand extends Object{
 	function getState(){return $this->State;}
 	function getStatePrint(){
 		if ($this->State == 0){
+			return "Soạn mới";
+		}else if ($this->State == 1) {
 			return "Chờ duyệt";
 		}
 		return "Duyệt xong";
@@ -123,8 +114,7 @@ class SaleCommand extends Object{
 	function toJSON(){
 		$json = array(
 			'Id' 				=> $this->getId(),
-			'IdEmployee'		=> $this->getIdEmployee(),
-			'IdCustomer'		=> $this->getIdCustomer(),			
+			'IdEmployee'		=> $this->getIdEmployee(),			
 			'IdBranch'			=> $this->getIdBranch(),
 			'DateTime'			=> $this->getDateTime(),			
 			'Note'				=> $this->getNote(),
@@ -135,12 +125,11 @@ class SaleCommand extends Object{
 	
 	function setArray( $Data ){
         $this->Id 				= $Data[0];
-		$this->IdEmployee 		= $Data[1];
-		$this->IdCustomer 		= $Data[2];		
-		$this->IdBranch 		= $Data[3];
-		$this->DateTime 		= $Data[4];		
-		$this->Note 			= $Data[5];
-		$this->State 			= $Data[6];
+		$this->IdEmployee 		= $Data[1];		
+		$this->IdBranch 		= $Data[2];
+		$this->DateTime 		= $Data[3];		
+		$this->Note 			= $Data[4];
+		$this->State 			= $Data[5];
     }
 	
 	//-------------------------------------------------------------------------------
@@ -153,8 +142,8 @@ class SaleCommand extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------				
-	function getURLLoad(){return "/ql-ban-hang/lenh-ban/khach-hang/".$this->getIdCustomer()."/".$this->getId();}
-	function getURLPrint(){return "/ql-ban-hang/lenh-ban/khach-hang/".$this->getIdCustomer()."/".$this->getId()."/print";}
-		
+	function getURLLoad(){return "/don-vi/".$this->getBranch()->getKey()."/lenh-ban/".$this->getId();}
+	function getURLPrint(){return "/don-vi/".$this->getBranch()->getKey()."/lenh-ban/".$this->getId()."/in";}	
+	
 }
 ?>

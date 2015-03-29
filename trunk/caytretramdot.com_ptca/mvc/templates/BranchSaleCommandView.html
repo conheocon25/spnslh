@@ -1,0 +1,211 @@
+<body>
+	<div id="CommandPanel" class="panel panel-primary" tal:attributes="alt Command/getURLLoad;">
+		<div class="panel-heading"><i class="glyphicon glyphicon-star"/> <B tal:content="php: 'LỆNH BÁN ' . Command->getDateTimePrint()"/></div>
+		<div class="panel-body">
+			<table width="100%">				
+				<tr>
+					<td width="35%">TẠO LÚC</td>
+					<td width="45%"><B tal:content="Command/getDateTimePrint" /></td>					
+				</tr>				
+				<tr>
+					<td width="35%">NHÂN VIÊN LẬP</td>
+					<td width="45%"><B tal:content="Command/getEmployee/getName" /></td>
+				</tr>
+				<tr>
+					<td width="35%">TÌNH TRẠNG</td>
+					<td width="45%"><B tal:content="Command/getStatePrint" /></td>					
+				</tr>
+			</table>
+			<BR/>			
+			<table class="table table-striped table-hover">
+				<thead>
+					<tr>										
+						<th width="30">STT</th>
+						<th><div class="text-left">TÊN</div></th>
+						<th width="60"><div class="text-left">ĐVT</div></th>
+						<th width="90"><div class="text-right">SL XIN</div></th>
+						<th width="90"><div class="text-right">SL CẤP</div></th>						
+						<th width="30"><i class="glyphicon glyphicon-trash"/></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr tal:repeat="Detail Command/getDetailAll">
+						<td><div class="text-center" tal:content="repeat/Detail/number" /></td>
+						<td><a 
+							tal:condition="php:Command->getState()==0?true:false"
+							class="command-detail-item" href="#DialogGoodUpd" data-toggle="modal" 
+							tal:attributes="id 			Detail/getId;
+											id_command 	Detail/getIdCommand;
+											id_good 	Detail/getIdGood;
+											name_good	Detail/getGood/getName;
+											count1 		Detail/getCount1;
+											count2 		Detail/getCount2;
+											count3 		Detail/getCount3;
+							" 
+							tal:content="Detail/getGood/getName"/>
+							
+							<span 	tal:condition="php:Command->getState()==0?false:true"							
+									tal:content="Detail/getGood/getName"/>							
+						</td>
+						<td><div class="text-left" tal:content="Detail/getGood/getUnit"/></td>
+						<td><div class="text-right" tal:content="Detail/getCount1Print"/></td>
+						<td><div class="text-right" tal:content="Detail/getCount2Print"/></td>						
+						<td>
+							<div class="text-right">
+								<a tal:condition="php:Command->getState()==0?true:false" class="remove-detail-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Detail/getId"><i class="glyphicon glyphicon-remove"/></a>
+							</div>
+						</td>
+					</tr>					
+				</tbody>
+			</table>
+			<a tal:condition="php:Command->getState()==0?true:false" href="#DialogGoodIns" data-toggle="modal"><i class="glyphicon glyphicon-plus"/> HÀNG HÓA</a>
+			<a title="In phiếu" class="Ticket btn" tal:attributes="alt Command/getURLPrint"><i class="glyphicon glyphicon-print"/> IN PHIẾU</a>
+		</div>
+	</div>
+		
+	<!-- DIALOG GOOD INS -->
+	<div id="DialogGoodIns" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header"><h3><i class="glyphicon glyphicon-star modal-icon"/>THÊM HÀNG HÓA</h3></div>
+				<div id="FormGoodIns" class="form-horizontal">
+					<input id="IdCommand1" type="hidden" class="form-control input-small" tal:attributes="value Command/getId"/>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Hàng hóa</label>
+						<div class="col-sm-8 controls">
+							<select id="IdGood1" style="width:100%;" class="form-control">
+								<option tal:repeat="Good GoodAll" tal:attributes="value Good/getId">
+									<span tal:content="Good/getGroup/getName" /> / <span tal:content="Good/getName" />
+								</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Số lượng xin</label>
+						<div class="col-sm-8 controls">
+							<input id="Count1" type="text" class="form-control input-small" value="1"/>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-primary btn-small" id="URLGoodInsButton"><i class="glyphicons-download_alt"/> Cập nhật</button>
+						<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- DIALOG GOOD UPD-->
+	<div id="DialogGoodUpd" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header"><h3><i class="glyphicon glyphicon-star modal-icon"/>CẬP NHẬT HÀNG HÓA</h3></div>
+				<div id="FormGoodIns" class="form-horizontal">					
+					<div class="form-group">
+						<input id="DetailId2" type="hidden" class="form-control input-small" />
+						<input id="DetailIdCommand2" type="hidden" class="form-control input-small" />
+						<input id="DetailIdGood2" type="hidden" class="form-control input-small" />
+						<input id="DetailCount22" type="hidden" class="form-control input-small" readonly="0"/>
+						<label class="col-sm-3 control-label">Mặt hàng</label>
+						<div class="col-sm-8 controls">
+							<input id="DetailNameGood2" type="text" class="form-control input-small" readonly="true" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Số lượng xin</label>
+						<div class="col-sm-8 controls">
+							<input id="DetailCount12" type="text" class="form-control input-small" />
+						</div>
+					</div>					
+					<div class="modal-footer">
+						<button class="btn btn-primary btn-small" id="URLGoodUpdButton"><i class="glyphicons-download_alt"/> Cập nhật</button>
+						<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div metal:use-macro="mDialog.xhtml/DialogDel"/>
+	
+</body>
+<script>				
+	//Chèn vào HÀNG HÓA MỚI
+	$("#URLGoodInsButton").click(function(){								
+		var Data = [];		
+		Data[0] = null;
+		Data[1] = $("#IdCommand1").val();
+		Data[2] = $("#IdGood1").val();
+		Data[3] = $("#Count1").val();
+		Data[4] = 0;
+		Data[5] = 0;
+		
+		var URL = "/object/ins/SaleCommandDetail";
+		$.ajax({
+			type: "POST",
+			data: {Data:Data},
+			url: URL,
+			success: function(msg){
+				var URL = $("#CommandPanel").attr('alt');
+				$("#CommandView").load(URL);
+			}
+		});
+	});
+		
+	//Cập nhật HÀNG HÓA MỚI
+	$(".command-detail-item").click(function(){						
+		$("#DetailId2").val( $(this).attr('id') );
+		$("#DetailIdCommand2").val( $(this).attr('id_command') );
+		$("#DetailIdGood2").val( $(this).attr('id_good') );
+		$("#DetailNameGood2").val( $(this).attr('name_good') );
+		$("#DetailCount12").val( $(this).attr('count1') );
+		$("#DetailCount22").val( $(this).attr('count2') );
+	});
+	
+	$("#URLGoodUpdButton").click(function(){							
+		var Data = [];		
+		Data[0] = $("#DetailId2").val();
+		Data[1] = $("#DetailIdCommand2").val();
+		Data[2] = $("#DetailIdGood2").val();
+		Data[3] = $("#DetailCount12").val();
+		Data[4] = $("#DetailCount22").val();
+		Data[5] = 0;
+				
+		var URL = "/object/upd/SaleCommandDetail";
+		$.ajax({
+			type: "POST",
+			data: {Data:Data},
+			url: URL,
+			success: function(msg){
+				var URL = $("#CommandPanel").attr('alt');
+				$("#CommandView").load(URL);
+			}
+		});							
+	});
+	
+	//-----------------------------------------------------------------------------------
+	//Delete 1 DETAIL			
+	//-----------------------------------------------------------------------------------
+	$('.remove-detail-item').click(function(){
+		$('#URLDelButton').attr('alt', $(this).attr('data-id'));
+	});	
+	$('#URLDelButton').click(function(){			
+		var URL = "/object/del/SaleCommandDetail/" + $(this).attr('alt');
+		$.ajax({
+			type: "POST",					
+			url: URL,
+			success: function(msg){
+				var URL = $("#CommandPanel").attr('alt');
+				$("#CommandView").load(URL);
+			}
+		});
+	});
+	
+	//-----------------------------------------------------------------------------------
+	//IN LỆNH
+	//-----------------------------------------------------------------------------------	
+	$(".Ticket").click(function(){
+		var url = $(this).attr('alt');
+		var thePopup = window.open( url, "In Phiếu", "menubar=0,location=0,height=700,width=700" );
+		thePopup.print();
+	});
+</script>

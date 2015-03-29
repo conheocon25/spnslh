@@ -150,7 +150,7 @@
 								<div class="col-sm-8 controls">
 									<input id="Address2" name="Address2" type="text" class="form-control input-small"/>
 								</div>
-							</div>
+							</div>							
 						</div>
 						<div class="modal-footer">
 							<button class="btn btn-primary btn-small" id="URLUpdButton"><i class="glyphicons-download_alt"/> Lưu</button>
@@ -208,7 +208,7 @@
 					Data[2] = $('#Name1').val();
 					Data[3] = $('#Tel1').val();
 					Data[4] = $('#Fax1').val();
-					Data[5] = $('#Address1').val();
+					Data[5] = $('#Address1').val();					
 					Data[6] = 1;
 																									
 					var URL = "/object/ins/Branch";
@@ -245,11 +245,12 @@
 					$('#Tel2').attr('value', 		data.Tel);
 					$('#Fax2').attr('value', 		data.Fax);
 					$('#Address2').attr('value', 	data.Address);
+					$('#Key2').attr('value', 		data.Key);
 				});
 			});
 			
 			//-----------------------------------------------------------------------------------
-			//Update 1 EMPLOYEEE
+			//Update 1 BRANCH
 			//-----------------------------------------------------------------------------------
 			$("#FormBranchUpdate").validate({
 				rules:{
@@ -274,7 +275,7 @@
 					Data[2] = $('#Name2').val();
 					Data[3] = $('#Tel2').val();
 					Data[4] = $('#Fax2').val();
-					Data[5] = $('#Address2').val();
+					Data[5] = $('#Address2').val();					
 					Data[6] = 1;
 																									
 					var URL = "/object/upd/Branch";

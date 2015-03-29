@@ -46,6 +46,22 @@ RewriteRule ^object/ins/([A-Za-z0-9]+)$ 						?cmd=ObjectIns&ObjectName=$1 [L]
 RewriteRule ^object/upd/([A-Za-z0-9]+)$ 						?cmd=ObjectUpd&ObjectName=$1 [L]
 
 RewriteRule ^app$ 														?cmd=App [L]
+
+#---------------------------------------------------------------------------------------------------------------------------
+# BRANCH
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^don-vi/([A-Za-z0-9_-]+)$ 							?cmd=Branch&IdKey=$1					[L]
+RewriteRule ^don-vi/([A-Za-z0-9_-]+)/lenh-ban$ 					?cmd=BranchSaleCommand&IdKey=$1			[L]
+RewriteRule ^don-vi/([A-Za-z0-9_-]+)/lenh-ban/([0-9]+)$ 		?cmd=BranchSaleCommandView&IdKey=$1&IdCommand=$2 [L]
+RewriteRule ^don-vi/([A-Za-z0-9_-]+)/lenh-ban/([0-9]+)/huy$ 	?cmd=BranchSaleCommandDel&IdKey=$1&IdCommand=$2 [L]
+RewriteRule ^don-vi/([A-Za-z0-9_-]+)/lenh-ban/them-moi$ 		?cmd=BranchSaleCommandInsExe&IdKey=$1	[L]
+RewriteRule ^don-vi/([A-Za-z0-9_-]+)/lenh-ban/nap$ 				?cmd=BranchSaleCommandLoad&IdKey=$1		[L]
+RewriteRule ^don-vi/([A-Za-z0-9_-]+)/lenh-ban/han-ngach$ 		?cmd=BranchSaleCommandQuota&IdKey=$1	[L]
+
+RewriteRule ^don-vi/([A-Za-z0-9_-]+)/ban-hang$ 					?cmd=BranchSale&IdKey=$1		[L]
+RewriteRule ^don-vi/([A-Za-z0-9_-]+)/bao-cao$ 					?cmd=BranchReport&IdKey=$1		[L]
+RewriteRule ^don-vi/([A-Za-z0-9_-]+)/thiet-lap$ 				?cmd=BranchSetting&IdKey=$1		[L]
+
 #---------------------------------------------------------------------------------------------------------------------------
 # SALE
 #---------------------------------------------------------------------------------------------------------------------------
