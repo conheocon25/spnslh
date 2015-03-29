@@ -38,7 +38,7 @@ class SaleCommandDetail extends Mapper implements \MVC\Domain\UserFinder {
 		$this->deleteStmt = self::$PDO->prepare( $deleteStmt );
                             
 		$this->findByStmt 	= self::$PDO->prepare($findByStmt);						
-		$this->checkStmt 			= self::$PDO->prepare( $checkStmt);		
+		$this->checkStmt 	= self::$PDO->prepare( $checkStmt);		
 		
     } 
     function getCollection( array $raw ) {return new SaleCommandDetailCollection( $raw, $this );}
@@ -56,7 +56,7 @@ class SaleCommandDetail extends Mapper implements \MVC\Domain\UserFinder {
     protected function targetClass() {return "SaleCommandDetail";}
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array(
-			$object->getIdInvoice(),
+			$object->getIdCommand(),
 			$object->getIdGood(),
 			$object->getCount1(),
 			$object->getCount2(),			
@@ -68,7 +68,7 @@ class SaleCommandDetail extends Mapper implements \MVC\Domain\UserFinder {
     }
     protected function doUpdate( \MVC\Domain\Object $object ) {
         $values = array(
-			$object->getIdInvoice(),
+			$object->getIdCommand(),
 			$object->getIdGood(),
 			$object->getCount1(),
 			$object->getCount2(),
@@ -85,7 +85,7 @@ class SaleCommandDetail extends Mapper implements \MVC\Domain\UserFinder {
         $this->findByStmt->execute( $values );
         return new SaleCommandDetailCollection( $this->findByStmt->fetchAll(), $this );
     }
-		
+	
 	function check( $values ) {	
         $this->checkStmt->execute( $values );
 		$result = $this->checkStmt->fetchAll();		

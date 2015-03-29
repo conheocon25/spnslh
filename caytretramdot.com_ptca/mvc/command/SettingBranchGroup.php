@@ -30,7 +30,7 @@
 			$BranchGroupAll1 	= $mBranchGroup->findByPage(array($Page, $Config->getValue() ));
 			$PN 				= new \MVC\Domain\PageNavigation($BranchGroupAll->count(), $Config->getValue(), "/ql-thiet-lap/don-vi-truc-thuoc");
 			
-			$Title = "NHÓM ĐƠN VỊ TRỰC THUỘC";
+			$Title = "ĐƠN VỊ TRỰC THUỘC";
 			$Navigation = array(array("THIẾT LẬP", "/ql-thiet-lap"));
 			
 			//-------------------------------------------------------------

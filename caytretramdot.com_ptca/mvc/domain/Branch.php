@@ -9,19 +9,21 @@ class Branch extends Object{
 	private $Tel;
 	private $Fax;
 	private $Address;
-	private $Visible;
+	private $Key;
+	private $Enable;
 				
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
     function __construct( 
-		$Id=null, 
-		$IdGroup=null, 
-		$Name=null, 
-		$Tel=null,
-		$Fax=null,
-		$Address=null,
-		$Visible=null
+		$Id			=null, 
+		$IdGroup	=null, 
+		$Name		=null, 
+		$Tel		=null,
+		$Fax		=null,
+		$Address	=null,
+		$Key		=null,
+		$Enable		=null
 	){
         $this->Id 		= $Id;
 		$this->IdGroup 	= $IdGroup;
@@ -29,7 +31,8 @@ class Branch extends Object{
 		$this->Tel 		= $Tel;
 		$this->Fax 		= $Fax;
 		$this->Address	= $Address;
-		$this->Visible	= $Visible;		
+		$this->Key		= $Key;
+		$this->Enable	= $Enable;		
         parent::__construct( $Id );
     }
 			
@@ -55,8 +58,15 @@ class Branch extends Object{
 	function setAddress( $Address ) {$this->Address = $Address; $this->markDirty();}
 	function getAddress()			{return $this->Address;}
 	
-	function setVisible( $Visible ) {$this->Visible = $Visible; $this->markDirty();}
-	function getVisible()			{return $this->Visible;}
+	function setKey( $Key )	{$this->Key = $Key;$this->markDirty();}
+	function getKey( ) 		{return $this->Key;}
+	function reKey( ){		
+		$Str = new \MVC\Library\String($this->Name);
+		$this->Key = $Str->converturl();
+	}
+	
+	function setEnable( $Enable ) {$this->Enable = $Enable; $this->markDirty();}
+	function getEnable()			{return $this->Enable;}
 	
 	function setArray( $Data ){
         $this->Id 		= $Data[0];
@@ -64,8 +74,9 @@ class Branch extends Object{
 		$this->Name 	= $Data[2];
 		$this->Tel	 	= $Data[3];
 		$this->Fax	 	= $Data[4];
-		$this->Address 	= $Data[5];
-		$this->Visible 	= $Data[6];
+		$this->Address 	= $Data[5];		
+		$this->Enable 	= $Data[6];
+		$this->reKey();
     }
 	
 	function toJSON(){
@@ -76,14 +87,19 @@ class Branch extends Object{
 			'Tel'			=> $this->getTel(),
 			'Fax'			=> $this->getFax(),
 			'Address'		=> $this->getAddress(),
-			'Visible'		=> $this->getVisible()
+			'Key'			=> $this->getKey(),
+			'Enable'		=> $this->getEnable()
 		);
 		return json_encode($json);
-	}
-		
+	}		
 	//-------------------------------------------------------------------------------
 	//GET LISTs
 	//-------------------------------------------------------------------------------
+	function getCommandAll(){
+		$mSaleCommand 	= new \MVC\Mapper\SaleCommand();
+		$BranchAll 		= $mSaleCommand->findByBranch(array($this->getId()));
+		return $BranchAll;
+	}
 					
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $id );}
@@ -91,7 +107,14 @@ class Branch extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------			
+	function getURLSaleCommand(){return "/don-vi/".$this->Key."/lenh-ban";}
+	function getURLSaleCommandLoad(){return "/don-vi/".$this->Key."/lenh-ban/nap";}
+	function getURLSaleCommandView(){return "/don-vi/".$this->Key."/lenh-ban/xem";}
+	function getURLSaleCommandQuota(){return "/don-vi/".$this->Key."/lenh-ban/han-ngach";}
 	
+	function getURLSaleInvoice(){return "/don-vi/".$this->Key."/ban-hang";}
+	function getURLReport(){return "/don-vi/".$this->Key."/bao-cao";}
+	function getURLSetting(){return "/don-vi/".$this->Key."/thiet-lap";}
 	
 }
 ?>
