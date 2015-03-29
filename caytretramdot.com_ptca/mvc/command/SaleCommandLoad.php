@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class SaleCommandCustomer extends Command{
+	class SaleCommandLoad extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -10,23 +10,24 @@
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
-			//-------------------------------------------------------------			
-			$IdCustomer = $request->getProperty("IdCustomer");
-			
+			//-------------------------------------------------------------
+						
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mCustomer 	= new \MVC\Mapper\Customer();
+			$mConfig 		= new \MVC\Mapper\Config();
+			$mSaleCommand 	= new \MVC\Mapper\SaleCommand();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------									
-			$Customer	= $mCustomer->find($IdCustomer);
-									
+			//-------------------------------------------------------------			
+			$CommandAll 	= $mSaleCommand->findByDateState(array(\date("Y-m-d"), 1));
+																					
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------
-			$request->setObject('Customer'		, $Customer);
+			//-------------------------------------------------------------																											
+			$request->setObject("CommandAll", 	$CommandAll);
+						
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

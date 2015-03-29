@@ -56,7 +56,7 @@ RewriteRule ^don-vi/([A-Za-z0-9_-]+)/lenh-ban/([0-9]+)$ 		?cmd=BranchSaleCommand
 RewriteRule ^don-vi/([A-Za-z0-9_-]+)/lenh-ban/([0-9]+)/huy$ 	?cmd=BranchSaleCommandDel&IdKey=$1&IdCommand=$2 [L]
 RewriteRule ^don-vi/([A-Za-z0-9_-]+)/lenh-ban/([0-9]+)/trinh$ 	?cmd=BranchSaleCommandMail&IdKey=$1&IdCommand=$2 [L]
 RewriteRule ^don-vi/([A-Za-z0-9_-]+)/lenh-ban/([0-9]+)/in$ 		?cmd=BranchSaleCommandPrint&IdKey=$1&IdCommand=$2 [L]
-RewriteRule ^don-vi/([A-Za-z0-9_-]+)/lenh-ban/them-moi$ 		?cmd=BranchSaleCommandInsExe&IdKey=$1	[L]
+RewriteRule ^don-vi/([A-Za-z0-9_-]+)/lenh-ban/them$ 			?cmd=BranchSaleCommandInsExe&IdKey=$1	[L]
 RewriteRule ^don-vi/([A-Za-z0-9_-]+)/lenh-ban/nap$ 				?cmd=BranchSaleCommandLoad&IdKey=$1		[L]
 RewriteRule ^don-vi/([A-Za-z0-9_-]+)/lenh-ban/han-ngach$ 		?cmd=BranchSaleCommandQuota&IdKey=$1	[L]
 
@@ -67,17 +67,11 @@ RewriteRule ^don-vi/([A-Za-z0-9_-]+)/thiet-lap$ 				?cmd=BranchSetting&IdKey=$1	
 #---------------------------------------------------------------------------------------------------------------------------
 # SALE
 #---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^ql-ban-hang$ 												?cmd=Sale 			[L]
-RewriteRule ^ql-ban-hang/lenh-ban$ 										?cmd=SaleCommand 	[L]
-RewriteRule ^ql-ban-hang/lenh-ban/khach-hang/tim-kiem$ 					?cmd=SaleCommandCustomerSearch 					[L]
-RewriteRule ^ql-ban-hang/lenh-ban/khach-hang/([0-9]+)$ 					?cmd=SaleCommandCustomer&IdCustomer=$1 			[L]
-RewriteRule ^ql-ban-hang/lenh-ban/khach-hang/([0-9]+)/ins/exe$ 			?cmd=SaleCommandCustomerInsExe&IdCustomer=$1 	[L]
-RewriteRule ^ql-ban-hang/lenh-ban/khach-hang/([0-9]+)/([0-9]+)$ 		?cmd=SaleCommandCustomerDetail&IdCustomer=$1&IdCommand=$2 		[L]
-RewriteRule ^ql-ban-hang/lenh-ban/khach-hang/([0-9]+)/([0-9]+)/print$ 	?cmd=SaleCommandCustomerDetailPrint&IdCustomer=$1&IdCommand=$2 	[L]
-
-RewriteRule ^ql-ban-hang/don-hang/chi-tiet/them-moi$ 			?cmd=SaleInvoiceDetailInsExe [L]
-RewriteRule ^ql-ban-hang/don-hang/chi-tiet/cap-nhat$ 			?cmd=SaleInvoiceDetailUpdExe [L]
-
+RewriteRule ^ql-ban-hang$ 										?cmd=Sale 				[L]
+RewriteRule ^ql-ban-hang/lenh-ban$ 								?cmd=SaleCommand 		[L]
+RewriteRule ^ql-ban-hang/lenh-ban/nap$ 							?cmd=SaleCommandLoad	[L]
+RewriteRule ^ql-ban-hang/lenh-ban/([0-9]+)$ 					?cmd=SaleCommandView&IdCommand=$1 [L]
+RewriteRule ^ql-ban-hang/lenh-ban/([0-9]+)/exe$ 				?cmd=SaleCommandCheck&IdCommand=$1 [L]
 
 RewriteRule ^ql-ban-hang/bao-cao$ 								?cmd=SaleReport [L]
 RewriteRule ^ql-ban-hang/bao-cao/([0-9]+)$ 						?cmd=SaleReport&IdTrack=$1 [L]

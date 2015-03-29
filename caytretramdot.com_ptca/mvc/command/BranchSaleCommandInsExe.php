@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class SaleCommandCustomerSearch extends Command{
+	class BranchSaleCommandInsExe extends Command{
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -11,22 +11,35 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------			
-			$Name 		= $request->getProperty("Name");
-			
+			$IdKey = $request->getProperty("IdKey");
+						
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mCustomer 	= new \MVC\Mapper\Customer();
+			$mBranch 		= new \MVC\Mapper\Branch();
+			$mEmployee 		= new \MVC\Mapper\Employee();
+			$mSaleCommand 	= new \MVC\Mapper\SaleCommand();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------									
-			$CustomerAll	= $mCustomer->findByName($Name);
-									
+			$Branch		= $mBranch->findByKey($IdKey);
+			$EmployeeAll= $mEmployee->findAll();
+			$Employee 	= $EmployeeAll->current();
+								
+			$Command	= new \MVC\Domain\SaleCommand(
+				null,
+				$Employee->getId(),
+				$Branch->getId(),				
+				\date("Y-m-d"),				
+				"",
+				0
+			);	
+			$mSaleCommand->insert($Command);
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------
-			$request->setObject('CustomerFAll'		, $CustomerAll);
+			//-------------------------------------------------------------			
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

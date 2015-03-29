@@ -24,11 +24,13 @@
 			$Navigation = array(
 				array("BÁN HÀNG", "/ql-ban-hang")
 			);
+			$ConfigTimer	= $mConfig->findByName("TIMER_01");
 												
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------																											
 			$request->setObject("Navigation", $Navigation);				
+			$request->setObject("ConfigTimer", $ConfigTimer);
 			$request->setProperty("Title"	, $Title);
 															
 			return self::statuses('CMD_DEFAULT');

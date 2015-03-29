@@ -37,6 +37,13 @@
 					$("#Quota").load(URLQuota);
 				}
 			}
+			$(".CommandReload").click(function(){
+				var URLCommand = $("#CommandAll").attr('data-url');
+				$("#CommandAll").load(URLCommand);
+			
+				var URLQuota = $("#Quota").attr('data-url');
+				$("#Quota").load(URLQuota);
+			});
 			
 			//---------------------------------------------------------------------------
 			var URLCommand = $("#CommandAll").attr('data-url');				

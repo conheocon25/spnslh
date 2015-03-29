@@ -113,10 +113,11 @@ class Branch extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------			
-	function getURLSaleCommand(){return "/don-vi/".$this->Key."/lenh-ban";}
-	function getURLSaleCommandLoad(){return "/don-vi/".$this->Key."/lenh-ban/nap";}
-	function getURLSaleCommandView(){return "/don-vi/".$this->Key."/lenh-ban/xem";}
-	function getURLSaleCommandQuota(){return "/don-vi/".$this->Key."/lenh-ban/han-ngach";}
+	function getURLSaleCommand()		{return "/don-vi/".$this->Key."/lenh-ban";}
+	function getURLSaleCommandInsExe()	{return "/don-vi/".$this->Key."/lenh-ban/them";}
+	function getURLSaleCommandLoad()	{return "/don-vi/".$this->Key."/lenh-ban/nap";}
+	function getURLSaleCommandView()	{return "/don-vi/".$this->Key."/lenh-ban/xem";}
+	function getURLSaleCommandQuota()	{return "/don-vi/".$this->Key."/lenh-ban/han-ngach";}
 	
 	function getURLSaleInvoice(){return "/don-vi/".$this->Key."/ban-hang";}
 	function getURLReport(){return "/don-vi/".$this->Key."/bao-cao";}
