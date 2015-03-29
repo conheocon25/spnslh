@@ -41,6 +41,14 @@
 					<div class="panel panel-primary">
 						<div class="panel-heading"><i class="glyphicon glyphicon-cog"/> <B>THAO TÁC</B></div>
 						<div class="panel-body">
+							<ul class="list-group">
+								<li tal:attributes="class php:Group->getId()==Group1->getId()? 'list-group-item list-group-item-success' : 'list-group-item'" tal:repeat="Group1 GroupAll">
+									<a tal:attributes="href Group1/getURLSetting">
+										<span tal:content="Group1/getName"/>
+									</a>
+									<span class="badge" tal:content="Group1/getBranchAll/count"/>
+								</li>
+							</ul>
 							<a href="#DialogIns" data-toggle="modal" class="btn btn-default btn-ins">
 								<i class="glyphicon glyphicon-plus"/> CHI NHÁNH
 							</a>
@@ -56,7 +64,17 @@
 				<div class="modal-content">
 					<div class="modal-header"><h3><i class="glyphicon glyphicon-cog modal-icon"/> THÊM MỚI CHI NHÁNH</h3></div>
 					<form id="FormBranchInsert" action="#" class="form-horizontal" novalidate="novalidate">
-						<div class="modal-body">							
+						<div class="modal-body">
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Nhóm</label>
+								<div class="col-sm-8 controls">
+									<select name="IdGroup1" id="IdGroup1" style="width:100%;" class="form-control">
+										<option tal:repeat="Group1 GroupAll" tal:attributes="value Group1/getId; selected php:Group1->getId()==Group->getId()?true:false">
+											<span tal:content="Group1/getName"/>
+										</option>										
+									</select>
+								</div>
+							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Tên</label>
 								<div class="col-sm-8 controls">
@@ -99,6 +117,16 @@
 					<div class="modal-header"><h3><i class="glyphicon glyphicon-cog modal-icon"/> CẬP NHẬT CHI NHÁNH</h3></div>
 					<form id="FormBranchUpdate" action="#" class="form-horizontal" novalidate="novalidate">
 						<div class="modal-body">							
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Nhóm</label>
+								<div class="col-sm-8 controls">
+									<select name="IdGroup2" id="IdGroup2" style="width:100%;" class="form-control">
+										<option tal:repeat="Group1 GroupAll" tal:attributes="value Group1/getId; selected php:Group1->getId()==Group->getId()?true:false">
+											<span tal:content="Group1/getName"/>
+										</option>
+									</select>
+								</div>
+							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Tên</label>
 								<div class="col-sm-8 controls">
@@ -176,11 +204,12 @@
 				submitHandler: function (form) {					
 					var Data = [];
 					Data[0] = 'null';
-					Data[1] = $('#Name1').val();
-					Data[2] = $('#Tel1').val();
-					Data[3] = $('#Fax1').val();
-					Data[4] = $('#Address1').val();
-					Data[5] = 1;
+					Data[1] = $('#IdGroup1').val();	
+					Data[2] = $('#Name1').val();
+					Data[3] = $('#Tel1').val();
+					Data[4] = $('#Fax1').val();
+					Data[5] = $('#Address1').val();
+					Data[6] = 1;
 																									
 					var URL = "/object/ins/Branch";
 					$.ajax({
@@ -241,11 +270,12 @@
 				submitHandler: function (form) {					
 					var Data = [];
 					Data[0] = $('#URLUpdButton').attr('alt');
-					Data[1] = $('#Name2').val();
-					Data[2] = $('#Tel2').val();
-					Data[3] = $('#Fax2').val();
-					Data[4] = $('#Address2').val();
-					Data[5] = 1;
+					Data[1] = $('#IdGroup2').val();
+					Data[2] = $('#Name2').val();
+					Data[3] = $('#Tel2').val();
+					Data[4] = $('#Fax2').val();
+					Data[5] = $('#Address2').val();
+					Data[6] = 1;
 																									
 					var URL = "/object/upd/Branch";
 					$.ajax({

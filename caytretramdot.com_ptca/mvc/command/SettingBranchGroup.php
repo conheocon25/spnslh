@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class SettingTrack extends Command {
+	class SettingBranchGroup extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -16,21 +16,21 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mTrack 	= new \MVC\Mapper\Track();
-			$mConfig 	= new \MVC\Mapper\Config();
+			$mBranchGroup 	= new \MVC\Mapper\BranchGroup();
+			$mConfig 		= new \MVC\Mapper\Config();			
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------									
-			$TrackAll = $mTrack->findAll();
+			$BranchGroupAll = $mBranchGroup->findAll();
 						
 			if (!isset($Page)) $Page=1;
-			$Config 	= $mConfig->findByName("ROW_PER_PAGE");
+			$Config 		= $mConfig->findByName("ROW_PER_PAGE");
 						
-			$TrackAll1 	= $mTrack->findByPage(array($Page, $Config->getValue() ));
-			$PN 		= new \MVC\Domain\PageNavigation($TrackAll->count(), $Config->getValue(), "/admin/setting/track");
+			$BranchGroupAll1 	= $mBranchGroup->findByPage(array($Page, $Config->getValue() ));
+			$PN 				= new \MVC\Domain\PageNavigation($BranchGroupAll->count(), $Config->getValue(), "/ql-thiet-lap/don-vi-truc-thuoc");
 			
-			$Title = "BÁO CÁO";
+			$Title = "NHÓM ĐƠN VỊ TRỰC THUỘC";
 			$Navigation = array(array("THIẾT LẬP", "/ql-thiet-lap"));
 			
 			//-------------------------------------------------------------
@@ -38,9 +38,10 @@
 			//-------------------------------------------------------------												
 			$request->setProperty('Page'			, $Page);
 			$request->setObject('PN'				, $PN);
-			$request->setObject('TrackAll1'			, $TrackAll1);
-			$request->setProperty('Title'			, $Title);
-			$request->setObject('Navigation'		, $Navigation);
+			$request->setObject('BranchGroupAll1'	, $BranchGroupAll1);
+			
+			$request->setProperty('Title'		, $Title);			
+			$request->setObject('Navigation'	, $Navigation);
 												
 			return self::statuses('CMD_DEFAULT');
 		}

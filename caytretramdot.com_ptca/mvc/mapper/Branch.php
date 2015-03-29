@@ -8,20 +8,24 @@ class Branch extends Mapper implements \MVC\Domain\BranchFinder {
 		$tblBranch 				= "branch";
 		
         $this->selectAllStmt 	= self::$PDO->prepare("select * from branch");
-        $this->updateStmt 		= self::$PDO->prepare("update branch set name=?, tel=?, fax=?, address=?, visible=?  where id=?");
+        $this->updateStmt 		= self::$PDO->prepare("update branch set id_group=?, name=?, tel=?, fax=?, address=?, visible=?  where id=?");
         $this->selectStmt 		= self::$PDO->prepare("select * from branch where id=?");
-        $this->insertStmt 		= self::$PDO->prepare("insert into branch (name, tel, fax, address, visible) values(?, ?, ?, ?, ?)");
+        $this->insertStmt 		= self::$PDO->prepare("insert into branch (id_group, name, tel, fax, address, visible) values(?, ?, ?, ?, ?, ?)");
 		$this->deleteStmt 		= self::$PDO->prepare("delete from branch where id=?");
+		$this->findByGroupStmt 	= self::$PDO->prepare("SELECT * FROM branch WHERE id_group=? ORDER BY name");
 						
 		$findByPageStmt 		= sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblBranch);
 		$this->findByPageStmt 	= self::$PDO->prepare($findByPageStmt);
-		 
+		
+		$findByGroupPageStmt 		= sprintf("SELECT * FROM  %s WHERE id_group=:id_group LIMIT :start,:max", $tblBranch);
+		$this->findByGroupPageStmt 	= self::$PDO->prepare($findByGroupPageStmt);		 
     } 
     function getCollection( array $raw ) {return new BranchCollection( $raw, $this );}
 
     protected function doCreateObject( array $array ) {		
         $obj = new \MVC\Domain\Branch( 
-			$array['id'],  
+			$array['id'], 
+			$array['id_group'],
 			$array['name'],
 			$array['tel'],
 			$array['fax'],
@@ -35,6 +39,7 @@ class Branch extends Mapper implements \MVC\Domain\BranchFinder {
 
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array(
+			$object->getIdGroup(),
 			$object->getName(),
 			$object->getTel(),
 			$object->getFax(),
@@ -48,6 +53,7 @@ class Branch extends Mapper implements \MVC\Domain\BranchFinder {
     
     protected function doUpdate( \MVC\Domain\Object $object ) {
         $values = array(
+			$object->getIdGroup(),
 			$object->getName(),
 			$object->getTel(),
 			$object->getFax(),
@@ -67,6 +73,19 @@ class Branch extends Mapper implements \MVC\Domain\BranchFinder {
 		$this->findByPageStmt->bindValue(':max', (int)($values[1]), \PDO::PARAM_INT);
 		$this->findByPageStmt->execute();
         return new BranchCollection( $this->findByPageStmt->fetchAll(), $this );
+    }
+	
+	function findByGroup($values) {		
+        $this->findByGroupStmt->execute( $values );
+        return new BranchCollection( $this->findByGroupStmt->fetchAll(), $this );
+    }
+	
+	function findByGroupPage( $values ) {
+		$this->findByGroupPageStmt->bindValue(':id_group', (int)($values[0]), \PDO::PARAM_INT);
+		$this->findByGroupPageStmt->bindValue(':start', ((int)($values[1])-1)*(int)($values[2]), \PDO::PARAM_INT);
+		$this->findByGroupPageStmt->bindValue(':max', (int)($values[2]), \PDO::PARAM_INT);
+		$this->findByGroupPageStmt->execute();
+        return new BranchCollection( $this->findByGroupPageStmt->fetchAll(), $this );
     }
 }
 ?>

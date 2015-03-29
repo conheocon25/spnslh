@@ -91,8 +91,10 @@ RewriteRule ^ql-kho-hang/bao-cao/([0-9]+)/([0-9]+)$ 			?cmd=WarehouseReportDaily
 #---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^ql-thiet-lap$ 												?cmd=Setting [L]
 
-RewriteRule ^ql-thiet-lap/chi-nhanh$ 									?cmd=SettingBranch [L]
-RewriteRule ^ql-thiet-lap/chi-nhanh/page/([0-9]+)$ 						?cmd=SettingBranch&Page=$1 [L]
+RewriteRule ^ql-thiet-lap/don-vi-truc-thuoc$ 							?cmd=SettingBranchGroup [L]
+RewriteRule ^ql-thiet-lap/don-vi-truc-thuoc/page/([0-9]+)$ 				?cmd=SettingBranchGroup&Page=$1 [L]
+RewriteRule ^ql-thiet-lap/don-vi-truc-thuoc/([0-9]+)$ 					?cmd=SettingBranch&IdGroup=$1 [L]
+RewriteRule ^ql-thiet-lap/don-vi-truc-thuoc/([0-9]+)/page/([0-9]+)$ 	?cmd=SettingBranch&IdGroup=$1&Page=$2 [L]
 
 RewriteRule ^ql-thiet-lap/tham-so$ 										?cmd=SettingConfig [L]
 RewriteRule ^ql-thiet-lap/tham-so/page/([0-9]+)$ 						?cmd=SettingConfig&Page=$1 [L]
