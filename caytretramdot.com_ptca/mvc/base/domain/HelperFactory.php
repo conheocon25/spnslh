@@ -7,6 +7,7 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	
 	require_once( "mvc/mapper/Branch.php" 			);
 	require_once( "mvc/mapper/BranchGroup.php" 		);
+	require_once( "mvc/mapper/BranchQuota.php" 		);
 	
 	require_once( "mvc/mapper/SaleCommand.php" 		);
 	require_once( "mvc/mapper/SaleCommandDetail.php");

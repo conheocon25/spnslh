@@ -16,9 +16,10 @@ class SaleCommand extends Mapper implements \MVC\Domain\SaleCommandFinder {
 		$this->findByStateStmt		= self::$PDO->prepare("select * from sale_command where state=? ORDER BY datetime DESC");		
 		$this->findByEmployeeStmt	= self::$PDO->prepare("select * from sale_command where id_employee=? ORDER BY datetime DESC");
 		$this->findByBranchStmt		= self::$PDO->prepare("select * from sale_command where id_branch=? ORDER BY datetime DESC");
+		$this->findByBranchDateStateStmt = self::$PDO->prepare("select * from sale_command where id_branch=? AND date(datetime)=? AND state=? ORDER BY datetime DESC");
 						
-		$findByPageStmt 		= sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblSaleCommand);
-		$this->findByPageStmt 	= self::$PDO->prepare($findByPageStmt);
+		$findByPageStmt 			= sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblSaleCommand);
+		$this->findByPageStmt 		= self::$PDO->prepare($findByPageStmt);
 		 
     } 
     function getCollection( array $raw ) {return new SaleCommandCollection( $raw, $this );}
@@ -78,15 +79,20 @@ class SaleCommand extends Mapper implements \MVC\Domain\SaleCommandFinder {
         return new SaleCommandCollection( $this->findByStateStmt->fetchAll(), $this );
     }
 	
-	function findByBranch($values) {		
+	function findByBranch($values) {
         $this->findByBranchStmt->execute( $values );
         return new SaleCommandCollection( $this->findByBranchStmt->fetchAll(), $this );
     }
+	
+	function findByBranchDateState($values) {
+        $this->findByBranchDateStateStmt->execute( $values );
+        return new SaleCommandCollection( $this->findByBranchDateStateStmt->fetchAll(), $this );
+    }
 			
-	function findByEmployee($values) {
+	function findByEmployee($values){
         $this->findByEmployeeStmt->execute( $values );
         return new SaleCommandCollection( $this->findByEmployeeStmt->fetchAll(), $this );
-    }		
+    }
 	
 }
 ?>

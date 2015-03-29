@@ -32,7 +32,7 @@ class SaleCommand extends Object{
     }
 			
     function getId( ) 		{return $this->Id;}
-	function getIdPrint( ) 	{return "XK / ".$this->Id;}
+	function getIdPrint( ) 	{return "LB / ".$this->Id;}
 
 	function setIdEmployee( $IdEmployee ) {$this->IdEmployee = $IdEmployee; $this->markDirty();}
 	function getIdEmployee(){return $this->IdEmployee;}
@@ -143,6 +143,7 @@ class SaleCommand extends Object{
 	//DEFINE URL
 	//-------------------------------------------------------------------------------				
 	function getURLLoad(){return "/don-vi/".$this->getBranch()->getKey()."/lenh-ban/".$this->getId();}
+	function getURLMail(){return "/don-vi/".$this->getBranch()->getKey()."/lenh-ban/".$this->getId()."/trinh";}
 	function getURLPrint(){return "/don-vi/".$this->getBranch()->getKey()."/lenh-ban/".$this->getId()."/in";}	
 	
 }

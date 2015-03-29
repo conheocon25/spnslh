@@ -23,6 +23,7 @@
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
 			$Branch		= $mBranch->findByKey($IdKey);
+			$ConfigTimer= $mConfig->findByName("TIMER_01");
 			
 			$Title = "LỆNH BÁN";
 			$Navigation = array(
@@ -33,6 +34,7 @@
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------																											
 			$request->setObject("Branch"		, $Branch);
+			$request->setObject("ConfigTimer"	, $ConfigTimer);
 			
 			$request->setObject("Navigation"	, $Navigation);				
 			$request->setProperty("Title"		, $Title);

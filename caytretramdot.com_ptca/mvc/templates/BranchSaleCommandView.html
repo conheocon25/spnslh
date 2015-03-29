@@ -58,8 +58,11 @@
 					</tr>					
 				</tbody>
 			</table>
-			<a tal:condition="php:Command->getState()==0?true:false" href="#DialogGoodIns" data-toggle="modal"><i class="glyphicon glyphicon-plus"/> HÀNG HÓA</a>
-			<a title="In phiếu" class="Ticket btn" tal:attributes="alt Command/getURLPrint"><i class="glyphicon glyphicon-print"/> IN PHIẾU</a>
+			<a class="btn btn-default" tal:condition="php:Command->getState()==0?true:false" href="#DialogGoodIns" data-toggle="modal"><i class="glyphicon glyphicon-plus"/> HÀNG HÓA</a> 
+			<a class="Mail btn btn-default" tal:condition="php:Command->getState()==0?true:false" tal:attributes="data-url Command/getURLMail">
+				<i class="glyphicon glyphicon-envelope"/> GỬI TRÌNH
+			</a>
+			<a class="Ticket btn btn-default" tal:condition="php:Command->getState()>=2?true:false" tal:attributes="alt Command/getURLPrint"><i class="glyphicon glyphicon-print"/> IN LƯU</a>
 		</div>
 	</div>
 		
@@ -196,6 +199,22 @@
 			success: function(msg){
 				var URL = $("#CommandPanel").attr('alt');
 				$("#CommandView").load(URL);
+			}
+		});
+	});
+	
+	//-----------------------------------------------------------------------------------
+	//GỬI TRÌNH
+	//-----------------------------------------------------------------------------------	
+	$(".Mail").click(function(){
+		var URLMail = $(this).attr('data-url');
+		$.ajax({
+			type: "POST",					
+			url: URLMail,
+			success: function(msg){
+				//var URLLoad = $("#CommandPanel").attr('alt');
+				//$("#CommandView").load(URLLoad);
+				location.reload();
 			}
 		});
 	});

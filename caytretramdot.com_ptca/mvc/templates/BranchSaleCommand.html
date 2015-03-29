@@ -9,8 +9,9 @@
 		<tal:block metal:use-macro="mFront.xhtml/Header"/>
 		<div class="container-fluid" id="wraper">
 			<div class="row">
-				<div class="col-md-3">
+				<div class="col-md-3">					
 					<div id="CommandAll" tal:attributes="data-url Branch/getURLSaleCommandLoad"/>
+					<div class="btn btn-success CommandReload" id="MessageTime" tal:attributes="timer ConfigTimer/getValue" />
 				</div>
 				<div class="col-md-5"><div id="CommandView" /></div>
 				<div class="col-md-4">
@@ -20,6 +21,23 @@
 		</div>
 		<script type="text/javascript">
 		/*<![CDATA[*/
+			//Thủ tục đếm ngược
+			var MAX 		= $("#MessageTime").attr('timer');
+			var CountDown 	= $("#MessageTime").attr('timer');
+			var myVar 		= setInterval(FMessageTime, 1000);
+			function FMessageTime(){
+				CountDown = CountDown-1;
+				$("#MessageTime").html("Sau <B>"+CountDown+"s</B> sẽ tự động cập nhật lại ...");
+				if (CountDown<=0){
+					CountDown = MAX;
+					var URLCommand = $("#CommandAll").attr('data-url');
+					$("#CommandAll").load(URLCommand);
+			
+					var URLQuota = $("#Quota").attr('data-url');
+					$("#Quota").load(URLQuota);
+				}
+			}
+			
 			//---------------------------------------------------------------------------
 			var URLCommand = $("#CommandAll").attr('data-url');				
 			$("#CommandAll").load(URLCommand);

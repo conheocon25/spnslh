@@ -100,7 +100,13 @@ class Branch extends Object{
 		$BranchAll 		= $mSaleCommand->findByBranch(array($this->getId()));
 		return $BranchAll;
 	}
-					
+	
+	function getQuotaAll(){
+		$mBranchQuota 	= new \MVC\Mapper\BranchQuota();
+		$QuotaAll 		= $mBranchQuota->findByBranch(array($this->getId()));
+		return $QuotaAll;
+	}
+								
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $id );}
 	
