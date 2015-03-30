@@ -12,7 +12,7 @@
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
 			$Page 		= $request->getProperty('Page');
-			$IdGroup 	= $request->getProperty('IdGroup');
+			$IdBranch 	= $request->getProperty('IdBranch');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
@@ -26,22 +26,28 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
-			$Group				= $mCustomerGroup->find($IdGroup);
-			$PaymentMethodAll	= $mPaymentMethod->findAll();
 			$BranchAll			= $mBranch->findAll();
+			if (!isset($IdBranch)){
+				$Branch = $BranchAll->current();
+				$IdBranch = $Branch->getId();
+			}else{
+				$Branch	= $mBranch->find($IdBranch);
+			}
+									
+			$PaymentMethodAll	= $mPaymentMethod->findAll();			
 			$GroupAll			= $mCustomerGroup->findAll();
-			$CustomerAll 		= $mCustomer->findByGroup(array($IdGroup));
+			$CustomerAll 		= $mCustomer->findByBranch(array($IdBranch));
 						
 			if (!isset($Page)) $Page=1;
 			$Config 		= $mConfig->findByName("ROW_PER_PAGE");
 			$ConfigName		= $mConfig->findByName("NAME");			
-			$CustomerAll1 	= $mCustomer->findByGroupPage(array($IdGroup, $Page, $Config->getValue() ));
-			$PN = new \MVC\Domain\PageNavigation($CustomerAll->count(), $Config->getValue(), $Group->getURLSettingCustomer() );
+			$CustomerAll1 	= $mCustomer->findByBranchPage(array($IdBranch, $Page, $Config->getValue() ));
+			$PN = new \MVC\Domain\PageNavigation($CustomerAll->count(), $Config->getValue(), $Branch->getURLSettingCustomer() );
 			
-			$Title = mb_strtoupper($Group->getName(), 'UTF8');
+			$Title = mb_strtoupper($Branch->getName(), 'UTF8');
 			$Navigation = array(				
-				array("THIẾT LẬP", "/ql-thiet-lap"),
-				array("NHÓM KHÁCH HÀNG", "/ql-thiet-lap/khach-hang")
+				array("THIẾT LẬP", 			"/ql-thiet-lap"),
+				array("KHÁCH HÀNG", 	"/ql-thiet-lap/khach-hang")
 			);
 			
 			//-------------------------------------------------------------
@@ -52,9 +58,9 @@
 			$request->setProperty('Title'			, $Title);			
 			$request->setObject('Navigation'		, $Navigation);
 			
-			$request->setObject('ConfigName'		, $ConfigName);
-			$request->setObject('Group'				, $Group);
+			$request->setObject('ConfigName'		, $ConfigName);			
 			$request->setObject('PaymentMethodAll'	, $PaymentMethodAll);
+			$request->setObject('Branch'			, $Branch);
 			$request->setObject('GroupAll'			, $GroupAll);
 			$request->setObject('BranchAll'			, $BranchAll);
 			$request->setObject('CustomerAll1'		, $CustomerAll1);

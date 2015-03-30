@@ -37,7 +37,7 @@
 			$Title = mb_strtoupper($Group->getName(), 'UTF8');
 			$Navigation = array(				
 				array("THIẾT LẬP", "/ql-thiet-lap"),
-				array("ĐƠN VỊ TRỰC THUỘC", "/ql-thiet-lap/don-vi-truc-thuoc")
+				array("ĐƠN VỊ", "/ql-thiet-lap/don-vi-truc-thuoc")
 			);
 			
 			//-------------------------------------------------------------
