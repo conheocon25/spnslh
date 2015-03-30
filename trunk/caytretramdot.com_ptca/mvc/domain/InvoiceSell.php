@@ -44,7 +44,7 @@ class InvoiceSell extends Object{
     }
 			
     function getId( ) 		{return $this->Id;}
-	function getIdPrint( ) 	{return "XK / ".$this->Id;}
+	function getIdPrint( ) 	{return "HĐ / ".$this->Id;}
 
 	function setIdEmployee( $IdEmployee ) {$this->IdEmployee = $IdEmployee; $this->markDirty();}
 	function getIdEmployee(){return $this->IdEmployee;}
@@ -201,8 +201,8 @@ class InvoiceSell extends Object{
 	//-------------------------------------------------------------------------------			
 	function getURLSettingCustomer(){return "/admin/setting/customer/".$this->getId();}
 	function getURLBranchLoad()		{return "/don-vi/".$this->getBranch()->getKey()."/ban-hang/".$this->getIdCustomer()."/".$this->getId();}
-	function getURLPrint()			{return "/ql-ban-hang/khach-hang/".$this->getIdCustomer()."/".$this->getId()."/print";}
-	
+	function getURLBranchPrint()	{return "/don-vi/".$this->getBranch()->getKey()."/ban-hang/".$this->getIdCustomer()."/".$this->getId()."/in";}
+		
 	function getURLExportLoad()		{return "/ql-kho-hang/lenh-xuat/".$this->getId();}
 	function getURLExportPrint()	{return "/ql-kho-hang/lenh-xuat/".$this->getId()."/print";}
 	function getURLExportIntroPrint(){return "/ql-kho-hang/lenh-xuat/".$this->getId()."/gioi-thieu/print";}
