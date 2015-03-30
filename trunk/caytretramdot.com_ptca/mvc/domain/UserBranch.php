@@ -64,6 +64,7 @@ class UserBranch extends Object{
 		$this->IdBranch 	= $Data[2];
 		$this->IdRole 		= $Data[3];		
     }
+	function getURLBranch(){return "/don-vi/".$this->getBranch()->getKey();}
 					
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}

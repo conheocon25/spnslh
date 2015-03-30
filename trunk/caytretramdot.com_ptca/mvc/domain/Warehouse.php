@@ -9,7 +9,8 @@ class Warehouse extends Object{
 	private $Tel;
 	private $Fax;
 	private $Address;
-	private $Visible;
+	private $Key;
+	private $Enable;
 				
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
@@ -21,7 +22,8 @@ class Warehouse extends Object{
 		$Tel=null,
 		$Fax=null,
 		$Address=null,
-		$Visible=null
+		$Key=null,
+		$Enable=null
 	){
         $this->Id 		= $Id;
 		$this->IdGroup 	= $IdGroup;
@@ -29,20 +31,11 @@ class Warehouse extends Object{
 		$this->Tel 		= $Tel;
 		$this->Fax 		= $Fax;
 		$this->Address	= $Address;
-		$this->Visible	= $Visible;		
+		$this->Key		= $Key;
+		$this->Enable	= $Enable;
         parent::__construct( $Id );
     }
-	
-	function setArray( $Data ){
-        $this->Id 		= $Data[0];
-		$this->IdGroup 	= $Data[1];
-		$this->Name 	= $Data[2];
-		$this->Tel	 	= $Data[3];
-		$this->Fax	 	= $Data[4];
-		$this->Address 	= $Data[5];
-		$this->Visible 	= $Data[6];
-    }
-	
+			
     function getId( ) {return $this->Id;}
 	
 	function setIdGroup( $IdGroup ) {$this->IdGroup = $IdGroup;$this->markDirty();}
@@ -65,8 +58,27 @@ class Warehouse extends Object{
 	function setAddress( $Address ) {$this->Address = $Address; $this->markDirty();}
 	function getAddress()			{return $this->Address;}
 	
-	function setVisible( $Visible ) {$this->Visible = $Visible; $this->markDirty();}
-	function getVisible()			{return $this->Visible;}
+	function setKey( $Key )	{$this->Key = $Key;$this->markDirty();}
+	function getKey( ) 		{return $this->Key;}
+	function reKey( ){		
+		$Str = new \MVC\Library\String($this->Name);
+		$this->Key = $Str->converturl();
+	}
+	
+	function setEnable( $Enable ) 	{$this->Enable = $Enable; $this->markDirty();}
+	function getEnable()			{return $this->Enable;}
+		
+	
+	function setArray( $Data ){
+        $this->Id 		= $Data[0];
+		$this->IdGroup 	= $Data[1];
+		$this->Name 	= $Data[2];
+		$this->Tel	 	= $Data[3];
+		$this->Fax	 	= $Data[4];
+		$this->Address 	= $Data[5];		
+		$this->Enable 	= $Data[6];
+		$this->reKey();
+    }
 	
 	function toJSON(){
 		$json = array(
@@ -76,7 +88,8 @@ class Warehouse extends Object{
 			'Tel'			=> $this->getTel(),
 			'Fax'			=> $this->getFax(),
 			'Address'		=> $this->getAddress(),
-			'Visible'		=> $this->getVisible()
+			'Key'			=> $this->getKey(),
+			'Enable'		=> $this->getEnable()
 		);
 		return json_encode($json);
 	}

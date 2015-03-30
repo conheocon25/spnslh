@@ -7,13 +7,10 @@
 	<body>
 		<tal:block metal:use-macro="mFront.xhtml/Header"/>
 		<div class="container-fluid" id="wraper">
-			<div class="row">
-				<div tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->IsSeller()">
-					
-				</div>
-				<div tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->IsAdmin()">
+			<div class="row">				
+				<div>
 					<div class="col-md-8">												
-						<div class="panel panel-primary">
+						<div class="panel panel-primary" tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->IsAdmin()">
 							<div class="panel-heading"><i class="glyphicon glyphicon-cog"/> <B>MODULE QUẢN LÝ</B></div>
 							<div class="panel-body">
 								<a href="/ql-ban-hang" class="list-group-item">
@@ -41,7 +38,25 @@
 									<p class="list-group-item-text">Quản lý các thiết lập thông tin cơ sở hệ thống</p>
 								</a>
 							</div>
-						</div>						
+						</div>
+						<div class="panel panel-primary" tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->IsBranchRole()">
+							<div class="panel-heading"><i class="glyphicon glyphicon-cog"/> <B>MODULE CHI NHÁNH</B></div>
+							<div class="panel-body">
+								<a class="list-group-item" tal:repeat="BR php:@\MVC\Base\SessionRegistry::instance()->getCurrentUser()->getBranchRole()" tal:attributes="href BR/getURLBranch">
+									<h4 class="list-group-item-heading"><B tal:content="BR/getBranch/getName"/></h4>
+									<p class="list-group-item-text">Có quyền sử dụng là <B tal:content="BR/getRole/getName"/></p>
+								</a>
+							</div>
+						</div>
+						<div class="panel panel-primary" tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->IsWarehouseRole()">
+							<div class="panel-heading"><i class="glyphicon glyphicon-cog"/> <B>MODULE KHO HÀNG</B></div>
+							<div class="panel-body">
+								<a class="list-group-item" tal:repeat="WR php:@\MVC\Base\SessionRegistry::instance()->getCurrentUser()->getWarehouseRole()" tal:attributes="href WR/getURLWarehouse">
+									<h4 class="list-group-item-heading"><B tal:content="WR/getWarehouse/getName"/></h4>
+									<p class="list-group-item-text">Có quyền sử dụng là <B tal:content="WR/getRole/getName"/></p>
+								</a>
+							</div>
+						</div>
 					</div>
 					<div class="col-md-4">
 						<div class="panel panel-primary">							

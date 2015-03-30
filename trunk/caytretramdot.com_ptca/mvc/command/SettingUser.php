@@ -26,7 +26,7 @@
 						
 			$Title = "NGƯỜI DÙNG";
 			$Navigation = array(				
-				array("THIẾT LẬP", "/admin")
+				array("THIẾT LẬP", "/ql-thiet-lap")
 			);
 			
 			if (!isset($Page)) $Page=1;

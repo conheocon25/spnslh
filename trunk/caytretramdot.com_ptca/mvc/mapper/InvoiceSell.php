@@ -9,8 +9,8 @@ class InvoiceSell extends Mapper implements \MVC\Domain\InvoiceSellFinder {
 		
         $this->selectAllStmt 	= self::$PDO->prepare("select * from invoice_sell");
         $this->selectStmt 		= self::$PDO->prepare("select * from invoice_sell where id=?");
-        $this->updateStmt 		= self::$PDO->prepare("update invoice_sell set id_employee=?, id_customer=?, id_warehouse=?, id_transport=?, id_branch=?, datetime_created=?, datetime_updated=?, note=?, state=? where id=?");
-        $this->insertStmt 		= self::$PDO->prepare("insert into invoice_sell (id_employee, id_customer, id_warehouse, id_transport, id_branch, datetime_created, datetime_updated, note, state) values(?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $this->updateStmt 		= self::$PDO->prepare("update invoice_sell set id_user=?, id_customer=?, id_warehouse=?, id_transport=?, id_branch=?, datetime_created=?, datetime_updated=?, note=?, state=? where id=?");
+        $this->insertStmt 		= self::$PDO->prepare("insert into invoice_sell (id_user, id_customer, id_warehouse, id_transport, id_branch, datetime_created, datetime_updated, note, state) values(?, ?, ?, ?, ?, ?, ?, ?, ?)");
 		$this->deleteStmt 		= self::$PDO->prepare("delete from invoice_sell where id=?");
 		
 		$this->findByStateStmt				= self::$PDO->prepare("select * from invoice_sell where state=? ORDER BY datetime_created DESC");
@@ -18,7 +18,7 @@ class InvoiceSell extends Mapper implements \MVC\Domain\InvoiceSellFinder {
 		
 		$this->findByCustomerStmt		= self::$PDO->prepare("select * from invoice_sell where id_customer=? ORDER BY datetime_created DESC");
 		$this->findByCustomerTop12Stmt	= self::$PDO->prepare("select * from invoice_sell where id_customer=? ORDER BY datetime_created DESC LIMIT 12");						
-		$this->findByEmployeeStmt		= self::$PDO->prepare("select * from invoice_sell where id_employee=? ORDER BY datetime_created DESC");
+		$this->findByEmployeeStmt		= self::$PDO->prepare("select * from invoice_sell where id_user=? ORDER BY datetime_created DESC");
 		
 		$this->findByTrackDailyStmt		= self::$PDO->prepare("select * from invoice_sell where date(datetime_created)=? ORDER BY datetime_created DESC");
 						
@@ -31,7 +31,7 @@ class InvoiceSell extends Mapper implements \MVC\Domain\InvoiceSellFinder {
     protected function doCreateObject( array $array ) {		
         $obj = new \MVC\Domain\InvoiceSell( 
 			$array['id'],  
-			$array['id_employee'],
+			$array['id_user'],
 			$array['id_customer'],
 			$array['id_warehouse'],
 			$array['id_transport'],
@@ -48,7 +48,7 @@ class InvoiceSell extends Mapper implements \MVC\Domain\InvoiceSellFinder {
 
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array(
-			$object->getIdEmployee(),
+			$object->getIdUser(),
 			$object->getIdCustomer(),
 			$object->getIdWarehouse(),
 			$object->getIdTransport(),
@@ -65,7 +65,7 @@ class InvoiceSell extends Mapper implements \MVC\Domain\InvoiceSellFinder {
     
     protected function doUpdate( \MVC\Domain\Object $object ) {
         $values = array(
-			$object->getIdEmployee(),
+			$object->getIdUser(),
 			$object->getIdCustomer(),
 			$object->getIdWarehouse(),
 			$object->getIdTransport(),

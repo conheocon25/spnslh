@@ -29,9 +29,9 @@
 								
 			$Command	= new \MVC\Domain\SaleCommand(
 				null,
-				$Employee->getId(),
+				$Session->getCurrentIdUser(),
 				$Branch->getId(),				
-				\date("Y-m-d"),				
+				\date("Y-m-d H:i:s"),
 				"",
 				0
 			);	
