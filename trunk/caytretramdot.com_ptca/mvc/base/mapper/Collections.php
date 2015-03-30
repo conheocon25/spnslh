@@ -4,7 +4,10 @@ require_once( "mvc/base/domain/Collections.php");
 require_once( "mvc/base/mapper/Collection.php");
 
 class UserCollection 			extends Collection implements \MVC\Domain\UserCollection 			{function targetClass( ) {return "\MVC\Domain\User";		}}
-class TypeAccountCollection 	extends Collection implements \MVC\Domain\TypeAccountCollection 	{function targetClass( ) {return "\MVC\Domain\TypeAccount";	}}
+class UserBranchCollection 		extends Collection implements \MVC\Domain\UserBranchCollection 		{function targetClass( ) {return "\MVC\Domain\UserBranch";	}}
+class UserWarehouseCollection 	extends Collection implements \MVC\Domain\UserWarehouseCollection 	{function targetClass( ) {return "\MVC\Domain\UserWarehouse";}}
+class RoleCollection 			extends Collection implements \MVC\Domain\RoleCollection 			{function targetClass( ) {return "\MVC\Domain\Role";		}}
+
 class UnitCollection 			extends Collection implements \MVC\Domain\UnitCollection 			{function targetClass( ) {return "\MVC\Domain\Unit";		}}
 
 class BranchCollection 				extends Collection implements \MVC\Domain\BranchCollection 			{function targetClass( ) {return "\MVC\Domain\Branch";		}}

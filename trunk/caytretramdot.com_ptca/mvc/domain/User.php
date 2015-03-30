@@ -100,10 +100,17 @@ class User extends Object{
 	function setCode( $Code){	$this->Code= $Code;$this->markDirty();}
 	function getCode(){	return $this->Code;}
 	
-	function getUTAll(){
-		$mUT = new \MVC\Mapper\UserTag();
-		$UTAll = $mUT->findByUser(array($this->getId()));
-		return $UTAll;
+	//Lấy về các quyền
+	function getBranchRole(){
+		$mUserBranch 	= new \MVC\Mapper\UserBranch();
+		$UBAll 			= $mUserBranch->findByUser(array($this->getId()));
+		return $UBAll;
+	}
+	
+	function getWarehouseRole(){
+		$mUserWarehouse = new \MVC\Mapper\UserWarehouse();
+		$UWAll 			= $mUserWarehouse->findByUser(array($this->getId()));
+		return $UWAll;
 	}
 	
 	function toJSON(){

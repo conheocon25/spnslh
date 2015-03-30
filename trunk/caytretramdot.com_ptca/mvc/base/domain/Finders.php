@@ -11,7 +11,10 @@ interface Finder {
 }
 
 interface UserFinder  				extends Finder {}
-interface TypeAccountFinder  		extends Finder {}
+interface UserBranchFinder  		extends Finder {}
+interface UserWarehouseFinder  		extends Finder {}
+
+interface RoleFinder  				extends Finder {}
 interface UnitFinder  				extends Finder {}
 
 interface BranchFinder  			extends Finder {}

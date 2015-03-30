@@ -2,7 +2,10 @@
 namespace MVC\Domain;
 if ( ! isset( $EG_DISABLE_INCLUDES ) ) {			
 	require_once( "mvc/mapper/User.php" 			);
-	require_once( "mvc/mapper/TypeAccount.php" 		);
+	require_once( "mvc/mapper/UserBranch.php" 		);
+	require_once( "mvc/mapper/UserWarehouse.php" 	);
+	
+	require_once( "mvc/mapper/Role.php" 			);
 	require_once( "mvc/mapper/Unit.php" 			);
 	
 	require_once( "mvc/mapper/Branch.php" 			);

@@ -17,22 +17,22 @@
 								<thead>
 									<tr>
 										<th class="text-center" width="40">ID</th>
-										<th class="text-left">TÊN</th>
-										<th width="80">VAI TRÒ</th>
-										<th width="40"><i class="glyphicon glyphicon-pencil"/></th>
+										<th class="text-left">EMAIL</th>
+										<th class="text-left" width="120">CHI NHÁNH</th>
+										<th class="text-left" width="120">KHO HÀNG</th>
 										<th class="text-center" width="40"><i class="glyphicon glyphicon-trash"/></th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr tal:repeat="User UserAll1">
 										<td class="text-center"><span tal:content="repeat/User/number"/></td>
-										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id User/getId" tal:content="User/getName"/></td>
-										<td><span tal:content="User/getTypePrint"/></td>
-										<td class="text-center">
-											<a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id User/getId">
-												<i class="glyphicon glyphicon-pencil"/>
-											</a>
-										</td>
+										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id User/getId" tal:content="User/getEmail"/></td>
+										<th class="text-left">
+											Xem (<span tal:content="User/getBranchRole/count"/>)
+										</th>
+										<th class="text-left">
+											Xem (<span tal:content="User/getWarehouseRole/count"/>)
+										</th>
 										<td class="text-center">
 											<a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id User/getId">
 												<i class="glyphicon glyphicon-remove"/>
@@ -45,7 +45,7 @@
 					</div>																			
 				</div>
 				<div class="col-md-4">
-					<div class="panel panel-default">
+					<div class="panel panel-primary">
 						<div class="panel-heading"><i class="glyphicon glyphicon-cog"/> <B>THAO TÁC</B></div>
 						<div class="panel-body">
 							<a href="#DialogIns" data-toggle="modal" class="btn btn-default btn-ins">
