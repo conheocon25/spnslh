@@ -4,7 +4,7 @@ require_once( "mvc/base/domain/DomainObject.php" );
 class InvoiceSell extends Object{
 
     private $Id;
-	private $IdEmployee;
+	private $IdUser;
 	private $IdCustomer;
 	private $IdWarehouse;
 	private $IdTransport;
@@ -19,7 +19,7 @@ class InvoiceSell extends Object{
 	//-------------------------------------------------------------------------------
     function __construct( 
 		$Id=null, 
-		$IdEmployee=null, 
+		$IdUser=null, 
 		$IdCustomer=null,
 		$IdWarehouse=null,
 		$IdTransport=null,
@@ -30,7 +30,7 @@ class InvoiceSell extends Object{
 		$State=null
 	){
         $this->Id 				= $Id;
-		$this->IdEmployee 		= $IdEmployee;
+		$this->IdUser 			= $IdUser;
 		$this->IdCustomer 		= $IdCustomer;
 		$this->IdWarehouse 		= $IdWarehouse;
 		$this->IdTransport 		= $IdTransport;
@@ -46,12 +46,12 @@ class InvoiceSell extends Object{
     function getId( ) 		{return $this->Id;}
 	function getIdPrint( ) 	{return "HĐ / ".$this->Id;}
 
-	function setIdEmployee( $IdEmployee ) {$this->IdEmployee = $IdEmployee; $this->markDirty();}
-	function getIdEmployee(){return $this->IdEmployee;}
-	function getEmployee(){
-		$mEmployee 	= new \MVC\Mapper\Employee();
-		$Employee 	= $mEmployee->find($this->IdEmployee);
-		return $Employee;
+	function setIdUser( $IdUser ) {$this->IdUser = $IdUser; $this->markDirty();}
+	function getIdUser(){return $this->IdUser;}
+	function getUser(){
+		$mUser 	= new \MVC\Mapper\User();
+		$User 	= $mUser->find($this->IdUser);
+		return $User;
 	}
 	
 	function setIdCustomer( $IdCustomer ) {$this->IdCustomer = $IdCustomer; $this->markDirty();}
@@ -163,7 +163,7 @@ class InvoiceSell extends Object{
 	function toJSON(){
 		$json = array(
 			'Id' 				=> $this->getId(),
-			'IdEmployee'		=> $this->getIdEmployee(),
+			'IdUser'			=> $this->getIdUser(),
 			'IdCustomer'		=> $this->getIdCustomer(),
 			'IdWarehouse'		=> $this->getIdWarehouse(),
 			'IdTransport'		=> $this->getIdTransport(),
@@ -178,7 +178,7 @@ class InvoiceSell extends Object{
 	
 	function setArray( $Data ){
         $this->Id 				= $Data[0];
-		$this->IdEmployee 		= $Data[1];
+		$this->IdUser 		= $Data[1];
 		$this->IdCustomer 		= $Data[2];
 		$this->IdWarehouse 		= $Data[3];
 		$this->IdTransport 		= $Data[4];

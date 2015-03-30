@@ -8,9 +8,9 @@ class Warehouse extends Mapper implements \MVC\Domain\WarehouseFinder {
 		$tblWarehouse 			= "warehouse";
 		
         $this->selectAllStmt 	= self::$PDO->prepare("select * from warehouse");
-        $this->updateStmt 		= self::$PDO->prepare("update warehouse set id_group=?, name=?, tel=?, fax=?, address=?, visible=?  where id=?");
+        $this->updateStmt 		= self::$PDO->prepare("update warehouse set id_group=?, name=?, tel=?, fax=?, address=?, `key`=?, enable=?  where id=?");
         $this->selectStmt 		= self::$PDO->prepare("select * from warehouse where id=?");
-        $this->insertStmt 		= self::$PDO->prepare("insert into warehouse (id_group, name, tel, fax, address, visible) values(?, ?, ?, ?, ?, ?)");
+        $this->insertStmt 		= self::$PDO->prepare("insert into warehouse (id_group, name, tel, fax, address, `key`, enable) values(?, ?, ?, ?, ?, ?, ?)");
 		$this->deleteStmt 		= self::$PDO->prepare("delete from warehouse where id=?");
 		$this->findByGroupStmt 	= self::$PDO->prepare("SELECT * FROM warehouse WHERE id_group=? ORDER BY name");
 		
@@ -31,7 +31,8 @@ class Warehouse extends Mapper implements \MVC\Domain\WarehouseFinder {
 			$array['tel'],
 			$array['fax'],
 			$array['address'],
-			$array['visible']
+			$array['key'],
+			$array['enable']
 		);
         return $obj;
     }
@@ -45,7 +46,8 @@ class Warehouse extends Mapper implements \MVC\Domain\WarehouseFinder {
 			$object->getTel(),
 			$object->getFax(),
 			$object->getAddress(),
-			$object->getVisible()
+			$object->getKey(),
+			$object->getEnable()
 		); 
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
@@ -59,7 +61,8 @@ class Warehouse extends Mapper implements \MVC\Domain\WarehouseFinder {
 			$object->getTel(),
 			$object->getFax(),
 			$object->getAddress(),
-			$object->getVisible(),
+			$object->getKey(),
+			$object->getEnable(),
 			$object->getId()
 		);		
         $this->updateStmt->execute( $values );

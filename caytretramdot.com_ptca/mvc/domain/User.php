@@ -106,11 +106,21 @@ class User extends Object{
 		$UBAll 			= $mUserBranch->findByUser(array($this->getId()));
 		return $UBAll;
 	}
+	function isBranchRole(){
+		$Count = $this->getBranchRole()->count();
+		if ($Count>0)return true;
+		return false;
+	}
 	
 	function getWarehouseRole(){
 		$mUserWarehouse = new \MVC\Mapper\UserWarehouse();
 		$UWAll 			= $mUserWarehouse->findByUser(array($this->getId()));
 		return $UWAll;
+	}
+	function isWarehouseRole(){
+		$Count = $this->getWarehouseRole()->count();
+		if ($Count>0)return true;
+		return false;
 	}
 	
 	function toJSON(){

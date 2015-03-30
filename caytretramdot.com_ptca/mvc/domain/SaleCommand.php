@@ -4,7 +4,7 @@ require_once( "mvc/base/domain/DomainObject.php" );
 class SaleCommand extends Object{
 
     private $Id;
-	private $IdEmployee;
+	private $IdUser;
 	private $IdBranch;
 	private $DateTime;
 	private $Note;
@@ -15,14 +15,14 @@ class SaleCommand extends Object{
 	//-------------------------------------------------------------------------------
     function __construct( 
 		$Id=null,
-		$IdEmployee=null, 		
+		$IdUser=null, 		
 		$IdBranch=null,
 		$DateTime=null,		
 		$Note=null,
 		$State=null
 	){
         $this->Id 				= $Id;
-		$this->IdEmployee 		= $IdEmployee;		
+		$this->IdUser 		= $IdUser;		
 		$this->IdBranch 		= $IdBranch;
 		$this->DateTime 		= $DateTime;		
 		$this->Note 			= $Note;
@@ -34,12 +34,12 @@ class SaleCommand extends Object{
     function getId( ) 		{return $this->Id;}
 	function getIdPrint( ) 	{return "LB / ".$this->Id;}
 
-	function setIdEmployee( $IdEmployee ) {$this->IdEmployee = $IdEmployee; $this->markDirty();}
-	function getIdEmployee(){return $this->IdEmployee;}
-	function getEmployee(){
-		$mEmployee 	= new \MVC\Mapper\Employee();
-		$Employee 	= $mEmployee->find($this->IdEmployee);
-		return $Employee;
+	function setIdUser( $IdUser ) {$this->IdUser = $IdUser; $this->markDirty();}
+	function getIdUser(){return $this->IdUser;}
+	function getUser(){
+		$mUser 	= new \MVC\Mapper\User();
+		$User 	= $mUser->find($this->IdUser);
+		return $User;
 	}
 				
 	function setIdBranch( $IdBranch ) {$this->IdBranch = $IdBranch; $this->markDirty();}
@@ -114,7 +114,7 @@ class SaleCommand extends Object{
 	function toJSON(){
 		$json = array(
 			'Id' 				=> $this->getId(),
-			'IdEmployee'		=> $this->getIdEmployee(),			
+			'IdUser'		=> $this->getIdUser(),			
 			'IdBranch'			=> $this->getIdBranch(),
 			'DateTime'			=> $this->getDateTime(),			
 			'Note'				=> $this->getNote(),
@@ -125,7 +125,7 @@ class SaleCommand extends Object{
 	
 	function setArray( $Data ){
         $this->Id 				= $Data[0];
-		$this->IdEmployee 		= $Data[1];		
+		$this->IdUser 			= $Data[1];		
 		$this->IdBranch 		= $Data[2];
 		$this->DateTime 		= $Data[3];		
 		$this->Note 			= $Data[4];

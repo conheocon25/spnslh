@@ -32,7 +32,7 @@
 			
 			$Invoice = new \MVC\Domain\InvoiceSell(
 				null,				
-				$Employee->getId(),
+				$Session->getCurrentIdUser(),
 				$Customer->getId(),
 				0,
 				0,

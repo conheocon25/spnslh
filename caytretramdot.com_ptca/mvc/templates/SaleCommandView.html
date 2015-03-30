@@ -1,6 +1,6 @@
 <body>
 	<div id="CommandPanel" class="panel panel-primary" tal:attributes="alt Command/getURLCheck;">
-		<div class="panel-heading"><i class="glyphicon glyphicon-star"/> <B tal:content="php: 'LỆNH BÁN ' . Command->getDateTimePrint()"/></div>
+		<div class="panel-heading"><i class="glyphicon glyphicon-star"/> <B>LỆNH BÁN CHỜ DUYỆT</B></div>
 		<div class="panel-body">
 			<table width="100%">				
 				<tr>
@@ -9,8 +9,8 @@
 					<td width="30%"><B tal:content="Command/getBranch/getName"/></td>
 				</tr>
 				<tr>
-					<td width="25%">NHÂN VIÊN LẬP</td>
-					<td width="45%"><B tal:content="Command/getEmployee/getName" /></td>
+					<td width="25%">NGƯỜI LẬP</td>
+					<td width="45%"><B tal:content="Command/getUser/getName" /></td>
 					<td width="30%" />
 				</tr>
 				<tr>

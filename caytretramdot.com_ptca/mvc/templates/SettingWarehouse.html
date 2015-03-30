@@ -16,15 +16,17 @@
 							<table class="table table-bordered table-striped table-hover">
 								<thead>
 									<tr>
-										<th width="40">ID</th>
-										<th class="left">TÊN</th>										
+										<th width="32">ID</th>
+										<th width="120" class="left">TÊN</th>
+										<th class="left">ĐỊA CHỈ</th>
 										<th width="40"><i class="glyphicon glyphicon-trash"/></th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr tal:repeat="Warehouse WarehouseAll1">
 										<td class="center"><span tal:content="repeat/Warehouse/number"/></td>
-										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="Warehouse" tal:attributes="data-id Warehouse/getId" tal:content="Warehouse/getName"/></td>										
+										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="Warehouse" tal:attributes="data-id Warehouse/getId" tal:content="Warehouse/getName"/></td>
+										<td><span tal:content="Warehouse/getAddress"/></td>
 										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Warehouse/getId"><i class="glyphicon glyphicon-remove"/></a></td>
 									</tr>
 								</tbody>

@@ -9,13 +9,13 @@ class SaleCommand extends Mapper implements \MVC\Domain\SaleCommandFinder {
 		
         $this->selectAllStmt 	= self::$PDO->prepare("select * from sale_command");
         $this->selectStmt 		= self::$PDO->prepare("select * from sale_command where id=?");
-        $this->updateStmt 		= self::$PDO->prepare("update sale_command set id_employee=?, id_branch=?, datetime=?, note=?, state=? where id=?");
-        $this->insertStmt 		= self::$PDO->prepare("insert into sale_command (id_employee, id_branch, datetime, note, state) values(?, ?, ?, ?, ?)");
+        $this->updateStmt 		= self::$PDO->prepare("update sale_command set id_user=?, id_branch=?, datetime=?, note=?, state=? where id=?");
+        $this->insertStmt 		= self::$PDO->prepare("insert into sale_command (id_user, id_branch, datetime, note, state) values(?, ?, ?, ?, ?)");
 		$this->deleteStmt 		= self::$PDO->prepare("delete from sale_command where id=?");
 		
-		$this->findByStateStmt		= self::$PDO->prepare("select * from sale_command where state=? ORDER BY datetime DESC");		
-		$this->findByEmployeeStmt	= self::$PDO->prepare("select * from sale_command where id_employee=? ORDER BY datetime DESC");
-		$this->findByBranchStmt		= self::$PDO->prepare("select * from sale_command where id_branch=? ORDER BY datetime DESC");
+		$this->findByStateStmt	= self::$PDO->prepare("select * from sale_command where state=? ORDER BY datetime DESC");		
+		$this->findByUserStmt	= self::$PDO->prepare("select * from sale_command where id_user=? ORDER BY datetime DESC");
+		$this->findByBranchStmt	= self::$PDO->prepare("select * from sale_command where id_branch=? ORDER BY datetime DESC");
 		
 		$this->findByBranchDateStateStmt 	= self::$PDO->prepare("select * from sale_command where id_branch=? AND date(datetime)=? AND state=? ORDER BY datetime DESC");
 		$this->findByBranchQueueStmt 		= self::$PDO->prepare("select * from sale_command where id_branch=? AND state<2 ORDER BY datetime DESC");
@@ -31,7 +31,7 @@ class SaleCommand extends Mapper implements \MVC\Domain\SaleCommandFinder {
     protected function doCreateObject( array $array ) {		
         $obj = new \MVC\Domain\SaleCommand( 
 			$array['id'],
-			$array['id_employee'],			
+			$array['id_user'],			
 			$array['id_branch'],
 			$array['datetime'],
 			$array['note'],
@@ -44,7 +44,7 @@ class SaleCommand extends Mapper implements \MVC\Domain\SaleCommandFinder {
 
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array(
-			$object->getIdEmployee(),			
+			$object->getIdUser(),			
 			$object->getIdBranch(),
 			$object->getDateTime(),			
 			$object->getNote(),
@@ -57,7 +57,7 @@ class SaleCommand extends Mapper implements \MVC\Domain\SaleCommandFinder {
     
     protected function doUpdate( \MVC\Domain\Object $object ) {
         $values = array(
-			$object->getIdEmployee(),			
+			$object->getIdUser(),			
 			$object->getIdBranch(),
 			$object->getDateTime(),			
 			$object->getNote(),
@@ -108,9 +108,9 @@ class SaleCommand extends Mapper implements \MVC\Domain\SaleCommandFinder {
         return new SaleCommandCollection( $this->findByBranchFinishStmt->fetchAll(), $this );
     }
 	
-	function findByEmployee($values){
-        $this->findByEmployeeStmt->execute( $values );
-        return new SaleCommandCollection( $this->findByEmployeeStmt->fetchAll(), $this );
+	function findByUser($values){
+        $this->findByUserStmt->execute( $values );
+        return new SaleCommandCollection( $this->findByUserStmt->fetchAll(), $this );
     }
 	
 }

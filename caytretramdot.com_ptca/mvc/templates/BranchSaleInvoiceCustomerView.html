@@ -1,13 +1,13 @@
 <body>
 	<div id="InvoicePanel" class="panel panel-primary" tal:attributes="alt Invoice/getURLBranchLoad;">
-		<div class="panel-heading"><i class="glyphicon glyphicon-star"/>HÓA ĐƠN BÁN HÀNG</div>
+		<div class="panel-heading"><i class="glyphicon glyphicon-star"/><B>HÓA ĐƠN BÁN HÀNG</B></div>
 		<div class="panel-body">
 			<table width="100%">				
 				<tr>
 					<td width="15%">TẠO LÚC</td>
 					<td width="35%"><B tal:content="Invoice/getDateTimeCreatedPrint" /></td>									
 					<td width="15%">NGƯỜI LẬP</td>
-					<td width="35%"><B tal:content="Invoice/getEmployee/getName" /></td>
+					<td width="35%"><B tal:content="Invoice/getUser/getName" /></td>
 				</tr>
 				<tr>
 					<td width="15%">ĐƠN VỊ</td>
