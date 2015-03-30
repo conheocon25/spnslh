@@ -69,7 +69,7 @@ class Post extends Object{
 		$Id = time();
 		$Str = new \MVC\Library\String($this->Title." ".$Id);
 		$this->Key = $Str->converturl();		
-	}	
+	}
 	function getContentReduce(){$S = new \MVC\Library\String($this->Content);return $S->reduceHTML(320);}
 	
 	function setViewed( $Viewed ){$this->Viewed = $Viewed;$this->markDirty();}   
