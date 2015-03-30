@@ -11,23 +11,27 @@
 				<div>
 					<div class="col-md-8">
 						<div class="panel panel-primary">
-							<div class="panel-heading"><i class="glyphicon glyphicon-cog"/> <B>MODULE QUẢN LÝ</B></div>
+							<div class="panel-heading"><i class="glyphicon glyphicon-cog"/> <B tal:content="Title"/></div>
 							<div class="panel-body">
 								<a tal:attributes="href Branch/getURLSaleCommand" class="list-group-item">
 									<h4 class="list-group-item-heading"><B>LỆNH BÁN</B></h4>
-									<p class="list-group-item-text">Quản lý các lệnh bán hàng.</p>
+									<p class="list-group-item-text">Quản lý lệnh bán hàng.</p>
 								</a>
 								<a tal:attributes="href Branch/getURLSaleInvoice" class="list-group-item">
 									<h4 class="list-group-item-heading"><B>BÁN HÀNG</B></h4>
-									<p class="list-group-item-text">Quản lý các thao tác bán hàng.</p>
+									<p class="list-group-item-text">Quản lý bán hàng.</p>
+								</a>
+								<a tal:attributes="href Branch/getURLCustomerCollect" class="list-group-item">
+									<h4 class="list-group-item-heading"><B>THANH TOÁN</B></h4>
+									<p class="list-group-item-text">Quản lý thu tiền khách hàng.</p>
 								</a>
 								<a tal:attributes="href Branch/getURLReport" class="list-group-item">
 									<h4 class="list-group-item-heading"><B>BÁO CÁO</B></h4>
-									<p class="list-group-item-text">Quản lý sổ sách, báo cáo, báo biểu, thống kê.</p>
+									<p class="list-group-item-text">Quản lý báo cáo, báo biểu, thống kê hàng ngày / tháng.</p>
 								</a>
 								<a tal:attributes="href Branch/getURLSetting" class="list-group-item">
 									<h4 class="list-group-item-heading"><B>THIẾT LẬP</B></h4>
-									<p class="list-group-item-text">Quản lý các thiết lập thông tin cơ sở hệ thống</p>
+									<p class="list-group-item-text">Quản lý các thiết lập hệ thống</p>
 								</a>
 							</div>
 						</div>

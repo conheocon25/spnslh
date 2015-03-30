@@ -35,6 +35,7 @@ interface GoodFinder  			extends Finder {}
 
 interface CustomerGroupFinder  	extends Finder {}
 interface CustomerFinder  		extends Finder {}
+interface CustomerCollectFinder  extends Finder {}
 
 interface EmployeeFinder  		extends Finder {}
 interface DepartmentFinder  	extends Finder {}
@@ -47,6 +48,7 @@ interface WarehouseGroupFinder  extends Finder {}
 
 interface TrackFinder  			extends Finder {}
 interface TrackDailyFinder  	extends Finder {}
+interface TrackDailyBranchCustomerFinder  	extends Finder {}
 
 interface TransportFinder  		extends Finder {}
 interface TransportGroupFinder  extends Finder {}
