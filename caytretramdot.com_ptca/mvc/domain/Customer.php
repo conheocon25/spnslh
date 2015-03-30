@@ -220,6 +220,10 @@ class Customer extends Object{
 	function getURLBranchInvoiceLoad(){
 		return "/don-vi/".$this->getBranch()->getKey()."/ban-hang/".$this->getId();
 	}
+	
+	function getURLBranchInvoiceInsExe(){
+		return "/don-vi/".$this->getBranch()->getKey()."/ban-hang/".$this->getId()."/them";
+	}
 					
 	//=================================================================================	
 	

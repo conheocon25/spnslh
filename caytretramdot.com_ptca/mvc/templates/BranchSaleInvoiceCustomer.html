@@ -7,14 +7,14 @@
 				<ul class="list-group">
 					<li class="list-group-item Invoice" 
 						tal:repeat="Invoice InvoiceAll" 
-						style="cursor: pointer;"
+						style="cursor: pointer;"	
 						tal:attributes="data-url Invoice/getURLBranchLoad"
 					>
 						<span tal:content="Invoice/getDateTimeCreatedPrint"/>
 						<span class="badge" tal:content="Invoice/getValuePrint"/>
 					</li>
 				</ul>
-				<a id="InvoiceIns" class="btn btn-default" tal:attributes="data-url '#'">
+				<a id="InvoiceIns" class="btn btn-default" tal:attributes="data-url Customer/getURLBranchInvoiceInsExe; data-url-load Customer/getURLBranchInvoiceLoad">
 					<i class="glyphicon glyphicon-plus"/> ĐƠN HÀNG
 				</a>
 			</div>
@@ -29,6 +29,20 @@
 				$(this).addClass("list-group-item-success");
 			});
 			$(".Invoice:first").click();
+			
+			//THÊM ĐƠN HÀNG
+			$("#InvoiceIns").click(function(){
+				var URLIns = $(this).attr('data-url');
+				var URLReload = $(this).attr('data-url-load');				
+				$.ajax({
+					type: "POST",					
+					url: URLIns,
+					success: function(msg){
+						
+					}
+				});
+				$("#CustomerView").load(URLReload);
+			});			
 		/*]]>*/
 		</script>
 	</body>
