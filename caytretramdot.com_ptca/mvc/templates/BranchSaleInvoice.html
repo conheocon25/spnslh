@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mFront.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>
+		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
+	</head>	
+	<body>
+		<tal:block metal:use-macro="mFront.xhtml/Header"/>
+		<div class="container-fluid" id="wraper">
+			<div class="row">
+				<div class="col-md-3">
+					<div id="BranchId" tal:attributes="data-id Branch/getId"/>
+					<input id="NameSearch" name="NameSearch" type="text" 
+						class="form-control input-small" placeholder="Gõ vào tên khách hàng"
+						tal:attributes="data-url Branch/getURLSaleInvoiceCustomerSearch"
+					/>
+					<div id="CustomerAll" />
+				</div>
+				<div class="col-md-3">
+					<div id="CustomerView" />
+				</div>
+				<div class="col-md-6">
+					<div id="InvoiceView" />
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+		/*<![CDATA[*/					
+			$('#NameSearch').keyup(function(event){
+				var URL = $(this).attr('data-url');
+				$("#CustomerAll").load(URL, {NameSearch:$(this).val()});
+			});
+		/*]]>*/
+		</script>
+	</body>
+</html>

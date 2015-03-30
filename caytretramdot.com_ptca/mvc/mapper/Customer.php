@@ -57,16 +57,22 @@ class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
 			) 
 			values( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 		$this->deleteStmt 		= self::$PDO->prepare("delete from customer where id=?");
+		$this->findByBranchStmt = self::$PDO->prepare("SELECT * FROM customer WHERE id_branch=? ORDER BY name");
 		$this->findByGroupStmt 	= self::$PDO->prepare("SELECT * FROM customer WHERE id_customer_group=? ORDER BY name");
 		$this->findByNormalStmt = self::$PDO->prepare("SELECT * FROM customer WHERE type>0 ORDER By type, name");
 		$this->findBySerialStmt = self::$PDO->prepare("select * from customer where serial=?");
-		$this->findByNameStmt 	= self::$PDO->prepare("select * from customer where name like :name ORDER BY name LIMIT 12");
+		
+		$this->findByBranchNameStmt = self::$PDO->prepare("select * from customer where id_branch=:id_branch AND name like :name ORDER BY name LIMIT 12");
+		$this->findByNameStmt 		= self::$PDO->prepare("select * from customer where name like :name ORDER BY name LIMIT 12");
 
-		$findByPageStmt 		= sprintf("SELECT * FROM  %s ORDER BY type, name LIMIT :start,:max", $tblCustomer);
-		$this->findByPageStmt 	= self::$PDO->prepare($findByPageStmt);
+		$findByPageStmt 			= sprintf("SELECT * FROM  %s ORDER BY type, name LIMIT :start,:max", $tblCustomer);
+		$this->findByPageStmt 		= self::$PDO->prepare($findByPageStmt);
 		
 		$findByGroupPageStmt 		= sprintf("SELECT * FROM  %s WHERE id_customer_group=:id_customer_group LIMIT :start,:max", $tblCustomer);
 		$this->findByGroupPageStmt 	= self::$PDO->prepare($findByGroupPageStmt);
+		
+		$findByBranchPageStmt 		= sprintf("SELECT * FROM  %s WHERE id_branch=:id_branch LIMIT :start,:max", $tblCustomer);
+		$this->findByBranchPageStmt = self::$PDO->prepare($findByBranchPageStmt);
 		 
     } 
     function getCollection( array $raw ) {return new CustomerCollection( $raw, $this );}
@@ -161,6 +167,11 @@ class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
     function selectStmt() {return $this->selectStmt;}	
     function selectAllStmt() {return $this->selectAllStmt;}
 	
+	function findByBranch($values) {		
+        $this->findByBranchStmt->execute( $values );
+        return new CustomerCollection( $this->findByBranchStmt->fetchAll(), $this );
+    }
+	
 	function findByGroup($values) {		
         $this->findByGroupStmt->execute( $values );
         return new CustomerCollection( $this->findByGroupStmt->fetchAll(), $this );
@@ -179,6 +190,14 @@ class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
         if ( ! isset( $array['id'] ) ) { return null; }
         $object = $this->doCreateObject( $array );
         return $object;		
+    }
+	
+	function findByBranchPage( $values ) {
+		$this->findByBranchPageStmt->bindValue(':id_branch', (int)($values[0]), \PDO::PARAM_INT);
+		$this->findByBranchPageStmt->bindValue(':start', ((int)($values[1])-1)*(int)($values[2]), \PDO::PARAM_INT);
+		$this->findByBranchPageStmt->bindValue(':max', (int)($values[2]), \PDO::PARAM_INT);
+		$this->findByBranchPageStmt->execute();
+        return new CustomerCollection( $this->findByBranchPageStmt->fetchAll(), $this );
     }
 	
 	function findByGroupPage( $values ) {
@@ -200,6 +219,13 @@ class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
 		$this->findByNameStmt->bindValue(':name', $value."%", \PDO::PARAM_STR);
 		$this->findByNameStmt->execute();
         return new CustomerCollection( $this->findByNameStmt->fetchAll(), $this );
+    }
+	
+	function findByBranchName( $values ) {
+		$this->findByBranchNameStmt->bindValue(':id_branch', $values[0], \PDO::PARAM_INT);
+		$this->findByBranchNameStmt->bindValue(':name', $values[1], \PDO::PARAM_STR);
+		$this->findByBranchNameStmt->execute();
+        return new CustomerCollection( $this->findByBranchNameStmt->fetchAll(), $this );
     }	
 }
 ?>

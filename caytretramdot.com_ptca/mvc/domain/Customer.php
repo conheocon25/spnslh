@@ -216,6 +216,10 @@ class Customer extends Object{
 		$InvoiceAll 	= $mInvoiceSell->findByCustomerTop12(array($this->Id));
 		return $InvoiceAll;
 	}
+	
+	function getURLBranchInvoiceLoad(){
+		return "/don-vi/".$this->getBranch()->getKey()."/ban-hang/".$this->getId();
+	}
 					
 	//=================================================================================	
 	

@@ -40,7 +40,13 @@
 		<command name="BranchSaleCommandQuota">		<view>BranchSaleCommandQuota</view></command>
 		<command name="BranchSaleCommandPrint">		<view>BranchSaleCommandPrint</view></command>
 		
-		<command name="BranchSaleInvoice">			<view>BranchSaleInvoice</view></command>		
+		<command name="BranchSaleInvoice">					<view>BranchSaleInvoice</view></command>
+		<command name="BranchSaleInvoiceCustomer">			<view>BranchSaleInvoiceCustomer</view></command>
+		<command name="BranchSaleInvoiceCustomerSearch">	<view>BranchSaleInvoiceCustomerSearch</view></command>
+		<command name="BranchSaleInvoiceCustomerInsExe">	<view>BranchSaleInvoiceCustomerInsExe</view></command>
+		<command name="BranchSaleInvoiceCustomerView">		<view>BranchSaleInvoiceCustomerView</view></command>
+		<command name="BranchSaleInvoiceCustomerPrint">		<view>BranchSaleInvoiceCustomerPrint</view></command>
+				
 		<command name="BranchReport">				<view>BranchReport</view></command>
 		<command name="BranchSetting">				<view>BranchSetting</view></command>
 				

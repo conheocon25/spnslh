@@ -95,6 +95,12 @@ class Branch extends Object{
 	//-------------------------------------------------------------------------------
 	//GET LISTs
 	//-------------------------------------------------------------------------------
+	function getCustomerAll(){
+		$mCustomer 		= new \MVC\Mapper\Customer();
+		$CustomerAll 	= $mCustomer->findByBranch(array($this->getId()));
+		return $CustomerAll;
+	}
+	
 	function getCommandAll(){
 		$mSaleCommand 	= new \MVC\Mapper\SaleCommand();
 		$BranchAll 		= $mSaleCommand->findByBranch(array($this->getId()));
@@ -119,9 +125,13 @@ class Branch extends Object{
 	function getURLSaleCommandView()	{return "/don-vi/".$this->Key."/lenh-ban/xem";}
 	function getURLSaleCommandQuota()	{return "/don-vi/".$this->Key."/lenh-ban/han-ngach";}
 	
-	function getURLSaleInvoice(){return "/don-vi/".$this->Key."/ban-hang";}
-	function getURLReport(){return "/don-vi/".$this->Key."/bao-cao";}
-	function getURLSetting(){return "/don-vi/".$this->Key."/thiet-lap";}
+	function getURLSaleInvoice()				{return "/don-vi/".$this->Key."/ban-hang";}
+	function getURLSaleInvoiceCustomerSearch()	{return "/don-vi/".$this->Key."/ban-hang/khach-hang/tim";}
+	
+	function getURLReport()		{return "/don-vi/".$this->Key."/bao-cao";}
+	function getURLSetting()	{return "/don-vi/".$this->Key."/thiet-lap";}
+	
+	function getURLSettingCustomer(){return "/ql-thiet-lap/khach-hang/".$this->getId();}
 	
 }
 ?>
