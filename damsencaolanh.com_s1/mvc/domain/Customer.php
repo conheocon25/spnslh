@@ -33,9 +33,10 @@ class Customer extends Object{
 		$Arr = array("Hệ thống", "Nhà", "Thường");
 		return $Arr[$this->Type];		
 	}
-	
-	function getCard(){return $this->Card;}	
+		
     function setCard( $Card ) {$this->Card = $Card;$this->markDirty();}
+	function getCard(){return $this->Card;}	
+	function getCardPrint(){return "(KH".$this->Card.") ".$this->Name;}
 	
 	function getNote(){return $this->Note;}	
     function setNote( $Note ) {$this->Note = $Note;$this->markDirty();}
@@ -51,6 +52,7 @@ class Customer extends Object{
 		
 	function setDiscount( $Discount ) {$this->Discount = $Discount;$this->markDirty();}
 	function getDiscount(){return $this->Discount;}
+	function getDiscountPrint(){return $this->Discount."%";}
 	
 	function toJSON(){
 		$json = array(
