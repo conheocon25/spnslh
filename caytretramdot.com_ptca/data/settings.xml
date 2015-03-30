@@ -1,22 +1,11 @@
 <options>    
 	<control>
 		<!-- ============================================================================== -->
-		<!-- Các lệnh xử lí SYSTEM 															-->
+		<!-- SYSTEM 															-->
 		<!-- ============================================================================== -->		
 		<command name="DefaultCommand" 	type="public"><view>DefaultCommand</view><status value="CMD_OK"><forward>FHome</forward></status></command>
 		<command name="FHome" 			type="public"><view>FHome</view></command>						
-				
-		<!-- ============================================================================== -->
-		<!-- JSON LOAD			 															-->
-		<!-- ============================================================================== -->				
-		<command name="ObjectLoad"><view>ObjectLoad</view></command>
-		<command name="ObjectDel"><view>ObjectDel</view></command>
-		<command name="ObjectIns"><view>ObjectIns</view></command>
-		<command name="ObjectUpd"><view>ObjectUpd</view></command>
-		
-		<!-- ============================================================================== -->
-		<!-- SYSTEM 																		-->
-		<!-- ============================================================================== -->		
+							
 		<command name="SigninLoad" 		type="public"><view>SigninLoad</view></command>
 		<command name="SigninExe" 		type="public">
 			<view>SigninExe</view>
@@ -25,20 +14,29 @@
 		</command>
 		<command name="SignoutLoad"><view>SignoutLoad</view></command>
 		<command name="SignoutExe"><view>SignoutExe</view><status value="CMD_OK"><forward>FHome</forward></status></command>
-		<command name="App"><view>App</view></command>											
 		
+		<!-- ============================================================================== -->
+		<!-- JSON LOAD			 															-->
+		<!-- ============================================================================== -->				
+		<command name="ObjectLoad"><view>ObjectLoad</view></command>
+		<command name="ObjectDel"><view>ObjectDel</view></command>
+		<command name="ObjectIns"><view>ObjectIns</view></command>
+		<command name="ObjectUpd"><view>ObjectUpd</view></command>
+			
+		
+		<command name="App"><view>App</view></command>		
 		<!-- ============================================================================== -->
 		<!-- BRANCH 																		-->
 		<!-- ============================================================================== -->
-		<command name="Branch">						<view>Branch</view></command>
-		<command name="BranchSaleCommand">			<view>BranchSaleCommand</view></command>
-		<command name="BranchSaleCommandInsExe">	<view>BranchSaleCommandInsExe</view></command>
-		<command name="BranchSaleCommandDelExe">	<view>BranchSaleCommandDelExe</view></command>
-		<command name="BranchSaleCommandLoad">		<view>BranchSaleCommandLoad</view></command>
-		<command name="BranchSaleCommandView">		<view>BranchSaleCommandView</view></command>
-		<command name="BranchSaleCommandMail">		<view>BranchSaleCommandMail</view></command>
-		<command name="BranchSaleCommandQuota">		<view>BranchSaleCommandQuota</view></command>
-		<command name="BranchSaleCommandPrint">		<view>BranchSaleCommandPrint</view></command>
+		<command name="Branch">								<view>Branch</view></command>
+		<command name="BranchSaleCommand">					<view>BranchSaleCommand</view></command>
+		<command name="BranchSaleCommandInsExe">			<view>BranchSaleCommandInsExe</view></command>
+		<command name="BranchSaleCommandDelExe">			<view>BranchSaleCommandDelExe</view></command>
+		<command name="BranchSaleCommandLoad">				<view>BranchSaleCommandLoad</view></command>
+		<command name="BranchSaleCommandView">				<view>BranchSaleCommandView</view></command>
+		<command name="BranchSaleCommandMail">				<view>BranchSaleCommandMail</view></command>
+		<command name="BranchSaleCommandQuota">				<view>BranchSaleCommandQuota</view></command>
+		<command name="BranchSaleCommandPrint">				<view>BranchSaleCommandPrint</view></command>
 		
 		<command name="BranchSaleInvoice">					<view>BranchSaleInvoice</view></command>
 		<command name="BranchSaleInvoiceCustomer">			<view>BranchSaleInvoiceCustomer</view></command>
@@ -47,16 +45,16 @@
 		<command name="BranchSaleInvoiceCustomerView">		<view>BranchSaleInvoiceCustomerView</view></command>
 		<command name="BranchSaleInvoiceCustomerPrint">		<view>BranchSaleInvoiceCustomerPrint</view></command>
 				
-		<command name="BranchReport">				<view>BranchReport</view></command>
-		<command name="BranchSetting">				<view>BranchSetting</view></command>
+		<command name="BranchReport">						<view>BranchReport</view></command>
+		<command name="BranchSetting">						<view>BranchSetting</view></command>
 				
 		<!-- ============================================================================== -->
 		<!-- WAREHOUSE 																		-->
 		<!-- ============================================================================== -->
-		<command name="Warehouse">					<view>Warehouse</view></command>
-		<command name="WarehouseImport">			<view>WarehouseImport</view></command>
-		<command name="WarehouseImportInsExe">		<view>WarehouseImportInsExe</view></command>
-		<command name="WarehouseImportDetail">		<view>WarehouseImportDetail</view></command>
+		<command name="Warehouse">							<view>Warehouse</view></command>
+		<command name="WarehouseImport">					<view>WarehouseImport</view></command>
+		<command name="WarehouseImportInsExe">				<view>WarehouseImportInsExe</view></command>
+		<command name="WarehouseImportDetail">				<view>WarehouseImportDetail</view></command>
 		<command name="WarehouseImportDetailPrint">			<view>WarehouseImportDetailPrint</view></command>
 		
 		<command name="WarehouseExport">					<view>WarehouseExport</view></command>

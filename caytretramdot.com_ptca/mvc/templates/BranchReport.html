@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mFront.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>		
+	</head>
+	<body>
+		<tal:block metal:use-macro="mFront.xhtml/Header"/>
+		<div class="container-fluid" id="wraper">
+			<div class="row">				
+				<div>
+					<div class="col-md-8">
+						<div class="panel panel-primary">
+							<div class="panel-heading"><i class="glyphicon glyphicon-cog"/> <B tal:content="Title"/></div>
+							<div class="panel-body">
+								<table class="table table-bordered table-striped table-hover">
+									<thead>
+										<tr>
+											<th width="32">ID</th>
+											<th class="text-left">BÁO CÁO</th>
+											<th class="text-center" width="120">BÁN HÀNG</th>
+											<th class="text-center" width="120">THU / CHI</th>
+											<th class="text-center" width="120">CÔNG NỢ</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr tal:repeat="Track TrackAll">
+											<td class="center"><span tal:content="repeat/Track/number"/></td>
+											<td><span tal:content="Track/getName"/></td>
+											<td class="text-center">Xem</td>
+											<td class="text-center">Xem</td>
+											<td class="text-center">Xem</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="panel panel-primary">							
+							<div class="panel-heading"><i class="glyphicon glyphicon-cog"/> <B>CHỨC NĂNG</B></div>
+							<div class="panel-body">								
+								
+							</div>	
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>		
+		<div metal:use-macro="mFront.xhtml/IncludeJS"/>		
+	</body>
+</html>

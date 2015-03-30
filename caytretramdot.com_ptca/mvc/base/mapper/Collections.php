@@ -28,6 +28,7 @@ class GoodCollection 			extends Collection implements \MVC\Domain\GoodCollection
 
 class CustomerGroupCollection 	extends Collection implements \MVC\Domain\CustomerGroupCollection	{function targetClass( ) {return "\MVC\Domain\CustomerGroup";	}}
 class CustomerCollection 		extends Collection implements \MVC\Domain\CustomerCollection 		{function targetClass( ) {return "\MVC\Domain\Customer";		}}
+class CustomerCollectCollection extends Collection implements \MVC\Domain\CustomerCollectCollection {function targetClass( ) {return "\MVC\Domain\CustomerCollect";	}}
 
 class EmployeeCollection 		extends Collection implements \MVC\Domain\EmployeeCollection 		{function targetClass( ) {return "\MVC\Domain\Employee";	}}
 class DepartmentCollection 		extends Collection implements \MVC\Domain\DepartmentCollection 		{function targetClass( ) {return "\MVC\Domain\Department";	}}
@@ -40,6 +41,7 @@ class WarehouseGroupCollection 	extends Collection implements \MVC\Domain\Wareho
 
 class TrackCollection 			extends Collection implements \MVC\Domain\TrackCollection 			{function targetClass( ) {return "\MVC\Domain\Track";		}}
 class TrackDailyCollection 		extends Collection implements \MVC\Domain\TrackDailyCollection 		{function targetClass( ) {return "\MVC\Domain\TrackDaily";	}}
+class TrackDailyBranchCustomerCollection 		extends Collection implements \MVC\Domain\TrackDailyBranchCustomerCollection {function targetClass( ) {return "\MVC\Domain\TrackDailyBranchCustomer";	}}
 
 class TransportCollection 		extends Collection implements \MVC\Domain\TransportCollection 		{function targetClass( ) {return "\MVC\Domain\Transport";	}}
 class TransportGroupCollection 	extends Collection implements \MVC\Domain\TransportGroupCollection 	{function targetClass( ) {return "\MVC\Domain\TransportGroup";	}}

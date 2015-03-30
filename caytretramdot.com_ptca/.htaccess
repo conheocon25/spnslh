@@ -33,7 +33,7 @@ AddOutputFilterByType DEFLATE application/x-javascript
 #---------------------------------------------------------------------------------------------------------------------------
 # SYSTEM
 #---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^trang-chu$ 																?cmd=FHome [L]
+RewriteRule ^trang-chu$ 										?cmd=FHome [L]
 
 RewriteRule ^dang-nhap$ 										?cmd=SigninLoad [L]
 RewriteRule ^dang-nhap/exe$ 									?cmd=SigninExe [L]
@@ -50,25 +50,27 @@ RewriteRule ^app$ 														?cmd=App [L]
 #---------------------------------------------------------------------------------------------------------------------------
 # BRANCH
 #---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^don-vi/([A-Za-z0-9_-]+)$ 							?cmd=Branch&IdKey=$1					[L]
-RewriteRule ^don-vi/([A-Za-z0-9_-]+)/lenh-ban$ 					?cmd=BranchSaleCommand&IdKey=$1			[L]
-RewriteRule ^don-vi/([A-Za-z0-9_-]+)/lenh-ban/([0-9]+)$ 		?cmd=BranchSaleCommandView&IdKey=$1&IdCommand=$2 [L]
-RewriteRule ^don-vi/([A-Za-z0-9_-]+)/lenh-ban/([0-9]+)/huy$ 	?cmd=BranchSaleCommandDel&IdKey=$1&IdCommand=$2 [L]
-RewriteRule ^don-vi/([A-Za-z0-9_-]+)/lenh-ban/([0-9]+)/trinh$ 	?cmd=BranchSaleCommandMail&IdKey=$1&IdCommand=$2 [L]
-RewriteRule ^don-vi/([A-Za-z0-9_-]+)/lenh-ban/([0-9]+)/in$ 		?cmd=BranchSaleCommandPrint&IdKey=$1&IdCommand=$2 [L]
-RewriteRule ^don-vi/([A-Za-z0-9_-]+)/lenh-ban/them$ 			?cmd=BranchSaleCommandInsExe&IdKey=$1	[L]
-RewriteRule ^don-vi/([A-Za-z0-9_-]+)/lenh-ban/nap$ 				?cmd=BranchSaleCommandLoad&IdKey=$1		[L]
-RewriteRule ^don-vi/([A-Za-z0-9_-]+)/lenh-ban/han-ngach$ 		?cmd=BranchSaleCommandQuota&IdKey=$1	[L]
+RewriteRule ^don-vi/([A-Za-z0-9_-]+)$ 								?cmd=Branch&IdKey=$1							[L]
+RewriteRule ^don-vi/([A-Za-z0-9_-]+)/lenh-ban$ 						?cmd=BranchSaleCommand&IdKey=$1					[L]
+RewriteRule ^don-vi/([A-Za-z0-9_-]+)/lenh-ban/([0-9]+)$ 			?cmd=BranchSaleCommandView&IdKey=$1&IdCommand=$2 [L]
+RewriteRule ^don-vi/([A-Za-z0-9_-]+)/lenh-ban/([0-9]+)/huy$ 		?cmd=BranchSaleCommandDel&IdKey=$1&IdCommand=$2 [L]
+RewriteRule ^don-vi/([A-Za-z0-9_-]+)/lenh-ban/([0-9]+)/trinh$ 		?cmd=BranchSaleCommandMail&IdKey=$1&IdCommand=$2 [L]
+RewriteRule ^don-vi/([A-Za-z0-9_-]+)/lenh-ban/([0-9]+)/in$ 			?cmd=BranchSaleCommandPrint&IdKey=$1&IdCommand=$2 [L]
+RewriteRule ^don-vi/([A-Za-z0-9_-]+)/lenh-ban/them$ 				?cmd=BranchSaleCommandInsExe&IdKey=$1	[L]
+RewriteRule ^don-vi/([A-Za-z0-9_-]+)/lenh-ban/nap$ 					?cmd=BranchSaleCommandLoad&IdKey=$1		[L]
+RewriteRule ^don-vi/([A-Za-z0-9_-]+)/lenh-ban/han-ngach$ 			?cmd=BranchSaleCommandQuota&IdKey=$1	[L]
 
-RewriteRule ^don-vi/([A-Za-z0-9_-]+)/ban-hang$ 					?cmd=BranchSaleInvoice&IdKey=$1			[L]
-RewriteRule ^don-vi/([A-Za-z0-9_-]+)/ban-hang/khach-hang/tim$ 	?cmd=BranchSaleInvoiceCustomerSearch&IdKey=$1 [L]
+RewriteRule ^don-vi/([A-Za-z0-9_-]+)/ban-hang$ 						?cmd=BranchSaleInvoice&IdKey=$1			[L]
+RewriteRule ^don-vi/([A-Za-z0-9_-]+)/ban-hang/khach-hang/tim$ 		?cmd=BranchSaleInvoiceCustomerSearch&IdKey=$1 [L]
 RewriteRule ^don-vi/([A-Za-z0-9_-]+)/ban-hang/([0-9]+)$ 			?cmd=BranchSaleInvoiceCustomer&IdKey=$1&IdCustomer=$2 [L]
 RewriteRule ^don-vi/([A-Za-z0-9_-]+)/ban-hang/([0-9]+)/them$ 		?cmd=BranchSaleInvoiceCustomerInsExe&IdKey=$1&IdCustomer=$2 [L]
 RewriteRule ^don-vi/([A-Za-z0-9_-]+)/ban-hang/([0-9]+)/([0-9]+)$ 	?cmd=BranchSaleInvoiceCustomerView&IdKey=$1&IdCustomer=$2&IdInvoice=$3 [L]
 RewriteRule ^don-vi/([A-Za-z0-9_-]+)/ban-hang/([0-9]+)/([0-9]+)/in$ ?cmd=BranchSaleInvoiceCustomerPrint&IdKey=$1&IdCustomer=$2&IdInvoice=$3 [L]
 
-RewriteRule ^don-vi/([A-Za-z0-9_-]+)/bao-cao$ 					?cmd=BranchReport&IdKey=$1				[L]
-RewriteRule ^don-vi/([A-Za-z0-9_-]+)/thiet-lap$ 				?cmd=BranchSetting&IdKey=$1				[L]
+RewriteRule ^don-vi/([A-Za-z0-9_-]+)/thu-tien$ 						?cmd=BranchCustomerCollect&IdKey=$1		[L]
+
+RewriteRule ^don-vi/([A-Za-z0-9_-]+)/bao-cao$ 						?cmd=BranchReport&IdKey=$1				[L]
+RewriteRule ^don-vi/([A-Za-z0-9_-]+)/thiet-lap$ 					?cmd=BranchSetting&IdKey=$1				[L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # SALE
