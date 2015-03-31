@@ -51,11 +51,38 @@ class TrackDailyBranch extends Object{
 	//-------------------------------------------------------------------------------
 	//GET LISTs
 	//-------------------------------------------------------------------------------
+	function generate(){
+		$mTDBCustomer 	= new \MVC\Mapper\TrackDailyBranchCustomer();
+		$CustomerAll 	= $this->getBranch()->getCustomerAll();
+		while ($CustomerAll->valid()){
+			$Customer = $CustomerAll->current();
+			
+			$TDBCustomer = new \MVC\Domain\TrackDailyBranchCustomer(
+				null,
+				$this->getId(),
+				$Customer->getId(),
+				0,
+				0,
+				0
+			);
+			$mTDBCustomer->insert($TDBCustomer);
+			
+			$CustomerAll->next();
+		}
+	}
+	
+	function getTDBCustomerAll(){
+		$mTDBCustomer 	= new \MVC\Mapper\TrackDailyBranchCustomer();
+		$TDBCustomerAll = $mTDBCustomer->findBy(array($this->getId()));
+		return $TDBCustomerAll;
+	}
 		
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-		
+	function getURLCustomer()	{return "/don-vi/".$this->getBranch()->getKey()."/bao-cao/".$this->getIdTrack()."/khach-hang/".$this->getId();}
+	function getURLWarehouse()	{return "/don-vi/".$this->getBranch()->getKey()."/bao-cao/".$this->getIdTrack()."/kho-hang/".$this->getId();}
+	
 	//-------------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}	

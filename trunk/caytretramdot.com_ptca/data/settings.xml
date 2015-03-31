@@ -51,6 +51,8 @@
 		
 		<command name="BranchReport">						<view>BranchReport</view></command>
 		<command name="BranchReportTrackDaily">				<view>BranchReportTrackDaily</view></command>
+		<command name="BranchReportTrackDailyCustomer">		<view>BranchReportTrackDailyCustomer</view></command>
+		<command name="BranchReportTrackDailyCustomerView">	<view>BranchReportTrackDailyCustomerView</view></command>
 		
 		<command name="BranchSetting">						<view>BranchSetting</view></command>
 				

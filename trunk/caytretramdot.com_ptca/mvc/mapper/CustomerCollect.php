@@ -24,8 +24,9 @@ class CustomerCollect extends Mapper implements \MVC\Domain\CustomerCollectFinde
 				note				
 			) 
 			values( ?, ?, ?, ?)");
-		$this->deleteStmt 		= self::$PDO->prepare("delete from customer_collect where id=?");
-		$this->findByCustomerStmt = self::$PDO->prepare("SELECT * FROM customer_collect WHERE id_customer=?");
+		$this->deleteStmt 				= self::$PDO->prepare("delete from customer_collect where id=?");
+		$this->findByCustomerStmt 		= self::$PDO->prepare("SELECT * FROM customer_collect WHERE id_customer=?");
+		$this->findByCustomerDateStmt 	= self::$PDO->prepare("SELECT * FROM customer_collect WHERE id_customer=? AND date(`datetime`)=?");
 		 
     } 
     function getCollection( array $raw ) {return new CustomerCollectCollection( $raw, $this );}
@@ -69,9 +70,15 @@ class CustomerCollect extends Mapper implements \MVC\Domain\CustomerCollectFinde
     function selectStmt() {return $this->selectStmt;}	
     function selectAllStmt() {return $this->selectAllStmt;}
 	
-	function findByCustomer($values) {		
+	function findByCustomer($values){
         $this->findByCustomerStmt->execute( $values );
         return new CustomerCollectCollection( $this->findByCustomerStmt->fetchAll(), $this );
     }
+	
+	function findByCustomerDate($values){
+        $this->findByCustomerDateStmt->execute( $values );
+        return new CustomerCollectCollection( $this->findByCustomerDateStmt->fetchAll(), $this );
+    }
+	
 }
 ?>

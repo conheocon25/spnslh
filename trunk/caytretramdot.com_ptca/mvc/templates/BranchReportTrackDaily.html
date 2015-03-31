@@ -18,6 +18,8 @@
 										<tr>
 											<th width="32">ID</th>
 											<th class="text-left">NGÀY</th>
+											<th class="text-center" width="120">KHÁCH HÀNG</th>
+											<th class="text-center" width="120">KHO HÀNG</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -25,7 +27,13 @@
 											<td class="center"><span tal:content="repeat/TDB/number"/></td>
 											<td>
 												<span tal:content="TDB/getDatePrint"/>
-											</td>											
+											</td>
+											<td class="text-center">
+												<a tal:attributes="href TDB/getURLCustomer">Xem</a>
+											</td>
+											<td class="text-center">
+												<a tal:attributes="href TDB/getURLWarehouse">Xem</a>
+											</td>
 										</tr>
 									</tbody>
 								</table>								
