@@ -12,23 +12,23 @@
 					<div class="col-md-8">
 						<div class="panel panel-primary">
 							<div class="panel-heading"><i class="glyphicon glyphicon-cog"/> <B tal:content="Title"/></div>
-							<div class="panel-body">
+							<div class="panel-body">								
 								<table class="table table-bordered table-striped table-hover">
 									<thead>
 										<tr>
 											<th width="32">ID</th>
-											<th class="text-left">BÁO CÁO</th>											
+											<th class="text-left">NGÀY</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr tal:repeat="Track TrackAll">
-											<td class="center"><span tal:content="repeat/Track/number"/></td>
+										<tr tal:repeat="TDB TDBAll">
+											<td class="center"><span tal:content="repeat/TDB/number"/></td>
 											<td>
-												<a tal:attributes="href php: Branch->getURLTrackDaily( Track )" tal:content="Track/getName"/>
+												<span tal:content="TDB/getDatePrint"/>
 											</td>											
 										</tr>
 									</tbody>
-								</table>
+								</table>								
 							</div>
 						</div>
 					</div>

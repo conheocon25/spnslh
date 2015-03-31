@@ -1,0 +1,63 @@
+<?php
+Namespace MVC\Domain;
+require_once( "mvc/base/domain/DomainObject.php" );
+class TrackDailyBranch extends Object{
+
+    private $Id;
+	private $IdTrack;
+	private $IdBranch;
+	private $Date;
+		
+	//-------------------------------------------------------------------------------
+	//ACCESSING MEMBER PROPERTY
+	//-------------------------------------------------------------------------------
+    function __construct( 
+		$Id				= null,
+		$IdTrack		= null, 
+		$IdBranch		= null, 
+		$Date			= null
+	){
+        $this->Id 			= $Id;
+		$this->IdTrack 		= $IdTrack;
+		$this->IdBranch 	= $IdBranch;
+		$this->Date 		= $Date;
+		
+        parent::__construct( $Id );
+    }
+
+    function getId() {return $this->Id;}
+		
+    function setIdTrack( $IdTrack ) 	{$this->IdTrack = $IdTrack;$this->markDirty();}   
+	function getIdTrack( ) 				{return $this->IdTrack;}
+	function getTrack( ){
+		$mTrack 	= new \MVC\Mapper\Track();
+		$Track 		= $mTrack->find($this->IdTrack);
+		return $Track;
+	}
+			
+	function setIdBranch( $IdBranch ) {$this->IdBranch = $IdBranch;$this->markDirty();}   
+	function getIdBranch( ) {return $this->IdBranch;}
+	function getBranch( ){
+		$mBranch = new \MVC\Mapper\Branch();
+		$Branch = $mBranch->find($this->IdBranch);
+		return $Branch;
+	}
+		
+	function setDate( $Date ) {$this->Date = $Date;$this->markDirty();}   
+	function getDate( ) {return $this->Date;}
+	function getDatePrint( ) {$D = new \MVC\Library\Date($this->Date);return $D->getDateFormat();}
+	function getDateShortPrint( ) {return date('d/m',strtotime($this->Date));}
+	
+	//-------------------------------------------------------------------------------
+	//GET LISTs
+	//-------------------------------------------------------------------------------
+		
+	//-------------------------------------------------------------------------------
+	//DEFINE URL
+	//-------------------------------------------------------------------------------
+		
+	//-------------------------------------------------------------------------------
+    static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
+    static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}	
+}
+?>

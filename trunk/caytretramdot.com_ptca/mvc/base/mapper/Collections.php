@@ -41,7 +41,8 @@ class WarehouseGroupCollection 	extends Collection implements \MVC\Domain\Wareho
 
 class TrackCollection 			extends Collection implements \MVC\Domain\TrackCollection 			{function targetClass( ) {return "\MVC\Domain\Track";		}}
 class TrackDailyCollection 		extends Collection implements \MVC\Domain\TrackDailyCollection 		{function targetClass( ) {return "\MVC\Domain\TrackDaily";	}}
-class TrackDailyBranchCustomerCollection 		extends Collection implements \MVC\Domain\TrackDailyBranchCustomerCollection {function targetClass( ) {return "\MVC\Domain\TrackDailyBranchCustomer";	}}
+class TrackDailyBranchCollection 			extends Collection implements \MVC\Domain\TrackDailyBranchCollection 		{function targetClass( ) {return "\MVC\Domain\TrackDailyBranch";		}}
+class TrackDailyBranchCustomerCollection 	extends Collection implements \MVC\Domain\TrackDailyBranchCustomerCollection{function targetClass( ) {return "\MVC\Domain\TrackDailyBranchCustomer";}}
 
 class TransportCollection 		extends Collection implements \MVC\Domain\TransportCollection 		{function targetClass( ) {return "\MVC\Domain\Transport";	}}
 class TransportGroupCollection 	extends Collection implements \MVC\Domain\TransportGroupCollection 	{function targetClass( ) {return "\MVC\Domain\TransportGroup";	}}

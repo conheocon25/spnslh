@@ -56,6 +56,26 @@ class Track extends Object{
 		$TDAll 	= $mTD->findBy(array($this->getId()));
 		return $TDAll;
 	}
+	
+	function generateDailyBranch($Branch){
+		$TDAll = $this->getDetailAll();
+		$mTDB = new \MVC\Mapper\TrackDailyBranch();
+		
+		while ($TDAll->valid()){
+			$TD = $TDAll->current();			
+			
+			$TDB = new \MVC\Domain\TrackDailyBranch(
+				null,
+				$TD->getIdTrack(),
+				$Branch->getId(),
+				$TD->getDate()
+			);
+			$mTDB->insert($TDB);
+			
+			$TDAll->next();
+		}		
+	}
+		
 	function generateDaily(){
 		$Date = $this->getDateStart();
 		$EndDate = $this->getDateEnd();
@@ -75,10 +95,8 @@ class Track extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLSetting(){	return "/admin/setting/track/".$this->getId();}
-	
-	function getURLSaleView(){	return "/ql-ban-hang/bao-cao/".$this->getId();}
-							
+	function getURLSetting()					{return "/ql-thiet-lap/theo-doi/".$this->getId();}
+										
 	function getURLCustomer()					{return "/report/customer/".$this->getId();}
 	function getURLCustomerDetail($IdCustomer)	{return "/report/customer/".$this->getId()."/".$IdCustomer;}
 

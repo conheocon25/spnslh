@@ -39,6 +39,7 @@ interface WarehouseGroupCollection 		extends \Iterator {function add( Object $Wa
 
 interface TrackCollection 				extends \Iterator {function add( Object $Track);		}
 interface TrackDailyCollection 			extends \Iterator {function add( Object $TrackDaily);	}
+interface TrackDailyBranchCollection 	extends \Iterator {function add( Object $TrackDailyBranch);	}
 interface TrackDailyBranchCustomerCollection 	extends \Iterator {function add( Object $TrackDailyBranchCustomer);	}
 
 interface TransportCollection 			extends \Iterator {function add( Object $Transport);		}

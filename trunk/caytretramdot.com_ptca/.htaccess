@@ -71,8 +71,10 @@ RewriteRule ^don-vi/([A-Za-z0-9_-]+)/thu-tien$ 						?cmd=BranchCustomerCollect&
 RewriteRule ^don-vi/([A-Za-z0-9_-]+)/thu-tien/khach-hang/tim$ 		?cmd=BranchCustomerCollectSearch&IdKey=$1	[L]
 RewriteRule ^don-vi/([A-Za-z0-9_-]+)/thu-tien/khach-hang/([0-9]+)$ 	?cmd=BranchCustomerCollectView&IdKey=$1&IdCustomer=$2 [L]
 
-RewriteRule ^don-vi/([A-Za-z0-9_-]+)/bao-cao$ 						?cmd=BranchReport&IdKey=$1				[L]
-RewriteRule ^don-vi/([A-Za-z0-9_-]+)/thiet-lap$ 					?cmd=BranchSetting&IdKey=$1				[L]
+RewriteRule ^don-vi/([A-Za-z0-9_-]+)/bao-cao$ 						?cmd=BranchReport&IdKey=$1						[L]
+RewriteRule ^don-vi/([A-Za-z0-9_-]+)/bao-cao/([0-9]+)$ 				?cmd=BranchReportTrackDaily&IdKey=$1&IdTrack=$2	[L]
+
+RewriteRule ^don-vi/([A-Za-z0-9_-]+)/thiet-lap$ 					?cmd=BranchSetting&IdKey=$1						[L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # SALE

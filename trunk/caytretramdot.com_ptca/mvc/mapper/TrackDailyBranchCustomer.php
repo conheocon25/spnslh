@@ -8,13 +8,13 @@ class TrackDailyBranchCustomer extends Mapper implements \MVC\Domain\TrackDailyB
 				
 		$tblTrackDailyBranchCustomer = "track_daily_branch_customer";
 		
-		$selectAllStmt 			= sprintf("select * from %s", $tblTrackDailyBranchCustomer);
-		$selectStmt 			= sprintf("select *  from %s where id=?", $tblTrackDailyBranchCustomer);
-		$updateStmt 			= sprintf("update %s set id_track=?, id_branch=?, id_customer=?, sale=?, collect=? where id=?", $tblTrackDailyBranchCustomer);
-		$insertStmt 			= sprintf("insert into %s (id_track, id_branch, id_customer, sale, collect) values(?, ?, ?, ?, ?)", $tblTrackDailyBranchCustomer);
-		$deleteStmt 			= sprintf("delete from %s where id=?", $tblTrackDailyBranchCustomer);
-		$deleteByTrackStmt 		= sprintf("delete from %s where id_track=?", $tblTrackDailyBranchCustomer);
-		$findByStmt 			= sprintf("select *  from %s where id_track=?", $tblTrackDailyBranchCustomer);
+		$selectAllStmt 				= sprintf("select * from %s", $tblTrackDailyBranchCustomer);
+		$selectStmt 				= sprintf("select *  from %s where id=?", $tblTrackDailyBranchCustomer);
+		$updateStmt 				= sprintf("update %s set id_tdb=?, id_customer=?, debt_old=?, sale=?, collect=? where id=?", $tblTrackDailyBranchCustomer);
+		$insertStmt 				= sprintf("insert into %s (id_tdb, id_customer, debt_old, sale, collect) values(?, ?, ?, ?, ?)", $tblTrackDailyBranchCustomer);
+		$deleteStmt 				= sprintf("delete from %s where id=?", $tblTrackDailyBranchCustomer);
+		$deleteByTrackStmt 			= sprintf("delete from %s where id_tdb=?", $tblTrackDailyBranchCustomer);
+		$findByStmt 				= sprintf("select *  from %s where id_tdb=?", $tblTrackDailyBranchCustomer);
 				
         $this->selectAllStmt 		= self::$PDO->prepare($selectAllStmt);
         $this->selectStmt 			= self::$PDO->prepare($selectStmt);
@@ -29,9 +29,9 @@ class TrackDailyBranchCustomer extends Mapper implements \MVC\Domain\TrackDailyB
     protected function doCreateObject( array $array ) {
         $obj = new \MVC\Domain\TrackDailyBranchCustomer(
 			$array['id'],
-			$array['id_track'],
-			$array['id_branch'],
+			$array['id_tdb'],			
 			$array['id_customer'],
+			$array['debt_old'],
 			$array['sale'],
 			$array['collect']
 		);
@@ -40,9 +40,9 @@ class TrackDailyBranchCustomer extends Mapper implements \MVC\Domain\TrackDailyB
     protected function targetClass() { return "TrackDailyBranchCustomer";}
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array( 
-			$object->getIdTrack(),
-			$object->getIdBranch(),
+			$object->getIdTDB(),			
 			$object->getIdCustomer(),
+			$object->getDebtOld(),
 			$object->getSale(),
 			$object->getCollect()
 		);
@@ -53,9 +53,9 @@ class TrackDailyBranchCustomer extends Mapper implements \MVC\Domain\TrackDailyB
     
     protected function doUpdate( \MVC\Domain\Object $object ) {
         $values = array( 
-			$object->getIdTrack(),
-			$object->getIdBranch(),
+			$object->getIdTDB(),			
 			$object->getIdCustomer(),
+			$object->getDebtOld(),
 			$object->getSale(),
 			$object->getCollect(),
 			$object->getId()

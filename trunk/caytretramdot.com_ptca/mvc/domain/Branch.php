@@ -112,6 +112,12 @@ class Branch extends Object{
 		$QuotaAll 		= $mBranchQuota->findByBranch(array($this->getId()));
 		return $QuotaAll;
 	}
+	
+	function getDailyAll(){
+		$mTDB 	= new \MVC\Mapper\TrackDailyBranch();
+		$TDBAll = $mTDB->findByBranch(array($this->getId()));
+		return $TDBAll;
+	}
 								
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $id );}
@@ -131,7 +137,9 @@ class Branch extends Object{
 	function getURLCustomerCollect()			{return "/don-vi/".$this->Key."/thu-tien";}
 	function getURLCustomerCollectSearch()		{return "/don-vi/".$this->Key."/thu-tien/khach-hang/tim";}
 	
-	function getURLReport()		{return "/don-vi/".$this->Key."/bao-cao";}
+	function getURLReport()				{return "/don-vi/".$this->Key."/bao-cao";}
+	function getURLTrackDaily($Track)	{return "/don-vi/".$this->Key."/bao-cao/".$Track->getId();}
+	
 	function getURLSetting()	{return "/don-vi/".$this->Key."/thiet-lap";}
 	
 	function getURLSettingCustomer(){return "/ql-thiet-lap/khach-hang/".$this->getId();}

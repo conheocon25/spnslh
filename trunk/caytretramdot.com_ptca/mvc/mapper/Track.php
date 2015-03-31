@@ -8,10 +8,10 @@ class Track extends Mapper implements \MVC\Domain\TrackFinder{
 				
 		$tblTrack = "track";
 		
-		$selectAllStmt 	= sprintf("select * from %s ORDER BY date_start", $tblTrack);
-		$selectStmt 	= sprintf("select *  from %s where id=?", $tblTrack);
-		$updateStmt 	= sprintf("update %s set date_start=?,date_end=? where id=?", $tblTrack);
-		$insertStmt 	= sprintf("insert into %s (date_start,date_end) values(?, ?)", $tblTrack);
+		$selectAllStmt 		= sprintf("select * from %s ORDER BY date_start DESC", $tblTrack);
+		$selectStmt 		= sprintf("select *  from %s where id=?", $tblTrack);
+		$updateStmt 		= sprintf("update %s set date_start=?,date_end=? where id=?", $tblTrack);
+		$insertStmt 		= sprintf("insert into %s (date_start,date_end) values(?, ?)", $tblTrack);
 		$deleteStmt 		= sprintf("delete from %s where id=?", $tblTrack);
 		$findByNearestStmt 	= sprintf("select * from %s where date_start<? ORDER BY date_start DESC LIMIT 1 ", $tblTrack);
 		$existStmt 			= sprintf("select * from %s where date_start>=? AND date_end<=?", $tblTrack);
