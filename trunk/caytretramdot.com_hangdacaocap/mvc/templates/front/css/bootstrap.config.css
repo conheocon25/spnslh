@@ -23,31 +23,31 @@
 	.content { background: transparent; }
 		.content > .col-md-8 { padding-left: 5px; padding-right: 5px; }
 		.content > .col-md-4 { padding-left: 10px; padding-right: 5px; }
-	.panel { margin-bottom: 15px; box-shadow: 0 0 2px #ddd; border-radius: 0; border: 1px solid #592A00; }
+	.panel { margin-bottom: 10px; box-shadow: none; border-radius: 0; border: none;}
 		.panel .panel-heading { background: url("/mvc/templates/front/img/titbg.jpg") repeat-x top left transparent; border-radius: 0; padding: 0; font-size: 12px; font-weight: bold; text-transform: uppercase; color: white; height: 60px; }
 		.panel .panel-heading h3 { background: url("/mvc/templates/front/img/titflag.png") no-repeat 5px 0 transparent; margin: 0; font-size: 14px; font-weight: bold; padding: 22px 10px 22px 55px;}
 		.panel .panel-body { padding: 3px; font-size: 13px; }
 	.item-container { margin-left: 0; margin-right: 0; }
 		.item-container .item { padding: 0; }
 			.item-container .item .thumbnail { margin: 3px; border-radius: 0; }
-				.item-container .item .thumbnail h3 { margin: 0 0 5px 0; font-size: 12px; font-weight: bold; overflow: hidden; color: #0090B5; line-height: 18px; }
+				.item-container .item .thumbnail h3 { margin: 0 0 5px 0; font-size: 12px; font-weight: bold; overflow: hidden; color: #592A00; line-height: 18px; }
 				.item-container .item .thumbnail .caption { padding: 8px 0 0 0; }
 					.item-container .item .thumbnail .caption p { margin: 0 0 3px; font-size: 12px; }
 	.view { margin-top: 10px; text-align: right; margin-right: -5px; margin-bottom: -2px; }
-		.view a { border-top: 1px solid #ddd; border-left: 1px solid #ddd; padding: 3px 10px; border-top-left-radius: 10px; }
-	.media { padding: 10px; border-top: 1px solid #0090B5; margin-left: -3px; margin-right: -3px; margin-top: 0; }
+		.view a { border-top: 1px solid #ddd; border-left: 1px solid #ddd; padding: 3px 10px; border-top-left-radius: 10px; color: #592A00; }
+	.media { padding: 10px; border-top: 1px solid #592A00; margin-left: -3px; margin-right: -3px; margin-top: 0; }
 		.media:first-child { border-top: none; margin-top: -3px; }
 		.media:last-child { margin-bottom: -3px; }
 		.media .media-left.medium { width: 230px; height: 156px; }
 		.media .media-left.medium img { width: 100%; height: 100%; }
-		.media .media-heading { font-size: 12px; font-weight: bold; color: #0090B5; }
+		.media .media-heading { font-size: 12px; font-weight: bold; color: #592A00; }
 		.media .media-body p { text-align: justify; font-size: 11px; }
 	.mini-icon { min-height: 20px; margin-top: 7px; padding-left: 22px; padding-bottom: 5px; font-size: 11px; border-bottom: 1px dashed #ddd; }
 		.mini-icon.in-news { margin-bottom: 10px; }
 		.mini-icon.icon-price		{ background: url("../img/icon-cash.png") no-repeat -3px -4px transparent; color: red; }
 		.mini-icon.icon-area		{ background: url("../img/icon-surface.png") no-repeat -3px -4px transparent; }
 		.mini-icon.icon-address		{ background: url("../img/icon-address.png") no-repeat -3px -3px transparent; }
-		.mini-icon.icon-contact		{ background: url("../img/icon-contact.png") no-repeat -3px -3px transparent; color: #0090B5; }
+		.mini-icon.icon-contact		{ background: url("../img/icon-contact.png") no-repeat -3px -3px transparent; color: #592A00; }
 		.mini-icon.icon-date		{ background: url("../img/icon-times.png") no-repeat -3px -4px transparent; }
 		.mini-icon.icon-user		{ background: url("../img/icon-user.png") no-repeat -3px -4px transparent; }
 		.mini-icon.icon-inven		{ background: url("../img/icon-inven.png") no-repeat -3px -4px transparent; }
@@ -57,6 +57,6 @@
 		.list-group-config .list-group-item { background: url("../img/icon-star.png") no-repeat 0 3px transparent; border-style: dashed; border-color: #ddd; border-width: 0 0 1px; margin-bottom: 0; padding: 5px 5px 5px 25px; }
 		.list-group-config .list-group-item:first-child { border-radius: 0; }
 		.list-group-config .list-group-item:last-child { border-radius: 0; border-bottom: none; padding-bottom: 7px; }
-	footer { background: #0090B5; margin: 0 -10px; padding: 10px; text-align: center; }
+	footer { background: #592A00; margin: 0 -10px; padding: 10px; text-align: center; }
 		footer h3 { font-size: 14px; color: white; font-weight: bold; margin: 5px; }
 		footer p { margin: 0; font-size: 13px; color: white; }
