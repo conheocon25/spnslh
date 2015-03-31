@@ -39,62 +39,47 @@
 	<!-- ======================================================================== -->
 	<!-- HEADER																	  -->
 	<!-- ======================================================================== -->
-	<div metal:define-macro="Header" id="header">
+	<div metal:define-macro="Header">
 		<div class="row">
-			<div class="col-md-4">
-				<a href="/trang-chu">
-					<img alt="Brand" src="/mvc/templates/front/img/logo.png" width="100%"/>
+			<div class="col-md-12 logo">
+				<a href="/">
+					<img src="/mvc/templates/front/img/banner.jpg" alt="Banner"/>
 				</a>
 			</div>
-			<div class="col-md-8">
-				<div class="banner">
-					<img alt="Brand" src="/mvc/templates/front/img/banner.gif" width="100%"/>
-				</div>
-			</div>
 		</div>
-		<nav class="navbar navbar-default" role="navigation">
+		<nav class="navbar navbar-default">
 			<div class="container-fluid">
 				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<div class="navbar-header">
-						<a class="navbar-brand" href="/trang-chu">
-							<img alt="Brand" src="/mvc/templates/front/img/home.png"/>
-						</a>
-					</div>
+					<a class="navbar-brand" href="/">
+						 <img alt="Brand" src="/mvc/templates/front/img/home.png"/>
+					</a>
 				</div>
-				
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
-						<li tal:attributes="class php:Active=='Introduction'?'active':''"><a href="/gioi-thieu">GIỚI THIỆU</a></li>
-						<li tal:attributes="class php:Active=='News'?'active dropdown':'dropdown'">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">TIN TỨC <span class="caret"></span></a>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Danh mục <span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
-								<li tal:repeat="Tag TagAll">
-									<a tal:attributes="href Tag/getURLView">
-										<span tal:content="Tag/getName"/>
-									</a>
-								</li>
+								<li><a href="#">Nhà bán</a></li>
+								<li><a href="#">Nhà cho thuê</a></li>
 							</ul>
 						</li>
-						<li tal:attributes="class php:Active=='Menu'?'active dropdown':'dropdown'">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">THỰC ĐƠN <span class="caret"></span></a>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Tin tức <span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
-								<li tal:repeat="Category1 Category/getCategoryAll">
-									<a tal:attributes="href Category1/getURLView">
-										<span tal:content="Category1/getName"/>
-									</a>
-								</li>
+								<li><a href="#">Thị trường</a></li>
+								<li><a href="#">Phong thủy</a></li>
+								<li><a href="#">Nội thất</a></li>
 							</ul>
 						</li>
-						<li tal:attributes="class php:Active=='Dealer'?'active':''"><a href="/khuyen-mai">KHUYẾN MÃI</a></li>
-						<li tal:attributes="class php:Active=='Album'?'active':''"><a href="/hinh-anh">HÌNH ẢNH</a></li>
-						<li tal:attributes="class php:Active=='Video'?'active':''"><a href="/video">VIDEO</a></li>
-						<li tal:attributes="class php:Active=='Contact'?'active':''"><a href="/lien-he">LIÊN HỆ</a></li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Danh bạ <span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="#">Nhà môi giới</a></li>
+								<li><a href="#">Doanh nghiệp</a></li>
+								<li><a href="#">Dự án</a></li>
+							</ul>
+						</li>
+						<li><a href="#">Liên hệ</a></li>
 					</ul>
 				</div>
 			</div>
@@ -190,15 +175,6 @@
 	</div>
 	
 	<!-- ======================================================================== -->
-	<!-- MARQUEE																  -->
-	<!-- ======================================================================== -->
-	<div metal:define-macro="Marquee" class="row">
-		<div class="col-md-12">
-			<marquee tal:content="ConfigMarqueeWelcome/getValue" class="intro-line" scrolldelay="2" scrollamount="2" behavior="scroll" direction="left" />				
-		</div>
-	</div>
-	
-	<!-- ======================================================================== -->
 	<!-- PRESENTATION															  -->
 	<!-- ======================================================================== -->
 	<div metal:define-macro="Presentation" id="carousel-presentation-generic" class="carousel slide fade" data-ride="carousel">
@@ -214,18 +190,12 @@
 	<!-- FOOTER																	  -->
 	<!-- ======================================================================== -->
 	<footer metal:define-macro="Footer">
-		<div class="row">
-			<div class="col-md-12">
-				<center>
-					<p><b>&copy; 2015 HÀNG DA CAO CẤP</b></p>
-					<p tal:repeat="Branch BranchAll"><b tal:content="Branch/getName"/>: <span tal:content="Branch/getAddress"/></p>
-					<p>Mobile: (+84) 918 107 132 - Tel: (+84) 673 123 245</p>
-					<p><b tal:content="php:@\MVC\Library\Statistic::getCountPrint()"/> lượt truy cập - <b tal:content="php:@\MVC\Library\Statistic::getOnlinePrint()"/> đang online</p>
-					<p style="color:#ddd;"><i>SPN Group - Website duyệt tốt trên trình duyệt <b>Google Chrome</b></i></p>
-				</center>
-
-			</div>
-		</div>
+		<p><b>&copy; 2015 HÀNG DA CAO CẤP</b></p>
+		<p tal:repeat="Branch BranchAll"><b tal:content="Branch/getName"/>: <span tal:content="Branch/getAddress"/></p>
+		<p>Mobile: (+84) 918 107 132 - Tel: (+84) 673 123 245</p>
+		<p><b tal:content="php:@\MVC\Library\Statistic::getCountPrint()"/> lượt truy cập - <b tal:content="php:@\MVC\Library\Statistic::getOnlinePrint()"/> đang online</p>
+		<p style="color:#ccc;"><small><i>SPN Group - Website duyệt tốt trên trình duyệt Google Chrome</i></small></p>
 	</footer>
+	
 </body>
 </html>
