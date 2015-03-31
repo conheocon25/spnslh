@@ -50,6 +50,8 @@
 		<command name="BranchCustomerCollectView">			<view>BranchCustomerCollectView</view></command>
 		
 		<command name="BranchReport">						<view>BranchReport</view></command>
+		<command name="BranchReportTrackDaily">				<view>BranchReportTrackDaily</view></command>
+		
 		<command name="BranchSetting">						<view>BranchSetting</view></command>
 				
 		<!-- ============================================================================== -->

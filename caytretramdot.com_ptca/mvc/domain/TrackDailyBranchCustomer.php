@@ -4,27 +4,27 @@ require_once( "mvc/base/domain/DomainObject.php" );
 class TrackDailyBranchCustomer extends Object{
 
     private $Id;
-	private $IdTrackDaily;
-	private $IdBranch;
+	private $IdTDB;	
 	private $IdCustomer;
+	private $DebtOld;
 	private $Sale;
 	private $Collect;
 	
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-    function __construct( 
+    function __construct(
 		$Id				= null,
-		$IdTrackDaily	= null, 
-		$IdBranch		= null,
+		$IdTDB			= null,
 		$IdCustomer		= null,
+		$DebtOld		= null,
 		$Sale			= null,
 		$Collect		= null
 	){
         $this->Id 			= $Id;
-		$this->IdTrackDaily = $IdTrackDaily;
-		$this->IdBranch 	= $IdBranch;
+		$this->IdTDB 		= $IdTDB;		
 		$this->IdCustomer 	= $IdCustomer;
+		$this->DebtOld 		= $DebtOld;
 		$this->Sale 		= $Sale;
 		$this->Collect 		= $Collect;
 		
@@ -33,28 +33,27 @@ class TrackDailyBranchCustomer extends Object{
 
     function getId() {return $this->Id;}
 		
-    function setIdTrackDaily( $IdTrackDaily ) 	{$this->IdTrackDaily = $IdTrackDaily;$this->markDirty();}   
-	function getIdTrackDaily( ) 				{return $this->IdTrackDaily;}
-	function getTrackDaily( ){
-		$mTrackDaily = new \MVC\Mapper\TrackDaily();
-		$TD = $mTrackDaily->find($this->IdTrackDaily);
-		return $TD;
+    function setIdTDB( $IdTDB ) 	{$this->IdTDB = $IdTDB;$this->markDirty();}   
+	function getIdTDB( ) 				{return $this->IdTDB;}
+	function getTDB( ){
+		$mTrackDailyBranch 	= new \MVC\Mapper\TrackDailyBranch();
+		$TDB 				= $mTrackDailyBranch->find($this->IdTDB);
+		return $TDB;
 	}
-			
-	function setIdBranch( $IdBranch ) {$this->IdBranch = $IdBranch;$this->markDirty();}   
-	function getIdBranch( ) {return $this->IdBranch;}
-	function getBranch( ){
-		$mBranch = new \MVC\Mapper\Branch();
-		$Branch = $mBranch->find($this->IdBranch);
-		return $Branch;
-	}
-	
-	function setIdCustomer( $IdCustomer ) {$this->IdCustomer = $IdCustomer; $this->markDirty();}   
+		
+	function setIdCustomer( $IdCustomer ) {$this->IdCustomer = $IdCustomer; $this->markDirty();}
 	function getIdCustomer( ) {return $this->IdCustomer;}
 	function getCustomer( ){
-		$mCustomer = new \MVC\Mapper\Customer();
-		$Customer = $mCustomer->find($this->IdCustomer);
+		$mCustomer 	= new \MVC\Mapper\Customer();
+		$Customer 	= $mCustomer->find($this->IdCustomer);
 		return $Customer;
+	}
+	
+	function setDebtOld( $DebtOld ) {$this->DebtOld = $DebtOld; $this->markDirty();}
+	function getDebtOld( ) 			{return $this->DebtOld;}
+	function getDebtOldPrint( ){
+		$num = number_format($this->getDebtOld(), 0, ',', ' ');
+		return $num;
 	}
 	
 	function setSale( $Sale ) 	{$this->Sale = $Sale; $this->markDirty();}
@@ -68,6 +67,14 @@ class TrackDailyBranchCustomer extends Object{
 	function getCollect( ) 			{return $this->Collect;}
 	function getCollectPrint( ){
 		$num = number_format($this->getCollect(), 0, ',', ' ');
+		return $num;
+	}
+	
+	function getDebtNew( ){
+		return ($this->DebtOld + $this->Sale - $this->Collect);
+	}
+	function getDebtNewPrint( ){
+		$num = number_format($this->getDebtNew(), 0, ',', ' ');
 		return $num;
 	}
 				

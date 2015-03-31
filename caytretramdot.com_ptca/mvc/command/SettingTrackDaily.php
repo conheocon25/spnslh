@@ -29,8 +29,8 @@
 			
 			$Title = mb_strtoupper($Track->getName(), 'UTF8');
 			$Navigation = array(				
-				array("THIẾT LẬP", "/admin"),
-				array("BÁO CÁO", "/admin/setting/track")
+				array("THIẾT LẬP", 	"/ql-thiet-lap"),
+				array("THEO DÕI", 	"/ql-thiet-lap/theo-doi")
 			);
 			
 			//-------------------------------------------------------------

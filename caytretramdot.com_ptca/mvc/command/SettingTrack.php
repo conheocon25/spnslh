@@ -28,9 +28,9 @@
 			$Config 	= $mConfig->findByName("ROW_PER_PAGE");
 						
 			$TrackAll1 	= $mTrack->findByPage(array($Page, $Config->getValue() ));
-			$PN 		= new \MVC\Domain\PageNavigation($TrackAll->count(), $Config->getValue(), "/admin/setting/track");
+			$PN 		= new \MVC\Domain\PageNavigation($TrackAll->count(), $Config->getValue(), "/ql-thiet-lap/theo-doi");
 			
-			$Title = "BÁO CÁO";
+			$Title 		= "THEO DÕI";
 			$Navigation = array(array("THIẾT LẬP", "/ql-thiet-lap"));
 			
 			//-------------------------------------------------------------

@@ -48,6 +48,7 @@ interface WarehouseGroupFinder  extends Finder {}
 
 interface TrackFinder  			extends Finder {}
 interface TrackDailyFinder  	extends Finder {}
+interface TrackDailyBranchFinder  			extends Finder {}
 interface TrackDailyBranchCustomerFinder  	extends Finder {}
 
 interface TransportFinder  		extends Finder {}
