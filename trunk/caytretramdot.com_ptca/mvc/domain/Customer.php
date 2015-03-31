@@ -217,12 +217,22 @@ class Customer extends Object{
 		return $InvoiceAll;
 	}
 	
+	function getCollectAll(){
+		$mCustomerCollect 	= new \MVC\Mapper\CustomerCollect();
+		$CollectAll 		= $mCustomerCollect->findByCustomer(array($this->Id));
+		return $CollectAll;
+	}
+	
 	function getURLBranchInvoiceLoad(){
 		return "/don-vi/".$this->getBranch()->getKey()."/ban-hang/".$this->getId();
 	}
 	
 	function getURLBranchInvoiceInsExe(){
 		return "/don-vi/".$this->getBranch()->getKey()."/ban-hang/".$this->getId()."/them";
+	}
+	
+	function getURLBranchCollectLoad(){
+		return "/don-vi/".$this->getBranch()->getKey()."/thu-tien/khach-hang/".$this->getId();
 	}
 					
 	//=================================================================================	

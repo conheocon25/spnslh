@@ -37,9 +37,17 @@ class CustomerCollect extends Object{
 	
 	function setDateTime( $DateTime) 	{return $this->DateTime = $DateTime;}
     function getDateTime( ) 			{return $this->DateTime;}
-		
+	function getDateTimePrint(){
+		$t = strtotime($this->DateTime);		
+		return date('d/m/y H:i',$t);
+	}
+	
 	function getValue(){return $this->Value;}	
     function setValue( $Value ) {$this->Value = $Value;$this->markDirty();}
+	function getValuePrint( ){
+		$num = number_format($this->getValue(), 0, ',', ' ');
+		return $num;
+	}
 	
 	function setNote( $Note ) {$this->Note = $Note; $this->markDirty();}
 	function getNote(){return $this->Note;}

@@ -25,7 +25,7 @@ class CustomerCollect extends Mapper implements \MVC\Domain\CustomerCollectFinde
 			) 
 			values( ?, ?, ?, ?)");
 		$this->deleteStmt 		= self::$PDO->prepare("delete from customer_collect where id=?");
-		$this->findByBranchStmt = self::$PDO->prepare("SELECT * FROM customer_collect WHERE id_branch=?");
+		$this->findByCustomerStmt = self::$PDO->prepare("SELECT * FROM customer_collect WHERE id_customer=?");
 		 
     } 
     function getCollection( array $raw ) {return new CustomerCollectCollection( $raw, $this );}
@@ -69,9 +69,9 @@ class CustomerCollect extends Mapper implements \MVC\Domain\CustomerCollectFinde
     function selectStmt() {return $this->selectStmt;}	
     function selectAllStmt() {return $this->selectAllStmt;}
 	
-	function findByBranch($values) {		
-        $this->findByBranchStmt->execute( $values );
-        return new CustomerCollectCollection( $this->findByBranchStmt->fetchAll(), $this );
+	function findByCustomer($values) {		
+        $this->findByCustomerStmt->execute( $values );
+        return new CustomerCollectCollection( $this->findByCustomerStmt->fetchAll(), $this );
     }
 }
 ?>

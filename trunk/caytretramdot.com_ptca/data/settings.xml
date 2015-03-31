@@ -44,7 +44,11 @@
 		<command name="BranchSaleInvoiceCustomerInsExe">	<view>BranchSaleInvoiceCustomerInsExe</view></command>
 		<command name="BranchSaleInvoiceCustomerView">		<view>BranchSaleInvoiceCustomerView</view></command>
 		<command name="BranchSaleInvoiceCustomerPrint">		<view>BranchSaleInvoiceCustomerPrint</view></command>
-				
+		
+		<command name="BranchCustomerCollect">				<view>BranchCustomerCollect</view></command>
+		<command name="BranchCustomerCollectSearch">		<view>BranchCustomerCollectSearch</view></command>
+		<command name="BranchCustomerCollectView">			<view>BranchCustomerCollectView</view></command>
+		
 		<command name="BranchReport">						<view>BranchReport</view></command>
 		<command name="BranchSetting">						<view>BranchSetting</view></command>
 				
