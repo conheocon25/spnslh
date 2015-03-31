@@ -129,6 +129,8 @@ class Branch extends Object{
 	function getURLSaleInvoiceCustomerSearch()	{return "/don-vi/".$this->Key."/ban-hang/khach-hang/tim";}
 	
 	function getURLCustomerCollect()			{return "/don-vi/".$this->Key."/thu-tien";}
+	function getURLCustomerCollectSearch()		{return "/don-vi/".$this->Key."/thu-tien/khach-hang/tim";}
+	
 	function getURLReport()		{return "/don-vi/".$this->Key."/bao-cao";}
 	function getURLSetting()	{return "/don-vi/".$this->Key."/thiet-lap";}
 	
