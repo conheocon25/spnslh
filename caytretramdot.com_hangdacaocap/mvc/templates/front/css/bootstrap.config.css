@@ -3,7 +3,7 @@
  * Copyright 2009-2014 SPN Group.
  *//*! style.css v1.0 | SPN License | ATon Dev */
 	
-	body { font-family: Tahoma; }
+	body { font-family: Arial; }
 	.container { width: 1000px; }
 	.logo { padding: 0 5px; }
 		.logo img { border: none; width: 100%; }
