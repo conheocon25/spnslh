@@ -39,7 +39,7 @@ class CustomerCollect extends Object{
     function getDateTime( ) 			{return $this->DateTime;}
 	function getDateTimePrint(){
 		$t = strtotime($this->DateTime);		
-		return date('d/m/y H:i',$t);
+		return date('d/m/Y H:i',$t);
 	}
 	
 	function getValue(){return $this->Value;}	

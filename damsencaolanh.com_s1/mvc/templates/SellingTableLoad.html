@@ -175,7 +175,7 @@
 									<div class="form-group">
 										<label class="control-label">Tên KH</label>
 										<div class="controls">
-											<input id="CustomerName" name="CustomerName" readonly="true" type="text" class="form-control input-small" />
+											<input id="CustomerName" name="CustomerName" type="text" class="form-control input-small" />
 										</div>
 									</div>
 									<div class="form-group">
@@ -393,12 +393,40 @@
 					type: "POST",
 					data: {Data:Data},
 					url: URL,
-					success: function(msg){
+					success: function(msg){						
+						
+						//Load dữ liệu KH JSON về
+						var urlCustomer = "/object/load/Customer/" + Data[3];				
+						//Load dữ liệu JSON lên FORM
+						$.getJSON(urlCustomer, function(dataCustomer){					
+							var DC = [];
+							DC[0] = dataCustomer.Id;
+							DC[1] = $('#CustomerName').val();
+							DC[2] = dataCustomer.Type;
+							DC[3] = dataCustomer.Card;
+							DC[4] = dataCustomer.Phone;
+							DC[5] = dataCustomer.Address;
+							DC[6] = dataCustomer.Note;
+							DC[7] = dataCustomer.Discount;							
+							$.ajax({
+								type: "POST",
+								data: {Data:DC},
+								url: "/object/upd/Customer",
+								success: function(msg){
+									
+								}
+							});
+						});
+												
+						//Cập nhật lại màn hình
+						/*
 						var TableActive = "#" + $("#TableActive").attr('alt');
 						if ($('#Status1').val()>0){														
 							$(TableActive).removeClass('actived');
 						}
 						$("#Session").load("/selling/load/table/"+IdTable);
+						*/
+						location.reload();	
 					}
 				});
 			});

@@ -15,7 +15,7 @@ class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
 		$this->findByNormalStmt = self::$PDO->prepare("SELECT * FROM tbl_customer WHERE type>0 ORDER By type, name");
 		$this->findByCardStmt 	= self::$PDO->prepare("select * from tbl_customer where card=?");
 				
-		$findByPageStmt 		= sprintf("SELECT * FROM  %s ORDER BY type, name LIMIT :start,:max", $tblCustomer);
+		$findByPageStmt 		= sprintf("SELECT * FROM  %s ORDER BY card LIMIT :start,:max", $tblCustomer);
 		$this->findByPageStmt 	= self::$PDO->prepare($findByPageStmt);
 		 
     } 

@@ -85,7 +85,14 @@ class TrackDailyBranchCustomer extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
+	function getURLView(){
+		$TDB 	= $this->getTDB();
+		$Branch = $TDB->getBranch();
+		$Track 	= $TDB->getTrack();
 		
+		return "/don-vi/".$Branch->getKey()."/bao-cao/".$Track->getId()."/khach-hang/".$this->getIdTDB()."/".$this->getId();
+	}
+	
 	//-------------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}	
