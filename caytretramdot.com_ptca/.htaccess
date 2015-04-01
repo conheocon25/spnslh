@@ -83,6 +83,15 @@ RewriteRule ^don-vi/([A-Za-z0-9_-]+)/bao-cao/([0-9]+)/han-ngach/([0-9]+)$ 			?cm
 RewriteRule ^don-vi/([A-Za-z0-9_-]+)/thiet-lap$ 									?cmd=BranchSetting&IdKey=$1						[L]
 
 #---------------------------------------------------------------------------------------------------------------------------
+# WAREHOUSE
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^kho-hang/([A-Za-z0-9_-]+)$ 						?cmd=Warehouse&IdKey=$1							[L]
+RewriteRule ^kho-hang/([A-Za-z0-9_-]+)/lenh-nhap$ 				?cmd=WarehouseImport&IdKey=$1					[L]
+RewriteRule ^kho-hang/([A-Za-z0-9_-]+)/lenh-xuat$ 				?cmd=WarehouseExport&IdKey=$1					[L]
+RewriteRule ^kho-hang/([A-Za-z0-9_-]+)/bao-cao$ 				?cmd=WarehouseReport&IdKey=$1					[L]
+RewriteRule ^kho-hang/([A-Za-z0-9_-]+)/thiet-lap$ 				?cmd=WarehouseSetting&IdKey=$1					[L]
+
+#---------------------------------------------------------------------------------------------------------------------------
 # SALE
 #---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^ql-ban-hang$ 										?cmd=Sale 				[L]
@@ -90,10 +99,6 @@ RewriteRule ^ql-ban-hang/lenh-ban$ 								?cmd=SaleCommand 		[L]
 RewriteRule ^ql-ban-hang/lenh-ban/nap$ 							?cmd=SaleCommandLoad	[L]
 RewriteRule ^ql-ban-hang/lenh-ban/([0-9]+)$ 					?cmd=SaleCommandView&IdCommand=$1 [L]
 RewriteRule ^ql-ban-hang/lenh-ban/([0-9]+)/exe$ 				?cmd=SaleCommandCheck&IdCommand=$1 [L]
-
-RewriteRule ^ql-ban-hang/bao-cao$ 								?cmd=SaleReport [L]
-RewriteRule ^ql-ban-hang/bao-cao/([0-9]+)$ 						?cmd=SaleReport&IdTrack=$1 [L]
-RewriteRule ^ql-ban-hang/bao-cao/([0-9]+)/([0-9]+)$ 			?cmd=SaleReportDaily&IdTrack=$1&IdDaily=$2 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # WAREHOUSE

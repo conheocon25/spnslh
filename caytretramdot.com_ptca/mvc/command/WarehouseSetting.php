@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class WarehouseImport extends Command {
+	class WarehouseSetting extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -17,28 +17,23 @@
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
 			$mConfig 		= new \MVC\Mapper\Config();
-			$mSupplier 		= new \MVC\Mapper\Supplier();
-			$mEmployee 		= new \MVC\Mapper\Employee();
 			$mWarehouse 	= new \MVC\Mapper\Warehouse();
 															
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------																											
-			$SupplierAll = $mSupplier->findAll();
-
-			$Warehouse 	= $mWarehouse->findByKey($IdKey);
-			$Title 		= "LỆNH NHẬP KHO";
+			//-------------------------------------------------------------																					
+			$Warehouse		= $mWarehouse->findByKey($IdKey);
+			$Title 		= "THIẾT LẬP";
 			$Navigation = array(
 				array(mb_strtoupper($Warehouse->getName(), 'UTF8'), "/kho-hang/".$Warehouse->getKey())
 			);
-																		
+												
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------																											
-			$request->setObject("Warehouse", $Warehouse);
-			$request->setObject("SupplierAll", 	$SupplierAll);			
-			$request->setObject("Navigation", 	$Navigation);
-			$request->setProperty("Title"	, 	$Title);
+			$request->setObject("Navigation", $Navigation);
+			$request->setProperty("Title"	, $Title);
+			$request->setObject("Warehouse"	, $Warehouse);				
 															
 			return self::statuses('CMD_DEFAULT');
 		}

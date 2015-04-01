@@ -280,13 +280,13 @@
 				//Load dữ liệu JSON lên FORM
 				$.getJSON(url, function(data){
 					$('#URLUpdButton').attr('alt', data.Id);
-					$('#Name2').attr('value', data.Name);
-					$('#Email2').attr('value', data.Email);
-					$('#Pass2').attr('value', data.Pass);
+					$('#Name2').val(data.Name);
+					$('#Email2').val(data.Email);					
+					$('#Pass2').val(data.Pass);
 					$('#Gender2').val(data.Gender);
-					$('#Note2').attr('value', data.Note);
+					$('#Note2').val(data.Note);
 					$('#Type2').val(data.Type);
-					$('#Code2').attr('value', data.Code);
+					$('#Code2').val(data.Code);
 				});
 			});
 			
