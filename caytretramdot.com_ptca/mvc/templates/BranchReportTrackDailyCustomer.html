@@ -22,7 +22,7 @@
 											<th class="text-right" width="120">TIỀN HÀNG</th>
 											<th class="text-right" width="120">THANH TOÁN</th>
 											<th class="text-right" width="120">NỢ MỚI</th>
-											<th class="text-center" width="60" />
+											<th class="text-center" width="60"><div class="btn btn-xs btn-default ExeAll"><i class="glyphicon glyphicon-refresh"/></div></th>
 										</tr>
 									</thead>
 									<tbody>
@@ -33,11 +33,21 @@
 													<span tal:content="TDBC/getCustomer/getName"/>
 												</a>
 											</td>
-											<td class="text-right"><span tal:content="TDBC/getDebtOldPrint"/>	</td>
+											<td class="text-right"><B tal:content="TDBC/getDebtOldPrint"/>		</td>
 											<td class="text-right"><span tal:content="TDBC/getSalePrint"/>		</td>
 											<td class="text-right"><span tal:content="TDBC/getCollectPrint"/>	</td>
-											<td class="text-right"><span tal:content="TDBC/getDebtNewPrint"/>	</td>
-											<td class="text-center"><div class="btn btn-xs btn-default"><i class="glyphicon glyphicon-refresh"/></div></td>
+											<td class="text-right"><B tal:content="TDBC/getDebtNewPrint"/>		</td>
+											<td class="text-center">
+												<div class="btn btn-xs btn-default Exe" tal:attributes="url-exe TDBC/getURLExe"><i class="glyphicon glyphicon-refresh"/></div>
+											</td>
+										</tr>
+										<tr>
+											<td class="text-right" colspan="2"><B>TC</B></td>
+											<td class="text-right"><B tal:content="TDB/getDebtOldPrint"/>		</td>
+											<td class="text-right"><span tal:content="TDB/getSalePrint"/>		</td>
+											<td class="text-right"><span tal:content="TDB/getCollectPrint"/>	</td>
+											<td class="text-right"><B tal:content="TDB/getDebtNewPrint"/>		</td>
+											<td class="text-center" />
 										</tr>
 									</tbody>
 								</table>								
@@ -46,15 +56,48 @@
 					</div>
 					<div class="col-md-4">
 						<div class="panel panel-primary">							
-							<div class="panel-heading"><i class="glyphicon glyphicon-cog"/> <B>CHỨC NĂNG</B></div>
+							<div class="panel-heading"><i class="glyphicon glyphicon-cog"/> <B>NGÀY BÁO CÁO</B></div>
 							<div class="panel-body">
-								
+								<ul class="list-group">
+									<li tal:repeat="TDB1 TDBAll" tal:attributes="class php: TDB1->getId()==TDB->getId()?'list-group-item list-group-item-success':'list-group-item'">
+										<a tal:attributes="href TDB1/getURLCustomer">
+											<span tal:content="TDB1/getDatePrint"/>
+										</a>										
+									</li>
+								</ul>
 							</div>	
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>		
-		<div metal:use-macro="mFront.xhtml/IncludeJS"/>		
+		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
+		<script type="text/javascript">
+		/*<![CDATA[*/						
+			$(".Exe").click(function(){
+				var URlExe = $(this).attr('url-exe');
+				$.ajax({
+					type: "POST",					
+					url: URlExe,
+					success: function(msg){
+						location.reload();
+					}
+				});
+			});
+			
+			//Xử lí theo lô
+			$(".ExeAll").click(function(){				
+				$(".Exe").each(function( i, obj){
+					var URlExe = $(this).attr('url-exe');
+					$.ajax({
+						type: "POST",
+						url: URlExe,
+						success: function(msg){}
+					});
+				});
+				location.reload();
+			});
+		/*]]>*/
+		</script>
 	</body>
 </html>

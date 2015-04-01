@@ -88,9 +88,15 @@ class TrackDailyBranchCustomer extends Object{
 	function getURLView(){
 		$TDB 	= $this->getTDB();
 		$Branch = $TDB->getBranch();
-		$Track 	= $TDB->getTrack();
-		
+		$Track 	= $TDB->getTrack();		
 		return "/don-vi/".$Branch->getKey()."/bao-cao/".$Track->getId()."/khach-hang/".$this->getIdTDB()."/".$this->getId();
+	}
+	
+	function getURLExe(){
+		$TDB 	= $this->getTDB();
+		$Branch = $TDB->getBranch();
+		$Track 	= $TDB->getTrack();		
+		return "/don-vi/".$Branch->getKey()."/bao-cao/".$Track->getId()."/khach-hang/".$this->getIdTDB()."/".$this->getId()."/exe";
 	}
 	
 	//-------------------------------------------------------------------------------
