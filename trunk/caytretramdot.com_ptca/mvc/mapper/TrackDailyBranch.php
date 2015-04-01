@@ -10,8 +10,8 @@ class TrackDailyBranch extends Mapper implements \MVC\Domain\TrackDailyBranchFin
 		
 		$selectAllStmt 			= sprintf("select * from %s", $tblTrackDailyBranch);
 		$selectStmt 			= sprintf("select *  from %s where id=?", $tblTrackDailyBranch);
-		$updateStmt 			= sprintf("update %s set id_track=?, id_branch=?, date=? where id=?", $tblTrackDailyBranch);
-		$insertStmt 			= sprintf("insert into %s (id_track, id_branch, date) values(?, ?, ?)", $tblTrackDailyBranch);
+		$updateStmt 			= sprintf("update %s set id_track=?, id_branch=?, date=?, debt_old=?, sale=?, collect=? where id=?", $tblTrackDailyBranch);
+		$insertStmt 			= sprintf("insert into %s (id_track, id_branch, date, debt_old, sale, collect) values(?, ?, ?, ?, ?, ?)", $tblTrackDailyBranch);
 		$deleteStmt 			= sprintf("delete from %s where id=?", $tblTrackDailyBranch);
 		$deleteByTrackStmt 		= sprintf("delete from %s where id_track=?", $tblTrackDailyBranch);
 		$findByBranchStmt 		= sprintf("select *  from %s where id_branch=?", $tblTrackDailyBranch);
@@ -33,7 +33,10 @@ class TrackDailyBranch extends Mapper implements \MVC\Domain\TrackDailyBranchFin
 			$array['id'],
 			$array['id_track'],
 			$array['id_branch'],
-			$array['date']
+			$array['date'],
+			$array['debt_old'],
+			$array['sale'],
+			$array['collect']
 		);
 	    return $obj;
     }
@@ -43,6 +46,9 @@ class TrackDailyBranch extends Mapper implements \MVC\Domain\TrackDailyBranchFin
 			$object->getIdTrack(),
 			$object->getIdBranch(),
 			$object->getDate(),
+			$object->getDebtOld(),
+			$object->getSale(),
+			$object->getCollect()
 		);
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
@@ -54,6 +60,9 @@ class TrackDailyBranch extends Mapper implements \MVC\Domain\TrackDailyBranchFin
 			$object->getIdTrack(),
 			$object->getIdBranch(),
 			$object->getDate(),
+			$object->getDebtOld(),
+			$object->getSale(),
+			$object->getCollect(),
 			$object->getId()
 		);
         $this->updateStmt->execute( $values );

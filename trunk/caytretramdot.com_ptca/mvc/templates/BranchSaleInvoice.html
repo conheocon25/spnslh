@@ -8,7 +8,16 @@
 	<body>
 		<tal:block metal:use-macro="mFront.xhtml/Header"/>
 		<div class="container-fluid" id="wraper">
-			<div class="row">
+			<div class="row" tal:condition="not:BranchQuotaAll/count">
+				<div class="col-md-12">					
+					<div class="jumbotron text-center">
+						<h1>CHƯA ĐƯỢC PHÉP</h1>
+						<p>Ngày hôm nay Chi Nhánh chưa làm lệnh bán để xin cấp hạn ngạch bán hàng. Quản lý hệ thống phải làm lệnh bán trình về công ty để được phép bán hàng trong hạn ngạch cho phép.</p>
+						<p><a class="btn btn-primary btn-lg" tal:attributes="href Branch/getURLSaleCommand" role="button">Click vào đây</a></p>
+					</div>
+				</div>
+			</div>
+			<div class="row" tal:condition="BranchQuotaAll/count">
 				<div class="col-md-3">
 					<div id="BranchId" tal:attributes="data-id Branch/getId"/>
 					<input id="NameSearch" name="NameSearch" type="text" 
@@ -16,7 +25,7 @@
 						tal:attributes="data-url Branch/getURLSaleInvoiceCustomerSearch"
 					/>
 					<div id="CustomerAll" />
-				</div>
+				</div>				
 				<div class="col-md-3">
 					<div id="CustomerView" />
 				</div>

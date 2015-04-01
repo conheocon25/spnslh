@@ -1,3 +1,9 @@
+<head>	
+	<style>
+		.datepicker{z-index:1151 !important;}
+		.datetimepicker{z-index:1151 !important;}
+	</style>
+</head>
 <body>
 	<div id="InvoicePanel" class="panel panel-primary" tal:attributes="alt Invoice/getURLBranchLoad;">
 		<div class="panel-heading"><i class="glyphicon glyphicon-star"/><B>HÓA ĐƠN BÁN HÀNG</B></div>
@@ -5,7 +11,23 @@
 			<table width="100%">				
 				<tr>
 					<td width="15%">TẠO LÚC</td>
-					<td width="35%"><B tal:content="Invoice/getDateTimeCreatedPrint" /></td>									
+					<td width="35%">
+						<a class="InvoiceUpd" href="#DialogInvoiceUpd" data-toggle="modal"
+							tal:attributes="data-id 				Invoice/getId;
+											data-iduser 			Invoice/getIdUser;
+											data-idcustomer			Invoice/getIdCustomer;
+											data-idwarehouse		Invoice/getIdWarehouse;
+											data-idtransport		Invoice/getIdTransport;
+											data-idbranch			Invoice/getIdBranch;
+											data-datetimecreated 	Invoice/getDateTimeCreated;
+											data-datetimeupdated 	Invoice/getDateTimeUpdated;
+											data-note 				Invoice/getNote;
+											data-state				Invoice/getState;
+							"
+						>
+							<B tal:content="Invoice/getDateTimeCreatedPrint" />
+						</a>
+					</td>									
 					<td width="15%">NGƯỜI LẬP</td>
 					<td width="35%"><B tal:content="Invoice/getUser/getName" /></td>
 				</tr>
@@ -66,11 +88,55 @@
 						<td />
 					</tr>
 				</tbody>
-			</table>
+			</table>			
 			<a class="btn btn-default" href="#DialogGoodIns" data-toggle="modal"><i class="glyphicon glyphicon-plus"/> HÀNG HÓA</a>
-			<a class="Ticket btn btn-default" tal:attributes="alt Invoice/getURLBranchPrint"><i class="glyphicon glyphicon-print"/> IN</a>			
+			<a class="Ticket btn btn-default" tal:attributes="alt Invoice/getURLBranchPrint"><i class="glyphicon glyphicon-print"/> IN</a>						
 		</div>
 	</div>
+		
+	<!-- UPD DIALOG  -->
+	<div id="DialogInvoiceUpd" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header"><h3><i class="glyphicon glyphicon-cog modal-icon"/>CẬP NHẬT THÔNG TIN ĐƠN HÀNG</h3></div>
+				<div id="FormInvoiceUpdate" class="form-horizontal">
+					<div class="modal-body">
+						<input id="InvoiceId"  type="hidden" />
+						<input id="InvoiceIdUser"  type="hidden" />
+						<input id="InvoiceIdCustomer"  type="hidden" />
+						<input id="InvoiceIdWarehouse" type="hidden" />
+						<input id="InvoiceIdTransport" 	type="hidden" />
+						<input id="InvoiceIdBranch" 	type="hidden" />
+						<input id="InvoiceState" 		type="hidden" />
+						
+						<div class="form-group">
+							<label class="col-sm-3 control-label" for="DateTimeCreated1">Ngày tạo</label>
+							<div class="col-sm-8 controls">
+								<input id="InvoiceDateTimeCreated" readonly="true" type="text" class="form-control input-small" data-date-format="yyyy-mm-dd hh:ii"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label" for="DateTimeCreated1">Cập nhật</label>
+							<div class="col-sm-8 controls">
+								<input id="InvoiceDateTimeUpdated" name="DateTimeUpdated" readonly="true" type="text" class="form-control input-small" data-date-format="yyyy-mm-dd hh:ii"/>
+							</div>
+						</div>																		
+						<div class="form-group">
+							<label class="col-sm-3 control-label">Ghi chú</label>
+							<div class="col-sm-8 controls">
+								<input id="InvoiceNote" type="text" class="form-control input-small" />
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-primary btn-small" id="URLInvoiceUpdButton"><i class="glyphicons-download_alt"/> Lưu</button>
+						<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
+					</div>
+				</div>								
+			</div>
+		</div>
+	</div>
+	<!-- END INSERT DIALOG  -->
 		
 	<!-- DIALOG GOOD INS -->
 	<div id="DialogGoodIns" class="modal fade">
@@ -83,8 +149,8 @@
 						<label class="col-sm-3 control-label">Hàng hóa</label>
 						<div class="col-sm-8 controls">
 							<select id="IdGood1" style="width:100%;" class="form-control">
-								<option tal:repeat="Good GoodAll" tal:attributes="value Good/getId">
-									<span tal:content="Good/getGroup/getName" /> / <span tal:content="Good/getName" />
+								<option tal:repeat="QGood BranchQuotaAll" tal:attributes="value QGood/getIdGood">
+									<span tal:content="QGood/getGood/getGroup/getName" /> / <span tal:content="QGood/getGood/getName" />
 								</option>
 							</select>
 						</div>
@@ -148,7 +214,29 @@
 	<div metal:use-macro="mDialog.xhtml/DialogDel"/>
 	
 </body>
-<script>				
+<script>
+	//THIẾT LẬP NGÀY GIỜ GIAO DỊCH
+	$('#InvoiceDateTimeCreated').datetimepicker({
+		language:  'vi',
+		weekStart: 1,
+		todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		forceParse: 0,
+		showMeridian: 1
+	});
+	$('#InvoiceDateTimeUpdated').datetimepicker({
+		language:  'vi',
+		weekStart: 1,
+		todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		forceParse: 0,
+		showMeridian: 1
+	});
+	
 	//Chèn vào HÀNG HÓA MỚI
 	$("#URLGoodInsButton").click(function(){								
 		var Data = [];		
@@ -217,7 +305,55 @@
 			}
 		});
 	});
+	
+	$(".InvoiceUpd").click(function(){
+		var Id 				= $(this).attr('data-id');
+		var IdUser			= $(this).attr('data-iduser');
+		var IdCustomer		= $(this).attr('data-idcustomer');
+		var IdWarehouse		= $(this).attr('data-idwarehouse');
+		var IdTransport		= $(this).attr('data-idtransport');
+		var IdBranch		= $(this).attr('data-idbranch');		
+		var DateTimeCreated = $(this).attr('data-datetimecreated');
+		var DateTimeUpdated = $(this).attr('data-datetimeupdated');
+		var Note			= $(this).attr('data-note');
+		var State			= $(this).attr('data-state');
 		
+		$("#InvoiceId").val(Id);
+		$("#InvoiceIdUser").val(IdUser);
+		$("#InvoiceIdCustomer").val(IdCustomer);
+		$("#InvoiceIdWarehouse").val(IdWarehouse);
+		$("#InvoiceIdTransport").val(IdTransport);
+		$("#InvoiceIdBranch").val(IdBranch);
+		$("#InvoiceDateTimeCreated").val(DateTimeCreated);
+		$("#InvoiceDateTimeUpdated").val(DateTimeUpdated);
+		$("#InvoiceNote").val(Note);
+		$("#InvoiceState").val(State);
+	});
+				
+	$("#URLInvoiceUpdButton").click(function(){
+		var Data = [];				
+		Data[0] = $("#InvoiceId").val();
+		Data[1] = $("#InvoiceIdUser").val();
+		Data[2] = $("#InvoiceIdCustomer").val();
+		Data[3] = $("#InvoiceIdWarehouse").val();
+		Data[4] = $("#InvoiceIdTransport").val();
+		Data[5] = $("#InvoiceIdBranch").val();
+		Data[6] = $("#InvoiceDateTimeCreated").val();
+		Data[7] = $("#InvoiceDateTimeUpdated").val();
+		Data[8] = $("#InvoiceNote").val();
+		Data[9] = $("#InvoiceState").val();
+																											
+		var URL = "/object/upd/InvoiceSell";
+		$.ajax({
+			type: "POST",
+			data: {Data:Data},
+			url: URL,
+			success: function(msg){
+				location.reload();
+			}
+		});
+	});
+	
 	//-----------------------------------------------------------------------------------
 	//IN LỆNH
 	//-----------------------------------------------------------------------------------	

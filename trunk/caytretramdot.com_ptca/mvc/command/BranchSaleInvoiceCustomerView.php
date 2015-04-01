@@ -19,25 +19,25 @@
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------						
 			$mBranch 		= new \MVC\Mapper\Branch();
-			$mCustomer 		= new \MVC\Mapper\Customer();
-			$mGood 			= new \MVC\Mapper\Good();
+			$mCustomer 		= new \MVC\Mapper\Customer();			
 			$mInvoiceSell 	= new \MVC\Mapper\InvoiceSell();
+			$mBranchQuota	= new \MVC\Mapper\BranchQuota();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------									
 			$Branch		= $mBranch->findByKey($IdKey);
 			$Customer	= $mCustomer->find($IdCustomer);
-			$Invoice	= $mInvoiceSell->find($IdInvoice);
-			$GoodAll	= $mGood->findAll();
+			$Invoice	= $mInvoiceSell->find($IdInvoice);			
+			$BranchQuotaAll = $mBranchQuota->findByBranchDate(array($Branch->getId(), \date("Y-m-d")));
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-			$request->setObject('Branch'		, $Branch);
-			$request->setObject('GoodAll'		, $GoodAll);
+			$request->setObject('Branch'		, $Branch);			
 			$request->setObject('Customer'		, $Customer);
 			$request->setObject('Invoice'		, $Invoice);
+			$request->setObject('BranchQuotaAll', $BranchQuotaAll);
 			
 			return self::statuses('CMD_DEFAULT');
 		}

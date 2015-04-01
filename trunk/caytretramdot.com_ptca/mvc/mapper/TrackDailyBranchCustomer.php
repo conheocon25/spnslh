@@ -15,6 +15,7 @@ class TrackDailyBranchCustomer extends Mapper implements \MVC\Domain\TrackDailyB
 		$deleteStmt 				= sprintf("delete from %s where id=?", $tblTrackDailyBranchCustomer);
 		$deleteByTrackStmt 			= sprintf("delete from %s where id_tdb=?", $tblTrackDailyBranchCustomer);
 		$findByStmt 				= sprintf("select *  from %s where id_tdb=?", $tblTrackDailyBranchCustomer);
+		$findPreStmt 				= sprintf("select *  from %s where id<? AND id_customer=? ORDER BY id DESC LIMIT 1", $tblTrackDailyBranchCustomer);
 				
         $this->selectAllStmt 		= self::$PDO->prepare($selectAllStmt);
         $this->selectStmt 			= self::$PDO->prepare($selectStmt);
@@ -23,6 +24,7 @@ class TrackDailyBranchCustomer extends Mapper implements \MVC\Domain\TrackDailyB
 		$this->deleteStmt 			= self::$PDO->prepare($deleteStmt);
 		$this->deleteByTrackStmt 	= self::$PDO->prepare($deleteByTrackStmt);
 		$this->findByStmt 			= self::$PDO->prepare($findByStmt);		
+		$this->findPreStmt 			= self::$PDO->prepare($findPreStmt);		
     }
 	
     function getCollection( array $raw ) {return new TrackDailyBranchCustomerCollection( $raw, $this );}
@@ -68,9 +70,20 @@ class TrackDailyBranchCustomer extends Mapper implements \MVC\Domain\TrackDailyB
     function selectAllStmt() {return $this->selectAllStmt;}	
 	function deleteByTrack(array $values) {return $this->deleteByTrackStmt->execute( $values );}
 	
+	function findPre( $Param ){
+        $this->findPreStmt->execute( $Param );
+        $array = $this->findPreStmt->fetch( ); 
+        $this->findPreStmt->closeCursor( );
+        if ( ! is_array( $array ) ) { return null; }
+        if ( ! isset( $array['id'] ) ) { return null; }
+        $object = $this->createObject( $array );
+        $object->markClean();
+        return $object; 
+    }
+		
 	function findBy(array $values) {
 		$this->findByStmt->execute( $values );
         return new TrackDailyBranchCustomerCollection( $this->findByStmt->fetchAll(), $this );
-    }
+    }	
 }
 ?>

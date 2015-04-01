@@ -7,6 +7,10 @@ class TrackDailyBranch extends Object{
 	private $IdTrack;
 	private $IdBranch;
 	private $Date;
+	
+	private $DebtOld;
+	private $Sale;
+	private $Collect;
 		
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
@@ -15,12 +19,18 @@ class TrackDailyBranch extends Object{
 		$Id				= null,
 		$IdTrack		= null, 
 		$IdBranch		= null, 
-		$Date			= null
+		$Date			= null, 
+		$DebtOld		= null, 
+		$Sale			= null, 
+		$Collect		= null
 	){
         $this->Id 			= $Id;
 		$this->IdTrack 		= $IdTrack;
 		$this->IdBranch 	= $IdBranch;
 		$this->Date 		= $Date;
+		$this->DebtOld		= $DebtOld;
+		$this->Sale			= $Sale;
+		$this->Collect		= $Collect;
 		
         parent::__construct( $Id );
     }
@@ -47,6 +57,35 @@ class TrackDailyBranch extends Object{
 	function getDate( ) {return $this->Date;}
 	function getDatePrint( ) {$D = new \MVC\Library\Date($this->Date);return $D->getDateFormat();}
 	function getDateShortPrint( ) {return date('d/m',strtotime($this->Date));}
+	
+	function setDebtOld( $DebtOld ) {$this->DebtOld = $DebtOld; $this->markDirty();}
+	function getDebtOld( ) 			{return $this->DebtOld;}
+	function getDebtOldPrint( ){
+		$num = number_format($this->getDebtOld(), 0, ',', ' ');
+		return $num;
+	}
+	
+	function setSale( $Sale ) 	{$this->Sale = $Sale; $this->markDirty();}
+	function getSale( ) 		{return $this->Sale;}
+	function getSalePrint( ){
+		$num = number_format($this->getSale(), 0, ',', ' ');
+		return $num;
+	}
+	
+	function setCollect( $Collect ) {$this->Collect = $Collect; $this->markDirty();}
+	function getCollect( ) 			{return $this->Collect;}
+	function getCollectPrint( ){
+		$num = number_format($this->getCollect(), 0, ',', ' ');
+		return $num;
+	}
+	
+	function getDebtNew( ){
+		return ($this->DebtOld + $this->Sale - $this->Collect);
+	}
+	function getDebtNewPrint( ){
+		$num = number_format($this->getDebtNew(), 0, ',', ' ');
+		return $num;
+	}
 	
 	//-------------------------------------------------------------------------------
 	//GET LISTs

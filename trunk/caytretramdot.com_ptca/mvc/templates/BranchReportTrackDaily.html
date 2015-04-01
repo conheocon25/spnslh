@@ -18,25 +18,29 @@
 										<tr>
 											<th width="32">ID</th>
 											<th class="text-left">NGÀY</th>
-											<th class="text-center" width="120">KHÁCH HÀNG</th>
-											<th class="text-center" width="120">KHO HÀNG</th>
+											<th width="12"/>
+											<th class="text-center" width="120">NỢ CŨ</th>
+											<th class="text-center" width="120">BÁN HÀNG</th>
+											<th class="text-center" width="120">THANH TOÁN</th>
+											<th class="text-center" width="120">NỢ MỚI</th>
+											<th width="12"/>
+											<th class="text-center" width="60"><div class="btn btn-xs btn-default ExeAll"><i class="glyphicon glyphicon-refresh"/></div></th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr tal:repeat="TDB TDBAll">
 											<td class="center"><span tal:content="repeat/TDB/number"/></td>
-											<td>
-												<span tal:content="TDB/getDatePrint"/>
-											</td>
-											<td class="text-center">
-												<a tal:attributes="href TDB/getURLCustomer">Xem</a>
-											</td>
-											<td class="text-center">
-												<a tal:attributes="href TDB/getURLWarehouse">Xem</a>
-											</td>
+											<td><a tal:attributes="href TDB/getURLCustomer"><span tal:content="TDB/getDatePrint"/></a></td>
+											<td />
+											<td class="text-right"><span tal:content="TDB/getDebtOldPrint"/></td>
+											<td class="text-right"><span tal:content="TDB/getSalePrint"/></td>
+											<td class="text-right"><span tal:content="TDB/getCollectPrint"/></td>
+											<td class="text-right"><span tal:content="TDB/getDebtNewPrint"/></td>
+											<td />
+											<td class="text-center"><div class="btn btn-xs btn-default Exe" tal:attributes="url-exe '#'"><i class="glyphicon glyphicon-refresh"/></div></td>
 										</tr>
 									</tbody>
-								</table>								
+								</table>
 							</div>
 						</div>
 					</div>

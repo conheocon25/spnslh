@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class BranchReportTrackDailyCustomerView extends Command {
+	class BranchReportTrackDailyCustomerExe extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -68,25 +68,11 @@
 			$TDBC->setCollect($ValueCollect);
 			
 			$mTrackDailyBranchCustomer->update($TDBC);
-			
-			$Title 		= mb_strtoupper($Customer->getName(), 'UTF8');
-			$Navigation = array(
-				array(mb_strtoupper($Branch->getName(), 'UTF8'), "/don-vi/".$Branch->getKey()),
-				array("BÁO CÁO", "/don-vi/".$Branch->getKey()."/bao-cao"),				
-				array($Track->getName(), $Branch->getURLTrackDaily( $Track )),
-				array($TDB->getDatePrint(), $TDB->getURLCustomer())
-			);
-												
+																		
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------																											
-			$request->setObject("Navigation", $Navigation);
-			$request->setProperty("Title"	, $Title);												
-			
-			$request->setObject("TDBC"		, $TDBC);
-			$request->setObject("CollectAll", $CollectAll);
-			$request->setObject("InvoiceAll", $InvoiceAll);
-			
+			//-------------------------------------------------------------
+						
 			return self::statuses('CMD_DEFAULT');
 		}
 	}
