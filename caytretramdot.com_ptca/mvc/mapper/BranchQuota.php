@@ -5,14 +5,14 @@ class BranchQuota extends Mapper implements \MVC\Domain\BranchQuotaFinder {
 
     function __construct() {
         parent::__construct();
-		$tblBranchQuota 		= "branch_quota";
+		$tblBranchQuota 			= "branch_quota";
 		
-        $this->selectAllStmt 	= self::$PDO->prepare("select * from branch_quota");
-        $this->updateStmt 		= self::$PDO->prepare("update branch_quota set id_branch=?, date=?, id_good=?, count1=?, count2=?  where id=?");
-        $this->selectStmt 		= self::$PDO->prepare("select * from branch_quota where id=?");
-        $this->insertStmt 		= self::$PDO->prepare("insert into branch_quota (id_branch, date, id_good, count1, count2) values(?, ?, ?, ?, ?)");
-		$this->deleteStmt 		= self::$PDO->prepare("delete from branch_quota where id=?");
-		$this->checkStmt 		= self::$PDO->prepare("select * from branch_quota where id_branch=? AND date=? AND id_good=?");
+        $this->selectAllStmt 		= self::$PDO->prepare("select * from branch_quota");
+        $this->updateStmt 			= self::$PDO->prepare("update branch_quota set id_branch=?, date=?, id_good=?, count1=?, count2=?, count3=?  where id=?");
+        $this->selectStmt 			= self::$PDO->prepare("select * from branch_quota where id=?");
+        $this->insertStmt 			= self::$PDO->prepare("insert into branch_quota (id_branch, date, id_good, count1, count2, count3) values(?, ?, ?, ?, ?, ?)");
+		$this->deleteStmt 			= self::$PDO->prepare("delete from branch_quota where id=?");
+		$this->checkStmt 			= self::$PDO->prepare("select * from branch_quota where id_branch=? AND date=? AND id_good=?");
 		$this->findByBranchDateStmt = self::$PDO->prepare("SELECT * FROM branch_quota WHERE id_branch=? AND date=?");
 		
 	}
@@ -25,7 +25,8 @@ class BranchQuota extends Mapper implements \MVC\Domain\BranchQuotaFinder {
 			$array['date'],
 			$array['id_good'],
 			$array['count1'],
-			$array['count2']
+			$array['count2'],
+			$array['count3']
 		);
         return $obj;
     }
@@ -38,7 +39,8 @@ class BranchQuota extends Mapper implements \MVC\Domain\BranchQuotaFinder {
 			$object->getDate(),
 			$object->getIdGood(),
 			$object->getCount1(),
-			$object->getCount2()			
+			$object->getCount2(),
+			$object->getCount3()
 		); 
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
@@ -51,7 +53,8 @@ class BranchQuota extends Mapper implements \MVC\Domain\BranchQuotaFinder {
 			$object->getDate(),
 			$object->getIdGood(),
 			$object->getCount1(),
-			$object->getCount2(),			
+			$object->getCount2(),
+			$object->getCount3(),
 			$object->getId()
 		);		
         $this->updateStmt->execute( $values );

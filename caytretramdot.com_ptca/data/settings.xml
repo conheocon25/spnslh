@@ -55,6 +55,8 @@
 		<command name="BranchReportTrackDailyCustomerView">	<view>BranchReportTrackDailyCustomerView</view></command>
 		<command name="BranchReportTrackDailyCustomerExe">	<view>BranchReportTrackDailyCustomerExe</view></command>
 		
+		<command name="BranchReportTrackDailyQuota">		<view>BranchReportTrackDailyQuota</view></command>
+		
 		<command name="BranchSetting">						<view>BranchSetting</view></command>
 				
 		<!-- ============================================================================== -->

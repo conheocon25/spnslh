@@ -18,26 +18,36 @@ class InvoiceSellDetail extends Mapper implements \MVC\Domain\UserFinder {
 		$findByInvoiceStmt = sprintf("select * from %s where id_invoice=?", $tblInvoiceSellDetail);
 						
 		$checkStmt = sprintf("
-			select 
-				distinct id 
+			select distinct id 
 			from 
 				%s 
 			where 
 				id_invoice=? and 
 				id_good=? and 				
 		", $tblInvoiceSellDetail);
-				
+		
+		$findByDateGoodStmt = sprintf("
+			SELECT 
+				*
+			FROM
+				invoice_sell S INNER JOIN invoice_sell_detail SD
+			ON S.id = SD.id_invoice
+			WHERE
+				date(datetime_created)=? AND id_good=?
+			", $tblInvoiceSellDetail);
+		
 		/*
         * Gán chuỗi vừa được xử lí cho các Statement của PDO
 		* luôn đảm bảo các tiền tố được truyền đi đúng
         */
-        $this->selectAllStmt = self::$PDO->prepare( $selectAllStmt);
-        $this->selectStmt = self::$PDO->prepare( $selectStmt );
-        $this->updateStmt = self::$PDO->prepare( $updateStmt );
-        $this->insertStmt = self::$PDO->prepare( $insertStmt );
-		$this->deleteStmt = self::$PDO->prepare( $deleteStmt );
+        $this->selectAllStmt 		= self::$PDO->prepare( $selectAllStmt);
+        $this->selectStmt 			= self::$PDO->prepare( $selectStmt );
+        $this->updateStmt 			= self::$PDO->prepare( $updateStmt );
+        $this->insertStmt 			= self::$PDO->prepare( $insertStmt );
+		$this->deleteStmt 			= self::$PDO->prepare( $deleteStmt );
                             
-		$this->findByInvoiceStmt 	= self::$PDO->prepare($findByInvoiceStmt);						
+		$this->findByInvoiceStmt 	= self::$PDO->prepare($findByInvoiceStmt);
+		$this->findByDateGoodStmt 	= self::$PDO->prepare($findByDateGoodStmt);
 		$this->checkStmt 			= self::$PDO->prepare( $checkStmt);		
 		
     } 
@@ -81,6 +91,11 @@ class InvoiceSellDetail extends Mapper implements \MVC\Domain\UserFinder {
 	function findByInvoice( $values ) {	
         $this->findByInvoiceStmt->execute( $values );
         return new InvoiceSellDetailCollection( $this->findByInvoiceStmt->fetchAll(), $this );
+    }
+	
+	function findByDateGood( $values ) {	
+        $this->findByDateGoodStmt->execute( $values );
+        return new InvoiceSellDetailCollection( $this->findByDateGoodStmt->fetchAll(), $this );
     }
 		
 	function check( $values ) {	

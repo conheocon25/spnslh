@@ -11,7 +11,8 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$IdKey = $request->getProperty('IdKey');
+			$IdKey 	= $request->getProperty('IdKey');
+			$Reload	= $request->getProperty('Reload');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
@@ -42,8 +43,10 @@
 							\date("Y-m-d"),
 							$CD->getIdGood(),
 							$CD->getCount1(),
-							$CD->getCount2()
+							$CD->getCount2(),
+							0
 						);
+						$BQ->reCount3();
 						$mBranchQuota->insert($BQ);
 					}else{
 						$Count1 = $BQ->getCount1() + $CD->getCount1();
@@ -51,9 +54,10 @@
 						
 						$BQ->setCount1($Count1);
 						$BQ->setCount2($Count2);
+						$BQ->reCount3();
 						
 						$mBranchQuota->update($BQ);
-					}														
+					}
 					$CDAll->next();
 				}
 				//Xác nhận đã cập nhật vào Quota
@@ -62,6 +66,15 @@
 				
 				$CommandAll->next();
 			}			
+			if (isset($Reload)){				
+				$BranchQuotaAll = $mBranchQuota->findByBranchDate(array($Branch->getId(), \date("Y-m-d")));
+				while ($BranchQuotaAll->valid()){
+					$BQ = $BranchQuotaAll->current();
+					$BQ->reCount3();
+					$mBranchQuota->update($BQ);
+					$BranchQuotaAll->next();
+				}
+			}
 			$BranchQuotaAll = $mBranchQuota->findByBranchDate(array($Branch->getId(), \date("Y-m-d")));
 																		
 			//-------------------------------------------------------------
