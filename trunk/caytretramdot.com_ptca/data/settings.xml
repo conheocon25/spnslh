@@ -22,7 +22,7 @@
 		<command name="ObjectDel"><view>ObjectDel</view></command>
 		<command name="ObjectIns"><view>ObjectIns</view></command>
 		<command name="ObjectUpd"><view>ObjectUpd</view></command>
-			
+		
 		
 		<command name="App"><view>App</view></command>		
 		<!-- ============================================================================== -->
@@ -63,6 +63,7 @@
 		<!-- WAREHOUSE 																		-->
 		<!-- ============================================================================== -->
 		<command name="Warehouse">							<view>Warehouse</view></command>
+		
 		<command name="WarehouseImport">					<view>WarehouseImport</view></command>
 		<command name="WarehouseImportInsExe">				<view>WarehouseImportInsExe</view></command>
 		<command name="WarehouseImportDetail">				<view>WarehouseImportDetail</view></command>
@@ -75,7 +76,8 @@
 		<command name="WarehouseExportLoadQueue">			<view>WarehouseExportLoadQueue</view></command>
 		<command name="WarehouseExportLoadFinish">			<view>WarehouseExportLoadFinish</view></command>
 		
-		<command name="WarehouseReport">			<view>WarehouseReport</view></command>
+		<command name="WarehouseReport">					<view>WarehouseReport</view></command>
+		<command name="WarehouseSetting">					<view>WarehouseSetting</view></command>
 		
 		<!-- ============================================================================== -->
 		<!-- SALE	 																		-->

@@ -13,26 +13,7 @@
 					<div class="panel panel-primary">
 						<div class="panel-heading"><i class="glyphicon glyphicon-cog"/> <B tal:content="Title"/></div>
 						<div class="panel-body">		
-							<table class="table table-bordered table-striped table-hover">
-								<thead>
-									<tr>
-										<th class="text-center" width="32">ID</th>
-										<th class="text-left">NGÀY LẬP</th>
-										<th class="text-right" width="120">T. TIỀN</th>
-										<th class="text-center" width="90">IN</th>
-										<th class="text-center" width="32"><i class="glyphicon glyphicon-trash"/></th>
-									</tr>
-								</thead>
-								<tbody>									
-									<tr tal:repeat="Import Supplier/getInvoiceImportAll">
-										<td class="text-center"><span tal:content="repeat/Import/number"/></td>
-										<td><a class="update-item" href="#DialogUpd" data-toggle="modal" data-name="Import" tal:attributes="data-id Import/getId" tal:content="Import/getDateTimeCreatedPrint"/></td>
-										<td class="text-right"><a tal:attributes="href Import/getURLDetail">Xem</a></td>
-										<td class="text-center"><a class="Ticket" tal:attributes="alt Import/getURLPrint"><i class="glyphicon glyphicon-print"/></a></td>
-										<td class="text-center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Import/getId"><i class="glyphicon glyphicon-remove"/></a></td>
-									</tr>									
-								</tbody>
-							</table>							
+							
 						</div>
 					</div>										
 				</div>
@@ -40,87 +21,12 @@
 					<div class="panel panel-default">
 						<div class="panel-heading"><i class="glyphicon glyphicon-cog"/> <B>NHÀ CUNG CẤP</B></div>
 						<div class="panel-body">
-							<ul>
-								<li tal:repeat="Supplier1 SupplierAll"
-									tal:attributes="class php: Supplier1->getId()==Supplier->getId()?'btn btn-default active':'btn btn-default'"
-								>
-									<a tal:attributes="href Supplier1/getURLImport">
-										<i class="glyphicon glyphicon-home"/> <span tal:content="php:mb_strtoupper(Supplier1->getName(),'UTF8')"/> (<span tal:content="Supplier1/getInvoiceImportAll/count"/>)
-									</a>
-								</li>
-							</ul>							
-							<div class="btn btn-default InvoiceInsert" tal:attributes="alt Supplier/getId"><i class="glyphicon glyphicon-plus" /> LỆNH NHẬP</div>
+							
 						</div>	
 					</div>
 				</div>
 			</div>
 		</div>
-		
-		<!-- UPD DIALOG  -->
-		<div id="DialogUpd" class="modal fade">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header"><h3><i class="glyphicon glyphicon-cog modal-icon"/>CẬP NHẬT LỆNH NHẬP</h3></div>
-					<div id="FormImportUpdate" class="form-horizontal">
-						<div class="modal-body">
-							<div class="form-group">
-								<label class="col-sm-3 control-label" for="DateTimeCreated1">Ngày tạo</label>
-								<div class="col-sm-8 controls">
-									<input id="DateTimeCreated" name="DateTimeCreated" readonly="true" type="text" class="form-control input-small"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label" for="DateTimeCreated1">Cập nhật</label>
-								<div class="col-sm-8 controls">
-									<input id="DateTimeUpdated" name="DateTimeUpdated" readonly="true" type="text" class="form-control input-small"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Nhà cung cấp</label>
-								<div class="col-sm-8 controls">
-									<select id="IdSupplier" style="width:100%;" class="form-control">
-										<option tal:repeat="Supplier SupplierAll" tal:attributes="value Supplier/getId">
-											<span tal:content="Supplier/getName" />
-										</option>
-									</select>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Nhân viên</label>
-								<div class="col-sm-8 controls">
-									<select id="IdEmployee" style="width:100%;" class="form-control">
-										<option tal:repeat="Employee EmployeeAll" tal:attributes="value Employee/getId">
-											<span tal:content="Employee/getName" />
-										</option>
-									</select>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Kho hàng</label>
-								<div class="col-sm-8 controls">
-									<select id="IdWarehouse" style="width:100%;" class="form-control">
-										<option tal:repeat="Warehouse WarehouseAll" tal:attributes="value Warehouse/getId">
-											<span tal:content="Warehouse/getName" />
-										</option>
-									</select>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Ghi chú</label>
-								<div class="col-sm-8 controls">
-									<input id="Note" type="text" class="form-control input-small" />
-								</div>
-							</div>
-						</div>
-						<div class="modal-footer">
-							<button class="btn btn-primary btn-small" id="URLUpdButton"><i class="glyphicons-download_alt"/> Lưu</button>
-							<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
-						</div>
-					</div>								
-				</div>
-			</div>
-		</div>
-		<!-- END INSERT DIALOG  -->
 		
 		<div metal:use-macro="mDialog.xhtml/DialogDel"/>
 		<script type="text/javascript">

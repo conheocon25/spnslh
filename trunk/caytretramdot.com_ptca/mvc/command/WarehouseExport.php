@@ -11,32 +11,29 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-						
+			$IdKey = $request->getProperty('IdKey');
+			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
 			$mConfig 		= new \MVC\Mapper\Config();
-			$mWarehouse 	= new \MVC\Mapper\Warehouse();
-			$mEmployee 		= new \MVC\Mapper\Employee();
+			$mWarehouse 	= new \MVC\Mapper\Warehouse();			
 			$mInvoiceSell	= new \MVC\Mapper\InvoiceSell();
 															
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------																								
-			$WarehouseAll 	= $mWarehouse->findAll();
-			$EmployeeAll 	= $mEmployee->findAll();
-			$InvoiceAll		= $mInvoiceSell->findByState(array(0));
-			$ConfigTimer 	= $mConfig->findByName("TIMER_01");
-									
+			$Warehouse 		= $mWarehouse->findByKey($IdKey);
+			$ConfigTimer 	= $mConfig->findByName("TIMER_01");	
 			$Title 			= "LỆNH XUẤT KHO";
-			$Navigation 	= array();
+			$Navigation = array(
+				array(mb_strtoupper($Warehouse->getName(), 'UTF8'), "/kho-hang/".$Warehouse->getKey())
+			);
 																		
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
-			$request->setObject("ConfigTimer", 	$ConfigTimer);
-			$request->setObject("InvoiceAll", 	$InvoiceAll);
-			$request->setObject("EmployeeAll", 	$EmployeeAll);
+			$request->setObject("ConfigTimer", 	$ConfigTimer);			
 			$request->setObject("Navigation", 	$Navigation);
 			$request->setProperty("Title"	, 	$Title);
 															

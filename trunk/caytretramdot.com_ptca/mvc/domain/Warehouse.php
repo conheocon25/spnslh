@@ -103,7 +103,13 @@ class Warehouse extends Object{
 	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
-	//-------------------------------------------------------------------------------			
-	function getURLSettingEmployee(){return "/admin/setting/Warehouse/".$this->getId();}
+	//-------------------------------------------------------------------------------					
+	function getURLExportCommand()		{return "/kho-hang/".$this->Key."/lenh-xuat";}
+	function getURLImportCommand()		{return "/kho-hang/".$this->Key."/lenh-nhap";}
+	function getURLReport()				{return "/kho-hang/".$this->Key."/bao-cao";}
+	function getURLTrackDaily($Track)	{return "/kho-hang/".$this->Key."/bao-cao/".$Track->getId();}
+	function getURLSetting()			{return "/kho-hang/".$this->Key."/thiet-lap";}
+	
+	function getURLSettingCustomer(){return "/ql-thiet-lap/khach-hang/".$this->getId();}
 }
 ?>

@@ -2,25 +2,18 @@
 namespace MVC\Mapper;
 require_once( "mvc/base/Mapper.php" );
 class Warehouse extends Mapper implements \MVC\Domain\WarehouseFinder {
-
     function __construct() {
-        parent::__construct();
-		$tblWarehouse 			= "warehouse";
-		
-        $this->selectAllStmt 	= self::$PDO->prepare("select * from warehouse");
-        $this->updateStmt 		= self::$PDO->prepare("update warehouse set id_group=?, name=?, tel=?, fax=?, address=?, `key`=?, enable=?  where id=?");
-        $this->selectStmt 		= self::$PDO->prepare("select * from warehouse where id=?");
-        $this->insertStmt 		= self::$PDO->prepare("insert into warehouse (id_group, name, tel, fax, address, `key`, enable) values(?, ?, ?, ?, ?, ?, ?)");
-		$this->deleteStmt 		= self::$PDO->prepare("delete from warehouse where id=?");
-		$this->findByGroupStmt 	= self::$PDO->prepare("SELECT * FROM warehouse WHERE id_group=? ORDER BY name");
-		
-		$findByGroupPageStmt 		= sprintf("SELECT * FROM  %s WHERE id_group=:id_group LIMIT :start,:max", $tblWarehouse);
-		$this->findByGroupPageStmt 	= self::$PDO->prepare($findByGroupPageStmt);
-		
-		$findByPageStmt 		= sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblWarehouse);
-		$this->findByPageStmt 	= self::$PDO->prepare($findByPageStmt);
-		 
-    } 
+        parent::__construct();				
+        $this->selectAllStmt 		= self::$PDO->prepare("SELECT * FROM warehouse");
+        $this->updateStmt 			= self::$PDO->prepare("UPDATE warehouse set id_group=?, name=?, tel=?, fax=?, address=?, `key`=?, enable=?  where id=?");
+        $this->selectStmt 			= self::$PDO->prepare("SELECT * FROM warehouse where id=?");
+        $this->insertStmt 			= self::$PDO->prepare("INSERT into warehouse (id_group, name, tel, fax, address, `key`, enable) values(?, ?, ?, ?, ?, ?, ?)");
+		$this->deleteStmt 			= self::$PDO->prepare("delete FROM warehouse where id=?");
+		$this->findByGroupStmt 		= self::$PDO->prepare("SELECT * FROM warehouse WHERE id_group=? ORDER BY name");
+		$this->findByKeyStmt 		= self::$PDO->prepare("SELECT *  FROM warehouse where `key`=?");		
+		$this->findByGroupPageStmt 	= self::$PDO->prepare("SELECT * FROM  warehouse WHERE id_group=:id_group LIMIT :start,:max");
+		$this->findByPageStmt 		= self::$PDO->prepare("SELECT * FROM  warehouse LIMIT :start,:max");		 
+    }
     function getCollection( array $raw ) {return new WarehouseCollection( $raw, $this );}
 
     protected function doCreateObject( array $array ) {		
@@ -69,16 +62,26 @@ class Warehouse extends Mapper implements \MVC\Domain\WarehouseFinder {
     }
 			
 	protected function doDelete(array $values) {return $this->deleteStmt->execute( $values );}	
-    function selectStmt() {return $this->selectStmt;}	
-    function selectAllStmt() {return $this->selectAllStmt;}
+    function selectStmt() 	{return $this->selectStmt;}	
+    function selectAllStmt(){return $this->selectAllStmt;}
 					
+	function findByKey( $values ){
+		$this->findByKeyStmt->execute( array($values) );
+        $array = $this->findByKeyStmt->fetch();
+        $this->findByKeyStmt->closeCursor();
+        if ( ! is_array( $array ) ) { return null; }
+        if ( ! isset( $array['id'] ) ) { return null; }
+        $object = $this->doCreateObject( $array );
+        return $object;		
+    }
+	
 	function findByPage( $values ) {
 		$this->findByPageStmt->bindValue(':start', ((int)($values[0])-1)*(int)($values[1]), \PDO::PARAM_INT);
 		$this->findByPageStmt->bindValue(':max', (int)($values[1]), \PDO::PARAM_INT);
 		$this->findByPageStmt->execute();
         return new WarehouseCollection( $this->findByPageStmt->fetchAll(), $this );
     }
-	
+			
 	function findByGroup($values) {		
         $this->findByGroupStmt->execute( $values );
         return new WarehouseCollection( $this->findByGroupStmt->fetchAll(), $this );
