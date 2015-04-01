@@ -15,7 +15,7 @@
 				</div>
 				<div class="col-md-5"><div id="CommandView" /></div>
 				<div class="col-md-4">
-					<div id="Quota" tal:attributes="data-url Branch/getURLSaleCommandQuota"/>
+					<div id="Quota" tal:attributes="data-url Branch/getURLSaleCommandQuota; data-url-exe Branch/getURLSaleCommandQuotaExe"/>
 				</div>
 			</div>
 		</div>
@@ -49,7 +49,7 @@
 			var URLCommand = $("#CommandAll").attr('data-url');				
 			$("#CommandAll").load(URLCommand);
 			
-			var URLQuota = $("#Quota").attr('data-url');				
+			var URLQuota = $("#Quota").attr('data-url');
 			$("#Quota").load(URLQuota);
 			
 		/*]]>*/

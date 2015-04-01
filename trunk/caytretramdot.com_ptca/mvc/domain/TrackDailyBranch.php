@@ -115,12 +115,19 @@ class TrackDailyBranch extends Object{
 		$TDBCustomerAll = $mTDBCustomer->findBy(array($this->getId()));
 		return $TDBCustomerAll;
 	}
+	
+	function getQuotaAll(){	
+		$mBranchQuota 	= new \MVC\Mapper\BranchQuota();
+		$QuotaAll 		= $mBranchQuota->findByBranchDate(array($this->getIdBranch(), $this->getDate()));
+		return $QuotaAll;
+	}
 		
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
 	function getURLCustomer()	{return "/don-vi/".$this->getBranch()->getKey()."/bao-cao/".$this->getIdTrack()."/khach-hang/".$this->getId();}
 	function getURLWarehouse()	{return "/don-vi/".$this->getBranch()->getKey()."/bao-cao/".$this->getIdTrack()."/kho-hang/".$this->getId();}
+	function getURLQuota()		{return "/don-vi/".$this->getBranch()->getKey()."/bao-cao/".$this->getIdTrack()."/han-ngach/".$this->getId();}
 	
 	//-------------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

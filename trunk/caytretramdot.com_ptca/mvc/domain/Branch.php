@@ -130,6 +130,7 @@ class Branch extends Object{
 	function getURLSaleCommandLoad()	{return "/don-vi/".$this->Key."/lenh-ban/nap";}
 	function getURLSaleCommandView()	{return "/don-vi/".$this->Key."/lenh-ban/xem";}
 	function getURLSaleCommandQuota()	{return "/don-vi/".$this->Key."/lenh-ban/han-ngach";}
+	function getURLSaleCommandQuotaExe(){return "/don-vi/".$this->Key."/lenh-ban/han-ngach/exe";}
 	
 	function getURLSaleInvoice()				{return "/don-vi/".$this->Key."/ban-hang";}
 	function getURLSaleInvoiceCustomerSearch()	{return "/don-vi/".$this->Key."/ban-hang/khach-hang/tim";}

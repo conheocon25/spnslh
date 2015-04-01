@@ -68,7 +68,8 @@ class Track extends Object{
 				null,
 				$TD->getIdTrack(),
 				$Branch->getId(),
-				$TD->getDate()
+				$TD->getDate(),
+				0,0,0
 			);
 			$mTDB->insert($TDB);
 			
@@ -85,7 +86,7 @@ class Track extends Object{
 			$TD = new \MVC\Domain\TrackDaily(
 				null,
 				$this->getId(), 
-				$Date				
+				$Date
 			);
 			$mTD->insert($TD);
 			$Date = \date("Y-m-d", strtotime("+1 day", strtotime($Date)));
