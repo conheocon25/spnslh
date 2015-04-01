@@ -24,7 +24,10 @@
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------																								
 			$Warehouse 		= $mWarehouse->findByKey($IdKey);
-			$ConfigTimer 	= $mConfig->findByName("TIMER_01");	
+			$ConfigTimer 	= $mConfig->findByName("TIMER_01");
+			
+			$InvoiceAll		= $mInvoiceSell->findByState(array(1));
+			
 			$Title 			= "LỆNH XUẤT KHO";
 			$Navigation = array(
 				array(mb_strtoupper($Warehouse->getName(), 'UTF8'), "/kho-hang/".$Warehouse->getKey())
@@ -33,7 +36,10 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
-			$request->setObject("ConfigTimer", 	$ConfigTimer);			
+			$request->setObject("ConfigTimer", 	$ConfigTimer);
+			$request->setObject("Warehouse", 	$Warehouse);
+			$request->setObject("InvoiceAll", 	$InvoiceAll);
+			
 			$request->setObject("Navigation", 	$Navigation);
 			$request->setProperty("Title"	, 	$Title);
 															

@@ -30,11 +30,14 @@
 			$Branch		= $mBranch->findByKey($IdKey);
 			$Customer	= $mCustomer->find($IdCustomer);
 			
+			$BWAll 		= $Branch->getWarehouseAll();
+			$BW			= $BWAll->current();
+			
 			$Invoice = new \MVC\Domain\InvoiceSell(
 				null,				
 				$Session->getCurrentIdUser(),
 				$Customer->getId(),
-				0,
+				$BW->getIdWarehouse(),
 				0,
 				$Branch->getId(),
 				\date("Y-m-d H:i:s"),

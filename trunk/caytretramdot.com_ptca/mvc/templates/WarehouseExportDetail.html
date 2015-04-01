@@ -4,44 +4,35 @@
 		<div class="panel-body">
 			<table width="100%">
 				<tr>
-					<td width="35%">KHÁCH HÀNG</td>
-					<td width="45%"><B tal:content="Invoice/getCustomer/getName" /></td>
-					<td width="20%" rowspan="7">
-						<img width="64px" tal:attributes="src Invoice/getEmployee/getAvatar"/>
-					</td>
+					<td width="15%">CN</td>
+					<td width="35%"><B tal:content="Invoice/getBranch/getName" /></td>
+					<td width="15%">ĐC</td>
+					<td width="35%"><B tal:content="Invoice/getBranch/getAddress" /></td>
 				</tr>
 				<tr>
-					<td width="35%">ĐỊA CHỈ</td>
-					<td width="45%"><B tal:content="Invoice/getCustomer/getAddress" /></td>
+					<td width="15%">KHÁCH HÀNG</td>
+					<td width="35%"><B tal:content="Invoice/getCustomer/getName" /></td>
+					<td width="15%">NGƯỜI TẠO</td>
+					<td width="35%"><B tal:content="Invoice/getUser/getName" /></td>
 				</tr>
 				<tr>
-					<td width="35%">ĐIỆN THOẠI</td>
-					<td width="45%"><B tal:content="Invoice/getCustomer/getTel" /></td>					
+					<td width="15%">ĐỊA CHỈ KH</td>
+					<td width="35%"><B tal:content="Invoice/getCustomer/getAddress" /></td>
+					<td width="15%">TẠO LÚC</td>
+					<td width="35%"><B tal:content="Invoice/getDateTimeCreatedPrint" /></td>					
+				</tr>
+				<tr>
+					<td width="15%">ĐIỆN THOẠI</td>
+					<td width="35%"><B tal:content="Invoice/getCustomer/getTel" /></td>					
+					<td width="15%">TÌNH TRẠNG</td>
+					<td width="35%"><B style="color:red" tal:content="Invoice/getStatePrint" /></td>
 				</tr>				
 				<tr>
-					<td width="35%">KHỞI TẠO LÚC</td>
-					<td width="45%"><B tal:content="Invoice/getDateTimeCreatedPrint" /></td>					
-				</tr>
-				<tr>
-					<td width="35%">CẬP NHẬT LẦN CUỐI</td>
-					<td width="45%"><B tal:content="Invoice/getDateTimeUpdatedPrint" /></td>					
-				</tr>
-				<tr>
-					<td width="35%">NHÂN VIÊN BÁN</td>
-					<td width="45%"><B tal:content="Invoice/getEmployee/getName" /></td>
-				</tr>
-				<tr>
-					<td width="35%">TÌNH TRẠNG</td>
-					<td width="45%"><B tal:content="Invoice/getStatePrint" /></td>					
-				</tr>
-				<tr>
-					<td width="35%">XUẤT Ở KHO</td>
-					<td width="45%"><B tal:condition="Invoice/getWarehouse" tal:content="Invoice/getWarehouse/getName" /></td>
-				</tr>
-				<tr>
-					<td width="35%">VẬN CHUYỂN</td>
-					<td width="45%"><B tal:condition="Invoice/getTransport" tal:content="Invoice/getTransport/getName" /></td>
-				</tr>
+					<td width="15%">XUẤT Ở KHO</td>
+					<td width="35%"><B tal:condition="Invoice/getWarehouse" tal:content="Invoice/getWarehouse/getName" /></td>
+					<td width="15%">VẬN CHUYỂN</td>
+					<td width="35%"><B tal:condition="Invoice/getTransport" tal:content="Invoice/getTransport/getName" /></td>
+				</tr>				
 			</table>
 			<BR/>			
 			<table class="table table-striped table-hover">
@@ -77,8 +68,9 @@
 				href="#DialogUpdateInvoice" data-toggle="modal" 
 				class="invoice-item"
 					tal:attributes="id 					Invoice/getId;
-									id_employee 		Invoice/getIdEmployee;
+									id_user 			Invoice/getIdUser;
 									id_customer 		Invoice/getIdCustomer;
+									id_branch 			Invoice/getIdBranch;
 									id_warehouse 		Invoice/getIdWarehouse;
 									id_transport 		Invoice/getIdTransport;
 									datetime_created 	Invoice/getDateTimeCreated;
@@ -99,17 +91,20 @@
 				<form id="FormInvoiceUpdate" action="#" class="form-horizontal" novalidate="novalidate">					
 					<input id="InvoiceId" 				type="hidden" />
 					<input id="InvoiceIdCustomer" 		type="hidden" />
-					<input id="InvoiceDateTimeCreated" 	type="hidden" class="form-control input-small" data-date-format="yyyy-mm-dd hh:ii"/>
-					<input id="InvoiceDateTimeUpdated" 	type="hidden" class="form-control input-small" data-date-format="yyyy-mm-dd hh:ii"/>
-					<input id="InvoiceNote" 			type="hidden" class="form-control input-small" />
-					<input id="InvoiceIdEmployee" 		type="hidden" class="form-control input-small" />
-					
+					<input id="InvoiceIdBranch" 		type="hidden" />
+					<input id="InvoiceIdUser" 			type="hidden" />
+					<input id="InvoiceDateTimeCreated" 	type="hidden" data-date-format="yyyy-mm-dd hh:ii"/>
+					<input id="InvoiceDateTimeUpdated" 	type="hidden" data-date-format="yyyy-mm-dd hh:ii"/>
+					<input id="InvoiceNote" 			type="hidden" />
+										
 					<div class="form-group">
 						<label class="col-sm-3 control-label">Tình trạng</label>
 						<div class="col-sm-8 controls">							
 							<select id="InvoiceState" style="width:100%;" class="form-control">
-								<option tal:attributes="value string:0;selected php:Invoice->getState()==0?true:false">Chờ duyệt</option>
-								<option tal:attributes="value string:1;selected php:Invoice->getState()==1?true:false">Duyệt xong</option>
+								<option tal:attributes="value string:0;selected php:Invoice->getState()==0?true:false">Soạn phiếu</option>
+								<option tal:attributes="value string:1;selected php:Invoice->getState()==0?true:false">Chuyển kho</option>
+								<option tal:attributes="value string:2;selected php:Invoice->getState()==1?true:false">Xuất hàng</option>
+								<option tal:attributes="value string:3;selected php:Invoice->getState()==1?true:false">Hoàn tất</option>
 							</select>
 						</div>
 					</div>
@@ -153,9 +148,10 @@
 	$(".invoice-item").click(function(){
 		var InvoiceId 				= $(this).attr('id');		
 		var InvoiceIdCustomer 		= $(this).attr('id_customer');
-		var InvoiceIdEmployee 		= $(this).attr('id_employee');
+		var InvoiceIdUser 			= $(this).attr('id_user');
+		var InvoiceIdBranch 		= $(this).attr('id_branch');
 		var InvoiceIdWarehouse 		= $(this).attr('id_warehouse');
-		var InvoiceIdTransport 		= $(this).attr('id_transport');
+		var InvoiceIdTransport 		= $(this).attr('id_transport');		
 		var InvoiceDateTimeCreated 	= $(this).attr('datetime_created');
 		var InvoiceDateTimeUpdated 	= $(this).attr('datetime_updated');		
 		var InvoiceState 			= $(this).attr('state');
@@ -163,8 +159,9 @@
 				
 		$('#URLInvoiceUpdButton').attr('alt', InvoiceId);
 		$("#InvoiceId").val(InvoiceId);
-		$("#InvoiceIdEmployee").val(InvoiceIdEmployee);
+		$("#InvoiceIdUser").val(InvoiceIdUser);
 		$("#InvoiceIdCustomer").val(InvoiceIdCustomer);
+		$("#InvoiceIdBranch").val(InvoiceIdBranch);
 		$("#InvoiceIdWarehouse").val(InvoiceIdWarehouse);
 		$("#InvoiceIdTransport").val(InvoiceIdTransport);
 		
@@ -196,7 +193,7 @@
 		submitHandler: function (form) {					
 			var Data = [];						
 			Data[0] = $('#URLInvoiceUpdButton').attr('alt');
-			Data[1] = $('#InvoiceIdEmployee').val();
+			Data[1] = $('#InvoiceIdUser').val();
 			Data[2] = $('#InvoiceIdCustomer').val();
 			Data[3] = $('#InvoiceIdWarehouse').val();
 			Data[4] = $('#InvoiceIdTransport').val();

@@ -3,7 +3,8 @@
 	<body>		
 		<ul>
 			<li tal:repeat="Invoice InvoiceAll" class= "btn btn-default Invoice" tal:attributes="data-url Invoice/getURLExportLoad">
-				<B tal:content="Invoice/getDateTimeCreatedPrint"/> <span tal:content="Invoice/getCustomer/getName"/> 
+				<span tal:content="Invoice/getCustomer/getName"/>				
+				<B tal:content="Invoice/getDateTimeCreatedStr1Print"/> 
 			</li>
 		</ul>
 		<script type="text/javascript">
@@ -13,7 +14,7 @@
 				var URL = $(this).attr('data-url');
 				$(".Invoice").removeClass("active");
 				$(this).addClass("active");
-				$("#CommandDetail").load(URL);
+				$("#InvoiceView").load(URL);
 			});			
 		/*]]>*/
 		</script>

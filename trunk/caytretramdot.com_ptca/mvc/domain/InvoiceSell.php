@@ -97,8 +97,29 @@ class InvoiceSell extends Object{
 		return date('d/m/Y',$t);
 	}
 	function getDateTimeCreatedStrPrint(){
-		$t = strtotime($this->DateTimeCreated);				
+		$t = strtotime($this->DateTimeCreated);
 		return "Vĩnh Long, ngày ".date('d',$t)." tháng ".date('m',$t)." năm ".date('Y',$t);
+	}
+	function getDateTimeCreatedStr1Print(){
+		$current 	= strtotime(date("Y-m-d H:i:s"));
+		$date    	= strtotime($this->DateTimeCreated);		
+		
+		$Str 		= "";
+		$Arr1		= array("giây"	, "phút"	, "giờ"	, "ngày", "tháng"	, "năm");
+		$Arr2		= array(60		, 60		, 24	, 30	, 12		, 1);
+		$Index		= 0;
+		$D 			= $current - $date;
+		
+		while ($D>0){
+			if ($Index>2)
+				$Str	= ($D%$Arr2[$Index]). " ". $Arr1[$Index]." hơn";
+			else
+				$Str	= ($D%$Arr2[$Index]). " ". $Arr1[$Index]." ".$Str;
+			
+			$D 		= floor($D/$Arr2[$Index]);
+			$Index ++;
+		}
+		return $Str;
 	}
 	
 	function setDateTimeUpdated($DateTimeUpdated ) {$this->DateTimeUpdated = $DateTimeUpdated; $this->markDirty();}
@@ -115,9 +136,13 @@ class InvoiceSell extends Object{
 	function getState(){return $this->State;}
 	function getStatePrint(){
 		if ($this->State == 0){
-			return "Chờ duyệt";
+			return "Đang soạn";
+		}else if($this->State == 1){
+			return "Qua kho";
+		}else if ($this->State == 2){
+			return "Xuất kho";
 		}
-		return "Duyệt xong";
+		return "Hoàn tất";
 	}
 	
 	function getDetailAll(){
@@ -202,6 +227,7 @@ class InvoiceSell extends Object{
 	function getURLSettingCustomer(){return "/admin/setting/customer/".$this->getId();}
 	function getURLBranchLoad()		{return "/don-vi/".$this->getBranch()->getKey()."/ban-hang/".$this->getIdCustomer()."/".$this->getId();}
 	function getURLBranchPrint()	{return "/don-vi/".$this->getBranch()->getKey()."/ban-hang/".$this->getIdCustomer()."/".$this->getId()."/in";}
+	function getURLBranchCheck()	{return "/don-vi/".$this->getBranch()->getKey()."/ban-hang/".$this->getIdCustomer()."/".$this->getId()."/duyet";}
 		
 	function getURLExportLoad()		{return "/ql-kho-hang/lenh-xuat/".$this->getId();}
 	function getURLExportPrint()	{return "/ql-kho-hang/lenh-xuat/".$this->getId()."/print";}

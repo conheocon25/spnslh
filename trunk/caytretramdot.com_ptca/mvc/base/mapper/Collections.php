@@ -13,6 +13,7 @@ class UnitCollection 			extends Collection implements \MVC\Domain\UnitCollection
 class BranchCollection 				extends Collection implements \MVC\Domain\BranchCollection 			{function targetClass( ) {return "\MVC\Domain\Branch";		}}
 class BranchGroupCollection 		extends Collection implements \MVC\Domain\BranchGroupCollection 	{function targetClass( ) {return "\MVC\Domain\BranchGroup";	}}
 class BranchQuotaCollection 		extends Collection implements \MVC\Domain\BranchQuotaCollection 	{function targetClass( ) {return "\MVC\Domain\BranchQuota";	}}
+class BranchWarehouseCollection 	extends Collection implements \MVC\Domain\BranchWarehouseCollection {function targetClass( ) {return "\MVC\Domain\BranchWarehouse";	}}
 
 class SaleCommandCollection 		extends Collection implements \MVC\Domain\SaleCommandCollection			{function targetClass( ) {return "\MVC\Domain\SaleCommand";			}}
 class SaleCommandDetailCollection 	extends Collection implements \MVC\Domain\SaleCommandDetailCollection	{function targetClass( ) {return "\MVC\Domain\SaleCommandDetail";	}}

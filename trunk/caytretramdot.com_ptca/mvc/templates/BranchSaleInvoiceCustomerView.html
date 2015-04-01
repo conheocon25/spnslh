@@ -6,13 +6,14 @@
 </head>
 <body>
 	<div id="InvoicePanel" class="panel panel-primary" tal:attributes="alt Invoice/getURLBranchLoad;">
-		<div class="panel-heading"><i class="glyphicon glyphicon-star"/><B>HÓA ĐƠN BÁN HÀNG</B></div>
+		<div class="panel-heading"><i class="glyphicon glyphicon-star"/><B> HÓA ĐƠN BÁN HÀNG</B></div>
 		<div class="panel-body">
 			<table width="100%">				
 				<tr>
 					<td width="15%">TẠO LÚC</td>
 					<td width="35%">
 						<a class="InvoiceUpd" href="#DialogInvoiceUpd" data-toggle="modal"
+							tal:condition="php:Invoice->getState()==0?true:false"
 							tal:attributes="data-id 				Invoice/getId;
 											data-iduser 			Invoice/getIdUser;
 											data-idcustomer			Invoice/getIdCustomer;
@@ -27,6 +28,7 @@
 						>
 							<B tal:content="Invoice/getDateTimeCreatedPrint" />
 						</a>
+						<B tal:condition="php:Invoice->getState()>0?true:false" tal:content="Invoice/getDateTimeCreatedPrint" />
 					</td>									
 					<td width="15%">NGƯỜI LẬP</td>
 					<td width="35%"><B tal:content="Invoice/getUser/getName" /></td>
@@ -42,6 +44,12 @@
 					<td width="35%"><B tal:content="Invoice/getCustomer/getName" /></td>									
 					<td width="15%">ĐỊA CHỈ KH</td>
 					<td width="35%"><B tal:content="Invoice/getCustomer/getAddress" /></td>
+				</tr>
+				<tr>
+					<td width="15%">Trạng thái</td>
+					<td width="35%"><B style="color:red" tal:content="Invoice/getStatePrint" /></td>
+					<td width="15%" />
+					<td width="35%" />
 				</tr>
 			</table>
 			<BR/>			
@@ -78,7 +86,12 @@
 						<td><div class="text-right" tal:content="Detail/getValuePrint"/></td>
 						<td>
 							<div class="text-right">
-								<a class="remove-detail-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Detail/getId"><i class="glyphicon glyphicon-remove"/></a>
+								<a class="remove-detail-item" 
+									href="#DialogDel" data-toggle="modal" 
+									tal:attributes="data-id Detail/getId"
+									tal:condition="php:Invoice->getState()==0?true:false"
+									><i class="glyphicon glyphicon-remove"/>
+								</a>
 							</div>
 						</td>
 					</tr>					
@@ -89,8 +102,9 @@
 					</tr>
 				</tbody>
 			</table>			
-			<a class="btn btn-default" href="#DialogGoodIns" data-toggle="modal"><i class="glyphicon glyphicon-plus"/> HÀNG HÓA</a>
-			<a class="Ticket btn btn-default" tal:attributes="alt Invoice/getURLBranchPrint"><i class="glyphicon glyphicon-print"/> IN</a>						
+			<a tal:condition="php:Invoice->getState()==0?true:false" class="btn btn-default" href="#DialogGoodIns" data-toggle="modal"><i class="glyphicon glyphicon-plus"/> HÀNG HÓA</a>
+			<a tal:condition="php:Invoice->getState()==0?true:false" class="Check btn btn-default" tal:attributes="data-url Invoice/getURLBranchCheck"><i class="glyphicon glyphicon-forward"/> KHO</a>
+			<a tal:condition="php:Invoice->getState()>2?true:false" class="Ticket btn btn-default" tal:attributes="alt Invoice/getURLBranchPrint"><i class="glyphicon glyphicon-print"/> IN</a>
 		</div>
 	</div>
 		
@@ -362,4 +376,19 @@
 		var thePopup = window.open( url, "In Phiếu", "menubar=0,location=0,height=700,width=700" );
 		thePopup.print();
 	});
+	
+	//-----------------------------------------------------------------------------------
+	//GỬI KHO
+	//-----------------------------------------------------------------------------------	
+	$(".Check").click(function(){
+		var URLCheck = $(this).attr('data-url');
+		$.ajax({
+			type: "POST",					
+			url: URLCheck,
+			success: function(msg){				
+				location.reload();
+			}
+		});
+	});
+	
 </script>
