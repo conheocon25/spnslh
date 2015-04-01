@@ -10,8 +10,8 @@
 						style="cursor: pointer;"	
 						tal:attributes="data-url Invoice/getURLBranchLoad"
 					>
-						<span tal:content="Invoice/getDateTimeCreatedPrint"/>
-						<span class="badge" tal:content="Invoice/getValuePrint"/>
+						<B tal:content="Invoice/getDateTimeCreatedStr1Print"/>
+						<span class="badge" tal:content="Invoice/getStatePrint"/>
 					</li>
 				</ul>
 				<a id="InvoiceIns" class="btn btn-default" tal:attributes="data-url Customer/getURLBranchInvoiceInsExe; data-url-load Customer/getURLBranchInvoiceLoad">

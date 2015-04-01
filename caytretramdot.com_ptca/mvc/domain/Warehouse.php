@@ -105,6 +105,9 @@ class Warehouse extends Object{
 	//DEFINE URL
 	//-------------------------------------------------------------------------------					
 	function getURLExportCommand()		{return "/kho-hang/".$this->Key."/lenh-xuat";}
+	function getURLExportCommandS1()	{return "/kho-hang/".$this->Key."/lenh-xuat/s1";}
+	function getURLExportCommandS2()	{return "/kho-hang/".$this->Key."/lenh-xuat/s2";}
+	
 	function getURLImportCommand()		{return "/kho-hang/".$this->Key."/lenh-nhap";}
 	function getURLReport()				{return "/kho-hang/".$this->Key."/bao-cao";}
 	function getURLTrackDaily($Track)	{return "/kho-hang/".$this->Key."/bao-cao/".$Track->getId();}

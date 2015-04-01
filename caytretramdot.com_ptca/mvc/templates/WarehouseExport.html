@@ -9,20 +9,20 @@
 		<tal:block metal:use-macro="mFront.xhtml/Header"/>
 		<div class="container-fluid" id="wraper">
 			<div class="row">				
-				<div class="col-md-8"><div id="CommandDetail" /></div>
+				<div class="col-md-8"><div id="InvoiceView" /></div>
 				<div class="col-md-4">
 					<div class="panel panel-primary">
 						<div class="panel-heading"><i class="glyphicon glyphicon-cog"/> <B>ĐƠN HÀNG CHỜ XUẤT</B></div>
 						<div class="panel-body">
 							<div class="btn btn-info InvoiceReload" id="MessageTime" tal:attributes="timer ConfigTimer/getValue" />
-							<div id="InvoiceQueue" />							
+							<div id="InvoiceQueue" tal:attributes="data-url Warehouse/getURLExportCommandS1" />
 						</div>
 					</div>
 					<div class="panel panel-success">
 						<div class="panel-heading"><i class="glyphicon glyphicon-cog"/> <B>ĐƠN HÀNG ĐÃ XUẤT</B></div>
 						<div class="panel-body">
-							<div id="InvoiceFinish" />
-						</div>	
+							<div id="InvoiceFinish" tal:attributes="data-url Warehouse/getURLExportCommandS2"/>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -34,18 +34,20 @@
 			var MAX 		= $("#MessageTime").attr('timer');
 			var CountDown 	= $("#MessageTime").attr('timer');
 			var myVar 		= setInterval(FMessageTime, 1000);
+			var URLS1		= $("#InvoiceQueue").attr("data-url");
+			var URLS2		= $("#InvoiceFinish").attr("data-url");
 			    
 			function FMessageTime(){
 				CountDown = CountDown-1;
 				$("#MessageTime").html("Sau <B>"+CountDown+"s</B> sẽ tự động cập nhật lại danh sách ...");
 				if (CountDown<=0){
 					CountDown = MAX;
-					$("#InvoiceQueue").load("/ql-kho-hang/lenh-xuat/nap-hang-doi");
-					$("#InvoiceFinish").load("/ql-kho-hang/lenh-xuat/nap-hoan-thanh");
+					$("#InvoiceQueue").load(URLS1);
+					$("#InvoiceFinish").load(URLS2);
 				}
 			}
-			$("#InvoiceQueue").load("/ql-kho-hang/lenh-xuat/nap-hang-doi");
-			$("#InvoiceFinish").load("/ql-kho-hang/lenh-xuat/nap-hoan-thanh");
+			$("#InvoiceQueue").load(URLS1);
+			$("#InvoiceFinish").load(URLS2);
 			
 			$(".InvoiceReload").click(function(){
 				location.reload();

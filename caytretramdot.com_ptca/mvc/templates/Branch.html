@@ -38,9 +38,9 @@
 					</div>
 					<div class="col-md-4">
 						<div class="panel panel-primary">							
-							<div class="panel-heading"><i class="glyphicon glyphicon-cog"/> <B>NGƯỜI DÙNG ONLINE</B></div>
+							<div class="panel-heading"><i class="glyphicon glyphicon-cog"/> <B>NGƯỜI DÙNG</B></div>
 							<div class="panel-body">								
-								<a href="/signout/exe" class="list-group-item">
+								<a href="/signout/exe" class="list-group-item list-group-item-success">
 									<h4 class="list-group-item-heading"><span tal:content="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->getEmail()"/> <span tal:content="php:@\MVC\Library\Statistic::getIPPrint()"/></h4>
 									<p class="list-group-item-text">Click vào để thoát khỏi hệ thống</p>
 								</a>

@@ -118,6 +118,12 @@ class Branch extends Object{
 		$TDBAll = $mTDB->findByBranch(array($this->getId()));
 		return $TDBAll;
 	}
+	
+	function getWarehouseAll(){
+		$mBranchWarehouse 	= new \MVC\Mapper\BranchWarehouse();
+		$WarehouseAll 		= $mBranchWarehouse->findByBranch(array($this->getId()));
+		return $WarehouseAll;
+	}
 								
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $id );}

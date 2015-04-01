@@ -20,6 +20,7 @@ interface UnitFinder  				extends Finder {}
 interface BranchFinder  			extends Finder {}
 interface BranchGroupFinder  		extends Finder {}
 interface BranchQuotaFinder  		extends Finder {}
+interface BranchWarehouseFinder  	extends Finder {}
 
 interface SaleCommandFinder  		extends Finder {}
 interface SaleCommandDetailFinder  	extends Finder {}
