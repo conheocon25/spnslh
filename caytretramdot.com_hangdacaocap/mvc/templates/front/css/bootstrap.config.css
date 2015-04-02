@@ -4,7 +4,7 @@
  *//*! style.css v1.0 | SPN License | ATon Dev */
 	
 	body { font-family: Arial; background: url("/mvc/templates/front/img/bodybg.jpg") repeat-y center top fixed; }
-	.container { width: 1000px; background-color: rgba(255, 255, 255, .3); }
+	.container { width: 1000px; }
 	.logo { padding: 0 5px; }
 		.logo img { border: none; width: 100%; }
 	.navbar { margin: 0 -10px; border-radius: 0; border: none; background: url("/mvc/templates/front/img/navbg.jpg") no-repeat bottom left transparent; min-height: 0; }
