@@ -31,12 +31,14 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	require_once( "mvc/mapper/CustomerCollect.php"	);
 	
 	require_once( "mvc/mapper/Supplier.php" 		);
+	require_once( "mvc/mapper/SupplierInit.php" 	);
 	require_once( "mvc/mapper/SupplierType.php" 	);
 	
 	require_once( "mvc/mapper/Department.php" 		);
 	require_once( "mvc/mapper/Employee.php" 		);		
 	
 	require_once( "mvc/mapper/Warehouse.php" 		);
+	require_once( "mvc/mapper/WarehouseInit.php" 	);
 	require_once( "mvc/mapper/WarehouseGroup.php" 	);
 	
 	require_once( "mvc/mapper/Track.php" 			);

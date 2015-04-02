@@ -74,6 +74,12 @@ class Warehouse extends Object{
 		return $InvoiceAll;
 	}
 	
+	function getInitAll(){
+		$mWarehouseInit	= new \MVC\Mapper\WarehouseInit();
+		$InitAll		= $mWarehouseInit->findBy(array($this->getId()));
+		return $InitAll;
+	}
+	
 	function setArray( $Data ){
         $this->Id 		= $Data[0];
 		$this->IdGroup 	= $Data[1];
@@ -120,6 +126,6 @@ class Warehouse extends Object{
 	function getURLTrackDaily($Track)	{return "/kho-hang/".$this->Key."/bao-cao/".$Track->getId();}
 	function getURLSetting()			{return "/kho-hang/".$this->Key."/thiet-lap";}
 	
-	function getURLSettingCustomer(){return "/ql-thiet-lap/khach-hang/".$this->getId();}
+	function getURLSettingInit()		{return "/ql-thiet-lap/kho-hang/".$this->getIdGroup()."/".$this->getId();}
 }
 ?>

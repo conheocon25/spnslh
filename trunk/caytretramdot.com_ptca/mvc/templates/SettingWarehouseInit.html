@@ -17,45 +17,42 @@
 								<thead>
 									<tr>
 										<th width="32">ID</th>
-										<th width="180" class="left">TÊN</th>
-										<th class="left">ĐỊA CHỈ</th>
-										<th class="text-left" width="80">K.TẠO</th>
+										<th class="text-left" width="180">HÀNG HÓA</th>
+										<th class="text-right">TỒN ĐẦU</th>
+										<th class="text-left" width="60">ĐVT</th>										
 										<th class="text-center" width="40"><i class="glyphicon glyphicon-trash"/></th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr tal:repeat="Warehouse WarehouseAll1">
-										<td class="text-center"><span tal:content="repeat/Warehouse/number"/></td>
-										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="Warehouse" tal:attributes="data-id Warehouse/getId" tal:content="Warehouse/getName"/></td>
-										<td><span tal:content="Warehouse/getAddress"/></td>
-										<td>
-											<a tal:attributes="href Warehouse/getURLSettingInit">
-												Xem (<span tal:content="Warehouse/getInitAll/count" />)
-											</a>
+									<tr tal:repeat="WI Warehouse/getInitAll">
+										<td class="text-center"><span tal:content="repeat/WI/number"/></td>
+										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="Warehouse" tal:attributes="data-id WI/getId" tal:content="WI/getGood/getName"/></td>
+										<td class="text-right"><span tal:content="WI/getValuePrint" /></td>
+										<td class="text-left"><span tal:content="WI/getGood/getUnit" /></td>
+										<td class="text-center">
+											<a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id WI/getId"><i class="glyphicon glyphicon-remove"/></a>
 										</td>
-										<td class="text-center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Warehouse/getId"><i class="glyphicon glyphicon-remove"/></a></td>
 									</tr>
 								</tbody>
-							</table>
-							<div metal:use-macro="mFront.xhtml/PageBar"/>
+							</table>						
 						</div>
 					</div>										
 				</div>
 				<div class="col-md-4">
 					<div class="panel panel-primary">
-						<div class="panel-heading"><i class="glyphicon glyphicon-cog"/> <B>DS NHÓM KHO</B></div>
-						<div class="panel-body">
+						<div class="panel-heading"><i class="glyphicon glyphicon-cog"/> <B>DS KHO</B></div>
+						<div class="panel-body">							
 							<ul class="list-group">								
-								<li tal:attributes="class php:Group->getId()==Group1->getId()? 'list-group-item list-group-item-success' : 'list-group-item'" tal:repeat="Group1 GroupAll">
-									<a tal:attributes="href Group1/getURLSetting">
-										<span tal:content="Group1/getName"/>
+								<li tal:attributes="class php:Warehouse->getId()==Warehouse1->getId()? 'list-group-item list-group-item-success' : 'list-group-item'" tal:repeat="Warehouse1 WarehouseAll">
+									<a tal:attributes="href Warehouse1/getURLSettingInit">
+										<span tal:content="Warehouse1/getName"/>
 									</a>
-									<span class="badge" tal:content="Group1/getWarehouseAll/count"/>
+									<span class="badge" tal:content="Warehouse1/getInitAll/count"/>
 								</li>
 							</ul>
 							<a href="#DialogIns" data-toggle="modal" class="btn btn-default btn-ins">
-								<i class="glyphicon glyphicon-plus"/> KHO HÀNG
-							</a>
+								<i class="glyphicon glyphicon-plus"/> TỒN ĐẦU
+							</a>							
 						</div>	
 					</div>
 				</div>
@@ -66,43 +63,26 @@
 		<div id="DialogIns" class="modal fade">
 			<div class="modal-dialog">
 				<div class="modal-content">
-					<div class="modal-header"><h3><i class="glyphicon glyphicon-home modal-icon"/> THÊM MỚI KHO HÀNG</h3></div>
+					<div class="modal-header"><h3><i class="glyphicon glyphicon-home modal-icon"/> THÊM MỚI TỔN ĐẦU</h3></div>
 					<form id="FormWarehouseInsert" action="#" class="form-horizontal" novalidate="novalidate">
 						<div class="modal-body">
+							<input id="IdWarehouse1" name="IdWarehouse1" type="hidden" tal:attributes="value Warehouse/getId"/>
 							<div class="form-group">
-								<label class="col-sm-3 control-label">Nhóm</label>
+								<label class="col-sm-3 control-label">Hàng hóa</label>
 								<div class="col-sm-8 controls">
-									<select name="IdGroup1" id="IdGroup1" style="width:100%;" class="form-control">
-										<option tal:repeat="Group1 GroupAll" tal:attributes="value Group1/getId; selected php:Group1->getId()==Group->getId()?true:false">
-											<span tal:content="Group1/getName"/>
+									<select id="IdGood1" name="IdGood1" style="width:100%;" class="form-control">
+										<option tal:repeat="Good1 GoodAll" tal:attributes="value Good1/getId">
+											<span tal:content="Good1/getName"/>
 										</option>										
 									</select>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label">Tên</label>
+								<label class="col-sm-3 control-label">Giá trị</label>
 								<div class="col-sm-8 controls">
-									<input id="Name1" name="Name1" type="text" class="form-control input-small"/>
+									<input id="Value1" name="Value1" type="text" class="form-control input-small"/>
 								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Điện thoại</label>
-								<div class="col-sm-8 controls">
-									<input id="Tel1" name="Tel1" type="text" class="form-control input-small"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Fax</label>
-								<div class="col-sm-8 controls">
-									<input id="Fax1" name="Fax1" type="text" class="form-control input-small"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Địa chỉ</label>
-								<div class="col-sm-8 controls">
-									<input id="Address1" name="Address1" type="text" class="form-control input-small"/>
-								</div>
-							</div>
+							</div>							
 						</div>
 						<div class="modal-footer">
 							<button class="btn btn-primary btn-small" id="URLInsButton"><i class="glyphicons-download_alt"/> Lưu</button>
@@ -118,41 +98,24 @@
 		<div id="DialogEdit" class="modal fade">
 			<div class="modal-dialog">
 				<div class="modal-content">
-					<div class="modal-header"><h3><i class="glyphicon glyphicon-home modal-icon"/> CẬP NHẬT KHO HÀNG</h3></div>
+					<div class="modal-header"><h3><i class="glyphicon glyphicon-home modal-icon"/> CẬP NHẬT TỒN ĐẦU</h3></div>
 					<form id="FormWarehouseUpdate" action="#" class="form-horizontal" novalidate="novalidate">
 						<div class="modal-body">
+							<input id="IdWarehouse2" name="IdWarehouse1" type="hidden" tal:attributes="value Warehouse/getId"/>
 							<div class="form-group">
-								<label class="col-sm-3 control-label">Nhóm</label>
+								<label class="col-sm-3 control-label">Hàng hóa</label>
 								<div class="col-sm-8 controls">
-									<select name="IdGroup2" id="IdGroup2" style="width:100%;" class="form-control">
-										<option tal:repeat="Group1 GroupAll" tal:attributes="value Group1/getId; selected php:Group1->getId()==Group->getId()?true:false">
-											<span tal:content="Group1/getName"/>
+									<select name="IdGood2" id="IdGood2" style="width:100%;" class="form-control">
+										<option tal:repeat="Good1 GoodAll" tal:attributes="value Good1/getId">
+											<span tal:content="Good1/getName"/>
 										</option>										
 									</select>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label">Tên</label>
+								<label class="col-sm-3 control-label">Giá trị</label>
 								<div class="col-sm-8 controls">
-									<input id="Name2" name="Name2" type="text" class="form-control input-small"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Điện thoại</label>
-								<div class="col-sm-8 controls">
-									<input id="Tel2" name="Tel2" type="text" class="form-control input-small"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Fax</label>
-								<div class="col-sm-8 controls">
-									<input id="Fax2" name="Fax2" type="text" class="form-control input-small"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Địa chỉ</label>
-								<div class="col-sm-8 controls">
-									<input id="Address2" name="Address2" type="text" class="form-control input-small"/>
+									<input id="Value2" name="Value2" type="text" class="form-control input-small"/>
 								</div>
 							</div>
 						</div>
@@ -177,7 +140,7 @@
 			});
 			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
 			$('#URLDelButton').click(function(){			
-				var URL = "/object/del/Warehouse/" + $(this).attr('alt');
+				var URL = "/object/del/WarehouseInit/" + $(this).attr('alt');
 				$.ajax({
 					type: "POST",					
 					url: URL,
@@ -208,14 +171,11 @@
 				submitHandler: function (form) {					
 					var Data = [];
 					Data[0] = 'null';
-					Data[1] = $('#IdGroup1').val();
-					Data[2] = $('#Name1').val();
-					Data[3] = $('#Tel1').val();
-					Data[4] = $('#Fax1').val();
-					Data[5] = $('#Address1').val();
-					Data[6] = 1;
-																									
-					var URL = "/object/ins/Warehouse";
+					Data[1] = $('#IdWarehouse1').val();
+					Data[2] = $('#IdGood1').val();
+					Data[3] = $('#Value1').val();
+																																			
+					var URL = "/object/ins/WarehouseInit";
 					$.ajax({
 						type: "POST",
 						data: {Data:Data},
@@ -239,17 +199,14 @@
 			//-----------------------------------------------------------------------------------
 			$('.update-item').click(function(){
 				//Load dữ liệu JSON về
-				var url = "/object/load/Warehouse/" + $(this).attr('data-id');
+				var url = "/object/load/WarehouseInit/" + $(this).attr('data-id');
 				
 				//Load dữ liệu JSON lên FORM
 				$('#update-link').attr('action', $(this).attr('alt'));
 				$.getJSON(url, function(data) {
 					$('#URLUpdButton').attr('alt', 	data.Id);
-					$('#IdGroup2').attr('value', 	data.IdGroup);
-					$('#Name2').attr('value', 		data.Name);
-					$('#Tel2').attr('value', 		data.Tel);
-					$('#Fax2').attr('value', 		data.Fax);
-					$('#Address2').attr('value', 	data.Address);
+					$('#IdGood2').val( 				data.IdGood);
+					$('#Value2').attr('value', 		data.Value);					
 				});
 			});
 			
@@ -275,14 +232,10 @@
 				submitHandler: function (form) {					
 					var Data = [];
 					Data[0] = $('#URLUpdButton').attr('alt');
-					Data[1] = $('#IdGroup2').val();
-					Data[2] = $('#Name2').val();
-					Data[3] = $('#Tel2').val();
-					Data[4] = $('#Fax2').val();
-					Data[5] = $('#Address2').val();
-					Data[6] = 1;
-																									
-					var URL = "/object/upd/Warehouse";
+					Data[1] = $('#IdWarehouse2').val();
+					Data[2] = $('#IdGood2').val();
+					Data[3] = $('#Value2').val();																														
+					var URL = "/object/upd/WarehouseInit";
 					$.ajax({
 						type: "POST",
 						data: {Data:Data},
@@ -294,12 +247,7 @@
 					return false;
 				}
 			});
-			$("#DialogEdit").on('show.bs.modal', function(event){
-				window.setTimeout(
-					function(){$(event.currentTarget).find('input#Name2').first().focus()},
-					0500
-				);
-			});
+			
 		/*]]>*/
 		</script>
 	</body>

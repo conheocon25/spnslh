@@ -155,11 +155,13 @@ RewriteRule ^ql-thiet-lap/nha-cung-cap$ 								?cmd=SettingSupplierType [L]
 RewriteRule ^ql-thiet-lap/nha-cung-cap/page/([0-9]+)$ 					?cmd=SettingSupplierType&Page=$1 [L]
 RewriteRule ^ql-thiet-lap/nha-cung-cap/([0-9]+)$ 						?cmd=SettingSupplier&IdType=$1 [L]
 RewriteRule ^ql-thiet-lap/nha-cung-cap/([0-9]+)/page/([0-9]+)$ 			?cmd=SettingSupplier&IdType=$1&Page=$2 [L]
+RewriteRule ^ql-thiet-lap/nha-cung-cap/([0-9]+)/([0-9]+)$ 				?cmd=SettingSupplierInit&IdType=$1&IdSupplier=$2 [L]
 
 RewriteRule ^ql-thiet-lap/kho-hang$ 									?cmd=SettingWarehouseGroup [L]
 RewriteRule ^ql-thiet-lap/kho-hang/page/([0-9]+)$ 						?cmd=SettingWarehouseGroup&Page=$1 [L]
 RewriteRule ^ql-thiet-lap/kho-hang/([0-9]+)$ 							?cmd=SettingWarehouse&IdGroup=$1 [L]
 RewriteRule ^ql-thiet-lap/kho-hang/([0-9]+)/page/([0-9]+)$ 				?cmd=SettingWarehouse&IdGroup=$1&Page=$1 [L]
+RewriteRule ^ql-thiet-lap/kho-hang/([0-9]+)/([0-9]+)$ 					?cmd=SettingWarehouseInit&IdGroup=$1&IdWarehouse=$2 [L]
 
 RewriteRule ^ql-thiet-lap/phong-ban$ 									?cmd=SettingDepartment [L]
 RewriteRule ^ql-thiet-lap/phong-ban/page/([0-9]+)$ 						?cmd=SettingDepartment&Page=$1 [L]

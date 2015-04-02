@@ -44,8 +44,10 @@ interface DepartmentFinder  	extends Finder {}
 
 interface SupplierTypeFinder  	extends Finder {}
 interface SupplierFinder  		extends Finder {}
+interface SupplierInitFinder  	extends Finder {}
 
 interface WarehouseFinder  		extends Finder {}
+interface WarehouseInitFinder  	extends Finder {}
 interface WarehouseGroupFinder  extends Finder {}
 
 interface TrackFinder  			extends Finder {}

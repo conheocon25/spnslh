@@ -110,6 +110,12 @@ class Supplier extends Object{
 		return $InvoiceAll;
 	}
 	
+	function getInit(){
+		$mSupplierInit 	= new \MVC\Mapper\SupplierInit();
+		$SupplierInit	= $mSupplierInit->check($this->getId());
+		return $SupplierInit;
+	}
+	
 	function toJSON(){
 		$json = array(
 			'Id' 			=> $this->getId(),	
@@ -151,7 +157,11 @@ class Supplier extends Object{
 					
 	//=================================================================================
 	function getURLImport(){return "/ql-kho-hang/lenh-nhap/".$this->getId();}
-		
+	
+	function getURLSettingInit(){
+		return "/ql-thiet-lap/nha-cung-cap/".$this->getIdType()."/".$this->getId();
+	}
+			
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}	
 	
