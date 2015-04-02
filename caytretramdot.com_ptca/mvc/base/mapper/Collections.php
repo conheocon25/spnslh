@@ -37,9 +37,11 @@ class DepartmentCollection 		extends Collection implements \MVC\Domain\Departmen
 
 class SupplierTypeCollection 	extends Collection implements \MVC\Domain\SupplierTypeCollection 	{function targetClass( ) {return "\MVC\Domain\SupplierType";}}
 class SupplierCollection 		extends Collection implements \MVC\Domain\SupplierCollection 		{function targetClass( ) {return "\MVC\Domain\Supplier";	}}
+class SupplierInitCollection 	extends Collection implements \MVC\Domain\SupplierInitCollection 	{function targetClass( ) {return "\MVC\Domain\SupplierInit";}}
 
 class WarehouseCollection 		extends Collection implements \MVC\Domain\WarehouseCollection 		{function targetClass( ) {return "\MVC\Domain\Warehouse";	}}
 class WarehouseGroupCollection 	extends Collection implements \MVC\Domain\WarehouseGroupCollection 	{function targetClass( ) {return "\MVC\Domain\WarehouseGroup";	}}
+class WarehouseInitCollection 	extends Collection implements \MVC\Domain\WarehouseInitCollection 	{function targetClass( ) {return "\MVC\Domain\WarehouseInit";	}}
 
 class TrackCollection 			extends Collection implements \MVC\Domain\TrackCollection 			{function targetClass( ) {return "\MVC\Domain\Track";		}}
 class TrackDailyCollection 		extends Collection implements \MVC\Domain\TrackDailyCollection 		{function targetClass( ) {return "\MVC\Domain\TrackDaily";	}}
