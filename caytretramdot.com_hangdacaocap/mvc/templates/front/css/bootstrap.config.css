@@ -3,14 +3,25 @@
  * Copyright 2009-2014 SPN Group.
  *//*! style.css v1.0 | SPN License | ATon Dev */
 	
-	body { font-family: Arial; }
-	.container { width: 1000px; }
+	body { font-family: Arial; background: url("/mvc/templates/front/img/bodybg.jpg") repeat-y center top fixed; }
+	.container { width: 1000px; background-color: rgba(255, 255, 255, .3); }
 	.logo { padding: 0 5px; }
 		.logo img { border: none; width: 100%; }
 	.navbar { margin: 0 -10px; border-radius: 0; border: none; background: url("/mvc/templates/front/img/navbg.jpg") no-repeat bottom left transparent; min-height: 0; }
 		.navbar-brand { padding: 7px; line-height: normal; height: auto; }
-		.navbar-nav > li > a { line-height: normal; padding: 11px; text-transform: uppercase; margin-bottom: 15px; }
-			.navbar-default .navbar-nav > li > a { color: #fff; font-weight: bold; font-size: 12px; }
+		.navbar-nav > li > a {
+			line-height: normal;
+			padding: 10px 8px;
+			text-transform: uppercase;
+			margin-bottom: 15px;
+		}
+			.navbar-default .navbar-nav > li > a {
+				color: #fff;
+				font-weight: bold;
+				text-shadow: 1px 1px #000, -1px -1px #444;
+				color: #EFD6A7;
+				font-size: 14px;
+			}
 			.navbar-default .navbar-nav > .active > a,
 			.navbar-default .navbar-nav > .active > a:hover,
 			.navbar-default .navbar-nav > .active > a:focus,
@@ -18,19 +29,40 @@
 			.navbar-default .navbar-nav > .open > a:hover,
 			.navbar-default .navbar-nav > .open > a:focus,
 			.navbar-default .navbar-nav > li > a:hover,
-			.navbar-default .navbar-nav > li > a:focus { background: #006781; color: white; }
+			.navbar-default .navbar-nav > li > a:focus { background: none; color: #FFEECE; }
+			.dropdown-menu {
+				background: url("/mvc/templates/front/img/subnavbg.png") repeat-y top left transparent;
+			}
+				.dropdown-menu > li > a {
+					text-shadow: 1px 1px #000, -1px -1px #444;
+					color: #EFD6A7;
+					font-size: 14px;
+					text-transform: uppercase;
+				}
+				.dropdown-menu > li > a:hover {
+					background: none;
+					color: #FFEECE;
+				}
 	.dropdown:hover .dropdown-menu { display: block; }
 	.content { background: transparent; }
-		.content > .col-md-8 { padding-left: 5px; padding-right: 5px; }
-		.content > .col-md-4 { padding-left: 10px; padding-right: 5px; }
-	.panel { margin-bottom: 10px; box-shadow: none; border-radius: 0; border: none;}
+		.content > .col-md-8 { padding-left: 7px; padding-right: 0; }
+		.content > .col-md-4 { padding-left: 0; padding-right: 7px; }
+	.panel { margin: 5px; box-shadow: none; border-radius: 0; border: none; }
 		.panel .panel-heading { background: url("/mvc/templates/front/img/titbg.jpg") repeat-x top left transparent; border-radius: 0; padding: 0; font-size: 12px; font-weight: bold; text-transform: uppercase; color: white; height: 60px; }
-		.panel .panel-heading h3 { background: url("/mvc/templates/front/img/titflag.png") no-repeat 5px 0 transparent; margin: 0; font-size: 14px; font-weight: bold; padding: 22px 10px 22px 55px;}
+		.panel .panel-heading h3 {
+			background: url("/mvc/templates/front/img/titflag.png") no-repeat 5px 0 transparent;
+			margin: 0;
+			font-size: 15px;
+			font-weight: bold;
+			padding: 23px 10px 21px 57px;
+			text-shadow: 1px 1px #000, -1px -1px #444;
+			color: #EFD6A7;
+		}
 		.panel .panel-body { padding: 3px; font-size: 13px; }
 	.item-container { margin-left: 0; margin-right: 0; }
 		.item-container .item { padding: 0; }
 			.item-container .item .thumbnail { margin: 3px; border-radius: 0; }
-				.item-container .item .thumbnail h3 { margin: 0 0 5px 0; font-size: 12px; font-weight: bold; overflow: hidden; color: #592A00; line-height: 18px; }
+				.item-container .item .thumbnail h3 { margin: 0 0 5px 0; font-size: 13px; font-weight: bold; overflow: hidden; color: #592A00; line-height: 18px; text-align: center; min-height: 36px; }
 				.item-container .item .thumbnail .caption { padding: 8px 0 0 0; }
 					.item-container .item .thumbnail .caption p { margin: 0 0 3px; font-size: 12px; }
 	.view { margin-top: 10px; text-align: right; margin-right: -5px; margin-bottom: -2px; }
@@ -42,21 +74,31 @@
 		.media .media-left.medium img { width: 100%; height: 100%; }
 		.media .media-heading { font-size: 12px; font-weight: bold; color: #592A00; }
 		.media .media-body p { text-align: justify; font-size: 11px; }
-	.mini-icon { min-height: 20px; margin-top: 7px; padding-left: 22px; padding-bottom: 5px; font-size: 11px; border-bottom: 1px dashed #ddd; }
+	.mini-icon { min-height: 20px; margin-top: 3px; padding-left: 22px; padding-bottom: 3px; padding-top: 2px; font-size: 11px; border-bottom: 1px dashed #ddd; }
 		.mini-icon.in-news { margin-bottom: 10px; }
-		.mini-icon.icon-price		{ background: url("../img/icon-cash.png") no-repeat -3px -4px transparent; color: red; }
-		.mini-icon.icon-area		{ background: url("../img/icon-surface.png") no-repeat -3px -4px transparent; }
-		.mini-icon.icon-address		{ background: url("../img/icon-address.png") no-repeat -3px -3px transparent; }
-		.mini-icon.icon-contact		{ background: url("../img/icon-contact.png") no-repeat -3px -3px transparent; color: #592A00; }
-		.mini-icon.icon-date		{ background: url("../img/icon-times.png") no-repeat -3px -4px transparent; }
-		.mini-icon.icon-user		{ background: url("../img/icon-user.png") no-repeat -3px -4px transparent; }
-		.mini-icon.icon-inven		{ background: url("../img/icon-inven.png") no-repeat -3px -4px transparent; }
-		.mini-icon.icon-job			{ background: url("../img/icon-job.png") no-repeat -3px -4px transparent; }
-	.full-slide { padding-left: 5px; padding-right: 5px; margin-bottom: 15px; }
+		.mini-icon.icon-price		{ background: url("/mvc/templates/front/img/icon-cash.png") no-repeat -3px -4px transparent; color: red; font-weight: bold; }
+		.mini-icon.icon-area		{ background: url("/mvc/templates/front/img/icon-surface.png") no-repeat -3px -4px transparent; }
+		.mini-icon.icon-address		{ background: url("/mvc/templates/front/img/icon-address.png") no-repeat -3px -3px transparent; }
+		.mini-icon.icon-contact		{ background: url("/mvc/templates/front/img/icon-contact.png") no-repeat -3px -3px transparent; color: #592A00; }
+		.mini-icon.icon-date		{ background: url("/mvc/templates/front/img/icon-times.png") no-repeat -3px -4px transparent; }
+		.mini-icon.icon-user		{ background: url("/mvc/templates/front/img/icon-user.png") no-repeat -3px -4px transparent; }
+		.mini-icon.icon-inven		{ background: url("/mvc/templates/front/img/icon-inven.png") no-repeat -3px -4px transparent; }
+		.mini-icon.icon-job			{ background: url("/mvc/templates/front/img/icon-job.png") no-repeat -3px -4px transparent; }
+		.mini-icon.icon-size		{ background: url("/mvc/templates/front/img/icon-size.png") no-repeat -3px -3px transparent; }
+	.full-slide { padding-left: 5px; padding-right: 5px; margin-bottom: 3px; }
 	.list-group-config { margin: -3px; }
-		.list-group-config .list-group-item { background: url("../img/icon-star.png") no-repeat 0 3px transparent; border-style: dashed; border-color: #ddd; border-width: 0 0 1px; margin-bottom: 0; padding: 5px 5px 5px 25px; }
+		.list-group-config .list-group-item { background: url("/mvc/templates/front/img/icon-star.png") no-repeat 0 3px transparent; border-style: dashed; border-color: #ddd; border-width: 0 0 1px; margin-bottom: 0; padding: 5px 5px 5px 25px; }
 		.list-group-config .list-group-item:first-child { border-radius: 0; }
 		.list-group-config .list-group-item:last-child { border-radius: 0; border-bottom: none; padding-bottom: 7px; }
-	footer { background: #592A00; margin: 0 -10px; padding: 10px; text-align: center; }
-		footer h3 { font-size: 14px; color: white; font-weight: bold; margin: 5px; }
-		footer p { margin: 0; font-size: 13px; color: white; }
+	footer {
+		background: url("/mvc/templates/front/img/fbg.jpg") repeat-x top left transparent;
+		margin: 0 -10px;
+		padding: 10px;
+		text-align: center;
+		height: 200px;
+		padding-top: 40px;
+		text-shadow: 1px 1px #000, -1px -1px #333;
+		color: #FCEBCC;
+	}
+		footer h3 { font-size: 16px; font-weight: bold; margin: 5px; }
+		footer p { margin: 0; font-size: 14px; }
