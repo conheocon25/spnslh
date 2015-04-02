@@ -37,6 +37,7 @@ interface PresentationCollection 		extends \Iterator {function add( Object $Pres
 interface SlideCollection 				extends \Iterator {function add( Object $Slide);		}
 interface RssLinkCollection				extends \Iterator {function add( Object $RssLink);		}
 interface PostRssCollection				extends \Iterator {function add( Object $PostRss);		}
+interface AttributeProductCollection	extends \Iterator {function add( Object $AttributeProduct);		}
 
 
 ?>

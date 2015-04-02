@@ -14,6 +14,7 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 				idsupplier=?, 
 				idcategory=?, 
 				idmanufacturer=?, 
+				idattributeproduct=?, 
 				name=?, 
 				code=?, 
 				price1=?,
@@ -25,13 +26,14 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 					idsupplier, 
 					idcategory, 
 					idmanufacturer, 
+					idattributeproduct, 
 					name, 
 					code, 
 					price1,
 					price2,					
 					`key`
 				) 
-				values( ?, ?, ?, ?, ?, ?, ?, ?)", $tblProduct);
+				values( ?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblProduct);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblProduct);
 		$findBySupplierStmt = sprintf("select * from %s where idsupplier=?  order by id DESC", $tblProduct);
 		$findBySupplierManufacturerStmt = sprintf("select * from %s where idsupplier=? AND idmanufacturer=? order by id DESC", $tblProduct);
@@ -191,6 +193,7 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 			$array['idsupplier'],
 			$array['idcategory'],
 			$array['idmanufacturer'],
+			$array['idattributeproduct'],
 			$array['name'],				
 			$array['code'],	
 			$array['price1'],	
@@ -206,6 +209,7 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 			$object->getIdSupplier(),
 			$object->getIdCategory(),
 			$object->getIdManufacturer(),
+			$object->getIdAttributeProduct(),
 			$object->getName(),
 			$object->getCode(),
 			$object->getPrice1(),
@@ -222,6 +226,7 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 			$object->getIdSupplier(),
 			$object->getIdCategory(),
 			$object->getIdManufacturer(),
+			$object->getIdAttributeProduct(),
 			$object->getName(),
 			$object->getCode(),
 			$object->getPrice1(),

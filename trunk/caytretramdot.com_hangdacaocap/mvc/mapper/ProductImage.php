@@ -25,7 +25,7 @@ class ProductImage extends Mapper implements \MVC\Domain\ProductImageFinder {
 				) 
 				values( ?, ?, ?, ?)", $tblProductImage);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblProductImage);
-		$findByStmt = sprintf("select * from %s where idproduct=?", $tblProductImage);
+		$findByStmt = sprintf("select * from %s where idproduct=?", $tblProductImage);		
 		$findByPageStmt = sprintf("
 							SELECT *
 							FROM %s
@@ -39,6 +39,7 @@ class ProductImage extends Mapper implements \MVC\Domain\ProductImageFinder {
         $this->insertStmt = self::$PDO->prepare($insertStmt);
 		$this->deleteStmt = self::$PDO->prepare($deleteStmt);
 		$this->findByStmt = self::$PDO->prepare($findByStmt);
+		
 		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);
 		
     } 

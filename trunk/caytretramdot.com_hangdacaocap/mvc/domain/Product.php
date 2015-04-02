@@ -9,6 +9,7 @@ class Product extends Object{
 	private $IdSupplier;
 	private $IdCategory;
 	private $IdManufacturer;	
+	private $IdAttributeProduct;	
 	private $Name;
 	private $Code;
     private $Price1;
@@ -23,6 +24,7 @@ class Product extends Object{
 		$IdSupplier=null, 
 		$IdCategory=null,
 		$IdManufacturer=null,
+		$IdAttributeProduct=null,
 		$Name=null, 
 		$Code=null, 
 		$Price1=null, 
@@ -35,6 +37,7 @@ class Product extends Object{
 		$this->IdSupplier		= $IdSupplier;
 		$this->IdCategory		= $IdCategory;	
 		$this->IdManufacturer	= $IdManufacturer;	
+		$this->IdAttributeProduct	= $IdAttributeProduct;	
 		$this->Name				= $Name;
 		$this->Code				= $Code;
 		$this->Price1			= $Price1;
@@ -56,13 +59,23 @@ class Product extends Object{
 	function getIdCategory( ) {return $this->IdCategory;}
     function setIdCategory( $IdCategory ) {$this->IdCategory = $IdCategory;$this->markDirty();}
 	function getCategory(){
-		$mCategory = new \MVC\Mapper\Category1();
+		$mCategory = new \MVC\Mapper\Category();
 		$Category = $mCategory->find( $this->IdCategory );
 		return $Category;
 	}
 	
 	function getIdManufacturer( ) {return $this->IdManufacturer;}
     function setIdManufacturer( $IdManufacturer ) {$this->IdManufacturer = $IdManufacturer; $this->markDirty();}
+	
+	function getIdAttributeProduct( ) {return $this->IdAttributeProduct;}
+    function setIdAttributeProduct( $IdAttributeProduct ) {$this->IdAttributeProduct = $IdAttributeProduct; $this->markDirty();}
+	
+	function getAttributeProduct(){
+		$mAttributeProduct = new \MVC\Mapper\AttributeProduct();
+		$AttributeProduct = $mAttributeProduct->find( $this->IdAttributeProduct );
+		return $AttributeProduct;
+	}
+	
 	function getManufacturer(){
 		$mManufacturer = new \MVC\Mapper\Manufacturer();
 		$Manufacturer = $mManufacturer->find( $this->IdManufacturer );
@@ -136,6 +149,7 @@ class Product extends Object{
 		$ImageAll = $mProductImage->findBy(array($this->getId()));
 		return $ImageAll;
 	}
+	
 	
 	function getInfo(){
 		$mProductInfo 	= new \MVC\Mapper\ProductInfo();

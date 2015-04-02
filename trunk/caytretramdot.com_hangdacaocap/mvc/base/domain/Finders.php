@@ -45,4 +45,5 @@ interface PresentationFinder 	extends Finder {}
 interface SlideFinder 			extends Finder {}
 interface PostRssFinder 		extends Finder {}
 interface RssLinkFinder 		extends Finder {}
+interface AttributeProductFinder 		extends Finder {}
 ?>

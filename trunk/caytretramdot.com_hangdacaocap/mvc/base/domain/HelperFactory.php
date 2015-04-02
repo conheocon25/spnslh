@@ -36,6 +36,7 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	require_once( "mvc/mapper/Slide.php"			);
 	require_once( "mvc/mapper/PostRss.php"			);
 	require_once( "mvc/mapper/RssLink.php"			);
+	require_once( "mvc/mapper/AttributeProduct.php"			);
 }
 
 class HelperFactory {
