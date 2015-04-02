@@ -27,7 +27,8 @@ interface GoodCollection 				extends \Iterator {function add( Object $Good);			}
 
 interface CustomerGroupCollection 		extends \Iterator {function add( Object $CustomerGroup);}
 interface CustomerCollection 			extends \Iterator {function add( Object $Customer);		}
-interface CustomerCollectCollection		extends \Iterator {function add( Object $CustomerCollect);		}
+interface CustomerCollectCollection		extends \Iterator {function add( Object $CustomerCollect);	}
+interface CustomerInitCollection 		extends \Iterator {function add( Object $CustomerInit);		}
 
 interface EmployeeCollection 			extends \Iterator {function add( Object $Employee);		}
 interface DepartmentCollection 			extends \Iterator {function add( Object $Department);	}

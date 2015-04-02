@@ -151,7 +151,7 @@ class Supplier extends Object{
 					
 	//=================================================================================
 	function getURLImport(){return "/ql-kho-hang/lenh-nhap/".$this->getId();}
-	
+		
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}	
 	

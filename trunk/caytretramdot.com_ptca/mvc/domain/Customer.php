@@ -223,6 +223,12 @@ class Customer extends Object{
 		return $CollectAll;
 	}
 	
+	function getInit(){
+		$mCustomerInit 	= new \MVC\Mapper\CustomerInit();
+		$CustomerInit	= $mCustomerInit->check($this->getId());
+		return $CustomerInit;
+	}
+	
 	function getURLBranchInvoiceLoad(){
 		return "/don-vi/".$this->getBranch()->getKey()."/ban-hang/".$this->getId();
 	}
@@ -233,6 +239,10 @@ class Customer extends Object{
 	
 	function getURLBranchCollectLoad(){
 		return "/don-vi/".$this->getBranch()->getKey()."/thu-tien/khach-hang/".$this->getId();
+	}
+	
+	function getURLSettingInit(){
+		return "/ql-thiet-lap/khach-hang/".$this->getIdBranch()."/".$this->getId();
 	}
 					
 	//=================================================================================	

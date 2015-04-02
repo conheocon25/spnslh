@@ -88,6 +88,7 @@ RewriteRule ^don-vi/([A-Za-z0-9_-]+)/thiet-lap$ 									?cmd=BranchSetting&IdKe
 #---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^kho-hang/([A-Za-z0-9_-]+)$ 						?cmd=Warehouse&IdKey=$1							[L]
 RewriteRule ^kho-hang/([A-Za-z0-9_-]+)/lenh-nhap$ 				?cmd=WarehouseImport&IdKey=$1					[L]
+RewriteRule ^kho-hang/([A-Za-z0-9_-]+)/lenh-nhap/([0-9]+)$ 		?cmd=WarehouseImportSupplier&IdKey=$1&IdSupplier=$2	[L]
 
 RewriteRule ^kho-hang/([A-Za-z0-9_-]+)/lenh-xuat$ 				?cmd=WarehouseExport&IdKey=$1					[L]
 RewriteRule ^kho-hang/([A-Za-z0-9_-]+)/lenh-xuat/s1$ 			?cmd=WarehouseExportLoadQueue&IdKey=$1 			[L]
@@ -143,6 +144,7 @@ RewriteRule ^ql-thiet-lap/nguoi-dung/page/([0-9]+)$ 					?cmd=SettingUser&Page=$
 RewriteRule ^ql-thiet-lap/khach-hang$ 									?cmd=SettingCustomer [L]
 RewriteRule ^ql-thiet-lap/khach-hang/([0-9]+)$ 							?cmd=SettingCustomer&IdBranch=$1 [L]
 RewriteRule ^ql-thiet-lap/khach-hang/([0-9]+)/page/([0-9]+)$ 			?cmd=SettingCustomer&IdBranch=$1&Page=$2 [L]
+RewriteRule ^ql-thiet-lap/khach-hang/([0-9]+)/([0-9]+)$ 				?cmd=SettingCustomerInit&IdBranch=$1&IdCustomer=$2 [L]
 
 RewriteRule ^ql-thiet-lap/hang-hoa$ 									?cmd=SettingGoodGroup [L]
 RewriteRule ^ql-thiet-lap/hang-hoa/page/([0-9]+)$ 						?cmd=SettingGoodGroup&Page=$1 [L]

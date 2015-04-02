@@ -68,6 +68,11 @@ class Warehouse extends Object{
 	function setEnable( $Enable ) 	{$this->Enable = $Enable; $this->markDirty();}
 	function getEnable()			{return $this->Enable;}
 		
+	function getInvoiceImportAll($Supplier){
+		$mInvoiceImport = new \MVC\Mapper\InvoiceImport();
+		$InvoiceAll 	= $mInvoiceImport->findByWarehouseSupplier(array( $this->getId(), $Supplier->getId() ));
+		return $InvoiceAll;
+	}
 	
 	function setArray( $Data ){
         $this->Id 		= $Data[0];
@@ -109,6 +114,8 @@ class Warehouse extends Object{
 	function getURLExportCommandS2()	{return "/kho-hang/".$this->Key."/lenh-xuat/s2";}
 	
 	function getURLImportCommand()		{return "/kho-hang/".$this->Key."/lenh-nhap";}
+	function getURLImportSupplier($Supplier){return "/kho-hang/".$this->Key."/lenh-nhap/".$Supplier->getId();}
+	
 	function getURLReport()				{return "/kho-hang/".$this->Key."/bao-cao";}
 	function getURLTrackDaily($Track)	{return "/kho-hang/".$this->Key."/bao-cao/".$Track->getId();}
 	function getURLSetting()			{return "/kho-hang/".$this->Key."/thiet-lap";}
