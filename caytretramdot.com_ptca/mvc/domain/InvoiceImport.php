@@ -4,7 +4,7 @@ require_once( "mvc/base/domain/DomainObject.php" );
 class InvoiceImport extends Object{
 
     private $Id;
-	private $IdEmployee;
+	private $IdUser;
 	private $IdSupplier;
 	private $IdWarehouse;
 	private $DateTimeCreated;
@@ -18,7 +18,7 @@ class InvoiceImport extends Object{
 	//-------------------------------------------------------------------------------
     function __construct( 
 		$Id=null, 
-		$IdEmployee=null, 
+		$IdUser=null, 
 		$IdSupplier=null,
 		$IdWarehouse=null,
 		$DateTimeCreated=null,
@@ -28,7 +28,7 @@ class InvoiceImport extends Object{
 		$Enable=null
 	){
         $this->Id 				= $Id;
-		$this->IdEmployee 		= $IdEmployee;
+		$this->IdUser 			= $IdUser;
 		$this->IdSupplier 		= $IdSupplier;
 		$this->IdWarehouse 		= $IdWarehouse;
 		$this->DateTimeCreated 	= $DateTimeCreated;
@@ -42,7 +42,7 @@ class InvoiceImport extends Object{
 	
 	function setArray( $Data ){
         $this->Id 				= $Data[0];
-		$this->IdEmployee 		= $Data[1];
+		$this->IdUser 		= $Data[1];
 		$this->IdSupplier 		= $Data[2];
 		$this->IdWarehouse 		= $Data[3];
 		$this->DateTimeCreated 	= $Data[4];
@@ -55,12 +55,12 @@ class InvoiceImport extends Object{
     function getId( ) {return $this->Id;}
 	function getIdPrint( ) {return "NK / ".$this->Id;}
 
-	function setIdEmployee( $IdEmployee ) {$this->IdEmployee = $IdEmployee; $this->markDirty();}
-	function getIdEmployee(){return $this->IdEmployee;}
-	function getEmployee(){
-		$mEmployee 	= new \MVC\Mapper\Employee();
-		$Employee 	= $mEmployee->find($this->IdEmployee);
-		return $Employee;
+	function setIdUser( $IdUser ) {$this->IdUser = $IdUser; $this->markDirty();}
+	function getIdUser(){return $this->IdUser;}
+	function getUser(){
+		$mUser 	= new \MVC\Mapper\User();
+		$User 	= $mUser->find($this->IdUser);
+		return $User;
 	}
 	
 	function setIdSupplier( $IdSupplier ) {$this->IdSupplier = $IdSupplier; $this->markDirty();}
@@ -138,7 +138,7 @@ class InvoiceImport extends Object{
 	function toJSON(){
 		$json = array(
 			'Id' 				=> $this->getId(),
-			'IdEmployee'		=> $this->getIdEmployee(),
+			'IdUser'		=> $this->getIdUser(),
 			'IdSupplier'		=> $this->getIdSupplier(),
 			'IdWarehouse'		=> $this->getIdWarehouse(),
 			'DateTimeCreated'	=> $this->getDateTimeCreated(),

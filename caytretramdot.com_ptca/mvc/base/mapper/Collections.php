@@ -30,6 +30,7 @@ class GoodCollection 			extends Collection implements \MVC\Domain\GoodCollection
 class CustomerGroupCollection 	extends Collection implements \MVC\Domain\CustomerGroupCollection	{function targetClass( ) {return "\MVC\Domain\CustomerGroup";	}}
 class CustomerCollection 		extends Collection implements \MVC\Domain\CustomerCollection 		{function targetClass( ) {return "\MVC\Domain\Customer";		}}
 class CustomerCollectCollection extends Collection implements \MVC\Domain\CustomerCollectCollection {function targetClass( ) {return "\MVC\Domain\CustomerCollect";	}}
+class CustomerInitCollection 	extends Collection implements \MVC\Domain\CustomerInitCollection 	{function targetClass( ) {return "\MVC\Domain\CustomerInit";	}}
 
 class EmployeeCollection 		extends Collection implements \MVC\Domain\EmployeeCollection 		{function targetClass( ) {return "\MVC\Domain\Employee";	}}
 class DepartmentCollection 		extends Collection implements \MVC\Domain\DepartmentCollection 		{function targetClass( ) {return "\MVC\Domain\Department";	}}

@@ -20,6 +20,7 @@
 										<th class="text-center" width="32" />
 										<th width="200" class="text-left">TÊN</th>
 										<th class="text-left">CHI TIẾT</th>
+										<th class="text-left" width="80">K.TẠO</th>
 										<th class="text-center" width="40"><i class="glyphicon glyphicon-trash"/></th>
 									</tr>
 								</thead>
@@ -32,6 +33,12 @@
 											</a>
 										</td>
 										<td><span tal:content="Customer/getAddress"/></td>
+										<td>
+											<a tal:attributes="href Customer/getURLSettingInit">
+												<span tal:condition="Customer/getInit">Xem</span>
+												<span tal:condition="not:Customer/getInit">Chưa</span>
+											</a>
+										</td>
 										<td class="text-center">
 											<a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Customer/getId">
 												<i class="glyphicon glyphicon-remove"/>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mFront.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>
+		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
+	</head>
+	<body>
+		<tal:block metal:use-macro="mFront.xhtml/Header"/>
+		<div class="container-fluid" id="wraper">
+			<div class="row">				
+				<div class="col-md-8">					
+					<div class="panel panel-primary">
+						<div class="panel-heading"><i class="glyphicon glyphicon-cog"/> <B tal:content="Title"/></div>
+						<div class="panel-body">		
+							<table class="table table-bordered table-striped table-hover">
+								<thead>
+									<tr>
+										<th class="text-center" width="32">ID</th>
+										<th class="text-left">TÊN</th>
+										<th class="text-right" width="120">ĐƠN HÀNG</th>
+									</tr>
+								</thead>
+								<tbody>									
+									<tr tal:repeat="Supplier SupplierAll">
+										<td class="text-center"><span tal:content="repeat/Supplier/number"/></td>
+										<td><span tal:content="Supplier/getName"/></td>
+										<td class="text-right"><a tal:attributes="href php:Warehouse->getURLImportSupplier(Supplier)">Xem</a></td>
+									</tr>
+								</tbody>
+							</table>							
+						</div>
+					</div>										
+				</div>
+				<div class="col-md-4">
+					<div class="panel panel-primary">
+						<div class="panel-heading"><i class="glyphicon glyphicon-cog"/> <B>CHỨC NĂNG</B></div>
+						<div class="panel-body">
+							
+						</div>	
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div metal:use-macro="mDialog.xhtml/DialogDel"/>
+		<script type="text/javascript">
+		/*<![CDATA[*/			
+						
+		/*]]>*/
+		</script>
+	</body>
+</html>

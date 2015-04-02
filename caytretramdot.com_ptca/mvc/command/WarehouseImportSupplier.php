@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class WarehouseImportDetail extends Command {
+	class WarehouseImportSupplier extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -11,35 +11,38 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
+			$IdKey 		= $request->getProperty('IdKey');
 			$IdSupplier = $request->getProperty('IdSupplier');
-			$IdInvoice 	= $request->getProperty('IdInvoice');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
 			$mConfig 		= new \MVC\Mapper\Config();
-			$mGood 			= new \MVC\Mapper\Good();
 			$mSupplier 		= new \MVC\Mapper\Supplier();
-			$mInvoiceImport = new \MVC\Mapper\InvoiceImport();
+			$mEmployee 		= new \MVC\Mapper\Employee();
+			$mWarehouse 	= new \MVC\Mapper\Warehouse();
 															
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------																								
-			$GoodAll		= $mGood->findAll();
-			$Supplier		= $mSupplier->find($IdSupplier);
-			$Invoice		= $mInvoiceImport->find($IdInvoice);
+			//-------------------------------------------------------------
+			$Supplier	 	= $mSupplier->find($IdSupplier);
+			$SupplierAll 	= $mSupplier->findAll();
+			$Warehouse 		= $mWarehouse->findByKey($IdKey);
+			$User			= $Session->getCurrentUser();
 			
-			$Title 			= mb_strtoupper($Invoice->getDateTimeCreatedPrint(), 'UTF8');
-			$Navigation 	= array(
-				array("LỆNH NHẬP", "/ql-kho-hang/lenh-nhap"),
-				array(mb_strtoupper($Supplier->getName(), 'UTF8'), $Supplier->getURLImport())
+			$Title 		= "LỆNH NHẬP KHO";
+			$Navigation = array(
+				array(mb_strtoupper($Warehouse->getName(), 'UTF8'), "/kho-hang/".$Warehouse->getKey())
 			);
 																		
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------																											
-			$request->setObject("GoodAll", 		$GoodAll);
-			$request->setObject("Invoice", 		$Invoice);
+			$request->setObject("Warehouse", 	$Warehouse);
+			$request->setObject("Supplier", 	$Supplier);
+			$request->setObject("SupplierAll", 	$SupplierAll);
+			$request->setObject("User", 		$User);
+			
 			$request->setObject("Navigation", 	$Navigation);
 			$request->setProperty("Title"	, 	$Title);
 															
