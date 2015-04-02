@@ -39,6 +39,7 @@ class PresentationCollection 	extends Collection implements \MVC\Domain\Presenta
 class SlideCollection 			extends Collection implements \MVC\Domain\SlideCollection			{function targetClass(){return "\MVC\Domain\Slide";			}}
 class PostRssCollection 		extends Collection implements \MVC\Domain\PostRssCollection			{function targetClass(){return "\MVC\Domain\PostRss";		}}
 class RssLinkCollection 		extends Collection implements \MVC\Domain\RssLinkCollection			{function targetClass(){return "\MVC\Domain\RssLink";		}}
+class AttributeProductCollection extends Collection implements \MVC\Domain\AttributeProductCollection			{function targetClass(){return "\MVC\Domain\AttributeProduct";		}}
 
 
 ?>

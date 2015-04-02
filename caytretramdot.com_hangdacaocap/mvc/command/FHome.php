@@ -55,6 +55,10 @@
 			
 			$LinkedAll 		= $mLinked->findByTop(array());
 			
+			
+			//$mProductImage = new \MVC\Mapper\ProductImage();
+			//$ImageAll = $mProductImage->findBy(array(145))->current();
+			//print_r($ImageAll);
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
