@@ -70,7 +70,7 @@
 			$request->setObject("ProductAll", 				$ProductAll);
 			$request->setObject("LastestPostAll", 			$LastestPostAll);
 						
-			//return self::statuses('CMD_DEFAULT');
+			return self::statuses('CMD_DEFAULT');
 		}
 	}
 ?>

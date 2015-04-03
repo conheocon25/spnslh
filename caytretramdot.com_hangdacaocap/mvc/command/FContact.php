@@ -1,6 +1,5 @@
 <?php
 	namespace MVC\Command;	
-	use MVC\Library\Captcha;
 	class FContact extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
@@ -19,9 +18,11 @@
 			$mConfig 	= new \MVC\Mapper\Config();
 			$mCategory 	= new \MVC\Mapper\Category();
 			$mTag 		= new \MVC\Mapper\Tag();
+			
 			$mBranch 	= new \MVC\Mapper\Branch();
 			$mLinked		= new \MVC\Mapper\Linked();
-			
+			$mPostTag		= new \MVC\Mapper\PostTag();
+			$mProduct 		= new \MVC\Mapper\Product();
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------			
@@ -38,18 +39,17 @@
 			$ConfigMarqueeWelcome	= $mConfig->findByName("MARQUEE_WELCOME");
 			
 			$Category 		= $mCategory->find($ConfigMenu->getValue());
+			
 			$TagAll 		= $mTag->findByPosition(array(1));
 			$BranchAll 		= $mBranch->findAll();
 			$LinkedAll 		= $mLinked->findByTop(array());
+			$LastestPostAll = $mPostTag->findByLastest4(array(null));
+			$ProductAll 	= $mProduct->findByTop(array());
 			
 			$Title = "LIÊN HỆ";
 			$Navigation = array();
 			
-			$mCaptcha = new Captcha();
-			$mCaptcha->createImage();
-			$Session->setCurrentCaptcha($mCaptcha->getSecurityCode());		
 			
-			$ImagePath = "/data/" . $mCaptcha->getImagePath();
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
@@ -71,8 +71,9 @@
 			$request->setObject("TagAll", 				$TagAll);
 			$request->setObject("BranchAll", 			$BranchAll);
 			$request->setObject("LinkedAll", 			$LinkedAll);
+			$request->setObject("LastestPostAll", 		$LastestPostAll);
+			$request->setObject("ProductAll", 			$ProductAll);						
 						
-			$request->setProperty("ImagePath", $ImagePath);			
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

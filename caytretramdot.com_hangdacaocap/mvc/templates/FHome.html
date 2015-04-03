@@ -54,11 +54,11 @@
 							<div class="row item-container">
 								<div class="col-md-3 item" tal:repeat="Product ProductManShoe" >
 									<div  class="thumbnail">
-										<a href="#">
+										<a tal:attributes="href Product/getURLView">
 											<img tal:attributes="src Product/getInfo/getImage1; alt=Product/getInfo/getInfo"/>
 										</a>
 										<div class="caption">
-											<a href="#">
+											<a tal:attributes="href Product/getURLView">
 												<h3 tal:content="Product/getName">Giày nam da Đà Điểu</h3>								
 											</a>
 											<div class="mini-icon icon-price" tal:content="Product/getPrice1Print"> 4.300.000đ</div>
@@ -80,11 +80,11 @@
 							<div class="row item-container">
 								<div class="col-md-3 item" tal:repeat="Product ProductManSqueeze" >
 									<div  class="thumbnail">
-										<a href="#">
+										<a tal:attributes="href Product/getURLView">
 											<img tal:attributes="src Product/getInfo/getImage1; alt=Product/getInfo/getInfo"/>
 										</a>
 										<div class="caption">
-											<a href="#">
+											<a tal:attributes="href Product/getURLView">
 												<h3 tal:content="Product/getName">Giày nam da Đà Điểu</h3>								
 											</a>
 											<div class="mini-icon icon-price" tal:content="Product/getPrice1Print"> 4.300.000đ</div>
@@ -107,11 +107,11 @@
 							<div class="row item-container">
 								<div class="col-md-3 item" tal:repeat="Product ProductWomenWallet" >
 									<div  class="thumbnail">
-										<a href="#">
+										<a tal:attributes="href Product/getURLView">
 											<img tal:attributes="src Product/getInfo/getImage1; alt=Product/getInfo/getInfo"/>
 										</a>
 										<div class="caption">
-											<a href="#">
+											<a tal:attributes="href Product/getURLView">
 												<h3 tal:content="Product/getName">Giày nam da Đà Điểu</h3>								
 											</a>
 											<div class="mini-icon icon-price" tal:content="Product/getPrice1Print"> 4.300.000đ</div>
@@ -132,11 +132,11 @@
 						</div>
 						<div class="panel-body">						
 							<div class="media" tal:repeat="PT LastestPostAll">
-								<a class="media-left medium" href="#">
+								<a class="media-left medium" tal:attributes="href PT/getURLRead">
 									<img tal:attributes="src PT/getPost/getImage; alt PT/getPost/getTitle" class="img-thumbnail"/>
 								</a>
 								<div class="media-body">
-									<a href="#">
+									<a tal:attributes="href PT/getURLRead">
 										<h4 class="media-heading" tal:content="PT/getPost/getTitle">Cô chủ cửa hàng đồ da có doanh thu trăm triệu mỗi tháng</h4>
 									</a>
 									<div class="mini-icon icon-date in-news" tal:content="PT/getPost/getTimePrint">12/12/2014</div>
@@ -178,11 +178,11 @@
 						</div>
 						<div class="panel-body">
 							<div class="media" tal:repeat="ProductTop ProductAll">
-								<a class="media-left" href="#">
+								<a class="media-left" tal:attributes="href ProductTop/getURLView">
 									<img class="img-thumbnail" tal:attributes="src ProductTop/getInfo/getImage1; alt=ProductTop/getInfo/getInfo"/>
 								</a>
 								<div class="media-body">
-									<a href="#">
+									<a  tal:attributes="href ProductTop/getURLView">
 										<h4 class="media-heading" tal:content="ProductTop/getName">Túi xách nữ da Cá Sấu</h4>
 									</a>
 									<div class="mini-icon icon-price" tal:content="ProductTop/getPrice1Print">9.600.000đ</div>
