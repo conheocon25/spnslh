@@ -30,9 +30,10 @@
 			$Warehouse 		= $mWarehouse->findByKey($IdKey);
 			$User			= $Session->getCurrentUser();
 			
-			$Title 		= "LỆNH NHẬP KHO";
-			$Navigation = array(
-				array(mb_strtoupper($Warehouse->getName(), 'UTF8'), "/kho-hang/".$Warehouse->getKey())
+			$Title 			= mb_strtoupper($Supplier->getName(), 'UTF8');
+			$Navigation 	= array(
+				array(mb_strtoupper($Warehouse->getName(), 'UTF8'), "/kho-hang/".$Warehouse->getKey()),
+				array("LỆNH NHẬP", "/kho-hang/".$Warehouse->getKey()."/lenh-nhap")
 			);
 																		
 			//-------------------------------------------------------------

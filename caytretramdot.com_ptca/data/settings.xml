@@ -81,6 +81,9 @@
 		<command name="WarehouseExportLoadFinish">			<view>WarehouseExportLoadFinish</view></command>
 		
 		<command name="WarehouseReport">					<view>WarehouseReport</view></command>
+		<command name="WarehouseReportTrackDaily">			<view>WarehouseReportTrackDaily</view></command>
+		<command name="WarehouseReportTrackDailyView">		<view>WarehouseReportTrackDailyView</view></command>
+		
 		<command name="WarehouseSetting">					<view>WarehouseSetting</view></command>
 		
 		<!-- ============================================================================== -->

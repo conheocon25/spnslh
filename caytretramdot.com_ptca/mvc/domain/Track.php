@@ -76,6 +76,25 @@ class Track extends Object{
 			$TDAll->next();
 		}		
 	}
+	
+	function generateDailyWarehouse($Warehouse){
+		$TDAll = $this->getDetailAll();
+		$mTDW = new \MVC\Mapper\TrackDailyWarehouse();
+		
+		while ($TDAll->valid()){
+			$TD = $TDAll->current();			
+			
+			$TDW = new \MVC\Domain\TrackDailyWarehouse(
+				null,
+				$TD->getIdTrack(),
+				$Warehouse->getId(),
+				$TD->getDate()				
+			);
+			$mTDW->insert($TDW);
+			
+			$TDAll->next();
+		}		
+	}
 		
 	function generateDaily(){
 		$Date = $this->getDateStart();

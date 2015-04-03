@@ -61,10 +61,10 @@
 					</tr>
 				</tbody>
 			</table>			
-			<a title="In Lệnh" class="Ticket btn" tal:attributes="alt Invoice/getURLExportPrint"><i class="glyphicon glyphicon-print"/> IN LỆNH XUẤT</a>
-			<a title="In Giấy Giới Thiệu" class="Ticket btn" tal:attributes="alt Invoice/getURLExportIntroPrint"><i class="glyphicon glyphicon-print"/> IN GIẤY GIỚI THIỆU</a>
-			<a title="Chọn kho" class="Warehouse btn"></a>
-			<a 
+			<a tal:condition="php: Invoice->getState()<3?true:false" class="Ticket btn" tal:attributes="alt Invoice/getURLExportPrint"><i class="glyphicon glyphicon-print"/> IN LỆNH XUẤT</a>
+			<a tal:condition="php: Invoice->getState()<3?true:false" class="Ticket btn" tal:attributes="alt Invoice/getURLExportIntroPrint"><i class="glyphicon glyphicon-print"/> IN GIẤY GIỚI THIỆU</a>
+			
+			<a 	tal:condition="php: Invoice->getState()<2?true:false"
 				href="#DialogUpdateInvoice" data-toggle="modal" 
 				class="invoice-item"
 					tal:attributes="id 					Invoice/getId;
@@ -80,6 +80,23 @@
 									data-url			Invoice/getURLExportLoad;
 									"
 			><i class="glyphicon glyphicon-home"/> CHỌN KHO
+			</a>
+			<a 	tal:condition="php: Invoice->getState()==2?true:false"
+				href="#DialogDelInvoice" data-toggle="modal" 
+				class="invoice-item-remove"
+					tal:attributes="id 					Invoice/getId;
+									id_user 			Invoice/getIdUser;
+									id_customer 		Invoice/getIdCustomer;
+									id_branch 			Invoice/getIdBranch;
+									id_warehouse 		Invoice/getIdWarehouse;
+									id_transport 		Invoice/getIdTransport;
+									datetime_created 	Invoice/getDateTimeCreated;
+									datetime_updated	Invoice/getDateTimeUpdated;
+									note 				Invoice/getNote;
+									state 				Invoice/getState;
+									data-url			Invoice/getURLExportLoad;
+									"
+			><i class="glyphicon glyphicon-remove"/> HỦY ĐƠN HÀNG
 			</a>
 		</div>
 	</div>
@@ -101,10 +118,10 @@
 						<label class="col-sm-3 control-label">Tình trạng</label>
 						<div class="col-sm-8 controls">							
 							<select id="InvoiceState" style="width:100%;" class="form-control">
-								<option tal:attributes="value string:0;selected php:Invoice->getState()==0?true:false">Soạn phiếu</option>
-								<option tal:attributes="value string:1;selected php:Invoice->getState()==0?true:false">Chuyển kho</option>
-								<option tal:attributes="value string:2;selected php:Invoice->getState()==1?true:false">Xuất hàng</option>
-								<option tal:attributes="value string:3;selected php:Invoice->getState()==1?true:false">Hoàn tất</option>
+								<option tal:attributes="value string:0;selected php:Invoice->getState()==0?true:false">Soạn đơn hàng</option>
+								<option tal:attributes="value string:1;selected php:Invoice->getState()==1?true:false">Xuất kho</option>
+								<option tal:attributes="value string:2;selected php:Invoice->getState()==2?true:false">Xong</option>
+								<option tal:attributes="value string:3;selected php:Invoice->getState()==3?true:false">Hủy</option>
 							</select>
 						</div>
 					</div>
@@ -137,6 +154,34 @@
 		</div>
 	</div>
 	
+	<div id="DialogDelInvoice" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header"><h3><i class="glyphicon glyphicon-star modal-icon"/>HỦY ĐƠN HÀNG</h3></div>
+				<form id="FormInvoiceDel" action="#" class="form-horizontal" novalidate="novalidate">
+					<input id="InvoiceId1" 				type="hidden" />
+					<input id="InvoiceIdCustomer1" 		type="hidden" />
+					<input id="InvoiceIdBranch1" 		type="hidden" />
+					<input id="InvoiceIdUser1" 			type="hidden" />
+					<input id="InvoiceDateTimeCreated1" 	type="hidden" data-date-format="yyyy-mm-dd hh:ii"/>
+					<input id="InvoiceDateTimeUpdated1" 	type="hidden" data-date-format="yyyy-mm-dd hh:ii"/>					
+					<input id="InvoiceState1" 			type="hidden" value="3"/>
+					<input id="InvoiceIdWarehouse1" 		type="hidden" />
+					<input id="InvoiceIdTransport1" 		type="hidden" />									
+					<div class="form-group">
+						<label class="col-sm-3 control-label">Ghi chú</label>
+						<div class="col-sm-8 controls">
+							<input id="InvoiceNote1" type="text" class="form-control input-small" placeholder="Lí do hủy đơn hàng"/>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-primary btn-small" id="URLInvoiceDelButton"><i class="glyphicons-download_alt"/> Lưu</button>
+						<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>	
 </body>
 <script>
 	$(".Ticket").click(function(){
@@ -144,7 +189,8 @@
 		var thePopup = window.open( url, "In Phiếu", "menubar=0,location=0,height=700,width=700" );
 		thePopup.print();
 	});
-		
+	
+	//CẬP NHẬT TRANG THÁI ĐƠN HÀNG
 	$(".invoice-item").click(function(){
 		var InvoiceId 				= $(this).attr('id');		
 		var InvoiceIdCustomer 		= $(this).attr('id_customer');
@@ -211,6 +257,78 @@
 				url: URL,
 				success: function(msg){
 					location.reload();
+				}
+			});
+			return false;
+		}
+	});
+	
+	//HỦY ĐƠN HÀNG
+	$(".invoice-item-remove").click(function(){
+		var InvoiceId 				= $(this).attr('id');		
+		var InvoiceIdCustomer 		= $(this).attr('id_customer');
+		var InvoiceIdUser 			= $(this).attr('id_user');
+		var InvoiceIdBranch 		= $(this).attr('id_branch');
+		var InvoiceIdWarehouse 		= $(this).attr('id_warehouse');
+		var InvoiceIdTransport 		= $(this).attr('id_transport');		
+		var InvoiceDateTimeCreated 	= $(this).attr('datetime_created');
+		var InvoiceDateTimeUpdated 	= $(this).attr('datetime_updated');		
+		var InvoiceState 			= $(this).attr('state');
+		var InvoiceNote 			= $(this).attr('note');
+						
+		$("#InvoiceId1").val(InvoiceId);
+		$("#InvoiceIdUser1").val(InvoiceIdUser);
+		$("#InvoiceIdCustomer1").val(InvoiceIdCustomer);
+		$("#InvoiceIdBranch1").val(InvoiceIdBranch);
+		$("#InvoiceIdWarehouse1").val(InvoiceIdWarehouse);
+		$("#InvoiceIdTransport1").val(InvoiceIdTransport);
+		
+		$("#InvoiceDateTimeCreated1").val(InvoiceDateTimeCreated);
+		$("#InvoiceDateTimeUpdated1").val(InvoiceDateTimeUpdated);
+		$("#InvoiceState1").val("3");
+		$("#InvoiceNote1").val(InvoiceNote);
+	});
+	
+	//-----------------------------------------------------------------------------------
+	//Update 1 INVOICE CURRENT
+	//-----------------------------------------------------------------------------------
+	$("#FormInvoiceDel").validate({
+		rules:{
+			Name2:{
+				minlength: 2,
+				required:true
+			}					
+		},
+		errorClass: "help-inline",
+		errorElement: "span",
+		highlight:function(element, errorClass, validClass) {
+			$(element).parents('.form-group').addClass('has-error');
+		},
+		unhighlight: function(element, errorClass, validClass) {
+			$(element).parents('.form-group').removeClass('has-error');
+			$(element).parents('.form-group').addClass('has-success');
+		},
+		submitHandler: function (form) {					
+			var Data = [];						
+			Data[0] = $('#InvoiceId1').val();
+			Data[1] = $('#InvoiceIdUser1').val();
+			Data[2] = $('#InvoiceIdCustomer1').val();
+			Data[3] = $('#InvoiceIdWarehouse1').val();
+			Data[4] = $('#InvoiceIdTransport1').val();
+			Data[5] = $('#InvoiceIdBranch1').val();
+			Data[6] = $('#InvoiceDateTimeCreated1').val();
+			Data[7] = $('#InvoiceDateTimeUpdated1').val();
+			Data[8] = $('#InvoiceNote1').val();				
+			Data[9] = $('#InvoiceState1').val();
+																
+			var URL = "/object/upd/InvoiceSell";
+			var URL1 = $(this).attr('data-url');
+			$.ajax({
+				type: "POST",
+				data: {Data:Data},
+				url: URL,
+				success: function(msg){
+					//location.reload();
 				}
 			});
 			return false;
