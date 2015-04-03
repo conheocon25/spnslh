@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class BranchReportTrackDailyCustomerExe extends Command {
+	class BranchReportTrackDailyCustomerViewPrint extends Command{
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -34,45 +34,22 @@
 			$Track 		= $mTrack->find($IdTrack);
 			$TDB		= $mTrackDailyBranch->find($IdTDB);
 			$TDBC		= $mTrackDailyBranchCustomer->find($IdTDBC);
-			
-			$Date		= $TDB->getDate();
 			$Customer	= $TDBC->getCustomer();
-			
-			//DEBT OLD
-			$TDBCPre 	= $mTrackDailyBranchCustomer->findPre(array($IdTDBC, $Customer->getId()));
-			if (isset($TDBCPre)){
-				$DebtOldValue = $TDBCPre->getDebtNew();				
-			}else{				
-				$DebtOldValue = $Customer->getInit()->getDebt();
-			}
-			$TDBC->setDebtOld($DebtOldValue);
-			
-			//SALE
-			$InvoiceAll = $mInvoiceSell->findByCustomerDate(array($Customer->getId(), $Date));
-			$ValueInvoice = 0;
-			while ($InvoiceAll->valid()){
-				$Invoice = $InvoiceAll->current();
-				$ValueInvoice += $Invoice->getValue();
-				$InvoiceAll->next();
-			}
-			$TDBC->setSale($ValueInvoice);
+			$Date		= $TDB->getDate();
 									
-			//COLLECT
+			$InvoiceAll = $mInvoiceSell->findByCustomerDate(array($Customer->getId(), $Date));			
 			$CollectAll = $mCustomerCollect->findByCustomerDate(array($Customer->getId(), $Date));
-			$ValueCollect = 0;
-			while ($CollectAll->valid()){
-				$Collect = $CollectAll->current();
-				$ValueCollect += $Collect->getValue();
-				$CollectAll->next();
-			}
-			$TDBC->setCollect($ValueCollect);
-			
-			$mTrackDailyBranchCustomer->update($TDBC);
-																		
+																								
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------
-						
+			//-------------------------------------------------------------						
+			$request->setObject("Branch"	, $Branch);
+			$request->setObject("Customer"	, $Customer);
+			$request->setObject("TDB"		, $TDB);
+			$request->setObject("TDBC"		, $TDBC);
+			$request->setObject("CollectAll", $CollectAll);
+			$request->setObject("InvoiceAll", $InvoiceAll);
+			
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

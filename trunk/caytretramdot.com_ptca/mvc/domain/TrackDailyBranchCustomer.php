@@ -77,7 +77,11 @@ class TrackDailyBranchCustomer extends Object{
 		$num = number_format($this->getDebtNew(), 0, ',', ' ');
 		return $num;
 	}
-				
+	function getDebtNewStrPrint( ){
+		$num = new \MVC\Library\Number($this->getDebtNew());
+		return $num->readDigit();		
+	}
+					
 	//-------------------------------------------------------------------------------
 	//GET LISTs
 	//-------------------------------------------------------------------------------
@@ -90,6 +94,13 @@ class TrackDailyBranchCustomer extends Object{
 		$Branch = $TDB->getBranch();
 		$Track 	= $TDB->getTrack();		
 		return "/don-vi/".$Branch->getKey()."/bao-cao/".$Track->getId()."/khach-hang/".$this->getIdTDB()."/".$this->getId();
+	}
+	
+	function getURLPrint(){
+		$TDB 	= $this->getTDB();
+		$Branch = $TDB->getBranch();
+		$Track 	= $TDB->getTrack();		
+		return "/don-vi/".$Branch->getKey()."/bao-cao/".$Track->getId()."/khach-hang/".$this->getIdTDB()."/".$this->getId()."/in";
 	}
 	
 	function getURLExe(){

@@ -19,7 +19,7 @@
 											<th width="32">ID</th>											
 											<th class="text-left">KHÁCH HÀNG</th>
 											<th class="text-right" width="120">NỢ CŨ</th>
-											<th class="text-right" width="120">TIỀN HÀNG</th>
+											<th class="text-right" width="120">PHÁT SINH</th>
 											<th class="text-right" width="120">THANH TOÁN</th>
 											<th class="text-right" width="120">NỢ MỚI</th>
 											<th class="text-center" width="60"><div class="btn btn-xs btn-default ExeAll"><i class="glyphicon glyphicon-refresh"/></div></th>
@@ -42,15 +42,17 @@
 											</td>
 										</tr>
 										<tr>
-											<td class="text-right" colspan="2"><B>TC</B></td>
+											<td class="text-right" colspan="2"><B>TỔNG KẾT</B></td>
 											<td class="text-right"><B tal:content="TDB/getDebtOldPrint"/>		</td>
 											<td class="text-right"><span tal:content="TDB/getSalePrint"/>		</td>
 											<td class="text-right"><span tal:content="TDB/getCollectPrint"/>	</td>
 											<td class="text-right"><B tal:content="TDB/getDebtNewPrint"/>		</td>
-											<td class="text-center" />
+											<td class="text-center">
+												<div class="btn btn-xs btn-primary ReportPrint" tal:attributes="url-print TDB/getURLCustomerPrint"><i class="glyphicon glyphicon-print"/></div>
+											</td>
 										</tr>
 									</tbody>
-								</table>								
+								</table>
 							</div>
 						</div>
 					</div>
@@ -97,6 +99,14 @@
 				});
 				location.reload();
 			});
+			
+			//In Báo cáo
+			$(".ReportPrint").click(function(){
+				var url = $(this).attr('url-print');
+				var thePopup = window.open( url, "In Báo Cáo", "menubar=0,location=0,height=700,width=700" );
+				thePopup.print();
+			});
+			
 		/*]]>*/
 		</script>
 	</body>
