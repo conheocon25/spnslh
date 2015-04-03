@@ -11,26 +11,23 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$KCategory1 	= 	$request->getProperty('KCategory1');			
+					
 			$KCategory 		= 	$request->getProperty('KCategory');			
-			$Page 			= 	$request->getProperty('Page');
 						
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
 			$mConfig 		= new \MVC\Mapper\Config();
-			$mCategory 		= new \MVC\Mapper\Category();
-			$mCategory1 	= new \MVC\Mapper\Category1();
-			$mTag			= new \MVC\Mapper\Tag();
-			$mProduct		= new \MVC\Mapper\Product();
-			$mBranch 		= new \MVC\Mapper\Branch();
-			$mLinked		= new \MVC\Mapper\Linked();
-			$mPresentation 	= new \MVC\Mapper\Presentation();
+			$mCategory  	= new \MVC\Mapper\Category();			
 			
+			$mBranch		= new \MVC\Mapper\Branch();			
+			$mProduct		= new \MVC\Mapper\Product();			
+			$mLinked		= new \MVC\Mapper\Linked();			
+			$mPostTag 		= new \MVC\Mapper\PostTag();
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------			
-			$Title = "";
+			$Title = "sdfsa sdfasdf";
 			$ConfigName 			= $mConfig->findByName("NAME");
 			$ConfigSlogan 			= $mConfig->findByName("SLOGAN");
 			$ConfigGmail 			= $mConfig->findByName("CONTACT_GTALK");
@@ -40,17 +37,15 @@
 			$ConfigPHome 			= $mConfig->findByName("PRESENTATION_INTRO");
 			$ConfigMarqueeWelcome	= $mConfig->findByName("MARQUEE_WELCOME");
 			
-			$Category 				= $mCategory->findByKey($KCategory);
-			$Category1 				= $mCategory1->findByKey(array($Category->getId(), $KCategory1));
-			$TagAll 				= $mTag->findByPosition(array(1));
-			$BranchAll 				= $mBranch->findAll();
-			$Presentation1 			= $Category1->getPresentation();
-
-			if (!isset($Page)) $Page = 1;
+			$BranchAll		= $mBranch->findAll();
+			
+			$MCategory 				= $mCategory->findByKey($KCategory);	
+			$ProductAll 			= $mProduct->findByTop(array());			
+			$LastestPostAll 		= $mPostTag->findByLastest4(array(null));
 			
 			$LinkedAll 				= $mLinked->findByTop(array());
 			
-			$Title 					= mb_strtoupper($Category->getName(), 'UTF8');
+			$Title 					= mb_strtoupper($MCategory->getName(), 'UTF8');
 			$Navigation = array(array(mb_strtoupper("Menu", 'UTF8'), "/"));
 			
 			//-------------------------------------------------------------
@@ -58,7 +53,7 @@
 			//-------------------------------------------------------------			
 			$request->setProperty("Title", 				$Title);			
 			$request->setProperty("Active", 			"Menu");
-			$request->setProperty("Page", 				$Page);
+			//$request->setProperty("Page", 				$Page);
 			$request->setObject("Navigation", 			$Navigation);
 			
 			$request->setObject("ConfigName", 			$ConfigName);			
@@ -69,13 +64,13 @@
 			$request->setObject("ConfigPhone2", 		$ConfigPhone2);
 			$request->setObject("ConfigMarqueeWelcome", $ConfigMarqueeWelcome);
 			
-			$request->setObject("Presentation1", 		$Presentation1);	
-			$request->setObject("Category", 			$Category);
-			$request->setObject("Category1", 			$Category1);
-			$request->setObject("TagAll", 				$TagAll);
-			$request->setObject("BranchAll", 			$BranchAll);
+			
+			$request->setObject("BranchAll", 			$BranchAll);			
+			$request->setObject("MCategory", 			$MCategory);			
+			$request->setObject("ProductAll", 				$ProductAll);
+			$request->setObject("LastestPostAll", 			$LastestPostAll);
 						
-			return self::statuses('CMD_DEFAULT');
+			//return self::statuses('CMD_DEFAULT');
 		}
 	}
 ?>

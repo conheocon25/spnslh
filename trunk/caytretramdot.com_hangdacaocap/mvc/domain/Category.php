@@ -62,6 +62,11 @@ class Category extends Object{
 		$CategoryAll 	= $mCategory1->findBy(array($this->getId()));
 		return $CategoryAll;
 	}
+	function getProductAll(){
+		$mProduct 	= new \MVC\Mapper\Product();
+		$ProductAll 	= $mProduct->findByCategory(array($this->getId()));
+		return $ProductAll;
+	}
 	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
