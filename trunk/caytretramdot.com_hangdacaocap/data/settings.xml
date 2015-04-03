@@ -20,6 +20,7 @@
 		<command name="FTag" 			type="public"><view>FTag</view></command>
 		<command name="FPost" 			type="public"><view>FPost</view></command>		
 		<command name="FDealer" 		type="public"><view>FDealer</view></command>
+		<command name="FPromotion" 		type="public"><view>FPromotion</view></command>
 		
 		<command name="FAlbum" 			type="public"><view>FAlbum</view></command>
 		<command name="FAlbumImage" 	type="public"><view>FAlbumImage</view></command>

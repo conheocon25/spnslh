@@ -18,6 +18,8 @@ RewriteRule ^lien-he/gmail$ 					?cmd=FContactSendGmail	[L]
 RewriteRule ^lien-he/RefreshCaptcha      		?cmd=RefreshCaptcha	[L]
 RewriteRule ^nhan-thong-tin$ 					?cmd=FSubcribe 		[L]
 
+RewriteRule ^thanh-toan$ 									?cmd=FPromotion 		[L]
+
 RewriteRule ^khuyen-mai$ 									?cmd=FDealer 		[L]
 RewriteRule ^khuyen-mai/([A-Za-z0-9_-]+)$ 					?cmd=FDealer&KCategory2=$1 	[L]
 RewriteRule ^khuyen-mai/([A-Za-z0-9_-]+)/page/([0-9]+)$ 	?cmd=FDealer&KCategory2=$1&Page=$2 	[L]
@@ -25,7 +27,8 @@ RewriteRule ^khuyen-mai/([A-Za-z0-9_-]+)/page/([0-9]+)$ 	?cmd=FDealer&KCategory2
 RewriteRule ^khuyen-mai/m/([0-9]+)$ 						?cmd=FDealer&IdManufacturer=$1 	[L]
 RewriteRule ^khuyen-mai/m/([0-9]+)/page/([0-9]+)$ 			?cmd=FDealer&IdManufacturer=$1&Page=$2 	[L]
 
-RewriteRule ^thuc-don/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$ 	?cmd=FProduct&KCategory=$2&KProduct=$3 [L]
+RewriteRule ^san-pham/chi-tiet/([A-Za-z0-9_-]+)$ 			?cmd=FProduct&KProduct=$1 [L]
+
 RewriteRule ^thuc-don/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$ 					?cmd=FCategory&KCategory=$1&KCategory1=$2 [L]
 
 RewriteRule ^san-pham/([A-Za-z0-9_-]+)$				?cmd=FCategory&KCategory=$1 [L]

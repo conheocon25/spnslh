@@ -54,18 +54,18 @@
 							<div class="row item-container">
 								<div class="col-md-3 item" tal:repeat="Product MCategory/getProductAll" >
 									<div  class="thumbnail">
-										<a href="#">
+										<a tal:attributes="href Product/getURLView">
 											<img tal:attributes="src Product/getInfo/getImage1; alt=Product/getInfo/getInfo"/>
 										</a>
 										<div class="caption">
-											<a href="#">
-												<h3 tal:content="Product/getName">Giày nam da Đà Điểu</h3>								
+											<a tal:attributes="href Product/getURLView">
+												<h3 tal:content="Product/getName"></h3>								
 											</a>
-											<div class="mini-icon icon-price" tal:content="Product/getPrice1Print"> 4.300.000đ</div>
-											<div class="mini-icon icon-area" tal:content="Product/getAttributeProduct/getSize"> Size 38 đến 44</div>
-											<div class="mini-icon icon-address" tal:content="Product/getAttributeProduct/getGuaranteePrint"> Bào hành 2 năm</div>
+											<div class="mini-icon icon-price" tal:content="Product/getPrice1Print"></div>
+											<div class="mini-icon icon-area" tal:content="Product/getAttributeProduct/getSize"></div>
+											<div class="mini-icon icon-address" tal:content="Product/getAttributeProduct/getGuaranteePrint"></div>
 
-											<div class="view"><a href="#">Đặt hàng</a></div>
+											<div class="view"><a href="/gio-hang/">Đặt hàng</a></div>
 										</div>
 									</div>
 								</div>								
@@ -79,15 +79,15 @@
 						</div>
 						<div class="panel-body">						
 							<div class="media" tal:repeat="PT LastestPostAll">
-								<a class="media-left medium" href="#">
+								<a class="media-left medium" tal:attributes="href PT/getURLRead">
 									<img tal:attributes="src PT/getPost/getImage; alt PT/getPost/getTitle" class="img-thumbnail"/>
 								</a>
 								<div class="media-body">
-									<a href="#">
-										<h4 class="media-heading" tal:content="PT/getPost/getTitle">Cô chủ cửa hàng đồ da có doanh thu trăm triệu mỗi tháng</h4>
+									<a tal:attributes="href PT/getURLRead">
+										<h4 class="media-heading" tal:content="PT/getPost/getTitle"></h4>
 									</a>
-									<div class="mini-icon icon-date in-news" tal:content="PT/getPost/getTimePrint">12/12/2014</div>
-									<p tal:content="PT/getPost/getTitleReduce">Với niềm đam mê và sức sáng tạo, Hạnh Chi đã tạo nên một trong những cửa hàng đồ da cá tính bậc nhất đất Hà thành. Đối với cô, làm đồ da là cả một niềm hạnh phúc.</p>
+									<div class="mini-icon icon-date in-news" tal:content="PT/getPost/getTimePrint"></div>
+									<p tal:content="PT/getPost/getTitleReduce"></p>
 								</div>
 							</div>							
 						</div>
@@ -125,15 +125,15 @@
 						</div>
 						<div class="panel-body">
 							<div class="media" tal:repeat="ProductTop ProductAll">
-								<a class="media-left" href="#">
+								<a class="media-left" tal:attributes="href ProductTop/getURLView">
 									<img class="img-thumbnail" tal:attributes="src ProductTop/getInfo/getImage1; alt=ProductTop/getInfo/getInfo"/>
 								</a>
 								<div class="media-body">
-									<a href="#">
-										<h4 class="media-heading" tal:content="ProductTop/getName">Túi xách nữ da Cá Sấu</h4>
+									<a tal:attributes="href ProductTop/getURLView">
+										<h4 class="media-heading" tal:content="ProductTop/getName"></h4>
 									</a>
-									<div class="mini-icon icon-price" tal:content="ProductTop/getPrice1Print">9.600.000đ</div>
-									<div class="mini-icon icon-address" tal:content="ProductTop/getAttributeProduct/getGuaranteePrint">Bảo hành 3 năm</div>
+									<div class="mini-icon icon-price" tal:content="ProductTop/getPrice1Print"></div>
+									<div class="mini-icon icon-address" tal:content="ProductTop/getAttributeProduct/getGuaranteePrint"></div>
 								</div>
 							</div>													
 						</div>

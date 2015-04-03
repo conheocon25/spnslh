@@ -26,6 +26,7 @@
 			$mStoryLine 	= new \MVC\Mapper\StoryLine();
 			$mLinked		= new \MVC\Mapper\Linked();
 			$mPresentation 	= new \MVC\Mapper\Presentation();
+			$mProduct 	= new \MVC\Mapper\Product();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -49,7 +50,7 @@
 			$Tag 					= $mTag->findByKey($KTag);
 			$TagAll 				= $mTag->findByPosition(array(1));
 			
-			$URLShare = "http://huongsenhong.com/tin-tuc/".$KTag."/".$KPost;
+			$URLShare = "http://hangdacaocap.caytretramdot.com/tin-tuc/".$KTag."/".$KPost;
 			$Post->setViewed($Post->getViewed()+1);
 			$mPost->update($Post);
 			
@@ -60,6 +61,10 @@
 			$Navigation = array(
 				array(mb_strtoupper($Tag->getName(), 'UTF8'), $Tag->getURLView())
 			);
+			
+			
+			$ProductAll 			= $mProduct->findByTop(array());			
+			
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
@@ -86,6 +91,7 @@
 			$request->setObject("TagAll", 				$TagAll);
 			$request->setObject("Tag", 					$Tag);
 			$request->setObject("LinkedAll", 			$LinkedAll);
+			$request->setObject("ProductAll", 			$ProductAll);
 			
 			return self::statuses('CMD_DEFAULT');
 		}
