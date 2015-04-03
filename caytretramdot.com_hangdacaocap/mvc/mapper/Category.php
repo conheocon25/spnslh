@@ -11,10 +11,11 @@ class Category extends Mapper implements \MVC\Domain\CategoryFinder {
 		$selectAllStmt 	= sprintf("select * from %s order by `order`", $tblCategory);
 		$selectStmt 	= sprintf("select * from %s where id=?", $tblCategory);
 		$updateStmt 	= sprintf("update %s set name=?, `order`=?, `key`=? where id=?", $tblCategory);
-		$insertStmt 	= sprintf("insert into %s ( name, `order`, `key`) values(?, ?, ?)", $tblCategory);
+		$insertStmt 	= sprintf("insert into %s (name, `order`, `key`) values(?, ?, ?)", $tblCategory);
 		$deleteStmt 	= sprintf("delete from %s where id=?", $tblCategory);
 		$findByPageStmt = sprintf("SELECT * FROM  %s ORDER BY `order` LIMIT :start,:max", $tblCategory);
-		$findByKeyStmt 	= sprintf("select *  from %s where `key`=?", $tblCategory);
+		$findByKeyStmt 	= sprintf("select * from %s where `key`=?", $tblCategory);
+		//$findByKeyStmt 	= sprintf("SELECT * FROM %s WHERE `key`='?'", $tblCategory);
 		
         $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
         $this->selectStmt = self::$PDO->prepare($selectStmt);
@@ -67,7 +68,7 @@ class Category extends Mapper implements \MVC\Domain\CategoryFinder {
         return new CategoryCollection( $this->findByPageStmt->fetchAll(), $this );
     }
 	
-	function findByKey( $values ) {	
+	function findByKey($values) {	
 		$this->findByKeyStmt->execute( array($values) );
         $array = $this->findByKeyStmt->fetch();
         $this->findByKeyStmt->closeCursor();

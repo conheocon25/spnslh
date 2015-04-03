@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 03, 2015 at 05:21 AM
+-- Generation Time: Apr 03, 2015 at 06:35 AM
 -- Server version: 5.6.21
 -- PHP Version: 5.5.19
 
@@ -187,7 +187,7 @@ CREATE TABLE IF NOT EXISTS `tbl_config` (
 INSERT INTO `tbl_config` (`id`, `param`, `value`) VALUES
 (5, 'DISCOUNT', '0'),
 (6, 'ROW_PER_PAGE', '20'),
-(7, 'GUEST_VISIT', '1714'),
+(7, 'GUEST_VISIT', '1772'),
 (9, 'THEME', 'light-blue'),
 (10, 'NAME', 'KHU ẨM THỰC SINH THÁI ĐẦM SEN CAO LÃNH'),
 (11, 'ADDRESS', '74-76 Trần Quang Diệu, P.Mỹ Phú, TP Cao Lãnh'),
@@ -268,14 +268,14 @@ CREATE TABLE IF NOT EXISTS `tbl_guest` (
   `entry_time` varchar(32) CHARACTER SET latin1 NOT NULL,
   `exit_time` varchar(32) CHARACTER SET latin1 NOT NULL,
   `agent` varchar(16) CHARACTER SET latin1 NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=120 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=121 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tbl_guest`
 --
 
 INSERT INTO `tbl_guest` (`id`, `ip`, `entry_time`, `exit_time`, `agent`) VALUES
-(119, '127.0.0.1', '1428029890', '1428033490', '127.0.0.1');
+(120, '127.0.0.1', '1428033683', '1428037283', '127.0.0.1');
 
 -- --------------------------------------------------------
 
@@ -584,7 +584,7 @@ INSERT INTO `tbl_product` (`id`, `idsupplier`, `idcategory`, `idmanufacturer`, `
 (152, 12, 19, 30, 2, 'Ví Nữ Da Cá Sấu Gấp 3', 'ADT039V', 3100000, 0, 0, 0, 'vi-nu-da-ca-sau-gap-3-1412624116'),
 (153, 12, 19, 30, 3, 'Ví Nữ Da Cá Sấu Gấp 3', 'ADT041V', 3900000, 0, 0, 0, 'vi-nu-da-ca-sau-gap-3-1412610317'),
 (154, 12, 20, 30, 1, 'Thắt Lưng Nữ Da Cá Sấu', 'ADT091L', 1250000, 0, 0, 0, 'that-lung-nu-da-ca-sau-1413445171'),
-(155, 12, 20, 30, 3, 'Thắt Lưng Nữ Da Cá Sấu', 'ADT090L', 1250000, 0, 0, 0, 'that-lung-nu-da-ca-sau-1413445638'),
+(155, 12, 22, 30, 3, 'Thắt Lưng Nữ Da Cá Sấu', 'ADT090L', 1250000, 0, 0, 0, 'that-lung-nu-da-ca-sau-1413445638'),
 (156, 12, 14, 30, 3, 'Giày nam da cá sấu S862', 'GNCS1214156', 5900000, 0, 0, 0, 'giay-nam-da-ca-sau-s862-150304454'),
 (157, 12, 14, 30, 2, 'Giày Nam Da Dà Điểu', 'GNDD1214157', 4000000, 0, 0, 0, 'giay-nam-da-da-dieu-15030468792'),
 (158, 12, 15, 30, 3, 'Bóp Nam Da Đà Điểu', 'BNCS1215148', 1100000, 0, 0, 0, 'giay-nam-da-da-dieu-141251613568496'),
@@ -1060,7 +1060,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 -- AUTO_INCREMENT for table `tbl_guest`
 --
 ALTER TABLE `tbl_guest`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=120;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=121;
 --
 -- AUTO_INCREMENT for table `tbl_image`
 --
