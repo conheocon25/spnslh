@@ -52,268 +52,45 @@
 						</div>
 						<div class="panel-body">
 							<div class="row item-container">
-								<div class="col-md-3 item">
-									<div class="thumbnail">
+								<div class="col-md-3 item" tal:repeat="Product ProductManShoe" >
+									<div  class="thumbnail">
 										<a href="#">
-											<img src="/mvc/templates/front/img/item/1.jpg" alt="..."/>
+											<img tal:attributes="src Product/getInfo/getImage1; alt=Product/getInfo/getInfo"/>
 										</a>
 										<div class="caption">
 											<a href="#">
-												<h3>Giày nam da Đà Điểu</h3>
+												<h3 tal:content="Product/getName">Giày nam da Đà Điểu</h3>								
 											</a>
-											<div class="mini-icon icon-price"> 4.300.000đ</div>
-											<div class="mini-icon icon-area"> Size 38 đến 44</div>
-											<div class="mini-icon icon-address">Bảo hành 2 năm</div>
+											<div class="mini-icon icon-price" tal:content="Product/getPrice1Print"> 4.300.000đ</div>
+											<div class="mini-icon icon-area" tal:content="Product/getAttributeProduct/getSize"> Size 38 đến 44</div>
+											<div class="mini-icon icon-address" tal:content="Product/getAttributeProduct/getGuaranteePrint"> Bào hành 2 năm</div>
+
 											<div class="view"><a href="#">Đặt hàng</a></div>
 										</div>
 									</div>
-								</div>
-								<div class="col-md-3 item">
-									<div class="thumbnail">
-										<a href="#">
-											<img src="/mvc/templates/front/img/item/2.jpg" alt="..."/>
-										</a>
-										<div class="caption">
-											<a href="#">
-												<h3>Giày nam da Cá Sấu</h3>
-											</a>
-											<div class="mini-icon icon-price"> 4.300.000đ</div>
-											<div class="mini-icon icon-area"> Size 38 đến 44</div>
-											<div class="mini-icon icon-address">Bảo hành 2 năm</div>
-											<div class="view"><a href="#">Đặt hàng</a></div>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-3 item">
-									<div class="thumbnail">
-										<a href="#">
-											<img src="/mvc/templates/front/img/item/3.jpg" alt="..."/>
-										</a>
-										<div class="caption">
-											<a href="#">
-												<h3>Giày nam da Cá Sấu</h3>
-											</a>
-											<div class="mini-icon icon-price"> 4.300.000đ</div>
-											<div class="mini-icon icon-area"> Size 38 đến 44</div>
-											<div class="mini-icon icon-address">Bảo hành 2 năm</div>
-											<div class="view"><a href="#">Đặt hàng</a></div>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-3 item">
-									<div class="thumbnail">
-										<a href="#">
-											<img src="/mvc/templates/front/img/item/4.jpg" alt="..."/>
-										</a>
-										<div class="caption">
-											<a href="#">
-												<h3>Giày nam da Đà Điểu</h3>
-											</a>
-											<div class="mini-icon icon-price"> 4.300.000đ</div>
-											<div class="mini-icon icon-area"> Size 38 đến 44</div>
-											<div class="mini-icon icon-address">Bảo hành 2 năm</div>
-											<div class="view"><a href="#">Đặt hàng</a></div>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-3 item">
-									<div class="thumbnail">
-										<a href="#">
-											<img src="/mvc/templates/front/img/item/5.jpg" alt="..."/>
-										</a>
-										<div class="caption">
-											<a href="#">
-												<h3>Giày nam da Cá Sấu</h3>
-											</a>
-											<div class="mini-icon icon-price"> 4.300.000đ</div>
-											<div class="mini-icon icon-area"> Size 38 đến 44</div>
-											<div class="mini-icon icon-address">Bảo hành 2 năm</div>
-											<div class="view"><a href="#">Đặt hàng</a></div>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-3 item">
-									<div class="thumbnail">
-										<a href="#">
-											<img src="/mvc/templates/front/img/item/6.jpg" alt="..."/>
-										</a>
-										<div class="caption">
-											<a href="#">
-												<h3>Giày nam da Cá Sấu</h3>
-											</a>
-											<div class="mini-icon icon-price"> 4.300.000đ</div>
-											<div class="mini-icon icon-area"> Size 38 đến 44</div>
-											<div class="mini-icon icon-address">Bảo hành 2 năm</div>
-											<div class="view"><a href="#">Đặt hàng</a></div>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-3 item">
-									<div class="thumbnail">
-										<a href="#">
-											<img src="/mvc/templates/front/img/item/7.jpg" alt="..."/>
-										</a>
-										<div class="caption">
-											<a href="#">
-												<h3>Giày nam da Cá Sấu</h3>
-											</a>
-											<div class="mini-icon icon-price"> 4.300.000đ</div>
-											<div class="mini-icon icon-area"> Size 38 đến 44</div>
-											<div class="mini-icon icon-address">Bảo hành 2 năm</div>
-											<div class="view"><a href="#">Đặt hàng</a></div>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-3 item">
-									<div class="thumbnail">
-										<a href="#">
-											<img src="/mvc/templates/front/img/item/8.jpg" alt="..."/>
-										</a>
-										<div class="caption">
-											<a href="#">
-												<h3>Giày nam da Cá Sấu</h3>
-											</a>
-											<div class="mini-icon icon-price"> 4.300.000đ</div>
-											<div class="mini-icon icon-area"> Size 38 đến 44</div>
-											<div class="mini-icon icon-address">Bảo hành 2 năm</div>
-											<div class="view"><a href="#">Đặt hàng</a></div>
-										</div>
-									</div>
-								</div>
+								</div>								
 							</div>
 						</div>
-					</div>
-					
+					</div>					
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h3>Bóp - Ví Nam</h3>
 						</div>
 						<div class="panel-body">
 							<div class="row item-container">
-								<div class="col-md-3 item">
-									<div class="thumbnail">
+								<div class="col-md-3 item" tal:repeat="Product ProductManSqueeze" >
+									<div  class="thumbnail">
 										<a href="#">
-											<img src="/mvc/templates/front/img/item-2/1.jpg" alt="..."/>
+											<img tal:attributes="src Product/getInfo/getImage1; alt=Product/getInfo/getInfo"/>
 										</a>
 										<div class="caption">
 											<a href="#">
-												<h3>Bóp nam da Đà Điểu</h3>
+												<h3 tal:content="Product/getName">Giày nam da Đà Điểu</h3>								
 											</a>
-											<div class="mini-icon icon-price"> 1.300.000đ</div>
-											<div class="mini-icon icon-size"> 12cm x 9.5cm</div>
-											<div class="mini-icon icon-address">Bảo hành 3 năm</div>
-											<div class="view"><a href="#">Đặt hàng</a></div>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-3 item">
-									<div class="thumbnail">
-										<a href="#">
-											<img src="/mvc/templates/front/img/item-2/2.jpg" alt="..."/>
-										</a>
-										<div class="caption">
-											<a href="#">
-												<h3>Bóp nam da Cá Sấu</h3>
-											</a>
-											<div class="mini-icon icon-price"> 1.300.000đ</div>
-											<div class="mini-icon icon-size"> 12cm x 9.5cm</div>
-											<div class="mini-icon icon-address">Bảo hành 3 năm</div>
-											<div class="view"><a href="#">Đặt hàng</a></div>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-3 item">
-									<div class="thumbnail">
-										<a href="#">
-											<img src="/mvc/templates/front/img/item-2/3.jpg" alt="..."/>
-										</a>
-										<div class="caption">
-											<a href="#">
-												<h3>Bóp nam da Cá Sấu</h3>
-											</a>
-											<div class="mini-icon icon-price"> 1.300.000đ</div>
-											<div class="mini-icon icon-size"> 12cm x 9.5cm</div>
-											<div class="mini-icon icon-address">Bảo hành 3 năm</div>
-											<div class="view"><a href="#">Đặt hàng</a></div>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-3 item">
-									<div class="thumbnail">
-										<a href="#">
-											<img src="/mvc/templates/front/img/item-2/4.jpg" alt="..."/>
-										</a>
-										<div class="caption">
-											<a href="#">
-												<h3>Bóp nam da Đà Điểu</h3>
-											</a>
-											<div class="mini-icon icon-price"> 1.300.000đ</div>
-											<div class="mini-icon icon-size"> 12cm x 9.5cm</div>
-											<div class="mini-icon icon-address">Bảo hành 3 năm</div>
-											<div class="view"><a href="#">Đặt hàng</a></div>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-3 item">
-									<div class="thumbnail">
-										<a href="#">
-											<img src="/mvc/templates/front/img/item-2/5.jpg" alt="..."/>
-										</a>
-										<div class="caption">
-											<a href="#">
-												<h3>Bóp nam da Cá Sấu</h3>
-											</a>
-											<div class="mini-icon icon-price"> 1.300.000đ</div>
-											<div class="mini-icon icon-size"> 12cm x 9.5cm</div>
-											<div class="mini-icon icon-address">Bảo hành 3 năm</div>
-											<div class="view"><a href="#">Đặt hàng</a></div>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-3 item">
-									<div class="thumbnail">
-										<a href="#">
-											<img src="/mvc/templates/front/img/item-2/6.jpg" alt="..."/>
-										</a>
-										<div class="caption">
-											<a href="#">
-												<h3>Bóp nam da Cá Sấu</h3>
-											</a>
-											<div class="mini-icon icon-price"> 1.300.000đ</div>
-											<div class="mini-icon icon-size"> 12cm x 9.5cm</div>
-											<div class="mini-icon icon-address">Bảo hành 3 năm</div>
-											<div class="view"><a href="#">Đặt hàng</a></div>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-3 item">
-									<div class="thumbnail">
-										<a href="#">
-											<img src="/mvc/templates/front/img/item-2/7.jpg" alt="..."/>
-										</a>
-										<div class="caption">
-											<a href="#">
-												<h3>Bóp nam da Cá Sấu</h3>
-											</a>
-											<div class="mini-icon icon-price"> 1.300.000đ</div>
-											<div class="mini-icon icon-size"> 12cm x 9.5cm</div>
-											<div class="mini-icon icon-address">Bảo hành 3 năm</div>
-											<div class="view"><a href="#">Đặt hàng</a></div>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-3 item">
-									<div class="thumbnail">
-										<a href="#">
-											<img src="/mvc/templates/front/img/item-2/8.jpg" alt="..."/>
-										</a>
-										<div class="caption">
-											<a href="#">
-												<h3>Bóp nam da Cá Sấu</h3>
-											</a>
-											<div class="mini-icon icon-price"> 1.300.000đ</div>
-											<div class="mini-icon icon-size"> 12cm x 9.5cm</div>
-											<div class="mini-icon icon-address">Bảo hành 3 năm</div>
+											<div class="mini-icon icon-price" tal:content="Product/getPrice1Print"> 4.300.000đ</div>
+											<div class="mini-icon icon-area" tal:content="Product/getAttributeProduct/getSize"> Size 38 đến 44</div>
+											<div class="mini-icon icon-address" tal:content="Product/getAttributeProduct/getGuaranteePrint"> Bào hành 2 năm</div>
+
 											<div class="view"><a href="#">Đặt hàng</a></div>
 										</div>
 									</div>
@@ -328,130 +105,19 @@
 						</div>
 						<div class="panel-body">
 							<div class="row item-container">
-								<div class="col-md-3 item">
-									<div class="thumbnail">
+								<div class="col-md-3 item" tal:repeat="Product ProductWomenWallet" >
+									<div  class="thumbnail">
 										<a href="#">
-											<img src="/mvc/templates/front/img/item-3/1.jpg" alt="..."/>
+											<img tal:attributes="src Product/getInfo/getImage1; alt=Product/getInfo/getInfo"/>
 										</a>
 										<div class="caption">
 											<a href="#">
-												<h3>Túi xách nữ da Đà Điểu</h3>
+												<h3 tal:content="Product/getName">Giày nam da Đà Điểu</h3>								
 											</a>
-											<div class="mini-icon icon-price"> 8.500.000đ</div>
-											<div class="mini-icon icon-size"> 25cm x 29cm x 15cm</div>
-											<div class="mini-icon icon-address">Bảo hành 3 năm</div>
-											<div class="view"><a href="#">Đặt hàng</a></div>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-3 item">
-									<div class="thumbnail">
-										<a href="#">
-											<img src="/mvc/templates/front/img/item-3/2.jpg" alt="..."/>
-										</a>
-										<div class="caption">
-											<a href="#">
-												<h3>Túi xách nữ da Cá Sấu</h3>
-											</a>
-											<div class="mini-icon icon-price"> 8.500.000đ</div>
-											<div class="mini-icon icon-size"> 25cm x 29cm x 15cm</div>
-											<div class="mini-icon icon-address">Bảo hành 3 năm</div>
-											<div class="view"><a href="#">Đặt hàng</a></div>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-3 item">
-									<div class="thumbnail">
-										<a href="#">
-											<img src="/mvc/templates/front/img/item-3/3.jpg" alt="..."/>
-										</a>
-										<div class="caption">
-											<a href="#">
-												<h3>Túi xách nữ da Cá Sấu</h3>
-											</a>
-											<div class="mini-icon icon-price"> 8.500.000đ</div>
-											<div class="mini-icon icon-size"> 25cm x 29cm x 15cm</div>
-											<div class="mini-icon icon-address">Bảo hành 3 năm</div>
-											<div class="view"><a href="#">Đặt hàng</a></div>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-3 item">
-									<div class="thumbnail">
-										<a href="#">
-											<img src="/mvc/templates/front/img/item-3/4.jpg" alt="..."/>
-										</a>
-										<div class="caption">
-											<a href="#">
-												<h3>Túi xách nữ da Đà Điểu</h3>
-											</a>
-											<div class="mini-icon icon-price"> 8.500.000đ</div>
-											<div class="mini-icon icon-size"> 25cm x 29cm x 15cm</div>
-											<div class="mini-icon icon-address">Bảo hành 3 năm</div>
-											<div class="view"><a href="#">Đặt hàng</a></div>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-3 item">
-									<div class="thumbnail">
-										<a href="#">
-											<img src="/mvc/templates/front/img/item-3/5.jpg" alt="..."/>
-										</a>
-										<div class="caption">
-											<a href="#">
-												<h3>Túi xách nữ da Cá Sấu</h3>
-											</a>
-											<div class="mini-icon icon-price"> 8.500.000đ</div>
-											<div class="mini-icon icon-size"> 25cm x 29cm x 15cm</div>
-											<div class="mini-icon icon-address">Bảo hành 3 năm</div>
-											<div class="view"><a href="#">Đặt hàng</a></div>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-3 item">
-									<div class="thumbnail">
-										<a href="#">
-											<img src="/mvc/templates/front/img/item-3/6.jpg" alt="..."/>
-										</a>
-										<div class="caption">
-											<a href="#">
-												<h3>Túi xách nữ da Cá Sấu</h3>
-											</a>
-											<div class="mini-icon icon-price"> 8.500.000đ</div>
-											<div class="mini-icon icon-size"> 25cm x 29cm x 15cm</div>
-											<div class="mini-icon icon-address">Bảo hành 3 năm</div>
-											<div class="view"><a href="#">Đặt hàng</a></div>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-3 item">
-									<div class="thumbnail">
-										<a href="#">
-											<img src="/mvc/templates/front/img/item-3/7.jpg" alt="..."/>
-										</a>
-										<div class="caption">
-											<a href="#">
-												<h3>Túi xách nữ da Cá Sấu</h3>
-											</a>
-											<div class="mini-icon icon-price"> 8.500.000đ</div>
-											<div class="mini-icon icon-size"> 25cm x 29cm x 15cm</div>
-											<div class="mini-icon icon-address">Bảo hành 3 năm</div>
-											<div class="view"><a href="#">Đặt hàng</a></div>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-3 item">
-									<div class="thumbnail">
-										<a href="#">
-											<img src="/mvc/templates/front/img/item-3/8.jpg" alt="..."/>
-										</a>
-										<div class="caption">
-											<a href="#">
-												<h3>Túi xách nữ da Cá Sấu</h3>
-											</a>
-											<div class="mini-icon icon-price"> 8.500.000đ</div>
-											<div class="mini-icon icon-size"> 25cm x 29cm x 15cm</div>
-											<div class="mini-icon icon-address">Bảo hành 3 năm</div>
+											<div class="mini-icon icon-price" tal:content="Product/getPrice1Print"> 4.300.000đ</div>
+											<div class="mini-icon icon-area" tal:content="Product/getAttributeProduct/getSize"> Size 38 đến 44</div>
+											<div class="mini-icon icon-address" tal:content="Product/getAttributeProduct/getGuaranteePrint"> Bào hành 2 năm</div>
+
 											<div class="view"><a href="#">Đặt hàng</a></div>
 										</div>
 									</div>
@@ -464,43 +130,19 @@
 						<div class="panel-heading">
 							<h3>Tin mới</h3>
 						</div>
-						<div class="panel-body">
-							<div class="media">
+						<div class="panel-body">						
+							<div class="media" tal:repeat="PT LastestPostAll">
 								<a class="media-left medium" href="#">
-									<img src="/mvc/templates/front/img/news/1.jpg" alt="..." class="img-thumbnail"/>
+									<img tal:attributes="src PT/getPost/getImage; alt PT/getPost/getTitle" class="img-thumbnail"/>
 								</a>
 								<div class="media-body">
 									<a href="#">
-										<h4 class="media-heading">Cô chủ cửa hàng đồ da có doanh thu trăm triệu mỗi tháng</h4>
+										<h4 class="media-heading" tal:content="PT/getPost/getTitle">Cô chủ cửa hàng đồ da có doanh thu trăm triệu mỗi tháng</h4>
 									</a>
-									<div class="mini-icon icon-date in-news">12/12/2014</div>
-									<p>Với niềm đam mê và sức sáng tạo, Hạnh Chi đã tạo nên một trong những cửa hàng đồ da cá tính bậc nhất đất Hà thành. Đối với cô, làm đồ da là cả một niềm hạnh phúc.</p>
+									<div class="mini-icon icon-date in-news" tal:content="PT/getPost/getTimePrint">12/12/2014</div>
+									<p tal:content="PT/getPost/getTitleReduce">Với niềm đam mê và sức sáng tạo, Hạnh Chi đã tạo nên một trong những cửa hàng đồ da cá tính bậc nhất đất Hà thành. Đối với cô, làm đồ da là cả một niềm hạnh phúc.</p>
 								</div>
-							</div>
-							<div class="media">
-								<a class="media-left medium" href="#">
-									<img src="/mvc/templates/front/img/news/2.jpg" alt="..." class="img-thumbnail"/>
-								</a>
-								<div class="media-body">
-									<a href="#">
-										<h4 class="media-heading">Mẹo hay làm mềm và mới đồ da ngay lập tức</h4>
-									</a>
-									<div class="mini-icon icon-date in-news">12/12/2014</div>
-									<p>Dầu ô liu có vô vàn công dụng, trong đó nổi bật là các công dụng với da. Thấm một chút dầu ô liu lên vải sạch và đánh chùi đồ da, bạn sẽ thấy hiệu quả không ngờ.</p>
-								</div>
-							</div>
-							<div class="media">
-								<a class="media-left medium" href="#">
-									<img src="/mvc/templates/front/img/news/3.jpg" alt="..." class="img-thumbnail"/>
-								</a>
-								<div class="media-body">
-									<a href="#">
-										<h4 class="media-heading">Mách bạn mẹo làm mềm và mới đồ da cực hiệu quả</h4>
-									</a>
-									<div class="mini-icon icon-date in-news">12/12/2014</div>
-									<p>Nếu bạn đang sử dụng các món đồ da thì đừng quên những mẹo làm mềm và mới đồ da dưới đây nhé!</p>
-								</div>
-							</div>
+							</div>							
 						</div>
 					</div>
 				</div>
@@ -524,11 +166,9 @@
 						<div class="panel-heading">
 							<h3>Tin nhanh</h3>
 						</div>
-						<div class="panel-body">
-							<div class="list-group list-group-config">
-								<a href="#" class="list-group-item">Cô chủ cửa hàng đồ da có doanh thu trăm triệu mỗi tháng</a>
-								<a href="#" class="list-group-item">Mẹo hay làm mềm và mới đồ da ngay lập tức</a>
-								<a href="#" class="list-group-item">Mách bạn mẹo làm mềm và mới đồ da cực hiệu quả</a>
+						<div class="panel-body">						
+							<div class="list-group list-group-config" tal:repeat="PT LastestPostAll">
+								<a class="list-group-item" tal:attributes="href PT/getURLRead" tal:content="PT/getPost/getTitleReduce">Cô chủ cửa hàng đồ da có doanh thu trăm triệu mỗi tháng</a>								
 							</div>
 						</div>
 					</div>
@@ -537,42 +177,18 @@
 							<h3>Sản phẩm nổi bật</h3>
 						</div>
 						<div class="panel-body">
-							<div class="media">
+							<div class="media" tal:repeat="ProductTop ProductAll">
 								<a class="media-left" href="#">
-									<img src="/mvc/templates/front/img/item-3/1.jpg" alt="..." class="img-thumbnail"/>
+									<img class="img-thumbnail" tal:attributes="src ProductTop/getInfo/getImage1; alt=ProductTop/getInfo/getInfo"/>
 								</a>
 								<div class="media-body">
 									<a href="#">
-										<h4 class="media-heading">Túi xách nữ da Cá Sấu</h4>
+										<h4 class="media-heading" tal:content="ProductTop/getName">Túi xách nữ da Cá Sấu</h4>
 									</a>
-									<div class="mini-icon icon-price">9.600.000đ</div>
-									<div class="mini-icon icon-address">Bảo hành 3 năm</div>
+									<div class="mini-icon icon-price" tal:content="ProductTop/getPrice1Print">9.600.000đ</div>
+									<div class="mini-icon icon-address" tal:content="ProductTop/getAttributeProduct/getGuaranteePrint">Bảo hành 3 năm</div>
 								</div>
-							</div>
-							<div class="media">
-								<a class="media-left" href="#">
-									<img src="/mvc/templates/front/img/item-3/2.jpg" alt="..." class="img-thumbnail"/>
-								</a>
-								<div class="media-body">
-									<a href="#">
-										<h4 class="media-heading">Túi xách nữ da Cá Sấu</h4>
-									</a>
-									<div class="mini-icon icon-price">9.600.000đ</div>
-									<div class="mini-icon icon-address">Bảo hành 3 năm</div>
-								</div>
-							</div>
-							<div class="media">
-								<a class="media-left" href="#">
-									<img src="/mvc/templates/front/img/item-3/3.jpg" alt="..." class="img-thumbnail"/>
-								</a>
-								<div class="media-body">
-									<a href="#">
-										<h4 class="media-heading">Túi xách nữ da Cá Sấu</h4>
-									</a>
-									<div class="mini-icon icon-price">9.600.000đ</div>
-									<div class="mini-icon icon-address">Bảo hành 3 năm</div>
-								</div>
-							</div>
+							</div>													
 						</div>
 					</div>
 					

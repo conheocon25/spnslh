@@ -57,7 +57,7 @@ class ProductInfo extends Object{
 	function setImage1( $Image1 ) 	{$this->Image1 = $Image1;$this->markDirty();}
     function getImage1( ){
 		if ($this->Image1=="")
-			return "/data/images/product1.jpg";
+			return "/mvc/templates/front/img/item/1.jpg";
 		return $this->Image1;
 	}
 	
