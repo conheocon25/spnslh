@@ -125,7 +125,9 @@ class TrackDailyBranch extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLCustomer()	{return "/don-vi/".$this->getBranch()->getKey()."/bao-cao/".$this->getIdTrack()."/khach-hang/".$this->getId();}
+	function getURLCustomer()		{return "/don-vi/".$this->getBranch()->getKey()."/bao-cao/".$this->getIdTrack()."/khach-hang/".$this->getId();}
+	function getURLCustomerPrint()	{return "/don-vi/".$this->getBranch()->getKey()."/bao-cao/".$this->getIdTrack()."/khach-hang/".$this->getId()."/in";}
+	
 	function getURLWarehouse()	{return "/don-vi/".$this->getBranch()->getKey()."/bao-cao/".$this->getIdTrack()."/kho-hang/".$this->getId();}
 	function getURLQuota()		{return "/don-vi/".$this->getBranch()->getKey()."/bao-cao/".$this->getIdTrack()."/han-ngach/".$this->getId();}
 	

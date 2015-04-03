@@ -43,7 +43,7 @@
 			if (isset($TDBCPre)){
 				$DebtOldValue = $TDBCPre->getDebtNew();				
 			}else{
-				$DebtOldValue = 0;
+				$DebtOldValue = $Customer->getInit()->getDebt();
 			}
 			$TDBC->setDebtOld($DebtOldValue);
 			

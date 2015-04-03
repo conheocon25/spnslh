@@ -15,7 +15,7 @@
 								<B tal:content="string:BẢNG KÊ CHI TIẾT"/>
 							</div>
 							<div class="panel-body">
-								<h3>BÁN HÀNG</h3>
+								<h3>PHÁT SINH</h3>
 								<table class="table table-striped table-hover">
 									<thead>
 										<tr>										
@@ -74,7 +74,7 @@
 										NỢ CŨ <span class="badge" tal:content="TDBC/getDebtOldPrint"/>
 									</li>
 									<li class= "list-group-item">										
-										MUA HÀNG <span class="badge" tal:content="TDBC/getSalePrint"/>
+										PHÁT SINH <span class="badge" tal:content="TDBC/getSalePrint"/>
 									</li>
 									<li class= "list-group-item">
 										THANH TOÁN <span class="badge" tal:content="TDBC/getCollectPrint"/>
@@ -83,12 +83,23 @@
 										NỢ MỚI <span class="badge" tal:content="TDBC/getDebtNewPrint"/>
 									</li>
 								</ul>
+								<div class="btn btn-primary ReportPrint" tal:attributes="url-print TDBC/getURLPrint"><i class="glyphicon glyphicon-print"/> BÁO CÁO</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>		
-		<div metal:use-macro="mFront.xhtml/IncludeJS"/>		
+		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
+		<script type="text/javascript">
+		/*<![CDATA[*/
+			//In Báo cáo
+			$(".ReportPrint").click(function(){
+				var url = $(this).attr('url-print');
+				var thePopup = window.open( url, "In Báo Cáo", "menubar=0,location=0,height=700,width=700" );
+				thePopup.print();
+			});			
+		/*]]>*/
+		</script>
 	</body>
 </html>

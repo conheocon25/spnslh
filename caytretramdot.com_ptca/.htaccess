@@ -77,8 +77,12 @@ RewriteRule ^don-vi/([A-Za-z0-9_-]+)/bao-cao$ 										?cmd=BranchReport&IdKey=
 RewriteRule ^don-vi/([A-Za-z0-9_-]+)/bao-cao/([0-9]+)$ 								?cmd=BranchReportTrackDaily&IdKey=$1&IdTrack=$2	[L]
 RewriteRule ^don-vi/([A-Za-z0-9_-]+)/bao-cao/([0-9]+)/khach-hang$ 					?cmd=BranchReportTrackDailyCustomer&IdKey=$1&IdTrack=$2	[L]
 RewriteRule ^don-vi/([A-Za-z0-9_-]+)/bao-cao/([0-9]+)/khach-hang/([0-9]+)$ 			?cmd=BranchReportTrackDailyCustomer&IdKey=$1&IdTrack=$2&IdTDB=$3 [L]
+RewriteRule ^don-vi/([A-Za-z0-9_-]+)/bao-cao/([0-9]+)/khach-hang/([0-9]+)/in$ 		?cmd=BranchReportTrackDailyCustomerPrint&IdKey=$1&IdTrack=$2&IdTDB=$3 [L]
+
 RewriteRule ^don-vi/([A-Za-z0-9_-]+)/bao-cao/([0-9]+)/khach-hang/([0-9]+)/([0-9]+)$ 	?cmd=BranchReportTrackDailyCustomerView&IdKey=$1&IdTrack=$2&IdTDB=$3&IdTDBC=$4 	[L]
 RewriteRule ^don-vi/([A-Za-z0-9_-]+)/bao-cao/([0-9]+)/khach-hang/([0-9]+)/([0-9]+)/exe$ ?cmd=BranchReportTrackDailyCustomerExe&IdKey=$1&IdTrack=$2&IdTDB=$3&IdTDBC=$4 	[L]
+RewriteRule ^don-vi/([A-Za-z0-9_-]+)/bao-cao/([0-9]+)/khach-hang/([0-9]+)/([0-9]+)/in$ 	?cmd=BranchReportTrackDailyCustomerViewPrint&IdKey=$1&IdTrack=$2&IdTDB=$3&IdTDBC=$4 [L]
+
 RewriteRule ^don-vi/([A-Za-z0-9_-]+)/bao-cao/([0-9]+)/han-ngach/([0-9]+)$ 			?cmd=BranchReportTrackDailyQuota&IdKey=$1&IdTrack=$2&IdTDB=$3 [L]
 
 RewriteRule ^don-vi/([A-Za-z0-9_-]+)/thiet-lap$ 									?cmd=BranchSetting&IdKey=$1						[L]
