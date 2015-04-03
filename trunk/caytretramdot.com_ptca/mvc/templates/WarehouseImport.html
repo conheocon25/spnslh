@@ -17,7 +17,8 @@
 								<thead>
 									<tr>
 										<th class="text-center" width="32">ID</th>
-										<th class="text-left">TÊN</th>
+										<th class="text-left" width="120">TÊN</th>
+										<th class="text-left">ĐỊA CHỈ</th>
 										<th class="text-right" width="120">ĐƠN HÀNG</th>
 									</tr>
 								</thead>
@@ -25,7 +26,12 @@
 									<tr tal:repeat="Supplier SupplierAll">
 										<td class="text-center"><span tal:content="repeat/Supplier/number"/></td>
 										<td><span tal:content="Supplier/getName"/></td>
-										<td class="text-right"><a tal:attributes="href php:Warehouse->getURLImportSupplier(Supplier)">Xem</a></td>
+										<td><span tal:content="Supplier/getAddress"/></td>
+										<td class="text-right">
+											<a tal:attributes="href php:Warehouse->getURLImportSupplier(Supplier)">
+												Xem (<span tal:content="php:Warehouse->getInvoiceImportAll(Supplier)->count()" />)
+											</a>
+										</td>
 									</tr>
 								</tbody>
 							</table>							

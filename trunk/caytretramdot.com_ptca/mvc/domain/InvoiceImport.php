@@ -159,10 +159,9 @@ class InvoiceImport extends Object{
 	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
-	//-------------------------------------------------------------------------------				
-	function getURLDetail()	{return "/ql-kho-hang/lenh-nhap/".$this->getIdSupplier()."/".$this->getId();}
-	function getURLPrint()	{return "/ql-kho-hang/lenh-nhap/".$this->getIdSupplier()."/".$this->getId()."/print";}
-	
+	//-------------------------------------------------------------------------------					
+	function getURLDetail()	{return "/kho-hang/".$this->getWarehouse()->getKey()."/lenh-nhap/".$this->getIdSupplier()."/".$this->getId();}	
+	function getURLPrint()	{return "/kho-hang/".$this->getWarehouse()->getKey()."/lenh-nhap/".$this->getIdSupplier()."/".$this->getId()."/in";}
 	
 }
 ?>

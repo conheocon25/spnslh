@@ -3,19 +3,25 @@
 	<body>		
 		<ul>
 			<li tal:repeat="Invoice InvoiceAll" class= "btn btn-default Invoice" tal:attributes="data-url Invoice/getURLExportLoad">
-				<span tal:content="Invoice/getCustomer/getName"/>				
+				<span tal:content="Invoice/getCustomer/getName"/>
+				<B tal:content="Invoice/getDateTimeCreatedStr1Print"/> 
+			</li>
+		</ul>
+		<p>Đơn hàng bị hủy</p>
+		<ul>
+			<li tal:repeat="Invoice InvoiceAll1" class= "btn btn-default Invoice" tal:attributes="data-url Invoice/getURLExportLoad">
+				<span tal:content="Invoice/getCustomer/getName"/>
 				<B tal:content="Invoice/getDateTimeCreatedStr1Print"/> 
 			</li>
 		</ul>
 		<script type="text/javascript">
-		/*<![CDATA[*/
-			//Thủ tục đếm ngược						
+		/*<![CDATA[*/			
 			$(".Invoice").click(function(){
 				var URL = $(this).attr('data-url');
 				$(".Invoice").removeClass("active");
 				$(this).addClass("active");
 				$("#InvoiceView").load(URL);
-			});			
+			});	
 		/*]]>*/
 		</script>
 	</body>

@@ -90,16 +90,20 @@ RewriteRule ^don-vi/([A-Za-z0-9_-]+)/thiet-lap$ 									?cmd=BranchSetting&IdKe
 #---------------------------------------------------------------------------------------------------------------------------
 # WAREHOUSE
 #---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^kho-hang/([A-Za-z0-9_-]+)$ 						?cmd=Warehouse&IdKey=$1							[L]
-RewriteRule ^kho-hang/([A-Za-z0-9_-]+)/lenh-nhap$ 				?cmd=WarehouseImport&IdKey=$1					[L]
-RewriteRule ^kho-hang/([A-Za-z0-9_-]+)/lenh-nhap/([0-9]+)$ 		?cmd=WarehouseImportSupplier&IdKey=$1&IdSupplier=$2	[L]
+RewriteRule ^kho-hang/([A-Za-z0-9_-]+)$ 							?cmd=Warehouse&IdKey=$1							[L]
+RewriteRule ^kho-hang/([A-Za-z0-9_-]+)/lenh-nhap$ 					?cmd=WarehouseImport&IdKey=$1					[L]
+RewriteRule ^kho-hang/([A-Za-z0-9_-]+)/lenh-nhap/([0-9]+)$ 			?cmd=WarehouseImportSupplier&IdKey=$1&IdSupplier=$2	[L]
+RewriteRule ^kho-hang/([A-Za-z0-9_-]+)/lenh-nhap/([0-9]+)/([0-9]+)$	?cmd=WarehouseImportSupplierView&IdKey=$1&IdSupplier=$2&IdInvoice=$3	[L]
 
-RewriteRule ^kho-hang/([A-Za-z0-9_-]+)/lenh-xuat$ 				?cmd=WarehouseExport&IdKey=$1					[L]
-RewriteRule ^kho-hang/([A-Za-z0-9_-]+)/lenh-xuat/s1$ 			?cmd=WarehouseExportLoadQueue&IdKey=$1 			[L]
-RewriteRule ^kho-hang/([A-Za-z0-9_-]+)/lenh-xuat/s2$ 			?cmd=WarehouseExportLoadFinish&IdKey=$1 		[L]
+RewriteRule ^kho-hang/([A-Za-z0-9_-]+)/lenh-xuat$ 					?cmd=WarehouseExport&IdKey=$1					[L]
+RewriteRule ^kho-hang/([A-Za-z0-9_-]+)/lenh-xuat/s1$ 				?cmd=WarehouseExportLoadQueue&IdKey=$1 			[L]
+RewriteRule ^kho-hang/([A-Za-z0-9_-]+)/lenh-xuat/s2$ 				?cmd=WarehouseExportLoadFinish&IdKey=$1 		[L]
 
-RewriteRule ^kho-hang/([A-Za-z0-9_-]+)/bao-cao$ 				?cmd=WarehouseReport&IdKey=$1					[L]
-RewriteRule ^kho-hang/([A-Za-z0-9_-]+)/thiet-lap$ 				?cmd=WarehouseSetting&IdKey=$1					[L]
+RewriteRule ^kho-hang/([A-Za-z0-9_-]+)/bao-cao$ 					?cmd=WarehouseReport&IdKey=$1						[L]
+RewriteRule ^kho-hang/([A-Za-z0-9_-]+)/bao-cao/([0-9]+)$ 			?cmd=WarehouseReportTrackDaily&IdKey=$1&IdTrack=$2	[L]
+RewriteRule ^kho-hang/([A-Za-z0-9_-]+)/bao-cao/([0-9]+)/([0-9]+)$ 	?cmd=WarehouseReportTrackDailyView&IdKey=$1&IdTrack=$2&IdTDW=$3	[L]
+
+RewriteRule ^kho-hang/([A-Za-z0-9_-]+)/thiet-lap$ 					?cmd=WarehouseSetting&IdKey=$1					[L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # SALE
@@ -117,8 +121,8 @@ RewriteRule ^ql-kho-hang$ 										?cmd=Warehouse [L]
 RewriteRule ^ql-kho-hang/lenh-nhap$ 							?cmd=WarehouseImport [L]
 RewriteRule ^ql-kho-hang/lenh-nhap/([0-9]+)$ 					?cmd=WarehouseImport&IdSupplier=$1 [L]
 RewriteRule ^ql-kho-hang/lenh-nhap/([0-9]+)/ins/exe$ 			?cmd=WarehouseImportInsExe&IdSupplier=$1 [L]
-RewriteRule ^ql-kho-hang/lenh-nhap/([0-9]+)/([0-9]+)$ 			?cmd=WarehouseImportDetail&IdSupplier=$1&IdInvoice=$2 [L]
-RewriteRule ^ql-kho-hang/lenh-nhap/([0-9]+)/([0-9]+)/print$ 	?cmd=WarehouseImportDetailPrint&IdSupplier=$1&IdInvoice=$2 [L]
+RewriteRule ^ql-kho-hang/lenh-nhap/([0-9]+)/([0-9]+)$ 			?cmd=WarehouseImportView&IdSupplier=$1&IdInvoice=$2 [L]
+RewriteRule ^ql-kho-hang/lenh-nhap/([0-9]+)/([0-9]+)/print$ 	?cmd=WarehouseImportViewPrint&IdSupplier=$1&IdInvoice=$2 [L]
 
 RewriteRule ^ql-kho-hang/lenh-xuat$ 							?cmd=WarehouseExport [L]
 

@@ -12,20 +12,20 @@
 					<div class="col-md-8">
 						<div class="panel panel-primary">
 							<div class="panel-heading"><i class="glyphicon glyphicon-cog"/> <B tal:content="Title"/></div>
-							<div class="panel-body">
+							<div class="panel-body">								
 								<table class="table table-bordered table-striped table-hover">
 									<thead>
 										<tr>
 											<th width="32">ID</th>
-											<th class="text-left">BÁO CÁO</th>											
+											<th class="text-left">NGÀY</th>											
+											<th class="text-center" width="60"><div class="btn btn-xs btn-default ExeAll"><i class="glyphicon glyphicon-refresh"/></div></th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr tal:repeat="Track TrackAll">
-											<td class="center"><span tal:content="repeat/Track/number"/></td>
-											<td>												
-												<a tal:attributes="href php: Warehouse->getURLTrackDaily( Track )" tal:content="Track/getName"/>
-											</td>											
+										<tr tal:repeat="TDW TDWAll">
+											<td class="center"><span tal:content="repeat/TDW/number"/></td>
+											<td><a tal:attributes="href TDW/getURLWarehouse"><span tal:content="TDW/getDatePrint"/></a></td>
+											<td class="text-center"><div class="btn btn-xs btn-default Exe" tal:attributes="url-exe '#'"><i class="glyphicon glyphicon-refresh"/></div></td>
 										</tr>
 									</tbody>
 								</table>

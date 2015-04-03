@@ -21,11 +21,14 @@
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
 			$InvoiceAll		= $mInvoiceSell->findByState(array(2));
+			$InvoiceAll1	= $mInvoiceSell->findByState(array(3));
 																					
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-			$request->setObject("InvoiceAll", 	$InvoiceAll);																		
+			$request->setObject("InvoiceAll", 	$InvoiceAll);
+			$request->setObject("InvoiceAll1", 	$InvoiceAll1);
+			
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

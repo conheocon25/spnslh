@@ -12,23 +12,8 @@
 					<div class="col-md-8">
 						<div class="panel panel-primary">
 							<div class="panel-heading"><i class="glyphicon glyphicon-cog"/> <B tal:content="Title"/></div>
-							<div class="panel-body">
-								<table class="table table-bordered table-striped table-hover">
-									<thead>
-										<tr>
-											<th width="32">ID</th>
-											<th class="text-left">BÁO CÁO</th>											
-										</tr>
-									</thead>
-									<tbody>
-										<tr tal:repeat="Track TrackAll">
-											<td class="center"><span tal:content="repeat/Track/number"/></td>
-											<td>												
-												<a tal:attributes="href php: Warehouse->getURLTrackDaily( Track )" tal:content="Track/getName"/>
-											</td>											
-										</tr>
-									</tbody>
-								</table>
+							<div class="panel-body">								
+								
 							</div>
 						</div>
 					</div>
