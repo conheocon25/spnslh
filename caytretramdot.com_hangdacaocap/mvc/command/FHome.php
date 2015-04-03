@@ -43,7 +43,13 @@
 			$BranchAll		= $mBranch->findAll();
 			$StoryLineAll	= $mStoryLine->findAll();												
 			$Category 		= $mCategory->find($ConfigMenu->getValue());
-			$ProductAll 	= $mProduct->findByTop(array());			
+			$ProductAll 	= $mProduct->findByTop(array());
+			
+			$ProductManShoe 	= $mProduct->findByIdCategoryTop(array(14));			
+			$ProductManSqueeze 	= $mProduct->findByIdCategoryTop(array(15));			
+			$ProductWomenWallet 	= $mProduct->findByIdCategoryTop(array(18));		
+			
+			
 			$Presentation1 	= $mPresentation->find($ConfigPHome->getValue());
 			$Presentation2	= $mPresentation->find(3);
 			
@@ -83,7 +89,12 @@
 			$request->setObject("Presentation1", 		$Presentation1);
 			$request->setObject("Presentation2", 		$Presentation2);
 			$request->setObject("Category", 			$Category);
-			$request->setObject("ProductAll", 			$ProductAll);			
+			
+			$request->setObject("ProductAll", 			$ProductAll);	
+			$request->setObject("ProductManShoe", 			$ProductManShoe);	
+			$request->setObject("ProductManSqueeze", 		$ProductManSqueeze);	
+			$request->setObject("ProductWomenWallet", 		$ProductWomenWallet);	
+			
 			$request->setObject("LinkedAll", 			$LinkedAll);
 			
 			return self::statuses('CMD_DEFAULT');

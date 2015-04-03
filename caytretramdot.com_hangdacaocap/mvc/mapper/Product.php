@@ -39,7 +39,8 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 		$findBySupplierManufacturerStmt = sprintf("select * from %s where idsupplier=? AND idmanufacturer=? order by id DESC", $tblProduct);
 		$findBySupplierCategoryStmt = sprintf("select * from %s where idsupplier=? AND idcategory=? order by id DESC", $tblProduct);
 						
-		$findByTopStmt 				= sprintf("select * from %s order by id DESC LIMIT 12", $tblProduct);
+		$findByTopStmt 				= sprintf("select * from %s order by id DESC LIMIT 4", $tblProduct);
+		$findByIdCategoryTopStmt	= sprintf("select * from %s where idcategory=? order by id DESC LIMIT 8", $tblProduct);
 		$findByManufacturerTopStmt 	= sprintf("select * from %s where idmanufacturer=? order by idcategory, name LIMIT 9", $tblProduct);
 		$findManufacturerStmt 		= sprintf("
 				select 
@@ -161,6 +162,7 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 		$this->deleteStmt 			= self::$PDO->prepare($deleteStmt);
 						
 		$this->findByTopStmt 						= self::$PDO->prepare($findByTopStmt);
+		$this->findByIdCategoryTopStmt 				= self::$PDO->prepare($findByIdCategoryTopStmt);
 		$this->findByManufacturerTopStmt 			= self::$PDO->prepare($findByManufacturerTopStmt);
 		
 		$this->findBySupplierStmt 					= self::$PDO->prepare($findBySupplierStmt);
@@ -253,6 +255,10 @@ class Product extends Mapper implements \MVC\Domain\ProductFinder {
 	function findByTop(array $values) {
         $this->findByTopStmt->execute( $values );
         return new ProductCollection( $this->findByTopStmt->fetchAll(), $this );
+    }
+	function findByIdCategoryTop(array $values) {
+        $this->findByIdCategoryTopStmt->execute( $values );
+        return new ProductCollection( $this->findByIdCategoryTopStmt->fetchAll(), $this );
     }
 		
 	
