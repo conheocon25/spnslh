@@ -25,10 +25,12 @@ interface InvoiceImportDetailCollection extends \Iterator {function add( Object 
 interface GoodGroupCollection 			extends \Iterator {function add( Object $GoodGroup);	}
 interface GoodCollection 				extends \Iterator {function add( Object $Good);			}
 
-interface CustomerGroupCollection 		extends \Iterator {function add( Object $CustomerGroup);}
-interface CustomerCollection 			extends \Iterator {function add( Object $Customer);		}
+interface CustomerGroupCollection 		extends \Iterator {function add( Object $CustomerGroup);	}
+interface CustomerCollection 			extends \Iterator {function add( Object $Customer);			}
 interface CustomerCollectCollection		extends \Iterator {function add( Object $CustomerCollect);	}
 interface CustomerInitCollection 		extends \Iterator {function add( Object $CustomerInit);		}
+interface CustomerPriceCollection 			extends \Iterator {function add( Object $CustomerPrice);		}
+interface CustomerPriceDetailCollection 	extends \Iterator {function add( Object $CustomerPriceDetail);	}
 
 interface EmployeeCollection 			extends \Iterator {function add( Object $Employee);		}
 interface DepartmentCollection 			extends \Iterator {function add( Object $Department);	}

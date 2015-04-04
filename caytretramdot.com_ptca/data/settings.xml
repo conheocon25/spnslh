@@ -96,9 +96,14 @@
 		<command name="SaleCommandLoad">			<view>SaleCommandLoad</view></command>
 		<command name="SaleCommandView">			<view>SaleCommandView</view></command>
 		<command name="SaleCommandCheck">			<view>SaleCommandCheck</view></command>
+		
+		<command name="SalePrice">					<view>SalePrice</view></command>
+		<command name="SalePriceBranch">			<view>SalePriceBranch</view></command>
+		<command name="SalePriceBranchCustomer">	<view>SalePriceBranchCustomer</view></command>
+		<command name="SalePriceBranchCustomerView"><view>SalePriceBranchCustomerView</view></command>
 				
-		<command name="SaleReport">				<view>SaleReport</view></command>
-		<command name="SaleReportDaily">		<view>SaleReportDaily</view></command>
+		<command name="SaleReport">					<view>SaleReport</view></command>
+		<command name="SaleReportDaily">			<view>SaleReportDaily</view></command>
 		
 		<!-- ============================================================================== -->
 		<!-- SETTING	 																	-->

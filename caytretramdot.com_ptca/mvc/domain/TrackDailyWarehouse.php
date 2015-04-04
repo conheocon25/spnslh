@@ -7,7 +7,10 @@ class TrackDailyWarehouse extends Object{
 	private $IdTrack;
 	private $IdWarehouse;
 	private $Date;
-		
+	private $Old;
+	private $Import;
+	private $Export;
+	
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
@@ -15,17 +18,24 @@ class TrackDailyWarehouse extends Object{
 		$Id				= null,
 		$IdTrack		= null, 
 		$IdWarehouse	= null, 
-		$Date			= null		
+		$Date			= null, 
+		$Old			= null, 
+		$Import			= null, 
+		$Export			= null
 	){
         $this->Id 			= $Id;
 		$this->IdTrack 		= $IdTrack;
 		$this->IdWarehouse 	= $IdWarehouse;
 		$this->Date 		= $Date;
+		$this->Old 			= $Old;
+		$this->Import 		= $Import;
+		$this->Export 		= $Export;
 				
         parent::__construct( $Id );
     }
 
-    function getId() {return $this->Id;}
+    function setId($Id) {$this->Id =$Id;}
+	function getId() 	{return $this->Id;}
 		
     function setIdTrack( $IdTrack ) 	{$this->IdTrack = $IdTrack;$this->markDirty();}   
 	function getIdTrack( ) 				{return $this->IdTrack;}
@@ -47,6 +57,35 @@ class TrackDailyWarehouse extends Object{
 	function getDate( ) {return $this->Date;}
 	function getDatePrint( ) {$D = new \MVC\Library\Date($this->Date);return $D->getDateFormat();}
 	function getDateShortPrint( ) {return date('d/m',strtotime($this->Date));}
+	
+	function setOld( $Old ) {$this->Old = $Old;$this->markDirty();}   
+	function getOld( ) 		{return $this->Old;}
+	function getOldPrint( ) {
+		$num = number_format($this->getOld(), 0, ',', ' ');
+		return $num;
+	}
+	
+	function setImport( $Import ) {$this->Import = $Import;$this->markDirty();}   
+	function getImport( ) {return $this->Import;}
+	function getImportPrint( ) {
+		$num = number_format($this->getImport(), 0, ',', ' ');
+		return $num;
+	}
+	
+	function setExport( $Export ) 	{$this->Export = $Export;$this->markDirty();}   
+	function getExport( ) 			{return $this->Export;}
+	function getExportPrint( ) {
+		$num = number_format($this->getExport(), 0, ',', ' ');
+		return $num;
+	}
+		
+	function getNew( ) {
+		return ($this->Old + $this->Import - $this->Export);
+	}
+	function getNewPrint( ) {
+		$num = number_format($this->getNew(), 0, ',', ' ');
+		return $num;
+	}
 			
 	//-------------------------------------------------------------------------------
 	//GET LISTs
@@ -58,25 +97,29 @@ class TrackDailyWarehouse extends Object{
 	}
 		
 	function generate(){
-		$mTDBCustomer 	= new \MVC\Mapper\TrackDailyWarehouseCustomer();
-		$CustomerAll 	= $this->getWarehouse()->getCustomerAll();
-		while ($CustomerAll->valid()){
-			$Customer = $CustomerAll->current();
+		$mTDWG 		= new \MVC\Mapper\TrackDailyWarehouseGood();
+		$mGood 		= new \MVC\Mapper\Good();
+		$GoodAll 	= $mGood->findAll();
+		
+		while ($GoodAll->valid()){
+			$Good 	= $GoodAll->current();
+			$Old 	= 0;
+			$Import	= 0;
+			$Export	= 0;
 			
-			$TDBCustomer = new \MVC\Domain\TrackDailyWarehouseCustomer(
+			$TDWG = new \MVC\Domain\TrackDailyWarehouseGood(
 				null,
 				$this->getId(),
-				$Customer->getId(),
-				0,
-				0,
-				0
+				$Good->getId(),
+				$Old,
+				$Import,
+				$Export
 			);
-			$mTDBCustomer->insert($TDBCustomer);
-			
-			$CustomerAll->next();
+			$mTDWG->insert($TDWG);
+			$GoodAll->next();
 		}
 	}
-			
+				
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------

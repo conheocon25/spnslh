@@ -229,21 +229,21 @@ class Customer extends Object{
 		return $CustomerInit;
 	}
 	
-	function getURLBranchInvoiceLoad(){
-		return "/don-vi/".$this->getBranch()->getKey()."/ban-hang/".$this->getId();
+	function getCPAll(){
+		$mCustomerPrice = new \MVC\Mapper\CustomerPrice();
+		$CPAll			= $mCustomerPrice->findBy(array($this->getId()));
+		return $CPAll;
 	}
 	
-	function getURLBranchInvoiceInsExe(){
-		return "/don-vi/".$this->getBranch()->getKey()."/ban-hang/".$this->getId()."/them";
-	}
+	function getURLBranchInvoiceLoad()	{return "/don-vi/".$this->getBranch()->getKey()."/ban-hang/".$this->getId();}	
+	function getURLBranchInvoiceInsExe(){return "/don-vi/".$this->getBranch()->getKey()."/ban-hang/".$this->getId()."/them";}
 	
 	function getURLBranchCollectLoad(){
 		return "/don-vi/".$this->getBranch()->getKey()."/thu-tien/khach-hang/".$this->getId();
 	}
 	
-	function getURLSettingInit(){
-		return "/ql-thiet-lap/khach-hang/".$this->getIdBranch()."/".$this->getId();
-	}
+	function getURLSettingInit(){return "/ql-thiet-lap/khach-hang/".$this->getIdBranch()."/".$this->getId();}
+	function getURLPrice(){return "/ql-ban-hang/gia-ban/".$this->getIdBranch()."/".$this->getId();}
 					
 	//=================================================================================	
 	

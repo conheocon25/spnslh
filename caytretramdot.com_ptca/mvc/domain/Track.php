@@ -88,9 +88,13 @@ class Track extends Object{
 				null,
 				$TD->getIdTrack(),
 				$Warehouse->getId(),
-				$TD->getDate()				
+				$TD->getDate(),
+				0,0,0
 			);
-			$mTDW->insert($TDW);
+			$mTDW->insert($TDW);			
+			
+			//PS Good
+			$TDW->generate();
 			
 			$TDAll->next();
 		}		

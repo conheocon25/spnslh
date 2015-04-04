@@ -29,6 +29,7 @@
 			$Warehouse	= $mWarehouse->findByKey($IdKey);
 			$Track 		= $mTrack->find($IdTrack);
 			$TDW 		= $mTrackDailyWarehouse->find($IdTDW);
+			$TDWAll 	= $mTrackDailyWarehouse->findByTrackWarehouse(array($Track->getId(), $Warehouse->getId()));
 			
 			$Title 		= $TDW->getDatePrint();
 			$Navigation = array(
@@ -46,6 +47,7 @@
 			$request->setObject("Warehouse"	, $Warehouse);
 			$request->setObject("Track"		, $Track);
 			$request->setObject("TDW"		, $TDW);
+			$request->setObject("TDWAll"	, $TDWAll);
 																		
 			return self::statuses('CMD_DEFAULT');
 		}
