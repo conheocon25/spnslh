@@ -49,8 +49,8 @@ class TrackDailyWarehouseGood extends Object{
 		return $Good;
 	}
 	
-	function setOld( $Import ) {$this->Old = $Old;$this->markDirty();}   
-	function getOld( ) {return $this->Old;}
+	function setOld( $Old ) {$this->Old = $Old;$this->markDirty();}   
+	function getOld( ) 		{return $this->Old;}
 	function getOldPrint( ) {
 		$num = number_format($this->getOld(), 0, ',', ' ');
 		return $num;
@@ -63,15 +63,16 @@ class TrackDailyWarehouseGood extends Object{
 		return $num;
 	}
 	
-	function setExport( $Import ) 	{$this->Export = $Export;$this->markDirty();}   
+	function setExport( $Export ) 	{$this->Export = $Export;$this->markDirty();}   
 	function getExport( ) 			{return $this->Export;}
 	function getExportPrint( ) {
 		$num = number_format($this->getExport(), 0, ',', ' ');
 		return $num;
 	}
-	
-	function setNew( $Import ) {$this->New = $New;$this->markDirty();}   
-	function getNew( ) {return $this->New;}
+		
+	function getNew( ) {
+		return ($this->Old + $this->Import - $this->Export);
+	}
 	function getNewPrint( ) {
 		$num = number_format($this->getNew(), 0, ',', ' ');
 		return $num;

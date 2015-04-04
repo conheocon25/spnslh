@@ -54,7 +54,7 @@ class WarehouseInit extends Mapper implements \MVC\Domain\WarehouseInitFinder {
     function selectAllStmt() {return $this->selectAllStmt;}
 	
 	function check( $Param ){
-        $this->checkStmt->execute( array( $Param ) );
+        $this->checkStmt->execute( $Param );
         $array = $this->checkStmt->fetch( ); 
         $this->checkStmt->closeCursor( );
         if ( ! is_array( $array ) ) { return null; }

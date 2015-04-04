@@ -83,6 +83,8 @@
 		<command name="WarehouseReport">					<view>WarehouseReport</view></command>
 		<command name="WarehouseReportTrackDaily">			<view>WarehouseReportTrackDaily</view></command>
 		<command name="WarehouseReportTrackDailyView">		<view>WarehouseReportTrackDailyView</view></command>
+		<command name="WarehouseReportTrackDailyExe">		<view>WarehouseReportTrackDailyExe</view></command>
+		<command name="WarehouseReportTrackDailyViewPrint">	<view>WarehouseReportTrackDailyViewPrint</view></command>
 		
 		<command name="WarehouseSetting">					<view>WarehouseSetting</view></command>
 		
