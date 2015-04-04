@@ -181,6 +181,26 @@
 	</div>
 	
 	<!-- ======================================================================== -->
+	<!-- FACEBOOK																  -->
+	<!-- ======================================================================== -->
+	<div metal:define-macro="Facebook" class="panel panel-default">
+		<div class="panel-heading">
+			<h3>Facebook</h3>
+		</div>
+		<div class="panel-body">
+			<div class="fb-page" data-href="https://www.facebook.com/hangdacaocapvinhlong" data-hide-cover="false" data-show-facepile="true" data-show-posts="false"></div>
+		</div>
+		<div id="fb-root"></div>
+		<script>(function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) return;
+			js = d.createElement(s); js.id = id;
+			js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&appId=525611617524479&version=v2.3";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));</script>
+	</div>
+	
+	<!-- ======================================================================== -->
 	<!-- PRESENTATION															  -->
 	<!-- ======================================================================== -->
 	<div metal:define-macro="Presentation" id="carousel-presentation-generic" class="carousel slide fade" data-ride="carousel">
