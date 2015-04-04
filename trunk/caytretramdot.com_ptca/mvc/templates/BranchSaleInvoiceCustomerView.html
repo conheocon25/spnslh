@@ -5,7 +5,7 @@
 	</style>
 </head>
 <body>
-	<div id="InvoicePanel" class="panel panel-primary" tal:attributes="alt Invoice/getURLBranchLoad;">
+	<div id="InvoicePanel" class="panel panel-primary" tal:attributes="alt Invoice/getURLBranchLoad; url-ins-exe Invoice/getURLBranchInsExe">
 		<div class="panel-heading"><i class="glyphicon glyphicon-star"/><B> HÓA ĐƠN BÁN HÀNG</B></div>
 		<div class="panel-body">
 			<table width="100%">				
@@ -115,10 +115,10 @@
 				<div class="modal-header"><h3><i class="glyphicon glyphicon-cog modal-icon"/>CẬP NHẬT THÔNG TIN ĐƠN HÀNG</h3></div>
 				<div id="FormInvoiceUpdate" class="form-horizontal">
 					<div class="modal-body">
-						<input id="InvoiceId"  type="hidden" />
-						<input id="InvoiceIdUser"  type="hidden" />
-						<input id="InvoiceIdCustomer"  type="hidden" />
-						<input id="InvoiceIdWarehouse" type="hidden" />
+						<input id="InvoiceId"  			type="hidden" />
+						<input id="InvoiceIdUser"  		type="hidden" />
+						<input id="InvoiceIdCustomer"  	type="hidden" />
+						<input id="InvoiceIdWarehouse" 	type="hidden" />
 						<input id="InvoiceIdTransport" 	type="hidden" />
 						<input id="InvoiceIdBranch" 	type="hidden" />
 						<input id="InvoiceState" 		type="hidden" />
@@ -174,13 +174,7 @@
 						<div class="col-sm-8 controls">
 							<input id="Count1" type="text" class="form-control input-small" value="1"/>
 						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-3 control-label">Đơn giá</label>
-						<div class="col-sm-8 controls">
-							<input id="Price1" type="text" class="form-control input-small" />
-						</div>
-					</div>
+					</div>					
 					<div class="modal-footer">
 						<button class="btn btn-primary btn-small" id="URLGoodInsButton"><i class="glyphicons-download_alt"/> Cập nhật</button>
 						<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
@@ -199,7 +193,8 @@
 					<div class="form-group">
 						<input id="Id2" type="hidden" class="form-control input-small" />
 						<input id="IdInvoice2" type="hidden" class="form-control input-small" />
-						<input id="IdGood2" type="hidden" class="form-control input-small" />						
+						<input id="IdGood2" type="hidden" class="form-control input-small" />
+						<input id="Price2" type="hidden" class="form-control input-small" />
 						<label class="col-sm-3 control-label">Mặt hàng</label>
 						<div class="col-sm-8 controls">
 							<input id="NameGood2" type="text" class="form-control input-small" readonly="true" />
@@ -210,13 +205,7 @@
 						<div class="col-sm-8 controls">
 							<input id="Count2" type="text" class="form-control input-small" />
 						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-3 control-label">Đơn giá</label>
-						<div class="col-sm-8 controls">
-							<input id="Price2" type="text" class="form-control input-small" />
-						</div>
-					</div>
+					</div>					
 					<div class="modal-footer">
 						<button class="btn btn-primary btn-small" id="URLGoodUpdButton"><i class="glyphicons-download_alt"/> Cập nhật</button>
 						<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
@@ -258,14 +247,13 @@
 		Data[1] = $("#IdInvoice1").val();
 		Data[2] = $("#IdGood1").val();
 		Data[3] = $("#Count1").val();
-		Data[4] = $("#Price1").val();
-				
-		var URL = "/object/ins/InvoiceSellDetail";
+		
+		var URL = $("#InvoicePanel").attr('url-ins-exe');				
 		$.ajax({
 			type: "POST",
 			data: {Data:Data},
 			url: URL,
-			success: function(msg){
+			success: function(msg){				
 				var URL = $("#InvoicePanel").attr('alt');
 				$("#InvoiceView").load(URL);
 			}

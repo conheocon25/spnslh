@@ -27,6 +27,24 @@ class CustomerPriceDetail extends Mapper implements \MVC\Domain\CustomerPriceDet
 		$this->deleteStmt 		= self::$PDO->prepare("delete from customer_price_detail where id=?");
 		$this->findBy 			= self::$PDO->prepare("SELECT * FROM customer_price_detail WHERE id_cp=?");
 		$this->findByDateStmt 	= self::$PDO->prepare("SELECT * FROM customer_price_detail WHERE id_cp=? AND date(`datetime`)=?");
+		
+		$this->lastPriceStmt	= self::$PDO->prepare("				
+				SELECT 
+					CD.id as id,
+					CD.id_cp as id_cp,
+					CD.id_good,
+					CD.price,
+					CD.commission
+				FROM 
+					customer_price C INNER JOIN  customer_price_detail CD
+					ON C.id=CD.id_cp
+				WHERE
+					CD.id_good=?
+				ORDER BY
+					C.datetime DESC
+				LIMIT 1		
+		");
+		
     }
     function getCollection( array $raw ) {return new CustomerPriceDetailCollection( $raw, $this );}
 
@@ -77,6 +95,17 @@ class CustomerPriceDetail extends Mapper implements \MVC\Domain\CustomerPriceDet
 	function findByDate($values){
         $this->findByDateStmt->execute( $values );
         return new CustomerPriceDetailCollection( $this->findByDateStmt->fetchAll(), $this );
+    }
+	
+	function lastPrice( $Param ){
+        $this->lastPriceStmt->execute( $Param );
+        $array = $this->lastPriceStmt->fetch( ); 
+        $this->lastPriceStmt->closeCursor( );
+        if ( ! is_array( $array ) ) { return null; }
+        if ( ! isset( $array['id'] ) ) { return null; }
+        $object = $this->createObject( $array );
+        $object->markClean();
+        return $object; 
     }
 	
 }
