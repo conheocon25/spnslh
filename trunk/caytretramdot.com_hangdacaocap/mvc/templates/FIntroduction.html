@@ -70,50 +70,9 @@
 				</div>
 				<div class="col-md-4">
 					<tal:block metal:use-macro="mFront.xhtml/Basket"/>
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h3>Đăng ký nhận tin</h3>
-						</div>
-						<div class="panel-body">
-							<form role="form" style="margin-bottom:10px;">
-								<div class="input-group">
-									<input type="text" class="form-control" placeholder="Nhập email của bạn" style="border:1px solid #592A00;"/>
-									<span class="input-group-btn">
-										<button class="btn btn-default" type="submit" style="border:1px solid #592A00;">Đăng ký</button>
-									</span>
-								</div>
-							</form>
-						</div>
-					</div>
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h3>Tin nhanh</h3>
-						</div>
-						<div class="panel-body">						
-							<div class="list-group list-group-config" tal:repeat="PT LastestPostAll">
-								<a class="list-group-item" tal:attributes="href PT/getURLRead" tal:content="PT/getPost/getTitleReduce">Cô chủ cửa hàng đồ da có doanh thu trăm triệu mỗi tháng</a>								
-							</div>
-						</div>
-					</div>
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h3>Sản phẩm nổi bật</h3>
-						</div>
-						<div class="panel-body">
-							<div class="media" tal:repeat="ProductTop ProductAll">
-								<a class="media-left" tal:attributes="href ProductTop/getURLView">
-									<img class="img-thumbnail" tal:attributes="src ProductTop/getInfo/getImage1; alt=ProductTop/getInfo/getInfo"/>
-								</a>
-								<div class="media-body">
-									<a tal:attributes="href ProductTop/getURLView">
-										<h4 class="media-heading" tal:content="ProductTop/getName">Túi xách nữ da Cá Sấu</h4>
-									</a>
-									<div class="mini-icon icon-price" tal:content="ProductTop/getPrice1Print">9.600.000đ</div>
-									<div class="mini-icon icon-address" tal:content="ProductTop/getAttributeProduct/getGuaranteePrint">Bảo hành 3 năm</div>
-								</div>
-							</div>													
-						</div>
-					</div>
+					<tal:block metal:use-macro="mFront.xhtml/EmailSignup"/>
+					<tal:block metal:use-macro="mFront.xhtml/LastPost"/>
+					<tal:block metal:use-macro="mFront.xhtml/TopProduct"/>
 					<tal:block metal:use-macro="mFront.xhtml/Facebook"/>
 				</div>
 			</div>
