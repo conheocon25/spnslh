@@ -51,6 +51,12 @@ class TrackDailyWarehouse extends Object{
 	//-------------------------------------------------------------------------------
 	//GET LISTs
 	//-------------------------------------------------------------------------------
+	function getGoodAll(){
+		$mTDWG 	= new \MVC\Mapper\TrackDailyWarehouseGood();
+		$TDWAll = $mTDWG->findBy(array($this->getId()));
+		return $TDWAll;
+	}
+		
 	function generate(){
 		$mTDBCustomer 	= new \MVC\Mapper\TrackDailyWarehouseCustomer();
 		$CustomerAll 	= $this->getWarehouse()->getCustomerAll();
@@ -78,7 +84,9 @@ class TrackDailyWarehouse extends Object{
 	function getURLCustomerPrint()	{return "/don-vi/".$this->getWarehouse()->getKey()."/bao-cao/".$this->getIdTrack()."/khach-hang/".$this->getId()."/in";}
 	
 	function getURLWarehouse()		{return "/kho-hang/".$this->getWarehouse()->getKey()."/bao-cao/".$this->getIdTrack()."/".$this->getId();}
-		
+	function getURLWarehouseExe()	{return "/kho-hang/".$this->getWarehouse()->getKey()."/bao-cao/".$this->getIdTrack()."/".$this->getId()."/exe";}
+	function getURLWarehousePrint()	{return "/kho-hang/".$this->getWarehouse()->getKey()."/bao-cao/".$this->getIdTrack()."/".$this->getId()."/in";}
+	
 	//-------------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}	

@@ -29,12 +29,11 @@
 			$Warehouse	= $mWarehouse->findByKey($IdKey);
 			$Track 		= $mTrack->find($IdTrack);
 			$TDW 		= $mTrackDailyWarehouse->find($IdTDW);
-						
 			
 			$Title 		= $TDW->getDatePrint();
 			$Navigation = array(
-				array(mb_strtoupper($Warehouse->getName(), 'UTF8'), "/don-vi/".$Warehouse->getKey()),
-				array("BÁO CÁO", "/don-vi/".$Warehouse->getKey()."/bao-cao"),
+				array(mb_strtoupper($Warehouse->getName(), 'UTF8'), "/kho-hang/".$Warehouse->getKey()),
+				array("BÁO CÁO", "/kho-hang/".$Warehouse->getKey()."/bao-cao"),
 				array($Track->getName(), $Warehouse->getURLTrackDaily( $Track ))
 			);
 												

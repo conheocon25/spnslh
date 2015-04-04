@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class WarehouseReportTrackDaily extends Command {
+	class WarehouseReportTrackDailyViewPrint extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -13,6 +13,7 @@
 			//-------------------------------------------------------------
 			$IdKey 		= $request->getProperty('IdKey');
 			$IdTrack 	= $request->getProperty('IdTrack');
+			$IdTDW 		= $request->getProperty('IdTDW');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
@@ -27,27 +28,18 @@
 			//-------------------------------------------------------------						
 			$Warehouse	= $mWarehouse->findByKey($IdKey);
 			$Track 		= $mTrack->find($IdTrack);
+			$TDW 		= $mTrackDailyWarehouse->find($IdTDW);
 			
-			$TDWAll 	= $mTrackDailyWarehouse->findByTrackWarehouse(array($Track->getId(), $Warehouse->getId()));
-			if ($TDWAll->count()==0){
-				$Track->generateDailyWarehouse($Warehouse);
-				$TDWAll = $mTrackDailyWarehouse->findByTrackWarehouse(array($Track->getId(), $Warehouse->getId()));
-			}
-			
-			$Title 		= $Track->getName();
-			$Navigation = array(
-				array(mb_strtoupper($Warehouse->getName(), 'UTF8'), "/don-vi/".$Warehouse->getKey()),
-				array("BÁO CÁO", "/kho-hang/".$Warehouse->getKey()."/bao-cao")
-			);
-												
+			$Title 		= $TDW->getDatePrint();
+															
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------																											
-			$request->setObject("Navigation", $Navigation);
+			//-------------------------------------------------------------																														
 			$request->setProperty("Title"	, $Title);
 						
+			$request->setObject("Warehouse"	, $Warehouse);
 			$request->setObject("Track"		, $Track);
-			$request->setObject("TDWAll"	, $TDWAll);
+			$request->setObject("TDW"		, $TDW);
 																		
 			return self::statuses('CMD_DEFAULT');
 		}

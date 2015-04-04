@@ -16,6 +16,15 @@ class InvoiceImportDetail extends Mapper implements \MVC\Domain\UserFinder {
 		$deleteStmt = sprintf("delete from %s where id=?", $tblInvoiceImportDetail);
 				
 		$findByInvoiceStmt = sprintf("select * from %s where id_invoice=?", $tblInvoiceImportDetail);
+		$findByDateGoodStmt = sprintf("
+			SELECT 
+				*
+			FROM
+				invoice_import S INNER JOIN invoice_import_detail SD
+			ON S.id = SD.id_invoice
+			WHERE
+				date(datetime_created)=? AND id_good=?
+			", $tblInvoiceImportDetail);
 						
 		$checkStmt = sprintf("
 			select 
@@ -36,7 +45,8 @@ class InvoiceImportDetail extends Mapper implements \MVC\Domain\UserFinder {
         $this->updateStmt = self::$PDO->prepare( $updateStmt );
         $this->insertStmt = self::$PDO->prepare( $insertStmt );
 		$this->deleteStmt = self::$PDO->prepare( $deleteStmt );
-                            
+        
+		$this->findByDateGoodStmt 	= self::$PDO->prepare($findByDateGoodStmt);								
 		$this->findByInvoiceStmt 	= self::$PDO->prepare($findByInvoiceStmt);						
 		$this->checkStmt 			= self::$PDO->prepare( $checkStmt);		
 		
@@ -81,6 +91,11 @@ class InvoiceImportDetail extends Mapper implements \MVC\Domain\UserFinder {
 	function findByInvoice( $values ) {	
         $this->findByInvoiceStmt->execute( $values );
         return new InvoiceImportDetailCollection( $this->findByInvoiceStmt->fetchAll(), $this );
+    }
+	
+	function findByDateGood( $values ) {	
+        $this->findByDateGoodStmt->execute( $values );
+        return new InvoiceImportDetailCollection( $this->findByDateGoodStmt->fetchAll(), $this );
     }
 		
 	function check( $values ) {	

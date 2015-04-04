@@ -80,6 +80,12 @@ class Warehouse extends Object{
 		return $InitAll;
 	}
 	
+	function getInitGood($IdGood){
+		$mWarehouseInit	= new \MVC\Mapper\WarehouseInit();
+		$Init			= $mWarehouseInit->check(array($this->getId(), $IdGood));
+		return $Init;
+	}
+	
 	function setArray( $Data ){
         $this->Id 		= $Data[0];
 		$this->IdGroup 	= $Data[1];

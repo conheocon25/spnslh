@@ -1,0 +1,92 @@
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<style>
+	@media print{
+		.header, .hide { visibility: hidden };
+		body { font-size: 9px };
+		margin: 0mm 0mm 0mm 0mm;
+	}	 
+	@media screen {
+		body { font-size: 9px }
+	}
+	@media screen, print {
+		body { line-height: 1.0 }
+	}
+	@page  
+	{ 
+		size: auto;   /* auto is the initial value */ 
+		/* this affects the margin in the printer settings */ 
+		margin: 0mm 0mm 0mm 0mm;
+	}
+	ul {
+		list-style: none;
+		margin-left: 0;
+		padding-left: 0;
+	}
+
+	li {
+	  padding-left: 1em;
+	  padding-top: 0.2em;	  
+	  text-indent: 35px;
+	}
+
+	li:before {
+		content: "-";
+		padding-right: 5px;
+	}
+	
+	</style>
+</head>
+<body onload="window.print()">
+	<table width="100%" cellpadding="1" cellspacing="0" border="0" style="font-size:11pt;font-family:'Times New Roman'; line-height:11pt;">
+		<tr>
+			<td width="40%" align="center"><B tal:content="Warehouse/getName"/></td>
+			<td width="10%" align="left" />
+			<td width="50%" align="center"><B>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</B></td>
+		</tr>
+		<tr>
+			<td width="40%" align="center"><B tal:content="Warehouse/getAddress"/></td>
+			<td width="10%" align="left" />
+			<td width="50%" align="center"><B>Độc lập - Tự do - Hạnh phúc</B></td>
+		</tr>
+		<tr>
+			<td width="40%" align="center">Số: <B tal:content="TDW/getId"/></td>
+			<td width="10%" align="left" />
+			<td width="50%" align="center">--- oOo ---</td>
+		</tr>
+	</table>
+	<H2 align="center" style="font-size:16pt;font-family:Arial; line-height:14pt;padding-top:0px">BÁO CÁO KHO <span tal:content="php: mb_strtoupper(Warehouse->getName(), 'UTF8')"/> </H2>
+	<p align="center" style="font-size:14pt;font-family:Arial; line-height:14pt;padding-top:0px">NGÀY <B tal:content="TDW/getDatePrint"/></p>
+	
+	<table width="100%" cellpadding="2" cellspacing="0" border="1" style="font-size:12pt;font-family:'Times New Roman'; line-height:12pt;padding-bottom:2px;">
+		<thead>
+			<tr>										
+				<th align="center" width="30">ID</th>
+				<th align="left">TÊN</th>											
+				<th align="left" width="60">ĐVT</th>
+				<th align="right" width="90">TỔN CŨ</th>
+				<th align="right" width="90">NHẬP</th>
+				<th align="right" width="90">XUẤT</th>
+				<th align="right" width="90">TỔN MỚI</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr tal:repeat="TDWG TDW/getGoodAll">
+				<td align="center"><span tal:content="repeat/TDWG/number"/></td>
+				<td align="left"><span tal:content="TDWG/getGood/getName"/></td>
+				<td align="left"><span tal:content="TDWG/getGood/getUnit"/></td>
+				<td align="right"><span tal:content="TDWG/getOldPrint"/></td>
+				<td align="right"><span tal:content="TDWG/getImportPrint"/></td>
+				<td align="right"><span tal:content="TDWG/getExportPrint"/></td>
+				<td align="right"><span tal:content="TDWG/getNewPrint"/></td>
+			</tr>										
+		</tbody>
+	</table>
+	<table width="100%" cellpadding="1" cellspacing="0" border="0">
+		<tr>
+			<td width="30%" align="center"><B>NGƯỜI LẬP</B></td>
+			<td width="40%" align="center" />
+			<td width="30%" align="center"><B>PHÒNG KINH DOANH</B></td>
+		</tr>
+	</table>	
+</body>
