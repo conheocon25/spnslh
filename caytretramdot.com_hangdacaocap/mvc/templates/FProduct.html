@@ -48,17 +48,17 @@
 				<div class="col-md-8">
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<h3 tal:content="Title">Giày nam</h3>
+							<h3>Sản phẩm</h3>
 						</div>
 						<div class="panel-body">							
 							<div class="media">
-								<div class="media-left medium">
+								<div class="media-left">
 									<img tal:attributes="src DProduct/getInfo/getImage1; alt=DProduct/getInfo/getInfo" class="img-thumbnail"/>
 								</div>									
 								<div class="media-right medium">
-									<h2  tal:content="DProduct/getName"></h2>
+									<h4 tal:content="DProduct/getName"></h4>
 									<h3 tal:content="DProduct/getPrice1Print"> 4.300.000đ</h3>											
-									<div >Số Lượng: <input type="Count" class="form-control" id="contact-email" placeholder="Count" value="1"/></div>											
+									<div>Số Lượng: <input type="Count" class="form-control" id="contact-email" placeholder="Count" value="1"/></div>											
 									<div class="view"><a href="#">Thêm vào giỏ hàng</a></div>	
 								</div>
 								<hr />
@@ -106,65 +106,11 @@
 					</div>
 				</div>
 				<div class="col-md-4">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h3>Đăng ký nhận tin</h3>
-						</div>
-						<div class="panel-body">
-							<form role="form" style="margin-bottom:10px;">
-								<div class="input-group">
-									<input type="text" class="form-control" placeholder="Nhập email của bạn" style="border:1px solid #592A00;"/>
-									<span class="input-group-btn">
-										<button class="btn btn-default" type="submit" style="border:1px solid #592A00;">Đăng ký</button>
-									</span>
-								</div>
-							</form>
-						</div>
-					</div>
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h3>Tin nhanh</h3>
-						</div>
-						<div class="panel-body">						
-							<div class="list-group list-group-config" tal:repeat="PT LastestPostAll">
-								<a class="list-group-item" tal:attributes="href PT/getURLRead" tal:content="PT/getPost/getTitleReduce">Cô chủ cửa hàng đồ da có doanh thu trăm triệu mỗi tháng</a>								
-							</div>
-						</div>
-					</div>
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h3>Sản phẩm nổi bật</h3>
-						</div>
-						<div class="panel-body">
-							<div class="media" tal:repeat="ProductTop ProductAll">
-								<a class="media-left"  tal:attributes="href ProductTop/getURLView">
-									<img class="img-thumbnail" tal:attributes="src ProductTop/getInfo/getImage1; alt=ProductTop/getInfo/getInfo"/>
-								</a>
-								<div class="media-body">
-									<a  tal:attributes="href ProductTop/getURLView">
-										<h4 class="media-heading" tal:content="ProductTop/getName">Túi xách nữ da Cá Sấu</h4>
-									</a>
-									<div class="mini-icon icon-price" tal:content="ProductTop/getPrice1Print">9.600.000đ</div>
-									<div class="mini-icon icon-address" tal:content="ProductTop/getAttributeProduct/getGuaranteePrint">Bảo hành 3 năm</div>
-								</div>
-							</div>													
-						</div>
-					</div>
-					
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h3>Facebook</h3>
-						</div>
-						<div class="panel-body">
-							<iframe
-								src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Famthuchuongsenhong&amp;colorscheme=light&amp;show_faces=true&amp;header=false&amp;stream=true&amp;show_border=false&amp;appId=525611617524479"
-								scrolling="yes"
-								frameborder="0"
-								style="border:none; overflow:hidden; width:100%; height:500px;"
-								allowTransparency="true">
-							</iframe>
-						</div>
-					</div>
+					<tal:block metal:use-macro="mFront.xhtml/Basket"/>
+					<tal:block metal:use-macro="mFront.xhtml/EmailSignup"/>
+					<tal:block metal:use-macro="mFront.xhtml/LastPost"/>
+					<tal:block metal:use-macro="mFront.xhtml/TopProduct"/>
+					<tal:block metal:use-macro="mFront.xhtml/Facebook"/>
 				</div>
 			</div>
 			<tal:block metal:use-macro="mFront.xhtml/Footer"/>
