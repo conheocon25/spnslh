@@ -17,15 +17,23 @@
 									<thead>
 										<tr>
 											<th width="32">ID</th>
-											<th class="text-left">NGÀY</th>											
-											<th class="text-center" width="60"><div class="btn btn-xs btn-default ExeAll"><i class="glyphicon glyphicon-refresh"/></div></th>
+											<th class="text-left">NGÀY</th>
+											<th class="text-right" width="90">TỔN CŨ</th>
+											<th class="text-right" width="90">NHẬP</th>
+											<th class="text-right" width="90">XUẤT</th>
+											<th class="text-right" width="90">TỔN MỚI</th>
+											<th class="text-center" width="32"><div class="btn btn-xs btn-default ExeAll"><i class="glyphicon glyphicon-refresh"/></div></th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr tal:repeat="TDW TDWAll">
 											<td class="center"><span tal:content="repeat/TDW/number"/></td>
 											<td><a tal:attributes="href TDW/getURLWarehouse"><span tal:content="TDW/getDatePrint"/></a></td>
-											<td class="text-center"><div class="btn btn-xs btn-default Exe" tal:attributes="url-exe '#'"><i class="glyphicon glyphicon-refresh"/></div></td>
+											<td class="text-right"><span tal:content="TDW/getOldPrint"/></td>
+											<td class="text-right"><span tal:content="TDW/getImportPrint"/></td>
+											<td class="text-right"><span tal:content="TDW/getExportPrint"/></td>
+											<td class="text-right"><span tal:content="TDW/getNewPrint"/></td>
+											<td class="text-center"><div class="btn btn-xs btn-default Exe" tal:attributes="url-exe TDW/getURLWarehouseExe"><i class="glyphicon glyphicon-refresh"/></div></td>
 										</tr>
 									</tbody>
 								</table>
@@ -43,6 +51,36 @@
 				</div>
 			</div>
 		</div>		
-		<div metal:use-macro="mFront.xhtml/IncludeJS"/>		
+		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
+		<script type="text/javascript">
+		/*<![CDATA[*/				
+			$(".Exe").click(function(){
+				var URlExe = $(this).attr('url-exe');
+				$.ajax({
+					type: "POST",					
+					url: URlExe,
+					success: function(msg){
+						//location.reload();
+					}
+				});
+			});
+			
+			//Xử lí theo lô
+			$(".ExeAll").click(function(){				
+				$(".Exe").each(function( i, obj){
+					var URlExe = $(this).attr('url-exe');
+					$.ajax({
+						type: "POST",
+						url: URlExe,
+						success: function(msg){}
+					});
+				});
+				location.reload();
+			});
+						
+			
+		/*]]>*/
+		</script>
+		
 	</body>
 </html>

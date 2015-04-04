@@ -29,6 +29,8 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	require_once( "mvc/mapper/Customer.php" 		);
 	require_once( "mvc/mapper/CustomerInit.php" 	);
 	require_once( "mvc/mapper/CustomerCollect.php"	);
+	require_once( "mvc/mapper/CustomerPrice.php" 		);
+	require_once( "mvc/mapper/CustomerPriceDetail.php" 	);
 	
 	require_once( "mvc/mapper/Supplier.php" 		);
 	require_once( "mvc/mapper/SupplierInit.php" 	);

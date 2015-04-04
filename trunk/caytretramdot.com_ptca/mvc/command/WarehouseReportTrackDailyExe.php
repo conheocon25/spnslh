@@ -35,30 +35,13 @@
 			$TDW 				= $mTrackDailyWarehouse->find($IdTDW);			
 			$InvoiceSell 		= $mTrackDailyWarehouse->find($IdTDW);
 			$GoodAll			= $mGood->findAll();
-			
-			//Phát sinh bộ dữ liệu mẫu
-			if ($TDW->getGoodAll()->count()==0){
-				while ($GoodAll->valid()){
-					$Good 	= $GoodAll->current();
-					$Old 	= 0;
-					$Import	= 0;
-					$Export	= 0;
-					
-					$TDWG = new \MVC\Domain\TrackDailyWarehouseGood(
-						null,
-						$TDW->getId(),
-						$Good->getId(),
-						$Old,
-						$Import,
-						$Export
-					);
-					$mTDWG->insert($TDWG);
-					$GoodAll->next();
-				}
-			}
-			
+									
 			//Tính toán lại giá trị
 			$TDWGAll = $TDW->getGoodAll();
+			$SOld 		= 0;
+			$SImport 	= 0;
+			$SExport 	= 0;
+			
 			while ($TDWGAll->valid()){
 				$TDWG = $TDWGAll->current();
 				
@@ -75,6 +58,7 @@
 					}
 				}
 				$TDWG->setOld($Old);
+				$SOld += $Old;
 											
 				//Tính lại hàng nhập về
 				$Import = 0;
@@ -85,6 +69,7 @@
 					$IIDAll->next();
 				}
 				$TDWG->setImport($Import);
+				$SImport += $Import;
 				
 				//Tính lại hàng xuất bàn
 				$Export = 0;
@@ -95,10 +80,16 @@
 					$ISDAll->next();
 				}
 				$TDWG->setExport($Export);
+				$SExport += $Export;
 				
 				$mTDWG->update($TDWG);
 				$TDWGAll->next();
-			}						
+			}
+			$TDW->setOld($SOld);
+			$TDW->setImport($SImport);
+			$TDW->setExport($SExport);
+			$mTrackDailyWarehouse->update($TDW);
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------

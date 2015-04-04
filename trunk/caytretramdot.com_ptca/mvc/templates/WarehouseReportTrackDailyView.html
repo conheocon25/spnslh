@@ -35,22 +35,36 @@
 											<td class="text-right"><span tal:content="TDWG/getExportPrint"/></td>
 											<td class="text-right"><span tal:content="TDWG/getNewPrint"/></td>
 										</tr>										
+										<tr>
+											<td class="text-right" colspan="3"><B>TỔNG KẾT</B></td>
+											<td class="text-right"><B tal:content="TDW/getOldPrint"/></td>
+											<td class="text-right"><B tal:content="TDW/getImportPrint"/></td>
+											<td class="text-right"><B tal:content="TDW/getExportPrint"/></td>
+											<td class="text-right"><B tal:content="TDW/getNewPrint"/></td>
+										</tr>
 									</tbody>
-								</table>								
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="panel panel-primary">							
-							<div class="panel-heading"><i class="glyphicon glyphicon-cog"/> <B>CHỨC NĂNG</B></div>
-							<div class="panel-body">								
+								</table>
 								<div class="btn btn-primary Exe" tal:attributes="url-exe TDW/getURLWarehouseExe">
 									<i class="glyphicon glyphicon-refresh"/>
 								</div>
 								<div class="btn btn-primary Print" tal:attributes="url-print TDW/getURLWarehousePrint">
 									<i class="glyphicon glyphicon-print"/>
 								</div>
-							</div>	
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="panel panel-primary">							
+							<div class="panel-heading"><i class="glyphicon glyphicon-cog"/> <B>DS NGÀY</B></div>
+							<div class="panel-body">								
+								<ul class="list-group">
+									<li tal:repeat="TDW1 TDWAll" tal:attributes="class php: TDW1->getId()==TDW->getId()?'list-group-item list-group-item-success':'list-group-item'">
+										<a tal:attributes="href TDW1/getURLWarehouse">
+											<span tal:content="TDW1/getDatePrint"/>
+										</a>										
+									</li>
+								</ul>								
+							</div>
 						</div>
 					</div>
 				</div>

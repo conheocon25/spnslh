@@ -149,6 +149,8 @@ class Branch extends Object{
 	
 	function getURLSetting()	{return "/don-vi/".$this->Key."/thiet-lap";}
 	
+	function getURLPrice(){return "/ql-ban-hang/gia-ban/".$this->getId();}
+	
 	function getURLSettingCustomer(){return "/ql-thiet-lap/khach-hang/".$this->getId();}
 	
 }
