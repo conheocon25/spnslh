@@ -68,7 +68,7 @@
 					.item-container .item .thumbnail .caption p { margin: 0 0 3px; font-size: 12px; }
 	.view { margin-top: 10px; text-align: right; margin-right: -5px; margin-bottom: -2px; }
 		.view a { border-top: 1px solid #ddd; border-left: 1px solid #ddd; padding: 3px 10px; border-top-left-radius: 10px; color: #592A00; }
-	.media { padding: 10px; border-top: 1px solid #592A00; margin-left: -3px; margin-right: -3px; margin-top: 0; }
+	.media { padding: 10px; border-bottom: 1px solid #592A00; margin-left: -3px; margin-right: -3px; margin-top: 0; }
 		.media:first-child { border-top: none; margin-top: -3px; }
 		.media:last-child { margin-bottom: -3px; }
 		.media .media-left.medium { width: 230px; height: 156px; }
