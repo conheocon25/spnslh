@@ -65,7 +65,8 @@ RewriteRule ^don-vi/([A-Za-z0-9_-]+)/ban-hang$ 						?cmd=BranchSaleInvoice&IdKe
 RewriteRule ^don-vi/([A-Za-z0-9_-]+)/ban-hang/khach-hang/tim$ 		?cmd=BranchSaleInvoiceCustomerSearch&IdKey=$1 [L]
 RewriteRule ^don-vi/([A-Za-z0-9_-]+)/ban-hang/([0-9]+)$ 			?cmd=BranchSaleInvoiceCustomer&IdKey=$1&IdCustomer=$2 [L]
 RewriteRule ^don-vi/([A-Za-z0-9_-]+)/ban-hang/([0-9]+)/them$ 		?cmd=BranchSaleInvoiceCustomerInsExe&IdKey=$1&IdCustomer=$2 [L]
-RewriteRule ^don-vi/([A-Za-z0-9_-]+)/ban-hang/([0-9]+)/([0-9]+)$ 	?cmd=BranchSaleInvoiceCustomerView&IdKey=$1&IdCustomer=$2&IdInvoice=$3 [L]
+RewriteRule ^don-vi/([A-Za-z0-9_-]+)/ban-hang/([0-9]+)/([0-9]+)$ 		?cmd=BranchSaleInvoiceCustomerView&IdKey=$1&IdCustomer=$2&IdInvoice=$3 [L]
+RewriteRule ^don-vi/([A-Za-z0-9_-]+)/ban-hang/([0-9]+)/([0-9]+)/exe$ 	?cmd=BranchSaleInvoiceCustomerViewInsExe&IdKey=$1&IdCustomer=$2&IdInvoice=$3 [L]
 RewriteRule ^don-vi/([A-Za-z0-9_-]+)/ban-hang/([0-9]+)/([0-9]+)/in$ 	?cmd=BranchSaleInvoiceCustomerPrint&IdKey=$1&IdCustomer=$2&IdInvoice=$3 [L]
 RewriteRule ^don-vi/([A-Za-z0-9_-]+)/ban-hang/([0-9]+)/([0-9]+)/duyet$ 	?cmd=BranchSaleInvoiceCustomerCheck&IdKey=$1&IdCustomer=$2&IdInvoice=$3 [L]
 
