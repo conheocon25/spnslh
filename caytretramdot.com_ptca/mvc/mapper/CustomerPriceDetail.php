@@ -39,10 +39,10 @@ class CustomerPriceDetail extends Mapper implements \MVC\Domain\CustomerPriceDet
 					customer_price C INNER JOIN  customer_price_detail CD
 					ON C.id=CD.id_cp
 				WHERE
-					CD.id_good=?
+					CD.id_good=? AND C.id_customer=?
 				ORDER BY
 					C.datetime DESC
-				LIMIT 1		
+				LIMIT 1
 		");
 		
     }

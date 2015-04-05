@@ -26,14 +26,19 @@
 			//-------------------------------------------------------------
 			$InvoiceSell 	= $mInvoiceSell->find($Data[1]);
 			$Customer		= $InvoiceSell->getCustomer();
-			$LP 			= $mCustomerPriceDetail->lastPrice(array($Data[2]));
+			
+			$LP 			= $mCustomerPriceDetail->lastPrice(array($Data[2], $Customer->getId()));
+			if (!isset($LP))
+				$Price = 0;
+			else
+				$Price = $LP->getPrice();
 												
 			$ISD = new \MVC\Domain\InvoiceSellDetail(
 				null,
 				$InvoiceSell->getId(),
 				$Data[2],
 				$Data[3],
-				$LP->getPrice()
+				$Price
 			);
 			$mInvoiceSellDetail->insert($ISD);
 			

@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class WarehouseExportDetailIntroPrint extends Command{
+	class WarehouseExportView extends Command{
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -15,25 +15,30 @@
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
-			//-------------------------------------------------------------			
+			//-------------------------------------------------------------
+			$mEmployee 		= new \MVC\Mapper\Employee();
+			$mGood 			= new \MVC\Mapper\Good();
 			$mInvoiceSell 	= new \MVC\Mapper\InvoiceSell();
-			$mConfig 		= new \MVC\Mapper\Config();
-						
+			$mWarehouse 	= new \MVC\Mapper\Warehouse();
+			$mTransport 	= new \MVC\Mapper\Transport();
+			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------												
+			//-------------------------------------------------------------									
+			$WarehouseAll	= $mWarehouse->findAll();
+			$TransportAll	= $mTransport->findAll();
+			$GoodAll		= $mGood->findAll();
+			$EmployeeAll	= $mEmployee->findAll();			
 			$Invoice		= $mInvoiceSell->find($IdInvoice);						
-			$ConfigName		= $mConfig->findByName("NAME_COMPANY");
-			$ConfigPhone	= $mConfig->findByName("PHONE1");
-			$ConfigAddress	= $mConfig->findByName("ADDRESS");
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------			
+			//-------------------------------------------------------------
+			$request->setObject('WarehouseAll'	, $WarehouseAll);
+			$request->setObject('TransportAll'	, $TransportAll);
+			$request->setObject('GoodAll'		, $GoodAll);
+			$request->setObject('EmployeeAll'	, $EmployeeAll);
 			$request->setObject('Invoice'		, $Invoice);
-			$request->setObject('ConfigName'	, $ConfigName);
-			$request->setObject('ConfigPhone'	, $ConfigPhone);
-			$request->setObject('ConfigAddress'	, $ConfigAddress);
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

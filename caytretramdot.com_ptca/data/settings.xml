@@ -75,9 +75,9 @@
 		<command name="WarehouseImportSupplierViewPrint">	<view>WarehouseImportSupplierViewPrint</view></command>
 		
 		<command name="WarehouseExport">					<view>WarehouseExport</view></command>
-		<command name="WarehouseExportDetail">				<view>WarehouseExportDetail</view></command>
-		<command name="WarehouseExportDetailPrint">			<view>WarehouseExportDetailPrint</view></command>
-		<command name="WarehouseExportDetailIntroPrint">	<view>WarehouseExportDetailIntroPrint</view></command>
+		<command name="WarehouseExportView">				<view>WarehouseExportView</view></command>
+		<command name="WarehouseExportViewPrint">			<view>WarehouseExportViewPrint</view></command>
+		<command name="WarehouseExportViewIntroPrint">		<view>WarehouseExportViewIntroPrint</view></command>
 		<command name="WarehouseExportLoadQueue">			<view>WarehouseExportLoadQueue</view></command>
 		<command name="WarehouseExportLoadFinish">			<view>WarehouseExportLoadFinish</view></command>
 		
@@ -105,6 +105,8 @@
 				
 		<command name="SaleReport">					<view>SaleReport</view></command>
 		<command name="SaleReportDaily">			<view>SaleReportDaily</view></command>
+		
+		<command name="SalePriceImport">			<view>SalePriceImport</view></command>
 		
 		<!-- ============================================================================== -->
 		<!-- HUMAN RESOURCE																	-->
