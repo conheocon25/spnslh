@@ -113,7 +113,11 @@
 				
 		<command name="SettingBranch">			<view>SettingBranch</view>		</command>		
 		<command name="SettingBranchGroup">		<view>SettingBranchGroup</view>	</command>
+		
 		<command name="SettingUser">			<view>SettingUser</view>		</command>		
+		<command name="SettingUserBranchRole">	<view>SettingUserBranchRole</view></command>
+		<command name="SettingUserWarehouseRole"><view>SettingUserWarehouseRole</view></command>
+		
 		<command name="SettingGoodGroup">		<view>SettingGoodGroup</view>	</command>
 		<command name="SettingGood">			<view>SettingGood</view>		</command>		
 		
