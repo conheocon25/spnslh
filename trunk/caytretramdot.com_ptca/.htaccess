@@ -123,23 +123,17 @@ RewriteRule ^ql-ban-hang/gia-ban/([0-9]+)/([0-9]+)$ 			?cmd=SalePriceBranchCusto
 RewriteRule ^ql-ban-hang/gia-ban/([0-9]+)/([0-9]+)/([0-9]+)$ 	?cmd=SalePriceBranchCustomerView&IdBranch=$1&IdCustomer=$2&IdCP=$3 	[L]
 
 #---------------------------------------------------------------------------------------------------------------------------
-# WAREHOUSE
+# QLNS
 #---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^ql-kho-hang$ 										?cmd=Warehouse [L]
-RewriteRule ^ql-kho-hang/lenh-nhap$ 							?cmd=WarehouseImport [L]
-RewriteRule ^ql-kho-hang/lenh-nhap/([0-9]+)$ 					?cmd=WarehouseImport&IdSupplier=$1 [L]
-RewriteRule ^ql-kho-hang/lenh-nhap/([0-9]+)/ins/exe$ 			?cmd=WarehouseImportInsExe&IdSupplier=$1 [L]
-RewriteRule ^ql-kho-hang/lenh-nhap/([0-9]+)/([0-9]+)$ 			?cmd=WarehouseImportView&IdSupplier=$1&IdInvoice=$2 [L]
-RewriteRule ^ql-kho-hang/lenh-nhap/([0-9]+)/([0-9]+)/print$ 	?cmd=WarehouseImportViewPrint&IdSupplier=$1&IdInvoice=$2 [L]
+RewriteRule ^ql-nhan-su$ 										?cmd=HumanResource 				[L]
 
-RewriteRule ^ql-kho-hang/lenh-xuat$ 							?cmd=WarehouseExport [L]
-
-RewriteRule ^ql-kho-hang/lenh-xuat/([0-9]+)$ 					?cmd=WarehouseExportDetail&IdInvoice=$1 [L]
-RewriteRule ^ql-kho-hang/lenh-xuat/([0-9]+)/print$ 				?cmd=WarehouseExportDetailPrint&IdInvoice=$1 [L]
-RewriteRule ^ql-kho-hang/lenh-xuat/([0-9]+)/gioi-thieu/print$ 	?cmd=WarehouseExportDetailIntroPrint&IdInvoice=$1 [L]
-
-RewriteRule ^ql-kho-hang/bao-cao/([0-9]+)$ 						?cmd=WarehouseReport&IdTrack=$1 [L]
-RewriteRule ^ql-kho-hang/bao-cao/([0-9]+)/([0-9]+)$ 			?cmd=WarehouseReportDaily&IdTrack=$1&IdDaily=$2 [L]
+#---------------------------------------------------------------------------------------------------------------------------
+# REPORT
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^ql-bao-cao$ 										?cmd=Report 						[L]
+RewriteRule ^ql-bao-cao/([0-9]+)$ 								?cmd=ReportTrack&IdTrack=$1			[L]
+RewriteRule ^ql-bao-cao/([0-9]+)/([0-9]+)/ban-hang$ 			?cmd=ReportTrackSale&IdTrack=$1&IdTD=$2			[L]
+RewriteRule ^ql-bao-cao/([0-9]+)/([0-9]+)/kho-hang$ 			?cmd=ReportTrackWarehouse&IdTrack=$1&IdTD=$2	[L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # SETTING
@@ -150,6 +144,7 @@ RewriteRule ^ql-thiet-lap/don-vi-truc-thuoc$ 							?cmd=SettingBranchGroup [L]
 RewriteRule ^ql-thiet-lap/don-vi-truc-thuoc/page/([0-9]+)$ 				?cmd=SettingBranchGroup&Page=$1 [L]
 RewriteRule ^ql-thiet-lap/don-vi-truc-thuoc/([0-9]+)$ 					?cmd=SettingBranch&IdGroup=$1 [L]
 RewriteRule ^ql-thiet-lap/don-vi-truc-thuoc/([0-9]+)/page/([0-9]+)$ 	?cmd=SettingBranch&IdGroup=$1&Page=$2 [L]
+RewriteRule ^ql-thiet-lap/don-vi-truc-thuoc/([0-9]+)/([0-9]+)/kho-hang$ ?cmd=SettingBranchWarehouse&IdGroup=$1&IdBranch=$2 [L]
 
 RewriteRule ^ql-thiet-lap/tham-so$ 										?cmd=SettingConfig [L]
 RewriteRule ^ql-thiet-lap/tham-so/page/([0-9]+)$ 						?cmd=SettingConfig&Page=$1 [L]

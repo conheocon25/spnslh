@@ -6,11 +6,11 @@ class BranchWarehouse extends Mapper implements \MVC\Domain\BranchWarehouseFinde
         parent::__construct();
 		
         $this->selectAllStmt 		= self::$PDO->prepare("select * from branch_warehouse");
-        $this->updateStmt 			= self::$PDO->prepare("update branch_warehouse set id_branch=?, id_warehouse=?, id_good=?, count1=?, count2=?, count3=?  where id=?");
+        $this->updateStmt 			= self::$PDO->prepare("update branch_warehouse set id_branch=?, id_warehouse=? where id=?");
         $this->selectStmt 			= self::$PDO->prepare("select * from branch_warehouse where id=?");
-        $this->insertStmt 			= self::$PDO->prepare("insert into branch_warehouse (id_branch, id_warehouse, id_good, count1, count2, count3) values(?, ?, ?, ?, ?, ?)");
+        $this->insertStmt 			= self::$PDO->prepare("insert into branch_warehouse (id_branch, id_warehouse) values(?, ?)");
 		$this->deleteStmt 			= self::$PDO->prepare("delete from branch_warehouse where id=?");
-		$this->checkStmt 			= self::$PDO->prepare("select * from branch_warehouse where id_branch=? AND id_warehouse=? AND id_good=?");
+		$this->checkStmt 			= self::$PDO->prepare("select * from branch_warehouse where id_branch=? AND id_warehouse=?");
 		$this->findByBranchStmt 	= self::$PDO->prepare("SELECT * FROM branch_warehouse WHERE id_branch=?");
 		
 	}
