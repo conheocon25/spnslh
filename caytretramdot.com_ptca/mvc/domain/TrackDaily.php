@@ -34,32 +34,17 @@ class TrackDaily extends Object{
 	//-------------------------------------------------------------------------------
 	//GET LISTs
 	//-------------------------------------------------------------------------------
-	function getInvoiceSellAll(){
-		$mInvoiceSell = new \MVC\Mapper\InvoiceSell();
-		$InvoiceSellAll = $mInvoiceSell->findByTrackDaily(array($this->getDate()));
-		return $InvoiceSellAll;
+	function getBranchAll(){
+		$mTDB 	= new \MVC\Mapper\TrackDailyBranch();
+		$TDBAll = $mTDB->findByDate(array($this->getDate()));
+		return $TDBAll;
 	}
-	function getInvoiceSellValue(){
-		$InvoiceAll = $this->getInvoiceSellAll();
-		$Value = 0;
-		while ($InvoiceAll->valid()){
-			$Invoice = $InvoiceAll->current();
-			$Value += $Invoice->getValue();
-			$InvoiceAll->next();
-		}
-		return $Value;
-	}
-	function getInvoiceSellValuePrint(){
-		$num = number_format($this->getInvoiceSellValue(), 0, ',', ' ');
-		return $num;
-	}
-	
+		
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
-	//-------------------------------------------------------------------------------
-	function getURLReport(){return "/report/".$this->getIdTrack()."/".$this->getId();}
-	
-	function getURLSale(){return "/ql-ban-hang/bao-cao/".$this->getIdTrack()."/".$this->getId();}
+	//-------------------------------------------------------------------------------		
+	function getURLSale()		{return "/ql-bao-cao/".$this->getIdTrack()."/".$this->getId()."/ban-hang";}
+	function getURLWarehouse()	{return "/ql-bao-cao/".$this->getIdTrack()."/".$this->getId()."/kho-hang";}
 	
 	//-------------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

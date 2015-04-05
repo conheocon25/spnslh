@@ -19,6 +19,7 @@
 										<th class="text-center" width="40">ID</th>
 										<th class="text-left">TÊN</th>
 										<th class="text-left" width="120">ĐIỆN THOẠI</th>
+										<th class="text-left" width="120">KHO HÀNG</th>
 										<th class="text-center" width="40"><i class="glyphicon glyphicon-trash"/></th>
 									</tr>
 								</thead>
@@ -27,6 +28,11 @@
 										<td class="text-center"><span tal:content="repeat/Branch/number"/></td>
 										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="Branch" tal:attributes="data-id Branch/getId" tal:content="Branch/getName"/></td>										
 										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="Branch" tal:attributes="data-id Branch/getId" tal:content="Branch/getTel"/></td>
+										<td>
+											<a tal:attributes="href Branch/getURLSettingWarehouse">
+												Xem (<span tal:content="Branch/getWarehouseAll/count"/>)
+											</a>
+										</td>
 										<td class="text-center">
 											<a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Branch/getId"><i class="glyphicon glyphicon-remove"/></a>
 										</td>

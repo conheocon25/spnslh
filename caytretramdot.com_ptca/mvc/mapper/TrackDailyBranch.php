@@ -14,6 +14,8 @@ class TrackDailyBranch extends Mapper implements \MVC\Domain\TrackDailyBranchFin
 		$insertStmt 			= sprintf("insert into %s (id_track, id_branch, date, debt_old, sale, collect) values(?, ?, ?, ?, ?, ?)", $tblTrackDailyBranch);
 		$deleteStmt 			= sprintf("delete from %s where id=?", $tblTrackDailyBranch);
 		$deleteByTrackStmt 		= sprintf("delete from %s where id_track=?", $tblTrackDailyBranch);
+		
+		$findByDateStmt 		= sprintf("select *  from %s where date=?", $tblTrackDailyBranch);
 		$findByBranchStmt 		= sprintf("select *  from %s where id_branch=?", $tblTrackDailyBranch);
 		$findByTrackBranchStmt 	= sprintf("select *  from %s where id_track=? AND id_branch=?", $tblTrackDailyBranch);
 				
@@ -22,8 +24,10 @@ class TrackDailyBranch extends Mapper implements \MVC\Domain\TrackDailyBranchFin
         $this->updateStmt 		= self::$PDO->prepare($updateStmt);
         $this->insertStmt 		= self::$PDO->prepare($insertStmt);
 		$this->deleteStmt 		= self::$PDO->prepare($deleteStmt);
+		
 		$this->deleteByTrackStmt= self::$PDO->prepare($deleteByTrackStmt);
-		$this->findByBranchStmt = self::$PDO->prepare($findByBranchStmt);
+		$this->findByDateStmt 		= self::$PDO->prepare($findByDateStmt);
+		$this->findByBranchStmt 	= self::$PDO->prepare($findByBranchStmt);
 		$this->findByTrackBranchStmt = self::$PDO->prepare($findByTrackBranchStmt);
     }
 	
@@ -71,7 +75,13 @@ class TrackDailyBranch extends Mapper implements \MVC\Domain\TrackDailyBranchFin
 	protected function doDelete(array $values) {return $this->deleteStmt->execute( $values );}
     function selectStmt() {return $this->selectStmt;}
     function selectAllStmt() {return $this->selectAllStmt;}	
+	
 	function deleteByTrack(array $values) {return $this->deleteByTrackStmt->execute( $values );}
+	
+	function findByDate(array $values) {
+		$this->findByDateStmt->execute( $values );
+        return new TrackDailyBranchCollection( $this->findByDateStmt->fetchAll(), $this );
+    }
 	
 	function findByBranch(array $values) {
 		$this->findByBranchStmt->execute( $values );

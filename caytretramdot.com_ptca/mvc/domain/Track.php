@@ -119,6 +119,7 @@ class Track extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
+	function getURLReport()						{return "/ql-bao-cao/".$this->getId();}
 	function getURLSetting()					{return "/ql-thiet-lap/theo-doi/".$this->getId();}
 										
 	function getURLCustomer()					{return "/report/customer/".$this->getId();}

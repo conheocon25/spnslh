@@ -107,12 +107,26 @@
 		<command name="SaleReportDaily">			<view>SaleReportDaily</view></command>
 		
 		<!-- ============================================================================== -->
+		<!-- HUMAN RESOURCE																	-->
+		<!-- ============================================================================== -->
+		<command name="HumanResource">				<view>HumanResource</view></command>
+		
+		<!-- ============================================================================== -->
+		<!-- REPORT																			-->
+		<!-- ============================================================================== -->
+		<command name="Report">						<view>Report</view></command>
+		<command name="ReportTrack">				<view>ReportTrack</view></command>
+		<command name="ReportTrackSale">			<view>ReportTrackSale</view></command>
+		<command name="ReportTrackWarehouse">		<view>ReportTrackWarehouse</view></command>
+		
+		<!-- ============================================================================== -->
 		<!-- SETTING	 																	-->
 		<!-- ============================================================================== -->				
 		<command name="Setting">				<view>Setting</view>			</command>						
 				
 		<command name="SettingBranch">			<view>SettingBranch</view>		</command>		
 		<command name="SettingBranchGroup">		<view>SettingBranchGroup</view>	</command>
+		<command name="SettingBranchWarehouse">	<view>SettingBranchWarehouse</view></command>
 		
 		<command name="SettingUser">			<view>SettingUser</view>		</command>		
 		<command name="SettingUserBranchRole">	<view>SettingUserBranchRole</view></command>

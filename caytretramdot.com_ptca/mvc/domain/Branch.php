@@ -144,14 +144,14 @@ class Branch extends Object{
 	function getURLCustomerCollect()			{return "/don-vi/".$this->Key."/thu-tien";}
 	function getURLCustomerCollectSearch()		{return "/don-vi/".$this->Key."/thu-tien/khach-hang/tim";}
 	
-	function getURLReport()				{return "/don-vi/".$this->Key."/bao-cao";}
-	function getURLTrackDaily($Track)	{return "/don-vi/".$this->Key."/bao-cao/".$Track->getId();}
-	
-	function getURLSetting()	{return "/don-vi/".$this->Key."/thiet-lap";}
+	function getURLReport()						{return "/don-vi/".$this->Key."/bao-cao";}
+	function getURLTrackDaily($Track)			{return "/don-vi/".$this->Key."/bao-cao/".$Track->getId();}	
+	function getURLSetting()					{return "/don-vi/".$this->Key."/thiet-lap";}
 	
 	function getURLPrice(){return "/ql-ban-hang/gia-ban/".$this->getId();}
 	
 	function getURLSettingCustomer(){return "/ql-thiet-lap/khach-hang/".$this->getId();}
+	function getURLSettingWarehouse(){return "/ql-thiet-lap/don-vi-truc-thuoc/".$this->getIdGroup()."/".$this->getId()."/kho-hang";}
 	
 }
 ?>
