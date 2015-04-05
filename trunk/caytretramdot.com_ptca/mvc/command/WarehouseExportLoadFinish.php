@@ -11,17 +11,21 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-						
+			$IdKey = $request->getProperty('IdKey');
+			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
-			//-------------------------------------------------------------									
+			//-------------------------------------------------------------
+			$mWarehouse 	= new \MVC\Mapper\Warehouse();
 			$mInvoiceSell	= new \MVC\Mapper\InvoiceSell();
 															
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
-			$InvoiceAll		= $mInvoiceSell->findByState(array(2));
-			$InvoiceAll1	= $mInvoiceSell->findByState(array(3));
+			$Warehouse 		= $mWarehouse->findByKey($IdKey);
+			
+			$InvoiceAll		= $mInvoiceSell->findByStateWarehouse(array(2, $Warehouse->getId()));
+			$InvoiceAll1	= $mInvoiceSell->findByStateWarehouse(array(3, $Warehouse->getId()));
 																					
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI

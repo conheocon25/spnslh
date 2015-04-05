@@ -230,8 +230,8 @@ class InvoiceSell extends Object{
 	function getURLBranchCheck()	{return "/don-vi/".$this->getBranch()->getKey()."/ban-hang/".$this->getIdCustomer()."/".$this->getId()."/duyet";}
 	function getURLBranchInsExe()	{return "/don-vi/".$this->getBranch()->getKey()."/ban-hang/".$this->getIdCustomer()."/".$this->getId()."/exe";	}
 		
-	function getURLExportLoad()		{return "/ql-kho-hang/lenh-xuat/".$this->getId();}
-	function getURLExportPrint()	{return "/ql-kho-hang/lenh-xuat/".$this->getId()."/print";}
-	function getURLExportIntroPrint(){return "/ql-kho-hang/lenh-xuat/".$this->getId()."/gioi-thieu/print";}
+	function getURLExportLoad()		{return "/kho-hang/".$this->getWarehouse()->getKey()."/lenh-xuat/".$this->getId();}
+	function getURLExportPrint()	{return "/kho-hang/".$this->getWarehouse()->getKey()."/lenh-xuat/".$this->getId()."/in";}
+	function getURLExportIntroPrint(){return "/kho-hang/".$this->getWarehouse()->getKey()."/lenh-xuat/".$this->getId()."/in/gioi-thieu";}
 }
 ?>

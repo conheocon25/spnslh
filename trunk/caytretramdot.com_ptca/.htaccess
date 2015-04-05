@@ -97,6 +97,10 @@ RewriteRule ^kho-hang/([A-Za-z0-9_-]+)/lenh-nhap/([0-9]+)$ 			?cmd=WarehouseImpo
 RewriteRule ^kho-hang/([A-Za-z0-9_-]+)/lenh-nhap/([0-9]+)/([0-9]+)$	?cmd=WarehouseImportSupplierView&IdKey=$1&IdSupplier=$2&IdInvoice=$3	[L]
 
 RewriteRule ^kho-hang/([A-Za-z0-9_-]+)/lenh-xuat$ 					?cmd=WarehouseExport&IdKey=$1					[L]
+RewriteRule ^kho-hang/([A-Za-z0-9_-]+)/lenh-xuat/([0-9]+)$ 			?cmd=WarehouseExportView&IdKey=$1&IdInvoice=$2		[L]
+RewriteRule ^kho-hang/([A-Za-z0-9_-]+)/lenh-xuat/([0-9]+)/in$ 		?cmd=WarehouseExportViewPrint&IdKey=$1&IdInvoice=$2	[L]
+RewriteRule ^kho-hang/([A-Za-z0-9_-]+)/lenh-xuat/([0-9]+)/in/gioi-thieu$ 		?cmd=WarehouseExportViewIntroPrint&IdKey=$1&IdInvoice=$2	[L]
+
 RewriteRule ^kho-hang/([A-Za-z0-9_-]+)/lenh-xuat/s1$ 				?cmd=WarehouseExportLoadQueue&IdKey=$1 			[L]
 RewriteRule ^kho-hang/([A-Za-z0-9_-]+)/lenh-xuat/s2$ 				?cmd=WarehouseExportLoadFinish&IdKey=$1 		[L]
 
@@ -121,6 +125,8 @@ RewriteRule ^ql-ban-hang/gia-ban$ 								?cmd=SalePrice 											[L]
 RewriteRule ^ql-ban-hang/gia-ban/([0-9]+)$ 						?cmd=SalePriceBranch&IdBranch=$1						[L]
 RewriteRule ^ql-ban-hang/gia-ban/([0-9]+)/([0-9]+)$ 			?cmd=SalePriceBranchCustomer&IdBranch=$1&IdCustomer=$2 	[L]
 RewriteRule ^ql-ban-hang/gia-ban/([0-9]+)/([0-9]+)/([0-9]+)$ 	?cmd=SalePriceBranchCustomerView&IdBranch=$1&IdCustomer=$2&IdCP=$3 	[L]
+
+RewriteRule ^ql-ban-hang/gia-nhap$ 								?cmd=SalePriceImport 									[L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # QLNS

@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class SaleCommand extends Command {
+	class SalePriceImport extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -15,27 +15,23 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mConfig 		= new \MVC\Mapper\Config();
-			$mSaleCommand 	= new \MVC\Mapper\SaleCommand();
-															
+			$mConfig 	= new \MVC\Mapper\Config();
+			$mBranch 	= new \MVC\Mapper\Branch();
+																		
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------																					
-			$Title = "LỆNH BÁN";
+			$Title 		= "GIÁ NHẬP";
 			$Navigation = array(array("BÁN HÀNG", "/ql-ban-hang"));
-			$ConfigTimer	= $mConfig->findByName("TIMER_01");
-			
-			$CommandFinishAll = $mSaleCommand->findByDateState(array( \date("Y-m-d"), 3));
-			
+			$BranchAll 	= $mBranch->findAll();
+															
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------																											
-			$request->setObject("CommandFinishAll", $CommandFinishAll);
-			
-			$request->setObject("Navigation", 	$Navigation);
-			$request->setObject("ConfigTimer", 	$ConfigTimer);
+			$request->setObject("Navigation", 	$Navigation);				
 			$request->setProperty("Title"	, 	$Title);
-															
+			$request->setObject("BranchAll", 	$BranchAll);
+																	
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

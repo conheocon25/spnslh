@@ -13,7 +13,7 @@ class SaleCommand extends Mapper implements \MVC\Domain\SaleCommandFinder {
         $this->insertStmt 		= self::$PDO->prepare("insert into sale_command (id_user, id_branch, datetime, note, state) values(?, ?, ?, ?, ?)");
 		$this->deleteStmt 		= self::$PDO->prepare("delete from sale_command where id=?");
 		
-		$this->findByStateStmt	= self::$PDO->prepare("select * from sale_command where state=? ORDER BY datetime DESC");		
+		$this->findByStateStmt	= self::$PDO->prepare("select * from sale_command where state=? ORDER BY datetime DESC");
 		$this->findByUserStmt	= self::$PDO->prepare("select * from sale_command where id_user=? ORDER BY datetime DESC");
 		$this->findByBranchStmt	= self::$PDO->prepare("select * from sale_command where id_branch=? ORDER BY datetime DESC");
 		
