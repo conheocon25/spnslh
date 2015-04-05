@@ -27,12 +27,16 @@
 									<tr tal:repeat="User UserAll1">
 										<td class="text-center"><span tal:content="repeat/User/number"/></td>
 										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id User/getId" tal:content="User/getEmail"/></td>
-										<th class="text-left">
-											Xem (<span tal:content="User/getBranchRole/count"/>)
-										</th>
-										<th class="text-left">
-											Xem (<span tal:content="User/getWarehouseRole/count"/>)
-										</th>
+										<td class="text-left">
+											<a tal:attributes="href User/getURLBranchRole">
+												Xem (<span tal:content="User/getBranchRole/count"/>)
+											</a>
+										</td>
+										<td class="text-left">
+											<a tal:attributes="href User/getURLWarehouseRole">
+												Xem (<span tal:content="User/getWarehouseRole/count"/>)
+											</a>
+										</td>
 										<td class="text-center">
 											<a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id User/getId">
 												<i class="glyphicon glyphicon-remove"/>

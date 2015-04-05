@@ -122,7 +122,14 @@ class User extends Object{
 		if ($Count>0)return true;
 		return false;
 	}
+	function getURLBranchRole(){
+		return "/ql-thiet-lap/nguoi-dung/".$this->getId()."/don-vi";	
+	}
 	
+	function getURLWarehouseRole(){
+		return "/ql-thiet-lap/nguoi-dung/".$this->getId()."/kho-hang";	
+	}
+		
 	function toJSON(){
 		$json = array(
 			'Id' 			=> $this->getId(),

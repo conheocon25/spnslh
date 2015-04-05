@@ -136,13 +136,13 @@ class InvoiceSell extends Object{
 	function getState(){return $this->State;}
 	function getStatePrint(){
 		if ($this->State == 0){
-			return "Đang soạn";
+			return "Đ.Soạn";
 		}else if($this->State == 1){
-			return "Xuất hàng";
+			return "X.Hàng";
 		}else if ($this->State == 2){
-			return "Xong";
+			return "Đ.Xong";
 		}
-		return "Hủy";
+		return "Đ.Hủy";
 	}
 	
 	function getDetailAll(){

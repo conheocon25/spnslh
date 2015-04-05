@@ -42,7 +42,8 @@
 						$Tracking = new \MVC\Domain\Tracking(
 							null,
 							$AD[0],
-							$AD[1]
+							$AD[1],
+							0, 0, 0 ,0 ,0 ,0 ,0 ,0 ,0
 						);
 						$mTracking->insert($Tracking);
 						$Tracking->generateDaily();

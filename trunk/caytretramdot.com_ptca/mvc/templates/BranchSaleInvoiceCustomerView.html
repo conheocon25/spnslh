@@ -78,7 +78,10 @@
 											count 		Detail/getCount;
 											price 		Detail/getPrice;											
 							" 
-							tal:content="Detail/getGood/getName"/>														
+							tal:content="Detail/getGood/getName"/>
+							<span 
+								tal:condition="php:Invoice->getState()>0?true:false"							
+								tal:content="Detail/getGood/getName"/>
 						</td>
 						<td><div class="text-left" tal:content="Detail/getGood/getUnit"/></td>
 						<td><div class="text-right" tal:content="Detail/getCountPrint"/></td>
