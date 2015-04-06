@@ -130,6 +130,10 @@ class TrackDailyWarehouse extends Object{
 	function getURLWarehouseExe()	{return "/kho-hang/".$this->getWarehouse()->getKey()."/bao-cao/".$this->getIdTrack()."/".$this->getId()."/exe";}
 	function getURLWarehousePrint()	{return "/kho-hang/".$this->getWarehouse()->getKey()."/bao-cao/".$this->getIdTrack()."/".$this->getId()."/in";}
 	
+	function getURLReport()		{
+		return "/ql-bao-cao/".$this->getIdTrack()."/".($this->getDate())."/kho-hang/".$this->getId();
+	}
+	
 	//-------------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}	

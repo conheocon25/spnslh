@@ -6,22 +6,26 @@ class TrackDailyWarehouse extends Mapper implements \MVC\Domain\TrackDailyWareho
         parent::__construct();				
 		$tblTrackDailyWarehouse = "track_daily_warehouse";
 		
-		$selectAllStmt 			= sprintf("select * from %s", $tblTrackDailyWarehouse);
-		$selectStmt 			= sprintf("select *  from %s where id=?", $tblTrackDailyWarehouse);
-		$updateStmt 			= sprintf("update %s set id_track=?, id_warehouse=?, date=?, old=?, import=?, export=? where id=?", $tblTrackDailyWarehouse);
-		$insertStmt 			= sprintf("insert into %s (id_track, id_warehouse, date, old, import, export) values(?, ?, ?, ?, ?, ?)", $tblTrackDailyWarehouse);
-		$deleteStmt 			= sprintf("delete from %s where id=?", $tblTrackDailyWarehouse);
-		$deleteByTrackStmt 		= sprintf("delete from %s where id_track=?", $tblTrackDailyWarehouse);
-		$findByWarehouseStmt 		= sprintf("select *  from %s where id_warehouse=?", $tblTrackDailyWarehouse);
-		$findByTrackWarehouseStmt 	= sprintf("select *  from %s where id_track=? AND id_warehouse=?", $tblTrackDailyWarehouse);
+		$selectAllStmt 					= sprintf("select * from %s", $tblTrackDailyWarehouse);
+		$selectStmt 					= sprintf("select *  from %s where id=?", $tblTrackDailyWarehouse);
+		$updateStmt 					= sprintf("update %s set id_track=?, id_warehouse=?, date=?, old=?, import=?, export=? where id=?", $tblTrackDailyWarehouse);
+		$insertStmt 					= sprintf("insert into %s (id_track, id_warehouse, date, old, import, export) values(?, ?, ?, ?, ?, ?)", $tblTrackDailyWarehouse);
+		$deleteStmt 					= sprintf("delete from %s where id=?", $tblTrackDailyWarehouse);
+		$deleteByTrackStmt 				= sprintf("delete from %s where id_track=?", $tblTrackDailyWarehouse);
+		
+		$findByDateStmt 				= sprintf("select *  from %s where date=?", $tblTrackDailyWarehouse);
+		$findByWarehouseStmt 			= sprintf("select *  from %s where id_warehouse=?", $tblTrackDailyWarehouse);
+		$findByTrackWarehouseStmt 		= sprintf("select *  from %s where id_track=? AND id_warehouse=?", $tblTrackDailyWarehouse);
 				
-        $this->selectAllStmt 	= self::$PDO->prepare($selectAllStmt);
-        $this->selectStmt 		= self::$PDO->prepare($selectStmt);
-        $this->updateStmt 		= self::$PDO->prepare($updateStmt);
-        $this->insertStmt 		= self::$PDO->prepare($insertStmt);
-		$this->deleteStmt 		= self::$PDO->prepare($deleteStmt);
-		$this->deleteByTrackStmt= self::$PDO->prepare($deleteByTrackStmt);
-		$this->findByWarehouseStmt = self::$PDO->prepare($findByWarehouseStmt);
+        $this->selectAllStmt 			= self::$PDO->prepare($selectAllStmt);
+        $this->selectStmt 				= self::$PDO->prepare($selectStmt);
+        $this->updateStmt 				= self::$PDO->prepare($updateStmt);
+        $this->insertStmt 				= self::$PDO->prepare($insertStmt);
+		$this->deleteStmt 				= self::$PDO->prepare($deleteStmt);
+		$this->deleteByTrackStmt		= self::$PDO->prepare($deleteByTrackStmt);
+		
+		$this->findByDateStmt 			= self::$PDO->prepare($findByDateStmt);
+		$this->findByWarehouseStmt 		= self::$PDO->prepare($findByWarehouseStmt);
 		$this->findByTrackWarehouseStmt = self::$PDO->prepare($findByTrackWarehouseStmt);
     }
 	
@@ -70,6 +74,11 @@ class TrackDailyWarehouse extends Mapper implements \MVC\Domain\TrackDailyWareho
     function selectStmt() {return $this->selectStmt;}
     function selectAllStmt() {return $this->selectAllStmt;}	
 	function deleteByTrack(array $values) {return $this->deleteByTrackStmt->execute( $values );}
+	
+	function findByDate($values){
+		$this->findByDateStmt->execute( $values );
+        return new TrackDailyWarehouseCollection( $this->findByDateStmt->fetchAll(), $this );
+    }
 	
 	function findByWarehouse(array $values) {
 		$this->findByWarehouseStmt->execute( $values );

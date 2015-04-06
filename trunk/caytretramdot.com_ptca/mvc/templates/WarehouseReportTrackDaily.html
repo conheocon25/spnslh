@@ -26,7 +26,7 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr tal:repeat="TDW TDWAll">
+										<tr tal:repeat="TDW TDWAll" tal:attributes="class php: DateCurrent==TDW->getDate()?'success':''">
 											<td class="center"><span tal:content="repeat/TDW/number"/></td>
 											<td><a tal:attributes="href TDW/getURLWarehouse"><span tal:content="TDW/getDatePrint"/></a></td>
 											<td class="text-right"><span tal:content="TDW/getOldPrint"/></td>
@@ -60,7 +60,7 @@
 					type: "POST",					
 					url: URlExe,
 					success: function(msg){
-						//location.reload();
+						location.reload();
 					}
 				});
 			});

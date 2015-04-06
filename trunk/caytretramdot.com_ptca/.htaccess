@@ -143,6 +143,7 @@ RewriteRule ^ql-bao-cao/([0-9]+)/([0-9_-]+)/ban-hang/([0-9]+)$ 				?cmd=ReportTr
 RewriteRule ^ql-bao-cao/([0-9]+)/([0-9_-]+)/ban-hang/([0-9]+)/([0-9]+)$ 	?cmd=ReportTrackSaleBranchCustomer&IdTrack=$1&Date=$2&IdTDB=$3&IdTDBC=$4	[L]
 
 RewriteRule ^ql-bao-cao/([0-9]+)/([0-9_-]+)/kho-hang$ 			?cmd=ReportTrackWarehouse&IdTrack=$1&Date=$2	[L]
+RewriteRule ^ql-bao-cao/([0-9]+)/([0-9_-]+)/kho-hang/([0-9]+)$ 	?cmd=ReportTrackWarehouseView&IdTrack=$1&Date=$2&IdTDW=$3	[L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # SETTING
