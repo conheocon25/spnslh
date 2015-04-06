@@ -8,7 +8,7 @@
         zoomLevel: 17,
 		imagewidth: 50,
 		imageheight: 50,
-		center: '193-195 Dien Bien Phu, P.My Phu, TP Cao Lanh',		
+		center: 'Binh Thanh, Ho Chi Minh, Viet Nam',		
 		start: '#start',		
         end: '#end',
 		directions: 'directions',
