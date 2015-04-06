@@ -39,15 +39,16 @@
 			
 			$Title 		= $Track->getName();
 			$Navigation = array(
-				array(mb_strtoupper($Warehouse->getName(), 'UTF8'), "/don-vi/".$Warehouse->getKey()),
+				array(mb_strtoupper($Warehouse->getName(), 'UTF8'), "/kho-hang/".$Warehouse->getKey()),
 				array("BÁO CÁO", "/kho-hang/".$Warehouse->getKey()."/bao-cao")
 			);
 												
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------																											
-			$request->setObject("Navigation", $Navigation);
-			$request->setProperty("Title"	, $Title);
+			$request->setObject("Navigation"	, $Navigation);
+			$request->setProperty("Title"		, $Title);
+			$request->setProperty("DateCurrent"	, \date('Y-m-d') );
 						
 			$request->setObject("Track"		, $Track);
 			$request->setObject("TDWAll"	, $TDWAll);

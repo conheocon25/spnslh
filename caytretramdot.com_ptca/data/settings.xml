@@ -122,7 +122,8 @@
 		<command name="ReportTrackSaleBranch">			<view>ReportTrackSaleBranch</view></command>
 		<command name="ReportTrackSaleBranchCustomer">	<view>ReportTrackSaleBranchCustomer</view></command>
 		
-		<command name="ReportTrackWarehouse">		<view>ReportTrackWarehouse</view></command>
+		<command name="ReportTrackWarehouse">			<view>ReportTrackWarehouse</view></command>
+		<command name="ReportTrackWarehouseView">		<view>ReportTrackWarehouseView</view></command>
 		
 		<!-- ============================================================================== -->
 		<!-- SETTING	 																	-->
