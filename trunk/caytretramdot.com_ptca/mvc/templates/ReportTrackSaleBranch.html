@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mFront.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mFront.xhtml/IncludeCSS"/>		
+	</head>
+	<body>
+		<tal:block metal:use-macro="mFront.xhtml/Header"/>
+		<div class="container-fluid" id="wraper">
+			<div class="row">				
+				<div>
+					<div class="col-md-8">
+						<div class="panel panel-primary">
+							<div class="panel-heading"><i class="glyphicon glyphicon-cog"/> <B tal:content="Title"/></div>
+							<div class="panel-body">								
+								<table class="table table-bordered table-striped table-hover">
+									<thead>
+										<tr>
+											<th width="32">ID</th>											
+											<th class="text-left">KHÁCH HÀNG</th>
+											<th class="text-right" width="120">NỢ CŨ</th>
+											<th class="text-right" width="120">PHÁT SINH</th>
+											<th class="text-right" width="120">THANH TOÁN</th>
+											<th class="text-right" width="120">NỢ MỚI</th>
+											<th class="text-center" width="60">
+												<!--
+												<div class="btn btn-xs btn-default ExeAll"><i class="glyphicon glyphicon-refresh"/></div>
+												!-->
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr tal:repeat="TDBC TDB/getTDBCustomerAll">
+											<td class="center"><span tal:content="repeat/TDBC/number"/></td>
+											<td>
+												<a tal:attributes="href TDBC/getURLReport">
+													<span tal:content="TDBC/getCustomer/getName"/>
+												</a>
+											</td>
+											<td class="text-right"><B tal:content="TDBC/getDebtOldPrint"/>		</td>
+											<td class="text-right"><span tal:content="TDBC/getSalePrint"/>		</td>
+											<td class="text-right"><span tal:content="TDBC/getCollectPrint"/>	</td>
+											<td class="text-right"><B tal:content="TDBC/getDebtNewPrint"/>		</td>
+											<td class="text-center">
+												<!--
+												<div class="btn btn-xs btn-default Exe" tal:attributes="url-exe TDBC/getURLExe"><i class="glyphicon glyphicon-refresh"/></div>
+												!-->
+											</td>
+										</tr>
+										<tr>
+											<td class="text-right" colspan="2"><B>TỔNG KẾT</B></td>
+											<td class="text-right"><B tal:content="TDB/getDebtOldPrint"/>		</td>
+											<td class="text-right"><span tal:content="TDB/getSalePrint"/>		</td>
+											<td class="text-right"><span tal:content="TDB/getCollectPrint"/>	</td>
+											<td class="text-right"><B tal:content="TDB/getDebtNewPrint"/>		</td>
+											<td class="text-center">
+												<div class="btn btn-xs btn-primary ReportPrint" tal:attributes="url-print TDB/getURLCustomerPrint"><i class="glyphicon glyphicon-print"/></div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="panel panel-primary">							
+							<div class="panel-heading"><i class="glyphicon glyphicon-cog"/> <B>NGÀY BÁO CÁO</B></div>
+							<div class="panel-body">
+								<ul class="list-group">
+									
+								</ul>
+							</div>	
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>		
+		<div metal:use-macro="mFront.xhtml/IncludeJS"/>
+		<script type="text/javascript">
+		/*<![CDATA[*/											
+			//In Báo cáo
+			$(".ReportPrint").click(function(){
+				var url = $(this).attr('url-print');
+				var thePopup = window.open( url, "In Báo Cáo", "menubar=0,location=0,height=700,width=700" );
+				thePopup.print();
+			});
+			
+		/*]]>*/
+		</script>
+	</body>
+</html>

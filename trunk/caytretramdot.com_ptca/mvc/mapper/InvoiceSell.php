@@ -17,9 +17,11 @@ class InvoiceSell extends Mapper implements \MVC\Domain\InvoiceSellFinder {
 		
 		$this->findByBranchCustomerStmt		= self::$PDO->prepare("select * from invoice_sell where id_branch=? AND id_customer=? ORDER BY datetime_created DESC");
 		
-		$this->findByCustomerStmt		= self::$PDO->prepare("select * from invoice_sell where id_customer=? ORDER BY datetime_created DESC");
-		$this->findByCustomerTop12Stmt	= self::$PDO->prepare("select * from invoice_sell where id_customer=? ORDER BY datetime_created DESC LIMIT 12");
-		$this->findByCustomerDateStmt	= self::$PDO->prepare("select * from invoice_sell where id_customer=? AND date(datetime_created)=? ORDER BY datetime_created DESC");
+		$this->findByCustomerStmt			= self::$PDO->prepare("select * from invoice_sell where id_customer=? ORDER BY datetime_created DESC");
+		$this->findByCustomerTop12Stmt		= self::$PDO->prepare("select * from invoice_sell where id_customer=? ORDER BY datetime_created DESC LIMIT 12");
+		$this->findByCustomerDateStmt		= self::$PDO->prepare("select * from invoice_sell where id_customer=? AND date(datetime_created)=? ORDER BY datetime_created DESC");
+		$this->findByCustomerDateStateStmt	= self::$PDO->prepare("select * from invoice_sell where id_customer=? AND date(datetime_created)=? AND state=? ORDER BY datetime_created DESC");
+		
 		$this->findByUserStmt			= self::$PDO->prepare("select * from invoice_sell where id_user=? ORDER BY datetime_created DESC");
 		
 		$this->findByTrackDailyStmt		= self::$PDO->prepare("select * from invoice_sell where date(datetime_created)=? ORDER BY datetime_created DESC");
@@ -110,6 +112,11 @@ class InvoiceSell extends Mapper implements \MVC\Domain\InvoiceSellFinder {
 	function findByCustomerDate($values) {		
         $this->findByCustomerDateStmt->execute( $values );
         return new InvoiceSellCollection( $this->findByCustomerDateStmt->fetchAll(), $this );
+    }
+	
+	function findByCustomerDateState($values) {		
+        $this->findByCustomerDateStateStmt->execute( $values );
+        return new InvoiceSellCollection( $this->findByCustomerDateStateStmt->fetchAll(), $this );
     }
 	
 	function findByUser($values) {

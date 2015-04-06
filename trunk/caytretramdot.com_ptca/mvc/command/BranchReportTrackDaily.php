@@ -43,8 +43,9 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------																											
-			$request->setObject("Navigation", $Navigation);
-			$request->setProperty("Title"	, $Title);
+			$request->setObject("Navigation"	, $Navigation);
+			$request->setProperty("Title"		, $Title);
+			$request->setProperty("DateCurrent"	, \date('Y-m-d'));
 						
 			$request->setObject("Track"		, $Track);
 			$request->setObject("TDBAll"	, $TDBAll);
