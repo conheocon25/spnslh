@@ -110,6 +110,13 @@ class TrackDailyBranchCustomer extends Object{
 		return "/don-vi/".$Branch->getKey()."/bao-cao/".$Track->getId()."/khach-hang/".$this->getIdTDB()."/".$this->getId()."/exe";
 	}
 	
+	function getURLReport(){
+		$TDB 	= $this->getTDB();
+		$Branch = $TDB->getBranch();
+		$Track 	= $TDB->getTrack();
+		return "/ql-bao-cao/".$Track->getId()."/".($TDB->getDate())."/ban-hang/".$TDB->getId()."/".$this->getId();
+	}
+	
 	//-------------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}	

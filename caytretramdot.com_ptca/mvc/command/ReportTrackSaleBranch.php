@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class ReportTrackSale extends Command {
+	class ReportTrackSaleBranch extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -13,6 +13,7 @@
 			//-------------------------------------------------------------
 			$IdTrack 	= $request->getProperty('IdTrack');
 			$Date 		= $request->getProperty('Date');
+			$IdTDB 		= $request->getProperty('IdTDB');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
@@ -25,14 +26,13 @@
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
 			$Track 			= $mTrack->find($IdTrack);
-			$TDBAll			= $mTDB->findByDate(array($Date));
-			
-			$DateStr		= date('d/m/Y', strtotime($Date));
-			$Title 			= $DateStr.' BÁN HÀNG';
-			
+			$TDB			= $mTDB->find($IdTDB);
+						
+			$Title 			= $TDB->getBranch()->getName();
 			$Navigation 	= array(
-				array("BÁO CÁO", 		"/ql-bao-cao"),
-				array($Track->getName(), $Track->getURLReport())
+				array("BÁO CÁO", 						"/ql-bao-cao"),
+				array($Track->getName(), 				$Track->getURLReport()),
+				array($TDB->getDatePrint()." BÁN HÀNG", "/ql-bao-cao/".$Track->getId()."/".$TDB->getDate()."/ban-hang")
 			);
 																		
 			//-------------------------------------------------------------
@@ -40,10 +40,9 @@
 			//-------------------------------------------------------------																											
 			$request->setProperty("Title", 		$Title);
 			$request->setObject("Navigation", 	$Navigation);
-			
-			$request->setProperty("Date", 		$Date);
+						
 			$request->setObject("Track", 		$Track);
-			$request->setObject("TDBAll", 		$TDBAll);
+			$request->setObject("TDB", 			$TDB);
 																		
 			return self::statuses('CMD_DEFAULT');
 		}

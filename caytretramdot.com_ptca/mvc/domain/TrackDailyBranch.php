@@ -131,6 +131,10 @@ class TrackDailyBranch extends Object{
 	function getURLWarehouse()	{return "/don-vi/".$this->getBranch()->getKey()."/bao-cao/".$this->getIdTrack()."/kho-hang/".$this->getId();}
 	function getURLQuota()		{return "/don-vi/".$this->getBranch()->getKey()."/bao-cao/".$this->getIdTrack()."/han-ngach/".$this->getId();}
 	
+	function getURLReport()		{
+		return "/ql-bao-cao/".$this->getIdTrack()."/".($this->getDate())."/ban-hang/".$this->getId();
+	}
+	
 	//-------------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}	

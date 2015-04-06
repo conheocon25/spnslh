@@ -48,7 +48,7 @@
 			$TDBC->setDebtOld($DebtOldValue);
 			
 			//SALE
-			$InvoiceAll = $mInvoiceSell->findByCustomerDate(array($Customer->getId(), $Date));
+			$InvoiceAll = $mInvoiceSell->findByCustomerDateState(array($Customer->getId(), $Date, 2));
 			$ValueInvoice = 0;
 			while ($InvoiceAll->valid()){
 				$Invoice = $InvoiceAll->current();

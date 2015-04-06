@@ -119,6 +119,9 @@
 		<command name="Report">						<view>Report</view></command>
 		<command name="ReportTrack">				<view>ReportTrack</view></command>
 		<command name="ReportTrackSale">			<view>ReportTrackSale</view></command>
+		<command name="ReportTrackSaleBranch">			<view>ReportTrackSaleBranch</view></command>
+		<command name="ReportTrackSaleBranchCustomer">	<view>ReportTrackSaleBranchCustomer</view></command>
+		
 		<command name="ReportTrackWarehouse">		<view>ReportTrackWarehouse</view></command>
 		
 		<!-- ============================================================================== -->

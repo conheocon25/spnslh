@@ -43,8 +43,8 @@ class TrackDaily extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------		
-	function getURLSale()		{return "/ql-bao-cao/".$this->getIdTrack()."/".$this->getId()."/ban-hang";}
-	function getURLWarehouse()	{return "/ql-bao-cao/".$this->getIdTrack()."/".$this->getId()."/kho-hang";}
+	function getURLSale()		{return "/ql-bao-cao/".$this->getIdTrack()."/".$this->getDate()."/ban-hang";}
+	function getURLWarehouse()	{return "/ql-bao-cao/".$this->getIdTrack()."/".$this->getDate()."/kho-hang";}
 	
 	//-------------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
