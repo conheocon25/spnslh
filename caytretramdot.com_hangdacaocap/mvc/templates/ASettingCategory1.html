@@ -39,11 +39,11 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr tal:repeat="Category1 Category/getCategoryAll">
-										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Category1/getId"/></td>
-										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Category1/getId" tal:content="Category1/getName"/></td>
-										<td class="right"><span tal:content="Category1/getOrder" /></td>
-										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Category1/getId"><i class="glyphicon glyphicon-remove"/></a></td>
+									<tr tal:repeat="Product Category/getProductAll">
+										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Product/getId"/></td>
+										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Product/getId" tal:content="Product/getName"/></td>
+										<td class="right"><span tal:content="Product/getOrder" /></td>
+										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Product/getId"><i class="glyphicon glyphicon-remove"/></a></td>
 									</tr>
 								</tbody>								
 							</table>							
@@ -53,7 +53,7 @@
 					<div id="DialogIns" class="modal fade">
 						<div class="modal-dialog">
 							<div class="modal-content">
-								<div class="modal-header"><h3><i class="glyphicons-show_big_thumbnails modal-icon"/>THÊM MỚI DANH MỤC</h3></div>
+								<div class="modal-header"><h3><i class="glyphicons-show_big_thumbnails modal-icon"/>THÊM MỚI SẢN PHẨM</h3></div>
 								<form id="FormCategoryInsert" action="#" class="form-horizontal" novalidate="novalidate">
 									<div class="modal-body">
 										<div class="control-group">

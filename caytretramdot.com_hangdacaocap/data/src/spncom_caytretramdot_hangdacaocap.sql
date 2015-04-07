@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 06, 2015 at 06:47 AM
+-- Generation Time: Apr 07, 2015 at 05:55 AM
 -- Server version: 5.6.21
 -- PHP Version: 5.5.19
 
@@ -165,7 +165,7 @@ CREATE TABLE IF NOT EXISTS `tbl_config` (
 INSERT INTO `tbl_config` (`id`, `param`, `value`) VALUES
 (5, 'DISCOUNT', '0'),
 (6, 'ROW_PER_PAGE', '20'),
-(7, 'GUEST_VISIT', '2047'),
+(7, 'GUEST_VISIT', '2060'),
 (9, 'THEME', 'light-blue'),
 (10, 'NAME', 'HÀNG DA CAO CẤP VĨNH LONG'),
 (11, 'ADDRESS', 'F4 TP VĨNH LONG TỈNH VĨNH LONG'),
@@ -234,14 +234,14 @@ CREATE TABLE IF NOT EXISTS `tbl_guest` (
   `entry_time` varchar(32) CHARACTER SET latin1 NOT NULL,
   `exit_time` varchar(32) CHARACTER SET latin1 NOT NULL,
   `agent` varchar(16) CHARACTER SET latin1 NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=127 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=128 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tbl_guest`
 --
 
 INSERT INTO `tbl_guest` (`id`, `ip`, `entry_time`, `exit_time`, `agent`) VALUES
-(126, '127.0.0.1', '1428294707', '1428298307', '127.0.0.1');
+(127, '127.0.0.1', '1428378262', '1428381862', '127.0.0.1');
 
 -- --------------------------------------------------------
 
@@ -457,7 +457,7 @@ CREATE TABLE IF NOT EXISTS `tbl_product` (
   `viewed` int(11) NOT NULL,
   `liked` int(11) NOT NULL,
   `key` varchar(250) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=162 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=166 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `tbl_product`
@@ -479,7 +479,11 @@ INSERT INTO `tbl_product` (`id`, `idsupplier`, `idcategory`, `idmanufacturer`, `
 (158, 12, 15, 30, 3, 'Bóp Nam Da Đà Điểu', 'BNCS1215148', 1100000, 0, 0, 0, 'giay-nam-da-da-dieu-141251613568496'),
 (159, 12, 15, 30, 1, 'Bóp Nam Da Cá Sấu', 'ADT049B', 1300000, 0, 0, 0, 'bop-nam-da-ca-sau-14125165431585'),
 (160, 12, 18, 30, 2, 'Túi Xách Nữ Da Trăn', 'ADT015', 7500000, 0, 0, 0, 'tui-xach-nu-da-tran-150304123468'),
-(161, 12, 18, 30, 3, 'Túi Xách Nữ Da Cá Sấu', 'ADT008', 1050000, 0, 0, 0, 'tui-xach-nu-da-tran-150304125841157');
+(161, 12, 18, 30, 3, 'Túi Xách Nữ Da Cá Sấu', 'ADT008', 1050000, 0, 0, 0, 'tui-xach-nu-da-tran-150304125841157'),
+(162, 12, 14, 30, 2, 'Giầy Nam Da Cá Sấu', 'GN1748630', 1200000, 1200000, 10, 1, 'giay-nam-da-ca-sau-01'),
+(163, 12, 14, 30, 1, 'Giầy Nam Da Cá Sấu', 'GN001023456', 1000000, 1000000, 1, 1, 'giay-nam-da-ca-sau'),
+(164, 12, 14, 30, 1, 'Giầy Nam Da trăn', 'GNT0124588', 1500000, 1500000, 1, 1, 'giay-nam-da-tran'),
+(165, 12, 14, 30, 2, 'Giầy Nam Da trăn Loại 1', 'GNT0124588', 1800000, 1800000, 1, 1, 'giay-nam-da-tran-01');
 
 -- --------------------------------------------------------
 
@@ -520,7 +524,7 @@ CREATE TABLE IF NOT EXISTS `tbl_product_info` (
   `image1` varchar(150) NOT NULL,
   `image2` varchar(150) NOT NULL,
   `info` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=131 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=137 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_product_info`
@@ -542,7 +546,13 @@ INSERT INTO `tbl_product_info` (`id`, `idproduct`, `image1`, `image2`, `info`) V
 (127, 158, '/mvc/templates/front/img/item-2/4.jpg', '/mvc/templates/front/img/item-2/4.jpg', ''),
 (128, 159, '/mvc/templates/front/img/item-2/2.jpg', '/mvc/templates/front/img/item-2/2.jpg', ''),
 (129, 160, '/mvc/templates/front/img/item-3/3.jpg', '/mvc/templates/front/img/item-3/3.jpg', ''),
-(130, 161, '/mvc/templates/front/img/item-3/7.jpg', '/mvc/templates/front/img/item-3/7.jpg', '');
+(130, 161, '/mvc/templates/front/img/item-3/7.jpg', '/mvc/templates/front/img/item-3/7.jpg', ''),
+(131, 162, '/mvc/templates/front/img/item/2.jpg', '/mvc/templates/front/img/item/2.jpg', ''),
+(132, 163, '/mvc/templates/front/img/item/5.jpg', '/mvc/templates/front/img/item/3.jpg', ''),
+(133, 164, '/mvc/templates/front/img/item/6.jpg', '/mvc/templates/front/img/item/6.jpg', ''),
+(134, 165, '/mvc/templates/front/img/item/7.jpg', '/mvc/templates/front/img/item/7.jpg', ''),
+(135, 164, '/mvc/templates/front/img/item/6.jpg', '/mvc/templates/front/img/item/6.jpg', ''),
+(136, 165, '/mvc/templates/front/img/item/7.jpg', '/mvc/templates/front/img/item/7.jpg', '');
 
 -- --------------------------------------------------------
 
@@ -604,8 +614,7 @@ CREATE TABLE IF NOT EXISTS `tbl_supplier` (
 --
 
 INSERT INTO `tbl_supplier` (`id`, `name`, `phone`, `address`, `note`, `debt`) VALUES
-(10, 'Bếp Làng Biển', '0919 107 132', 'TP Cao Lãnh', '', 0),
-(12, 'Bếp Đầm Sen', '0919 107 132', 'TP Cao Lãnh', 'TP Cao Lãnh', 0);
+(12, 'Công ty ABC', '0919 001 002', 'TP Hồ Chí Minh', 'TP Hồ Chí Minh', 0);
 
 -- --------------------------------------------------------
 
@@ -905,7 +914,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 -- AUTO_INCREMENT for table `tbl_guest`
 --
 ALTER TABLE `tbl_guest`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=127;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=128;
 --
 -- AUTO_INCREMENT for table `tbl_image`
 --
@@ -940,7 +949,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 -- AUTO_INCREMENT for table `tbl_product`
 --
 ALTER TABLE `tbl_product`
-MODIFY `id` int(9) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=162;
+MODIFY `id` int(9) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=166;
 --
 -- AUTO_INCREMENT for table `tbl_product_attribute`
 --
@@ -955,7 +964,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=225;
 -- AUTO_INCREMENT for table `tbl_product_info`
 --
 ALTER TABLE `tbl_product_info`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=131;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=137;
 --
 -- AUTO_INCREMENT for table `tbl_slide`
 --

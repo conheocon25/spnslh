@@ -20,10 +20,10 @@
 			//-------------------------------------------------------------
 			$mSupplier 		= new \MVC\Mapper\Supplier();
 			$mProduct 		= new \MVC\Mapper\Product();
-			$mCategory1		= new \MVC\Mapper\Category1();
+			$mCategory1		= new \MVC\Mapper\Category();
 			$mManufacturer 	= new \MVC\Mapper\Manufacturer();
 			$mConfig 		= new \MVC\Mapper\Config();
-			
+			$mAttributeProduct 		= new \MVC\Mapper\AttributeProduct();	
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------									
@@ -55,6 +55,7 @@
 				$Supplier->getURLSettingCategory($IdCategory1) 
 			);			
 			$ManufacturerAll = $mManufacturer->findAll();			
+			$AttributeProductAll = $mAttributeProduct->findAll();			
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
@@ -71,6 +72,7 @@
 			$request->setObject('Supplier'		, $Supplier);			
 			$request->setObject('ConfigName'	, $ConfigName);			
 			$request->setObject('SupplierAll'	, $SupplierAll);
+			$request->setObject('AttributeProductAll'	, $AttributeProductAll);
 						
 			return self::statuses('CMD_DEFAULT');
 		}
