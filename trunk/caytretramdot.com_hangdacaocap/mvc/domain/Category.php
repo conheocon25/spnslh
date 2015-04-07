@@ -57,9 +57,16 @@ class Category extends Object{
 	//-------------------------------------------------------------------------------
 	//GET LIST
 	//-------------------------------------------------------------------------------		
+	function getCategory(){
+		$mCategory = new \MVC\Mapper\Category();
+		$Category = $mCategory->find($this->IdCategory);
+		return $Category;
+	}
+	
 	function getCategoryAll(){
-		$mCategory1 	= new \MVC\Mapper\Category1();
-		$CategoryAll 	= $mCategory1->findBy(array($this->getId()));
+		$mCategory 	= new \MVC\Mapper\Category();
+		//$CategoryAll 	= $mCategory->find($this->getId());
+		$CategoryAll 	= $mCategory->findAll();
 		return $CategoryAll;
 	}
 	function getProductAll(){

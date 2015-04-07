@@ -10,7 +10,7 @@
 			<ul style="display: block;">				
 				<li tal:repeat="Category1 CategoryAll1" tal:attributes="class php: Category1->getId()==IdCategory1?'active':''">
 					<a tal:attributes="href php:Supplier->getURLSettingCategory(Category1->getId())">
-						<span tal:content="Category1/getCategory/getName"/> / <span tal:content="Category1/getName"/>
+						<span tal:content="Category1/getName"/>
 					</a>
 				</li>
 			</ul>
@@ -45,6 +45,7 @@
 												tal:attributes="id 				Product/getId;
 																idcategory 		Product/getIdCategory;
 																idmanufacturer 	Product/getIdManufacturer;
+																idattributeproduct 	Product/getIdAttributeProduct;
 																name 			Product/getName;
 																code 			Product/getCode;
 																price1 			Product/getPrice1;
@@ -89,8 +90,7 @@
 											<div class="controls">
 												<select name="IdCategory1" id="IdCategory1" style="width:80%;">
 													<option tal:repeat="Category1 CategoryAll1" tal:attributes="value Category1/getId">
-														<span tal:content="Category1/getCategory/getName" /> / 
-														<span tal:content="Category1/getName" />
+														<span tal:content="Category1/getName" /> 
 													</option>
 												</select>
 											</div>
@@ -104,7 +104,21 @@
 													</option>
 												</select>
 											</div>
-										</div>										
+										</div>
+										<div class="form-group">
+											<label class="control-label">Mô tả chi tiết</label>
+											<div class="controls">
+												<select name="IdAttributeProduct" id="IdAttributeProduct" style="width:80%;">
+													<option tal:repeat="AttributeProduct AttributeProductAll" tal:attributes="value AttributeProduct/getId">
+														<span tal:content="AttributeProduct/getMaterial" /> -
+														<span tal:content="AttributeProduct/getSize" /> -
+														<span tal:content="AttributeProduct/getColor" />
+													</option>
+												</select>
+												<button id="URLInsAttributeProductButton" class="btn btn-primary btn-small"><i class="glyphicons-plus"/> Thêm mới</button>
+											</div>
+											
+										</div>
 										<div class="form-group">
 											<label class="control-label">Giá nhập</label>
 											<div class="controls">
@@ -153,7 +167,6 @@
 											<div class="controls">
 												<select name="IdCategory2" id="IdCategory2" style="width:80%;">
 													<option tal:repeat="Category1 CategoryAll1" tal:attributes="value Category1/getId">
-														<span tal:content="Category1/getCategory/getName" /> / 
 														<span tal:content="Category1/getName" />
 													</option>
 												</select>
@@ -165,6 +178,18 @@
 												<select name="IdManufacturer2" id="IdManufacturer2" style="width:80%;">
 													<option tal:repeat="Manufacturer ManufacturerAll" tal:attributes="value Manufacturer/getId">
 														<span tal:content="Manufacturer/getName" />
+													</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">Mô tả chi tiết</label>
+											<div class="controls">
+												<select name="IdAttributeProduct" id="IdAttributeProduct" style="width:80%;">
+													<option tal:repeat="AttributeProduct AttributeProductAll" tal:attributes="value AttributeProduct/getId">
+														<span tal:content="AttributeProduct/getMaterial" /> -
+														<span tal:content="AttributeProduct/getSize" /> -
+														<span tal:content="AttributeProduct/getColor" />
 													</option>
 												</select>
 											</div>
