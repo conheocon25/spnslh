@@ -15,7 +15,7 @@
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
-			//-------------------------------------------------------------			
+			//-------------------------------------------------------------
 			$mConfig 		= new \MVC\Mapper\Config();
 			$mBranch 		= new \MVC\Mapper\Branch();
 			$mBranchQuota	= new \MVC\Mapper\BranchQuota();
@@ -26,7 +26,7 @@
 			$Branch			= $mBranch->findByKey($IdKey);
 			$ConfigTimer	= $mConfig->findByName("TIMER_01");
 			
-			$BranchQuotaAll = $mBranchQuota->findByBranchDate(array($Branch->getId(), \date("Y-m-d")));
+			//$BranchQuotaAll = $mBranchQuota->findByBranchDate(array($Branch->getId(), \date("Y-m-d")));
 			
 			$Title = "BÁN HÀNG";
 			$Navigation = array(
@@ -37,7 +37,7 @@
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------																											
 			$request->setObject("Branch"		, $Branch);
-			$request->setObject("BranchQuotaAll", $BranchQuotaAll);
+			//$request->setObject("BranchQuotaAll", $BranchQuotaAll);
 			$request->setObject("ConfigTimer"	, $ConfigTimer);
 			
 			$request->setObject("Navigation"	, $Navigation);				

@@ -27,6 +27,7 @@
 			//-------------------------------------------------------------
 			$Track 			= $mTrack->find($IdTrack);
 			$TDB			= $mTDB->find($IdTDB);
+			$TDBAll			= $mTDB->findByDate(array($Date));
 						
 			$Title 			= $TDB->getBranch()->getName();
 			$Navigation 	= array(
@@ -43,6 +44,7 @@
 						
 			$request->setObject("Track", 		$Track);
 			$request->setObject("TDB", 			$TDB);
+			$request->setObject("TDBAll", 		$TDBAll);
 																		
 			return self::statuses('CMD_DEFAULT');
 		}

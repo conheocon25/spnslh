@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class BranchSaleCommandQuota extends Command {
+	class BranchSaleCommandQuotaExe extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -12,8 +12,7 @@
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
 			$IdKey 	= $request->getProperty('IdKey');
-			$Reload	= $request->getProperty('Reload');
-			
+						
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
@@ -66,23 +65,18 @@
 				
 				$CommandAll->next();
 			}			
-			if (isset($Reload)){				
-				$BranchQuotaAll = $mBranchQuota->findByBranchDate(array($Branch->getId(), \date("Y-m-d")));
-				while ($BranchQuotaAll->valid()){
-					$BQ = $BranchQuotaAll->current();
-					$BQ->reCount3();
-					$mBranchQuota->update($BQ);
-					$BranchQuotaAll->next();
-				}
-			}
+			
 			$BranchQuotaAll = $mBranchQuota->findByBranchDate(array($Branch->getId(), \date("Y-m-d")));
-																		
+			while ($BranchQuotaAll->valid()){
+				$BQ = $BranchQuotaAll->current();
+				$BQ->reCount3();
+				$mBranchQuota->update($BQ);
+				$BranchQuotaAll->next();
+			}
+																								
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------																											
-			$request->setObject("Branch", $Branch);
-			$request->setObject("BranchQuotaAll", $BranchQuotaAll);
-			
+			//-------------------------------------------------------------																																	
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

@@ -30,7 +30,7 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------																											
-			$request->setObject("Branch"		, $Branch);
+			$request->setObject("Branch"				, $Branch);
 			$request->setObject("CommandAllQueue"		, $CommandAllQueue);
 			$request->setObject("CommandAllFinish"		, $CommandAllFinish);
 																					

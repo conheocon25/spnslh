@@ -106,11 +106,33 @@ class Branch extends Object{
 		$BranchAll 		= $mSaleCommand->findByBranch(array($this->getId()));
 		return $BranchAll;
 	}
-	
+			
 	function getQuotaAll(){
-		$mBranchQuota 	= new \MVC\Mapper\BranchQuota();
-		$QuotaAll 		= $mBranchQuota->findByBranch(array($this->getId()));
+		$mBranchQuota 	= new \MVC\Mapper\BranchQuota();		
+		$QuotaAll 		= $mBranchQuota->findByBranchDate(array($this->getId(), \date("Y-m-d")));
 		return $QuotaAll;
+	}
+	
+	function checkQuota($Invoice){		
+		$QuotaAll 	= $this->getQuotaAll();
+		$IDAll		= $Invoice->getDetailAll();
+					
+		while ($IDAll->valid()){			
+			$ID = $IDAll->current();
+			$QuotaAll->rewind();
+			while($QuotaAll->valid()){				
+				$Quota = $QuotaAll->current();
+				if ($ID->getIdGood()==$Quota->getIdGood()){					
+					$D = $Quota->getCount2() - $Quota->getCount3();					
+					if ($ID->getCount() > $D){
+						return false;
+					}					
+				}
+				$QuotaAll->next();
+			}						
+			$IDAll->next();
+		}
+		return true;
 	}
 	
 	function getDailyAll(){

@@ -29,16 +29,19 @@
 			$Branch		= $mBranch->findByKey($IdKey);
 			$Customer	= $mCustomer->find($IdCustomer);
 			$Invoice	= $mInvoiceSell->find($IdInvoice);			
-			$BranchQuotaAll = $mBranchQuota->findByBranchDate(array($Branch->getId(), \date("Y-m-d")));
+			$URLCommand = "/don-vi/".$IdKey."/lenh-ban";
+			
+			//$result 	= $Branch->checkQuota($Invoice);
+			//echo $result;
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-			$request->setObject('Branch'		, $Branch);			
+			$request->setProperty('URLCommand'	, $URLCommand);
+			$request->setObject('Branch'		, $Branch);
 			$request->setObject('Customer'		, $Customer);
 			$request->setObject('Invoice'		, $Invoice);
-			$request->setObject('BranchQuotaAll', $BranchQuotaAll);
-			
+						
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

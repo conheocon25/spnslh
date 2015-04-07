@@ -34,7 +34,7 @@
 					<tr tal:repeat="Detail Command/getDetailAll">
 						<td><div class="text-center" tal:content="repeat/Detail/number" /></td>
 						<td><a 
-							tal:condition="php:Command->getState()==0?true:false"
+							tal:condition="php:Command->getState()==1?true:false"
 							class="command-detail-item" href="#DialogGoodUpd" data-toggle="modal" 
 							tal:attributes="id 			Detail/getId;
 											id_command 	Detail/getIdCommand;
@@ -44,7 +44,7 @@
 											count2 		Detail/getCount2;											
 							" 
 							tal:content="Detail/getGood/getName"/>
-							<span tal:condition="php:Command->getState()!=0?true:false" tal:content="Detail/getGood/getName"/>
+							<span tal:condition="php:Command->getState()>1?true:false" tal:content="Detail/getGood/getName"/>
 						</td>
 						<td><div class="text-left" tal:content="Detail/getGood/getUnit"/></td>
 						<td><div class="text-right" tal:content="Detail/getCount1Print"/></td>
@@ -52,7 +52,7 @@
 					</tr>
 				</tbody>
 			</table>
-			<a tal:condition="php:Command->getState()==0?true:false" class="Check btn btn-default" tal:attributes="data-url Command/getURLCheckExe">
+			<a tal:condition="php:Command->getState()==1?true:false" class="Check btn btn-default" tal:attributes="data-url Command/getURLCheckExe">
 				<i class="glyphicon glyphicon-ok"/> CHẤP THUẬN
 			</a>
 		</div>
