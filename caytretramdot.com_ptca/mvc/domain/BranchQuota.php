@@ -88,6 +88,12 @@ class BranchQuota extends Object{
 		}		
 		$this->Count3 = $Value;
 	}
+	
+	function getRemain()			{return $this->Count2 - $this->Count3;}
+	function getRemainPrint( ){
+		$num = number_format($this->getRemain(), 0, ',', ' ');
+		return $num;
+	}
 			
 	function setArray( $Data ){
         $this->Id 		= $Data[0];

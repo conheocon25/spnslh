@@ -28,7 +28,7 @@
 			$Config 		= $mConfig->findByName("ROW_PER_PAGE");
 						
 			$GoodGroupAll1 	= $mGoodGroup->findByPage(array($Page, $Config->getValue() ));
-			$PN 			= new \MVC\Domain\PageNavigation($GoodGroupAll->count(), $Config->getValue(), "/admin/setting/group");
+			$PN 			= new \MVC\Domain\PageNavigation($GoodGroupAll->count(), $Config->getValue(), "/ql-thiet-lap/hang-hoa");
 			
 			$Title = "HÀNG HÓA";
 			$Navigation = array(array("THIẾT LẬP", "/ql-thiet-lap"));

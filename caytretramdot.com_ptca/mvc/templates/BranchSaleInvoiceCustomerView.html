@@ -106,7 +106,14 @@
 				</tbody>
 			</table>			
 			<a tal:condition="php:Invoice->getState()==0?true:false" class="btn btn-default" href="#DialogGoodIns" data-toggle="modal"><i class="glyphicon glyphicon-plus"/> HÀNG HÓA</a>
-			<a tal:condition="php:Invoice->getState()==0?true:false" class="Check btn btn-default" tal:attributes="data-url Invoice/getURLBranchCheck"><i class="glyphicon glyphicon-forward"/> KHO</a>
+			<tal:block tal:condition="php:Invoice->getState()==0">
+				<a  tal:condition="php:Branch->checkQuota(Invoice)==true ?true:false" class="Check btn btn-default" tal:attributes="data-url Invoice/getURLBranchCheck; url-quota-exe Branch/getURLSaleCommandQuotaExe">
+					<i class="glyphicon glyphicon-forward"/> KHO
+				</a>
+				<a tal:condition="not: php:Branch->checkQuota(Invoice)==true ?true:false" class="btn btn-danger" tal:attributes="href URLCommand">
+					<i class="glyphicon glyphicon-check"/> KHÔNG ĐỦ
+				</a>
+			</tal:block>
 			<a tal:condition="php:Invoice->getState()>2?true:false" class="Ticket btn btn-default" tal:attributes="alt Invoice/getURLBranchPrint"><i class="glyphicon glyphicon-print"/> IN</a>
 		</div>
 	</div>
@@ -166,7 +173,7 @@
 						<label class="col-sm-3 control-label">Hàng hóa</label>
 						<div class="col-sm-8 controls">
 							<select id="IdGood1" style="width:100%;" class="form-control">
-								<option tal:repeat="QGood BranchQuotaAll" tal:attributes="value QGood/getIdGood">
+								<option tal:repeat="QGood Branch/getQuotaAll" tal:attributes="value QGood/getIdGood">
 									<span tal:content="QGood/getGood/getGroup/getName" /> / <span tal:content="QGood/getGood/getName" />
 								</option>
 							</select>
@@ -221,6 +228,7 @@
 	
 </body>
 <script>
+		
 	//THIẾT LẬP NGÀY GIỜ GIAO DỊCH
 	$('#InvoiceDateTimeCreated').datetimepicker({
 		language:  'vi',
@@ -374,10 +382,17 @@
 	$(".Check").click(function(){
 		var URLCheck = $(this).attr('data-url');
 		$.ajax({
-			type: "POST",					
+			type: "POST",
 			url: URLCheck,
-			success: function(msg){				
-				location.reload();
+			success: function(msg){								
+				var URLQuotaExe = $(".Check").attr('url-quota-exe');								
+				$.ajax({
+					type: "POST",
+					url: URLQuotaExe,
+					success: function(msg){				
+						location.reload();
+					}
+				});
 			}
 		});
 	});

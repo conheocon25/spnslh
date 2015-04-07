@@ -33,6 +33,7 @@ class InvoiceSellDetail extends Mapper implements \MVC\Domain\UserFinder {
 				invoice_sell S INNER JOIN invoice_sell_detail SD
 			ON S.id = SD.id_invoice
 			WHERE
+				S.state>=1 AND
 				date(datetime_created)=? AND id_good=?
 			", $tblInvoiceSellDetail);
 		

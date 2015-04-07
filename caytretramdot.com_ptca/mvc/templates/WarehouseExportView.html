@@ -61,8 +61,27 @@
 					</tr>
 				</tbody>
 			</table>			
-			<a tal:condition="php: Invoice->getState()<3?true:false" class="Ticket btn" tal:attributes="alt Invoice/getURLExportPrint"><i class="glyphicon glyphicon-print"/> IN LỆNH XUẤT</a>
-			<a tal:condition="php: Invoice->getState()<3?true:false" class="Ticket btn" tal:attributes="alt Invoice/getURLExportIntroPrint"><i class="glyphicon glyphicon-print"/> IN GIẤY GIỚI THIỆU</a>
+			<a tal:condition="php: Invoice->getState()>=2?true:false" class="Ticket btn" tal:attributes="alt Invoice/getURLExportPrint"><i class="glyphicon glyphicon-print"/> LỆNH XUẤT</a>
+			<a tal:condition="php: Invoice->getState()>=2?true:false" class="Ticket btn" tal:attributes="alt Invoice/getURLExportIntroPrint"><i class="glyphicon glyphicon-print"/> GIỚI THIỆU</a>
+			<!--
+			<a 	tal:condition="php: Invoice->getState()<2?true:false"
+				href="#DialogUpdateInvoice" data-toggle="modal" 
+				class="invoice-item"
+					tal:attributes="id 					Invoice/getId;
+									id_user 			Invoice/getIdUser;
+									id_customer 		Invoice/getIdCustomer;
+									id_branch 			Invoice/getIdBranch;
+									id_warehouse 		Invoice/getIdWarehouse;
+									id_transport 		Invoice/getIdTransport;
+									datetime_created 	Invoice/getDateTimeCreated;
+									datetime_updated	Invoice/getDateTimeUpdated;
+									note 				Invoice/getNote;
+									state 				Invoice/getState;
+									data-url			Invoice/getURLExportLoad;
+									"
+			><i class="glyphicon glyphicon-check"/> KIỂM TRA
+			</a>
+			!-->
 			
 			<a 	tal:condition="php: Invoice->getState()<2?true:false"
 				href="#DialogUpdateInvoice" data-toggle="modal" 
@@ -81,6 +100,7 @@
 									"
 			><i class="glyphicon glyphicon-home"/> CHỌN KHO
 			</a>
+						
 			<a 	tal:condition="php: Invoice->getState()==2?true:false"
 				href="#DialogDelInvoice" data-toggle="modal" 
 				class="invoice-item-remove"

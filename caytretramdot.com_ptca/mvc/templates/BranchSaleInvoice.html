@@ -8,7 +8,7 @@
 	<body>
 		<tal:block metal:use-macro="mFront.xhtml/Header"/>
 		<div class="container-fluid" id="wraper">
-			<div class="row" tal:condition="not:BranchQuotaAll/count">
+			<div class="row" tal:condition="not:Branch/getQuotaAll/count">
 				<div class="col-md-12">					
 					<div class="jumbotron text-center">
 						<h1>CHƯA ĐƯỢC PHÉP</h1>
@@ -17,7 +17,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="row" tal:condition="BranchQuotaAll/count">
+			<div class="row" tal:condition="Branch/getQuotaAll/count">
 				<div class="col-md-3">
 					<div id="BranchId" tal:attributes="data-id Branch/getId"/>
 					<input id="NameSearch" name="NameSearch" type="text" 

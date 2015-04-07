@@ -4,15 +4,15 @@ require_once( "mvc/base/Mapper.php" );
 class Branch extends Mapper implements \MVC\Domain\BranchFinder {
     function __construct() {
         parent::__construct();				
-        $this->selectAllStmt 	= self::$PDO->prepare("select * from branch");
+        $this->selectAllStmt 	= self::$PDO->prepare("select * from branch order by name");
         $this->updateStmt 		= self::$PDO->prepare("update branch set id_group=?, name=?, tel=?, fax=?, address=?, `key`=?, `enable`=?  where id=?");
         $this->selectStmt 		= self::$PDO->prepare("select * from branch where id=?");
         $this->insertStmt 		= self::$PDO->prepare("insert into branch (id_group, name, tel, fax, address, `key`, enable) values(?, ?, ?, ?, ?, ?, ?)");
 		$this->deleteStmt 		= self::$PDO->prepare("delete from branch where id=?");
 		$this->findByKeyStmt 	= self::$PDO->prepare("select *  from branch where `key`=?");
 		$this->findByGroupStmt 	= self::$PDO->prepare("SELECT * FROM branch WHERE id_group=? ORDER BY name");								
-		$this->findByPageStmt 	= self::$PDO->prepare("SELECT * FROM  branch LIMIT :start,:max");		
-		$this->findByGroupPageStmt 	= self::$PDO->prepare("SELECT * FROM  branch WHERE id_group=:id_group LIMIT :start,:max");
+		$this->findByPageStmt 	= self::$PDO->prepare("SELECT * FROM  branch order by name LIMIT :start,:max");		
+		$this->findByGroupPageStmt 	= self::$PDO->prepare("SELECT * FROM  branch WHERE id_group=:id_group order by name LIMIT :start,:max");
     } 
     function getCollection( array $raw ) {return new BranchCollection( $raw, $this );}
 

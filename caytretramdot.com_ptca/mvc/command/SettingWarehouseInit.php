@@ -28,7 +28,7 @@
 			$WarehouseAll 	= $mWarehouse->findByGroup(array($IdGroup));
 			$Warehouse 		= $mWarehouse->find($IdWarehouse);
 																		
-			$Title 	= mb_strtoupper($Warehouse->getName(), 'UTF8');
+			$Title 	= "KHỞI TẠO DỮ LIỆU";
 			$Navigation = array(
 				array("THIẾT LẬP", "/ql-thiet-lap"),
 				array("NHÓM KHO HÀNG", "/ql-thiet-lap/kho-hang"),

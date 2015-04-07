@@ -17,8 +17,8 @@
 								<thead>
 									<tr>
 										<th class="text-center" width="40">ID</th>
-										<th class="text-left">TÊN</th>
-										<th class="text-left" width="120">ĐIỆN THOẠI</th>
+										<th class="text-left" width="120">TÊN</th>
+										<th class="text-left">ĐỊA CHỈ</th>
 										<th class="text-left" width="120">KHO HÀNG</th>
 										<th class="text-center" width="40"><i class="glyphicon glyphicon-trash"/></th>
 									</tr>
@@ -27,7 +27,7 @@
 									<tr tal:repeat="Branch BranchAll1">
 										<td class="text-center"><span tal:content="repeat/Branch/number"/></td>
 										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="Branch" tal:attributes="data-id Branch/getId" tal:content="Branch/getName"/></td>										
-										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="Branch" tal:attributes="data-id Branch/getId" tal:content="Branch/getTel"/></td>
+										<td><span tal:content="Branch/getAddress"/></td>
 										<td>
 											<a tal:attributes="href Branch/getURLSettingWarehouse">
 												Xem (<span tal:content="Branch/getWarehouseAll/count"/>)
