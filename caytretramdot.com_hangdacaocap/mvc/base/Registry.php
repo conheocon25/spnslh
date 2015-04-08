@@ -16,7 +16,7 @@
 		//Sử dụng App và User lưu trữ như là một  Object trong Session
 		private function __construct() { 
 			require_once 'mvc/domain/User.php';
-			require_once 'mvc/domain/Cart.php';			
+			require_once 'mvc/domain/PackCart.php';			
 			session_start();
 		}
 		
@@ -37,46 +37,37 @@
 												
 		//Quản lí User
 		function setCurrentUser( \MVC\Domain\User $user ) {
-			return self::instance()->set('cafe_current_user', $user);
+			return self::instance()->set('banhang_current_user', $user);
 		}
 		function getCurrentUser() {
-			return self::instance()->get('cafe_current_user');
+			return self::instance()->get('banhang_current_user');
 		}
 						
 		function setCurrentIdUser( $Iduser ) {
-			return self::instance()->set('cafe_current_Iduser', $Iduser);
+			return self::instance()->set('banhang_current_Iduser', $Iduser);
 		}
 		function getCurrentIdUser() {
-			return self::instance()->get('cafe_current_Iduser');
+			return self::instance()->get('banhang_current_Iduser');
 		}
 		
 		//Quản lí TỪ KHÓA TÌM KIẾM
 		function setTermSearch( $TermSearch ) {
-			return self::instance()->set('cafe_current_term', $TermSearch);
+			return self::instance()->set('banhang_current_term', $TermSearch);
 		}
 		function getTermSearch() {
-			return self::instance()->get('cafe_current_term');
+			return self::instance()->get('banhang_current_term');
 		}
 		
 		//Quản lí Giỏ hàng
-		function setCart( \MVC\Domain\Cart $Cart ){
-			return self::instance()->set('cafe_current_cart', $Cart);
+		function setPackCart( \MVC\Domain\PackCart $PackCart ){
+			return self::instance()->set('banhang_current_cart', $PackCart);
 		}
-		function getCart(){
-			$Cart = self::instance()->get('cafe_current_cart');
-			if (!isset($Cart)){$Cart = new \MVC\Domain\Cart();}
-			return $Cart;
+		function getPackCart(){
+			$PackCart = self::instance()->get('banhang_current_cart');
+			if (!isset($PackCart)){$PackCart = new \MVC\Domain\PackCart();}
+			return $PackCart;
 		}
 		
-		//Quản lí đánh dấu
-		function setBookmark( \MVC\Domain\Cart $Cart ){
-			return self::instance()->set('cafe_current_bookmark', $Cart);
-		}
-		function getBookmark(){
-			$Cart = self::instance()->get('cafe_current_bookmark');
-			if (!isset($Cart)){$Cart = new \MVC\Domain\Cart();}
-			return $Cart;
-		}	
 		
 		function setCurrentCaptcha( $CurrentCaptcha ) { 
 			self::instance()->set('huongsenhong_CurrentCaptcha', $CurrentCaptcha); 
@@ -86,11 +77,11 @@
 		}
 		
 		function setCurrentTheme( $theme ) {
-			return self::instance()->set('cafe_current_theme', $theme);
+			return self::instance()->set('banhang_current_theme', $theme);
 		}
 		
 		function getCurrentTheme(){
-			$Theme = self::instance()->get('cafe_current_theme');
+			$Theme = self::instance()->get('banhang_current_theme');
 			if (!isset($Theme)){
 				$mConfig = new \MVC\Mapper\Config();
 				$Config = $mConfig->findByName("THEME");
@@ -100,7 +91,7 @@
 					return $Config->getValue();
 			}
 				
-			return self::instance()->get('cafe_current_theme');
+			return self::instance()->get('banhang_current_theme');
 		}
 	}
 	/*--------------------------------------------------------------------------------*/

@@ -172,6 +172,10 @@ class Product extends Object{
 		return "/san-pham/chi-tiet/". $this->getId();
 	}
 	
+	function getURLAddPackCart(){
+		return "/gio-hang/". $this->getId() ."/add";
+	}
+	
 	function getURLViewFull(){
 		return "http://huongsenhong.com/san-pham/".$this->getCategory()->getCategory()->getKey()."/".$this->getCategory()->getKey()."/".$this->getKey();
 	}
