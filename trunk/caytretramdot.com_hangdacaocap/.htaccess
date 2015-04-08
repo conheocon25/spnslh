@@ -44,6 +44,7 @@ RewriteRule ^gio-hang$ 											?cmd=FPackCart [L]
 RewriteRule ^gio-hang/([0-9]+)/add$								?cmd=FPackCartAdd&IdProduct=$1 [L]
 RewriteRule ^gio-hang/([0-9]+)/sub$								?cmd=FPackCartSub&IdCart=$1 [L]
 RewriteRule ^gio-hang/([0-9]+)/del$								?cmd=FPackCartDel&IdCart=$1 [L]
+RewriteRule ^gio-hang/del/all$									?cmd=FPackCartDelAll [L]
 
 RewriteRule ^lien-ket$ 											?cmd=FLinked [L]
 

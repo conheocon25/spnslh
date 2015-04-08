@@ -32,6 +32,7 @@
 		<command name="FPackCartAdd" 	type="public"><view>FPackCartAdd</view><status value="CMD_OK"><forward>FPackCart</forward></status></command>
 		<command name="FPackCartSub" 	type="public"><view>FPackCartSub</view><status value="CMD_OK"><forward>FPackCart</forward></status></command>
 		<command name="FPackCartDel" 	type="public"><view>FPackCartDel</view><status value="CMD_OK"><forward>FPackCart</forward></status></command>
+		<command name="FPackCartDelAll" 	type="public"><view>FPackCartDelAll</view><status value="CMD_OK"><forward>FPackCart</forward></status></command>
 			
 				
 		<command name="FSubcribe" 		type="public">
