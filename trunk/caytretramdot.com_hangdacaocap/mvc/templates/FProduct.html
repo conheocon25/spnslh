@@ -59,7 +59,7 @@
 									<h4 tal:content="DProduct/getName"></h4>
 									<h3 tal:content="DProduct/getPrice1Print"> 4.300.000đ</h3>											
 									<div>Số Lượng: <input type="Count" class="form-control" id="contact-email" placeholder="Count" value="1"/></div>											
-									<div class="view"><a href="#">Thêm vào giỏ hàng</a></div>	
+									<div class="view"><a tal:attributes="href DProduct/getURLAddPackCart">Thêm vào giỏ hàng</a></div>	
 								</div>
 								<hr />
 									<h3 > Chi Tiết</h3>
