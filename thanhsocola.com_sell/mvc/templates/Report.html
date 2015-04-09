@@ -28,6 +28,7 @@
 										<th width="100"><div class="text-right">SỐ DƯ</div></th>
 										<th width="120"><div class="text-right">TIỂU THỤ</div></th>
 										<th width="100"><div class="text-right">KHÁCH HÀNG</div></th>
+										<th width="100"><div class="text-right">N. CUNG CẤP</div></th>
 										<th width="40"><i class="glyphicons-bin"/></th>
 									</tr>
 								</thead>
@@ -38,6 +39,7 @@
 										<td class="right"><span tal:content="Track/getValuePrint"/></td>
 										<td class="right"><span tal:content="Track/getCountPrint"/> / <span tal:content="Track/getCountGlobalPrint"/></td>
 										<td class="center"><a tal:attributes="href Track/getURLCustomer" tal:content="string:Xem"/></td>
+										<td class="center"><a tal:attributes="href Track/getURLSupplier" tal:content="string:Xem"/></td>
 										<td class="center">
 											<a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Track/getId">
 												<i class="glyphicon glyphicon-remove"/>

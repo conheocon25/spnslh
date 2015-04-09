@@ -4,33 +4,32 @@ require_once( "mvc/base/Mapper.php" );
 class TrackingSupplier extends Mapper implements \MVC\Domain\TrackingSupplierFinder{
 
     function __construct() {
-        parent::__construct();
-				
+        parent::__construct();				
 		$tblTrackingSupplier 		= "tbl_tracking_supplier";
 		
 		$selectAllStmt 				= sprintf("select * from %s", $tblTrackingSupplier);
 		$selectStmt 				= sprintf("select *  from %s where id=?", $tblTrackingSupplier);
-		$updateStmt 				= sprintf("update %s set id_tracking=?, id_supplier=?, value_import=?, value_paid=?, value_old=? where id=?", $tblTrackingSupplier);
-		$insertStmt 				= sprintf("insert into %s (id_tracking, id_supplier, value_import, value_paid, value_old) values(?, ?, ?, ?, ?)", $tblTrackingSupplier);
+		$updateStmt 				= sprintf("update %s set id_tracking=?, id_supplier=?, value_import=?, value_paid=?, value_old=?, value=?, value_global=?, count=?, count_global=? where id=?", $tblTrackingSupplier);
+		$insertStmt 				= sprintf("insert into %s (id_tracking, id_supplier, value_import, value_paid, value_old, value, value_global, count, count_global) values(?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblTrackingSupplier);
 		$deleteStmt 				= sprintf("delete from %s where id=?", $tblTrackingSupplier);
 		$deleteByTrackingStmt 		= sprintf("delete from %s where id_tracking=?", $tblTrackingSupplier);
-		$findByStmt 				= sprintf("select id, 0 as id_tracking, id_td, id_course, sum(count) as count, avg(price) as price, sum(value) as value from %s where id_td=? GROUP BY id_course ORDER BY count DESC", $tblTrackingSupplier);		
-		$findBy1Stmt 				= sprintf("select * from %s where id_tracking=? AND id_supplier=? ", $tblTrackingSupplier);
+		
+		$findByStmt 				= sprintf("select * from %s where id_tracking=? AND id_supplier=? ", $tblTrackingSupplier);
 		$findByTrackingStmt 		= sprintf("select * from %s where id_tracking=?", $tblTrackingSupplier);
 				
 		$findByPreStmt 				= sprintf("select *  from %s where id_tracking<? AND id_supplier=? ORDER BY id_tracking DESC", $tblTrackingSupplier);
-		
+		$findByNextStmt 			= sprintf("select *  from %s where id_tracking>? AND id_supplier=? ORDER BY id_tracking", $tblTrackingSupplier);
 		
         $this->selectAllStmt 		= self::$PDO->prepare($selectAllStmt);
         $this->selectStmt 			= self::$PDO->prepare($selectStmt);
         $this->updateStmt 			= self::$PDO->prepare($updateStmt);
         $this->insertStmt 			= self::$PDO->prepare($insertStmt);
 		$this->deleteStmt 			= self::$PDO->prepare($deleteStmt);
-		$this->deleteByTrackingStmt = self::$PDO->prepare($deleteByTrackingStmt);
+		$this->deleteByTrackingStmt = self::$PDO->prepare($deleteByTrackingStmt);		
 		$this->findByStmt 			= self::$PDO->prepare($findByStmt);
-		$this->findBy1Stmt 			= self::$PDO->prepare($findBy1Stmt);		
 		$this->findByTrackingStmt 	= self::$PDO->prepare($findByTrackingStmt);
 		$this->findByPreStmt 		= self::$PDO->prepare($findByPreStmt);
+		$this->findByNextStmt 		= self::$PDO->prepare($findByNextStmt);
 
     }
     function getCollection( array $raw ) {return new TrackingSupplierCollection( $raw, $this );}
@@ -41,7 +40,11 @@ class TrackingSupplier extends Mapper implements \MVC\Domain\TrackingSupplierFin
 			$array['id_supplier'],
 			$array['value_import'],
 			$array['value_paid'],			
-			$array['value_old']
+			$array['value_old'],
+			$array['value'],
+			$array['value_global'],
+			$array['count'],
+			$array['count_global']
 		);
 	    return $obj;
     }
@@ -52,7 +55,11 @@ class TrackingSupplier extends Mapper implements \MVC\Domain\TrackingSupplierFin
 			$object->getIdSupplier(),
 			$object->getValueImport(),						
 			$object->getValuePaid(),
-			$object->getValueOld()
+			$object->getValueOld(),
+			$object->getValue(),
+			$object->getValueGlobal(),
+			$object->getCount(),
+			$object->getCountGlobal()
 		);
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
@@ -66,6 +73,10 @@ class TrackingSupplier extends Mapper implements \MVC\Domain\TrackingSupplierFin
 			$object->getValueImport(),			
 			$object->getValuePaid(),
 			$object->getValueOld(),
+			$object->getValue(),
+			$object->getValueGlobal(),
+			$object->getCount(),
+			$object->getCountGlobal(),
 			$object->getId()
 		);
         $this->updateStmt->execute( $values );
@@ -80,12 +91,7 @@ class TrackingSupplier extends Mapper implements \MVC\Domain\TrackingSupplierFin
 		$this->findByStmt->execute( $values );
         return new TrackingSupplierCollection( $this->findByStmt->fetchAll(), $this );
     }
-	
-	function findBy1(array $values){
-		$this->findBy1Stmt->execute( $values );
-        return new TrackingSupplierCollection( $this->findBy1Stmt->fetchAll(), $this );
-    }
-	
+		
 	function findByTracking(array $values){
 		$this->findByTrackingStmt->execute( $values );
         return new TrackingSupplierCollection( $this->findByTrackingStmt->fetchAll(), $this );
@@ -96,5 +102,9 @@ class TrackingSupplier extends Mapper implements \MVC\Domain\TrackingSupplierFin
         return new TrackingSupplierCollection( $this->findByPreStmt->fetchAll(), $this );
     }
 	
+	function findByNext(array $values) {
+		$this->findByNextStmt->execute( $values );
+        return new TrackingSupplierCollection( $this->findByNextStmt->fetchAll(), $this );
+    }	
 }
 ?>

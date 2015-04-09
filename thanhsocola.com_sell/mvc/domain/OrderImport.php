@@ -76,6 +76,17 @@ class OrderImport extends Object{
 		return ($Count*(100-$this->Discount))/100;
 	}
 	
+	function getCount(){		
+		$DetailAll = $this->getDetailAll();
+		$Count = 0;	
+		while ($DetailAll->valid()){
+			$Detail = $DetailAll->current();			
+			$Count += $Detail->getCount();
+			$DetailAll->next();
+		}		
+		return $Count;
+	}
+	
 	function getValuePrint(){
 		$Value = new \MVC\Library\Number($this->getValue());
 		return $Value->formatCurrency()." đ";

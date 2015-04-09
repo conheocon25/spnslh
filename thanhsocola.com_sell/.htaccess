@@ -117,14 +117,14 @@ RewriteRule ^report/([0-9]+)$ 								?cmd=ReportDetail&IdTrack=$1 [L]
 
 RewriteRule ^report/([0-9]+)/([0-9]+)$ 						?cmd=ReportDaily&IdTrack=$1&IdTD=$2 [L]
 RewriteRule ^report/([0-9]+)/customer$ 						?cmd=ReportDetailCustomer&IdTrack=$1 [L]
-RewriteRule ^report/([0-9]+)/supplier$ 						?cmd=ReportDetailSupplier&IdTrack=$1 [L]
 RewriteRule ^report/([0-9]+)/store$ 						?cmd=ReportDetailStore&IdTrack=$1 [L]
 
 RewriteRule ^report/([0-9]+)/customer/([0-9]+)$ 			?cmd=ReportDetailCustomerDetail&IdTrack=$1&IdTC=$2 [L]
 RewriteRule ^report/([0-9]+)/customer/([0-9]+)/next$ 		?cmd=ReportDetailCustomerDetail&IdTrack=$1&IdTC=$2&action=next [L]
 RewriteRule ^report/([0-9]+)/customer/([0-9]+)/previous$ 	?cmd=ReportDetailCustomerDetail&IdTrack=$1&IdTC=$2&action=previous [L]
 
-RewriteRule ^report/([0-9]+)/supplier/([0-9]+)$ 			?cmd=ReportDetailSupplierDetail&IdTrack=$1&IdSupplier=$2 [L]
+RewriteRule ^report/([0-9]+)/supplier$ 						?cmd=ReportDetailSupplier&IdTrack=$1 [L]
+RewriteRule ^report/([0-9]+)/supplier/([0-9]+)$ 			?cmd=ReportDetailSupplierDetail&IdTrack=$1&IdTS=$2 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # SETTING
