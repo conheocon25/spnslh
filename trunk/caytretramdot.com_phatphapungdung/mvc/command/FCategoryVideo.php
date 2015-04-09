@@ -31,20 +31,21 @@
 			//-------------------------------------------------------------											
 			$Buddha 			= $mCategoryBuddha->findByKey($KBuddha);
 			$Category 			= $mCategoryVideo->findByKey($KCategory);
-			
+						
 			if (!isset($Page)) $Page = 1;
-			$VideoOrderViewedAll 	= $mVideo->findByOrderViewedPage(array($Category->getId(), $Page, 8));
-			$VideoOrderLikedAll 	= $mVideo->findByOrderLikedPage(array($Category->getId(), $Page, 8));
-			$VideoOrderNameAll 		= $mVideo->findByOrderNamePage(array($Category->getId(), $Page, 8));
+			$VideoOrderViewedAll 	= $mVideo->findByOrderViewedPage(array($Category->getId(), $Page, 24));
+			$VideoOrderLikedAll 	= $mVideo->findByOrderLikedPage(array($Category->getId(), $Page, 24));
+			$VideoOrderNameAll 		= $mVideo->findByOrderNamePage(array($Category->getId(), $Page, 24));
 			
-			$PNByViewed	= new \MVC\Domain\PageNavigation($Category->getVideoAll()->count(), 8, $Category->getURLView()."/orderbyviewed" );
-			$PNByLiked	= new \MVC\Domain\PageNavigation($Category->getVideoAll()->count(), 8, $Category->getURLView()."/orderbyliked" );
-			$PNByName	= new \MVC\Domain\PageNavigation($Category->getVideoAll()->count(), 8, $Category->getURLView()."/orderbyname" );
+			$PNByViewed	= new \MVC\Domain\PageNavigation($Category->getVideoAll()->count(), 24, $Category->getURLView()."/orderbyviewed" );
+			$PNByLiked	= new \MVC\Domain\PageNavigation($Category->getVideoAll()->count(), 24, $Category->getURLView()."/orderbyliked" );
+			$PNByName	= new \MVC\Domain\PageNavigation($Category->getVideoAll()->count(), 24, $Category->getURLView()."/orderbyname" );
 			
 			$CategoryPostAll 	= $mCategoryPost->findAll();
 			$CategoryVideoAll 	= $mCategoryVideo->findAll();
 			$CategoryBuddhaAll 	= $mCategoryBuddha->findAll();
 			
+						
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
@@ -59,7 +60,7 @@
 			$request->setObject("VideoOrderNameAll", 	$VideoOrderNameAll);
 			
 			$request->setObject("Buddha", 				$Buddha);
-			$request->setObject("Category", 			$Category);			
+			$request->setObject("Category", 			$Category);
 			$request->setObject("CategoryPostAll", 		$CategoryPostAll);
 			$request->setObject("CategoryVideoAll", 	$CategoryVideoAll);
 			$request->setObject("CategoryBuddhaAll", 	$CategoryBuddhaAll);

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+	</head>	
+	<body>
+		<div metal:use-macro="mAdmin.xhtml/Header"/>
+		<div id="sidebar">
+			<ul style="display: block;">
+				<li tal:repeat="Tracking1 TrackingAll" tal:attributes="class php:Tracking1->getId()==Tracking->getId()?'active':'disable'">
+					<a tal:attributes="href Tracking1/getURLSupplier">
+						<i class="glyphicons-disk_open"/> <span tal:content="Tracking1/getName" />
+					</a>
+				</li>								
+			</ul>
+		</div>
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>			
+			<div metal:use-macro="mAdmin.xhtml/LocationBar"/>						
+			<div class="container-fluid">							
+				<div class="row">
+					<div class="col-12">
+						<div class="widget-box">
+							<div class="widget-content nopadding">
+								<div role="grid" class="dataTables_wrapper">
+									<table class="table table-bordered table-striped table-hover">
+										<thead>
+											<tr role="row">
+												<th width="64"><div class="text-center">STT</div></th>
+												<th><div class="text-left">NHÀ CUNG CẤP</div></th>
+												<th width="120"><div class="text-right">NỢ CŨ</div></th>
+												<th width="120"><div class="text-right">NHẬP HÀNG</div></th>
+												<th width="120"><div class="text-right">TIỂU THỤ</div></th>
+												<th width="120"><div class="text-right">THANH TOÁN</div></th>
+												<th width="120"><div class="text-right">NỢ MỚI</div></th>
+											</tr>
+										</thead>
+										<tbody role="alert" aria-live="polite" aria-relevant="all">
+											<tr tal:repeat="TS TSAll" class="gradeA odd">
+												<td><div class="text-center" tal:content="repeat/TS/number"/></td>
+												<td><span tal:content="TS/getSupplier/getName"/></td>
+												<td class="right"><span tal:content="TS/getValueOldPrint"/></td>
+												<td class="right"><span tal:content="TS/getValueImportPrint"/></td>
+												<td class="right"><span tal:content="TS/getCountPrint"/> / <span tal:content="TS/getCountGlobalPrint"/></td>
+												<td class="right"><span tal:content="TS/getValuePaidPrint"/></td>
+												<td class="right"><a tal:attributes="href TS/getURLView">
+													<div class="text-right" tal:content="TS/getValuePrint"/></a>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>  
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+	</body>
+</html>

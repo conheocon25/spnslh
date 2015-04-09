@@ -38,6 +38,7 @@ class CategoryVideo extends Object{
 		
 	function setName($Name) {$this->Name = $Name;$this->markDirty();}
 	function getName() 		{return $this->Name;}
+	function getNameReduce(){$S = new \MVC\Library\String($this->Name);return $S->reduceHTML(24);}
 	
 	function setImage($Image) {$this->Image = $Image;$this->markDirty();}
 	function getImage(){

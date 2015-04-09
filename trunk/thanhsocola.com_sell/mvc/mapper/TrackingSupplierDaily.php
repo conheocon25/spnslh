@@ -14,7 +14,7 @@ class TrackingSupplierDaily extends Mapper implements \MVC\Domain\TrackingSuppli
 		$insertStmt 				= sprintf("insert into %s (id_supplier, `date`, ticket_import, ticket_import_back, value_import, value_import_back) values(?, ?, ?, ?, ?, ?)", $tblTrackingSupplierDaily);
 		$deleteStmt 				= sprintf("delete from %s where id=?", $tblTrackingSupplierDaily);
 		$deleteByDateStmt 			= sprintf("delete from %s where `date`=?", $tblTrackingSupplierDaily);
-		$findByDateStmt 			= sprintf("select *  from %s where `date`=?", $tblTrackingSupplierDaily);
+		$findByStmt 				= sprintf("select *  from %s where id_td=?", $tblTrackingSupplierDaily);
 				
         $this->selectAllStmt 		= self::$PDO->prepare($selectAllStmt);
         $this->selectStmt 			= self::$PDO->prepare($selectStmt);
@@ -22,31 +22,29 @@ class TrackingSupplierDaily extends Mapper implements \MVC\Domain\TrackingSuppli
         $this->insertStmt 			= self::$PDO->prepare($insertStmt);
 		$this->deleteStmt 			= self::$PDO->prepare($deleteStmt);
 		$this->deleteByDateStmt 	= self::$PDO->prepare($deleteByDateStmt);
-		$this->findByDateStmt 		= self::$PDO->prepare($findByDateStmt);
+		$this->findByStmt 			= self::$PDO->prepare($findByStmt);
     }
 	
     function getCollection( array $raw ) {return new TrackingSupplierDailyCollection( $raw, $this );}
     protected function doCreateObject( array $array ) {
         $obj = new \MVC\Domain\TrackingSupplierDaily(
 			$array['id'],
-			$array['id_supplier'],
-			$array['date'],
-			$array['ticket_import'],
-			$array['ticket_import_back'],
+			$array['id_td'],
+			$array['id_supplier'],			
 			$array['value_import'],
-			$array['value_import_back']
+			$array['value_paid'],
+			$array['value_old']			
 		);
 	    return $obj;
     }
     protected function targetClass() { return "TrackingSupplierDaily";}
     protected function doInsert( \MVC\Domain\Object $object ) {
-        $values = array( 
+        $values = array( 			
+			$object->getIdTD(),
 			$object->getIdSupplier(),
-			$object->getDate(),
-			$object->getTicketImport(),
-			$object->getTicketImportBack(),
 			$object->getValueImport(),
-			$object->getValueImportBack()
+			$object->getValuePaid(),
+			$object->getValueOld()
 		);
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
@@ -55,12 +53,11 @@ class TrackingSupplierDaily extends Mapper implements \MVC\Domain\TrackingSuppli
     
     protected function doUpdate( \MVC\Domain\Object $object ) {
         $values = array( 
+			$object->getIdTD(),
 			$object->getIdSupplier(),
-			$object->getDate(),
-			$object->getTicketImport(),
-			$object->getTicketImportBack(),
 			$object->getValueImport(),
-			$object->getValueImportBack(),
+			$object->getValuePaid(),
+			$object->getValueOld(),
 			$object->getId()
 		);
         $this->updateStmt->execute( $values );
@@ -71,9 +68,9 @@ class TrackingSupplierDaily extends Mapper implements \MVC\Domain\TrackingSuppli
     function selectAllStmt() {return $this->selectAllStmt;}	
 	function deleteByDate(array $values) {return $this->deleteByDateStmt->execute( $values );}
 	
-	function findByDate(array $values) {
-		$this->findByDateStmt->execute( $values );
-        return new TrackingSupplierDailyCollection( $this->findByDateStmt->fetchAll(), $this );
+	function findBy(array $values) {
+		$this->findByStmt->execute( $values );
+        return new TrackingSupplierDailyCollection( $this->findByStmt->fetchAll(), $this );
     }
 	
 }

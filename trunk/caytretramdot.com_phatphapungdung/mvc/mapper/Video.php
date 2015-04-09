@@ -45,7 +45,7 @@ class Video extends Mapper implements \MVC\Domain\VideoFinder{
 					id_category IN (SELECT id FROM tbl_category_video CV WHERE CV.id_buddha=?)
 				ORDER BY
 					`time`	DESC
-				LIMIT 8	
+				LIMIT 12	
 		", $tblVideo);
 		
 		$findByPopularStmt 	= sprintf("			
@@ -55,7 +55,7 @@ class Video extends Mapper implements \MVC\Domain\VideoFinder{
 					id_category IN (SELECT id FROM tbl_category_video CV WHERE CV.id_buddha=?)
 				ORDER BY
 					`viewed` DESC, `liked` DESC
-				LIMIT 8	
+				LIMIT 12	
 		", $tblVideo);
 				
         $this->selectAllStmt 	= self::$PDO->prepare($selectAllStmt);

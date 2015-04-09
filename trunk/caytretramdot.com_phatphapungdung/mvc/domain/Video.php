@@ -93,8 +93,21 @@ class Video extends Object{
 	function setIdYouTube( $IdYouTube ) {$this->IdYouTube = $IdYouTube;$this->markDirty();}   
 	function getIdYouTube( ) 			{return $this->IdYouTube;}
 	function getYoutubeEmbeded()		{return "http://www.youtube.com/embed/".$this->getIdYouTube();}
-	function getImage( ){
-		return "http://img.youtube.com/vi/".$this->IdYouTube."/2.jpg";
+	function getImage( ){		
+		$url = "http://img.youtube.com/vi/".$this->IdYouTube."/2.jpg";
+		/*
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL,$url);		
+		curl_setopt($ch, CURLOPT_NOBODY, 1);
+		curl_setopt($ch, CURLOPT_FAILONERROR, 1);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		if(curl_exec($ch)!==FALSE){
+			return $url;
+		}
+		else{
+			return "/mvc/templates/theme/img/Video.jpg";
+		}*/	
+		return $url;
 	}
 	
 	function setViewed( $Viewed ) 	{$this->Viewed = $Viewed; $this->markDirty();}   

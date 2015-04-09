@@ -12,33 +12,37 @@
 		<div metal:use-macro="mFront.xhtml/Header"/>
 		<div class="container-fluid" id="wraper">
 			<div class="row">
-				<div class="col-md-8">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<a tal:attributes="href Category/getURLView">
-								<i class="glyphicon glyphicon-home"/>
-								<span tal:content="Video/getTitle"/>
-							</a>
+				<div class="col-md-9">
+					<div class="panel panel-primary">
+						<div class="panel-heading">							
+							<i class="glyphicon glyphicon-facetime-video"/> <span tal:content="php: mb_strtoupper(Video->getTitle(), 'UTF8')"/>
 						</div>
-						<div class="panel-body">
-							<div class="article-meta-date">								
-								<span tal:content="Video/getTimePrint"/>, 
+						<div class="panel-body">							
+							<div class="embed-responsive embed-responsive-16by9">
+								<iframe class="embed-responsive-item" tal:attributes="src Video/getYouTubeEmbeded;alt Video/getIdYouTube;data-id Video/getId" />
+							</div>
+							<div class="share-button-group">
+								<div class="fb-share-button" tal:attributes="data-href URLShare" data-type="button_count" />
 								<div class="btn"><i class="glyphicon glyphicon-stats"/> <span id="Viewed" tal:content="Video/getViewedPrint"/> <i class="glyphicon glyphicon-thumbs-up"/><span tal:content="Video/getLikedPrint"/></div>
+								<span tal:content="Video/getTimePrint"/>
 							</div>
-							<div class="article-meta-more">																				
-								<div class="share-button-group">
-									<div class="fb-share-button" tal:attributes="data-href URLShare" data-type="button_count" />
-								</div>
-								<div class="article-content-container">
-									<iframe width="100%" height="480px" id="IdYouTube" tal:attributes="src Video/getYouTubeEmbeded;alt Video/getIdYouTube;data-id Video/getId" frameborder="0" allowfullscreen="1" />
-									<span tal:content="structure Video/getInfo"/>
-								</div>
-							</div>
+							<div class="article-content-container">									
+								<span tal:content="structure Video/getInfo"/>
+							</div>							
 						</div>						
 					</div>
 				</div>
-				<div class="col-md-4">
-					<div width="100%" class="fb-like-box" data-href="https://www.facebook.com/pages/Caytretramdot/596061963849405" data-colorscheme="light" data-show-faces="true" data-header="false" data-stream="false" data-show-border="false"></div>
+				<div class="col-md-3">
+					<div class="panel panel-primary">
+						<div class="panel-heading"><i class="glyphicon glyphicon-cog"/> <B>CHỨC NĂNG</B></div>
+						<div class="panel-body">
+							<div class="btn-group" role="group" aria-label="...">
+								<a tal:attributes="href Category/getURLView" class="btn btn-default">
+									<i class="glyphicon glyphicon-share-alt"/>
+								</a>
+							</div>							
+						</div>	
+					</div>
 				</div>
 			</div>
 		</div>

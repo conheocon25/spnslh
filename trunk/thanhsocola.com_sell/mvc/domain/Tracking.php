@@ -184,6 +184,12 @@ class Tracking extends Object{
 		return $TCAll;
 	}
 	
+	function getSupplierAll(){
+		$mTS 	= new \MVC\Mapper\TrackingSupplier();
+		$TSAll 	= $mTS->findByTracking(array($this->getId()));
+		return $TSAll;
+	}
+	
 	function generateCustomer(){
 		$Date = $this->getDateStart();
 		$EndDate = $this->getDateEnd();
@@ -203,7 +209,28 @@ class Tracking extends Object{
 			$mTC->insert($TC);
 			$CustomerAll->next();	
 		}		
-	}	
+	}
+	
+	function generateSupplier(){
+		$Date 			= $this->getDateStart();
+		$EndDate 		= $this->getDateEnd();
+		$mTS 			= new \MVC\Mapper\TrackingSupplier();
+		$mSupplier 		= new \MVC\Mapper\Supplier();
+		$SupplierAll 	= $mSupplier->findAll();
+		
+		while ($SupplierAll->valid())
+		{
+			$Supplier = $SupplierAll->current();
+			$TS = new \MVC\Domain\TrackingSupplier(
+				null,
+				$this->getId(), 
+				$Supplier->getId(),
+				0, 0, 0, 0, 0, 0, 0
+			);
+			$mTS->insert($TS);
+			$SupplierAll->next();	
+		}		
+	}
 	
 	function generateDaily(){
 		$Date = $this->getDateStart();
