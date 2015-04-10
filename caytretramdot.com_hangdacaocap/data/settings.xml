@@ -28,11 +28,14 @@
 		<command name="FVideoDetail" 	type="public"><view>FVideoDetail</view></command>
 		
 		<command name="FLinked" 		type="public"><view>FLinked</view></command>
+		
 		<command name="FPackCart" 		type="public"><view>FPackCart</view></command>
 		<command name="FPackCartAdd" 	type="public"><view>FPackCartAdd</view><status value="CMD_OK"><forward>FPackCart</forward></status></command>
-		<command name="FPackCartSub" 	type="public"><view>FPackCartSub</view><status value="CMD_OK"><forward>FPackCart</forward></status></command>
+		<command name="FPackCartMinus" 	type="public"><view>FPackCartMinus</view><status value="CMD_OK"><forward>FPackCart</forward></status></command>
+		<command name="FPackCartPlus" 	type="public"><view>FPackCartPlus</view><status value="CMD_OK"><forward>FPackCart</forward></status></command>
 		<command name="FPackCartDel" 	type="public"><view>FPackCartDel</view><status value="CMD_OK"><forward>FPackCart</forward></status></command>
 		<command name="FPackCartDelAll" 	type="public"><view>FPackCartDelAll</view><status value="CMD_OK"><forward>FPackCart</forward></status></command>
+		
 			
 				
 		<command name="FSubcribe" 		type="public">

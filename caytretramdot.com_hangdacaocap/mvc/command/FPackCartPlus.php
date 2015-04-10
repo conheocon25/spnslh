@@ -1,7 +1,7 @@
 <?php
 	namespace MVC\Command;	
 	
-	class FPackCartSub extends Command {
+	class FPackCartPlus extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -15,14 +15,13 @@
 			
 			$IdCart = $request->getProperty('IdCart');
 			
-			$mPackCart 	= new \MVC\Domain\PackCart();
 			
 			$DPackCart = $Session->getPackCart();
-						
+			
 			if(isset($DPackCart)) {
-				$DPackCart->deleteItem($IdCart);
+				$DPackCart->plus($IdCart);
 				$Session->setPackCart($DPackCart);
-			} 
+			}
 			
 			return self::statuses('CMD_OK');
 			//-------------------------------------------------------------

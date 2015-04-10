@@ -53,42 +53,49 @@
 						<div class="panel-body" style="padding:10px;">
 							<table class="table table-bordered table-striped table-hover with-check">
 								<thead>
-									<tr>
-										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
+									<tr>										
 										<th width="200" class="left">Hình</th>
 										<th width="200" class="left">TÊN SP</th>
 										<th width="120" class="left">GIÁ</th>
 										<th width="120" class="left">SL</th>
-										<th width="40"><i class="glyphicons-edit"/></th>
-										<th width="40"><i class="glyphicons-bin"/></th>
+										<th width="40"><i class="glyphicons-plus"/>Tăng</th>
+										<th width="40"><i class="glyphicons-sub"/>Giảm</th>
+										<th width="40"><i class="glyphicons-bin"/>Xóa</th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr tal:repeat="Item DPackCart/getItems">
-										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Item/Id"/></td>	
+									<tr tal:repeat="Item DPackCart/getItems">										
 										<td>
 											<img tal:attributes="src Item/UrlImage; alt=Item/Id" class="img-thumbnail"/>											
 										</td>
-										<td><span tal:content="Item/IdProduct"/></td>
+										<td><span tal:content="Item/NameProduct"/></td>
 										<td><span tal:content="Item/PriceP"/></td>										
 										<td><span tal:content="Item/Count"/></td>
 										<td class="center">
-											<a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="Item" tal:attributes="data-id Item/Id">
-												<i class="glyphicon glyphicon-pencil"/>
+											<a class="remove-item" data-toggle="modal" data-name="Item" tal:attributes="href Item/URLPlusUpd">
+												<i class="glyphicon glyphicon-plus"/>
 											</a>
 										</td>
 										<td class="center">
-											<a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="href Item/URLDel">
+											<a class="remove-item" data-toggle="modal" data-name="Item" tal:attributes="href Item/URLMinusUpd">
+												<i class="glyphicon glyphicon-minus"/>
+											</a>
+										</td>
+										<td class="center">
+											<a class="remove-item" data-toggle="modal" tal:attributes="href Item/URLDel">
 												<i class="glyphicon glyphicon-remove"/>
 											</a>
 										</td>
 									</tr>
-								</tbody>
+								</tbody> 
 							</table>
-							<div class="view"><a href="/gio-hang/del/all">Xóa giỏ hàng</a></div>
-							<p class="pull-left">** Giá Trên chưa bao gồm Thuế VAT</p>	
+							<div style="font-size:18pt;" class="view">Tổng Cộng: <b tal:content="DPackCart/SumPackCartPrint"></b></div>
+							<div class="view"><a href="/gio-hang/del/all" class="btn btn-primary btn-ins">Xóa giỏ hàng</a></div>
+							<p class="pull-left"><i>** Giá Trên chưa bao gồm Thuế VAT</i></p>	
 						</div>
+					
 					</div>
+					
 				</div>
 				<div class="col-md-4">
 					<tal:block metal:use-macro="mFront.xhtml/Basket"/>
@@ -97,6 +104,9 @@
 					<tal:block metal:use-macro="mFront.xhtml/TopProduct"/>
 					<tal:block metal:use-macro="mFront.xhtml/Facebook"/>
 				</div>
+				
+					
+					
 			</div>
 			<tal:block metal:use-macro="mFront.xhtml/Footer"/>
 			
@@ -105,34 +115,20 @@
 	</body>
 	<script type="text/javascript">																	
 			
-			$('#BtnSend').click(function(e){
-				var Data = [];
-					Data[0] = $("#contact-name").val();
-					Data[1] = $("#contact-email").val();
-					Data[2] = $("#contact-subject").val();				
-					Data[3] = $("#contact-message").val();					
-					Data[4] = $("#CodeCaptcha").val();					
-											
-				var URL1 = "/lien-he/email";									
-																													
-				var Data1 = [];
-					Data1[0] = $("#contact-name").val();
-					Data1[1] = $("#contact-email").val();
-					Data1[2] = $("#contact-subject").val();				
-					Data1[3] = $("#contact-message").val();
-				
-				$("#contact-name").val('');
-				$("#contact-email").val('');
-				$("#contact-subject").val('');
-				$("#contact-message").val('');
-										
-				alert('Đã gửi mail phản hồi thành công!');
-				
+			$('.remove-item').click(function(){
+				$('#URLDelButton').attr('alt', $(this).attr('data-id'));
+			});
+			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
+			$('#URLDelButton').click(function(){			
+				var URL = "/object/del/Product/" + $(this).attr('alt');
 				$.ajax({
-					url: '/lien-he/gmail',									  
-					data: {Data:Data1},									  
-					success: function(html) {}
-				});	
-			});	
+					type: "POST",
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
+			});
+		
 		</script>
 </html>
