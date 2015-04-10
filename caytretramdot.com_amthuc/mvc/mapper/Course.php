@@ -10,8 +10,8 @@ class Course extends Mapper implements \MVC\Domain\CourseFinder{
 						
 		$selectAllStmt 	= sprintf("select * from %s order by `rank`", $tblCourse);
 		$selectStmt 	= sprintf("select * from %s where id=?", $tblCourse);
-		$updateStmt 	= sprintf("update %s set name=?, datetime_created=?, datetime_updated=?, `rank`=?, `key`=? where id=?", $tblCourse);
-		$insertStmt 	= sprintf("insert into %s ( name, datetime_created, datetime_updated, `rank`, `key`) values(?, ?, ?, ?, ?)", $tblCourse);
+		$updateStmt 	= sprintf("update %s set id_cook_method=?, name=?, datetime_created=?, datetime_updated=?, `rank`=?, `key`=? where id=?", $tblCourse);
+		$insertStmt 	= sprintf("insert into %s ( id_cook_method, name, datetime_created, datetime_updated, `rank`, `key`) values(?, ?, ?, ?, ?, ?)", $tblCourse);
 		$deleteStmt 	= sprintf("delete from %s where id=?", $tblCourse);
 		$findByPageStmt = sprintf("SELECT * FROM  %s ORDER BY `order`, name	LIMIT :start,:max", $tblCourse);
 		$findByKeyStmt 	= sprintf("select *  from %s where `key`=?", $tblCourse);		
@@ -30,6 +30,7 @@ class Course extends Mapper implements \MVC\Domain\CourseFinder{
     protected function doCreateObject( array $array ) {		
         $obj = new \MVC\Domain\Course( 
 			$array['id'],
+			$array['id_cook_method'],
 			$array['name'],
 			$array['datetime_created'],
 			$array['datetime_updated'],
@@ -42,6 +43,7 @@ class Course extends Mapper implements \MVC\Domain\CourseFinder{
     protected function targetClass() {  return "Course";}
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array( 
+			$object->getIdCookMethod(),
 			$object->getName(),
 			$object->getDateTimeCreated(),
 			$object->getDateTimeUpdated(),
@@ -55,6 +57,7 @@ class Course extends Mapper implements \MVC\Domain\CourseFinder{
     
     protected function doUpdate( \MVC\Domain\Object $object ) {
         $values = array( 
+			$object->getIdCookMethod(),
 			$object->getName(),
 			$object->getDateTimeCreated(),
 			$object->getDateTimeUpdated(),

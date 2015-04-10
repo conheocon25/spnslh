@@ -10,6 +10,7 @@ class PageCollection 			extends Collection implements \MVC\Domain\PageCollection
 class GuestCollection 			extends Collection implements \MVC\Domain\GuestCollection			{function targetClass(){return "\MVC\Domain\Guest";			}}
 
 class CourseCollection 			extends Collection implements \MVC\Domain\CourseCollection			{function targetClass(){return "\MVC\Domain\Course";		}}
+class CookMethodCollection 		extends Collection implements \MVC\Domain\CookMethodCollection		{function targetClass(){return "\MVC\Domain\CookMethod";	}}
 
 class VideoCollection 			extends Collection implements \MVC\Domain\VideoCollection			{function targetClass(){return "\MVC\Domain\Video";			}}
 class PostCollection 			extends Collection implements \MVC\Domain\PostCollection			{function targetClass(){return "\MVC\Domain\Post";			}}

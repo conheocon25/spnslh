@@ -7,6 +7,7 @@ class Course extends Object{
 	//DEFINE PROPERTY
 	//-------------------------------------------------------------------------------
 	private $Id;
+	private $IdCookMethod;
 	private $Name;
 	private $DateTimeCreated;
 	private $DateTimeUpdated;
@@ -16,8 +17,9 @@ class Course extends Object{
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-	function __construct($Id=null, $Name=null, $DateTimeCreated=null, $DateTimeUpdated=null, $Rank=null, $Key=null){
+	function __construct($Id=null, $IdCookMethod=null, $Name=null, $DateTimeCreated=null, $DateTimeUpdated=null, $Rank=null, $Key=null){
 		$this->Id 				= $Id;
+		$this->IdCookMethod		= $IdCookMethod;
 		$this->Name 			= $Name;
 		$this->DateTimeCreated	= $DateTimeCreated;
 		$this->DateTimeUpdated	= $DateTimeUpdated;
@@ -27,7 +29,15 @@ class Course extends Object{
 	}
 		
 	function getId() {return $this->Id;}
-			
+	
+	function setIdCookMethod($IdCookMethod) {$this->IdCookMethod = $IdCookMethod;$this->markDirty();}
+	function getIdCookMethod() 				{return $this->IdCookMethod;}
+	function getCookMethod(){
+		$mCookMethod 	= new \MVC\Mapper\CookMethod();
+		$CookMethod 	= $mCookMethod->find($this->IdCookMethod);
+		return $CookMethod;
+	}
+	
 	function setName($Name) {$this->Name = $Name;$this->markDirty();}
 	function getName() 		{return $this->Name;}
 	
@@ -58,6 +68,7 @@ class Course extends Object{
 	function toJSON(){
 		$json = array(
 			'Id' 				=> $this->getId(),
+			'IdCookMethod' 		=> $this->getIdCookMethod(),
 			'Name'				=> $this->getName(),
 			'DateTimeCreated'	=> $this->getDateTimeCreated(),
 			'DateTimeUpdated'	=> $this->getDateTimeUpdated(),
@@ -69,24 +80,30 @@ class Course extends Object{
 	
 	function setArray( $Data ){
         $this->Id 				= $Data[0];
-		$this->Name 			= $Data[1];
+		$this->IdCookMethod		= $Data[1];
+		$this->Name 			= $Data[2];
 		if (!isset($this->DateTimeCreated)){
-			$this->DateTimeCreated 	= \date('d/m/y H:i');
+			$this->DateTimeCreated 	= \date('Y-m-d H:i');
 		}		
-		$this->DateTimeUpdated 	= \date('d/m/y H:i');		
-		$this->Rank				= $Data[2];
+		$this->DateTimeUpdated 	= \date('Y-m-d H:i');		
+		$this->Rank				= $Data[3];
 		$this->reKey();
     }
 	
 	//-------------------------------------------------------------------------------
 	//GET LIST
 	//-------------------------------------------------------------------------------
+	function getVideoAll(){
+		$mVideo 	= new \MVC\Mapper\Video();
+		$VideoAll 	= $mVideo->findByCourse(array($this->getId()));
+		return $VideoAll;
+	}
 			
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLView()	{return "/mon/".$this->getKey();}		
-	function getURLSetting(){return "/admin/course/".$this->getId();}
+	function getURLView()			{return "/mon/".$this->getKey();}		
+	function getURLSettingVideo()	{return "/admin/course/".$this->getId()."/video";}
 	
 	//-------------------------------------------------------------------------------
 	static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

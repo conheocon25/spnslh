@@ -116,9 +116,6 @@
 		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">			
 			<li tal:attributes="class php:ActiveAdmin=='Course'?'active':'disable'">
 				<a tal:attributes="href '/admin/course'"><i class="glyphicons-cogwheels" />MÓN ĂN</a>
-			</li>			
-			<li tal:attributes="class php:ActiveAdmin=='YouTube'?'active':'disable'">
-				<a tal:attributes="href '/admin/testing1'"><i class="glyphicons-cogwheels" />VIDEO AUTO</a>
 			</li>						
 			<li tal:attributes="class php:ActiveAdmin=='Setting'?'active':'disable'">
 				<a tal:attributes="href '/admin/setting'"><i class="glyphicons-cogwheels" />THIẾT LẬP</a>

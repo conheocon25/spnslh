@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class ACourse extends Command {
+	class ACourseVideo extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -11,22 +11,23 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-						
+			$IdCourse 		= $request->getProperty('IdCourse');
+			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mCourse 		= new \MVC\Mapper\Course();
-			$mCookMethod 	= new \MVC\Mapper\CookMethod();
+			$mCourse 		= new \MVC\Mapper\Course();			
 			$mConfig 		= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------						
-			$CookMethodAll 	= $mCookMethod->findAll();
-			$CourseAll 		= $mCourse->findAll();
+			//-------------------------------------------------------------									
+			$Course 	= $mCourse->find($IdCourse);
 						
-			$Title = "MÓN ĂN";
-			$Navigation = array();			
+			$Title 		= mb_strtoupper($Course->getName(), 'UTF8');
+			$Navigation = array(
+				array("MÓN ĂN", "/admin/course")
+			);
 			$Config 	= $mConfig->findByName("ROW_PER_PAGE");
 			$ConfigName = $mConfig->findByName("NAME");
 						
@@ -37,9 +38,8 @@
 			$request->setProperty('ActiveAdmin'	, 'Course');			
 			$request->setObject('ConfigName'	, $ConfigName);
 			$request->setObject('Navigation'	, $Navigation);
-			
-			$request->setObject('CookMethodAll'	, $CookMethodAll);
-			$request->setObject('CourseAll'		, $CourseAll);
+						
+			$request->setObject('Course'		, $Course);
 															
 			return self::statuses('CMD_DEFAULT');
 		}
