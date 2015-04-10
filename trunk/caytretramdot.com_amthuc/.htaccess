@@ -18,20 +18,10 @@ AddOutputFilterByType DEFLATE application/x-javascript
 #---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^trang-chu$ 																?cmd=FHome [L]
 
-RewriteRule ^bai-viet/([A-Za-z0-9_-]+)$													?cmd=FCategoryPost&KCategory=$1 [L]
+RewriteRule ^mon/([A-Za-z0-9_-]+)$														?cmd=FCourse&KCourse=$1 [L]
+
 RewriteRule ^bai-viet/([A-Za-z0-9_-]+)/page/([0-9]+)$									?cmd=FCategoryPost&KCategory=$1&Page=$2 [L]
 RewriteRule ^bai-viet/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$								?cmd=FPost&KCategory=$1&KPost=$2 [L]
-
-RewriteRule ^video/([A-Za-z0-9_-]+)$													?cmd=FCategoryBuddha&KBuddha=$1&Page=1&OrderBy=Video [L]
-RewriteRule ^video/([A-Za-z0-9_-]+)/page/([0-9]+)$										?cmd=FCategoryBuddha&KBuddha=$1&Page=$2&OrderBy=Video [L]
-RewriteRule ^video/([A-Za-z0-9_-]+)/orderbyname/page/([0-9]+)$							?cmd=FCategoryBuddha&KBuddha=$1&Page=$2&OrderBy=Name [L]
-RewriteRule ^video/([A-Za-z0-9_-]+)/orderbyvideo/page/([0-9]+)$							?cmd=FCategoryBuddha&KBuddha=$1&Page=$2&OrderBy=Video [L]
-RewriteRule ^video/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$									?cmd=FCategoryVideo&KBuddha=$1&KCategory=$2&Page=1&OrderBy=Viewed [L]
-RewriteRule ^video/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/page/([0-9]+)$						?cmd=FCategoryVideo&KBuddha=$1&KCategory=$2&Page=$3&OrderBy=Viewed [L]
-RewriteRule ^video/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/orderbyname/page/([0-9]+)$			?cmd=FCategoryVideo&KBuddha=$1&KCategory=$2&Page=$3&OrderBy=Name [L]
-RewriteRule ^video/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/orderbyviewed/page/([0-9]+)$		?cmd=FCategoryVideo&KBuddha=$1&KCategory=$2&Page=$3&OrderBy=Viewed [L]
-RewriteRule ^video/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/orderbyliked/page/([0-9]+)$		?cmd=FCategoryVideo&KBuddha=$1&KCategory=$2&Page=$3&OrderBy=Liked [L]
-RewriteRule ^video/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$					?cmd=FVideo&KBuddha=$1&KCategory=$2&KVideo=$3 [L]
 
 RewriteRule ^lien-he$ 																	?cmd=FContact 		[L]
 
