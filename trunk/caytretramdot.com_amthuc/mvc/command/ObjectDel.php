@@ -17,7 +17,7 @@
 			$ListId 	= $request->getProperty('ListId');
 			
 			//echo $ObjectName."-".$Id;
-			//print_r($ListId);
+			print_r($ListId);
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU

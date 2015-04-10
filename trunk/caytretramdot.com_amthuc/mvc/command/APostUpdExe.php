@@ -14,7 +14,7 @@
 			$IdCategory = $request->getProperty('IdCategory');						
 			$IdPost 	= $request->getProperty('IdPost');
 			$Title 		= $request->getProperty('Title');			
-			$Time 		= date('Y-m-d H:i:s');
+			$Time 		= $request->getProperty('Time');			
 			$Content 	= \stripslashes($request->getProperty('Content'));
 			$Viewed 	= $request->getProperty('Viewed');
 			$Liked 		= $request->getProperty('Liked');

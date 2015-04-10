@@ -13,7 +13,7 @@
 			//-------------------------------------------------------------
 			$IdVideo	= $request->getProperty("IdVideo");
 			$Viewed 	= $request->getProperty("Viewed");
-			$Liked 		= $request->getProperty("Liked");
+			$Liked 	= $request->getProperty("Liked");
 						
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU

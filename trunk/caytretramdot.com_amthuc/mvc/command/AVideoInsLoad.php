@@ -11,23 +11,27 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$IdCategory = $request->getProperty('IdCategory');
+			$IdCategoryBuddha = $request->getProperty('IdCategoryBuddha');
+			$IdCategoryVideo = $request->getProperty('IdCategoryVideo');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mCategoryVideo = new \MVC\Mapper\CategoryVideo();
-			$mVideo 		= new \MVC\Mapper\Video();
-			$mConfig		= new \MVC\Mapper\Config();
+			$mCategoryBuddha 	= new \MVC\Mapper\CategoryBuddha();
+			$mCategoryVideo 	= new \MVC\Mapper\CategoryVideo();
+			$mVideo 			= new \MVC\Mapper\Video();
+			$mConfig			= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------																					
-			$Category 	= $mCategoryVideo->find($IdCategory);
+			$Buddha 	= $mCategoryBuddha->find($IdCategoryBuddha);
+			$Category 	= $mCategoryVideo->find($IdCategoryVideo);
 			
-			$Title = mb_strtoupper($Category->getName(), 'UTF8');
-			$Navigation = array(				
-				array("BÀI VIẾT", 	"/admin/video"),
+			$Title = "THÊM MỚI VIDEO";
+			$Navigation = array(
+				array(mb_strtoupper($Buddha->getName(), 'UTF8'), 	$Buddha->getURLSetting()),
+				array(mb_strtoupper($Category->getName(), 'UTF8'), 	$Category->getURLSetting()),
 			);
 			
 			$ConfigName	= $mConfig->findByName("NAME");
@@ -40,6 +44,7 @@
 			$request->setObject('Navigation'	, $Navigation);			
 			$request->setObject('ConfigName'	, $ConfigName);
 			$request->setObject('Category'		, $Category);
+			$request->setObject('Buddha'		, $Buddha);
 																		
 			return self::statuses('CMD_DEFAULT');
 		}

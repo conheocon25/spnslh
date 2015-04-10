@@ -15,7 +15,7 @@ class Video extends Mapper implements \MVC\Domain\VideoFinder{
 										`info`=?, 												
 										`time`=?, 												
 										`id_youtube`=?,
-										`viewed`=?, 												
+										`viewed`=?,
 										`liked`=?, 												
 										`key`=? 
 									where 
@@ -30,18 +30,33 @@ class Video extends Mapper implements \MVC\Domain\VideoFinder{
 										`liked`, 
 										`key`) values(?, ?, ?, ?, ?, ?, ?, ?)", $tblVideo);
 		$deleteStmt 		= sprintf("delete from %s where id=?", $tblVideo);				
-		$findByStmt 		= sprintf("select *  from %s where id_category=? ORDER BY `title`", $tblVideo);
+		$findByStmt 		= sprintf("select *  from %s where id_category=? ORDER BY `viewed` DESC, 'liked' DESC", $tblVideo);
 		$findByKeyStmt 		= sprintf("select *  from %s where `key`=?", $tblVideo);
-		$findByPageStmt 	= sprintf("SELECT * FROM  %s where id_category=:id_category ORDER BY `time` LIMIT :start,:max", $tblVideo);
 		
-		$findByRecentPageStmt= sprintf("SELECT * FROM  %s where id_category=:id_category ORDER BY `time` LIMIT :start,:max", $tblVideo);
-		$findByViewedPageStmt= sprintf("SELECT * FROM  %s where id_category=:id_category ORDER BY `viewed` LIMIT :start,:max", $tblVideo);
-		$findByLikedPageStmt = sprintf("SELECT * FROM  %s where id_category=:id_category ORDER BY `liked` LIMIT :start,:max", $tblVideo);
+		$findByPageStmt 			= sprintf("SELECT * FROM  %s where id_category=:id_category ORDER BY `viewed` DESC, 'liked' DESC LIMIT :start,:max", $tblVideo);
+		$findByOrderNamePageStmt 	= sprintf("SELECT * FROM  %s where id_category=:id_category ORDER BY `title` LIMIT :start,:max", $tblVideo);
+		$findByOrderViewedPageStmt 	= sprintf("SELECT * FROM  %s where id_category=:id_category ORDER BY `viewed` DESC  LIMIT :start,:max", $tblVideo);
+		$findByOrderLikedPageStmt 	= sprintf("SELECT * FROM  %s where id_category=:id_category ORDER BY `liked` DESC LIMIT :start,:max", $tblVideo);
 		
-		$findByRecentStmt 	= sprintf("select *  from %s ORDER BY `time` DESC LIMIT 8", $tblVideo);
-		$findByViewedStmt 	= sprintf("select *  from %s ORDER BY `viewed` DESC LIMIT 8", $tblVideo);
-		$findByLikedStmt 	= sprintf("select *  from %s ORDER BY `liked` DESC LIMIT 8", $tblVideo);
-		$findByRandomStmt 	= sprintf("select *  from %s ORDER BY rand() LIMIT 8", $tblVideo);
+		$findByLastestStmt 	= sprintf("			
+			SELECT * 
+				FROM `tbl_video` 
+				WHERE 
+					id_category IN (SELECT id FROM tbl_category_video CV WHERE CV.id_buddha=?)
+				ORDER BY
+					`time`	DESC
+				LIMIT 12	
+		", $tblVideo);
+		
+		$findByPopularStmt 	= sprintf("			
+			SELECT * 
+				FROM `tbl_video` 
+				WHERE 
+					id_category IN (SELECT id FROM tbl_category_video CV WHERE CV.id_buddha=?)
+				ORDER BY
+					`viewed` DESC, `liked` DESC
+				LIMIT 12	
+		", $tblVideo);
 				
         $this->selectAllStmt 	= self::$PDO->prepare($selectAllStmt);
         $this->selectStmt 		= self::$PDO->prepare($selectStmt);
@@ -50,16 +65,13 @@ class Video extends Mapper implements \MVC\Domain\VideoFinder{
 		$this->deleteStmt 		= self::$PDO->prepare($deleteStmt);
 		$this->findByStmt 		= self::$PDO->prepare($findByStmt);
 		$this->findByKeyStmt 	= self::$PDO->prepare($findByKeyStmt);
+		$this->findByPageStmt 	= self::$PDO->prepare($findByPageStmt);
+		$this->findByOrderNamePageStmt 		= self::$PDO->prepare($findByOrderNamePageStmt);
+		$this->findByOrderViewedPageStmt 	= self::$PDO->prepare($findByOrderViewedPageStmt);
+		$this->findByOrderLikedPageStmt 	= self::$PDO->prepare($findByOrderLikedPageStmt);
+		$this->findByLastestStmt 	= self::$PDO->prepare($findByLastestStmt);
+		$this->findByPopularStmt 	= self::$PDO->prepare($findByPopularStmt);
 		
-		$this->findByPageStmt 		= self::$PDO->prepare($findByPageStmt);
-		$this->findByRecentPageStmt = self::$PDO->prepare($findByRecentPageStmt);
-		$this->findByViewedPageStmt = self::$PDO->prepare($findByViewedPageStmt);
-		$this->findByLikedPageStmt  = self::$PDO->prepare($findByLikedPageStmt);
-		
-		$this->findByRecentStmt = self::$PDO->prepare($findByRecentStmt);
-		$this->findByViewedStmt = self::$PDO->prepare($findByViewedStmt);
-		$this->findByLikedStmt 	= self::$PDO->prepare($findByLikedStmt);
-		$this->findByRandomStmt = self::$PDO->prepare($findByRandomStmt);
     } 
     function getCollection( array $raw ) {return new VideoCollection( $raw, $this );}
 
@@ -118,24 +130,14 @@ class Video extends Mapper implements \MVC\Domain\VideoFinder{
         return new VideoCollection( $this->findByStmt->fetchAll(), $this);
     }
 	
-	function findByRecent( $values ){
-        $this->findByRecentStmt->execute( $values );
-        return new VideoCollection( $this->findByRecentStmt->fetchAll(), $this);
+	function findByLastest( $values ){
+        $this->findByLastestStmt->execute( $values );
+        return new VideoCollection( $this->findByLastestStmt->fetchAll(), $this);
     }
 	
-	function findByViewed( $values ){
-        $this->findByViewedStmt->execute( $values );
-        return new VideoCollection( $this->findByViewedStmt->fetchAll(), $this);
-    }
-	
-	function findByLiked( $values ){
-        $this->findByLikedStmt->execute( $values );
-        return new VideoCollection( $this->findByLikedStmt->fetchAll(), $this);
-    }
-	
-	function findByRandom( $values ){
-        $this->findByRandomStmt->execute( $values );
-        return new VideoCollection( $this->findByRandomStmt->fetchAll(), $this);
+	function findByPopular( $values ){
+        $this->findByPopularStmt->execute( $values );
+        return new VideoCollection( $this->findByPopularStmt->fetchAll(), $this);
     }
 	
 	function findByKey( $values ) {	
@@ -156,28 +158,28 @@ class Video extends Mapper implements \MVC\Domain\VideoFinder{
         return new VideoCollection( $this->findByPageStmt->fetchAll(), $this );
     }
 	
-	function findByRecentPage( $values ) {
-		$this->findByRecentPageStmt->bindValue(':id_category', $values[0], \PDO::PARAM_INT);
-		$this->findByRecentPageStmt->bindValue(':start', ((int)($values[1])-1)*(int)($values[2]), \PDO::PARAM_INT);
-		$this->findByRecentPageStmt->bindValue(':max', (int)($values[2]), \PDO::PARAM_INT);
-		$this->findByRecentPageStmt->execute();
-        return new VideoCollection( $this->findByRecentPageStmt->fetchAll(), $this );
+	function findByOrderNamePage( $values ) {
+		$this->findByOrderNamePageStmt->bindValue(':id_category', $values[0], \PDO::PARAM_INT);
+		$this->findByOrderNamePageStmt->bindValue(':start', ((int)($values[1])-1)*(int)($values[2]), \PDO::PARAM_INT);
+		$this->findByOrderNamePageStmt->bindValue(':max', (int)($values[2]), \PDO::PARAM_INT);
+		$this->findByOrderNamePageStmt->execute();
+        return new VideoCollection( $this->findByOrderNamePageStmt->fetchAll(), $this );
     }
 	
-	function findByViewedPage( $values ) {
-		$this->findByViewedPageStmt->bindValue(':id_category', $values[0], \PDO::PARAM_INT);
-		$this->findByViewedPageStmt->bindValue(':start', ((int)($values[1])-1)*(int)($values[2]), \PDO::PARAM_INT);
-		$this->findByViewedPageStmt->bindValue(':max', (int)($values[2]), \PDO::PARAM_INT);
-		$this->findByViewedPageStmt->execute();
-        return new VideoCollection( $this->findByViewedPageStmt->fetchAll(), $this );
+	function findByOrderViewedPage( $values ) {
+		$this->findByOrderViewedPageStmt->bindValue(':id_category', $values[0], \PDO::PARAM_INT);
+		$this->findByOrderViewedPageStmt->bindValue(':start', ((int)($values[1])-1)*(int)($values[2]), \PDO::PARAM_INT);
+		$this->findByOrderViewedPageStmt->bindValue(':max', (int)($values[2]), \PDO::PARAM_INT);
+		$this->findByOrderViewedPageStmt->execute();
+        return new VideoCollection( $this->findByOrderViewedPageStmt->fetchAll(), $this );
     }
 	
-	function findByLikedPage( $values ) {
-		$this->findByLikedPageStmt->bindValue(':id_category', $values[0], \PDO::PARAM_INT);
-		$this->findByLikedPageStmt->bindValue(':start', ((int)($values[1])-1)*(int)($values[2]), \PDO::PARAM_INT);
-		$this->findByLikedPageStmt->bindValue(':max', (int)($values[2]), \PDO::PARAM_INT);
-		$this->findByLikedPageStmt->execute();
-        return new VideoCollection( $this->findByLikedPageStmt->fetchAll(), $this );
+	function findByOrderLikedPage( $values ) {
+		$this->findByOrderLikedPageStmt->bindValue(':id_category', $values[0], \PDO::PARAM_INT);
+		$this->findByOrderLikedPageStmt->bindValue(':start', ((int)($values[1])-1)*(int)($values[2]), \PDO::PARAM_INT);
+		$this->findByOrderLikedPageStmt->bindValue(':max', (int)($values[2]), \PDO::PARAM_INT);
+		$this->findByOrderLikedPageStmt->execute();
+        return new VideoCollection( $this->findByOrderLikedPageStmt->fetchAll(), $this );
     }
 }
 ?>

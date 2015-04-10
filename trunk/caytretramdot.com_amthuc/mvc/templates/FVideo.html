@@ -3,8 +3,8 @@
 	<head>
 		<tal:block metal:use-macro="mFront.xhtml/IncludeMETA"/>
 		<meta property="og:title" tal:attributes="content Video/getTitle"/>
-		<meta property="og:description" tal:attributes="content Video/getInfoReduce"/>
 		<meta property="og:image" tal:attributes="content Video/getImage"/>
+		<meta property="og:description" tal:attributes="content Video/getInfoReduce"/>		
 		<tal:block metal:use-macro="mFront.xhtml/IncludeCSS"/>
 		<tal:block metal:use-macro="mFront.xhtml/IncludeJS"/>
 	</head>
@@ -12,43 +12,42 @@
 		<div metal:use-macro="mFront.xhtml/Header"/>
 		<div class="container-fluid" id="wraper">
 			<div class="row">
-				<div class="col-md-8">
+				<div class="col-md-9">
 					<div class="panel panel-primary">
-						<div class="panel-heading">
-							<ol class="breadcrumb">
-								<li><a tal:attributes="href Category/getURLView"><span tal:content="php: mb_strtoupper(Category->getName(), 'UTF8')"/></a></li>
-								<li class="active" tal:content="php: mb_strtoupper(Video->getTitle(), 'UTF8')"/>
-							</ol>
+						<div class="panel-heading">							
+							<i class="glyphicon glyphicon-facetime-video"/> <span tal:content="php: mb_strtoupper(Video->getTitle(), 'UTF8')"/>
 						</div>
-						<div class="panel-body">
-							<div class="article-meta-date">								
-								<span tal:content="Video/getTimePrint"/>, 
+						<div class="panel-body">							
+							<div class="embed-responsive embed-responsive-16by9">
+								<iframe class="embed-responsive-item" tal:attributes="src Video/getYouTubeEmbeded;alt Video/getIdYouTube;data-id Video/getId" />
+							</div>
+							<div class="share-button-group">
+								<div class="fb-share-button" tal:attributes="data-href URLShare" data-type="button_count" />
 								<div class="btn"><i class="glyphicon glyphicon-stats"/> <span id="Viewed" tal:content="Video/getViewedPrint"/> <i class="glyphicon glyphicon-thumbs-up"/><span tal:content="Video/getLikedPrint"/></div>
+								<span tal:content="Video/getTimePrint"/>
 							</div>
-							<div class="article-meta-more">																				
-								<div class="share-button-group">
-									<div class="fb-share-button" tal:attributes="data-href URLShare" data-type="button_count" />
-								</div>
-								<div class="article-content-container">
-									<iframe width="100%" height="480px" id="IdYouTube" tal:attributes="src Video/getYouTubeEmbeded;alt Video/getIdYouTube;data-id Video/getId" frameborder="0" allowfullscreen="1" />
-									<span tal:content="structure Video/getInfo"/>
-								</div>
-							</div>
+							<div class="article-content-container">									
+								<span tal:content="structure Video/getInfo"/>
+							</div>							
 						</div>						
 					</div>
 				</div>
-				<div class="col-md-4">					
-					<div class="panel panel-default">
-						<div class="panel-body">														
-							<tal:block metal:use-macro="mFront.xhtml/SuggestLevel01"/>
-							<div class="fb-like" data-share="true" data-width="100%" data-show-faces="true"></div>
-						</div>
+				<div class="col-md-3">
+					<div class="panel panel-primary">
+						<div class="panel-heading"><i class="glyphicon glyphicon-cog"/> <B>CHỨC NĂNG</B></div>
+						<div class="panel-body">
+							<div class="btn-group" role="group" aria-label="...">
+								<a tal:attributes="href Category/getURLView" class="btn btn-default">
+									<i class="glyphicon glyphicon-share-alt"/>
+								</a>
+							</div>							
+						</div>	
 					</div>
 				</div>
 			</div>
 		</div>
 		<script type="text/javascript">
-		/*<![CDATA[*/						
+		/*<![CDATA[*/
 			var IdYouTube = $("#IdYouTube").attr("alt");
 			var URL = "https://gdata.youtube.com/feeds/api/videos/" + IdYouTube + "?v=2&alt=json";
 			//Load dữ liệu JSON lên FORM
@@ -69,11 +68,9 @@
 						success: function(msg){
 							
 						}
-					});					
+					});
 				}
-			});
-			
-			
+			});			
 		/*]]>*/
 		</script>
 	</body>	

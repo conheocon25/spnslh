@@ -14,13 +14,20 @@ class Post extends Mapper implements \MVC\Domain\PostFinder {
 		$deleteStmt 	= sprintf("delete from %s where id=?", $tblPost);
 		$findByKeyStmt 	= sprintf("select *  from %s where `key`=?", $tblPost);
 
-		$findByStmt 		= sprintf("select *  from %s where id_category=:id_category order by title", $tblPost);
-		$findByPageStmt 	= sprintf("select *  from %s where id_category=:id_category order by title LIMIT :start,:max", $tblPost);
-		$findByTopStmt 		= sprintf("SELECT *  FROM %s WHERE id_category=1 ORDER BY rand()  DESC LIMIT 1", $tblPost);
+		$findByStmt 		= sprintf("select *  from %s where id_category=:id_category order by `time` DESC", $tblPost);
+		$findByPageStmt 	= sprintf("select *  from %s where id_category=:id_category order by `time` DESC LIMIT :start,:max", $tblPost);
+		$findByLastestStmt 	= sprintf("select *  from %s order by `time` DESC LIMIT 6", $tblPost);
+		$findByPopularStmt 	= sprintf("select *  from %s order by `viewed` DESC LIMIT 6", $tblPost);
 		
 		$searchByTitleStmt 		= sprintf("select *  from %s where `title` like :title", $tblPost);
 		$searchByTitlePageStmt 	= sprintf("select *  from %s where `title` like :title LIMIT :start,:max", $tblPost);
-				
+
+		$findByDateTimeStmt = sprintf(
+			"select *  
+			from %s 
+			where `time` >= ? AND `time` <= ?"
+		, $tblPost);
+		
         $this->selectAllStmt 	= self::$PDO->prepare($selectAllStmt);
         $this->selectStmt 		= self::$PDO->prepare($selectStmt);
         $this->updateStmt 		= self::$PDO->prepare($updateStmt);
@@ -28,12 +35,13 @@ class Post extends Mapper implements \MVC\Domain\PostFinder {
 		$this->deleteStmt 		= self::$PDO->prepare($deleteStmt);
 		$this->findByKeyStmt 	= self::$PDO->prepare($findByKeyStmt);
 		
-		$this->findByStmt 		= self::$PDO->prepare($findByStmt);
-		$this->findByTopStmt 	= self::$PDO->prepare($findByTopStmt);
-		$this->findByPageStmt 	= self::$PDO->prepare($findByPageStmt);
-		$this->searchByTitleStmt 		= self::$PDO->prepare($searchByTitleStmt);
-		$this->searchByTitlePageStmt 	= self::$PDO->prepare($searchByTitlePageStmt);
-
+		$this->findByStmt 			= self::$PDO->prepare($findByStmt);
+		$this->findByLastestStmt 	= self::$PDO->prepare($findByLastestStmt);
+		$this->findByPopularStmt 	= self::$PDO->prepare($findByPopularStmt);
+		$this->findByPageStmt 		= self::$PDO->prepare($findByPageStmt);
+		$this->searchByTitleStmt 	= self::$PDO->prepare($searchByTitleStmt);
+		$this->searchByTitlePageStmt= self::$PDO->prepare($searchByTitlePageStmt);
+		$this->findByDateTimeStmt 	= self::$PDO->prepare($findByDateTimeStmt);
     } 
     function getCollection( array $raw ) {return new PostCollection( $raw, $this );}
     protected function doCreateObject( array $array ) {
@@ -118,9 +126,14 @@ class Post extends Mapper implements \MVC\Domain\PostFinder {
         return new PostCollection( $this->findByStmt->fetchAll(), $this );
     }
 	
-	function findByTop( $values ){
-        $this->findByTopStmt->execute( $values );
-        return new PostCollection( $this->findByTopStmt->fetchAll(), $this);
+	function findByLastest( $values ){
+        $this->findByLastestStmt->execute( $values );
+        return new PostCollection( $this->findByLastestStmt->fetchAll(), $this);
+    }
+	
+	function findByPopular( $values ){
+        $this->findByPopularStmt->execute( $values );
+        return new PostCollection( $this->findByPopularStmt->fetchAll(), $this);
     }
 	
 	function findByPage( $values ) {		
@@ -130,6 +143,10 @@ class Post extends Mapper implements \MVC\Domain\PostFinder {
 		$this->findByPageStmt->execute();
         return new PostCollection( $this->findByPageStmt->fetchAll(), $this );
     }
-
+	
+	function findByDateTime( $values ) {		
+		$this->findByDateTimeStmt->execute($values);
+        return new PostCollection( $this->findByDateTimeStmt->fetchAll(), $this );
+    }
 }
 ?>

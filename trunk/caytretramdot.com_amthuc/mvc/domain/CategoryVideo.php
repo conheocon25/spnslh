@@ -7,25 +7,45 @@ class CategoryVideo extends Object{
 	//DEFINE PROPERTY
 	//-------------------------------------------------------------------------------
 	private $Id;
+	private $IdCategory;
 	private $Name;	
-	private $Order;	
+	private $Image;	
+	private $Order;
 	private $Key;
 	
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-	function __construct($Id=null, $Name=null, $Order=null, $Key=null){
+	function __construct($Id=null, $IdCategory=null, $Name=null, $Image=null, $Order=null, $Key=null){
 		$this->Id 			= $Id;
+		$this->IdCategory 	= $IdCategory;
 		$this->Name 		= $Name;
+		$this->Image 		= $Image;
 		$this->Order 		= $Order;		
 		$this->Key 			= $Key;
 		parent::__construct( $Id );
 	}
 		
 	function getId() {return $this->Id;}
+	
+	function setIdCategory($IdCategory) {$this->IdCategory = $IdCategory;$this->markDirty();}
+	function getIdCategory() 			{return $this->IdCategory;}
+	function getCategory(){
+		$mCategoryBuddha 	= new \MVC\Mapper\CategoryBuddha();
+		$Category 			= $mCategoryBuddha->find($this->IdCategory);
+		return $Category;
+	}
 		
 	function setName($Name) {$this->Name = $Name;$this->markDirty();}
 	function getName() 		{return $this->Name;}
+	function getNameReduce(){$S = new \MVC\Library\String($this->Name);return $S->reduceHTML(24);}
+	
+	function setImage($Image) {$this->Image = $Image;$this->markDirty();}
+	function getImage(){
+		if ($this->Image=="")
+			return "/data/image/bg/movies_folder.png";
+		return $this->Image;
+	}
 	
 	function setOrder($Order){$this->Order = $Order;$this->markDirty();}
 	function getOrder() 	{return $this->Order;}
@@ -40,7 +60,9 @@ class CategoryVideo extends Object{
 	function toJSON(){
 		$json = array(
 			'Id' 			=> $this->getId(),
-			'Name'			=> $this->getName(),			
+			'IdCategory' 	=> $this->getIdCategory(),
+			'Name'			=> $this->getName(),
+			'Image'			=> $this->getImage(),
 			'Order'			=> $this->getOrder(),		
 			'Key'			=> $this->getKey()
 		);
@@ -48,9 +70,11 @@ class CategoryVideo extends Object{
 	}
 	
 	function setArray( $Data ){
-        $this->Id 		= $Data[0];
-		$this->Name 	= $Data[1];
-		$this->Order	= $Data[2];				
+        $this->Id 			= $Data[0];
+		$this->IdCategory 	= $Data[1];
+		$this->Name 		= $Data[2];
+		$this->Image 		= $Data[3];
+		$this->Order		= $Data[4];
 		$this->reKey();
     }
 	
@@ -66,10 +90,11 @@ class CategoryVideo extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLView(){return "/video/".$this->getKey();}	
-	function getURLSetting(){return "/admin/video/".$this->getId();}
-	function getURLSettingVideoInsLoad(){return "/admin/video/".$this->getId()."/ins/load"	;}
-	function getURLSettingVideoInsExe()	{return "/admin/video/".$this->getId()."/ins/exe"	;}
+	function getURLView()	{return "/video/".$this->getCategory()->getKey()."/".$this->getKey();}	
+	function getURLSetting(){return "/admin/buddha/".$this->getIdCategory()."/".$this->getId();}
+	function getURLSetting1(){return "admin/setting/category/video/".$this->getIdCategory();}
+	function getURLSettingVideoInsLoad(){return "/admin/buddha/".$this->getIdCategory()."/".$this->getId()."/ins/load"	;}
+	function getURLSettingVideoInsExe()	{return "/admin/buddha/".$this->getIdCategory()."/".$this->getId()."/ins/exe"	;}
 		
 	//-------------------------------------------------------------------------------
 	static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

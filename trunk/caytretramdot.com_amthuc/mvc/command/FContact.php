@@ -16,24 +16,21 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mConfig 		= new \MVC\Mapper\Config();			
-			$mCategoryBook 	= new \MVC\Mapper\CategoryBook();
+			$mConfig 		= new \MVC\Mapper\Config();						
 			$mCategoryPost 	= new \MVC\Mapper\CategoryPost();
-			$mCategoryVideo	= new \MVC\Mapper\CategoryVideo();
+			$mCategoryBuddha	= new \MVC\Mapper\CategoryBuddha();
 						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
 			$CategoryPostAll 	= $mCategoryPost->findAll();			
-			$CategoryBookAll 	= $mCategoryBook->findAll();
-			$CategoryVideoAll 	= $mCategoryVideo->findAll();
+			$CategoryBuddhaAll 	= $mCategoryBuddha->findAll();
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------						
-			$request->setObject('CategoryPostAll', 	$CategoryPostAll);			
-			$request->setObject('CategoryBookAll', 	$CategoryBookAll);
-			$request->setObject("CategoryVideoAll", $CategoryVideoAll);
+			$request->setObject('CategoryPostAll', 	$CategoryPostAll);						
+			$request->setObject("CategoryBuddhaAll", $CategoryBuddhaAll);
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

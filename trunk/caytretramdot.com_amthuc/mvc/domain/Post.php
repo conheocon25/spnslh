@@ -39,6 +39,27 @@ class Post extends Object{
 	function getTimePrint( ){		
 		$D = new \MVC\Library\Date($this->Time);return $D->getFullDateTimeFormat();
 	}
+	function getTimePrint1(){
+		$current 	= strtotime(date("Y-m-d H:i:s"));
+		$date    	= strtotime($this->Time);		
+		
+		$Str 		= "";
+		$Arr1		= array("giây"	, "phút"	, "giờ"	, "ngày", "tháng"	, "năm");
+		$Arr2		= array(60		, 60		, 24	, 30	, 12		, 1);
+		$Index		= 0;
+		$D 			= $current - $date;
+		
+		while ($D>0){
+			if ($Index>2)
+				$Str	= ($D%$Arr2[$Index]). " ". $Arr1[$Index]." hơn";
+			else
+				$Str	= ($D%$Arr2[$Index]). " ". $Arr1[$Index]." ".$Str;
+			
+			$D 		= floor($D/$Arr2[$Index]);
+			$Index ++;
+		}
+		return $Str;
+	}
 	
 	function setIdCategory( $IdCategory ){$this->IdCategory = $IdCategory;$this->markDirty();}   
 	function getIdCategory( ) {return $this->IdCategory;}
@@ -50,7 +71,7 @@ class Post extends Object{
 	
 	function setTitle( $Title ){$this->Title = $Title;$this->markDirty();}   
 	function getTitle( ) {return $this->Title;}	
-	function getTitleReduce(){$S = new \MVC\Library\String($this->Title);return $S->reduce(45);}
+	function getTitleReduce(){$S = new \MVC\Library\String($this->Title);return $S->reduce(14);}
 			
 	function getImage(){		
 		$first_img = '';
@@ -125,7 +146,7 @@ class Post extends Object{
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
 	function getURLView(){		return "/bai-viet/".$this->getCategory()->getKey()."/".$this->getKey();}
-	function getURLViewFull(){	return "http://cotuong.caytretramdot.com/bai-viet/".$this->getCategory()->getKey()."/".$this->getKey();}
+	function getURLViewFull(){	return "http://phatphapungdung.caytretramdot.com/bai-viet/".$this->getCategory()->getKey()."/".$this->getKey();}
 			
 	function getURLUpdLoad(){	return "admin/post/".$this->getIdCategory()."/".$this->getId()."/upd/load";}
 	function getURLUpdExe(){	return "admin/post/".$this->getIdCategory()."/".$this->getId()."/upd/exe";}

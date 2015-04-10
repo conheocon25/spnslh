@@ -23,9 +23,9 @@ class Video extends Object{
 		$Title		=null , 		
 		$Info		=null, 
 		$Time		=null, 
-		$IdYouTube	=null, 				
-		$Viewed		=null, 		
-		$Liked		=null,
+		$IdYouTube	=null, 		
+		$Viewed		=null,
+		$Liked		=null, 		
 		$Key		=null)
 	{
 		$this->Id 			= $Id;
@@ -93,8 +93,21 @@ class Video extends Object{
 	function setIdYouTube( $IdYouTube ) {$this->IdYouTube = $IdYouTube;$this->markDirty();}   
 	function getIdYouTube( ) 			{return $this->IdYouTube;}
 	function getYoutubeEmbeded()		{return "http://www.youtube.com/embed/".$this->getIdYouTube();}
-	function getImage( ){
-		return "http://img.youtube.com/vi/".$this->IdYouTube."/2.jpg";
+	function getImage( ){		
+		$url = "http://img.youtube.com/vi/".$this->IdYouTube."/2.jpg";
+		/*
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL,$url);		
+		curl_setopt($ch, CURLOPT_NOBODY, 1);
+		curl_setopt($ch, CURLOPT_FAILONERROR, 1);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		if(curl_exec($ch)!==FALSE){
+			return $url;
+		}
+		else{
+			return "/mvc/templates/theme/img/Video.jpg";
+		}*/	
+		return $url;
 	}
 	
 	function setViewed( $Viewed ) 	{$this->Viewed = $Viewed; $this->markDirty();}   
@@ -121,7 +134,7 @@ class Video extends Object{
 			
 		$Str = new \MVC\Library\String($this->Title." ".$Id);
 		$this->Key = $Str->converturl();		
-	}
+	}	
 		
 	//-------------------------------------------------------------------------------
 	//GET LISTs
@@ -162,11 +175,20 @@ class Video extends Object{
 	//-------------------------------------------------------------------------------	
 	function getURLView(){		
 		$Category 	= $this->getCategory();
-		return "/video/".$Category->getKey()."/".$this->getKey();
+		$Buddha 	= $Category->getCategory();
+		return "/video/".$Buddha->getKey()."/".$Category->getKey()."/".$this->getKey();
 	}
 	
-	function getURLUpdLoad()		{return "/admin/video/".$this->getCategory()->getId()."/".$this->getId()."/upd/load";	}
-	function getURLUpdExe()			{return "/admin/video/".$this->getCategory()->getId()."/".$this->getId()."/upd/exe";	}
+	function getURLUpdLoad(){
+		$Category 	= $this->getCategory();
+		$Buddha 	= $Category->getCategory();		
+		return "/admin/buddha/".$Buddha->getId()."/".$Category->getId()."/".$this->getId()."/upd/load";	
+	}
+	function getURLUpdExe(){
+		$Category 	= $this->getCategory();
+		$Buddha 	= $Category->getCategory();		
+		return "/admin/buddha/".$Buddha->getId()."/".$Category->getId()."/".$this->getId()."/upd/exe";	
+	}
 	
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

@@ -9,7 +9,7 @@
 		<div metal:use-macro="mAdmin.xhtml/Header"/>						
 		<div id="sidebar">
 			<ul style="display: block;">				
-				<li tal:repeat="Category1 CategoryVideoAll" tal:attributes="class php: Category1->getId()==Category->getId()?'active':''">
+				<li tal:repeat="Category1 Buddha/getCategoryAll" tal:attributes="class php: Category1->getId()==Category->getId()?'active':''">
 					<a tal:attributes="href Category1/getURLSetting">
 						<i class="glyphicons-tag"/><span tal:content="Category1/getName"/>
 					</a>
@@ -40,7 +40,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr tal:repeat="Video VideoAll">
+									<tr tal:repeat="Video Category/getVideoAll">
 										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Video/getId"/></td>
 										<td><a tal:attributes="href Video/getURLUpdLoad" tal:content="Video/getTitle"/></td>
 										<td><span tal:content="Video/getTimePrint"/></td>
@@ -73,7 +73,7 @@
 				});
 				
 				$.ajax({
-					type: "Video",
+					type: "POST",
 					data: {ListId:Data},
 					url: URL,
 					success: function(msg){
