@@ -25,50 +25,75 @@ class PackCart extends Object{
 			return false;
 		}
 	}
+		
+	public function SumPackCart() {
+		$nSum = 0;
+		$N1 = 0;
+		if ($this->isEmpty() == false) {
+			foreach ($this->Items as $Item) {				
+				$nSum = $nSum + ($Item['Price']*$Item['Count']);																											
+			}			
+			return $nSum;
+		} 
+		else { return $nSum;}
+	}
 	
-	public function addItem($Id, $IdProduct, $Price, $UrlImage){
-		if (isset($this->Items[$Id])) {			
-			$Count = 1;
-			$this->updateItem($Id, $IdProduct, $Price, $UrlImage, $Count);
-		} else {
-			// Add the array of info:
+	public function SumPackCartPrint() {
+		$N = new \MVC\Library\Number($this->SumPackCart());
+		return $N->formatCurrency() . " đồng";
+	}
+	
+	public function addItem($NameProduct, $IdProduct, $Price, $UrlImage, $Count){
+		$flag = false;
+		if ($this->isEmpty() == false) {
+			foreach ($this->Items as $Item) {					
+				if ($Item['IdProduct'] == $IdProduct) {					
+					$this->plus($Item['Id']);
+					$flag = true;
+				}					
+			}			
+			if ($flag == false) {
+				$Id = $this->countItem();
+				$this->addNew($Id, $NameProduct, $IdProduct, $Price, $UrlImage, $Count);
+			}
+		} 
+		else { 			
+			$this->addNew(0, $NameProduct, $IdProduct, $Price, $UrlImage, $Count);
+		}		
+	}
+	
+	public function plus($Id){
+		$this->Items[$Id]['Count'] = $this->Items[$Id]['Count']  + 1;
+	}
+	
+	public function minus($Id){
+		if($this->Items[$Id]['Count'] <= 1)
+		{
+			$this->deleteItem($Id);
+		}else {
+			$this->Items[$Id]['Count'] = $this->Items[$Id]['Count'] - 1;
+		}		
+	}
+	public function addNew($Id, $NameProduct, $IdProduct, $Price, $UrlImage, $Count){
+						
 			$this->Items[$Id]['Id']			= $Id;
+			$this->Items[$Id]['NameProduct']	= $NameProduct;
 			$this->Items[$Id]['IdProduct']	= $IdProduct;
 			$this->Items[$Id]['Price']		= $Price;
 			$this->Items[$Id]['UrlImage']	= $UrlImage;
-			$this->Items[$Id]['Count'] 		= 1;
-			$this->Items[$Id]['Value'] 		= $this->Items[$Id]['Count']*$this->Items[$Id]['Price'];
+			$this->Items[$Id]['Count'] 		= $Count;
 			
 			$N1 = new \MVC\Library\Number($this->Items[$Id]['Count']*$this->Items[$Id]['Price']);
 			$this->Items[$Id]['ValueP'] 	= $N1->formatCurrency();
 			$N2 = new \MVC\Library\Number($this->Items[$Id]['Price']);
 			$this->Items[$Id]['PriceP'] 	= $N2->formatCurrency();
+			
 						
 			$this->Items[$Id]['URLDel'] 	= "/gio-hang/" . $this->Items[$Id]['Id'] . "/del";
-			$this->Items[$Id]['URLPlusUpd']	= "/gio-hang/" . $this->Items[$Id]['Id'] . "/add";
-			$this->Items[$Id]['URLMinusUpd']= "/gio-hang/" . $this->Items[$Id]['Id'] . "/sub";
-		}
+			$this->Items[$Id]['URLPlusUpd']	= "/gio-hang/" . $this->Items[$Id]['Id'] . "/plus";			
+			$this->Items[$Id]['URLMinusUpd']= "/gio-hang/" . $this->Items[$Id]['Id'] . "/minus";
 	}
 	
-	public function updateItem($Id, $IdProduct, $Price, $Count){
-		if ($Count == 0){
-			$this->deleteItem($Id);
-		}else{
-			$this->Items[$Id]['IdProduct']	= $IdProduct;
-			$this->Items[$Id]['UrlImage']	= $UrlImage;
-			$this->Items[$Id]['Price']		= $Price;
-			$this->Items[$Id]['Count'] 		= $this->Items[$Id]['Count'] + $Count;
-			$this->Items[$Id]['Value'] 		= $this->Items[$Id]['Count']*$this->Items[$Id]['Price'];
-			
-			$N1 = new \MVC\Library\Number($this->Items[$Id]['Count']*$this->Items[$Id]['Price']);
-			$this->Items[$Id]['ValueP'] 	= $N1->formatCurrency();
-			$N2 = new \MVC\Library\Number($this->Items[$Id]['Price']);
-			$this->Items[$Id]['PriceP'] 	= $N2->formatCurrency();
-			
-			$this->Items[$Id]['URLPlusUpd']	= "/gio-hang/" . $this->Items[$Id]['Id'] . "/add";
-			$this->Items[$Id]['URLMinusUpd']= "/gio-hang/" . $this->Items[$Id]['Id'] . "/sub";
-		}
-	}
 	
 	public function deleteItem($Id){
 		if (isset($this->Items[$Id])){
