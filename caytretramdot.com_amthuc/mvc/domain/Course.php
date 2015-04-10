@@ -83,7 +83,7 @@ class Course extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLView()	{return "/video/".$this->getKey();}		
+	function getURLView()	{return "/mon/".$this->getKey();}		
 	function getURLSetting(){return "/admin/course/".$this->getId();}
 	
 	//-------------------------------------------------------------------------------

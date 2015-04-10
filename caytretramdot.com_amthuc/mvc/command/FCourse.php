@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class FMe extends Command {
+	class FCourse extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -11,31 +11,24 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-						
+			$KCourse = $request->getProperty('KCourse');
+			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------						
-			$mConfig 		= new \MVC\Mapper\Config();
-			$mPost 			= new \MVC\Mapper\Post();			
-			$mCategoryBook 	= new \MVC\Mapper\CategoryBook();
-			$mCategoryPost 	= new \MVC\Mapper\CategoryPost();
-			$mCategoryVideo	= new \MVC\Mapper\CategoryVideo();
-									
+			$mConfig 			= new \MVC\Mapper\Config();			
+			$mCourse 			= new \MVC\Mapper\Course();
+												
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------											
-						
-			$CategoryPostAll 	= $mCategoryPost->findAll();
-			$CategoryBookAll 	= $mCategoryBook->findAll();
-			$CategoryVideoAll 	= $mCategoryVideo->findAll();
+			//-------------------------------------------------------------												
+			$Course 			= $mCourse->findByKey($KCourse);
 															
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------						
-			$request->setObject("CategoryPostAll", 		$CategoryPostAll);
-			$request->setObject("CategoryBookAll", 		$CategoryBookAll);
-			$request->setObject("CategoryVideoAll", 	$CategoryVideoAll);
-									
+			$request->setObject("Course", 			$Course);
+			
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

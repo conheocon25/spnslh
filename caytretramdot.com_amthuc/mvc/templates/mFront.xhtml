@@ -53,15 +53,7 @@
 				</a>
 			</div>			
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav navbar-left">
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Tin tức<span class="caret"></span></a>
-						<ul class="dropdown-menu" role="menu">
-							<li tal:repeat="Category CategoryPostAll">
-								<a tal:attributes="href Category/getURLView" class="clearfix"><span class="pull-left" tal:content="Category/getName"/></a>
-							</li>
-						</ul>
-					</li>
+				<ul class="nav navbar-nav navbar-left">	
 					<li><a href="/lien-he">Liên hệ</a></li>
 					<li><a><b tal:content="php:@\MVC\Library\Statistic::getOnlinePrint()"/> <i class="glyphicon glyphicon-user"/></a></li>
 					<li><a><b tal:content="php:@\MVC\Library\Statistic::getCountPrint()"/> <i class="glyphicon glyphicon-stats"/></a></li>
