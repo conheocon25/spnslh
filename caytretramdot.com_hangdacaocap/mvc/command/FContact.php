@@ -7,7 +7,7 @@
 			//THAM SỐ TOÀN CỤC
 			//-------------------------------------------------------------						
 			$Session = \MVC\Base\SessionRegistry::instance();
-									
+			$DPackCart = $Session->getPackCart();							
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
@@ -73,7 +73,8 @@
 			$request->setObject("LinkedAll", 			$LinkedAll);
 			$request->setObject("LastestPostAll", 		$LastestPostAll);
 			$request->setObject("ProductAll", 			$ProductAll);						
-						
+			$request->setObject("DPackCart", 			$DPackCart);
+			
 			return self::statuses('CMD_DEFAULT');
 		}
 	}
