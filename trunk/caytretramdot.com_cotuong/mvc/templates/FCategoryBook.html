@@ -6,43 +6,12 @@
 	</head>
 	<body>
 		<div metal:use-macro="mFront.xhtml/Header"/>
-		<div class="container-fluid" id="wraper">
+		<div class="container-fluid" id="wraper">			
 			<div class="row">
-				<div class="col-md-12">
-					<div class="panel panel-primary">
-						<div class="panel-body">							
-							<div id="carousel-cotuong-generic" class="carousel slide" data-ride="carousel">
-								<ol class="carousel-indicators">
-									<li tal:repeat="Slide Presentation/getSlideAll" data-target="#carousel-cotuong-generic" tal:attributes="data-slide-to php: repeat.Slide.number" />
-								</ol>
-								<div class="carousel-inner" role="listbox">									
-									<div class="item" tal:repeat="Slide Presentation/getSlideAll">
-										<img tal:attributes="src Slide/getURL;alt php:'sequence-slide-' . repeat.Slide.number" width="100%"/>
-										<div class="carousel-caption">
-											
-										</div>
-									</div>
-								</div>
-								<a class="left carousel-control" href="#carousel-cotuong-generic" role="button" data-slide="prev">
-									<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-									<span class="sr-only">Lui</span>
-								</a>
-								<a class="right carousel-control" href="#carousel-cotuong-generic" role="button" data-slide="next">
-									<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-									<span class="sr-only">Tới</span>
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-8">
+				<div class="col-md-9">
 					<div class="panel panel-primary">
 						<div class="panel-heading">
-							<ol class="breadcrumb">						
-								<li class="active" tal:content="php: mb_strtoupper(Category->getName(), 'UTF8')"/>
-							</ol>
+							<span tal:content="php: mb_strtoupper(Category->getName(), 'UTF8')"/>
 						</div>
 						<div class="panel-body">
 							<div role="tabpanel" id="TabBook">
@@ -59,25 +28,16 @@
 								</ul>
 								<div class="tab-content">
 									<div role="tabpanel" tal:attributes="class php:(OrderBy == 'Viewed')?'tab-pane active':'tab-pane'"  id="TabViewed">
-										<table class="table table-striped">
-											<tr tal:repeat="Book BookOrderByViewedAll">
-												<td width="48px">												
-													<a tal:attributes="href Book/getURLView">
-														<img width="48px" tal:attributes="src Book/getThumb"/>
-													</a>	
-												</td>
-												<td>
-													<a tal:attributes="href Book/getURLView"><span tal:content="Book/getTitle"/></a>
-													<p class="text-left">cập nhật mới nhất <B><i tal:content="Book/getTimePrint1" /></B></p>
-													<p class="text-justify" tal:content="structure Book/getInfoReduce"/>
-													<div class="progress">
-														<div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" tal:attributes="style Book/getCompletedPercentPrint1">
-															<B tal:content="Book/getCompletedPercentPrint2"/> hoàn thành 
-														</div>
+										<div class="col-sm-3 col-md-3" tal:repeat="Book BookOrderByViewedAll">
+											<div class="thumbnail">
+												<a tal:attributes="href Book/getURLView; title Book/getTitle" data-toggle="tooltip" data-placement="top">
+													<img width="100%" tal:attributes="src Book/getThumb"/>
+													<div class="caption">
+														<p align="center"><span tal:content="Book/getTimePrint1"/></p>
 													</div>
-												</td>
-											</tr>
-										</table>
+												</a>													
+											</div>
+										</div>										
 										<nav>
 											<ul class="pagination alternate pull-center page-bar">
 												<li tal:repeat="P PNByViewed/getPages" tal:attributes="class php:Page==P->getId()?'active':'disable'">
@@ -86,26 +46,17 @@
 											</ul>
 										</nav>
 									</div>
-									<div role="tabpanel" tal:attributes="class php:(OrderBy == 'Liked')?'tab-pane active':'tab-pane'"  id="TabLiked">
-										<table class="table table-striped">
-											<tr tal:repeat="Book BookOrderByLikedAll">
-												<td width="48px">
-													<a tal:attributes="href Book/getURLView">
-														<img width="48px" tal:attributes="src Book/getThumb"/>
-													</a>	
-												</td>
-												<td>
-													<a tal:attributes="href Book/getURLView"><span tal:content="Book/getTitle"/></a>
-													<p class="text-left">cập nhật mới nhất <B><i tal:content="Book/getTimePrint1" /></B></p>
-													<p class="text-justify" tal:content="structure Book/getInfoReduce"/>
-													<div class="progress">
-														<div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" tal:attributes="style Book/getCompletedPercentPrint1">
-															<B tal:content="Book/getCompletedPercentPrint2"/> hoàn thành 
-														</div>
+									<div role="tabpanel" tal:attributes="class php:(OrderBy == 'Liked')?'tab-pane active':'tab-pane'"  id="TabLiked">																					
+										<div class="col-sm-3 col-md-3" tal:repeat="Book BookOrderByLikedAll">
+											<div class="thumbnail">
+												<a tal:attributes="href Book/getURLView; title Book/getTitle" data-toggle="tooltip" data-placement="top">
+													<img width="100%" tal:attributes="src Book/getThumb"/>
+													<div class="caption">
+														<p align="center"><span tal:content="Book/getTimePrint1"/></p>
 													</div>
-												</td>
-											</tr>
-										</table>
+												</a>													
+											</div>
+										</div>										
 										<nav>
 											<ul class="pagination alternate pull-center page-bar">
 												<li tal:repeat="P PNByLiked/getPages" tal:attributes="class php:Page==P->getId()?'active':'disable'">
@@ -115,25 +66,16 @@
 										</nav>
 									</div>
 									<div role="tabpanel" tal:attributes="class php:(OrderBy == 'Recent')?'tab-pane active':'tab-pane'"  id="TabRecent">
-										<table class="table table-striped">
-											<tr tal:repeat="Book BookOrderByRecentAll">
-												<td width="48px">
-													<a tal:attributes="href Book/getURLView">
-														<img width="48px" tal:attributes="src Book/getThumb"/>
-													</a>	
-												</td>
-												<td>
-													<a tal:attributes="href Book/getURLView"><span tal:content="Book/getTitle"/></a>
-													<p class="text-left">cập nhật mới nhất <B><i tal:content="Book/getTimePrint1" /></B></p>
-													<p class="text-justify" tal:content="structure Book/getInfoReduce"/>
-													<div class="progress">
-														<div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" tal:attributes="style Book/getCompletedPercentPrint1">
-															<B tal:content="Book/getCompletedPercentPrint2"/> hoàn thành 
-														</div>
+										<div class="col-sm-3 col-md-3" tal:repeat="Book BookOrderByRecentAll">
+											<div class="thumbnail">
+												<a tal:attributes="href Book/getURLView; title Book/getTitle" data-toggle="tooltip" data-placement="top">
+													<img width="100%" tal:attributes="src Book/getThumb"/>
+													<div class="caption">
+														<p align="center"><span tal:content="Book/getTimePrint1"/></p>
 													</div>
-												</td>
-											</tr>
-										</table>
+												</a>													
+											</div>
+										</div>
 										<nav>
 											<ul class="pagination alternate pull-center page-bar">
 												<li tal:repeat="P PNByRecent/getPages" tal:attributes="class php:Page==P->getId()?'active':'disable'">
@@ -147,10 +89,18 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-md-4">					
-					<div class="panel panel-default">
-						<div class="panel-body">														
-							<tal:block metal:use-macro="mFront.xhtml/SuggestLevel01"/>
+				<div class="col-md-3">
+					<div class="panel panel-primary">
+						<div class="panel-heading">DANH MỤC</div>
+						<div class="panel-body">
+							<ul class="list-group">
+								<li tal:attributes="class php:Category->getId()==Category1->getId()? 'list-group-item list-group-item-success' : 'list-group-item'" tal:repeat="Category1 CategoryBookAll">
+									<a tal:attributes="href Category1/getURLView">
+										<span tal:content="Category1/getName"/>
+									</a>
+									<span class="badge" tal:content="Category1/getBookAll/count"/>
+								</li>
+							</ul>
 						</div>
 					</div>
 				</div>
@@ -160,6 +110,7 @@
 		<script type="text/javascript">
 		/*<![CDATA[*/			
 			$(function(){
+				$('[data-toggle="tooltip"]').tooltip();
 				$('#carousel-cotuong-generic').carousel({pause: "false"});
 				$('.carousel-inner .item:first-child').addClass('active');
 			});

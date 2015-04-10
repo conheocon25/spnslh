@@ -12,44 +12,12 @@
 	</head>
 	<body>
 		<div metal:use-macro="mFront.xhtml/Header"/>
-		<div class="container-fluid" id="wraper">
+		<div class="container-fluid" id="wraper">			
 			<div class="row">
-				<div class="col-md-12">
+				<div class="col-md-9">
 					<div class="panel panel-primary">
-						<div class="panel-body">							
-							<div id="carousel-cotuong-generic" class="carousel slide" data-ride="carousel">
-								<ol class="carousel-indicators">
-									<li tal:repeat="Slide Presentation/getSlideAll" data-target="#carousel-cotuong-generic" tal:attributes="data-slide-to php: repeat.Slide.number" />
-								</ol>
-								<div class="carousel-inner" role="listbox">
-									<div class="item" tal:repeat="Slide Presentation/getSlideAll">
-										<img tal:attributes="src Slide/getURL;alt php:'sequence-slide-' . repeat.Slide.number" width="100%"/>
-										<div class="carousel-caption">
-											
-										</div>
-									</div>
-								</div>
-								<a class="left carousel-control" href="#carousel-cotuong-generic" role="button" data-slide="prev">
-									<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-									<span class="sr-only">Lui</span>
-								</a>
-								<a class="right carousel-control" href="#carousel-cotuong-generic" role="button" data-slide="next">
-									<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-									<span class="sr-only">Tới</span>
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-8">
-					<div class="panel panel-primary">
-						<div class="panel-heading">
-							<ol class="breadcrumb">
-								<li><a tal:attributes="href Category/getURLView" tal:content="php: mb_strtoupper(Category->getName(), 'UTF8')"/></li>
-								<li class="active" tal:content="php: mb_strtoupper(Book->getTitle(), 'UTF8')"/>
-							</ol>
+						<div class="panel-heading">							
+							<span tal:content="php: mb_strtoupper(Book->getTitle(), 'UTF8')"/>
 						</div>
 						<div class="panel-body">
 							<div class="article-meta-date">																
@@ -105,10 +73,23 @@
 						</div>		
 					</div>	
 				</div>
-				<div class="col-md-4">					
-					<div class="panel panel-default">						
-						<div class="panel-body">														
-							<tal:block metal:use-macro="mFront.xhtml/SuggestLevel01"/>							
+				<div class="col-md-3">
+					<div class="panel panel-primary">
+						<div class="panel-heading">DANH MỤC</div>
+						<div class="panel-body">
+							<div class="btn-group" role="group" aria-label="...">
+								<a tal:attributes="href Category/getURLView" class="btn btn-default">
+									<i class="glyphicon glyphicon-share-alt"/>
+								</a>
+							</div>
+							<ul class="list-group">
+								<li tal:attributes="class php:Book->getId()==Book1->getId()? 'list-group-item list-group-item-success' : 'list-group-item'" tal:repeat="Book1 Category/getBookAll">
+									<a tal:attributes="href Book1/getURLView">
+										<span tal:content="Book1/getTitleReduce"/>
+									</a>
+									<span class="badge" tal:content="Book1/getChapterAll/count"/>
+								</li>
+							</ul>	
 						</div>
 					</div>
 				</div>
