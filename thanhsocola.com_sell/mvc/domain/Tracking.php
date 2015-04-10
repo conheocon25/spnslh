@@ -19,6 +19,9 @@ class Tracking extends Object{
 	
 	private $Count;
 	private $CountGlobal;
+	
+	private $Import;
+	private $ImportGlobal;
 		
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
@@ -35,7 +38,9 @@ class Tracking extends Object{
 			$Paid3=null,
 			$Value=null,
 			$Count=null,
-			$CountGlobal=null
+			$CountGlobal=null,
+			$Import=null,
+			$ImportGlobal=null
 	){
 			$this->Id 				= $Id; 
 			$this->DateStart 		= $DateStart; 
@@ -53,6 +58,9 @@ class Tracking extends Object{
 			
 			$this->Count 			= $Count;
 			$this->CountGlobal		= $CountGlobal;
+			
+			$this->Import			= $Import;
+			$this->ImportGlobal		= $ImportGlobal;
 									
 			parent::__construct( $Id );
 	}
@@ -147,6 +155,14 @@ class Tracking extends Object{
 	function getCountGlobal( ) {return $this->CountGlobal;}
 	function getCountGlobalPrint( ) {$N = new \MVC\Library\Number($this->CountGlobal);return $N->formatCurrency();}
 	
+	function setImport( $Import ) 	{$this->Import = $Import; $this->markDirty();}
+	function getImport( ) 			{return $this->Import;}
+	function getImportPrint( ) 		{$N = new \MVC\Library\Number($this->Import);return $N->formatCurrency();}
+	
+	function setImportGlobal( $ImportGlobal ) {$this->ImportGlobal = $ImportGlobal; $this->markDirty();}
+	function getImportGlobal( ) {return $this->ImportGlobal;}
+	function getImportGlobalPrint( ) {$N = new \MVC\Library\Number($this->ImportGlobal);return $N->formatCurrency();}
+	
 	
 	function setArray( $Data ){
         $this->Id 			= $Data[0];
@@ -161,6 +177,8 @@ class Tracking extends Object{
 		$this->Value		= $Data[9];
 		$this->Count		= $Data[10];
 		$this->CountGlobal 	= $Data[11];
+		$this->Import		= $Data[12];
+		$this->ImportGlobal = $Data[13];
     }
 			
 	//-------------------------------------------------------------------------------

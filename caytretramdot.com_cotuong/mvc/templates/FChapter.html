@@ -14,14 +14,10 @@
 		<div metal:use-macro="mFront.xhtml/Header"/>
 		<div class="container-fluid" id="wraper">
 			<div class="row">
-				<div class="col-md-8">
+				<div class="col-md-9">
 					<div class="panel panel-primary">
-						<div class="panel-heading">
-							<ol class="breadcrumb">
-								<li><a tal:attributes="href Category/getURLView" tal:content="php: mb_strtoupper(Category->getName(), 'UTF8')"/></li>
-								<li><a tal:attributes="href Book/getURLView" tal:content="php: mb_strtoupper(Book->getTitleReduce(), 'UTF8')"/></li>
-								<li class="active" tal:content="php: mb_strtoupper(Chapter->getTitle(), 'UTF8')"/>
-							</ol>
+						<div class="panel-heading">							
+							<span tal:content="php: mb_strtoupper(Chapter->getTitle(), 'UTF8')"/>
 						</div>	
 						<div class="panel-body">
 							<div role="tabpanel" id="TabChapter">
@@ -60,10 +56,22 @@
 						</div>	
 					</div>
 				</div>
-				<div class="col-md-4">					
-					<div class="panel panel-default">						
+				<div class="col-md-3">
+					<div class="panel panel-primary">
+						<div class="panel-heading">DANH MỤC</div>
 						<div class="panel-body">														
-							<tal:block metal:use-macro="mFront.xhtml/SuggestLevel01"/>							
+							<div class="btn-group" role="group" aria-label="...">
+								<a tal:attributes="href Book/getURLView" class="btn btn-default">
+									<i class="glyphicon glyphicon-share-alt"/>
+								</a>
+							</div>
+							<ul class="list-group">
+								<li tal:attributes="class php:Chapter->getId()==Chapter1->getId()? 'list-group-item list-group-item-success' : 'list-group-item'" tal:repeat="Chapter1 Book/getChapterAll">
+									<a tal:attributes="href Chapter1/getURLView">
+										<span tal:content="Chapter1/getTitleReduce"/>
+									</a>									
+								</li>
+							</ul>
 						</div>
 					</div>
 				</div>

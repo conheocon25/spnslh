@@ -34,6 +34,18 @@
 				$Tracking->generateSupplier();
 				$TSAll = $Tracking->getSupplierAll();
 			}
+			
+			$Import 		= 0;
+			$ImportGlobal 	= 0;			
+			while ($TSAll->valid()){
+				$TS 			= $TSAll->current();
+				$Import 		+= $TS->getCount();
+				$ImportGlobal 	+= $TS->getCountGlobal();
+				$TSAll->next();
+			}
+			$Tracking->setImport($Import);
+			$Tracking->setImportGlobal($ImportGlobal);
+			$mTracking->update($Tracking);
 												
 			$Title = $Tracking->getName(). "/ N.CUNG CẤP";
 			$Navigation = array(array("BÁO CÁO", "/report"));
