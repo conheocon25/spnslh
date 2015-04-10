@@ -4,18 +4,18 @@
 	<!-- META TAG INCLUDE														  -->
 	<!-- ======================================================================== -->
 	<span metal:define-macro="IncludeMETA">
-		<title tal:content="string:Ẩm Thực"/>
+		<title tal:content="string:Ẩm Thực Bốn Phương"/>
 		<base href="http://amthuc.caytretramdot.com"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 		<meta http-equiv="Pragma" content="no-cache"/>
 		<meta http-equiv="Expires" content="-1"/>
 		<meta http-equiv="Cache-Control" content="no-cache"/>
-		<meta name="keywords" content="Ẩm Thực"/>
-		<meta name="description" content="Ẩm Thực"/>
-		<meta name="page-topic" content="Ẩm Thực"/>
-		<meta name="Abstract" content="Ẩm Thực"/>
-		<meta name="classification" content="Ẩm Thực"/>
+		<meta name="keywords" content="Ẩm Thực Bốn Phương"/>
+		<meta name="description" content="Ẩm Thực Bốn Phương"/>
+		<meta name="page-topic" content="Ẩm Thực Bốn Phương"/>
+		<meta name="Abstract" content="Ẩm Thực Bốn Phương"/>
+		<meta name="classification" content="Ẩm Thực Bốn Phương"/>
 		<link rel="shortcut icon" type="image/png" href="/data/images/icon.ico" />
 	</span>
 	
@@ -116,20 +116,14 @@
 		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">			
 			<li tal:attributes="class php:ActiveAdmin=='Course'?'active':'disable'">
 				<a tal:attributes="href '/admin/course'"><i class="glyphicons-cogwheels" />MÓN ĂN</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='Post'?'active':'disable'">
-				<a tal:attributes="href '/admin/post'"><i class="glyphicons-cogwheels" />TIN TỨC</a>
-			</li>
+			</li>			
 			<li tal:attributes="class php:ActiveAdmin=='YouTube'?'active':'disable'">
 				<a tal:attributes="href '/admin/testing1'"><i class="glyphicons-cogwheels" />VIDEO AUTO</a>
-			</li>			
-			<li tal:attributes="class php:ActiveAdmin=='Buddha'?'active':'disable'">
-				<a tal:attributes="href '/admin/buddha'"><i class="glyphicons-cogwheels" />VIDEO</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='Setting'?'active':'disable'">				
+			</li>						
+			<li tal:attributes="class php:ActiveAdmin=='Setting'?'active':'disable'">
 				<a tal:attributes="href '/admin/setting'"><i class="glyphicons-cogwheels" />THIẾT LẬP</a>
 			</li>
-		</ul>		
+		</ul>
 	</div>
 						
 	<!-- ======================================================================== -->
@@ -137,7 +131,7 @@
 	<!-- ======================================================================== -->
 	<div metal:define-macro="Footer" class="row">
 		<div id="footer" class="col-12" style="text-align:right; padding-right:20px;">
-			2015 &copy; <a href="http://phatphapungdung.caytretramdot.com">SPN Team - Ẩm Thực</a>
+			2015 &copy; <a href="http://amthuc.caytretramdot.com">SPN Team - Ẩm Thực Bốn Phương</a>
 		</div>
 	</div>
 	

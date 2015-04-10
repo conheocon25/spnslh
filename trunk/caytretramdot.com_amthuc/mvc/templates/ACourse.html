@@ -55,19 +55,7 @@
 											<div class="controls">
 												<input id="Name1" name="Name1" type="text" class="form-control input-small"/>
 											</div>
-										</div>
-										<div class="control-group">
-											<label class="control-label">Ngày tạo</label>
-											<div class="controls">
-												<input id="DateTimeCreated1" name="DateTimeCreated1" type="text" class="form-control input-small"/>
-											</div>
-										</div>
-										<div class="control-group">
-											<label class="control-label">Ngày cập nhật</label>
-											<div class="controls">
-												<input id="DateTimeUpdated1" name="DateTimeUpdated1" type="text" class="form-control input-small"/>
-											</div>
-										</div>
+										</div>										
 										<div class="control-group">
 											<label class="control-label">Thứ tự</label>
 											<div class="controls">
@@ -101,13 +89,13 @@
 										<div class="control-group">
 											<label class="control-label">Ngày tạo</label>
 											<div class="controls">
-												<input id="DateTimeCreated2" name="DateTimeCreated2" type="text" class="form-control input-small"/>
+												<input id="DateTimeCreated2" name="DateTimeCreated2" type="text" class="form-control input-small" readonly="true"/>
 											</div>
 										</div>
 										<div class="control-group">
 											<label class="control-label">Ngày cập nhật</label>
 											<div class="controls">
-												<input id="DateTimeUpdated2" name="DateTimeUpdated2" type="text" class="form-control input-small"/>
+												<input id="DateTimeUpdated2" name="DateTimeUpdated2" type="text" class="form-control input-small" readonly="true"/>
 											</div>
 										</div>
 										<div class="control-group">
@@ -196,10 +184,8 @@
 				submitHandler: function (form) {					
 					var Data = [];
 					Data[0] = 'null';					
-					Data[1] = $('#Name1').val();
-					Data[2] = $('#DateTimeCreated1').val();
-					Data[3] = $('#DateTimeUpdated1').val();
-					Data[4] = $('#Rank1').val();
+					Data[1] = $('#Name1').val();					
+					Data[2] = $('#Rank1').val();
 					
 					var URL = "/object/ins/Course";
 					$.ajax({
@@ -259,10 +245,8 @@
 				submitHandler: function (form) {					
 					var Data = [];
 					Data[0] = $('#URLUpdButton').attr('alt');					
-					Data[1] = $('#Name2').val();
-					Data[2] = $('#DateTimeCreated2').val();
-					Data[3] = $('#DateTimeUpdated2').val();
-					Data[4] = $('#Rank2').val();
+					Data[1] = $('#Name2').val();					
+					Data[2] = $('#Rank2').val();
 																		
 					var URL = "/object/upd/Course";
 					$.ajax({
