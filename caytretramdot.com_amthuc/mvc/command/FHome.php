@@ -15,27 +15,19 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------						
-			$mConfig 			= new \MVC\Mapper\Config();
-			$mCategoryBuddha	= new \MVC\Mapper\CategoryBuddha();
+			$mConfig 			= new \MVC\Mapper\Config();			
 			$mPost 				= new \MVC\Mapper\Post();
-			$mPresentation 		= new \MVC\Mapper\Presentation();
-			
+			$mPresentation 		= new \MVC\Mapper\Presentation();			
 			$mCategoryPost		= new \MVC\Mapper\CategoryPost();
-			$mCategoryBuddha	= new \MVC\Mapper\CategoryBuddha();
-						
+									
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
 			$ConfigPHome 		= $mConfig->findByName("PRESENTATION_HOME");
 			
-			$CategoryPostAll 	= $mCategoryPost->findAll();
-			$CategoryBuddhaAll 	= $mCategoryBuddha->findAll();
-			
+			$CategoryPostAll 	= $mCategoryPost->findAll();						
 			$Presentation 		= $mPresentation->find($ConfigPHome->getValue());
-			
-			$PostLastest		= $mPost->findByLastest(array());
-			$PostPopular		= $mPost->findByPopular(array());
-									
+												
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
@@ -43,13 +35,9 @@
 			
 			$request->setObject("ConfigPHome", 			$ConfigPHome);
 			$request->setObject("Presentation", 		$Presentation);
-			
-			$request->setObject("PostLastest", 			$PostLastest);
-			$request->setObject("PostPopular", 			$PostPopular);
-			
-			$request->setObject("CategoryPostAll", 		$CategoryPostAll);
-			$request->setObject("CategoryBuddhaAll", 	$CategoryBuddhaAll);
 						
+			$request->setObject("CategoryPostAll", 		$CategoryPostAll);
+									
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

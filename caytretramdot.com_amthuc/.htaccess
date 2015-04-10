@@ -54,6 +54,8 @@ RewriteRule ^admin$ 													?cmd=Admin [L]
 #---------------------------------------------------------------------------------------------------------------------------
 # SETTING
 #---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^admin/course$ 												?cmd=ACourse [L]
+
 RewriteRule ^admin/testing1$ 											?cmd=ATesting1 [L]
 RewriteRule ^service/youtube/add/video/from/playlist$ 					?cmd=ServiceYouTubeAddVideoFromPlayList [L]
 RewriteRule ^service/youtube/update/statistic/video						?cmd=ServiceYouTubeUpdateStatisticVideo [L]
@@ -64,8 +66,6 @@ RewriteRule ^admin/presentation/([0-9]+)/ins/load$ 						?cmd=ASlideInsLoad&IdPr
 RewriteRule ^admin/presentation/([0-9]+)/ins/exe$ 						?cmd=ASlideInsExe&IdPresentation=$1 [L]
 RewriteRule ^admin/presentation/([0-9]+)/([0-9]+)/upd/load$ 			?cmd=ASlideUpdLoad&IdPresentation=$1&IdSlide=$2 [L]
 RewriteRule ^admin/presentation/([0-9]+)/([0-9]+)/upd/exe$ 				?cmd=ASlideUpdExe&IdPresentation=$1&IdSlide=$2 [L]
-
-RewriteRule ^admin/linked$ 												?cmd=ALinked [L]
 
 RewriteRule ^admin/post$ 												?cmd=APost [L]
 RewriteRule ^admin/post/([0-9]+)$ 										?cmd=APost&IdCategory=$1 [L]

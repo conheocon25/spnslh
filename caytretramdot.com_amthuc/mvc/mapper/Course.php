@@ -1,20 +1,20 @@
 <?php
 namespace MVC\Mapper;
 require_once( "mvc/base/Mapper.php" );
-class CategoryBook extends Mapper implements \MVC\Domain\CategoryBookFinder{
+class Course extends Mapper implements \MVC\Domain\CourseFinder{
 
     function __construct() {
         parent::__construct();
 		
-		$tblCategoryBook = "tbl_category_book";
+		$tblCourse 		= "tbl_course";
 						
-		$selectAllStmt 	= sprintf("select * from %s order by `order`", $tblCategoryBook);
-		$selectStmt 	= sprintf("select * from %s where id=?", $tblCategoryBook);
-		$updateStmt 	= sprintf("update %s set id_presentation=?, name=?, `order`=?, `key`=? where id=?", $tblCategoryBook);
-		$insertStmt 	= sprintf("insert into %s ( id_presentation, name, `order`, `key`) values(?, ?, ?, ?)", $tblCategoryBook);
-		$deleteStmt 	= sprintf("delete from %s where id=?", $tblCategoryBook);
-		$findByPageStmt = sprintf("SELECT * FROM  %s ORDER BY `order`, name	LIMIT :start,:max", $tblCategoryBook);
-		$findByKeyStmt 	= sprintf("select *  from %s where `key`=?", $tblCategoryBook);		
+		$selectAllStmt 	= sprintf("select * from %s order by `order`", $tblCourse);
+		$selectStmt 	= sprintf("select * from %s where id=?", $tblCourse);
+		$updateStmt 	= sprintf("update %s set name=?, datetime_created=?, datetime_updated=?, `rank`=?, `key`=? where id=?", $tblCourse);
+		$insertStmt 	= sprintf("insert into %s ( name, datetime_created, datetime_updated, `rank`, `key`) values(?, ?, ?, ?, ?)", $tblCourse);
+		$deleteStmt 	= sprintf("delete from %s where id=?", $tblCourse);
+		$findByPageStmt = sprintf("SELECT * FROM  %s ORDER BY `order`, name	LIMIT :start,:max", $tblCourse);
+		$findByKeyStmt 	= sprintf("select *  from %s where `key`=?", $tblCourse);		
 				
         $this->selectAllStmt 		= self::$PDO->prepare($selectAllStmt);
         $this->selectStmt 			= self::$PDO->prepare($selectStmt);
@@ -26,24 +26,26 @@ class CategoryBook extends Mapper implements \MVC\Domain\CategoryBookFinder{
 		
 		
     } 
-    function getCollection( array $raw ) {return new CategoryBookCollection( $raw, $this );}
+    function getCollection( array $raw ) {return new CourseCollection( $raw, $this );}
     protected function doCreateObject( array $array ) {		
-        $obj = new \MVC\Domain\CategoryBook( 
+        $obj = new \MVC\Domain\Course( 
 			$array['id'],
-			$array['id_presentation'],
 			$array['name'],
-			$array['order'],			
+			$array['datetime_created'],
+			$array['datetime_updated'],
+			$array['rank'],			
 			$array['key']
 		);
         return $obj;
     }
 	
-    protected function targetClass() {  return "CategoryBook";}
+    protected function targetClass() {  return "Course";}
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array( 
-			$object->getIdPresentation(),
 			$object->getName(),
-			$object->getOrder(),			
+			$object->getDateTimeCreated(),
+			$object->getDateTimeUpdated(),
+			$object->getRank(),
 			$object->getKey()
 		); 
         $this->insertStmt->execute( $values );
@@ -53,9 +55,10 @@ class CategoryBook extends Mapper implements \MVC\Domain\CategoryBookFinder{
     
     protected function doUpdate( \MVC\Domain\Object $object ) {
         $values = array( 
-			$object->getIdPresentation(),
 			$object->getName(),
-			$object->getOrder(),			
+			$object->getDateTimeCreated(),
+			$object->getDateTimeUpdated(),
+			$object->getRank(),
 			$object->getKey(),
 			$object->getId()
 		);				
@@ -69,7 +72,7 @@ class CategoryBook extends Mapper implements \MVC\Domain\CategoryBookFinder{
 		$this->findByPageStmt->bindValue(':start', ((int)($values[0])-1)*(int)($values[1]), \PDO::PARAM_INT);
 		$this->findByPageStmt->bindValue(':max', (int)($values[1]), \PDO::PARAM_INT);
 		$this->findByPageStmt->execute();
-        return new CategoryBookCollection( $this->findByPageStmt->fetchAll(), $this );
+        return new CourseCollection( $this->findByPageStmt->fetchAll(), $this );
     }
 	
 	function findByKey( $values ) {	
