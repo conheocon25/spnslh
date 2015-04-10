@@ -5,191 +5,110 @@ require_once( "mvc/base/domain/DomainObject.php" );
 class Video extends Object{
 
     private $Id;
-	private $IdCategory;
-	private $Title;	
-	private $Info;
-	private $Time;
+	private $IdCourse;
+	private $Name;
+	private $DateTimeCreated;
+	private $DateTimeUpdated;
 	private $IdYouTube;
-	private $Viewed;
-	private $Liked;
-	private $Key;
-		
+	private $Note;
+			
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
     function __construct( 
-		$Id			=null, 
-		$IdCategory	=null, 
-		$Title		=null , 		
-		$Info		=null, 
-		$Time		=null, 
-		$IdYouTube	=null, 		
-		$Viewed		=null,
-		$Liked		=null, 		
-		$Key		=null)
+		$Id				=null, 
+		$IdCourse		=null, 
+		$Name			=null,
+		$DateTimeCreated=null, 
+		$DateTimeUpdated=null, 
+		$IdYouTube		=null,		 	
+		$Note			=null)
 	{
-		$this->Id 			= $Id;
-		$this->IdCategory 	= $IdCategory;
-		$this->Title 		= $Title; 
-		$this->Info 		= $Info;
-		$this->Time 		= $Time;
-		$this->IdYouTube	= $IdYouTube;
-		$this->Liked		= $Liked;
-		$this->Viewed		= $Viewed;
-		$this->Key 			= $Key;
+		$this->Id 				= $Id;
+		$this->IdCourse 		= $IdCourse;
+		$this->Name 			= $Name; 		
+		$this->DateTimeCreated 	= $DateTimeCreated;
+		$this->DateTimeUpdated 	= $DateTimeUpdated;
+		$this->IdYouTube		= $IdYouTube;
+		$this->Note 			= $Note;
 		
 		parent::__construct( $Id );
 	}
     function getId() {return $this->Id;}
 		
-	function setIdCategory( $IdCategory ) {$this->IdCategory = $IdCategory;$this->markDirty();}
-	function getIdCategory( ) {return $this->IdCategory;}
-	function getCategory( ) {
-		$mCategory	= new \MVC\Mapper\CategoryVideo();
-		$Category= $mCategory->find($this->IdCategory);
-		return $Category;
+	function setIdCourse( $IdCourse ) {$this->IdCourse = $IdCourse;$this->markDirty();}
+	function getIdCourse( ) {return $this->IdCourse;}
+	function getCourse( ) {
+		$mCourse	= new \MVC\Mapper\Course();
+		$Course		= $mCourse->find($this->IdCourse);
+		return $Course;
 	}
 	
-    function setTitle( $Title ) {$this->Title = $Title;$this->markDirty();}   
-	function getTitle( ) {return $this->Title;}
-	function getTitleReduce( ) {		
-		$S = new \MVC\Library\String($this->Title);return $S->reduceHTML(14);
-	}
-			
-	function setInfo( $Info ) {$this->Info = $Info;$this->markDirty();}   
-	function getInfo( ) {return $this->Info;}
-	function getInfoReduce(){
-		$S = new \MVC\Library\String($this->Info);
-		return $S->reduceHTML(320);
+    function setName( $Name ) {$this->Name = $Name;$this->markDirty();}   
+	function getName( ) {return $this->Name;}
+	function getNameReduce( ) {		
+		$S = new \MVC\Library\String($this->Name);return $S->reduceHTML(14);
 	}
 	
-	function setTime( $Time ){$this->Time = $Time;$this->markDirty();}   
-	function getTime( ) {return $this->Time;}
-	function getTimePrint( ){		
-		$D = new \MVC\Library\Date($this->Time);return $D->getFullDateTimeFormat();
+	function setDateTimeCreated($DateTimeCreated ) {$this->DateTimeCreated = $DateTimeCreated; $this->markDirty();}
+	function getDateTimeCreated(){return $this->DateTimeCreated;}
+	function getDateTimeCreatedPrint(){
+		$t = strtotime($this->DateTimeCreated);		
+		return date('d/m/Y H:i',$t);
 	}
-	function getTimePrint1(){
-		$current 	= strtotime(date("Y-m-d H:i:s"));
-		$date    	= strtotime($this->Time);		
-		
-		$Str 		= "";
-		$Arr1		= array("giây"	, "phút"	, "giờ"	, "ngày", "tháng"	, "năm");
-		$Arr2		= array(60		, 60		, 24	, 30	, 12		, 1);
-		$Index		= 0;
-		$D 			= $current - $date;
-		
-		while ($D>0){
-			if ($Index>2)
-				$Str	= ($D%$Arr2[$Index]). " ". $Arr1[$Index]." hơn";
-			else
-				$Str	= ($D%$Arr2[$Index]). " ". $Arr1[$Index]." ".$Str;
-			
-			$D 		= floor($D/$Arr2[$Index]);
-			$Index ++;
-		}
-		return $Str;
+	
+	function setDateTimeUpdated($DateTimeCreated ) {$this->DateTimeUpdated = $DateTimeUpdated; $this->markDirty();}
+	function getDateTimeUpdated(){return $this->DateTimeUpdated;}
+	function getDateTimeUpdatedPrint(){
+		$t = strtotime($this->DateTimeUpdated);
+		return date('d/m/Y H:i',$t);
 	}
 	
 	function setIdYouTube( $IdYouTube ) {$this->IdYouTube = $IdYouTube;$this->markDirty();}   
 	function getIdYouTube( ) 			{return $this->IdYouTube;}
 	function getYoutubeEmbeded()		{return "http://www.youtube.com/embed/".$this->getIdYouTube();}
 	function getImage( ){		
-		$url = "http://img.youtube.com/vi/".$this->IdYouTube."/2.jpg";
-		/*
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL,$url);		
-		curl_setopt($ch, CURLOPT_NOBODY, 1);
-		curl_setopt($ch, CURLOPT_FAILONERROR, 1);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-		if(curl_exec($ch)!==FALSE){
-			return $url;
-		}
-		else{
-			return "/mvc/templates/theme/img/Video.jpg";
-		}*/	
+		$url = "http://img.youtube.com/vi/".$this->IdYouTube."/2.jpg";		
 		return $url;
 	}
 	
-	function setViewed( $Viewed ) 	{$this->Viewed = $Viewed; $this->markDirty();}   
-	function getViewed( ) 			{return $this->Viewed;}
-	function getViewedPrint( ){
-		$N= new \MVC\Library\Number($this->Viewed);
-		return $N->formatCurrency();
-	}
-	
-	function setLiked( $Liked ) 	{$this->Liked = $Liked; $this->markDirty();}   
-	function getLiked( ) 			{return $this->Liked;}
-	function getLikedPrint( ){		
-		$N= new \MVC\Library\Number($this->Liked);
-		return $N->formatCurrency();
-	}
-	
-	function setKey( $Key ){$this->Key = $Key;$this->markDirty();}
-	function getKey( ) {return $this->Key;}
-	function reKey( ){
-		if (!isset($this->Id))
-			$Id = time();
-		else
-			$Id = $this->Id;
+	function setNote( $Note ) 		{$this->Note = $Note; $this->markDirty();}   
+	function getNote( ) 			{return $this->Note;}
 			
-		$Str = new \MVC\Library\String($this->Title." ".$Id);
-		$this->Key = $Str->converturl();		
-	}	
-		
 	//-------------------------------------------------------------------------------
 	//GET LISTs
 	//-------------------------------------------------------------------------------	
-	function getBoardAll(){
-		$mBoard 	= new \MVC\Mapper\Board();
-		$BoardAll 	= $mBoard->findBy(array($this->getId()));
-		return $BoardAll;
-	}
-	
+		
 	function toJSON(){
 		$json = array(
-			'Id' 			=> $this->getId(),
-			'IdCategory' 	=> $this->getIdCategory(),
-			'Title'			=> $this->getTitle(),
-			'Info'			=> $this->getInfo(),
-			'Time'			=> $this->getTime(),
-			'Viewed'		=> $this->getViewed(),
-			'Liked'			=> $this->getLiked(),
-			'Key'			=> $this->getKey()
+			'Id' 				=> $this->getId(),
+			'IdCourse' 			=> $this->getIdCourse(),
+			'Name'				=> $this->getName(),
+			'DateTimeCreated'	=> $this->getDateTimeCreated(),
+			'DateTimeUpdated'	=> $this->getDateTimeUpdated(),			
+			'IdYouTube'			=> $this->getIdYouTube(),
+			'Note'				=> $this->getNote()
 		);
 		return json_encode($json);
 	}
 	
 	function setArray( $Data ){
-        $this->Id 			= $Data[0];
-		$this->IdCategory	= $Data[1];
-		$this->Title 		= $Data[2];		
-		$this->Info 		= $Data[3];
-		$this->Time 		= $Data[4];		
-		$this->Viewed 		= $Data[5];		
-		$this->Liked		= $Data[6];		
-		$this->Key 			= $Data[7];
+        $this->Id 				= $Data[0];
+		$this->IdCourse			= $Data[1];
+		$this->Name 			= $Data[2];
+		$this->IdYouTube		= $Data[3];
+		$this->Note 			= $Data[4];
+		if (!isset($this->DateTimeCreated)){
+			$this->DateTimeCreated 	= \date('Y-m-d H:i');
+		}		
+		$this->DateTimeUpdated 	= \date('Y-m-d H:i');
+				
     }
 	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
-	//-------------------------------------------------------------------------------	
-	function getURLView(){		
-		$Category 	= $this->getCategory();
-		$Buddha 	= $Category->getCategory();
-		return "/video/".$Buddha->getKey()."/".$Category->getKey()."/".$this->getKey();
-	}
-	
-	function getURLUpdLoad(){
-		$Category 	= $this->getCategory();
-		$Buddha 	= $Category->getCategory();		
-		return "/admin/buddha/".$Buddha->getId()."/".$Category->getId()."/".$this->getId()."/upd/load";	
-	}
-	function getURLUpdExe(){
-		$Category 	= $this->getCategory();
-		$Buddha 	= $Category->getCategory();		
-		return "/admin/buddha/".$Buddha->getId()."/".$Category->getId()."/".$this->getId()."/upd/exe";	
-	}
-	
+	//-------------------------------------------------------------------------------
+		
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}

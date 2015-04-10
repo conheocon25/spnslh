@@ -25,18 +25,20 @@
 								<thead>
 									<tr>
 										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
-										<th class="left">TÊN</th>
-										<th width="60" class="right">T.TỰ</th>
-										<th width="120"><div class="text-right">CHI TIẾT</div></th>										
+										<th class="left">TÊN</th>										
+										<th width="90"><div class="text-right">VIDEO</div></th>
 										<th width="40"><i class="glyphicons-bin"/></th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr tal:repeat="Course CourseAll">
 										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Course/getId"/></td>
-										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="Course" tal:attributes="data-id Course/getId" tal:content="Course/getName"/></td>
-										<td class="right"><span tal:content="Course/getRank" /></td>
-										<td class="right"><a tal:attributes="href Course/getURLSetting">Xem</a></td>
+										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="Course" tal:attributes="data-id Course/getId" tal:content="Course/getName"/></td>										
+										<td class="right">
+											<a tal:attributes="href Course/getURLSettingVideo">
+												Xem (<span tal:content="Course/getVideoAll/count"/>)
+											</a>
+										</td>
 										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Course/getId"><i class="glyphicon glyphicon-remove"/></a></td>
 									</tr>
 								</tbody>								
@@ -55,7 +57,17 @@
 											<div class="controls">
 												<input id="Name1" name="Name1" type="text" class="form-control input-small"/>
 											</div>
-										</div>										
+										</div>
+										<div class="form-group">
+											<label class="control-label">Phương thức</label>
+											<div class="controls">
+												<select name="IdCookMethod1" id="IdCookMethod1" style="width:80%;">
+													<option tal:repeat="CookMethod CookMethodAll" tal:attributes="value CookMethod/getId">
+														<span tal:content="CookMethod/getName"/>
+													</option>
+												</select>
+											</div>
+										</div>
 										<div class="control-group">
 											<label class="control-label">Thứ tự</label>
 											<div class="controls">
@@ -84,6 +96,16 @@
 											<label class="control-label">Tên</label>
 											<div class="controls">
 												<input id="Name2" name="Name2" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">Phương thức</label>
+											<div class="controls">
+												<select name="IdCookMethod2" id="IdCookMethod2" style="width:80%;">
+													<option tal:repeat="CookMethod CookMethodAll" tal:attributes="value CookMethod/getId">
+														<span tal:content="CookMethod/getName"/>
+													</option>
+												</select>
 											</div>
 										</div>
 										<div class="control-group">
@@ -215,8 +237,9 @@
 				
 				//Load dữ liệu JSON lên FORM
 				$.getJSON(url, function(data){
-					$('#URLUpdButton').attr('alt', data.Id);
-					$('#Name2').attr('value', data.Name);															           					
+					$('#URLUpdButton').attr('alt', 		data.Id);					
+					$('#IdCookMethod2').select2('val',	data.IdCookMethod);
+					$('#Name2').attr('value', 			data.Name);
 					$('#DateTimeCreated2').attr('value', data.DateTimeCreated);
 					$('#DateTimeUpdated2').attr('value', data.DateTimeUpdated);
 					$('#Rank2').attr('value', data.Rank);
@@ -245,8 +268,9 @@
 				submitHandler: function (form) {					
 					var Data = [];
 					Data[0] = $('#URLUpdButton').attr('alt');					
-					Data[1] = $('#Name2').val();					
-					Data[2] = $('#Rank2').val();
+					Data[1] = $('#IdCookMethod2').val();
+					Data[2] = $('#Name2').val();
+					Data[3] = $('#Rank2').val();
 																		
 					var URL = "/object/upd/Course";
 					$.ajax({
