@@ -16,26 +16,20 @@
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------						
 			$mConfig 			= new \MVC\Mapper\Config();			
-			$mPost 				= new \MVC\Mapper\Post();
-			$mPresentation 		= new \MVC\Mapper\Presentation();			
+			$mPost 				= new \MVC\Mapper\Post();			
 			$mCategoryPost		= new \MVC\Mapper\CategoryPost();
 									
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------						
-			$ConfigPHome 		= $mConfig->findByName("PRESENTATION_HOME");
-			
+			//-------------------------------------------------------------												
 			$CategoryPostAll 	= $mCategoryPost->findAll();						
-			$Presentation 		= $mPresentation->find($ConfigPHome->getValue());
-												
+															
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
 			$request->setProperty("Active", 			'Home');
 			
-			$request->setObject("ConfigPHome", 			$ConfigPHome);
-			$request->setObject("Presentation", 		$Presentation);
-						
+			$request->setObject("ConfigPHome", 			$ConfigPHome);									
 			$request->setObject("CategoryPostAll", 		$CategoryPostAll);
 									
 			return self::statuses('CMD_DEFAULT');

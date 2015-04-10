@@ -8,22 +8,11 @@
 		
 		<command name="FCategoryPost" 	type="public"><view>FCategoryPost</view></command>		
 		<command name="FPost" 			type="public"><view>FPost</view></command>
-		
-		<command name="FCategoryBuddha" type="public"><view>FCategoryBuddha</view></command>
+				
 		<command name="FCategoryVideo" 	type="public"><view>FCategoryVideo</view></command>
 		<command name="FVideo" 			type="public"><view>FVideo</view></command>
 						
 		<command name="FContact" 		type="public"><view>FContact</view></command>
-		
-		<!-- ============================================================================== -->
-		<!-- APRESENTATION																	-->
-		<!-- ============================================================================== -->
-		<command name="APresentation">	<view>APresentation	</view></command>
-		<command name="ASlide">			<view>ASlide		</view></command>
-		<command name="ASlideInsLoad">	<view>ASlideInsLoad	</view></command>
-		<command name="ASlideInsExe">	<view>ASlideInsExe	</view><status value="CMD_OK"><forward>ASlide</forward></status></command>
-		<command name="ASlideUpdLoad">	<view>ASlideUpdLoad	</view></command>
-		<command name="ASlideUpdExe">	<view>ASlideUpdExe	</view><status value="CMD_OK"><forward>ASlide</forward></status></command>
 				
 		<!-- ============================================================================== -->
 		<!-- ARSS																			-->
@@ -33,17 +22,7 @@
 		<command name="ARssInsExe"><view>ARssInsExe</view><status value="CMD_OK"><forward>ARss</forward></status></command>
 		<command name="ARssUpdLoad"><view>ARssUpdLoad</view></command>
 		<command name="ARssUpdExe"><view>ARssUpdExe</view><status value="CMD_OK"><forward>ARss</forward></status></command>
-												
-		<!-- ============================================================================== -->
-		<!-- RSS NEWS AUTO	 																	-->
-		<!-- ============================================================================== -->
-		<command name="APostRss"><view>APostRss</view></command>
-		<command name="APostRssView"><view>APostRssView</view></command>
-		<command name="APostPublished" type="public"><view>APostPublished</view></command>
-		<command name="APostRssPublished"><view>APostRssPublished</view></command>
-		<command name="APostRssPublish" type="public"><view>APostRssPublish</view></command>	
-		<command name="AGetListRss" type="public"><view>AGetListRss</view></command>
-		
+				
 		<!-- ============================================================================== -->
 		<!-- JSON LOAD			 															-->
 		<!-- ============================================================================== -->		
@@ -63,18 +42,13 @@
 		<command name="SignoutExe"><view>SignoutExe</view><status value="CMD_OK"><forward>FHome</forward></status></command>
 		<command name="Admin"><view>Admin</view></command>											
 											
-		<!-- ============================================================================== -->
-		<!-- SETTING	 																	-->
-		<!-- ============================================================================== -->				
-		<command name="ATesting1">				<view>ATesting1		</view></command>
-		<command name="ServiceYouTubeAddVideoFromPlayList" type="public"><view>ServiceYouTubeAddVideoFromPlayList</view></command>
-		<command name="ServiceYouTubeUpdateStatisticVideo" type="public"><view>ServiceYouTubeUpdateStatisticVideo</view></command>
-						
-		<command name="ASetting">				<view>ASetting		</view></command>						
+								
+		<command name="ASetting">				<view>ASetting		</view></command>
+		<command name="ACourse">				<view>ACourse		</view></command>
+		
 		<command name="ASettingCategoryPost">	<view>ASettingCategoryPost</view></command>				
 		<command name="ASettingCategoryVideo">	<view>ASettingCategoryVideo</view></command>
-				
-		<command name="ABuddha">				<view>ABuddha			</view></command>
+						
 		<command name="AVideo">					<view>AVideo			</view></command>
 		<command name="AVideoInsLoad">			<view>AVideoInsLoad	</view></command>
 		<command name="AVideoInsExe">			<view>AVideoInsExe	</view><status value="CMD_OK"><forward>AVideo</forward></status></command>

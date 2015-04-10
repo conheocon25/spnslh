@@ -33,7 +33,21 @@ class Course extends Object{
 	
 	function setRank($Rank){$this->Rank = $Rank;$this->markDirty();}
 	function getRank() 	{return $this->Rank;}
-					
+	
+	function setDateTimeCreated($DateTimeCreated ) {$this->DateTimeCreated = $DateTimeCreated; $this->markDirty();}
+	function getDateTimeCreated(){return $this->DateTimeCreated;}
+	function getDateTimeCreatedPrint(){
+		$t = strtotime($this->DateTimeCreated);		
+		return date('d/m/Y H:i',$t);
+	}
+	
+	function setDateTimeUpdated($DateTimeCreated ) {$this->DateTimeUpdated = $DateTimeUpdated; $this->markDirty();}
+	function getDateTimeUpdated(){return $this->DateTimeUpdated;}
+	function getDateTimeUpdatedPrint(){
+		$t = strtotime($this->DateTimeUpdated);
+		return date('d/m/Y H:i',$t);
+	}
+		
 	function setKey($Key)	{$this->Key = $Key;$this->markDirty();}
 	function getKey() 		{return $this->Key;}
 	function reKey( ) {

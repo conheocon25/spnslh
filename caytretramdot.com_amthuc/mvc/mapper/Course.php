@@ -8,7 +8,7 @@ class Course extends Mapper implements \MVC\Domain\CourseFinder{
 		
 		$tblCourse 		= "tbl_course";
 						
-		$selectAllStmt 	= sprintf("select * from %s order by `order`", $tblCourse);
+		$selectAllStmt 	= sprintf("select * from %s order by `rank`", $tblCourse);
 		$selectStmt 	= sprintf("select * from %s where id=?", $tblCourse);
 		$updateStmt 	= sprintf("update %s set name=?, datetime_created=?, datetime_updated=?, `rank`=?, `key`=? where id=?", $tblCourse);
 		$insertStmt 	= sprintf("insert into %s ( name, datetime_created, datetime_updated, `rank`, `key`) values(?, ?, ?, ?, ?)", $tblCourse);
