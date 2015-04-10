@@ -61,15 +61,7 @@
 								<a tal:attributes="href Category/getURLView" class="clearfix"><span class="pull-left" tal:content="Category/getName"/></a>
 							</li>
 						</ul>
-					</li>					
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Video<span class="caret"></span></a>
-						<ul class="dropdown-menu" role="menu">
-							<li tal:repeat="Category CategoryBuddhaAll">
-								<a tal:attributes="href Category/getURLView" class="clearfix"><span class="pull-left" tal:content="Category/getName"/></a>
-							</li>
-						</ul>
-					</li>					
+					</li>
 					<li><a href="/lien-he">Liên hệ</a></li>
 					<li><a><b tal:content="php:@\MVC\Library\Statistic::getOnlinePrint()"/> <i class="glyphicon glyphicon-user"/></a></li>
 					<li><a><b tal:content="php:@\MVC\Library\Statistic::getCountPrint()"/> <i class="glyphicon glyphicon-stats"/></a></li>

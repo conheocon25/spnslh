@@ -16,7 +16,8 @@ interface UserTagFinder  		extends Finder {}
 interface ConfigFinder 			extends Finder {}
 interface GuestFinder 			extends Finder {}
 
-interface CategoryBuddhaFinder 	extends Finder {}
+interface CourseFinder 			extends Finder {}
+
 interface CategoryVideoFinder 	extends Finder {}
 interface VideoFinder 			extends Finder {}
 

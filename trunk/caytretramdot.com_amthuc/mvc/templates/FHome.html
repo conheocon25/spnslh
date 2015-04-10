@@ -6,126 +6,16 @@
 	</head>
 	<body>
 		<tal:block metal:use-macro="mFront.xhtml/Header"/>
-		<div class="container-fluid" id="wraper">
-			<!--
-			<div class="row">
-				<div class="col-md-12">
-					<div class="panel panel-primary">
-						<div class="panel-body">							
-							<div id="carousel-phatphap-generic" class="carousel slide" data-ride="carousel">
-								<ol class="carousel-indicators">
-									<li tal:repeat="Slide Presentation/getSlideAll" data-target="#carousel-phatphap-generic" tal:attributes="data-slide-to php: repeat.Slide.number" />
-								</ol>
-								<div class="carousel-inner" role="listbox">									
-									<div class="item" tal:repeat="Slide Presentation/getSlideAll">
-										<img tal:attributes="src Slide/getURL;alt php:'sequence-slide-' . repeat.Slide.number" width="100%"/>
-										<div class="carousel-caption">
-											
-										</div>
-									</div>
-								</div>
-								<a class="left carousel-control" href="#carousel-phatphap-generic" role="button" data-slide="prev">
-									<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-									<span class="sr-only">Lui</span>
-								</a>
-								<a class="right carousel-control" href="#carousel-phatphap-generic" role="button" data-slide="next">
-									<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-									<span class="sr-only">Tới</span>
-								</a>
-							</div>							
-						</div>
-					</div>
-				</div>
-			</div>
-			!-->
+		<div class="container-fluid" id="wraper">			
 			<div class="row">									
 				<div class="col-md-9">
-					<tal:block tal:repeat="Buddha CategoryBuddhaAll">
-					<div class="panel panel-primary" tal:condition="Buddha/getVideoLastest/count">
-						<div class="panel-heading"> <i class="glyphicon glyphicon-folder-open"/> <B tal:content="php: mb_strtoupper(Buddha->getName(), 'UTF8')"/></div>
-						<div class="panel-body">
-							<div role="tabpanel">
-								<ul class="VideoCategory nav nav-tabs" role="tablist">
-									<li role="presentation" class="active">
-										<a tal:attributes="href php:'#' . Buddha->getIdTabLastest()" aria-controls="home" role="tab" data-toggle="tab"><i class="glyphicon glyphicon-calendar"/></a>
-									</li>
-									<li role="presentation">
-										<a tal:attributes="href php:'#' . Buddha->getIdTabPopular()" aria-controls="profile" role="tab" data-toggle="tab"><i class="glyphicon glyphicon-stats"/></a>
-									</li>
-								</ul>
-								<div class="tab-content">
-									<div role="tabpanel" class="tab-pane active" tal:attributes="id Buddha/getIdTabLastest">										
-										<div class="col-sm-2 col-md-2" tal:repeat="Video Buddha/getVideoLastest">
-											<div class="thumbnail">
-												<a tal:attributes="href Video/getURLView; title Video/getTitle" data-toggle="tooltip" data-placement="top">
-													<img width="100%" tal:attributes="src Video/getImage"/>
-													<div class="caption">
-														<p><span tal:content="Video/getTimePrint1"/></p>
-													</div>
-												</a>													
-											</div>
-										</div>
-									</div>
-									<div role="tabpanel" class="tab-pane" tal:attributes="id Buddha/getIdTabPopular">
-										<div class="col-sm-2 col-md-2" tal:repeat="Video Buddha/getVideoPopular">
-											<div class="thumbnail">
-												<a tal:attributes="href Video/getURLView; title Video/getTitle" data-toggle="tooltip" data-placement="top">
-													<img width="100%" tal:attributes="src Video/getImage"/>
-													<div class="caption">
-														<p><span tal:content="Video/getTimePrint1"/></p>
-													</div>
-												</a>													
-											</div>
-										</div>																				
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>	
-					</tal:block>
+					
 				</div>
 				<div class="col-md-3">
 					<div class="panel panel-primary">
 						<div class="panel-heading"><i class="glyphicon glyphicon-folder-open"/> <B>TIN TỨC</B></div>
 						<div class="panel-body">
-							<div role="tabpanel">
-								<ul class="nav nav-tabs" role="tablist" id="PostTab">
-									<li role="presentation" class="active"><a href="#post-lastest" aria-controls="home" role="tab" data-toggle="tab"><i class="glyphicon glyphicon-calendar"/></a></li>
-									<li role="presentation"><a href="#post-popular" aria-controls="profile" role="tab" data-toggle="tab"><i class="glyphicon glyphicon-stats"/></a></li>
-								</ul>
-								<div class="tab-content">
-									<div role="tabpanel" class="tab-pane active" id="post-lastest">
-										<table class="table">
-											<tr tal:repeat="Post PostLastest">									
-												<td width="48px">
-													<a tal:attributes="href Post/getURLView">
-														<img width="48px" tal:attributes="src Post/getImage"/>
-													</a>
-												</td>
-												<td>
-													<a tal:attributes="href Post/getURLView"><span tal:content="Post/getTitle"/></a>
-													<p><span tal:content="Post/getTimePrint1"/></p>
-												</td>
-											</tr>
-										</table>
-									</div>
-									<div role="tabpanel" class="tab-pane" id="post-popular">
-										<table class="table">
-											<tr tal:repeat="Post PostPopular">									
-												<td width="48px">
-													<a tal:attributes="href Post/getURLView">
-														<img width="48px" tal:attributes="src Post/getImage"/>
-													</a>
-												</td>
-												<td>
-													<a tal:attributes="href Post/getURLView"><span tal:content="Post/getTitle"/></a>
-													<p><span tal:content="Post/getTimePrint1"/></p>
-												</td>
-											</tr>
-										</table>
-									</div>							
-								</div>
-							</div>
+							
 						</div>
 					</div>
 					<div width="100%" class="fb-like-box" data-href="https://www.facebook.com/pages/Caytretramdot/596061963849405" data-colorscheme="light" data-show-faces="true" data-header="false" data-stream="false" data-show-border="false"></div>

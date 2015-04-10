@@ -10,10 +10,11 @@ class ConfigCollection 			extends Collection implements \MVC\Domain\ConfigCollec
 class PageCollection 			extends Collection implements \MVC\Domain\PageCollection			{function targetClass(){return "\MVC\Domain\Page";			}}
 class GuestCollection 			extends Collection implements \MVC\Domain\GuestCollection			{function targetClass(){return "\MVC\Domain\Guest";			}}
 
+class CourseCollection 			extends Collection implements \MVC\Domain\CourseCollection			{function targetClass(){return "\MVC\Domain\Course";		}}
+
 class PresentationCollection 	extends Collection implements \MVC\Domain\PresentationCollection	{function targetClass(){return "\MVC\Domain\Presentation";	}}
 class SlideCollection 			extends Collection implements \MVC\Domain\SlideCollection			{function targetClass(){return "\MVC\Domain\Slide";			}}
 
-class CategoryBuddhaCollection 	extends Collection implements \MVC\Domain\CategoryBuddhaCollection	{function targetClass(){return "\MVC\Domain\CategoryBuddha";}}
 class CategoryVideoCollection 	extends Collection implements \MVC\Domain\CategoryVideoCollection	{function targetClass(){return "\MVC\Domain\CategoryVideo";	}}
 class VideoCollection 			extends Collection implements \MVC\Domain\VideoCollection			{function targetClass(){return "\MVC\Domain\Video";			}}
 

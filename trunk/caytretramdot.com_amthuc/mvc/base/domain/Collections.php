@@ -8,7 +8,8 @@ interface ConfigCollection 				extends \Iterator {function add( Object $Config )
 interface PageCollection 				extends \Iterator {function add( Object $Page);			}
 interface GuestCollection 				extends \Iterator {function add( Object $Guest);		}
 
-interface CategoryBuddhaCollection 		extends \Iterator {function add( Object $CategoryBuddha);}
+interface CourseCollection 				extends \Iterator {function add( Object $Course);		}
+
 interface CategoryVideoCollection 		extends \Iterator {function add( Object $CategoryVideo);}
 interface VideoCollection 				extends \Iterator {function add( Object $Video);		}
 
