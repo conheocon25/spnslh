@@ -1,11 +1,12 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-	<head>		
+<!DOCTYPE html>
+<html lang="en">
+	<head>
 		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
 		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
-	</head>	
+	</head>
+	
 	<body>
-		<div metal:use-macro="mAdmin.xhtml/Header"/>
+		<div metal:use-macro="mAdmin.xhtml/Header"/>		
 		<div metal:use-macro="mAdmin.xhtml/MenuApp"/>
 		<div id="content">
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
@@ -25,118 +26,99 @@
 									<tr>
 										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
 										<th class="left">TÊN</th>
-										<th width="40"><i class="glyphicons-edit"/></th>
+										<th width="60" class="right">T.TỰ</th>
+										<th width="120"><div class="text-right">CHI TIẾT</div></th>										
 										<th width="40"><i class="glyphicons-bin"/></th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr tal:repeat="Linked LinkedAll">
-										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Linked/getId"/></td>
-										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="Linked" tal:attributes="data-id Linked/getId" tal:content="Linked/getName"/></td>
-										<td class="center"><a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="Linked" tal:attributes="data-id Linked/getId"><i class="glyphicon glyphicon-pencil"/></a></td>
-										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Linked/getId"><i class="glyphicon glyphicon-remove"/></a></td>
+									<tr tal:repeat="Course CourseAll">
+										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Course/getId"/></td>
+										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="Course" tal:attributes="data-id Course/getId" tal:content="Course/getName"/></td>
+										<td class="right"><span tal:content="Course/getRank" /></td>
+										<td class="right"><a tal:attributes="href Course/getURLSetting">Xem</a></td>
+										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Course/getId"><i class="glyphicon glyphicon-remove"/></a></td>
 									</tr>
-								</tbody>																								
+								</tbody>								
 							</table>
 						</div>
-					</div>
-					
+					</div>					
 					<!-- INSERT DIALOG  -->
 					<div id="DialogIns" class="modal fade">
 						<div class="modal-dialog">
 							<div class="modal-content">
-								<div class="modal-header">
-									<h3><i class="glyphicons-tag modal-icon"/>THÊM MỚI LIÊN KẾT</h3>
-								</div>
-								<form id="FormLinkedInsert" action="#" class="form-horizontal" novalidate="novalidate">
+								<div class="modal-header"><h3><i class="glyphicons-show_big_thumbnails modal-icon"/>THÊM MỚI TRÌNH BÀY</h3></div>
+								<form id="FormCourseInsert" action="#" class="form-horizontal" novalidate="novalidate">
 									<div class="modal-body">
-										<div class="form-group">
-											<div class="control-group">
-												<label class="control-label">Tên</label>
-												<div class="controls">								
-													<input id="Name1" name="Name1" type="text" class="form-control input-small"/>
-												</div>
+										<div class="control-group">
+											<label class="control-label">Tên</label>
+											<div class="controls">
+												<input id="Name1" name="Name1" type="text" class="form-control input-small"/>
 											</div>
-											<div class="control-group">
-												<label class="control-label">Logo</label>
-												<div class="controls">								
-													<input id="Logo1" name="Logo1" type="text" class="form-control input-small"/>
-												</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label">Ngày tạo</label>
+											<div class="controls">
+												<input id="DateTimeCreated1" name="DateTimeCreated1" type="text" class="form-control input-small"/>
 											</div>
-											<div class="control-group">
-												<label class="control-label">Website</label>
-												<div class="controls">								
-													<input id="Website1" name="Website1" type="text" class="form-control input-small"/>
-												</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label">Ngày cập nhật</label>
+											<div class="controls">
+												<input id="DateTimeUpdated1" name="DateTimeUpdated1" type="text" class="form-control input-small"/>
 											</div>
-											<div class="control-group">
-												<label class="control-label">Ghi chú</label>
-												<div class="controls">								
-													<input id="Note1" name="Note1" type="text" class="form-control input-small"/>
-												</div>
-											</div>
-											<div class="control-group">											
-												<label class="control-label">Thứ tự</label>
-												<div class="controls">
-													<input id="Order1" name="Order1" type="text" class="form-control input-small"/>
-												</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label">Thứ tự</label>
+											<div class="controls">
+												<input id="Rank1" name="Rank1" type="text" class="form-control input-small"/>
 											</div>
 										</div>
 									</div>
 									<div class="modal-footer">
-										<button class="btn btn-primary btn-small" id="URLInsButton"><i class="glyphicons-download_alt"/> Lưu</button>
+										<button id="URLInsButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Lưu</button>
 										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
 									</div>
 								</form>
 							</div>
 						</div>
-					</div>									
+					</div>
 					<!-- END INSERT DIALOG  -->
 					
 					<!-- UPDATE DIALOG  -->
 					<div id="DialogEdit" class="modal fade">
 						<div class="modal-dialog">
 							<div class="modal-content">
-								<div class="modal-header">
-									<h3><i class="glyphicons-tag modal-icon"/>CẬP NHẬT LIÊN KẾT</h3>
-								</div>								
-								<form id="FormLinkedUpdate" action="#" class="form-horizontal" novalidate="novalidate">
+								<div class="modal-header"><h3><i class="glyphicons-show_big_thumbnails modal-icon"/>CẬP NHẬT TRÌNH BÀY</h3></div>
+								<form id="FormCourseUpdate" action="#" class="form-horizontal" novalidate="novalidate">
 									<div class="modal-body">
-										<div class="form-group">
-											<div class="control-group">
-												<label class="control-label">Tên</label>
-												<div class="controls">								
-													<input id="Name2" name="Name2" type="text" class="form-control input-small"/>
-												</div>
-											</div>
-											<div class="control-group">
-												<label class="control-label">Logo</label>
-												<div class="controls">								
-													<input id="Logo2" name="Logo2" type="text" class="form-control input-small"/>
-												</div>
-											</div>
-											<div class="control-group">
-												<label class="control-label">Website</label>
-												<div class="controls">								
-													<input id="Website2" name="Website2" type="text" class="form-control input-small"/>
-												</div>
-											</div>
-											<div class="control-group">
-												<label class="control-label">Ghi chú</label>
-												<div class="controls">								
-													<input id="Note2" name="Note2" type="text" class="form-control input-small"/>
-												</div>
-											</div>
-											<div class="control-group">											
-												<label class="control-label">Thứ tự</label>
-												<div class="controls">
-													<input id="Order2" name="Order2" type="text" class="form-control input-small"/>
-												</div>
+										<div class="control-group">
+											<label class="control-label">Tên</label>
+											<div class="controls">
+												<input id="Name2" name="Name2" type="text" class="form-control input-small"/>
 											</div>
 										</div>
-									</div>									
+										<div class="control-group">
+											<label class="control-label">Ngày tạo</label>
+											<div class="controls">
+												<input id="DateTimeCreated2" name="DateTimeCreated2" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label">Ngày cập nhật</label>
+											<div class="controls">
+												<input id="DateTimeUpdated2" name="DateTimeUpdated2" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label">Thứ tự</label>
+											<div class="controls">
+												<input id="Rank2" name="Rank2" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+									</div>
 									<div class="modal-footer">
-										<button class="btn btn-primary btn-small" id="URLUpdButton"><i class="glyphicons-download_alt"/> Lưu</button>
+										<button  id="URLUpdButton" class="btn btn-primary btn-small" type="submit"><i class="glyphicons-download_alt"/> Lưu</button>
 										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
 									</div>
 								</form>
@@ -146,18 +128,17 @@
 					<!-- END UPDATE DIALOG  -->
 					<div metal:use-macro="mDialog.xhtml/DialogDel"/>
 					<div metal:use-macro="mDialog.xhtml/DialogDelSelected"/>
-					
 				</div>
 			</div>
 		</div>
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>
-		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>		
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
 		<script type="text/javascript">
-		/*<![CDATA[*/						
+		/*<![CDATA[*/
 			$('#URLDelSelectedButton').click(function(){
 				var count = 0;
 				var Data = [];
-				var URL = "/object/del/Linked/0";
+				var URL = "/object/del/Course/0";
 				
 				$(".CheckedDel").each(function( i, obj){
 					if ( $(this).is(':checked')==true ){
@@ -177,14 +158,14 @@
 			});
 			
 			//-----------------------------------------------------------------------------------
-			//Delete 1 Linked			
+			//Delete 1 Course			
 			//-----------------------------------------------------------------------------------
 			$('.remove-item').click(function(){
 				$('#URLDelButton').attr('alt', $(this).attr('data-id'));
 			});
 			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
 			$('#URLDelButton').click(function(){			
-				var URL = "/object/del/Linked/" + $(this).attr('alt');
+				var URL = "/object/del/Course/" + $(this).attr('alt');
 				$.ajax({
 					type: "POST",					
 					url: URL,
@@ -195,8 +176,8 @@
 			});
 		
 			//-----------------------------------------------------------------------------------
-			//Insert 1 Linked			
-			$("#FormLinkedInsert").validate({
+			//Insert 1 Course			
+			$("#FormCourseInsert").validate({
 				rules:{
 					Name1:{
 						minlength: 2,
@@ -214,14 +195,13 @@
 				},
 				submitHandler: function (form) {					
 					var Data = [];
-					Data[0] = 'null';
+					Data[0] = 'null';					
 					Data[1] = $('#Name1').val();
-					Data[2] = $('#Logo1').val();
-					Data[3] = $('#Website1').val();
-					Data[4] = $('#Note1').val();					
-					Data[5] = $('#Order1').val();
-										
-					var URL = "/object/ins/Linked";
+					Data[2] = $('#DateTimeCreated1').val();
+					Data[3] = $('#DateTimeUpdated1').val();
+					Data[4] = $('#Rank1').val();
+					
+					var URL = "/object/ins/Course";
 					$.ajax({
 						type: "POST",
 						data: {Data:Data},
@@ -241,27 +221,26 @@
 			});
 			
 			//-----------------------------------------------------------------------------------
-			//Load 1 Linked
+			//Load 1 Course
 			//-----------------------------------------------------------------------------------
 			$('.update-item').click(function(){
 				//Load dữ liệu JSON về
-				var url = "/object/load/Linked/" + $(this).attr('data-id');
+				var url = "/object/load/Course/" + $(this).attr('data-id');
 				
 				//Load dữ liệu JSON lên FORM
 				$.getJSON(url, function(data){
-					$('#URLUpdButton').attr('alt', 	data.Id);
-					$('#Name2').attr('value', 		data.Name);
-					$('#Logo2').attr('value', 		data.Logo);
-					$('#Website2').attr('value', 	data.Website);
-					$('#Note2').attr('value', 		data.Note);
-					$('#Order2').attr('value', 		data.Order);
+					$('#URLUpdButton').attr('alt', data.Id);
+					$('#Name2').attr('value', data.Name);															           					
+					$('#DateTimeCreated2').attr('value', data.DateTimeCreated);
+					$('#DateTimeUpdated2').attr('value', data.DateTimeUpdated);
+					$('#Rank2').attr('value', data.Rank);
 				});
 			});
 			
 			//-----------------------------------------------------------------------------------
-			//Update 1 Linked
-			//-----------------------------------------------------------------------------------			
-			$("#FormLinkedUpdate").validate({
+			//Update 1 Course
+			//-----------------------------------------------------------------------------------
+			$("#FormCourseUpdate").validate({
 				rules:{
 					Name2:{
 						minlength: 2,
@@ -279,14 +258,13 @@
 				},
 				submitHandler: function (form) {					
 					var Data = [];
-					Data[0] = $('#URLUpdButton').attr('alt');
+					Data[0] = $('#URLUpdButton').attr('alt');					
 					Data[1] = $('#Name2').val();
-					Data[2] = $('#Logo2').val();
-					Data[3] = $('#Website2').val();
-					Data[4] = $('#Note2').val();					
-					Data[5] = $('#Order2').val();
-																							
-					var URL = "/object/upd/Linked";
+					Data[2] = $('#DateTimeCreated2').val();
+					Data[3] = $('#DateTimeUpdated2').val();
+					Data[4] = $('#Rank2').val();
+																		
+					var URL = "/object/upd/Course";
 					$.ajax({
 						type: "POST",
 						data: {Data:Data},
@@ -294,7 +272,7 @@
 						success: function(msg){
 							location.reload();
 						}
-					});
+					});		
 					return false;
 				}
 			});
