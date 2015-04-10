@@ -70,9 +70,11 @@ class Course extends Object{
 	function setArray( $Data ){
         $this->Id 				= $Data[0];
 		$this->Name 			= $Data[1];
-		$this->DateTimeCreated 	= $Data[2];
-		$this->DateTimeUpdated 	= $Data[3];
-		$this->Rank				= $Data[4];
+		if (!isset($this->DateTimeCreated)){
+			$this->DateTimeCreated 	= \date('d/m/y H:i');
+		}		
+		$this->DateTimeUpdated 	= \date('d/m/y H:i');		
+		$this->Rank				= $Data[2];
 		$this->reKey();
     }
 	

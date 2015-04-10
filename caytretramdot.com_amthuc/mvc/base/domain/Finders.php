@@ -17,10 +17,7 @@ interface GuestFinder 			extends Finder {}
 
 interface CourseFinder 			extends Finder {}
 
-interface CategoryVideoFinder 	extends Finder {}
 interface VideoFinder 			extends Finder {}
-
-interface CategoryPostFinder 	extends Finder {}
 interface PostFinder 			extends Finder {}
 
 ?>
