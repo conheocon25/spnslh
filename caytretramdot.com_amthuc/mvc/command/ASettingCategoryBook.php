@@ -17,7 +17,6 @@
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
 			$mCategoryBook 	= new \MVC\Mapper\CategoryBook();
-			$mPresentation 	= new \MVC\Mapper\Presentation();
 			$mConfig 		= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
@@ -34,8 +33,7 @@
 			$Config 	= $mConfig->findByName("ROW_PER_PAGE");
 			$ConfigName	= $mConfig->findByName("NAME");
 			
-			$PresentationAll 	= $mPresentation->findAll();
-			$CategoryBookAll1 	= $mCategoryBook->findByPage(array($Page, $Config->getValue() ));
+			$CategoryBookAll1 = $mCategoryBook->findByPage(array($Page, $Config->getValue() ));
 			$PN = new \MVC\Domain\PageNavigation($CategoryBookAll->count(), $Config->getValue(), "/setting/CategoryBook" );
 			
 			//-------------------------------------------------------------
@@ -48,9 +46,7 @@
 			$request->setObject('Navigation'		, $Navigation);
 			
 			$request->setObject('ConfigName'		, $ConfigName);
-			
 			$request->setObject('CategoryBookAll1'	, $CategoryBookAll1);
-			$request->setObject('PresentationAll'	, $PresentationAll);
 															
 			return self::statuses('CMD_DEFAULT');
 		}

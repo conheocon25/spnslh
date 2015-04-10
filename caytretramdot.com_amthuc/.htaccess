@@ -2,23 +2,6 @@ Options +FollowSymlinks
 RewriteEngine on
 AddDefaultCharset UTF-8
 
-## EXPIRES CACHING ##
-<IfModule mod_expires.c>
-ExpiresActive On
-ExpiresByType image/jpg "access plus 1 year"
-ExpiresByType image/jpeg "access plus 1 year"
-ExpiresByType image/gif "access plus 1 year"
-ExpiresByType image/png "access plus 1 year"
-ExpiresByType text/css "access plus 1 month"
-ExpiresByType application/pdf "access plus 1 month"
-ExpiresByType text/x-javascript "access plus 1 month"
-ExpiresByType application/x-shockwave-flash "access plus 1 month"
-ExpiresByType image/x-icon "access plus 1 year"
-ExpiresDefault "access plus 2 days"
-</IfModule>
-
-## EXPIRES CACHING ##
-
 # compress text, html, javascript, css, xml:
 AddOutputFilterByType DEFLATE text/plain
 AddOutputFilterByType DEFLATE text/html
@@ -35,43 +18,22 @@ AddOutputFilterByType DEFLATE application/x-javascript
 #---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^trang-chu$ 																?cmd=FHome [L]
 
-RewriteRule ^loi-khuyen/tap-su$ 														?cmd=FSuggest [L]
-RewriteRule ^loi-khuyen/nang-cao$ 														?cmd=FSuggest [L]
-RewriteRule ^loi-khuyen/cao-thu$ 														?cmd=FSuggest [L]
-
-RewriteRule ^tim-kiem$																	?cmd=FSearch [L]
-
-RewriteRule ^the-bai$																	?cmd=FTag [L]
-RewriteRule ^the-bai/([A-Za-z0-9_-]+)$													?cmd=FTagDetail&KTag=$1 [L]
-RewriteRule ^the-bai/([A-Za-z0-9_-]+)/page/([0-9]+)$									?cmd=FTagDetail&KTag=$1&Page=$2 [L]
-
 RewriteRule ^bai-viet/([A-Za-z0-9_-]+)$													?cmd=FCategoryPost&KCategory=$1 [L]
 RewriteRule ^bai-viet/([A-Za-z0-9_-]+)/page/([0-9]+)$									?cmd=FCategoryPost&KCategory=$1&Page=$2 [L]
 RewriteRule ^bai-viet/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$								?cmd=FPost&KCategory=$1&KPost=$2 [L]
 
-RewriteRule ^sach/([A-Za-z0-9_-]+)$														?cmd=FCategoryBook&KCategory=$1&Page=1&OrderBy=Viewed [L]
-RewriteRule ^sach/([A-Za-z0-9_-]+)/page/([0-9]+)$										?cmd=FCategoryBook&KCategory=$1&Page=$2&OrderBy=Viewed [L]
-RewriteRule ^sach/([A-Za-z0-9_-]+)/orderbyviewed/page/([0-9]+)$							?cmd=FCategoryBook&KCategory=$1&Page=$2&OrderBy=Viewed [L]
-RewriteRule ^sach/([A-Za-z0-9_-]+)/orderbyliked/page/([0-9]+)$							?cmd=FCategoryBook&KCategory=$1&Page=$2&OrderBy=Liked [L]
-RewriteRule ^sach/([A-Za-z0-9_-]+)/orderbyrecent/page/([0-9]+)$							?cmd=FCategoryBook&KCategory=$1&Page=$2&OrderBy=Recent [L]
+RewriteRule ^video/([A-Za-z0-9_-]+)$													?cmd=FCategoryBuddha&KBuddha=$1&Page=1&OrderBy=Video [L]
+RewriteRule ^video/([A-Za-z0-9_-]+)/page/([0-9]+)$										?cmd=FCategoryBuddha&KBuddha=$1&Page=$2&OrderBy=Video [L]
+RewriteRule ^video/([A-Za-z0-9_-]+)/orderbyname/page/([0-9]+)$							?cmd=FCategoryBuddha&KBuddha=$1&Page=$2&OrderBy=Name [L]
+RewriteRule ^video/([A-Za-z0-9_-]+)/orderbyvideo/page/([0-9]+)$							?cmd=FCategoryBuddha&KBuddha=$1&Page=$2&OrderBy=Video [L]
+RewriteRule ^video/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$									?cmd=FCategoryVideo&KBuddha=$1&KCategory=$2&Page=1&OrderBy=Viewed [L]
+RewriteRule ^video/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/page/([0-9]+)$						?cmd=FCategoryVideo&KBuddha=$1&KCategory=$2&Page=$3&OrderBy=Viewed [L]
+RewriteRule ^video/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/orderbyname/page/([0-9]+)$			?cmd=FCategoryVideo&KBuddha=$1&KCategory=$2&Page=$3&OrderBy=Name [L]
+RewriteRule ^video/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/orderbyviewed/page/([0-9]+)$		?cmd=FCategoryVideo&KBuddha=$1&KCategory=$2&Page=$3&OrderBy=Viewed [L]
+RewriteRule ^video/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/orderbyliked/page/([0-9]+)$		?cmd=FCategoryVideo&KBuddha=$1&KCategory=$2&Page=$3&OrderBy=Liked [L]
+RewriteRule ^video/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$					?cmd=FVideo&KBuddha=$1&KCategory=$2&KVideo=$3 [L]
 
-RewriteRule ^sach/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$									?cmd=FBook&KCategory=$1&KBook=$2 [L]
-RewriteRule ^sach/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$					?cmd=FChapter&KCategory=$1&KBook=$2&KChapter=$3 [L]
-RewriteRule ^sach/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$	?cmd=FBoard&KCategory=$1&KBook=$2&KChapter=$3&KBoard=$4 [L]
-RewriteRule ^sach/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)/embeded/([0-9]+)$	?cmd=FBoardEmbeded&KCategory=$1&KBook=$2&KChapter=$3&KBoard=$4&Mode=$5 [L]
-
-RewriteRule ^video/([A-Za-z0-9_-]+)$													?cmd=FCategoryVideo&KCategory=$1&Page=1&OrderBy=Viewed [L]
-RewriteRule ^video/([A-Za-z0-9_-]+)/page/([0-9]+)$										?cmd=FCategoryVideo&KCategory=$1&Page=$2&OrderBy=Viewed [L]
-RewriteRule ^video/([A-Za-z0-9_-]+)/orderbyviewed/page/([0-9]+)$						?cmd=FCategoryVideo&KCategory=$1&Page=$2&OrderBy=Viewed [L]
-RewriteRule ^video/([A-Za-z0-9_-]+)/orderbyliked/page/([0-9]+)$							?cmd=FCategoryVideo&KCategory=$1&Page=$2&OrderBy=Liked  [L]
-RewriteRule ^video/([A-Za-z0-9_-]+)/orderbyrecent/page/([0-9]+)$						?cmd=FCategoryVideo&KCategory=$1&Page=$2&OrderBy=Recent [L]
-RewriteRule ^video/([A-Za-z0-9_-]+)/([A-Za-z0-9_-]+)$									?cmd=FVideo&KCategory=$1&KVideo=$2 [L]
-
-RewriteRule ^me$ 												?cmd=FMe 			[L]
-RewriteRule ^user$ 												?cmd=FUser 			[L]
-
-RewriteRule ^lien-he$ 											?cmd=FContact 		[L]
-RewriteRule ^lien-ket$ 											?cmd=FLinked 		[L]
+RewriteRule ^lien-he$ 																	?cmd=FContact 		[L]
 
 RewriteRule ^dang-nhap$ 										?cmd=SigninLoad [L]
 RewriteRule ^dang-nhap/exe$ 									?cmd=SigninExe [L]
@@ -84,10 +46,6 @@ RewriteRule ^object/ins/([A-Za-z0-9]+)$ 						?cmd=ObjectIns&ObjectName=$1 [L]
 RewriteRule ^object/upd/([A-Za-z0-9]+)$ 						?cmd=ObjectUpd&ObjectName=$1 [L]
 RewriteRule ^object/liked/([A-Za-z0-9]+)/([0-9]+)$ 				?cmd=ObjectLiked&ObjectName=$1&Id=$2 [L]
 
-RewriteRule ^service/youtube/add/video/from/playlist$ 			?cmd=ServiceYouTubeAddVideoFromPlayList [L]
-RewriteRule ^service/youtube/update/statistic/video				?cmd=ServiceYouTubeUpdateStatisticVideo [L]
-RewriteRule ^service/facebook/update/user						?cmd=ServiceFacebookUpdateUser [L]
-
 #---------------------------------------------------------------------------------------------------------------------------
 # SELLING
 #---------------------------------------------------------------------------------------------------------------------------
@@ -96,53 +54,9 @@ RewriteRule ^admin$ 													?cmd=Admin [L]
 #---------------------------------------------------------------------------------------------------------------------------
 # SETTING
 #---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^admin/book$ 												?cmd=ABook [L]
-RewriteRule ^admin/book/([0-9]+)$ 										?cmd=ABook&IdCategory=$1 [L]
-RewriteRule ^admin/book/([0-9]+)/ins/load$ 								?cmd=ABookInsLoad&IdCategory=$1 			[L]
-RewriteRule ^admin/book/([0-9]+)/ins/exe$ 								?cmd=ABookInsExe&IdCategory=$1 				[L]
-RewriteRule ^admin/book/([0-9]+)/([0-9]+)/upd/load$ 					?cmd=ABookUpdLoad&IdCategory=$1&IdBook=$2 	[L]
-RewriteRule ^admin/book/([0-9]+)/([0-9]+)/upd/exe$ 						?cmd=ABookUpdExe&IdCategory=$1&IdBook=$2	[L]
-
-RewriteRule ^admin/book/([0-9]+)/([0-9]+)/chapter$ 						?cmd=ABookChapter&IdCategory=$1&IdBook=$2 	[L]
-RewriteRule ^admin/book/([0-9]+)/([0-9]+)/chapter/ins/load$ 			?cmd=ABookChapterInsLoad&IdCategory=$1&IdBook=$2 	[L]
-RewriteRule ^admin/book/([0-9]+)/([0-9]+)/chapter/ins/exe$ 				?cmd=ABookChapterInsExe&IdCategory=$1&IdBook=$2 	[L]
-RewriteRule ^admin/book/([0-9]+)/([0-9]+)/chapter/([0-9]+)/upd/load$ 	?cmd=ABookChapterUpdLoad&IdCategory=$1&IdBook=$2&IdChapter=$3 	[L]
-RewriteRule ^admin/book/([0-9]+)/([0-9]+)/chapter/([0-9]+)/upd/exe$ 	?cmd=ABookChapterUpdExe&IdCategory=$1&IdBook=$2&IdChapter=$3 	[L]
-
-RewriteRule ^admin/book/([0-9]+)/([0-9]+)/chapter/([0-9]+)/board$ 					?cmd=ABookChapterBoard&IdCategory=$1&IdBook=$2&IdChapter=$3 	[L]
-RewriteRule ^admin/book/([0-9]+)/([0-9]+)/chapter/([0-9]+)/board/ins/load$ 			?cmd=ABookChapterBoardInsLoad&IdCategory=$1&IdBook=$2&IdChapter=$3 	[L]
-RewriteRule ^admin/book/([0-9]+)/([0-9]+)/chapter/([0-9]+)/board/ins/exe$ 			?cmd=ABookChapterBoardInsExe&IdCategory=$1&IdBook=$2&IdChapter=$3 	[L]
-RewriteRule ^admin/book/([0-9]+)/([0-9]+)/chapter/([0-9]+)/board/([0-9]+)/upd/load$ ?cmd=ABookChapterBoardUpdLoad&IdCategory=$1&IdBook=$2&IdChapter=$3&IdBoard=$4 	[L]
-RewriteRule ^admin/book/([0-9]+)/([0-9]+)/chapter/([0-9]+)/board/([0-9]+)/upd/exe$ 	?cmd=ABookChapterBoardUpdExe&IdCategory=$1&IdBook=$2&IdChapter=$3&IdBoard=$4 	[L]
-RewriteRule ^admin/book/([0-9]+)/([0-9]+)/chapter/([0-9]+)/board/([0-9]+)/pose/load$ 	?cmd=ABookChapterBoardPoseLoad&IdCategory=$1&IdBook=$2&IdChapter=$3&IdBoard=$4 	[L]
-RewriteRule ^admin/book/([0-9]+)/([0-9]+)/chapter/([0-9]+)/board/([0-9]+)/pose/exe$ 	?cmd=ABookChapterBoardPoseExe&IdCategory=$1&IdBook=$2&IdChapter=$3&IdBoard=$4 	[L]
-RewriteRule ^admin/book/([0-9]+)/([0-9]+)/chapter/([0-9]+)/board/([0-9]+)/state/load$ 	?cmd=ABookChapterBoardStateLoad&IdCategory=$1&IdBook=$2&IdChapter=$3&IdBoard=$4 [L]
-RewriteRule ^admin/book/([0-9]+)/([0-9]+)/chapter/([0-9]+)/board/([0-9]+)/state/exe$ 	?cmd=ABookChapterBoardStateExe&IdCategory=$1&IdBook=$2&IdChapter=$3&IdBoard=$4 	[L]
-RewriteRule ^admin/book/([0-9]+)/([0-9]+)/chapter/([0-9]+)/board/([0-9]+)/pre/exe$ 		?cmd=ABookChapterBoardPreExe&IdCategory=$1&IdBook=$2&IdChapter=$3&IdBoard=$4 	[L]
-RewriteRule ^admin/book/([0-9]+)/([0-9]+)/chapter/([0-9]+)/board/([0-9]+)/detail$ 		?cmd=ABookChapterBoardDetail&IdCategory=$1&IdBook=$2&IdChapter=$3&IdBoard=$4 	[L]
-RewriteRule ^admin/book/([0-9]+)/([0-9]+)/chapter/([0-9]+)/board/([0-9]+)/detail/tag$ 	?cmd=ABookChapterBoardDetailTag&IdCategory=$1&IdBook=$2&IdChapter=$3&IdBoard=$4 [L]
-RewriteRule ^admin/book/([0-9]+)/([0-9]+)/chapter/([0-9]+)/board/([0-9]+)/detail/([0-9]+)/upd/load$ 	?cmd=ABookChapterBoardDetailUpdLoad&IdCategory=$1&IdBook=$2&IdChapter=$3&IdBoard=$4&IdBoardDetail=$5 	[L]
-RewriteRule ^admin/book/([0-9]+)/([0-9]+)/chapter/([0-9]+)/board/([0-9]+)/detail/([0-9]+)/upd/exe$ 		?cmd=ABookChapterBoardDetailUpdExe&IdCategory=$1&IdBook=$2&IdChapter=$3&IdBoard=$4&IdBoardDetail=$5 	[L]
-
-RewriteRule ^admin/book/([0-9]+)/([0-9]+)/chapter/([0-9]+)/board/([0-9]+)/detail/([0-9]+)/sub$ 			?cmd=ABoardSub&IdCategory=$1&IdBook=$2&IdChapter=$3&IdBoard=$4&IdBoardDetail=$5 	[L]
-RewriteRule ^admin/book/([0-9]+)/([0-9]+)/chapter/([0-9]+)/board/([0-9]+)/detail/([0-9]+)/sub/ins/exe$ 	?cmd=ABoardSubInsExe&IdCategory=$1&IdBook=$2&IdChapter=$3&IdBoard=$4&IdBoardDetail=$5 	[L]
-
-
-RewriteRule ^admin/post$ 												?cmd=APost [L]
-RewriteRule ^admin/post/([0-9]+)$ 										?cmd=APost&IdCategory=$1 [L]
-
-RewriteRule ^admin/post/([0-9]+)/ins/load$ 								?cmd=APostInsLoad&IdCategory=$1 			[L]
-RewriteRule ^admin/post/([0-9]+)/ins/exe$ 								?cmd=APostInsExe&IdCategory=$1 				[L]
-RewriteRule ^admin/post/([0-9]+)/([0-9]+)/upd/load$ 					?cmd=APostUpdLoad&IdCategory=$1&IdPost=$2 	[L]
-RewriteRule ^admin/post/([0-9]+)/([0-9]+)/upd/exe$ 						?cmd=APostUpdExe&IdCategory=$1&IdPost=$2	[L]
-
-RewriteRule ^admin/video$ 												?cmd=AVideo [L]
-RewriteRule ^admin/video/([0-9]+)$ 										?cmd=AVideo&IdCategory=$1 [L]
-
-RewriteRule ^admin/video/([0-9]+)/ins/load$ 							?cmd=AVideoInsLoad&IdCategory=$1 			[L]
-RewriteRule ^admin/video/([0-9]+)/ins/exe$ 								?cmd=AVideoInsExe&IdCategory=$1 			[L]
-RewriteRule ^admin/video/([0-9]+)/([0-9]+)/upd/load$ 					?cmd=AVideoUpdLoad&IdCategory=$1&IdVideo=$2 [L]
-RewriteRule ^admin/video/([0-9]+)/([0-9]+)/upd/exe$ 					?cmd=AVideoUpdExe&IdCategory=$1&IdVideo=$2	[L]
+RewriteRule ^admin/testing1$ 											?cmd=ATesting1 [L]
+RewriteRule ^service/youtube/add/video/from/playlist$ 					?cmd=ServiceYouTubeAddVideoFromPlayList [L]
+RewriteRule ^service/youtube/update/statistic/video						?cmd=ServiceYouTubeUpdateStatisticVideo [L]
 
 RewriteRule ^admin/presentation$ 										?cmd=APresentation [L]
 RewriteRule ^admin/presentation/([0-9]+)$ 								?cmd=ASlide&IdPresentation=$1 [L]
@@ -153,20 +67,49 @@ RewriteRule ^admin/presentation/([0-9]+)/([0-9]+)/upd/exe$ 				?cmd=ASlideUpdExe
 
 RewriteRule ^admin/linked$ 												?cmd=ALinked [L]
 
-RewriteRule ^admin/setting$ 											?cmd=ASetting [L]
+RewriteRule ^admin/post$ 												?cmd=APost [L]
+RewriteRule ^admin/post/([0-9]+)$ 										?cmd=APost&IdCategory=$1 [L]
 
-RewriteRule ^admin/setting/tag$ 										?cmd=ASettingTag [L]
-RewriteRule ^admin/setting/tag/page/([0-9]+)$ 							?cmd=ASettingTag&Page=$1 [L]
+RewriteRule ^admin/post/([0-9]+)/ins/load$ 								?cmd=APostInsLoad&IdCategory=$1 			[L]
+RewriteRule ^admin/post/([0-9]+)/ins/exe$ 								?cmd=APostInsExe&IdCategory=$1 			[L]
+RewriteRule ^admin/post/([0-9]+)/([0-9]+)/upd/load$ 					?cmd=APostUpdLoad&IdCategory=$1&IdPost=$2 [L]
+RewriteRule ^admin/post/([0-9]+)/([0-9]+)/upd/exe$ 						?cmd=APostUpdExe&IdCategory=$1&IdPost=$2	[L]
+
+RewriteRule ^admin/buddha$ 												?cmd=ABuddha [L]
+RewriteRule ^admin/buddha/([0-9]+)$ 									?cmd=ABuddha&IdCategoryBuddha=$1 [L]
+
+RewriteRule ^admin/buddha/([0-9]+)/([0-9]+)$ 							?cmd=AVideo&IdCategoryBuddha=$1&IdCategoryVideo=$2 [L]
+
+RewriteRule ^admin/buddha/([0-9]+)/([0-9]+)/ins/load$ 					?cmd=AVideoInsLoad&IdCategoryBuddha=$1&IdCategoryVideo=$2 [L]
+RewriteRule ^admin/buddha/([0-9]+)/([0-9]+)/ins/exe$ 					?cmd=AVideoInsExe&IdCategoryBuddha=$1&IdCategoryVideo=$2 [L]
+
+RewriteRule ^admin/buddha/([0-9]+)/([0-9]+)/([0-9]+)/upd/load$ 			?cmd=AVideoUpdLoad&IdCategoryBuddha=$1&IdCategoryVideo=$2&IdVideo=$3 [L]
+RewriteRule ^admin/buddha/([0-9]+)/([0-9]+)/([0-9]+)/upd/exe$ 			?cmd=AVideoUpdExe&IdCategoryBuddha=$1&IdCategoryVideo=$2&IdVideo=$3 [L]
+
+RewriteRule ^admin/setting$ 											?cmd=ASetting [L]
 
 RewriteRule ^admin/setting/category/post$ 								?cmd=ASettingCategoryPost [L]
 RewriteRule ^admin/setting/category/post/page/([0-9]+)$ 				?cmd=ASettingCategoryPost&Page=$1 [L]
-RewriteRule ^admin/setting/category/book$ 								?cmd=ASettingCategoryBook [L]
-RewriteRule ^admin/setting/category/book/page/([0-9]+)$ 				?cmd=ASettingCategoryBook&Page=$1 [L]
+
 RewriteRule ^admin/setting/category/video$ 								?cmd=ASettingCategoryVideo [L]
-RewriteRule ^admin/setting/category/video/page/([0-9]+)$ 				?cmd=ASettingCategoryVideo&Page=$1 [L]
+RewriteRule ^admin/setting/category/video/([0-9]+)$ 					?cmd=ASettingCategoryVideo&IdBuddha=$1 [L]
 
 RewriteRule ^admin/setting/config$ 										?cmd=ASettingConfig [L]
 RewriteRule ^admin/setting/config/page/([0-9]+)$ 						?cmd=ASettingConfig&Page=$1 [L]
 
 RewriteRule ^admin/setting/user$ 										?cmd=ASettingUser [L]
 RewriteRule ^admin/setting/user/page/([0-9]+)$ 							?cmd=ASettingUser&Page=$1 [L]
+
+RewriteRule ^admin/setting/rss$ 											?cmd=ARss [L]
+RewriteRule ^admin/setting/rss/ins/load$ 									?cmd=ARssInsLoad [L]
+RewriteRule ^admin/setting/rss/ins/exe$ 									?cmd=ARssInsExe [L]
+RewriteRule ^admin/setting/rss/([0-9]+)/upd/load$ 							?cmd=ARssUpdLoad&IdRss=$1 [L]
+RewriteRule ^admin/setting/rss/([0-9]+)/upd/exe$ 							?cmd=ARssUpdExe&IdRss=$1 	[L]
+
+RewriteRule ^admin/setting/post/getall$ 									?cmd=APostPublished [L]
+
+RewriteRule ^admin/setting/post/rss$ 										?cmd=APostRss [L]
+RewriteRule ^admin/setting/post/rss/([0-9]+)/view$ 							?cmd=APostRssView&IdPostRss=$1 [L]
+
+RewriteRule ^admin/setting/post/getpostrss/([0-9]+)$						?cmd=APostRssPublish&IdRss=$1 [L]
+RewriteRule ^admin/setting/post/published$ 									?cmd=APostRssPublished [L]

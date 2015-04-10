@@ -11,6 +11,7 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
+			$KBuddha 	= $request->getProperty('KBuddha');
 			$KCategory 	= $request->getProperty('KCategory');
 			$Page 		= $request->getProperty('Page');
 			$OrderBy 	= $request->getProperty('OrderBy');
@@ -20,51 +21,50 @@
 			//-------------------------------------------------------------						
 			$mConfig 		= new \MVC\Mapper\Config();
 			$mVideo 		= new \MVC\Mapper\Video();
-			$mPost 			= new \MVC\Mapper\Post();
-			$mCategoryBook 	= new \MVC\Mapper\CategoryBook();			
-			$mCategoryPost 	= new \MVC\Mapper\CategoryPost();
-			$mCategoryVideo	= new \MVC\Mapper\CategoryVideo();
+						
+			$mCategoryPost 		= new \MVC\Mapper\CategoryPost();
+			$mCategoryBuddha	= new \MVC\Mapper\CategoryBuddha();
+			$mCategoryVideo		= new \MVC\Mapper\CategoryVideo();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------											
+			$Buddha 			= $mCategoryBuddha->findByKey($KBuddha);
 			$Category 			= $mCategoryVideo->findByKey($KCategory);
-			$PostTop 			= $mPost->findByTop(array())->current();
-			
-			if (!isset($Page)) $Page = 1;
-			
-			$VideoRecentAll 	= $mVideo->findByRecentPage(array($Category->getId(), $Page, 8));			
-			$PNByRecent 		= new \MVC\Domain\PageNavigation($Category->getVideoAll()->count(), 8, $Category->getURLView() );
-			
-			$VideoViewedAll 	= $mVideo->findByViewedPage(array($Category->getId(), $Page, 8));			
-			$PNByViewed 		= new \MVC\Domain\PageNavigation($Category->getVideoAll()->count(), 8, $Category->getURLView() );
-			
-			$VideoLikedAll 		= $mVideo->findByLikedPage(array($Category->getId(), $Page, 8));
-			$PNByLiked 			= new \MVC\Domain\PageNavigation($Category->getVideoAll()->count(), 8, $Category->getURLView() );
 						
-			$CategoryBookAll 	= $mCategoryBook->findAll();
+			if (!isset($Page)) $Page = 1;
+			$VideoOrderViewedAll 	= $mVideo->findByOrderViewedPage(array($Category->getId(), $Page, 24));
+			$VideoOrderLikedAll 	= $mVideo->findByOrderLikedPage(array($Category->getId(), $Page, 24));
+			$VideoOrderNameAll 		= $mVideo->findByOrderNamePage(array($Category->getId(), $Page, 24));
+			
+			$PNByViewed	= new \MVC\Domain\PageNavigation($Category->getVideoAll()->count(), 24, $Category->getURLView()."/orderbyviewed" );
+			$PNByLiked	= new \MVC\Domain\PageNavigation($Category->getVideoAll()->count(), 24, $Category->getURLView()."/orderbyliked" );
+			$PNByName	= new \MVC\Domain\PageNavigation($Category->getVideoAll()->count(), 24, $Category->getURLView()."/orderbyname" );
+			
 			$CategoryPostAll 	= $mCategoryPost->findAll();
 			$CategoryVideoAll 	= $mCategoryVideo->findAll();
+			$CategoryBuddhaAll 	= $mCategoryBuddha->findAll();
 			
+						
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
-			$request->setObject("PNByRecent", 			$PNByRecent);
 			$request->setObject("PNByViewed", 			$PNByViewed);
 			$request->setObject("PNByLiked", 			$PNByLiked);
-			
-			$request->setProperty("PostTop", 			$PostTop);
-			
+			$request->setObject("PNByName", 			$PNByName);
 			$request->setProperty("Page", 				$Page);
 			$request->setProperty("OrderBy", 			$OrderBy);
-			$request->setObject("VideoRecentAll", 		$VideoRecentAll);
-			$request->setObject("VideoViewedAll", 		$VideoViewedAll);
-			$request->setObject("VideoLikedAll", 		$VideoLikedAll);
 			
+			$request->setObject("VideoOrderViewedAll", 	$VideoOrderViewedAll);
+			$request->setObject("VideoOrderLikedAll", 	$VideoOrderLikedAll);
+			$request->setObject("VideoOrderNameAll", 	$VideoOrderNameAll);
+			
+			$request->setObject("Buddha", 				$Buddha);
 			$request->setObject("Category", 			$Category);
-			$request->setObject("CategoryBookAll", 		$CategoryBookAll);
 			$request->setObject("CategoryPostAll", 		$CategoryPostAll);
-			$request->setObject("CategoryVideoAll", 	$CategoryVideoAll);								
+			$request->setObject("CategoryVideoAll", 	$CategoryVideoAll);
+			$request->setObject("CategoryBuddhaAll", 	$CategoryBuddhaAll);
+			
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

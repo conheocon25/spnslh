@@ -2,35 +2,22 @@
 namespace MVC\Domain;
 if ( ! isset( $EG_DISABLE_INCLUDES ) ) {			
 	require_once( "mvc/mapper/User.php" 			);		
-	
-	require_once( "mvc/mapper/Album.php" 			);		
-	require_once( "mvc/mapper/Image.php" 			);
-	
-	require_once( "mvc/mapper/Linked.php" 			);		
-	
-	require_once( "mvc/mapper/Facebooker.php" 		);
-	require_once( "mvc/mapper/Tag.php" 				);
-			
+	require_once( "mvc/mapper/UserTag.php" 			);		
+		
 	require_once( "mvc/mapper/Config.php"			);	
 	require_once( "mvc/mapper/Guest.php"			);	
-	
-	require_once( "mvc/mapper/Board.php"			);
-	require_once( "mvc/mapper/BoardSub.php"			);
-	require_once( "mvc/mapper/BoardDetail.php"		);
-	require_once( "mvc/mapper/BoardTag.php"			);
-	
-	require_once( "mvc/mapper/CategoryBook.php"		);
-	require_once( "mvc/mapper/Book.php"				);
-	require_once( "mvc/mapper/Chapter.php"			);
-	
+			
+	require_once( "mvc/mapper/CategoryBuddha.php"	);
 	require_once( "mvc/mapper/CategoryVideo.php"	);
 	require_once( "mvc/mapper/Video.php"			);
 	
-	require_once( "mvc/mapper/CategoryPost.php"		);
-	require_once( "mvc/mapper/Post.php"				);
-	
 	require_once( "mvc/mapper/Presentation.php"		);
 	require_once( "mvc/mapper/Slide.php"			);
+				
+	require_once( "mvc/mapper/CategoryPost.php"		);
+	require_once( "mvc/mapper/Post.php"				);	
+	require_once( "mvc/mapper/RssLink.php"			);
+	require_once( "mvc/mapper/PostRss.php"			);
 }
 
 class HelperFactory {

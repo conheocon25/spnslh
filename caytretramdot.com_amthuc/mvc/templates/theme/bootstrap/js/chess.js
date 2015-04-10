@@ -10,13 +10,12 @@ var aState = [
 	['0', '0', '0', '0', '0', '0', '0', '0', '0'], //8
 	['R', 'H', 'E', 'A', 'K', 'A', 'E', 'H', 'R']  //9
 ];
-var aStep 	= [];
-var aStepA 	= [];
+var aStep = [];
+var aStepA = [];
 
-var iStep 	= -1;
-var Round 	= -1;
+var iStep = 0;
 
-function isColor(C){
+function isColor(C){	
 	if (C=='r' || C=='h' || C=='e' || C=='a' || C=='k' || C=='p' || C=='c')
 		return 1;
 	else if (C=='R' || C=='H' || C=='E' || C=='A' || C=='K' || C=='P' || C=='C')
@@ -112,18 +111,13 @@ function exportStep(Y, X, NY, NX){
 //KHỞI TẠO VỊ TRÍ CÁC QUÂN CỜ TRƯỚC KHI SOẠN NƯỚC
 function initCompose(State){
 	drawBoard(State);
-	iStep = -1;
+	iStep = 0;
 	
 	for (var i=0; i<10; i++){
 		for (var j=0; j<9; j++){			
 			aState[i][j] = State.charAt(i*9+j);
 		}
 	}
-}
-
-function initDefault(){
-	var State = "rheakaehr0000000000c00000c0p0p0p0p0p000000000000000000P0P0P0P0P0C00000C0000000000RHEAKAEHR";
-	initViewer(State);
 }
 
 function initViewer(State){
@@ -147,13 +141,6 @@ function initState(){
 	drawBoard(State);
 }
 
-function updateAState(State){
-	for (var i=0; i<10; i++){
-		for (var j=0; j<9; j++){			
-			aState[i][j] = State.charAt(i*9+j);
-		}
-	}
-}
 
 function drawRound(Round){
 	$("#RoundRed").attr('src', '');
@@ -175,27 +162,13 @@ function drawRound1(Round){
 	}
 }
 
-function drawIState(Index){
-	$(".MoveState").html("<B>" + iStep + "</B>");
-}
-
-function drawMoveState(){
-	var Init = Math.floor($("#MoveList").attr('MoveInit'));
-	var I1 = Init + Math.floor(iStep/2);
-	var I2 = (iStep%2) + 1;	
-	if (Round>0)
-		$('#StateList tr:last').after("<tr><td align='center'><font color='red'><B>"+ I1 + "</B>." + I2 +"</font></td><td><font color='red'>"+aStepA[iStep]+"</font></td></tr>");
-	else
-		$('#StateList tr:last').after("<tr><td align='center'><font color='green'><B>"+ I1 + "</B>." + I2 +"</font></td><td><font color='green'>"+aStepA[iStep]+"</font></td></tr>");
-}
-
-function drawBoard(State, Pre){
-	$(".CCell").attr('src', '');	
+function drawBoard(State){
+	$(".CCell").attr('src', '');
 	for (var i=0; i<10; i++){
 		for (var j=0; j<9; j++){
 			var n = State.charAt(i*9+j);
 			var IdCell = "#Piece" + j + i;
-			if (n!='0'){
+			if (n!='0'){				
 				switch (n){
 					//Cặp sĩ
 					case 'a':										
@@ -253,11 +226,4 @@ function drawBoard(State, Pre){
 			}
 		}												
 	}
-	var PrePOS = "#Piece";
-	if (Pre == -1){
-		PrePOS = PrePOS + "00";		
-	}else{
-		PrePOS = PrePOS + Pre;
-	}
-	$(PrePOS).attr("src", '/data/chess/150/Select.png');
 }

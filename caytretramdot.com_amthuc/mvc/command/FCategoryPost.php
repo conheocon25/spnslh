@@ -18,7 +18,7 @@
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------						
 			$mConfig 		= new \MVC\Mapper\Config();
-			$mCategoryBook 	= new \MVC\Mapper\CategoryBook();			
+			$mCategoryBuddha= new \MVC\Mapper\CategoryBuddha();			
 			$mCategoryPost 	= new \MVC\Mapper\CategoryPost();
 			$mCategoryVideo	= new \MVC\Mapper\CategoryVideo();
 			$mPost 			= new \MVC\Mapper\Post();
@@ -32,7 +32,7 @@
 			$PostAll 	= $mPost->findByPage(array($Category->getId(), $Page, 8));
 			$PN 		= new \MVC\Domain\PageNavigation($Category->getPostAll()->count(), 8, $Category->getURLView() );
 			
-			$CategoryBookAll 	= $mCategoryBook->findAll();
+			$CategoryBuddhaAll 	= $mCategoryBuddha->findAll();
 			$CategoryPostAll 	= $mCategoryPost->findAll();
 			$CategoryVideoAll 	= $mCategoryVideo->findAll();
 			
@@ -43,7 +43,7 @@
 			$request->setObject("PN", 					$PN);
 			$request->setProperty("Page", 				$Page);
 			$request->setObject("PostAll", 				$PostAll);
-			$request->setObject("CategoryBookAll", 		$CategoryBookAll);
+			$request->setObject("CategoryBuddhaAll", 	$CategoryBuddhaAll);
 			$request->setObject("CategoryPostAll", 		$CategoryPostAll);
 			$request->setObject("CategoryVideoAll", 	$CategoryVideoAll);								
 			return self::statuses('CMD_DEFAULT');

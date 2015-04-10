@@ -18,14 +18,16 @@
 			//-------------------------------------------------------------			
 			$mConfig 		= new \MVC\Mapper\Config();
 			$mPost 			= new \MVC\Mapper\Post();
-			$mPresentation 	= new \MVC\Mapper\Presentation();
-												
+			//$mTag 			= new \MVC\Mapper\Tag();
+			//$mPresentation 	= new \MVC\Mapper\Presentation();
+									
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
-			$ConfigAll 			= $mConfig->findAll();
-			$PresentationAll 	= $mPresentation->findAll();
-									
+			$ConfigAll 		= $mConfig->findAll();
+			//$Tag 			= $mTag->findByPosition(array(2))->current();
+			//$PresentationAll= $mPresentation->findAll();
+						
 			$Title = "CẤU HÌNH";
 			$Navigation = array(				
 				array("THIẾT LẬP", "/admin/setting")
@@ -140,14 +142,18 @@
 				$mConfig->insert($ConfigGTalk);
 			}
 			
+			$ConfigPost = $mConfig->findByName("AUTO_POST");
+			if ($ConfigPost==null){
+				$ConfigPost = new \MVC\Domain\Config(null, 'AUTO_POST', '1');
+				$mConfig->insert($ConfigPost);
+			}
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
 			$request->setProperty('Title', 				$Title);
 			$request->setProperty('ActiveAdmin', 		'Config');
 			$request->setObject('Navigation', 			$Navigation);
-			
-			$request->setObject('PresentationAll', 			$PresentationAll);
 						
 			$request->setObject('ConfigName', 				$ConfigName);			
 			$request->setObject('ConfigAddress', 			$ConfigAddress);
@@ -164,8 +170,11 @@
 			$request->setObject('ConfigPolicy', 			$ConfigPolicy);	
 			$request->setObject('ConfigFAQ', 				$ConfigFAQ);
 			$request->setObject('ConfigPHome', 				$ConfigPHome);
-						
-						
+									
+			$request->setObject('ConfigPost', 				$ConfigPost);
+			//$request->setObject('Tag', 						$Tag);
+			//$request->setObject('PresentationAll', 			$PresentationAll);
+			
 			$request->setObject('ConfigYahooMessenger', 	$ConfigYahooMessenger);
 			$request->setObject('ConfigSkype', 				$ConfigSkype);
 			$request->setObject('ConfigGTalk', 				$ConfigGTalk);

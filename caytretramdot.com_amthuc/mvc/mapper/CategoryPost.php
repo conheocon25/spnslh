@@ -8,7 +8,7 @@ class CategoryPost extends Mapper implements \MVC\Domain\CategoryPostFinder{
 		
 		$tblCategoryPost = "tbl_category_post";
 						
-		$selectAllStmt 	= sprintf("select * from %s order by `order` DESC", $tblCategoryPost);
+		$selectAllStmt 	= sprintf("select * from %s order by `order`", $tblCategoryPost);
 		$selectStmt 	= sprintf("select * from %s where id=?", $tblCategoryPost);
 		$updateStmt 	= sprintf("update %s set name=?, `order`=?, `key`=? where id=?", $tblCategoryPost);
 		$insertStmt 	= sprintf("insert into %s ( name, `order`, `key`) values(?, ?, ?)", $tblCategoryPost);

@@ -18,31 +18,30 @@
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------						
 			$mConfig 		= new \MVC\Mapper\Config();
-			$mPost 			= new \MVC\Mapper\Post();			
-			$mCategoryBook 	= new \MVC\Mapper\CategoryBook();
+			$mPost 			= new \MVC\Mapper\Post();
+
+			$mCategoryBuddha = new \MVC\Mapper\CategoryBuddha();
 			$mCategoryPost 	= new \MVC\Mapper\CategoryPost();
-			$mCategoryVideo	= new \MVC\Mapper\CategoryVideo();
 									
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------											
+			$Category 			= $mCategoryPost->findByKey($KCategory);
 			$Post 				= $mPost->findByKey($KPost);
 			$Post->setViewed($Post->getViewed() + 1);
 			$mPost->update($Post);
 			
 			$CategoryPostAll 	= $mCategoryPost->findAll();
-			$CategoryBookAll 	= $mCategoryBook->findAll();
-			$CategoryVideoAll 	= $mCategoryVideo->findAll();
+			$CategoryBuddhaAll 	= $mCategoryBuddha->findAll();
 															
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
 			$request->setObject("URLShare", 			$Post->getURLViewFull());
-			$request->setObject("Post", 				$Post);			
-			$request->setObject("Category", 			$Post->getCategory());
+			$request->setObject("Category", 			$Category);
+			$request->setObject("Post", 				$Post);
 			$request->setObject("CategoryPostAll", 		$CategoryPostAll);
-			$request->setObject("CategoryBookAll", 		$CategoryBookAll);
-			$request->setObject("CategoryVideoAll", 	$CategoryVideoAll);
+			$request->setObject("CategoryBuddhaAll", 		$CategoryBuddhaAll);
 									
 			return self::statuses('CMD_DEFAULT');
 		}
