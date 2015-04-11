@@ -27,6 +27,7 @@
 										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
 										<th class="left">TÊN</th>										
 										<th width="90"><div class="text-right">VIDEO</div></th>
+										<th width="90"><div class="text-right">BÀI VIẾT</div></th>
 										<th width="40"><i class="glyphicons-bin"/></th>
 									</tr>
 								</thead>
@@ -37,6 +38,11 @@
 										<td class="right">
 											<a tal:attributes="href Course/getURLSettingVideo">
 												Xem (<span tal:content="Course/getVideoAll/count"/>)
+											</a>
+										</td>
+										<td class="right">
+											<a tal:attributes="href Course/getURLSettingPost">
+												Xem (<span tal:content="Course/getPostAll/count"/>)
 											</a>
 										</td>
 										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Course/getId"><i class="glyphicon glyphicon-remove"/></a></td>

@@ -1,31 +1,28 @@
 <?php
-Namespace MVC\Domain;
+namespace MVC\Domain;
 require_once( "mvc/base/domain/DomainObject.php" );
 
 class Post extends Object{
     private $Id;
-	private $IdCategory;
-	private $Title;
-	private $Content;	
-	private $Time;
+	private $IdCourse;
+	private $Title;	
+	private $DateTimeCreated;
+	private $DateTimeUpdated;
+	private $Content;
 	private $Key;
-	private $Viewed;
-	private $Liked;
-	
+		
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-    function __construct( $Id=null, $IdCategory, $Title=null, $Content=null, $Time=null, $Key=null, $Viewed=null, $Liked=null){
-        $this->Id 			= $Id;
-		$this->IdCategory 	= $IdCategory;
-		$this->Title 		= $Title;
-		$this->Content 		= $Content;				
-		$this->Time 		= $Time;				
-		$this->Key 			= $Key;
-		$this->Viewed 		= $Viewed;
-		$this->Liked 		= $Liked;
-		$this->Key 			= $Key;
-		
+    function __construct( $Id=null, $IdCourse=null, $Title=null, $DateTimeCreated=null, $DateTimeUpdated=null, $Content=null, $Key=null){
+        $this->Id 				= $Id;
+		$this->IdCourse 		= $IdCourse;
+		$this->Title 			= $Title;		
+		$this->DateTimeCreated 	= $DateTimeCreated;
+		$this->DateTimeUpdated 	= $DateTimeUpdated;
+		$this->Content 			= $Content;				
+		$this->Key 				= $Key;
+				
         parent::__construct( $Id );
     }
     function setId($Id) {$this->Id = $Id;}
@@ -33,40 +30,27 @@ class Post extends Object{
 		
 	function setContent( $Content ){$this->Content = $Content;$this->markDirty();}   
 	function getContent( ) {return $this->Content;}
-			
-	function setTime( $Time ){$this->Time = $Time;$this->markDirty();}   
-	function getTime( ) {return $this->Time;}
-	function getTimePrint( ){		
-		$D = new \MVC\Library\Date($this->Time);return $D->getFullDateTimeFormat();
-	}
-	function getTimePrint1(){
-		$current 	= strtotime(date("Y-m-d H:i:s"));
-		$date    	= strtotime($this->Time);		
-		
-		$Str 		= "";
-		$Arr1		= array("giây"	, "phút"	, "giờ"	, "ngày", "tháng"	, "năm");
-		$Arr2		= array(60		, 60		, 24	, 30	, 12		, 1);
-		$Index		= 0;
-		$D 			= $current - $date;
-		
-		while ($D>0){
-			if ($Index>2)
-				$Str	= ($D%$Arr2[$Index]). " ". $Arr1[$Index]." hơn";
-			else
-				$Str	= ($D%$Arr2[$Index]). " ". $Arr1[$Index]." ".$Str;
-			
-			$D 		= floor($D/$Arr2[$Index]);
-			$Index ++;
-		}
-		return $Str;
+	
+	function setDateTimeCreated($DateTimeCreated ) {$this->DateTimeCreated = $DateTimeCreated; $this->markDirty();}
+	function getDateTimeCreated(){return $this->DateTimeCreated;}
+	function getDateTimeCreatedPrint(){
+		$t = strtotime($this->DateTimeCreated);		
+		return date('d/m/Y H:i',$t);
 	}
 	
-	function setIdCategory( $IdCategory ){$this->IdCategory = $IdCategory;$this->markDirty();}   
-	function getIdCategory( ) {return $this->IdCategory;}
-	function getCategory( ) {
-		$mCategory 	= new \MVC\Mapper\CategoryPost();
-		$Category 	= $mCategory->find($this->IdCategory);
-		return $Category;
+	function setDateTimeUpdated($DateTimeUpdated ) {$this->DateTimeUpdated = $DateTimeUpdated; $this->markDirty();}
+	function getDateTimeUpdated(){return $this->DateTimeUpdated;}
+	function getDateTimeUpdatedPrint(){
+		$t = strtotime($this->DateTimeUpdated);
+		return date('d/m/Y H:i',$t);
+	}
+			
+	function setIdCourse( $IdCourse ){$this->IdCourse = $IdCourse;$this->markDirty();}   
+	function getIdCourse( ) {return $this->IdCourse;}
+	function getCourse( ) {
+		$mCourse 	= new \MVC\Mapper\Course();
+		$Course 	= $mCourse->find($this->IdCourse);
+		return $Course;
 	}
 	
 	function setTitle( $Title ){$this->Title = $Title;$this->markDirty();}   
@@ -98,59 +82,41 @@ class Post extends Object{
 		$this->Key = $Str->converturl();		
 	}	
 	function getContentReduce(){$S = new \MVC\Library\String($this->Content);return $S->reduceHTML(320);}
-	
-	function setViewed( $Viewed ) 	{$this->Viewed = $Viewed; $this->markDirty();}   
-	function getViewed( ) 			{return $this->Viewed;}
-	function getViewedPrint( ){
-		$N= new \MVC\Library\Number($this->Viewed);
-		return $N->formatCurrency();
-	}
-	
-	function setLiked( $Liked ) 	{$this->Liked = $Liked; $this->markDirty();}   
-	function getLiked( ) 			{return $this->Liked;}
-	function getLikedPrint( ){		
-		$N= new \MVC\Library\Number($this->Liked);
-		return $N->formatCurrency();
-	}
-	
+			
 	//-------------------------------------------------------------------------------
 	//GET LISTs
 	//-------------------------------------------------------------------------------
 				
 	function toJSON(){
 		$json = array(
-			'Id' 			=> $this->getId(),
-			'IdCategory'	=> $this->getIdCategory(),
-			'Title'			=> $this->getTitle(),
-			'Content'		=> $this->getContent(),			
-			'Time'			=> $this->getTime(),			
-			'Key'			=> $this->getKey(),
-			'Viewed'		=> $this->getViewed(),
-			'Liked'			=> $this->getLiked()
+			'Id' 				=> $this->getId(),
+			'IdCourse'			=> $this->getIdCourse(),
+			'Title'				=> $this->getTitle(),			
+			'DateTimeCreated'	=> $this->getDateTimeCreated(),
+			'DateTimeUpdated'	=> $this->getDateTimeUpdated(),
+			'Content'			=> $this->getContent(),
+			'Key'				=> $this->getKey()
 		);				
 		return json_encode($json);
 	}
 	
 	function setArray( $Data ){
-        $this->Id 			= $Data[0];
-		$this->IdCategory	= $Data[2];
-		$this->Title		= $Data[3];
-		$this->Content 		= \stripslashes($Data[4]);
-		$this->Time 		= $Data[5];		
-		$this->Viewed 		= $Data[6];
-		$this->Liked 		= $Data[7];
+        $this->Id 				= $Data[0];
+		$this->IdCourse			= $Data[1];
+		$this->Title			= $Data[2];				
+		$this->Content 			= \stripslashes($Data[3]);
 		$this->reKey();
     }
 	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLView(){		return "/bai-viet/".$this->getCategory()->getKey()."/".$this->getKey();}
+	function getURLView(){		return "/mon/".$this->getCourse()->getKey()."/bai-viet/".$this->getKey();}
 	function getURLViewFull(){	return "http://phatphapungdung.caytretramdot.com/bai-viet/".$this->getCategory()->getKey()."/".$this->getKey();}
 			
-	function getURLUpdLoad(){	return "admin/post/".$this->getIdCategory()."/".$this->getId()."/upd/load";}
-	function getURLUpdExe(){	return "admin/post/".$this->getIdCategory()."/".$this->getId()."/upd/exe";}
-					
+	function getURLSettingUpd()		{return "/admin/course/".$this->getCourse()->getId()."/post/".$this->getId()."/upd";		}
+	function getURLSettingUpdExe()	{return "/admin/course/".$this->getCourse()->getId()."/post/".$this->getId()."/upd/exe";	}
+		
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}	

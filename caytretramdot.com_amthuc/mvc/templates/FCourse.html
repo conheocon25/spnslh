@@ -9,22 +9,40 @@
 		<div class="container-fluid" id="wraper">			
 			<div class="row">									
 				<div class="col-md-9">
-					<h3 tal:content="Course/getName"/>
-					<p tal:content="Course/getCookMethod/getName"/>					
-					<div class="col-sm-2 col-md-2" tal:repeat="Video Course/getVideoAll">
-						<div class="thumbnail">
-							<a tal:attributes="href '#'; title Video/getName" data-toggle="tooltip" data-placement="top">
-								<img width="100%" tal:attributes="src Video/getImage"/>
-								<div class="caption">
-									<p><span tal:content="Video/getDateTimeCreated"/></p>
+					<div class="panel panel-primary">
+						<div class="panel-heading"><i class="glyphicon glyphicon-folder-open"/> <B tal:content="php: mb_strtoupper(Course->getName(), 'UTF8')"/></div>
+						<div class="panel-body">
+							<p tal:content="Course/getCookMethod/getName"/>							
+						</div>
+					</div>
+					<div class="panel panel-primary">
+						<div class="panel-body">
+							<div class="list-group" tal:repeat="Post Course/getPostAll">
+								<a tal:attributes="href Post/getURLView" class="list-group-item">
+									<h4 class="list-group-item-heading"><span tal:content="Post/getTitle"/></h4>
+									<p class="list-group-item-text" tal:content="structure Post/getContentReduce"/>
+								</a>
+							</div>							
+						</div>
+					</div>
+					<div class="panel panel-primary">						
+						<div class="panel-body">							
+							<div class="col-sm-3 col-md-3" tal:repeat="Video Course/getVideoAll">
+								<div class="thumbnail">
+									<a tal:attributes="href Video/getURLView; title Video/getName" data-toggle="tooltip" data-placement="top">
+										<img width="100%" tal:attributes="src Video/getImage"/>
+										<div class="caption">
+											<p><span tal:content="Video/getDateTimeCreatedPrint"/></p>
+										</div>
+									</a>
 								</div>
-							</a>													
+							</div>
 						</div>
 					</div>
 				</div>
 				<div class="col-md-3">
 					<div class="panel panel-primary">
-						<div class="panel-heading"><i class="glyphicon glyphicon-folder-open"/> <B>MÓN ĂN</B></div>
+						<div class="panel-heading"><i class="glyphicon glyphicon-folder-open"/> <B>TÌM KIẾM</B></div>
 						<div class="panel-body">
 							
 						</div>

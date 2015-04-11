@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class ACourseVideo extends Command {
+	class ACoursePostUpdExe extends Command{
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -11,37 +11,32 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$IdCourse 		= $request->getProperty('IdCourse');
+			$IdCourse 	= $request->getProperty('IdCourse');
+			$IdPost 	= $request->getProperty('IdPost');
+			$Title 		= $request->getProperty('Title');
+			$Content 	= \stripslashes($request->getProperty('Content'));
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mCourse 		= new \MVC\Mapper\Course();			
-			$mConfig 		= new \MVC\Mapper\Config();
-			
+			$mCourse 	= new \MVC\Mapper\Course();
+			$mPost 		= new \MVC\Mapper\Post();
+						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------									
+			//-------------------------------------------------------------																					
 			$Course 	= $mCourse->find($IdCourse);
-						
-			$Title 		= mb_strtoupper($Course->getName(), 'UTF8')." / VIDEO";
-			$Navigation = array(
-				array("MÓN ĂN", "/admin/course")
-			);
-			$Config 	= $mConfig->findByName("ROW_PER_PAGE");
-			$ConfigName = $mConfig->findByName("NAME");
-						
+			$Post 		= $mPost->find($IdPost);
+			$Post->setTitle($Title);
+			$Post->setContent($Content);
+			$Post->setDateTimeUpdated(\date('Y-m-d H:i'));
+			$mPost->update($Post);
+											
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
-			$request->setProperty('Title'		, $Title);
-			$request->setProperty('ActiveAdmin'	, 'Course');			
-			$request->setObject('ConfigName'	, $ConfigName);
-			$request->setObject('Navigation'	, $Navigation);
-						
-			$request->setObject('Course'		, $Course);
-															
-			return self::statuses('CMD_DEFAULT');
+																					
+			return self::statuses('CMD_OK');
 		}
 	}
 ?>

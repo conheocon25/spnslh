@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<tal:block metal:use-macro="mFront.xhtml/IncludeMETA"/>
+		<meta property="og:title" tal:attributes="content Post/getTitle"/>
+		<meta property="og:image" tal:attributes="content Post/getImage"/>
+		<meta property="og:description" tal:attributes="content Post/getContentReduce"/>		
+		<tal:block metal:use-macro="mFront.xhtml/IncludeCSS"/>
+		<tal:block metal:use-macro="mFront.xhtml/IncludeJS"/>
+	</head>
+	<body>
+		<div metal:use-macro="mFront.xhtml/Header"/>
+		<div class="container-fluid" id="wraper">
+			<div class="row">
+				<div class="col-md-9">
+					<div class="panel panel-primary">
+						<div class="panel-heading">							
+							<i class="glyphicon glyphicon-tag"/> <span tal:content="php: mb_strtoupper(Post->getTitle(), 'UTF8')"/>
+						</div>
+						<div class="panel-body">														
+							<div class="share-button-group">
+								<div class="fb-share-button" tal:attributes="data-href URLShare" data-type="button_count" />
+								<span tal:content="Post/getDateTimeCreatedPrint"/>
+							</div>
+							<div class="article-content-container">
+								<p tal:content="structure Post/getContent"/>
+							</div>							
+						</div>						
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="panel panel-primary">
+						<div class="panel-heading"><i class="glyphicon glyphicon-cog"/> <B>CHỨC NĂNG</B></div>
+						<div class="panel-body">
+							<div class="btn-group" role="group" aria-label="...">
+								<a tal:attributes="href Course/getURLView" class="btn btn-default">
+									<i class="glyphicon glyphicon-share-alt"/>
+								</a>
+							</div>							
+						</div>	
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+		/*<![CDATA[*/
+			
+		/*]]>*/
+		</script>
+	</body>	
+</html>

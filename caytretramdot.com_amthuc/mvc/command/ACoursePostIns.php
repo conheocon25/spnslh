@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class APostInsLoad extends Command{
+	class ACoursePostIns extends Command{
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -11,23 +11,23 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$IdCategory = $request->getProperty('IdCategory');
+			$IdCourse = $request->getProperty('IdCourse');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mCategoryPost 	= new \MVC\Mapper\CategoryPost();
-			$mPost 			= new \MVC\Mapper\Post();
-			$mConfig		= new \MVC\Mapper\Config();
+			$mCourse 	= new \MVC\Mapper\Course();			
+			$mConfig	= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------																					
-			$Category 	= $mCategoryPost->find($IdCategory);
+			$Course 	= $mCourse->find($IdCourse);
 			
-			$Title = mb_strtoupper($Category->getName(), 'UTF8');
-			$Navigation = array(				
-				array("BÀI VIẾT", 	"/admin/post"),	
+			$Title 		= "THÊM MỚI";
+			$Navigation = array(
+				array("MÓN ĂN", 	"/admin/course"),
+				array(mb_strtoupper($Course->getName(), 'UTF8')." / BÀI VIẾT", $Course->getURLSettingPost())
 			);
 			
 			$ConfigName	= $mConfig->findByName("NAME");
@@ -35,11 +35,10 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
-			$request->setProperty('Title'		, $Title);
-			$request->setProperty('ActiveAdmin'	, 'Post');			
-			$request->setObject('Navigation'	, $Navigation);			
+			$request->setProperty('Title'		, $Title);			
+			$request->setObject('Navigation'	, $Navigation);
 			$request->setObject('ConfigName'	, $ConfigName);
-			$request->setObject('Category'		, $Category);
+			$request->setObject('Course'		, $Course);
 																		
 			return self::statuses('CMD_DEFAULT');
 		}
