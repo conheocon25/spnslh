@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class APostInsExe extends Command {
+	class ACoursePostInsExe extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -11,14 +11,10 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------												
-			$IdCategory = $request->getProperty('IdCategory');			
+			$IdCourse 	= $request->getProperty('IdCourse');			
 			$Title 		= $request->getProperty('Title');
 			$Content 	= \stripslashes($request->getProperty('Content'));
-			$Author 	= $request->getProperty('Author');			
-			$Time	 	= $request->getProperty('Time');
-			$Viewed	 	= $request->getProperty('Viewed');
-			$Liked	 	= $request->getProperty('Liked');
-									
+												
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
@@ -29,13 +25,12 @@
 			//-------------------------------------------------------------							
 			$Post = new \MVC\Domain\Post(
 				null,
-				$IdCategory,
+				$IdCourse,
 				$Title,
-				$Content,				
-				$Time,				
-				"",
-				$Viewed,
-				$Liked
+				\date('Y-m-d H:i'),
+				\date('Y-m-d H:i'),
+				$Content,
+				""
 			);
 			$Post->reKey();
 			$mPost->insert($Post);

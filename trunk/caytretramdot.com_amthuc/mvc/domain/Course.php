@@ -98,12 +98,23 @@ class Course extends Object{
 		$VideoAll 	= $mVideo->findByCourse(array($this->getId()));
 		return $VideoAll;
 	}
+	
+	function getPostAll(){
+		$mPost 		= new \MVC\Mapper\Post();
+		$PostAll 	= $mPost->findBy(array($this->getId()));
+		return $PostAll;
+	}
 			
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLView()			{return "/mon/".$this->getKey();}		
-	function getURLSettingVideo()	{return "/admin/course/".$this->getId()."/video";}
+	function getURLView()			{return "/mon/".$this->getKey();}
+	function getURLSettingVideo()	{return "/admin/course/".$this->getId()."/video";}	
+	function getURLSettingTrick()	{return "/admin/course/".$this->getId()."/trick";}
+	
+	function getURLSettingPost()		{return "/admin/course/".$this->getId()."/post";}
+	function getURLSettingPostIns()		{return "/admin/course/".$this->getId()."/post/ins";}
+	function getURLSettingPostInsExe()	{return "/admin/course/".$this->getId()."/post/ins/exe";}
 	
 	//-------------------------------------------------------------------------------
 	static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

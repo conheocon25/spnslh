@@ -6,6 +6,8 @@
 		<command name="DefaultCommand" 	type="public"><view>DefaultCommand</view><status value="CMD_OK"><forward>FHome</forward></status></command>
 		<command name="FHome" 			type="public"><view>FHome</view></command>						
 		<command name="FCourse" 		type="public"><view>FCourse</view></command>
+		<command name="FCourseVideo" 	type="public"><view>FCourseVideo</view></command>
+		<command name="FCoursePost" 	type="public"><view>FCoursePost</view></command>
 									
 		<!-- ============================================================================== -->
 		<!-- JSON LOAD			 															-->
@@ -29,7 +31,19 @@
 		<command name="ASetting">				<view>ASetting		</view></command>
 		<command name="ACourse">				<view>ACourse		</view></command>										
 		<command name="ACourseVideo">			<view>ACourseVideo	</view></command>				
+		
 		<command name="ACoursePost">			<view>ACoursePost	</view></command>
+		<command name="ACoursePostIns">			<view>ACoursePostIns	</view></command>
+		<command name="ACoursePostInsExe">
+			<view>ACoursePostInsExe</view>
+			<status value="CMD_OK"><forward>ACoursePost</forward></status>			
+		</command>
+		<command name="ACoursePostUpd">			<view>ACoursePostUpd</view></command>
+		<command name="ACoursePostUpdExe">
+			<view>ACoursePostUpdExe</view>
+			<status value="CMD_OK"><forward>ACoursePost</forward></status>			
+		</command>
+		
 		<command name="ACourseTrick">			<view>ACourseTrick	</view></command>
 						
 		<command name="ASettingUser">			<view>ASettingUser			</view></command>		

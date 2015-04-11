@@ -19,6 +19,8 @@ AddOutputFilterByType DEFLATE application/x-javascript
 RewriteRule ^trang-chu$ 																?cmd=FHome [L]
 
 RewriteRule ^mon/([A-Za-z0-9_-]+)$														?cmd=FCourse&KCourse=$1 [L]
+RewriteRule ^mon/([A-Za-z0-9_-]+)/video/([0-9]+)$										?cmd=FCourseVideo&KCourse=$1&IdVideo=$2 [L]
+RewriteRule ^mon/([A-Za-z0-9_-]+)/bai-viet/([A-Za-z0-9_-]+)$							?cmd=FCoursePost&KCourse=$1&KPost=$2 [L]
 
 RewriteRule ^lien-he$ 																	?cmd=FContact 		[L]
 
@@ -44,7 +46,12 @@ RewriteRule ^admin$ 													?cmd=Admin [L]
 RewriteRule ^admin/course$ 												?cmd=ACourse 					[L]
 RewriteRule ^admin/course/([0-9]+)/video$ 								?cmd=ACourseVideo&IdCourse=$1 	[L]
 RewriteRule ^admin/course/([0-9]+)/trick$ 								?cmd=ACourseTrick&IdCourse=$1 	[L]
+
 RewriteRule ^admin/course/([0-9]+)/post$ 								?cmd=ACoursePost&IdCourse=$1 	[L]
+RewriteRule ^admin/course/([0-9]+)/post/ins$ 							?cmd=ACoursePostIns&IdCourse=$1 	[L]
+RewriteRule ^admin/course/([0-9]+)/post/ins/exe$ 						?cmd=ACoursePostInsExe&IdCourse=$1 	[L]
+RewriteRule ^admin/course/([0-9]+)/post/([0-9]+)/upd$ 					?cmd=ACoursePostUpd&IdCourse=$1&IdPost=$2 		[L]
+RewriteRule ^admin/course/([0-9]+)/post/([0-9]+)/upd/exe$ 				?cmd=ACoursePostUpdExe&IdCourse=$1&IdPost=$2 	[L]
 
 RewriteRule ^admin/setting$ 											?cmd=ASetting [L]
 RewriteRule ^admin/setting/config$ 										?cmd=ASettingConfig [L]

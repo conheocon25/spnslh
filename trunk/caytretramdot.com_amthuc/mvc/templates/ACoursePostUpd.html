@@ -14,29 +14,11 @@
 				<div class="col-12">
 					<div class="widget-box">
 						<div class="widget-content nopadding">
-							<form class="form-horizontal" tal:attributes="action Post/getURLUpdExe" method="post">
+							<form class="form-horizontal" tal:attributes="action Post/getURLSettingUpdExe" method="post">
 								<div class="control-group">
 									<label class="control-label" for="Title">Tiêu đề</label>
 									<div class="controls">
 										<input type="text" id="Title" name="Title" tal:attributes="value Post/getTitle"/>
-									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label" for="Time">Thời gian</label>
-									<div class="controls">
-										<input type="text" id="Time" name="Time" tal:attributes="value Post/getTime" data-date-format="yyyy-mm-dd hh:ii"/>
-									</div>
-								</div>								
-								<div class="control-group">
-									<label class="control-label" for="Viewed">Lượt xem</label>
-									<div class="controls">
-										<input type="text" id="Viewed" name="Viewed" tal:attributes="value Post/getViewed" />
-									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label" for="Count">Lượt Like</label>
-									<div class="controls">
-										<input type="text" id="Liked" name="Liked" tal:attributes="value Post/getLiked"/>
 									</div>
 								</div>
 								<div class="control-group">
@@ -59,20 +41,7 @@
 		<script type="text/javascript" language="javascript" src="/mvc/templates/back/ckeditor/ckeditor.js"/>
 		<script type="text/javascript">
 		/*<![CDATA[*/
-			/* ---------------------------------------------------------------------------- */
-			/* SET TODAY FOR DATEPICKER														*/
-			/* ---------------------------------------------------------------------------- */
-			//THIẾT LẬP NGÀY GIỜ GIAO DỊCH
-			$('#Time').datetimepicker({
-				language:  'vi',
-				weekStart: 1,
-				todayBtn:  1,
-				autoclose: 1,
-				todayHighlight: 1,
-				startView: 2,
-				forceParse: 0,
-				showMeridian: 1
-			});			
+					
 		/*]]>*/
 		</script>
 	</body>

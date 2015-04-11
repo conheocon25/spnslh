@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class ACourseVideo extends Command {
+	class ACoursePost extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -24,7 +24,7 @@
 			//-------------------------------------------------------------									
 			$Course 	= $mCourse->find($IdCourse);
 						
-			$Title 		= mb_strtoupper($Course->getName(), 'UTF8')." / VIDEO";
+			$Title 		= mb_strtoupper($Course->getName(), 'UTF8'). " / BÀI VIẾT";
 			$Navigation = array(
 				array("MÓN ĂN", "/admin/course")
 			);
